@@ -92,7 +92,7 @@
     - AM: PHP Integrations
       - phpmailer
       - AJAX to local PHP script
-      - AJAX to API
+      - AJAX to external API
     - HW: Add "contact" form to website
   - D05
     - LB:
