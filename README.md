@@ -1,0 +1,143 @@
+- W00
+  - Instead of Installfest, meet to go over pre-work
+- W01: HTML/CSS: Introducing the web
+  - D01
+    - AM: GA 101
+      - Defining expectations
+        - What is the role of the instructor?
+        - What is the role of the student?
+        - What is the product that will be delivered by General Assembly to the student?
+      - What does it mean to (not) graduate?
+        - Outcomes priority
+        - Meet & Hire
+        - Use of GA brand
+        - Recommendations and references
+    - PM: Your first website
+      - Purchase a site
+      - Get acclimated to plain text and TextEdit
+      - Intro to the Web
+        - High-level of HTTP
+        - Browser vs. server vs. domain
+      - Set up FTP / FileZilla
+      - Write and validate HTML
+    - HW: Mark up existing piece with HTML and post to site
+  - D02
+    - AM: CSS 101
+      - Basic selectors
+        - Elements
+        - Classes
+        - IDs
+      - Basic properties
+        - Display
+        - Position
+        - Float
+      - Box model
+    - PM: CSS 102
+      - Advanced selectors
+        - target
+        - :checked + label
+        - nth-child
+      - External stylesheets
+      - Useful properties
+    - HW: Add CSS to site
+  - D03
+    - AM: JS 101: Inline JS
+      - The DOM
+        - Elements vs. nodes
+      - Modifying properties
+      - `onclick` attribute, etc
+    - PM: JS 102
+      - window.onload
+      - Variables
+      - addEventListener
+    - HW: Create "lights out" game
+  - D04
+    - AM: JS with data
+      - Data types
+      - Basic functions
+    - HW: Create calculator page
+  - D05
+    - LB:
+    - HW:
+- W02: The Front and Back Ends
+  - D01
+    - AM: Changing the DOM
+      - JSON
+      - Adding and removing nodes
+    - PM: Manipulating Text: Intro to RegEx
+      - Matching, replacing, etc
+      - Toggle classes
+    - HW: Make website into JSON-based blog
+  - D02
+    - AM: Responsive sites
+      - CSS media queries
+      - Viewport dimensions
+      - JS responsiveness
+    - PM: High-view AJAX
+      - Intro to APIs
+      - XMLHttpRequest and basic GET
+      - Data persistence with Firebase
+    - HW: Mobile-friendly Yoda says
+  - D03
+    - AM: Introducing the back-end
+      - Basic PHP
+      - Similarities between languages
+      - Set up Apache locally (Terminal is magic)
+    - PM: Introducing HTTP
+      - GET and POST
+      - Basic HTML forms
+      - Write form data to JSON file
+    - HW: Re-make website into JSON-based blog
+  - D04
+    - AM: PHP Integrations
+      - phpmailer
+      - AJAX to local PHP script
+      - AJAX to API
+    - HW: Add "contact" form to website
+  - D05
+    - LB:
+    - HW:
+- W03: Project
+- W04: Becoming a Programmer
+  - D01
+    - AM: Introducing the command line
+      - Man pages
+      - Bash profile
+    - PM: Introducing Git
+  - D02
+    - AM: Introducing Github
+    - PM: Troubleshooting Github
+  - D03
+    - AM: Introducing Objects
+      - What is a function, anyway?
+    - PM: Introducing this
+    - HW: Re-make Lights Out game
+  - D04
+    - AM: Introducing MVC
+    - HW: Make a printable math worksheet generator
+  - D05
+    - LB:
+    - HW:
+- W05: Advanced JS
+  - D01
+    - AM: jQuery
+      - CDNs
+    - PM: AJAX
+    - HW: Stock tracker
+  - D02
+    - AM: jQuery effects
+    - PM: CSS animations and transitions
+    - HW: Make a slideshow, or make quasi-reveal.js
+  - D03
+    - AM: TDD
+      - Jasmine
+    - PM: TDD continued
+    - HW: TDD Lights Out
+  - D04
+    - AM: Creating a "good" online presence
+      - Github revisited, proper coding practice
+      - Github pages
+    - HW: Put existing stuff on Github
+- W06: Project: Make some kind of JS engine / framework
+- W07: Introducing Node
+
