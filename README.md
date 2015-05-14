@@ -1,3 +1,11 @@
+## Mantras
+
+- Always sort/group the students alphabetically by last name if you want it to look random.
+- If it's not on paper, it doesn't exist.
+- If it's on paper, it's law.
+
+## Syllabus
+
 - W00
   - Instead of Installfest, meet to go over pre-work
 - W01: HTML/CSS: Introducing the web
@@ -139,5 +147,7 @@
       - Github pages
     - HW: Put existing stuff on Github
 - W06: Project: Make some kind of JS engine / framework
-- W07: Introducing Node
+- W07: Introducing Back-end JS
+  - D01:
+    - AM: Introducing Express.js
 
