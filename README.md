@@ -39,8 +39,14 @@ https://www.lucidchart.com/documents/view/77ddd18c-b8ed-4e52-b167-0f684c548783
   - HW: Post a plain-text file to a website
 - Static sites
   - HTML 101
-    - HW: Mark up existing plain-text file and post to website
+    - Semantics vs style
+    - Why `<br />` is bad (and center, b, u, i, etc)
+    - The death of `<marquee>`
+    - w3 validator
   - HTML 102
+    - Lists
+    - Tables
+  - HW: Mark up existing plain-text file and post to website
   - CSS 101
     - Basic selectors
       - Elements
