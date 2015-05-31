@@ -47,7 +47,6 @@
 - Git
   - Diagram the components of a Git repository.
   - Write a list of the commands most commonly used when managing a Git branch.
-  - 
 - Github
   - Explain the differences between a repo, a branch, and a fork.
   - Publish a website to `github.io`.
