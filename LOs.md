@@ -1,13 +1,20 @@
-## Overall 
+## Weekly 
 - Create, make public, and maintain a great-looking static website.
 - Maintain and share code as efficiently as possible.
+- Design a complex Javascript app using object-oriented principles.
+- Read and write data through a webpage.
+- Build a command-line app.
+- Build a RESTful API.
+- Build a CRUD app that uses a database.
+- Implement security measures on web-based apps.
+- Create a web-based app using a completely different programming language.
 
 ## Technology-specific
 - Web
   - List the differences and similarities between a browser and a server.
   - Explain the difference between a domain registrar and a hosting provider.
-  - Create a diagram illustrating the basic structure of the Domain Name System.
-  - Chart the components of a URI.
+  - Diagram the basic structure of the Domain Name System.
+  - Diagram the components of a URI.
   - Describe the difference between a domain name and an IP address.
   - Upload a file to a server using a graphical FTP client.
   - Rewrite an absolute path as relative, and vice-versa.
@@ -30,6 +37,7 @@
   - Embed a font in a webpage, using either a local file or a CDN.
   - Explain the difference between tweening, easing, keyframes, animations, and transitions.
   - Create an image slideshow using CSS animations and/or transitions.
+  - Recreate the "Holy Grail" of webpage layouts using flexible boxes.
 - JS
   - Make a webpage respond to user events using inline HTML event attributes.
   - Use real-world analogies to explain the difference between functions and variables.
