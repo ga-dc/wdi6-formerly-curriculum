@@ -2,7 +2,7 @@
 
 ### New Technologies
 - TextEdit
-  - The most basic of TextEditors; unavoidable on a Mac. Write code without line numbers or any syntax highlighting to ensure attention to detail.
+  - The most basic of text editors; unavoidable on a Mac. Write code without line numbers or any syntax highlighting to ensure attention to detail.
 - Chrome
   - The element inspector.
 - FileZilla
