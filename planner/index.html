@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Planner</title>
+    <style>
+*
+{
+  border:0;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-size:inherit;
+  font-family:inherit;
+  font-style:normal;
+  font-weight:normal;
+  text-decoration:none;
+}
+*:focus
+{
+  outline:0;
+}
+div
+{
+  outline:1px dotted #ccc;
+  border-left:10px solid #ddd;
+  max-width:320px;
+}
+textarea
+{
+  display:block;
+  width:100%;
+  height:100%;
+}
+    </style>
+    <script>
+      /*
+         return = add sibling
+         tab = make child
+         delete when empty = kill current
+         ctl + up = up one level
+         ctl + down = down to first of lower level
+         ctl + right = next sibling
+         ctl + left = prev sibling
+      */
+      var Item = function(){
+        this.mom,
+        this.el,
+        this.text,
+        this.kids = [],
+        this.presses = [];
+      }
+      Item.prototype = {
+        bornTo: function(mom){
+          this.mom = mom;
+          this.el = document.createElement("DIV");
+          this.text = document.createElement("TEXTAREA");
+          this.mom.el.appendChild(this.el.appendChild(this.text).parentNode);
+          this.text.addEventListener("keydown", this.listeners.bind(this));
+        },
+        listeners: function(evt){
+          this.presses.push(evt.keyCode);
+          onkeyup = function(){
+            console.log("keyup", this.presses);
+            this.presses = [];
+          }.bind(this);
+          switch(evt.keyCode){
+            case 17:
+              //Ctrl
+              onkeydown = function(e){
+                console.log(e.keyCode, this.presses);
+              }.bind(this);
+              break;
+            case 13:
+              //Return
+              break;
+            case 9:
+              //Tab
+              evt.preventDefault();
+              break;
+            case 8:
+              //Delete
+              break;
+          }
+        }
+      }
+      window.onload = function(){
+        onkeydown = function(){
+          console.dir(document);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <textarea selected="selected" style="outline:1px solid red;"></textarea>
+  </body>
+</html>

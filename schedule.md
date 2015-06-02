@@ -1,15 +1,17 @@
-## Weekly 
-- Create, make public, and maintain a great-looking static website.
-- Maintain and share code as efficiently as possible.
-- Design a complex Javascript app.
-- Read and write data through a webpage.
-- Build a command-line app.
-- Build a RESTful API.
-- Build a CRUD app.
-- Implement security measures on your apps.
-- Create an app using a completely different programming language.
+## Week 01: Create, publish, and maintain a responsive static website.
 
-## Technology-specific
+### New Technologies
+- TextEdit
+  - The most basic of TextEditors; unavoidable on a Mac. Write code without line numbers or any syntax highlighting to ensure attention to detail.
+- Chrome
+  - The element inspector.
+- FileZilla
+  - Graphical FTP client.
+- Browserstack
+  - Cross-browser testing app.
+- jQuery
+
+### LOs
 - Web
   - List the differences and similarities between a browser and a server.
   - Explain the difference between a domain registrar and a hosting provider.
@@ -43,6 +45,21 @@
   - Use real-world analogies to explain the difference between functions and variables.
   - Make a webpage respond to user events using event listeners.
   - Dynamically generate the layout of a webpage from a given JSON string.
+- jQuery
+  - Describe the difference between a Framework and a library
+
+## Week 02: Maintain and share code as efficiently as possible.
+
+### New Technologies
+- Terminal and iTerm
+- Console-based text editors (Pico, Nano, Vi, Vim, Emacs)
+  - Note: Still no Atom or SublimeText. Teaching console-based text editors as the only alternative (so far) to TextEdit forces comfortability with the console.
+- Homebrew
+- XCode CLI tools
+- Git
+- Node in CLI
+
+### LOs
 - Command Line
   - Demonstrate CRUD actions in Pico, Nano, Vi, Vim, Emacs, and using pure shell commands (e.g. `echo >`, `echo >>`, `touch`, `grep`).
   - Label the components of a command.
@@ -55,10 +72,84 @@
 - Git
   - Diagram the components of a Git repository.
   - Write a list of the commands most commonly used when managing a Git branch.
-- Github
   - Explain the differences between a repo, a branch, and a fork.
+  - Given a Git error, write the steps you would pursue to attempt to correct it.
+- Github
   - Publish a website to `github.io`.
   - Make a domain point to a `github.io` page.
 - RegEx
   - Perform a `grep` search to retrieve files containing an e-mail address.
   - List common special entities used in Regular Expressions and explain their purpose.
+  - Use Javascript to search a string for a complex pattern.
+- TDD with Jasmine
+
+## Week 03: Project 1: Create and publish a responsive, static website.
+
+## Week 04: Design a complex interactive app.
+
+### New Techologies
+- An IDE (Atom, SublimeText...)
+- Backbone
+- Underscore
+
+### LOs
+- Object-Oriented Javascript
+  - Explain what `this` refers to at each point in a given expression.
+  - Provide a real-world analogy that explains the roles of models, views, and controllers.
+- Backbone
+- AJAX with GET
+
+## Week 05: Read and write data through a website.
+
+### New Technologies
+- PHP
+  - Simplest way to enable back-end functionality on a website.
+- Firebase
+
+### LOs
+- PHP
+  - Create a "Contact Me" form on a webpage.
+- HTTP
+- APIs
+- AJAX with GET and POST
+- Websockets
+
+## Week 06: Project 2: Design a complex interactive web app with persisting data.
+
+## Week 07: Build a RESTful API.
+
+### New Technologies
+- Node.js
+- NPM
+- ExpressJS
+
+### LOs
+
+## Week 08: Build a CRUD app.
+
+### New Technologies
+- MongoDB
+
+### LOs
+
+## Week 09: Project 3: Build a RESTful CRUD app.
+
+## Week 10: Create a CRUD app using a completely different programming language.
+
+### New Technologies
+- Ruby
+- Rails
+- PostgreSQL
+
+### LOs
+
+## Week 11: Implement security measures on an app.
+
+### New Technologies
+- Devise
+- OAuth
+- Hand-rolled authentication
+
+### LOs
+
+## Week 12: Project 4: Flagship project.
