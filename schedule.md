@@ -58,6 +58,7 @@
 - XCode CLI tools
 - Git
 - Node in CLI
+- Jasmine
 
 ### LOs
 - Command Line
@@ -85,67 +86,69 @@
 
 ## Week 03: Project 1: Create and publish a responsive, static website.
 
-## Week 04: Design a complex interactive app.
-
-### New Techologies
-- An IDE (Atom, SublimeText...)
-- Backbone
-- Underscore
-
-### LOs
-- Object-Oriented Javascript
-  - Explain what `this` refers to at each point in a given expression.
-  - Provide a real-world analogy that explains the roles of models, views, and controllers.
-- Backbone
-- AJAX with GET
-
-## Week 05: Read and write data through a website.
+## Week 04: Build a complex single-page app with persisting data.
 
 ### New Technologies
+- An IDE (Atom, SublimeText...)
 - PHP
   - Simplest way to enable back-end functionality on a website.
 - Firebase
 
 ### LOs
-- PHP
-  - Create a "Contact Me" form on a webpage.
+- Object-Oriented Javascript
+  - Explain what `this` refers to at each point in a given expression.
+  - Provide a real-world analogy that explains the roles of models, views, and controllers.
 - HTTP
 - APIs
 - AJAX with GET and POST
-- Websockets
+- PHP
+  - Create a "Contact Me" form on a webpage.
 
-## Week 06: Project 2: Design a complex interactive web app with persisting data.
-
-## Week 07: Build a RESTful API.
+## Week 05: Build a RESTful API.
 
 ### New Technologies
 - Node.js
 - NPM
 - ExpressJS
+- socket.io
+- Heroku
 
 ### LOs
 
-## Week 08: Build a CRUD app.
+## Week 06: Project 2: Build a complex multi-view app with persisting data.
+
+## Week 07: Build a CRUD app that uses a database.
 
 ### New Technologies
 - MongoDB
+- ERD
 
 ### LOs
 
-## Week 09: Project 3: Build a RESTful CRUD app.
+## Week 08: Develop a CRUD application to be as efficient and maintainable as possible.
+
+### New Techologies
+- Backbone
+- Underscore
+
+### LOs
+
+## Week 09: Project 3: Build a RESTful, database-based CRUD app.
 
 ## Week 10: Create a CRUD app using a completely different programming language.
 
 ### New Technologies
 - Ruby
-- Rails
+- RSpec
+- Sinatra
 - PostgreSQL
 
 ### LOs
 
-## Week 11: Implement security measures on an app.
+## Week 11: Create a secure, scalable CRUD app.
 
 ### New Technologies
+- Rails
 - Devise
 - OAuth
 - Hand-rolled authentication
