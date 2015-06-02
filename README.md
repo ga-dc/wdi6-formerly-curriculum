@@ -10,7 +10,7 @@
 
 ## Installfest
 
-- Install only the things that are most likely to take forever and throw errors that would hold up a regular class:
+- Install only the things that take the most time to install, throw the most errors, and are generally most likely to hold up a regular class:
   - XCode developer tools
   - PostgreSQL
 - Review the pre-work!
