@@ -1,11 +1,11 @@
 # Robin's WDI6 Syllabus
 
 ### Things of note
+- The weeks are "not to scale" -- they're organized by topic rather than by day.
 - Each week has a main learning objective, the purpose of which is to describe the "thing" students will be able to create by the end of that week. These LOs don't mention technologies by name so they can be applied to new technologies.
 - The command line isn't introduced until Week 02 to ensure students are more comfortable with their computers before taking on "scary" concepts like Git. During Week 01, students would obtain their own domain and upload all assignments to it.
 - The only text editors supported until Week 04 are TextEdit and the shell-based editors (Vim, Nano, etc). This is to force students to pay attention to details and not rely on IDEs to clean up code.
 - PHP is briefly covered -- no more than a day or so. It's presented as the simplest way to add basic read/write functionality to an app where no other back-end logic is required, i.e. a "contact me" form on a personal homepage.
-- The weeks are "not to scale" -- they're organized by topic rather than by day.
 - Installfest has been pared down so as to decrease the amount of "magic" introduced in the course. Students don't substantially install things until they've had exposure to the command line in Week 02. Installfest incorporates pre-work review, for which many of our students asked.
 
 ## Installfest
