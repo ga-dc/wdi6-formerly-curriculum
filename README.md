@@ -1,4 +1,4 @@
-# Robin's WDI6 Syllabus
+# WDI6 Syllabus
 
 ### Things of note
 - The weeks are "not to scale" -- they're organized by topic rather than by day.
