@@ -1,0 +1,50 @@
+@import url(http://fonts.googleapis.com/css?family=Ribeye+Marrow);
+
+
+body {
+  padding: 0 100px;
+  font-family: Ribeye Marrow;
+}
+
+
+h1 {
+  font-size: 48px;
+  text-align: center;
+}
+
+h2 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+img {
+  display: block;
+  margin: 50px auto;
+  vertical-align: middle;
+  height: 200px;
+  width: 200px;
+  transition: 1s;
+}
+
+form {
+  position: fixed;
+  left: 200px;
+  top: 300px;
+}
+
+#add {
+  position: fixed;
+  left: 220px;
+  top: 350px;
+}
+
+.user {
+  width: 380px;
+  display: inline-block;
+}
+
+.big {
+  height: 350px;
+  width: 350px;
+  transition: 1s;
+}

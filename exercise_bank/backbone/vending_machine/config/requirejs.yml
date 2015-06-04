@@ -1,0 +1,5 @@
+paths:
+  text: 'requirejs-text'
+
+modules:
+  - name: 'app/user'

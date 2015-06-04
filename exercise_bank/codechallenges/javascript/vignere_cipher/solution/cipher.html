@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>cipher</title>
+  </head>
+  <body>
+    <h1>cipher</h1>
+    <script type='text/javascript' src='underscore.js'></script>
+    <script type='text/javascript'>
+
+    var numberize = function(letter) {
+      var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+      return alphabet.indexOf(letter);
+    }
+
+    var encodeLetter = function(originalLetter, encodingLetter) {
+      var index = (numberize(originalLetter) + numberize(encodingLetter)) % 26;
+      var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+      return alphabet[index];
+    }
+
+    var encodeWord = function(originalWord, keyword){
+      encodedWord = '';
+      for ( i = 0; i< originalWord.length; i++) {
+        encodedWord += encodeLetter(originalWord[i], keyword[(i % keyword.length)]);
+      }
+      return encodedWord;
+    }
+
+    var decodeLetter = function(encodedLetter, encodingLetter) {
+      var index = (numberize(encodedLetter) - numberize(encodingLetter) + 26) % 26;
+      var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+      return alphabet[index];
+    }
+
+    var decodeWord = function(encodedWord, keyword){
+      decodedWord = '';
+      for ( i = 0; i< encodedWord.length; i++) {
+        decodedWord += decodeLetter(encodedWord[i], keyword[(i % keyword.length)]);
+      }
+      return decodedWord;
+    }
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+@import url(http://fonts.googleapis.com/css?family=Monoton);
+
+.brush {
+  width: 100px;
+  height: 100px;
+  background: #1B4370;
+  margin: 15px auto;
+}
+
+.square {
+  float: left;
+  width: 10px;
+  height: 10px;
+  background: #E7E5DB;
+  margin: 0px;
+}
+
+h1 {
+  font-family: Monoton;
+  font-size: 48px;
+  text-align: center;
+}
+
+.controls {
+  text-align: center;
+}
+
+body {
+  background-image: url('ps_neutral.png');
+}

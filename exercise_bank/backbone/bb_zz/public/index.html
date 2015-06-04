@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Zanesville Zoo</title>
+
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="css/normalize.css" /> -->
+  <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+</head>
+<body>
+  <div id="container">
+    <h1>Welcome to the Zanesville Zoo</h1>
+
+    <div id="backbone-app">
+      <form id="exhibit">
+        <fieldset>
+          <legend>Add a New Exhibit!</legend>
+
+          <label for="title"> Animal(s): </label>
+
+          <select name="number">
+            <option value = "1">1</option>
+            <option value = "2">2</option>
+            <option value = "3">3</option>
+            <option value = "4">4</option>
+            <option value = "5">5</option>
+          </select>
+
+          <input type="text" name="animal" placeholder="Macaque">
+
+          <button>Add</button>
+        </fieldset>
+      </form>
+
+      <form id="escape">
+        <fieldset>
+          <legend>Let Your Guard Down...</legend>
+
+          <button>Doze Off</button>
+        </fieldset>
+      </form>
+
+    </div>
+
+  </div>
+
+  <script type="text/html" id='cage-template'>
+    <span><%= number + " " + description + " " + animal %></span>
+  </script>
+
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.js"></script>
+  <script type="text/javascript" src="js/underscore.js"></script>
+  <script type="text/javascript" src="js/underscore.string.js"></script>
+  <script type="text/javascript"> _.mixin(_.str.exports()); </script>
+  <script type="text/javascript" src="js/backbone.js"></script>
+
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

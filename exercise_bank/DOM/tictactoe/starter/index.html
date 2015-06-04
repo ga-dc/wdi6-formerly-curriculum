@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="js/src/ttt.js"></script>
+</head>
+<body>
+  <ul class="board">
+  </ul>
+
+  <script type="text/javascript">
+    var board = document.querySelector("ul.board");
+
+    for (var i = 1; i <= 9; i++) {
+      var li = document.createElement("li");
+      li.className = (i % 2 ? "x" : "o");
+      board.appendChild(li);
+    }
+  </script>
+</body>
+</html>

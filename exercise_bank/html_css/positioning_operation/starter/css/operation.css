@@ -1,0 +1,11 @@
+body {
+  font: 16px/1.4 Helvetica, Arial, sans-serif;
+  background-color: #333;
+}
+
+.operation {
+  background-color: white;
+  margin: 0 auto;
+  padding: 10px;
+  width: 400px;
+}

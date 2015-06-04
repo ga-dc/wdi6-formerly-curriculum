@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>warmup</title>
+  </head>
+  <body>
+    <h1>warmup</h1>
+    <script type='text/javascript'>
+
+
+// WORK HERE
+
+  var favoriteThings = ["pizza", "cookies", "knishes", "pho", "bacon"];
+
+  var i = 0;
+
+  favoriteThings.forEach(function(entry) {
+    i += 1;
+    // console.log(i + " me likey " + entry);
+  });
+
+  var favoritesPrint = function(favorites) {
+    for ( var i = 0; i < favorites.length; i++ ) {
+      console.log("My #" + (i+1) + " favorite thing is " + favorites[i] + ".");
+    };
+  };
+
+  // favoritesPrint(favoriteThings);
+
+
+
+  function initials(fullName) {
+    var names = fullName.split(" ");
+    var initials = [];
+    for( var i = 0; i < names.length; i++ ) {
+      initials.push(names[i][0]);
+    }
+    console.log(initials.join(""));
+  }
+
+  initials("Shawn David Broukhim");
+
+    </script>
+  </body>
+</html>

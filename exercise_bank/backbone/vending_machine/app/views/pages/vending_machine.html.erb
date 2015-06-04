@@ -1,0 +1,55 @@
+<%= stylesheet_link_tag 'vendingmachine', media: 'all' %>
+
+<div id="vending-app" class="vending">
+  <h1>WDI Brain Fuel</h1>
+  <noscript>Sorry, this application requires JavaScript</noscript>
+
+  <div class="vending-inventory">
+    <h2 class="visuallyhidden">Available Products</h2>
+    <div class="stockwindow" id="stockwindow">
+      <ul></ul>
+    </div>
+
+    <h2 class="visuallyhidden">Your Purchases</h2>
+    <a href="#" class="purchases" id="purchases" title="Take your purchases.">
+      <ul></ul>
+    </a>
+  </div>
+
+  <div class="vending-controls">
+    <div class="message" id="message">
+    </div>
+
+    <div class="credit" id="credit">
+      <h2>Add Credit</h2>
+      <ul>
+        <li class="col-66">
+          <input type="text" placeholder="Insert Cash" data-ui="credit">
+        </li>
+        <li class="col-33">
+          <button class="btn" data-ui="refund">Refund</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="keypad" id="keypad">
+      <h2>Make Your Selection</h2>
+      <ul>
+        <li class="col-33"><button class="btn" data-ui="a">A</button></li>
+        <li class="col-33"><button class="btn" data-ui="b">B</button></li>
+        <li class="col-33"><button class="btn" data-ui="c">C</button></li>
+        <li class="col-33"><button class="btn" data-ui="1">1</button></li>
+        <li class="col-33"><button class="btn" data-ui="2">2</button></li>
+        <li class="col-33"><button class="btn" data-ui="3">3</button></li>
+        <li class="col-66"><button class="btn" data-ui="clear">Clear</a></li>
+      </ul>
+    </div>
+
+    <div class="change" id="change">
+      <h2>Take Your Change</h2>
+      <a href="#" data-ui="claim" title="Take your change."></a>
+    </div>
+  </div>
+</div>
+
+<%= requirejs_include_tag "vendingmachine/main" %>

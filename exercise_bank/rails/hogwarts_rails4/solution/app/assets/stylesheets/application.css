@@ -1,0 +1,61 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+@import url("http://fnt.webink.com/wfs/webink.css/?project=548D2AB5-FEF2-4BB9-BA39-A9506DCC5723&fonts=81DCB682-CEF0-F2EE-50B4-29BCB883721E:f=Ablefont");
+@import url(http://fonts.googleapis.com/css?family=Irish+Grover);
+
+
+body {
+  font-family: Ablefont, Irish Grover;
+  text-align: center;
+  font-color: #7C2A30;
+}
+
+nav {
+  padding: 15px;
+  background-color: #D8AE48;
+  border-radius: 40px 0 40px 0;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+.student {
+  display: inline-block;
+  background-color: #D8AE48;
+  width: 350px;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  border: 10px solid black;
+  border-radius: 10%;
+}
+
+.house {
+  display: inline-block;
+}
+
+.house img {
+  display: block;
+}
+
+img {
+  border-radius: 40%;
+  height: 300px;
+}

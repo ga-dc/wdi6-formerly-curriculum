@@ -1,0 +1,63 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Playfair+Display);
+
+body {
+  background: #2C858D;
+  font-family: 'Playfair Display', serif;
+}
+
+h1 {
+  margin: 0 auto;
+}
+
+nav {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+nav li {
+  border-bottom: 5px dashed #FFFFCB;
+  display: inline-block;
+  list-style: none;
+  padding: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #FFFFCB;
+}
+
+.wrapper {
+  margin: 20px auto;
+  text-align: center;
+}
+
+section {
+  display: block;
+  margin: 0 auto;
+}
+
+img {
+  width: 350px;
+  height: 350px;
+  border-radius: 5%;
+  border: 5px solid #ddd;
+}
+
+label {
+  text-align: left;
+}

@@ -1,0 +1,141 @@
+/*
+  Red: #B00;
+  Dark Red: #900;
+
+  Max page width: 900px
+  Nav width: 25%, with 5% right margin
+  Main width: 65%
+
+  CSS you'll need:
+  - max-width
+  - @media
+*/
+
+body {
+  background-color: #333;
+  font: 15px/1.4 Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 25px 25px 50px;
+}
+
+a {
+  color: #C00;
+}
+
+.page {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  max-width: 900px;
+  overflow: hidden;
+}
+
+.header {
+  background: black url('../images/header.png') no-repeat center top;
+  background-size: cover;
+  border-bottom: 10px solid #000;
+  color: #fff;
+  padding: 20px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+  .header img {
+    max-width: 380px;
+    width: 30%;
+  }
+
+.nav {
+  background-color: #B00;
+  float: left;
+  list-style: none;
+  margin: 0;
+  margin-right: 5%;
+  padding: 0;
+  width: 25%;
+}
+
+  .nav a {
+    border-bottom: 1px solid #900;
+    color: white;
+    display: block;
+    font-weight: bold;
+    padding: 10px 20px;
+  }
+
+  .nav a:hover {
+    background-color: #D00;
+  }
+
+.main {
+  float: left;
+  margin: 0 0 30px;
+  width: 65%;
+}
+
+  .main img {
+    float: left;
+    margin-bottom: 5px;
+    margin-right: 20px;
+    width: 30%;
+  }
+
+.breadcrumbs {
+  font-weight: bold;
+  margin: 20px 0;
+  padding: 0;
+}
+
+  .breadcrumbs li {
+    display: inline;
+  }
+  
+  .breadcrumbs li:before {
+    content: "\00BB";
+    margin: 0 10px;
+  }
+
+  .breadcrumbs li:first-child:before {
+    content: none;
+  }
+
+.footer {
+  background-color: #B00;
+  clear: both;
+  margin: 0;
+  padding: 10px 20px;
+}
+  
+  .footer a {
+    color: white;
+  }
+
+  .footer li {
+    border-right: 1px solid #900;
+    display: inline;
+    margin-right: 15px;
+    padding-right: 15px;
+  }
+
+
+@media screen and (max-width: 800px) {
+  .nav {
+    float: none;
+    margin: 0;
+    overflow: auto;
+    width: auto;
+  }
+  
+  .nav li {
+    border-right: 1px solid #900;
+    display: inline-block;
+    float: left;
+  }
+  
+  .main {
+    float: none;
+    margin: 0;
+    padding: 0 20px;
+    width: auto;
+  }
+}

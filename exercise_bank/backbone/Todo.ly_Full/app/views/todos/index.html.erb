@@ -1,0 +1,22 @@
+<h1>Todos!</h1>
+<form>
+  <fieldset>
+    <legend>New Todo</legend>
+    <label>
+      Task
+      <input type="text" name="task" />
+    </label>
+    <button>Save</button>
+  </fieldset>
+</form>
+
+<ul class="todos">
+</ul>
+
+<script type="template" class="template">
+  <li class="<%%= todo.get('done') ? "done" : "" %>">
+    <%%= todo.get('task') %>
+    <input type="checkbox" <%%= todo.get('done') ? "checked" : "" %>/>
+    <span>&times;</span>
+  </li>
+</script>

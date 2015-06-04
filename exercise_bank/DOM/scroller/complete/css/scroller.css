@@ -1,0 +1,49 @@
+body {
+  background-color: #333;
+  margin: 0;
+}
+
+.page {
+  background-color: white;
+  font: 16px/1.4 Helvetica, Arial, sans-serif;
+  margin: 50px auto;
+  width: 600px;
+}
+
+.scroller {
+  position: relative;
+}
+
+.scroll-area {
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+.scroll-content {
+  padding: 15px 30px;
+  padding-right: 70px;
+}
+
+.scroll-well {
+  background-color: #ccc;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 15px;
+  z-index: 1;
+}
+
+.scroll-bar {
+  background-color: #999;
+  border: 2px solid #ccc;
+  border-bottom: none;
+  border-top: none;
+  box-sizing: border-box;
+  height: 10%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

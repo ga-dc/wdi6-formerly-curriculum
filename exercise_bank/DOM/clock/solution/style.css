@@ -1,0 +1,29 @@
+@import url(http://fonts.googleapis.com/css?family=Rouge+Script);
+
+body {
+  background: #222;
+}
+
+h1 {
+  text-align: center;
+  color: #C3D8EE;
+  font-family: Rouge Script;
+  font-size: 72px;
+}
+
+.clock {
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  border: 5px solid #C3D8EE;
+  margin: 0 auto;
+}
+
+img {
+  position: absolute;
+  left: 50%;
+  margin-left: -125px;
+  /* Check out http://easings.net/ for more info on this!*/
+ -webkit-transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}

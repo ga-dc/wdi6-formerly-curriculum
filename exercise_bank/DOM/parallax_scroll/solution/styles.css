@@ -1,0 +1,46 @@
+@import url(http://fonts.googleapis.com/css?family=Vollkorn);
+
+
+html, body {
+  padding: 0px;
+  margin: 0px;
+}
+
+.bg {
+  background: url('http://www.screenscience.com.au/images/gallery/starceiling13.jpg') repeat;
+  width: 100%;
+  height: 300%;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+img {
+  position: relative;
+  display: inline-block;
+  width: 30%;
+}
+
+.break {
+  position: relative;
+  background-color: goldenrod;
+  width: 100%;
+  height: 50%;
+  display: block;
+  text-align: center;
+}
+
+h1 {
+  font-family: Vollkorn;
+  color: white;
+  font-size: 60px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+p {
+  font-family: Vollkorn;
+  color: black;
+  font-size: 20px;
+  padding: 0 8%;
+}

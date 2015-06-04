@@ -1,0 +1,6 @@
+  <% @entries.each do |entry| %>
+    <section>
+      <a href="<%="/entries/#{entry.id}"%>"><img src='<%= entry.photo_url %>'></a>
+    <h3>Shot by <%= entry.author %> on <%= entry.date_taken %></h3>
+    </section>
+  <% end %>

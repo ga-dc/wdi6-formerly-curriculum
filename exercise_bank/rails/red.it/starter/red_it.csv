@@ -1,0 +1,29 @@
+Id,Story,Labels,Iteration,Iteration Start,Iteration End,Story Type,Estimate,Current State,Created at,Accepted at,Deadline,Requested By,Description,URL,Owned By
+66546020,User can login/logout,"",,,,feature,,unscheduled,"Feb 26, 2014",,,Jeffrey Konowitch,"As a user I want to authenticate myself with the server
+So that other users can't submit stories as me!",http://www.pivotaltracker.com/story/show/66546020,
+66546272,User can submit a link,"",,,,feature,,unscheduled,"Feb 26, 2014",,,Jeffrey Konowitch,"As a user
+I want to submit a link
+So that I can share sweet stuff I found on the web with the SnakerNews community",http://www.pivotaltracker.com/story/show/66546272,
+66546400,User can see a list of submitted stories,"",,,,feature,,unscheduled,"Feb 26, 2014",,,Jeffrey Konowitch,"As a user
+I want to see a list of stories
+So that I can consume moar information
+
+Reqs:
+Ordered by upvotes - downvotes
+Timestamp of submission is displayed
+User who submitted the story is displayed
+
+Bonus:
+Instead of the URL, the HTML title of the link should be displayed",http://www.pivotaltracker.com/story/show/66546400,
+66546322,User can upvote/downvote a story,"",,,,feature,,unscheduled,"Feb 26, 2014",,,Jeffrey Konowitch,"As a user
+I can downvote or upvote a story
+In order to make my opinion know
+
+Reqs:
+User can only upvote OR downvote a story once.",http://www.pivotaltracker.com/story/show/66546322,
+66546462,User can comment on a story,"",,,,feature,,unscheduled,"Feb 26, 2014",,,Jeffrey Konowitch,"As a user
+I want to leave a comment on a story
+So that I can fill the internet with dribble",http://www.pivotaltracker.com/story/show/66546462,
+66546698,"[Bonus] User can mark a story as ""red""","",,,,feature,,unscheduled,"Feb 26, 2014",,,Jeffrey Konowitch,"As a user
+I want to mark stories as read (""red"")
+So that I don't see them anymore",http://www.pivotaltracker.com/story/show/66546698,

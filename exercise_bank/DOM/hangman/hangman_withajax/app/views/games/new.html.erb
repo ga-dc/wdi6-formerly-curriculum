@@ -1,0 +1,81 @@
+<section class="game-play">
+
+  <figure>
+    <span>Guesses Left:</span> <span class="guesses-left"></span>
+  </figure>
+
+  <aside>
+    <div>
+      <span>Letters Guessed Already:</span>
+      <span class="guessed-letters"></span>
+    </div>
+
+    <div>
+      <label for="letter">Guess a Letter:</label>
+      <input type="text" name="letter" id="letter" />
+    </div>
+  </aside>
+</section>
+
+<div class="game-word">A B C D</div>
+
+<section class="game-controls">
+  <button class="give-up">Give Up</button>
+  <button class="new-game">New Game</button>
+</section>
+
+<script>
+  (function(){
+    var game;
+
+    function startGame() {
+      $.getJSON("/words/random", function(response) {
+        game = new Game(response.word, 8);
+        render();
+      });
+    };
+
+    startGame();
+
+    var guessesLeft    = document.querySelector(".guesses-left");
+    var guessInput     = document.querySelector("input[name='letter']");
+    var guessedLetters = document.querySelector(".guessed-letters");
+    var wordDisplay    = document.querySelector(".game-word");
+    var newGame        = document.querySelector("button.new-game");
+    var giveUp         = document.querySelector("button.give-up");
+
+    guessInput.addEventListener("keyup", function() {
+      var letter = this.value;
+      this.value = "";
+
+      game.guess(letter);
+      render();
+    });
+
+    newGame.addEventListener("click", function() {
+      startGame();
+    });
+
+    giveUp.addEventListener("click", function() {
+      wordDisplay.innerText = game.wordDisplay(true);
+      game.gaveUp = true;
+      checkWon();
+    });
+
+    function render() {
+      guessesLeft.innerText    = game.guessesLeft;
+      guessedLetters.innerText = game.guessedLetters.join(" ");
+      wordDisplay.innerText    = game.wordDisplay();
+
+      checkWon();
+    };
+
+    function checkWon() {
+      if (game.gameOver()) {
+        $.post( "/games", { won: game.won() } );
+        alert("You " + (game.won() ? "won" : "lost"));
+      };
+    };
+
+  })();
+</script>

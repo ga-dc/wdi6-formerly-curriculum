@@ -1,0 +1,110 @@
+<head>
+
+  <link rel="stylesheet" href="reset.css" type="text/css" />
+  <style>
+    body {
+      font-family: sans-serif;
+      color: #666;
+      font-size: 13px;
+      border: 1px solid red;
+    }
+
+    /*div, ul, li, form, input, img {
+      border: 1px solid blue;
+    }*/
+
+    header, footer {
+      background: #f2f2f2;
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #page-wrapper {
+      position: relative;
+    }
+
+    #google-logo {
+      height: 95px;
+      width: 269px;
+    }
+
+    #google-search {
+      position: absolute;
+      top: 120px;
+      text-align: center;
+      width: 100%;
+    }
+
+    input.search {
+      display: block;
+      margin: 5px auto;
+      width: 300px;  
+    }
+
+    input.button {
+      border-radius: 3px;
+    }
+    
+    img.no-img {
+      display: none;
+    }
+
+    ul {
+      list-style-type: none;
+      display: inline-block;
+      height: 1em;
+      margin: 0 1em;
+    }
+
+    ul.privacy-settings {
+      float: right;
+    }
+
+    li {
+      display: inline;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="page-wrapper">
+    <header>
+      <nav>
+        <ul>
+          <li><a>+Philip</a></li>
+          <li><a>Gmail</a></li>
+          <li><a>Images</a></li>
+          <li><a><img class="no-img"/></a></li>
+          <li><a><img class="no-img"/></a></li>
+          <li><a>Share</a></li>
+          <li><a><img class="no-img"/></a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="google-search">
+      <img id="google-logo" src="logo11w.png"/>
+      <form>
+        <input class="search"/>
+        <input class="button" type="submit" value="Google Search"/>
+        <input class="button" type="submit" value="I'm Feeling Lucky"/>
+      </form>
+    </div>
+    <footer>
+      <ul>
+        <li><a>Advertising</a></li>
+        <li><a>Business</a></li>
+        <li><a>About</a></li>
+      </ul>
+      <ul class="privacy-settings">
+        <li><a>Privacy Terms</a></li>
+        <li><a>Settings</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
