@@ -15,6 +15,135 @@
   - PostgreSQL
 - Review the pre-work!
 
+<table>
+<tr>
+  <th>.</th>
+  <th>M</th>
+  <th>T</th>
+  <th>W</th>
+  <th>Th</th>
+  <th>F</th>
+</tr>
+<tr><th colspan="6">Week01: Create, publish, and maintain a responsive, static website.</th></tr>
+<tr><td>a</td>
+  <td>GA 101<br>Orientation<br>Break into classes<br>Icebreakers</td>
+  <td>CSS<br>Colors in hex and RGB<br>Useful properties<br>The box model<br>Classes<br>IDs<br>Positioning<br>Floating<br>
+</td>
+  <td>JS<br>HTML event attributes<br>Basic DOM manipulation<br></td>
+  <td>Compatibility<br>Browserstack</td>
+  <td>Lab<br>Create a "Lights Out" game</td>
+</tr><tr><td>p</td>
+  <td>Web 101<br>Setting up a domain<br>FTP<br>HTML<br>Paths<br>Designing without styling<br>Validating</td>
+  <td>CSS<br>Media queries<br>Embedding fonts<br>Animations<br>Transitions</td>
+  <td>JS<br>Inline scripts<br>Functions vs variables<br></td>
+  <td>jQuery<br>DOM manipuation</td>
+  <td>Lab
+</td>
+</tr>
+<tr><th colspan="6">Week02: Maintain and share code as efficiently as possible.</th></tr>
+<tr><td>a</td>
+  <td>CLI<br>Components of command<br>Navigating<br>Sudo<br>Homebrew</td>
+  <td>Git<br>Branches v forks v repos<br>Common commands</td>
+  <td>CLI FTP</td>
+  <td>TDD<br>Jasmine</td>
+  <td>Lab<br>Recreate "Lights Out" using TDD, push to `gh-pages`</td>
+</tr><tr><td>p</td>
+  <td>CLI Editors<br>Vi, Vim, Emacs, Pico, Nano, `echo >>`<br>Bash profile<br>RegEx<br>grep<br>locate</td>
+  <td>Github<br>Troubleshooting<br>Push to gh-pages</td>
+  <td>TDD<br>Jasmine</td>
+  <td>TDD<br>Jasmine</td>
+  <td>Lab</td>
+</tr>
+<tr><th colspan="6">Week03: Project 1: Create and publish a responsive, static web app.</th></tr>
+<tr><th colspan="6">Week04: Build a dynamic single-page app with persisting data.</th></tr>
+<tr><td>a</td>
+  <td>AJAX<br>Start using IDE<br>HTTP<br>APIs</td>
+  <td>Websockets<br>Firebase</td>
+  <td>OOJS</td>
+  <td>OOJS</td>
+  <td>Lab: Make a JSON-based blog</td>
+</tr><tr><td>p</td>
+  <td>APIs<br>Postman<br>Basic authentication</td>
+  <td>PHP<br>Responding to HTTP<br>Writing to files<br>"Contact me"</td>
+  <td>OOJS</td>
+  <td>OOJS</td>
+  <td>Lab</td>
+</tr>
+<tr><th colspan="6">Week05: Develop a CRUD application that's as efficient as possible.</th></tr>
+<tr><td>a</td>
+  <td>Underscore</td>
+  <td>MVC</td>
+  <td>Backbone</td>
+  <td>Backbone</td>
+  <td>Lab</td>
+</tr><tr><td>p</td>
+  <td>Underscore</td>
+  <td>Backbone</td>
+  <td>Backbone</td>
+  <td>Backbone</td>
+  <td>Lab</td>
+</tr>
+<tr><th colspan="6">Week06: Project 2: Create and publish a dynamic CRUD app.</td></tr>
+<tr><th colspan="6">Week07: Build a RESTful API</th></tr>
+<tr><td>a</td>
+  <td>ExpressJS</td>
+  <td>Socket.io</td>
+  <td>Node</td>
+  <td>Node</td>
+  <td>Lab</td>
+</tr><tr><td>p</td>
+  <td>Handlebars</td>
+  <td>Socket.io<br>Heroku</td>
+  <td>Node</td>
+  <td>Node</td>
+  <td>Lab</td>
+</tr>
+<tr><th colspan="6">Week08: Build a CRUD app that uses a database.</th></tr>
+<tr><td>a</td>
+  <td>ERDs</td>
+  <td>Postgres</td>
+  <td>MongoDB</td>
+  <td>MongoDB</td>
+  <td>Lab</td>
+</tr><tr><td>p</td>
+  <td>SQL</td>
+  <td>Postgres</td>
+  <td>MongoDB</td>
+  <td>MongoDB</td>
+  <td>Lab</td>
+</tr>
+<tr><th colspan="6">Week09: Project 3: Build a RESTful, database-based CRUD app.</th></tr>
+<tr><th colspan="6">Week10: Create a CRUD app using a different language.</th></tr>
+<tr><td>a</td>
+  <td>Ruby</td>
+  <td>RSpec</td>
+  <td>Sinatra</td>
+  <td>Sinatra</td>
+  <td>Lab</td>
+</tr><tr><td>p</td>
+  <td>Ruby</td>
+  <td>RSpec</td>
+  <td>Sinatra</td>
+  <td>Sinatra</td>
+  <td>Lab</td>
+</tr>
+<tr><th colspan="6">Week11: Create a secure, scalable CRUD app.</th></tr>
+<tr><td>a</td>
+  <td>Rails</td>
+  <td>Rails</td>
+  <td>Devise</td>
+  <td>OAuth</td>
+  <td>Lab</td>
+</tr><tr><td>p</td>
+  <td>Rails</td>
+  <td>Rails</td>
+  <td>Hand-rolled</td>
+  <td>Heroku</td>
+  <td>Lab</td>
+</tr>
+<tr><th colspan="6">Week12: Project 4: Flagship project.</th></tr>
+</table>
+
 ## Week 01: Create, publish, and maintain a responsive static website.
 
 ### New Technologies
@@ -121,7 +250,17 @@
 - PHP
   - Create a "Contact Me" form on a webpage.
 
-## Week 05: Build a RESTful API.
+## Week 05: Develop a CRUD application to be as efficient and maintainable as possible.
+
+### New Techologies
+- Backbone
+- Underscore
+
+### LOs
+
+## Week 06: Project 2: Build a complex multi-view app with persisting data.
+
+## Week 07: Build a RESTful API.
 
 ### New Technologies
 - Node.js
@@ -132,21 +271,11 @@
 
 ### LOs
 
-## Week 06: Project 2: Build a complex multi-view app with persisting data.
-
-## Week 07: Build a CRUD app that uses a database.
+## Week 08: Build a CRUD app that uses a database.
 
 ### New Technologies
 - MongoDB
 - ERD
-
-### LOs
-
-## Week 08: Develop a CRUD application to be as efficient and maintainable as possible.
-
-### New Techologies
-- Backbone
-- Underscore
 
 ### LOs
 
