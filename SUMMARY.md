@@ -8,3 +8,7 @@
     * [JavaScript Data Types](01-front-end-fundamentals/javascript-data-types/readme.md)
     * [JavaScript Loops & Conditionals](01-front-end-fundamentals/javascript-loops-conditionals/readme.md)
     * [JavaScript Objects and DOM](01-front-end-fundamentals/javascript-objects-DOM/readme.md)
+* [Project 1](https://github.com/ga-dc/pbj-project1/blob/master/readme.md)
+* [Project 2](https://github.com/ga-dc/pbj-project2/blob/master/readme.md)
+* [Project 3](https://github.com/ga-dc/pbj-project3/blob/master/readme.md)
+* [Project 4](https://github.com/ga-dc/pbj-project4/blob/master/readme.md)
