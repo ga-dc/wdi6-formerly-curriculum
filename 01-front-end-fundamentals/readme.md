@@ -55,6 +55,13 @@ GA Baseline
 - Add and commit changes to a git repository
 - Push and pull changes to a remote repository
 
+### JS Data Types, Variables, and Arrays
+- Describe the role Javascript plays alongside HTML and CSS
+- List data types and their use cases
+- Define what a REPL is and use Node to store data types
+- Explain what a variable is and the role memory allocation plays in storing data types
+- Describe how arrays are used to store data collections
+
 ### JS Loops and Conditionals
 - describe why control flow is utilized in computer programming
 - write an if, else if, and else statement in JS
