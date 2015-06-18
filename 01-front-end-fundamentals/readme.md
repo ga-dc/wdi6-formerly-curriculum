@@ -12,6 +12,16 @@ Build an interactive web-page that utilizes HTML, CSS, and JavaScript
 - List the core expectations for instructors and students
 - Map out the various topics and technologies of web development
 - Identify how those technologies fit into the arc of the course
+- List two "soft" goals on which to focus for the first week.
+
+### Intro to the Web and HTML
+- Diagram the relationship between a server and a browser.
+- Semantically structure a given document using HTML without regard to style.
+- List commonly-abused HTML elements.
+- Label the components of an HTML element and its tags.
+- List commonly-used special characters.
+- Run a website through a validator and fix its errors accordingly.
+- Identify the different roles of HTML, CSS, and Javascript on a given webpage.
 
 ### Git
 - Explain what version control is and why developers use it
