@@ -98,5 +98,4 @@ GA Baseline
 - Style all elements of a particular HTML element on a web page
 - Describe the difference between class and id selectors
 - Apply styles to specific elements by selecting elements with classes and ids
-- Change the style of a specific element using an inline style
 - Differentiate between padding border and margin using the box model
