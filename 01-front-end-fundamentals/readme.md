@@ -74,10 +74,10 @@ GA Baseline
 - Describe how arrays are used to store data collections
 
 ### JS Loops and Conditionals
+- differentiate between true & false && truthy & falsey
 - describe why control flow is utilized in computer programming
 - write an if, else if, and else statement in JS
-- write a for loop in JS
-- write a while/until loop in JS
+- write a for loop and while loop in JS and differentiate between them
 - Utilize loops to iterate through complex data types
 - write a JS program that utilizes conditionals and loops
 
@@ -102,5 +102,4 @@ GA Baseline
 - Style all elements of a particular HTML element on a web page
 - Describe the difference between class and id selectors
 - Apply styles to specific elements by selecting elements with classes and ids
-- Change the style of a specific element using an inline style
 - Differentiate between padding border and margin using the box model
