@@ -5,6 +5,25 @@ Build an interactive web-page that utilizes HTML, CSS, and JavaScript
 
 ## Learning Objectives
 
+### Intro to WDI
+- Get to know our fellow students
+- Determine some guiding principles for our class culture
+- Identify our big goal for the course
+- List the core expectations for instructors and students
+- Map out the various topics and technologies of web development
+- Identify how those technologies fit into the arc of the course
+
+### Git
+- Explain what version control is and why developers use it
+- List the main components of a git repository and how they relate:
+  - repo
+  - index
+  - working tree
+  - commit
+- Initialize a local git repository
+- Add and commit changes to a git repository
+- Push and pull changes to a remote repository
+
 ### JS Loops and Conditionals
 - describe why control flow is utilized in computer programming
 - write an if, else if, and else statement in JS
