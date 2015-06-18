@@ -63,6 +63,20 @@ GA Baseline
 - Utilize loops to iterate through complex data types
 - write a JS program that utilizes conditionals and loops
 
+### Objects, Functions and DOM
+
+- Compare objects and key-value stores to arrays as data structures
+- Explain the difference between object properties and methods
+- Create empty objects and objects with multiple properties and methods using object literal syntax
+- Compare adding and retrieving properties to objects using dot and bracket notation
+- Iterate over the keys of an object to return and manipulate values
+- Define what a function is
+- Define hoisting
+- Differentiate between referencing and invoking a function
+- Explain what the DOM is and how it is structured
+- Select and target DOM elements using a query selector
+- Change the attributes or content of a DOM element
+
 ### CSS Intro
 - Describe the syntactical and functional relationship between selectors, properties, and values
 - Differentiate between stylesheets, styles in the head, in-line styles
