@@ -23,6 +23,9 @@ Build an interactive web-page that utilizes HTML, CSS, and JavaScript
 - Run a website through a validator and fix its errors accordingly.
 - Identify the different roles of HTML, CSS, and Javascript on a given webpage.
 
+#### Homework
+https://github.com/ga-dc/html_resume
+
 ### The Command Line
 
 - Explain some benefits of using a shell
