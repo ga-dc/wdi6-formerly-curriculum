@@ -23,6 +23,27 @@ Build an interactive web-page that utilizes HTML, CSS, and JavaScript
 - Run a website through a validator and fix its errors accordingly.
 - Identify the different roles of HTML, CSS, and Javascript on a given webpage.
 
+### The Command Line
+
+- Explain some benefits of using a shell
+- Describe the anatomy of a command (statement, flags, arguments)
+- Know where to go for help
+- Manage folders and files (using Finder and Shell)
+- Explain the difference between relative and absolute path
+- Create a working dir for a new project
+- List common commands
+- List unsafe commands
+- (optional) Explain the role of File Permissions in POSIX env
+
+Note: too many.  Push some off until later? Some are covered by [fundamentals](http://fundamentals.generalassemb.ly/01_chapter/intro.html).
+
+GA Baseline
+- Summarize a basic filesystem structure, including absolute and relative paths
+- Use commands to navigate and modify files / directories via the Terminal window (cd, pwd, mkdir, rm -r, mv, cp, touch)
+- Describe a basic UNIX permissions system
+- Differentiate between navigating the file system using the CLI vs. the GUI
+
+
 ### Git
 - Explain what version control is and why developers use it
 - List the main components of a git repository and how they relate:
