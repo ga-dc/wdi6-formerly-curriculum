@@ -3,11 +3,13 @@
 ## To add:
 
 - Do not miss from W03D04 - W04D04!
+- List out all web technologies. "Which of these will we cover in this course?"
 
 ## Learning Objectives
 
 - Describe the roles of students and instructors.
 - List three "soft" goals on which to focus for the first week.
+- Describe the many communications channels and which are appropriate for when.
 
 ## Roles
 
