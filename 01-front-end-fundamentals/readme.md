@@ -60,6 +60,7 @@ GA Baseline
 - Differentiate between git as a tool, and github as a service
 - Push and pull changes to a remote repository
 - Define and differentiate between forking and cloning
+- Un-initialize a git repository
 
 ### JS Data Types, Variables, and Arrays
 - Describe the role Javascript plays alongside HTML and CSS
