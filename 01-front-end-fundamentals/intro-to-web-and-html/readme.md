@@ -13,6 +13,8 @@
 - Link to a given file using either absolute and relative paths.
 - Use Chrome Dev Tools to inspect an element.
 
+TLDR: Be able to make a crappy website.
+
 ## How the web works
 
 http://imgur.com/0KYhcT7
@@ -193,7 +195,14 @@ On whiteboards!
 
 https://github.com/ga-dc/dc_directory_tree
 
-## Styling, if time
+## Styling
+
+- Using CSS
+  - http://ga-dc.github.io/belair_biography/belair.css
+  - Selectors, properties, and values
+  - Colors
+    - RGB / Hex
+- HTML is function, CSS is form, JS is behavior
 
 ## Homework
 
