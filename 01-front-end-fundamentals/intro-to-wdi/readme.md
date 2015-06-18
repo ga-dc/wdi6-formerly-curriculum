@@ -1,5 +1,9 @@
 # GA 101
 
+## To add:
+
+- Do not miss from W03D04 - W04D04!
+
 ## Learning Objectives
 
 - Describe the roles of students and instructors.
