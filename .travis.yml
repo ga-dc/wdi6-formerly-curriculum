@@ -1,8 +1,7 @@
 language: node_js
 install: npm install gitbook
 script:
-  - make check
-  - make generate
+  - gitbook build
 after_success:
   - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash deploy.sh
 env:
