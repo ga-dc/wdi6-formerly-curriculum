@@ -56,7 +56,10 @@ GA Baseline
   - commit
 - Initialize a local git repository
 - Add and commit changes to a git repository
+- Describe what a git remote repository is.
+- Differentiate between git as a tool, and github as a service
 - Push and pull changes to a remote repository
+- Define and differentiate between forking and cloning
 
 ### JS Data Types, Variables, and Arrays
 - Describe the role Javascript plays alongside HTML and CSS
