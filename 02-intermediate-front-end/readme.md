@@ -31,7 +31,7 @@ Use best-practices and libraries to write, share, and deploy high-quality code.
 - Use jQuery functionality to select elements in the DOM as Jquery objects
 - Use jQuery to modify the DOM
 - Use jQuery to add event listeners
-
+- Utilize jQuery documentation in order to implement jQuery functionality
 
 
 ### User Stories/MVP/Agile Software Development
