@@ -24,13 +24,14 @@ Use best-practices and libraries to write, share, and deploy high-quality code.
 
 ### Jquery
 - Define what a "library" is in programming
-- Select Jquery Objects
 - Differentiate between jQuery objects and DOM objects
 - Explain when to use "vanilla" Javascript vs jQuery.
 - Import Javascript libraries.
 - Explain what a CDN is.
 - Use jQuery functionality to select elements in the DOM as Jquery objects
-- Use jQuery to create, modify, and add responsiveness to nodes in the DOM.
+- Use jQuery to modify the DOM
+- Use jQuery to add event listeners
+
 
 
 ### User Stories/MVP/Agile Software Development
