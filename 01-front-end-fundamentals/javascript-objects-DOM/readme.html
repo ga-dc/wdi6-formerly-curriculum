@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.6" data-basepath="../.." data-revision="Fri Jun 19 2015 18:50:17 GMT+0000 (UTC)">
+    <div class="book" data-level="1.6" data-basepath="../.." data-revision="Fri Jun 19 2015 18:59:13 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -477,7 +477,101 @@
                 
                     <section class="normal" id="section-">
                     
-                        
+                        <h1 id="objects-functions-and-dom">Objects, Functions and DOM</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>Compare objects and key-value stores to arrays as data structures</li>
+<li>Explain the difference between object properties and methods</li>
+<li>Create empty objects and objects with multiple properties and methods using object literal syntax</li>
+<li>Compare adding and retrieving properties to objects using dot and bracket notation</li>
+<li>Iterate over the keys of an object to return and manipulate values</li>
+<li>Define what a function is</li>
+<li>Define hoisting</li>
+<li>Differentiate between referencing and invoking a function</li>
+<li>Explain what the DOM is and how it is structured</li>
+<li>Select and target DOM elements using a query selector</li>
+<li>Change the attributes or content of a DOM element</li>
+</ul>
+<h2 id="arrays-review">Arrays Review</h2>
+<p>Arrays are a complex data type - usually referred to as an ordered list.</p>
+<p><strong>How do we retrieve certain elements from an array?</strong></p>
+<p>Using an index.</p>
+<h2 id="objects">Objects</h2>
+<p>Objects too are a complex data type - usually referred to as an <em>un</em>ordered list. They are
+a collection of key-value pairs.</p>
+<p>What kinds of things in the world fit into an array? What kinds of things fit into key-value pairs?</p>
+<p>Things to consider:</p>
+<ul>
+<li>Books in a Library</li>
+<li>Menu items at a fast food restaurant</li>
+<li>Definitions in a dictionary</li>
+<li>List of students in WDI</li>
+<li>List of all GA courses ordered by city</li>
+</ul>
+<h4 id="bonus-thoughts">Bonus Thoughts!</h4>
+<p>What kinds of things in the world would fit into an array of objects? What about an object containing arrays?</p>
+<h3 id="create">Create</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> car = {
+  make: <span class="hljs-string">&quot;Honda&quot;</span>,
+  model: <span class="hljs-string">&quot;Civic&quot;</span>,
+  year: <span class="hljs-number">1997</span>
+}
+</code></pre>
+<h3 id="read">Read</h3>
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(car.make)
+<span class="hljs-built_in">console</span>.log(car[<span class="hljs-string">&quot;make&quot;</span>])
+</code></pre>
+<h3 id="update">Update</h3>
+<pre><code class="lang-js">car.year = <span class="hljs-number">2003</span>
+car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
+</code></pre>
+<h3 id="delete">Delete</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">delete</span> car.smell
+</code></pre>
+<h2 id="you-do-model-wdi-student">You Do: Model WDI Student</h2>
+<p>Create a variable named wdiStudent and assign it to an object literal - <code>{}</code></p>
+<p>Add three attributes, with at least one key that has a hyphen in the name, like &quot;first-name&quot;</p>
+<p>Delete one attribute</p>
+<h2 id="functions">Functions</h2>
+<p>Review from the prework - what&#x2019;s a function?</p>
+<p>There are two ways to define or declare a function:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> eat = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;nom nom&quot;</span>)
+}
+
+<span class="hljs-comment">//or</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eat</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;nom nom&quot;</span>)
+}
+</code></pre>
+<p>The difference is subtle, but important. The first function declaration is assigning an &quot;anonymous&quot; function to a variable.
+The second function declaration is a named function. The practical difference is:</p>
+<blockquote>
+<p>Named functions are processed before any code is executed, meaning you can call functions before they are declared. This behavior is known as <strong>hoisting</strong>.</p>
+</blockquote>
+<h3 id="input-output-and-side-effects">Input, Output, and Side Effects</h3>
+<p>the input(s) to a function are known as arguments, or parameters:</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eat</span><span class="hljs-params">(someFood)</span></span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;nom nom, i &lt;3 &quot;</span>+ someFood)
+}
+</code></pre>
+<p>It might feel like the output of this function is the string starting with &quot;nom...&quot;, but it&#x2019;s not! It&#x2019;s a side-effect.</p>
+<p>The output of a function is whatever is <code>return</code>ed from a function:</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eat</span><span class="hljs-params">(someFood)</span></span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;nom nom, i &lt;3 &quot;</span>+ someFood
+}
+
+<span class="hljs-keyword">var</span> lunch = eat(<span class="hljs-string">&quot;pizza&quot;</span>)
+<span class="hljs-built_in">console</span>.log(lunch)
+</code></pre>
+<h2 id="dom">DOM</h2>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" target="_blank"><strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel</a> 
+is a programming interface for HTML.</p>
+<p>An HTML <em>document</em> is available for us to manipulate as an object, and this object is structured like a tree:</p>
+<p>(Not like this one <a href="http://hakim.se/experiments/css/domtree/" target="_blank">http://hakim.se/experiments/css/domtree/</a>)</p>
+<p><img src="http://www.tuxradar.com/files/LXF118.tut_grease.diagram.png" alt=""></p>
+
                     
                     </section>
                 
