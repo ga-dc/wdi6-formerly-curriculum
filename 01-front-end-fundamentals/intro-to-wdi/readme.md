@@ -1,8 +1,18 @@
 # GA 101
 
-## Intro to GA (Jon)
+## 9:00 - 9:30: Icebreakers in separate classrooms
+- Idea: send students back and forth between classrooms as part of it!
 
-## Intro to the Space & 1776 (Ashley)
+## 9:30 - 10:00: Introduce 1776 and the space (Ashley)
+
+## 10:00 - 10:15: Introduce the GA Staff (Jon)
+
+## 10:15 - 10:30: Break
+
+## 10:30 - 12:00: Intro to WDI
+- With a break at 11:15
+
+## 12:00 - 12:30: Icebreakers with in separate classrooms with that room's pods
 
 -----
 
