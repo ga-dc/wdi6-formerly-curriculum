@@ -166,6 +166,10 @@ www2.warnerbros.com/spacejam/movie/jam.htm
 <b>
 <i>
 <u>
+<center>
+<font>
+<marquee>
+<blink>
 ```
 
 ### You do: Make the Fresh Prince website
