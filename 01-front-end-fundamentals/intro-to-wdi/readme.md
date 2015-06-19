@@ -1,59 +1,43 @@
 # GA 101
 
-## To add:
+## Intro to GA (Jon)
 
-- Do not miss from W03D04 - W04D04!
-- List out all web technologies. "Which of these will we cover in this course?"
+## Intro to the Space & 1776 (Ashley)
 
-## Learning Objectives
+-----
 
-- Describe the roles of students and instructors.
-- List three "soft" goals on which to focus for the first week.
-- Describe the many communications channels and which are appropriate for when.
+## Intro to WDI (Robin)
 
-## Roles
+## Boot Camp
 
-### You do:
-On post-its, write down specific action items and measurables that answer the following question. Then stick the post-its to the board.
-
-- What is the role of the student?
-
-Review, add own thoughts:
-
-### I do:
-
-- What is the role of the instructor?
-- What is the product that will be delivered by GA to the student?
-
-## The WDI Instructors Creed
+Interestingly enough, 3 instructors have been through boot camp with 3 different military branches.
 
 - What does it mean to be in a "boot camp"?
   - You will be asked to do things you don't necessarily agree with.
-    - As in, teaching methods
   - You will be asked to do things that are uncomfortable.
-    - This is part of growth.
-  - We will not give up on you, even when you have given up on yourself.
+    - *(Note that when I say "do things", I mean classes and projects, nothing weird.)*
   - You can't "win".
     - This is a noncompetitive environment. 
   - You will be re-learning how to learn.
-  - You will have to learn to motivate yourself.
+    - The last time you spent 9 hours a day learning something new was in high school.
+  - We will not give up on you, even when you have given up on yourself.
+    - None of the instructors are here just to collect a paycheck. We're nerds, about web development, education, and you.
   - Ultimately, **you have to trust the system.**
-    - Trust that we have your best interests at heart
-    - Trust that our decisions are informed by solid experience
+    - Trust that we have your best interests at heart.
+    - Trust that our decisions are informed by solid experience.
+      - In industry
+      - At GA
+
+## The paradox of feedback
+
+We rely on your feedback. At the same time, we ultimately have to trust in our own experience and expertise first.
+  - "It's our way or the highway."
+  - You may leave and request a refund up through 9:00 AM of W06D01. After that, no refunds will be given.
+
 
 Note that none of the above mention anything about code.
 
-- How the class is created
-  - Each class is different
-    - Factors
-      - Personalities
-      - Changing technologies
-      - Differences between locations
-  - Deliberate instructor autonomy
-    - Much of the course is created on-the-fly to tailor-make the content to the class, since each class is different
-    - Little oversight by GA
-
-## What to expect?
+## Growth Mindset
 
 - For many students, this is the hardest thing they've ever done in their lives.
   - This is the first time they've been bad at something.
@@ -61,11 +45,18 @@ Note that none of the above mention anything about code.
     - The fundamental standard: It either works, or it doesn't. No amount of sweet-talking will make it work.
 - Memorizing stuff won't help you.
   - Programming is a mindset. It's about confidence. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it, and I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
+- "Life is suffering"
+  - I always thought that sounded pessimistic, dramatic, and just stupid. "Life is learning" sounds more accurate.
+- But how do you make your brain strong? Same way you make any muscle strong.
+  - A muscle is worked to the extent that its fibers are broken down. It generates scar tissue to repair the fibers. Thus, it gains mass and gets stronger.
+  - Your brain contains of "fibers" of conceptions about how the universe works. When you learn, those conceptions are broken down. Your brain generates new neural pathways in response. Thus, your brain gets stronger.
+- Growth is a result of breaking down and repair. Life is learning. Learning is growth. Therefore, life is a result of breaking down and repair.
+
+## What is asking for help?
+
 - Ask for help.
   - This is the thing students find the hardest, and the thing that ultimately determines whether or not they will be successful in this class.
   - Without fail, the students who do not ask for help do the poorest in the class.
-
-## What is asking for help?
 
 ### YOU DO
 
@@ -77,18 +68,41 @@ Now, close your eyes. I want you to write what first comes to mind when I ask yo
 
 *(Collect papers, tape to board for students to review as they re-enter.)*
 
------
-Break!
------
+# Break!
 
 - We have all asked for help. There's no shame in it. Feeling afraid to ask for help will be the biggest detriment in this class.
 - What makes asking for help effective?
   - Asking a clear problem. "I don't know any of this" isn't a clear problem. "I tried this thing and got this error" is a clear problem.
   - We will turn you away when the question your asking isn't constructive.
 
-## Hard Requirements
+## The Class
 
-The only requirements are for qualifying for Outcomes. As long as you do not create an environment that precludes others from learning, nothing will preclude you from being able to attend class.
+- How the class is created
+  - There's a loosely-prescribed curriculum structure; we create all our own lesson plans, incorporating lesson plans we used in the past if possible.
+  - Each class is different
+    - Factors
+      - Personalities
+      - Changing technologies
+      - Differences between locations
+- Deliberate instructor autonomy
+  - Much of the course is created on-the-fly to tailor-make the content to the class, since each class is different
+  - Little oversight by GA
+
+### WE DO
+
+List out every web technology, acronym, and term we can think of.
+
+- Which of these will we teach?
+- Why won't we teach all of them?
+
+## Outcomes
+
+- Who takes this class? Three archetypes
+  - Wants to become a developer that we would want to hire. Plans on using Outcomes to pursue job placement.
+  - Wants to become a developer that we would want to hire. Plans on pursuing or continuing job placement without Outcomes.
+  - Wants to absorb as much knowledge as possible about development.
+
+This class's only requirements are for qualifying for Outcomes. As long as you do not create an environment that precludes others from learning, nothing will preclude you from being able to attend class.
 
 ### What does it mean for a student to qualify for Outcomes?
 - They have the highest career-placement priority with Outcomes.
@@ -104,9 +118,16 @@ The only requirements are for qualifying for Outcomes. As long as you do not cre
   - What about Project 4?
     - That's "your project". It marks the transition between us starting to make you a good developer, and you having to take yourself the rest of the way through your career.
 
+- We can't make you do anything. But it would behoove you to participate in outcomes.
+  - All three archetypes paid the same amount for this class
+  - GA DC has the best Outcomes coordination of any GA campus in the world
+  - Unless you have no intention whatsoever of advancing in your professional life, you would benefit greatly from participating in Outcomes programming
+
 ### To clarify
 - What are "absent" and "tardy"?
   - There is no excused **anything**. This is why we give you 4 days to be absent and 8 days to be tardy.
+  - This class is drinking from a firehose. Miss one half a day and you'll spend a lot of time trying to catch up.
+  - Please **do not** miss between Thursday of Week 3 and Thursday of Week 4.
 - What is "complete"?
   - You made a clear effort to solve the homework yourself. If you pulled code from somewhere, you annotated your code saying where you pulled it from. No plagiarism. We can tell.
 - What is "does not meet expectations"?
@@ -114,6 +135,15 @@ The only requirements are for qualifying for Outcomes. As long as you do not cre
 
 ## Logistics
 
+- Pods
+  - Class is split alphabetically into 6 pods
+  - There will be 3 pods per classroom
+  - The pods that are together will be rotated after every project so that each pod will have been with each other pod
+  - Each pod will have one instructor for the whole class
+    - The instructor with whom you'll do one-on-ones
+- Class staggering
+  - Usually, a lesson will be taught twice by the same instructor. So I'll teach HTML this afternoon to one class, and then HTML tomorrow to the other.
+  - We'll all have the same lessons and the same homework. Who was what when will just vary by a day or two between the classes.
 - One-on-ones
   - Each student will be scheduled one half-hour slot every two weeks during which they will meet with an instructor.
   - Talk about whatever needs to be talked about
@@ -125,12 +155,11 @@ The only requirements are for qualifying for Outcomes. As long as you do not cre
   - Instructors **may not** respond to code questions on Slack nor in-person after 6pm each night, even if we're in the office
   - Should you have a logistical question, you may contact the **Student Communication Instructor**
   - All code questions should go to TAs
-  - **You do:** *Why are we so restrictive about this?*
+  - *Why are we so restrictive about this?*
 - Homework and assessments
-  - Most homework will be checked only for **completeness** -- that is, that you actually attempted it yourself and didn't copy code. If you want more feedback, you'll need to ask for it.
-  - There will be one homework per week that is graded for **comprehension**.
-- Classes
-  - Alphabetical by last name. Will be reshuffled after every project.
+  - You'll probably have one homework per lesson, so if you have two lessons in a day, that's two homeworks, graded separately.
+  - Homework will be graded only for *completeness*. That is, you actually attempted it yourself and didn't copy code. If you want more feedback, you'll need to ask for it.
+  - There will be one homework per week on which your pod leader will leave comments whether you like it or not.
 
 ### The schedule
 - 9-10 Warmup
@@ -148,17 +177,18 @@ The only requirements are for qualifying for Outcomes. As long as you do not cre
 
 ### Homework app
 
-## The paradox of feedback
-
-We rely on your feedback. At the same time, we ultimately have to trust in our own experience and expertise first.
-  - "It's our way or the highway."
-  - You may leave and request a refund up through 9:00 AM of W06D01. After that, no refunds will be given.
-
 ## Student Oath
 
 - I will ask for help when I need it.
 - But ultimately, I am what will get myself through this class.
+- I will fail spectacularly.
+- I will say things that are wrong.
+- I will not judge those who fail and who say things that are wrong.
 - I will trust the instructors are making decisions informed by expertise, experience, and a concern for my best interests.
 - I will shower at least once every other day, and wear deoderant and brush my teeth every day.
 - I will not copy code without attributing it.
-- I understand, accept, and will abide by the expectations set for me and conditions discussed during this Week 1, Day 1 morning session.
+- I understand and will abide by the expectations discussed.
+
+# Break and split into classrooms
+
+## Intro to Each Other (Classrooms)
