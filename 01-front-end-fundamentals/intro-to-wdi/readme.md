@@ -9,10 +9,11 @@
 
 ## 10:15 - 10:30: Break
 
-## 10:30 - 12:00: Intro to WDI
-- With a break at 11:15
+## 10:30 - 11:30: Intro to WDI
 
-## 12:00 - 12:30: Icebreakers with in separate classrooms with that room's pods
+## 11:30 - 11:45: Break
+
+## 11:45 - 12:30: Icebreakers with in separate classrooms with that room's pods
 
 -----
 
@@ -21,6 +22,10 @@
 ## Boot Camp
 
 Interestingly enough, 3 instructors have been through boot camp with 3 different military branches.
+
+### WE DO
+
+Turn and talk: What does it mean to be in a "boot camp"?
 
 - What does it mean to be in a "boot camp"?
   - You will be asked to do things you don't necessarily agree with.
@@ -38,29 +43,22 @@ Interestingly enough, 3 instructors have been through boot camp with 3 different
       - In industry
       - At GA
 
+Note that none of the above mention anything about code.
+
 ## The paradox of feedback
 
 We rely on your feedback. At the same time, we ultimately have to trust in our own experience and expertise first.
   - "It's our way or the highway."
   - You may leave and request a refund up through 9:00 AM of W06D01. After that, no refunds will be given.
 
-
-Note that none of the above mention anything about code.
-
 ## Growth Mindset
 
 - For many students, this is the hardest thing they've ever done in their lives.
   - This is the first time they've been bad at something.
   - You can't BS your way through code.
-    - The fundamental standard: It either works, or it doesn't. No amount of sweet-talking will make it work.
+    - The fundamental standard of programming: It either works, or it doesn't. No amount of sweet-talking will make it work.
 - Memorizing stuff won't help you.
   - Programming is a mindset. It's about confidence. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it, and I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
-- "Life is suffering"
-  - I always thought that sounded pessimistic, dramatic, and just stupid. "Life is learning" sounds more accurate.
-- But how do you make your brain strong? Same way you make any muscle strong.
-  - A muscle is worked to the extent that its fibers are broken down. It generates scar tissue to repair the fibers. Thus, it gains mass and gets stronger.
-  - Your brain contains of "fibers" of conceptions about how the universe works. When you learn, those conceptions are broken down. Your brain generates new neural pathways in response. Thus, your brain gets stronger.
-- Growth is a result of breaking down and repair. Life is learning. Learning is growth. Therefore, life is a result of breaking down and repair.
 
 ## What is asking for help?
 
@@ -188,6 +186,12 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
   - Lab most of day
 
 ### Homework app
+
+### WE DO
+
+Turn and talk: What questions and concerns do you have?
+
+Then, I call on the class for questions.
 
 ## Student Oath
 
