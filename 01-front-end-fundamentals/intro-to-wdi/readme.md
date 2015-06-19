@@ -156,6 +156,8 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
   - Should you have a logistical question, you may contact the **Student Communication Instructor**
   - All code questions should go to TAs
   - *Why are we so restrictive about this?*
+  - Student communication manager
+    - If you have logistical questions or concerns, contact me (Robin)
 - Homework and assessments
   - You'll probably have one homework per lesson, so if you have two lessons in a day, that's two homeworks, graded separately.
   - Homework will be graded only for *completeness*. That is, you actually attempted it yourself and didn't copy code. If you want more feedback, you'll need to ask for it.
