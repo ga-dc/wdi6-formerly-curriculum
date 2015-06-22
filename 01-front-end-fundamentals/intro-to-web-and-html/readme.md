@@ -58,6 +58,10 @@ A browser is an application that lives on your computer, sends requests, and tra
 We need the browser because information can only be sent one "bit" at a time -- that is, a single zero or one.
 - This is why your internet service provider advertises speeds in "megabits" or "gigabits", rather than "megabytes" or "gigabytes": you can't send eight zeroes or ones at a time.
 
+## The cloud
+
+http://i.imgur.com/xDGYGZV.jpg
+
 ## Owning a website
 
 Need two things
@@ -166,6 +170,10 @@ www2.warnerbros.com/spacejam/movie/jam.htm
 <b>
 <i>
 <u>
+<center>
+<font>
+<marquee>
+<blink>
 ```
 
 ### You do: Make the Fresh Prince website
