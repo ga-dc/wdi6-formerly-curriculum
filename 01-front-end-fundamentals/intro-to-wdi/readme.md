@@ -19,6 +19,15 @@
 
 ## Intro to WDI (Robin)
 
+## Growth Mindset
+
+- For many students, this is the hardest thing they've ever done in their lives.
+  - This is the first time they've been bad at something.
+  - You can't BS your way through code.
+    - The fundamental standard of programming: It either works, or it doesn't. No amount of sweet-talking will make it work.
+- Memorizing stuff won't help you.
+  - Programming is a mindset. It's about confidence. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it, and I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
+
 ## Boot Camp
 
 Interestingly enough, 3 instructors have been through boot camp with 3 different military branches.
@@ -51,15 +60,6 @@ We rely on your feedback. At the same time, we ultimately have to trust in our o
   - "It's our way or the highway."
   - You may leave and request a refund up through 9:00 AM of W06D01. After that, no refunds will be given.
 
-## Growth Mindset
-
-- For many students, this is the hardest thing they've ever done in their lives.
-  - This is the first time they've been bad at something.
-  - You can't BS your way through code.
-    - The fundamental standard of programming: It either works, or it doesn't. No amount of sweet-talking will make it work.
-- Memorizing stuff won't help you.
-  - Programming is a mindset. It's about confidence. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it, and I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
-
 ## What is asking for help?
 
 - Ask for help.
@@ -82,6 +82,18 @@ Now, close your eyes. I want you to write what first comes to mind when I ask yo
 - What makes asking for help effective?
   - Asking a clear problem. "I don't know any of this" isn't a clear problem. "I tried this thing and got this error" is a clear problem.
   - We will turn you away when the question your asking isn't constructive.
+
+## Student Oath
+
+- I will ask for help when I need it.
+- But ultimately, I am what will get myself through this class.
+- I will fail spectacularly.
+- I will say things that are wrong.
+- I will not judge those who fail and who say things that are wrong.
+- I will trust the instructors are making decisions informed by expertise, experience, and a concern for my best interests.
+- I will shower at least once every other day, and wear deoderant and brush my teeth every day.
+- I will not copy code without attributing it.
+- I understand and will abide by the expectations discussed.
 
 ## The Class
 
@@ -192,18 +204,6 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
 Turn and talk: What questions and concerns do you have?
 
 Then, I call on the class for questions.
-
-## Student Oath
-
-- I will ask for help when I need it.
-- But ultimately, I am what will get myself through this class.
-- I will fail spectacularly.
-- I will say things that are wrong.
-- I will not judge those who fail and who say things that are wrong.
-- I will trust the instructors are making decisions informed by expertise, experience, and a concern for my best interests.
-- I will shower at least once every other day, and wear deoderant and brush my teeth every day.
-- I will not copy code without attributing it.
-- I understand and will abide by the expectations discussed.
 
 # Break and split into classrooms
 
