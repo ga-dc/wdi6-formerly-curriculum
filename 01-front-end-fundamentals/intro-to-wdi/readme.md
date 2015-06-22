@@ -130,13 +130,12 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
 
 ### To qualify for Outcomes:
 
-- Between **W01D01 and W05D05 8:59AM**, and again between **W07D01 and W11D05 8:59AM**:
-  - Have been absent no more than 4 days
-  - Have been tardy no more than 8 days
-  - Have completed 80% of homework
+- Have been absent no more than 4 days
+- Have been tardy no more than 8 days
+- Have completed 80% of homework
 - Additionally, earn no more than 1 "does not meet expectations" on Projects 1-3.
-  - What about Project 4?
-    - That's "your project". It marks the transition between us starting to make you a good developer, and you having to take yourself the rest of the way through your career.
+- What about Project 4?
+  - That's "your project". It marks the transition between us starting to make you a good developer, and you having to take yourself the rest of the way through your career.
 
 - We can't make you do anything. But it would behoove you to participate in outcomes.
   - All three archetypes paid the same amount for this class
@@ -190,11 +189,13 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
 - 4-5 Homework assigned, warm-down
 - 5-5:30 One-on-one
 
-
 - Tuesday
   - Outcomes programming from 3pm onward
 
 - Friday
+  - From 9 to 11 will be optional review and an optional mini-lesson
+    - If you don't want to come in until 11, then don't. But if you're struggling, the onus is on you to take advantage of the opportunity.
+    - Quizzes will be weekly at 11
   - Lab most of day
 
 ### Homework app
