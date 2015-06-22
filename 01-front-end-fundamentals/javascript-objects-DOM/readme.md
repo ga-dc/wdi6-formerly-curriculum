@@ -136,5 +136,8 @@ An HTML *document* is available for us to manipulate as an object, and this obje
 
 ![](http://www.tuxradar.com/files/LXF118.tut_grease.diagram.png)
 
+---
 
+## Homework
 
+<https://github.com/ga-dc/fellowship>
