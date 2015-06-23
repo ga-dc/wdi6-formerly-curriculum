@@ -58,9 +58,10 @@ GA Baseline
 ### JS Data Types, Variables, and Arrays
 - Describe the role Javascript plays alongside HTML and CSS
 - List data types and their use cases
-- Define what a REPL is and use Node to store data types
+- Define what a REPL is and use browser console to create and manipulate data types
 - Explain what a variable is and the role memory allocation plays in storing data types
-- Describe how arrays are used to store data collections
+- Practice proper Javascript syntax and semantic variable naming
+- Describe complex data types and how arrays are used to store primary (and complex) data types
 
 ### JS Loops and Conditionals
 - describe why control flow is utilized in computer programming
