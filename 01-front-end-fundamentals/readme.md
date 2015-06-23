@@ -13,15 +13,22 @@ Build an interactive web-page that utilizes HTML, CSS, and JavaScript
 - Map out the various topics and technologies of web development
 - Identify how those technologies fit into the arc of the course
 - List two "soft" goals on which to focus for the first week.
+- Explain the role of Fundamentals relative the rest of the course.
 
 ### Intro to the Web and HTML
-- Diagram the relationship between a server and a browser.
+- Diagram the relationship between a server and a browser, including responses and requests.
+- Explain the difference between `http://` and `file://`.
 - Semantically structure a given document using HTML without regard to style.
 - List commonly-abused HTML elements.
 - Label the components of an HTML element and its tags.
 - List commonly-used special characters.
 - Run a website through a validator and fix its errors accordingly.
 - Identify the different roles of HTML, CSS, and Javascript on a given webpage.
+- Link to a given file using either absolute and relative paths.
+- Use Chrome Dev Tools to inspect an element.
+
+#### Homework
+https://github.com/ga-dc/html_resume
 
 ### The Command Line
 
@@ -53,7 +60,11 @@ GA Baseline
   - commit
 - Initialize a local git repository
 - Add and commit changes to a git repository
+- Describe what a git remote repository is.
+- Differentiate between git as a tool, and github as a service
 - Push and pull changes to a remote repository
+- Define and differentiate between forking and cloning
+- Un-initialize a git repository
 
 ### JS Data Types, Variables, and Arrays
 - Describe the role Javascript plays alongside HTML and CSS
@@ -64,10 +75,10 @@ GA Baseline
 - Describe complex data types and how arrays are used to store primary (and complex) data types
 
 ### JS Loops and Conditionals
+- differentiate between true & false && truthy & falsey
 - describe why control flow is utilized in computer programming
 - write an if, else if, and else statement in JS
-- write a for loop in JS
-- write a while/until loop in JS
+- write a for loop and while loop in JS and differentiate between them
 - Utilize loops to iterate through complex data types
 - write a JS program that utilizes conditionals and loops
 
@@ -92,5 +103,4 @@ GA Baseline
 - Style all elements of a particular HTML element on a web page
 - Describe the difference between class and id selectors
 - Apply styles to specific elements by selecting elements with classes and ids
-- Change the style of a specific element using an inline style
 - Differentiate between padding border and margin using the box model
