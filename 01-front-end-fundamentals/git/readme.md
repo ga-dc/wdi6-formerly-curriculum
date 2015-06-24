@@ -63,7 +63,6 @@ were added or what bugs were fixed.
 Additionally, git supports tagging, which allows us to mark a specific commit
 as a specific version of our code (e.g. '2.4.5').
 
-// because we want to make a git book out of this, maybe include some notes about each of these headers. a short blurb of what you're going to say in class
 ##### Comparing changes to past versions
 Pending Description
 
@@ -149,8 +148,6 @@ Instructor should diagram the clone/push/pull process.
 
 #### Terms and Concepts (Forking and Pull Requests)
 
-
-// make code available through readme, again admistrative for git book. but all that bash inputs
 * **fork** - make a copy of a repo on github under a different account, used for OSS collaboration
 * **pull request** - a github feature which allows a user to suggest and discuss changes to a repo they have forked
 
@@ -161,5 +158,4 @@ to HW submission.
 ** insert diagram here **
 
 ### Closing
-=======
 Review
