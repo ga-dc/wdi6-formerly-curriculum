@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.2" data-basepath="../.." data-revision="Wed Jun 24 2015 19:04:30 GMT+0000 (UTC)">
+    <div class="book" data-level="1.2" data-basepath="../.." data-revision="Wed Jun 24 2015 21:01:34 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -513,29 +513,45 @@ changes.</p>
 <h3 id="the-purpose-of-version-control-10-minutes">The Purpose of Version Control (10 minutes)</h3>
 <p>Think about how you&apos;ve managed tracking changes to a file over time (perhaps
 with other people).</p>
-<p>Questions:
-<strong>What problems did we face?</strong>
-<strong>How might a Version control system like solve these?</strong></p>
+<p>Questions:</p>
+<ul>
+<li><strong>What problems did we face?</strong></li>
+<li><strong>How might a Version control system like solve these?</strong></li>
+</ul>
 <p>Here are some problems we face as developers, and how git solves them:</p>
-<h5 id="reverting-to-past-versions">Reverting to past versions</h5>
+<p><strong>Reverting to past versions</strong></p>
 <p>Git allows us to make save points at any time. These save points are called
 &apos;commits&apos;. Once a save point is made, it&apos;s permanent, and allows us to go back
 to that save point at any time. From there, we can see what the code looked like
 at that point, or even start building off that version.</p>
-<h5 id="keeping-track-of-what-each-version-meant">Keeping track of what each version &apos;meant&apos;</h5>
+<p><strong>Keeping track of what each version &apos;meant&apos;</strong></p>
 <p>Every commit has a description (commit message), which allows us to describe
 what changed to make that commit. This is usually a description of what features
 were added or what bugs were fixed.</p>
 <p>Additionally, git supports tagging, which allows us to mark a specific commit
 as a specific version of our code (e.g. &apos;2.4.5&apos;).</p>
-<h5 id="comparing-changes-to-past-versions">Comparing changes to past versions</h5>
-<p>Pending Description</p>
-<h5 id="sharing-changes">Sharing changes</h5>
-<p>Pending Description</p>
-<h5 id="collaborating-discussing-changes">Collaborating / discussing changes</h5>
-<p>Pending Description</p>
-<h5 id="fearlessness-in-making-changes">Fearlessness in making changes</h5>
-<p>Pending Description</p>
+<p><strong>Comparing changes to past versions</strong></p>
+<p>It&apos;s often important to see content of the actual changes that were made. This
+can be useful when:</p>
+<ul>
+<li>tracking down when and how a bug was introduced</li>
+<li>understanding the changes a team member made so you can stay up-to-date with progress</li>
+<li>reviewing code as a team for correctness or quality/style</li>
+</ul>
+<p>Git allows us to easily see these changes (called a <code>diff</code>) for any given commit.</p>
+<p><strong>Sharing changes</strong></p>
+<p>Most software is developed on a team. Thus, it&apos;s important for us to share our
+changes so that others can incorporate them into the version they are working on.</p>
+<p><strong>Collaborating / discussing changes</strong></p>
+<p>In addition to just sharing changes, it is useful to have discussions on those
+changes (again for code review). Git doesn&apos;t support this out of the box, but
+Github does provide this feature. For example, you can add comments to a changed
+line or lines in a given commit.</p>
+<p><strong>Fearlessness in making changes</strong></p>
+<p>In developing software, we often want to experiemnt in adding a feature or
+refactoring (rewriting) existing code. Because git makes it easy to go back to a
+known good state, we can experiement without worrying that we&apos;ll be unable to
+undo the experiemental work.</p>
 <h3 id="core-concepts-of-git-repositories-40-minutes">Core Concepts of Git Repositories (40 minutes)</h3>
 <p>This section aims to introduce the core use of git, as well as the fundamental
 concepts of how git works (and associated terms).</p>
@@ -609,6 +625,58 @@ to HW submission.</p>
 <p><strong> insert diagram here </strong></p>
 <h3 id="closing">Closing</h3>
 <p>Review</p>
+<h2 id="appendix-git-cli-commands">Appendix - Git CLI Commands</h2>
+<h3 id="creating-repositories">Creating Repositories</h3>
+<ul>
+<li><code>git init</code> - run this command in a folder to turn it into a git repository<ul>
+<li>note: don&apos;t init a repo inside an existing repo! (also don&apos;t init in your home folder)
+OR</li>
+</ul>
+</li>
+<li><code>git clone &lt;URL&gt;</code> - download (clone) a repo from github (or other remote source)</li>
+</ul>
+<h3 id="linking-an-existing-repo-to-github">Linking an existing repo to github</h3>
+<ol>
+<li>Create the repo on github.com (make sure not to check the &apos;initialize with readme&apos;).</li>
+<li>Follow the instructions on the new repo&apos;s webpage to add as a remote:</li>
+<li>Change directories to the local repo<ul>
+<li><code>cd ~/path/to/repo</code></li>
+</ul>
+</li>
+<li>Add the github remote, and name it &apos;origin&apos;:<ul>
+<li><code>git remote add origin &lt;URL&gt;</code></li>
+</ul>
+</li>
+<li>Push the existing commits up to the remote called &apos;origin&apos; , and set it to track master branch:<ul>
+<li><code>git push -u origin master</code></li>
+</ul>
+</li>
+</ol>
+<p>Once linked, you can just run <code>git push</code> to push master branch to master branch</p>
+<h3 id="committing">Committing</h3>
+<ol>
+<li>Add the files you want to commit to the index (equivalent to checking which files you want to commit in the Github GUI app)<ul>
+<li><code>git add file1 file2 ...</code>, or <code>git add .</code> will add all changes in the current folder</li>
+</ul>
+</li>
+<li>Create the commit:<ul>
+<li><code>git commit -m &quot;description message for commit&quot;</code></li>
+<li>if you omit the <code>-m</code> and message, then git will open an editor for you to write the message in</li>
+</ul>
+</li>
+</ol>
+<h3 id="syncing-with-a-remote-push-pull">Syncing with a remote (push/pull)</h3>
+<ol>
+<li><code>git pull [remote] [branch]</code> - fetch and merge changes (from the origin and branch specified) and merge them into the current branch.<ul>
+<li>If origin and branch aren&apos;t specified, git will default to the tracking branch (usually origin and the remote branch with the same name as the current branch).</li>
+<li>If no origin/branch are specified, and no tracking branch is set up, git may tell you to specify</li>
+</ul>
+</li>
+<li>&apos;git push [remote] [branch]&apos; - push and merge local changes from the current branch to the specified branch on the remote repo and branch specified.<ul>
+<li>Same rules apply as <code>git pull</code> above.</li>
+</ul>
+</li>
+</ol>
 
                     
                     </section>
