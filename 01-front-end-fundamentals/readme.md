@@ -32,24 +32,14 @@ https://github.com/ga-dc/html_resume
 
 ### The Command Line
 
-- Explain some benefits of using a shell
+- Setup your working directory for WDI
+- Compare and Contrast CLI to GUI
 - Describe the anatomy of a command (statement, flags, arguments)
 - Know where to go for help
-- Manage folders and files (using Finder and Shell)
-- Explain the difference between relative and absolute path
-- Create a working dir for a new project
 - List common commands
 - List unsafe commands
-- (optional) Explain the role of File Permissions in POSIX env
-
-Note: too many.  Push some off until later? Some are covered by [fundamentals](http://fundamentals.generalassemb.ly/01_chapter/intro.html).
-
-GA Baseline
-- Summarize a basic filesystem structure, including absolute and relative paths
-- Use commands to navigate and modify files / directories via the Terminal window (cd, pwd, mkdir, rm -r, mv, cp, touch)
-- Describe a basic UNIX permissions system
-- Differentiate between navigating the file system using the CLI vs. the GUI
-
+- Manage folders and files (using Finder and Shell)
+- Explain the difference between relative and absolute path
 
 ### Git
 - Explain what version control is and why developers use it
