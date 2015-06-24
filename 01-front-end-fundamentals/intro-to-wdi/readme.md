@@ -21,105 +21,7 @@
 
 -----
 
-## Intro to WDI (Robin)
-
-## AK: Groth Mindset
-
-- For many students, this is the hardest thing they've ever done in their lives.
-  - This is the first time they've been bad at something.
-  - You can't BS your way through code.
-    - The fundamental standard of programming: It either works, or it doesn't. No amount of sweet-talking will make it work.
-- Memorizing stuff won't help you.
-  - Programming is a mindset. It's about confidence. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it, and I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
-
-### Legos
-
-- Inventing Legos is like building a program
-  - Have to break it apart
-  - How to make a roof out of bricks
-  - How to be resourceful
-  - Ultimately, you can't be a Lego designer just by looking at people's stuff
-
-## RT: Immersive course
-
-### WE DO
-
-T&T: What's different about an immersive environment?
-
-- What does it mean to be in a "immersive course"?
-  - You will be asked to do things that are uncomfortable.
-    - *(Note that when I say "do things", I mean classes and projects, nothing weird.)*
-  - You can't "win" -- and can't lose!
-    - This is a noncompetitive environment. 
-  - You will be re-learning how to learn.
-    - The last time you spent 9 hours a day learning something new was in high school.
-  - Cooperation
-    - You'll be eating and living together for the next 12 weeks!
-  - Balance
-    - Hygeine!
-  - We will not give up on you
-    - Even when you might have given up on yourself!
-    - None of the instructors are here just to collect a paycheck. We're nerds, about web development, education, and you.
-  - Trust that our decisions are informed by solid experience.
-    - In industry
-    - At GA
-    - We rely on your feedback. At the same time, we ultimately have to trust in our own experience and expertise first.
-  - Ultimately, we ask you to **trust us and each other.**
-    - Trust that we have each other's best interests at heart.
-    - But we expect to have to work to earn that trust.
-
-Note that none of the above mention anything about code.
-
-## AM: What is asking for help?
-
-- Ask for help.
-  - This is the thing students find the hardest, and the thing that ultimately determines whether or not they will be successful in this class.
-  - Without fail, the students who do not ask for help do the poorest in the class.
-
-### YOU DO
-
-I'm going to ask you to write something on a letter-sized piece of paper. You are allowed no more than 12 words. Please write big enough that someone can read your paper from a few feet away.
-
-When you are done, you will put the paper face-down on your table and leave the room for a 10-minute break.
-
-Now, close your eyes. I want you to write what first comes to mind when I ask you to think of a time you had to ask for help.
-
-*(Collect papers, tape to board for students to review as they re-enter.)*
-
-# Break!
-
-- We have all asked for help. There's no shame in it. Feeling afraid to ask for help will be the biggest detriment in this class.
-- What makes asking for help effective?
-  - Asking a clear problem. "I don't know any of this" isn't a clear problem. "I tried this thing and got this error" is a clear problem.
-  - We will turn you away when the question your asking isn't constructive.
-
-## MS: Student Constitution
-
-## We do
-
-T&T: Come up with items for Constitution. Put on board on post-its. Sign. We take picture.
-
-## AB: Class Content
-
-- How the class is created
-  - There's a loosely-prescribed curriculum structure; we create all our own lesson plans, incorporating lesson plans we used in the past if possible.
-  - Each class is different
-    - Factors
-      - Personalities
-      - Changing technologies
-      - Differences between locations
-- Deliberate instructor autonomy
-  - Much of the course is created on-the-fly to tailor-make the content to the class, since each class is different
-  - Lots of flexibility from GA
-
-### WE DO
-
-List out every web technology, acronym, and term we can think of.
-
-- Which of these will we teach?
-- Why won't we teach all of them?
-
-## JS: Outcomes
+## (Brain): Intro to GA and Outcomes
 
 - Who takes this class? Three archetypes
   - Wants to become a developer that we would want to hire. Plans on using Outcomes to pursue job placement.
@@ -156,7 +58,107 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
 - What is "does not meet expectations"?
   - Each project will have a rubric.
 
-## Logistics
+### Refund policy
+  - Up to W07D01, you may drop and get a refund on a sliding scale
+
+## (Andy) Groth Mindset
+
+- For many students, this is the hardest thing they've ever done in their lives.
+  - This is the first time they've been bad at something.
+  - You can't BS your way through code.
+    - The fundamental standard of programming: It either works, or it doesn't. No amount of sweet-talking will make it work.
+- Memorizing stuff won't help you.
+  - Programming is a mindset. It's about confidence. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it, and I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
+
+### Legos
+
+- Inventing Legos is like building a program
+  - Have to break it apart
+  - How to make a roof out of bricks
+  - How to be resourceful
+  - Ultimately, you can't be a Lego designer just by looking at people's stuff
+
+## (Robin) Immersive course
+
+### WE DO
+
+T&T: What's different about an immersive environment?
+
+- What does it mean to be in a "immersive course"?
+  - You will be asked to do things that are uncomfortable.
+    - *(Note that when I say "do things", I mean classes and projects, nothing weird.)*
+  - You can't "win" -- and can't lose!
+    - This is a noncompetitive environment. 
+  - You will be re-learning how to learn.
+    - The last time you spent 9 hours a day learning something new was in high school.
+  - Cooperation
+    - You'll be eating and living together for the next 12 weeks!
+  - Balance
+    - Hygeine!
+  - We will not give up on you
+    - Even when you might have given up on yourself!
+    - None of the instructors are here just to collect a paycheck. We're nerds, about web development, education, and you.
+  - Trust that our decisions are informed by solid experience.
+    - In industry
+    - At GA
+    - We rely on your feedback. At the same time, we ultimately have to trust in our own experience and expertise first.
+  - Ultimately, we ask you to **trust us and each other.**
+    - Trust that we have each other's best interests at heart.
+    - But we expect to have to work to earn that trust.
+
+Note that none of the above mention anything about code.
+
+## (Adrian) What is asking for help?
+
+- Ask for help.
+  - This is the thing students find the hardest, and the thing that ultimately determines whether or not they will be successful in this class.
+  - Without fail, the students who do not ask for help do the poorest in the class.
+
+### YOU DO
+
+I'm going to ask you to write something on a letter-sized piece of paper. You are allowed no more than 12 words. Please write big enough that someone can read your paper from a few feet away.
+
+When you are done, you will put the paper face-down on your table and leave the room for a 10-minute break.
+
+Now, close your eyes. I want you to write what first comes to mind when I ask you to think of a time you had to ask for help.
+
+*(Collect papers, tape to board for students to review as they re-enter.)*
+
+# Break!
+
+- We have all asked for help. There's no shame in it. Feeling afraid to ask for help will be the biggest detriment in this class.
+- What makes asking for help effective?
+  - Asking a clear problem. "I don't know any of this" isn't a clear problem. "I tried this thing and got this error" is a clear problem.
+  - We will turn you away when the question your asking isn't constructive.
+
+## (Matt) Student Constitution
+
+## We do
+
+T&T: Come up with items for Constitution. Put on board on post-its. Sign. We take picture.
+
+## (Adam) Class Content
+
+- How the class is created
+  - There's a loosely-prescribed curriculum structure; we create all our own lesson plans, incorporating lesson plans we used in the past if possible.
+  - Each class is different
+    - Factors
+      - Personalities
+      - Changing technologies
+      - Differences between locations
+- Deliberate instructor autonomy
+  - Much of the course is created on-the-fly to tailor-make the content to the class, since each class is different
+  - Lots of flexibility from GA
+
+### WE DO
+
+List out every web technology, acronym, and term we can think of.
+
+- Which of these will we teach?
+- Why won't we teach all of them?
+
+
+## (Jesse) Logistics
 
 - Pods
   - Class is split alphabetically into 6 pods
