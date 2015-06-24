@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Wed Jun 24 2015 00:44:20 GMT+0000 (UTC)">
+    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Wed Jun 24 2015 01:54:56 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -477,7 +477,128 @@
                 
                     <section class="normal" id="section-">
                     
-                        
+                        <h1 id="js-loops-and-conditionals">JS Loops and Conditionals</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>differentiate between true &amp; false &amp;&amp; truthy &amp; falsey</li>
+<li>describe why control flow is utilized in computer programming</li>
+<li>write an if, else if, and else statement in JS</li>
+<li>write a for loop and while loop in JS and differentiate between them</li>
+<li>Utilize loops to iterate through complex data types</li>
+<li>write a JS program that utilizes conditionals and loops</li>
+</ul>
+<h2 id="opening-framing">Opening Framing</h2>
+<p>So we&apos;ve already gone over the basics of Javascript. And today, we&apos;ll be highlighting the data type of boolean.</p>
+<h3 id="t-t-3m">T&amp;T (3m)</h3>
+<p>Go ahead and chat with your neighbor. Knowing about the boolean data type, how might we use this data type in order to execute conditionals and looping. Additionally, what advantages does that give us with regard to programming?</p>
+<h2 id="true-vs-false-15m">true vs false (15m)</h2>
+<p>So we all know the boolean values of <code>true</code> and <code>false</code> But there is also a concept of &quot;truthy&quot; and &quot;falsey&quot; In Javascript, the following things are &quot;falsey&quot;:</p>
+<ul>
+<li>false</li>
+<li>0 (zero)</li>
+<li>&quot;&quot; (empty string)</li>
+<li>null</li>
+<li>undefined</li>
+<li>NaN (a special Number value meaning- Not-a-Number!)</li>
+</ul>
+<blockquote>
+<p>Everything else is &quot;truthy&quot;. Why might we need this programmatic concept of &quot;truthy&quot; and &quot;falsey&quot;?(ST-WG)</p>
+</blockquote>
+<p>Draw truth tables for ! and &amp;&amp; (I do 2m)</p>
+<ul>
+<li>true &amp;&amp; true</li>
+<li>true &amp;&amp; false</li>
+<li>!true</li>
+<li>!false</li>
+</ul>
+<p>have students do TT for || (ST-WG 2m)</p>
+<ul>
+<li>true || false</li>
+<li>false || true</li>
+<li>false || false</li>
+<li>true || true</li>
+</ul>
+<h2 id="comparison-operators-15m">Comparison Operators (15m)</h2>
+<p>Demonstrate comparison operators in node</p>
+<ul>
+<li><code>&lt;</code>, <code>&lt;=</code></li>
+<li><code>&gt;</code>, <code>&gt;=</code></li>
+<li><code>!=</code>, <code>!==</code></li>
+<li><code>==</code>, <code>===</code></li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-number">55</span> == <span class="hljs-string">&quot;55&quot;</span>
+=&gt; <span class="hljs-literal">true</span>
+<span class="hljs-number">55</span> === <span class="hljs-string">&quot;55&quot;</span>
+=&gt; <span class="hljs-literal">false</span>
+</code></pre>
+<p>What is the differences between the last two? When using <code>===</code>, it checks for both the data type and value. <code>==</code> only checks for value. Under the hood, though, <code>==</code> converts the data type to the same data type and then executes comparison.</p>
+<h2 id="conditionals-35m-w-ex">Conditionals (35m /w ex)</h2>
+<p>write and narrate through the following code (10m)</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> age = <span class="hljs-number">24</span>;
+<span class="hljs-keyword">if</span>(age &lt; <span class="hljs-number">18</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;You&apos;re too young to enter this club! Get outta here&quot;</span>)
+}
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(age &gt; <span class="hljs-number">18</span> &amp;&amp; age &lt; <span class="hljs-number">21</span>){
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Come on in! But no Drinking!!&quot;</span>)
+}
+<span class="hljs-keyword">else</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Come on in!&quot;</span>)
+}
+</code></pre>
+<p>Conditionals will always follow this pattern. There is a key word(if, else if, else). Followed by an expression that will evaluate to true or false in parenthese. Then followed by code to execute when condition is met.</p>
+<p>What&apos;s wrong with the following code?:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> age = <span class="hljs-number">24</span>;
+<span class="hljs-keyword">if</span>(age &gt; <span class="hljs-number">21</span>){
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Come on in!&quot;</span>)
+}
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(age &gt; <span class="hljs-number">75</span>){
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Come on in, but I don&apos;t know if this is the place for you!&quot;</span>)
+}
+<span class="hljs-keyword">else</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;get outta here youngin!&quot;</span>)
+}
+</code></pre>
+<h2 id="conditionals-ex-15-20m">Conditionals EX (15~20m)</h2>
+<h2 id="loops-60m">Loops(60m)</h2>
+<h3 id="for-loop-25m">For loop(25m)</h3>
+<p>There are two ways to write a for loop.</p>
+<h4 id="the-first">The first:</h4>
+<pre><code class="lang-javascript"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++){
+  <span class="hljs-built_in">console</span>.log(i)
+}
+</code></pre>
+<p>The first part is the keyword <code>for</code>.
+Followed by 3 parts <code>;</code> separated in parentheses.</p>
+<ul>
+<li>The first part instantiates the iteratee. Essentially gives you access to this value in your code block as i. It starts at 0 in this case.</li>
+<li>The second part is the comparison expression. That means this code will continue to execute until this expression evaluates to false.</li>
+<li>The third and final part is how much the iteratee is incremented after each execution of the loop</li>
+</ul>
+<h4 id="the-second">The second:</h4>
+<pre><code class="lang-javascript"><span class="hljs-comment">// instantiate an array of names</span>
+<span class="hljs-keyword">var</span> names = [<span class="hljs-string">&quot;adam&quot;</span>, <span class="hljs-string">&quot;matt&quot;</span>, <span class="hljs-string">&quot;andy&quot;</span>, <span class="hljs-string">&quot;adrian&quot;</span>, <span class="hljs-string">&quot;robin&quot;</span>, <span class="hljs-string">&quot;jesse&quot;</span>]
+<span class="hljs-keyword">for</span>(i <span class="hljs-keyword">in</span> names){
+  <span class="hljs-built_in">console</span>.log(names[i])
+}
+</code></pre>
+<ul>
+<li>Again this for loop starts with the keyword <code>for</code>.</li>
+<li>In parentheses contains the iteratee followed by the keyword <code>in</code> followed by the complex data type you would like to iterate over(array or object)</li>
+<li>In the brackets contains the code you would like executed for each iteration of the loop</li>
+</ul>
+<h3 id="you-do-write-a-for-loop-that-prints-odd-numbers-to-100-do-not-use-conditionals">You Do - Write a for loop that prints odd numbers to 100. Do not use conditionals</h3>
+<h3 id="while-loop-15m">While Loop(15m)</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">while</span>(i &lt; <span class="hljs-number">10</span>){
+  <span class="hljs-built_in">console</span>.log(i)
+  <span class="hljs-comment">// don&apos;t increment at first</span>
+}
+</code></pre>
+<h4 id="st-wg">ST-WG</h4>
+<p>What are the differences between <code>for</code> and <code>while</code>?</p>
+<h3 id="you-do-fizzbuzz-can-use-conditionals-20m">You do - Fizzbuzz(can use conditionals)(20m)</h3>
+<h2 id="hw-is-choose-your-own-adventure">HW is Choose your own adventure.</h2>
+
                     
                     </section>
                 
