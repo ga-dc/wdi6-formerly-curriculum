@@ -13,8 +13,6 @@
 - Link to a given file using either absolute and relative paths.
 - Use Chrome Dev Tools to inspect an element.
 
-TLDR: Be able to make a crappy website.
-
 ## How the web works
 
 http://imgur.com/0KYhcT7
@@ -28,7 +26,7 @@ So, he writes his speech, and puts it in a filing cabinet.
 
 Whenever a ruler needs a speech, they ask their secretary/translator to call one of Obama's secretaries. She or he opens the filing cabinet, and reads the speech aloud over the phone.
 
-The ruler's secretary translates the speech to the ruler's language and reads it to the ruler.
+The ruler's secretary reads it to the ruler.
 
 ### The reality
 An author writes a file of content, and puts it in a computer called a host.
@@ -76,11 +74,12 @@ Each host as a "phone number", called an IP address. A domain is like a phone di
 
 My host is $6 a month. Domains are usually $15 a year.
 
-Any computer can be a host. Enter my IP address.
+Any computer can be a host
+- Show my IP address and have them go to it, see it's on my computer
 
-### Adding files
+### Adding files to your host
 
-A lot like adding files to a computer: drag and drop into a folder.
+A lot like adding files to a computer: drag and drop into a folder
 
 # Break!
 
@@ -211,6 +210,7 @@ https://github.com/ga-dc/dc_directory_tree
   - Colors
     - RGB / Hex
 - HTML is function, CSS is form, JS is behavior
+- Inspect in Chrome dev tools
 
 ## Homework
 
