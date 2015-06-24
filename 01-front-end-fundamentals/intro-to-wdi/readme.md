@@ -1,15 +1,12 @@
 # GA 101
 
-## 9:00 - 9:10: Introduce instructors and agenda
-
-## 9:10 - 9:45: Introduce GA
+- 9:00 - 9:10: Introduce instructors and agenda
+- 9:10 - 9:45: Introduce GA
   - Space rules
   - Tour(?)
   - Staff
-
-## 9:45 - 10:00: Split into pods, then break, then come back to pods
-
-## 10:00 - 10:30: Pods
+- 9:45 - 10:00: Split into pods, then break, then come back to pods
+- 10:00 - 10:30: Pods
   - Tour(?)
   - Round 1
     - Who are you?
@@ -19,10 +16,8 @@
     - 2 truths and a lie
   - Round 3
     - What are you nervous/excited about?
-
-## 10:30 - 12:00: Intro to WDI
-
-## 12:00 - 12:30: Icebreakers with in separate classrooms with that room's pods
+- 10:30 - 12:00: Intro to WDI
+- 12:00 - 12:30: Icebreakers with in separate classrooms with that room's pods
 
 -----
 
