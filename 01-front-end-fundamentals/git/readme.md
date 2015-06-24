@@ -151,11 +151,11 @@ Instructor should diagram the clone/push/pull process.
 * **fork** - make a copy of a repo on github under a different account, used for OSS collaboration
 * **pull request** - a github feature which allows a user to suggest and discuss changes to a repo they have forked
 
+
 Instructor should diagram the fork/clone/pull request process, and how it relates
 to HW submission.
 
 ** insert diagram here **
 
 ### Closing
-
 Review
