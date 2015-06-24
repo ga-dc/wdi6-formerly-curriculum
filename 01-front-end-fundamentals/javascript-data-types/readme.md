@@ -17,15 +17,24 @@
 // what are the answers to these questions, do you have them in your mind? maybe include them in lesson plan after lessons given.
 # JS as a Programming Language (5min)
 - What is a programming language?
+  - Allows us to transform data
+  - Can create a program that, given an input, produces the desired output
+  - vs. a "markup" or "stylesheet" language, which control the presentation of data
+  - [MORE]
 - What are the particular features of Javascript?
+  - Client and server-based
+  - [MORE]
 - Question: what tools are part of our JS toolbox?
   - Opportunity for students to list off prework components (e.g., data types, loops, conditionals)
 
 # REPL (5min)
-- Introduce concept + set up Node
+- What is a REPL?
+  - Read-Eval-Print loop.
+- Introduce Node
+  - [MORE.]
 
-// i find that if i have examples pre typed up, i'm not as caught up in what the examples are, just focused on delivery of the material
 # Primitive Data Types
+- TO DO: Include data type examples that will be used.
 
 ## Numbers (5min)
 - No distinction between integers and floats
@@ -80,14 +89,15 @@
 - // Comments
 
 ## Semantic Naming (5min)
-// use better good/bad variables
-- Nope: var num = 5;
-- Yup: var myFavoriteNumber = 5;
+- The purpose of a variable needs to be evident in the name
+  - Nope: var x = 5;
+  - Yup: var myFavoriteNumber = 5;
 
 ## Memory Allocation (5min)
-// whiteboard var/value chart, i find this to be pretty helpful
-- What happens in memory when you create a variable?
-- Garbage collection
+- Use diagram of memory allocation (either whiteboard or slide) to demonstrate...
+  - What happens in memory when you create a variable?
+  - What happens when you direct a variable to a new memory location?
+  - What happens to a memory location with no variable pointing to it?
 
 # BREAK (10min)
 
