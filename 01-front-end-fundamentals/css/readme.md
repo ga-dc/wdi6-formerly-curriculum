@@ -1,9 +1,13 @@
 # CSS
 
 ## LO's
+// I'd revise these LOs to be like:
+// Define the following terms: css rule, selector, declaration, property, and value
+// Describe the syntactic relationship between these components in CSS
 - Describe the syntactical and functional relationship between selectors, properties, and values
 - Differentiate between stylesheets, styles in the head, in-line styles
 - describe "cascading" and CSS specificity
+// Use tag name selectors to style all elements of a given tag on a page
 - Style all elements of a particular HTML element on a web page
 - Describe the difference between class and id selectors
 - Apply styles to specific elements by selecting elements with classes and ids
@@ -13,6 +17,8 @@
 > Although some of this may be review from the prework, repetition is key to becoming a good programmer!
 
 Wouldn't it be nice to make our webpages look schnazzy? Enter CSS. There is such a wide breadth of things to learn about CSS and honestly, you could probably teach a whole 12 weeks to understand all the capabilities, nuances and subtleties. So we'll only be scratching the surface with it, but I encourage you to experiment with CSS on your own. As you consistently use CSS you realize that it is both awesome and frustrating to utilize.
+
+// the last sentence feels a bit out of place, maybe when fleshed out in person it makes more sense?
 
 [family guy CSS gif](https://i.imgur.com/Q3cUg29.gif)
 
@@ -40,6 +46,9 @@ Let's throw some dummy content into HTML inside our `index.html`:
 </body>
 </html>
 ```
+
+// I think at some point here, or before, you should start defining terms, and have them whiteboarded
+// something like here: http://www.w3schools.com/css/css_syntax.asp
 
 So one way we can style elements in HTML is in the tag itself. These are called inline-styles:
 
@@ -133,6 +142,8 @@ Finally to select an element with an id you use `#`. I'm going to change the bac
 }
 ```
 
+// make a list of the most common selectors
+
 ## CSS Specificity (20m)
 If I change the css selector from `p.red` back to `.red` you'll notice that the paragraph element with the id of green is still green. This is because of CSS Specificity. While CSS cascades from top to bottom. The CSS that is applied depends on Specificity as well. Take the following example:
 
@@ -153,7 +164,7 @@ In this example the elements that have the class red, will ultimately have a bac
 
 The following list of selector types is by increasing specificity:
 
-- Universal selectors (e.g., *)
+- Universal selectors (e.g., '\*')
 - Type selectors (e.g., h1)
 - Class selectors (e.g., .example)
 - Attributes selectors (e.g., [type="radio"])
