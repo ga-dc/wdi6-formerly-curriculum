@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Wed Jun 24 2015 14:07:19 GMT+0000 (UTC)">
+    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Wed Jun 24 2015 14:42:08 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -477,7 +477,425 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="command-line">Command Line</h1>
+                        <h1 id="your-work-environment">Your Work Environment</h1>
+<h2 id="controlling-your-world">Controlling your world</h2>
+<hr>
+<h2 id="framing-before-objectives">Framing (before Objectives)</h2>
+<p>Introduce students to the command line.  Giving them a brief taste before sharing the Learning Objectives.</p>
+<p><em>&quot;You just learned that mentors are all around you.  I&apos;d like to introduce you to your closest and best mentor.&quot;</em> <picks up="" computer=""></picks></p>
+<blockquote>
+<p>This is your computer, there are many like it, but this one is yours.<br>Your computer is your best friend.  You must master it like you master your life.<br>Your computer without you is useless.</p>
+</blockquote>
+<p><em>Think about that...</em></p>
+<blockquote>
+<p>My computer, without me, is useless.</p>
+</blockquote>
+<p>pause</p>
+<ul>
+<li>Let&apos;s start owning it.</li>
+<li>Let&apos;s start playing with it.</li>
+<li>Let&apos;s create something today.</li>
+</ul>
+<p><em>Let me show you the command center of the computer.</em></p>
+<p><em>Open your computers.</em>
+(say the following while demonstrating)<br><em>&quot;Hold down the Command key and press Space.  You will see this written as &quot;cmd+space&quot;.  This is Spotlight search.  You can use this to find stuff on your computer.  Right now, we want our &quot;Terminal&quot;.  Press Enter.</em></p>
+<p><em>You are now in the terminal.  As a developer, you will spend a lot of time here, telling your computer what to do.  Giving it very precise orders.  It can only do what we tell it to do.</em></p>
+<p>Type &quot;give me rice&quot;</p>
+<p>You should see:</p>
+<pre><code>$ give me rice
+-bash: give: command not found
+</code></pre><p><em>Your computer got lost right from the start. </em></p>
+<p><em>Don&apos;t worry about memorizing the commands.  We&apos;ll cover all this again.  Just observe.</em></p>
+<p>Type <code>cd</code>.
+Type <code>pwd -P</code>.  <em>This is YOUR home dir.  We&apos;ll spend a lot of time here.  Once again, don;t worry about notes, we come back here, more slowly, in a second.</em>
+Now type: <code>$ ls</code></p>
+<p>That is a listing of the files in this folder or directory.</p>
+<p>_&quot;Let&apos;s confirm that.&quot; <code>open .</code> <split screen="" w="" Terminal="" and="" Finder="">
+Compare.</split></p>
+<p>Now type: <code>$ ls -l</code>.  The same files.  Different view.</p>
+<hr>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>Setup your working directory for WDI</li>
+<li>Compare and Contrast CLI to GUI</li>
+<li>Describe the anatomy of a command (statement, flags, arguments)</li>
+<li>Know where to go for help</li>
+<li>List common commands</li>
+<li>List unsafe commands</li>
+<li>Manage folders and files (using Finder and Shell)</li>
+<li>Explain the difference between relative and absolute path</li>
+</ul>
+<hr>
+<h2 id="i-do-share-the-first-3-lessons-of-the-command-line">I DO: Share the first 3 lessons of the Command Line</h2>
+<p><em>We just learned 3 very important lessons.</em></p>
+<p>Type <code>$ give me rice</code> again.</p>
+<p>STWC: What did the computer know about giving me rice?
+Nada.  Zip.  Zero. Zilch.</p>
+<h3 id="lesson-one-you-have-to-start-with-something-the-computer-already-knows-and-build-on-that">Lesson One.  You have to start with something the computer already knows and build on that.</h3>
+<ul>
+<li>Build on knowledge.</li>
+</ul>
+<p>Then I had you type <code>cd</code>.  Why?  It&apos;s ok to be wrong.  That&apos;s how we move forward.
+Leading questions.</p>
+<h3 id="lesson-two-you-have-to-care-about-where-you-are">Lesson Two: You have to care about where you are.</h3>
+<ul>
+<li>Where</li>
+</ul>
+<p>Type <code>open .</code></p>
+<p>STWC: What did that do?</p>
+<p>This dot &quot;.&quot;, is a shortcut, an abbreviation for the current dir.  This command opens my current dir in finder.  If I was somewhere else, it would open a different dir.</p>
+<pre><code>cd
+ls
+</code></pre><h3 id="lesson-three-i-control-it-by-telling-it-precisely-what-i-want">Lesson Three: I control it.  By telling it <strong>precisely</strong> what I want.</h3>
+<ul>
+<li>Precise</li>
+</ul>
+<p><em>This will become more obvious as you go through the exercises.  But I want to highlight that <strong>everything</strong> you type in is important.</em></p>
+<p>Type <code>ls -l</code>
+Type <code>ls -w</code></p>
+<p>The same files.  Different view.</p>
+<h2 id="we-do-the-terminal">We do:  The Terminal</h2>
+<p>Think, Pair Share:</p>
+<p>The terminal:</p>
+<blockquote>
+<p>What do you think this is?<br>What does it do?
+Have you used something similar?</p>
+</blockquote>
+<p>Walk through following steps (without setup/clarification)</p>
+<ol>
+<li><p>Type <code>ls</code></p>
+<ul>
+<li>What do you see?</li>
+</ul>
+</li>
+<li><p>Type <code>echo &apos;Hi there!&apos; &gt; hello.txt</code>, then <code>ls</code></p>
+<ul>
+<li>What happened?</li>
+</ul>
+</li>
+<li><p>Type <code>open hello.txt -e</code></p>
+<ul>
+<li>What happened?</li>
+<li>Type &quot;Hi there!&quot; into the file.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="what-are-the-steps-of-what-we-just-did">What are the steps of what we just did?</h3>
+<p>Work with students to write the steps of what we just did on the board.</p>
+<ol>
+<li><p>Open your Home folder</p>
+</li>
+<li><p>Create a new text file called &quot;hello.txt&quot;</p>
+</li>
+<li><p>Open it and write &quot;Hi there!&quot;</p>
+</li>
+</ol>
+<hr>
+<h3 id="following-the-steps-on-the-board-do-the-same-stuff-without-the-command-line">Following the steps on the board, do the same stuff WITHOUT the Command Line.</h3>
+<hr>
+<h3 id="which-way-was-easier">Which way was easier?</h3>
+<hr>
+<h2 id="demo">Demo</h2>
+<p>Now, close your computers for a second and watch this:</p>
+<pre><code>ls
+</code></pre><p><em>Take note of the contents</em></p>
+<pre><code>COUNTER=0
+while [ $COUNTER -lt 20 ]; do
+    touch sample_file_$COUNTER.txt
+    let COUNTER=COUNTER+1
+done
+</code></pre><pre><code>ls
+</code></pre><p>Brief overview of the code.</p>
+<pre><code>ls sample*
+</code></pre><p><em>Are those the files I just added?  And only those?</em></p>
+<blockquote>
+<p>Say bye.  </p>
+</blockquote>
+<p><em>Don&apos;t try this at home.  The <code>rm</code> command can be dangerous.  We&apos;ll cover this soon.</em></p>
+<pre><code>rm sample*
+ls
+</code></pre><p><em>Now THAT&apos;S power.</em></p>
+<hr>
+<h3 id="this-is-called-the-command-line-also-shell-also-bash">This is called the &quot;command line&quot;, also &quot;shell&quot;, also &quot;bash&quot;.</h3>
+<ul>
+<li>The command line / shell / bash is a way of interacting with your computer without using a fancy graphical interface</li>
+</ul>
+<hr>
+<p>CFU: Shout Out, write on board</p>
+<h3 id="why-do-programmers-work-in-the-command-line">Why do programmers work in the command line?</h3>
+<hr>
+<h3 id="brief-history-of-command-line">Brief history of Command Line</h3>
+<ul>
+<li><p>The command line is an interface to your operating system&apos;s services.</p>
+</li>
+<li><p>What is a <strong>GUI</strong>?</p>
+</li>
+<li><p>Brief history</p>
+<ul>
+<li><p>Based on Unix</p>
+</li>
+<li><p>A <strong>shell</strong> is a program that interacts with your operating system. The <strong>terminal</strong> runs the shell. Used to be an physical computer. Now just an app.</p>
+</li>
+<li><p>Might look familiar to old folks using old computers: no mouse</p>
+</li>
+</ul>
+</li>
+<li><p>Difference between bash, shell, terminal, CLI</p>
+</li>
+</ul>
+<hr>
+<h2 id="lesson-one-start-with-what-it-knows-the-basic-command">Lesson One: start with what it knows.  The basic command.</h2>
+<h3 id="anatomy-of-a-command">Anatomy of a command</h3>
+<ul>
+<li><p>Command</p>
+</li>
+<li><p>Flag</p>
+<ul>
+<li>The command&apos;s options</li>
+</ul>
+</li>
+<li><p>Argument</p>
+<ul>
+<li>The input that&apos;s being processed by the command</li>
+</ul>
+</li>
+<li><p>Example</p>
+<ul>
+<li><p>Give someone a haircut</p>
+<ul>
+<li><p>Haircut style is a flag</p>
+</li>
+<li><p>Person getting haircut is argument</p>
+</li>
+<li><p><code>haircut --mohawk Matt</code></p>
+</li>
+</ul>
+</li>
+<li><p><code>haircut --mullet &quot;Billy Ray Cyrus&quot;</code></p>
+</li>
+<li><p><code>-</code> vs <code>--</code></p>
+</li>
+</ul>
+</li>
+<li><p>Argument is usually a file</p>
+</li>
+<li><p><code>say &apos;Hello&apos;</code></p>
+</li>
+<li><p><code>say -v ?</code></p>
+</li>
+</ul>
+<hr>
+<h2 id="sometimes-it-makes-sense">Sometimes it makes sense.</h2>
+<p><em>When you need someone&apos;s assistance, what do you ask for?</em>
+Help.</p>
+<p><code>gem --help</code>
+It&apos;s not always that helpful.
+<code>ls --help</code>
+<code>ruby --help</code></p>
+<hr>
+<h2 id="you-do-t-t-1-min">You Do: T&amp;T (1 min)</h2>
+<p>What version of ruby are we using?</p>
+<h3 id="namespaces-and-double-dashes">Namespaces and double-dashes</h3>
+<ul>
+<li><p><code>brew install tree</code></p>
+<ul>
+<li>What does brew do?</li>
+</ul>
+</li>
+<li><p><code>ruby --version</code></p>
+</li>
+<li><p><code>ruby -v</code></p>
+</li>
+<li><p><code>ruby</code></p>
+</li>
+<li><p>Ctrl + C</p>
+</li>
+<li><p>Ctrl + K</p>
+</li>
+</ul>
+<hr>
+<h2 id="you-do-research-man-3-min">You Do: Research <code>man</code> (3 min)</h2>
+<p>Let&apos;s do a little research.  The developers of each of these commands has provided a manual.  Let&apos;s google it.  If you know the answer, please don&apos;t spoil it.</p>
+<ul>
+<li>Find the manuals for:<ul>
+<li>ls<ul>
+<li>cd</li>
+<li>ruby</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Results on board: html pages, <code>man</code></p>
+<ul>
+<li><p>Type <code>man ruby</code></p>
+</li>
+<li><p>Introduce manuals</p>
+<ul>
+<li><p>Things in brackets are optional</p>
+</li>
+<li><p>Structure of the manual</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="lesson-two-know-where-you-are">Lesson Two: Know where you are.</h2>
+<h3 id="every-command-is-executed-in-the-context-of-the-current-folder">Every command is executed in the context of the current folder</h3>
+<ul>
+<li><p><code>pwd</code></p>
+</li>
+<li><p><code>pwd -P</code></p>
+</li>
+<li><p><code>cd ~</code></p>
+</li>
+<li><p><code>ls</code></p>
+</li>
+<li><p><code>cd Desktop</code></p>
+</li>
+<li><p>Go up with <code>..</code></p>
+<ul>
+<li><code>cd ..</code></li>
+</ul>
+</li>
+<li><p><code>cd</code> Drag and drop</p>
+</li>
+<li><p><code>cd ~</code></p>
+<ul>
+<li>Shortcut to home folder regardless of where you are</li>
+</ul>
+</li>
+<li><p>Tab completion</p>
+</li>
+<li><p>Other funky punctuation: <code>$</code></p>
+</li>
+</ul>
+<h3 id="absolute-vs-relative">Absolute vs relative</h3>
+<ul>
+<li><p>Your current frame of reference</p>
+</li>
+<li><p>Mailing addresses: Domestic vs international vs interplanetary vs universe</p>
+</li>
+<li><p><code>open</code> a file using an absolute path, then a relative path</p>
+</li>
+</ul>
+<hr>
+<h2 id="commands-exercise">Commands exercise</h2>
+<h3 id="13m-you-do-pair-up-assign-groups-and-figure-out-what-each-command-does">13m) You do: Pair up, assign groups, and figure out what each command does.</h3>
+<p>Each column is related commands.</p>
+<p>Play with the commands and figure out:</p>
+<ul>
+<li><p>How would you describe what the command does?</p>
+</li>
+<li><p>For what (if anything) is the command&apos;s name an abbreviation?</p>
+</li>
+<li><p>Identify a useful flag for each command</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>touch</code></td>
+<td><code>cat</code></td>
+<td><code>pwd</code></td>
+<td><code>history</code></td>
+</tr>
+<tr>
+<td><code>mkdir</code></td>
+<td><code>head</code></td>
+<td><code>tree</code></td>
+<td><code>mv</code></td>
+</tr>
+<tr>
+<td><code>ls</code></td>
+<td><code>tail</code></td>
+<td><code>open</code></td>
+<td><code>cp</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><code>ls -a</code></p>
+</li>
+<li><p><code>cp -R</code></p>
+</li>
+<li><p><code>mkdir -p</code></p>
+</li>
+<li><p>Not worth time to memorize everything; know how to look it up</p>
+</li>
+</ul>
+<hr>
+<h2 id="we-do-our-working-dir">We DO: Our working dir</h2>
+<p>Since it&apos;s important to know where we are.  Let&apos;s create a place to do our work.  Our working directory.</p>
+<p>How do we get back to our home dir?
+<code>cd</code> or <code>cd ~</code></p>
+<p>Review home dir.</p>
+<p>Now, let&apos;s create a working dir.  How would I make a dir name &quot;ga&quot;?
+Recommend lower case, separated by underscores, no spaces or special characters.</p>
+<p><code>mkdir ga</code></p>
+<p>now, we want to work in here.  How do we get there?</p>
+<p><code>cd ga</code></p>
+<p>--</p>
+<h3 id="you-do-to-oz-20-min">You Do: To OZ! (20 min)</h3>
+<hr>
+<h3 id="10m-we-do-the-dangerous-commands">10m) We do: The dangerous commands</h3>
+<h4 id="rm">rm</h4>
+<pre><code>touch hello.txt
+rm hello.txt
+</code></pre><ul>
+<li><p>What does <code>rm</code> stand for?</p>
+</li>
+<li><p>Why is this &quot;dangerous&quot;?</p>
+<p>cd OZ
+mkdir CandyLand
+rm EmeraldCity</p>
+</li>
+<li><p>Why didn&apos;t it work?</p>
+</li>
+</ul>
+<pre><code>rm -d EmeraldCity
+</code></pre><ul>
+<li>What does <code>-d</code> stand for?</li>
+</ul>
+<pre><code>mkdir CandyLand
+touch CandyLand/judge.txt
+rm -d CandyLand
+</code></pre><ul>
+<li>Why didn&apos;t it work?</li>
+</ul>
+<pre><code>rm -r CandyLand
+</code></pre><ul>
+<li><p>What does <code>-r</code> stand for?</p>
+<ul>
+<li>Recursion</li>
+</ul>
+</li>
+<li><p>Safety check against deleting stuff you don&apos;t mean to delete.</p>
+</li>
+<li><p>Be <strong>super careful</strong> with <code>rm -r</code>.</p>
+</li>
+</ul>
+<hr>
+<h4 id="sudo">sudo</h4>
+<ul>
+<li>Think twice about it</li>
+</ul>
+<hr>
+<h3 id="ding-dong-the-witch-is-dead">Ding Dong the Witch is Dead.</h3>
+<hr>
+<h1 id="closing">Closing</h1>
+<ul>
+<li>Don&apos;t summarize for them in closing. Ask them to define for me. Closing should be an assessment (of sorts)</li>
+</ul>
 
                     
                     </section>
