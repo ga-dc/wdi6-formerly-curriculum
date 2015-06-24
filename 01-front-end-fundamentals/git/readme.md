@@ -52,6 +52,7 @@ were added or what bugs were fixed.
 
 Additionally, git supports tagging
 
+// because we want to make a git book out of this, maybe include some notes about each of these headers. a short blurb of what you're going to say in class
 ##### Comparing changes to past versions
 ##### Sharing changes
 ##### Collaborating / discussing changes
@@ -61,6 +62,7 @@ Additionally, git supports tagging
 
 **I DO** (20 minutes)
 
+// make code available through readme, again admistrative for git book. but all that bash inputs
 Have students watch as instructor initializes an existing project as a
 repository, adds files, and makes the first commit.
 
@@ -85,3 +87,5 @@ working tree, index, commits).
 4. Commit that change
 5. Revert back to (checkout) the original version of your code
 6. Switch back to (checkout) your latest version
+
+// include a base git reference link at bottom for students seeking additional info potentially
