@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hangman</title>
+  <link rel="stylesheet" href="style.css">
+  <script type='text/javascript' src='js/underscore.min.js'></script>
+  <script type='text/javascript' src='js/game.js'></script>
+</head>
+<body>
+  <div id="game_play_area">
+    <div id="hangman_area">
+      <span>Guesses Left:</span> <span id="guesses_left"></span>
+    </div>
+    <div id="letter_area">
+      <div id="letters_used">
+        <span>Letters Guessed Already:</span>
+        <div id="guessed_letters"></div>
+      </div>
+      <div id="guess_box">
+        <span>Guess a Letter:</span>
+        <input id="letter_field" type="text" />
+      </div>
+    </div>
+  </div>
+  <div id="word_string"></div>
+  <div id="game_control_area">
+    <input id="give_up_button" class="button" type="submit" value="Give up"/>
+    <input id="reset_button" class="button" type="submit" value="Reset Game"/>
+  </div>
+</body>
+</html>

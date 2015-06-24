@@ -1,0 +1,54 @@
+body {
+  background-color: #333;
+  font: 15px/1.4 Helvetica, Arial, sans-serif;
+}
+
+.operation {
+  background-color: white;
+  margin: 80px auto 50px;
+  padding: 10px;
+  width: 400px;
+}
+
+.operation h1 {
+  background-color: #C00;
+  border-bottom: 1px solid #300;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+  color: #FFF;
+  left: 0;
+  margin: 0;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.operation .board {
+  position: relative;
+}
+
+.operation .chip {
+  position: absolute;
+  z-index: 1;
+}
+
+.chip.heart {
+  left: 235px;
+  top: 80px;
+}
+
+.chip.breadbasket {
+  left: 190px;
+  top: 300px;
+}
+
+.chip.butterflies {
+  left: 215px;
+  top: 190px;
+}
+
+.chip.wishbone {
+  left: 175px;
+  top: 55px;
+}

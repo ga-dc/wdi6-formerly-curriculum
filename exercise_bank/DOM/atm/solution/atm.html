@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    <title>ATM</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="atm.css">
+    <script src="js/src/atm.js"></script>
+  </head>
+  <body>
+    <div id="content">
+      <div id="nav">
+        <div id="logo"><img src="ga.png" /></div>
+        <div id="title">Bank of GA</div>
+      </div>
+      <div class="account" id="account1">
+        <h2>Checking</h2>
+        <div class="balance" id="checking_balance">$0</div>
+        <input id="checking_amount" type="text" placeholder="enter an amount" />
+        <input id="checking_deposit" type="button" value="Deposit" />
+        <input id="checking_withdraw" type="button" value="Withdraw" />
+      </div>
+      <div class="account" id="account2">
+        <h2>Savings</h2>
+        <div class="balance" id="savings_balance">$0</div>
+        <input id="savings_amount" type="text" placeholder="enter an amount" />
+        <input id="savings_deposit" type="button" value="Deposit" />
+        <input id="savings_withdraw" type="button" value="Withdraw" />
+      </div>
+      <div class="clear"></div>
+    </div>
+    <script>
+      var atm = new ATM();
+      var checking_amount = document.querySelector("#checking_amount");
+      var savings_amount  = document.querySelector("#savings_amount");
+
+      function updateBalances(){
+        document.querySelector("#checking_balance").innerText = "$" + atm.checking;
+        document.querySelector("#savings_balance").innerText  = "$" + atm.savings;
+      }
+
+      document.querySelector("#checking_deposit").addEventListener("click", function(){
+        console.log("DEPOSIT " + checking_amount.value + " TO CHECKING");
+        atm.deposit("checking", checking_amount.value);
+        updateBalances();
+      });
+
+      document.querySelector("#checking_withdraw").addEventListener("click", function(){
+        console.log("WITHDRAW " + checking_amount.value+ " FROM CHECKING");
+        atm.withdraw("checking", checking_amount.value);
+        updateBalances();
+      });
+
+      document.querySelector("#savings_deposit").addEventListener("click", function(){
+        console.log("DEPOSIT " + savings_amount.value + " TO SAVINGS");
+        atm.deposit("savings", savings_amount.value);
+        updateBalances();
+      });
+
+      document.querySelector("#savings_withdraw").addEventListener("click", function(){
+        console.log("WITHDRAW " + savings_amount.value + " FROM SAVINGS");
+        atm.withdraw("savings", savings_amount.value);
+        updateBalances();
+      });
+    </script>
+  </body>
+</html>

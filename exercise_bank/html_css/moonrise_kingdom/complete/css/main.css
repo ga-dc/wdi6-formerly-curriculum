@@ -1,0 +1,167 @@
+/*
+ - Layout width: 710px
+
+ - Photo size: 282 x 282
+
+ - Colors:
+   - #eabc6f (form background)
+   - #e1c49a (photo border)
+   - #365c69 (blue ink)
+
+ - Fonts:
+   - 'Montserrat', Helvetica, sans-serif; (Google fonts)
+   - 'Crafty Girls', script; (Google fonts)
+   - Courier, monospaced;
+*/
+
+body {
+  background: #333 url("../images/wood.jpg") repeat;
+  margin: 0;
+}
+
+.form {
+  background-color: #eabc6f;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.75);
+  font: 12px/1.4 'Montserrat', 'Helvetica Neue', Helvetica, sans-serif;
+  margin: 50px auto;
+  padding: 8px;
+  width: 694px;
+}
+
+.form-inner {
+  border: 2px solid #000;
+  padding: 18px;
+}
+
+.field {
+  font: 16px/1 Courier, monospaced;
+}
+
+  .field.signature {
+    color: #365c69;
+    font: 18px/1 'Crafty Girls', script;
+    text-align: center;
+  }
+
+.label {
+  font-size: 11px;
+  padding-right: 6px;
+  text-transform: uppercase;
+}
+
+.fineprint {
+  font-size: 11px;
+  margin: 0;
+}
+
+.banner {
+  padding: 0 0 30px;
+  text-align: center;
+}
+
+  .banner h1,
+  .banner p {
+    margin: 0;
+  }
+  
+  .banner .organization {
+    font-size: 28px;
+    text-transform: uppercase;
+  }
+
+  .banner .organization i {
+    font-style: normal;
+    text-transform: lowercase;
+  }
+
+  .banner h1 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+.col-photo {
+  float: right;
+  width: 322px;
+}
+
+  .col-photo img {
+    border: 20px solid #e1c49a;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transform: rotate(-1deg);
+    -ms-transform: rotate(-1deg);
+    -webkit-transform: rotate(-1deg);
+  }
+
+  .col-photo .form-id {
+    float: right;
+    font-size: 10px;
+    line-height: 17px;
+  }
+
+.col-form {
+  border-right: 3px solid #000;
+  padding-right: 24px;
+  width: 280px;
+}
+
+.form-row {
+  margin: 0 0 10px;
+}
+
+  .form-row p {
+    margin: 5px 0;
+  }
+
+  .form-row .field {
+    border-bottom: 1px solid #000;
+    display: block;
+  }
+
+  .form-row .label {
+    border-bottom: 1px solid #eabc6f;
+    float: left;
+    position: relative;
+    top: 1px;
+  }
+
+  .form-row .sublabel {
+    float: none;
+    font-size: 10px;
+  }
+
+.checklist {
+  border: 1px solid #000;
+  list-style: none;
+  margin: 5px 0 10px;
+  padding: 0;
+}
+
+  .checklist li {
+    display: inline-block;
+    line-height: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 5px;
+    vertical-align: middle;
+  }
+
+  .checklist input {
+    appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    border: 1px solid #000;
+    border-bottom: 1px solid #000;
+    display: block;
+    float: left;
+    font: 18px/1 courier, monospaced;
+    height: 20px;
+    margin: 0;
+    margin-right: 6px;
+    padding: 0;
+
+    width: 20px;
+  }
+
+  .checklist input:checked:before {
+    content: 'x';
+  }

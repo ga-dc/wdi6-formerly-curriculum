@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Async Academy</title>
+  <style>
+  body {
+    font: 16px/1.4 Helvetica, sans-serif;
+    margin: 30px;
+  }
+
+  h2 {
+    font-weight: normal;
+  }
+  </style>
+</head>
+<body>
+  <h1>Synchronous</h1>
+  
+  <h2>Why not use <b>syncronous</b> code on the front end...?</h2>
+  <button id="sync-button">Sync Me!</button>
+  <p><a href="http://google.com">Click the button, then click this link</a></p>
+
+  <script src="js/jquery.js"></script>
+  <script>
+  $('#sync-button').on('click', function() {
+
+    $(this).text('Sync was triggered');
+
+    var start = Date.now();
+
+    // Just sit here an do nothing for five seconds...
+    while(Date.now() - start < 5000);
+  });
+  </script>
+</body>
+</html>

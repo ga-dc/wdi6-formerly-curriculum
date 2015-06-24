@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  position: relative;
+}
+
+img {
+  position: absolute;
+}
+
+img.empty {
+  opacity: 0.5;
+  z-index: 0;
+}
+
+img.drag {
+  cursor: move;
+  z-index: 1;
+}

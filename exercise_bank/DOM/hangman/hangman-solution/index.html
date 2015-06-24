@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hangman</title>
+  <link rel="stylesheet" href="style.css">
+  <script type='text/javascript' src='js/src/game.js'></script>
+</head>
+<body>
+  <section class="game-play">
+
+    <figure>
+      <span>Guesses Left:</span> <span class="guesses-left"></span>
+    </figure>
+
+    <aside>
+      <div>
+        <span>Letters Guessed Already:</span>
+        <span class="guessed-letters"></span>
+      </div>
+
+      <div>
+        <label for="letter">Guess a Letter:</label>
+        <input type="text" name="letter" id="letter" />
+      </div>
+    </aside>
+  </section>
+
+  <div class="game-word">A B C D</div>
+
+  <section class="game-controls">
+    <button class="give-up">Give Up</button>
+    <button class="new-game">New Game</button>
+  </section>
+
+  <script>
+    var wordList = ['ruby', 'rails', 'javascript', 'array', 'hash', 'sinatra', 'model', 'controller', 'view', 'devise', 'authentication', 'capybara', 'jasmine', 'cache', 'sublime', 'terminal', 'system', 'twitter', 'facebook', 'function', 'google', 'amazon', 'development', 'data', 'design', 'inheritance', 'prototype', 'gist', 'github', 'agile', 'fizzbuzz', 'route', 'gem', 'deployment', 'database'];
+
+    function randomWord() {
+      return wordList[ Math.floor(Math.random() * (wordList.length + 1)) ]
+    }
+
+    (function(){
+      var game = new Game(randomWord(), 8);
+
+      var guessesLeft    = document.querySelector(".guesses-left");
+      var guessInput     = document.querySelector("input[name='letter']");
+      var guessedLetters = document.querySelector(".guessed-letters");
+      var wordDisplay    = document.querySelector(".game-word");
+      var newGame        = document.querySelector("button.new-game");
+      var giveUp         = document.querySelector("button.give-up");
+
+      guessInput.addEventListener("keyup", function() {
+        var letter = this.value;
+        this.value = "";
+
+        game.guess(letter);
+        render();
+      });
+
+      newGame.addEventListener("click", function() {
+        game = new Game(randomWord(), 8);
+        render();
+      });
+
+      giveUp.addEventListener("click", function() {
+        wordDisplay.innerText = game.wordDisplay(true);
+        game.gaveUp = true;
+      });
+
+      function render() {
+        guessesLeft.innerText    = game.guessesLeft;
+        guessedLetters.innerText = game.guessedLetters.join(" ");
+        wordDisplay.innerText    = game.wordDisplay();
+
+        if (game.gameOver()) {
+          alert("You " + (game.won() ? "won" : "lost"));
+        };
+      };
+
+      render();
+    })();
+  </script>
+</body>
+</html>

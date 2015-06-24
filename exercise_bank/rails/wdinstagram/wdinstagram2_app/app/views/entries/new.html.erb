@@ -1,0 +1,21 @@
+<h1>Create a new entry:</h1>
+
+<form action="/entries" method="post">
+  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+  <label>
+    Author
+    <input type="text" name="author" />
+  </label>
+
+  <label>
+    Photo Url
+    <input type="url" name="photo_url" />
+  </label>
+
+  <label>
+    Date Taken
+    <input type="date" name="date_taken" />
+  </label>
+
+  <button>Save!</button>
+</form>

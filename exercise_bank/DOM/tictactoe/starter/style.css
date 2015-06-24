@@ -1,0 +1,72 @@
+body {
+  padding: 20px 0;
+}
+
+ul {
+  width: 400px;
+  margin: 0 auto;
+}
+
+li {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  position: relative;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  background-color: blue;
+  list-style: none;
+  font-size: 80px;
+  color: white;
+  font-family: sans-serif;
+}
+
+li.winning {
+  -webkit-animation: highlight 2s;
+  -webkit-animation-iteration-count: infinite;  
+  animation: highlight 2s;
+  animation-iteration-count: infinite;
+}
+
+li:before {
+  display: block;
+  position: absolute;
+  left: 20px;
+  top: 3px;
+}
+
+li.x:before {
+  content: "X";
+}
+
+li.o:before {
+  content: "O";
+}
+
+@-webkit-keyframes highlight {
+  0% {
+    background: auto;
+  }
+
+  50% {
+    background: red;
+  }
+
+  100% {
+    background: auto;
+  }
+}
+
+@keyframes highlight {
+  0% {
+    background: auto;
+  }
+
+  50% {
+    background: red;
+  }
+
+  100% {
+    background: auto;
+  }
+}

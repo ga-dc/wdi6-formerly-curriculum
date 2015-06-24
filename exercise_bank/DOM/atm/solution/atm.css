@@ -1,0 +1,43 @@
+@import url(http://fonts.googleapis.com/css?family=Oleo+Script);
+@import url(http://fonts.googleapis.com/css?family=Ruluko);
+
+#content {
+  font-family: 'Ruluko', sans-serif;
+  margin: 0px auto;
+  width: 700px;
+  text-align: center;
+}
+#nav {
+  margin: 50px 0px;
+}
+#title {
+  font-family: 'Oleo Script', cursive;
+  font-size: 50px;
+  color: #F52F4F;
+}
+#account1 {
+  float: left;
+}
+#account2 {
+  float: right;
+}
+.account {
+  padding: 10px;
+  border: 1px solid #295A33;
+  background-color: #6C9A74;
+  width: 300px;
+}
+.balance {
+  font-family: 'Ruluko', sans-serif;
+  font-size: 50px;
+  padding: 25px 0px;
+  background-color: #E3E3E3;
+  border: 1px solid #676767;
+}
+.clear {
+  clear: both;
+}
+.zero {
+  background-color: #F52F4F;
+  color: #FFFFFF;
+}

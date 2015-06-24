@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: Listly2_development
+  pool: 5
+  username: <%= `whoami` %>
+  password:

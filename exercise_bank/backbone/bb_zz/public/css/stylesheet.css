@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+.view {
+  padding: 5px;
+  margin: 10px;
+
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
+}
+
+.zoo-view {
+  max-width: 800px;
+  margin: 10px auto;
+
+  border-color: black;
+}
+
+.form-view {
+  width: 45%;
+  /*border-color: gray; /* removed since default view has a border */
+  border: none;
+
+  display: inline-block;
+}
+
+.exhibit {
+  float: left;
+}
+
+.escape {
+  float: right;
+}
+
+.list-view {
+  width: 45%;
+  border-color: blue;
+}
+
+.clear {
+  clear: both;
+}
+
+.exhibit-view {
+  border-color: green;
+  list-style-type: none;
+  cursor: pointer;
+}

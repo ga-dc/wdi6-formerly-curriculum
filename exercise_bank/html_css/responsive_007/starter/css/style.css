@@ -1,0 +1,126 @@
+/*
+  Red: #B00;
+  Dark Red: #900;
+
+  Max page width: 900px
+  Nav width: 25%, with 5% right margin
+  Main width: 65%
+
+  CSS you'll need:
+  - max-width
+  - @media
+*/
+
+body {
+  background-color: #333;
+  font: 15px/1.4 Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 25px 25px 50px;
+}
+
+a {
+  color: #C00;
+}
+
+.page {
+  background-color: #fff;
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.header {
+  background: url("../images/header.png") center top;
+  background-size: cover;
+}
+
+  .header img {
+    margin: 20px;
+    width: 30%;
+  }
+
+.nav {
+  background-color: #B00;
+  list-style: none;
+  float: left;
+  margin: 0;
+  margin-right: 3%;
+  padding: 0;
+  width: 25%;
+}
+
+  .nav a {
+    border-bottom: 1px solid #900;
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    padding: 15px;
+  }
+
+  .nav a:hover {
+    background-color: #900;
+  }
+
+.main {
+  float: left;
+  width: 65%;
+}
+
+  .main img {
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    width: 25%;
+  }
+
+.breadcrumbs {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+}
+
+  .breadcrumbs li {
+    display: inline;
+  }
+
+  .breadcrumbs li:before {
+    content: '>';
+    margin: 10px;
+  }
+
+  .breadcrumbs li:first-child:before {
+    content: none;
+  }
+
+.footer {
+  clear: both;
+}
+
+
+@media (max-width: 720px) {
+
+  .nav {
+    float: none;
+    margin: 0;
+    width: auto;
+  }
+  
+    .nav li {
+      display: inline-block;
+    }
+
+    .nav a {
+      border-right: 1px solid #900;
+    }
+
+  .main {
+    float: none;
+    margin: 0;
+    padding: 15px;
+    width: auto;
+  }
+
+}
+
+@media (max-width: 400px) {
+
+}

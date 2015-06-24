@@ -1,0 +1,21 @@
+{
+  "name": "vending-machine",
+  "version": "0.0.0",
+  "description": "WDI vending machine Backbone app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sinon": "^1.9.1",
+    "chai": "^1.9.1",
+    "mocha": "^1.18.2"
+  },
+  "dependencies": {
+    "backbone": "^1.1.2",
+    "underscore": "^1.6.0",
+    "jquery": "^2.1.0"
+  }
+}

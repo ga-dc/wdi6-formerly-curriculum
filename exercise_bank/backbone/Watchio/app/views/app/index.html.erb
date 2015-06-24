@@ -1,0 +1,54 @@
+<a href="#/" class="my-list">My List</a>
+
+<form class="search">
+  <fieldset>
+    <legend>Search</legend>
+    <label for="title">
+      Title:
+      <input type="search" name="title" placeholder="The Sound of Music">
+    </label>
+
+    <button>Search</button>
+  </fieldset>
+
+</form>
+
+<script type="text/html" class="search-result">
+  <p><%%= this.model.get("title") %></p>
+  <img src="<%%= this.model.posterSrc() %>" />
+  <p><%%= this.model.get("plot") %></p>
+
+  <%% if (this.model.get("added")) { %>
+    <button type="button" class="add" disabled>Added!</button>
+  <%% } else {%>
+    <button type="button" class="add">Add to Watch List</button>
+  <%% } %>
+
+</script>
+
+<script type="text/html" class="movie">
+  <p><%%= this.model.get("title") %></p>
+  <img src="<%%= this.model.posterSrc() %>" />
+  <p><%%= this.model.get("plot") %></p>
+
+  <label for="seen">
+    Seen it:
+    <input type="checkbox" name="seen" <%%= this.model.get("seen") ? "checked" : '' %>/>
+  </label>
+
+  <label for="rating">
+    Rating
+    <select name="rating" <%%= this.model.get("seen") ? "" : "disabled" %>>
+      <option></option>
+      <%% _.each(_.range(1,6), function(rating) { %>
+        <option value="<%%= rating %>" <%%= this.model.get("rating") == rating ? "selected" : ""%>>
+          <%%= rating %>
+        </option>
+      <%% }, this) %>
+    </select>
+  </label>
+
+  <br />
+
+  <button class="delete">Delete from List</button>
+</script>

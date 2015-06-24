@@ -1,0 +1,150 @@
+body {
+  background-color: #333;
+  font: 14px/1.4em Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+
+.visuallyhidden {
+  display: block;
+  height: 0;
+  position: absolute;
+  visibility: hidden;
+  width: 0;
+}
+
+.vending {
+  background-color: #fff;
+  border: 10px solid #fff;
+  border-radius: 25px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  margin: 50px auto;
+  overflow: hidden;
+  width: 550px;
+}
+
+.vending h1 {
+  background: rgb(203,96,179); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(203,96,179,1) 0%, rgba(193,70,161,1) 50%, rgba(168,0,119,1) 51%, rgba(219,54,164,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(203,96,179,1)), color-stop(50%,rgba(193,70,161,1)), color-stop(51%,rgba(168,0,119,1)), color-stop(100%,rgba(219,54,164,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(203,96,179,1) 0%,rgba(193,70,161,1) 50%,rgba(168,0,119,1) 51%,rgba(219,54,164,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(203,96,179,1) 0%,rgba(193,70,161,1) 50%,rgba(168,0,119,1) 51%,rgba(219,54,164,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(203,96,179,1) 0%,rgba(193,70,161,1) 50%,rgba(168,0,119,1) 51%,rgba(219,54,164,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(203,96,179,1) 0%,rgba(193,70,161,1) 50%,rgba(168,0,119,1) 51%,rgba(219,54,164,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cb60b3', endColorstr='#db36a4',GradientType=0 ); /* IE6-9 */
+  border-bottom: 10px solid #fff;
+  color: #fff;
+  font: italic 50px/1em 'Molle', cursive;
+  margin: 0;
+  padding: 20px 0 10px;
+  text-align: center;
+  text-shadow: 0 0 10px #a80077;
+}
+
+.vending .inventory {
+  float: left;
+  width: 66%;
+}
+
+.vending .stock-window {
+  background-color: #333;
+  border-radius: 15px;
+  list-style: none;
+  margin: 0 0 10px;
+  min-height: 300px;
+  padding: 20px;
+}
+
+.vending .stock-window li {
+  border-bottom: 1px solid #555;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 0;
+}
+
+.vending .stock-window li:first-child {
+  border-top: 1px solid #555;
+}
+
+.vending .code {
+  font: 14px "Courier New", Courier, monospace;
+}
+
+.vending .product {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.vending .price {
+  float: right;
+}
+
+.vending .stock {
+  float: right;
+}
+
+.vending .purchases {
+  background-color: #333;
+  border-radius: 15px;
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 20px;
+}
+
+.vending .purchases ul {
+  height: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.vending .controls {
+  overflow: hidden;
+  padding-left: 10px;
+}
+
+.vending .controls h2 {
+  font-size: 12px;
+  margin: 20px 0 5px;
+}
+
+.vending .message {
+  background-color: #000;
+  border: 3px solid #333;
+  border-radius: 5px;
+  color: #0c0;
+  font: 16px Consolas, monaco, monospace;;
+  padding: 5px 10px;
+}
+
+.keypad {
+  background-color: #eee;
+  list-style: none;
+  margin: 0;
+  overflow: auto;
+  padding: 0;
+}
+
+.keypad a {
+  background-color: #ccc;
+  border-radius: 6px;
+  display: block;
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  margin: 5px 5px;
+  text-align: center;
+  width: 40px;
+}
+
+.vending .claim {
+  background-color: #333;
+  border-radius: 10px;
+  color: #ccc;
+  display: block;
+  font-size: 30px;
+  height: 60px;
+  line-height: 60px;
+  margin: 0 15px;
+  text-align: center;
+  text-decoration: none;
+}

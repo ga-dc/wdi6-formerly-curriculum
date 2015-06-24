@@ -1,0 +1,24 @@
+<DOCTYPE html>
+<head>
+  <title>Vending Machine Test Suite</title>
+  <%= stylesheet_link_tag "mocha/mocha.css" %>
+</head>
+<body>
+
+  <div id="mocha"></div>
+
+  <%= javascript_include_tag "mocha/mocha.js" %>
+  <%= javascript_include_tag "chai/chai.js" %>
+  <%= javascript_include_tag "sinon.js" %>
+  <% extend RequirejsHelper %>
+  <%= requirejs_include_tag %>
+
+  <script>
+    var expect = chai.expect;
+    mocha.setup('bdd');
+
+    require(['vendingmachine/tests/main'], function() {
+      mocha.run();
+    });
+  </script>
+</body>

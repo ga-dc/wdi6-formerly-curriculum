@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Currency Converter</title>
+  </head>
+  <body>
+    <h1>Currency Converter</h1>
+    <script type="text/javascript">
+      var fxRate = { "dollars": 1, "pounds": 1.6673, "euros": 1.37, "pesos": .075 }
+      fxRate.exchange = function(currencyFrom, currencyTo, amount) {
+        var dollars = (amount*this[currencyFrom]);
+        return (dollars/this[currencyTo]).toFixed(2);
+      };
+
+      var currencyConverter = function() {
+        var currencyFrom = prompt("What is the initial currency?");
+        var currencyTo = prompt("What is the ending currency?");
+        var amount = prompt("How much do you have?");
+
+        return fxRate.exchange(currencyFrom, currencyTo, amount);
+      };
+    </script>
+  </body>
+</html>

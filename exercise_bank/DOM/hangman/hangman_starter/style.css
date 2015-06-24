@@ -1,0 +1,55 @@
+body {
+  background-color: #000000;
+  color: white;
+  font-family: Georgia;
+  font-size: 30px;
+}
+
+section.game-play {
+  margin: 30px;
+  width: 100%;
+}
+
+section.game-play > figure {
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+
+section.game-play > aside {
+  width: 46%;
+  height: 100%;
+}
+
+section.game-play > aside > div:first-child {
+  margin-bottom: 20px;
+}
+
+div.game-word {
+  letter-spacing: 10px;
+  font-size: 100px;
+  text-align: center;
+}
+
+input {
+  border: 5px solid white;
+  border-radius:10px;
+  padding: 15px;
+  background: rgba(255,255,255,0.5);
+}
+
+.button {
+  display: block;
+  margin: 30px auto;
+  font-family: PFDinTextCompProBold, Impact, Arial;
+  letter-spacing: 2px;
+  font-size: 40px;
+  color: white;
+  padding:14px;
+  background-color:rgba(255,0,51,1);
+  border:1px solid #f03;
+  border-radius:10px;
+}
+.button:hover {
+  background-color:rgba(255,0,51,0.8);
+ }

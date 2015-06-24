@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Vending Machine</title>
+  <link href="css/vending.css" rel="stylesheet" media="screen">
+  <link href='http://fonts.googleapis.com/css?family=Molle:400italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+  <div id="vending-app" class="vending">
+    <h1>WDI Brain Fuel</h1>
+
+    <div class="inventory" data-ui="inventory">
+      <h2 class="visuallyhidden">Available Products</h2>
+      <ul class="stock-window"></ul>
+
+      <h2 class="visuallyhidden">Your Purchases</h2>
+      <a href="#" class="purchases" title="Claim your purchases.">
+        <ul class="purchases">
+          <li>Purchases...</li>
+        </ul>
+      </a>
+    </div>
+
+    <div class="controls">
+
+      <div class="message" data-ui="status">
+        <span data-ui="status-message"></span>
+      </div>
+
+      <div class="vending-credit" data-ui="credit">
+        <h2>Insert Currancy</h2>
+        <input type="text" data-ui="credit-input">
+        <button data-ui="credit-cancel">Change</button>
+      </div>
+
+      <div class="vending-input" data-ui="input">
+        <h2>Make Your Selection</h2>
+        <ul class="keypad">
+          <li><a href="#a">A</a></li>
+          <li><a href="#b">B</a></li>
+          <li><a href="#c">C</a></li>
+          <li><a href="#1">1</a></li>
+          <li><a href="#2">2</a></li>
+          <li><a href="#3">3</a></li>
+        </ul>
+      </div>
+
+      <div class="vending-change" data-ui="change">
+        <h2>Collect Change</h2>
+        <a href="#" class="claim" data-ui="claim"></a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/underscore/underscore.js"></script>
+  <script src="node_modules/backbone/backbone.js"></script>
+
+  <script src="js/vendingmachine/helpers/utils.js"></script>
+  <script src="js/vendingmachine/models/inventory.js"></script>
+  <script src="js/vendingmachine/models/machine.js"></script>
+  <script src="js/vendingmachine/views/change.js"></script>
+  <script src="js/vendingmachine/views/credit.js"></script>
+  <script src="js/vendingmachine/views/inventory.js"></script>
+  <script src="js/vendingmachine/views/keypad.js"></script>
+  <script src="js/vendingmachine/views/message.js"></script>
+  <script src="js/vendingmachine/main.js"></script>
+
+</body>
+</html>

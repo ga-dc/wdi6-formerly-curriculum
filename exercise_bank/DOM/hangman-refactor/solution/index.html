@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hangman</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <ul class="game-state">
+    <li>
+      <p><label for="letter">Guess a Letter:</label></p>
+      <p><input type="text" id="letter"></p>
+    </li>
+    <li>
+      <p>Guesses:</p>
+      <p data-ui="guesses"></p>
+    </li>
+    <li>
+      <p>Remaining:</p>
+      <p data-ui="chances"></p>
+    </li>
+  </ul>
+
+  <div class="game-word" data-ui="word">WORD</div>
+
+  <ul class="game-options">
+    <li><button data-ui="giveup">Give Up</button></li>
+    <li><button data-ui="newgame">New Game</button></li>
+  </ul>
+
+  <div class="game-result" data-ui="result"></div>
+  
+  <script src='js/hangman/utils.js'></script>
+  <script src='js/hangman/model.js'></script>
+  <script src='js/hangman/view.js'></script>
+  <script>
+    var model = new Hangman();
+    var game = new HangmanView(model);
+  </script>
+</body>
+</html>

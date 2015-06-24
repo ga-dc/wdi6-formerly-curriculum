@@ -1,0 +1,56 @@
+body {
+  background-image: url('../images/pattern1.png');
+}
+
+.page {
+  background-color: #fff;
+  margin: 0 auto;
+  width: 980px;
+}
+
+.page .header {
+  background-color: salmon;
+  padding: 15px;
+}
+
+.page .header h1 {
+  color: #fff;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 50px;
+  text-transform: uppercase;
+}
+
+.page .main {
+  padding: 15px;
+}
+
+.page h2 {
+  margin: 10px 0;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+.page p {
+  margin: 10px 0;
+}
+
+.page .photo-list {
+  overflow: auto;
+}
+
+.page .photo-list li {
+  float: left;
+  text-align: center;
+  width: 25%;
+}
+
+.page .photo-list img {
+  border: 5px solid #ccc;
+}
+
+.page .footer {
+  background-color: salmon;
+  color: #fff;
+  text-align: right;
+  padding: 15px;
+}

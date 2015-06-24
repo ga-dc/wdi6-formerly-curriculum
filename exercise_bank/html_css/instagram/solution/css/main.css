@@ -1,0 +1,65 @@
+body {
+  background: #fff url("../images/bgtile.png") repeat-x;
+  font: 200 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+
+.page {
+  margin: 90px auto 0;
+  width: 880px;
+}
+
+.content {
+  float: right;
+}
+
+.main {
+  background: url("../images/frame.png") no-repeat;
+  min-height: 204px;
+  padding: 40px;
+  width: 424px;
+}
+
+.main h2 {
+  color: #06365f;
+  font-size: 27px;
+  line-height: 1.3;
+  margin-top: 0;
+}
+
+.main p {
+  margin: 10px 0;
+}
+
+.main a {
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 30px;
+  text-decoration: none;
+}
+
+.footer {
+  clear: both;
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+  text-align: center;
+}
+
+.footer li {
+  color: #999;
+  display: inline;
+  font-size: 11px;
+  font-weight: bold;
+  margin: 0 10px;
+  text-transform: uppercase;
+}
+
+.footer a {
+  color: #1c5380;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

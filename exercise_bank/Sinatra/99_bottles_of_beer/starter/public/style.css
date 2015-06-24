@@ -1,0 +1,43 @@
+body {
+  color: #fff;
+  text-align:center;
+  font-family: 'Arial';
+  font-size: 24px;
+  background-color: #111;
+}
+
+h1 {
+  margin: 100px;
+}
+
+a {
+    color: #ddd;
+    text-decoration: none;
+    margin: 20px;
+    padding: 10px;
+}
+
+a:hover {
+    color: #fff;
+}
+
+.done {
+    border: 3px #00d solid;
+    border-bottom: 3px #008 solid;
+    border-right: 3px #008 solid;
+    background: #00b;
+}
+
+.yes {
+    border: 3px #0a0 solid;
+    border-bottom: 3px #040 solid;
+    border-right: 3px #040 solid;
+    background: #080;
+}
+
+.no {
+    border: 3px #c00 solid;
+    border-bottom: 3px #600 solid;
+    border-right: 3px #600 solid;
+    background: #a00;
+}

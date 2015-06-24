@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hogwarts</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <nav>
+    <h1>Welcome to Hogwarts!</h1>
+    <h2><%= link_to "View Houses", houses_path %> | <%= link_to "View Students", students_path %> | <%= link_to "Enroll", new_student_path %></h2>
+  </nav>
+
+  <%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+header {
+  text-align: center;
+}
+
+header img {
+  width: 400px;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+}
+
+.pokeball {
+  height: 200px;
+  width: 75%;
+  background-color: #FFCB05;
+  border: 10px solid #3B5AA7;
+  display: block;
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: -4px 4px #1F2E60;
+  padding: 10px;
+  -webkit-column-count: 4;
+  -webkit-column-gap: 10px; 
+  -webkit-column-span: all;
+  overflow: hidden;
+}

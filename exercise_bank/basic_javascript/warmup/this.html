@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>this</title>
+  </head>
+  <body>
+    <h1>this</h1>
+    <script type='text/javascript'>
+
+      console.log('1')
+      console.log(this);
+
+      var color = 'red';
+
+      var shmee = function(){
+        console.log(this);
+        console.log(this.color);
+      };
+
+      console.log('2')
+      shmee();
+
+      var banana = { color: 'yellow' };
+      banana.shmee = shmee;
+
+      console.log('3');
+      console.log(banana);
+
+      console.log('4');
+      banana.shmee();
+
+      var puppy = {
+        name: 'fluffy',
+        bark: function(){
+          console.log(this)
+        },
+        sayName: function(){
+          console.log(this.name)
+        },
+      };
+
+      console.log('5');
+      console.log(puppy);
+
+      console.log('6')
+      puppy.bark();
+
+      console.log('7');
+      puppy.sayName();
+
+      var kitten = {
+        name: 'mittens',
+        friend: puppy,
+        introFriend: function() {
+          console.log(this);
+          this.friend.bark();
+          console.log(this);
+        }
+      }
+
+      console.log('8');
+      console.log(kitten);
+
+      console.log('9');
+      kitten.introFriend();
+
+    </script>
+  </body>
+</html>

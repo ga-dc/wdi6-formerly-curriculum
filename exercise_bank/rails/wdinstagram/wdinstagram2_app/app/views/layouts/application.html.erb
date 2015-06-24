@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wdinstagram2App</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+   <nav>
+      <h1>WDInstagram 2!</h1>
+      <ul>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/entries/new'>New Entry</a></li>
+        <li><a href='/entries'>All Entries</a></li>
+      </ul>
+    </nav>
+
+    <div class="wrapper">
+
+<%= yield %>
+
+    </div>
+
+</body>
+</html>

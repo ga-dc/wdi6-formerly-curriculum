@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Async Academy</title>
+  <style>
+  body {
+    font: 16px/1.4 Helvetica, sans-serif;
+    margin: 30px;
+  }
+
+  h2 {
+    font-weight: normal;
+  }
+
+  hr {
+    margin: 40px 0;
+  }
+  </style>
+</head>
+<body>
+  <h1>Async Academy</h1>
+
+  <h2>I will <b>callback</b> once every second...</h2>
+  <p id="callback-message">...</p>
+  
+  <hr>
+
+  <h2>I respond in the <b>event</b> of a button click...</h2>
+  <button id="event-bttn">Click Me!</button>
+  <p id="event-message">...</p>
+  
+  <hr>
+  
+  <h2>I <b>promise</b> you these two things...</h2>
+  <ul>
+    <li><button id="promise-bttn1">Promise #1</button></li>
+    <li><button id="promise-bttn2">Promise #2</button></li>
+  </ul>
+
+  <p id="promise-message">...</p>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/q.js"></script>
+  <script src="js/async.js"></script>
+</body>
+</html>

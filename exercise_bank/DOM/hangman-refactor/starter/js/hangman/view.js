@@ -1,0 +1,7 @@
+function HangmanView() {
+
+}
+
+HangmanView.prototype = {
+
+};
