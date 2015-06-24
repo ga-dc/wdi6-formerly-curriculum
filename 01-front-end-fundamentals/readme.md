@@ -32,14 +32,14 @@ https://github.com/ga-dc/html_resume
 
 ### The Command Line
 
+- Setup your working directory for WDI
 - Compare and Contrast CLI to GUI
 - Describe the anatomy of a command (statement, flags, arguments)
 - Know where to go for help
-- Manage folders and files (using Finder and Shell)
-- Explain the difference between relative and absolute path
-- Organize your class files and projects (per WDI structure)
 - List common commands
 - List unsafe commands
+- Manage folders and files (using Finder and Shell)
+- Explain the difference between relative and absolute path
 
 ### Git
 - Explain what version control is and why developers use it

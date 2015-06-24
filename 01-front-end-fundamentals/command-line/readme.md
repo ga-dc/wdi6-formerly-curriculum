@@ -1,6 +1,6 @@
 #	Your Work Environment
 
-##	Developing an intimate relationship with your computer
+##	Controlling your world
 
 ---
 
@@ -11,24 +11,25 @@ Introduce students to the command line.  Giving them a brief taste before sharin
 _"You just learned that mentors are all around you.  I'd like to introduce you to your closest and best mentor."_ <picks up computer>
 
 > This is your computer, there are many like it, but this one is yours.  
-> Your computer is your best friend.  You must master it like you master your life.  > Your computer without you is useless.
+> Your computer is your best friend.  You must master it like you master your life.  
+> Your computer without you is useless.
 
-_Repeat after me._
+_Think about that..._
 
 > My computer, without me, is useless.
 
 pause
 
-> Let's start owning it.
-> Let's start playing with it.
-> Let's create something today.
+- Let's start owning it.
+- Let's start playing with it.
+- Let's create something today.
 
 
 _Let me show you the command center of the computer._
 
 _Open your computers._
 (say the following while demonstrating)  
-_"Hold down the Command key and press Space.  You will see this written as "CMD+Space".  This is Spotlight search.  You can use this to find stuff on your computer.  Right now, we want our "Terminal".  Press Enter._
+_"Hold down the Command key and press Space.  You will see this written as "cmd+space".  This is Spotlight search.  You can use this to find stuff on your computer.  Right now, we want our "Terminal".  Press Enter._
 
 _You are now in the terminal.  As a developer, you will spend a lot of time here, telling your computer what to do.  Giving it very precise orders.  It can only do what we tell it to do._
 
@@ -39,11 +40,11 @@ You should see:
     $ give me rice
     -bash: give: command not found
 
-_Your computer got lost right from the start.  _
+_Your computer got lost right from the start. _
 
 _Don't worry about memorizing the commands.  We'll cover all this again.  Just observe._
 
-Type `$ cd`.
+Type `cd`.
 Type `pwd -P`.  _This is YOUR home dir.  We'll spend a lot of time here.  Once again, don;t worry about notes, we come back here, more slowly, in a second._
 Now type: `$ ls`
 
@@ -58,14 +59,14 @@ Now type: `$ ls -l`.  The same files.  Different view.
 
 ## Learning Objectives
 
-- Explain benefits of using a shell
+- Setup your working directory for WDI
+- Compare and Contrast CLI to GUI
 - Describe the anatomy of a command (statement, flags, arguments)
-- Explain the difference between relative and absolute path
-- Manage folders and files (using Finder and Shell)
-- Create a working dir for a new project
+- Know where to go for help
 - List common commands
 - List unsafe commands
-- (optional) Explain the role of File Permissions in POSIX env.
+- Manage folders and files (using Finder and Shell)
+- Explain the difference between relative and absolute path
 
 ---
 
@@ -75,7 +76,7 @@ _We just learned 3 very important lessons._
 
 Type `$ give me rice` again.
 
-Prompt: What did the computer know about giving me rice?
+STWC: What did the computer know about giving me rice?
 Nada.  Zip.  Zero. Zilch.
 
 ### Lesson One.  You have to start with something the computer already knows and build on that.
@@ -90,13 +91,28 @@ Leading questions.
 
 - Where
 
-_This will become more obvious as you go through the exercises.  But I want to highlight that **everything** you type in is important._
+Type `open .`
 
-Type `ls -l`.  The same files.  Different view.
+STWC: What did that do?
+
+This dot ".", is a shortcut, an abbreviation for the current dir.  This command opens my current dir in finder.  If I was somewhere else, it would open a different dir.
+
+```
+cd
+ls
+```
 
 ### Lesson Three: I control it.  By telling it **precisely** what I want.
 
 - Precise
+
+_This will become more obvious as you go through the exercises.  But I want to highlight that **everything** you type in is important._
+
+Type `ls -l`
+Type `ls -w`
+
+The same files.  Different view.
+
 
 ## We do:  The Terminal
 
@@ -108,14 +124,16 @@ The terminal:
 > Have you used something similar?
 
 
--	Type `ls`
+Walk through following steps (without setup/clarification)
+
+1.	Type `ls`
 	-	What do you see?
 
--	Type `echo 'Hi there!' > hello.txt`, then `ls`
+2.	Type `echo 'Hi there!' > hello.txt`, then `ls`
 
 	-	What happened?
 
--	Type `open hello.txt -e`
+3. Type `open hello.txt -e`
 
 	-	What happened?
 	- Type "Hi there!" into the file.
@@ -140,7 +158,15 @@ Work with students to write the steps of what we just did on the board.
 
 ###	Which way was easier?
 
+---
+
+## Demo
+
 Now, close your computers for a second and watch this:
+```
+ls
+```
+_Take note of the contents_
 ```
 COUNTER=0
 while [ $COUNTER -lt 20 ]; do
@@ -148,12 +174,22 @@ while [ $COUNTER -lt 20 ]; do
     let COUNTER=COUNTER+1
 done
 ```
-`ls`
-`ls sample*`
+```
+ls
+```
+Brief overview of the code.
+```
+ls sample*
+```
 _Are those the files I just added?  And only those?_
-_Say bye.  Don't try this at home.  The `rm` command can be dangerous.  We'll cover this soon._
-`rm sample*`
-`ls`
+
+> Say bye.  
+
+_Don't try this at home.  The `rm` command can be dangerous.  We'll cover this soon._
+```
+rm sample*
+ls
+```
 
 _Now THAT'S power._
 
@@ -164,8 +200,9 @@ _Now THAT'S power._
 -	The command line / shell / bash is a way of interacting with your computer without using a fancy graphical interface
 
 ---
+
 CFU: Shout Out, write on board
-###	Why would programmers so often work in the command line?
+###	Why do programmers work in the command line?
 
 ---
 
