@@ -72,12 +72,15 @@
 - // Comments
 
 ## Semantic Naming (5min)
-- Nope: var num = 5;
-- Yup: var myFavoriteNumber = 5;
+- The purpose of a variable needs to be evident in the name
+  - Nope: var x = 5;
+  - Yup: var myFavoriteNumber = 5;
 
 ## Memory Allocation (5min)
-- What happens in memory when you create a variable?
-- Garbage collection
+- Use diagram of memory allocation (either whiteboard or slide) to demonstrate...
+  - What happens in memory when you create a variable?
+  - What happens when you direct a variable to a new memory location?
+  - What happens to a memory location with no variable pointing to it?
 
 # BREAK (10min)
 
