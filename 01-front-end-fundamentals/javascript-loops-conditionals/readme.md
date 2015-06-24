@@ -10,6 +10,7 @@
 
 ## Opening Framing
 So we've already gone over the basics of Javascript. And today, we'll be highlighting the data type of boolean.
+
 ### T&T (3m)
 Go ahead and chat with your neighbor. Knowing about the boolean data type, how might we use this data type in order to execute conditionals and looping. Additionally, what advantages does that give us with regard to programming?
 
@@ -54,6 +55,9 @@ Demonstrate comparison operators in node
 What is the differences between the last two? When using `===`, it checks for both the data type and value. `==` only checks for value. Under the hood, though, `==` converts the data type to the same data type and then executes comparison.
 
 ## Conditionals (35m /w ex)
+
+// Have an example somewhere where one of the more unusual "falsey" values (e.g., empty string) triggers a conditional.
+
 write and narrate through the following code (10m)
 
 ```javascript
@@ -69,7 +73,7 @@ else{
 }
 ```
 
-Conditionals will always follow this pattern. There is a key word(if, else if, else). Followed by an expression that will evaluate to true or false in parenthese. Then followed by code to execute when condition is met.
+Conditionals will always follow this pattern. There is a key word(if, else if, else). Followed by an expression that will evaluate to true or false in parentheses. Then followed by code to execute when condition is met.
 
 What's wrong with the following code?:
 
@@ -132,6 +136,9 @@ while(i < 10){
 ```
 #### ST-WG
 What are the differences between `for` and `while`?
+
+// Through example or pose question to students, have them recreate the same odd-number-printing
+// for loop using a while loop.
 
 ### You do - Fizzbuzz(can use conditionals)(20m)
 
