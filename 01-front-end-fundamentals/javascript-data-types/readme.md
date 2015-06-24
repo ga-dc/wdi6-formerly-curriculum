@@ -7,25 +7,41 @@
 - Describe composite data types and use arrays and objects to store data types.
 - Explain what a variable is and the role memory allocation plays in storing data types.
 
+// oepning framing/hook? maybe use cookie clicker or some other JS heavy use application
 # HTML, CSS and Javascript (20min)
 - HTML (content), CSS (style) and Javascript (behavior) as the pillars of web development
 - Think-Pair-Share: students identify Javascript features on Facebook homepage
   - 5 minute individual
   - 5 minute pair discussion
 
+// what are the answers to these questions, do you have them in your mind? maybe include them in lesson plan after lessons given.
 # JS as a Programming Language (5min)
 - What is a programming language?
+  - Allows us to transform data
+  - Can create a program that, given an input, produces the desired output
+  - vs. a "markup" or "stylesheet" language, which control the presentation of data
+  - [MORE]
 - What are the particular features of Javascript?
+  - Client and server-based
+  - [MORE]
 - Question: what tools are part of our JS toolbox?
   - Opportunity for students to list off prework components (e.g., data types, loops, conditionals)
 
 # REPL (5min)
-- Introduce concept + set up Node
+- What is a REPL?
+  - Read-Eval-Print loop.
+- Introduce Node
+  - [MORE.]
 
 # Primitive Data Types
+- TO DO: Include data type examples that will be used.
 
 ## Numbers (5min)
 - No distinction between integers and floats
+```javascript
+5
+=> 5
+```
 - Operators + order of operations
 - Math object + useful functions
 - NaN
@@ -54,6 +70,7 @@
 # Composite Data Types
 
 ## Arrays (15min)
+// include why we use arrays, what advantages does an ordered collection provide
 - Ordered collection of data types.
 - How to instantiate and access an array.
 - Exercise: students identify useful array methods on MDN and familiarize themselves with JS documentation.
