@@ -90,7 +90,7 @@ var myClass = "WDI6";
     => 1
     ```
 - The Math object
-  - There are number of useful, more complex math operations available to us as part of the Math object
+  - There are number of useful, more advanced math operations available to us as part of the Math object
   - Example:
   ```javascript
   // Generates a random decimal between 0 and 1.
@@ -136,14 +136,16 @@ var myClass = "WDI6";
 
 # BREAK (10min)
 
-# CODING EXERCISE #1 (15min)
+# CODING EXERCISE #1 (20min)
 - Temperature conversion
 
 # Composite Data Types
 
 ## Arrays (15min)
 // include why we use arrays, what advantages does an ordered collection provide
-- Ordered collection of data types.
+- Why do we use arrays?
+  - Ordered collection of data types.
+  - Organized by index.
 - How to instantiate and access an array.
 - Exercise: students identify useful array methods on MDN and familiarize themselves with JS documentation.
   - 5 minute individual research
@@ -173,5 +175,5 @@ var myClass = "WDI6";
 
 # BREAK (10min)
 
-# CODING EXERCISE #2 (15min)
+# CODING EXERCISE #2 (20min)
 - ???
