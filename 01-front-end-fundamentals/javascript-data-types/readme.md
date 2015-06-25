@@ -47,14 +47,14 @@
     - Command line:   `$ node FILENAME`
 
 # Primitive Data Types
-- Five primitive data types
+- Basic building blocks of Javascript.
+- Five primitive data types.
   1. Numbers
   2. Strings
   3. Booleans
   4. Undefined
   5. Null
-- Building blocks of Javascript.
-- We often save data types of all kinds, including primitive, to variables.
+- We usually save data types of all kinds, primitive and otherwise, to variables.
 ```javascript
 // For example...
 var myClass = "WDI6";
@@ -89,7 +89,16 @@ var myClass = "WDI6";
     5 % 2
     => 1
     ```
-- Math object + useful functions
+- The Math object
+  - There are number of useful, more complex math operations available to us as part of the Math object
+  - Example:
+  ```javascript
+  // Generates a random decimal between 0 and 1.
+  Math.random();
+  ```
+  - Other useful functions...
+    - [ADD]
+    - Visit (MDN)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math] to see more.
 - NaN
 
 ## Strings (5min)
