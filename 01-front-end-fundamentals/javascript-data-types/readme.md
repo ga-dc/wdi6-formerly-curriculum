@@ -98,7 +98,7 @@ var myClass = "WDI6";
   ```
   - Other useful functions...
     - [ADD]
-    - Visit (MDN)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math] to see more.
+    - Visit [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) to see more.
 - NaN
 
 ## Strings (5min)
