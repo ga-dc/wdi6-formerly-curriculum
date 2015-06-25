@@ -23,7 +23,6 @@
   - With a programming language, we can create a program that, given an input, produces a desired output.
   - Compared to a "markup" or "stylesheet" language, which define the presentation and styling of data on the web.
   - [MORE]
-
 - What features does Javascript have?
   - Can run on both the client (browser) and server.
   - Supported by every browser.
@@ -48,6 +47,12 @@
     - Command line:   `$ node FILENAME`
 
 # Primitive Data Types
+- Five primitive data types
+  1. Numbers
+  2. Strings
+  3. Booleans
+  4. Undefined
+  5. Null
 - Building blocks of Javascript.
 - We often save data types of all kinds, including primitive, to variables.
 ```javascript
@@ -57,33 +62,55 @@ var myClass = "WDI6";
 
 ## Numbers (5min)
 - No distinction between integers and floats
-```javascript
-5
-=> 5
-```
-- Operators + order of operations
+  ```javascript
+  typeof 5
+  => "number"
+
+  typeof 5.5
+  => "number"
+  ```
+- Operators and order of operations
+  - `+, -, *, /`
+  - P.E.M.D.A.S. (Parentheses, Exponents, Multiplication, Division, Addition, Subtraction)
+  - % (Modulo)
+    - Returns the remainder of a division operation
+    ```javascript
+    // What is the remainder of 12 / 5?
+    12 % 5
+    => 2
+    ```
+    - Often used as a check for evenness: `NUMBER % 2`
+    ```javascript
+    // Returns 0 if even
+    4 % 2
+    => 0
+
+    // Returns 1 if odd
+    5 % 2
+    => 1
+    ```
 - Math object + useful functions
 - NaN
 
 ## Strings (5min)
 - String literals
-  ```javascript
-  // Can use single quotes...
-  var greeting = 'Hello!';
+    ```javascript
+    // Can use single quotes to instantiate a string...
+    var greeting = 'Hello!';
 
-  /// ...or double quotes.
-  var greeting = "Hi there!";
-  ```
+    /// ...or double quotes.
+    var greeting = "Hi there!";
+    ```
 - Escape sequences
   - [ADD]
 - Concatenation
   - You can join strings using the `+` operator.
-    ```javascript
+      ```javascript
       var city = "Washington, ";
       var state = "DC";
       var location = city + state;
       // => "Washington, DC"
-    ```
+      ```
   - You can't use other math operators on strings.
     - [ADD]
 - Methods: substring, slice, toUpperCase, etc.
