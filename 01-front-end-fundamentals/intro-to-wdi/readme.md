@@ -88,7 +88,7 @@ T&T: What's different about an immersive environment?
   - You will be asked to do things that are uncomfortable.
     - *(Note that when I say "do things", I mean classes and projects, nothing weird.)*
   - You can't "win" -- and can't lose!
-    - This is a noncompetitive environment. 
+    - This is a noncompetitive environment.
   - You will be re-learning how to learn.
     - The last time you spent 9 hours a day learning something new was in high school.
   - Cooperation
@@ -137,25 +137,67 @@ Now, close your eyes. I want you to write what first comes to mind when I ask yo
 
 T&T: Come up with items for Constitution. Put on board on post-its. Sign. We take picture.
 
-## (Adam) Class Content
+## Class Content (Adam)
 
-- How the class is created
-  - There's a loosely-prescribed curriculum structure; we create all our own lesson plans, incorporating lesson plans we used in the past if possible.
-  - Each class is different
-    - Factors
-      - Personalities
-      - Changing technologies
-      - Differences between locations
-- Deliberate instructor autonomy
-  - Much of the course is created on-the-fly to tailor-make the content to the class, since each class is different
-  - Lots of flexibility from GA
+### How the Class is Built
 
-### WE DO
+GA has built a baseline curriculum, which includes topics to cover, and a
+suggested order. As a local campus, we have built on and modified this
+curriculum based on own experiences as instructors, and the unique features
+of the DC job market. Each lesson is designed by the instructor that's
+delivering it.
 
-List out every web technology, acronym, and term we can think of.
+We also iterate on this curriculum constantly, so technologies,  concepts, etc,
+change with each cohort. Last cohort started with Ruby, but as JS becomes more
+and more important, we've started teaching JS first, switching to Ruby, then
+back to JS.
 
-- Which of these will we teach?
-- Why won't we teach all of them?
+### Course Content
+
+Exercise: Ask students to list technologies / languages that they think are
+involved in web development. Examples: HTML, Ruby, Databases, etc.
+
+Map out the technologies and how they relate to each other. Lead a discussion
+on which technologies we'll cover, why we chose those, and why we can't cover
+everything.
+
+Technologies we cover:
+
+* HTML
+* CSS / SASS
+* JavaScript
+* Ruby
+* PostgreSQL (Relational Database)
+* MongoDB (NoSQL Database)
+* Rails
+* Node.js / Express
+* Backbone.js / Handlebars Templates
+
+We cover these technologies / topics because they are foundational to web
+development, and learning the underlying concepts of how they work prepares you
+to learn and work in any web development technologies.
+
+### Course Sequence
+
+This course has been pretty well-planned for all 12 weeks, but this is subject
+to change.
+
+The course is organized by units of roughly 1 week each. Every 3 weeks, we'll
+complete a project (~3-5 days each).
+
+Units/Projects:
+* Front-end Fundamentals (HTML/CSS/JS)
+* Intermediate Front-end (Intermediate JavaScript / jQuery)
+* Project 1 - Build an application using HTML / CSS / JS
+* Ruby / Data Persistance / Backend Dev w/ Sinatra
+* Full-stack MVC w/ Rails
+* Project 2 - Build a full-stack, data driven app w/ Rails
+* Collaborative Development (UXDi) / Adv. Front-end (JS, CSS, SASS)
+* APIs with Rails and Express
+* Project 3 - Build a backend API and Front-end that consumes it
+* Users and Authentication in APIs
+* MVW with Backbone.js
+* Project 4 - Portfolio project
 
 
 ## (Jesse) Logistics
