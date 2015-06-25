@@ -1,40 +1,59 @@
 # LEARNING OBJECTIVES
 - Describe the role Javascript (JS) plays alongside HTML and CSS.
-- Describe JS as a programming language.
-- Set up and use a REPL to manipulate JS data types.
+- Define JS as a programming language.
+- Set up and use Node to manipulate JS data types.
 - List JS data types and how each is used.
-- Practice proper JS syntax and semantic variable naming.
 - Describe composite data types and use arrays and objects to store data types.
+- Practice proper JS syntax and semantic variable naming.
 - Explain what a variable is and the role memory allocation plays in storing data types.
 
-// oepning framing/hook? maybe use cookie clicker or some other JS heavy use application
 # HTML, CSS and Javascript (20min)
 - HTML (content), CSS (style) and Javascript (behavior) as the pillars of web development
-- Think-Pair-Share: students identify Javascript features on Facebook homepage
+- Think-Pair-Share: students identify Javascript features in the Facebook news feed.
   - 5 minute individual
   - 5 minute pair discussion
+  - Think about what functionality the site has after it has loaded.
+  - Optional: Make it interesting and turn off Javascript in your browser.
+    - Chrome > Preferences > Content Settings > Javascript > "Do not allow..."
+    - What works differently? What doesn't work?
 
-// what are the answers to these questions, do you have them in your mind? maybe include them in lesson plan after lessons given.
 # JS as a Programming Language (5min)
 - What is a programming language?
-  - Allows us to transform data
-  - Can create a program that, given an input, produces the desired output
-  - vs. a "markup" or "stylesheet" language, which control the presentation of data
+  - Allows us to transform data.
+  - With a programming language, we can create a program that, given an input, produces a desired output.
+  - Compared to a "markup" or "stylesheet" language, which define the presentation and styling of data on the web.
   - [MORE]
-- What are the particular features of Javascript?
-  - Client and server-based
-  - [MORE]
+
+- What features does Javascript have?
+  - Can run on both the client (browser) and server.
+  - Supported by every browser.
 - Question: what tools are part of our JS toolbox?
   - Opportunity for students to list off prework components (e.g., data types, loops, conditionals)
 
-# REPL (5min)
-- What is a REPL?
-  - Read-Eval-Print loop.
-- Introduce Node
-  - [MORE.]
+# NODE (5min)
+- What is it?
+  - Javascript runtime environment.
+  - Runs JS code on our computer (among other things).
+
+- Installation
+  - Command line:   `$ brew install node`
+  - Not working? Follow along with [REPL.it](http://www.repl.it).
+
+- Uses
+  - REPL
+    - “Read-Eval-Print Loop”.
+    - Run JS code one line at a time.
+    - Command line:   `$ node`
+  - Run entire JS files.
+    - Command line:   `$ node FILENAME`
 
 # Primitive Data Types
-- TO DO: Include data type examples that will be used.
+- Building blocks of Javascript.
+- We often save data types of all kinds, including primitive, to variables.
+```javascript
+// For example...
+var myClass = "WDI6";
+```
 
 ## Numbers (5min)
 - No distinction between integers and floats
@@ -48,10 +67,27 @@
 
 ## Strings (5min)
 - String literals
+  ```javascript
+  // Can use single quotes...
+  var greeting = 'Hello!';
+
+  /// ...or double quotes.
+  var greeting = "Hi there!";
+  ```
 - Escape sequences
+  - [ADD]
 - Concatenation
-  - Show which operators you cannot use on strings
+  - You can join strings using the `+` operator.
+    ```javascript
+      var city = "Washington, ";
+      var state = "DC";
+      var location = city + state;
+      // => "Washington, DC"
+    ```
+  - You can't use other math operators on strings.
+    - [ADD]
 - Methods: substring, slice, toUpperCase, etc.
+  - [ADD]
 
 ## Booleans (5min)
 - True, False
