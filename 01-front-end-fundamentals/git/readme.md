@@ -42,19 +42,19 @@ Think about how you've managed tracking changes to a file over time (perhaps
 with other people).
 
 Questions:
-**What problems did we face?**
-**How might a Version control system like solve these?**
+* **What problems did we face?**
+* **How might a Version control system like solve these?**
 
 Here are some problems we face as developers, and how git solves them:
 
-##### Reverting to past versions
+**Reverting to past versions**
 
 Git allows us to make save points at any time. These save points are called
 'commits'. Once a save point is made, it's permanent, and allows us to go back
 to that save point at any time. From there, we can see what the code looked like
 at that point, or even start building off that version.
 
-##### Keeping track of what each version 'meant'
+**Keeping track of what each version 'meant'**
 
 Every commit has a description (commit message), which allows us to describe
 what changed to make that commit. This is usually a description of what features
@@ -63,17 +63,34 @@ were added or what bugs were fixed.
 Additionally, git supports tagging, which allows us to mark a specific commit
 as a specific version of our code (e.g. '2.4.5').
 
-##### Comparing changes to past versions
-Pending Description
+**Comparing changes to past versions**
 
-##### Sharing changes
-Pending Description
+It's often important to see content of the actual changes that were made. This
+can be useful when:
+* tracking down when and how a bug was introduced
+* understanding the changes a team member made so you can stay up-to-date with progress
+* reviewing code as a team for correctness or quality/style
 
-##### Collaborating / discussing changes
-Pending Description
+Git allows us to easily see these changes (called a `diff`) for any given commit.
 
-##### Fearlessness in making changes
-Pending Description
+**Sharing changes**
+
+Most software is developed on a team. Thus, it's important for us to share our
+changes so that others can incorporate them into the version they are working on.
+
+**Collaborating / discussing changes**
+
+In addition to just sharing changes, it is useful to have discussions on those
+changes (again for code review). Git doesn't support this out of the box, but
+Github does provide this feature. For example, you can add comments to a changed
+line or lines in a given commit.
+
+**Fearlessness in making changes**
+
+In developing software, we often want to experiemnt in adding a feature or
+refactoring (rewriting) existing code. Because git makes it easy to go back to a
+known good state, we can experiement without worrying that we'll be unable to
+undo the experiemental work.
 
 ### Core Concepts of Git Repositories (40 minutes)
 
@@ -151,11 +168,49 @@ Instructor should diagram the clone/push/pull process.
 * **fork** - make a copy of a repo on github under a different account, used for OSS collaboration
 * **pull request** - a github feature which allows a user to suggest and discuss changes to a repo they have forked
 
+
 Instructor should diagram the fork/clone/pull request process, and how it relates
 to HW submission.
 
 ** insert diagram here **
 
 ### Closing
-
 Review
+
+## Appendix - Git CLI Commands
+
+### Creating Repositories
+
+* `git init` - run this command in a folder to turn it into a git repository
+  * note: don't init a repo inside an existing repo! (also don't init in your home folder)
+OR
+* `git clone <URL>` - download (clone) a repo from github (or other remote source)
+
+### Linking an existing repo to github
+
+1. Create the repo on github.com (make sure not to check the 'initialize with readme').
+2. Follow the instructions on the new repo's webpage to add as a remote:
+3. Change directories to the local repo
+  * `cd ~/path/to/repo`
+4. Add the github remote, and name it 'origin':
+  * `git remote add origin <URL>`
+5. Push the existing commits up to the remote called 'origin' , and set it to track master branch:
+  * `git push -u origin master`
+
+Once linked, you can just run `git push` to push master branch to master branch
+
+### Committing
+
+1. Add the files you want to commit to the index (equivalent to checking which files you want to commit in the Github GUI app)
+  * `git add file1 file2 ...`, or `git add .` will add all changes in the current folder
+2. Create the commit:
+  * `git commit -m "description message for commit"`
+  * if you omit the `-m` and message, then git will open an editor for you to write the message in
+
+### Syncing with a remote (push/pull)
+
+1. `git pull [remote] [branch]` - fetch and merge changes (from the origin and branch specified) and merge them into the current branch.
+  * If origin and branch aren't specified, git will default to the tracking branch (usually origin and the remote branch with the same name as the current branch).
+  * If no origin/branch are specified, and no tracking branch is set up, git may tell you to specify
+2. 'git push [remote] [branch]' - push and merge local changes from the current branch to the specified branch on the remote repo and branch specified.
+  * Same rules apply as `git pull` above.
