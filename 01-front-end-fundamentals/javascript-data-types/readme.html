@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.4" data-basepath="../.." data-revision="Wed Jun 24 2015 21:01:34 GMT+0000 (UTC)">
+    <div class="book" data-level="1.4" data-basepath="../.." data-revision="Thu Jun 25 2015 02:31:14 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -480,36 +480,42 @@
                         <h1 id="learning-objectives">LEARNING OBJECTIVES</h1>
 <ul>
 <li>Describe the role Javascript (JS) plays alongside HTML and CSS.</li>
-<li>Describe JS as a programming language.</li>
-<li>Set up and use a REPL to manipulate JS data types.</li>
+<li>Define JS as a programming language.</li>
+<li>Set up and use Node to manipulate JS data types.</li>
 <li>List JS data types and how each is used.</li>
-<li>Practice proper JS syntax and semantic variable naming.</li>
 <li>Describe composite data types and use arrays and objects to store data types.</li>
+<li>Practice proper JS syntax and semantic variable naming.</li>
 <li>Explain what a variable is and the role memory allocation plays in storing data types.</li>
 </ul>
-<p>// oepning framing/hook? maybe use cookie clicker or some other JS heavy use application</p>
 <h1 id="html-css-and-javascript-20min">HTML, CSS and Javascript (20min)</h1>
 <ul>
 <li>HTML (content), CSS (style) and Javascript (behavior) as the pillars of web development</li>
-<li>Think-Pair-Share: students identify Javascript features on Facebook homepage<ul>
+<li>Think-Pair-Share: students identify Javascript features in the Facebook news feed.<ul>
 <li>5 minute individual</li>
 <li>5 minute pair discussion</li>
+<li>Think about what functionality the site has after it has loaded.</li>
+<li>Optional: Make it interesting and turn off Javascript in your browser.<ul>
+<li>Chrome &gt; Preferences &gt; Content Settings &gt; Javascript &gt; &quot;Do not allow...&quot;</li>
+<li>What works differently? What doesn&apos;t work?</li>
 </ul>
 </li>
 </ul>
-<p>// what are the answers to these questions, do you have them in your mind? maybe include them in lesson plan after lessons given.</p>
+</li>
+</ul>
 <h1 id="js-as-a-programming-language-5min">JS as a Programming Language (5min)</h1>
 <ul>
-<li>What is a programming language?<ul>
-<li>Allows us to transform data</li>
-<li>Can create a program that, given an input, produces the desired output</li>
-<li>vs. a &quot;markup&quot; or &quot;stylesheet&quot; language, which control the presentation of data</li>
+<li><p>What is a programming language?</p>
+<ul>
+<li>Allows us to transform data.</li>
+<li>With a programming language, we can create a program that, given an input, produces a desired output.</li>
+<li>Compared to a &quot;markup&quot; or &quot;stylesheet&quot; language, which define the presentation and styling of data on the web.</li>
 <li>[MORE]</li>
 </ul>
 </li>
-<li>What are the particular features of Javascript?<ul>
-<li>Client and server-based</li>
-<li>[MORE]</li>
+<li><p>What features does Javascript have?</p>
+<ul>
+<li>Can run on both the client (browser) and server.</li>
+<li>Supported by every browser.</li>
 </ul>
 </li>
 <li>Question: what tools are part of our JS toolbox?<ul>
@@ -517,20 +523,42 @@
 </ul>
 </li>
 </ul>
-<h1 id="repl-5min">REPL (5min)</h1>
+<h1 id="node-5min">NODE (5min)</h1>
 <ul>
-<li>What is a REPL?<ul>
-<li>Read-Eval-Print loop.</li>
+<li><p>What is it?</p>
+<ul>
+<li>Javascript runtime environment.</li>
+<li>Runs JS code on our computer (among other things).</li>
 </ul>
 </li>
-<li>Introduce Node<ul>
-<li>[MORE.]</li>
+<li><p>Installation</p>
+<ul>
+<li>Command line:   <code>$ brew install node</code></li>
+<li>Not working? Follow along with <a href="http://www.repl.it" target="_blank">REPL.it</a>.</li>
+</ul>
+</li>
+<li><p>Uses</p>
+<ul>
+<li>REPL<ul>
+<li>&#x201C;Read-Eval-Print Loop&#x201D;.</li>
+<li>Run JS code one line at a time.</li>
+<li>Command line:   <code>$ node</code></li>
+</ul>
+</li>
+<li>Run entire JS files.<ul>
+<li>Command line:   <code>$ node FILENAME</code></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 <h1 id="primitive-data-types">Primitive Data Types</h1>
 <ul>
-<li>TO DO: Include data type examples that will be used.</li>
+<li>Building blocks of Javascript.</li>
+<li>We often save data types of all kinds, including primitive, to variables.<pre><code class="lang-javascript"><span class="hljs-comment">// For example...</span>
+<span class="hljs-keyword">var</span> myClass = <span class="hljs-string">&quot;WDI6&quot;</span>;
+</code></pre>
+</li>
 </ul>
 <h2 id="numbers-5min">Numbers (5min)</h2>
 <ul>
@@ -544,13 +572,35 @@
 </ul>
 <h2 id="strings-5min">Strings (5min)</h2>
 <ul>
-<li>String literals</li>
-<li>Escape sequences</li>
-<li>Concatenation<ul>
-<li>Show which operators you cannot use on strings</li>
+<li><p>String literals</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Can use single quotes...</span>
+<span class="hljs-keyword">var</span> greeting = <span class="hljs-string">&apos;Hello!&apos;</span>;
+
+<span class="hljs-comment">/// ...or double quotes.</span>
+<span class="hljs-keyword">var</span> greeting = <span class="hljs-string">&quot;Hi there!&quot;</span>;
+</code></pre>
+</li>
+<li>Escape sequences<ul>
+<li>[ADD]</li>
 </ul>
 </li>
-<li>Methods: substring, slice, toUpperCase, etc.</li>
+<li>Concatenation<ul>
+<li>You can join strings using the <code>+</code> operator.<pre><code class="lang-javascript">  <span class="hljs-keyword">var</span> city = <span class="hljs-string">&quot;Washington, &quot;</span>;
+  <span class="hljs-keyword">var</span> state = <span class="hljs-string">&quot;DC&quot;</span>;
+  <span class="hljs-keyword">var</span> location = city + state;
+  <span class="hljs-comment">// =&gt; &quot;Washington, DC&quot;</span>
+</code></pre>
+</li>
+<li>You can&apos;t use other math operators on strings.<ul>
+<li>[ADD]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Methods: substring, slice, toUpperCase, etc.<ul>
+<li>[ADD]</li>
+</ul>
+</li>
 </ul>
 <h2 id="booleans-5min">Booleans (5min)</h2>
 <ul>
