@@ -3,13 +3,24 @@
 # 9:00 - 9:10, Robin + Instructors
 ## Introduce the instructors and the agenda
 
-### Learning objectives
+### On whiteboard: Learning objectives
 - Get to know each other
 - Determine guiding principles for our class culture
 - Identify the Big Goal of the course
 - List the core expectations of instructors and students
 - Map out the topics and technologies of web development, and identify which we will and will not cover
 - List the main "Do" and "Do nots" for the class and the space
+
+### On whiteboard: Agenda
+- Introduce Instructors
+- Introduce GA
+- Introduce the Staff
+- Introduce the Space
+- Introduce each other
+- Introduce WDI
+- Lunch!
+
+...and breaks every 45-ish minutes.
 
 # 9:10 - 9:35, Brian + Staff
 ## Introduce GA
