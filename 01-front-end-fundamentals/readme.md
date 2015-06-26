@@ -87,10 +87,12 @@ https://github.com/ga-dc/html_resume
 - Change the attributes or content of a DOM element
 
 ### CSS Intro
+- Define the following terms: css rule, selector, declaration, property, and value
+- Describe the syntactic relationship between these components in CSS
 - Describe the syntactical and functional relationship between selectors, properties, and values
 - Differentiate between stylesheets, styles in the head, in-line styles
 - describe "cascading" and CSS specificity
-- Style all elements of a particular HTML element on a web page
+- Use tag name selectors to style all elements of a given tag on a page
 - Describe the difference between class and id selectors
 - Apply styles to specific elements by selecting elements with classes and ids
 - Differentiate between padding border and margin using the box model
