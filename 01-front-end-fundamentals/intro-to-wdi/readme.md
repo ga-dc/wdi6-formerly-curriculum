@@ -73,18 +73,13 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
     - hopeful realism
     - informed optimism
 
-- Memorizing stuff won't help you.
+- Just memorizing stuff won't help you. Learning HOW to code will.
   - You can't BS your way through code.
-    - The fundamental standard of programming: It either works, or it doesn't. No amount of sweet-talking will make it work.
+  - The fundamental standard of programming: It either works, or it doesn't. No amount of sweet-talking will make it work.
   - Programming is a mindset. It's about confidence and being open to failure. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it. AND I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
 
-### Legos
-
-- Inventing Legos is like building a program
-  - Have to break it apart
-  - How to make a roof out of bricks
-  - How to be resourceful
-  - Ultimately, you can't be a Lego designer just by looking at people's stuff
+- So many students throughout my time here say, "I don't know how to do that." or some variation of that. Many of you will say it. Just add "...yet" to it.
+- We as instructors anticipate that you will run into hardships. When you do, don't run for the hills! Buckle down and work through the problem. Embrace the fact that the hardship will make you a better coder. Endure the struggle to grow and develop your mind.
 
 ## (Robin) Immersive course
 
