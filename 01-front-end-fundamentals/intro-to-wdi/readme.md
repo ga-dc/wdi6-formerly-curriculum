@@ -136,9 +136,39 @@ Now, close your eyes. I want you to write what first comes to mind when I ask yo
 
 ## (Matt) Student Constitution
 
-## We do
+Let's talk about our social contract.  What are your expecations?  What does respect mean to you?
 
-T&T: Come up with items for Constitution. Put on board on post-its. Sign. We take picture.
+### Write, Group, Share: What are your rights and responsibilities?
+
+Prompts:
+- We want a community that...
+- What are your rights and responsibilities?
+- What does respect mean to you?
+
+Some items from past constitutions:
+- empathy/respect, how to build it
+- helping each other
+- personal hygiene
+- tardiness
+- personal effort
+
+## Write (2 min)
+
+- Individuals write on post-its
+
+## Group (5 min)
+
+- Get in group
+- Share on Whiteboard
+- Vote for 2 (prefer one right, one responsibility)
+
+### Share/Record it! (~2 min @ group)
+
+- Two representatives from each group (one for each) write these on the front whiteboard & describe/clarify
+  - please write legibly, this is our record.
+- Picture
+- Slack it out
+
 
 ## Class Content (Adam)
 
