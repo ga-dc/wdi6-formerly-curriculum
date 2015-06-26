@@ -62,13 +62,21 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
   - Up to W07D01, you may drop and get a refund on a sliding scale
 
 ## (Andy) Groth Mindset
-
-- For many students, this is the hardest thing they've ever done in their lives.
+[Growth Mindset] (https://www.youtube.com/watch?v=-_oqghnxBmY_)
+- For many students, this is the most mentally challenging thing they've ever done in their lives.
   - This is the first time they've been bad at something.
+  - How many people have failed at something? I imagine that everyone has. At some point in this course you will falter. But that's OK! It's how we bounce back, persevere and learn from it that allows our mind to grow.
+  - [Emotional Cycle of Change](https://s-media-cache-ak0.pinimg.com/736x/3c/f4/fa/3cf4faeb2078f4f4fbb9265444bde2e0.jpg)
+    - uninformed optimism
+    - informed pessimism
+    - determination/commitment or giving up
+    - hopeful realism
+    - informed optimism
+
+- Memorizing stuff won't help you.
   - You can't BS your way through code.
     - The fundamental standard of programming: It either works, or it doesn't. No amount of sweet-talking will make it work.
-- Memorizing stuff won't help you.
-  - Programming is a mindset. It's about confidence. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it, and I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
+  - Programming is a mindset. It's about confidence and being open to failure. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it. AND I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
 
 ### Legos
 
