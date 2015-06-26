@@ -1,27 +1,18 @@
 # GA 101
 
-- 9:00 - 9:10: Introduce instructors and agenda
-- 9:10 - 9:45: Introduce GA
-  - Space rules
-  - Tour(?)
-  - Staff
-- 9:45 - 10:00: Split into pods, then break, then come back to pods
-- 10:00 - 10:30: Pods
-  - Tour(?)
-  - Round 1
-    - Who are you?
-    - Where you from?
-    - What did you do?
-  - Round 2
-    - 2 truths and a lie
-  - Round 3
-    - What are you nervous/excited about?
-- 10:30 - 12:00: Intro to WDI
-- 12:00 - 12:30: Icebreakers with in separate classrooms with that room's pods
+# 9:00 - 9:10, Robin + Instructors
+## Introduce the instructors and the agenda
 
------
+### Learning objectives
+- Get to know each other
+- Determine guiding principles for our class culture
+- Identify the Big Goal of the course
+- List the core expectations of instructors and students
+- Map out the topics and technologies of web development, and identify which we will and will not cover
+- List the main "Do" and "Do nots" for the class and the space
 
-## (Brain): Intro to GA and Outcomes
+# 9:10 - 9:35, Brian + Staff
+## Introduce GA
 
 - Who takes this class? Three archetypes
   - Wants to become a developer that we would want to hire. Plans on using Outcomes to pursue job placement.
@@ -61,7 +52,41 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
 ### Refund policy
   - Up to W07D01, you may drop and get a refund on a sliding scale
 
-## (Andy) Groth Mindset
+# 9:35 - 9:45, Ashley
+## Introduce the space
+
+# 9:45 - 9:50, Robin
+## Introduce the pods
+
+# 9:50 - 10:30, Instructors
+## Instructors will get to know their pods and take them on a tour of the space
+
+- **Take the elevators up, and the stairs down, to prevent traffic jams**
+- **Please use the following guide, provided by Ashley**
+  - TODO
+- Around the time of your tour, please get to know your pod with the following:
+  - Break as necessary
+  - Get to know each other
+    - Round 1
+      - What's your name?
+      - Where are you from?
+      - What did you do?
+    - Round 2
+      - 2 truths and a lie
+    - Round 3
+      - What are you nervous/excited about?
+- Please refer to the following timetable for how the tours will be staggered:
+
+|Time|Floor 8|Floor 12|
+|---|
+|9:50|Ada, Bash|-|
+|10:00|C, Dart|Ada, Bash|
+|10:10|Elixir, Fortran|C, Dart|
+|10:20|-|Elixir, Fortran|
+
+
+# 10:30 - 10:40, Andy
+## Growth Mindset
 [Growth Mindset] (https://www.youtube.com/watch?v=-_oqghnxBmY_)
 - For many students, this is the most mentally challenging thing they've ever done in their lives.
   - This is the first time they've been bad at something.
@@ -81,7 +106,8 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
 - So many students throughout my time here say, "I don't know how to do that." or some variation of that. Many of you will say it. Just add "...yet" to it.
 - We as instructors anticipate that you will run into hardships. When you do, don't run for the hills! Buckle down and work through the problem. Embrace the fact that the hardship will make you a better coder. Endure the struggle to grow and develop your mind.
 
-## (Robin) Immersive course
+# 10:45 - 10:55, Robin
+## What is an immersive course?
 
 ### WE DO
 
@@ -111,30 +137,41 @@ T&T: What's different about an immersive environment?
 
 Note that none of the above mention anything about code.
 
-## (Adrian) What is asking for help?
+# 11:00 - 11:05, Adrian
+## What is asking for help?
 
-- Ask for help.
-  - This is the thing students find the hardest, and the thing that ultimately determines whether or not they will be successful in this class.
-  - Without fail, the students who do not ask for help do the poorest in the class.
+- This is the thing students find the hardest, and the thing that ultimately determines whether or not they will be successful in this class.
+- Without fail, the students who do not ask for help do the poorest in the class.
 
 ### YOU DO
 
 I'm going to ask you to write something on a letter-sized piece of paper. You are allowed no more than 12 words. Please write big enough that someone can read your paper from a few feet away.
 
-When you are done, you will put the paper face-down on your table and leave the room for a 10-minute break.
+When you are done, you will put the paper face-down on your table and leave the room. We'll start again at 11:15.
 
 Now, close your eyes. I want you to write what first comes to mind when I ask you to think of a time you had to ask for help.
 
 *(Collect papers, tape to board for students to review as they re-enter.)*
 
-# Break!
+# 11:05 - 11:10, Adrian
+## Break
+
+# 11:10 - 11:15, Adrian
+## Asking for help
 
 - We have all asked for help. There's no shame in it. Feeling afraid to ask for help will be the biggest detriment in this class.
 - What makes asking for help effective?
   - Asking a clear problem. "I don't know any of this" isn't a clear problem. "I tried this thing and got this error" is a clear problem.
-  - We will turn you away when the question your asking isn't constructive.
+  - We will turn you away when:
+      - The question you're asking isn't constructive
+      - It's clear you haven't made an effort to find the answer
+          - First, try it yourself
+          - Then, Google it
+          - Then, ask your neighbor
+          - Finally, ask an instructor
 
-## (Matt) Student Constitution
+# 11:20 - 11:30, Matt
+## Student Constitution
 
 Let's talk about our social contract.  What are your expecations?  What does respect mean to you?
 
@@ -169,8 +206,8 @@ Some items from past constitutions:
 - Picture
 - Slack it out
 
-
-## Class Content (Adam)
+# 11:35 - 11:45, Adam
+## Class content
 
 ### How the Class is Built
 
@@ -233,7 +270,8 @@ Units/Projects:
 * Project 4 - Portfolio project
 
 
-## (Jesse) Logistics
+# 11:50 - 12:00, Jesse
+## Class logistics
 
 - Pods
   - Class is split alphabetically into 6 pods
@@ -281,10 +319,13 @@ Units/Projects:
 
 ### Homework app
 
-### WE DO
+# 12:05, Robin
+## Direct the pods to their classrooms
 
-Turn and talk: What questions and concerns do you have?
+# 12:10 - 12:30, Instructors
+## Icebreakers by classroom
 
-Then, I call on the class for questions.
+- Adam leads + Adrian and Andy: Peanut Butter (Classroom 2: Ada, Bash, C)
+- Robin leads + Jesse and Matt: Jelly (Classroom 1: Dart, Elixir, Fortran)
 
-# Break and split into classrooms
+# 12:30, Lunch
