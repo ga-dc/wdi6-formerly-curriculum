@@ -42,27 +42,30 @@ https://github.com/ga-dc/html_resume
 - Explain the difference between relative and absolute path
 
 ### Git
+### Conceptual
+
 - Explain what version control is and why developers use it
 - List the main components of a git repository and how they relate:
-  - repo
-  - index
-  - working tree
-  - commit
-- Initialize a local git repository
-- Add and commit changes to a git repository
+  - repo, working tree, index (aka staging area), commit
 - Describe what a git remote repository is.
 - Differentiate between git as a tool, and github as a service
-- Push and pull changes to a remote repository
 - Define and differentiate between forking and cloning
+
+### Mechanical
+- Initialize a local git repository
+- Add and commit changes to a git repository
+- Add a remote repository, and push/pull changes to that remote
+- Use the 'fork, clone, and pull request' model to submit assignments
 - Un-initialize a git repository
 
 ### JS Data Types, Variables, and Arrays
-- Describe the role Javascript plays alongside HTML and CSS
-- List data types and their use cases
-- Define what a REPL is and use browser console to create and manipulate data types
-- Explain what a variable is and the role memory allocation plays in storing data types
-- Practice proper Javascript syntax and semantic variable naming
-- Describe complex data types and how arrays are used to store primary (and complex) data types
+- Describe the role Javascript (JS) plays alongside HTML and CSS.
+- Define JS as a programming language.
+- Set up and use Node to manipulate JS data types.
+- List JS data types and how each is used.
+- Describe composite data types and use arrays and objects to store data types.
+- Practice proper JS syntax and semantic variable naming.
+- Explain what a variable is and the role memory allocation plays in storing data types.
 
 ### JS Loops and Conditionals
 - differentiate between true & false && truthy & falsey
