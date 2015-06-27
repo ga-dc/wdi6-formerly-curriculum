@@ -15,18 +15,20 @@
 
 ## How the web works
 
-http://imgur.com/0KYhcT7
+[Picture](http://i.imgur.com/AfiaMQP.png)
 
 ### The example
-The rulers of the world need to hear President Obama's important speech.
+It's Februray 12th, 1864. The rulers of the world are all sending telegrams to the White House wishing President Lincoln a happy 55th birthday.
 
-They're all in different locations, and they all have different schedules, so he can't just broadcast his speech.
+Queen Victoria writes out a message. She gives it to the Royal Telegraph Operator. He taps it in to the telegraph machine as Morse Code.
 
-So, he writes his speech, and puts it in a filing cabinet.
+A telegraph operator in Washington hears the Morse Code, and translates it back into English.
 
-Whenever a ruler needs a speech, they ask their secretary/translator to call one of Obama's secretaries. She or he opens the filing cabinet, and reads the speech aloud over the phone.
+President Lincoln is really busy, so he's written out a generic "thanks for the birthday wishes" response on a piece of paper and put it in the Presidential Filing Cabinet.
 
-The ruler's secretary reads it to the ruler.
+Whenever a birthday message is received in Washington, the Presidential Telegraph Operator translates Lincoln's response into Morse Code and sends it back.
+
+Queen Victoria's telegraph operator translates Lincoln's response from Morse Code into English.
 
 ### The reality
 An author writes a file of content, and puts it in a computer called a host.
