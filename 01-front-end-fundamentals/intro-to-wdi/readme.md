@@ -288,29 +288,41 @@ Units/Projects:
   - Class is split alphabetically into 6 pods
   - There will be 3 pods per classroom
   - The pods that are together will be rotated after every project so that each pod will have been with each other pod
-  - Each pod will have one instructor for the whole class
-    - The instructor with whom you'll do one-on-ones
+  - Each pod will have one instructor for the duration of the course.
+    - This is the instructor with whom you'll do one-on-ones
 - Class staggering
   - Usually, a lesson will be taught twice by the same instructor. So I'll teach HTML this afternoon to one class, and then HTML tomorrow to the other.
-  - We'll all have the same lessons and the same homework. Who was what when will just vary by a day or two between the classes.
+  - We'll all have the same lessons and the same homework. Who had what when will just vary by a day or two between the classes.
 - One-on-ones
   - Each student will be scheduled one half-hour slot every two weeks during which they will meet with an instructor.
   - Talk about whatever needs to be talked about
-  - Should you need additional meetings with instructors, just ask!
+  - Should you need additional meetings with instructors, each instructor has open one-on-one time once per week:
+    - **Jesse**: Thursday @ 5pm - 5:30pm
 - Office Hours
   - Led exclusively by TAs
-  - Usually 4 nights a week, until 7:30
+    - These TAs are outstanding former students from the previous class
+  - Usually 4 nights a week, from 5:30 until 7:30
 - Instructor Communication
   - Instructors **may not** respond to code questions on Slack nor in-person after 6pm each night, even if we're in the office
-  - Should you have a logistical question, you may contact the **Student Communication Instructor**
+  - Should you have a logistical question, you may contact the **Student Communication Manager**
+    - This is Robin.
   - All code questions should go to TAs
-  - *Why are we so restrictive about this?*
+    - **Question** why would we do this?
+    - Answer: Work Life Balance.
   - Student communication manager
     - If you have logistical questions or concerns, contact me (Robin)
 - Homework and assessments
   - You'll probably have one homework per lesson, so if you have two lessons in a day, that's two homeworks, graded separately.
   - Homework will be graded only for *completeness*. That is, you actually attempted it yourself and didn't copy code. If you want more feedback, you'll need to ask for it.
-  - There will be one homework per week on which your pod leader will leave comments whether you like it or not.
+  - There will be one homework per week on which your pod leader will leave comments.
+  - **Question**: Is it a problem that you'll likely be able to see solutions to homework assignments before you have to do them yourself?
+- Absences and Tardies 
+  - Having more than 4 absences disqualifies you for Outcomes
+  - 4 Tardies == 1 Absence
+  - Class starts at 9:00am
+  - If you arrive after 9:00am, please wait outside the classroom until the next break.
+    - You will be marked tardy.
+    - We will likely be doing a morning exercise, which you'll be able to find in the class repo.
 
 ### The schedule
 - 9-10 Warmup
@@ -324,6 +336,7 @@ Units/Projects:
 
 - Friday
   - From 9 to 11 will be optional review and an optional mini-lesson
+    - mini-lessons will cover advanced, but orthoganal material to the course.
     - If you don't want to come in until 11, then don't. But if you're struggling, the onus is on you to take advantage of the opportunity.
     - Quizzes will be weekly at 11
   - Lab most of day
