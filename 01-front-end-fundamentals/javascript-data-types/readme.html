@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.4" data-basepath="../.." data-revision="Sun Jun 28 2015 02:04:42 GMT+0000 (UTC)">
+    <div class="book" data-level="1.4" data-basepath="../.." data-revision="Sun Jun 28 2015 02:06:13 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -576,63 +576,67 @@
 <li>Null</li>
 </ol>
 </li>
-<li>We usually save data types of all kinds, primitive and otherwise, to variables.
-```javascript
-// For example...
-var myClass = &quot;WDI6&quot;;</li>
+<li>We usually save data types of all kinds, primitive and otherwise, to variables.</li>
 </ul>
-<p>// You can declare multiple variables at a time. Use &quot;var&quot; once, and separate each variable with a comma.
-var myClass = &quot;WDI6&quot;,
-    myCity = &quot;DC&quot;;</p>
-<pre><code>
-## Numbers (5min)
-- No distinction between integers and floats
-  ```javascript
-  typeof 5;
-  =&gt; &quot;number&quot;
+<pre><code class="lang-javascript"><span class="hljs-comment">// For example...</span>
+<span class="hljs-keyword">var</span> myClass = <span class="hljs-string">&quot;WDI6&quot;</span>;
 
-  typeof 5.5;
-  =&gt; &quot;number&quot;
-</code></pre><ul>
+<span class="hljs-comment">// You can declare multiple variables at a time. Use &quot;var&quot; once, and separate each variable with a comma.</span>
+<span class="hljs-keyword">var</span> myClass = <span class="hljs-string">&quot;WDI6&quot;</span>,
+    myCity = <span class="hljs-string">&quot;DC&quot;</span>;
+</code></pre>
+<h2 id="numbers-5min">Numbers (5min)</h2>
+<ul>
+<li><p>No distinction between integers and floats</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-number">5</span>;
+=&gt; <span class="hljs-string">&quot;number&quot;</span>
+
+<span class="hljs-keyword">typeof</span> <span class="hljs-number">5.5</span>;
+=&gt; <span class="hljs-string">&quot;number&quot;</span>
+</code></pre>
+</li>
 <li><p>Operators and order of operations</p>
 <ul>
 <li><code>+, -, *, /</code></li>
 <li>P(E)MDAS (Parentheses, Exponents, Multiplication, Division, Addition, Subtraction)</li>
 <li><p>% (Modulo)</p>
 <ul>
-<li>Returns the remainder of a division operation<pre><code class="lang-javascript"><span class="hljs-comment">// What is the remainder of 12 / 5?</span>
+<li>Returns the remainder of a division operation</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-comment">// What is the remainder of 12 / 5?</span>
 <span class="hljs-number">12</span> % <span class="hljs-number">5</span>;
 =&gt; <span class="hljs-number">2</span>
 </code></pre>
-</li>
-<li>Often used as a check for evenness: <code>NUMBER % 2</code>
-```javascript
-// Returns 0 if even
-4 % 2;
-=&gt; 0</li>
+<ul>
+<li>Often used as a check for evenness: <code>NUMBER % 2</code></li>
 </ul>
-<p>// Returns 1 if odd
-5 % 2;
-=&gt; 1
-```</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Returns 0 if even</span>
+<span class="hljs-number">4</span> % <span class="hljs-number">2</span>;
+=&gt; <span class="hljs-number">0</span>
+
+<span class="hljs-comment">// Returns 1 if odd</span>
+<span class="hljs-number">5</span> % <span class="hljs-number">2</span>;
+=&gt; <span class="hljs-number">1</span>
+</code></pre>
 </li>
 </ul>
 </li>
 <li><p>The Math object</p>
 <ul>
 <li>There are number of useful, more complex math operations available to us as part of the Math object</li>
-<li>Examples:
-```javascript
-// Math.random(): Returns a random decimal between 0 and 1.
-Math.random();</li>
+<li>Examples:</li>
 </ul>
-<p>// Math.floor(n): Returns the largest integer less than or equal to a number.
-Math.floor( 3.14 )
-=&gt; 3</p>
-<p>// .random() and .floor() often used in tandem.
-// Returns a random whole number between 1 and 10.
-Math.floor(Math.random() * 10) + 1
-```</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Math.random(): Returns a random decimal between 0 and 1.</span>
+<span class="hljs-built_in">Math</span>.random();
+
+<span class="hljs-comment">// Math.floor(n): Returns the largest integer less than or equal to a number.</span>
+<span class="hljs-built_in">Math</span>.floor( <span class="hljs-number">3.14</span> )
+=&gt; <span class="hljs-number">3</span>
+
+<span class="hljs-comment">// .random() and .floor() often used in tandem.</span>
+<span class="hljs-comment">// Returns a random whole number between 1 and 10.</span>
+<span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">10</span>) + <span class="hljs-number">1</span>
+</code></pre>
 <ul>
 <li>See more @ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank">MDN</a>.</li>
 </ul>
@@ -652,55 +656,57 @@ Math.floor(Math.random() * 10) + 1
 <li><p>Escape sequences</p>
 <ul>
 <li>Sometimes you will need to use special characters or formatting in strings that can&apos;t be entered the same way as you would in a word processor. In these cases, you use &quot;escape sequences&quot;.</li>
-<li>Examples:
-```javascript
-// &quot;\n&quot; = new line
-&quot;Hello\nGoodbye&quot;
-=&gt;&quot;Hello&quot;
-=&gt;&quot;Goodbye&quot;</li>
+<li>Examples:</li>
 </ul>
-<p>// &quot;\t&quot; = tab
-&quot;\tOnce upon a time...&quot;
-=&gt;&quot;     Once upon a time...&quot;
-```</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// &quot;\n&quot; = new line</span>
+<span class="hljs-string">&quot;Hello\nGoodbye&quot;</span>
+=&gt;<span class="hljs-string">&quot;Hello&quot;</span>
+=&gt;<span class="hljs-string">&quot;Goodbye&quot;</span>
+
+<span class="hljs-comment">// &quot;\t&quot; = tab</span>
+<span class="hljs-string">&quot;\tOnce upon a time...&quot;</span>
+=&gt;<span class="hljs-string">&quot;     Once upon a time...&quot;</span>
+</code></pre>
 <ul>
 <li>More examples <a href="http://www.javascriptkit.com/jsref/escapesequence.shtml" target="_blank">here</a>.</li>
 </ul>
 </li>
 <li><p>Concatenation</p>
 <ul>
-<li>Join strings using <code>+</code>.<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> city = <span class="hljs-string">&quot;Washington, &quot;</span>;
+<li>Join strings using <code>+</code>.</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> city = <span class="hljs-string">&quot;Washington, &quot;</span>;
 <span class="hljs-keyword">var</span> state = <span class="hljs-string">&quot;DC&quot;</span>;
 <span class="hljs-keyword">var</span> location = city + state;
 <span class="hljs-comment">// =&gt; &quot;Washington, DC&quot;</span>
 </code></pre>
-</li>
-<li>You can&apos;t use other math operators on strings.
-```javascript
-// When using the &quot;-&quot; operator, the operands are treated as numbers.
-&quot;hamburger&quot; - &quot;ham&quot;
-=&gt; NaN</li>
+<ul>
+<li>You can&apos;t use other math operators on strings.</li>
 </ul>
-<p>// Same goes for multiplication and division.
-&quot;hamburger&quot; * 3
-=&gt; NaN
-```</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// When using the &quot;-&quot; operator, the operands are treated as numbers.</span>
+<span class="hljs-string">&quot;hamburger&quot;</span> - <span class="hljs-string">&quot;ham&quot;</span>
+=&gt; <span class="hljs-literal">NaN</span>
+
+<span class="hljs-comment">// Same goes for multiplication and division.</span>
+<span class="hljs-string">&quot;hamburger&quot;</span> * <span class="hljs-number">3</span>
+=&gt; <span class="hljs-literal">NaN</span>
+</code></pre>
 </li>
 <li><p>String methods</p>
 <ul>
 <li>Javascript comes with methods you can use to inspect and modify strings.</li>
-<li>Examples:
-```javascript
-// .search(): find the starting index of a string value.
-var greetings = &quot;Hi there friend!&quot;;
-greetings.search( &quot;friend&quot; );
-=&gt; 9</li>
+<li>Examples:</li>
 </ul>
-<p>// .slice(): return and store a portion of a string.
-var greetings = &quot;Hi there friend!&quot;;
-var buddy = greetings.slice( 9, 15 );
-=&gt; &quot;friend&quot;
-```</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// .search(): find the starting index of a string value.</span>
+<span class="hljs-keyword">var</span> greetings = <span class="hljs-string">&quot;Hi there friend!&quot;</span>;
+greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
+=&gt; <span class="hljs-number">9</span>
+
+<span class="hljs-comment">// .slice(): return and store a portion of a string.</span>
+<span class="hljs-keyword">var</span> greetings = <span class="hljs-string">&quot;Hi there friend!&quot;</span>;
+<span class="hljs-keyword">var</span> buddy = greetings.slice( <span class="hljs-number">9</span>, <span class="hljs-number">15</span> );
+=&gt; <span class="hljs-string">&quot;friend&quot;</span>
+</code></pre>
 <ul>
 <li>More examples <a href="http://www.w3schools.com/js/js_string_methods.asp" target="_blank">here</a>.</li>
 </ul>
@@ -708,25 +714,27 @@ var buddy = greetings.slice( 9, 15 );
 </ul>
 <h3 id="math-with-numbers-strings">Math with Numbers &amp; Strings</h3>
 <ul>
-<li>Math can get weird when your numbers are in string form.
-```javascript
-// In some cases Javascript is helpful and converts strings to numbers in the correct way.
-&quot;3&quot; - &quot;2&quot;
-=&gt; 1</li>
+<li>Math can get weird when your numbers are in string form.</li>
 </ul>
-<p>// ...but sometimes it doesn&apos;t. In this example, the + operator acts as if it&apos;s concatenating two strings.
-&quot;3&quot; + &quot;2&quot;
-=&gt; 32</p>
-<pre><code>
-- When in doubt, can convert data types that should be numbers using `parseInt()`.
-```javascript
-// parseInt converts a string to a number value, if available.
-parseInt( &quot;3&quot; );
-=&gt; 3
+<pre><code class="lang-javascript"><span class="hljs-comment">// In some cases Javascript is helpful and converts strings to numbers in the correct way.</span>
+<span class="hljs-string">&quot;3&quot;</span> - <span class="hljs-string">&quot;2&quot;</span>
+=&gt; <span class="hljs-number">1</span>
 
-parseInt( &quot;burrito&quot; );
-=&gt; NaN
-</code></pre><h2 id="booleans-5min">Booleans (5min)</h2>
+<span class="hljs-comment">// ...but sometimes it doesn&apos;t. In this example, the + operator acts as if it&apos;s concatenating two strings.</span>
+<span class="hljs-string">&quot;3&quot;</span> + <span class="hljs-string">&quot;2&quot;</span>
+=&gt; <span class="hljs-number">32</span>
+</code></pre>
+<ul>
+<li>When in doubt, can convert data types that should be numbers using <code>parseInt()</code>.</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-comment">// parseInt converts a string to a number value, if available.</span>
+<span class="hljs-built_in">parseInt</span>( <span class="hljs-string">&quot;3&quot;</span> );
+=&gt; <span class="hljs-number">3</span>
+
+<span class="hljs-built_in">parseInt</span>( <span class="hljs-string">&quot;burrito&quot;</span> );
+=&gt; <span class="hljs-literal">NaN</span>
+</code></pre>
+<h2 id="booleans-5min">Booleans (5min)</h2>
 <ul>
 <li>True, False</li>
 <li>Comparisons (==, ===, &lt;, &gt;)<ul>
@@ -787,7 +795,8 @@ parseInt( &quot;burrito&quot; );
 </ul>
 <h2 id="semantic-naming-5min">Semantic Naming (5min)</h2>
 <ul>
-<li>Q: Which of these would you say is the best named variable? Why?<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">5</span>;
+<li><p>Q: Which of these would you say is the best named variable? Why?</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">5</span>;
 <span class="hljs-keyword">var</span> red = <span class="hljs-string">&quot;red&quot;</span>;
 <span class="hljs-keyword">var</span> myFavoriteAnimal = <span class="hljs-string">&quot;jackalope&quot;</span>;
 </code></pre>
