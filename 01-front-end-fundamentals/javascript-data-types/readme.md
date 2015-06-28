@@ -67,6 +67,7 @@
   4. Undefined
   5. Null
 - We usually save data types of all kinds, primitive and otherwise, to variables.
+
 ```javascript
 // For example...
 var myClass = "WDI6";
@@ -78,6 +79,7 @@ var myClass = "WDI6",
 
 ## Numbers (5min)
 - No distinction between integers and floats
+
   ```javascript
   typeof 5;
   => "number"
@@ -90,12 +92,14 @@ var myClass = "WDI6",
   - P(E)MDAS (Parentheses, Exponents, Multiplication, Division, Addition, Subtraction)
   - % (Modulo)
     - Returns the remainder of a division operation
+
     ```javascript
     // What is the remainder of 12 / 5?
     12 % 5;
     => 2
     ```
     - Often used as a check for evenness: `NUMBER % 2`
+
     ```javascript
     // Returns 0 if even
     4 % 2;
@@ -108,6 +112,7 @@ var myClass = "WDI6",
 - The Math object
   - There are number of useful, more complex math operations available to us as part of the Math object
   - Examples:
+
   ```javascript
   // Math.random(): Returns a random decimal between 0 and 1.
   Math.random();
@@ -125,6 +130,7 @@ var myClass = "WDI6",
 
 ## Strings (5min)
 - String literals
+
     ```javascript
     // Can use single quotes to instantiate a string...
     var greeting = 'Hello!';
@@ -135,6 +141,7 @@ var myClass = "WDI6",
 - Escape sequences
   - Sometimes you will need to use special characters or formatting in strings that can't be entered the same way as you would in a word processor. In these cases, you use "escape sequences".
   - Examples:
+
   ```javascript
   // "\n" = new line
   "Hello\nGoodbye"
@@ -148,6 +155,7 @@ var myClass = "WDI6",
   - More examples [here](http://www.javascriptkit.com/jsref/escapesequence.shtml).
 - Concatenation
   - Join strings using `+`.
+
   ```javascript
   var city = "Washington, ";
   var state = "DC";
@@ -155,6 +163,7 @@ var myClass = "WDI6",
   // => "Washington, DC"
   ```
   - You can't use other math operators on strings.
+
   ```javascript
   // When using the "-" operator, the operands are treated as numbers.
   "hamburger" - "ham"
@@ -167,6 +176,7 @@ var myClass = "WDI6",
 - String methods
   - Javascript comes with methods you can use to inspect and modify strings.
   - Examples:
+
   ```javascript
   // .search(): find the starting index of a string value.
   var greetings = "Hi there friend!";
@@ -182,6 +192,7 @@ var myClass = "WDI6",
 
 ### Math with Numbers & Strings
 - Math can get weird when your numbers are in string form.
+
 ```javascript
 // In some cases Javascript is helpful and converts strings to numbers in the correct way.
 "3" - "2"
@@ -193,6 +204,7 @@ var myClass = "WDI6",
 ```
 
 - When in doubt, can convert data types that should be numbers using `parseInt()`.
+
 ```javascript
 // parseInt converts a string to a number value, if available.
 parseInt( "3" );
@@ -248,6 +260,7 @@ parseInt( "burrito" );
 
 ## Semantic Naming (5min)
 - Q: Which of these would you say is the best named variable? Why?
+
   ```javascript
   var x = 5;
   var red = "red";
