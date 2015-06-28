@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.4" data-basepath="../.." data-revision="Sat Jun 27 2015 18:45:19 GMT+0000 (UTC)">
+    <div class="book" data-level="1.4" data-basepath="../.." data-revision="Sun Jun 28 2015 02:04:42 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -469,7 +469,14 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="learning-objectives">LEARNING OBJECTIVES</h1>
+                        <h1 id="to-do">TO DO</h1>
+<ul>
+<li>Mini-assessment at end of each data type<ul>
+<li>Use Node to type our three quick questions each. Have them answered table by table.</li>
+</ul>
+</li>
+</ul>
+<h1 id="learning-objectives">LEARNING OBJECTIVES</h1>
 <ul>
 <li>Describe the role Javascript (JS) plays alongside HTML and CSS.</li>
 <li>Define JS as a programming language.</li>
@@ -486,26 +493,42 @@
 <li>5 minute individual</li>
 <li>5 minute pair discussion</li>
 <li>Think about what functionality the site has after it has loaded.</li>
-<li>Optional: Make it interesting and turn off Javascript in your browser.<ul>
+<li>Q&apos;s for responses<ul>
+<li>Why would you say that&apos;s a Javascript feature?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Post-Exercise: Turn off browser Javascript and reload Facebook.<ul>
 <li>Chrome &gt; Preferences &gt; Content Settings &gt; Javascript &gt; &quot;Do not allow...&quot;</li>
-<li>What works differently? What doesn&apos;t work?</li>
+<li>What functionality has changed? Been removed?</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<h1 id="js-as-a-programming-language-5min">JS as a Programming Language (5min)</h1>
+<h1 id="js-the-programming-language-of-the-web-5min">JS: The Programming Language of the Web (5min)</h1>
 <ul>
-<li>What is a programming language?<ul>
-<li>Allows us to transform data.</li>
-<li>With a programming language, we can create a program that, given an input, produces a desired output.</li>
-<li>Compared to a &quot;markup&quot; or &quot;stylesheet&quot; language, which define the presentation and styling of data on the web.</li>
+<li>Q: What is a programming language?<ul>
+<li>...compared to a markup language like HTML?<ul>
+<li>Lets us...</li>
+</ul>
+</li>
+<li>Act on information.</li>
+<li>Control our computer.</li>
+<li>Display data.</li>
+<li>Transform data. Input in, output out!</li>
+<li>...and more!<ul>
 <li>[MORE]</li>
 </ul>
 </li>
-<li>What features does Javascript have?<ul>
-<li>Can run on both the client (browser) and server.</li>
-<li>Supported by every browser.</li>
+</ul>
+</li>
+<li>The Programming Language of the Web<ul>
+<li>It&apos;s not necessarily the best, but it&apos;s used by everybody.</li>
+<li>Was not always popular...<ul>
+<li>Created in 1995 by Brendan Eich (in only 10 days!) for the Netscape browser.</li>
+</ul>
+</li>
+<li>Cross-browser support.</li>
 </ul>
 </li>
 <li>Question: what tools are part of our JS toolbox?<ul>
@@ -518,7 +541,7 @@
 <li><p>What is it?</p>
 <ul>
 <li>Javascript runtime environment.</li>
-<li>Runs JS code on our computer (among other things).</li>
+<li>Allows us to run Javascript code on our computers.</li>
 </ul>
 </li>
 <li><p>Installation</p>
@@ -531,21 +554,21 @@
 <ul>
 <li>REPL<ul>
 <li>&#x201C;Read-Eval-Print Loop&#x201D;.</li>
-<li>Run JS code one line at a time.</li>
+<li>Run Javascript code one line at a time.</li>
 <li>Command line:   <code>$ node</code></li>
 </ul>
 </li>
-<li>Run entire JS files.<ul>
+<li>Run entire Javascript files.<ul>
 <li>Command line:   <code>$ node FILENAME</code></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h1 id="primitive-data-types">Primitive Data Types</h1>
+<h1 id="fundamental-data-types">Fundamental Data Types</h1>
 <ul>
 <li>Basic building blocks of Javascript.</li>
-<li>Five primitive data types.<ol>
+<li>Five fundamental data types.<ol>
 <li>Numbers</li>
 <li>Strings</li>
 <li>Booleans</li>
@@ -553,56 +576,65 @@
 <li>Null</li>
 </ol>
 </li>
-<li>We usually save data types of all kinds, primitive and otherwise, to variables.<pre><code class="lang-javascript"><span class="hljs-comment">// For example...</span>
-<span class="hljs-keyword">var</span> myClass = <span class="hljs-string">&quot;WDI6&quot;</span>;
-</code></pre>
-</li>
+<li>We usually save data types of all kinds, primitive and otherwise, to variables.
+```javascript
+// For example...
+var myClass = &quot;WDI6&quot;;</li>
 </ul>
-<h2 id="numbers-5min">Numbers (5min)</h2>
-<ul>
-<li><p>No distinction between integers and floats</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-number">5</span>
-=&gt; <span class="hljs-string">&quot;number&quot;</span>
+<p>// You can declare multiple variables at a time. Use &quot;var&quot; once, and separate each variable with a comma.
+var myClass = &quot;WDI6&quot;,
+    myCity = &quot;DC&quot;;</p>
+<pre><code>
+## Numbers (5min)
+- No distinction between integers and floats
+  ```javascript
+  typeof 5;
+  =&gt; &quot;number&quot;
 
-<span class="hljs-keyword">typeof</span> <span class="hljs-number">5.5</span>
-=&gt; <span class="hljs-string">&quot;number&quot;</span>
-</code></pre>
-</li>
+  typeof 5.5;
+  =&gt; &quot;number&quot;
+</code></pre><ul>
 <li><p>Operators and order of operations</p>
 <ul>
 <li><code>+, -, *, /</code></li>
-<li>P.E.M.D.A.S. (Parentheses, Exponents, Multiplication, Division, Addition, Subtraction)</li>
+<li>P(E)MDAS (Parentheses, Exponents, Multiplication, Division, Addition, Subtraction)</li>
 <li><p>% (Modulo)</p>
 <ul>
 <li>Returns the remainder of a division operation<pre><code class="lang-javascript"><span class="hljs-comment">// What is the remainder of 12 / 5?</span>
-<span class="hljs-number">12</span> % <span class="hljs-number">5</span>
+<span class="hljs-number">12</span> % <span class="hljs-number">5</span>;
 =&gt; <span class="hljs-number">2</span>
 </code></pre>
 </li>
 <li>Often used as a check for evenness: <code>NUMBER % 2</code>
 ```javascript
 // Returns 0 if even
-4 % 2
+4 % 2;
 =&gt; 0</li>
 </ul>
 <p>// Returns 1 if odd
-5 % 2
+5 % 2;
 =&gt; 1
 ```</p>
 </li>
 </ul>
 </li>
-<li>The Math object<ul>
-<li>There are number of useful, more advanced math operations available to us as part of the Math object</li>
-<li>Example:<pre><code class="lang-javascript"><span class="hljs-comment">// Generates a random decimal between 0 and 1.</span>
-<span class="hljs-built_in">Math</span>.random();
-</code></pre>
-</li>
-<li>Other useful functions...<ul>
-<li>[ADD]</li>
-<li>Visit <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank">MDN</a> to see more.</li>
+<li><p>The Math object</p>
+<ul>
+<li>There are number of useful, more complex math operations available to us as part of the Math object</li>
+<li>Examples:
+```javascript
+// Math.random(): Returns a random decimal between 0 and 1.
+Math.random();</li>
 </ul>
-</li>
+<p>// Math.floor(n): Returns the largest integer less than or equal to a number.
+Math.floor( 3.14 )
+=&gt; 3</p>
+<p>// .random() and .floor() often used in tandem.
+// Returns a random whole number between 1 and 10.
+Math.floor(Math.random() * 10) + 1
+```</p>
+<ul>
+<li>See more @ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank">MDN</a>.</li>
 </ul>
 </li>
 <li>NaN</li>
@@ -617,29 +649,84 @@
   <span class="hljs-keyword">var</span> greeting = <span class="hljs-string">&quot;Hi there!&quot;</span>;
 </code></pre>
 </li>
-<li>Escape sequences<ul>
-<li>[ADD]</li>
+<li><p>Escape sequences</p>
+<ul>
+<li>Sometimes you will need to use special characters or formatting in strings that can&apos;t be entered the same way as you would in a word processor. In these cases, you use &quot;escape sequences&quot;.</li>
+<li>Examples:
+```javascript
+// &quot;\n&quot; = new line
+&quot;Hello\nGoodbye&quot;
+=&gt;&quot;Hello&quot;
+=&gt;&quot;Goodbye&quot;</li>
+</ul>
+<p>// &quot;\t&quot; = tab
+&quot;\tOnce upon a time...&quot;
+=&gt;&quot;     Once upon a time...&quot;
+```</p>
+<ul>
+<li>More examples <a href="http://www.javascriptkit.com/jsref/escapesequence.shtml" target="_blank">here</a>.</li>
 </ul>
 </li>
-<li>Concatenation<ul>
-<li>You can join strings using the <code>+</code> operator.<pre><code class="lang-javascript">  <span class="hljs-keyword">var</span> city = <span class="hljs-string">&quot;Washington, &quot;</span>;
-  <span class="hljs-keyword">var</span> state = <span class="hljs-string">&quot;DC&quot;</span>;
-  <span class="hljs-keyword">var</span> location = city + state;
-  <span class="hljs-comment">// =&gt; &quot;Washington, DC&quot;</span>
+<li><p>Concatenation</p>
+<ul>
+<li>Join strings using <code>+</code>.<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> city = <span class="hljs-string">&quot;Washington, &quot;</span>;
+<span class="hljs-keyword">var</span> state = <span class="hljs-string">&quot;DC&quot;</span>;
+<span class="hljs-keyword">var</span> location = city + state;
+<span class="hljs-comment">// =&gt; &quot;Washington, DC&quot;</span>
 </code></pre>
 </li>
-<li>You can&apos;t use other math operators on strings.<ul>
-<li>[ADD]</li>
+<li>You can&apos;t use other math operators on strings.
+```javascript
+// When using the &quot;-&quot; operator, the operands are treated as numbers.
+&quot;hamburger&quot; - &quot;ham&quot;
+=&gt; NaN</li>
+</ul>
+<p>// Same goes for multiplication and division.
+&quot;hamburger&quot; * 3
+=&gt; NaN
+```</p>
+</li>
+<li><p>String methods</p>
+<ul>
+<li>Javascript comes with methods you can use to inspect and modify strings.</li>
+<li>Examples:
+```javascript
+// .search(): find the starting index of a string value.
+var greetings = &quot;Hi there friend!&quot;;
+greetings.search( &quot;friend&quot; );
+=&gt; 9</li>
+</ul>
+<p>// .slice(): return and store a portion of a string.
+var greetings = &quot;Hi there friend!&quot;;
+var buddy = greetings.slice( 9, 15 );
+=&gt; &quot;friend&quot;
+```</p>
+<ul>
+<li>More examples <a href="http://www.w3schools.com/js/js_string_methods.asp" target="_blank">here</a>.</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>Methods: substring, slice, toUpperCase, etc.<ul>
-<li>[ADD]</li>
+<h3 id="math-with-numbers-strings">Math with Numbers &amp; Strings</h3>
+<ul>
+<li>Math can get weird when your numbers are in string form.
+```javascript
+// In some cases Javascript is helpful and converts strings to numbers in the correct way.
+&quot;3&quot; - &quot;2&quot;
+=&gt; 1</li>
 </ul>
-</li>
-</ul>
-<h2 id="booleans-5min">Booleans (5min)</h2>
+<p>// ...but sometimes it doesn&apos;t. In this example, the + operator acts as if it&apos;s concatenating two strings.
+&quot;3&quot; + &quot;2&quot;
+=&gt; 32</p>
+<pre><code>
+- When in doubt, can convert data types that should be numbers using `parseInt()`.
+```javascript
+// parseInt converts a string to a number value, if available.
+parseInt( &quot;3&quot; );
+=&gt; 3
+
+parseInt( &quot;burrito&quot; );
+=&gt; NaN
+</code></pre><h2 id="booleans-5min">Booleans (5min)</h2>
 <ul>
 <li>True, False</li>
 <li>Comparisons (==, ===, &lt;, &gt;)<ul>
@@ -678,20 +765,44 @@
 <li>Unordered, key-value based collections.</li>
 <li>Only a brief mention since they&apos;ll be covered on Thursday.</li>
 </ul>
-<h1 id="variables">Variables</h1>
+<h1 id="syntax-variables">Syntax &amp; Variables</h1>
 <h2 id="syntax-5min">Syntax (5min)</h2>
 <ul>
 <li>camelCase</li>
-<li>semicolons</li>
-<li>// Comments</li>
+<li>semicolons<ul>
+<li>General practice is to end ever line with a semi-colon.</li>
+<li>Technically don&apos;t need them. Usage depends on the developer.</li>
+<li>Rare cases where lack of semicolons will cause your code to fail.<ul>
+<li>[WHAT ARE THEY?]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>// Comments<ul>
+<li>[WHAT ARE GOOD COMMENTING PRACTICES?]</li>
+<li>[WHAT ARE SOME GOOD EXAMPLES? BAD EXAMPLES?]</li>
+</ul>
+</li>
+<li>(Mention indenting code? Not Javascript-specific but readability is key!)</li>
 </ul>
 <h2 id="semantic-naming-5min">Semantic Naming (5min)</h2>
 <ul>
-<li>The purpose of a variable needs to be evident in the name<ul>
-<li>Nope: var x = 5;</li>
-<li>Yup: var myFavoriteNumber = 5;</li>
+<li>Q: Which of these would you say is the best named variable? Why?<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">var</span> red = <span class="hljs-string">&quot;red&quot;</span>;
+<span class="hljs-keyword">var</span> myFavoriteAnimal = <span class="hljs-string">&quot;jackalope&quot;</span>;
+</code></pre>
+</li>
+<li>The purpose of a variable needs to be evident in the name.<ul>
+<li>Nope: <code>var x = 5;</code></li>
+<li>Yup: <code>var myFavoriteNumber = 5;</code></li>
 </ul>
 </li>
+<li>The name of a variable cannot be tied to a particular value. What if it changes?<ul>
+<li>Nope: <code>var red = &quot;red&quot;</code></li>
+<li>Yup: <code>backgroundColor = &quot;red&quot;</code></li>
+</ul>
+</li>
+<li>Sounds simple, but so many people don&apos;t follow this simple rule.</li>
 </ul>
 <h2 id="memory-allocation-5min">Memory Allocation (5min)</h2>
 <ul>
@@ -704,9 +815,8 @@
 </ul>
 <h1 id="break-10min">BREAK (10min)</h1>
 <h1 id="coding-exercise-2-20min">CODING EXERCISE #2 (20min)</h1>
-<ul>
-<li>???</li>
-</ul>
+<h1 id="homework">Homework</h1>
+<p><a href="https://github.com/ga-dc/js-basics-hw" target="_blank">https://github.com/ga-dc/js-basics-hw</a></p>
 
                     
                     </section>
