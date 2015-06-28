@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.3" data-basepath="../.." data-revision="Sun Jun 28 2015 02:06:13 GMT+0000 (UTC)">
+    <div class="book" data-level="1.3" data-basepath="../.." data-revision="Sun Jun 28 2015 11:54:17 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -603,9 +603,12 @@
 <p>There are 130+ tags and thousands of special characters, but you&apos;ll only use a few of them 99% of the time</p>
 <p><a href="http://ga-dc.github.io/html_tag_matching/" target="_blank">http://ga-dc.github.io/html_tag_matching/</a></p>
 <ul>
+<li>What is the difference between:<ul>
 <li>head</li>
 <li>header</li>
 <li>heading</li>
+</ul>
+</li>
 </ul>
 <h2 id="semantics-vs-style">Semantics vs style</h2>
 <ul>
@@ -664,13 +667,20 @@ www2.warnerbros.com/spacejam/movie/jam.htm</p>
 <h1 id="break">Break!</h1>
 <h2 id="wrapping-up">Wrapping up</h2>
 <ul>
+<li><code>&lt;img src /&gt;</code> and <code>&lt;a href&gt;</code><ul>
+<li>Attributes modify the element</li>
+</ul>
+</li>
 <li><code>&lt;div&gt;</code> and <code>&lt;span&gt;</code><ul>
 <li>Elements to use when you&apos;re not sure what else to use</li>
 </ul>
 </li>
-<li><code>file://</code> vs <code>http://</code></li>
-<li><code>&lt;img src /&gt;</code> and <code>&lt;a href&gt;</code><ul>
-<li>Attributes modify the element</li>
+<li><code>&lt;iframe /&gt;</code><ul>
+<li>A &quot;window&quot; to another webpage</li>
+</ul>
+</li>
+<li><code>file://</code> vs <code>http://</code><ul>
+<li><code>file</code> looks on the current computer for a file; <code>http</code> makes a request to another computer</li>
 </ul>
 </li>
 <li>Absolute vs relative paths<ul>
@@ -695,18 +705,61 @@ www2.warnerbros.com/spacejam/movie/jam.htm</p>
 <ul>
 <li>Using CSS<ul>
 <li><a href="http://ga-dc.github.io/belair_biography/belair.css" target="_blank">http://ga-dc.github.io/belair_biography/belair.css</a></li>
-<li>Selectors, properties, and values</li>
+<li>Anatomy<ul>
+<li>Selectors<ul>
+<li>&quot;Select&quot; an element for modification</li>
+</ul>
+</li>
+<li>Properties<ul>
+<li>The thing being modified</li>
+</ul>
+</li>
+<li>Values<ul>
+<li>To what the property is being set</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Colors<ul>
 <li>RGB / Hex</li>
+<li>A color is represented like this: <code>#ff00ff</code><ul>
+<li>That&apos;s actually 3 values squished together<ul>
+<li>Each pixel has 3 lights: red, blue, green</li>
+<li>The first two characters say how bright the red should be, then blue, then gree</li>
+<li>This is in the hexadecimal, or base-16, system. The minimum is 00, and the maximum is <code>ff == 16 * 16 == 256</code></li>
+</ul>
+</li>
+<li><code>ff00ff</code> means &quot;red is full-blast, green is off, and blue is full-blast&quot;<ul>
+<li>That is: purple</li>
+</ul>
+</li>
+<li>Could also be written as <code>f0f</code>. <code>abc</code> means <code>aabbcc</code></li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<h2 id="putting-it-all-together">Putting it all together</h2>
+<ul>
 <li>HTML is function, CSS is form, JS is behavior</li>
 <li>Inspect in Chrome dev tools</li>
 </ul>
 <h2 id="homework">Homework</h2>
 <p><a href="https://github.com/ga-dc/html_resume" target="_blank">https://github.com/ga-dc/html_resume</a></p>
+<h2 id="quiz-questions">Quiz Questions</h2>
+<ul>
+<li>Which of the following is the correct way to center a div?<ul>
+<li><code>&lt;center&gt;&lt;div&gt;&lt;/div&gt;&lt;/center&gt;</code></li>
+<li><code>&lt;div style=&quot;text-align:center;&quot;&gt;&lt;/div&gt;</code></li>
+<li><code>div{ margin-left:auto; margin-right:auto; }</code></li>
+<li><code>div{ position:relative; left:50%; }</code></li>
+</ul>
+</li>
+<li>Why do we write <code>&lt;img /&gt;</code> and not <code>&lt;img&gt;&lt;/img&gt;</code>?</li>
+<li>Why is it important to keep semantics (HTML) separate from style (CSS)?</li>
+</ul>
 
                     
                     </section>
