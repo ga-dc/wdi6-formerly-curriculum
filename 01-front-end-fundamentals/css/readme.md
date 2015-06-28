@@ -1,14 +1,12 @@
 # CSS
 
 ## LO's
-// I'd revise these LOs to be like:
-// Define the following terms: css rule, selector, declaration, property, and value
-// Describe the syntactic relationship between these components in CSS
+- Define the following terms: css rule, selector, declaration, property, and value
+- Describe the syntactic relationship between these components in CSS
 - Describe the syntactical and functional relationship between selectors, properties, and values
 - Differentiate between stylesheets, styles in the head, in-line styles
 - describe "cascading" and CSS specificity
-// Use tag name selectors to style all elements of a given tag on a page
-- Style all elements of a particular HTML element on a web page
+- Use tag name selectors to style all elements of a given tag on a page
 - Describe the difference between class and id selectors
 - Apply styles to specific elements by selecting elements with classes and ids
 - Differentiate between padding border and margin using the box model
@@ -16,9 +14,7 @@
 ## Opening Framing (3 min)
 > Although some of this may be review from the prework, repetition is key to becoming a good programmer!
 
-Wouldn't it be nice to make our webpages look schnazzy? Enter CSS. There is such a wide breadth of things to learn about CSS and honestly, you could probably teach a whole 12 weeks to understand all the capabilities, nuances and subtleties. So we'll only be scratching the surface with it, but I encourage you to experiment with CSS on your own. As you consistently use CSS you realize that it is both awesome and frustrating to utilize.
-
-// the last sentence feels a bit out of place, maybe when fleshed out in person it makes more sense?
+Wouldn't it be nice to make our webpages look schnazzy? Enter CSS. There is such a wide breadth of things to learn about CSS and honestly, you could probably teach a whole 12 weeks to understand all the capabilities, nuances and subtleties. So we'll only be scratching the surface with it, but I encourage you to experiment with CSS on your own. As you consistently use CSS you realize, while frustrating, becomes awesome to utilize.
 
 [family guy CSS gif](https://i.imgur.com/Q3cUg29.gif)
 
@@ -47,14 +43,15 @@ Let's throw some dummy content into HTML inside our `index.html`:
 </html>
 ```
 
-// I think at some point here, or before, you should start defining terms, and have them whiteboarded
-// something like here: http://www.w3schools.com/css/css_syntax.asp
+*Whiteboard definitions as they come up*
 
 So one way we can style elements in HTML is in the tag itself. These are called inline-styles:
 
 ```html
 <p style="background:blue"></p>
 ```
+> note the above is a declaration. A declaration is a property and a value.
+
 Blech even just writing this out feels miserable. Why do you guys think I feel miserable about this?
 
 ### T & T (3m)
@@ -142,7 +139,7 @@ Finally to select an element with an id you use `#`. I'm going to change the bac
 }
 ```
 
-// make a list of the most common selectors
+*whiteboard common selectors as well as let them know about references at the bottom of the page*
 
 ## CSS Specificity (20m)
 If I change the css selector from `p.red` back to `.red` you'll notice that the paragraph element with the id of green is still green. This is because of CSS Specificity. While CSS cascades from top to bottom. The CSS that is applied depends on Specificity as well. Take the following example:

@@ -1,27 +1,29 @@
 # GA 101
 
-- 9:00 - 9:10: Introduce instructors and agenda
-- 9:10 - 9:45: Introduce GA
-  - Space rules
-  - Tour(?)
-  - Staff
-- 9:45 - 10:00: Split into pods, then break, then come back to pods
-- 10:00 - 10:30: Pods
-  - Tour(?)
-  - Round 1
-    - Who are you?
-    - Where you from?
-    - What did you do?
-  - Round 2
-    - 2 truths and a lie
-  - Round 3
-    - What are you nervous/excited about?
-- 10:30 - 12:00: Intro to WDI
-- 12:00 - 12:30: Icebreakers with in separate classrooms with that room's pods
+# 9:00 - 9:10, Robin + Instructors
+## Introduce the instructors and the agenda
 
------
+### On whiteboard: Learning objectives
+- Get to know each other
+- Determine guiding principles for our class culture
+- Identify the Big Goal of the course
+- List the core expectations of instructors and students
+- Map out the topics and technologies of web development, and identify which we will and will not cover
+- List the main "Do" and "Do nots" for the class and the space
 
-## (Brain): Intro to GA and Outcomes
+### On whiteboard: Agenda
+- Introduce Instructors
+- Introduce GA
+- Introduce the Staff
+- Introduce the Space
+- Introduce each other
+- Introduce WDI
+- Lunch!
+
+...and breaks every 45-ish minutes.
+
+# 9:10 - 9:35, Brian + Staff
+## Introduce GA
 
 - Who takes this class? Three archetypes
   - Wants to become a developer that we would want to hire. Plans on using Outcomes to pursue job placement.
@@ -61,24 +63,62 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
 ### Refund policy
   - Up to W07D01, you may drop and get a refund on a sliding scale
 
-## (Andy) Groth Mindset
+# 9:35 - 9:45, Ashley
+## Introduce the space
 
-- For many students, this is the hardest thing they've ever done in their lives.
+# 9:45 - 9:50, Robin
+## Introduce the pods
+
+# 9:50 - 10:30, Instructors
+## Instructors will get to know their pods and take them on a tour of the space
+
+- **Take the elevators up, and the stairs down, to prevent traffic jams**
+- **Please use the following guide, provided by Ashley**
+  - TODO
+- Around the time of your tour, please get to know your pod with the following:
+  - Break as necessary
+  - Get to know each other
+    - Round 1
+      - What's your name?
+      - Where are you from?
+      - What did you do?
+    - Round 2
+      - 2 truths and a lie
+    - Round 3
+      - What are you nervous/excited about?
+- Please refer to the following timetable for how the tours will be staggered:
+
+|Time|Floor 8|Floor 12|
+|---|
+|9:50|Ada, Bash|-|
+|10:00|C, Dart|Ada, Bash|
+|10:10|Elixir, Fortran|C, Dart|
+|10:20|-|Elixir, Fortran|
+
+
+# 10:30 - 10:40, Andy
+## Growth Mindset
+[Growth Mindset] (https://www.youtube.com/watch?v=-_oqghnxBmY_)
+- For many students, this is the most mentally challenging thing they've ever done in their lives.
   - This is the first time they've been bad at something.
+  - How many people have failed at something? I imagine that everyone has. At some point in this course you will falter. But that's OK! It's how we bounce back, persevere and learn from it that allows our mind to grow.
+  - [Emotional Cycle of Change](https://s-media-cache-ak0.pinimg.com/736x/3c/f4/fa/3cf4faeb2078f4f4fbb9265444bde2e0.jpg)
+    - uninformed optimism
+    - informed pessimism
+    - determination/commitment or giving up
+    - hopeful realism
+    - informed optimism
+
+- Just memorizing stuff won't help you. Learning HOW to code will.
   - You can't BS your way through code.
-    - The fundamental standard of programming: It either works, or it doesn't. No amount of sweet-talking will make it work.
-- Memorizing stuff won't help you.
-  - Programming is a mindset. It's about confidence. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it, and I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
+  - The fundamental standard of programming: It either works, or it doesn't. No amount of sweet-talking will make it work.
+  - Programming is a mindset. It's about confidence and being open to failure. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it. AND I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
 
-### Legos
+- So many students throughout my time here say, "I don't know how to do that." or some variation of that. Many of you will say it. Just add "...yet" to it.
+- We as instructors anticipate that you will run into hardships. When you do, don't run for the hills! Buckle down and work through the problem. Embrace the fact that the hardship will make you a better coder. Endure the struggle to grow and develop your mind.
 
-- Inventing Legos is like building a program
-  - Have to break it apart
-  - How to make a roof out of bricks
-  - How to be resourceful
-  - Ultimately, you can't be a Lego designer just by looking at people's stuff
-
-## (Robin) Immersive course
+# 10:45 - 10:55, Robin
+## What is an immersive course?
 
 ### WE DO
 
@@ -108,36 +148,77 @@ T&T: What's different about an immersive environment?
 
 Note that none of the above mention anything about code.
 
-## (Adrian) What is asking for help?
+# 11:00 - 11:05, Adrian
+## What is asking for help?
 
-- Ask for help.
-  - This is the thing students find the hardest, and the thing that ultimately determines whether or not they will be successful in this class.
-  - Without fail, the students who do not ask for help do the poorest in the class.
+- This is the thing students find the hardest, and the thing that ultimately determines whether or not they will be successful in this class.
+- Without fail, the students who do not ask for help do the poorest in the class.
 
 ### YOU DO
 
 I'm going to ask you to write something on a letter-sized piece of paper. You are allowed no more than 12 words. Please write big enough that someone can read your paper from a few feet away.
 
-When you are done, you will put the paper face-down on your table and leave the room for a 10-minute break.
+When you are done, you will put the paper face-down on your table and leave the room. We'll start again at 11:15.
 
 Now, close your eyes. I want you to write what first comes to mind when I ask you to think of a time you had to ask for help.
 
 *(Collect papers, tape to board for students to review as they re-enter.)*
 
-# Break!
+# 11:05 - 11:10, Adrian
+## Break
+
+# 11:10 - 11:15, Adrian
+## Asking for help
 
 - We have all asked for help. There's no shame in it. Feeling afraid to ask for help will be the biggest detriment in this class.
 - What makes asking for help effective?
   - Asking a clear problem. "I don't know any of this" isn't a clear problem. "I tried this thing and got this error" is a clear problem.
-  - We will turn you away when the question your asking isn't constructive.
+  - We will turn you away when:
+      - The question you're asking isn't constructive
+      - It's clear you haven't made an effort to find the answer
+          - First, try it yourself
+          - Then, Google it
+          - Then, ask your neighbor
+          - Finally, ask an instructor
 
-## (Matt) Student Constitution
+# 11:20 - 11:30, Matt
+## Student Constitution
 
-## We do
+Let's talk about our social contract.  What are your expecations?  What does respect mean to you?
 
-T&T: Come up with items for Constitution. Put on board on post-its. Sign. We take picture.
+### Write, Group, Share: What are your rights and responsibilities?
 
-## Class Content (Adam)
+Prompts:
+- We want a community that...
+- What are your rights and responsibilities?
+- What does respect mean to you?
+
+Some items from past constitutions:
+- empathy/respect, how to build it
+- helping each other
+- personal hygiene
+- tardiness
+- personal effort
+
+## Write (2 min)
+
+- Individuals write on post-its
+
+## Group (5 min)
+
+- Get in group
+- Share on Whiteboard
+- Vote for 2 (prefer one right, one responsibility)
+
+### Share/Record it! (~2 min @ group)
+
+- Two representatives from each group (one for each) write these on the front whiteboard & describe/clarify
+  - please write legibly, this is our record.
+- Picture
+- Slack it out
+
+# 11:35 - 11:45, Adam
+## Class content
 
 ### How the Class is Built
 
@@ -200,35 +281,48 @@ Units/Projects:
 * Project 4 - Portfolio project
 
 
-## (Jesse) Logistics
+# 11:50 - 12:00, Jesse
+## Class logistics
 
 - Pods
   - Class is split alphabetically into 6 pods
   - There will be 3 pods per classroom
   - The pods that are together will be rotated after every project so that each pod will have been with each other pod
-  - Each pod will have one instructor for the whole class
-    - The instructor with whom you'll do one-on-ones
+  - Each pod will have one instructor for the duration of the course.
+    - This is the instructor with whom you'll do one-on-ones
 - Class staggering
   - Usually, a lesson will be taught twice by the same instructor. So I'll teach HTML this afternoon to one class, and then HTML tomorrow to the other.
-  - We'll all have the same lessons and the same homework. Who was what when will just vary by a day or two between the classes.
+  - We'll all have the same lessons and the same homework. Who had what when will just vary by a day or two between the classes.
 - One-on-ones
   - Each student will be scheduled one half-hour slot every two weeks during which they will meet with an instructor.
   - Talk about whatever needs to be talked about
-  - Should you need additional meetings with instructors, just ask!
+  - Should you need additional meetings with instructors, each instructor has open one-on-one time once per week:
+    - **Jesse**: Thursday @ 5pm - 5:30pm
 - Office Hours
   - Led exclusively by TAs
-  - Usually 4 nights a week, until 7:30
+    - These TAs are outstanding former students from the previous class
+  - Usually 4 nights a week, from 5:30 until 7:30
 - Instructor Communication
   - Instructors **may not** respond to code questions on Slack nor in-person after 6pm each night, even if we're in the office
-  - Should you have a logistical question, you may contact the **Student Communication Instructor**
+  - Should you have a logistical question, you may contact the **Student Communication Manager**
+    - This is Robin.
   - All code questions should go to TAs
-  - *Why are we so restrictive about this?*
+    - **Question** why would we do this?
+    - Answer: Work Life Balance.
   - Student communication manager
     - If you have logistical questions or concerns, contact me (Robin)
 - Homework and assessments
   - You'll probably have one homework per lesson, so if you have two lessons in a day, that's two homeworks, graded separately.
   - Homework will be graded only for *completeness*. That is, you actually attempted it yourself and didn't copy code. If you want more feedback, you'll need to ask for it.
-  - There will be one homework per week on which your pod leader will leave comments whether you like it or not.
+  - There will be one homework per week on which your pod leader will leave comments.
+  - **Question**: Is it a problem that you'll likely be able to see solutions to homework assignments before you have to do them yourself?
+- Absences and Tardies 
+  - Having more than 4 absences disqualifies you for Outcomes
+  - 4 Tardies == 1 Absence
+  - Class starts at 9:00am
+  - If you arrive after 9:00am, please wait outside the classroom until the next break.
+    - You will be marked tardy.
+    - We will likely be doing a morning exercise, which you'll be able to find in the class repo.
 
 ### The schedule
 - 9-10 Warmup
@@ -242,16 +336,20 @@ Units/Projects:
 
 - Friday
   - From 9 to 11 will be optional review and an optional mini-lesson
+    - mini-lessons will cover advanced, but orthoganal material to the course.
     - If you don't want to come in until 11, then don't. But if you're struggling, the onus is on you to take advantage of the opportunity.
     - Quizzes will be weekly at 11
   - Lab most of day
 
 ### Homework app
 
-### WE DO
+# 12:05, Robin
+## Direct the pods to their classrooms
 
-Turn and talk: What questions and concerns do you have?
+# 12:10 - 12:30, Instructors
+## Icebreakers by classroom
 
-Then, I call on the class for questions.
+- Adam leads + Adrian and Andy: Peanut Butter (Classroom 2: Ada, Bash, C)
+- Robin leads + Jesse and Matt: Jelly (Classroom 1: Dart, Elixir, Fortran)
 
-# Break and split into classrooms
+# 12:30, Lunch
