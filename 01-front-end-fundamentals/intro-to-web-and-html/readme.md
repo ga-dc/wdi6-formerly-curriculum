@@ -127,9 +127,10 @@ There are 130+ tags and thousands of special characters, but you'll only use a f
 
 http://ga-dc.github.io/html_tag_matching/
   
-- head
-- header
-- heading
+- What is the difference between:
+  - head
+  - header
+  - heading
 
 ## Semantics vs style
 
@@ -184,11 +185,14 @@ http://ga-dc.github.io/belair_biography/
 # Break!
 
 ## Wrapping up
-- `<div>` and `<span>`
-  - Elements to use when you're not sure what else to use
-- `file://` vs `http://`
 - `<img src />` and `<a href>`
   - Attributes modify the element
+- `<div>` and `<span>`
+  - Elements to use when you're not sure what else to use
+- `<iframe />`
+  - A "window" to another webpage
+- `file://` vs `http://`
+  - `file` looks on the current computer for a file; `http` makes a request to another computer
 - Absolute vs relative paths
   - **Show** that `http://ga-dc.github.io/belair_biography/bball.jpg` and `bball.jpg` both work
     - First is absolute, second is relative
@@ -208,12 +212,38 @@ https://github.com/ga-dc/dc_directory_tree
 
 - Using CSS
   - http://ga-dc.github.io/belair_biography/belair.css
-  - Selectors, properties, and values
+  - Anatomy
+    - Selectors
+      - "Select" an element for modification
+    - Properties
+      - The thing being modified
+    - Values
+      - To what the property is being set
   - Colors
     - RGB / Hex
-- HTML is function, CSS is form, JS is behavior
-- Inspect in Chrome dev tools
+    - A color is represented like this: `#ff00ff`
+      - That's actually 3 values squished together
+        - Each pixel has 3 lights: red, blue, green
+        - The first two characters say how bright the red should be, then blue, then gree
+        - This is in the hexadecimal, or base-16, system. The minimum is 00, and the maximum is `ff == 16 * 16 == 256`
+      - `ff00ff` means "red is full-blast, green is off, and blue is full-blast"
+        - That is: purple
+      - Could also be written as `f0f`. `abc` means `aabbcc`
+
+## Putting it all together
+  - HTML is function, CSS is form, JS is behavior
+  - Inspect in Chrome dev tools
 
 ## Homework
 
 https://github.com/ga-dc/html_resume
+
+## Quiz Questions
+
+- Which of the following is the correct way to center a div?
+    - `<center><div></div></center>`
+    - `<div style="text-align:center;"></div>`
+    - `div{ margin-left:auto; margin-right:auto; }`
+    - `div{ position:relative; left:50%; }`
+- Why do we write `<img />` and not `<img></img>`?
+- Why is it important to keep semantics (HTML) separate from style (CSS)?
