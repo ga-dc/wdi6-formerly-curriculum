@@ -88,12 +88,12 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
       - What are you nervous/excited about?
 - Please refer to the following timetable for how the tours will be staggered:
 
-|Time|Floor 8|Floor 12|
-|---|
-|9:50|Ada, Bash|-|
-|10:00|C, Dart|Ada, Bash|
-|10:10|Elixir, Fortran|C, Dart|
-|10:20|-|Elixir, Fortran|
+| Time  | Floor 8         | Floor 12        |
+|-------------------------------------------|
+| 9:50  | Ada, Bash       |                 |
+| 10:00 | C, Dart         | Ada, Bash       |
+| 10:10 | Elixir, Fortran | C, Dart         |
+| 10:20 |                 | Elixir, Fortran |
 
 
 # 10:30 - 10:40, Andy
