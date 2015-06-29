@@ -37,10 +37,7 @@ Javascript is considered to be THE "programming language of the web."
 Before we dive into "Why?", let's first answer: what is a programming language?
 - Q: What are the classes thoughts?
   - Especially when compared to a markup language like HTML.
-- Lets us...
-  - Act on and display information.
-  - Control our computer.
-  - Do things!
+- Lets us do things! Act on information.
 - Javascript enables us to do all that in a browser.
   - Using the tools you learned in the pre-work (e.g., data types, loops, functions).
 
@@ -48,11 +45,11 @@ Why is it the dominant programming language of the web?
 - Not because it's "the best." It has its problems...
   - Some say it's messy -- a lot of syntax! -- compared to other languages like Ruby and Python.
   - Slow in its initial form.
-- It wasn't popular from the get go...
+- Gradual rise in popularity
   - Created in 1995 by Brendan Eich (in only 10 days!) for the Netscape browser.
   - Was considered to be inferior to established languages like Java.
-- Gained support of Google.
-  - Utilized Javascript's AJAX feature in main apps like Mail and Maps.
+  - Embraced by Google. Made JS faster through Chrome's V8 virtual machine. Use AJAX in major web apps like Gmail and Maps.
+  - Rise of frameworks and libraries like Angular and Backbone make it easier to create apps.
 - Now it's used by nearly every website.
   - Cross-browser support.
   - Doesn't require any additional software to run in the browser.
@@ -295,7 +292,8 @@ Oftentimes you'll be producing boolean values when making comparisons or logical
 
 ## Undefined & Null (5min)
 Values that indicate the lack of a meaningful value.
-- Anybody else find that weird? How is there more than data type for nothing?
+- Anybody else find that weird? How is there more than one data type for nothing?
+- Q: What's the difference?
 
 Undefined: automatically applied to a variable with no value  
 
@@ -332,7 +330,7 @@ parseInt( "burrito" );
 # BREAK (10min)
 
 # CODING EXERCISE #1 (20min)
-Temperature conversion: [https://github.com/ga-dc/js-basics-hw](https://github.com/ga-dc/js-basics-hw)  
+Temperature conversion: [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
 
 # Data Structures / Composite Data Types
 
