@@ -124,6 +124,7 @@ they relate.
 ** Insert diagram here **
 
 ### Break (10 minutes)
+
 ### Remote Repositories and Github (30 minutes)
 
 #### Exercise 2: Publish to a remote repository on Github
@@ -156,12 +157,8 @@ Instructor should diagram the clone/push/pull process.
 
 #### Exercise 3: Fork, Clone and create a Pull Request
 
-1. fork the ****** repo to your personal account
-2. clone the repository to your computer
-3. make a change to your local repo, commit it, and push (sync) it to your remote
-4. use github.com to create a pull request to the upstream repository
-5. make additional local changes, and commit/push them to your remote
-6. verify that the pull request is updated
+Visit the [haiku](https://github.com/ga-dc/haiku) repo and follow the instructions
+there.
 
 #### Terms and Concepts (Forking and Pull Requests)
 
@@ -175,7 +172,15 @@ to HW submission.
 ** insert diagram here **
 
 ### Closing
-Review
+
+What problems do we anticipate using git / github?
+Review learning objectives.
+
+## Quiz Questions
+
+1. What are the main components of a git repository and how do they relate?
+2. Describe the steps of the process for contributing to open source software on
+   Github (the same as our homework submission process).
 
 ## Appendix - Git CLI Commands
 
