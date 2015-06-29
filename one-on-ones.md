@@ -8,3 +8,5 @@ To reserve the time, please Slack the instructor. Reservations are first-come, f
     - Thursday, 5 - 5:30pm
 - Robin
     - Wednesday, 5 - 5:30pm
+- Adam
+    - Thursday, 5 - 5:30pm
