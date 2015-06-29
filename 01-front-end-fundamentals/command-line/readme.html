@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Mon Jun 29 2015 17:32:21 GMT+0000 (UTC)">
+    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Mon Jun 29 2015 17:54:49 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -499,7 +499,7 @@
 </code></pre><p><em>Your computer got lost right from the start. </em></p>
 <p><em>Don&apos;t worry about memorizing the commands.  We&apos;ll cover all this again.  Just observe.</em></p>
 <p>Type <code>cd</code>.
-Type <code>pwd -P</code>.  <em>This is YOUR home dir.  We&apos;ll spend a lot of time here.  Once again, don;t worry about notes, we come back here, more slowly, in a second.</em>
+Type <code>pwd -P</code>.  <em>This is YOUR home dir.  We&apos;ll spend a lot of time here.  Once again, don&apos;t worry about notes, we come back here, more slowly, in a second.</em>
 Now type: <code>$ ls</code></p>
 <p>That is a listing of the files in this folder or directory.</p>
 <p>_&quot;Let&apos;s confirm that.&quot; <code>open .</code> <split screen="" w="" Terminal="" and="" Finder="">
@@ -523,37 +523,30 @@ Compare.</split></p>
 <p>Type <code>$ give me rice</code> again.</p>
 <p>STWC: What did the computer know about giving me rice?
 Nada.  Zip.  Zero. Zilch.</p>
-<h3 id="lesson-one-you-have-to-start-with-something-the-computer-already-knows-and-build-on-that">Lesson One.  You have to start with something the computer already knows and build on that.</h3>
-<ul>
-<li>Build on knowledge.</li>
-</ul>
+<h3 id="lesson-one-start-with-what-you-know">Lesson One. Start with what you know.</h3>
+<p>You build upon what you know.</p>
+<p>You also have to start with something the computer already knows and build on that.</p>
 <p>Then I had you type <code>cd</code>.  Why?  It&apos;s ok to be wrong.  That&apos;s how we move forward.
 Leading questions.</p>
-<h3 id="lesson-two-you-have-to-care-about-where-you-are">Lesson Two: You have to care about where you are.</h3>
-<ul>
-<li>Where</li>
-</ul>
+<h3 id="lesson-two-where">Lesson Two: Where?</h3>
+<p>You have to care about <em>where</em> you are.</p>
 <p>Type <code>open .</code></p>
 <p>STWC: What did that do?</p>
 <p>This dot &quot;.&quot;, is a shortcut, an abbreviation for the current dir.  This command opens my current dir in finder.  If I was somewhere else, it would open a different dir.</p>
-<pre><code>cd
-ls
-</code></pre><h3 id="lesson-three-i-control-it-by-telling-it-precisely-what-i-want">Lesson Three: I control it.  By telling it <strong>precisely</strong> what I want.</h3>
-<ul>
-<li>Precise</li>
-</ul>
+<pre><code>ls # lists the current dir
+</code></pre><h3 id="lesson-three-be-precise">Lesson Three:  Be precise.</h3>
+<p> I control the computer, by telling it <strong>precisely</strong> what I want.</p>
 <p><em>This will become more obvious as you go through the exercises.  But I want to highlight that <strong>everything</strong> you type in is important.</em></p>
-<p>Type <code>ls -l</code>
-Type <code>ls -w</code></p>
+<ul>
+<li>Type <code>ls -l</code> and press enter</li>
+<li>Type <code>ls -w</code> and press enter</li>
+</ul>
 <p>The same files.  Different view.</p>
 <h2 id="we-do-the-terminal">We do:  The Terminal</h2>
-<p>Think, Pair Share:</p>
-<p>The terminal:</p>
 <blockquote>
-<p>What do you think this is?<br>What does it do?
-Have you used something similar?</p>
+<p>Why would we use it, instead of the pretty GUI?</p>
 </blockquote>
-<p>Walk through following steps (without setup/clarification)</p>
+<p>Walk through the following steps (without setup/clarification)</p>
 <ol>
 <li><p>Type <code>ls</code></p>
 <ul>
@@ -622,18 +615,35 @@ ls
 <li><p>The command line is an interface to your operating system&apos;s services.</p>
 </li>
 <li><p>What is a <strong>GUI</strong>?</p>
+<ul>
+<li>Graphical User Interface.  The typical OSX or Windows interface.</li>
+<li>[Introduction of the Macintosh]( <a href="https://www.youtube.com/watch?v=axSnW-ygU5g&amp;noredirect=1" target="_blank">https://www.youtube.com/watch?v=axSnW-ygU5g&amp;noredirect=1</a></li>
+</ul>
 </li>
 <li><p>Brief history</p>
 <ul>
-<li><p>Based on Unix</p>
+<li>We started on the command line (keypunch cards)
+-</li>
+</ul>
 </li>
+<li><p>The Terminal</p>
+<ul>
+<li><p>OSX is BSD.  Based on Unix/Linux</p>
+<ul>
 <li><p>A <strong>shell</strong> is a program that interacts with your operating system. The <strong>terminal</strong> runs the shell. Used to be an physical computer. Now just an app.</p>
 </li>
 <li><p>Might look familiar to old folks using old computers: no mouse</p>
 </li>
 </ul>
 </li>
-<li><p>Difference between bash, shell, terminal, CLI</p>
+</ul>
+</li>
+<li><p>Discuss difference between bash, shell, terminal, CLI</p>
+<ul>
+<li>bash is a shell.</li>
+<li>terminal runs a shell</li>
+<li>CLI (command line interface) is the mode.</li>
+</ul>
 </li>
 </ul>
 <hr>
@@ -889,8 +899,8 @@ mkdir sandbox
 <h3 id="10m-we-do-the-dangerous-commands">10m) We do: The dangerous commands</h3>
 <h4 id="rm">rm</h4>
 <pre><code>  cd ~/wdi/sandbox
-    touch hello.txt
-    rm hello.txt
+  touch hello.txt
+  rm hello.txt
 </code></pre><ul>
 <li><p>What does <code>rm</code> stand for?</p>
 </li>
@@ -936,7 +946,7 @@ rm CandyLand
 <h3 id="ding-dong-the-witch-is-dead">Ding Dong the Witch is Dead.</h3>
 <p><a href="https://github.com/ga-dc/to_oz#ding-dong-the-witch-is-dead" target="_blank">https://github.com/ga-dc/to_oz#ding-dong-the-witch-is-dead</a></p>
 <hr>
-<h1 id="closing">Closing</h1>
+<h2 id="closing">Closing</h2>
 <ol>
 <li>What is the absolute path to the default WDI working dir?</li>
 <li>Name 2 unsafe commands</li>
@@ -950,8 +960,11 @@ rm CandyLand
 <li><code>rm</code>, <code>sudo</code></li>
 <li><code>ls --help</code>, <code>man ls</code></li>
 <li>no</li>
-<li>man, --help, google, instructors</li>
+<li>man, --help, google, peers instructors</li>
 </ol>
+<hr>
+<h2 id="homework">Homework</h2>
+<p><a href="https://github.com/ga-dc/command_line_fu" target="_blank">https://github.com/ga-dc/command_line_fu</a></p>
 
                     
                     </section>
