@@ -374,8 +374,8 @@ Play with the commands and figure out:
 
 -	Identify a useful flag for each command
 
-|A|B|C|D|
-|-|-|-|-|
+|1|2|3|4|
+|---|---|---|---|
 |`touch`	|`cat`		|`pwd`		|`history`	|
 |`mkdir`	|`head`		|`tree`		|`mv`		|
 |`ls`		|`tail`		|`open`		|`cp`		|
