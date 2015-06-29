@@ -73,7 +73,7 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
 ## Instructors will get to know their pods and take them on a tour of the space
 
 - Adam - Front Lounge
-- Adrian - Room 1 
+- Adrian - Room 1
 - Robin - Room 2
 - Matt - Black wall near room 2 (push tables together)
 - Jesse- Back Lounge
@@ -203,7 +203,7 @@ We are going to take a few minutes to think about mutual respect.  Look around. 
 What does mutual respect mean to us?  What are your expecations?  I expect we'll find that we have much in common, but let's be clear about it.  Let's set ourselves up for success.
 
 
-### Materials: post-its, pens, whiteboards
+### Materials: post-its, pens, whiteboards, timer
 
 ### Write, Group, Share: What are your rights and responsibilities?
 
@@ -216,7 +216,7 @@ The end result will be a social contract between all of us.  Not a binding agree
 - This is quiet time, to think and process.  Individuals write on post-its.
 
 Prompt:
-- Write down two (2) rights that you expect from this class.
+- Write down two (2) rights that you expect during this class.
 - Write down two (2) responsibilities that you have; to yourself and your classmates.
 
 Triggers:
@@ -231,18 +231,12 @@ Some items from past constitutions:
 - tardiness
 - personal effort
 
-### Group (5 min)
+### Group/Share (5 min)
 
 - Get into groups
 - Organize post-its on your wall.  Get them on the wall first, then discuss and clarify.
 - Vote for 2 (prefer one right, one responsibility)
-
-### Share/Record it! (~2 min @ group)
-
-- Two representatives from each group (one for each) write these on the front whiteboard & describe/clarify
-  - please write legibly, this is our record.
-- Picture
-- Slack it out
+- Share these 2 preferences in Slack.
 
 # 11:35 - 11:45, Adam
 ## Class content
