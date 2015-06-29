@@ -12,3 +12,5 @@ To reserve the time, please Slack the instructor. Reservations are first-come, f
     - Thursday, 5 - 5:30pm
 - Andy
     - Tuesday 5 - 5:30pm
+- Adrian
+    - Tuesday 5 - 5:30pm
