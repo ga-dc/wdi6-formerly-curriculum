@@ -451,11 +451,12 @@ https://github.com/ga-dc/to_oz
 ###	10m) We do: The dangerous commands
 
 ####	rm
-```
+
+  ```
   cd ~/wdi/sandbox
-	touch hello.txt
-	rm hello.txt
-```
+  touch hello.txt
+  rm hello.txt
+  ```
 
 -	What does `rm` stand for?
 
@@ -511,7 +512,7 @@ https://github.com/ga-dc/to_oz#ding-dong-the-witch-is-dead
 
 ---
 
-#	Closing
+##	Closing
 
 1.	What is the absolute path to the default WDI working dir?
 2. Name 2 unsafe commands
@@ -525,3 +526,9 @@ Answers (think first!):
 3. `ls --help`, `man ls`
 4. no
 5. man, --help, google, instructors
+
+---
+
+## Homework
+
+https://github.com/ga-dc/command_line_fu
