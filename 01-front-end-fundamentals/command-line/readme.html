@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Mon Jun 29 2015 13:32:14 GMT+0000 (UTC)">
+    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Mon Jun 29 2015 15:08:59 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -640,18 +640,6 @@ ls
 <h2 id="lesson-one-start-with-what-it-knows-the-basic-command">Lesson One: start with what it knows.  The basic command.</h2>
 <h3 id="anatomy-of-a-command">Anatomy of a command</h3>
 <ul>
-<li><p>Command</p>
-</li>
-<li><p>Flag</p>
-<ul>
-<li>The command&apos;s options</li>
-</ul>
-</li>
-<li><p>Argument</p>
-<ul>
-<li>The input that&apos;s being processed by the command</li>
-</ul>
-</li>
 <li><p>Example</p>
 <ul>
 <li><p>Give someone a haircut</p>
@@ -664,17 +652,26 @@ ls
 </li>
 </ul>
 </li>
-<li><p><code>haircut --mullet &quot;Billy Ray Cyrus&quot;</code></p>
-</li>
-<li><p><code>-</code> vs <code>--</code></p>
-</li>
+<li><code>haircut --mullet &quot;Billy Ray Cyrus&quot;</code></li>
 </ul>
 </li>
-<li><p>Argument is usually a file</p>
+<li><p>Command: <code>haircut</code></p>
 </li>
-<li><p><code>say &apos;Hello&apos;</code></p>
+<li><p>Flag: <code>-t mohawk</code></p>
+<ul>
+<li>The command&apos;s options</li>
+</ul>
 </li>
-<li><p><code>say -v ?</code></p>
+<li><p>Argument: <code>Matt</code></p>
+<ul>
+<li>The input that&apos;s being processed by the command</li>
+</ul>
+</li>
+<li><p>Other examples</p>
+<ul>
+<li><code>say Hello</code></li>
+<li><code>say -v ?</code></li>
+</ul>
 </li>
 </ul>
 <hr>
@@ -687,23 +684,33 @@ It&apos;s not always that helpful.
 <code>ruby --help</code></p>
 <hr>
 <h2 id="you-do-t-t-1-min">You Do: T&amp;T (1 min)</h2>
-<p>What version of ruby are we using?</p>
+<p>What version of ruby are we using?
+Who wrote ruby?  When?</p>
+<p>You can find this within ruby&apos;s help.</p>
+<p>Discuss <code>ruby --help</code></p>
+<hr>
 <h3 id="namespaces-and-double-dashes">Namespaces and double-dashes</h3>
 <ul>
+<li><p>Discuss <code>--</code> vs <code>-</code></p>
+<ul>
+<li><code>ruby --version</code></li>
+<li><code>ruby -v</code></li>
+</ul>
+</li>
+<li><p>What does <code>ruby</code> do?</p>
+</li>
+<li><p>Keyboard shortcuts, Hot Keys</p>
+<ul>
+<li>Stop a process: Ctrl + c</li>
+<li>Copy/Paste: Cmd + c, Cmd + v</li>
+<li>Clear screen: Ctrl + k</li>
+<li>Front/end of line: Ctrl + a, Ctrl + e</li>
+</ul>
+</li>
 <li><p><code>brew install tree</code></p>
 <ul>
 <li>What does brew do?</li>
 </ul>
-</li>
-<li><p><code>ruby --version</code></p>
-</li>
-<li><p><code>ruby -v</code></p>
-</li>
-<li><p><code>ruby</code></p>
-</li>
-<li><p>Ctrl + C</p>
-</li>
-<li><p>Ctrl + K</p>
 </li>
 </ul>
 <hr>
@@ -725,10 +732,8 @@ It&apos;s not always that helpful.
 </li>
 <li><p>Introduce manuals</p>
 <ul>
-<li><p>Things in brackets are optional</p>
-</li>
-<li><p>Structure of the manual</p>
-</li>
+<li>Things in brackets are optional</li>
+<li>Structure of the manual</li>
 </ul>
 </li>
 </ul>
@@ -770,6 +775,10 @@ It&apos;s not always that helpful.
 <li><p>Mailing addresses: Domestic vs international vs interplanetary vs universe</p>
 </li>
 <li><p><code>open</code> a file using an absolute path, then a relative path</p>
+<ul>
+<li><code>ls</code>: lists current dir</li>
+<li><code>ls ~</code>:  lists you home directory.</li>
+</ul>
 </li>
 </ul>
 <hr>
@@ -826,45 +835,84 @@ It&apos;s not always that helpful.
 </li>
 </ul>
 <hr>
-<h2 id="we-do-our-working-dir">We DO: Our working dir</h2>
+<h3 id="we-do-our-working-dir">We DO: Our working dir</h3>
 <p>Since it&apos;s important to know where we are.  Let&apos;s create a place to do our work.  Our working directory.</p>
 <p>How do we get back to our home dir?
 <code>cd</code> or <code>cd ~</code></p>
 <p>Review home dir.</p>
 <p>Now, let&apos;s create a working dir.  How would I make a dir name &quot;ga&quot;?
 Recommend lower case, separated by underscores, no spaces or special characters.</p>
-<p><code>mkdir ga</code></p>
+<p><code>mkdir wdi</code></p>
 <p>now, we want to work in here.  How do we get there?</p>
-<p><code>cd ga</code></p>
-<p>--</p>
+<p><code>cd wdi</code></p>
+<p>This is the relative path. Starting from where we are, we go down into the <code>wdi</code> dir.
+What is the absolute path?
+  <code>cd ~/wdi</code></p>
+<p>We have 4 major things that we do in class:</p>
+<ul>
+<li>exercises<ul>
+<li>each exercise will be a separate directory in here</li>
+</ul>
+</li>
+<li>lessons (pbj)<ul>
+<li>this is a read-only repository of the WDI lessons.</li>
+</ul>
+</li>
+<li>projects<ul>
+<li>You will work on 4 week-long projects.  They will live here.</li>
+</ul>
+</li>
+<li>sandbox<ul>
+<li>our play area.  For quick exercises.  One-offs.</li>
+<li>If it&apos;s not an assigned exercise, it goes here.</li>
+</ul>
+</li>
+</ul>
+<p>(3 min) Let&apos;s make these now.  When complete, you should see:</p>
+<pre><code>$ tree wdi
+wdi
+&#x251C;&#x2500;&#x2500; exercises
+&#x251C;&#x2500;&#x2500; pbj
+&#x251C;&#x2500;&#x2500; projects
+&#x2514;&#x2500;&#x2500; sandbox
+</code></pre><p>Feel free to create a readme file to describe each directory.</p>
+<p>Suggested commands:</p>
+<pre><code>cd ~/wdi
+mkdir exercises
+mkdir pbj
+mkdir projects
+mkdir sandbox
+</code></pre><p>--</p>
 <h3 id="you-do-to-oz-20-min">You Do: To OZ! (20 min)</h3>
+<p><a href="https://github.com/ga-dc/to_oz" target="_blank">https://github.com/ga-dc/to_oz</a></p>
 <hr>
 <h3 id="10m-we-do-the-dangerous-commands">10m) We do: The dangerous commands</h3>
 <h4 id="rm">rm</h4>
-<pre><code>touch hello.txt
-rm hello.txt
+<pre><code>  cd ~/wdi/sandbox
+    touch hello.txt
+    rm hello.txt
 </code></pre><ul>
 <li><p>What does <code>rm</code> stand for?</p>
 </li>
 <li><p>Why is this &quot;dangerous&quot;?</p>
-<p>cd OZ
+<pre><code>cd ~/wdi/exercises/to_oz/OZ
 mkdir CandyLand
-rm EmeraldCity</p>
-</li>
+rm CandyLand
+</code></pre></li>
 <li><p>Why didn&apos;t it work?</p>
 </li>
 </ul>
-<pre><code>rm -d EmeraldCity
+<pre><code>    rm -d CandyLand
 </code></pre><ul>
 <li>What does <code>-d</code> stand for?</li>
 </ul>
-<pre><code>mkdir CandyLand
-touch CandyLand/judge.txt
-rm -d CandyLand
+<pre><code>    mkdir CandyLand
+    touch CandyLand/judge.txt
+    rm -d CandyLand
 </code></pre><ul>
 <li>Why didn&apos;t it work?</li>
 </ul>
-<pre><code>rm -r CandyLand
+<pre><code>    rm -r CandyLand
 </code></pre><ul>
 <li><p>What does <code>-r</code> stand for?</p>
 <ul>
@@ -879,15 +927,31 @@ rm -d CandyLand
 <hr>
 <h4 id="sudo">sudo</h4>
 <ul>
-<li>Think twice about it</li>
+<li>Super User DO</li>
+<li>Acting as Admin.</li>
+<li>You probably do NOT need to use <code>sudo</code>.</li>
+<li>As Spiderman knows all too well... <img src="http://treasure.diylol.com/uploads/post/image/288655/resized_how-i-feel-when-i-introduce-some-one-to-reddit-enhancement-suite-meme-generator-with-great-power-comes-great-responsibility-2e50d9.jpg" alt="&quot;With great power, comes great responsibility&quot;"></li>
 </ul>
 <hr>
 <h3 id="ding-dong-the-witch-is-dead">Ding Dong the Witch is Dead.</h3>
+<p><a href="https://github.com/ga-dc/to_oz#ding-dong-the-witch-is-dead" target="_blank">https://github.com/ga-dc/to_oz#ding-dong-the-witch-is-dead</a></p>
 <hr>
 <h1 id="closing">Closing</h1>
-<ul>
-<li>Don&apos;t summarize for them in closing. Ask them to define for me. Closing should be an assessment (of sorts)</li>
-</ul>
+<ol>
+<li>What is the absolute path to the default WDI working dir?</li>
+<li>Name 2 unsafe commands</li>
+<li>How do we found out what flags we can pass to <code>ls</code>?</li>
+<li>Can we create files with finder?</li>
+<li>Where can go for help?</li>
+</ol>
+<p>Answers (think first!):</p>
+<ol>
+<li><code>~/wdi</code></li>
+<li><code>rm</code>, <code>sudo</code></li>
+<li><code>ls --help</code>, <code>man ls</code></li>
+<li>no</li>
+<li>man, --help, google, instructors</li>
+</ol>
 
                     
                     </section>
