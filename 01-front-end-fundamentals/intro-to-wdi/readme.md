@@ -72,6 +72,13 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
 # 9:50 - 10:30, Instructors
 ## Instructors will get to know their pods and take them on a tour of the space
 
+- Adam - Front Lounge
+- Adrian - Room 1
+- Robin - Room 2
+- Matt - Black wall near room 2 (push tables together)
+- Jesse- Back Lounge
+- Andy - Room 18
+
 - **Take the elevators up, and the stairs down, to prevent traffic jams**
 - **Please use the following guide, provided by Ashley**
   - TODO
@@ -88,12 +95,12 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
       - What are you nervous/excited about?
 - Please refer to the following timetable for how the tours will be staggered:
 
-|Time|Floor 8|Floor 12|
-|---|
-|9:50|Ada, Bash|-|
-|10:00|C, Dart|Ada, Bash|
-|10:10|Elixir, Fortran|C, Dart|
-|10:20|-|Elixir, Fortran|
+| Time  | Floor 8         | Floor 12        |
+|-------|-----------------|-----------------|
+| 9:50  | Ada, Bash       |                 |
+| 10:00 | C, Dart         | Ada, Bash       |
+| 10:10 | Elixir, Fortran | C, Dart         |
+| 10:20 |                 | Elixir, Fortran |
 
 
 # 10:30 - 10:40, Andy
@@ -185,14 +192,37 @@ Now, close your eyes. I want you to write what first comes to mind when I ask yo
 # 11:20 - 11:30, Matt
 ## Student Constitution
 
-Let's talk about our social contract.  What are your expecations?  What does respect mean to you?
+Don't Be Evil - Google
+
+Google laid that groundwork early.  If anyone at Google says that an action would be "evil", they don't do it. Anyone.  Now, that kind of power comes with responsibility too.
+
+Let's focus on our responsibility.  We are going to be working together, 9-5:30, everyday, for about 3 months.  Most of us have not been through anything quite like this.  There's going to be stress.  There's going to be growth.  Not only will you learn about Web Development, but many of you will learn a lot about yourselves.
+
+We are going to take a few minutes to think about mutual respect.  Look around.  We have 51 students.  We've heard from different backgrounds, social stratus, interests... different life experiences.
+
+What does mutual respect mean to us?  What are your expecations?  I expect we'll find that we have much in common, but let's be clear about it.  Let's set ourselves up for success.
+
+
+### Materials: post-its, pens, whiteboards, timer
 
 ### Write, Group, Share: What are your rights and responsibilities?
 
-Prompts:
+We are going to do a Write, Group, Share; where we sit quietly for a few minutes gathering our thoughts and writing them down, we share them with a small group, then we bring it back up to front and share the salient points with the class.
+
+The end result will be a social contract between all of us.  Not a binding agreement to keep us in line.  A reminder that success will be built from collaboration and mutual respect. This will be a reminder of what mutual respect looks like, to us.
+
+### Write (2 min)
+
+- This is quiet time, to think and process.  Individuals write on post-its.
+
+Prompt:
+- Write down two (2) rights that you expect during this class.
+- Write down two (2) responsibilities that you have; to yourself and your classmates.
+
+Triggers:
 - We want a community that...
 - What are your rights and responsibilities?
-- What does respect mean to you?
+- What do you do to show respect to others?
 
 Some items from past constitutions:
 - empathy/respect, how to build it
@@ -201,22 +231,12 @@ Some items from past constitutions:
 - tardiness
 - personal effort
 
-## Write (2 min)
+### Group/Share (5 min)
 
-- Individuals write on post-its
-
-## Group (5 min)
-
-- Get in group
-- Share on Whiteboard
+- Get into groups
+- Organize post-its on your wall.  Get them on the wall first, then discuss and clarify.
 - Vote for 2 (prefer one right, one responsibility)
-
-### Share/Record it! (~2 min @ group)
-
-- Two representatives from each group (one for each) write these on the front whiteboard & describe/clarify
-  - please write legibly, this is our record.
-- Picture
-- Slack it out
+- Share these 2 preferences in Slack.
 
 # 11:35 - 11:45, Adam
 ## Class content
