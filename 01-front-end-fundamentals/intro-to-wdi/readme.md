@@ -72,6 +72,13 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
 # 9:50 - 10:30, Instructors
 ## Instructors will get to know their pods and take them on a tour of the space
 
+- Adam - Front Lounge
+- Adrian - Room 1 
+- Robin - Room 2
+- Matt - Black wall near room 2 (push tables together)
+- Jesse- Back Lounge
+- Andy - Room 18
+
 - **Take the elevators up, and the stairs down, to prevent traffic jams**
 - **Please use the following guide, provided by Ashley**
   - TODO
