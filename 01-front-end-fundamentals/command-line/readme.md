@@ -228,16 +228,6 @@ CFU: Shout Out, write on board
 
 ###	Anatomy of a command
 
--	Command
-
--	Flag
-
-	-	The command's options
-
--	Argument
-
-	-	The input that's being processed by the command
-
 -	Example
 
 	-	Give someone a haircut
@@ -249,13 +239,19 @@ CFU: Shout Out, write on board
 		-	`haircut --mohawk Matt`
     - `haircut --mullet "Billy Ray Cyrus"`
 
-	-	`-` vs `--`
+-	Command: `haircut`
 
--	Argument is usually a file
+-	Flag: `-t mohawk`
 
--	`say 'Hello'`
+	-	The command's options
 
--	`say -v ?`
+-	Argument: `Matt`
+
+	-	The input that's being processed by the command
+
+- Other examples
+  -	`say Hello`
+  -	`say -v ?`
 
 ---
 
@@ -274,24 +270,30 @@ It's not always that helpful.
 ## You Do: T&T (1 min)
 
 What version of ruby are we using?
+Who wrote ruby?  When?
 
+You can find this within ruby's help.
 
+Discuss `ruby --help`
+
+---
 
 ###	Namespaces and double-dashes
 
+-	Discuss `--` vs `-`
+  -	`ruby --version`
+  -	`ruby -v`
+
+-	What does `ruby` do?
+
+- Keyboard shortcuts, Hot Keys
+  - Stop a process: Ctrl + c
+  -	Copy/Paste: Cmd + c, Cmd + v
+  -	Clear screen: Ctrl + k
+  - Front/end of line: Ctrl + a, Ctrl + e
+
 -	`brew install tree`
-
-	-	What does brew do?
-
--	`ruby --version`
-
--	`ruby -v`
-
--	`ruby`
-
--	Ctrl + C
-
--	Ctrl + K
+  -	What does brew do?
 
 ---
 
@@ -308,9 +310,7 @@ Results on board: html pages, `man`
 -	Type `man ruby`
 
 -	Introduce manuals
-
 	-	Things in brackets are optional
-
 	-	Structure of the manual
 
 ---
@@ -350,6 +350,9 @@ Results on board: html pages, `man`
 -	Mailing addresses: Domestic vs international vs interplanetary vs universe
 
 -	`open` a file using an absolute path, then a relative path
+  - `ls`: lists current dir
+  - `ls ~`:  lists you home directory.
+
 
 ---
 
@@ -383,7 +386,7 @@ Play with the commands and figure out:
 
 ---
 
-## We DO: Our working dir
+### We DO: Our working dir
 
 Since it's important to know where we are.  Let's create a place to do our work.  Our working directory.
 
@@ -395,49 +398,93 @@ Review home dir.
 Now, let's create a working dir.  How would I make a dir name "ga"?
 Recommend lower case, separated by underscores, no spaces or special characters.
 
-`mkdir ga`
+`mkdir wdi`
 
 now, we want to work in here.  How do we get there?
 
-`cd ga`
+`cd wdi`
+
+This is the relative path. Starting from where we are, we go down into the `wdi` dir.
+What is the absolute path?
+  `cd ~/wdi`
+
+We have 4 major things that we do in class:
+- exercises
+  - each exercise will be a separate directory in here
+- lessons (pbj)
+  - this is a read-only repository of the WDI lessons.
+- projects
+  - You will work on 4 week-long projects.  They will live here.
+- sandbox
+  - our play area.  For quick exercises.  One-offs.
+  - If it's not an assigned exercise, it goes here.
+
+(3 min) Let's make these now.  When complete, you should see:
+```
+$ tree wdi
+wdi
+├── exercises
+├── pbj
+├── projects
+└── sandbox
+```
+
+Feel free to create a readme file to describe each directory.
+
+Suggested commands:
+```
+cd ~/wdi
+mkdir exercises
+mkdir pbj
+mkdir projects
+mkdir sandbox
+```
 
 --
 
 ### You Do: To OZ! (20 min)
+
+https://github.com/ga-dc/to_oz
 
 ---
 
 ###	10m) We do: The dangerous commands
 
 ####	rm
-
+```
+  cd ~/wdi/sandbox
 	touch hello.txt
 	rm hello.txt
+```
 
 -	What does `rm` stand for?
 
 -	Why is this "dangerous"?
-
-  cd OZ
+```
+  cd ~/wdi/exercises/to_oz/OZ
 	mkdir CandyLand
-	rm EmeraldCity
+	rm CandyLand
+```
 
 -	Why didn't it work?
 
-
-	rm -d EmeraldCity
+```
+	rm -d CandyLand
+```
 
 -	What does `-d` stand for?
 
-
+```
 	mkdir CandyLand
 	touch CandyLand/judge.txt
 	rm -d CandyLand
+```
 
 -	Why didn't it work?
 
-
+```
 	rm -r CandyLand
+```
 
 -	What does `-r` stand for?
 
@@ -449,17 +496,32 @@ now, we want to work in here.  How do we get there?
 
 ---
 
-
 ####	sudo
 
--	Think twice about it
+- Super User DO
+- Acting as Admin.
+-	You probably do NOT need to use `sudo`.
+- As Spiderman knows all too well... !["With great power, comes great responsibility"](http://treasure.diylol.com/uploads/post/image/288655/resized_how-i-feel-when-i-introduce-some-one-to-reddit-enhancement-suite-meme-generator-with-great-power-comes-great-responsibility-2e50d9.jpg)
 
 ---
 
 ###	Ding Dong the Witch is Dead.
 
+https://github.com/ga-dc/to_oz#ding-dong-the-witch-is-dead
+
 ---
 
 #	Closing
 
--	Don't summarize for them in closing. Ask them to define for me. Closing should be an assessment (of sorts)
+1.	What is the absolute path to the default WDI working dir?
+2. Name 2 unsafe commands
+3. How do we found out what flags we can pass to `ls`?
+4. Can we create files with finder?
+5. Where can go for help?
+
+Answers (think first!):
+1. `~/wdi`
+2. `rm`, `sudo`
+3. `ls --help`, `man ls`
+4. no
+5. man, --help, google, instructors
