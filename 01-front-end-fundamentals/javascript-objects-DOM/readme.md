@@ -205,3 +205,10 @@ Each web page loaded in the browser has its own document object. The Document in
 ## Homework
 
 <https://github.com/ga-dc/fellowship>
+
+---
+
+## Sample Quiz Questions:
+
+1. What is the difference between a method and an attribute?
+2. What is the difference between `onclick` and `addEventListener?`
