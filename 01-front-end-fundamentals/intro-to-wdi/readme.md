@@ -98,7 +98,8 @@ This class's only requirements are for qualifying for Outcomes. As long as you d
 
 # 10:30 - 10:40, Andy
 ## Growth Mindset
-[Growth Mindset] (https://www.youtube.com/watch?v=-_oqghnxBmY_)
+
+[Growth Mindset](https://www.youtube.com/watch?v=-_oqghnxBmY_)
 - For many students, this is the most mentally challenging thing they've ever done in their lives.
   - This is the first time they've been bad at something.
   - How many people have failed at something? I imagine that everyone has. At some point in this course you will falter. But that's OK! It's how we bounce back, persevere and learn from it that allows our mind to grow.
@@ -316,7 +317,7 @@ Units/Projects:
   - Homework will be graded only for *completeness*. That is, you actually attempted it yourself and didn't copy code. If you want more feedback, you'll need to ask for it.
   - There will be one homework per week on which your pod leader will leave comments.
   - **Question**: Is it a problem that you'll likely be able to see solutions to homework assignments before you have to do them yourself?
-- Absences and Tardies 
+- Absences and Tardies
   - Having more than 4 absences disqualifies you for Outcomes
   - 4 Tardies == 1 Absence
   - Class starts at 9:00am
