@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Tue Jun 30 2015 16:25:32 GMT+0000 (UTC)">
+    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Tue Jun 30 2015 16:50:30 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -484,23 +484,31 @@
                 
                     <section class="normal" id="section-">
                     
-                        <p>function, form, behavior</p>
-<h1 id="learning-objectives">LEARNING OBJECTIVES</h1>
+                        <h1 id="learning-objectives">LEARNING OBJECTIVES</h1>
 <ul>
 <li>Describe the role Javascript plays alongside HTML and CSS.</li>
-<li>Explore Javascript as the &quot;programming language of the web&quot;.</li>
+<li>Explain why Javascript is the &quot;programming language of the web&quot;.</li>
 <li>Set up and use Node to run Javascript on the command line.</li>
 <li>List and describe the primitive data types.</li>
+<li>Define type coercion.</li>
 <li>Describe data structures and use arrays to store data types.</li>
 <li>Practice proper JS syntax and semantic variable naming.</li>
 <li>Explain the role memory allocation plays in storing data types as variables.</li>
 </ul>
 <h1 id="html-css-and-javascript-20min">HTML, CSS and Javascript (20min)</h1>
-<p>HTML (content), CSS (style) and Javascript (behavior) as the pillars of web development.</p>
+<p>HTML (content), CSS (style) and Javascript (behavior) as the main components of front-end web development.</p>
+<ul>
+<li>Q: Sum up the roles HTML and CSS play on a website in a couple of sentences.<ul>
+<li>HTML: Structure</li>
+<li>CSS: Styling</li>
+<li>JS: ???</li>
+</ul>
+</li>
+</ul>
 <p>Think-Pair-Share: students identify Javascript features in the Facebook news feed.</p>
 <ul>
-<li>5 minutes: individual research.</li>
-<li>5 minutes: discuss and compare findings in pairs.</li>
+<li>3 minutes: individual research.</li>
+<li>3 minutes: discuss and compare findings in pairs.</li>
 <li>Think about...<ul>
 <li>What functionality the site has after it has loaded.</li>
 <li>What categories you could group some of these features under.</li>
@@ -521,15 +529,21 @@
 </li>
 </ul>
 </li>
+<li>No Refreshes / User Experience<ul>
+<li>When I comment on a post, Facebook is able to process my new comment and render it on the page without refreshing the entire page.</li>
+<li>Smooth user experience.</li>
+</ul>
+</li>
 <li>Communication with a server<ul>
 <li>Interactions saved and immediately viewable by other users.</li>
 </ul>
 </li>
 </ul>
-<p>Post-Exercise: Turn off browser Javascript and reload Facebook.</p>
+<p>Sum it all up</p>
 <ul>
-<li>Chrome &gt; Preferences &gt; Content Settings &gt; Javascript &gt; &quot;Do not allow...&quot;</li>
-<li>What functionality has changed? Been removed?</li>
+<li>HTML: Structure</li>
+<li>CSS: Styling</li>
+<li>Javascript: Behavior</li>
 </ul>
 <h1 id="js-the-programming-language-of-the-web-5min">JS: The Programming Language of the Web (5min)</h1>
 <p>Javascript is considered to be THE &quot;programming language of the web.&quot;</p>
@@ -547,23 +561,27 @@
 </ul>
 <p>Why is it the dominant programming language of the web?</p>
 <ul>
-<li>Not because it&apos;s &quot;the best.&quot; It has its problems...<ul>
-<li>Some say it&apos;s messy -- a lot of syntax! -- compared to other languages like Ruby and Python.</li>
+<li>It&apos;s easy to learn.<ul>
+<li>No additional software required to run it.<ul>
+<li>You can write it with a plain ol&apos; text editor.</li>
+<li>Don&apos;t need to compile Javascript. It&apos;s read as is.</li>
+</ul>
+</li>
+<li>Supported by all web browsers.</li>
+<li>Barriers of entry for new and experienced developers alike is low.</li>
+</ul>
+</li>
+<li>Javascript has evolved since its creation.<ul>
+<li>One of the biggest additions to JS was AJAX, which allows use to reload parts of a page without refreshing the entire thing (just like on Facebook). Big implications for User Experience.</li>
+</ul>
+</li>
+<li>A lot of frameworks and libraries -- like Backbone and jQuery -- have emerged that enable us to do so much more -- and do it quickly -- with Javascript.</li>
+<li>It&apos;s not the best. It has its problems...<ul>
+<li>Some say it&apos;s messy. Uses a lot of syntax compared to other languages like Ruby and Python.</li>
 <li>Slow in its initial form.</li>
 </ul>
 </li>
-<li>Gradual rise in popularity<ul>
-<li>Created in 1995 by Brendan Eich (in only 10 days!) for the Netscape browser.</li>
-<li>Was considered to be inferior to established languages like Java.</li>
-<li>Embraced by Google. Made JS faster through Chrome&apos;s V8 virtual machine. Use AJAX in major web apps like Gmail and Maps.</li>
-<li>Rise of frameworks and libraries like Angular and Backbone make it easier to create apps.</li>
-</ul>
-</li>
-<li>Now it&apos;s used by nearly every website.<ul>
-<li>Cross-browser support.</li>
-<li>Doesn&apos;t require any additional software to run in the browser.</li>
-</ul>
-</li>
+<li>Nevertheless, Javascript is used by nearly every site on the web.</li>
 </ul>
 <h1 id="node-5min">NODE (5min)</h1>
 <p>What is it?</p>
@@ -574,13 +592,14 @@
 <p>Installation</p>
 <ul>
 <li>Command line:   <code>$ brew install node</code></li>
+<li>Take a minute or two to install. Raise your hand if you run into any issues.</li>
 <li>Not working? Follow along with <a href="http://www.repl.it" target="_blank">REPL.it</a>.</li>
 </ul>
 <p>Uses</p>
 <ul>
 <li>REPL<ul>
 <li>&#x201C;Read-Eval-Print Loop&#x201D;.</li>
-<li>Run Javascript code one line at a time.</li>
+<li>Programming environment that lets us run Javascript code one line at a time.</li>
 <li>Command line:   <code>$ node</code></li>
 </ul>
 </li>
@@ -625,7 +644,7 @@ myClass;
 </code></pre>
 </li>
 </ul>
-<h2 id="numbers-5min">Numbers (5min)</h2>
+<h2 id="numbers-10min">Numbers (10min)</h2>
 <p>In Javascript, numbers are numerical values -- straightforward!</p>
 <ul>
 <li><p>All numbers are of type &quot;number,&quot; regardless of format (e.g., integer, float/decimal).</p>
@@ -722,14 +741,12 @@ myClass;
 <p>NaN (&quot;Not a number&quot;)</p>
 <ul>
 <li><p>A special number...that&apos;s not a number?</p>
-<ul>
-<li><p>Technically, its data type is &quot;number.&quot;</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-literal">NaN</span>
-=&gt; <span class="hljs-string">&quot;number&quot;</span>
+<pre><code class="lang-javascript">  <span class="hljs-keyword">typeof</span> <span class="hljs-literal">NaN</span>
+  =&gt; <span class="hljs-string">&quot;number&quot;</span>
 </code></pre>
-</li>
-<li><p>You usually get NaN when the result of a math operation is not real (e.g., dividing by zero, square root of a negative number, weird math).</p>
-<pre><code class="lang-javascript"><span class="hljs-number">5</span>/<span class="hljs-number">0</span>;
+<ul>
+<li><p>You usually get NaN when the result of a math operation is not real (e.g., dividing by zero, square root of a negative number).</p>
+<pre><code class="lang-javascript"><span class="hljs-number">0</span>/<span class="hljs-number">0</span>;
 =&gt; <span class="hljs-literal">NaN</span>
 </code></pre>
 </li>
@@ -743,8 +760,9 @@ myClass;
 </code></pre>
 </li>
 </ul>
-<h2 id="strings-5min">Strings (5min)</h2>
-<p>String literals</p>
+<h2 id="strings-10min">Strings (10min)</h2>
+<p>Strings are words in javascript!</p>
+<p>String literals  </p>
 <pre><code class="lang-javascript">  <span class="hljs-comment">// Can use single quotes to instantiate a string...</span>
   <span class="hljs-keyword">var</span> greeting = <span class="hljs-string">&apos;Hello!&apos;</span>;
 
@@ -797,7 +815,7 @@ myClass;
 <pre><code class="lang-javascript"><span class="hljs-comment">// .search(): find the starting index of a string value.</span>
 <span class="hljs-keyword">var</span> greetings = <span class="hljs-string">&quot;Hi there friend!&quot;</span>;
 greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
-=&gt; <span class="hljs-number">9</span>
+=&gt; <span class="hljs-number">10</span>
 
 <span class="hljs-comment">// .slice(): return and store a portion of a string.</span>
 <span class="hljs-keyword">var</span> greetings = <span class="hljs-string">&quot;Hi there friend!&quot;</span>;
@@ -810,7 +828,7 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 </ul>
 <h2 id="booleans-5min">Booleans (5min)</h2>
 <p>Two values: <code>true</code>, <code>false</code>.  </p>
-<p>Oftentimes you&apos;ll be producing boolean values when making comparisons or logical operations</p>
+<p>Oftentimes you&apos;ll be producing boolean values when comparing two values or using logical operations</p>
 <ul>
 <li><p>Comparison operators: <code>==</code>, <code>===</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></p>
 <pre><code class="lang-javascript"><span class="hljs-number">1</span> === <span class="hljs-number">1</span>
@@ -853,9 +871,13 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 <p>Null: an explicitly-assigned non-value.</p>
 <ul>
 <li>Javascript will never set anything to <code>null</code> by itself. <code>null</code> only appears when you tell it to.</li>
-<li>Can you imagine a situation where that would be useful?</li>
+<li>If I&apos;m not mistaken, the only thing that&apos;s inherently <code>null</code> in Javascript is <code>null</code> itself!</li>
+<li>Can you imagine a situation where that would be useful?<ul>
+<li>Placeholder for a variable that you know will be replaced with an actual value later on.</li>
 </ul>
-<p>So the main difference between <code>undefined</code> and <code>null</code> is intention. Other than that, they&apos;re pretty similar.</p>
+</li>
+</ul>
+<p>So the main difference between <code>undefined</code> and <code>null</code> is intention. Other than that, they&apos;re both...nothing.</p>
 <h3 id="type-coercion">Type Coercion</h3>
 <p>Javascript will try to make sense of any strange operations you throw at it.</p>
 <ul>
@@ -890,26 +912,39 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 <p>There are other examples of type coercion, but the point here isn&apos;t to remember them all. Just be aware that sometimes Javascript will fire weird results back at you with no explanation. Sometimes, type coercion might be the culprit.</p>
 <h1 id="break-10min">BREAK (10min)</h1>
 <h1 id="coding-exercise-1-20min">CODING EXERCISE #1 (20min)</h1>
-<p>Temperature conversion: <a href="https://github.com/ga-dc/temperature_converter" target="_blank">https://github.com/ga-dc/temperature_converter</a>  </p>
-<h1 id="data-structures-composite-data-types">Data Structures / Composite Data Types</h1>
-<h2 id="arrays-15min">Arrays (15min)</h2>
-<p>Why do we use arrays?  </p>
+<p>Temperature conversion (Part I): <a href="https://github.com/ga-dc/temperature_converter" target="_blank">https://github.com/ga-dc/temperature_converter</a>  </p>
+<h1 id="composite-data-types">Composite Data Types</h1>
+<p>Composite data types are collections that allow us to store multiple data types.</p>
 <ul>
-<li>Store multiple values in a single data collection.</li>
+<li>There are two kinds in Javascript? Does anybody know what they are?</li>
+</ul>
+<h2 id="arrays-15min">Arrays (15min)</h2>
+<p>Why do we use arrays?</p>
+<ul>
 <li>Ordered collection of related data types.</li>
 <li>Organized by index.<ul>
 <li>Indexing begins at 0 (e.g., first element in an array has an index of 0, the second has an index of 1, and so on).</li>
 </ul>
 </li>
 </ul>
-<p>How to instantiate an array and access its values.  </p>
-<pre><code class="lang-javascript">  <span class="hljs-comment">// Instantiate.</span>
+<p>There are two ways to instantiate an array...  </p>
+<pre><code class="lang-javascript">  <span class="hljs-comment">// Instantiate with an array literal.</span>
   <span class="hljs-keyword">var</span> mountRushmore = [ <span class="hljs-string">&quot;Washington&quot;</span>, <span class="hljs-string">&quot;Jefferson&quot;</span>, <span class="hljs-string">&quot;Roosevelt&quot;</span>, <span class="hljs-string">&quot;Lincoln&quot;</span> ];
 
-  <span class="hljs-comment">// Can also instantiate like this...</span>
+  <span class="hljs-comment">// Can also instantiate using the Array constructor.</span>
   <span class="hljs-keyword">var</span> mountRushmore = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-string">&quot;Washington&quot;</span>, <span class="hljs-string">&quot;Jefferson&quot;</span>, <span class="hljs-string">&quot;Roosevelt&quot;</span>, <span class="hljs-string">&quot;Lincoln&quot;</span> );
 
-  <span class="hljs-comment">// Access the first, second and third element of the array.</span>
+  <span class="hljs-comment">// Be careful when using the Array constructor. If you feed it a single numerical value, it will create an empty array of that length.</span>
+  <span class="hljs-keyword">var</span> numbers = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">5</span> );
+  =&gt; [ , , , , ]
+
+  <span class="hljs-comment">// ...but if you feed it anything else, it will create a single-value array.</span>
+  <span class="hljs-keyword">var</span> animals = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-string">&quot;dog&quot;</span> );
+  =&gt; [ <span class="hljs-string">&quot;dog&quot;</span> ]
+</code></pre>
+<p>Accessing array values...  </p>
+<pre><code class="lang-javascript">  <span class="hljs-comment">// Indexing begins at 0.</span>
+  <span class="hljs-comment">// How do I access the first, second and third elements of the array?</span>
   mountRushmore[<span class="hljs-number">0</span>];
   =&gt; <span class="hljs-string">&quot;Washington&quot;</span>
   mountRushmore[<span class="hljs-number">1</span>];
@@ -920,7 +955,7 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
   <span class="hljs-comment">// You can also place arrays within arrays.</span>
   <span class="hljs-keyword">var</span> letters = [ [<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;b&quot;</span>,<span class="hljs-string">&quot;c&quot;</span>], [<span class="hljs-string">&quot;d&quot;</span>,<span class="hljs-string">&quot;e&quot;</span>,<span class="hljs-string">&quot;f&quot;</span>], [<span class="hljs-string">&quot;g&quot;</span>,<span class="hljs-string">&quot;h&quot;</span>,<span class="hljs-string">&quot;i&quot;</span>] ];
 
-  <span class="hljs-comment">// How would I go about accessing the letter &quot;f&quot; in the above array?</span>
+  <span class="hljs-comment">// How would I go about accessing the letter &quot;f&quot; in the above array? Walk me through it.</span>
   letters[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>];
   =&gt; <span class="hljs-string">&quot;f&quot;</span>
 </code></pre>
@@ -940,19 +975,15 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 <li><p>Good way to familiarize yourselves with the Mozilla Developer Network&apos;s javascript documentation, a go-to source when looking up anything Javascript-related.</p>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">MDN Array Documentation</a></li>
+<li>Navigating documentation is a great skill to have. Some sets of documentation are harder to navigate than others, but if you have a sense of how to dig through a massive trove of information like MDN or RubyDocs, you&apos;ll become a much more efficient programmer.</li>
 </ul>
 </li>
-</ul>
-<p>Students find useful array methods on MDN based on question prompts.</p>
-<ul>
-<li>5 minutes: individual research</li>
-<li>Examples: push/pop, shift/unshift, length.</li>
 </ul>
 <h2 id="objects-5min">Objects (5min)</h2>
 <p>Why use objects?</p>
 <ul>
-<li>Store multiple values in a single data collection.</li>
-<li><p>Stored according to key-value pairs, not any particular order.</p>
+<li>Like arrays, can store multiple values in a single data collection.</li>
+<li><p>Unordered collection whose collections are stored as key-value pairs.</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> pizza = {
   slices: <span class="hljs-number">8</span>,
   size: <span class="hljs-string">&quot;large&quot;</span>,
@@ -961,8 +992,9 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 };
 </code></pre>
 </li>
-<li><p>Will go into these in-depth later this week.</p>
+<li><p>Why would you use an object over an array?</p>
 </li>
+<li>Will go into these in-depth later this week.</li>
 </ul>
 <h1 id="syntax-variables">Syntax &amp; Variables</h1>
 <h2 id="syntax-5min">Syntax (5min)</h2>
@@ -1026,7 +1058,11 @@ The name of a variable cannot be tied to a particular value. What if it changes?
 Sounds simple, but so many people don&apos;t follow this simple rule.</li>
 </ul>
 <h2 id="memory-allocation-5min">Memory Allocation (5min)</h2>
-<p>Use diagram of memory allocation (either whiteboard or slide) to demonstrate...</p>
+<p>Important to think about variable assignment with a programming mindset, not just a mathematical one.</p>
+<ul>
+<li>More than just an equation (e.g., <code>var hero = &quot;Batman&quot;;</code> )</li>
+</ul>
+<p>Whiteboard: memory allocation</p>
 <ul>
 <li>What happens in memory when you create a variable?</li>
 <li>What happens when you direct a variable to a new memory location?</li>
@@ -1034,6 +1070,16 @@ Sounds simple, but so many people don&apos;t follow this simple rule.</li>
 </ul>
 <h1 id="break-10min">BREAK (10min)</h1>
 <h1 id="coding-exercise-2-20min">CODING EXERCISE #2 (20min)</h1>
+<p>Temperature conversion (Part II): <a href="https://github.com/ga-dc/temperature_converter" target="_blank">https://github.com/ga-dc/temperature_converter</a>  </p>
+<h1 id="closing">Closing</h1>
+<ol>
+<li>What role does Javascript play on a website?</li>
+<li>What are the five primitive data types?</li>
+<li>What are the two composite data types? When would you use each?</li>
+<li>What is an example of type coercion?</li>
+<li>What is an example of a semantically-named variable?</li>
+<li>What happens to a data value with no variable pointing to it?</li>
+</ol>
 <h1 id="homework">Homework</h1>
 <p><a href="https://github.com/ga-dc/js-basics-hw" target="_blank">https://github.com/ga-dc/js-basics-hw</a></p>
 <h1 id="sample-quiz-questions">Sample Quiz Questions</h1>
