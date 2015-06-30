@@ -45,7 +45,7 @@ _Your computer got lost right from the start. _
 _Don't worry about memorizing the commands.  We'll cover all this again.  Just observe._
 
 Type `cd`.
-Type `pwd -P`.  _This is YOUR home dir.  We'll spend a lot of time here.  Once again, don;t worry about notes, we come back here, more slowly, in a second._
+Type `pwd -P`.  _This is YOUR home dir.  We'll spend a lot of time here.  Once again, don't worry about notes, we come back here, more slowly, in a second._
 Now type: `$ ls`
 
 That is a listing of the files in this folder or directory.
@@ -79,17 +79,19 @@ Type `$ give me rice` again.
 STWC: What did the computer know about giving me rice?
 Nada.  Zip.  Zero. Zilch.
 
-### Lesson One.  You have to start with something the computer already knows and build on that.
+### Lesson One. Start with what you know.
 
-- Build on knowledge.
+You build upon what you know.
+
+You also have to start with something the computer already knows and build on that.
 
 Then I had you type `cd`.  Why?  It's ok to be wrong.  That's how we move forward.
 Leading questions.
 
 
-### Lesson Two: You have to care about where you are.
+### Lesson Two: Where?
 
-- Where
+You have to care about *where* you are.
 
 Type `open .`
 
@@ -98,33 +100,27 @@ STWC: What did that do?
 This dot ".", is a shortcut, an abbreviation for the current dir.  This command opens my current dir in finder.  If I was somewhere else, it would open a different dir.
 
 ```
-cd
-ls
+ls # lists the current dir
 ```
 
-### Lesson Three: I control it.  By telling it **precisely** what I want.
+### Lesson Three:  Be precise.
 
-- Precise
+ I control the computer, by telling it **precisely** what I want.
 
 _This will become more obvious as you go through the exercises.  But I want to highlight that **everything** you type in is important._
 
-Type `ls -l`
-Type `ls -w`
+- Type `ls -l` and press enter
+- Type `ls -w` and press enter
 
 The same files.  Different view.
 
 
 ## We do:  The Terminal
 
-Think, Pair Share:
-
-The terminal:
-> What do you think this is?  
-> What does it do?
-> Have you used something similar?
+> Why would we use it, instead of the pretty GUI?
 
 
-Walk through following steps (without setup/clarification)
+Walk through the following steps (without setup/clarification)
 
 1.	Type `ls`
 	-	What do you see?
@@ -211,16 +207,24 @@ CFU: Shout Out, write on board
 -	The command line is an interface to your operating system's services.
 
 -	What is a **GUI**?
+  - Graphical User Interface.  The typical OSX or Windows interface.
+  - [Introduction of the Macintosh]( https://www.youtube.com/watch?v=axSnW-ygU5g&noredirect=1
 
 -	Brief history
+  - We started on the command line (keypunch cards)
+  -
 
-	-	Based on Unix
+- The Terminal
+  -	OSX is BSD.  Based on Unix/Linux
 
 	-	A **shell** is a program that interacts with your operating system. The **terminal** runs the shell. Used to be an physical computer. Now just an app.
 
 	-	Might look familiar to old folks using old computers: no mouse
 
--	Difference between bash, shell, terminal, CLI
+-	Discuss difference between bash, shell, terminal, CLI
+  - bash is a shell.
+  - terminal runs a shell
+  - CLI (command line interface) is the mode.
 
 ---
 
@@ -451,11 +455,12 @@ https://github.com/ga-dc/to_oz
 ###	10m) We do: The dangerous commands
 
 ####	rm
-```
+
+  ```
   cd ~/wdi/sandbox
-	touch hello.txt
-	rm hello.txt
-```
+  touch hello.txt
+  rm hello.txt
+  ```
 
 -	What does `rm` stand for?
 
@@ -511,7 +516,7 @@ https://github.com/ga-dc/to_oz#ding-dong-the-witch-is-dead
 
 ---
 
-#	Closing
+##	Closing
 
 1.	What is the absolute path to the default WDI working dir?
 2. Name 2 unsafe commands
@@ -524,4 +529,10 @@ Answers (think first!):
 2. `rm`, `sudo`
 3. `ls --help`, `man ls`
 4. no
-5. man, --help, google, instructors
+5. man, --help, google, peers instructors
+
+---
+
+## Homework
+
+https://github.com/ga-dc/command_line_fu
