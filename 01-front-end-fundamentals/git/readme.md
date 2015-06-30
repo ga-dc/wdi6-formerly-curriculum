@@ -26,12 +26,12 @@ changes.
 
 ## Resources
 
-[Interactive Git Cheetsheet](http://ndpsoftware.com/git-cheatsheet.html)
-[Github Guides](https://guides.github.com)
-[Github Training](https://training.github.com/kit/)
-[Git Immersion - Interactive Course](http://gitimmersion.com/lab_05.html)
-[Pro Git](http://git-scm.com/book/en/v2) - An in-depth free PDF book for those wanting to understand git deeper
-[GitUp - Interactive Commit Visualizer](http://gitup.co)
+* [Interactive Git Cheetsheet](http://ndpsoftware.com/git-cheatsheet.html)
+* [Github Guides](https://guides.github.com)
+* [Github Training](https://training.github.com/kit/)
+* [Git Immersion - Interactive Course](http://gitimmersion.com/lab_05.html)
+* [Pro Git](http://git-scm.com/book/en/v2) - An in-depth free PDF book for those wanting to understand git deeper
+* [GitUp - Interactive Commit Visualizer](http://gitup.co)
 
 
 ## Outline
