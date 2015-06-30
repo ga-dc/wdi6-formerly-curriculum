@@ -1,1 +1,2 @@
-add something here!
+In Chrome you keep tabs in browser.
+In Soviet Russia, browser keeps tabs on you!
