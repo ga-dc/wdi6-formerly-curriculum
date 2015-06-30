@@ -18,7 +18,8 @@ Wouldn't it be nice to make our webpages look schnazzy? Enter CSS. There is such
 
 [family guy CSS gif](https://i.imgur.com/Q3cUg29.gif)
 
-## In-line vs head vs stylesheets(30m) *Not a codealong let class know they're welcome to but may be better just to pay attention to the first hour instead of typing everything out. All notes available in lesson plan*
+## In-line vs head vs stylesheets(30m)
+> Not a codealong let class know they're welcome to but may be better just to pay attention to the first hour instead of typing everything out. All notes available in lesson plan
 
 At the crux of it all, the primary concept of CSS is to select an HTML element and then do something to it. IE. I want to take the body element, and I want to apply a background color to it.
 
