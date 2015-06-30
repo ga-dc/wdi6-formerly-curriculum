@@ -236,6 +236,7 @@ Man, there's alot of them. We've seen many just in this lesson thus far. There a
 [CSS Tricks- An awesome resource for cool CSS schtuff](https://css-tricks.com)
 
 ## We do- Wendy G Bite *Code Along*
+Exercise is [here!](https://github.com/ga-dc/wendy_bite)
 > notes will be pushed after lesson
 
 ## You do/ Finish for HW - Dew
