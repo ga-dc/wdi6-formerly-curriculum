@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Tue Jun 30 2015 16:50:30 GMT+0000 (UTC)">
+    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Tue Jun 30 2015 17:07:51 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -963,7 +963,8 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 <ul>
 <li>There are a lot of useful methods that come with Javascript we can use to inspect and modify arrays. To learn what some of them are...</li>
 </ul>
-<p>Exercise: Given the array <code>var planeteers = [ &quot;Looting&quot;, &quot;Wind&quot;, &quot;Fire&quot;, &quot;Water&quot;, &quot;Heart&quot;, &quot;Polluting&quot; ]</code>, use MDN documentation to find methods that accomplish the following...</p>
+<h3 id="pair-exercise-5min">Pair Exercise (5min)</h3>
+<p>Given the array <code>var planeteers = [ &quot;Looting&quot;, &quot;Wind&quot;, &quot;Fire&quot;, &quot;Water&quot;, &quot;Heart&quot;, &quot;Polluting&quot; ]</code>, use MDN documentation to find methods that accomplish the following...</p>
 <ul>
 <li>Returns the length of the array.</li>
 <li>Returns the position of &quot;Water&quot;.</li>
@@ -972,7 +973,7 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 <li>Adds <code>&quot;Earth&quot;</code> to the front of the array.</li>
 <li><p>Reverses the array order.</p>
 </li>
-<li><p>Good way to familiarize yourselves with the Mozilla Developer Network&apos;s javascript documentation, a go-to source when looking up anything Javascript-related.</p>
+<li><p>This exercise is a good way to familiarize yourselves with the Mozilla Developer Network&apos;s javascript documentation, a go-to source when looking up anything Javascript-related.</p>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">MDN Array Documentation</a></li>
 <li>Navigating documentation is a great skill to have. Some sets of documentation are harder to navigate than others, but if you have a sense of how to dig through a massive trove of information like MDN or RubyDocs, you&apos;ll become a much more efficient programmer.</li>
@@ -984,6 +985,7 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 <ul>
 <li>Like arrays, can store multiple values in a single data collection.</li>
 <li><p>Unordered collection whose collections are stored as key-value pairs.</p>
+<p>// Help me make a pizza object. What data types should I use?</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> pizza = {
   slices: <span class="hljs-number">8</span>,
   size: <span class="hljs-string">&quot;large&quot;</span>,
@@ -1031,7 +1033,7 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 */</span>
 </code></pre>
 </li>
-<li><p>Use to explain the purpose or reasoning behind a chunk of code.</p>
+<li><p>Use to explain the purpose or reasoning behind a piece of code.</p>
 </li>
 <li>Help out other developers and future you.<ul>
 <li>If anything, it will help us out when grading your projects!</li>
@@ -1044,15 +1046,14 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 <span class="hljs-keyword">var</span> red = <span class="hljs-string">&quot;red&quot;</span>;
 <span class="hljs-keyword">var</span> myFavoriteAnimal = <span class="hljs-string">&quot;jackalope&quot;</span>;
 </code></pre>
-<p>Semantic: &quot;the purpose of text beyond its definition&quot;  </p>
-<ul>
-<li>Thanks Robin!</li>
-</ul>
+<p>Semantic: &quot;the purpose of text beyond its definition&quot;</p>
 <p>The purpose of a variable needs to be evident in the name.</p>
 <ul>
 <li>Nope: <code>var x = 5;</code></li>
-<li>Yup: <code>var myFavoriteNumber = 5;</code>
-The name of a variable cannot be tied to a particular value. What if it changes?</li>
+<li>Yup: <code>var myFavoriteNumber = 5;</code>  </li>
+</ul>
+<p>The name of a variable cannot be tied to a particular value. What if it changes?</p>
+<ul>
 <li>Nope: <code>var red = &quot;red&quot;</code></li>
 <li>Yup: <code>backgroundColor = &quot;red&quot;</code>
 Sounds simple, but so many people don&apos;t follow this simple rule.</li>
