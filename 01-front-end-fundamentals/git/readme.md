@@ -100,6 +100,7 @@ concepts of how git works (and associated terms).
 #### Exercise 1: Create a Repository and Committing Locally
 
 Students should:
+
 1. download and install the [Github for Mac client](https://mac.github.com).
 2. initialize a git repository in their `resume` folder.
 3. make an initial commit with the current version of their code (all files)
