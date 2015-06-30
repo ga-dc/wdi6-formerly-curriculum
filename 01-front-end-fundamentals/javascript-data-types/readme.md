@@ -1,14 +1,16 @@
+function, form, behavior
+
 # LEARNING OBJECTIVES
 - Describe the role Javascript plays alongside HTML and CSS.
 - Explore Javascript as the "programming language of the web".
 - Set up and use Node to run Javascript on the command line.
-- List the primitive data types and demonstrate how each is used.
+- List and describe the primitive data types.
 - Describe data structures and use arrays to store data types.
 - Practice proper JS syntax and semantic variable naming.
 - Explain the role memory allocation plays in storing data types as variables.
 
 # HTML, CSS and Javascript (20min)
-HTML (content), CSS (style) and Javascript (behavior) as the pillars of web development
+HTML (content), CSS (style) and Javascript (behavior) as the pillars of web development.
 
 Think-Pair-Share: students identify Javascript features in the Facebook news feed.
 - 5 minutes: individual research.
@@ -145,6 +147,21 @@ Operations
   ```
 
 - Order of precedence: P(E)MDAS (Parentheses, Multiplication, Division, Addition, Subtraction)
+
+  ```javascript
+  // This would be interpreted as...
+  // Go through step by step with class.
+  ( 4 + 2 ) * ( 12 / 3 );
+  => 6 * 4
+  => 24
+
+  // How would this be interpreted?
+  // Like operators are processed from left-to-right. In this case, division happens before multiplication.
+  ( 8 / 4 * 2 ) + 1
+  => ( 2 * 2 ) + 1
+  => 5
+  ```
+
 - % (Modulus)
   - Returns the remainder of a division operation.
 
@@ -243,7 +260,7 @@ Escape sequences
 - More examples [here](http://www.javascriptkit.com/jsref/escapesequence.shtml).  
 
 Concatenation
-- Join strings using `+`.
+- Like numbers, you can add strings together using `+`.
 
   ```javascript
   var city = "Washington, ";
@@ -252,14 +269,15 @@ Concatenation
   => "Washington, DC"
   ```
 
-- You can't use other math operators on strings.
+- You can't, however, use other math operators on strings.
 
   ```javascript
+  // Q: What do you think happens when we try to subtract strings from each other?
   // When using the "-" operator, the operands are treated as numbers.
   "hamburger" - "ham"
   => NaN
 
-  // Same goes for multiplication and division.
+  // The same goes for multiplication and division.
   "hamburger" * 3
   => NaN
   ```
@@ -280,13 +298,26 @@ String methods
   => "friend"
   ```
 
-- More examples [here](http://www.w3schools.com/js/js_string_methods.asp).
+- More examples [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
 
 ## Booleans (5min)
 Two values: `true`, `false`.  
 
 Oftentimes you'll be producing boolean values when making comparisons or logical operations
-- Comparison operators: `==`, `===`, `<`, `>`
+- Comparison operators: `==`, `===`, `<`, `>`, `<=`, `>=`
+
+  ```javascript
+  1 === 1
+  => true
+
+  1 === 2
+  => false
+
+  // Does anybody know the difference between === and ==?
+  1 == "1"
+  => true
+  ```
+
 - Logical operators: `&&`, `||`, `!`
   - Not going to focus on these too much right now since you'll be using them more this week during your conditionals class.
 
@@ -295,16 +326,37 @@ Values that indicate the lack of a meaningful value.
 - Anybody else find that weird? How is there more than one data type for nothing?
 - Q: What's the difference?
 
-Undefined: automatically applied to a variable with no value  
+Undefined: automatically applied to a variable with no value.  
 
-Null: an explicitly-assigned non-value  
+  ```javascript
+  // A primitive data type of type undefined with only one value: "undefined".
+  typeof undefined;
+  => "undefined"
+
+  // Any property that has not been assigned a value is "undefined".
+  var nothing;
+  => undefined
+
+  // A function with no defined return value has a return value of "undefined".
+
+  // You won't find yourself assigning "undefined" to a value. That's where "null" comes in.
+  var nothing = undefined;
+  ```
+
+Null: an explicitly-assigned non-value.
+  - Javascript will never set anything to `null` by itself. `null` only appears when you tell it to.
+  - Can you imagine a situation where that would be useful?
+
+
+So the main difference between `undefined` and `null` is intention. Other than that, they're pretty similar.
 
 ### Type Coercion
 Javascript will try to make sense of any strange operations you throw at it.
 - By "strange", I mean subtracting a number from a string, or multiplying `null` by 100.
-- It does this through "type coercion" -- converting data types.
+- It does this through something called "type coercion" -- converting data types.
 
-It can become a pain when dealing with numbers and strings. Oftentimes, you might be dealing with a number that for whatever reason is in string form.  
+You might encounter this when dealing with numerical values but for whatever reason some of them are in string form.
+  - Q: Have students guess what the results of the following code examples are...
 
   ```javascript
   // In some cases Javascript is helpful and converts strings to numbers in the correct way.
@@ -314,6 +366,10 @@ It can become a pain when dealing with numbers and strings. Oftentimes, you migh
   // ...but sometimes it doesn't. In this example, the + operator acts as if it's concatenating two strings.
   "3" + "2"
   => 32
+
+  // And this?
+  "five" * 5;
+  => NaN
   ```
 
 When in doubt, convert data types that should be numbers using `parseInt()`.
@@ -326,6 +382,8 @@ parseInt( "3" );
 parseInt( "burrito" );
 => NaN
 ```
+
+There are other examples of type coercion, but the point here isn't to remember them all. Just be aware that sometimes Javascript will fire weird results back at you with no explanation. Sometimes, type coercion might be the culprit.
 
 # BREAK (10min)
 
@@ -350,12 +408,39 @@ How to instantiate an array and access its values.
   // Can also instantiate like this...
   var mountRushmore = new Array( "Washington", "Jefferson", "Roosevelt", "Lincoln" );
 
-  // Access the third element of the array.
+  // Access the first, second and third element of the array.
+  mountRushmore[0];
+  => "Washington"
+  mountRushmore[1];
+  => "Jefferson"
   mountRushmore[2];
   => "Roosevelt"
+
+  // You can also place arrays within arrays.
+  var letters = [ ["a","b","c"], ["d","e","f"], ["g","h","i"] ];
+
+  // How would I go about accessing the letter "f" in the above array?
+  letters[1][2];
+  => "f"
   ```
 
-Exercise: Students find useful array methods on MDN based on question prompts.
+Array methods
+- There are a lot of useful methods that come with Javascript we can use to inspect and modify arrays. To learn what some of them are...
+
+Exercise: Given the array `var planeteers = [ "Looting", "Wind", "Fire", "Water", "Heart", "Polluting" ]`, use MDN documentation to find methods that accomplish the following...
+- Returns the length of the array.
+- Returns the position of "Water".
+- Removes "Polluting" from the end of the array.
+- Removes "Looting" from the front of the array.
+- Adds `"Earth"` to the front of the array.
+- Reverses the array order.
+
+- Good way to familiarize yourselves with the Mozilla Developer Network's javascript documentation, a go-to source when looking up anything Javascript-related.
+  - [MDN Array Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+
+
+Students find useful array methods on MDN based on question prompts.
 - 5 minutes: individual research
 - Examples: push/pop, shift/unshift, length.
 
@@ -363,6 +448,16 @@ Exercise: Students find useful array methods on MDN based on question prompts.
 Why use objects?
 - Store multiple values in a single data collection.
 - Stored according to key-value pairs, not any particular order.
+
+  ```javascript
+  var pizza = {
+    slices: 8,
+    size: "large",
+    toppings: [ "cheese", "pepperoni" ],
+    crust: "stuffed"
+  };
+  ```
+
 - Will go into these in-depth later this week.
 
 # Syntax & Variables
@@ -383,6 +478,8 @@ Semicolons
 - Usage depends on the developer.
 
 Comments
+- Q: Why would you use comments?
+  - Talked about this in the HTML class. Same reasoning applies.
 - Types of comments
   ```javascript
   // Single line
@@ -395,7 +492,8 @@ Comments
   ```
 
 - Use to explain the purpose or reasoning behind a chunk of code.
-- Help out other developers and future you!
+- Help out other developers and future you.
+  - If anything, it will help us out when grading your projects!
 
 ## Semantic Naming (5min)
 Q: Which of these would you say is the best named variable? Why?
@@ -405,6 +503,9 @@ var x = 5;
 var red = "red";
 var myFavoriteAnimal = "jackalope";
 ```
+
+Semantic: "the purpose of text beyond its definition"  
+- Thanks Robin!
 
 The purpose of a variable needs to be evident in the name.
 - Nope: `var x = 5;`
