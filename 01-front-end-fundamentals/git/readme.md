@@ -219,3 +219,39 @@ Once linked, you can just run `git push` to push master branch to master branch
   * If no origin/branch are specified, and no tracking branch is set up, git may tell you to specify
 2. 'git push [remote] [branch]' - push and merge local changes from the current branch to the specified branch on the remote repo and branch specified.
   * Same rules apply as `git pull` above.
+
+## Homework
+
+### 1. Personal Portfolio Page
+Publish a simple portfolio site using github pages. You can find more information on the [github pages guide](https://pages.github.com).
+For content, you can create something new, or just copy over your HTML/CSS/[JS] from the admissions process. (You'll likely be modifying replacing this page as the course progresses.)
+
+You'll know you got it working when visiting *your_github_username*.github.io displays your page with proper styling.
+
+### 2. Fork and Clone the PBJ Repo
+
+Fork the [PBJ Repo](https://github.com/ga-dc/pbj) to your personal account. Clone *your fork* to your
+computer in your `~/wdi` folder.
+
+NOTE: If you already have a `pbj` folder in your `~/wdi` folder, delete or rename it before you clone.
+
+### Submission
+
+File a github issue with a link to:
+* your personal github pages repo
+* the URL to see your hosted page.
+* a link to the repo you forked
+
+At the *top* of the issue description, please include a block like so (numbers out of 5):
+
+```
+comfort_level: 4
+completeness: 5
+```
+
+
+### Optional Bonus assignments:
+* Create a blog site using jekyll (hosted using a separate repo at **your_github_username*.github.io/blog, this is called a 'project' rep)
+* Register for a custom domain name (usually $6 - $10 a year), and associate it with your github project site
+
+You'll find instructions that will help at the bottom of the [github pages guide](https://pages.github.com).
