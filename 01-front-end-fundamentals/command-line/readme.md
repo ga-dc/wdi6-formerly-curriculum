@@ -302,8 +302,8 @@ Discuss `ruby --help`
 Let's do a little research.  The developers of each of these commands has provided a manual.  Let's google it.  If you know the answer, please don't spoil it.
 - Find the manuals for:
   - ls
-	- cd
-	- ruby
+  - cd
+  - ruby
 
 Results on board: html pages, `man`
 
