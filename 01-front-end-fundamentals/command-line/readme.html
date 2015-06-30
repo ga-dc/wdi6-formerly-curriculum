@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Tue Jun 30 2015 12:52:54 GMT+0000 (UTC)">
+    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Tue Jun 30 2015 12:53:27 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -555,13 +555,15 @@ Leading questions.</p>
 <ul>
 <li>Type <code>ls -l</code> and press enter</li>
 <li>Type <code>ls -w</code> and press enter</li>
+<li>Type <code>ls -a</code> and press enter</li>
 </ul>
 <p>The same files.  Different view.</p>
 <h2 id="we-do-the-terminal">We do:  The Terminal</h2>
 <blockquote>
 <p>Why would we use it, instead of the pretty GUI?</p>
 </blockquote>
-<p>Walk through the following steps (without setup/clarification)</p>
+<p>Walk through the following steps (without setup/clarification)
+Work with students to write the steps of what we just did on the board.</p>
 <ol>
 <li><p>Type <code>ls</code></p>
 <ul>
@@ -576,19 +578,16 @@ Leading questions.</p>
 <li><p>Type <code>open hello.txt -e</code></p>
 <ul>
 <li>What happened?</li>
-<li>Type &quot;Hi there!&quot; into the file.</li>
 </ul>
 </li>
 </ol>
-<hr>
-<h3 id="what-are-the-steps-of-what-we-just-did">What are the steps of what we just did?</h3>
-<p>Work with students to write the steps of what we just did on the board.</p>
+<p>Note:</p>
 <ol>
-<li><p>Open your Home folder</p>
+<li><p>Get a list of the files in the current dir</p>
 </li>
-<li><p>Create a new text file called &quot;hello.txt&quot;</p>
+<li><p>Create a new text file called &quot;hello.txt&quot; and populate it.</p>
 </li>
-<li><p>Open it and write &quot;Hi there!&quot;</p>
+<li><p>Open that file to view it.</p>
 </li>
 </ol>
 <hr>
@@ -598,10 +597,11 @@ Leading questions.</p>
 <hr>
 <h2 id="demo">Demo</h2>
 <p>Now, close your computers for a second and watch this:</p>
-<pre><code>ls
+<pre><code>open . # watch in Finder
+ls
 </code></pre><p><em>Take note of the contents</em></p>
 <pre><code>COUNTER=0
-while [ $COUNTER -lt 20 ]; do
+while [ $COUNTER -lt 50 ]; do
     touch sample_file_$COUNTER.txt
     let COUNTER=COUNTER+1
 done
@@ -627,23 +627,22 @@ ls
 <hr>
 <h3 id="brief-history-of-command-line">Brief history of Command Line</h3>
 <ul>
-<li><p>The command line is an interface to your operating system&apos;s services.</p>
+<li><p>The command line is an interface to your computers&apos;s services.  To it&apos;s operating system.</p>
+</li>
+<li><p>Brief history</p>
+<ul>
+<li>We started on the command line (ok, really, keypunch cards).</li>
+<li>In 1984, <a href="https://www.youtube.com/watch?v=axSnW-ygU5g&amp;noredirect=1" target="_blank">Apple introduced the Macintosh</a>, the first, mass-marketed computer featuring a GUI.</li>
+</ul>
 </li>
 <li><p>What is a <strong>GUI</strong>?</p>
 <ul>
 <li>Graphical User Interface.  The typical OSX or Windows interface.</li>
-<li>[Introduction of the Macintosh]( <a href="https://www.youtube.com/watch?v=axSnW-ygU5g&amp;noredirect=1" target="_blank">https://www.youtube.com/watch?v=axSnW-ygU5g&amp;noredirect=1</a></li>
-</ul>
-</li>
-<li><p>Brief history</p>
-<ul>
-<li>We started on the command line (keypunch cards)
--</li>
 </ul>
 </li>
 <li><p>The Terminal</p>
 <ul>
-<li><p>OSX is BSD.  Based on Unix/Linux</p>
+<li><p>OSX is BSD (Berkeley Software Distribution ).  Based on Unix.</p>
 <ul>
 <li><p>A <strong>shell</strong> is a program that interacts with your operating system. The <strong>terminal</strong> runs the shell. Used to be an physical computer. Now just an app.</p>
 </li>
@@ -766,8 +765,7 @@ Who wrote ruby?  When?</p>
 <h2 id="lesson-two-know-where-you-are">Lesson Two: Know where you are.</h2>
 <h3 id="every-command-is-executed-in-the-context-of-the-current-folder">Every command is executed in the context of the current folder</h3>
 <ul>
-<li><p><code>pwd</code></p>
-</li>
+<li><code>pwd</code></li>
 <li><p><code>pwd -P</code></p>
 </li>
 <li><p><code>cd ~</code></p>
@@ -807,59 +805,6 @@ Who wrote ruby?  When?</p>
 </li>
 </ul>
 <hr>
-<h2 id="commands-exercise">Commands exercise</h2>
-<h3 id="13m-you-do-pair-up-assign-groups-and-figure-out-what-each-command-does">13m) You do: Pair up, assign groups, and figure out what each command does.</h3>
-<p>Each column is related commands.</p>
-<p>Play with the commands and figure out:</p>
-<ul>
-<li><p>How would you describe what the command does?</p>
-</li>
-<li><p>For what (if anything) is the command&apos;s name an abbreviation?</p>
-</li>
-<li><p>Identify a useful flag for each command</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>A</th>
-<th>B</th>
-<th>C</th>
-<th>D</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>touch</code></td>
-<td><code>cat</code></td>
-<td><code>pwd</code></td>
-<td><code>history</code></td>
-</tr>
-<tr>
-<td><code>mkdir</code></td>
-<td><code>head</code></td>
-<td><code>tree</code></td>
-<td><code>mv</code></td>
-</tr>
-<tr>
-<td><code>ls</code></td>
-<td><code>tail</code></td>
-<td><code>open</code></td>
-<td><code>cp</code></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><p><code>ls -a</code></p>
-</li>
-<li><p><code>cp -R</code></p>
-</li>
-<li><p><code>mkdir -p</code></p>
-</li>
-<li><p>Not worth time to memorize everything; know how to look it up</p>
-</li>
-</ul>
-<hr>
 <h3 id="we-do-our-working-dir">We DO: Our working dir</h3>
 <p>Since it&apos;s important to know where we are.  Let&apos;s create a place to do our work.  Our working directory.</p>
 <p>How do we get back to our home dir?
@@ -893,21 +838,77 @@ What is the absolute path?
 </ul>
 </li>
 </ul>
-<p>(3 min) Let&apos;s make these now.  When complete, you should see:</p>
-<pre><code>$ tree wdi
-wdi
-&#x251C;&#x2500;&#x2500; exercises
-&#x251C;&#x2500;&#x2500; pbj
-&#x251C;&#x2500;&#x2500; projects
-&#x2514;&#x2500;&#x2500; sandbox
-</code></pre><p>Feel free to create a readme file to describe each directory.</p>
-<p>Suggested commands:</p>
+<p>(3 min) Let&apos;s make these now.  </p>
+<p>Commands:</p>
 <pre><code>cd ~/wdi
 mkdir exercises
 mkdir pbj
 mkdir projects
 mkdir sandbox
-</code></pre><p>--</p>
+</code></pre><p>When complete, you should see:</p>
+<pre><code>$ tree -C ~/wdi
+wdi
+&#x251C;&#x2500;&#x2500; Rakefile
+&#x251C;&#x2500;&#x2500; installfest.yml
+&#x251C;&#x2500;&#x2500; exercises
+&#x251C;&#x2500;&#x2500; pbj
+&#x251C;&#x2500;&#x2500; projects
+&#x2514;&#x2500;&#x2500; sandbox
+</code></pre><p>Bonus: Feel free to create a readme file to describe each directory.</p>
+<hr>
+<h2 id="commands-exercise">Commands exercise</h2>
+<h3 id="13m-you-do-pair-up-assign-groups-and-figure-out-what-each-command-does">13m) You do: Pair up, assign groups, and figure out what each command does.</h3>
+<p>Each column is related commands.</p>
+<p>Play with the commands and figure out:</p>
+<ul>
+<li><p>How would you describe what the command does?</p>
+</li>
+<li><p>For what (if anything) is the command&apos;s name an abbreviation?</p>
+</li>
+<li><p>Identify a useful flag for each command</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>touch</code></td>
+<td><code>cat</code></td>
+<td><code>pwd</code></td>
+<td><code>history</code></td>
+</tr>
+<tr>
+<td><code>mkdir</code></td>
+<td><code>head</code></td>
+<td><code>tree</code></td>
+<td><code>mv</code></td>
+</tr>
+<tr>
+<td><code>ls</code></td>
+<td><code>tail</code></td>
+<td><code>open</code></td>
+<td><code>cp</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><code>ls -a</code></p>
+</li>
+<li><p><code>cp -R</code></p>
+</li>
+<li><p><code>mkdir -p</code></p>
+</li>
+<li><p>Not worth time to memorize everything; know how to look it up</p>
+</li>
+</ul>
+<p>--</p>
 <h3 id="you-do-to-oz-20-min">You Do: To OZ! (20 min)</h3>
 <p><a href="https://github.com/ga-dc/to_oz" target="_blank">https://github.com/ga-dc/to_oz</a></p>
 <hr>
