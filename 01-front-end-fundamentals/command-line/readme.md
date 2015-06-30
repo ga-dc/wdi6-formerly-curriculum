@@ -111,6 +111,7 @@ _This will become more obvious as you go through the exercises.  But I want to h
 
 - Type `ls -l` and press enter
 - Type `ls -w` and press enter
+- Type `ls -a` and press enter
 
 The same files.  Different view.
 
@@ -119,8 +120,8 @@ The same files.  Different view.
 
 > Why would we use it, instead of the pretty GUI?
 
-
 Walk through the following steps (without setup/clarification)
+Work with students to write the steps of what we just did on the board.
 
 1.	Type `ls`
 	-	What do you see?
@@ -132,19 +133,14 @@ Walk through the following steps (without setup/clarification)
 3. Type `open hello.txt -e`
 
 	-	What happened?
-	- Type "Hi there!" into the file.
 
----
+Note:
 
-###	What are the steps of what we just did?
+1.	Get a list of the files in the current dir
 
-Work with students to write the steps of what we just did on the board.
+2.	Create a new text file called "hello.txt" and populate it.
 
-1.	Open your Home folder
-
-2.	Create a new text file called "hello.txt"
-
-3.	Open it and write "Hi there!"
+3.	Open that file to view it.
 
 ---
 
@@ -160,12 +156,13 @@ Work with students to write the steps of what we just did on the board.
 
 Now, close your computers for a second and watch this:
 ```
+open . # watch in Finder
 ls
 ```
 _Take note of the contents_
 ```
 COUNTER=0
-while [ $COUNTER -lt 20 ]; do
+while [ $COUNTER -lt 50 ]; do
     touch sample_file_$COUNTER.txt
     let COUNTER=COUNTER+1
 done
@@ -204,18 +201,17 @@ CFU: Shout Out, write on board
 
 ###	Brief history of Command Line
 
--	The command line is an interface to your operating system's services.
+-	The command line is an interface to your computers's services.  To it's operating system.
+
+-	Brief history
+  - We started on the command line (ok, really, keypunch cards).
+  - In 1984, [Apple introduced the Macintosh]( https://www.youtube.com/watch?v=axSnW-ygU5g&noredirect=1), the first, mass-marketed computer featuring a GUI.
 
 -	What is a **GUI**?
   - Graphical User Interface.  The typical OSX or Windows interface.
-  - [Introduction of the Macintosh]( https://www.youtube.com/watch?v=axSnW-ygU5g&noredirect=1
-
--	Brief history
-  - We started on the command line (keypunch cards)
-  -
 
 - The Terminal
-  -	OSX is BSD.  Based on Unix/Linux
+  -	OSX is BSD (Berkeley Software Distribution ).  Based on Unix.
 
 	-	A **shell** is a program that interacts with your operating system. The **terminal** runs the shell. Used to be an physical computer. Now just an app.
 
@@ -324,7 +320,6 @@ Results on board: html pages, `man`
 ###	Every command is executed in the context of the current folder
 
 -	`pwd`
-
 -	`pwd -P`
 
 -	`cd ~`
@@ -356,37 +351,6 @@ Results on board: html pages, `man`
 -	`open` a file using an absolute path, then a relative path
   - `ls`: lists current dir
   - `ls ~`:  lists you home directory.
-
-
----
-
-##	Commands exercise
-
-###	13m) You do: Pair up, assign groups, and figure out what each command does.
-
-Each column is related commands.
-
-Play with the commands and figure out:
-
--	How would you describe what the command does?
-
--	For what (if anything) is the command's name an abbreviation?
-
--	Identify a useful flag for each command
-
-|A|B|C|D|
-|-|-|-|-|
-|`touch`	|`cat`		|`pwd`		|`history`	|
-|`mkdir`	|`head`		|`tree`		|`mv`		|
-|`ls`		|`tail`		|`open`		|`cp`		|
-
--	`ls -a`
-
--	`cp -R`
-
--	`mkdir -p`
-
--	Not worth time to memorize everything; know how to look it up
 
 ---
 
@@ -423,19 +387,9 @@ We have 4 major things that we do in class:
   - our play area.  For quick exercises.  One-offs.
   - If it's not an assigned exercise, it goes here.
 
-(3 min) Let's make these now.  When complete, you should see:
-```
-$ tree wdi
-wdi
-├── exercises
-├── pbj
-├── projects
-└── sandbox
-```
+(3 min) Let's make these now.  
 
-Feel free to create a readme file to describe each directory.
-
-Suggested commands:
+Commands:
 ```
 cd ~/wdi
 mkdir exercises
@@ -443,6 +397,51 @@ mkdir pbj
 mkdir projects
 mkdir sandbox
 ```
+
+
+When complete, you should see:
+```
+$ tree -C ~/wdi
+wdi
+├── Rakefile
+├── installfest.yml
+├── exercises
+├── pbj
+├── projects
+└── sandbox
+```
+
+Bonus: Feel free to create a readme file to describe each directory.
+
+---
+
+##	Commands exercise
+
+###	13m) You do: Pair up, assign groups, and figure out what each command does.
+
+Each column is related commands.
+
+Play with the commands and figure out:
+
+-	How would you describe what the command does?
+
+-	For what (if anything) is the command's name an abbreviation?
+
+-	Identify a useful flag for each command
+
+|1|2|3|4|
+|---|---|---|---|
+|`touch`	|`cat`		|`pwd`		|`history`	|
+|`mkdir`	|`head`		|`tree`		|`mv`		|
+|`ls`		|`tail`		|`open`		|`cp`		|
+
+-	`ls -a`
+
+-	`cp -R`
+
+-	`mkdir -p`
+
+-	Not worth time to memorize everything; know how to look it up
 
 --
 

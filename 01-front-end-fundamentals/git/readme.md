@@ -26,12 +26,12 @@ changes.
 
 ## Resources
 
-[Interactive Git Cheetsheet](http://ndpsoftware.com/git-cheatsheet.html)
-[Github Guides](https://guides.github.com)
-[Github Training](https://training.github.com/kit/)
-[Git Immersion - Interactive Course](http://gitimmersion.com/lab_05.html)
-[Pro Git](http://git-scm.com/book/en/v2) - An in-depth free PDF book for those wanting to understand git deeper
-[GitUp - Interactive Commit Visualizer](http://gitup.co)
+* [Interactive Git Cheetsheet](http://ndpsoftware.com/git-cheatsheet.html)
+* [Github Guides](https://guides.github.com)
+* [Github Training](https://training.github.com/kit/)
+* [Git Immersion - Interactive Course](http://gitimmersion.com/lab_05.html)
+* [Pro Git](http://git-scm.com/book/en/v2) - An in-depth free PDF book for those wanting to understand git deeper
+* [GitUp - Interactive Commit Visualizer](http://gitup.co)
 
 
 ## Outline
@@ -100,6 +100,7 @@ concepts of how git works (and associated terms).
 #### Exercise 1: Create a Repository and Committing Locally
 
 Students should:
+
 1. download and install the [Github for Mac client](https://mac.github.com).
 2. initialize a git repository in their `resume` folder.
 3. make an initial commit with the current version of their code (all files)
@@ -219,3 +220,39 @@ Once linked, you can just run `git push` to push master branch to master branch
   * If no origin/branch are specified, and no tracking branch is set up, git may tell you to specify
 2. 'git push [remote] [branch]' - push and merge local changes from the current branch to the specified branch on the remote repo and branch specified.
   * Same rules apply as `git pull` above.
+
+## Homework
+
+### 1. Personal Portfolio Page
+Publish a simple portfolio site using github pages. You can find more information on the [github pages guide](https://pages.github.com).
+For content, you can create something new, or just copy over your HTML/CSS/[JS] from the admissions process. (You'll likely be modifying replacing this page as the course progresses.)
+
+You'll know you got it working when visiting *your_github_username*.github.io displays your page with proper styling.
+
+### 2. Fork and Clone the PBJ Repo
+
+Fork the [PBJ Repo](https://github.com/ga-dc/pbj) to your personal account. Clone *your fork* to your
+computer in your `~/wdi` folder.
+
+NOTE: If you already have a `pbj` folder in your `~/wdi` folder, delete or rename it before you clone.
+
+### Submission
+
+File a github issue with a link to:
+* your personal github pages repo
+* the URL to see your hosted page.
+* a link to the repo you forked
+
+At the *top* of the issue description, please include a block like so (numbers out of 5):
+
+```
+comfort_level: 4
+completeness: 5
+```
+
+
+### Optional Bonus assignments:
+* Create a blog site using jekyll (hosted using a separate repo at **your_github_username*.github.io/blog, this is called a 'project' rep)
+* Register for a custom domain name (usually $6 - $10 a year), and associate it with your github project site
+
+You'll find instructions that will help at the bottom of the [github pages guide](https://pages.github.com).
