@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Mon Jun 29 2015 18:14:59 GMT+0000 (UTC)">
+    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Tue Jun 30 2015 01:14:32 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -484,18 +484,19 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="learning-objectives">LEARNING OBJECTIVES</h1>
+                        <p>function, form, behavior</p>
+<h1 id="learning-objectives">LEARNING OBJECTIVES</h1>
 <ul>
 <li>Describe the role Javascript plays alongside HTML and CSS.</li>
 <li>Explore Javascript as the &quot;programming language of the web&quot;.</li>
 <li>Set up and use Node to run Javascript on the command line.</li>
-<li>List the primitive data types and demonstrate how each is used.</li>
+<li>List and describe the primitive data types.</li>
 <li>Describe data structures and use arrays to store data types.</li>
 <li>Practice proper JS syntax and semantic variable naming.</li>
 <li>Explain the role memory allocation plays in storing data types as variables.</li>
 </ul>
 <h1 id="html-css-and-javascript-20min">HTML, CSS and Javascript (20min)</h1>
-<p>HTML (content), CSS (style) and Javascript (behavior) as the pillars of web development</p>
+<p>HTML (content), CSS (style) and Javascript (behavior) as the pillars of web development.</p>
 <p>Think-Pair-Share: students identify Javascript features in the Facebook news feed.</p>
 <ul>
 <li>5 minutes: individual research.</li>
@@ -659,6 +660,18 @@ myClass;
 </code></pre>
 </li>
 <li><p>Order of precedence: P(E)MDAS (Parentheses, Multiplication, Division, Addition, Subtraction)</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// This would be interpreted as...</span>
+<span class="hljs-comment">// Go through step by step with class.</span>
+( <span class="hljs-number">4</span> + <span class="hljs-number">2</span> ) * ( <span class="hljs-number">12</span> / <span class="hljs-number">3</span> );
+=&gt; <span class="hljs-number">6</span> * <span class="hljs-number">4</span>
+=&gt; <span class="hljs-number">24</span>
+
+<span class="hljs-comment">// How would this be interpreted?</span>
+<span class="hljs-comment">// Like operators are processed from left-to-right. In this case, division happens before multiplication.</span>
+( <span class="hljs-number">8</span> / <span class="hljs-number">4</span> * <span class="hljs-number">2</span> ) + <span class="hljs-number">1</span>
+=&gt; ( <span class="hljs-number">2</span> * <span class="hljs-number">2</span> ) + <span class="hljs-number">1</span>
+=&gt; <span class="hljs-number">5</span>
+</code></pre>
 </li>
 <li><p>% (Modulus)</p>
 <ul>
@@ -758,19 +771,20 @@ myClass;
 </ul>
 <p>Concatenation</p>
 <ul>
-<li><p>Join strings using <code>+</code>.</p>
+<li><p>Like numbers, you can add strings together using <code>+</code>.</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> city = <span class="hljs-string">&quot;Washington, &quot;</span>;
 <span class="hljs-keyword">var</span> state = <span class="hljs-string">&quot;DC&quot;</span>;
 <span class="hljs-keyword">var</span> location = city + state;
 =&gt; <span class="hljs-string">&quot;Washington, DC&quot;</span>
 </code></pre>
 </li>
-<li><p>You can&apos;t use other math operators on strings.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// When using the &quot;-&quot; operator, the operands are treated as numbers.</span>
+<li><p>You can&apos;t, however, use other math operators on strings.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Q: What do you think happens when we try to subtract strings from each other?</span>
+<span class="hljs-comment">// When using the &quot;-&quot; operator, the operands are treated as numbers.</span>
 <span class="hljs-string">&quot;hamburger&quot;</span> - <span class="hljs-string">&quot;ham&quot;</span>
 =&gt; <span class="hljs-literal">NaN</span>
 
-<span class="hljs-comment">// Same goes for multiplication and division.</span>
+<span class="hljs-comment">// The same goes for multiplication and division.</span>
 <span class="hljs-string">&quot;hamburger&quot;</span> * <span class="hljs-number">3</span>
 =&gt; <span class="hljs-literal">NaN</span>
 </code></pre>
@@ -791,15 +805,27 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 =&gt; <span class="hljs-string">&quot;friend&quot;</span>
 </code></pre>
 </li>
-<li><p>More examples <a href="http://www.w3schools.com/js/js_string_methods.asp" target="_blank">here</a>.</p>
+<li><p>More examples <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank">here</a>.</p>
 </li>
 </ul>
 <h2 id="booleans-5min">Booleans (5min)</h2>
 <p>Two values: <code>true</code>, <code>false</code>.  </p>
 <p>Oftentimes you&apos;ll be producing boolean values when making comparisons or logical operations</p>
 <ul>
-<li>Comparison operators: <code>==</code>, <code>===</code>, <code>&lt;</code>, <code>&gt;</code></li>
-<li>Logical operators: <code>&amp;&amp;</code>, <code>||</code>, <code>!</code><ul>
+<li><p>Comparison operators: <code>==</code>, <code>===</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></p>
+<pre><code class="lang-javascript"><span class="hljs-number">1</span> === <span class="hljs-number">1</span>
+=&gt; <span class="hljs-literal">true</span>
+
+<span class="hljs-number">1</span> === <span class="hljs-number">2</span>
+=&gt; <span class="hljs-literal">false</span>
+
+<span class="hljs-comment">// Does anybody know the difference between === and ==?</span>
+<span class="hljs-number">1</span> == <span class="hljs-string">&quot;1&quot;</span>
+=&gt; <span class="hljs-literal">true</span>
+</code></pre>
+</li>
+<li><p>Logical operators: <code>&amp;&amp;</code>, <code>||</code>, <code>!</code></p>
+<ul>
 <li>Not going to focus on these too much right now since you&apos;ll be using them more this week during your conditionals class.</li>
 </ul>
 </li>
@@ -810,23 +836,49 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 <li>Anybody else find that weird? How is there more than one data type for nothing?</li>
 <li>Q: What&apos;s the difference?</li>
 </ul>
-<p>Undefined: automatically applied to a variable with no value  </p>
-<p>Null: an explicitly-assigned non-value  </p>
+<p>Undefined: automatically applied to a variable with no value.  </p>
+<pre><code class="lang-javascript">  <span class="hljs-comment">// A primitive data type of type undefined with only one value: &quot;undefined&quot;.</span>
+  <span class="hljs-keyword">typeof</span> <span class="hljs-literal">undefined</span>;
+  =&gt; <span class="hljs-string">&quot;undefined&quot;</span>
+
+  <span class="hljs-comment">// Any property that has not been assigned a value is &quot;undefined&quot;.</span>
+  <span class="hljs-keyword">var</span> nothing;
+  =&gt; <span class="hljs-literal">undefined</span>
+
+  <span class="hljs-comment">// A function with no defined return value has a return value of &quot;undefined&quot;.</span>
+
+  <span class="hljs-comment">// You won&apos;t find yourself assigning &quot;undefined&quot; to a value. That&apos;s where &quot;null&quot; comes in.</span>
+  <span class="hljs-keyword">var</span> nothing = <span class="hljs-literal">undefined</span>;
+</code></pre>
+<p>Null: an explicitly-assigned non-value.</p>
+<ul>
+<li>Javascript will never set anything to <code>null</code> by itself. <code>null</code> only appears when you tell it to.</li>
+<li>Can you imagine a situation where that would be useful?</li>
+</ul>
+<p>So the main difference between <code>undefined</code> and <code>null</code> is intention. Other than that, they&apos;re pretty similar.</p>
 <h3 id="type-coercion">Type Coercion</h3>
 <p>Javascript will try to make sense of any strange operations you throw at it.</p>
 <ul>
 <li>By &quot;strange&quot;, I mean subtracting a number from a string, or multiplying <code>null</code> by 100.</li>
-<li>It does this through &quot;type coercion&quot; -- converting data types.</li>
+<li>It does this through something called &quot;type coercion&quot; -- converting data types.</li>
 </ul>
-<p>It can become a pain when dealing with numbers and strings. Oftentimes, you might be dealing with a number that for whatever reason is in string form.  </p>
-<pre><code class="lang-javascript">  <span class="hljs-comment">// In some cases Javascript is helpful and converts strings to numbers in the correct way.</span>
-  <span class="hljs-string">&quot;3&quot;</span> - <span class="hljs-string">&quot;2&quot;</span>
-  =&gt; <span class="hljs-number">1</span>
+<p>You might encounter this when dealing with numerical values but for whatever reason some of them are in string form.</p>
+<ul>
+<li><p>Q: Have students guess what the results of the following code examples are...</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// In some cases Javascript is helpful and converts strings to numbers in the correct way.</span>
+<span class="hljs-string">&quot;3&quot;</span> - <span class="hljs-string">&quot;2&quot;</span>
+=&gt; <span class="hljs-number">1</span>
 
-  <span class="hljs-comment">// ...but sometimes it doesn&apos;t. In this example, the + operator acts as if it&apos;s concatenating two strings.</span>
-  <span class="hljs-string">&quot;3&quot;</span> + <span class="hljs-string">&quot;2&quot;</span>
-  =&gt; <span class="hljs-number">32</span>
+<span class="hljs-comment">// ...but sometimes it doesn&apos;t. In this example, the + operator acts as if it&apos;s concatenating two strings.</span>
+<span class="hljs-string">&quot;3&quot;</span> + <span class="hljs-string">&quot;2&quot;</span>
+=&gt; <span class="hljs-number">32</span>
+
+<span class="hljs-comment">// And this?</span>
+<span class="hljs-string">&quot;five&quot;</span> * <span class="hljs-number">5</span>;
+=&gt; <span class="hljs-literal">NaN</span>
 </code></pre>
+</li>
+</ul>
 <p>When in doubt, convert data types that should be numbers using <code>parseInt()</code>.</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// parseInt converts a string to a number value, if available.</span>
 <span class="hljs-built_in">parseInt</span>( <span class="hljs-string">&quot;3&quot;</span> );
@@ -835,6 +887,7 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 <span class="hljs-built_in">parseInt</span>( <span class="hljs-string">&quot;burrito&quot;</span> );
 =&gt; <span class="hljs-literal">NaN</span>
 </code></pre>
+<p>There are other examples of type coercion, but the point here isn&apos;t to remember them all. Just be aware that sometimes Javascript will fire weird results back at you with no explanation. Sometimes, type coercion might be the culprit.</p>
 <h1 id="break-10min">BREAK (10min)</h1>
 <h1 id="coding-exercise-1-20min">CODING EXERCISE #1 (20min)</h1>
 <p>Temperature conversion: <a href="https://github.com/ga-dc/temperature_converter" target="_blank">https://github.com/ga-dc/temperature_converter</a>  </p>
@@ -856,11 +909,41 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
   <span class="hljs-comment">// Can also instantiate like this...</span>
   <span class="hljs-keyword">var</span> mountRushmore = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-string">&quot;Washington&quot;</span>, <span class="hljs-string">&quot;Jefferson&quot;</span>, <span class="hljs-string">&quot;Roosevelt&quot;</span>, <span class="hljs-string">&quot;Lincoln&quot;</span> );
 
-  <span class="hljs-comment">// Access the third element of the array.</span>
+  <span class="hljs-comment">// Access the first, second and third element of the array.</span>
+  mountRushmore[<span class="hljs-number">0</span>];
+  =&gt; <span class="hljs-string">&quot;Washington&quot;</span>
+  mountRushmore[<span class="hljs-number">1</span>];
+  =&gt; <span class="hljs-string">&quot;Jefferson&quot;</span>
   mountRushmore[<span class="hljs-number">2</span>];
   =&gt; <span class="hljs-string">&quot;Roosevelt&quot;</span>
+
+  <span class="hljs-comment">// You can also place arrays within arrays.</span>
+  <span class="hljs-keyword">var</span> letters = [ [<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;b&quot;</span>,<span class="hljs-string">&quot;c&quot;</span>], [<span class="hljs-string">&quot;d&quot;</span>,<span class="hljs-string">&quot;e&quot;</span>,<span class="hljs-string">&quot;f&quot;</span>], [<span class="hljs-string">&quot;g&quot;</span>,<span class="hljs-string">&quot;h&quot;</span>,<span class="hljs-string">&quot;i&quot;</span>] ];
+
+  <span class="hljs-comment">// How would I go about accessing the letter &quot;f&quot; in the above array?</span>
+  letters[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>];
+  =&gt; <span class="hljs-string">&quot;f&quot;</span>
 </code></pre>
-<p>Exercise: Students find useful array methods on MDN based on question prompts.</p>
+<p>Array methods</p>
+<ul>
+<li>There are a lot of useful methods that come with Javascript we can use to inspect and modify arrays. To learn what some of them are...</li>
+</ul>
+<p>Exercise: Given the array <code>var planeteers = [ &quot;Looting&quot;, &quot;Wind&quot;, &quot;Fire&quot;, &quot;Water&quot;, &quot;Heart&quot;, &quot;Polluting&quot; ]</code>, use MDN documentation to find methods that accomplish the following...</p>
+<ul>
+<li>Returns the length of the array.</li>
+<li>Returns the position of &quot;Water&quot;.</li>
+<li>Removes &quot;Polluting&quot; from the end of the array.</li>
+<li>Removes &quot;Looting&quot; from the front of the array.</li>
+<li>Adds <code>&quot;Earth&quot;</code> to the front of the array.</li>
+<li><p>Reverses the array order.</p>
+</li>
+<li><p>Good way to familiarize yourselves with the Mozilla Developer Network&apos;s javascript documentation, a go-to source when looking up anything Javascript-related.</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">MDN Array Documentation</a></li>
+</ul>
+</li>
+</ul>
+<p>Students find useful array methods on MDN based on question prompts.</p>
 <ul>
 <li>5 minutes: individual research</li>
 <li>Examples: push/pop, shift/unshift, length.</li>
@@ -869,8 +952,17 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 <p>Why use objects?</p>
 <ul>
 <li>Store multiple values in a single data collection.</li>
-<li>Stored according to key-value pairs, not any particular order.</li>
-<li>Will go into these in-depth later this week.</li>
+<li><p>Stored according to key-value pairs, not any particular order.</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> pizza = {
+  slices: <span class="hljs-number">8</span>,
+  size: <span class="hljs-string">&quot;large&quot;</span>,
+  toppings: [ <span class="hljs-string">&quot;cheese&quot;</span>, <span class="hljs-string">&quot;pepperoni&quot;</span> ],
+  crust: <span class="hljs-string">&quot;stuffed&quot;</span>
+};
+</code></pre>
+</li>
+<li><p>Will go into these in-depth later this week.</p>
+</li>
 </ul>
 <h1 id="syntax-variables">Syntax &amp; Variables</h1>
 <h2 id="syntax-5min">Syntax (5min)</h2>
@@ -893,6 +985,10 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 </ul>
 <p>Comments</p>
 <ul>
+<li>Q: Why would you use comments?<ul>
+<li>Talked about this in the HTML class. Same reasoning applies.</li>
+</ul>
+</li>
 <li><p>Types of comments</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Single line</span>
 
@@ -905,7 +1001,10 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 </li>
 <li><p>Use to explain the purpose or reasoning behind a chunk of code.</p>
 </li>
-<li>Help out other developers and future you!</li>
+<li>Help out other developers and future you.<ul>
+<li>If anything, it will help us out when grading your projects!</li>
+</ul>
+</li>
 </ul>
 <h2 id="semantic-naming-5min">Semantic Naming (5min)</h2>
 <p>Q: Which of these would you say is the best named variable? Why?</p>
@@ -913,6 +1012,10 @@ greetings.search( <span class="hljs-string">&quot;friend&quot;</span> );
 <span class="hljs-keyword">var</span> red = <span class="hljs-string">&quot;red&quot;</span>;
 <span class="hljs-keyword">var</span> myFavoriteAnimal = <span class="hljs-string">&quot;jackalope&quot;</span>;
 </code></pre>
+<p>Semantic: &quot;the purpose of text beyond its definition&quot;  </p>
+<ul>
+<li>Thanks Robin!</li>
+</ul>
 <p>The purpose of a variable needs to be evident in the name.</p>
 <ul>
 <li>Nope: <code>var x = 5;</code></li>
