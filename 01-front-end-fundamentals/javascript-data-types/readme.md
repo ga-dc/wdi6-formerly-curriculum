@@ -457,7 +457,9 @@ Accessing array values...
 Array methods
 - There are a lot of useful methods that come with Javascript we can use to inspect and modify arrays. To learn what some of them are...
 
-Exercise: Given the array `var planeteers = [ "Looting", "Wind", "Fire", "Water", "Heart", "Polluting" ]`, use MDN documentation to find methods that accomplish the following...
+### Pair Exercise (5min)
+
+Given the array `var planeteers = [ "Looting", "Wind", "Fire", "Water", "Heart", "Polluting" ]`, use MDN documentation to find methods that accomplish the following...
 - Returns the length of the array.
 - Returns the position of "Water".
 - Removes "Polluting" from the end of the array.
@@ -465,7 +467,7 @@ Exercise: Given the array `var planeteers = [ "Looting", "Wind", "Fire", "Water"
 - Adds `"Earth"` to the front of the array.
 - Reverses the array order.
 
-- Good way to familiarize yourselves with the Mozilla Developer Network's javascript documentation, a go-to source when looking up anything Javascript-related.
+- This exercise is a good way to familiarize yourselves with the Mozilla Developer Network's javascript documentation, a go-to source when looking up anything Javascript-related.
   - [MDN Array Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
   - Navigating documentation is a great skill to have. Some sets of documentation are harder to navigate than others, but if you have a sense of how to dig through a massive trove of information like MDN or RubyDocs, you'll become a much more efficient programmer.
 
@@ -474,6 +476,7 @@ Why use objects?
 - Like arrays, can store multiple values in a single data collection.
 - Unordered collection whose collections are stored as key-value pairs.
 
+  // Help me make a pizza object. What data types should I use?
   ```javascript
   var pizza = {
     slices: 8,
@@ -517,7 +520,7 @@ Comments
   */
   ```
 
-- Use to explain the purpose or reasoning behind a chunk of code.
+- Use to explain the purpose or reasoning behind a piece of code.
 - Help out other developers and future you.
   - If anything, it will help us out when grading your projects!
 
@@ -530,12 +533,12 @@ var red = "red";
 var myFavoriteAnimal = "jackalope";
 ```
 
-Semantic: "the purpose of text beyond its definition"  
-- Thanks Robin!
+Semantic: "the purpose of text beyond its definition"
 
 The purpose of a variable needs to be evident in the name.
 - Nope: `var x = 5;`
-- Yup: `var myFavoriteNumber = 5;`
+- Yup: `var myFavoriteNumber = 5;`  
+
 The name of a variable cannot be tied to a particular value. What if it changes?
 - Nope: `var red = "red"`
 - Yup: `backgroundColor = "red"`
