@@ -51,7 +51,7 @@ So one way we can style elements in HTML is in the tag itself. These are called 
 ```html
 <p style="background:blue"></p>
 ```
-> note the above is a declaration. A declaration is a property and a value.
+> note the above is a CSS declaration. A declaration is a property and a value.
 
 Blech even just writing this out feels miserable. Why do you guys think I feel miserable about this?
 
@@ -72,7 +72,7 @@ The next approach to implementing a style is to put the styling in the `<head>`:
   </style>
 </head>
 ```
-> You've seen this before, but I want to highlight some syntax here. The p in this code is what's called the selector. The background  in the code is the property. Finally blue is the value.
+> You've seen this before, but I want to highlight some syntax here. From p until the ending curly brace is a CSS rule. The p in this code is what's called the selector. The background  in the code is the property. Finally blue is the value.
 
 This is a bit better. I feel less dirty. But feel weird about this one too. Why might that be? (ST-WG)
 
