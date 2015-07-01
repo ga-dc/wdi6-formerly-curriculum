@@ -18,7 +18,8 @@ Wouldn't it be nice to make our webpages look schnazzy? Enter CSS. There is such
 
 [family guy CSS gif](https://i.imgur.com/Q3cUg29.gif)
 
-## In-line vs head vs stylesheets(30m) *Not a codealong let class know they're welcome to but may be better just to pay attention to the first hour instead of typing everything out. All notes available in lesson plan*
+## In-line vs head vs stylesheets(30m)
+> Not a codealong let class know they're welcome to but may be better just to pay attention to the first hour instead of typing everything out. All notes available in lesson plan
 
 At the crux of it all, the primary concept of CSS is to select an HTML element and then do something to it. IE. I want to take the body element, and I want to apply a background color to it.
 
@@ -50,7 +51,7 @@ So one way we can style elements in HTML is in the tag itself. These are called 
 ```html
 <p style="background:blue"></p>
 ```
-> note the above is a declaration. A declaration is a property and a value.
+> note the above is a CSS declaration. A declaration is a property and a value.
 
 Blech even just writing this out feels miserable. Why do you guys think I feel miserable about this?
 
@@ -71,7 +72,7 @@ The next approach to implementing a style is to put the styling in the `<head>`:
   </style>
 </head>
 ```
-> You've seen this before, but I want to highlight some syntax here. The p in this code is what's called the selector. The background  in the code is the property. Finally blue is the value.
+> You've seen this before, but I want to highlight some syntax here. From p until the ending curly brace is a CSS rule. The p in this code is what's called the selector. The background  in the code is the property. Finally blue is the value.
 
 This is a bit better. I feel less dirty. But feel weird about this one too. Why might that be? (ST-WG)
 
