@@ -544,8 +544,6 @@ The name of a variable cannot be tied to a particular value. What if it changes?
 - Nope: `var red = "red"`
 - Yup: `backgroundColor = "red"`  
 
-Sounds simple, but so many people don't follow this simple rule.
-
 # BREAK (10min)
 
 # CODING EXERCISE #2 (20min)
