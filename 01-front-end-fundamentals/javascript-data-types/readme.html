@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Wed Jul 01 2015 11:07:16 GMT+0000 (UTC)">
+    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Wed Jul 01 2015 12:58:28 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -564,10 +564,10 @@
 <p>Why is it the dominant programming language of the web?</p>
 <ul>
 <li>Barriers to entry for learning Javascript are very low.<ul>
-<li>No additional software required to run it.<ul>
+<li>No additional software required to run it. Just a text editor and a browser.<ul>
 <li>You can even run it directly in the browser via its Javascript console.<ul>
 <li>Ex. Hide images on the GA website.</li>
-<li>You&apos;ll learn more about the browser Javascript console when you start adding Javascript to a website.</li>
+<li>You&apos;ll learn more about the browser Javascript console when you start adding Javascript to the websites you make in this class.</li>
 </ul>
 </li>
 </ul>
@@ -825,7 +825,7 @@ greetings.search( <span class="hljs-string">&quot;Andy&quot;</span> );
 </ul>
 <h2 id="booleans-5min">Booleans (5min)</h2>
 <p>Two values: <code>true</code>, <code>false</code>.  </p>
-<p>Oftentimes you&apos;ll be producing boolean values when comparing two values or using logical operations</p>
+<p>Oftentimes you&apos;ll be producing boolean values when comparing two values</p>
 <ul>
 <li><p>Comparison operators: <code>==</code>, <code>===</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></p>
 <pre><code class="lang-javascript"><span class="hljs-number">1</span> === <span class="hljs-number">1</span>
@@ -996,9 +996,10 @@ greetings.search( <span class="hljs-string">&quot;Andy&quot;</span> );
 }
 </code></pre>
 </li>
-<li><p>What type of information would be better suited for an object instead of an array?</p>
-</li>
 <li><p>Let&apos;s make one together...</p>
+<ul>
+<li>Using all the data types we&apos;ve gone over so far (except for <code>undefined</code> and <code>null</code>)</li>
+</ul>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Help me make a pizza object. What data types should I use?</span>
 <span class="hljs-keyword">var</span> pizza = {
   slices: <span class="hljs-number">8</span>,
@@ -1054,13 +1055,12 @@ greetings.search( <span class="hljs-string">&quot;Andy&quot;</span> );
 </ul>
 </li>
 </ul>
-<h2 id="semantic-naming-5min">Semantic Naming (5min)</h2>
+<h2 id="semantic-variable-naming-5min">Semantic Variable Naming (5min)</h2>
 <p>Q: Take a moment to look at the following variables. Rank them from lowest to highest according to how well you think each one is named.</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">5</span>;
 <span class="hljs-keyword">var</span> red = <span class="hljs-string">&quot;red&quot;</span>;
 <span class="hljs-keyword">var</span> myFavoriteAnimal = <span class="hljs-string">&quot;jackalope&quot;</span>;
 </code></pre>
-<p>Semantic: &quot;the purpose of text beyond its definition&quot;</p>
 <p>The purpose of a variable needs to be evident in the name.</p>
 <ul>
 <li>Nope: <code>var x = 5;</code></li>
@@ -1069,9 +1069,9 @@ greetings.search( <span class="hljs-string">&quot;Andy&quot;</span> );
 <p>The name of a variable cannot be tied to a particular value. What if it changes?</p>
 <ul>
 <li>Nope: <code>var red = &quot;red&quot;</code></li>
-<li>Yup: <code>backgroundColor = &quot;red&quot;</code>
-Sounds simple, but so many people don&apos;t follow this simple rule.</li>
+<li>Yup: <code>backgroundColor = &quot;red&quot;</code>  </li>
 </ul>
+<p>Sounds simple, but so many people don&apos;t follow this simple rule.</p>
 <h1 id="break-10min">BREAK (10min)</h1>
 <h1 id="coding-exercise-2-20min">CODING EXERCISE #2 (20min)</h1>
 <p>Temperature conversion (Part II): <a href="https://github.com/ga-dc/temperature_converter" target="_blank">https://github.com/ga-dc/temperature_converter</a>  </p>
