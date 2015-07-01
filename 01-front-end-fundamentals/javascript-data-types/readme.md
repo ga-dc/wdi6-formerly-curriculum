@@ -1,20 +1,23 @@
-function, form, behavior
-
 # LEARNING OBJECTIVES
 - Describe the role Javascript plays alongside HTML and CSS.
-- Explore Javascript as the "programming language of the web".
+- Discuss Javascript as the "programming language of the web".
 - Set up and use Node to run Javascript on the command line.
 - List and describe the primitive data types.
+- Describe uses of mathematical operators in Javascript.
+- Define type coercion.
 - Describe data structures and use arrays to store data types.
 - Practice proper JS syntax and semantic variable naming.
-- Explain the role memory allocation plays in storing data types as variables.
 
 # HTML, CSS and Javascript (20min)
-HTML (content), CSS (style) and Javascript (behavior) as the pillars of web development.
+HTML (content), CSS (style) and Javascript (behavior) as the main components of front-end web development.
+- Q: Sum up the roles HTML and CSS play on a website in a couple of sentences.
+  - HTML: Structure
+  - CSS: Styling
+  - JS: ???
 
 Think-Pair-Share: students identify Javascript features in the Facebook news feed.
-- 5 minutes: individual research.
-- 5 minutes: discuss and compare findings in pairs.
+- 3 minutes: individual research.
+- 3 minutes: discuss and compare findings in pairs.
 - Think about...
   - What functionality the site has after it has loaded.
   - What categories you could group some of these features under.
@@ -26,35 +29,43 @@ Exercise result categories
   - Click something, something happens.
     - Like: increment Like counter.
     - Comment: submit comment, appended to post.
+  - Javascript defines what happens on a page depending on how you interact with it.
+- No Refreshes / User Experience
+  - When I comment on a post, Facebook is able to process my new comment and render it on the page without refreshing the entire page.
+  - Gives the page a much smoother user experience compared to a static page that doesn't have this sort of functionality.
 - Communication with a server
-  - Interactions saved and immediately viewable by other users.
+  - Javascript is somehow telling a server that (a) a user has done something, (b) save that interaction and (c) display the results of that interaction to all other users.
+- Not an exhaustive list of Javascript properties, but we'll go over these and more in more detail later on in the course.
 
-Post-Exercise: Turn off browser Javascript and reload Facebook.
-- Chrome > Preferences > Content Settings > Javascript > "Do not allow..."
-- What functionality has changed? Been removed?
+So, to the main three components of front-end web development up in one word each...
+- HTML: Structure
+- CSS: Styling
+- Javascript: Behavior
 
 # JS: The Programming Language of the Web (5min)
 Javascript is considered to be THE "programming language of the web."
 
-Before we dive into "Why?", let's first answer: what is a programming language?
-- Q: What are the classes thoughts?
-  - Especially when compared to a markup language like HTML.
-- Lets us do things! Act on information.
+Before we dive into why that's the case, let's look at the first part of that statement...
+- ST-wg: What's a programming language?
+  - What can it do that a markup language like HTML can't?
+  - It let's us do things! It lets us act on information, manipulate it, display it, pretty much whatever we want.
 - Javascript enables us to do all that in a browser.
   - Using the tools you learned in the pre-work (e.g., data types, loops, functions).
 
 Why is it the dominant programming language of the web?
-- Not because it's "the best." It has its problems...
-  - Some say it's messy -- a lot of syntax! -- compared to other languages like Ruby and Python.
+- Barriers to entry for learning Javascript are very low.
+  - No additional software required to run it. Just a text editor and a browser.
+    - You can even run it directly in the browser via its Javascript console.
+      - Ex. Hide images on the GA website.
+      - You'll learn more about the browser Javascript console when you start adding Javascript to the websites you make in this class.
+- On top of that, it's supported by all web browsers.
+- Javascript has evolved since its creation.
+  - One of the biggest additions to JS was AJAX, which allows use to reload parts of a page without refreshing the entire thing (just like on Facebook). Big implications for User Experience.
+- A lot of frameworks and libraries -- like Backbone and jQuery -- have emerged that enable us to do so much more -- and do it quickly -- with Javascript.
+- It's not the best. It has its problems...
+  - Some say it's messy. Uses a lot of syntax compared to other languages like Ruby and Python.
   - Slow in its initial form.
-- Gradual rise in popularity
-  - Created in 1995 by Brendan Eich (in only 10 days!) for the Netscape browser.
-  - Was considered to be inferior to established languages like Java.
-  - Embraced by Google. Made JS faster through Chrome's V8 virtual machine. Use AJAX in major web apps like Gmail and Maps.
-  - Rise of frameworks and libraries like Angular and Backbone make it easier to create apps.
-- Now it's used by nearly every website.
-  - Cross-browser support.
-  - Doesn't require any additional software to run in the browser.
+- Nevertheless, Javascript is used by nearly every site on the web, so we might as well learn to utilize it.
 
 # NODE (5min)
 What is it?
@@ -63,12 +74,17 @@ What is it?
 
 Installation
 - Command line:   `$ brew install node`
-- Not working? Follow along with [REPL.it](http://www.repl.it).
+- Take a minute or two to install. Raise your hand if you run into any issues.
 
 Uses
 - REPL
   - “Read-Eval-Print Loop”.
-  - Run Javascript code one line at a time.
+  - Programming environment that lets us run Javascript code one line at a time.
+  - What does it do?
+    1. (R)eads our code.
+    2. (E)valuates it.
+    3. (P)rints it to the console.
+    4. Then it (L)oops back to the beginning, ready to (R)ead the next line of code we feed it.
   - Command line:   `$ node`
 - Run entire Javascript files.
   - Command line:   `$ node FILENAME`
@@ -110,7 +126,7 @@ We store data types in variables.
   var myFavoriteNumber = "five";
   ```
 
-## Numbers (5min)
+## Numbers (10min)
 
 In Javascript, numbers are numerical values -- straightforward!
   - All numbers are of type "number," regardless of format (e.g., integer, float/decimal).
@@ -171,9 +187,10 @@ Operations
     => 2
     ```
 
-  - Q: Modulus has a pretty handy use case. Anybody know what it is?
-    - Use it to check if a number is _____.
-    - Often used as a check for evenness: `NUMBER % 2`
+  - Q: Modulus has a pretty handy use case: to check if a number is even.
+    - A number is even if it is divisible by 2.
+    - Check if a number is even: `NUMBER % 2`
+      - What should this return?
 
       ```javascript
       // Returns 0 if even.
@@ -185,39 +202,18 @@ Operations
       => 1
       ```
 
-The Math object
-- Javascript also comes with a library of more complex math operations as part of the Math object.
-- Syntax: `Math.operationName();`
-- Examples:
-
-  ```javascript
-  // Math.random(): Returns a random decimal between 0 and 1.
-  Math.random();
-
-  // Math.floor(n): Returns the largest integer less than or equal to a number.
-  Math.floor( 3.14 )
-  => 3
-
-  // .random() and .floor() often used in tandem.
-  // Returns a random whole number between 1 and 10.
-  Math.floor(Math.random() * 10) + 1
-  ```
-
-- See more @ [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math).
-
 NaN ("Not a number")
 - A special number...that's not a number?
-  - Technically, its data type is "number."
 
     ```javascript
     typeof NaN
     => "number"
     ```
 
-  - You usually get NaN when the result of a math operation is not real (e.g., dividing by zero, square root of a negative number, weird math).
+  - You usually get NaN when the result of a math operation is not real (e.g., dividing 0 by 0, multiplying strings together).
 
     ```javascript
-    5/0;
+    0/0;
     => NaN
     ```
 
@@ -230,8 +226,10 @@ NaN ("Not a number")
     => false
     ```
 
-## Strings (5min)
-String literals
+## Strings (10min)
+Strings are words in javascript!
+
+We instantiate strings using the "string literal" form.
 
   ```javascript
   // Can use single quotes to instantiate a string...
@@ -288,22 +286,24 @@ String methods
 
   ```javascript
   // .search(): find the starting index of a string value.
-  var greetings = "Hi there friend!";
-  greetings.search( "friend" );
+  // String indexes are 0-based, so the index of a string's first character is 0.
+  var greetings = "Hi there Andy!";
+  greetings.search( "Andy" );
   => 9
 
   // .slice(): return and store a portion of a string.
-  var greetings = "Hi there friend!";
-  var buddy = greetings.slice( 9, 15 );
-  => "friend"
+  var greetings = "Hi there Andy!";
+  var buddy = greetings.slice( 9, 13 );
+  => "Andy"
   ```
 
 - More examples [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
+  - Slack to class.
 
 ## Booleans (5min)
 Two values: `true`, `false`.  
 
-Oftentimes you'll be producing boolean values when making comparisons or logical operations
+Oftentimes you'll be producing boolean values when comparing two values
 - Comparison operators: `==`, `===`, `<`, `>`, `<=`, `>=`
 
   ```javascript
@@ -345,10 +345,12 @@ Undefined: automatically applied to a variable with no value.
 
 Null: an explicitly-assigned non-value.
   - Javascript will never set anything to `null` by itself. `null` only appears when you tell it to.
+  - If I'm not mistaken, the only thing that's inherently `null` in Javascript is `null` itself!
   - Can you imagine a situation where that would be useful?
+    - Placeholder for a variable that you know will be replaced with an actual value later on.
 
 
-So the main difference between `undefined` and `null` is intention. Other than that, they're pretty similar.
+So the main difference between `undefined` and `null` is intention. Other than that, they're both...nothing.
 
 ### Type Coercion
 Javascript will try to make sense of any strange operations you throw at it.
@@ -387,28 +389,45 @@ There are other examples of type coercion, but the point here isn't to remember 
 
 # BREAK (10min)
 
-# CODING EXERCISE #1 (20min)
-Temperature conversion: [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
+# CODING EXERCISE #1 (30min)
+Temperature conversion (Part I): [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
+- Get started by forking and cloning this exercise repo. Raise your hand if you run into any problems.
+- Spend 10 minutes working on Steps 1-3 under the Instructions.
+- After check-in, spend 10 more minutes on Step 4.
 
-# Data Structures / Composite Data Types
+# Composite Data Types
+
+Composite data types are collections that allow us to store multiple data types.
+- There are two kinds in Javascript. What are they?
 
 ## Arrays (15min)
-Why do we use arrays?  
-- Store multiple values in a single data collection.
 - Ordered collection of related data types.
 - Organized by index.
   - Indexing begins at 0 (e.g., first element in an array has an index of 0, the second has an index of 1, and so on).
 
-How to instantiate an array and access its values.  
+There are two ways to instantiate an array...  
 
   ```javascript
-  // Instantiate.
+  // Instantiate with an array literal.
   var mountRushmore = [ "Washington", "Jefferson", "Roosevelt", "Lincoln" ];
 
-  // Can also instantiate like this...
+  // Can also instantiate using the Array constructor.
   var mountRushmore = new Array( "Washington", "Jefferson", "Roosevelt", "Lincoln" );
 
-  // Access the first, second and third element of the array.
+  // Be careful when using the Array constructor. If you feed it a single numerical value, it will create an empty array of that length.
+  var numbers = new Array( 5 );
+  => [ , , , , ]
+
+  // ...but if you feed it anything else, it will create a single-value array.
+  var animals = new Array( "dog" );
+  => [ "dog" ]
+  ```
+
+Accessing array values...  
+
+  ```javascript
+  // Indexing begins at 0.
+  // How do I access the first, second and third elements of the array?
   mountRushmore[0];
   => "Washington"
   mountRushmore[1];
@@ -419,7 +438,7 @@ How to instantiate an array and access its values.
   // You can also place arrays within arrays.
   var letters = [ ["a","b","c"], ["d","e","f"], ["g","h","i"] ];
 
-  // How would I go about accessing the letter "f" in the above array?
+  // How would I go about accessing the letter "f" in the above array? Walk me through it.
   letters[1][2];
   => "f"
   ```
@@ -427,7 +446,9 @@ How to instantiate an array and access its values.
 Array methods
 - There are a lot of useful methods that come with Javascript we can use to inspect and modify arrays. To learn what some of them are...
 
-Exercise: Given the array `var planeteers = [ "Looting", "Wind", "Fire", "Water", "Heart", "Polluting" ]`, use MDN documentation to find methods that accomplish the following...
+### Pair Exercise (5min)
+
+Given the array `var planeteers = [ "Looting", "Wind", "Fire", "Water", "Heart", "Polluting" ]`, use MDN documentation to find methods that accomplish the following...
 - Returns the length of the array.
 - Returns the position of "Water".
 - Removes "Polluting" from the end of the array.
@@ -435,21 +456,31 @@ Exercise: Given the array `var planeteers = [ "Looting", "Wind", "Fire", "Water"
 - Adds `"Earth"` to the front of the array.
 - Reverses the array order.
 
-- Good way to familiarize yourselves with the Mozilla Developer Network's javascript documentation, a go-to source when looking up anything Javascript-related.
+- This exercise is a good way to familiarize yourselves with the Mozilla Developer Network's javascript documentation, a go-to source when looking up anything Javascript-related.
   - [MDN Array Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
-
-
-
-Students find useful array methods on MDN based on question prompts.
-- 5 minutes: individual research
-- Examples: push/pop, shift/unshift, length.
+  - Navigating documentation is a great skill to have. Some sets of documentation are harder to navigate than others, but if you have a sense of how to dig through a massive trove of information like MDN or RubyDocs, you'll become a much more efficient programmer.
 
 ## Objects (5min)
-Why use objects?
-- Store multiple values in a single data collection.
-- Stored according to key-value pairs, not any particular order.
+The other composite data type
+- Like arrays, can store multiple values in a single data collection.
+- Unordered collection whose collections are stored as key-value pairs.
+
+- Example:
 
   ```javascript
+  var teacher = {
+    name: "Adrian",
+    age: 101,
+    class: "WDI6",
+    city: "Washington"
+  }
+  ```
+
+- Let's make one together...
+  - Using all the data types we've gone over so far (except for `undefined` and `null`)
+
+  ```javascript
+  // Help me make a pizza object. What data types should I use?
   var pizza = {
     slices: 8,
     size: "large",
@@ -458,9 +489,10 @@ Why use objects?
   };
   ```
 
+- Why would you use an object over an array?
 - Will go into these in-depth later this week.
 
-# Syntax & Variables
+# Syntax & Semantic Naming
 
 ## Syntax (5min)
 Variable syntax
@@ -491,12 +523,12 @@ Comments
   */
   ```
 
-- Use to explain the purpose or reasoning behind a chunk of code.
+- Use to explain the purpose or reasoning behind a piece of code.
 - Help out other developers and future you.
   - If anything, it will help us out when grading your projects!
 
-## Semantic Naming (5min)
-Q: Which of these would you say is the best named variable? Why?
+## Semantic Variable Naming (5min)
+Q: Take a moment to look at the following variables. Rank them from lowest to highest according to how well you think each one is named.
 
 ```javascript
 var x = 5;
@@ -504,26 +536,27 @@ var red = "red";
 var myFavoriteAnimal = "jackalope";
 ```
 
-Semantic: "the purpose of text beyond its definition"  
-- Thanks Robin!
-
 The purpose of a variable needs to be evident in the name.
 - Nope: `var x = 5;`
-- Yup: `var myFavoriteNumber = 5;`
+- Yup: `var myFavoriteNumber = 5;`  
+
 The name of a variable cannot be tied to a particular value. What if it changes?
 - Nope: `var red = "red"`
-- Yup: `backgroundColor = "red"`
-Sounds simple, but so many people don't follow this simple rule.
-
-## Memory Allocation (5min)
-Use diagram of memory allocation (either whiteboard or slide) to demonstrate...
-- What happens in memory when you create a variable?
-- What happens when you direct a variable to a new memory location?
-- What happens to a memory location with no variable pointing to it?
+- Yup: `backgroundColor = "red"`  
 
 # BREAK (10min)
 
 # CODING EXERCISE #2 (20min)
+
+Temperature conversion (Part II): [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
+
+# Closing
+
+1. What role does Javascript play on a website?
+2. What are the five primitive data types?
+3. What are the two composite data types? When would you use each?
+4. What is an example of type coercion?
+5. What is an example of a semantically-named variable?
 
 # Homework
 
