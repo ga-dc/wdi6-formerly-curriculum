@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Wed Jul 01 2015 03:08:41 GMT+0000 (UTC)">
+    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Wed Jul 01 2015 11:07:16 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -532,13 +532,14 @@
 </li>
 <li>No Refreshes / User Experience<ul>
 <li>When I comment on a post, Facebook is able to process my new comment and render it on the page without refreshing the entire page.</li>
-<li>Gives the page a much smoother user experience compared to a static page that only uses HTML and CSS.</li>
+<li>Gives the page a much smoother user experience compared to a static page that doesn&apos;t have this sort of functionality.</li>
 </ul>
 </li>
 <li>Communication with a server<ul>
 <li>Javascript is somehow telling a server that (a) a user has done something, (b) save that interaction and (c) display the results of that interaction to all other users.</li>
 </ul>
 </li>
+<li>Not an exhaustive list of Javascript properties, but we&apos;ll go over these and more in more detail later on in the course.</li>
 </ul>
 <p>So, to the main three components of front-end web development up in one word each...</p>
 <ul>
@@ -548,13 +549,13 @@
 </ul>
 <h1 id="js-the-programming-language-of-the-web-5min">JS: The Programming Language of the Web (5min)</h1>
 <p>Javascript is considered to be THE &quot;programming language of the web.&quot;</p>
-<p>Before we dive into why that&apos;s the case, let&apos;s look at the first part of that statement: what&apos;s a programming language?</p>
+<p>Before we dive into why that&apos;s the case, let&apos;s look at the first part of that statement...</p>
 <ul>
-<li>Q: What are the classes thoughts?<ul>
-<li>Especially when compared to a markup language like HTML.</li>
+<li>ST-wg: What&apos;s a programming language?<ul>
+<li>What can it do that a markup language like HTML can&apos;t?</li>
+<li>It let&apos;s us do things! It lets us act on information, manipulate it, display it, pretty much whatever we want.</li>
 </ul>
 </li>
-<li>Lets us do things! Act on information.</li>
 <li>Javascript enables us to do all that in a browser.<ul>
 <li>Using the tools you learned in the pre-work (e.g., data types, loops, functions).</li>
 </ul>
@@ -596,7 +597,6 @@
 <ul>
 <li>Command line:   <code>$ brew install node</code></li>
 <li>Take a minute or two to install. Raise your hand if you run into any issues.</li>
-<li>Not working? Follow along with <a href="http://www.repl.it" target="_blank">REPL.it</a>.</li>
 </ul>
 <p>Uses</p>
 <ul>
@@ -921,7 +921,6 @@ greetings.search( <span class="hljs-string">&quot;Andy&quot;</span> );
 <li>There are two kinds in Javascript. What are they?</li>
 </ul>
 <h2 id="arrays-15min">Arrays (15min)</h2>
-<p>Why do we use arrays?</p>
 <ul>
 <li>Ordered collection of related data types.</li>
 <li>Organized by index.<ul>
@@ -983,10 +982,23 @@ greetings.search( <span class="hljs-string">&quot;Andy&quot;</span> );
 </li>
 </ul>
 <h2 id="objects-5min">Objects (5min)</h2>
-<p>Why use objects?</p>
+<p>The other composite data type</p>
 <ul>
 <li>Like arrays, can store multiple values in a single data collection.</li>
 <li><p>Unordered collection whose collections are stored as key-value pairs.</p>
+</li>
+<li><p>Example:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> teacher = {
+  name: <span class="hljs-string">&quot;Adrian&quot;</span>,
+  age: <span class="hljs-number">101</span>,
+  <span class="hljs-keyword">class</span>: <span class="hljs-string">&quot;WDI6&quot;</span>,
+  city: <span class="hljs-string">&quot;Washington&quot;</span>
+}
+</code></pre>
+</li>
+<li><p>What type of information would be better suited for an object instead of an array?</p>
+</li>
+<li><p>Let&apos;s make one together...</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Help me make a pizza object. What data types should I use?</span>
 <span class="hljs-keyword">var</span> pizza = {
   slices: <span class="hljs-number">8</span>,
@@ -1000,7 +1012,7 @@ greetings.search( <span class="hljs-string">&quot;Andy&quot;</span> );
 </li>
 <li>Will go into these in-depth later this week.</li>
 </ul>
-<h1 id="syntax-variables">Syntax &amp; Variables</h1>
+<h1 id="syntax-semantic-naming">Syntax &amp; Semantic Naming</h1>
 <h2 id="syntax-5min">Syntax (5min)</h2>
 <p>Variable syntax</p>
 <ul>
@@ -1043,7 +1055,7 @@ greetings.search( <span class="hljs-string">&quot;Andy&quot;</span> );
 </li>
 </ul>
 <h2 id="semantic-naming-5min">Semantic Naming (5min)</h2>
-<p>Q: Which of these would you say is the best named variable? Why?</p>
+<p>Q: Take a moment to look at the following variables. Rank them from lowest to highest according to how well you think each one is named.</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">5</span>;
 <span class="hljs-keyword">var</span> red = <span class="hljs-string">&quot;red&quot;</span>;
 <span class="hljs-keyword">var</span> myFavoriteAnimal = <span class="hljs-string">&quot;jackalope&quot;</span>;
