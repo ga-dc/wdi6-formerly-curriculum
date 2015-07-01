@@ -1,14 +1,12 @@
-
-
 # LEARNING OBJECTIVES
 - Describe the role Javascript plays alongside HTML and CSS.
-- Explain why Javascript is the "programming language of the web".
+- Discuss Javascript as the "programming language of the web".
 - Set up and use Node to run Javascript on the command line.
 - List and describe the primitive data types.
+- Describe uses of mathematical operators in Javascript.
 - Define type coercion.
 - Describe data structures and use arrays to store data types.
 - Practice proper JS syntax and semantic variable naming.
-- Explain the role memory allocation plays in storing data types as variables.
 
 # HTML, CSS and Javascript (20min)
 HTML (content), CSS (style) and Javascript (behavior) as the main components of front-end web development.
@@ -31,13 +29,14 @@ Exercise result categories
   - Click something, something happens.
     - Like: increment Like counter.
     - Comment: submit comment, appended to post.
+  - Javascript defines what happens on a page depending on how you interact with it.
 - No Refreshes / User Experience
   - When I comment on a post, Facebook is able to process my new comment and render it on the page without refreshing the entire page.
-  - Smooth user experience.
+  - Gives the page a much smoother user experience compared to a static page that only uses HTML and CSS.
 - Communication with a server
-  - Interactions saved and immediately viewable by other users.
+  - Javascript is somehow telling a server that (a) a user has done something, (b) save that interaction and (c) display the results of that interaction to all other users.
 
-Sum it all up
+So, to the main three components of front-end web development up in one word each...
 - HTML: Structure
 - CSS: Styling
 - Javascript: Behavior
@@ -45,7 +44,7 @@ Sum it all up
 # JS: The Programming Language of the Web (5min)
 Javascript is considered to be THE "programming language of the web."
 
-Before we dive into "Why?", let's first answer: what is a programming language?
+Before we dive into why that's the case, let's look at the first part of that statement: what's a programming language?
 - Q: What are the classes thoughts?
   - Especially when compared to a markup language like HTML.
 - Lets us do things! Act on information.
@@ -53,19 +52,19 @@ Before we dive into "Why?", let's first answer: what is a programming language?
   - Using the tools you learned in the pre-work (e.g., data types, loops, functions).
 
 Why is it the dominant programming language of the web?
-- It's easy to learn.
+- Barriers to entry for learning Javascript are very low.
   - No additional software required to run it.
-    - You can write it with a plain ol' text editor.
-    - Don't need to compile Javascript. It's read as is.
-  - Supported by all web browsers.
-  - Barriers of entry for new and experienced developers alike is low.
+    - You can even run it directly in the browser via its Javascript console.
+      - Ex. Hide images on the GA website.
+      - You'll learn more about the browser Javascript console when you start adding Javascript to a website.
+- On top of that, it's supported by all web browsers.
 - Javascript has evolved since its creation.
   - One of the biggest additions to JS was AJAX, which allows use to reload parts of a page without refreshing the entire thing (just like on Facebook). Big implications for User Experience.
 - A lot of frameworks and libraries -- like Backbone and jQuery -- have emerged that enable us to do so much more -- and do it quickly -- with Javascript.
 - It's not the best. It has its problems...
   - Some say it's messy. Uses a lot of syntax compared to other languages like Ruby and Python.
   - Slow in its initial form.
-- Nevertheless, Javascript is used by nearly every site on the web.
+- Nevertheless, Javascript is used by nearly every site on the web, so we might as well learn to utilize it.
 
 # NODE (5min)
 What is it?
@@ -81,6 +80,11 @@ Uses
 - REPL
   - “Read-Eval-Print Loop”.
   - Programming environment that lets us run Javascript code one line at a time.
+  - What does it do?
+    1. (R)eads our code.
+    2. (E)valuates it.
+    3. (P)rints it to the console.
+    4. Then it (L)oops back to the beginning, ready to (R)ead the next line of code we feed it.
   - Command line:   `$ node`
 - Run entire Javascript files.
   - Command line:   `$ node FILENAME`
@@ -183,9 +187,10 @@ Operations
     => 2
     ```
 
-  - Q: Modulus has a pretty handy use case. Anybody know what it is?
-    - Use it to check if a number is _____.
-    - Often used as a check for evenness: `NUMBER % 2`
+  - Q: Modulus has a pretty handy use case: to check if a number is even.
+    - A number is even if it is divisible by 2.
+    - Check if a number is even: `NUMBER % 2`
+      - What should this return?
 
       ```javascript
       // Returns 0 if even.
@@ -196,26 +201,6 @@ Operations
       5 % 2;
       => 1
       ```
-
-The Math object
-- Javascript also comes with a library of more complex math operations as part of the Math object.
-- Syntax: `Math.operationName();`
-- Examples:
-
-  ```javascript
-  // Math.random(): Returns a random decimal between 0 and 1.
-  Math.random();
-
-  // Math.floor(n): Returns the largest integer less than or equal to a number.
-  Math.floor( 3.14 )
-  => 3
-
-  // .random() and .floor() often used in tandem.
-  // Returns a random whole number between 1 and 10.
-  Math.floor(Math.random() * 10) + 1
-  ```
-
-- See more @ [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math).
 
 NaN ("Not a number")
 - A special number...that's not a number?
@@ -244,7 +229,7 @@ NaN ("Not a number")
 ## Strings (10min)
 Strings are words in javascript!
 
-String literals  
+We instantiate strings using the "string literal" form.
 
   ```javascript
   // Can use single quotes to instantiate a string...
@@ -301,17 +286,19 @@ String methods
 
   ```javascript
   // .search(): find the starting index of a string value.
-  var greetings = "Hi there friend!";
-  greetings.search( "friend" );
-  => 10
+  // String indexes are 0-based, so the index of a string's first character is 0.
+  var greetings = "Hi there Andy!";
+  greetings.search( "Andy" );
+  => 9
 
   // .slice(): return and store a portion of a string.
-  var greetings = "Hi there friend!";
-  var buddy = greetings.slice( 9, 15 );
-  => "friend"
+  var greetings = "Hi there Andy!";
+  var buddy = greetings.slice( 9, 13 );
+  => "Andy"
   ```
 
 - More examples [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
+  - Slack to class.
 
 ## Booleans (5min)
 Two values: `true`, `false`.  
@@ -402,13 +389,16 @@ There are other examples of type coercion, but the point here isn't to remember 
 
 # BREAK (10min)
 
-# CODING EXERCISE #1 (20min)
+# CODING EXERCISE #1 (30min)
 Temperature conversion (Part I): [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
+- Get started by forking and cloning this exercise repo. Raise your hand if you run into any problems.
+- Spend 10 minutes working on Steps 1-3 under the Instructions.
+- After check-in, spend 10 more minutes on Step 4.
 
 # Composite Data Types
 
 Composite data types are collections that allow us to store multiple data types.
-- There are two kinds in Javascript? Does anybody know what they are?
+- There are two kinds in Javascript. What are they?
 
 ## Arrays (15min)
 Why do we use arrays?
@@ -476,8 +466,8 @@ Why use objects?
 - Like arrays, can store multiple values in a single data collection.
 - Unordered collection whose collections are stored as key-value pairs.
 
-  // Help me make a pizza object. What data types should I use?
   ```javascript
+  // Help me make a pizza object. What data types should I use?
   var pizza = {
     slices: 8,
     size: "large",
@@ -544,15 +534,6 @@ The name of a variable cannot be tied to a particular value. What if it changes?
 - Yup: `backgroundColor = "red"`
 Sounds simple, but so many people don't follow this simple rule.
 
-## Memory Allocation (5min)
-Important to think about variable assignment with a programming mindset, not just a mathematical one.
-- More than just an equation (e.g., `var hero = "Batman";` )
-
-Whiteboard: memory allocation
-- What happens in memory when you create a variable?
-- What happens when you direct a variable to a new memory location?
-- What happens to a memory location with no variable pointing to it?
-
 # BREAK (10min)
 
 # CODING EXERCISE #2 (20min)
@@ -564,9 +545,8 @@ Temperature conversion (Part II): [https://github.com/ga-dc/temperature_converte
 1. What role does Javascript play on a website?
 2. What are the five primitive data types?
 3. What are the two composite data types? When would you use each?
-3. What is an example of type coercion?
-4. What is an example of a semantically-named variable?
-5. What happens to a data value with no variable pointing to it?
+4. What is an example of type coercion?
+5. What is an example of a semantically-named variable?
 
 # Homework
 
