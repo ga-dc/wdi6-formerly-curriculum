@@ -210,7 +210,7 @@ NaN ("Not a number")
     => "number"
     ```
 
-  - You usually get NaN when the result of a math operation is not real (e.g., dividing by zero, square root of a negative number).
+  - You usually get NaN when the result of a math operation is not real (e.g., dividing 0 by 0, multiplying strings together).
 
     ```javascript
     0/0;
