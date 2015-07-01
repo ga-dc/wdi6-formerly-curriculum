@@ -32,9 +32,10 @@ Exercise result categories
   - Javascript defines what happens on a page depending on how you interact with it.
 - No Refreshes / User Experience
   - When I comment on a post, Facebook is able to process my new comment and render it on the page without refreshing the entire page.
-  - Gives the page a much smoother user experience compared to a static page that only uses HTML and CSS.
+  - Gives the page a much smoother user experience compared to a static page that doesn't have this sort of functionality.
 - Communication with a server
   - Javascript is somehow telling a server that (a) a user has done something, (b) save that interaction and (c) display the results of that interaction to all other users.
+- Not an exhaustive list of Javascript properties, but we'll go over these and more in more detail later on in the course.
 
 So, to the main three components of front-end web development up in one word each...
 - HTML: Structure
@@ -44,10 +45,10 @@ So, to the main three components of front-end web development up in one word eac
 # JS: The Programming Language of the Web (5min)
 Javascript is considered to be THE "programming language of the web."
 
-Before we dive into why that's the case, let's look at the first part of that statement: what's a programming language?
-- Q: What are the classes thoughts?
-  - Especially when compared to a markup language like HTML.
-- Lets us do things! Act on information.
+Before we dive into why that's the case, let's look at the first part of that statement...
+- ST-wg: What's a programming language?
+  - What can it do that a markup language like HTML can't?
+  - It let's us do things! It lets us act on information, manipulate it, display it, pretty much whatever we want.
 - Javascript enables us to do all that in a browser.
   - Using the tools you learned in the pre-work (e.g., data types, loops, functions).
 
@@ -74,7 +75,6 @@ What is it?
 Installation
 - Command line:   `$ brew install node`
 - Take a minute or two to install. Raise your hand if you run into any issues.
-- Not working? Follow along with [REPL.it](http://www.repl.it).
 
 Uses
 - REPL
@@ -401,7 +401,6 @@ Composite data types are collections that allow us to store multiple data types.
 - There are two kinds in Javascript. What are they?
 
 ## Arrays (15min)
-Why do we use arrays?
 - Ordered collection of related data types.
 - Organized by index.
   - Indexing begins at 0 (e.g., first element in an array has an index of 0, the second has an index of 1, and so on).
@@ -462,9 +461,24 @@ Given the array `var planeteers = [ "Looting", "Wind", "Fire", "Water", "Heart",
   - Navigating documentation is a great skill to have. Some sets of documentation are harder to navigate than others, but if you have a sense of how to dig through a massive trove of information like MDN or RubyDocs, you'll become a much more efficient programmer.
 
 ## Objects (5min)
-Why use objects?
+The other composite data type
 - Like arrays, can store multiple values in a single data collection.
 - Unordered collection whose collections are stored as key-value pairs.
+
+- Example:
+
+  ```javascript
+  var teacher = {
+    name: "Adrian",
+    age: 101,
+    class: "WDI6",
+    city: "Washington"
+  }
+  ```
+
+- What type of information would be better suited for an object instead of an array?
+
+- Let's make one together...
 
   ```javascript
   // Help me make a pizza object. What data types should I use?
@@ -479,7 +493,7 @@ Why use objects?
 - Why would you use an object over an array?
 - Will go into these in-depth later this week.
 
-# Syntax & Variables
+# Syntax & Semantic Naming
 
 ## Syntax (5min)
 Variable syntax
@@ -515,7 +529,7 @@ Comments
   - If anything, it will help us out when grading your projects!
 
 ## Semantic Naming (5min)
-Q: Which of these would you say is the best named variable? Why?
+Q: Take a moment to look at the following variables. Rank them from lowest to highest according to how well you think each one is named.
 
 ```javascript
 var x = 5;
