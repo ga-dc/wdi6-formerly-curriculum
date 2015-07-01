@@ -54,10 +54,10 @@ Before we dive into why that's the case, let's look at the first part of that st
 
 Why is it the dominant programming language of the web?
 - Barriers to entry for learning Javascript are very low.
-  - No additional software required to run it.
+  - No additional software required to run it. Just a text editor and a browser.
     - You can even run it directly in the browser via its Javascript console.
       - Ex. Hide images on the GA website.
-      - You'll learn more about the browser Javascript console when you start adding Javascript to a website.
+      - You'll learn more about the browser Javascript console when you start adding Javascript to the websites you make in this class.
 - On top of that, it's supported by all web browsers.
 - Javascript has evolved since its creation.
   - One of the biggest additions to JS was AJAX, which allows use to reload parts of a page without refreshing the entire thing (just like on Facebook). Big implications for User Experience.
@@ -303,7 +303,7 @@ String methods
 ## Booleans (5min)
 Two values: `true`, `false`.  
 
-Oftentimes you'll be producing boolean values when comparing two values or using logical operations
+Oftentimes you'll be producing boolean values when comparing two values
 - Comparison operators: `==`, `===`, `<`, `>`, `<=`, `>=`
 
   ```javascript
@@ -476,9 +476,8 @@ The other composite data type
   }
   ```
 
-- What type of information would be better suited for an object instead of an array?
-
 - Let's make one together...
+  - Using all the data types we've gone over so far (except for `undefined` and `null`)
 
   ```javascript
   // Help me make a pizza object. What data types should I use?
@@ -528,7 +527,7 @@ Comments
 - Help out other developers and future you.
   - If anything, it will help us out when grading your projects!
 
-## Semantic Naming (5min)
+## Semantic Variable Naming (5min)
 Q: Take a moment to look at the following variables. Rank them from lowest to highest according to how well you think each one is named.
 
 ```javascript
@@ -537,15 +536,14 @@ var red = "red";
 var myFavoriteAnimal = "jackalope";
 ```
 
-Semantic: "the purpose of text beyond its definition"
-
 The purpose of a variable needs to be evident in the name.
 - Nope: `var x = 5;`
 - Yup: `var myFavoriteNumber = 5;`  
 
 The name of a variable cannot be tied to a particular value. What if it changes?
 - Nope: `var red = "red"`
-- Yup: `backgroundColor = "red"`
+- Yup: `backgroundColor = "red"`  
+
 Sounds simple, but so many people don't follow this simple rule.
 
 # BREAK (10min)
