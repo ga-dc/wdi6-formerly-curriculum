@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.7" data-basepath="../.." data-revision="Thu Jul 02 2015 01:45:23 GMT+0000 (UTC)">
+    <div class="book" data-level="1.7" data-basepath="../.." data-revision="Thu Jul 02 2015 11:14:36 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -562,6 +562,8 @@ The second function declaration is a named function. The practical difference is
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eat</span><span class="hljs-params">(someFood)</span></span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;nom nom, i &lt;3 &quot;</span>+ someFood)
 }
+
+eat(<span class="hljs-string">&quot;pizza&quot;</span>)
 </code></pre>
 <p>It might feel like the output of this function is the string starting with &quot;nom...&quot;, but it&#x2019;s not! It&#x2019;s a side-effect.</p>
 <p>The output of a function is whatever is <code>return</code>ed from a function:</p>
@@ -572,12 +574,24 @@ The second function declaration is a named function. The practical difference is
 <span class="hljs-keyword">var</span> lunch = eat(<span class="hljs-string">&quot;pizza&quot;</span>)
 <span class="hljs-built_in">console</span>.log(lunch)
 </code></pre>
+<h2 id="methods">Methods</h2>
+<p>Methods are functions that are attached to some object.</p>
+<pre><code class="lang-js">
+<span class="hljs-keyword">var</span> car = {
+  make: <span class="hljs-string">&quot;Honda&quot;</span>,
+  model: <span class="hljs-string">&quot;Civic&quot;</span>,
+  drive: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;vroom vroom&quot;</span>)
+  }
+}
+</code></pre>
 <h2 id="dom">DOM</h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" target="_blank"><strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel</a> 
 is a programming interface for HTML.</p>
 <p>An HTML <em>document</em> is available for us to manipulate as an object, and this object is structured like a tree:</p>
 <p>(Not like this one <a href="http://hakim.se/experiments/css/domtree/" target="_blank">http://hakim.se/experiments/css/domtree/</a>)</p>
 <p><img src="http://www.tuxradar.com/files/LXF118.tut_grease.diagram.png" alt=""></p>
+<p><a href="https://css-tricks.com/dom/" target="_blank">https://css-tricks.com/dom/</a></p>
 <h3 id="document">Document</h3>
 <p><code>document</code></p>
 <ul>
@@ -603,7 +617,6 @@ is a programming interface for HTML.</p>
 <li>document.querySelector</li>
 <li>document.querySelectorAll</li>
 </ul>
-<h3 id="you-do-traversing-the-dom">You Do: Traversing the DOM</h3>
 <h3 id="altering-dom-elements">Altering DOM Elements</h3>
 <ul>
 <li>.textContent</li>
@@ -629,7 +642,7 @@ is a programming interface for HTML.</p>
 </ul>
 <h2 id="events">Events</h2>
 <ul>
-<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Event</a></p>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank">https://developer.mozilla.org/en-US/docs/Web/Events</a></p>
 </li>
 <li><p>.onclick</p>
 </li>
