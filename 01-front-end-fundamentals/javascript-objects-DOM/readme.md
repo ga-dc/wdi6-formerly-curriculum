@@ -140,6 +140,7 @@ var car = {
     console.log("vroom vroom")
   }
 }
+car.drive()
 ```
 
 ## DOM
