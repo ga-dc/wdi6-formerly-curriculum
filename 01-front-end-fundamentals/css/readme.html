@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.4" data-basepath="../.." data-revision="Thu Jul 02 2015 12:37:28 GMT+0000 (UTC)">
+    <div class="book" data-level="1.4" data-basepath="../.." data-revision="Thu Jul 02 2015 19:45:25 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -670,7 +670,90 @@ You can access a CSS specificty calculator <a href="http://specificity.keegan.st
 <p>Exercise is <a href="https://github.com/ga-dc/wendy_bite" target="_blank">here!</a></p>
 <blockquote>
 <p>notes will be pushed after lesson</p>
+<h2 id="we-do-wendy-g-bite-code-along-60-m">We do- Wendy G Bite <em>Code Along</em> (60 m)</h2>
+<p>ST-WG. Use notes as a guideline and tool for students later. Don&apos;t necessarily have to stick to it 100%</p>
 </blockquote>
+<p>Cool, Let&apos;s code this one together. I think the first thing we should do is get all our content on the page. So let&apos;s go ahead and create some files to put this content in:</p>
+<pre><code class="lang-bash">$ touch index.html
+$ touch styles.css
+</code></pre>
+<p>Alright, now let&apos;s shove all of our content into <code>index.html</code>:</p>
+<pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Wendy Bite | About Me<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">&apos;stylesheet&apos;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;text/css&apos;</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;styles.css&apos;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;utf8&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">header</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Wendy G. Bite<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">nav</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;#&apos;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&apos;active&apos;</span>&gt;</span>About Me<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span> |
+      <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;#&apos;</span>&gt;</span>R&amp;eacute;sum&amp;eacute;<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">nav</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">header</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;main&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>About Me<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&apos;Betty-White.jpg&apos;</span> <span class="hljs-attribute">align</span>=<span class="hljs-value">right</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>The series revolves around four older, single women (three widows and one divorc&#xE9;e) sharing a house in Miami, Florida. The owner of the house is a widow named Blanche Devereaux (Rue McClanahan), who was joined by fellow widow Rose Nylund (Betty White) and divorc&#xE9;e Dorothy Zbornak (Bea Arthur). They both responded to a room-for-rent ad on the bulletin board of a local grocery store. In the pilot episode, the women had a gay cook named Coco (Charles Levin), who was subsequently removed.[5] The three were soon joined by Dorothy&apos;s mother, Sophia Petrillo (Estelle Getty), after the retirement home where she lived, Shady Pines, burned down.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Thank You for being a friend. Travel down a road and back again. Your heart is true, you&apos;re a pal and a confidante.And if you threw a party, invited everyone you knew, you would see the biggest gift would be from me and the card attached would say, Thank You For Being a Friend!<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">footer</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;#&apos;</span>&gt;</span>Facebook<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span> |
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;#&apos;</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span> |
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;#&apos;</span>&gt;</span>Instagram<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span> |
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;#&apos;</span>&gt;</span>LinkedIn<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">footer</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<p>I think we can knock out an easy one early on. I can see by looking at that page that the background color and text color are mostly similar. Additionally centering everything and giving it a little bit of a buffer with the padding/border/margin on the edges will be nice. Let&apos;s go ahead and change that in <code>styles.css</code>:</p>
+<pre><code class="lang-css"><span class="hljs-tag">body</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#444</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#fff</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">5px</span> solid <span class="hljs-hexcolor">#777</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">2em</span> auto</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">2em</span></span></span>;
+
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>Alright, just with 5 properties already looking a lot better! I think we can do another quick fix by just centering the text for the header and footer.</p>
+<pre><code class="lang-css"><span class="hljs-tag">header</span>, <span class="hljs-tag">footer</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> center</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>I think the default link color is bothering me. Lets ahead and change that and while were at it change the links to bold, they look bold to me:</p>
+<pre><code class="lang-css"><span class="hljs-tag">a</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#66CD9B</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>I&apos;m digging those lines above and below that main section. Let&apos;s go ahead and add that:</p>
+<pre><code class="lang-css"><span class="hljs-tag">section</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">border-color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ccc</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border-width</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> <span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border-style</span>:<span class="hljs-value"> solid</span></span>;
+  <span class="hljs-comment">/*add padding and margin as necessary*/</span>
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>Our words are too close together, lets fix that:</p>
+<pre><code class="lang-css"><span class="hljs-tag">p</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">line-height</span>:<span class="hljs-value"><span class="hljs-number">1.5</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>Man, this is already looking pretty close! Now just some small things. Theres a tiny border around the image, but its not directly on the image. I also notice that the text in the example isn&apos;t butting right up next to the image either. Let&apos;s fix all of that!</p>
+<pre><code class="lang-css"><span class="hljs-tag">img</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#ccc</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">5px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin-left</span>:<span class="hljs-value"> <span class="hljs-number">1em</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin-bottom</span>:<span class="hljs-value"> <span class="hljs-number">1em</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>I think that&apos;s pretty good. There&apos;s some minor tweaks that can be made. Like font and changing the color for active links.</p>
 <h2 id="you-do-finish-for-hw-dew">You do/ Finish for HW - Dew</h2>
 
                     
