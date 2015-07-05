@@ -144,3 +144,8 @@ form.addEventListener("submit", function(event){
 ## Homework
 
 <https://github.com/ga-dc/timer_js>
+
+## Sample Quiz Questions
+
+1. What is the difference between synchronous and asynchronous program execution?
+2. Define a function that takes a function as an argument and invokes the argument when the function is called.
