@@ -5,8 +5,6 @@
 - Explain why callbacks are important to asynchronous program flow
 - Identify when to reference a function and when to invoke a function
 - Describe what an anonymous function is and when you would use one
-- Explain JS context and what the value of the `this` keyword refers to
-- Explain what the default context of JS in the browser is
 - Pass a named function as a callback to another function
 - Pass an anonymous function as a callback to another function
 
@@ -95,8 +93,54 @@ app.simulateA("hover")
 
 Let’s start with a working solution and improve it.
 
+    $ cd ~/wdi/exercises/color-scheme-switcher
+    $ git checkout origin/solution
+
 1. Replace inline styles with class manipulation.
 2. Use the same function for all event handlers  
-3. Use one event handler
+3. Use one event listener
 
+### 1. Classes instead of inline styles
 
+Manipulating classes with JavaScript instead of manipulating inline styles allows us to separate our concerns.
+All style-related things will be in a css file (see how easy it is to add a new theme at the end!)
+
+### 2. One Event Handler to Rule them all
+
+```js
+function switchTheme(event){
+  console.log(event.target.className)
+  //or
+  console.log(this)
+}
+```
+
+### 3. One Event Listener
+
+```js
+var buttons = document.querySelector("ul")
+buttons.addEventListener("click", function(event){
+  if(event.target.tagName == "LI"){
+    switchTheme(event) 
+  }
+})
+```
+
+## You do: Cash Register Exercise
+
+https://github.com/ga-dc/cash-register
+
+Let’s handle the form submission together
+
+```js
+var form = document.querySelector("form")
+var userInput = document.querySelector("#newEntry")
+form.addEventListener("submit", function(event){
+  event.preventDefault()
+  console.log(userInput.value)
+})
+```
+
+## Homework
+
+<https://github.com/ga-dc/timer_js>
