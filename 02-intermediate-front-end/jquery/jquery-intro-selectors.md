@@ -27,6 +27,7 @@ Before we dive into the world of jQuery, let's make sure we've got our Vanilla J
 
 Follow along with "My Blawg": https://github.com/amaseda/jquery-inclass-blawg
 - Clone: `$ git clone git@github.com:amaseda/jquery-inclass-blawg.git`
+- Open: `$ open index.html`
 - We'll be using this as an example throughout today's class.
 
 Instructions: Write down how you would select the following DOM objects on "My Blawg" using Vanilla JS selectors.  
@@ -349,4 +350,4 @@ The jQuery methods we will be going over today are both "getters" and "setters".
 
 Reference: [https://api.jquery.com/](https://api.jquery.com/)
 
-## Homework
+## Homework: Pixart
