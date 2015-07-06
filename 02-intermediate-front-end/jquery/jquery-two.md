@@ -21,25 +21,62 @@ What are some things you've learned about jQuery?
 Assume the following html for the following examples:
 
 ```html
-
+<div class="awesome">this is a div</div>
+<
 ```
 
 ### Addition
 - `.append()`
   - the selector expression preceding the method is the container into which the content(argument) is inserted
+
+  ```javascript
+    $(".awesome").append("<div>this div is appended</div>")
+    // this would add the div as the last child in it to all elements with class awesome
+  ```
+
 - `.appendTo()`
   - the content precedes the method, either as a selector expression or as markup created on the fly, and it is inserted into the target container(argument)
+
+  ```javascript
+    $("<div>this div is appended</div>").appendTo($(".awesome"))
+    // same thing as above
+  ```
+
 - `.prepend()`
   - same as append but inserts the specified content(argument) as the first child
+
+  ```javascript
+    $(".awesome").prepend("<div>this div is prepended</div>")
+    // this would add the div as the first child in it to all elements with class awesome
+  ```
+
 - `.prependTo()`
   - same as appendto but the content precedes the method call is inserted as the first child of the target container(argument)
+
+  ```javascript
+    $("<div>this div is prepended</div>").prependTo($(".awesome"))
+    // same thing as above
+  ```
+
 - `.html()`
   - get or set the HTML contents
-    - get: no argument
+    - get: no argument, know that it returns the innerHTML of the first jQuery object
+
+    ```javascript
+      $(".awesome").html()
+      // returns the innerHTML of the first element in the jQuery object
+    ```
+
     - set: one argument that you want the html content to be
+
+    ```javascript
+      $(".awesome").html("this is awesome!")
+      // returns the innerHTML of the of all elements in the jQuery object to be "this is awesome!"
+    ```
+
 - `.text()`
   - get or set the text contained, it will strip the HTML elements
-  - same as `.html()`
+  - same as `.html()` only it returns the text of all jQuery objects selected for the getter portion
 
 ### Removal
 - `.remove()`
