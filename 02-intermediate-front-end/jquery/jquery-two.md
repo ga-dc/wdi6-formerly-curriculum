@@ -81,10 +81,21 @@ Assume the following html for the following examples:
 ### Removal
 - `.remove()`
   - removes the jquery object it is called on, as well as bound events and everything inside it
+
+  ```javascript
+    $(".awesome").remove()
+  ```
+
 - `.empty()`
   - removes all the child elements of the jquery object it is called on
 
+  ```javascript
+    $(".awesome").empty()
+  ```
+
 ### Edition
+> you guys glossed over this a bit, but here they are again.
+
 - `.attr()`
   - acts as both a getter and setter
     - setter: requires 2 arguments(key/value pair), or an object(with multiple key/value pairs)
@@ -99,20 +110,51 @@ Assume the following html for the following examples:
 
 ## BREAK(10m)
 ### Other
-- `.show()`
-  - changes a `display:none` to `display:block` or whatever it initially was
 - `.hide()`
   - changes elements style to have `display:none`
+
+  ```javascript
+    $(".awesome").hide()
+    // returns the innerHTML of the first element in the jQuery object
+  ```
+
+- `.show()`
+  - changes a `display:none` to `display:block` or whatever it initially was
+
+  ```javascript
+    $(".awesome").show()
+    // returns the innerHTML of the first element in the jQuery object
+  ```
+
 - `.addClass()`
   - does not replace existing classes
   - pass in argument of 1 string to add 1 or more classes
+
+  ```javascript
+    $(".awesome").addClass("add three classes")
+    // adds the classes add, three and classes to all elements in the jQuery object returned
+  ```
+
 - `.removeClass()`
   - pass in argument of 1 string remove 1 or more classes
+
+  ```javascript
+    $(".awesome").removeClass("add three classes")
+    // removes the classes add, three and classes to all elements in the jQuery object selected
+  ```
+
 - `.children()`
+  - returns a jQuery object that contains all the child elements of the jQuery object it is called on.
+
+  ```javascript
+    $(".awesome").children()
+  ```
+
+
 - `.each()`
   - loops through collections of jquery objects
   - `$(".somejQueryClass").each(function(index){//code goes here})`
-  - collect all child jquery objects of a the jquery object it is being called on
+  
 - `.on()`
   - a way to create event listeners
   - takes two arguments normally
