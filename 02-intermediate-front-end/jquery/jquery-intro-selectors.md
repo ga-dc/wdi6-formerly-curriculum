@@ -30,13 +30,13 @@ Follow along with "My Blawg": https://github.com/amaseda/jquery-inclass-blawg
 - We'll be using this as an example throughout today's class.
 
 Instructions: Write down how you would select the following DOM objects on "My Blawg" using Vanilla JS selectors.  
-1. The first `<a>` element on the page.  
-2. All `<a>` elements on the page.  
-3. Using an id, the h1 at the top of the page.  
-4. All elements with class `post`.  
-5. The first element with class `post`.  
-6. The second element with class `post`.  
-7. The HTML content of the first `<p>` element on the page.  
+  1. The first `<a>` element on the page.  
+  2. All `<a>` elements on the page.  
+  3. Using an id, the h1 at the top of the page.  
+  4. All elements with class `post`.  
+  5. The first element with class `post`.  
+  6. The second element with class `post`.  
+  7. The HTML content of the first `<p>` element on the page.  
 
 We'll revisit this after talking about jQuery for a bit...  
 
@@ -164,15 +164,15 @@ We Do: What would `$( "li" ).html();` look like in Javascript?
 ### Exercise: Using jQuery Selectors (10min)
 
 Select the following DOM objects on the Blawg using jQuery selectors.  
-1. The first `<a>` element on the page.  
-2. All `<a>` elements on the page.  
-3. Using an id, the h1 at the top of the page.  
-4. All elements with class `post`.  
-5. The first element with class `post`.  
-6. The second element with class `post`.  
-7. The HTML content of the first `<a>` element on the page.  
-6. Using a CSS pseudo-selector, the third element with class `post`.
-7. Using an HTML attribute, the fourth `img` on the page.  
+  1. The first `<a>` element on the page.  
+  2. All `<a>` elements on the page.  
+  3. Using an id, the h1 at the top of the page.  
+  4. All elements with class `post`.  
+  5. The first element with class `post`.  
+  6. The second element with class `post`.  
+  7. The HTML content of the first `<a>` element on the page.  
+  6. Using a CSS pseudo-selector, the third element with class `post`.
+  7. Using an HTML attribute, the fourth `img` on the page.  
 
 Reference: [https://api.jquery.com/](https://api.jquery.com/)
 
@@ -340,12 +340,12 @@ The jQuery methods we will be going over today are both "getters" and "setters".
 ### Exercise: Get 'n' Set (10min)
 
 "Get or "Set" the following values using jQuery selectors and methods.  
-1. Get the HTML content of the second `<p>` element on the page.  
-2. Set the HTML content of the second `<p>` to something else weird.  
-3. Get the background color of the body.  
-4. Set the background color of the body to "burlywood".  
-5. Get the `alt` value of the fourth `<img>` on the page.  
-6. Set the `alt` value of the fourth `<img>` on the page.  
+  1. Get the HTML content of the second `<p>` element on the page.  
+  2. Set the HTML content of the second `<p>` to something else weird.  
+  3. Get the background color of the body.  
+  4. Set the background color of the body to "burlywood".  
+  5. Get the `alt` value of the fourth `<img>` on the page.  
+  6. Set the `alt` value of the fourth `<img>` on the page.  
 
 Reference: [https://api.jquery.com/](https://api.jquery.com/)
 
