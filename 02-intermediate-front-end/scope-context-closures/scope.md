@@ -9,6 +9,7 @@
 ## References
 
 * [Understanding Scope and Context in JavaScript](http://ryanmorr.com/understanding-scope-and-context-in-javascript/)
+* [Everything you wanted to know about JavaScript scope](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
 
 ## What is Scope?
 
@@ -24,6 +25,7 @@ that can be accessed from the current line.
 In Javascript, there are two types of scope, **global scope** and **local scope**.
 
 There are four simple rules regarding scope in JS:
+
 1. Variables created without the `var` keyword, no matter where in a program,
 are placed in the global scope.
 2. Variables created *with* the `var` keyword are created in the current local scope.
@@ -31,6 +33,7 @@ are placed in the global scope.
 4. The current scope includes all outer (enclosing) scopes.
 
 Another way to say this:
+
 * Local variables defined inside a function cannot be accessed from anywhere
 outside the function, because the variable is defined only in the scope of the
 function.
