@@ -223,7 +223,7 @@ Each web page loaded in the browser has its own document object. The Document in
 
 ## Homework
 
-<https://github.com/ga-dc/fellowship>
+<https://github.com/ga-dc/tic_tac_toe>
 
 ---
 
