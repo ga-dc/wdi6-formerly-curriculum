@@ -161,6 +161,12 @@ var instructor = {
 instructor.displayFoods();
 ```
 
+## Exercise: Cat Surprise
+
+Fork [this codepen](http://codepen.io/adambray/pen/domXyg?editors=101).
+
+Notice that it's broken! Fix the JS so that clicking the image correctly alerts us to Mr. McWhiskertons' favorite pastimes.
+
 ## Call/Apply
 
 There are two other ways to invoke a function and change the context, which are
@@ -212,6 +218,3 @@ Note that #1 is included here for correctness, we haven't covered object constru
 >     `var bar = foo()`
 >
 > Source: [You-Dont-Know-JS/ch2.md](https://github.com/getify/You-Dont-Know-JS/blob/58dbf4f867be0d9c51dfc341765e4e4211608aa1/this%20&%20object%20prototypes/ch2.md)
-
-Inside a jQuery method, `$(this)` refers to the document element that was selected.
-Note that `this` is not a variable. It is a keyword. You cannot change the value of `this`.
