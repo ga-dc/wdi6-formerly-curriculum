@@ -116,7 +116,8 @@ The most basic concept of jQuery is to "select some elements and do something wi
 
     ```javascript
     // By tag
-    $( "h1" );
+    // What does this look like in the console?
+    $( "h2" );
 
     // By class
     $( ".className" );
@@ -142,6 +143,7 @@ The most basic concept of jQuery is to "select some elements and do something wi
     ```
 
   - jQuery runs the equivalent `document.querySelectorAll()` on the DOM element you are selecting.
+    - Q: What does `querySelectorAll()` do in Vanilla JS?
     - If you select an element of which there is more than one, jQuery will return all of them.
     - Returns a jQuery object, which functions like an array -- has zero-index, length -- but it's not one!
     - If a jQuery selector returns multiple elements, you can pull out an individual object using the `.eq()` method.
@@ -157,7 +159,7 @@ The most basic concept of jQuery is to "select some elements and do something wi
 - Method: `.html()`
   - jQuery comes with tons of methods that we can use to traverse and modify the DOM, among other things.
   - In this example we're looking at `.html()`, which returns the HTML contents of a DOM object.
-  - We'll go over some more later, especially in your second jQuery class this week.
+  - We'll go over a few today, and you'll go over a lot more of them with Andy during your second jQuery class.
 
 We Do: What would `$( "li" ).html();` look like in Javascript?
   - Let's try some more JS to jQuery conversion with an exercise...
@@ -257,7 +259,7 @@ Speed
 
 You should be familiar with both, but use whichever one you feel more comfortable with. You can even use both.  
 
-Alright, let's dive into some jQuery!
+Onto some jQuery methods!
 
 ## $( document ).ready( ) (5min)
 
@@ -315,11 +317,6 @@ The jQuery methods we will be going over today are both "getters" and "setters".
   $( "img" ).attr( "src", "https://www.google.com/logos/doodles/2015/fifa-women-world-cup-winner-tbd-country-1-5173664725073920.3-hp.jpg")
   ```
 
-`.val()`
-- Without any arguments, gets the values of form elements (e.g., `<input>`, `<textarea>`, `<select>`).
-- With an argument, replaces the current value of a form element.
-- If a collection is selected, the method is performed on the first item in the collection.
-
 `.css()`
 - With a CSS attribute name as an argument, returns the current value of that attribute.
 
@@ -351,3 +348,5 @@ The jQuery methods we will be going over today are both "getters" and "setters".
 Reference: [https://api.jquery.com/](https://api.jquery.com/)
 
 ## Homework: Pixart
+
+[https://github.com/ga-dc/pixart_js](https://github.com/ga-dc/pixart_js)
