@@ -152,6 +152,7 @@ We Do: What would `$( "li" ).html();` look like in Javascript?
 ### Exercise: Using jQuery Selectors (10min)
 
 Select the following DOM objects on General Assembly's [website](http://generalassemb.ly) using jQuery selectors.
+
 1. All `h2` elements on the page.
 2. The first `h2` element on the page.
 3. An element with id `logo`.
