@@ -28,10 +28,10 @@ when a method is called on an object, that object becomes the context:
 
 ```js
 var instructor = {
-  name: "Adam Bray"
+  name: "Adam Bray",
   favoriteFood: "Spicy Miso Ramen",
   sayHello: function() {
-    console.log("Hi! My name is " + this.name ", and my favorite food is " + this.favoriteFood);
+    console.log("Hi! My name is " + this.name + ", and my favorite food is " + this.favoriteFood);
   }
 }
 
