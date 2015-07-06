@@ -340,12 +340,12 @@ The jQuery methods we will be going over today are both "getters" and "setters".
 ### Exercise: Get 'n' Set (10min)
 
 "Get or "Set" the following values using jQuery selectors and methods.  
-1. Get the HTML content of the second `<p>` element on the page.
-2. Set the HTML content of the second `<p>` to something else weird.
-3. Get the background color of the body.
-4. Set the background color of the body to "burlywood".
-5. Get the `alt` value of the fourth `<img>` on the page.
-6. Set the `alt` value of the fourth `<img>` on the page
+1. Get the HTML content of the second `<p>` element on the page.  
+2. Set the HTML content of the second `<p>` to something else weird.  
+3. Get the background color of the body.  
+4. Set the background color of the body to "burlywood".  
+5. Get the `alt` value of the fourth `<img>` on the page.  
+6. Set the `alt` value of the fourth `<img>` on the page.  
 
 Reference: [https://api.jquery.com/](https://api.jquery.com/)
 
