@@ -8,6 +8,20 @@
 - Explain why and from what we are trying to protect data
 
 
+## References
+#### Closure
+
+* [Getting Closure](http://markdaggett.com/blog/2013/02/25/getting-closure/)
+* [Understand closures with ease](http://javascriptissexy.com/understand-javascript-closures-with-ease/)  
+* [Closure FAQ](http://jibbering.com/faq/notes/closures)
+* [Closure Use Cases](http://www.bennadel.com/blog/2134-a-random-exploration-of-closure-use-cases-in-javascript.htm)
+* [Everything you wanted to know about JavaScript scope](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
+
+
+##### IIFE
+* [Ben Alman IFFE Pattern](http://benalman.com/news/2010/11/immediately-invoked-function-expression/)
+* [IFFE Pattern](http://adripofjavascript.com/blog/drips/understanding-the-module-pattern-in-javascript.html)
+
 ## What are Closures
 
 Closure is the property of function such that it can access variables in the same scope, i.e. scope chain, it was declared in. Even when that function is operating outside of that scope.
