@@ -348,3 +348,5 @@ The jQuery methods we will be going over today are both "getters" and "setters".
 6. Set the `alt` value of the fourth `<img>` on the page
 
 Reference: [https://api.jquery.com/](https://api.jquery.com/)
+
+## Homework
