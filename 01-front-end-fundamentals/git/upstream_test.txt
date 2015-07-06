@@ -1,1 +1,3 @@
 Suggest a change here!
+
+I suggest upstream be renamed to Salmon
