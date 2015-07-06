@@ -1,3 +1,6 @@
+To-Do
+- How to perform jQuery operations on non-first elements in a collection?
+
 # jQuery: Part I
 
 ## Learning Objectives
@@ -8,8 +11,7 @@
 - Define what a CDN ("Content Delivery Network") is and how to use one.
 - Use jQuery selectors to select DOM elements.
 - Differentiate between DOM and jQuery objects.
-- Explain when to use Vanilla JS vs. jQuery.
-- Demonstrate how to use Vanilla JS and jQuery in the same document.
+- Explain when and how to use Vanilla JS vs. jQuery.
 - Compare code examples in Vanilla JS and jQuery.
 - Define `$(document).ready()` and some jQuery methods.
 
@@ -44,6 +46,7 @@ What is a library?
 - A collection of Javascript functions and methods that make writing Javascript an easier, smoother and ultimately shorter experience.
 - Under the hood, all Javascript libraries are written using Javascript. So technically, there is nothing you can do using a library that can't already be done using Vanilla JS.
 - There are tons of them: [https://www.javascripting.com/](https://www.javascripting.com/)
+  - Some suited for particular uses like data visualization(D3.js), 3D imaging (Three.js), charts (Chart.js), autocomplete functionality (Typeahead.js) and many more...
 
 Not the same thing as a Javascript framework.
 - Not only provides tools like a library does, but also defines the architecture of your code (e.g., syntax, folder structure).
@@ -88,14 +91,15 @@ There are two ways to go about including jQuery on a website.
     - Used when a website is in development.
 
 ### Import
+You don't have to host jQuery yourself. You can pull it from the web via a Content Delivery Network (CDN).
+
 What is a CDN?
-- "Content Delivery Network"
-- Serve content to end-users with high availability and high performance.
-- Variations.
+- "Serve content to end-users with high availability and high performance."
+- Broad term for a distributed system of servers -- sometimes spread across the world -- that serves content to users, whether that's videos, software or, in this case, a Javascript library.
+  - In the case of jQuery, this CDN is usually Google.
 
 Include with a `<script>` tag in HTML that links to some URL.
-- When using this method, we usually link to a version of jQuery hoste by Google.
-  - `<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>`
+- Keep this handy: `<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>`
 
 ## jQuery Selectors (20min)
 
@@ -108,13 +112,13 @@ The most basic concept of jQuery is to "select some elements and do something wi
 
     ```javascript
     // By tag
-    $( "p" );
+    $( "h1" );
 
     // By class
-    $( ".contact" );
+    $( ".className" );
 
     // By id
-    $( "#logo" );
+    $( "#idName" );
 
     // Q: What does this one select?
     $( "div #logo" );
@@ -125,10 +129,21 @@ The most basic concept of jQuery is to "select some elements and do something wi
     // Q: One more.
     // Yes, you can use CSS pseudo-selectors to select DOM elements!
     $( "ul:nth-child(2)" )
+
+    // You can also select by HTML attribute.
+    // Format: tag + [ attributeName='attributeValue' ]
+    // Take note of single quotation marks.
+    $( "img[ alt='logo' ]" )
     ```
 
-  - jQuery essentially runs `document.querySelectorAll()` on the DOM element you are selecting.
+  - jQuery runs the equivalent `document.querySelectorAll()` on the DOM element you are selecting.
+    - If there is more than one of an element you select, jQuery will return all of them.
+    - Returns a jQuery object, which functions like an array (but it's not!).
+    - If a jQuery selector returns multiple elements, you can select one from the collection by using `[ ]`.
 - Method: `.html()`
+  - jQuery comes with tons of methods that we can use to traverse and modify the DOM, among other things.
+  - In this example we're looking at `.html()`, which returns the HTML contents of a DOM object.
+  - We'll go over some more later, especially in your second jQuery class this week.
 
 We Do: What would `$( "li" ).html();` look like in Javascript?
   - Let's try some more JS to jQuery conversion with an exercise...
@@ -150,10 +165,9 @@ Reference: [https://api.jquery.com/](https://api.jquery.com/)
 
 jQuery objects are not the same thing as DOM elements.
 - DOM elements are returned when using Vanilla JS selectors.
+  - You can only use Javascript methods on DOM elements.
 - A jQuery object is a collection of DOM elements.
   - Acts like an array: zero-indexed, surrounded by square brackets, has `.length`.
-  - You can pull a DOM element out of a jQuery object using `.get()`.
-    - ...but the point of jQuery is to make interaction with DOM elements smoother.
 
 Because of this difference, You CANNOT chain jQuery and Vanilla JS selectors/methods.  
 
@@ -170,6 +184,8 @@ Because of this difference, You CANNOT chain jQuery and Vanilla JS selectors/met
   // Neither will this...
   $( "#bio" ).innerHTML;
   ```
+
+Exception: you can break out of the jQuery chain using `.get()`
 
 You CAN, however, target DOM objects originally selected using Vanilla JS.  
 
@@ -215,6 +231,9 @@ A page can't be manipulated safely until the document is "ready." jQuery detects
   ```
 
 ## Some jQuery Methods (10min)
+
+Sometimes we want to select a particular aspect of a DOM element, like its HTML content or CSS properties.
+- That's where jQuery's methods come in.
 
 The jQuery methods we will be going over today are both "getters" and "setters".
 - Q: Anybody want to guess what those two terms mean?
@@ -277,3 +296,5 @@ The jQuery methods we will be going over today are both "getters" and "setters".
   ```
 
 - If a collection is selected, the method is performed on the first item in the collection.
+
+### Exercise: Get 'n' Set (10min)
