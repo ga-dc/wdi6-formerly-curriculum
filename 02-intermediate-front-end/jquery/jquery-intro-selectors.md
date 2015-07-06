@@ -29,14 +29,14 @@ Follow along with "My Blawg": https://github.com/amaseda/jquery-inclass-blawg
 - Clone: `$ git clone git@github.com:amaseda/jquery-inclass-blawg.git`
 - We'll be using this as an example throughout today's class.
 
-Instructions: Write down how you would select the following DOM objects on "My Blawg" using Vanilla JS selectors.
-1. The first `<a>` element on the page.
-2. All `<a>` elements on the page.
-3. Using an id, the h1 at the top of the page.
-4. All elements with class `post`.
-5. The first element with class `post`.
-6. The second element with class `post`.
-7. The HTML content of the first `<p>` element on the page.
+Instructions: Write down how you would select the following DOM objects on "My Blawg" using Vanilla JS selectors.  
+1. The first `<a>` element on the page.  
+2. All `<a>` elements on the page.  
+3. Using an id, the h1 at the top of the page.  
+4. All elements with class `post`.  
+5. The first element with class `post`.  
+6. The second element with class `post`.  
+7. The HTML content of the first `<p>` element on the page.  
 
 We'll revisit this after talking about jQuery for a bit...  
 
@@ -164,14 +164,14 @@ We Do: What would `$( "li" ).html();` look like in Javascript?
 ### Exercise: Using jQuery Selectors (10min)
 
 Select the following DOM objects on the Blawg using jQuery selectors.  
-1. The first `<a>` element on the page.
-2. All `<a>` elements on the page.
-3. Using an id, the h1 at the top of the page.
-4. All elements with class `post`.
-5. The first element with class `post`.
-6. The second element with class `post`.
+1. The first `<a>` element on the page.  
+2. All `<a>` elements on the page.  
+3. Using an id, the h1 at the top of the page.  
+4. All elements with class `post`.  
+5. The first element with class `post`.  
+6. The second element with class `post`.  
 7. The HTML content of the first `<a>` element on the page.  
-6. Using a CSS pseudo-selector, the third element with class `post`.  
+6. Using a CSS pseudo-selector, the third element with class `post`.
 7. Using an HTML attribute, the fourth `img` on the page.  
 
 Reference: [https://api.jquery.com/](https://api.jquery.com/)
