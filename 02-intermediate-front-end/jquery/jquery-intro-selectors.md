@@ -29,6 +29,7 @@ Before we dive into the world of jQuery, let's make sure we've got our Vanilla J
 ### Exercise: JS Selector Review (10min)
 
 Select the following DOM objects on General Assembly's [website](http://generalassemb.ly) using Vanilla JS selectors.
+
 1. All `h2` elements on the page.
 2. The first `h2` element on the page.
 3. An element with id `logo`.
