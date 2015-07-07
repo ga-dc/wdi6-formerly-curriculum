@@ -51,7 +51,7 @@ What is a library?
 
 Not the same thing as a Javascript framework.
 - Not only provides tools like a library does, but also defines the architecture of your code (e.g., syntax, folder structure). Basically, a set of rules you have to follow.
-- Examples: AngularJS, Backbone, Ember.js.
+- Examples: AngularJS, Ember.js.
 
 
 Sometimes "library" and "framework" are used interchangeably, but they are not the same. The difference will be more apparent as you get some experience with both as the course progresses.  
