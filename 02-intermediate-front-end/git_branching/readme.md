@@ -93,6 +93,7 @@ Many OSS projects request that you create pull requests from a non-master branch
 When we try to merge to branches (or commits from the same branch from a remote), changes may conflict. In this case, git will stop and ask us to fix the issues manually.
 
 To do so:
+
 1. Locate which files contain conflicts using `git status`
 2. Open those files and fix the conflicts. (Look for the '<<<<', '====', and '>>>>' which will guide you to the conflict)
 3. Commit the fixes.
