@@ -1,4 +1,4 @@
-# Intermediate Git is Bro
+# Intermediate Git is Bro & Awesome
 
 ## Learning Objectives
 
