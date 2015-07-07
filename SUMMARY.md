@@ -12,6 +12,8 @@
     * [Morning Exercises](01-front-end-fundamentals/morning-exercises.md)
     * [Homeworks](01-front-end-fundamentals/homeworks.md)
 * [Intermediate Front End](02-intermediate-front-end/readme.md)
+    * [Scope, Context, and Closures](02-intermediate-front-end/scope-context-closures/readme.md)
+    * [Events and Callbacks](02-intermediate-front-end/events-and-callbacks/readme.md)
 * [Project 1](https://github.com/ga-dc/pbj-project1/blob/master/readme.md)
 * [Ruby + MVC with Sinatra](04-ruby-mvc-sinatra/readme.md)
 * [MVC with Rails](05-mvc-with-rails/readme.md)
