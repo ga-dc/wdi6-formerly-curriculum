@@ -11,6 +11,8 @@
 ## References
 
 * [Understanding Scope and Context in JavaScript](http://ryanmorr.com/understanding-scope-and-context-in-javascript/)
+* [Understand JavaScript’s “this”](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
+* [Everything you wanted to know about JavaScript scope](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
 
 ## What is context
 
@@ -26,10 +28,10 @@ when a method is called on an object, that object becomes the context:
 
 ```js
 var instructor = {
-  name: "Adam Bray"
+  name: "Adam Bray",
   favoriteFood: "Spicy Miso Ramen",
   sayHello: function() {
-    console.log("Hi! My name is " + this.name ", and my favorite food is " + this.favoriteFood);
+    console.log("Hi! My name is " + this.name + ", and my favorite food is " + this.favoriteFood);
   }
 }
 
