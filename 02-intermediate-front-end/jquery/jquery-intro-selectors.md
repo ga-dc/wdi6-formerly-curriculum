@@ -1,7 +1,5 @@
 # jQuery: Part I
 
-Yesterday was hard, right? I think this morning's class will be a little easier to digest. Especially because we're talking about Javascript libraries -- in particular jQuery -- which are here to make our lives easier!  
-
 ## Learning Objectives
 
 - Review how to select elements using Vanilla Javascript.
@@ -60,7 +58,7 @@ Sometimes "library" and "framework" are used interchangeably, but they are not t
 
 ### What is jQuery?
 The "Write More, Do Less" JS library
-- A general purpose library that provides an alternate and, depending on who you ask, easier means to run Javascript.
+- A general purpose library that provides an alternate and easier way to run Javascript.
 - At its core, jQuery lets us select and manipulate DOM elements.
 - Can also...
   - Manipulate CSS
@@ -110,8 +108,8 @@ Include with a `<script>` tag in HTML that links to some URL.
 The most basic concept of jQuery is to "select some elements and do something with them."
 - This class, we're going to focus on the "selecting." We'll touch upon the "doing something" if there's time at the end, but you'll learn a lot more about that during Andy's lesson this week.
 
-`$( "li" ).html();`
-- The selector: `$( "li" )`
+`$( "h2" ).html();`
+- The selector: `$( "h2" )`
   - Select a DOM element by its CSS selector.
 
     ```javascript
@@ -146,7 +144,7 @@ The most basic concept of jQuery is to "select some elements and do something wi
     - Q: What does `querySelectorAll()` do in Vanilla JS?
     - If you select an element of which there is more than one, jQuery will return all of them.
     - Returns a jQuery object, which functions like an array -- has zero-index, length -- but it's not one!
-    - If a jQuery selector returns multiple elements, you can pull out an individual object using the `.eq()` method.
+    - If a jQuery selector returns multiple elements, you can pull out an individual element using the `.eq()` method.
 
       ```javascript
       // Returns all h2 elements on a page.
@@ -161,7 +159,7 @@ The most basic concept of jQuery is to "select some elements and do something wi
   - In this example we're looking at `.html()`, which returns the HTML contents of a DOM object.
   - We'll go over a few today, and you'll go over a lot more of them with Andy during your second jQuery class.
 
-We Do: What would `$( "li" ).html();` look like in Javascript?
+We Do: What would `$( "h2" ).html();` look like in Javascript?
   - Let's try some more JS to jQuery conversion with an exercise...
 
 ### Exercise: Using jQuery Selectors (10min)
@@ -223,7 +221,7 @@ You CAN run Vanilla JS inside jQuery, and vice-versa. Let me show you what I mea
   })
   ```
 
-You also CAN target DOM objects originally selected using Vanilla JS.  
+You can also target DOM objects originally selected using Vanilla JS.  
 
   ```javascript
   // The DOM element(s) is saved to a variable using Vanilla JS.
@@ -258,7 +256,7 @@ Speed
 - Vanilla JS is faster. Only relevant, however, when dealing with large amounts of code.
 - [http://www.sitepoint.com/jquery-vs-raw-javascript-1-dom-forms/](http://www.sitepoint.com/jquery-vs-raw-javascript-1-dom-forms/)
 
-You should be familiar with both, but use whichever one you feel more comfortable with. You can even use both.  
+Make sure you're familiar with Vanilla JS and jQuery, but use whichever one you feel more comfortable with. Or use both!
 
 Onto some jQuery methods!
 
@@ -344,7 +342,7 @@ The jQuery methods we will be going over today are both "getters" and "setters".
   3. Get the background color of the body.  
   4. Set the background color of the body to "burlywood".  
   5. Get the `alt` value of the fourth `<img>` on the page.  
-  6. Set the `alt` value of the fourth `<img>` on the page.  
+  6. Set the `alt` value of the fourth `<img>` to something else.  
 
 Reference: [https://api.jquery.com/](https://api.jquery.com/)
 
