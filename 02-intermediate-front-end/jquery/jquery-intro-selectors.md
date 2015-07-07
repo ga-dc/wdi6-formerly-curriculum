@@ -1,6 +1,3 @@
-To-Do
-- How to perform jQuery operations on non-first elements in a collection?
-
 # jQuery: Part I
 
 ## Learning Objectives
@@ -17,25 +14,28 @@ To-Do
 
 ## Selecting DOM elements using Vanilla JS (20min)
 
-Today we're diving into the wide world of Javascript libraries. In particular, jQuery.
-- Q: Anybody have a guess as to what that means?
-- You're actually quite familiar with it: it's just plain ol' Javascript!
+Before we talk about jQuery, I want to make sure we're on top of our Javascript -- or as we'll refer to it today, "Vanilla JS" -- selectors.
 
 If I want to select a DOM element using Vanilla JS, how would I do that?
-- Q: Somebody tell me how I would select all the `<p>` elements on a page.
+- Q: Somebody demonstrate how to select all the `<p>` elements on a page.
 
 Before we dive into the world of jQuery, let's make sure we've got our Vanilla JS selectors down pat with an exercise...
 
 ### Exercise: JS Selector Review (10min)
 
-Select the following DOM objects on General Assembly's [website](http://generalassemb.ly) using Vanilla JS selectors.
-1. All `h2` elements on the page.
-2. The first `h2` element on the page.
-3. An element with id `logo`.
-4. All elements with class `post`.
-5. The first element with class `post`.
-6. (Using a CSS pseudo-selector) The second element with class `post`.
-7. (Without using a CSS pseudo-selector) The third element with class `post`.
+Follow along with "My Blawg": https://github.com/amaseda/jquery-inclass-blawg
+- Clone: `$ git clone git@github.com:amaseda/jquery-inclass-blawg.git`
+- Open: `$ open index.html`
+- We'll be using this as an example throughout today's class.
+
+Instructions: Write down how you would select the following DOM objects on "My Blawg" using Vanilla JS selectors.  
+  1. The first `<a>` element on the page.  
+  2. All `<a>` elements on the page.  
+  3. Using an id, the h1 at the top of the page.  
+  4. All elements with class `post`.  
+  5. The first element with class `post`.  
+  6. The second element with class `post`.  
+  7. The HTML content of the first `<p>` element on the page.  
 
 We'll revisit this after talking about jQuery for a bit...  
 
@@ -43,21 +43,22 @@ We'll revisit this after talking about jQuery for a bit...
 
 ### Javascript library
 What is a library?
+- Q: Has anybody used a JS library before?
 - A collection of Javascript functions and methods that make writing Javascript an easier, smoother and ultimately shorter experience.
 - Under the hood, all Javascript libraries are written using Javascript. So technically, there is nothing you can do using a library that can't already be done using Vanilla JS.
 - There are tons of them: [https://www.javascripting.com/](https://www.javascripting.com/)
   - Some suited for particular uses like data visualization(D3.js), 3D imaging (Three.js), charts (Chart.js), autocomplete functionality (Typeahead.js) and many more...
 
 Not the same thing as a Javascript framework.
-- Not only provides tools like a library does, but also defines the architecture of your code (e.g., syntax, folder structure).
-- Examples: AngularJS, Backbone, Ember.js.
+- Not only provides tools like a library does, but also defines the architecture of your code (e.g., syntax, folder structure). Basically, a set of rules you have to follow.
+- Examples: AngularJS, Ember.js.
 
 
 Sometimes "library" and "framework" are used interchangeably, but they are not the same. The difference will be more apparent as you get some experience with both as the course progresses.  
 
 ### What is jQuery?
 The "Write More, Do Less" JS library
-- A general purpose library that provides an alternate and, depending on who you ask, easier means to run Javascript.
+- A general purpose library that provides an alternate and easier way to run Javascript.
 - At its core, jQuery lets us select and manipulate DOM elements.
 - Can also...
   - Manipulate CSS
@@ -82,9 +83,10 @@ There are two ways to go about including jQuery on a website.
 - Minified vs. Uncompressed
   - Minified
     - No whitespace, no comments, shortened variable names.
-    - Improve site load time.
-    - If something goes wrong with your jQuery code, hard to debug since it's all on one line.
-    - Used when a website is ready for production.
+    - Q: Why would we want something minified?
+      - Improve site load time.
+      - If something goes wrong with your jQuery code, hard to debug since it's all on one line.
+      - Used when a website is ready for production.
   - Uncompressed
     - Unmodified jQuery - can see it all!
     - Will use this in case we need to debug and take a look at what's going on under the hood.
@@ -106,58 +108,72 @@ Include with a `<script>` tag in HTML that links to some URL.
 The most basic concept of jQuery is to "select some elements and do something with them."
 - This class, we're going to focus on the "selecting." We'll touch upon the "doing something" if there's time at the end, but you'll learn a lot more about that during Andy's lesson this week.
 
-`$( "li" ).html();`
-- The selector: `$( "li" )`
+`$( "h2" ).html();`
+- The selector: `$( "h2" )`
   - Select a DOM element by its CSS selector.
 
     ```javascript
     // By tag
-    $( "h1" );
+    // What does this look like in the console?
+    $( "h2" );
 
     // By class
-    $( ".className" );
+    $( ".nav-link" );
 
     // By id
-    $( "#idName" );
+    $( "#click-me" );
 
     // Q: What does this one select?
-    $( "div #logo" );
+    $( "#blog div" );
 
     // Q: How about this one?
-    $( "p .contact" );
+    $( ".post h2" );
 
     // Q: One more.
     // Yes, you can use CSS pseudo-selectors to select DOM elements!
-    $( "ul:nth-child(2)" )
+    $( "div:nth-child(2)" )
 
+    // Q: Last one, promise.
     // You can also select by HTML attribute.
     // Format: tag + [ attributeName='attributeValue' ]
     // Take note of single quotation marks.
-    $( "img[ alt='logo' ]" )
+    $( "img[ src='img/5.jpeg' ]" )
     ```
 
   - jQuery runs the equivalent `document.querySelectorAll()` on the DOM element you are selecting.
-    - If there is more than one of an element you select, jQuery will return all of them.
-    - Returns a jQuery object, which functions like an array (but it's not!).
-    - If a jQuery selector returns multiple elements, you can select one from the collection by using `[ ]`.
+    - Q: What does `querySelectorAll()` do in Vanilla JS?
+    - If you select an element of which there is more than one, jQuery will return all of them.
+    - Returns a jQuery object, which functions like an array -- has zero-index, length -- but it's not one!
+    - If a jQuery selector returns multiple elements, you can pull out an individual element using the `.eq()` method.
+
+      ```javascript
+      // Returns all h2 elements on a page.
+      $( "h2" )
+
+      // Returns the second h2 element on a page.
+      $( "h2" ).eq(1)
+      ```
+
 - Method: `.html()`
   - jQuery comes with tons of methods that we can use to traverse and modify the DOM, among other things.
   - In this example we're looking at `.html()`, which returns the HTML contents of a DOM object.
-  - We'll go over some more later, especially in your second jQuery class this week.
+  - We'll go over a few today, and you'll go over a lot more of them with Andy during your second jQuery class.
 
-We Do: What would `$( "li" ).html();` look like in Javascript?
+We Do: What would `$( "h2" ).html();` look like in Javascript?
   - Let's try some more JS to jQuery conversion with an exercise...
 
 ### Exercise: Using jQuery Selectors (10min)
 
-Select the following DOM objects on General Assembly's [website](http://generalassemb.ly) using jQuery selectors.
-1. All `h2` elements on the page.
-2. The first `h2` element on the page.
-3. An element with id `logo`.
-4. All elements with class `post`.
-5. The first element with class `post`.
-6. (Using a CSS pseudo-selector) The second element with class `post`.
-7. (Without using a CSS pseudo-selector) The third element with class `post`.
+Select the following DOM objects on the Blawg using jQuery selectors.  
+  1. All `<a>` elements on the page.
+  2. The first `<a>` element on the page.
+  3. Using an id, the h1 at the top of the page.  
+  4. All elements with class `post`.  
+  5. The first element with class `post`.  
+  6. The second element with class `post`.  
+  7. The HTML content of the first `<a>` element on the page.  
+  8. Using a CSS pseudo-selector, the third element with class `post`.
+  9. Using an HTML attribute, the fourth `img` on the page.  
 
 Reference: [https://api.jquery.com/](https://api.jquery.com/)
 
@@ -166,57 +182,83 @@ Reference: [https://api.jquery.com/](https://api.jquery.com/)
 jQuery objects are not the same thing as DOM elements.
 - DOM elements are returned when using Vanilla JS selectors.
   - You can only use Javascript methods on DOM elements.
-- A jQuery object is a collection of DOM elements.
-  - Acts like an array: zero-indexed, surrounded by square brackets, has `.length`.
+- A jQuery object is a jQuery-specific collection of DOM elements.
 
 Because of this difference, You CANNOT chain jQuery and Vanilla JS selectors/methods.  
 
   ```javascript
   // Chaining Vanilla JS is OK.
-  document.getElementById( "bio" ).innerHTML;
+  document.getElementById( "click-me" ).innerHTML;
 
   // Same with jQuery.
-  $( "#bio" ).html();
+  $( "#click-me" ).html();
 
   // You cannot, however, mix the two. This will not work...
-  document.getElementById( "bio" ).html();
+  document.getElementById( "click-me" ).html();
 
   // Neither will this...
-  $( "#bio" ).innerHTML;
+  $( "#click-me" ).innerHTML;
   ```
 
-Exception: you can break out of the jQuery chain using `.get()`
+There are some "exceptions" to this no-chaining rule...
 
-You CAN, however, target DOM objects originally selected using Vanilla JS.  
+You CAN run Vanilla JS inside jQuery, and vice-versa. Let me show you what I mean with another Blawg example...
+
+  ```javascript
+  // Select a DOM element with an id of click-me
+  var clickMe = document.getElementById( "click-me" );
+
+  // We set up an event listener for clickMe using Vanilla JS
+  // But then we execute jQuery code inside that event listener!
+  clickMe.addEventListener( "click", function(){
+    $( "body" ).css( "background-color", "lemonchiffon" );
+  })
+
+  // We can flip that around.
+  // You'll learn jQuery event listeners later...
+  $( "#click-me" ).on( "click", function(){
+    document.body.style.backgroundColor = "lemonchiffon";
+  })
+  ```
+
+You can also target DOM objects originally selected using Vanilla JS.  
 
   ```javascript
   // The DOM element(s) is saved to a variable using Vanilla JS.
-  var submitButton = document.getElementById( "submit" );
+  var clickMe = document.getElementById( "click-me" );
 
   // We can then select that same element using jQuery.
   // Note: no quotations marks are used when selecting a variable that contains a DOM element(s).
-  $( submitButton );
+  $( clickMe );
 
-  // We can inspect/modify it too.
-  $( submitButton ).html();
-  $( submitButton ).css( "width", "50px" );
+  // We can inspect...
+  clickMeContents = $( clickMe ).html();
+  console.log( clickMeContents );
+  => "Click Me!"
+
+  // ...and modify them too.
+  $( clickMe ).css( "background-color", "pink" );
   ```
 
 ## jQuery vs. Vanilla JS (10min)
 
-Syntax
-- Intuitive, concise, abstracts JS
+Q: Now that we've gone over jQuery for a bit, what are some reasons you think somebody would use jQuery over Vanilla JS?
+- What about Vanilla JS over jQuery?
 
 Easier
-- AJAX
+- Abstracts Vanilla JS into shorter, more concise and intuitive syntax
+- Reduces development time
+- ...but only if you're doing plenty of element selection and event handling!
+  - Some people have a tendency to automatically include jQuery, regardless of what they're doing.
+  - [needsmorejquery.com/](http://needsmorejquery.com/).
 
 Speed
 - Vanilla JS is faster. Only relevant, however, when dealing with large amounts of code.
 - [http://www.sitepoint.com/jquery-vs-raw-javascript-1-dom-forms/](http://www.sitepoint.com/jquery-vs-raw-javascript-1-dom-forms/)
 
-You should be familiar with both, but use whichever one you feel more comfortable with. You can even use both.  
+Make sure you're familiar with Vanilla JS and jQuery, but use whichever one you feel more comfortable with. Or use both!
 
-Alright, let's dive into some jQuery!
+Onto some jQuery methods!
 
 ## $( document ).ready( ) (5min)
 
@@ -271,13 +313,8 @@ The jQuery methods we will be going over today are both "getters" and "setters".
 
   ```javascript
   // Sets image source
-  $( "img" ).attr( "src", "https://www.google.com/logos/doodles/2015/fifa-women-world-cup-winner-tbd-country-1-5173664725073920.3-hp.jpg")
+  $( "img" ).attr( "src", "http://ak-hdl.buzzfed.com/static/2013-12/enhanced/webdr07/3/12/anigif_enhanced-buzz-15393-1386091162-37.gif")
   ```
-
-`.val()`
-- Without any arguments, gets the values of form elements (e.g., `<input>`, `<textarea>`, `<select>`).
-- With an argument, replaces the current value of a form element.
-- If a collection is selected, the method is performed on the first item in the collection.
 
 `.css()`
 - With a CSS attribute name as an argument, returns the current value of that attribute.
@@ -285,16 +322,30 @@ The jQuery methods we will be going over today are both "getters" and "setters".
   ```javascript
   // Returns the background color of the body
   $( "body" ).css( "background-color" );
-  => "#F0F0F0"
+  => "#FAFAFA"
   ```
 
 - With a CSS attribute and value as arguments, replaces the current values of that attribute with the new one.
 
   ```javascript
   // Sets background color of the body to red
-  $( "body" ).css( "background-color", "red" );
+  $( "body" ).css( "background-color", "lemonchiffon" );
   ```
 
 - If a collection is selected, the method is performed on the first item in the collection.
 
 ### Exercise: Get 'n' Set (10min)
+
+"Get or "Set" the following values using jQuery selectors and methods.  
+  1. Get the HTML content of the second `<p>` element on the page.  
+  2. Set the HTML content of the second `<p>` to something else weird.  
+  3. Get the background color of the body.  
+  4. Set the background color of the body to "burlywood".  
+  5. Get the `alt` value of the fourth `<img>` on the page.  
+  6. Set the `alt` value of the fourth `<img>` to something else.  
+
+Reference: [https://api.jquery.com/](https://api.jquery.com/)
+
+## Homework: Pixart
+
+[https://github.com/ga-dc/pixart_js](https://github.com/ga-dc/pixart_js)
