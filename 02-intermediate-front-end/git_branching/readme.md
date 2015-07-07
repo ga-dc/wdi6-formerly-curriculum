@@ -66,7 +66,7 @@ interfering. When a feature is complete, it can be merged back into master.
 
 ## Exercise -
 
-To be determined
+To be determined, but it should be totally awesome and involve explosions.
 
 ### Playtime
 
