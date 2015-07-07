@@ -11,6 +11,7 @@
 
 * [Git Book - Git Branching - Basic Branching and Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 * [Atlassian - Git Branching Tutorial](https://www.atlassian.com/git/tutorials/using-branches)
+* [Interactive Git Branching Tutorial](http://pcottle.github.io/learnGitBranching/)
 
 ## Review Git Basics
 
@@ -83,7 +84,7 @@ Many OSS projects request that you create pull requests from a non-master branch
 
 1. Go to your PBJ repo.
 2. Create and switch to a branch called 'suggestion'
-3. Make a small improvement to this repo.
+3. Make a small improvement to this repo (perhaps add something to the `git-tricks.md` file in this folder).
 4. Commit, and push that change to your remote called 'origin' (your fork)
 5. Create a pull request from that branch to the upstream (ga-dc) master branch
 
