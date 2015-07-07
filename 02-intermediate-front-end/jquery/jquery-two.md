@@ -22,7 +22,7 @@ Assume the following html for the following examples:
 
 ```html
 <div class="awesome">this is a div</div>
-<
+<div class="awesome">this is the second awesome div</div>
 ```
 
 ### Addition
@@ -154,11 +154,33 @@ Assume the following html for the following examples:
 - `.each()`
   - loops through collections of jquery objects
   - `$(".somejQueryClass").each(function(index){//code goes here})`
-  
+
+  ```javascript
+    $(".awesome").each(function(index){
+      $(this).html("this html element has the index of ()" + index + ") in the each function")
+    })
+  ```
+
+> note what the context of `$(this)` is. This refers to each of the elements being looped through.
+
+
 - `.on()`
   - a way to create event listeners
   - takes two arguments normally
-    - first argument is the event
+    - first argument is the event(lots of them)
     - second argument is the callback
-  - What is `$(this)`?
-    - refers to the jquery object you called `.on` on, as long as you're in the scope of the `.on` function
+
+    ```javascript
+      $(".awesome").on("click", function(){
+        console.log($(this))
+      })
+    ```
+
+> What is `$(this)` here? Refers to the jquery object you called `.on` on, as long as you're in the scope of the `.on` function
+
+
+### Class Ex- TIMER js refactor (30m)
+
+### Homework- ATM
+
+[ATM](https://github.com/ga-dc/atm)
