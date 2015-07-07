@@ -8,4 +8,4 @@ See the following mini-lessons:
 
 # Homework
 
-[Timer JS](https://github.com/ga-dc/timer_js/blob/solution/timers.js)
+[Timer JS](https://github.com/ga-dc/timer_js)
