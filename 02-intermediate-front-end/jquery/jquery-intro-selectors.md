@@ -1,5 +1,7 @@
 # jQuery: Part I
 
+Yesterday was hard, right? I think this morning's class will be a little easier to digest. Especially because we're talking about Javascript libraries -- in particular jQuery -- which are here to make our lives easier!  
+
 ## Learning Objectives
 
 - Review how to select elements using Vanilla Javascript.
@@ -13,8 +15,6 @@
 - Define `$(document).ready()` and some jQuery methods.
 
 ## Selecting DOM elements using Vanilla JS (20min)
-
-Yesterday was hard, right? I think this morning's class will be a little easier to digest. Especially because we're talking about Javascript libraries -- in particular jQuery -- which are here to make our lives easier!
 
 Before we talk about jQuery, I want to make sure we're on top of our Javascript -- or as we'll refer to it today, "Vanilla JS" -- selectors.
 
@@ -120,26 +120,26 @@ The most basic concept of jQuery is to "select some elements and do something wi
     $( "h2" );
 
     // By class
-    $( ".className" );
+    $( ".nav-link" );
 
     // By id
-    $( "#idName" );
+    $( "#click-me" );
 
     // Q: What does this one select?
-    $( "div #logo" );
+    $( "#blog div" );
 
     // Q: How about this one?
-    $( "p .contact" );
+    $( ".post h2" );
 
     // Q: One more.
     // Yes, you can use CSS pseudo-selectors to select DOM elements!
-    $( "ul:nth-child(2)" )
+    $( "div:nth-child(2)" )
 
     // Q: Last one, promise.
     // You can also select by HTML attribute.
     // Format: tag + [ attributeName='attributeValue' ]
     // Take note of single quotation marks.
-    $( "img[ alt='logo' ]" )
+    $( "img[ src='img/5.jpeg' ]" )
     ```
 
   - jQuery runs the equivalent `document.querySelectorAll()` on the DOM element you are selecting.
@@ -167,15 +167,15 @@ We Do: What would `$( "li" ).html();` look like in Javascript?
 ### Exercise: Using jQuery Selectors (10min)
 
 Select the following DOM objects on the Blawg using jQuery selectors.  
-  1. The first `<a>` element on the page.  
-  2. All `<a>` elements on the page.  
+  1. All `<a>` elements on the page.
+  2. The first `<a>` element on the page.
   3. Using an id, the h1 at the top of the page.  
   4. All elements with class `post`.  
   5. The first element with class `post`.  
   6. The second element with class `post`.  
   7. The HTML content of the first `<a>` element on the page.  
-  6. Using a CSS pseudo-selector, the third element with class `post`.
-  7. Using an HTML attribute, the fourth `img` on the page.  
+  8. Using a CSS pseudo-selector, the third element with class `post`.
+  9. Using an HTML attribute, the fourth `img` on the page.  
 
 Reference: [https://api.jquery.com/](https://api.jquery.com/)
 
@@ -218,7 +218,7 @@ You CAN run Vanilla JS inside jQuery, and vice-versa. Let me show you what I mea
 
   // We can flip that around.
   // You'll learn jQuery event listeners later...
-  $( "#logo" ).on( "click", function(){
+  $( "#click-me" ).on( "click", function(){
     document.body.style.backgroundColor = "lemonchiffon";
   })
   ```
@@ -247,11 +247,12 @@ You also CAN target DOM objects originally selected using Vanilla JS.
 Q: Now that we've gone over jQuery for a bit, what are some reasons you think somebody would use jQuery over Vanilla JS?
 - What about Vanilla JS over jQuery?
 
-Syntax
-- Intuitive, concise, abstracts JS
-
 Easier
-- AJAX
+- Abstracts Vanilla JS into shorter, more concise and intuitive syntax
+- Reduces development time
+- ...but only if you're doing plenty of element selection and event handling!
+  - Some people have a tendency to automatically include jQuery, regardless of what they're doing.
+  - [needsmorejquery.com/](http://needsmorejquery.com/).
 
 Speed
 - Vanilla JS is faster. Only relevant, however, when dealing with large amounts of code.
@@ -314,7 +315,7 @@ The jQuery methods we will be going over today are both "getters" and "setters".
 
   ```javascript
   // Sets image source
-  $( "img" ).attr( "src", "https://www.google.com/logos/doodles/2015/fifa-women-world-cup-winner-tbd-country-1-5173664725073920.3-hp.jpg")
+  $( "img" ).attr( "src", "http://ak-hdl.buzzfed.com/static/2013-12/enhanced/webdr07/3/12/anigif_enhanced-buzz-15393-1386091162-37.gif")
   ```
 
 `.css()`
