@@ -50,6 +50,8 @@ interfering. When a feature is complete, it can be merged back into master.
 3. To allow easy bug fixes on a stable version while features are being developed.
 
 
+
+
 ## Example
 
 (Use GitUp to demo visually what's happening).
@@ -61,6 +63,10 @@ interfering. When a feature is complete, it can be merged back into master.
 5. Switch back to 'experiment' branch (`git checkout experiment` ).
 6. Make one more commit. Decide it's ready to go.
 7. Checkout master, and merge in experimental (`git checkout master`, `git merge experimental`).
+
+## Exercise -
+
+To be determined
 
 ### Playtime
 
