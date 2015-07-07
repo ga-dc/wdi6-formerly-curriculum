@@ -238,7 +238,7 @@ NOTE: If you already have a `pbj` folder in your `~/wdi` folder, delete or renam
 
 ### Submission
 
-File a github issue with a link to:
+File a github issue, on https://github.com/ga-dc/pbj/issues, with a link to:
 * your personal github pages repo
 * the URL to see your hosted page.
 * a link to the repo you forked
