@@ -93,6 +93,7 @@ Many OSS projects request that you create pull requests from a non-master branch
 When we try to merge to branches (or commits from the same branch from a remote), changes may conflict. In this case, git will stop and ask us to fix the issues manually.
 
 To do so:
+
 1. Locate which files contain conflicts using `git status`
 2. Open those files and fix the conflicts. (Look for the '<<<<', '====', and '>>>>' which will guide you to the conflict)
 3. Commit the fixes.
@@ -107,3 +108,14 @@ To do so:
 5. Practice making commits and push/pull them.
 6. Purposefully both make changes and commit them, such that they are on the same line.
 7. Practice resolving the commit. Repeat and let the other partner resolve the new conflict.
+
+## Homework
+
+1. Read one or more of the references above. Perhaps follow the last interactive
+tutorial (it's really good).
+
+2. Create a github issue on the PBJ repo (not a pull request like usual)
+describing at least one thing you learned.
+
+3. For the rest of the week, submit all your HW pull requests on a 'topic' branch.
+Name your branch something like "bobs_solution".
