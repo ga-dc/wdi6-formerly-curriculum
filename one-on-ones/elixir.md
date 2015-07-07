@@ -5,6 +5,7 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 ## Mon Jul 6
 
 - Laura Nawrocki
+- **Open Appointment Time**
 
 ## Wed Jul 8
 
@@ -20,6 +21,7 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 ## Mon Jul 13
 
 - Rosel Padilla
+- **Open Appointment Time**
 
 ## Wed Jul 15
 
