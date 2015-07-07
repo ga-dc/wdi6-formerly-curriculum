@@ -2,5 +2,5 @@
 
 *Add your tricks below this line*
 
-git-wtf
-Run this command on any branch that has a remote tracking branch, and it will tell you whether they are in sync, or which commits (on each branch) are missing from the other, so you can quickly figure out the state of your local and remote branch.
+gitignore
+This command tells git to ignore specific files and directories. Things like temporary files, logs, configurations that are specific to a computer, files that are for testing only, private keys for code signing or files that can be easily regenerated all don’t belong in your repository.
