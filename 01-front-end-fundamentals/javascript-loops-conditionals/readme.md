@@ -142,4 +142,4 @@ What are the differences between `for` and `while`?
 
 ### You do - Fizzbuzz(can use conditionals)(20m)
 
-## HW is Choose your own adventure.
+## HW is [Choose your own adventure](https://github.com/ga-dc/choose_your_own_adventure_js).
