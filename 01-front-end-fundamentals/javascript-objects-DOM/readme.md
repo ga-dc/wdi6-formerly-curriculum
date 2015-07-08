@@ -110,6 +110,8 @@ the input(s) to a function are known as arguments, or parameters:
 function eat(someFood){
   console.log("nom nom, i <3 "+ someFood)
 }
+
+eat("pizza")
 ```
 
 It might feel like the output of this function is the string starting with "nom...", but it’s not! It’s a side-effect.
@@ -125,6 +127,22 @@ var lunch = eat("pizza")
 console.log(lunch)
 ```
 
+## Methods
+
+Methods are functions that are attached to some object.
+
+```js
+
+var car = {
+  make: "Honda",
+  model: "Civic",
+  drive: function(){
+    console.log("vroom vroom")
+  }
+}
+car.drive()
+```
+
 ## DOM
 
 The [**D**ocument **O**bject **M**odel](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) 
@@ -135,6 +153,8 @@ An HTML *document* is available for us to manipulate as an object, and this obje
 (Not like this one http://hakim.se/experiments/css/domtree/)
 
 ![](http://www.tuxradar.com/files/LXF118.tut_grease.diagram.png)
+
+https://css-tricks.com/dom/
 
 ### Document
 
@@ -161,8 +181,6 @@ Each web page loaded in the browser has its own document object. The Document in
 - document.querySelector
 - document.querySelectorAll
 
-### You Do: Traversing the DOM
-
 ### Altering DOM Elements
 
 - .textContent
@@ -187,7 +205,8 @@ Each web page loaded in the browser has its own document object. The Document in
 - Modify the text of the button so that it says "Yahooo!" instead.
 
 ## Events
-- https://developer.mozilla.org/en-US/docs/Web/API/Event
+
+- https://developer.mozilla.org/en-US/docs/Web/Events
 
 - .onclick
 - .addEventListener
@@ -204,7 +223,7 @@ Each web page loaded in the browser has its own document object. The Document in
 
 ## Homework
 
-<https://github.com/ga-dc/fellowship>
+<https://github.com/ga-dc/tic_tac_toe>
 
 ---
 
