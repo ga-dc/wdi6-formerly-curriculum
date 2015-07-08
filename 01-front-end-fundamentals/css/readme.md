@@ -18,7 +18,8 @@ Wouldn't it be nice to make our webpages look schnazzy? Enter CSS. There is such
 
 [family guy CSS gif](https://i.imgur.com/Q3cUg29.gif)
 
-## In-line vs head vs stylesheets(30m) *Not a codealong let class know they're welcome to but may be better just to pay attention to the first hour instead of typing everything out. All notes available in lesson plan*
+## In-line vs head vs stylesheets(30m)
+> Not a codealong let class know they're welcome to but may be better just to pay attention to the first hour instead of typing everything out. All notes available in lesson plan
 
 At the crux of it all, the primary concept of CSS is to select an HTML element and then do something to it. IE. I want to take the body element, and I want to apply a background color to it.
 
@@ -50,7 +51,7 @@ So one way we can style elements in HTML is in the tag itself. These are called 
 ```html
 <p style="background:blue"></p>
 ```
-> note the above is a declaration. A declaration is a property and a value.
+> note the above is a CSS declaration. A declaration is a property and a value.
 
 Blech even just writing this out feels miserable. Why do you guys think I feel miserable about this?
 
@@ -71,7 +72,7 @@ The next approach to implementing a style is to put the styling in the `<head>`:
   </style>
 </head>
 ```
-> You've seen this before, but I want to highlight some syntax here. The p in this code is what's called the selector. The background  in the code is the property. Finally blue is the value.
+> You've seen this before, but I want to highlight some syntax here. From p until the ending curly brace is a CSS rule. The p in this code is what's called the selector. The background  in the code is the property. Finally blue is the value.
 
 This is a bit better. I feel less dirty. But feel weird about this one too. Why might that be? (ST-WG)
 
@@ -236,6 +237,116 @@ Man, there's alot of them. We've seen many just in this lesson thus far. There a
 [CSS Tricks- An awesome resource for cool CSS schtuff](https://css-tricks.com)
 
 ## We do- Wendy G Bite *Code Along*
+Exercise is [here!](https://github.com/ga-dc/wendy_bite)
 > notes will be pushed after lesson
+## We do- Wendy G Bite *Code Along* (60 m)
+> ST-WG. Use notes as a guideline and tool for students later. Don't necessarily have to stick to it 100%
+
+Cool, Let's code this one together. I think the first thing we should do is get all our content on the page. So let's go ahead and create some files to put this content in:
+
+```bash
+$ touch index.html
+$ touch styles.css
+```
+
+Alright, now let's shove all of our content into `index.html`:
+
+```html
+<!DOCTYPE html>
+<head>
+  <title>Wendy Bite | About Me</title>
+  <link rel='stylesheet' type='text/css' href='styles.css'>
+  <meta charset="utf8">
+</head>
+<body>
+  <header>
+  <h1>Wendy G. Bite</h1>
+    <nav>
+      <a href='#' class='active'>About Me</a> |
+      <a href='#'>R&eacute;sum&eacute;</a>
+    </nav>
+  </header>
+
+  <section role="main">
+    <h2>About Me</h2>
+
+    <img src='Betty-White.jpg' align=right>
+
+    <p>The series revolves around four older, single women (three widows and one divorcée) sharing a house in Miami, Florida. The owner of the house is a widow named Blanche Devereaux (Rue McClanahan), who was joined by fellow widow Rose Nylund (Betty White) and divorcée Dorothy Zbornak (Bea Arthur). They both responded to a room-for-rent ad on the bulletin board of a local grocery store. In the pilot episode, the women had a gay cook named Coco (Charles Levin), who was subsequently removed.[5] The three were soon joined by Dorothy's mother, Sophia Petrillo (Estelle Getty), after the retirement home where she lived, Shady Pines, burned down.</p>
+
+    <p>Thank You for being a friend. Travel down a road and back again. Your heart is true, you're a pal and a confidante.And if you threw a party, invited everyone you knew, you would see the biggest gift would be from me and the card attached would say, Thank You For Being a Friend!</p>
+  </section>
+  <footer>
+    <a href='#'>Facebook</a> |
+    <a href='#'>Twitter</a> |
+    <a href='#'>Instagram</a> |
+    <a href='#'>LinkedIn</a>
+  </footer>
+</body>
+</html>
+```
+
+I think we can knock out an easy one early on. I can see by looking at that page that the background color and text color are mostly similar. Additionally centering everything and giving it a little bit of a buffer with the padding/border/margin on the edges will be nice. Let's go ahead and change that in `styles.css`:
+
+```css
+body{
+  background: #444;
+  color: #fff;
+  border: 5px solid #777;
+  margin: 2em auto;
+  padding: 2em;
+
+}
+```
+
+Alright, just with 5 properties already looking a lot better! I think we can do another quick fix by just centering the text for the header and footer.
+
+```css
+header, footer{
+  text-align: center;
+}
+```
+
+I think the default link color is bothering me. Lets ahead and change that and while were at it change the links to bold, they look bold to me:
+
+```css
+a {
+  color: #66CD9B;
+  font-weight: bold;
+}
+```
+
+I'm digging those lines above and below that main section. Let's go ahead and add that:
+
+```css
+section {
+  border-color: #ccc;
+  border-width: 1px 0;
+  border-style: solid;
+  /*add padding and margin as necessary*/
+}
+```
+
+Our words are too close together, lets fix that:
+
+```css
+p {
+  line-height:1.5;
+}
+```
+
+Man, this is already looking pretty close! Now just some small things. Theres a tiny border around the image, but its not directly on the image. I also notice that the text in the example isn't butting right up next to the image either. Let's fix all of that!
+
+```css
+img {
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+```
+
+I think that's pretty good. There's some minor tweaks that can be made. Like font and changing the color for active links.
+
 
 ## You do/ Finish for HW - Dew
