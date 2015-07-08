@@ -302,8 +302,8 @@ Discuss `ruby --help`
 Let's do a little research.  The developers of each of these commands has provided a manual.  Let's google it.  If you know the answer, please don't spoil it.
 - Find the manuals for:
   - ls
-	- cd
-	- ruby
+  - cd
+  - ruby
 
 Results on board: html pages, `man`
 
@@ -535,3 +535,24 @@ Answers (think first!):
 ## Homework
 
 https://github.com/ga-dc/command_line_fu
+
+---
+
+## Sample Quiz Questions
+
+- Why would a developer prefer the command line over a GUI?
+- Write a command to list only files beginning with your first name.  Label the parts of the command.
+- Where can we find help for shell commands?
+- Describe 4 bash commands for managing folders and files.
+- Describe 2 unsafe commands
+- You are currently in the "code" folder in the below file tree. How would you get to the folder that contains "beach.png" using the command line?
+```
+home
+├── documents
+│   └── code
+├── photos
+│   ├── headshot.jpg
+│   └── summer_vacation_2014
+│       └── beach.png
+└── videos
+```

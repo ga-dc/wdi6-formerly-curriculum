@@ -2,16 +2,29 @@
 
 Use best-practices and libraries to write, share, and deploy high-quality code.
 
-## Scope and Closures
+## Scope, Context, and Closures
 
-- Write a function that uses a closure to control access to data
-- Explain why closures are used
-- Explain why and from what we are trying to protect data
+### Scope
+
+- Define 'scope' in the context of programming
+- Describe the rules of scope in Javascript
 - Describe the impact of hoisting on variable scope
-- Use apply/call to execute a method within a scope in which it wasn't originally declared
+
+### Context
+
 - Explain Javascript 'context' and what the value of the 'this' keyword refers to
 - Explain what the default context of Javascript executing in the browser is.
 - Use the 'this' keyword to set and retrieve a property in a Javascript function
+- Use bind to create a new method bound to an object context
+- Use apply/call to execute a method in a different context
+
+
+### Closures
+
+- Define what a closure is
+- Explain why closures are used
+- Explain why and from what we are trying to protect data
+- Write a function that uses a closure to control access to data
 
 ## Events and Callbacks
 

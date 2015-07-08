@@ -4,13 +4,13 @@ In addition to the regularly-scheduled one-on-ones, of which each student will h
 
 To reserve the time, please Slack the instructor. Reservations are first-come, first-serve.
 
-- Jesse
-    - Thursday, 5 - 5:30pm
-- Robin
-    - Wednesday, 5 - 5:30pm
-- Adam
-    - Thursday, 5 - 5:30pm
-- Andy
-    - Tuesday 5 - 5:30pm
-- Adrian
-    - Tuesday 5 - 5:30pm
+- Monday, 5 - 5:30pm
+  - Matt
+- Tuesday 5 - 5:30pm
+  - Andy
+- Wednesday, 5 - 5:30pm
+  - Robin
+- Thursday, 5 - 5:30pm
+  - Adam
+  - Adrian
+  - Jesse
