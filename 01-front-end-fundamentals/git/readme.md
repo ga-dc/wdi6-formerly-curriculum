@@ -26,12 +26,12 @@ changes.
 
 ## Resources
 
-[Interactive Git Cheetsheet](http://ndpsoftware.com/git-cheatsheet.html)
-[Github Guides](https://guides.github.com)
-[Github Training](https://training.github.com/kit/)
-[Git Immersion - Interactive Course](http://gitimmersion.com/lab_05.html)
-[Pro Git](http://git-scm.com/book/en/v2) - An in-depth free PDF book for those wanting to understand git deeper
-[GitUp - Interactive Commit Visualizer](http://gitup.co)
+* [Interactive Git Cheetsheet](http://ndpsoftware.com/git-cheatsheet.html)
+* [Github Guides](https://guides.github.com)
+* [Github Training](https://training.github.com/kit/)
+* [Git Immersion - Interactive Course](http://gitimmersion.com/lab_05.html)
+* [Pro Git](http://git-scm.com/book/en/v2) - An in-depth free PDF book for those wanting to understand git deeper
+* [GitUp - Interactive Commit Visualizer](http://gitup.co)
 
 
 ## Outline
@@ -238,7 +238,7 @@ NOTE: If you already have a `pbj` folder in your `~/wdi` folder, delete or renam
 
 ### Submission
 
-File a github issue with a link to:
+File a github issue, on https://github.com/ga-dc/pbj/issues, with a link to:
 * your personal github pages repo
 * the URL to see your hosted page.
 * a link to the repo you forked
