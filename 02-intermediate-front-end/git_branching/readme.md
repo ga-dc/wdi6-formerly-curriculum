@@ -11,6 +11,7 @@
 
 * [Git Book - Git Branching - Basic Branching and Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 * [Atlassian - Git Branching Tutorial](https://www.atlassian.com/git/tutorials/using-branches)
+* [Interactive Git Branching Tutorial](http://pcottle.github.io/learnGitBranching/)
 
 ## Review Git Basics
 
@@ -83,7 +84,7 @@ Many OSS projects request that you create pull requests from a non-master branch
 
 1. Go to your PBJ repo.
 2. Create and switch to a branch called 'suggestion'
-3. Make a small improvement to this repo.
+3. Make a small improvement to this repo (perhaps add something to the `git-tricks.md` file in this folder).
 4. Commit, and push that change to your remote called 'origin' (your fork)
 5. Create a pull request from that branch to the upstream (ga-dc) master branch
 
@@ -92,6 +93,7 @@ Many OSS projects request that you create pull requests from a non-master branch
 When we try to merge to branches (or commits from the same branch from a remote), changes may conflict. In this case, git will stop and ask us to fix the issues manually.
 
 To do so:
+
 1. Locate which files contain conflicts using `git status`
 2. Open those files and fix the conflicts. (Look for the '<<<<', '====', and '>>>>' which will guide you to the conflict)
 3. Commit the fixes.
@@ -106,3 +108,14 @@ To do so:
 5. Practice making commits and push/pull them.
 6. Purposefully both make changes and commit them, such that they are on the same line.
 7. Practice resolving the commit. Repeat and let the other partner resolve the new conflict.
+
+## Homework
+
+1. Read one or more of the references above. Perhaps follow the last interactive
+tutorial (it's really good).
+
+2. Create a github issue on the PBJ repo (not a pull request like usual)
+describing at least one thing you learned.
+
+3. For the rest of the week, submit all your HW pull requests on a 'topic' branch.
+Name your branch something like "bobs_solution".
