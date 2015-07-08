@@ -29,6 +29,7 @@
   - Wants to become a developer that we would want to hire. Plans on using Outcomes to pursue job placement.
   - Wants to become a developer that we would want to hire. Plans on pursuing or continuing job placement without Outcomes.
   - Wants to absorb as much knowledge as possible about development.
+  - Wants to become a samurai ninja master
 
 This class's only requirements are for qualifying for Outcomes. As long as you do not create an environment that precludes others from learning, nothing will preclude you from being able to attend class.
 
