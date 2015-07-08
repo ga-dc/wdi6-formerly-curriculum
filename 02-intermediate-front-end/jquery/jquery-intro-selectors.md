@@ -57,7 +57,7 @@ Not the same thing as a Javascript framework.
 Sometimes "library" and "framework" are used interchangeably, but they are not the same. The difference will be more apparent as you get some experience with both as the course progresses.  
 
 ### What is jQuery?
-The "Write More, Do Less" JS library
+The "Write Less, Do More" JS library
 - A general purpose library that provides an alternate and easier way to run Javascript.
 - At its core, jQuery lets us select and manipulate DOM elements.
 - Can also...
@@ -263,7 +263,6 @@ Onto some jQuery methods!
 ## $( document ).ready( ) (5min)
 
 A page can't be manipulated safely until the document is "ready." jQuery detects this state of readiness for you. Code included inside `$( document ).ready()` will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute.
-- Now you don't have to include script files at the bottom of your HTML. Can keep everything organized in the `<head>` of the document.
 
   ```javascript
   // Top of app.js
