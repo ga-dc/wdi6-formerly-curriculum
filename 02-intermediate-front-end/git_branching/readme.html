@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Intro to Web and HTML | Summary</title>
+        <title>Git Branching | Summary</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.1.0">
@@ -25,10 +25,10 @@
         
     
     
-    <link rel="next" href="../../01-front-end-fundamentals/css/readme.html" />
+    <link rel="next" href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html" />
     
     
-    <link rel="prev" href="../../01-front-end-fundamentals/git/readme.html" />
+    <link rel="prev" href="../../02-intermediate-front-end/events-and-callbacks/readme.html" />
     
 
         
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.3" data-basepath="../.." data-revision="Wed Jul 08 2015 16:14:42 GMT+0000 (UTC)">
+    <div class="book" data-level="2.3" data-basepath="../.." data-revision="Wed Jul 08 2015 16:14:42 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -112,7 +112,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+        <li class="chapter " data-level="1.3" data-path="01-front-end-fundamentals/intro-to-web-and-html/readme.html">
             
                 
                     <a href="../../01-front-end-fundamentals/intro-to-web-and-html/readme.html">
@@ -304,7 +304,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="02-intermediate-front-end/git_branching/readme.html">
+        <li class="chapter active" data-level="2.3" data-path="02-intermediate-front-end/git_branching/readme.html">
             
                 
                     <a href="../../02-intermediate-front-end/git_branching/readme.html">
@@ -624,297 +624,116 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="intro-to-the-web-and-html">Intro to the Web and HTML</h1>
+                        <h1 id="intermediate-git">Intermediate Git</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Diagram the relationship between a server and a browser, including responses and requests.</li>
-<li>Explain the difference between http:// and file://.</li>
-<li>Semantically structure a given document using HTML without regard to style.</li>
-<li>List commonly-abused HTML elements.</li>
-<li>Label the components of an HTML element and its tags.</li>
-<li>List commonly-used special characters.</li>
-<li>Run a website through a validator and fix its errors accordingly.</li>
-<li>Identify the different roles of HTML, CSS, and Javascript on a given webpage.</li>
-<li>Link to a given file using either absolute and relative paths.</li>
-<li>Use Chrome Dev Tools to inspect an element.</li>
+<li>Explain what a branch is in git</li>
+<li>Create, merge and delete branches on local and remote repositories</li>
+<li>Describe how branching and merging allows for collaboration during development</li>
+<li>Resolve a merge conflict</li>
 </ul>
-<h2 id="how-the-web-works">How the web works</h2>
-<p><a href="http://i.imgur.com/AfiaMQP.png" target="_blank">Picture</a></p>
-<h3 id="the-example">The example</h3>
-<p>It&apos;s Februray 12th, 1864. The rulers of the world are all sending telegrams to the White House wishing President Lincoln a happy 55th birthday.</p>
-<p>Queen Victoria writes out a message. She gives it to the Royal Telegraph Operator. He taps it in to the telegraph machine as Morse Code.</p>
-<p>A telegraph operator in Washington hears the Morse Code, and translates it back into English.</p>
-<p>President Lincoln is really busy, so he&apos;s written out a generic &quot;thanks for the birthday wishes&quot; response on a piece of paper and put it in the Presidential Filing Cabinet.</p>
-<p>Whenever a birthday message is received in Washington, the Presidential Telegraph Operator translates Lincoln&apos;s response into Morse Code and sends it back.</p>
-<p>Queen Victoria&apos;s telegraph operator translates Lincoln&apos;s response from Morse Code into English.</p>
-<h3 id="the-reality">The reality</h3>
-<p>An author writes a file of content, and puts it in a computer called a host.</p>
-<p>Whenever a user wants the content, their web browser sends a request to the host&apos;s server. The server retrieves the file from the host and responds with its content.</p>
-<p>The user&apos;s browser translates the content into a webpage and displays it on the screen.</p>
-<h3 id="break-it-down">Break it down</h3>
-<p>Keywords</p>
+<h2 id="references">References</h2>
 <ul>
-<li>User</li>
-<li>Browser</li>
-<li>Content</li>
-<li>File</li>
-<li>Host</li>
-<li>Server</li>
-<li>Request</li>
-<li>Response</li>
+<li><a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging" target="_blank">Git Book - Git Branching - Basic Branching and Merging</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/using-branches" target="_blank">Atlassian - Git Branching Tutorial</a></li>
+<li><a href="http://pcottle.github.io/learnGitBranching/" target="_blank">Interactive Git Branching Tutorial</a></li>
 </ul>
-<p>A host is just a computer, a lot like yours.</p>
-<p>A server is an application that lives on the host computer, receives requests made to it, and sends responses.</p>
-<p>A browser is an application that lives on your computer, sends requests, and translates responses into the stuff you see.</p>
-<p>We need the browser because information can only be sent one &quot;bit&quot; at a time -- that is, a single zero or one.</p>
+<h2 id="review-git-basics">Review Git Basics</h2>
+<p>Quickly review the basics of git:</p>
+<ol>
+<li>What is the most common workflow for creating save points while working
+locally?</li>
+<li>What commands are used to share changes (commits) between repos?</li>
+<li>Describe the fork/clone model, and how it is used for HW submission.</li>
+</ol>
+<h2 id="what-are-branches">What are Branches?</h2>
+<p>A branch in git is just a label on a  particular commit in a repository, along
+with all of it&apos;s history (parent commits).</p>
+<p>What makes a branch special in git (vs a tag), is that we&apos;re always <em>on</em> a
+specific branch, and when we commit, the current branch label moves forward to
+the new commit. Another way to say that is the branch label always stays at the
+tip of the branch.</p>
+<p><img src="https://www.atlassian.com/git/images/tutorials/collaborating/using-branches/01.svg" alt="Git Branch Diagram"></p>
+<blockquote>
+<p>The diagram above visualizes a repository with two isolated lines of development, one for a little feature, and one for a longer-running feature. By developing them in branches, it&#x2019;s not only possible to work on both of them in parallel, but it also keeps the main master branch free from questionable code.</p>
+<p>From <a href="https://www.atlassian.com/git/tutorials/using-branches/git-branch" target="_blank">Atlassian - Git Branching Tutorial</a></p>
+</blockquote>
+<h2 id="why-branches">Why Branches</h2>
+<p>Branches are useful for many reasons, but some of the most common ones:</p>
+<ol>
+<li>To allow experimentation. By switching to a new branch, we can experiment,
+and if the experiemnt fails, we can delete it and easily switch back to master
+(or another branch of our choice). If it succeeds, we can merge those changes
+into master.</li>
+<li>To allow work to proceed on multiple features (or by multiple people) without
+interfering. When a feature is complete, it can be merged back into master.</li>
+<li>To allow easy bug fixes on a stable version while features are being developed.</li>
+</ol>
+<h2 id="example">Example</h2>
+<p>(Use GitUp to demo visually what&apos;s happening).</p>
+<ol>
+<li>Start with last night&apos;s HW repo (e.g. timer_js)</li>
+<li>Create a new branch (<code>git branch experimental</code>, <code>git checkout experimental</code>)</li>
+<li>Create 2 commits doing something a bit crazy.</li>
+<li>Switch back to master branch (<code>git checkout master</code>) and make a reasonable change / commit.</li>
+<li>Switch back to &apos;experiment&apos; branch (<code>git checkout experiment</code> ).</li>
+<li>Make one more commit. Decide it&apos;s ready to go.</li>
+<li>Checkout master, and merge in experimental (<code>git checkout master</code>, <code>git merge experimental</code>).</li>
+</ol>
+<h3 id="playtime">Playtime</h3>
+<p>Spend a few minutes creating branches, commiting to them, switching and deleting.</p>
+<h2 id="common-commands-for-managing-branches">Common Commands for Managing Branches</h2>
 <ul>
-<li>This is why your internet service provider advertises speeds in &quot;megabits&quot; or &quot;gigabits&quot;, rather than &quot;megabytes&quot; or &quot;gigabytes&quot;: you can&apos;t send eight zeroes or ones at a time.</li>
-</ul>
-<h2 id="the-cloud">The cloud</h2>
-<p><a href="http://i.imgur.com/xDGYGZV.jpg" target="_blank">http://i.imgur.com/xDGYGZV.jpg</a></p>
-<h2 id="owning-a-website">Owning a website</h2>
-<p>Need two things</p>
-<ul>
-<li>Domain</li>
-<li>Host</li>
-</ul>
-<p>A host is a place to put your files, with a server application that responds to requests for files.</p>
-<p>Each host as a &quot;phone number&quot;, called an IP address. A domain is like a phone directory listing for that number.</p>
-<ul>
-<li>When I tell Siri to &quot;find me a plumber&quot;, she searches the phone directory for a phone number listed under &quot;plumber&quot;.</li>
-<li>When you enter &quot;Google&quot; into your browser, your browser searches the domain name registry for an IP address listed under &quot;Google.&quot;</li>
-</ul>
-<p>My host is $6 a month. Domains are usually $15 a year.</p>
-<p>Any computer can be a host</p>
-<ul>
-<li>Show my IP address and have them go to it, see it&apos;s on my computer</li>
-</ul>
-<h3 id="adding-files-to-your-host">Adding files to your host</h3>
-<p>A lot like adding files to a computer: drag and drop into a folder</p>
-<h1 id="break">Break!</h1>
-<h2 id="building-a-website">Building a website</h2>
-<ul>
-<li>Requirements<ul>
-<li>A text editor</li>
-<li>A web browser</li>
+<li><code>git branch &lt;new_branch_name&gt;</code> - create a new branch</li>
+<li><code>git checkout &lt;branch_name&gt;</code> - switch to a specific branch (checks out tip commit and makes branch active)</li>
+<li><code>git checkout -b &lt;new_branch_name&gt;</code> - create a new branch and check it out in one step</li>
+<li><code>git branch</code> - list local branches (<code>-a</code> lists local and remote)</li>
+<li><code>git branch -d &lt;branch_to_delete&gt;</code> - delete a branch<ul>
+<li>will not let you delete if branch isn&apos;t merged into another branch (i.e. would cause data loss)</li>
+<li><code>git branch -D &lt;branch_to_delete&gt;</code> - over-rides and deletes a non-merged branch</li>
 </ul>
 </li>
-<li><strong>Pass out business cards.</strong><ul>
-<li>The minimum code required to have a website</li>
+<li><code>git merge &lt;branch_name&gt;</code> - merges <code>&lt;branch_name&gt;</code> into the current branch, creating a new merge commit in the process</li>
 </ul>
-</li>
-<li>Webpages made up of elements<ul>
-<li><strong>Pay attention:</strong> You may think you know HTML, but you probably do it <strong>wrong</strong>.</li>
-<li>Anatomy of an element<ul>
-<li>Open tag</li>
-<li>Close tag</li>
-<li>Contents of tag gives you a hint about contents of element</li>
-</ul>
-</li>
-<li>Rules of HTML<ul>
-<li>Elements must close</li>
-<li>Elements must nest<ul>
-<li>Parents, children</li>
-<li>Why indentation is important</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Exceptions<ul>
-<li>Self-closing</li>
-<li>DOCTYPE</li>
-<li>Comments</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Anatomy of a webpage<ul>
-<li>head and body</li>
-<li>header, main, footer</li>
-</ul>
-</li>
-<li>Special characters<ul>
-<li>Encoding<ul>
-<li>Every character is represented in computer memory as a sequence of 1s and 0s</li>
-<li>&quot;Standard&quot; characters are the ones every computer encodes the same way<ul>
-<li>letters, numbers, some punctuation</li>
-<li>Different countries, operating systems, etc, will encode characters differently</li>
-</ul>
-</li>
-<li>&quot;Special&quot; characters are the ones that change from country to country, operating system to operating system<ul>
-<li>Seen gibberish characters in MS Word before?</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Special characters represented with special tags that all web browsers recognize<ul>
-<li>Like HTML tags, contents gives you a hint</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="we-do-tag-matching">We do: Tag matching</h3>
-<p>There are 130+ tags and thousands of special characters, but you&apos;ll only use a few of them 99% of the time</p>
-<p><a href="http://ga-dc.github.io/html_tag_matching/" target="_blank">http://ga-dc.github.io/html_tag_matching/</a></p>
-<ul>
-<li>What is the difference between:<ul>
-<li>head</li>
-<li>header</li>
-<li>heading</li>
-</ul>
-</li>
-</ul>
-<h2 id="semantics-vs-style">Semantics vs style</h2>
-<ul>
-<li>Which of the tags we looked at say anything about the way things should look?</li>
-<li>HTML is a &quot;markup&quot; language<ul>
-<li>What does it mean to &quot;mark up&quot; a paper?<ul>
-<li>Add a layer on meaning on top of it without changing the words</li>
-</ul>
-</li>
-<li>Writing HTML is more like taking a bunch of dialogue and splitting it up into lines, with actor suggestions<ul>
-<li>&quot;This is delivered off-stage&quot;, &quot;This is happy&quot;, etc.</li>
-</ul>
-</li>
-<li>HTML tells you the <strong>function</strong> of words<ul>
-<li>aka the semantic value</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Styling<ul>
-<li>is done with a completely different language, called CSS</li>
-<li>Show RobertAKARobin.com source code<ul>
-<li>All my CSS is off in its own file. <strong>Why?</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Why are semantics and style separate?</li>
-</ul>
-<p>It&apos;s efficient:</p>
-<pre><code>&lt;p&gt;Hello.&lt;/p&gt;
-&lt;p&gt;My name is Joe.&lt;/p&gt;
-
-&lt;p&gt;&lt;red&gt;Hello.&lt;/red&gt;&lt;/p&gt;
-&lt;p&gt;&lt;red&gt;My name is Joe.&lt;/red&gt;&lt;/p&gt;
-</code></pre><p>...much easier to just say &quot;every paragraph should be red.&quot;</p>
-<p>It makes code cleaner:
-www2.warnerbros.com/spacejam/movie/jam.htm</p>
-<ul>
-<li>When writing HTML, <strong>think only of the semantics</strong></li>
-</ul>
-<h3 id="bad-tags">Bad tags</h3>
-<pre><code>&lt;br /&gt;
-&lt;hr /&gt;
-&lt;small&gt;
-&lt;big&gt;
-&lt;b&gt;
-&lt;i&gt;
-&lt;u&gt;
-&lt;center&gt;
-&lt;font&gt;
-&lt;marquee&gt;
-&lt;blink&gt;
-</code></pre><h3 id="you-do-make-the-fresh-prince-website">You do: Make the Fresh Prince website</h3>
-<p><a href="http://ga-dc.github.io/belair_biography/" target="_blank">http://ga-dc.github.io/belair_biography/</a></p>
-<h1 id="break">Break!</h1>
-<h2 id="wrapping-up">Wrapping up</h2>
-<ul>
-<li><code>&lt;img src /&gt;</code> and <code>&lt;a href&gt;</code><ul>
-<li>Attributes modify the element</li>
-</ul>
-</li>
-<li><code>&lt;div&gt;</code> and <code>&lt;span&gt;</code><ul>
-<li>Elements to use when you&apos;re not sure what else to use</li>
-</ul>
-</li>
-<li><code>&lt;iframe /&gt;</code><ul>
-<li>A &quot;window&quot; to another webpage</li>
-</ul>
-</li>
-<li><code>file://</code> vs <code>http://</code><ul>
-<li><code>file</code> looks on the current computer for a file; <code>http</code> makes a request to another computer</li>
-</ul>
-</li>
-<li>Absolute vs relative paths<ul>
-<li><strong>Show</strong> that <code>http://ga-dc.github.io/belair_biography/bball.jpg</code> and <code>bball.jpg</code> both work<ul>
-<li>First is absolute, second is relative</li>
-<li>Relative is location relative the current file; absolute is location relative the entire internet</li>
-</ul>
-</li>
-<li><strong>Ask:</strong> How do I get to the bathroom?</li>
-<li><strong>If I told my mom in Montana how to get to this bathroom, what would I need to say?</strong></li>
-<li>File navigation<ul>
-<li><code>..</code> is go up one folder, <code>folder/</code> is go down</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="you-do-navigate-dc">You do: Navigate DC</h3>
-<p>On whiteboards!</p>
-<p><a href="https://github.com/ga-dc/dc_directory_tree" target="_blank">https://github.com/ga-dc/dc_directory_tree</a></p>
-<h2 id="styling">Styling</h2>
-<ul>
-<li>Using CSS<ul>
-<li><a href="http://ga-dc.github.io/belair_biography/belair.css" target="_blank">http://ga-dc.github.io/belair_biography/belair.css</a></li>
-<li>Anatomy<ul>
-<li>Selectors<ul>
-<li>&quot;Select&quot; an element for modification</li>
-</ul>
-</li>
-<li>Properties<ul>
-<li>The thing being modified</li>
-</ul>
-</li>
-<li>Values<ul>
-<li>To what the property is being set</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Colors<ul>
-<li>RGB / Hex</li>
-<li>A color is represented like this: <code>#ff00ff</code><ul>
-<li>That&apos;s actually 3 values squished together<ul>
-<li>Each pixel has 3 lights: red, blue, green</li>
-<li>The first two characters say how bright the red should be, then blue, then gree</li>
-<li>This is in the hexadecimal, or base-16, system. The minimum is 00, and the maximum is <code>ff == 16 * 16 == 256</code></li>
-</ul>
-</li>
-<li><code>ff00ff</code> means &quot;red is full-blast, green is off, and blue is full-blast&quot;<ul>
-<li>That is: purple</li>
-</ul>
-</li>
-<li>Could also be written as <code>f0f</code>. <code>abc</code> means <code>aabbcc</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="putting-it-all-together">Putting it all together</h2>
-<ul>
-<li>HTML is function, CSS is form, JS is behavior</li>
-<li>Inspect in Chrome dev tools</li>
-</ul>
+<h2 id="exercise-pushing-and-prs-from-branches">Exercise - Pushing and PRs from Branches</h2>
+<p>Many OSS projects request that you create pull requests from a non-master branch.</p>
+<ol>
+<li>Go to your PBJ repo.</li>
+<li>Create and switch to a branch called &apos;suggestion&apos;</li>
+<li>Make a small improvement to this repo (perhaps add something to the <code>git-tricks.md</code> file in this folder).</li>
+<li>Commit, and push that change to your remote called &apos;origin&apos; (your fork)</li>
+<li>Create a pull request from that branch to the upstream (ga-dc) master branch</li>
+</ol>
+<h2 id="merge-conflicts">Merge Conflicts</h2>
+<p>When we try to merge to branches (or commits from the same branch from a remote), changes may conflict. In this case, git will stop and ask us to fix the issues manually.</p>
+<p>To do so:</p>
+<ol>
+<li>Locate which files contain conflicts using <code>git status</code></li>
+<li>Open those files and fix the conflicts. (Look for the &apos;&lt;&lt;&lt;&lt;&apos;, &apos;====&apos;, and &apos;&gt;&gt;&gt;&gt;&apos; which will guide you to the conflict)</li>
+<li>Commit the fixes.</li>
+</ol>
+<h2 id="exercise-merge-conflicts">Exercise - Merge Conflicts</h2>
+<ol>
+<li>Pair up with someone.</li>
+<li>Pick somone as the &apos;primary&apos;, and the &apos;secondary&apos;.</li>
+<li>The primary should create a repo and add the secondary as a collaborator (search github for how to do this)</li>
+<li>Both members should clone the repo, and make changes on master branch.</li>
+<li>Practice making commits and push/pull them.</li>
+<li>Purposefully both make changes and commit them, such that they are on the same line.</li>
+<li>Practice resolving the commit. Repeat and let the other partner resolve the new conflict.</li>
+</ol>
 <h2 id="homework">Homework</h2>
-<p><a href="https://github.com/ga-dc/html_resume" target="_blank">https://github.com/ga-dc/html_resume</a></p>
-<h2 id="quiz-questions">Quiz Questions</h2>
-<ul>
-<li>Which of the following is the best way to center the text in div?<ul>
-<li><code>&lt;div&gt;&lt;center&gt;&lt;/center&gt;&lt;/div&gt;</code></li>
-<li><code>&lt;div align=&quot;center&quot;&gt;&lt;/div&gt;</code></li>
-<li><code>&lt;style&gt;div{ text-align:center; }&lt;/style&gt;</code></li>
-<li><code>&lt;div style=&quot;text-align:center;&quot;&gt;&lt;/div&gt;</code></li>
-</ul>
+<ol>
+<li><p>Read one or more of the references above. Perhaps follow the last interactive
+tutorial (it&apos;s really good).</p>
 </li>
-<li>Why do we write <code>&lt;img /&gt;</code> and not <code>&lt;img&gt;&lt;/img&gt;</code>?</li>
-<li>Why is it important to keep semantics (HTML) separate from style (CSS)?</li>
-</ul>
+<li><p>Create a github issue on the PBJ repo (not a pull request like usual)
+describing at least one thing you learned.</p>
+</li>
+<li><p>For the rest of the week, submit all your HW pull requests on a &apos;topic&apos; branch.
+Name your branch something like &quot;bobs_solution&quot;.</p>
+</li>
+</ol>
 
                     
                     </section>
@@ -925,10 +744,10 @@ www2.warnerbros.com/spacejam/movie/jam.htm</p>
         </div>
 
         
-        <a href="../../01-front-end-fundamentals/git/readme.html" class="navigation navigation-prev " aria-label="Previous page: Git"><i class="fa fa-angle-left"></i></a>
+        <a href="../../02-intermediate-front-end/events-and-callbacks/readme.html" class="navigation navigation-prev " aria-label="Previous page: Events and Callbacks"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../01-front-end-fundamentals/css/readme.html" class="navigation navigation-next " aria-label="Next page: CSS"><i class="fa fa-angle-right"></i></a>
+        <a href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html" class="navigation navigation-next " aria-label="Next page: jQuery"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

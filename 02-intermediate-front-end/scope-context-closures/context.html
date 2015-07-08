@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Intro to Web and HTML | Summary</title>
+        <title>Context | Summary</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.1.0">
@@ -25,10 +25,10 @@
         
     
     
-    <link rel="next" href="../../01-front-end-fundamentals/css/readme.html" />
+    <link rel="next" href="../../02-intermediate-front-end/scope-context-closures/closures.html" />
     
     
-    <link rel="prev" href="../../01-front-end-fundamentals/git/readme.html" />
+    <link rel="prev" href="../../02-intermediate-front-end/scope-context-closures/scope.html" />
     
 
         
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="1.3" data-basepath="../.." data-revision="Wed Jul 08 2015 16:14:42 GMT+0000 (UTC)">
+    <div class="book" data-level="2.1.2" data-basepath="../.." data-revision="Wed Jul 08 2015 16:14:42 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -112,7 +112,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+        <li class="chapter " data-level="1.3" data-path="01-front-end-fundamentals/intro-to-web-and-html/readme.html">
             
                 
                     <a href="../../01-front-end-fundamentals/intro-to-web-and-html/readme.html">
@@ -254,7 +254,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2" data-path="02-intermediate-front-end/scope-context-closures/context.html">
+        <li class="chapter active" data-level="2.1.2" data-path="02-intermediate-front-end/scope-context-closures/context.html">
             
                 
                     <a href="../../02-intermediate-front-end/scope-context-closures/context.html">
@@ -624,297 +624,181 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="intro-to-the-web-and-html">Intro to the Web and HTML</h1>
+                        <h1 id="context">Context</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Diagram the relationship between a server and a browser, including responses and requests.</li>
-<li>Explain the difference between http:// and file://.</li>
-<li>Semantically structure a given document using HTML without regard to style.</li>
-<li>List commonly-abused HTML elements.</li>
-<li>Label the components of an HTML element and its tags.</li>
-<li>List commonly-used special characters.</li>
-<li>Run a website through a validator and fix its errors accordingly.</li>
-<li>Identify the different roles of HTML, CSS, and Javascript on a given webpage.</li>
-<li>Link to a given file using either absolute and relative paths.</li>
-<li>Use Chrome Dev Tools to inspect an element.</li>
+<li>Explain Javascript &apos;context&apos; and what the value of the &apos;this&apos; keyword refers to</li>
+<li>Explain what the default context of Javascript executing in the browser is.</li>
+<li>Use the &apos;this&apos; keyword to set and retrieve a property in a Javascript function</li>
+<li>Use bind to create a new method bound to an object context</li>
+<li>Use apply/call to execute a method in a different context</li>
 </ul>
-<h2 id="how-the-web-works">How the web works</h2>
-<p><a href="http://i.imgur.com/AfiaMQP.png" target="_blank">Picture</a></p>
-<h3 id="the-example">The example</h3>
-<p>It&apos;s Februray 12th, 1864. The rulers of the world are all sending telegrams to the White House wishing President Lincoln a happy 55th birthday.</p>
-<p>Queen Victoria writes out a message. She gives it to the Royal Telegraph Operator. He taps it in to the telegraph machine as Morse Code.</p>
-<p>A telegraph operator in Washington hears the Morse Code, and translates it back into English.</p>
-<p>President Lincoln is really busy, so he&apos;s written out a generic &quot;thanks for the birthday wishes&quot; response on a piece of paper and put it in the Presidential Filing Cabinet.</p>
-<p>Whenever a birthday message is received in Washington, the Presidential Telegraph Operator translates Lincoln&apos;s response into Morse Code and sends it back.</p>
-<p>Queen Victoria&apos;s telegraph operator translates Lincoln&apos;s response from Morse Code into English.</p>
-<h3 id="the-reality">The reality</h3>
-<p>An author writes a file of content, and puts it in a computer called a host.</p>
-<p>Whenever a user wants the content, their web browser sends a request to the host&apos;s server. The server retrieves the file from the host and responds with its content.</p>
-<p>The user&apos;s browser translates the content into a webpage and displays it on the screen.</p>
-<h3 id="break-it-down">Break it down</h3>
-<p>Keywords</p>
+<h2 id="references">References</h2>
 <ul>
-<li>User</li>
-<li>Browser</li>
-<li>Content</li>
-<li>File</li>
-<li>Host</li>
-<li>Server</li>
-<li>Request</li>
-<li>Response</li>
+<li><a href="http://ryanmorr.com/understanding-scope-and-context-in-javascript/" target="_blank">Understanding Scope and Context in JavaScript</a></li>
+<li><a href="http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/" target="_blank">Understand JavaScript&#x2019;s &#x201C;this&#x201D;</a></li>
+<li><a href="http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/" target="_blank">Everything you wanted to know about JavaScript scope</a></li>
 </ul>
-<p>A host is just a computer, a lot like yours.</p>
-<p>A server is an application that lives on the host computer, receives requests made to it, and sends responses.</p>
-<p>A browser is an application that lives on your computer, sends requests, and translates responses into the stuff you see.</p>
-<p>We need the browser because information can only be sent one &quot;bit&quot; at a time -- that is, a single zero or one.</p>
-<ul>
-<li>This is why your internet service provider advertises speeds in &quot;megabits&quot; or &quot;gigabits&quot;, rather than &quot;megabytes&quot; or &quot;gigabytes&quot;: you can&apos;t send eight zeroes or ones at a time.</li>
-</ul>
-<h2 id="the-cloud">The cloud</h2>
-<p><a href="http://i.imgur.com/xDGYGZV.jpg" target="_blank">http://i.imgur.com/xDGYGZV.jpg</a></p>
-<h2 id="owning-a-website">Owning a website</h2>
-<p>Need two things</p>
-<ul>
-<li>Domain</li>
-<li>Host</li>
-</ul>
-<p>A host is a place to put your files, with a server application that responds to requests for files.</p>
-<p>Each host as a &quot;phone number&quot;, called an IP address. A domain is like a phone directory listing for that number.</p>
-<ul>
-<li>When I tell Siri to &quot;find me a plumber&quot;, she searches the phone directory for a phone number listed under &quot;plumber&quot;.</li>
-<li>When you enter &quot;Google&quot; into your browser, your browser searches the domain name registry for an IP address listed under &quot;Google.&quot;</li>
-</ul>
-<p>My host is $6 a month. Domains are usually $15 a year.</p>
-<p>Any computer can be a host</p>
-<ul>
-<li>Show my IP address and have them go to it, see it&apos;s on my computer</li>
-</ul>
-<h3 id="adding-files-to-your-host">Adding files to your host</h3>
-<p>A lot like adding files to a computer: drag and drop into a folder</p>
-<h1 id="break">Break!</h1>
-<h2 id="building-a-website">Building a website</h2>
-<ul>
-<li>Requirements<ul>
-<li>A text editor</li>
-<li>A web browser</li>
-</ul>
-</li>
-<li><strong>Pass out business cards.</strong><ul>
-<li>The minimum code required to have a website</li>
-</ul>
-</li>
-<li>Webpages made up of elements<ul>
-<li><strong>Pay attention:</strong> You may think you know HTML, but you probably do it <strong>wrong</strong>.</li>
-<li>Anatomy of an element<ul>
-<li>Open tag</li>
-<li>Close tag</li>
-<li>Contents of tag gives you a hint about contents of element</li>
-</ul>
-</li>
-<li>Rules of HTML<ul>
-<li>Elements must close</li>
-<li>Elements must nest<ul>
-<li>Parents, children</li>
-<li>Why indentation is important</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Exceptions<ul>
-<li>Self-closing</li>
-<li>DOCTYPE</li>
-<li>Comments</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Anatomy of a webpage<ul>
-<li>head and body</li>
-<li>header, main, footer</li>
-</ul>
-</li>
-<li>Special characters<ul>
-<li>Encoding<ul>
-<li>Every character is represented in computer memory as a sequence of 1s and 0s</li>
-<li>&quot;Standard&quot; characters are the ones every computer encodes the same way<ul>
-<li>letters, numbers, some punctuation</li>
-<li>Different countries, operating systems, etc, will encode characters differently</li>
-</ul>
-</li>
-<li>&quot;Special&quot; characters are the ones that change from country to country, operating system to operating system<ul>
-<li>Seen gibberish characters in MS Word before?</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Special characters represented with special tags that all web browsers recognize<ul>
-<li>Like HTML tags, contents gives you a hint</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="we-do-tag-matching">We do: Tag matching</h3>
-<p>There are 130+ tags and thousands of special characters, but you&apos;ll only use a few of them 99% of the time</p>
-<p><a href="http://ga-dc.github.io/html_tag_matching/" target="_blank">http://ga-dc.github.io/html_tag_matching/</a></p>
-<ul>
-<li>What is the difference between:<ul>
-<li>head</li>
-<li>header</li>
-<li>heading</li>
-</ul>
-</li>
-</ul>
-<h2 id="semantics-vs-style">Semantics vs style</h2>
-<ul>
-<li>Which of the tags we looked at say anything about the way things should look?</li>
-<li>HTML is a &quot;markup&quot; language<ul>
-<li>What does it mean to &quot;mark up&quot; a paper?<ul>
-<li>Add a layer on meaning on top of it without changing the words</li>
-</ul>
-</li>
-<li>Writing HTML is more like taking a bunch of dialogue and splitting it up into lines, with actor suggestions<ul>
-<li>&quot;This is delivered off-stage&quot;, &quot;This is happy&quot;, etc.</li>
-</ul>
-</li>
-<li>HTML tells you the <strong>function</strong> of words<ul>
-<li>aka the semantic value</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Styling<ul>
-<li>is done with a completely different language, called CSS</li>
-<li>Show RobertAKARobin.com source code<ul>
-<li>All my CSS is off in its own file. <strong>Why?</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Why are semantics and style separate?</li>
-</ul>
-<p>It&apos;s efficient:</p>
-<pre><code>&lt;p&gt;Hello.&lt;/p&gt;
-&lt;p&gt;My name is Joe.&lt;/p&gt;
+<h2 id="what-is-context">What is context</h2>
+<p>Context is feature of the Javascript language related to how and when/where
+functions are invoked (aka called).</p>
+<p>Every time a Javascript function is called, a context is determined / set. That
+context is always an object, and can be referenced in the function definition
+(code) using a special keyword in JS, <code>this</code>.</p>
+<p>Here&apos;s an example of the most common way context is determined for a function:
+when a method is called on an object, that object becomes the context:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> instructor = {
+  name: <span class="hljs-string">&quot;Adam Bray&quot;</span>,
+  favoriteFood: <span class="hljs-string">&quot;Spicy Miso Ramen&quot;</span>,
+  sayHello: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Hi! My name is &quot;</span> + <span class="hljs-keyword">this</span>.name + <span class="hljs-string">&quot;, and my favorite food is &quot;</span> + <span class="hljs-keyword">this</span>.favoriteFood);
+  }
+}
 
-&lt;p&gt;&lt;red&gt;Hello.&lt;/red&gt;&lt;/p&gt;
-&lt;p&gt;&lt;red&gt;My name is Joe.&lt;/red&gt;&lt;/p&gt;
-</code></pre><p>...much easier to just say &quot;every paragraph should be red.&quot;</p>
-<p>It makes code cleaner:
-www2.warnerbros.com/spacejam/movie/jam.htm</p>
+instructor.sayHello() <span class="hljs-comment">// for this function invocation, `this` is `instructor`</span>
+</code></pre>
+<p>This feature allows not just &apos;getting&apos; property info on objects, but also
+setting properties. Consider this example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> xwing = {
+    pilot: <span class="hljs-literal">null</span>,
+
+    setPilot: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(pilot)</span> </span>{
+        <span class="hljs-keyword">this</span>.pilot = pilot;
+        <span class="hljs-keyword">this</span>.notifyUpdate();
+    },
+
+    notifyUpdate: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;This X-Wing has changed!&apos;</span>);
+    }
+};
+
+xwing.setPilot(<span class="hljs-string">&quot;Luke Skywalker&quot;</span>);
+<span class="hljs-comment">// &gt;&gt; &quot;This X-Wing has changed!&quot;</span>
+
+<span class="hljs-built_in">console</span>.log(xwing.pilot);
+<span class="hljs-comment">// &gt;&gt; &quot;Luke Skywalker&quot;</span>
+</code></pre>
+<h2 id="default-context">Default Context</h2>
+<p>When a function is called, but it&apos;s not a method on an object, and no context
+is otherwise assigned (see later sections), then the context is set to the
+default context. In a browser, the default context is the <code>window</code> object.</p>
+<p>In node.js, the default object is called the global object.</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">revealThis</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>);
+}
+
+revealThis();
+</code></pre>
+<p>Note that it is very rare to intentionally use <code>this</code> to refer to the window
+object. Usually this happens when we mistakenly use this incorrectly (a very
+easy/common mistake for new and even experienced JS developers).</p>
+<h2 id="gotcha-with-this">Gotcha With <code>this</code></h2>
+<h3 id="exercise-write-pair-share-5-minutes">Exercise - Write, Pair, Share (5 minutes)</h3>
+<p>Consider the following example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> instructor = {
+  name: <span class="hljs-string">&quot;Adam Bray&quot;</span>,
+  favoriteFoods: [<span class="hljs-string">&quot;Ramen&quot;</span>, <span class="hljs-string">&quot;Cap&apos;n Crunch&quot;</span>, <span class="hljs-string">&quot;Butter&quot;</span>],
+  displayFoods: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">this</span>.favoriteFoods.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(food)</span> </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.name + <span class="hljs-string">&quot; likes &quot;</span> + food);
+    })
+  }
+}
+
+instructor.displayFoods();
+</code></pre>
+<p>Using what we know about context, predict what the value of this will be on both
+lines where if is used.</p>
+<h3 id="answer">Answer</h3>
+<p>In the first case, <code>this</code> behaves like we would expect, (it references
+<code>instructor</code> since it&apos;s inside a function attached to an <code>instructor</code>.</p>
+<p>In the second case, <code>this</code> is inside an anonymous function, so it refers to the
+global object.</p>
+<p>Note that this issue frequently appears anytime we use a callback / anonymous
+function, such as:</p>
 <ul>
-<li>When writing HTML, <strong>think only of the semantics</strong></li>
+<li>using <code>setTimeout()</code> or <code>setInterval()</code> to schedule callbacks</li>
+<li>using <code>forEach()</code> or other iteration functions</li>
+<li>for event listeners passed into <code>someElement.addEventListener()</code></li>
 </ul>
-<h3 id="bad-tags">Bad tags</h3>
-<pre><code>&lt;br /&gt;
-&lt;hr /&gt;
-&lt;small&gt;
-&lt;big&gt;
-&lt;b&gt;
-&lt;i&gt;
-&lt;u&gt;
-&lt;center&gt;
-&lt;font&gt;
-&lt;marquee&gt;
-&lt;blink&gt;
-</code></pre><h3 id="you-do-make-the-fresh-prince-website">You do: Make the Fresh Prince website</h3>
-<p><a href="http://ga-dc.github.io/belair_biography/" target="_blank">http://ga-dc.github.io/belair_biography/</a></p>
-<h1 id="break">Break!</h1>
-<h2 id="wrapping-up">Wrapping up</h2>
-<ul>
-<li><code>&lt;img src /&gt;</code> and <code>&lt;a href&gt;</code><ul>
-<li>Attributes modify the element</li>
-</ul>
-</li>
-<li><code>&lt;div&gt;</code> and <code>&lt;span&gt;</code><ul>
-<li>Elements to use when you&apos;re not sure what else to use</li>
-</ul>
-</li>
-<li><code>&lt;iframe /&gt;</code><ul>
-<li>A &quot;window&quot; to another webpage</li>
-</ul>
-</li>
-<li><code>file://</code> vs <code>http://</code><ul>
-<li><code>file</code> looks on the current computer for a file; <code>http</code> makes a request to another computer</li>
-</ul>
-</li>
-<li>Absolute vs relative paths<ul>
-<li><strong>Show</strong> that <code>http://ga-dc.github.io/belair_biography/bball.jpg</code> and <code>bball.jpg</code> both work<ul>
-<li>First is absolute, second is relative</li>
-<li>Relative is location relative the current file; absolute is location relative the entire internet</li>
-</ul>
-</li>
-<li><strong>Ask:</strong> How do I get to the bathroom?</li>
-<li><strong>If I told my mom in Montana how to get to this bathroom, what would I need to say?</strong></li>
-<li>File navigation<ul>
-<li><code>..</code> is go up one folder, <code>folder/</code> is go down</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="you-do-navigate-dc">You do: Navigate DC</h3>
-<p>On whiteboards!</p>
-<p><a href="https://github.com/ga-dc/dc_directory_tree" target="_blank">https://github.com/ga-dc/dc_directory_tree</a></p>
-<h2 id="styling">Styling</h2>
-<ul>
-<li>Using CSS<ul>
-<li><a href="http://ga-dc.github.io/belair_biography/belair.css" target="_blank">http://ga-dc.github.io/belair_biography/belair.css</a></li>
-<li>Anatomy<ul>
-<li>Selectors<ul>
-<li>&quot;Select&quot; an element for modification</li>
-</ul>
-</li>
-<li>Properties<ul>
-<li>The thing being modified</li>
-</ul>
-</li>
-<li>Values<ul>
-<li>To what the property is being set</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Colors<ul>
-<li>RGB / Hex</li>
-<li>A color is represented like this: <code>#ff00ff</code><ul>
-<li>That&apos;s actually 3 values squished together<ul>
-<li>Each pixel has 3 lights: red, blue, green</li>
-<li>The first two characters say how bright the red should be, then blue, then gree</li>
-<li>This is in the hexadecimal, or base-16, system. The minimum is 00, and the maximum is <code>ff == 16 * 16 == 256</code></li>
-</ul>
-</li>
-<li><code>ff00ff</code> means &quot;red is full-blast, green is off, and blue is full-blast&quot;<ul>
-<li>That is: purple</li>
-</ul>
-</li>
-<li>Could also be written as <code>f0f</code>. <code>abc</code> means <code>aabbcc</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="putting-it-all-together">Putting it all together</h2>
-<ul>
-<li>HTML is function, CSS is form, JS is behavior</li>
-<li>Inspect in Chrome dev tools</li>
-</ul>
-<h2 id="homework">Homework</h2>
-<p><a href="https://github.com/ga-dc/html_resume" target="_blank">https://github.com/ga-dc/html_resume</a></p>
-<h2 id="quiz-questions">Quiz Questions</h2>
-<ul>
-<li>Which of the following is the best way to center the text in div?<ul>
-<li><code>&lt;div&gt;&lt;center&gt;&lt;/center&gt;&lt;/div&gt;</code></li>
-<li><code>&lt;div align=&quot;center&quot;&gt;&lt;/div&gt;</code></li>
-<li><code>&lt;style&gt;div{ text-align:center; }&lt;/style&gt;</code></li>
-<li><code>&lt;div style=&quot;text-align:center;&quot;&gt;&lt;/div&gt;</code></li>
-</ul>
-</li>
-<li>Why do we write <code>&lt;img /&gt;</code> and not <code>&lt;img&gt;&lt;/img&gt;</code>?</li>
-<li>Why is it important to keep semantics (HTML) separate from style (CSS)?</li>
-</ul>
+<h2 id="fixes-for-the-global-this-gotcha">Fixes for the global <code>this</code> gotcha</h2>
+<h3 id="store-this-in-another-variable">Store <code>this</code> in another variable</h3>
+<p>One trick is to store the <code>this</code> you want in another variable, commonly named
+<code>self</code> or <code>that</code>.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> instructor = {
+  name: <span class="hljs-string">&quot;Adam Bray&quot;</span>,
+  favoriteFoods: [<span class="hljs-string">&quot;Ramen&quot;</span>, <span class="hljs-string">&quot;Cap&apos;n Crunch&quot;</span>, <span class="hljs-string">&quot;Butter&quot;</span>],
+  displayFoods: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">this</span>.favoriteFoods.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(food)</span> </span>{
+      <span class="hljs-built_in">console</span>.log(self.name + <span class="hljs-string">&quot; likes &quot;</span> + food);
+    })
+  }
+}
+
+instructor.displayFoods();
+</code></pre>
+<p><strong>Mini-exercise</strong>: Use what we know about scope to explain why this works.</p>
+<h3 id="bind">Bind</h3>
+<p>Another way is to use the bind method on the function to force the function to
+always use the specified value as it&apos;s context.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> instructor = {
+  name: <span class="hljs-string">&quot;Adam Bray&quot;</span>,
+  favoriteFoods: [<span class="hljs-string">&quot;Ramen&quot;</span>, <span class="hljs-string">&quot;Cap&apos;n Crunch&quot;</span>, <span class="hljs-string">&quot;Butter&quot;</span>],
+  displayFoods: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">this</span>.favoriteFoods.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(food)</span> </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.name + <span class="hljs-string">&quot; likes &quot;</span> + food);
+    }.bind(<span class="hljs-keyword">this</span>))
+  }
+}
+
+instructor.displayFoods();
+</code></pre>
+<h2 id="exercise-cat-surprise">Exercise: Cat Surprise</h2>
+<p>Fork <a href="http://codepen.io/adambray/pen/domXyg?editors=101" target="_blank">this codepen</a>.</p>
+<p>Notice that it&apos;s broken! Fix the JS so that clicking the image correctly alerts us to Mr. McWhiskertons&apos; favorite pastimes.</p>
+<h2 id="call-apply">Call/Apply</h2>
+<p>There are two other ways to invoke a function and change the context, which are
+very similar: <code>call</code> and <code>apply</code>.</p>
+<p>Here&apos;s an example of how to use call:</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHello</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Hi! My name is &quot;</span> + <span class="hljs-keyword">this</span>.name);
+}
+
+<span class="hljs-keyword">var</span> person = {name: <span class="hljs-string">&quot;Manatee the Railyard Toreador&quot;</span>};
+<span class="hljs-keyword">var</span> cat = {name: <span class="hljs-string">&quot;Hobbles McGillicudy&quot;</span>};
+sayHello.call(person);
+sayHello.call(cat);
+</code></pre>
+<p><code>call</code> also lets us pass in the arguments to the function:</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHello</span><span class="hljs-params">(favColor)</span> </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Hi! My name is &quot;</span> + <span class="hljs-keyword">this</span>.name + <span class="hljs-string">&quot; and I like &quot;</span> + favColor);
+}
+
+<span class="hljs-keyword">var</span> person = {name: <span class="hljs-string">&quot;Manatee the Railyard Toreador&quot;</span>};
+<span class="hljs-keyword">var</span> cat = {name: <span class="hljs-string">&quot;Hobbles McGillicudy&quot;</span>};
+sayHello.call(person, <span class="hljs-string">&quot;blue&quot;</span>);
+sayHello.call(cat, <span class="hljs-string">&quot;peachpuff&quot;</span>);
+</code></pre>
+<p><code>apply</code> works almost exactly like <code>call</code>, only you pass in <em>array</em> of arguments
+instead of a comma-separated list.</p>
+<p>See the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" target="_blank">MDN documentation</a>
+for more.</p>
+<h2 id="summary">Summary</h2>
+<p>Note that #1 is included here for correctness, we haven&apos;t covered object constructors yet, but will soon.</p>
+<blockquote>
+<ol>
+<li>Is the function called with <code>new</code> (<strong>new binding</strong>)? If so, <code>this</code> is the newly constructed object.
+ <code>var bar = new foo()</code></li>
+<li>Is the function called with <code>call</code> or <code>apply</code> (<strong>explicit binding</strong>), even hidden inside a <code>bind</code> <em>hard binding</em>? If so, <code>this</code> is the explicitly specified object.
+ <code>var bar = foo.call( obj2 )</code></li>
+<li>Is the function called with a context (<strong>implicit binding</strong>), otherwise known as an owning or containing object? If so, <code>this</code> is <em>that</em> context object.
+ <code>var bar = obj1.foo()</code></li>
+<li>Otherwise, default the <code>this</code> (<strong>default binding</strong>). If in <code>strict mode</code>, pick <code>undefined</code>, otherwise pick the <code>global</code> object.
+ <code>var bar = foo()</code></li>
+</ol>
+<p>Source: <a href="https://github.com/getify/You-Dont-Know-JS/blob/58dbf4f867be0d9c51dfc341765e4e4211608aa1/this%20&amp;%20object%20prototypes/ch2.md" target="_blank">You-Dont-Know-JS/ch2.md</a></p>
+</blockquote>
 
                     
                     </section>
@@ -925,10 +809,10 @@ www2.warnerbros.com/spacejam/movie/jam.htm</p>
         </div>
 
         
-        <a href="../../01-front-end-fundamentals/git/readme.html" class="navigation navigation-prev " aria-label="Previous page: Git"><i class="fa fa-angle-left"></i></a>
+        <a href="../../02-intermediate-front-end/scope-context-closures/scope.html" class="navigation navigation-prev " aria-label="Previous page: Scope"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../01-front-end-fundamentals/css/readme.html" class="navigation navigation-next " aria-label="Next page: CSS"><i class="fa fa-angle-right"></i></a>
+        <a href="../../02-intermediate-front-end/scope-context-closures/closures.html" class="navigation navigation-next " aria-label="Next page: Closures"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
