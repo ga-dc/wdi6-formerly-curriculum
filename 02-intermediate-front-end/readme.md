@@ -75,4 +75,4 @@ Use best-practices and libraries to write, share, and deploy high-quality code.
 - Explain what Trello is, and why we use it.
 - Create user stories for existing web applications
 - Differentiate MVP from application.
-- Generate user stories in order to create proof of concept for MVP(minimum viable product)
+- Generate user stories in order to create proof of concept for MVP(minimum viable product).
