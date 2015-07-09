@@ -10,8 +10,10 @@ Ksenia Coulter - 4:30
 Yvonne Wang - 5:00
 
 ## Thur Jul 9
-Adrian Shepelavey - 4:30
 Leigh Varley - 5:00
+
+## Friday Jul 10
+Adrian Shepelavey - 4:00
 
 ## Mon Jul 13
 Melissa Steffan - 4:30
