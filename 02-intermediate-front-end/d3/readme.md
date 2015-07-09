@@ -13,9 +13,6 @@ http://d3js.org/
 
 ## Hello World
 
-```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-```
 
 ```js
 var paragraphs = document.getElementsByTagName("p");
@@ -27,8 +24,19 @@ for (var i = 0; i < paragraphs.length; i++) {
 
 vs
 
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
 ```
+
+```js
 d3.selectAll("p").style("color", "white");
+
+// or even:
+
+d3.selectAll("p").style("color", function() {
+  return "hsl(" + Math.random() * 360 + ",100%,50%)";
+});
 ```
 
 ## You do: D3 experiments in the console:
@@ -39,4 +47,4 @@ http://ga-dc.github.io/d3-console/
 
 http://github.com/ga-dc/d3-bar-chart/
 
-## You do: 
+## You do:
