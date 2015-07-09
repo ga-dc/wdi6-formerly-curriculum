@@ -37,6 +37,6 @@ http://ga-dc.github.io/d3-console/
 
 ## We do: Let's make a bar chart
 
-http://ga-dc.github.io/d3-bar-chart/
+http://github.com/ga-dc/d3-bar-chart/
 
 ## You do: 
