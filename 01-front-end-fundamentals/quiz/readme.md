@@ -12,11 +12,11 @@ $ cd ../../photos/summer_vacation_2014/
 
 The correct order of operations for making changes to a GitHub repository are:
 
-(4) $ git pull origin master
-(3) Make changes to file(s)
-(5) $ git add file_name
-(1) $ git commit -m "commit message"
-(2) $ git push origin master
+- (4) $ git pull origin master
+- (3) Make changes to file(s)
+- (5) $ git add file_name
+- (1) $ git commit -m "commit message"
+- (2) $ git push origin master
 
 ## Question 4
 
