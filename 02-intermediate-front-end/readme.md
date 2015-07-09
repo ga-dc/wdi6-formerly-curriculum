@@ -50,11 +50,9 @@ Use best-practices and libraries to write, share, and deploy high-quality code.
 
 - Label elements on a webpage as being blocks, inline, or inline-blocks
 - List use cases for using relative, static, absolute, and fixed positioning, and floats
-- Contrast the ways in which inline, inline-block, and block elements can be centered horizontally
-    - `inline` and `inline-block` is `text-align:center`, `block` is `margin:0 auto`
+- Contrast the display options: inline, inline-block, and block
 - Describe a use case for the `:before` and `:after` selectors
 - Select any element without relying on classes and IDs
-    - `:nth-child(1)`, `:nth-of-type(odd)`, `input:checked + label`, `section:target > element`, `input[type=checkbox]`
 - Embed a font in a website using either a CDN or uploaded fonts
 
 ## Jquery
