@@ -43,7 +43,7 @@ We'll be talking about/using a better model/methodology of SDLC in particular. A
 - requirements cannot be fully collected at the beginning of the software development cycle, therefore continuous customer or stakeholder involvement is very important.
 
 <b>Responding to change over following a plan:</b>
-- agile methods are focused on quick responses to change and continuous development.[11]n-profit organization that promotes software development according to the manifesto's values and principles.
+- agile methods are focused on quick responses to change and continuous development.
 
 > about the items in bold, while there is value in the items on the right, we value the items on the left more.
 
