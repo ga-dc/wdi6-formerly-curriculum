@@ -33,10 +33,10 @@ d3.selectAll("p").style("color", "white");
 
 ## You do: D3 experiments in the console:
 
-http://www.ultrasaurus.com/2012/03/d3-js-experiments-in-the-console/
+http://ga-dc.github.io/d3-console/
 
 ## We do: Let's make a bar chart
 
-http://bost.ocks.org/mike/bar/
+http://ga-dc.github.io/d3-bar-chart/
 
 ## You do: 
