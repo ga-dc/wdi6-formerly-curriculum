@@ -13,30 +13,28 @@ http://d3js.org/
 
 ## Hello World
 
-
 ```js
-var paragraphs = document.getElementsByTagName("p");
+var paragraphs = document.getElementsByTagName("p")
 for (var i = 0; i < paragraphs.length; i++) {
-  var paragraph = paragraphs.item(i);
-  paragraph.style.setProperty("color", "white", null);
+  var paragraph = paragraphs[i]
+  paragraph.style.color = "white"
 }
 ```
 
 vs
-
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
 ```
 
 ```js
-d3.selectAll("p").style("color", "white");
+d3.selectAll("p").style("color", "white")
 
 // or even:
 
 d3.selectAll("p").style("color", function() {
-  return "hsl(" + Math.random() * 360 + ",100%,50%)";
-});
+  return "hsl(" + Math.random() * 360 + ",100%,50%)"
+})
 ```
 
 ## You do: D3 experiments in the console:
@@ -47,4 +45,10 @@ http://ga-dc.github.io/d3-console/
 
 http://github.com/ga-dc/d3-bar-chart/
 
-## You do:
+>SVG (Scalable Vector Graphics) is an XML format used for drawing. You can think of SVG in a lot of the same terms as the DOM – there are elements with parents and children and attributes, and you can respond to the same mouse/touch events.
+
+## You do: Square Data Binding
+
+Follow Square’s tutorial on d3 and data binding - https://square.github.io/intro-to-d3/data-binding/
+
+Bonus! Add labels to your final interactive data visualization.
