@@ -4,6 +4,26 @@ Build an interactive web application that persists data.
 
 ## Learning Objectives
 
+### Ruby Basics
+
+- Compare/contrast Ruby and Javascript as programming languages.
+- Run Ruby code by REPL (Pry) and file.
+- Identify specific differences between Ruby and Javascript in the following areas...
+  - Syntax
+  - Variables
+  - Fundamental Data Types
+  - Data Collections
+  - Conditionals
+  - Methods (Functions)
+- Demonstrate how variables are stored in memory using Ruby.
+
+### Ruby Enumerables
+
+- Use Ruby loops to iterate over code blocks.
+- Define what a Ruby enumerable method is.
+- Identify useful Ruby enumerables.
+- Use enumerables to traverse, sort and modify collections.
+
 ### Intro to Object-Oriented Programming in Ruby
 
 - Define Object-Oriented Programming, and it's benefits
