@@ -4,6 +4,26 @@ Build an interactive web application that persists data.
 
 ## Learning Objectives
 
+### Intro to Object-Oriented Programming in Ruby
+
+- Define Object-Oriented Programming, and it's benefits
+- Define and differentiate between classes and objects
+- Create a Ruby a class with an initialize method
+- Instantiate an object from a class and interact with it
+- Explain the difference between local and instance variables
+- Write setter and getter methods
+- Describe the use of `attr_reader` / `attr_writer` / `attr_accessor`
+- Write methods to define an interface to the class' behaviors
+
+### Intermediate Object-Oriented Programming in Ruby
+
+- Define and differentiate between class and instance methods
+- Explain the use of self in Ruby
+- Explain the difference between local, instance and class variables
+- Define inheritance in the context of OOP
+- Write a Ruby class that inherits from another
+- Describe the method lookup chain in Ruby
+
 ### Sinatra && REST
 
 - Explain what REST is and why we use it
