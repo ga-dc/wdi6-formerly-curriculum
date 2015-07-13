@@ -34,6 +34,7 @@ Build an interactive web application that persists data.
 - Write setter and getter methods
 - Describe the use of `attr_reader` / `attr_writer` / `attr_accessor`
 - Write methods to define an interface to the class' behaviors
+- Describe how OOP supports encapsulation and abstraction
 
 ### Intermediate Object-Oriented Programming in Ruby
 
