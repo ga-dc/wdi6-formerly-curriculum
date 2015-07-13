@@ -34,6 +34,9 @@ Build an interactive web application that persists data.
 - Build a Sinatra app that responds to HTTP requests
 - Define routes using Sinatra
 - Define routes with URL parameters and access those parameters
+- Use erb to create reusable views and templates
+- Use a global template - layout.erb
+- Use forms to submit POST and GET requests
 
 ### Active Record
 - Define ORM and why we use it over a database language.
