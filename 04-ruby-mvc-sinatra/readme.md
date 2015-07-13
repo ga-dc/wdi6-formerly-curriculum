@@ -102,7 +102,10 @@ Build an interactive web application that persists data.
 ### Sinatra w/ ActiveRecord
 
 - Explain the role of ActiveRecord in a web app
+- Diagram the request / response lifecycle in a Sinatra app with AR
 - Load Active Record in a Sinatra app
 - Build RESTful routes to implement CRUD functionality in Sinatra
-- Write forms that 'wrap' ActiveRecord models.
+- Write ERB views to display AR models
+- Write forms with attributes for ActiveRecord models.
 - Write forms that use nested parameters
+- Use `_method` param to emulate PUT and DELETE requests
