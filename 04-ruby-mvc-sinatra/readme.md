@@ -87,7 +87,6 @@ Build an interactive web application that persists data.
 - Explain the basic idea of metaprogramming and how AR leverages this to provide an interface to the DB
 - Define a class that inherits from AR
   - Utilize `has_many`, `belongs_to` to establish relationships with AR
-- Seed a database using AR
 - Difference between class versus instant methods
 - Utilize AR to perform the following CRUD actions on a database
   - create
@@ -98,6 +97,7 @@ Build an interactive web application that persists data.
   - where
   - update
   - destroy
+- Seed a database using AR
 
 ### Sinatra w/ ActiveRecord
 
