@@ -44,6 +44,27 @@ Build an interactive web application that persists data.
 - Write a Ruby class that inherits from another
 - Describe the method lookup chain in Ruby
 
+### Problem/Domain Modeling/ERDs
+
+- Identify and share the components of a problem
+  - Model real-world scenarios as data.
+  - Identify major roles within a scenario.
+  - Consider how roles interact and communicate.
+  - Create a domain model by listing its parts (entities, relationships, attributes and behavior)
+- Draw an ERD using proper notation
+  - Identify and diagram a one-to-one, one-to-many, many-to-many relationship between data entities
+  - Distinguish between entities & attributes (and when you should use one over the other)
+
+###	DB / SQL
+
+-	Create an SQL database, containing tables, that is saved locally and is ACID
+-	Distinguish between keys, foreign keys, and indexes
+-	Describe the datatypes used in SQL and the related field constraints
+-	Execute CRUD actions on the database using "pure" SQL (Postgres, PSQL)
+-	Ensure the database is DRY using normalization
+-	Protect the database from common security vulnerabilities
+-	Use different join types to combine data
+
 ### Sinatra && REST
 
 - Explain what REST is and why we use it
