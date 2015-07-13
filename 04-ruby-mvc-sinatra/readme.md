@@ -49,3 +49,11 @@ Build an interactive web application that persists data.
   - where
   - update
   - destroy
+
+### Sinatra w/ ActiveRecord
+
+- Explain the role of ActiveRecord in a web app
+- Load Active Record in a Sinatra app
+- Build RESTful routes to implement CRUD functionality in Sinatra
+- Write forms that 'wrap' ActiveRecord models.
+- Write forms that use nested parameters
