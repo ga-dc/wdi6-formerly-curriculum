@@ -16,8 +16,10 @@ Leigh Varley - 5:00
 Adrian Shepelavey - 4:00
 
 ## Mon Jul 13
-Melissa Steffan - 4:30
 Omari Mayers-Walker - 5:00
+
+## Tues Jul 14
+Melissa Steffan - 4:30
 
 ## Wed Jul 15
 Arash Shahry - 5:00
