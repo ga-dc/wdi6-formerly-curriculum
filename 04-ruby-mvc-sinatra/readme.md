@@ -34,6 +34,7 @@ Build an interactive web application that persists data.
 - Write setter and getter methods
 - Describe the use of `attr_reader` / `attr_writer` / `attr_accessor`
 - Write methods to define an interface to the class' behaviors
+- Describe how OOP supports encapsulation and abstraction
 
 ### Intermediate Object-Oriented Programming in Ruby
 
@@ -43,6 +44,27 @@ Build an interactive web application that persists data.
 - Define inheritance in the context of OOP
 - Write a Ruby class that inherits from another
 - Describe the method lookup chain in Ruby
+
+### Problem/Domain Modeling/ERDs
+
+- Identify and share the components of a problem
+  - Model real-world scenarios as data.
+  - Identify major roles within a scenario.
+  - Consider how roles interact and communicate.
+  - Create a domain model by listing its parts (entities, relationships, attributes and behavior)
+- Draw an ERD using proper notation
+  - Identify and diagram a one-to-one, one-to-many, many-to-many relationship between data entities
+  - Distinguish between entities & attributes (and when you should use one over the other)
+
+###	DB / SQL
+
+-	Create an SQL database, containing tables, that is saved locally and is ACID
+-	Distinguish between keys, foreign keys, and indexes
+-	Describe the datatypes used in SQL and the related field constraints
+-	Execute CRUD actions on the database using "pure" SQL (Postgres, PSQL)
+-	Ensure the database is DRY using normalization
+-	Protect the database from common security vulnerabilities
+-	Use different join types to combine data
 
 ### Sinatra && REST
 
@@ -63,20 +85,27 @@ Build an interactive web application that persists data.
 - Explain what Active record is and what problems it solves.
 - Explain convention over configuration and how it relates to Active Record
 - Explain the basic idea of metaprogramming and how AR leverages this to provide an interface to the DB
-- Seed a database using AR
+- Define a class that inherits from AR
+  - Utilize `has_many`, `belongs_to` to establish relationships with AR
+- Difference between class versus instant methods
 - Utilize AR to perform the following CRUD actions on a database
   - create
+  - new
   - save
   - all
   - find, find_by
   - where
   - update
   - destroy
+- Seed a database using AR
 
 ### Sinatra w/ ActiveRecord
 
 - Explain the role of ActiveRecord in a web app
+- Diagram the request / response lifecycle in a Sinatra app with AR
 - Load Active Record in a Sinatra app
 - Build RESTful routes to implement CRUD functionality in Sinatra
-- Write forms that 'wrap' ActiveRecord models.
+- Write ERB views to display AR models
+- Write forms with attributes for ActiveRecord models.
 - Write forms that use nested parameters
+- Use `_method` param to emulate PUT and DELETE requests
