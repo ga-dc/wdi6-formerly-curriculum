@@ -1,23 +1,20 @@
 # Problem Modeling & ERD
 ## Learning Objectives
 
-- Show ability to break down a complex problem:
-- Model about real-world scenarios as data.
-- Identify major roles within a scenario.
-- Consider how roles interact and communicate.
-- Create a domain model by listing its parts (entities, relationships, attributes and behavior)
-- Draw an ERD using proper notation
-- Identify and diagram a one-to-one, one-to-many, many-to-many relationship between data entities
-- Distinguish between entities & attributes (and when you should use one over the other)
+- Draw an Entity Relationship Diagram (ERD) using proper notation
+- Identify and diagram a one-to-one, one-to-many, many-to-many relationship between d ta entities (physical/virtual)
+- Create a domain model by listing its parts (entities, relationships, attributes a d behavior)
+- Distinguish between entities & attributes (and when you should use one over the o her)
+- Discuss data normalization needs and techniques
+
+### Framing
+User stories clarify the features we need for a good user experience.  We use them to prioritize order and scope.  Today, we will identify the information required to support those user stories.  We refer to this as the Domain, or Domain Model.  The Domain Model specifies the data and the relationships between this data.  We use it to decide what needs to be persisted.
 
 ### Talking Points
 * When problem modeling, we often think of things in terms of nouns and verbs
 * The verbs can be completely captured in code, and since code is saved, they are saved
-* The nouns are represented with placeholders in code (instance variables, etc)
-* The actual data attached to nouns isn't being stored anywhere! Eg. the PDA To-Do list!
-* We need to store them somewhere. Lots of places, eg. databases
-* Let's talk about thinking about this first - domain modeling
-
+* The nouns are represented with placeholders in code (objects, variables, etc)
+* The actual data attached to nouns needs to be persisted! Eg. Game scores, the To-Do list, student list
 
 #**I do**
 
