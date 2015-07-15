@@ -22,6 +22,9 @@
 HEADS UP: We are covering a lot of ground today. It's going to be a fast-paced class, so please raise your hand if I breeze over something quickly.
 * For small technical questions, please use Slack and one of the other instructors will help you out.
 
+Part of your homework last night was to identify a programming concept shared by Javascript and Ruby and compare/contrast its implementation in each of the languages.
+- BOARD: Share and write on board. 
+
 #### What is Ruby? (5min)
 
 Server-side language
@@ -247,7 +250,18 @@ Comparisons in Ruby are nearly identical to Javascript
   - Don't worry about `===` in Ruby for now. It [does not](http://mauricio.github.io/2011/05/30/ruby-basics-equality-operators-ruby.html) have the same application as in Javascript.
 
 Truthiness and falsiness is a lot less complicated in Ruby.
-* The only "falsey" values are `nil` and `false`.
+* **BOARD:** What values were "falsey" in Javascript?
+  * `false`
+  * `0`
+  * `""`
+  * `null`
+  * `undefined`
+  * `NaN`
+* The only falsey values in Ruby are `nil` and `false`.
+
+### Exercise: Temperature Converter (Part I) (20min)
+
+### BREAK (10min)
 
 #### Symbols and (Im)mutability (15min)
 
@@ -285,11 +299,9 @@ You can't change a symbol's value though...
 ```
 
 When/why would you use symbols?
-* Make sure values that need to be constant say constant.
+* Make sure values that need to be constant stay constant.
 * Often used as keys in objects (hashes). More on that later this class.
 * Enhance performance.
-
-### BREAK (10min)
 
 ### More on Variables (10min)
 
@@ -657,6 +669,6 @@ double
 # => 10
 ```
 
-### Exercise: Temperature Converter (Ruby) (30min)
+### Exercise: Temperature Converter (Part II) (30min)
 
 [Temperature Converter (Ruby)](https://github.com/ga-dc/temperature_converter_ruby)
