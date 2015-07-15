@@ -3,18 +3,14 @@
 ## Peanut Butter
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Wednesday PM  |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
-| Thursday PM   |                                | |
+| Wednesday PM  |                                | [Try Ruby](https://github.com/ga-dc/try-ruby) |
+| Thursday PM   |                                |            |
 | Friday AM     |                                |            |
 | Friday PM     |                                |            |
-| Monday AM     |                                |            |
-| Monday PM     |                                |            |
-| Tuesday AM    |                                |            |
-| Tuesday PM    |                                |            |
-| Wednesday AM  |                                |            |
-| Wednesday PM  |                                |            |
-| Thursday  AM  |                                |            |
-| Thursday  PM  |                                |            |
+| Monday        |                                | Objects for landlord |
+| Tuesday       |                                | create views / wireframes |
+| Wednesday     |                                | persist data with active record |
+| Thursday      |                                | connect sinatra to db |
 | Friday        |                                |            |
 
 ## Jelly
@@ -24,12 +20,8 @@
 | Thursday PM   |                                |[High Card](https://github.com/ga-dc/high_card) |
 | Friday AM     |                                |            |
 | Friday PM     |                                |            |
-| Monday AM     |                                |            |
-| Monday PM     |                                |            |
-| Tuesday AM    |                                |            |
-| Tuesday PM    |                                |            |
-| Wednesday AM  |                                |            |
-| Wednesday PM  |                                |            |
-| Thursday  AM  |                                |            |
-| Thursday  PM  |                                |            |
+| Monday        |                                | Objects for landlord |
+| Tuesday       |                                | persist data with active record |
+| Wednesday     |                                | create views / wireframes |
+| Thursday      |                                | connect sinatra to db |
 | Friday        |                                |            |
