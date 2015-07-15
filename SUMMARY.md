@@ -20,6 +20,7 @@
     * [jQuery](02-intermediate-front-end/jquery/jquery-intro-selectors.md)
     * [jQuery 2](02-intermediate-front-end/jquery/jquery-two.md)
     * [Workflows](02-intermediate-front-end/workflows/lesson_plan.md)
+    * [CSS 2 (Layout & Fonts)](02-intermediate-front-end/css2/readme.md)
     * [Homework Assignments](02-intermediate-front-end/homework.md)
 * [Project 1](https://github.com/ga-dc/pbj-project1/blob/master/readme.md)
 * [Ruby + MVC with Sinatra](04-ruby-mvc-sinatra/readme.md)
