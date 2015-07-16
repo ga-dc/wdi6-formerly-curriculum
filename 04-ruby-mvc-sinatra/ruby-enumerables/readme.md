@@ -178,7 +178,7 @@ Single-line
 * { } - replaces `do` and `end`; contains the iteration variable and code block
 * `|number|` - iteration variable
 
-##### Exercise: Practice Each (10min)
+#### Exercise: Practice Each (10min)
 
 Use `each` to do the following...  
 
