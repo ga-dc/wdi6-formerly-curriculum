@@ -7,21 +7,21 @@
 | Thursday PM   |                                |            |
 | Friday AM     |                                |            |
 | Friday PM     |                                |            |
-| Monday        |                                | Objects for landlord |
-| Tuesday       |                                | create views / wireframes |
-| Wednesday     |                                | persist data with active record |
-| Thursday      |                                | connect sinatra to db |
+| Monday        |                                | [Objects for landlord](https://github.com/ga-dc/landlord#part-1---creating-the-classes) |
+| Tuesday       |                                | [create views / wireframes](https://github.com/ga-dc/landlord) |
+| Wednesday     |                                | [persist data with active record](https://github.com/ga-dc/landlord) |
+| Thursday      |                                | [connect sinatra to db](https://github.com/ga-dc/landlord) |
 | Friday        |                                |            |
 
 ## Jelly
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Wednesday PM  |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
-| Thursday PM   |                                |[High Card](https://github.com/ga-dc/high_card) |
+| Wednesday PM  |                                | [Try Ruby](https://github.com/ga-dc/try-ruby) |
+| Thursday PM   |                                | [High Card](https://github.com/ga-dc/high_card) |
 | Friday AM     |                                |            |
 | Friday PM     |                                |            |
-| Monday        |                                | Objects for landlord |
-| Tuesday       |                                | persist data with active record |
-| Wednesday     |                                | create views / wireframes |
-| Thursday      |                                | connect sinatra to db |
+| Monday        |                                | [Objects for landlord](https://github.com/ga-dc/landlord) |
+| Tuesday       |                                | [persist data with active record](https://github.com/ga-dc/landlord) |
+| Wednesday     |                                | [create views / wireframes](https://github.com/ga-dc/landlord) |
+| Thursday      |                                | [connect sinatra to db](https://github.com/ga-dc/landlord) |
 | Friday        |                                |            |
