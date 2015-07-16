@@ -259,13 +259,13 @@ numbers.select { |number| number % 2 == 0 }
 
 ### Group Exercise: Documentation Dive (30min)
 
-Instructions: Each group will spend **15 minutes** using Ruby documentation to look up an assigned enumerable. Prepare a layman's definition of what it does and whiteboard an example.
+Instructions: Each group will spend **10 minutes** using Ruby documentation to look up an assigned enumerable. Prepare your own definition of what it does and whiteboard an example.
 * You can test your example in Ruby/Pry.
 * [Documentation](http://ruby-doc.org/core-2.2.2/Enumerable.html)
 
 Groups
-* **Group 1:** Each (on a hash)
-* **Group 2:** Each With Index
+* **Group 1:** Each With Index
+* **Group 2:** Partition
 * **Group 3:** Reject
 * **Group 4:** Find
 * **Group 5:** Sort
