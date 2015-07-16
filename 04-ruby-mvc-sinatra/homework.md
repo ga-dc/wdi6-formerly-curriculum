@@ -21,7 +21,7 @@
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
 | Wednesday PM  |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
-| Thursday PM   |                                |            |
+| Thursday PM   |                                |[High Card](https://github.com/ga-dc/high_card) |
 | Friday AM     |                                |            |
 | Friday PM     |                                |            |
 | Monday AM     |                                |            |
