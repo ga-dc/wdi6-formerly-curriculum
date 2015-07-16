@@ -182,32 +182,32 @@ Single-line
 
 Use `each` to do the following...  
 
-1. Say hello to everybody in the below array of names (sample output: `Hello [person's name]!`).
+* Say hello to everybody in the below array of names (sample output: `Hello [person's name]!`).
 
 ```ruby
 names = [ "Brian", "Chad", "Yakko", "Wacko", "Dot" ]
 ```
 
-2. Print out the squared values of every number in this numbers array.
+* Print out the squared values of every number in this numbers array.
 
 ```ruby
 numbers = [ 1, 3, 9, 11, 100 ]
 ```
 
-3. Print out the Celsius values for an array containing Fahrenheit values.
+* Print out the Celsius values for an array containing Fahrenheit values.
 
 ```ruby
 fahrenheit_temps = [ -128.6, 0, 32, 100, 134 ]
 ```
 
-4. Insert all the values in the `artists` array into the `ninja_turtles` array.
+* Insert all the values in the `artists` array into the `ninja_turtles` array.
 
 ```ruby
 artists = [ "Leonardo", "Donatello", "Raphael", "Michelangelo" ]
 ninja_turtles = []
 ```
 
-5. **Bonus:** Print out every possible combination of the below ice cream flavors and toppings.
+* **Bonus:** Print out every possible combination of the below ice cream flavors and toppings.
 
 ```ruby
 flavors = [ "vanilla", "chocolate", "strawberry", "butter pecan", "cookies and cream", "rainbow" ]
