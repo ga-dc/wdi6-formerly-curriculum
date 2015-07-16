@@ -220,6 +220,12 @@ me.hunger_level = -8        # changes hunger level, according to rules
 me.hunger_level             # returns 0
 ```
 
+## Exercise
+
+Clone this exercise and follow the instructions in the readme.
+[Monkies!!!](https://github.com/adambray/oop_monkey)
+
+
 ### attr_reader, attr_writer, attr_accessor
 Since these getters and setters are so common, ruby gives us shortcuts to create
 them for us:
@@ -228,7 +234,10 @@ them for us:
 * `attr_writer :name` - creates a setter
 * `attr_accessor :name` - creates a getter & a setter
 
+These are used inside of a class (customarily at the very top).
+
 ```ruby
+# functionally identical to the previous example, much less code
 class Person
   attr_accessor :name
   attr_reader :hunger_level
@@ -255,4 +264,6 @@ end
 ```
 
 ## Lab
+
+Clone this exercise and follow the instructions in the readme.
 [Scrabble Word Scorer](https://github.com/ga-dc/scrabbler)
