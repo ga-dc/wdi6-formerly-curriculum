@@ -316,4 +316,4 @@ http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
 
 ## Homework
 
-https://github.com/ga-dc/nba_stats
+none
