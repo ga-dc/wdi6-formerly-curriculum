@@ -3,7 +3,8 @@
 ## Peanut Butter
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Thursday PM   |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
+| Wednesday PM  |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
+| Thursday PM   |                                |[NBA Stats](https://github.com/ga-dc/nba_stats) |
 | Friday AM     |                                |            |
 | Friday PM     |                                |            |
 | Monday AM     |                                |            |
@@ -19,7 +20,8 @@
 ## Jelly
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Thursday PM   |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
+| Wednesday PM  |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
+| Thursday PM   |                                |            |
 | Friday AM     |                                |            |
 | Friday PM     |                                |            |
 | Monday AM     |                                |            |
@@ -31,4 +33,3 @@
 | Thursday  AM  |                                |            |
 | Thursday  PM  |                                |            |
 | Friday        |                                |            |
-

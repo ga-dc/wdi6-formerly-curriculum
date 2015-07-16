@@ -1,8 +1,8 @@
 # Intro to Object-Oriented Programming in Ruby
 
-- Define Object-Oriented Programming, and it's benefits
+- Define Object-Oriented Programming, and its benefits
 - Define and differentiate between classes and objects
-- Create a Ruby a class with an initialize method
+- Create a Ruby class with an initialize method
 - Instantiate an object from a class and interact with it
 - Explain the difference between local and instance variables
 - Write setter and getter methods
@@ -183,7 +183,7 @@ me.hunger_level             # returns 0
 
 Clone this exercise and follow the instructions in the readme.
 
-*[Monkies!!!](https://github.com/adambray/oop_monkey)*
+**[Monkies!!!](https://github.com/ga-dc/oop_monkey)**
 
 
 ### attr_reader, attr_writer, attr_accessor
@@ -269,4 +269,4 @@ should not impact (cause bugs) in other areas of our programs.
 
 Clone this exercise and follow the instructions in the readme.
 
-*[Scrabble Word Scorer](https://github.com/ga-dc/scrabbler)*
+**[Scrabble Word Scorer](https://github.com/ga-dc/scrabbler)**
