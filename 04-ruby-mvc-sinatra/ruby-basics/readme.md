@@ -568,7 +568,20 @@ peanut_butter.keys
 ##### Merge
 
 Combines two hashes.
-* Insert code example.
+
+```ruby
+classroom = {
+  room: "Peanut Butter"
+}
+
+squads = {
+  squad_one: "Elixir",
+  squad_two: "Fortran",
+  squad_three: "Ada"
+}
+
+updated_clasroom = classroom.merge( squads )
+```
 
 ### BREAK (10min)
 
