@@ -75,47 +75,6 @@ kanye.eat("Chipotle Burrito")  # hunger_level drops to 0
 kanye.hunger_level  # returns 0
 ```
 
-## Why OOP? (10 mintues)
-
-#### Easy to Understand
-
-Objects help us build programs that model how we tend to think about the world.
-Instead of a bunch of variables and functions (procedural style), we can group
-relevant data and functions into objects, and think about them as individual,
-self-contained units. This grouping of properties (data) and methods is called
-*encapsulation*.
-
-#### Managing Complexity
-
-This is especially important as our programs get more and more complex. We can't
-keep all the code (and what it does) in our head at once. Instead, we often want
-to think just a portion of the code.
-
-Objects help us organize and think about our programs. If I'm looking at code
-for a Squad object, and I see it has associated *people*, and those people can
-dance when the squad dances, I don't need to think about or see all the code
-related to a person dancing. I can just think at a high level "ok, when a squad
-dances, all it's associated people dance". This is a form of *abstraction*... I
-don't need to think about the details, just what's happening at a high-level.
-
-#### Ensuring Consistency
-
-One side effect of *encapsulation* (grouping data and methods into objects) is
-that these objects can be in control of their data. This usually means ensuring
-consistency of their data.
-
-Consider the bank account example... I might define a bank account object
-such that you can't directly change it's balance. Instead, you have to use the
-`withdrawl` and `deposit` methods. Those methods are the *interface* to the
-account, and they can enforce rules for consistency, such as "balance can't be
-less than zero".
-
-#### Modularity
-
-If our objects are well-designed, then they interact with each other in
-well-defined ways. This allows us to refactor (rewrite) any object, and it
-should not impact (cause bugs) in other areas of our programs.
-
 ## Writing Classes
 
 Classes are define with the `class` keyword:
@@ -138,7 +97,7 @@ end
 bob = Person.new # "new person created"
 ```
 
-### Instance Variables
+### Instance Variables (10 minutes)
 
 Often, the initialize method is used to set some/all *instance variables* of an
 instance. Instance variables are somewhat different, each instance of a class
@@ -163,7 +122,7 @@ me.introduce # prints "Hello, I'm Adam Bray"
 jesse.introduce # prints "Hello, I'm Jesse Shawl"
 ```
 
-### Getters and Setters
+### Getters and Setters (10 minutes)
 
 We can't *directly* access instance variables of an object. We can *only* call
 methods. If we want to access or modify (*get* or *set*) properties of an object,
@@ -262,6 +221,48 @@ class Person
 
 end
 ```
+
+
+## Why OOP? (10 mintues)
+
+#### Easy to Understand
+
+Objects help us build programs that model how we tend to think about the world.
+Instead of a bunch of variables and functions (procedural style), we can group
+relevant data and functions into objects, and think about them as individual,
+self-contained units. This grouping of properties (data) and methods is called
+*encapsulation*.
+
+#### Managing Complexity
+
+This is especially important as our programs get more and more complex. We can't
+keep all the code (and what it does) in our head at once. Instead, we often want
+to think just a portion of the code.
+
+Objects help us organize and think about our programs. If I'm looking at code
+for a Squad object, and I see it has associated *people*, and those people can
+dance when the squad dances, I don't need to think about or see all the code
+related to a person dancing. I can just think at a high level "ok, when a squad
+dances, all it's associated people dance". This is a form of *abstraction*... I
+don't need to think about the details, just what's happening at a high-level.
+
+#### Ensuring Consistency
+
+One side effect of *encapsulation* (grouping data and methods into objects) is
+that these objects can be in control of their data. This usually means ensuring
+consistency of their data.
+
+Consider the bank account example... I might define a bank account object
+such that you can't directly change it's balance. Instead, you have to use the
+`withdrawl` and `deposit` methods. Those methods are the *interface* to the
+account, and they can enforce rules for consistency, such as "balance can't be
+less than zero".
+
+#### Modularity
+
+If our objects are well-designed, then they interact with each other in
+well-defined ways. This allows us to refactor (rewrite) any object, and it
+should not impact (cause bugs) in other areas of our programs.
 
 ## Lab
 
