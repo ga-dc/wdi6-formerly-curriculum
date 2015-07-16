@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>jQuery 2 | Summary</title>
+        <title>Problem Modeling | Summary</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.1.0">
@@ -25,10 +25,10 @@
         
     
     
-    <link rel="next" href="../../02-intermediate-front-end/workflows/lesson_plan.html" />
+    <link rel="next" href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html" />
     
     
-    <link rel="prev" href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html" />
+    <link rel="prev" href="../../04-ruby-mvc-sinatra/readme.html" />
     
 
         
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="2.5" data-basepath="../.." data-revision="Thu Jul 16 2015 13:34:40 GMT+0000 (UTC)">
+    <div class="book" data-level="4.1" data-basepath="../.." data-revision="Thu Jul 16 2015 13:34:40 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -334,7 +334,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.5" data-path="02-intermediate-front-end/jquery/jquery-two.html">
+        <li class="chapter " data-level="2.5" data-path="02-intermediate-front-end/jquery/jquery-two.html">
             
                 
                     <a href="../../02-intermediate-front-end/jquery/jquery-two.html">
@@ -430,7 +430,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
+        <li class="chapter active" data-level="4.1" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
             
                 
                     <a href="../../04-ruby-mvc-sinatra/problem_modeling/readme.html">
@@ -705,219 +705,147 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="jquery-part-2">jQuery: Part 2</h1>
+                        <h1 id="problems">Problems</h1>
+<blockquote>
+<p>That&apos;s why they pay us the big money.</p>
+<p>If the problem was easy, they wouldn&apos;t pay us like this.</p>
+</blockquote>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Use jQuery to:<ul>
-<li>add elements to the DOM using jQuery objects and functions</li>
-<li>change elements in the DOM using jQuery objects and functions</li>
-<li>add event listeners to elements in the DOM using jQuery objects and functions</li>
-<li>loop through jQuery objects using the <code>each()</code> method</li>
+<li>Demonstrate how to break a problem into relevant parts</li>
+<li>Demonstrate multiple solutions, identifying tradeoffs</li>
+<li>Indicate what is easily solvable</li>
+<li>Identify areas of high/low risk
+-</li>
 </ul>
-</li>
-</ul>
-<h2 id="opening-framing">Opening Framing</h2>
-<h3 id="pki-st-wg">PKI (ST-WG)</h3>
-<p>What are some things you&apos;ve learned about jQuery?</p>
+<h2 id="the-table-waiter-problem">The Table Waiter Problem</h2>
+<p>Let&apos;s jump right in.  We&apos;ll work on a problem together and then discuss helpful practices and procedures.</p>
+<p>Join your squad at a section of whiteboard and solve this problem.  We need a volunteer to record the steps you take and practices you use.</p>
 <ul>
-<li>when to use which</li>
-<li>when you&apos;re able to use which</li>
-<li>how to load jQuery</li>
-<li>how to select DOM elements</li>
+<li>A waiter has N tables, each with 2-4 guests.</li>
+<li>The waiter makes rounds between each of their tables, the bar, and the kitchen.</li>
+<li>The waiter takes drink orders for a new table, then submits them to the bar.</li>
+<li>Drinks are delivered when all table orders are ready.</li>
+<li>The waiter takes food orders for a new table, then submits them to the kitchen.</li>
+<li>Food is delivered when all table orders are ready.</li>
+<li>The waiter checks idle tables for additional requests, then submits them appropriately.</li>
+<li>Additional requested items are delivered when all table orders are ready.</li>
 </ul>
-<h2 id="jquery-i-do">jQuery (# I do )</h2>
+<hr>
 <blockquote>
-<p>I&apos;m going to throw lots of code at you. It will be available in this lesson plan. So really just try and take it in and not follow along.</p>
+<p>Q. In one sentence, what problem did you solve?</p>
 </blockquote>
-<p>Assume the following html for the following examples:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;awesome&quot;</span>&gt;</span>this is a div<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;awesome&quot;</span>&gt;</span>this is the second awesome div<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<h3 id="addition">Addition</h3>
-<ul>
-<li><p><code>.append()</code></p>
-<ul>
-<li>the selector expression preceding the method is the container into which the content(argument) is inserted</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).append(<span class="hljs-string">&quot;&lt;div&gt;this div is appended&lt;/div&gt;&quot;</span>)
-  <span class="hljs-comment">// this would add the div as the last child in it to all elements with class awesome</span>
-</code></pre>
-</li>
-<li><p><code>.appendTo()</code></p>
-<ul>
-<li>the content precedes the method, either as a selector expression or as markup created on the fly, and it is inserted into the target container(argument)</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;&lt;div&gt;this div is appended&lt;/div&gt;&quot;</span>).appendTo($(<span class="hljs-string">&quot;.awesome&quot;</span>))
-  <span class="hljs-comment">// same thing as above</span>
-</code></pre>
-</li>
-<li><p><code>.prepend()</code></p>
-<ul>
-<li>same as append but inserts the specified content(argument) as the first child</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).prepend(<span class="hljs-string">&quot;&lt;div&gt;this div is prepended&lt;/div&gt;&quot;</span>)
-  <span class="hljs-comment">// this would add the div as the first child in it to all elements with class awesome</span>
-</code></pre>
-</li>
-<li><p><code>.prependTo()</code></p>
-<ul>
-<li>same as appendto but the content precedes the method call is inserted as the first child of the target container(argument)</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;&lt;div&gt;this div is prepended&lt;/div&gt;&quot;</span>).prependTo($(<span class="hljs-string">&quot;.awesome&quot;</span>))
-  <span class="hljs-comment">// same thing as above</span>
-</code></pre>
-</li>
-<li><p><code>.html()</code></p>
-<ul>
-<li><p>get or set the HTML contents</p>
-<ul>
-<li>get: no argument, know that it returns the innerHTML of the first jQuery object</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).html()
-  <span class="hljs-comment">// returns the innerHTML of the first element in the jQuery object</span>
-</code></pre>
-<ul>
-<li>set: one argument that you want the html content to be</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).html(<span class="hljs-string">&quot;this is awesome!&quot;</span>)
-  <span class="hljs-comment">// returns the innerHTML of the of all elements in the jQuery object to be &quot;this is awesome!&quot;</span>
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p><code>.text()</code></p>
-<ul>
-<li>get or set the text contained, it will strip the HTML elements</li>
-<li>same as <code>.html()</code> only it returns the text of all jQuery objects selected for the getter portion</li>
-</ul>
-</li>
-</ul>
-<h3 id="removal">Removal</h3>
-<ul>
-<li><p><code>.remove()</code></p>
-<ul>
-<li>removes the jquery object it is called on, as well as bound events and everything inside it</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).remove()
-</code></pre>
-</li>
-<li><p><code>.empty()</code></p>
-<ul>
-<li>removes all the child elements of the jquery object it is called on</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).empty()
-</code></pre>
-</li>
-</ul>
-<h3 id="edition">Edition</h3>
+<hr>
+<h3 id="steps">Steps ?</h3>
 <blockquote>
-<p>you guys glossed over this a bit, but here they are again.</p>
+<p>Q. Going around the room, where going to build a frankenstein list of our steps.  Group 1 provides their step 1, Group 2 provides <em>their</em> step 2, and so on.</p>
 </blockquote>
+<hr>
+<h3 id="steps">Steps</h3>
 <ul>
-<li><code>.attr()</code><ul>
-<li>acts as both a getter and setter<ul>
-<li>setter: requires 2 arguments(key/value pair), or an object(with multiple key/value pairs)</li>
-<li>getter: requires 1 argument to get the value of the attribute from the jQuery object</li>
+<li>clarify the problem</li>
+<li>brainstorm</li>
+<li>organize/select</li>
+<li>prototype</li>
+<li>review</li>
+<li>double down or pivot</li>
 </ul>
-</li>
-</ul>
-</li>
-<li><code>.css()</code><ul>
-<li>acts as both a getter and setter<ul>
-<li>setter: requires 2 arguments(key/value pair), or an object(with multiple key/value pairs)</li>
-<li>getter: requires 1 argument to get the value of the attribute from the jQuery object</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>.val()</code><ul>
-<li>setter: pass in an argument</li>
-<li>getter: pass in no argument</li>
-</ul>
-</li>
-</ul>
-<h2 id="break-10m">BREAK(10m)</h2>
-<h3 id="other">Other</h3>
-<ul>
-<li><p><code>.hide()</code></p>
-<ul>
-<li>changes elements style to have <code>display:none</code></li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).hide()
-  <span class="hljs-comment">// returns the innerHTML of the first element in the jQuery object</span>
-</code></pre>
-</li>
-<li><p><code>.show()</code></p>
-<ul>
-<li>changes a <code>display:none</code> to <code>display:block</code> or whatever it initially was</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).show()
-  <span class="hljs-comment">// returns the innerHTML of the first element in the jQuery object</span>
-</code></pre>
-</li>
-<li><p><code>.addClass()</code></p>
-<ul>
-<li>does not replace existing classes</li>
-<li>pass in argument of 1 string to add 1 or more classes</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).addClass(<span class="hljs-string">&quot;add three classes&quot;</span>)
-  <span class="hljs-comment">// adds the classes add, three and classes to all elements in the jQuery object returned</span>
-</code></pre>
-</li>
-<li><p><code>.removeClass()</code></p>
-<ul>
-<li>pass in argument of 1 string remove 1 or more classes</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).removeClass(<span class="hljs-string">&quot;add three classes&quot;</span>)
-  <span class="hljs-comment">// removes the classes add, three and classes to all elements in the jQuery object selected</span>
-</code></pre>
-</li>
-<li><p><code>.children()</code></p>
-<ul>
-<li>returns a jQuery object that contains all the child elements of the jQuery object it is called on.</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).children()
-</code></pre>
-</li>
-</ul>
-<ul>
-<li><p><code>.each()</code></p>
-<ul>
-<li>loops through collections of jquery objects</li>
-<li><code>$(&quot;.somejQueryClass&quot;).each(function(index){//code goes here})</code></li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(index)</span></span>{
-    $(<span class="hljs-keyword">this</span>).html(<span class="hljs-string">&quot;this html element has the index of ()&quot;</span> + index + <span class="hljs-string">&quot;) in the each function&quot;</span>)
-  })
-</code></pre>
-</li>
-</ul>
+<hr>
+<h4 id="clarify-the-problem">Clarify the problem:</h4>
 <blockquote>
-<p>note what the context of <code>$(this)</code> is. This refers to each of the elements being looped through.</p>
+<p>Seek first to understand, then to be understood. - Steven Covey</p>
 </blockquote>
-<ul>
-<li><p><code>.on()</code></p>
-<ul>
-<li>a way to create event listeners</li>
-<li><p>takes two arguments normally</p>
-<ul>
-<li>first argument is the event(lots of them)</li>
-<li>second argument is the callback</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-built_in">console</span>.log($(<span class="hljs-keyword">this</span>))
-  })
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
+<p>Make sure you are solving the right problem.  &quot;Get out of the office&quot; is a phrase often used to remind Founders that they need to get close to their users.  To see the customers using our app in their natural environment.</p>
+<h4 id="brainstorm">Brainstorm:</h4>
 <blockquote>
-<p>What is <code>$(this)</code> here? Refers to the jquery object you called <code>.on</code> on, as long as you&apos;re in the scope of the <code>.on</code> function</p>
+<p>What is now proved was once only imagined. - William Blake</p>
 </blockquote>
-<h3 id="class-ex-timer-js-refactor-30m">Class Ex- TIMER js refactor (30m)</h3>
-<h3 id="homework-atm">Homework- ATM</h3>
-<p><a href="https://github.com/ga-dc/atm" target="_blank">ATM</a></p>
+<p>No judgement.  Just ideas.  No lists. No categorization.  Use techniques that get ideas from all types of people; quiet/loud, writers/drawers, analytical/empathetic.  Use colors, crayons, paper, whiteboard.</p>
+<h4 id="organize-select">Organize/Select:</h4>
+<blockquote>
+<p>It is not enough to just do your best or work hard. You must know what to work on. - W. Edwards Deming (Father of ideas that made Toyota great, foundation for Lean Manufacturing)</p>
+</blockquote>
+<p><img src="who_spectrum_dan_roam.jpg" alt=""></p>
+<p>The black pen people grab the pen and run to the board, drawing out their ideas.  The yellow pen people wait, then highlight what&apos;s important.  The red pen people wait even longer, then go to the board, cross out and redraw, further clarifying.</p>
+<h4 id="prototype">Prototype:</h4>
+<blockquote>
+<p>Nobody ever got fired for hiring IBM. - the multitudes</p>
+</blockquote>
+<p>Back in the day, IBM&apos;s claim to fame was starting 3 &quot;skunk works&quot; for any large project.  After an initial prototype, they would merge members and ideas from the three into one.</p>
+<p>Get immediate ROI.</p>
+<h4 id="review">Review:</h4>
+<blockquote>
+<p>By three methods we may learn wisdom: First, by reflection, which is noblest; Second, by imitation, which is easiest; and third by experience, which is the bitterest. - Confucius</p>
+</blockquote>
+<p>Retrospectives provide the vehicle for improvement.</p>
+<h4 id="double-down-or-pivot">Double down or pivot:</h4>
+<p>Finally we need to decide, do we continue down the current path or do we face reality and change direction?</p>
+<p>I read about a company that made extremely high quality drill bits.  Competition from overseas, provided bits that were good enough, but much cheaper.  This company realize that they weren&apos;t jazzed about drill bits, it was creating holes under exacting specifications.  So they pivoted, to making holes in tough materials, with innovative methods, like hydro-drilling.</p>
+<hr>
+<blockquote>
+<p>There are three principal means of acquiring knowledge... observation of nature, reflection, and experimentation.</p>
+<p>Observation collects facts;</p>
+<p>reflection combines them;</p>
+<p>experimentation verifies the result of that combination.</p>
+<p>Denis Diderot</p>
+</blockquote>
+<hr>
+<h2 id="practices">Practices:</h2>
+<blockquote>
+<p>Q. (3 min) Pick 2 helpful practices and 1 anti-practice.</p>
+</blockquote>
+<hr>
+<p>Practices:</p>
+<ul>
+<li>brainstorm</li>
+<li>prototype</li>
+<li>timebox</li>
+<li>change the abtraction level</li>
+<li>paradigm shift</li>
+<li>phone a friend</li>
+<li>simplify</li>
+</ul>
+<h3 id="timebox">Timebox:</h3>
+<blockquote>
+<p>fugit inreparabile tempus - Virgil</p>
+<p>&quot;it escapes, irretrievable time&quot;</p>
+</blockquote>
+<p>Allocate a fixed period of time to each activity.  Make a conscious decision to continue or move on.  This is at all time scales (30 min to weeks).</p>
+<h3 id="shift-abstraction-level">Shift Abstraction Level:</h3>
+<blockquote>
+<p>Do not seek to follow in the footsteps of the men of old; seek what they sought. - Matsuo Basho</p>
+</blockquote>
+<p>You can rarely solve a disagreement battling at the level of the problem.  Either go up to ensure you have the same goals.  Or go down to discuss an actual example.</p>
+<h3 id="paradigm-shift">Paradigm Shift:</h3>
+<blockquote>
+<p>Turn frustration into fascination. - Jim Roan</p>
+</blockquote>
+<p>Look at the problem from a different point of view.  Tackle it from a different direction.</p>
+<p>&quot;My flight leaves in 45 minutes. My taxi driver turns around, &quot;The good news is we&apos;re only 10 miles from the airport. The bad news? We won&apos;t be there for about an hour and a half.&quot;  Suddenly I&apos;m... fascinated.  Where are all these people going?  (Nowhere is the only appropriate answer)  Do they sit in this everyday?  Can I make it if I get out an walk?&quot;</p>
+<h3 id="phone-a-friend">Phone a friend</h3>
+<blockquote>
+<p>Quack</p>
+</blockquote>
+<p><img src="Rubber_duck_assisting_with_debugging.jpg" alt="Rubber Ducking"></p>
+<p>I&apos;m simply amazed at how many issues can be solved by simply sharing your problem.  Often, it gets your brain to provide the answer you need.</p>
+<h3 id="simplify">Simplify</h3>
+<blockquote>
+<p>KISS - Gene Simmons</p>
+<p>The key to organization is gtting comfortable with your trashcan and your delete key.  - Matt Scilipoti</p>
+</blockquote>
+<p>Simplify.  Simplify.  Reduce.  Cut scope.  Tackle the problem in isolation.</p>
+<hr>
+<h2 id="exercise">Exercise:</h2>
+<p><a href="https://github.com/ga-dc/problem_modeling" target="_blank">https://github.com/ga-dc/problem_modeling</a></p>
+<hr>
+<h2 id="suggested-reading">Suggested Reading</h2>
+<ul>
+<li><a href="http://tompeters.com/cool-friends/roam-dan/" target="_blank">http://tompeters.com/cool-friends/roam-dan/</a></li>
+</ul>
+<h2 id="attributions">Attributions</h2>
+<ul>
+<li>&quot;Rubber duck assisting with debugging&quot; by Tom Morris - Own work. Licensed under CC BY-SA 3.0 via Wikimedia Commons - <a href="https://commons.wikimedia.org/wiki/File:Rubber_duck_assisting_with_debugging.jpg#/media/File:Rubber_duck_assisting_with_debugging.jpg" target="_blank">https://commons.wikimedia.org/wiki/File:Rubber_duck_assisting_with_debugging.jpg#/media/File:Rubber_duck_assisting_with_debugging.jpg</a></li>
+</ul>
 
                     
                     </section>
@@ -928,10 +856,10 @@
         </div>
 
         
-        <a href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html" class="navigation navigation-prev " aria-label="Previous page: jQuery"><i class="fa fa-angle-left"></i></a>
+        <a href="../../04-ruby-mvc-sinatra/readme.html" class="navigation navigation-prev " aria-label="Previous page: Ruby + MVC with Sinatra"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../02-intermediate-front-end/workflows/lesson_plan.html" class="navigation navigation-next " aria-label="Next page: Workflows"><i class="fa fa-angle-right"></i></a>
+        <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html" class="navigation navigation-next " aria-label="Next page: Domain Modeling"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

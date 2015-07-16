@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>jQuery 2 | Summary</title>
+        <title>Databases | Summary</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.1.0">
@@ -25,10 +25,10 @@
         
     
     
-    <link rel="next" href="../../02-intermediate-front-end/workflows/lesson_plan.html" />
+    <link rel="next" href="../../05-mvc-with-rails/readme.html" />
     
     
-    <link rel="prev" href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html" />
+    <link rel="prev" href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html" />
     
 
         
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="2.5" data-basepath="../.." data-revision="Thu Jul 16 2015 13:34:40 GMT+0000 (UTC)">
+    <div class="book" data-level="4.3" data-basepath="../.." data-revision="Thu Jul 16 2015 13:34:40 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -334,7 +334,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.5" data-path="02-intermediate-front-end/jquery/jquery-two.html">
+        <li class="chapter " data-level="2.5" data-path="02-intermediate-front-end/jquery/jquery-two.html">
             
                 
                     <a href="../../02-intermediate-front-end/jquery/jquery-two.html">
@@ -460,7 +460,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="04-ruby-mvc-sinatra/databases/readme.html">
+        <li class="chapter active" data-level="4.3" data-path="04-ruby-mvc-sinatra/databases/readme.html">
             
                 
                     <a href="../../04-ruby-mvc-sinatra/databases/readme.html">
@@ -705,219 +705,291 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="jquery-part-2">jQuery: Part 2</h1>
-<h2 id="learning-objectives">Learning Objectives</h2>
+                        <h1 id="sql">SQL</h1>
+<h2 id="objectives">Objectives</h2>
 <ul>
-<li>Use jQuery to:<ul>
-<li>add elements to the DOM using jQuery objects and functions</li>
-<li>change elements in the DOM using jQuery objects and functions</li>
-<li>add event listeners to elements in the DOM using jQuery objects and functions</li>
-<li>loop through jQuery objects using the <code>each()</code> method</li>
+<li>Create an SQL database, containing tables, that is saved locally</li>
+<li>Distinguish between keys, foreign keys, and indexes</li>
+<li>Describe the data types used in SQL and the related field constraints</li>
+<li>Execute CRUD actions on the database using &quot;pure&quot; SQL (psql)</li>
+<li>Ensure the database is DRY using normalization</li>
+<li>Protect the database from common security vulnerabilities</li>
+<li>Use different JOIN types to combine data</li>
+</ul>
+<h2 id="what-is-a-database">What is a database?</h2>
+<ul>
+<li>A collection of tables representing data as columns and rows<ul>
+<li>A lot like an Excel workbook</li>
+</ul>
+</li>
+<li>Communicate via SQL<ul>
+<li>Many types of DBs, but generally all use similar SQL syntax</li>
+<li>PGSQL, MySQL, SQLite...</li>
 </ul>
 </li>
 </ul>
-<h2 id="opening-framing">Opening Framing</h2>
-<h3 id="pki-st-wg">PKI (ST-WG)</h3>
-<p>What are some things you&apos;ve learned about jQuery?</p>
-<ul>
-<li>when to use which</li>
-<li>when you&apos;re able to use which</li>
-<li>how to load jQuery</li>
-<li>how to select DOM elements</li>
-</ul>
-<h2 id="jquery-i-do">jQuery (# I do )</h2>
-<blockquote>
-<p>I&apos;m going to throw lots of code at you. It will be available in this lesson plan. So really just try and take it in and not follow along.</p>
-</blockquote>
-<p>Assume the following html for the following examples:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;awesome&quot;</span>&gt;</span>this is a div<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;awesome&quot;</span>&gt;</span>this is the second awesome div<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<h3 id="addition">Addition</h3>
-<ul>
-<li><p><code>.append()</code></p>
-<ul>
-<li>the selector expression preceding the method is the container into which the content(argument) is inserted</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).append(<span class="hljs-string">&quot;&lt;div&gt;this div is appended&lt;/div&gt;&quot;</span>)
-  <span class="hljs-comment">// this would add the div as the last child in it to all elements with class awesome</span>
-</code></pre>
-</li>
-<li><p><code>.appendTo()</code></p>
-<ul>
-<li>the content precedes the method, either as a selector expression or as markup created on the fly, and it is inserted into the target container(argument)</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;&lt;div&gt;this div is appended&lt;/div&gt;&quot;</span>).appendTo($(<span class="hljs-string">&quot;.awesome&quot;</span>))
-  <span class="hljs-comment">// same thing as above</span>
-</code></pre>
-</li>
-<li><p><code>.prepend()</code></p>
-<ul>
-<li>same as append but inserts the specified content(argument) as the first child</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).prepend(<span class="hljs-string">&quot;&lt;div&gt;this div is prepended&lt;/div&gt;&quot;</span>)
-  <span class="hljs-comment">// this would add the div as the first child in it to all elements with class awesome</span>
-</code></pre>
-</li>
-<li><p><code>.prependTo()</code></p>
-<ul>
-<li>same as appendto but the content precedes the method call is inserted as the first child of the target container(argument)</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;&lt;div&gt;this div is prepended&lt;/div&gt;&quot;</span>).prependTo($(<span class="hljs-string">&quot;.awesome&quot;</span>))
-  <span class="hljs-comment">// same thing as above</span>
-</code></pre>
-</li>
-<li><p><code>.html()</code></p>
-<ul>
-<li><p>get or set the HTML contents</p>
-<ul>
-<li>get: no argument, know that it returns the innerHTML of the first jQuery object</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).html()
-  <span class="hljs-comment">// returns the innerHTML of the first element in the jQuery object</span>
-</code></pre>
-<ul>
-<li>set: one argument that you want the html content to be</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).html(<span class="hljs-string">&quot;this is awesome!&quot;</span>)
-  <span class="hljs-comment">// returns the innerHTML of the of all elements in the jQuery object to be &quot;this is awesome!&quot;</span>
-</code></pre>
-</li>
+<h2 id="what-s-a-relational-database">What&apos;s a relational database?</h2>
+<p>  A collection of associated tables of information</p>
+<pre><code>- AKA entity
+  - A representation of an object, like a class of students, or a lot of cars
+</code></pre><ul>
+<li>Column = Field = Attribute<ul>
+<li>Attribute sound familiary?</li>
 </ul>
 </li>
-<li><p><code>.text()</code></p>
+<li>Rows = Records = Tuples</li>
+<li>Key<ul>
+<li>A unique value each record has that you can use to find the record</li>
+<li>There aren&apos;t really &quot;row numbers&quot; in PSQL<ul>
+<li>Primary keys are the closest thing</li>
+<li>Keys and primary keys are different</li>
+<li>The way SQL <strong>indexes</strong> things</li>
+</ul>
+</li>
+<li>Relationship types</li>
+</ul>
+</li>
+<li>One-to-one</li>
+<li>One-to-many</li>
+<li>Many-to-many</li>
+<li><strong>Get some examples!</strong></li>
+</ul>
+<h2 id="data-types">Data types</h2>
 <ul>
-<li>get or set the text contained, it will strip the HTML elements</li>
-<li>same as <code>.html()</code> only it returns the text of all jQuery objects selected for the getter portion</li>
+<li>Have to tell the database what kind of data to allow in which cells<ul>
+<li>Boolean</li>
+<li>Integer</li>
+<li>Float</li>
+<li>Text / VARCHAR<ul>
+<li>VARCHAR is short, TEXT is long</li>
+<li>VARCHAR is &quot;CHARACTER VARYING&quot;</li>
+</ul>
+</li>
+<li>NULL</li>
+<li>Date</li>
+<li>Time</li>
+<li><a href="http://www.postgresql.org/docs/9.3/interactive/datatype.html" target="_blank">And many more</a></li>
 </ul>
 </li>
 </ul>
-<h3 id="removal">Removal</h3>
+<h2 id="constraints">Constraints</h2>
 <ul>
-<li><p><code>.remove()</code></p>
-<ul>
-<li>removes the jquery object it is called on, as well as bound events and everything inside it</li>
+<li>i.e. NOT NULL and UNIQUE<ul>
+<li><a href="http://www.postgresql.org/docs/8.1/static/ddl-constraints.html" target="_blank">And many more</a></li>
 </ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).remove()
-</code></pre>
 </li>
-<li><p><code>.empty()</code></p>
-<ul>
-<li>removes all the child elements of the jquery object it is called on</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).empty()
-</code></pre>
-</li>
-</ul>
-<h3 id="edition">Edition</h3>
-<blockquote>
-<p>you guys glossed over this a bit, but here they are again.</p>
-</blockquote>
-<ul>
-<li><code>.attr()</code><ul>
-<li>acts as both a getter and setter<ul>
-<li>setter: requires 2 arguments(key/value pair), or an object(with multiple key/value pairs)</li>
-<li>getter: requires 1 argument to get the value of the attribute from the jQuery object</li>
+<li>Why are constraints and data types different?<ul>
+<li>You&apos;d have to have INTEGERNOTNULL and INTEGER</li>
+<li>Like flags for CLI commands</li>
 </ul>
 </li>
 </ul>
-</li>
-<li><code>.css()</code><ul>
-<li>acts as both a getter and setter<ul>
-<li>setter: requires 2 arguments(key/value pair), or an object(with multiple key/value pairs)</li>
-<li>getter: requires 1 argument to get the value of the attribute from the jQuery object</li>
-</ul>
-</li>
+<h2 id="syntax">Syntax</h2>
+<ul>
+<li>All statements end in a semicolon<ul>
+<li>Will probably forget to use these, so call me out!</li>
 </ul>
 </li>
-<li><code>.val()</code><ul>
-<li>setter: pass in an argument</li>
-<li>getter: pass in no argument</li>
+<li>Whitespace doesn&apos;t matter</li>
+<li>Uppercasing!</li>
+<li><a href="http://leshazlewood.com/software-engineering/sql-style-guide/" target="_blank">Ye style guide</a></li>
+</ul>
+<h2 id="getting-pgsql">Getting PGSQL</h2>
+<ul>
+<li>Mac: <a href="http://postgresapp.com/" target="_blank">http://postgresapp.com/</a><ul>
+<li><code>export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin</code></li>
+<li>Then open the app and click &quot;Open psql&quot;</li>
+</ul>
+</li>
+<li>Linux<ul>
+<li><code>apt-get install postgresql-9.4</code></li>
 </ul>
 </li>
 </ul>
-<h2 id="break-10m">BREAK(10m)</h2>
-<h3 id="other">Other</h3>
+<hr>
+<h1 id="break">BREAK!</h1>
+<hr>
+<h2 id="code-along">Code along</h2>
+<pre><code>\l
+# Lists all databases
+
+CREATE DATABASE addbass;
+\l
+# What changed?
+# What happens if we don&apos;t use a semicolon?
+
+\c addbass
+# What might C stand for?
+
+\d
+# Lists all tables
+
+\?
+# Shows available commands if you get stuck
+
+CREATE TABLE students ( id SERIAL PRIMARY KEY, first_name VARCHAR NOT NULL, last_name VARCHAR NOT NULL, quote TEXT NOT NULL, birthday VARCHAR NOT NULL, ssn INT NOT NULL UNIQUE );
+\d
+SELECT * FROM students;
+# Write on board
+# # What are different components?
+# What does SERIAL mean?
+# # It&apos;s a data type
+</code></pre><h2 id="breakin-stuff">Breakin&apos; stuff</h2>
+<pre><code>SELECT *
+
+SELECT (
+
+\q
+</code></pre><h2 id="crud">CRUD</h2>
 <ul>
-<li><p><code>.hide()</code></p>
-<ul>
-<li>changes elements style to have <code>display:none</code></li>
+<li>CRUD stands for the most basic interactions we want to have with any database<ul>
+<li>What might CRUD stand for?</li>
 </ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).hide()
-  <span class="hljs-comment">// returns the innerHTML of the first element in the jQuery object</span>
-</code></pre>
-</li>
-<li><p><code>.show()</code></p>
-<ul>
-<li>changes a <code>display:none</code> to <code>display:block</code> or whatever it initially was</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).show()
-  <span class="hljs-comment">// returns the innerHTML of the first element in the jQuery object</span>
-</code></pre>
-</li>
-<li><p><code>.addClass()</code></p>
-<ul>
-<li>does not replace existing classes</li>
-<li>pass in argument of 1 string to add 1 or more classes</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).addClass(<span class="hljs-string">&quot;add three classes&quot;</span>)
-  <span class="hljs-comment">// adds the classes add, three and classes to all elements in the jQuery object returned</span>
-</code></pre>
-</li>
-<li><p><code>.removeClass()</code></p>
-<ul>
-<li>pass in argument of 1 string remove 1 or more classes</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).removeClass(<span class="hljs-string">&quot;add three classes&quot;</span>)
-  <span class="hljs-comment">// removes the classes add, three and classes to all elements in the jQuery object selected</span>
-</code></pre>
-</li>
-<li><p><code>.children()</code></p>
-<ul>
-<li>returns a jQuery object that contains all the child elements of the jQuery object it is called on.</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).children()
-</code></pre>
 </li>
 </ul>
+<pre><code>SELECT * FROM students;
+# What does it do?
+# What does * stand for?
+
+INSERT INTO students (first_name, last_name, quote, birthday, ssn) VALUES (&apos;Robin&apos;, &apos;Thomas&apos;, &apos;Two goldfish are in a tank. One says, &quot;Know how to drive this thing?&quot;, &apos;April 1&apos;, 8675309);
+# This won&apos;t work!
+
+INSERT INTO students (first_name, last_name, quote, birthday, ssn) VALUES (&apos;Robin&apos;, &apos;Thomas&apos;, &apos;Two goldfish are in a tank. One says, &quot;Know how to drive this thing?&quot;&apos;, &apos;April 1&apos;, 8675309);
+SELECT * FROM students;
+
+UPDATE students SET first_name = &apos;Robert&apos; WHERE first_name = &apos;Robin&apos;;
+SELECT * FROM students;
+
+DELETE FROM students WHERE first_name = &apos;Robin&apos;;
+SELECT * FROM students;
+
+DROP TABLE students;
+
+DROP DATABASE addbass;
+</code></pre><h2 id="where-s-all-this-data-stored-anyway">Where&apos;s all this data stored, anyway?</h2>
 <ul>
-<li><p><code>.each()</code></p>
-<ul>
-<li>loops through collections of jquery objects</li>
-<li><code>$(&quot;.somejQueryClass&quot;).each(function(index){//code goes here})</code></li>
+<li><code>~/Library/Application\ Support/Postgres/var-9.4</code></li>
+<li>Neat things<ul>
+<li>postgres-server.log</li>
+<li>global/<ul>
+<li>What the eff is THAT?<ul>
+<li>Binary!</li>
+<li>Spread out across multiple files</li>
 </ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(index)</span></span>{
-    $(<span class="hljs-keyword">this</span>).html(<span class="hljs-string">&quot;this html element has the index of ()&quot;</span> + index + <span class="hljs-string">&quot;) in the each function&quot;</span>)
-  })
-</code></pre>
-</li>
-</ul>
-<blockquote>
-<p>note what the context of <code>$(this)</code> is. This refers to each of the elements being looped through.</p>
-</blockquote>
-<ul>
-<li><p><code>.on()</code></p>
-<ul>
-<li>a way to create event listeners</li>
-<li><p>takes two arguments normally</p>
-<ul>
-<li>first argument is the event(lots of them)</li>
-<li>second argument is the callback</li>
-</ul>
-<pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-built_in">console</span>.log($(<span class="hljs-keyword">this</span>))
-  })
-</code></pre>
 </li>
 </ul>
 </li>
 </ul>
-<blockquote>
-<p>What is <code>$(this)</code> here? Refers to the jquery object you called <code>.on</code> on, as long as you&apos;re in the scope of the <code>.on</code> function</p>
-</blockquote>
-<h3 id="class-ex-timer-js-refactor-30m">Class Ex- TIMER js refactor (30m)</h3>
-<h3 id="homework-atm">Homework- ATM</h3>
-<p><a href="https://github.com/ga-dc/atm" target="_blank">ATM</a></p>
+</li>
+<li><a href="http://www.postgresql.org/docs/9.0/static/storage-file-layout.html" target="_blank">More info</a></li>
+</ul>
+<h2 id="exercise">Exercise!</h2>
+<ul>
+<li>Enter all students into your database!</li>
+</ul>
+<h2 id="and-then">And then...</h2>
+<pre><code>SELECT * FROM students WHERE CHAR_LENGTH(quote) &gt; 100;
+
+SELECT quote FROM students WHERE CHAR_LENGTH(quote) &gt; 100;
+
+SELECT * FROM students WHERE SUBSTRING(first_name from 1 for 1) = &apos;R&apos;;
+# Dat index tho.
+
+SELECT * FROM students ORDER BY first_name ASC;
+
+SELECT * FROM students ORDER BY first_name DESC;
+</code></pre><h2 id="putting-it-with-ruby">Putting it with Ruby</h2>
+<pre><code>require &quot;pg&quot;
+connection = PG.connect(:hostaddr =&gt; &quot;127.0.0.1&quot;, :port =&gt; 5432, :dbname =&gt; &quot;addbass&quot;)
+results = connection.exec(&quot;SELECT * FROM students&quot;)
+
+#Does NOT return a hash!
+
+results.each do |item|
+  puts item
+end
+</code></pre><h2 id="sekurrity">Sekurrity!</h2>
+<ul>
+<li>What security holes do you see here?<ul>
+<li>Let&apos;s say I want to update the database with something a user writes into their computer...</li>
+<li>They could pretty easily make my code execute a DROP TABLE or something.</li>
+<li>SQL injection</li>
+<li><a href="xkcd.png">Obligatory visual aid</a></li>
+<li><a href="car.jpg">Other obligatory visual aid</a></li>
+</ul>
+</li>
+</ul>
+<pre><code>connection.prepare(&apos;insert_student_statement&apos;, &apos;INSERT INTO students (first_name, last_name, quote, birthday, ssn) values ($1, $2, $3, $4, $5)&apos;)
+connection.exec_prepared(&apos;insert_student_statement&apos;, [ &apos;Jesse&apos;, &apos;Shawl&apos;, &apos;I like turtles.&apos;, &apos;Febtemper 32nd&apos;, 1234567])
+</code></pre><h2 id="pre-joins">Pre-Joins</h2>
+<p>First, add in a new column to the table</p>
+<pre><code>ALTER TABLE students ADD COLUMN gender VARCHAR(1);
+# What does VARCHAR(1) do?
+</code></pre><p>Then fill it in.</p>
+<ul>
+<li>Instead of writing <code>UPDATE (blah blah blah)</code> a bunch of times, try doing it in Ruby!</li>
+</ul>
+<pre><code>require &quot;pg&quot;
+connection = PG.connect(:hostaddr =&gt; &quot;127.0.0.1&quot;, :port =&gt; 5432, :dbname =&gt; &quot;addbass&quot;)
+students = connection.exec(&quot;SELECT * FROM students&quot;);
+students.each do |student|
+  first_name = student[&quot;first_name&quot;]
+  if [&quot;Brittany&quot;,&quot;Janice&quot;,&quot;Julia&quot;,&quot;Haleigh&quot;,&quot;Sarah&quot;,&quot;Gwen&quot;,&quot;Lindsay&quot;].include? first_name
+    gender = &quot;f&quot;
+  else
+    gender = &quot;m&quot;
+  end
+  connection.exec(&quot;UPDATE students SET gender = &apos;#{gender}&apos; WHERE first_name = &apos;#{first_name}&apos;&quot;)
+end
+</code></pre><p>Then split the table in half.</p>
+<pre><code>CREATE TABLE students2 AS SELECT * FROM students WHERE (random() &lt; .5);
+</code></pre><h2 id="actual-joins">Actual Joins</h2>
+<ul>
+<li>Inner Join<ul>
+<li>Combines records that match both sides</li>
+</ul>
+</li>
+<li>Left/Right Join<ul>
+<li>Combines records of one side with matching record from other side, and fills in null for remaining</li>
+</ul>
+</li>
+<li><p>Outer join</p>
+<ul>
+<li>Combines all records of both sides with matching record from other side, and fills in null for remaining.</li>
+</ul>
+</li>
+<li><p>Huh?</p>
+<ul>
+<li>Try it yourself</li>
+</ul>
+</li>
+</ul>
+<pre><code>SELECT * FROM students INNER JOIN students2 ON (students.gender = students2.gender);
+
+SELECT * FROM students LEFT OUTER JOIN students2 ON (students.gender = students2.gender);
+
+SELECT * FROM students LEFT JOIN students2 ON (students.gender = students2.gender);
+</code></pre><p><a href="http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/" target="_blank">http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/</a></p>
+<h3 id="non-relational-database-no-sql">Non-relational database (No SQL)</h3>
+<ul>
+<li>A non-relational databse is like a hash<ul>
+<li>A collection of key / value pairs</li>
+<li>Don&apos;t need follow the same schema<ul>
+<li>i.e. There aren&apos;t column headers defining what everything in the 3rd column is</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Different ways of naming things<ul>
+<li>Table = Relation<ul>
+<li>Confusing, because it SHOWS relations, isn&apos;t a relation itself</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="homework">Homework</h2>
+<p><a href="https://github.com/ga-dc/nba_stats" target="_blank">https://github.com/ga-dc/nba_stats</a></p>
 
                     
                     </section>
@@ -928,10 +1000,10 @@
         </div>
 
         
-        <a href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html" class="navigation navigation-prev " aria-label="Previous page: jQuery"><i class="fa fa-angle-left"></i></a>
+        <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html" class="navigation navigation-prev " aria-label="Previous page: Domain Modeling"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../02-intermediate-front-end/workflows/lesson_plan.html" class="navigation navigation-next " aria-label="Next page: Workflows"><i class="fa fa-angle-right"></i></a>
+        <a href="../../05-mvc-with-rails/readme.html" class="navigation navigation-next " aria-label="Next page: MVC with Rails"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
