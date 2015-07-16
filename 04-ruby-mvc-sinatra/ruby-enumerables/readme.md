@@ -241,22 +241,6 @@ doubled
 
 **DIAGRAM:** MAP
 
-##### Select (5min)
-
-Returns elements in a collection for which a code block returns true.
-* In the below example, we will only print a collection value if it is even...
-
-```ruby
-numbers = [ 1, 2, 3, 4, 5 ]
-numbers.select do |number|
-  number % 2 == 0
-end
-
-# Alternate syntax
-numbers = [ 1, 2, 3, 4, 5 ]
-numbers.select { |number| number % 2 == 0 }
-```
-
 ### Group Exercise: Documentation Dive (25min)
 
 Instructions: Each group will spend **10 minutes** using Ruby documentation to look up an assigned enumerable. Prepare your own definition of what it does and whiteboard an example.
