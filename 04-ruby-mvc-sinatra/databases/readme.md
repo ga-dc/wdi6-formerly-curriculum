@@ -1,8 +1,8 @@
-# SQL
+# Databases
 
 ## Objectives
 
-- Create an SQL database, containing tables, that is saved locally
+- Create an SQL database, in PostgreSQL, containing tables, that is saved locally
 - Distinguish between keys, foreign keys, and indexes
 - Describe the data types used in SQL and the related field constraints
 - Execute CRUD actions on the database using "pure" SQL (psql)
@@ -16,23 +16,25 @@
   - A lot like an Excel workbook
 - Communicate via SQL
   - Many types of DBs, but generally all use similar SQL syntax
-  - PGSQL, MySQL, SQLite...
+  - PGSQL, MySQL, SQLite, Microsoft SQL, Oracle...
 
 ## What's a relational database?
 
-  A collection of associated tables of information
-    - AKA entity
-      - A representation of an object, like a class of students, or a lot of cars
-  - Column = Field = Attribute
-    - Attribute sound familiary?
-  - Rows = Records = Tuples
-  - Key
-    - A unique value each record has that you can use to find the record
-    - There aren't really "row numbers" in PSQL
-      - Primary keys are the closest thing
-      - Keys and primary keys are different
-      - The way SQL **indexes** things
-- Relationship types
+  A collection of tables which store data.  With a mechanism for relating one table to another.
+  - Each table is comprised of rows and columns (like a spreadsheet)
+  - The table of `classes` is related to the table of `students`
+- Column = Field = Attribute
+  - Attribute sound familiar?
+- Rows = Records = Tuples
+  - Each row may represent an object, like each student in a a class or each car on a lot
+- Key
+  - A unique value each record has that you can use to find the record
+  - There aren't really "row numbers" in PSQL
+    - Primary keys are the closest thing
+    - Keys and primary keys are different
+    - The way SQL **indexes** things
+
+### Relationship types
   - One-to-one
   - One-to-many
   - Many-to-many
@@ -62,7 +64,7 @@
 ## Syntax
 
   - All statements end in a semicolon
-    - Will probably forget to use these, so call me out!
+    - I will probably forget to use these, so please help!
   - Whitespace doesn't matter
   - Uppercasing!
   - [Ye style guide](http://leshazlewood.com/software-engineering/sql-style-guide/)
@@ -70,27 +72,52 @@
 ## Getting PGSQL
 
   - Mac: http://postgresapp.com/
-    - `export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin`
+    - Download
+    - Move it to `/Applications`
+    - We want to use it from the command line, so we add it to the search path.
+      - `$ atom ~/.bash_profile`
+      - Add this line:
+     `export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin`
+     - save and close.
+     - Update your terminal.
     - Then open the app and click "Open psql"
   - Linux
     - `apt-get install postgresql-9.4`
+  - All
+    - Verify your installation, by running `psql` in your terminal.  You should see:
 
----
-# BREAK!
----
+```
+$ psql
+psql (9.4.4)
+Type "help" for help.
 
-## Code along
+matt=#
+```  
+
+### Common Mistake
+
+If you see this when your run `psql`, you have not started the PostgresApp first.
+
+```
+$ psql
+psql: could not connect to server: No such file or directory
+	Is the server running locally and accepting
+	connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
+```
+
+
+## Play with these commands
 
 ```
 \l
 # Lists all databases
 
-CREATE DATABASE addbass;
+CREATE DATABASE pbj;
 \l
 # What changed?
 # What happens if we don't use a semicolon?
 
-\c addbass
+\c pbj
 # What might C stand for?
 
 \d
@@ -98,15 +125,39 @@ CREATE DATABASE addbass;
 
 \?
 # Shows available commands if you get stuck
+```
 
+```
 CREATE TABLE students ( id SERIAL PRIMARY KEY, first_name VARCHAR NOT NULL, last_name VARCHAR NOT NULL, quote TEXT NOT NULL, birthday VARCHAR NOT NULL, ssn INT NOT NULL UNIQUE );
 \d
 SELECT * FROM students;
-# Write on board
-# # What are different components?
-# What does SERIAL mean?
-# # It's a data type
 ```
+
+## A SQL Command
+- What are different components?
+  - CREATE TABLE: command to define a new table
+  - followed by a list of the columns in the table
+
+```
+id SERIAL PRIMARY KEY
+first_name VARCHAR NOT NULL
+last_name VARCHAR NOT NULL
+quote TEXT NOT NULL
+birthday VARCHAR NOT NULL
+ssn INT NOT NULL UNIQUE
+```
+
+---
+
+### Defining a column
+
+- `id SERIAL PRIMARY KEY`
+  - `id`: column name, how we will refer to this column
+  - `SERIAL` is the data type (similar to integer or string).  It's a special datatype for unique identifier columns, which the db auto-increments.
+  - `PRIMARY KEY`: a special constraint which indicates a unique identifier for each row.
+
+Take a few minutes to research the other rows.
+
 
 ## Breakin' stuff
 
@@ -142,18 +193,15 @@ SELECT * FROM students;
 
 DROP TABLE students;
 
-DROP DATABASE addbass;
+DROP DATABASE pbj;
 ```
 
 ## Where's all this data stored, anyway?
 
-- `~/Library/Application\ Support/Postgres/var-9.4`
-- Neat things
-  - postgres-server.log
-  - global/
-    - What the eff is THAT?
-      - Binary!
-      - Spread out across multiple files
+- Look in PostgresApp preferences.  You should see `~/Library/Application\ Support/Postgres/var-9.4`.  Let's take a look in there.
+- We see `postgres-server.log`
+- Check out a file within `global/`. What is THAT?
+  - This is binary (not text) data, spread out across multiple files
 - [More info](http://www.postgresql.org/docs/9.0/static/storage-file-layout.html)
 
 
@@ -180,7 +228,7 @@ SELECT * FROM students ORDER BY first_name DESC;
 
 ```
 require "pg"
-connection = PG.connect(:hostaddr => "127.0.0.1", :port => 5432, :dbname => "addbass")
+connection = PG.connect(:hostaddr => "127.0.0.1", :port => 5432, :dbname => "pbj")
 results = connection.exec("SELECT * FROM students")
 
 #Does NOT return a hash!
@@ -217,7 +265,7 @@ Then fill it in.
 
 ```
 require "pg"
-connection = PG.connect(:hostaddr => "127.0.0.1", :port => 5432, :dbname => "addbass")
+connection = PG.connect(:hostaddr => "127.0.0.1", :port => 5432, :dbname => "pbj")
 students = connection.exec("SELECT * FROM students");
 students.each do |student|
   first_name = student["first_name"]
