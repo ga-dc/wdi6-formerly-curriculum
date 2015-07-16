@@ -178,7 +178,7 @@ Single-line
 * { } - replaces `do` and `end`; contains the iteration variable and code block
 * `|number|` - iteration variable
 
-##### Exercise: Practice Each (10min)
+#### Exercise: Practice Each (10min)
 
 Use `each` to do the following...  
 
@@ -241,35 +241,21 @@ doubled
 
 **DIAGRAM:** MAP
 
-##### Select (5min)
+### Group Exercise: Documentation Dive (25min)
 
-Returns elements in a collection for which a code block returns true.
-* In the below example, we will only print a collection value if it is even...
-
-```ruby
-numbers = [ 1, 2, 3, 4, 5 ]
-numbers.select do |number|
-  number % 2 == 0
-end
-
-# Alternate syntax
-numbers = [ 1, 2, 3, 4, 5 ]
-numbers.select { |number| number % 2 == 0 }
-```
-
-### Group Exercise: Documentation Dive (30min)
-
-Instructions: Each group will spend **15 minutes** using Ruby documentation to look up an assigned enumerable. Prepare a layman's definition of what it does and whiteboard an example.
+Instructions: Each group will spend **10 minutes** using Ruby documentation to look up an assigned enumerable. Prepare your own definition of what it does and whiteboard an example.
 * You can test your example in Ruby/Pry.
 * [Documentation](http://ruby-doc.org/core-2.2.2/Enumerable.html)
 
 Groups
-* **Group 1:** Each (on a hash)
-* **Group 2:** Each With Index
+* **Group 1:** Each With Index
+* **Group 2:** Partition
 * **Group 3:** Reject
 * **Group 4:** Find
-* **Group 5:** Sort
-* **Group 6:** Inject
+* **Group 5:** Select
+* **Group 6:** Inject/Reduce
+
+**Bonus:** If you find yourself with extra time, pick out another enumerable that wasn't assigned to a group. Or, think of another example for your assigned enumerable.
 
 ### BREAK (10min)
 
