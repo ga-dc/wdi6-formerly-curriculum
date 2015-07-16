@@ -44,6 +44,17 @@ Example Model: *(don't peek!)*
   - attributes: make, model, year, color, speed, milage, num_doors, driver
   - methods: turn_on, turn_off, change_gear, accelerate, brake
 
+## JS Objects vs Ruby Hashes vs Ruby Objects (5 minutes)
+
+In JS, objects are somewhat like ruby hashes, in that they are key-value pairs,
+but JS objects are more powerful than a hash, in that JS objects can have
+methods, while ruby hashes can't.
+
+Ruby objects are like JS Objects, only we can't access their properties/
+attributes directly (we have to call methods on the object instead.)
+
+Ruby also has *Classes*, which help us build objects, while JS Objects have
+*constructor functions* (which we'll cover in unit 3).
 
 ## Classes vs Objects (5 minutes)
 
