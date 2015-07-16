@@ -182,7 +182,8 @@ me.hunger_level             # returns 0
 ## Exercise
 
 Clone this exercise and follow the instructions in the readme.
-[Monkies!!!](https://github.com/adambray/oop_monkey)
+
+*[Monkies!!!](https://github.com/adambray/oop_monkey)*
 
 
 ### attr_reader, attr_writer, attr_accessor
@@ -267,4 +268,5 @@ should not impact (cause bugs) in other areas of our programs.
 ## Lab
 
 Clone this exercise and follow the instructions in the readme.
-[Scrabble Word Scorer](https://github.com/ga-dc/scrabbler)
+
+*[Scrabble Word Scorer](https://github.com/ga-dc/scrabbler)*
