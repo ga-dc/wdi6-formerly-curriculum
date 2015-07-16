@@ -111,7 +111,7 @@ for i in numbers
 end
 ```
 
-### Loops Exercise: 99 Bottles of Beer (20min)
+### Loops Exercise: 99 Bottles of Beer (10min)
 
 You know how the song goes...
 * "99 bottles of beer on the wall. 99 bottles of beer. Take one down. Pass it around. 98 bottles of bear on the wall."
