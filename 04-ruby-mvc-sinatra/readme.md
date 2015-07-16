@@ -45,26 +45,31 @@ Build an interactive web application that persists data.
 - Write a Ruby class that inherits from another
 - Describe the method lookup chain in Ruby
 
-### Problem/Domain Modeling/ERDs
+### Problem Modeling
 
-- Identify and share the components of a problem
-  - Model real-world scenarios as data.
-  - Identify major roles within a scenario.
-  - Consider how roles interact and communicate.
-  - Create a domain model by listing its parts (entities, relationships, attributes and behavior)
-- Draw an ERD using proper notation
-  - Identify and diagram a one-to-one, one-to-many, many-to-many relationship between data entities
-  - Distinguish between entities & attributes (and when you should use one over the other)
+- Demonstrate how to break a problem into relevant parts
+- Demonstrate multiple solutions, identifying tradeoffs
+- Indicate what is easily solvable
+- Identify areas of high/low risk
+
+### Domain Modeling/ERDs
+
+- Draw an Entity Relationship Diagram (ERD) using proper notation
+- Identify and diagram a one-to-one, one-to-many, many-to-many relationship between d ta entities (physical/virtual)
+- Create a domain model by listing its parts (entities, relationships, attributes a d behavior)
+- Distinguish between entities & attributes (and when you should use one over the o her)
+- Discuss data normalization needs and techniques
 
 ###	DB / SQL
 
--	Create an SQL database, containing tables, that is saved locally and is ACID
--	Distinguish between keys, foreign keys, and indexes
--	Describe the datatypes used in SQL and the related field constraints
--	Execute CRUD actions on the database using "pure" SQL (Postgres, PSQL)
--	Ensure the database is DRY using normalization
--	Protect the database from common security vulnerabilities
--	Use different join types to combine data
+- Explain the purpose of a database
+- Describe benefits a of Database over other storage
+- Define ACID
+- Create a SQL database, containing tables, that is saved locally and is ACID
+- Distinguish between primary keys, foreign keys, and indexes (simple & complex)
+- Describe the datatypes used in SQL and the related field constraints
+- Execute CRUD actions on the database using "pure" SQL (Postgres, PSQL)
+- Use different join types to combine data
 
 ### Sinatra && REST
 
