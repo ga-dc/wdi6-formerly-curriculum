@@ -4,6 +4,7 @@
 - Define and differentiate between classes and objects
 - Create a Ruby class with an initialize method
 - Instantiate an object from a class and interact with it
+- Use `binding.pry` to play with code live
 - Explain the difference between local and instance variables
 - Write setter and getter methods
 - Describe the use of `attr_reader` / `attr_writer` / `attr_accessor`
@@ -75,11 +76,18 @@ kanye.eat("Chipotle Burrito")  # hunger_level drops to 0
 kanye.hunger_level  # returns 0
 ```
 
+## An Aside: Playing / Debugging with `binding.pry`
+
+If we `require 'pry'` in our program, we can add `binding.pry` to any line to
+pause and get a pry REPL at that point in our code. We can then play with our
+code, see what the value of in-scope variables are, etc.
+
 ## Writing Classes
 
 Classes are define with the `class` keyword:
 
 ```ruby
+# person1.rb
 class Person
 end
 ```
@@ -88,6 +96,7 @@ Pure ruby classes often have an `initialize` method, which gets run when we
 create `new` instances of that class.
 
 ```ruby
+# person2.rb
 class Person
   def intitialize()
     puts("new person created")
@@ -105,6 +114,7 @@ can have unique values for that variable. Instance variables start with an
 at-sign, like so `@first_name`.
 
 ```ruby
+# person3.rb
 class Person
   def intitialize(initial_name)
     @name = initial_name
@@ -129,6 +139,7 @@ methods. If we want to access or modify (*get* or *set*) properties of an object
 we need to create methods to do so, often called *getters* and *setters*.
 
 ```ruby
+# person4.rb
 class Person
   def intitialize(initial_name, initial_hunger_level)
     @name = initial_name
@@ -197,6 +208,7 @@ them for us:
 These are used inside of a class (customarily at the very top).
 
 ```ruby
+# person5.rb
 # functionally identical to the previous example, much less code
 class Person
   attr_accessor :name
