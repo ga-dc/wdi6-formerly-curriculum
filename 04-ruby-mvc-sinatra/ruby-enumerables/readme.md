@@ -178,14 +178,41 @@ Single-line
 * { } - replaces `do` and `end`; contains the iteration variable and code block
 * `|number|` - iteration variable
 
-##### Mini-Exercise: Practice Each (10min)
+##### Exercise: Practice Each (10min)
 
 Use `each` to do the following...  
 
-1. Print out the squared values for an array containing numbers.
-2. Print out the Celsius values for an array containing Fahrenheit values.
-* Insert more `each` applications here
-* Bonus: application that involves nested `each` loops
+1. Say hello to everybody in the below array of names (sample output: `Hello [person's name]!`).
+
+```ruby
+names = [ "Brian", "Chad", "Yakko", "Wacko", "Dot" ]
+```
+
+2. Print out the squared values of every number in this numbers array.
+
+```ruby
+numbers = [ 1, 3, 9, 11, 100 ]
+```
+
+3. Print out the Celsius values for an array containing Fahrenheit values.
+
+```ruby
+fahrenheit_temps = [ -128.6, 0, 32, 100, 134 ]
+```
+
+4. Insert all the values in the `artists` array into the `ninja_turtles` array.
+
+```ruby
+artists = [ "Leonardo", "Donatello", "Raphael", "Michelangelo" ]
+ninja_turtles = []
+```
+
+5. **Bonus:** Print out every possible combination of the below ice cream flavors and toppings.
+
+```ruby
+flavors = [ "vanilla", "chocolate", "strawberry", "butter pecan", "cookies and cream", "rainbow" ]
+toppings = [ "gummi bears", "hot fudge", "butterscotch", "rainbow sprinkles", "chocolate sprinkles" ]
+```
 
 Can I get a quick fist-of-five on how you feel about `each` and enumerables so far?
 * If you feel good about this then you'll have no problem taking on other enumerables. Even the crazy ones.
