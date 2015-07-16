@@ -45,6 +45,13 @@ Build an interactive web application that persists data.
 - Write a Ruby class that inherits from another
 - Describe the method lookup chain in Ruby
 
+### Problem Modeling
+
+- Demonstrate how to break a problem into relevant parts
+- Demonstrate multiple solutions, identifying tradeoffs
+- Indicate what is easily solvable
+- Identify areas of high/low risk
+
 ### Domain Modeling/ERDs
 
 - Draw an Entity Relationship Diagram (ERD) using proper notation
