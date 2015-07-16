@@ -133,8 +133,11 @@ user_input = gets.chomp.to_i
 
 ### Data Types
 
-**INSERT NOTE ABOUT EVERYTHING BEING AN OBJECT**
-**OBJECT DOESN'T MEAN WHAT IT DID IN JAVASCRIPT**
+Everything in Ruby is an **object**.
+* Not like a Javascript object -- those are called **hashes** in Ruby.
+* By "object" we mean that everything has its own set of properties and methods.
+  * Not a new concept. Some data types in Javascript had their own properties and methods (e.g., `string.length`).
+* Will learn more about this during your OOP class...
 
 #### Numbers (5min)
 
