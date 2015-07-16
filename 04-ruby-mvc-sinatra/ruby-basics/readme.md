@@ -23,7 +23,7 @@ HEADS UP: We are covering a lot of ground today. It's going to be a fast-paced c
 * For small technical questions, please use Slack and one of the other instructors will help you out.
 
 Part of your homework last night was to identify a programming concept shared by Javascript and Ruby and compare/contrast its implementation in each of the languages.
-- BOARD: Share and write on board. 
+- BOARD: Share and write on board.
 
 #### What is Ruby? (5min)
 
@@ -260,6 +260,8 @@ Truthiness and falsiness is a lot less complicated in Ruby.
 * The only falsey values in Ruby are `nil` and `false`.
 
 ### Exercise: Temperature Converter (Part I) (20min)
+
+[Temperature Converter (Ruby)](https://github.com/ga-dc/temperature_converter_ruby)
 
 ### BREAK (10min)
 
