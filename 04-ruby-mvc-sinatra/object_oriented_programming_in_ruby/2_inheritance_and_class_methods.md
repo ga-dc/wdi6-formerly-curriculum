@@ -123,7 +123,7 @@ class Person
   attr_accessor :name
   @@person_count = 0 # class variable
 
-  def intitialize(initial_name)
+  def initialize(initial_name)
     @@person_count += 1
     @name = initial_name
   end
