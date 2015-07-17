@@ -250,10 +250,10 @@ Instructions: Each group will spend **10 minutes** using Ruby documentation to l
 
 Groups
 * **Group 1:** Each With Index
-* **Group 2:** Partition
-* **Group 3:** Reject
-* **Group 4:** Find
-* **Group 5:** Select
+* **Group 2:** Reject
+* **Group 3:** Find
+* **Group 4:** Select
+* **Group 5:** Partition
 * **Group 6:** Inject/Reduce
 
 **Bonus:** If you find yourself with extra time, you can:
