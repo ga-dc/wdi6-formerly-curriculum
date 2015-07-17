@@ -6,7 +6,7 @@
 | Wednesday PM  |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
 | Thursday PM   |                                | |
 | Friday AM     |                                |            |
-| Friday PM     |                                |            |
+| Friday PM     |                                |[High Card](https://github.com/ga-dc/high_card) |
 | Monday AM     |                                |            |
 | Monday PM     |                                |            |
 | Tuesday AM    |                                |            |
