@@ -4,9 +4,8 @@
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
 | Wednesday PM  |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
-| Thursday PM   |                                | |
-| Friday AM     |                                |            |
-| Friday PM     |                                |[High Card](https://github.com/ga-dc/high_card) |
+| Thursday PM   |                                | N/A |
+| Friday        |                                |[High Card](https://github.com/ga-dc/high_card) |
 | Monday AM     |                                |            |
 | Monday PM     |                                |            |
 | Tuesday AM    |                                |            |
@@ -22,8 +21,7 @@
 |---------------|--------------------------------|------------|
 | Wednesday PM  |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
 | Thursday PM   |                                |[High Card](https://github.com/ga-dc/high_card) |
-| Friday AM     |                                |[Gladiator!](https://github.com/ga-dc/gladiator) |
-| Friday PM     |                                |            |
+| Friday        |                                |[Gladiator!](https://github.com/ga-dc/gladiator) |
 | Monday AM     |                                |            |
 | Monday PM     |                                |            |
 | Tuesday AM    |                                |            |

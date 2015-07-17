@@ -123,20 +123,20 @@ class Person
   attr_accessor :name
   @@person_count = 0 # class variable
 
-  def intitialize(initial_name)
+  def initialize(initial_name)
     @@person_count += 1
     @name = initial_name
   end
 
   # instance method, just like we've seen before
   def introduce
-    puts "Hello, I'm #{name}, one of #{Person.count} people"
+    puts "Hello, I'm #{name}, one of #{Person.person_count} people"
   end
 
   # class method, notice the `self` in the definition, which refers to the
   # Person class
   def self.person_count
-    return @@count
+    return @@person_count
   end
 
 end
