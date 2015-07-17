@@ -8,9 +8,9 @@
 | Friday AM     |                                |            |
 | Friday PM     |                                |            |
 | Monday        |                                | [Objects for landlord](https://github.com/ga-dc/landlord#part-1---creating-the-classes) |
-| Tuesday       |                                | [create views / wireframes](https://github.com/ga-dc/landlord) |
+| Tuesday       |                                | [create views / wireframes](https://github.com/ga-dc/landlord#part-3---sinatra-views-and-templates) |
 | Wednesday     |                                | [persist data with active record](https://github.com/ga-dc/landlord) |
-| Thursday      |                                | [connect sinatra to db](https://github.com/ga-dc/landlord) |
+| Thursday      |                                | [connect sinatra to db](https://github.com/ga-dc/landlord#part-4---connect-sinatra-to-the-database) |
 | Friday        |                                |            |
 
 ## Jelly
@@ -22,6 +22,6 @@
 | Friday PM     |                                |            |
 | Monday        |                                | [Objects for landlord](https://github.com/ga-dc/landlord) |
 | Tuesday       |                                | [persist data with active record](https://github.com/ga-dc/landlord) |
-| Wednesday     |                                | [create views / wireframes](https://github.com/ga-dc/landlord) |
-| Thursday      |                                | [connect sinatra to db](https://github.com/ga-dc/landlord) |
+| Wednesday     |                                | [create views / wireframes](https://github.com/ga-dc/landlord#part-3---sinatra-views-and-templates) |
+| Thursday      |                                | [connect sinatra to db](https://github.com/ga-dc/landlord#part-4---connect-sinatra-to-the-database) |
 | Friday        |                                |            |
