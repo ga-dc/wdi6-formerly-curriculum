@@ -347,18 +347,18 @@ Methods with an `!` attached to the end of them usually means that they will mod
 
 ```ruby
 # a points to a memory location containing 5
-a = "lowercase"
+a = "cheeseburger"
 
 # b now points to that same memory location
 b = a
 
-# Call upcase! (with a bang) on the value be is pointing to.
+# Call upcase! (with a bang) on the value b is pointing to.
 b.upcase!
-# => "LOWERCASE"
+# => "CHEESEBURGER"
 
 # That means a is now also pointing to the modified value.
 a
-# => "LOWERCASE"
+# => "CHEESEBURGER"
 ```
 
 #### Exercise: Variable Assignment (20min)
