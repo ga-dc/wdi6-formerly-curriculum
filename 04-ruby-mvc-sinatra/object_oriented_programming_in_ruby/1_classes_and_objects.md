@@ -93,7 +93,7 @@ If we `require 'pry'` in our program, we can add `binding.pry` to any line to
 pause and get a pry REPL at that point in our code. We can then play with our
 code, see what the value of in-scope variables are, etc.
 
-## Writing Classes
+## Writing Classes (10 minutes)
 
 Classes are define with the `class` keyword:
 
@@ -201,14 +201,14 @@ me.hunger_level = -8        # changes hunger level, according to rules
 me.hunger_level             # returns 0
 ```
 
-## Exercise
+## Exercise (20 minutes)
 
 Clone this exercise and follow the instructions in the readme.
 
 **[Monkies!!!](https://github.com/ga-dc/oop_monkey)**
 
 
-### attr_reader, attr_writer, attr_accessor
+### attr_reader, attr_writer, attr_accessor (5 minutes)
 Since these getters and setters are so common, ruby gives us shortcuts to create
 them for us:
 
@@ -245,7 +245,6 @@ class Person
 
 end
 ```
-
 
 ## Why OOP? (10 mintues)
 
