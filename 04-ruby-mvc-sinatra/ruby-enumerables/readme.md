@@ -118,7 +118,7 @@ You know how the song goes...
 * "99 bottles of beer on the wall. 99 bottles of beer. Take one down. Pass it around. 98 bottles of beer on the wall."
 * "98 bottles of beer on the wall. 98 bottles of beer..."
 
-...and so on. Your job is to replicate the song 4 times, each time using one of the loops we just went over: `while`, `until`, `for` and `times`.
+...and so on. Your job is to replicate the song in its entirety 4 times, each time using one of the loops we just went over: `while`, `until`, `for` and `times`.
 
 **BONUS:** Use `next` so that the song only covers odd numbers.
 
