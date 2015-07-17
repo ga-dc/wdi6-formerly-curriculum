@@ -363,7 +363,7 @@ a
 
 #### Exercise: Variable Assignment (20min)
 
-[Exercise: Variable Assignment](https://github.com/ga-students/addbass-instructors/blob/master/w01/d02_ruby_basics/exercises/variable_assignment.md)
+[Exercise: Variable Assignment](https://gist.github.com/amaseda/35a62128d8795e045d49)
 * Work in pairs and answer the questions in the link above.
 * **NO CODING ALLOWED!** Stretch those brain muscles and talk these out with your partner.
 * Writing these out on your table/whiteboard with markers is strongly encouraged.
