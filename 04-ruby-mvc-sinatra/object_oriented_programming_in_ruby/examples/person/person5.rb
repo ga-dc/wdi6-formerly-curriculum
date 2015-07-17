@@ -7,11 +7,11 @@ class Person
 
   def intitialize(initial_name, initial_hunger_level)
     @name = initial_name
-    @hunger_level = initial_hunger_
+    @hunger_level = initial_hunger_level
   end
 
   def introduce
-    puts "Hello, I'm #{name}"
+    puts "Hello, I'm #{@name} "
   end
 
   # Custom setter for hunger_level
@@ -27,5 +27,5 @@ end
 
 binding.pry
 
-
-puts "program compelte" # fixes an issue with binding.pry if it's the last line of a program
+me = Person.new
+puts "program complete" # fixes an issue with binding.pry if it's the last line of a program
