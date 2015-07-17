@@ -256,7 +256,9 @@ Groups
 * **Group 5:** Select
 * **Group 6:** Inject/Reduce
 
-**Bonus:** If you find yourself with extra time, pick out another enumerable that wasn't assigned to a group. Or, think of another example for your assigned enumerable.
+**Bonus:** If you find yourself with extra time, you can:
+* Pick out another enumerable that wasn't assigned to a group.
+* ...and/or think of another example for your assigned enumerable.
 
 ### BREAK (10min)
 
