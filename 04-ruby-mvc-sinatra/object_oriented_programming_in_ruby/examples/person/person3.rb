@@ -6,7 +6,7 @@ class Person
   end
 
   def introduce
-    puts "Hello, I'm #{@name}"
+    puts "Hello, I'm #{name}"
   end
 end
 
