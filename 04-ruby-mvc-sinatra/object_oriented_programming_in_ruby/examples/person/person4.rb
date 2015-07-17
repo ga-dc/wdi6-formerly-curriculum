@@ -1,18 +1,18 @@
 require 'pry'
 
 class Person
-  def intitialize(initial_name, initial_hunger_level)
+  def initialize(initial_name, initial_hunger_level)
     @name = initial_name
-    @hunger_level = initial_hunger_
+    @hunger_level = initial_hunger_level
   end
 
   def introduce
-    puts "Hello, I'm #{name}"
+    puts "Hello, I'm #{@name}"
   end
 
-  # GETTER
-  def first_name
-    return @first_name
+  # GETTERS
+  def name
+    return @name
   end
 
   def hunger_level
@@ -52,4 +52,4 @@ binding.pry
 # me.hunger_level             # returns 0
 
 
-puts "program compelte" # fixes an issue with binding.pry if it's the last line of a program
+puts "program complete" # fixes an issue with binding.pry if it's the last line of a program

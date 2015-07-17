@@ -1,21 +1,26 @@
-require 'pry'
+  require 'pry'
 
 class Person
-  def intitialize(initial_name)
+  def initialize(initial_name)
     @name = initial_name
   end
 
   def introduce
-    puts "Hello, I'm #{name}"
+    puts "Hello, I'm #{@name}"
   end
 end
 
+
+# 1. Each instance gets a unique value for that var
+# 2. Can be used anywhere in the class
+
 me     = Person.new("Adam Bray")
-jesse  = Person.new("Jesse")
+me.introduce # prints "Hello, I'm Adam Bray"
+
+jesse  = Person.new("Jesse Shawl")
+jesse.introduce # prints "Hello, I'm Jesse Shawl"
 
 binding.pry
 
-# me.introduce # prints "Hello, I'm Adam Bray"
-# jesse.introduce # prints "Hello, I'm Jesse Shawl"
 
-puts "program compelte" # fixes an issue with binding.pry if it's the last line of a program
+puts "program complete" # fixes an issue with binding.pry if it's the last line of a program
