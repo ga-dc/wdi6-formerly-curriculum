@@ -22,7 +22,7 @@
 |---------------|--------------------------------|------------|
 | Wednesday PM  |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
 | Thursday PM   |                                |[High Card](https://github.com/ga-dc/high_card) |
-| Friday AM     |                                |            |
+| Friday AM     |                                |[Gladiator!](https://github.com/ga-dc/gladiator) |
 | Friday PM     |                                |            |
 | Monday AM     |                                |            |
 | Monday PM     |                                |            |
