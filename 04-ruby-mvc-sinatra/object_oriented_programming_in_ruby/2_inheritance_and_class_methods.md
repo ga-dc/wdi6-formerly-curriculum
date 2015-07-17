@@ -136,7 +136,7 @@ class Person
   # class method, notice the `self` in the definition, which refers to the
   # Person class
   def self.person_count
-    return @@count
+    return @@person_count
   end
 
 end
