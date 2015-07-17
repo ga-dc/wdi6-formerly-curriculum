@@ -130,7 +130,7 @@ class Person
 
   # instance method, just like we've seen before
   def introduce
-    puts "Hello, I'm #{name}, one of #{Person.count} people"
+    puts "Hello, I'm #{name}, one of #{Person.person_count} people"
   end
 
   # class method, notice the `self` in the definition, which refers to the
