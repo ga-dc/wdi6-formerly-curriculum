@@ -23,3 +23,23 @@ Variables in Ruby
   * starts with `@`
   * lower_snake_case
   * each instance gets its own unique copy of the variable
+
+* `@@person_count`
+  * **class variable**
+  * scope: anywhere in the class
+  * two `@`s
+  * one copy shared within the class and it's instance
+
+
+
+Instance Methods:
+  * defined without self in the name
+  * called on **instances**
+  * can reference instance vars
+  * can reference class vars
+
+Class Methods:
+  * define with like: `def self.method_name`
+  * called on the Class: e.g. `Person.person_count`
+  * can reference class vars
+  * can't reference instance methods/vars

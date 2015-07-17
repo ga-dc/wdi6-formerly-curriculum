@@ -4,13 +4,13 @@ class Person
   attr_accessor :name
   attr_reader :hunger_level
 
-  def intitialize(initial_name, initial_hunger_level)
+  def initialize(initial_name, initial_hunger_level)
     @name = initial_name
-    @hunger_level = initial_hunger_
+    @hunger_level = initial_hunger_level
   end
 
   def introduce
-    puts "Hello, I'm #{name}"
+    return "Hello, I'm #{name}"
   end
 
   # Custom setter for hunger_level
@@ -25,8 +25,11 @@ class Person
 end
 
 class LoudPerson < Person
+  def yell(words)
+    return words.upcase
+  end
   def introduce
-    puts "HELLO, I'M #{name.upcase}"
+    return "Hello, I'm #{name}".upcase
   end
 end
 
