@@ -6,7 +6,7 @@
 * Run Ruby code by REPL (Pry/Irb) and file.
 * Identify specific differences between Ruby and Javascript in the following areas...
   - Syntax
-  - Variables, Scope
+  - Variables
   - Fundamental Data Types
   - Data Collections
   - Conditionals
@@ -21,9 +21,6 @@
 
 HEADS UP: We are covering a lot of ground today. It's going to be a fast-paced class, so please raise your hand if I breeze over something quickly.
 * For small technical questions, please use Slack and one of the other instructors will help you out.
-
-Part of your homework last night was to identify a programming concept shared by Javascript and Ruby and compare/contrast its implementation in each of the languages.
-- BOARD: Share and write on board.
 
 #### What is Ruby? (5min)
 
@@ -69,7 +66,8 @@ The REPL: Pry
 
 ### Some Differences From Javascript
 
-Q: For homework you all had to identify some differences between Javascript and Ruby. What are some you noticed? [WHITEBOARD]
+Part of your homework last night was to identify a programming concept shared by Javascript and Ruby and compare/contrast its implementation in each of the languages.
+- BOARD: Share and write on board.
 
 #### Variables (5min)
 
