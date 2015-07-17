@@ -11,6 +11,7 @@ Enumerables are Ruby methods that use loops to interact with data collections in
 * You will use these!
 
 Q: What loops did we use in Javascript?
+- Q: Write out in JS, convert to Ruby.
 - In Ruby, we have a few more at our disposal...
 
 #### While
@@ -114,7 +115,7 @@ end
 ### Loops Exercise: 99 Bottles of Beer (10min)
 
 You know how the song goes...
-* "99 bottles of beer on the wall. 99 bottles of beer. Take one down. Pass it around. 98 bottles of bear on the wall."
+* "99 bottles of beer on the wall. 99 bottles of beer. Take one down. Pass it around. 98 bottles of beer on the wall."
 * "98 bottles of beer on the wall. 98 bottles of beer..."
 
 ...and so on. Your job is to replicate the song 4 times, each time using one of the loops we just went over: `while`, `until`, `for` and `times`.

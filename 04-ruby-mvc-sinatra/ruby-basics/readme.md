@@ -287,7 +287,7 @@ other_favorite_animal = :killer_whale
 another_favorite_animal = :"flying squirrel"
 ```
 
-You can convert symbols to other data types.
+You can convert symbols to -- but not replace them with -- other data types.
 
 ```ruby
 # To string
@@ -296,7 +296,7 @@ favorite_animal.to_s
 # => "dog"
 ```
 
-You can't change a symbol's value though...
+You cannot change a symbol's value...
 
 ```ruby
 :dog = :bird
@@ -305,8 +305,8 @@ You can't change a symbol's value though...
 
 When/why would you use symbols?
 * Make sure values that need to be constant stay constant.
+* Enhance performance. Use less memory.
 * Often used as keys in objects (hashes). More on that later this class.
-* Enhance performance.
 
 ### More on Variables (10min)
 
