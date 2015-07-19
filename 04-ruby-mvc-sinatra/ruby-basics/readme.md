@@ -6,7 +6,7 @@
 * Run Ruby code by REPL (Pry/Irb) and file.
 * Identify specific differences between Ruby and Javascript in the following areas...
   - Syntax
-  - Variables, Scope
+  - Variables
   - Fundamental Data Types
   - Data Collections
   - Conditionals
@@ -21,9 +21,6 @@
 
 HEADS UP: We are covering a lot of ground today. It's going to be a fast-paced class, so please raise your hand if I breeze over something quickly.
 * For small technical questions, please use Slack and one of the other instructors will help you out.
-
-Part of your homework last night was to identify a programming concept shared by Javascript and Ruby and compare/contrast its implementation in each of the languages.
-- BOARD: Share and write on board.
 
 #### What is Ruby? (5min)
 
@@ -69,7 +66,8 @@ The REPL: Pry
 
 ### Some Differences From Javascript
 
-Q: For homework you all had to identify some differences between Javascript and Ruby. What are some you noticed? [WHITEBOARD]
+Part of your homework last night was to identify a programming concept shared by Javascript and Ruby and compare/contrast its implementation in each of the languages.
+- BOARD: Share and write on board.
 
 #### Variables (5min)
 
@@ -287,7 +285,7 @@ other_favorite_animal = :killer_whale
 another_favorite_animal = :"flying squirrel"
 ```
 
-You can convert symbols to other data types.
+You can convert symbols to -- but not replace them with -- other data types.
 
 ```ruby
 # To string
@@ -296,7 +294,7 @@ favorite_animal.to_s
 # => "dog"
 ```
 
-You can't change a symbol's value though...
+You cannot change a symbol's value...
 
 ```ruby
 :dog = :bird
@@ -305,8 +303,8 @@ You can't change a symbol's value though...
 
 When/why would you use symbols?
 * Make sure values that need to be constant stay constant.
+* Enhance performance. Use less memory.
 * Often used as keys in objects (hashes). More on that later this class.
-* Enhance performance.
 
 ### More on Variables (10min)
 
@@ -347,23 +345,23 @@ Methods with an `!` attached to the end of them usually means that they will mod
 
 ```ruby
 # a points to a memory location containing 5
-a = "lowercase"
+a = "cheeseburger"
 
 # b now points to that same memory location
 b = a
 
-# Call upcase! (with a bang) on the value be is pointing to.
+# Call upcase! (with a bang) on the value b is pointing to.
 b.upcase!
-# => "LOWERCASE"
+# => "CHEESEBURGER"
 
 # That means a is now also pointing to the modified value.
 a
-# => "LOWERCASE"
+# => "CHEESEBURGER"
 ```
 
 #### Exercise: Variable Assignment (20min)
 
-[Exercise: Variable Assignment](https://github.com/ga-students/addbass-instructors/blob/master/w01/d02_ruby_basics/exercises/variable_assignment.md)
+[Exercise: Variable Assignment](https://gist.github.com/amaseda/35a62128d8795e045d49)
 * Work in pairs and answer the questions in the link above.
 * **NO CODING ALLOWED!** Stretch those brain muscles and talk these out with your partner.
 * Writing these out on your table/whiteboard with markers is strongly encouraged.

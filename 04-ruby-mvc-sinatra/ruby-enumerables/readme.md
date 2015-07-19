@@ -11,6 +11,7 @@ Enumerables are Ruby methods that use loops to interact with data collections in
 * You will use these!
 
 Q: What loops did we use in Javascript?
+- Q: Write out in JS, convert to Ruby.
 - In Ruby, we have a few more at our disposal...
 
 #### While
@@ -114,10 +115,10 @@ end
 ### Loops Exercise: 99 Bottles of Beer (10min)
 
 You know how the song goes...
-* "99 bottles of beer on the wall. 99 bottles of beer. Take one down. Pass it around. 98 bottles of bear on the wall."
+* "99 bottles of beer on the wall. 99 bottles of beer. Take one down. Pass it around. 98 bottles of beer on the wall."
 * "98 bottles of beer on the wall. 98 bottles of beer..."
 
-...and so on. Your job is to replicate the song 4 times, each time using one of the loops we just went over: `while`, `until`, `for` and `times`.
+...and so on. Your job is to replicate the song in its entirety 4 times, each time using one of the loops we just went over: `while`, `until`, `for` and `times`.
 
 **BONUS:** Use `next` so that the song only covers odd numbers.
 
@@ -178,7 +179,7 @@ Single-line
 * { } - replaces `do` and `end`; contains the iteration variable and code block
 * `|number|` - iteration variable
 
-##### Exercise: Practice Each (10min)
+#### Exercise: Practice Each (10min)
 
 Use `each` to do the following...  
 
@@ -241,35 +242,23 @@ doubled
 
 **DIAGRAM:** MAP
 
-##### Select (5min)
+### Group Exercise: Documentation Dive (25min)
 
-Returns elements in a collection for which a code block returns true.
-* In the below example, we will only print a collection value if it is even...
-
-```ruby
-numbers = [ 1, 2, 3, 4, 5 ]
-numbers.select do |number|
-  number % 2 == 0
-end
-
-# Alternate syntax
-numbers = [ 1, 2, 3, 4, 5 ]
-numbers.select { |number| number % 2 == 0 }
-```
-
-### Group Exercise: Documentation Dive (30min)
-
-Instructions: Each group will spend **15 minutes** using Ruby documentation to look up an assigned enumerable. Prepare a layman's definition of what it does and whiteboard an example.
+Instructions: Each group will spend **10 minutes** using Ruby documentation to look up an assigned enumerable. Prepare your own definition of what it does and whiteboard an example.
 * You can test your example in Ruby/Pry.
 * [Documentation](http://ruby-doc.org/core-2.2.2/Enumerable.html)
 
 Groups
-* **Group 1:** Each (on a hash)
-* **Group 2:** Each With Index
-* **Group 3:** Reject
-* **Group 4:** Find
-* **Group 5:** Sort
-* **Group 6:** Inject
+* **Group 1:** Each With Index
+* **Group 2:** Reject
+* **Group 3:** Find
+* **Group 4:** Select
+* **Group 5:** Partition
+* **Group 6:** Inject/Reduce
+
+**Bonus:** If you find yourself with extra time, you can:
+* Pick out another enumerable that wasn't assigned to a group.
+* ...and/or think of another example for your assigned enumerable.
 
 ### BREAK (10min)
 

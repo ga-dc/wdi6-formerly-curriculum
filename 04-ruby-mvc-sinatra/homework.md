@@ -3,9 +3,9 @@
 ## Peanut Butter
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Thursday PM   |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
-| Friday AM     |                                |            |
-| Friday PM     |                                |            |
+| Wednesday PM  |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
+| Thursday PM   |                                | N/A |
+| Friday        |                                |[High Card](https://github.com/ga-dc/high_card) |
 | Monday AM     |                                |            |
 | Monday PM     |                                |            |
 | Tuesday AM    |                                |            |
@@ -19,9 +19,9 @@
 ## Jelly
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Thursday PM   |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
-| Friday AM     |                                |            |
-| Friday PM     |                                |            |
+| Wednesday PM  |                                |[Try Ruby](https://github.com/ga-dc/try-ruby) |
+| Thursday PM   |                                |[High Card](https://github.com/ga-dc/high_card) |
+| Friday        |                                |[Gladiator!](https://github.com/ga-dc/gladiator) |
 | Monday AM     |                                |            |
 | Monday PM     |                                |            |
 | Tuesday AM    |                                |            |
@@ -31,4 +31,3 @@
 | Thursday  AM  |                                |            |
 | Thursday  PM  |                                |            |
 | Friday        |                                |            |
-
