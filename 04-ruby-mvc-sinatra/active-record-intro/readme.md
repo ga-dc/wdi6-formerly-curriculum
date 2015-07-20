@@ -466,3 +466,6 @@ Instructor.last.students.create(first_name: "George", last_name: "Costanza", age
 ```
 
 ### Seeding a database( you do- 10m)
+- create a seed file that contains all dependencies and establish connection to database /w Active Record
+- in the seed file create at least 2 doctors and 4 patients
+- make sure you destroy all objects before creating new ones
