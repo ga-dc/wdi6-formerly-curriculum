@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="4.3" data-basepath="../.." data-revision="Mon Jul 20 2015 15:31:45 GMT+0000 (UTC)">
+    <div class="book" data-level="4.3" data-basepath="../.." data-revision="Mon Jul 20 2015 17:30:31 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -852,7 +852,7 @@ CREATE DATABASE pbj;
 
 \?
 # Shows available commands if you get stuck
-</code></pre><pre><code>CREATE TABLE students ( id SERIAL PRIMARY KEY, first_name VARCHAR NOT NULL, last_name VARCHAR NOT NULL, quote TEXT NOT NULL, birthday VARCHAR NOT NULL, ssn INT NOT NULL UNIQUE );
+</code></pre><pre><code>CREATE TABLE students ( id SERIAL PRIMARY KEY, first_name VARCHAR NOT NULL, last_name VARCHAR NOT NULL, quote TEXT, birthday VARCHAR, ssn INT NOT NULL UNIQUE );
 \d
 SELECT * FROM students;
 </code></pre><h2 id="a-sql-command">A SQL Command</h2>
@@ -866,8 +866,8 @@ SELECT * FROM students;
 <pre><code>id SERIAL PRIMARY KEY
 first_name VARCHAR NOT NULL
 last_name VARCHAR NOT NULL
-quote TEXT NOT NULL
-birthday VARCHAR NOT NULL
+quote TEXT
+birthday VARCHAR
 ssn INT NOT NULL UNIQUE
 </code></pre><hr>
 <h3 id="defining-a-column">Defining a column</h3>
@@ -897,7 +897,7 @@ SELECT (
 # What does it do?
 # What does * stand for?
 
-INSERT INTO students (first_name, last_name, quote, birthday, ssn) VALUES (&apos;Robin&apos;, &apos;Thomas&apos;, &apos;Two goldfish are in a tank. One says, &quot;Know how to drive this thing?&quot;, &apos;April 1&apos;, 8675309);
+INSERT INTO students (first_name, last_name) VALUES (&apos;Robin&apos;, &apos;Thomas&apos;);
 # This won&apos;t work!
 
 INSERT INTO students (first_name, last_name, quote, birthday, ssn) VALUES (&apos;Robin&apos;, &apos;Thomas&apos;, &apos;Two goldfish are in a tank. One says, &quot;Know how to drive this thing?&quot;&apos;, &apos;April 1&apos;, 8675309);
@@ -924,23 +924,40 @@ DROP DATABASE pbj;
 </ul>
 <h2 id="exercise">Exercise!</h2>
 <ul>
-<li>Enter all students into your database!</li>
+<li>Create authors
+author:
+first_name (required),
+last_name (required),
+pen_name (optional),
+birthdate (optional)</li>
 </ul>
+<p>First, let&apos;s nail down the data types.
+Then, insert some data.</p>
 <h2 id="and-then">And then...</h2>
-<pre><code>SELECT * FROM students WHERE CHAR_LENGTH(quote) &gt; 100;
+<p>Control the results:</p>
+<pre><code>SELECT * from authors;
 
-SELECT quote FROM students WHERE CHAR_LENGTH(quote) &gt; 100;
+SELECT * FROM authors ORDER BY first_name ASC;
 
-SELECT * FROM students WHERE SUBSTRING(first_name from 1 for 1) = &apos;R&apos;;
-# Dat index tho.
+SELECT last_name, first_name FROM authors ORDER BY last_name DESC;
 
-SELECT * FROM students ORDER BY first_name ASC;
+# by length of last_name
+SELECT * FROM books WHERE CHAR_LENGTH(last_name) &lt; 8;
 
-SELECT * FROM students ORDER BY first_name DESC;
-</code></pre><h2 id="putting-it-with-ruby">Putting it with Ruby</h2>
+# Limit what is returned
+SELECT last_name FROM authors WHERE CHAR_LENGTH(last_name) &gt; 8;
+
+# Select an author by first letter
+SELECT * FROM authors WHERE first_name LIKE  &apos;R%&apos;;
+# % is a wildcard (like &quot;*&quot;)
+
+# old enough to drive?
+# birthday &gt; ???
+</code></pre><p>It&apos;s important to note that you haven&apos;t changed anything.  These are read-only views into the data.</p>
+<h2 id="putting-it-with-ruby">Putting it with Ruby</h2>
 <pre><code>require &quot;pg&quot;
 connection = PG.connect(:hostaddr =&gt; &quot;127.0.0.1&quot;, :port =&gt; 5432, :dbname =&gt; &quot;pbj&quot;)
-results = connection.exec(&quot;SELECT * FROM students&quot;)
+results = connection.exec(&quot;SELECT * FROM authors&quot;)
 
 #Does NOT return a hash!
 
@@ -958,31 +975,14 @@ end
 </ul>
 </li>
 </ul>
-<pre><code>connection.prepare(&apos;insert_student_statement&apos;, &apos;INSERT INTO students (first_name, last_name, quote, birthday, ssn) values ($1, $2, $3, $4, $5)&apos;)
-connection.exec_prepared(&apos;insert_student_statement&apos;, [ &apos;Jesse&apos;, &apos;Shawl&apos;, &apos;I like turtles.&apos;, &apos;Febtemper 32nd&apos;, 1234567])
-</code></pre><h2 id="pre-joins">Pre-Joins</h2>
-<p>First, add in a new column to the table</p>
-<pre><code>ALTER TABLE students ADD COLUMN gender VARCHAR(1);
-# What does VARCHAR(1) do?
-</code></pre><p>Then fill it in.</p>
-<ul>
-<li>Instead of writing <code>UPDATE (blah blah blah)</code> a bunch of times, try doing it in Ruby!</li>
-</ul>
-<pre><code>require &quot;pg&quot;
-connection = PG.connect(:hostaddr =&gt; &quot;127.0.0.1&quot;, :port =&gt; 5432, :dbname =&gt; &quot;pbj&quot;)
-students = connection.exec(&quot;SELECT * FROM students&quot;);
-students.each do |student|
-  first_name = student[&quot;first_name&quot;]
-  if [&quot;Brittany&quot;,&quot;Janice&quot;,&quot;Julia&quot;,&quot;Haleigh&quot;,&quot;Sarah&quot;,&quot;Gwen&quot;,&quot;Lindsay&quot;].include? first_name
-    gender = &quot;f&quot;
-  else
-    gender = &quot;m&quot;
-  end
-  connection.exec(&quot;UPDATE students SET gender = &apos;#{gender}&apos; WHERE first_name = &apos;#{first_name}&apos;&quot;)
-end
-</code></pre><p>Then split the table in half.</p>
-<pre><code>CREATE TABLE students2 AS SELECT * FROM students WHERE (random() &lt; .5);
-</code></pre><h2 id="actual-joins">Actual Joins</h2>
+<pre><code>connection.prepare(&apos;insert_student_statement&apos;, &apos;INSERT INTO authors (first_name, last_name, pen_name) values ($1, $2, $3, $4, $5)&apos;)
+connection.exec_prepared(&apos;insert_student_statement&apos;, [ &apos;J.K.&apos;, &apos;Rowling&apos;, &apos;Robert Gailbraith&apos;, &quot;1965/07/31&quot;])
+</code></pre><h2 id="joins">Joins</h2>
+<p>Add books!
+books: title, published_at</p>
+<p>Then fill it in.  Don&apos;t forget the relationship to author.</p>
+<p>Bonus: Try it with Ruby.</p>
+<h2 id="joins">Joins</h2>
 <ul>
 <li>Inner Join<ul>
 <li>Combines records that match both sides</li>
@@ -1003,11 +1003,21 @@ end
 </ul>
 </li>
 </ul>
-<pre><code>SELECT * FROM students INNER JOIN students2 ON (students.gender = students2.gender);
+<pre><code>SELECT * FROM books INNER JOIN books ON (books.author_id = author.id);
 
-SELECT * FROM students LEFT OUTER JOIN students2 ON (students.gender = students2.gender);
+SELECT * FROM authors INNER JOIN books ON (books.author_id = author.id);
 
-SELECT * FROM students LEFT JOIN students2 ON (students.gender = students2.gender);
+SELECT authors.*, book.title FROM authors INNER JOIN books ON (books.author_id = author.id);
+
+SELECT authors.*, books.*
+FROM authors
+LEFT OUTER JOIN books
+ON (books.author_id = author.id);
+
+SELECT authors.*, books.*
+FROM authors
+LEFT JOIN books
+ON (books.author_id = author.id);
 </code></pre><p><a href="http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/" target="_blank">http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/</a></p>
 <h3 id="non-relational-database-no-sql">Non-relational database (No SQL)</h3>
 <ul>
