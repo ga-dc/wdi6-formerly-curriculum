@@ -27,6 +27,7 @@ Information Dive(5m)
 For the next 5 minutes, research what ORM's are.
 
 [ORM - wikipedia](https://en.wikipedia.org/wiki/Object-relational_mapping)
+
 [AR Read 1.1 - 1.3](http://guides.rubyonrails.org/active_record_basics.html)
 
 T&T (5m)
