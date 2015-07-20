@@ -2,32 +2,39 @@
 
 One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
 
-## Mon Jul 21
+## Mon Jul 20
 
-- Laura Nawrocki
+- Outcomes
+
+## Tue Jul 21
+
+- Laura N.
 - **Open Appointment Time**
+- Eddie P.
 
 ## Wed Jul 22
 
-- Cheikh Ndiongue
-- Nicholas Olds
+- Cheikh N.
+- Nicholas O.
 
 ## Thur Jul 23
 
-- Malissa Cruz Romero
-
----
+- Malissa R.
 
 ## Mon Jul 27
 
-- Rosel Padilla
+- Rosel P.
 - **Open Appointment Time**
 
-## Wed Jul 29
+## Tue Jul 28
 
-- Edward Park
-- Lon Phelps
+- Outcomes
 
-## Thur Jul 30
+## Wed Jul 28
 
-- Justin Price
+- Eddie P.
+- Lon P.
+
+## Thur Jul 29
+
+- Justin P.
