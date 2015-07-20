@@ -33,11 +33,21 @@ Join your squad at a section of whiteboard and solve this problem.  We need a vo
 
 ---
 
-### Steps ?
-
-> Q. Going around the room, where going to build a frankenstein list of our steps.  Group 1 provides their step 1, Group 2 provides *their* step 2, and so on.
+A.  That's probably a good first step right?  This was intentionally open ended.  I bet that one problem you identified is that this isn't just a Table Waiter problem, it's also a group dynamics problem.
 
 ---
+
+### Steps ?
+
+> Q. Going around the room, where going to build a list of our steps.  Group 1 provides their step 1, Group 2 provides *their* step 2, and so on.
+
+---
+
+### Synch or Asynch
+
+> Q. Can we just follow these steps in order, top to bottom?
+
+A. No way.  Right?  We have to respond to events.  After I deliver drinks, I need to evaluate the next step, based on some business rules.
 
 ### Steps
 
@@ -114,6 +124,7 @@ Practices:
 - paradigm shift
 - phone a friend
 - simplify
+- think outside the box
 
 ### Timebox:
 > fugit inreparabile tempus - Virgil
@@ -145,13 +156,22 @@ I'm simply amazed at how many issues can be solved by simply sharing your proble
 ### Simplify
 > KISS - Gene Simmons
 
-> The key to organization is gtting comfortable with your trashcan and your delete key.  - Matt Scilipoti
+> The key to organization is getting comfortable with your trashcan and your delete key.  - Matt Scilipoti
 
 Simplify.  Simplify.  Reduce.  Cut scope.  Tackle the problem in isolation.
+
+### Think outside the box
+> If we weren't all crazy, we would go insane.  - Jimmy Buffet.
+
+Is there some wacky, crazy, no-one would ever do this idea that just might work?  How just something significantly different.  Spend a few moments considering them.
+
+Think about the guy that invented fiberboard, a mix of sawdust and glue.  He bought up all the contracts for collecting sawdust from sawmills.  People paid him to come collect the raw materials for his product.
 
 ---
 
 ## Exercise:
+
+This time focus on following the provided steps.  Pick an "accountabili-buddy" to hold you to it.
 
 https://github.com/ga-dc/problem_modeling
 
