@@ -25,6 +25,7 @@ We now have a way to persist data in a database. We've also learned about OOP in
 
 Information Dive(5m)
 For the next 5 minutes, research what ORM's are.
+
 [ORM - wikipedia](https://en.wikipedia.org/wiki/Object-relational_mapping)
 [AR Read 1.1 - 1.3](http://guides.rubyonrails.org/active_record_basics.html)
 
