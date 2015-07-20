@@ -2,30 +2,30 @@
 
 One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
 
-## Mon Jul 6
+## Tues Jul 21
 
 - Kevin Cole Jr
 - Matt Curtis
 
-## Wed Jul 8
+## Wed Jul 22
 
 - Peter Cutler
 - Preston Davies
 
-## Thur Jul 9
+## Thur Jul 23
 
 - Nayana Davis
 - **Open Appointment Time**
 
-## Mon Jul 13
+## Mon Jul 27
 
 - Karl Donus
 - Paul Doulatshahi
 
-## Wed Jul 15
+## Wed Jul 29
 
 - Mike Dulik
 
-## Thur Jul 16
+## Thur Jul 30
 
 - **Open Appointment Time**
