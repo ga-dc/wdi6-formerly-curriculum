@@ -45,12 +45,14 @@ Create routes for the following requests. The first one is done for you.
 So far, we know how to make GET requests only. We do this by visiting a URL in a browser. The browser then
 initiates a GET request to the provided path (the URL you entered.)
 
+[Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop) is a Chrome app
+that allows you to make different HTTP requests
+
 Form submissions initiate POST requests. (example here submitting a form to restful.link)
 
 Postman allows us to easily test different types of requests.
 
 Let's compare the output of GET requests initiated in Postman and in the browser.
-
 
 ## Sinatra
 
