@@ -62,7 +62,7 @@ In a nutshell, if you don't follow the conventions, you're going to have a bad t
 
 Alright! Let's get started with some code!
 
-### Setup SQL(I do - 10m)
+### Setup SQL - WDI(I do - 10m)
 > Throughout the day, I'll be doing some code simulating a "wdi application" then you guys will code a "hospital application"
 
 For the morning, I want to be able to do CRUD to a model with Active Record.  The first thing that I want to do is create/setup a database.
@@ -103,7 +103,7 @@ Why did we do this? Why not just go into psql and create the tables in postgres?
 
 It'll be nice going forward with your application that we package the schema up so that its modular. We can have others quickly pick up our code and have our exact database setup.
 
-### Setup SQL( You do - 10m )
+### Setup SQL - Hospital( You do - 10m )
 Now it's your turn! Create a `hospital_schema.sql` file!
 
 In the schema, create a patients table, patients should have:
@@ -116,7 +116,7 @@ Now create a hospital database and load the schema
 
 ### Suggested Break (10m)
 
-### Setup ruby (I do - 10m)
+### Setup ruby - WDI (I do - 10m)
 Great, now we have a table loaded into our database we're now ready to get started on the ruby side.
 Let's first create all the directories/files we're going to need in the terminal:
 
@@ -144,7 +144,7 @@ gem "pry"
 
 Then I'm going to run `$ bundle install` in the terminal.
 
-### Setup Ruby (You do - 10m)
+### Setup Ruby - Hopsital (You do - 10m)
 
 - Create an `app.rb` file for this application
 - Create a Gemfile
@@ -152,7 +152,7 @@ Then I'm going to run `$ bundle install` in the terminal.
 - Create a file that will contain your AR class definition for doctors
 - Load dependencies into Gemfile and then bundle install
 
-### Functionality (I do- 20m)
+### Functionality - WDI (I do- 20m)
 
 In the `models/student.rb` file:
 
@@ -199,13 +199,13 @@ binding.pry
 
 > note the difference between `require` and `require_relative`. With `require` we are getting gems and `require_relative` we are getting files relative to the location of the file we wrote `require_relative` in
 
-### Functionality (You do - 10m)
+### Functionality - Hopsital (You do - 10m)
 - Define your model in `models/patient.rb`
 - require dependencies in `app.rb`
 - Establish connection to database using AR
 - load pry at the end of `app.rb`
 
-### Methods(~60m until lunch finish after lunch)
+### Methods - WDI(~60m until lunch finish after lunch)
 
 Great! We've got everything done that we need to get setup with single model CRUD in our application. Let's run it in the terminal:
 
@@ -291,7 +291,7 @@ george.destroy
 
 > This is exciting stuff by the way, imagine, while we do these things, that our students model is instead a post on facebook, or a comment on facebook. So the next time you comment on someone's facebook page you have an idea now of whats happening on the database layer. Maybe not the whole picture, but you have an idea. We're going to build on that idea in the coming week and half, and thats really exciting.
 
-### Methods (you do- in pry!)
+### Methods - Hospital (you do- in pry!)
 
 - create 5 patients in your database 3 should have the ailment: "chicken pox"
 - create a patient without saving it and store it in a variable
@@ -326,7 +326,7 @@ When we start organizing our objects in this manner and program these associatio
 > note that this is just speaking at a high level and not neccessarily actual code, though some of it actually is!
 
 Let's see what some of this stuff looks like in code. We're going to be adding an instructor model to our program.
-### Updating Schema (I do - 10m)
+### Updating Schema - WDI (I do - 10m)
 
 The first thing I want to do is update my schema to add another table and reflect the association.
 
@@ -359,7 +359,7 @@ Lets go ahead and update the database to reflect our current schema in the termi
 $ psql -d wdi < wdi_schema.sql
 ```
 
-### Updating Schema - Hopsital(You do - 10m)
+### Updating Schema - Hopsital (You do - 10m)
 - For the Hospital application we'll be adding a Doctor model
 - Create a new table for doctors in postgres it should have the following attributes
   - first_name
@@ -368,7 +368,7 @@ $ psql -d wdi < wdi_schema.sql
 - make sure to add an attribute to patients so that they belong to a doctor
 - load the schema to the database
 
-### Updating Class Definitions - (I do 10m)
+### Updating Class Definitions - WDI (I do 10m)
 Next I want to create a new file for my Instructor AR Class definition `$ touch models/instructor.rb`. In it i'll put:
 
 
@@ -393,12 +393,12 @@ we also need to include the `models/instructor.rb` file into our `app.rb` so in 
 require_relative "models/instructor"
 ```
 
-### Updating Class Defintions - (You do 5m)
+### Updating Class Defintions - Hospital (You do 5m)
 - Create a file that will contain your AR class definition for Doctor
 - make sure to link that file in your main application file
 - add corresponding associations
 
-### Association helper methods (30 m)
+### Association helper methods - WDI (I do 30 m)
 So we added some code, but we're not entirely sure what that did.
 
 Basically when we added those two lines of code `has_many :students` `belongs_to :instructor` we created some helper methods that allow us to query the database more effectively.
@@ -448,7 +448,7 @@ jesse.students.create(first_name: "baskin", last_name: "robbins", age: 34, job: 
 ```
 > note that we did not pass in an instructor id above. Active Record is smart and does that for us.
 
-### Association helper methods - (you do 15m)
+### Association helper methods - Hospital (you do 15m)
 
 - Create at least 2 doctors in your database
 - Create at least 4 patients in your database that belong to one of the two doctors
@@ -456,7 +456,7 @@ jesse.students.create(first_name: "baskin", last_name: "robbins", age: 34, job: 
 - Query the database for the doctor of the last patient you created
 - Create a new patient without a doctor id, and use the setter method to associate a doctor to that patient
 
-### Seeding a database (15m)
+### Seeding a database - WDI (15m)
 Seeding a database is not all that different from the things we've been doing today. What's the purpose of seed data? (ST-WG)
 
 We want some sort of data in our database so that we can test our applications. Let's create our seed file in the terminal: `$ touch config/seeds.rb`
@@ -487,7 +487,7 @@ Instructor.last.students.create(first_name: "George", last_name: "Costanza", age
 
 ```
 
-### Seeding a database( you do- 10m)
+### Seeding a database - Hopsital ( you do- 10m)
 - create a seed file that contains all dependencies and establish connection to database /w Active Record
 - in the seed file create at least 2 doctors and 4 patients
 - make sure you destroy all objects before creating new ones
