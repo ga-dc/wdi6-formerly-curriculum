@@ -15,7 +15,7 @@
   - where
   - update
   - destroy
-- Differentiate between class versus instant methods
+- Differentiate between class versus instant methods in Active Record objects/classes
 - Utilize `has_many`, `belongs_to` to establish associations/relationships with AR
 - Seed a database using AR
 
