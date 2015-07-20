@@ -302,7 +302,7 @@ george.destroy
 ## Associations
 
 ### Reframing (10m)
-We use SQL because it is a relational database. But what does that really mean? Basically we want the ability to associate models in our domain. That can come in a variety of ways in a relational database, but at the heart of it is essentially to this:
+We use SQL because it is a relational database. But what does that really mean? Basically we want the ability to associate models in our domain. That can come in a variety of ways in a relational database, but at the heart of it is essentially this:
 
 One model has many other instances of another model. And that other model belongs to the original. Not really clear, eh?
 
