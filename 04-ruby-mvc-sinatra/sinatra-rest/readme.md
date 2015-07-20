@@ -56,6 +56,13 @@ Let's compare the output of GET requests initiated in Postman and in the browser
 
 >Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort
 
+### Useful Links
+
+- [Intro to Sinata](http://www.sinatrarb.com/intro.html)
+- [Sinatra in the wild](http://www.sinatrarb.com/wild.html)
+- [Sinatra Documentation](http://www.sinatrarb.com/documentation.html)
+- [Sinatra Recipes](http://recipes.sinatrarb.com/)
+
 ```ruby
 # myapp.rb
 require 'sinatra'
@@ -188,7 +195,6 @@ https://github.com/ga-dc/pair_programming_bot
 
 ## We do: Forms
 
-
 Forms with a POST action are useful for creating new things.
 
 ```html
@@ -209,6 +215,6 @@ Forms with a GET action are useful for search forms.
 
 **Question**: What's the benefit of using GET requests with search forms?
 
-## You do: Ultimate Complement
+## You do: Emergency Complement
 
 https://github.com/ga-dc/emergency_compliment
