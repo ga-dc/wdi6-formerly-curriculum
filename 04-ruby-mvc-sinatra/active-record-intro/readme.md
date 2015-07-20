@@ -287,7 +287,7 @@ One model has many other instances of another model. And that other model belong
 
 Let's take a look at an example in the wild.
 
-With the application Facebook, there are many users. Each of these users have several models associated with them. Let's look at one in specific. We'll be looking at posts(status updates)
+With the application Facebook, there are many users. Each of these users have several models associated with them. Let's look at one more closely. We'll be looking at posts(status updates)
 
 The first model we'll be looking at is Users. The second is Posts.
 
