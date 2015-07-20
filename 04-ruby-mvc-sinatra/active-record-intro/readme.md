@@ -32,8 +32,8 @@ For the next 5 minutes, research what ORM's are.
 
 T&T (5m)
 Now, turn & talk to your neighbor and discuss:
-- at a high level, what ORM's are how they might be useful
-- whats the importance of interfacing the server with the database
+- at a high level, what ORM's are and how they might be useful
+- what's the importance of interfacing the server with the database
 
 ## ORM's & Active Record (15m)
 - *Official* wikipedia definition. A programming technique for converting data between incompatible type systems in object-oriented programming languages.
@@ -134,6 +134,8 @@ $ touch models/student.rb
 In the `Gemfile`:
 
 ```ruby
+gem "pg"
+# this gem allows ruby to talk to postgres
 gem "activerecord"
 # this gem provides a connection between your ruby classes to relational database tables
 gem "pry"
