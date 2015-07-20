@@ -6,7 +6,8 @@
 | Wednesday PM  |                                | [Try Ruby](https://github.com/ga-dc/try-ruby) |
 | Thursday PM   |                                | N/A |
 | Friday        |                                | [High Card](https://github.com/ga-dc/high_card) |
-| Monday        |                                | [Objects for landlord](https://github.com/ga-dc/landlord-1) |
+| Monday        | Due Tuesday AM                 | [Objects for landlord](https://github.com/ga-dc/landlord-1) |
+| Monday        | Due Thursday AM                | [Gladiator](https://github.com/ga-dc/gladiator) |
 | Tuesday       |                                | [create views / wireframes](https://github.com/ga-dc/landlord-3) |
 | Wednesday     |                                | [persist data with active record](https://github.com/ga-dc/landlord-2) |
 | Thursday      |                                | [connect sinatra to db](https://github.com/ga-dc/landlord-4) |
