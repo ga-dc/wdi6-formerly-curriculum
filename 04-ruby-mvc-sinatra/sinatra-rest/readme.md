@@ -8,6 +8,7 @@
 - Define routes using Sinatra
 - Define routes with URL parameters and access those parameters
 - Use erb to create reusable views and templates
+- Access data from global params hash
 - Use a global template - layout.erb
 - Use forms to submit POST and GET requests
 
