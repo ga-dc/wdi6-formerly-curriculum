@@ -56,8 +56,10 @@ Basically Active Record and Rails has a whole bunch of conventions that it follo
 
 Alright! Let's get started with some code!
 
-### Setup (20m)
-For the morning, I want to be able to do CRUD to a model with Active Record. The first thing that I want to do is create/setup a database.
+### Setup SQL(I do - 10m)
+> Throughout the day, I'll be doing some code simulating a "wdi application" then you guys will code a "hospital application"
+
+For the morning, I want to be able to do CRUD to a model with Active Record.  The first thing that I want to do is create/setup a database.
 
 First let's create our database and create our schema file in the terminal:
 
@@ -73,6 +75,8 @@ Next, I want to update the schema file and then load a schema for our model into
 in `wdi_schema.sql` file:
 
 ```sql
+DROP TABLE IF EXISTS students;
+
 CREATE TABLE students (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
@@ -88,6 +92,20 @@ now lets load the `wdi_schema.sql` in the terminal:
 $ psql -d wdi < wdi_schema.sql
 ```
 
+### Setup SQL( You do - 10m )
+Now it's your turn! Create a `hospital_schema.sql` file!
+
+In the schema, create a patients table, patients should have:
+- first_name
+- last_name
+- ailment
+- favorite_food
+
+Now create a hospital database and load the schema
+
+### Suggested Break (10m)
+
+### Setup ruby (I do - 10m)
 Great, now we have a table loaded into our database we're now ready to get started on the ruby side.
 Let's first create all the directories/files we're going to need in the terminal:
 
@@ -113,7 +131,15 @@ gem "pry"
 # this gem allows access to REPL
 ```
 
-### Functionality (20m)
+### Setup Ruby (You do - 10m)
+
+- Create an `app.rb` file for this application
+- Create a Gemfile
+- Create a folder for your models
+- Create a file that will contain your AR class definition for doctors
+- Load dependencies into Gemfile
+
+### Functionality (I do- 20m)
 
 In the `models/student.rb` file:
 
@@ -148,6 +174,14 @@ binding.pry
 
 > note the difference between `require` and `require_relative`. With `require` we are getting gems and `require_relative` we are getting files relative to the location of the file we wrote `require_relative` in
 
+### Functionality (You do - 10m)
+- Define your model in `models/patient.rb`
+- require dependencies in `app.rb`
+- Establish connection to database using AR
+- load pry at the end of `app.rb`
+
+### Methods(~60m until lunch finish after lunch)
+
 Great! We've got everything done that we need to get setup with single model CRUD in our application. Let's run it in the terminal:
 
 ```bash
@@ -158,7 +192,6 @@ When we run this app, we can see that it drops us into pry. Let's write some cod
 
 First I'm going to write class and instance on the board, so we can write these down when we do them depending on what kind they are.
 
-Methods(30m)
 
 creating an instance of the Student object on the ruby side, but not saving:
 
@@ -171,7 +204,7 @@ saving to the database using `.save`:
 george.save
 ```
 
-if you want to create and instance of an object AND save to the database we use `.create`:
+if you want to create an instance of an object AND save to the database we use `.create`:
 
 ```ruby
 george = Student.create(first_name: "George", last_name: "Washington", age: 270, job: "da man")
@@ -216,13 +249,220 @@ If you want all students that meet a certain query then we use `.where`:
 Student.where(first_name: "George")
 ```
 
-- create
-- new
-- save
-- all
-- find, find_by
-- where
-- update
-- destroy
+We can also update attributes and save at the same time using the `.update` method:
+
+```ruby
+george = Student.find_by(first_name: "George")
+george.update(job: "surfer", last_name: "Costanza")
+```
+
+Finally we can also just destroy/delete rows in our database with the `.destroy` method:
+
+```ruby
+george = Student.find_by(first_name: "George")
+george.destroy
+# goodbye george you're gone forever
+```
 
 > This is exciting stuff by the way, imagine, while we do these things, that our students model is instead a post on facebook, or a comment on facebook. So the next time you comment on someone's facebook page you have an idea now of whats happening on the database layer. Maybe not the whole picture, but you have an idea. We're going to build on that idea in the coming week and half, and thats really exciting.
+
+### Methods (you do- in pry!)
+
+- create 5 patients in your database 3 should have the ailment: "chicken pox"
+- create a patient without saving it and store it in a variable
+- save that patient you stored in a variable to the database
+- query for all patients in the database
+- query for the patient that has an id of 1
+- query for a patient by his/her name
+- query for all patients that have the ailment "chicken pox"
+- update a patient in the database of your choosing to have watermelon be its favorite food
+- delete a patient from the database
+
+## Associations
+
+### Reframing (10m)
+We use SQL because it is a relational database. But what does that really mean? Basically we want the ability to associate models in our domain. That can come in a variety of ways in a relational database, but at the heart of it is essentially to this:
+
+One model has many other instances of another model. And that other model belongs to the original. Not really clear, eh?
+
+Let's take a look at an example in the wild.
+
+With the application Facebook, there are many users. Each of these users have several models associated with them. Let's look at one in specific. We'll be looking at posts(status updates)
+
+The first model we'll be looking at is Users. The second is Posts.
+
+A User has many Posts
+And every Post belongs to a certain user.
+
+> Note the plurality of the nouns used in these two sentences
+
+When we start organizing our objects in this manner and program these associations, it becomes much easier to query our database for what we need. IE. If we were on Adam's facebook page, it wouldn't make sense for us to query EVERY post in facebook and then do `.where(facebook_user: "Adam")` That would get really expensive. Instead we can do something like, `adam.posts` and then BAM, we got all of adam's posts.
+
+> note that this is just speaking at a high level and not neccessarily actual code, though some of it actually is!
+
+Let's see what some of this stuff looks like in code. We're going to be adding an instructor model to our program.
+### Updating Schema (I do - 10m)
+
+The first thing I want to do is update my schema to add another table and reflect the association.
+
+In `wdi_schema.sql`:
+
+```sql
+DROP TABLE IF EXISTS students;
+DROP TABLE IF EXISTS instructors;
+
+CREATE TABLE students (
+  id SERIAL PRIMARY KEY,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  age INT NOT NULL,
+  job TEXT,
+  instructor_id INT
+);
+
+CREATE TABLE instructors (
+  id SERIAL PRIMARY KEY,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  age INT NOT NULL
+);
+```
+
+Lets go ahead and update the database to reflect our current schema in the terminal:
+
+```bash
+$ psql -d wdi < wdi_schema.sql
+```
+
+### Updating Schema - Hopsital(You do - 10m)
+- For the Hospital application we'll be adding a Doctor model
+- Create a new table for doctors in postgres it should have the following attributes
+  - first_name
+  - last_name
+  - specialty
+- make sure to add an attribute to patients so that they belong to a doctor
+- load the schema to the database
+
+### Updating Class Definitions - (I do 10m)
+Next I want to create a new file for my Instructor AR Class definition `$ touch models/instructor.rb`. In it i'll put:
+
+
+```ruby
+class Instructor < ActiveRecord::Base
+  has_many :students
+end
+```
+
+In my `models/student.rb`:
+
+```ruby
+class Student < ActiveRecord::Base
+  belongs_to :instructor
+end
+```
+> note the plurality of students and singularity of instructor
+
+we also need to include the `models/instructor.rb` file into our `app.rb` so in `app.rb` we need to add
+
+```ruby
+require_relative "models/instructor"
+```
+
+### Updating Class Defintions - (You do 5m)
+- Create a file that will contain your AR class definition for Doctor
+- make sure to link that file in your main application file
+- add corresponding associations
+
+### Association helper methods (30 m)
+So we added some code, but we're not entirely sure what that did.
+
+Basically when we added those two lines of code `has_many :students` `belongs_to :instructor` we created some helper methods that allow us to query the database more effectively.
+
+Lets create some objects so we can see what were talking about:
+
+```ruby
+Instructor.create(first_name: "Jesse", last_name: "Shawl", age: 26)
+Instructor.create(first_name: "Adrian", last_name: "Maseda", age: 28)
+
+Student.create(first_name: "Bob", last_name: "Smith", age: 55, job: "Circus Clown", instructor_id: Instructor.first.id)
+Student.create(first_name: "Joey", last_name: "Tribiana", age: 42, job: "Actor", instructor_id: Instructor.first.id)
+Student.create(first_name: "Chandler", last_name: "Bing", age: 42, job: "Transpondster", instructor_id: Instructor.last.id)
+Student.create(first_name: "Monica", last_name: "Geller", age: 42, job: "chef", instructor_id: Instructor.last.id)
+```
+
+Now that we have this association, we can now query the database more effectively.
+
+If i want to get all of Jesse's students or set Jesse's students I can now write this code:
+```ruby
+jesse = Instructor.find_by(first_name: "Jesse")
+jesse.students
+# will return all students that belong to Jesse, this is .students being used as a getter method
+
+jesse.students = [Student.first, Student.last]
+# this is .students being used as a setter method
+```
+> note that when students is being used as a setter method above, it actually changes the instructor_id column for those students to match Jesse's primary ID. Any student that previously was assigned to Jesse and not reassigned in the setter will now have an instructor_id of nil
+
+Alternatively if I wanted to get a student's instructor I could write this code:
+
+```ruby
+bob = Student.find_by(first_name: "Bob")
+bob.instructor
+# will return bob's instructor, this is .instructor being used as a getter method
+
+adrian = Instructor.last
+bob.instructor = adrian
+# this .instructor being used as a setter method, and now bob's instructor is adrian
+```
+
+We can also create new students under a certain instructor by doing the following:
+
+```ruby
+jesse.students.create(first_name: "baskin", last_name: "robbins", age: 34, job: "icecream")
+# this will create a new student that belongs to the Instructor object named jesse.
+```
+> note that we did not pass in an instructor id above. Active Record is smart and does that for us.
+
+### Association helper methods - (you do 15m)
+
+- Create at least 2 doctors in your database
+- Create at least 4 patients in your database that belong to one of the two doctors
+- Query the data base for all of patients belonging to one of the doctors
+- Query the database for the doctor of the last patient you created
+- Create a new patient without a doctor id, and use the setter method to associate a doctor to that patient
+
+### Seeding a database (15m)
+Seeding a database is not all that different from the things we've been doing today. What's the purpose of seed data? (ST-WG)
+
+We want some sort of data in our database so that we can test our applications. Let's create our seed file in the terminal: `$ touch db/seeds.rb`
+
+In our `db/seeds.rb` file let's put the following:
+
+```ruby
+require "pg"
+require "active_record"
+require "pry"
+
+require_relative "../models/student"
+require_relative "../models/instructor"
+
+ActiveRecord::Base.establish_connection(
+  :adapter => "postgresql",
+  :database => "wdi"
+)
+# very similar to app.rb... This seems a little bit not dry .......
+
+Instructor.destroy_all
+Student.destroy_all
+# destroys existing data in database
+
+Instructor.create(first_name: "robin", last_name: "thomas", age: 26)
+Instructor.create(first_name: "adam", last_name: "bray", age: 30)
+Instructor.first.students.create(first_name: "michael", last_name: "scott", age: 45, job: "office manager")
+Instructor.first.students.create(first_name: "Dwight", last_name: "Schrute", age: 34, job: "Assistant to the Regional Manager")
+Instructor.last.students.create(first_name: "Dee", last_name: "Reynolds", age: 32, job: "Bartender")
+Instructor.last.students.create(first_name: "George", last_name: "Costanza", age: 45, job: "toner seller")
+
+```
+
+### Seeding a database( you do- 10m)
