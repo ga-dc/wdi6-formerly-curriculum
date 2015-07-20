@@ -3,7 +3,6 @@
 ## Peanut Butter
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-<<<<<<< HEAD
 | Wednesday PM  |                                | [Try Ruby](https://github.com/ga-dc/try-ruby) |
 | Thursday PM   |                                | N/A |
 | Friday        |                                | [High Card](https://github.com/ga-dc/high_card) |
