@@ -3,7 +3,6 @@
 - Explain what REST is and why we use it
 - List the HTTP request verbs
 - Describe what Sinatra is and what it is used for
-- Describe the roles of WEBrick and Rack, and where they reside in the web application stack
 - Distinguish between a route and a path
 - Build a Sinatra app that responds to HTTP requests
 - Define routes using Sinatra
@@ -48,6 +47,9 @@ initiates a GET request to the provided path (the URL you entered.)
 Form submissions initiate POST requests. (example here submitting a form to restful.link)
 
 Postman allows us to easily test different types of requests.
+
+Let's compare the output of GET requests initiated in Postman and in the browser.
+
 
 ## Sinatra
 
@@ -95,11 +97,89 @@ https://github.com/ga-dc/99_bottles_of_beer
 
 ## Sinatra Views
 
-We do: Convert 99 bottles to use views
+
+### We do: Sinatra Views
+
+Convert 99 bottles ex. to use views.
+
+Let's convert the hardcoded strings in our application to take advantage of Sinatra's built-in templating engine: erb.
+
+Create a directory called `views` and a file in that folder called `index.erb`
+
+In your main application file, render the view with the keyword `erb`
+
+Our entire application looks like:
+
+```ruby
+require 'sinatra'
+get '/' do
+  erb :index
+end
+```
+
+```html
+<!-- /views/index.erb -->
+This is the home page.
+```
+
+### Passing Variables to Views
+
+To share variables from the application with the view, define instance variables:
+
+
+```ruby
+require 'sinatra'
+get '/:num_bottles' do
+  @num_bottles = params[:num_bottles]
+  @next = @num_bottles -= 1
+  erb :index
+end
+```
+
+```html
+<!-- /views/index.erb -->
+<%= @num_bottles %> of beer on the wall.
+<a href='/<%= @next %>'>Take one down.</a>
+```
+
+### More complex ruby with erb
+
+If you have a collection to loop through, like an array or a hash, you use
+a slightly different syntax:
+
+```html
+<!-- /views/index.erb -->
+<% @num_bottles.times do |i| %>  <!-- note the missing `=` -->
+  bottle #<%= i %> is on the wall. 
+<% end %>
+<a href='/<%= @next %>'>Take one down.</a>
+```
 
 ## Sinatra Assets
 
 any files in the `public` folder will be served as static assets
+
+For example, you would create a file `public/css/styles.css`
+
+and link to it with
+
+```html
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+```
+
+Instead of copying and pasting this link to each of the views, we can use a global layout view
+which will be loaded "around" every other view.
+
+```html
+<!-- views/layout.erb -->
+<!doctype html>
+<html>
+  <head></head>
+  <body>
+    <%= yield %> <!-- load whatever template was called here -->
+  </body>
+</html>
+```
 
 ## You do: Pair Programming Bot
 
@@ -107,11 +187,26 @@ https://github.com/ga-dc/pair_programming_bot
 
 ## We do: Forms
 
-Use example with GET and POST.
+
+Forms with a POST action are useful for creating new things.
+
+```html
+<form method='post' action='/'>
+  <input type='text' name='student-name'>
+</form>
+```
+
+Any input with a `name` attribute will show up an element of `params`
 
 Forms with a GET action are useful for search forms.
 
-Forms with a POST action are useful for creating new things.
+```html
+<form method='get' action='/'>
+  <input type='search' name='student-name'>
+</form>
+```
+
+**Question**: What's the benefit of using GET requests with search forms?
 
 ## You do: Ultimate Complement
 
