@@ -25,6 +25,8 @@ We now have a way to persist data in a database. We've also learned about OOP in
 
 Information Dive(5m)
 For the next 5 minutes, research what ORM's are.
+[ORM - wikipedia](https://en.wikipedia.org/wiki/Object-relational_mapping)
+[AR Read 1.1 - 1.3](http://guides.rubyonrails.org/active_record_basics.html)
 
 T&T (5m)
 Now, turn & talk to your neighbor and discuss:
@@ -52,7 +54,9 @@ It just so happens you guys will be learning one of the best ORM's on the market
 ### Convention Over configuration (ST - WG 5m)
 Before we get started with the code, I want to highlight a reoccurring theme of Active Record and Rails in general. That is Convention over Configuration. I'm going write on the board `conventions` throughout todays lesson so we can list them as we go. But what do you guys think we mean by convention over configuration?
 
-Basically Active Record and Rails has a whole bunch of conventions that it follows so that you won't have to mess with different configuration details later. In a nutshell, if you don't follow the conventions, you're going to have a bad time.
+Basically Active Record and Rails has a whole bunch of conventions that it follows so that you won't have to mess with different configuration details later. Some of the common ones are plural vs single, capital or lower, camel or snake.
+
+In a nutshell, if you don't follow the conventions, you're going to have a bad time.
 
 Alright! Let's get started with some code!
 
@@ -65,14 +69,15 @@ First let's create our database and create our schema file in the terminal:
 
 ```bash
 $ createdb wdi
-$ touch wdi_schema.sql
+$ mkdir config
+$ touch config/wdi_schema.sql
 ```
 
 > All we did here was create a database in PSQL. If you ever want to drop a database the command is `$ dropdb <database_name>` (VERY DANGEROUS)
 
 Next, I want to update the schema file and then load a schema for our model into the database:
 
-in `wdi_schema.sql` file:
+in `config/wdi_schema.sql` file:
 
 ```sql
 DROP TABLE IF EXISTS students;
@@ -89,8 +94,12 @@ CREATE TABLE students (
 now lets load the `wdi_schema.sql` in the terminal:
 
 ```bash
-$ psql -d wdi < wdi_schema.sql
+$ psql -d wdi < config/wdi_schema.sql
 ```
+
+Why did we do this? Why not just go into psql and create the tables in postgres? (ST-WG)
+
+It'll be nice going forward with your application that we package the schema up so that its modular. We can have others quickly pick up our code and have our exact database setup.
 
 ### Setup SQL( You do - 10m )
 Now it's your turn! Create a `hospital_schema.sql` file!
@@ -123,13 +132,13 @@ $ touch models/student.rb
 In the `Gemfile`:
 
 ```ruby
-gem "pg"
-# this gem provides a ruby interface to the Postgresql database
 gem "activerecord"
 # this gem provides a connection between your ruby classes to relational database tables
 gem "pry"
 # this gem allows access to REPL
 ```
+
+Then I'm going to run `$ bundle install` in the terminal.
 
 ### Setup Ruby (You do - 10m)
 
@@ -137,7 +146,7 @@ gem "pry"
 - Create a Gemfile
 - Create a folder for your models
 - Create a file that will contain your AR class definition for doctors
-- Load dependencies into Gemfile
+- Load dependencies into Gemfile and then bundle install
 
 ### Functionality (I do- 20m)
 
@@ -151,7 +160,22 @@ end
 
 > In this ruby file, we create a class of Student that inherits from ActiveRecord::Base . Basically, when we inherit from ActiveRecord::Base it gives this class a whole bunch of functionality that maps the ruby Student Class to the students table in postgres.
 
-Finally, let's build out the functionality of the `app.rb` file:
+Now, lets create a file that handles the connection between our application and our database:
+
+```bash
+$ mkdir config
+$ touch config/db.rb
+```
+
+In `config/db.rb`:
+```ruby
+ActiveRecord::Base.establish_connection(
+  :adapter => "postgresql",
+  :database => "wdi"
+)
+```
+
+Finally, let's build out the functionality of the `app.rb` file(which in this case is just dropping us into pry):
 
 ```ruby
 require "pg"
@@ -160,11 +184,8 @@ require "pry"
 # require all the gems we'll be using for this app from the Gemfile
 require_relative "models/student"
 # require the Student class definition that we defined in the models/student.rb file
-
-ActiveRecord::Base.establish_connection(
-  :adapter => "postgresql",
-  :database => "wdi"
-)
+require_relative "config/db.rb"
+# require the db connection file that connects us to PSQL
 
 binding.pry
 # puts us into a state of the pry REPL, in which we've established a connection
@@ -434,9 +455,9 @@ jesse.students.create(first_name: "baskin", last_name: "robbins", age: 34, job: 
 ### Seeding a database (15m)
 Seeding a database is not all that different from the things we've been doing today. What's the purpose of seed data? (ST-WG)
 
-We want some sort of data in our database so that we can test our applications. Let's create our seed file in the terminal: `$ touch db/seeds.rb`
+We want some sort of data in our database so that we can test our applications. Let's create our seed file in the terminal: `$ touch config/seeds.rb`
 
-In our `db/seeds.rb` file let's put the following:
+In our `config/seeds.rb` file let's put the following:
 
 ```ruby
 require "pg"
@@ -446,11 +467,8 @@ require "pry"
 require_relative "../models/student"
 require_relative "../models/instructor"
 
-ActiveRecord::Base.establish_connection(
-  :adapter => "postgresql",
-  :database => "wdi"
-)
-# very similar to app.rb... This seems a little bit not dry .......
+require_relative "../config/db.rb"
+
 
 Instructor.destroy_all
 Student.destroy_all
@@ -469,3 +487,30 @@ Instructor.last.students.create(first_name: "George", last_name: "Costanza", age
 - create a seed file that contains all dependencies and establish connection to database /w Active Record
 - in the seed file create at least 2 doctors and 4 patients
 - make sure you destroy all objects before creating new ones
+
+### Appendix
+
+#### Instance vs Class
+| method              | instance | class    |
+|---------------------|:--------:|:--------:|
+| .new                |          |     x    |
+| .save               |     x    |          |
+| .create             |          |     x    |
+| attribute accessors |     x    |          |
+| .all                |          |     x    |
+| .find               |          |     x    |
+| .find_by            |          |     x    |
+| .where              |          |     x    |
+| .update             |     x    |          |
+| .destroy            |     x    |          |
+| .destroy_all        |          |     x    |
+
+#### Conventions
+|description      | Rule    |
+|-----------------|---------|
+|table names      |snake case and plural|
+|model file names |snake case and singular|
+|model definition |Camel case and singular|
+|argument for has_many| snake case and plural|
+|argument for belongs_to| snake case and singular|
+|more to follow....|||
