@@ -128,7 +128,7 @@ CREATE DATABASE pbj;
 ```
 
 ```
-CREATE TABLE students ( id SERIAL PRIMARY KEY, first_name VARCHAR NOT NULL, last_name VARCHAR NOT NULL, quote TEXT NOT NULL, birthday VARCHAR NOT NULL, ssn INT NOT NULL UNIQUE );
+CREATE TABLE students ( id SERIAL PRIMARY KEY, first_name VARCHAR NOT NULL, last_name VARCHAR NOT NULL, quote TEXT, birthday VARCHAR, ssn INT NOT NULL UNIQUE );
 \d
 SELECT * FROM students;
 ```
@@ -142,8 +142,8 @@ SELECT * FROM students;
 id SERIAL PRIMARY KEY
 first_name VARCHAR NOT NULL
 last_name VARCHAR NOT NULL
-quote TEXT NOT NULL
-birthday VARCHAR NOT NULL
+quote TEXT
+birthday VARCHAR
 ssn INT NOT NULL UNIQUE
 ```
 
@@ -179,7 +179,7 @@ SELECT * FROM students;
 # What does it do?
 # What does * stand for?
 
-INSERT INTO students (first_name, last_name, quote, birthday, ssn) VALUES ('Robin', 'Thomas', 'Two goldfish are in a tank. One says, "Know how to drive this thing?", 'April 1', 8675309);
+INSERT INTO students (first_name, last_name) VALUES ('Robin', 'Thomas');
 # This won't work!
 
 INSERT INTO students (first_name, last_name, quote, birthday, ssn) VALUES ('Robin', 'Thomas', 'Two goldfish are in a tank. One says, "Know how to drive this thing?"', 'April 1', 8675309);
@@ -207,29 +207,52 @@ DROP DATABASE pbj;
 
 ## Exercise!
 
-- Enter all students into your database!
+- Create authors
+author:
+  first_name (required),
+  last_name (required),
+  pen_name (optional),
+  birthdate (optional)
+
+First, let's nail down the data types.
+Then, insert some data.
+
 
 ## And then...
 
+
+Control the results:
+
 ```
-SELECT * FROM students WHERE CHAR_LENGTH(quote) > 100;
+SELECT * from authors;
 
-SELECT quote FROM students WHERE CHAR_LENGTH(quote) > 100;
+SELECT * FROM authors ORDER BY first_name ASC;
 
-SELECT * FROM students WHERE SUBSTRING(first_name from 1 for 1) = 'R';
-# Dat index tho.
+SELECT last_name, first_name FROM authors ORDER BY last_name DESC;
 
-SELECT * FROM students ORDER BY first_name ASC;
+# by length of last_name
+SELECT * FROM books WHERE CHAR_LENGTH(last_name) < 8;
 
-SELECT * FROM students ORDER BY first_name DESC;
+# Limit what is returned
+SELECT last_name FROM authors WHERE CHAR_LENGTH(last_name) > 8;
+
+# Select an author by first letter
+SELECT * FROM authors WHERE first_name LIKE  'R%';
+# % is a wildcard (like "*")
+
+# old enough to drive?
+# birthday > ???
+
 ```
+
+It's important to note that you haven't changed anything.  These are read-only views into the data.
 
 ## Putting it with Ruby
 
 ```
 require "pg"
 connection = PG.connect(:hostaddr => "127.0.0.1", :port => 5432, :dbname => "pbj")
-results = connection.exec("SELECT * FROM students")
+results = connection.exec("SELECT * FROM authors")
 
 #Does NOT return a hash!
 
@@ -247,43 +270,21 @@ end
   - [Other obligatory visual aid](car.jpg)
 
 ```
-connection.prepare('insert_student_statement', 'INSERT INTO students (first_name, last_name, quote, birthday, ssn) values ($1, $2, $3, $4, $5)')
-connection.exec_prepared('insert_student_statement', [ 'Jesse', 'Shawl', 'I like turtles.', 'Febtemper 32nd', 1234567])
+connection.prepare('insert_student_statement', 'INSERT INTO authors (first_name, last_name, pen_name) values ($1, $2, $3, $4, $5)')
+connection.exec_prepared('insert_student_statement', [ 'J.K.', 'Rowling', 'Robert Gailbraith', "1965/07/31"])
 ```
 
-## Pre-Joins
+## Joins
 
-First, add in a new column to the table
+Add books!
+books: title, published_at
 
-```
-ALTER TABLE students ADD COLUMN gender VARCHAR(1);
-# What does VARCHAR(1) do?
-```
+Then fill it in.  Don't forget the relationship to author.
 
-Then fill it in.
-- Instead of writing `UPDATE (blah blah blah)` a bunch of times, try doing it in Ruby!
+Bonus: Try it with Ruby.
 
-```
-require "pg"
-connection = PG.connect(:hostaddr => "127.0.0.1", :port => 5432, :dbname => "pbj")
-students = connection.exec("SELECT * FROM students");
-students.each do |student|
-  first_name = student["first_name"]
-  if ["Brittany","Janice","Julia","Haleigh","Sarah","Gwen","Lindsay"].include? first_name
-    gender = "f"
-  else
-    gender = "m"
-  end
-  connection.exec("UPDATE students SET gender = '#{gender}' WHERE first_name = '#{first_name}'")
-end
-```
 
-Then split the table in half.
-```
-CREATE TABLE students2 AS SELECT * FROM students WHERE (random() < .5);
-```
-
-## Actual Joins
+## Joins
 
 - Inner Join
   - Combines records that match both sides
@@ -296,11 +297,21 @@ CREATE TABLE students2 AS SELECT * FROM students WHERE (random() < .5);
   - Try it yourself
 
 ```
-SELECT * FROM students INNER JOIN students2 ON (students.gender = students2.gender);
+SELECT * FROM books INNER JOIN books ON (books.author_id = author.id);
 
-SELECT * FROM students LEFT OUTER JOIN students2 ON (students.gender = students2.gender);
+SELECT * FROM authors INNER JOIN books ON (books.author_id = author.id);
 
-SELECT * FROM students LEFT JOIN students2 ON (students.gender = students2.gender);
+SELECT authors.*, book.title FROM authors INNER JOIN books ON (books.author_id = author.id);
+
+SELECT authors.*, books.*
+FROM authors
+LEFT OUTER JOIN books
+ON (books.author_id = author.id);
+
+SELECT authors.*, books.*
+FROM authors
+LEFT JOIN books
+ON (books.author_id = author.id);
 ```
 
 http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
