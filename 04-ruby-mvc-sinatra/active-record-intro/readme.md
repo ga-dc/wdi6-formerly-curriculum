@@ -183,19 +183,19 @@ ActiveRecord::Base.establish_connection(
 Finally, let's build out the functionality of the `app.rb` file(which in this case is just dropping us into pry):
 
 ```ruby
-require "pg"
-require "active_record"
-require "pry"
-# require all the gems we'll be using for this app from the Gemfile
-require_relative "models/student"
-# require the Student class definition that we defined in the models/student.rb file
-require_relative "config/db.rb"
-# require the db connection file that connects us to PSQL
+require 'bundler/setup' # require all the gems we'll be using for this app from the Gemfile. Obviates the need for `bundle exec`
+require "pg" # postrgres db library
+require "active_record" # the ORM
+require "pry" # for debugging
 
-binding.pry
-# puts us into a state of the pry REPL, in which we've established a connection
+require_relative "config/db" # require the db connection file that connects us to PSQL, prior to loading models
+require_relative "models/student" # require the Student class definition that we defined in the models/student.rb file
+
+# This will put us into a state of the pry REPL, in which we've established a connection
 # with the wdi database and have defined the Student Class as an
 # ActiveRecord::Base class.
+binding.pry
+
 ```
 
 > note the difference between `require` and `require_relative`. With `require` we are getting gems and `require_relative` we are getting files relative to the location of the file we wrote `require_relative` in
@@ -211,7 +211,7 @@ binding.pry
 Great! We've got everything done that we need to get setup with single model CRUD in our application. Let's run it in the terminal:
 
 ```bash
-$ bundle exec ruby app.rb
+$ ruby app.rb
 ```
 
 When we run this app, we can see that it drops us into pry. Let's write some code in pry to update our database... IN REALTIME!!!
