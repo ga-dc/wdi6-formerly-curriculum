@@ -19,6 +19,10 @@ redundancy in network requests and agree on routes and what they do.
 
 Every HTTP request consists of a request **method** and **path** 
 
+### Restful Routes
+
+**Route = Method + Path**
+
 | Method | Path | Usage |
 | --- | --- | --- |
 | GET | `/students/:id?` | Read information about a student or students |
@@ -40,15 +44,13 @@ Create routes for the following requests. The first one is done for you.
 6. Update the info for an animal with 3 as its id.
 7. Update homework submission #32 for assignment #3
 
-
-
 ## Sinatra
 
 >Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort
 
 ### Useful Links
 
-- [Intro to Sinata](http://www.sinatrarb.com/intro.html)
+- [Intro to Sinatra](http://www.sinatrarb.com/intro.html)
 - [Sinatra in the wild](http://www.sinatrarb.com/wild.html)
 - [Sinatra Documentation](http://www.sinatrarb.com/documentation.html)
 - [Sinatra Recipes](http://recipes.sinatrarb.com/)
