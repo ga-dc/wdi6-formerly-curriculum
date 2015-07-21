@@ -40,16 +40,6 @@ Create routes for the following requests. The first one is done for you.
 6. Update the info for an animal with 3 as its id.
 7. Update homework submission #32 for assignment #3
 
-## Postman
-
-So far, we know how to make GET requests only. We do this by visiting a URL in a browser. The browser then
-initiates a GET request to the provided path (the URL you entered.)
-
-Form submissions initiate POST requests. (example here submitting a form to restful.link)
-
-Postman allows us to easily test different types of requests.
-
-Let's compare the output of GET requests initiated in Postman and in the browser.
 
 
 ## Sinatra
@@ -192,6 +182,17 @@ which will be loaded "around" every other view.
 ## You do: Pair Programming Bot
 
 https://github.com/ga-dc/pair_programming_bot
+
+## Postman
+
+So far, we know how to make GET requests only. We do this by visiting a URL in a browser. The browser then
+initiates a GET request to the provided path (the URL you entered.)
+
+Form submissions initiate POST requests. (example here submitting a form to restful.link)
+
+Postman allows us to easily test different types of requests.
+
+Let's compare the output of GET requests initiated in Postman and in the browser.
 
 ## We do: Forms
 
