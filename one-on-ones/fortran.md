@@ -2,8 +2,7 @@
 One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
 
 ## Tue Jul 21
-Melissa Steffan - 4:30
-Rachel Warren - 5:00
+Melissa Steffan - 5:00
 
 ## Wed Jul 22
 Ksenia Coulter - 4:30
