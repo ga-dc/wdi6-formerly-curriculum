@@ -407,13 +407,13 @@ Basically when we added those two lines of code `has_many :students` `belongs_to
 Lets create some objects so we can see what were talking about:
 
 ```ruby
-Instructor.create(first_name: "Jesse", last_name: "Shawl", age: 26)
-Instructor.create(first_name: "Adrian", last_name: "Maseda", age: 28)
+jesse = Instructor.create(first_name: "Jesse", last_name: "Shawl", age: 26)
+adrian = Instructor.create(first_name: "Adrian", last_name: "Maseda", age: 28)
 
-Student.create(first_name: "Bob", last_name: "Smith", age: 55, job: "Circus Clown", instructor_id: Instructor.first.id)
-Student.create(first_name: "Joey", last_name: "Tribiana", age: 42, job: "Actor", instructor_id: Instructor.first.id)
-Student.create(first_name: "Chandler", last_name: "Bing", age: 42, job: "Transpondster", instructor_id: Instructor.last.id)
-Student.create(first_name: "Monica", last_name: "Geller", age: 42, job: "chef", instructor_id: Instructor.last.id)
+Student.create(first_name: "Bob", last_name: "Smith", age: 55, job: "Circus Clown", instructor: jesse)
+Student.create(first_name: "Joey", last_name: "Tribiana", age: 42, job: "Actor", instructor: jesse)
+Student.create(first_name: "Chandler", last_name: "Bing", age: 42, job: "Transpondster", instructor: adrian)
+Student.create(first_name: "Monica", last_name: "Geller", age: 42, job: "chef", instructor: adrian)
 ```
 
 Now that we have this association, we can now query the database more effectively.
@@ -479,12 +479,12 @@ Instructor.destroy_all
 Student.destroy_all
 # destroys existing data in database
 
-Instructor.create(first_name: "robin", last_name: "thomas", age: 26)
-Instructor.create(first_name: "adam", last_name: "bray", age: 30)
-Instructor.first.students.create(first_name: "michael", last_name: "scott", age: 45, job: "office manager")
-Instructor.first.students.create(first_name: "Dwight", last_name: "Schrute", age: 34, job: "Assistant to the Regional Manager")
-Instructor.last.students.create(first_name: "Dee", last_name: "Reynolds", age: 32, job: "Bartender")
-Instructor.last.students.create(first_name: "George", last_name: "Costanza", age: 45, job: "toner seller")
+robin = Instructor.create(first_name: "robin", last_name: "thomas", age: 26)
+adam = Instructor.create(first_name: "adam", last_name: "bray", age: 30)
+robin.students.create(first_name: "michael", last_name: "scott", age: 45, job: "office manager")
+robin.students.create(first_name: "Dwight", last_name: "Schrute", age: 34, job: "Assistant to the Regional Manager")
+adam.students.create(first_name: "Dee", last_name: "Reynolds", age: 32, job: "Bartender")
+adam.students.create(first_name: "George", last_name: "Costanza", age: 45, job: "toner seller")
 
 ```
 
