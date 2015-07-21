@@ -64,7 +64,7 @@ Let's compare the output of GET requests initiated in Postman and in the browser
 
 ### Useful Links
 
-- [Intro to Sinata](http://www.sinatrarb.com/intro.html)
+- [Intro to Sinatra](http://www.sinatrarb.com/intro.html)
 - [Sinatra in the wild](http://www.sinatrarb.com/wild.html)
 - [Sinatra Documentation](http://www.sinatrarb.com/documentation.html)
 - [Sinatra Recipes](http://recipes.sinatrarb.com/)
