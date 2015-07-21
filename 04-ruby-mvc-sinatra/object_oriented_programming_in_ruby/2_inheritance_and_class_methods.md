@@ -92,7 +92,7 @@ Class Vars:
   * one copy shared between all instances
   * **not very common**, over-use is considered bad practice
 
-### Class vs Instance Variables
+### Class vs Instance Methods
 Ruby classes can define two types of methods, *instance* and *class* methods. So
 far, we've only written instance methods.
 
