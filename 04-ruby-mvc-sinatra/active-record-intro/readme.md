@@ -126,24 +126,26 @@ $ mkdir models
 $ touch models/student.rb
 ```
 
-> The `app.rb` file is our main application file. This is where alot of the main program logic will live. The `Gemfile` will contain all the dependencies for our program. The `models/student.rb` file will contain the class definition for the Student class that will represent the students table in SQL
+> The `app.rb` file is our main application file. This is where alot of the main program logic will live.
+
+> The `Gemfile` will contain all the dependencies for our program.
+The `models/student.rb` file will contain the class definition for the Student class that will represent the students table in SQL
 
 > by convention we always name our model file names singular
 
 In the `Gemfile`:
 
 ```ruby
-gem "pg"
-# this gem allows ruby to talk to postgres
-gem "activerecord"
-# this gem provides a connection between your ruby classes to relational database tables
-gem "pry"
-# this gem allows access to REPL
+source 'https://rubygems.org'
+
+gem "pg"  # this gem allows ruby to talk to postgres
+gem "activerecord"  # this gem provides a connection between your ruby classes to relational database tables
+gem "pry"  # this gem allows access to REPL
 ```
 
 Then I'm going to run `$ bundle install` in the terminal.
 
-### Setup Ruby - Hopsital (You do - 10m)
+### Setup Ruby - Hospital (You do - 10m)
 
 - Create an `app.rb` file for this application
 - Create a Gemfile
