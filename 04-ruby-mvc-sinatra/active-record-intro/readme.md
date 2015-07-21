@@ -4,7 +4,6 @@
 - Define ORM and why we use it over a database language.
 - Explain what Active record is and what problems it solves.
 - Explain convention over configuration and how it relates to Active Record
-- Explain the basic idea of metaprogramming and how AR leverages this to provide an interface to the DB
 - Define a class that inherits from AR
 - Utilize AR to perform the following CRUD actions on a database
   - create
