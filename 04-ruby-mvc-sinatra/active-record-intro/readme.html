@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="4.6" data-basepath="../.." data-revision="Tue Jul 21 2015 14:30:08 GMT+0000 (UTC)">
+    <div class="book" data-level="4.6" data-basepath="../.." data-revision="Tue Jul 21 2015 19:27:42 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -877,19 +877,20 @@ $ mkdir models
 $ touch models/student.rb
 </code></pre>
 <blockquote>
-<p>The <code>app.rb</code> file is our main application file. This is where alot of the main program logic will live. The <code>Gemfile</code> will contain all the dependencies for our program. The <code>models/student.rb</code> file will contain the class definition for the Student class that will represent the students table in SQL</p>
+<p>The <code>app.rb</code> file is our main application file. This is where alot of the main program logic will live.</p>
+<p>The <code>Gemfile</code> will contain all the dependencies for our program.
+The <code>models/student.rb</code> file will contain the class definition for the Student class that will represent the students table in SQL</p>
 <p>by convention we always name our model file names singular</p>
 </blockquote>
 <p>In the <code>Gemfile</code>:</p>
-<pre><code class="lang-ruby">gem <span class="hljs-string">&quot;pg&quot;</span>
-<span class="hljs-comment"># this gem allows ruby to talk to postgres</span>
-gem <span class="hljs-string">&quot;activerecord&quot;</span>
-<span class="hljs-comment"># this gem provides a connection between your ruby classes to relational database tables</span>
-gem <span class="hljs-string">&quot;pry&quot;</span>
-<span class="hljs-comment"># this gem allows access to REPL</span>
+<pre><code class="lang-ruby">source <span class="hljs-string">&apos;https://rubygems.org&apos;</span>
+
+gem <span class="hljs-string">&quot;pg&quot;</span>  <span class="hljs-comment"># this gem allows ruby to talk to postgres</span>
+gem <span class="hljs-string">&quot;activerecord&quot;</span>  <span class="hljs-comment"># this gem provides a connection between your ruby classes to relational database tables</span>
+gem <span class="hljs-string">&quot;pry&quot;</span>  <span class="hljs-comment"># this gem allows access to REPL</span>
 </code></pre>
 <p>Then I&apos;m going to run <code>$ bundle install</code> in the terminal.</p>
-<h3 id="setup-ruby-hopsital-you-do-10m">Setup Ruby - Hopsital (You do - 10m)</h3>
+<h3 id="setup-ruby-hospital-you-do-10m">Setup Ruby - Hospital (You do - 10m)</h3>
 <ul>
 <li>Create an <code>app.rb</code> file for this application</li>
 <li>Create a Gemfile</li>
@@ -917,19 +918,18 @@ $ touch config/db.rb
 )
 </code></pre>
 <p>Finally, let&apos;s build out the functionality of the <code>app.rb</code> file(which in this case is just dropping us into pry):</p>
-<pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&quot;pg&quot;</span>
-<span class="hljs-keyword">require</span> <span class="hljs-string">&quot;active_record&quot;</span>
-<span class="hljs-keyword">require</span> <span class="hljs-string">&quot;pry&quot;</span>
-<span class="hljs-comment"># require all the gems we&apos;ll be using for this app from the Gemfile</span>
-require_relative <span class="hljs-string">&quot;models/student&quot;</span>
-<span class="hljs-comment"># require the Student class definition that we defined in the models/student.rb file</span>
-require_relative <span class="hljs-string">&quot;config/db.rb&quot;</span>
-<span class="hljs-comment"># require the db connection file that connects us to PSQL</span>
+<pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;bundler/setup&apos;</span> <span class="hljs-comment"># require all the gems we&apos;ll be using for this app from the Gemfile. Obviates the need for `bundle exec`</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">&quot;pg&quot;</span> <span class="hljs-comment"># postrgres db library</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">&quot;active_record&quot;</span> <span class="hljs-comment"># the ORM</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">&quot;pry&quot;</span> <span class="hljs-comment"># for debugging</span>
 
-binding.pry
-<span class="hljs-comment"># puts us into a state of the pry REPL, in which we&apos;ve established a connection</span>
+require_relative <span class="hljs-string">&quot;config/db&quot;</span> <span class="hljs-comment"># require the db connection file that connects us to PSQL, prior to loading models</span>
+require_relative <span class="hljs-string">&quot;models/student&quot;</span> <span class="hljs-comment"># require the Student class definition that we defined in the models/student.rb file</span>
+
+<span class="hljs-comment"># This will put us into a state of the pry REPL, in which we&apos;ve established a connection</span>
 <span class="hljs-comment"># with the wdi database and have defined the Student Class as an</span>
 <span class="hljs-comment"># ActiveRecord::Base class.</span>
+binding.pry
 </code></pre>
 <blockquote>
 <p>note the difference between <code>require</code> and <code>require_relative</code>. With <code>require</code> we are getting gems and <code>require_relative</code> we are getting files relative to the location of the file we wrote <code>require_relative</code> in</p>
@@ -943,7 +943,7 @@ binding.pry
 </ul>
 <h3 id="methods-wdi-60m-until-lunch-finish-after-lunch">Methods - WDI(~60m until lunch finish after lunch)</h3>
 <p>Great! We&apos;ve got everything done that we need to get setup with single model CRUD in our application. Let&apos;s run it in the terminal:</p>
-<pre><code class="lang-bash">$ bundle <span class="hljs-built_in">exec</span> ruby app.rb
+<pre><code class="lang-bash">$ ruby app.rb
 </code></pre>
 <p>When we run this app, we can see that it drops us into pry. Let&apos;s write some code in pry to update our database... IN REALTIME!!!</p>
 <p>First I&apos;m going to write class and instance on the board, so we can write these down when we do them depending on what kind they are.</p>
@@ -1087,13 +1087,13 @@ And every Post belongs to a certain user.</p>
 <p>So we added some code, but we&apos;re not entirely sure what that did.</p>
 <p>Basically when we added those two lines of code <code>has_many :students</code> <code>belongs_to :instructor</code> we created some helper methods that allow us to query the database more effectively.</p>
 <p>Lets create some objects so we can see what were talking about:</p>
-<pre><code class="lang-ruby"><span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Jesse&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Shawl&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">26</span>)
-<span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Adrian&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Maseda&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">28</span>)
+<pre><code class="lang-ruby">jesse = <span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Jesse&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Shawl&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">26</span>)
+adrian = <span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Adrian&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Maseda&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">28</span>)
 
-<span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Smith&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">55</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Circus Clown&quot;</span>, <span class="hljs-symbol">instructor_id:</span> <span class="hljs-constant">Instructor</span>.first.id)
-<span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Joey&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Tribiana&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">42</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Actor&quot;</span>, <span class="hljs-symbol">instructor_id:</span> <span class="hljs-constant">Instructor</span>.first.id)
-<span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Chandler&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Bing&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">42</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Transpondster&quot;</span>, <span class="hljs-symbol">instructor_id:</span> <span class="hljs-constant">Instructor</span>.last.id)
-<span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Monica&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Geller&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">42</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;chef&quot;</span>, <span class="hljs-symbol">instructor_id:</span> <span class="hljs-constant">Instructor</span>.last.id)
+<span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Smith&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">55</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Circus Clown&quot;</span>, <span class="hljs-symbol">instructor:</span> jesse)
+<span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Joey&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Tribiana&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">42</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Actor&quot;</span>, <span class="hljs-symbol">instructor:</span> jesse)
+<span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Chandler&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Bing&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">42</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Transpondster&quot;</span>, <span class="hljs-symbol">instructor:</span> adrian)
+<span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Monica&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Geller&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">42</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;chef&quot;</span>, <span class="hljs-symbol">instructor:</span> adrian)
 </code></pre>
 <p>Now that we have this association, we can now query the database more effectively.</p>
 <p>If i want to get all of Jesse&apos;s students or set Jesse&apos;s students I can now write this code:</p>
@@ -1149,12 +1149,12 @@ require_relative <span class="hljs-string">&quot;../config/db.rb&quot;</span>
 <span class="hljs-constant">Student</span>.destroy_all
 <span class="hljs-comment"># destroys existing data in database</span>
 
-<span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;robin&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;thomas&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">26</span>)
-<span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;adam&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;bray&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">30</span>)
-<span class="hljs-constant">Instructor</span>.first.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;michael&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;scott&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">45</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;office manager&quot;</span>)
-<span class="hljs-constant">Instructor</span>.first.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Dwight&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Schrute&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">34</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Assistant to the Regional Manager&quot;</span>)
-<span class="hljs-constant">Instructor</span>.last.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Dee&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Reynolds&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">32</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Bartender&quot;</span>)
-<span class="hljs-constant">Instructor</span>.last.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;George&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Costanza&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">45</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;toner seller&quot;</span>)
+robin = <span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;robin&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;thomas&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">26</span>)
+adam = <span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;adam&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;bray&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">30</span>)
+robin.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;michael&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;scott&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">45</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;office manager&quot;</span>)
+robin.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Dwight&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Schrute&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">34</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Assistant to the Regional Manager&quot;</span>)
+adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Dee&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Reynolds&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">32</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Bartender&quot;</span>)
+adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;George&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Costanza&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">45</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;toner seller&quot;</span>)
 </code></pre>
 <h3 id="seeding-a-database-hopsital-you-do-10m">Seeding a database - Hopsital ( you do- 10m)</h3>
 <ul>
