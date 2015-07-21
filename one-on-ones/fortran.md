@@ -14,6 +14,7 @@ Leigh Varley - 5:00
 
 ## Friday Jul 24
 Adrian Shepelavey - 4:00
+Rachel Warren - 4:30
 
 ## Mon Jul 27
 Omari Mayers-Walker - 5:00
