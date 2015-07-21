@@ -69,9 +69,11 @@ For the morning, I want to be able to do CRUD to a model with Active Record.  Th
 First let's create our database and create our schema file in the terminal:
 
 ```bash
-$ createdb wdi
+$ mkdir ar_wdi
+$ cd ar_wdi
 $ mkdir config
 $ touch config/wdi_schema.sql
+$ createdb wdi_db
 ```
 
 > All we did here was create a database in PSQL. If you ever want to drop a database the command is `$ dropdb <database_name>` (VERY DANGEROUS)
@@ -103,7 +105,13 @@ Why did we do this? Why not just go into psql and create the tables in postgres?
 It'll be nice going forward with your application that we package the schema up so that its modular. We can have others quickly pick up our code and have our exact database setup.
 
 ### Setup SQL - Hospital( You do - 10m )
-Now it's your turn! Create a `hospital_schema.sql` file!
+Now it's your turn!
+
+First create a directory for your hospital app.
+
+Make a config folder in that directory.
+
+Create a `hospital_schema.sql` file in the config folder
 
 In the schema, create a patients table, patients should have:
 - first_name
