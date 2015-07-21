@@ -19,6 +19,10 @@ redundancy in network requests and agree on routes and what they do.
 
 Every HTTP request consists of a request **method** and **path** 
 
+### Restful Routes
+
+**Route = Method + Path**
+
 | Method | Path | Usage |
 | --- | --- | --- |
 | GET | `/students/:id?` | Read information about a student or students |
