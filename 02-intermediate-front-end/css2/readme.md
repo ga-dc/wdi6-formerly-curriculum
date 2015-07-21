@@ -224,3 +224,9 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
 ## Homework:
 
 https://github.com/ga-dc/ecardly
+
+## Sample questions
+
+- "What is the difference between 'relative' and 'absolute' positioning?"
+- "What is a reliable source for 3rd party fonts?"
+- "Name 2 pseudo-classes that allow css to add content to a page."
