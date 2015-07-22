@@ -97,7 +97,7 @@ CREATE TABLE students (
 now lets load the `wdi_schema.sql` in the terminal:
 
 ```bash
-$ psql -d wdi < config/wdi_schema.sql
+$ psql -d wdi_db < config/wdi_schema.sql
 ```
 
 Why did we do this? Why not just go into psql and create the tables in postgres? (ST-WG)
@@ -184,7 +184,7 @@ In `config/db.rb`:
 ```ruby
 ActiveRecord::Base.establish_connection(
   :adapter => "postgresql",
-  :database => "wdi"
+  :database => "wdi_db"
 )
 ```
 
