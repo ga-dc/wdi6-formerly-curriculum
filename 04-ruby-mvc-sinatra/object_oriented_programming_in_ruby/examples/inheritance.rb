@@ -28,6 +28,7 @@ class LoudPerson < Person
   def yell(words)
     return words.upcase
   end
+
   def introduce
     return "Hello, I'm #{name}".upcase
   end
