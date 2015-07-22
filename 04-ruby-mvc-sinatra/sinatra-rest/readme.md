@@ -67,9 +67,9 @@ end
 But since we might want to share this code, let's create a Gemfile and add sinatra-contrib
 
 ```ruby
-# Gemfile.rb
+# Gemfile
 
-source https://rubygems.org/
+source 'https://rubygems.org/'
 
 gem 'sinatra'
 gem 'sinatra-contrib'
