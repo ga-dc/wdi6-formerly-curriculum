@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="4.6" data-basepath="../.." data-revision="Wed Jul 22 2015 14:26:51 GMT+0000 (UTC)">
+    <div class="book" data-level="4.6" data-basepath="../.." data-revision="Wed Jul 22 2015 15:15:37 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -855,7 +855,7 @@ $ createdb wdi_db
 );</span>
 </code></pre>
 <p>now lets load the <code>wdi_schema.sql</code> in the terminal:</p>
-<pre><code class="lang-bash">$ psql <span class="hljs-operator">-d</span> wdi &lt; config/wdi_schema.sql
+<pre><code class="lang-bash">$ psql <span class="hljs-operator">-d</span> wdi_db &lt; config/wdi_schema.sql
 </code></pre>
 <p>Why did we do this? Why not just go into psql and create the tables in postgres? (ST-WG)</p>
 <p>It&apos;ll be nice going forward with your application that we package the schema up so that its modular. We can have others quickly pick up our code and have our exact database setup.</p>
@@ -919,7 +919,7 @@ $ touch config/db.rb
 <p>In <code>config/db.rb</code>:</p>
 <pre><code class="lang-ruby"><span class="hljs-constant">ActiveRecord::Base</span>.establish_connection(
   <span class="hljs-symbol">:adapter</span> =&gt; <span class="hljs-string">&quot;postgresql&quot;</span>,
-  <span class="hljs-symbol">:database</span> =&gt; <span class="hljs-string">&quot;wdi&quot;</span>
+  <span class="hljs-symbol">:database</span> =&gt; <span class="hljs-string">&quot;wdi_db&quot;</span>
 )
 </code></pre>
 <p>Finally, let&apos;s build out the functionality of the <code>app.rb</code> file(which in this case is just dropping us into pry):</p>
