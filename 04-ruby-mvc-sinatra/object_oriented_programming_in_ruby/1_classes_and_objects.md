@@ -292,3 +292,10 @@ should not impact (cause bugs) in other areas of our programs.
 Clone this exercise and follow the instructions in the readme.
 
 **[Scrabble Word Scorer](https://github.com/ga-dc/scrabbler)**
+
+## Sample Questions
+
+- Create a Ruby class for a student, initialized with a name and an age. 
+  - Write a getter for name and age, and a setter for name only
+  - Create a new student and demonstrate using all the methods
+- Explain the difference between local and instance variables

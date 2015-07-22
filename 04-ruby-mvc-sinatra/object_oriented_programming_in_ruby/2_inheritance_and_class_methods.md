@@ -221,3 +221,10 @@ puts bob.hunger_level
 # Homework
 
 [Gladiator!](https://github.com/ga-dc/gladiator)
+
+
+## Sample Questions
+
+- Explain the use of self in Ruby
+- Explain the difference between local, instance and class variables
+- Define and differentiate between class and instance methods
