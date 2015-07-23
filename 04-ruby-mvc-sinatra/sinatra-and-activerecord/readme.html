@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Databases | Summary</title>
+        <title>Sinatra &amp; Active Record | Summary</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.1.0">
@@ -25,10 +25,10 @@
         
     
     
-    <link rel="next" href="../../04-ruby-mvc-sinatra/active-record-intro/readme.html" />
+    <link rel="next" href="../../05-mvc-with-rails/readme.html" />
     
     
-    <link rel="prev" href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html" />
+    <link rel="prev" href="../../04-ruby-mvc-sinatra/sinatra-rest/readme.html" />
     
 
         
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="4.5" data-basepath="../.." data-revision="Thu Jul 23 2015 12:37:13 GMT+0000 (UTC)">
+    <div class="book" data-level="4.8" data-basepath="../.." data-revision="Thu Jul 23 2015 12:37:13 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -490,7 +490,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.5" data-path="04-ruby-mvc-sinatra/databases/readme.html">
+        <li class="chapter " data-level="4.5" data-path="04-ruby-mvc-sinatra/databases/readme.html">
             
                 
                     <a href="../../04-ruby-mvc-sinatra/databases/readme.html">
@@ -535,7 +535,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.8" data-path="04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+        <li class="chapter active" data-level="4.8" data-path="04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
             
                 
                     <a href="../../04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
@@ -780,340 +780,169 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="databases">Databases</h1>
-<h2 id="objectives">Objectives</h2>
+                        <h1 id="sinatra-and-activerecord">Sinatra and ActiveRecord</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Create an SQL database, in PostgreSQL, containing tables, that is saved locally</li>
-<li>Distinguish between keys, foreign keys, and indexes</li>
-<li>Describe the data types used in SQL and the related field constraints</li>
-<li>Execute CRUD actions on the database using &quot;pure&quot; SQL (psql)</li>
-<li>Ensure the database is DRY using normalization</li>
-<li>Protect the database from common security vulnerabilities</li>
-<li>Use different JOIN types to combine data</li>
+<li>Explain the role of ActiveRecord in a web app</li>
+<li>Diagram the request / response lifecycle in a Sinatra app with AR</li>
+<li>Load Active Record in a Sinatra app</li>
+<li>Build RESTful routes to implement CRUD functionality in Sinatra</li>
+<li>Write ERB views to display AR models</li>
+<li>Write forms with attributes for ActiveRecord models</li>
+<li>Write forms that use a &apos;namespace&apos; for parameters</li>
+<li>Use <code>_method</code> param to emulate PUT and DELETE requests</li>
 </ul>
-<h2 id="what-is-a-database">What is a database?</h2>
+<h2 id="outline">Outline</h2>
 <ul>
-<li>A collection of tables representing data as columns and rows<ul>
-<li>A lot like an Excel workbook</li>
+<li>Why AR + Sinatra</li>
+<li>Demo Tunr Solution</li>
+<li>Web app request / response diagram (MVC)</li>
 </ul>
-</li>
-<li>Communicate via SQL<ul>
-<li>Many types of DBs, but generally all use similar SQL syntax</li>
-<li>PGSQL, MySQL, SQLite, Microsoft SQL, Oracle...</li>
-</ul>
-</li>
-</ul>
-<h2 id="what-s-a-relational-database">What&apos;s a relational database?</h2>
-<p>  A collection of tables which store data.  With a mechanism for relating one table to another.</p>
+<h2 id="why-activerecord-sinatra">Why ActiveRecord + Sinatra?</h2>
+<p>Sinatra helps us build simple web applications quickly + easily. But we have no
+way to store data. ActiveRecord lets us store data in a DB easily, but has no
+web interface (only CLI).</p>
+<p>Put the two together, and we can build an app with a <em>web interface</em> that is
+backed by <em>data in a database</em>.</p>
+<p>Demonstrate Tunr as an example of this.</p>
+<h2 id="the-mvc-paradigm-how-sinatra-ar-work-together">The MVC Paradigm - How Sinatra + AR Work Together</h2>
+<ol>
+<li>The user makes a request (clicking a link, typing in a URL). <strong>Sinatra</strong> receives the request.</li>
+<li><strong>Sinatra</strong> matches the request to the appropriate route (from all the routes we&apos;ve defined).</li>
+<li>That route contains a block of code to run in response (<strong>controller</strong> code). This code is written by us, and determines how to handle that request (unique to our app).</li>
+<li>In most cases, the <strong>controller</strong> will use <strong>ActiveRecord</strong> methods to:</li>
+<li>create/read/update/destroy data in the <strong>database</strong>.</li>
+<li>Once the <strong>controller</strong> has done its job (and gotten any data it needs), it renders a <strong>view</strong>, which is sent back to the user (their browser) to be displayed.</li>
+</ol>
+<p><img src="images/sinatra_mvc2.jpg" alt="Sinatra MVC"></p>
+<h2 id="app-organization">App Organization</h2>
+<p>For this lesson, we&apos;ll be using <a href="http://github.com/ga-dc/tunr_sinatra" target="_blank">Tunr</a>, so go ahead and clone it and change directories into the <code>tunr</code> folder.</p>
+<p>Here&apos;s a summary of the important folders / files in our app. It&apos;s important to note that some of these are expected by sinatra (<code>views</code>), and the rest are just convention to match Rails.</p>
 <ul>
-<li>Each table is comprised of rows and columns (like a spreadsheet)</li>
-<li>The table of <code>classes</code> is related to the table of <code>students</code><ul>
-<li>Column = Field = Attribute</li>
+<li><strong>tunr</strong><ul>
+<li><strong>db</strong><ul>
+<li>seeds (sample data)</li>
+<li>database configuration and connection files</li>
 </ul>
 </li>
-<li>Attribute sound familiar?<ul>
-<li>Rows = Records = Tuples</li>
+<li><strong>models</strong><ul>
+<li>classes that inherit from ActiveRecord</li>
 </ul>
 </li>
-<li>Each row may represent an object, like each student in a a class or each car on a lot<ul>
-<li>Key</li>
+<li><strong>controllers</strong><ul>
+<li>route definitions (<code>get &quot;/artists&quot; do</code>)</li>
 </ul>
 </li>
-<li>A unique value each record has that you can use to find the record</li>
-<li>There aren&apos;t really &quot;row numbers&quot; in PSQL<ul>
-<li>Primary keys are the closest thing</li>
-<li>Keys and primary keys are different</li>
-<li>The way SQL <strong>indexes</strong> things</li>
-</ul>
-</li>
-</ul>
-<h3 id="relationship-types">Relationship types</h3>
-<ul>
-<li>One-to-one</li>
-<li>One-to-many</li>
-<li>Many-to-many</li>
-<li><strong>Get some examples!</strong></li>
-</ul>
-<h2 id="data-types">Data types</h2>
-<ul>
-<li>Have to tell the database what kind of data to allow in which cells<ul>
-<li>Boolean</li>
-<li>Integer</li>
-<li>Float</li>
-<li>Text / VARCHAR<ul>
-<li>VARCHAR is short, TEXT is long</li>
-<li>VARCHAR is &quot;CHARACTER VARYING&quot;</li>
-</ul>
-</li>
-<li>NULL</li>
-<li>Date</li>
-<li>Time</li>
-<li><a href="http://www.postgresql.org/docs/9.3/interactive/datatype.html" target="_blank">And many more</a></li>
+<li><strong>views</strong><ul>
+<li>erb templates</li>
+<li><em>layout.erb</em><ul>
+<li>a template for every view </li>
+<li>calls <code>yield</code> (loads another template)</li>
 </ul>
 </li>
 </ul>
-<h2 id="constraints">Constraints</h2>
-<ul>
-<li>i.e. NOT NULL and UNIQUE<ul>
-<li><a href="http://www.postgresql.org/docs/8.1/static/ddl-constraints.html" target="_blank">And many more</a></li>
-</ul>
 </li>
-<li>Why are constraints and data types different?<ul>
-<li>You&apos;d have to have INTEGERNOTNULL and INTEGER</li>
-<li>Like flags for CLI commands</li>
+<li><strong>public</strong><ul>
+<li>static assets<ul>
+<li>JS, CSS, images, fonts</li>
 </ul>
 </li>
 </ul>
-<h2 id="syntax">Syntax</h2>
-<ul>
-<li>All statements end in a semicolon<ul>
-<li>I will probably forget to use these, so please help!</li>
+</li>
+<li><em>app.rb</em><ul>
+<li>the entry point to our application</li>
+<li>start the application with <code>ruby app.rb</code></li>
 </ul>
 </li>
-<li>Whitespace doesn&apos;t matter</li>
-<li>Uppercasing!</li>
-<li><a href="http://leshazlewood.com/software-engineering/sql-style-guide/" target="_blank">Ye style guide</a></li>
-</ul>
-<h2 id="getting-pgsql">Getting PGSQL</h2>
-<ul>
-<li>Mac: <a href="http://postgresapp.com/" target="_blank">http://postgresapp.com/</a><ul>
-<li>Download</li>
-<li>Move it to <code>/Applications</code></li>
-<li>We want to use it from the command line, so we add it to the search path.<ul>
-<li><code>$ atom ~/.bash_profile</code></li>
-<li>Add this line:
-<code>export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin</code></li>
-<li>save and close.</li>
-<li>Update your terminal.</li>
-</ul>
-</li>
-<li>Then open the app and click &quot;Open psql&quot;</li>
-</ul>
-</li>
-<li>Linux<ul>
-<li><code>apt-get install postgresql-9.4</code></li>
-</ul>
-</li>
-<li>All<ul>
-<li>Verify your installation, by running <code>psql</code> in your terminal.  You should see:</li>
+<li><em>console.rb</em><ul>
+<li>interact with models and data in the database</li>
 </ul>
 </li>
 </ul>
-<pre><code>$ psql
-psql (9.4.4)
-Type &quot;help&quot; for help.
+</li>
+</ul>
+<h2 id="1-data-model">1. Data Model</h2>
+<p>We often start building an app by describing the data model. We do this by creating an ERD, defining our schema according to that ERD, loading it into a Database, and then building our ActiveRecord classes (aka models).</p>
+<h4 id="you-do-erd">You Do: ERD</h4>
+<p>Spend 5 minutes diagramming the ERD for Tunr.</p>
+<h4 id="you-do-define-the-schema">You Do: Define the Schema</h4>
+<p>Using our ERD, fill in <code>db/schema.sql</code> with SQL to create the Schema. Look at the readme for a guide to the attributes of each model.</p>
+<h4 id="you-do-create-the-db-load-the-schema">You Do: Create the DB &amp; Load the Schema</h4>
+<p>Create our PostgreSQL database:</p>
+<p><code>$ createdb tunr_db</code></p>
+<p>Load the schema:</p>
+<p><code>$ psql -d tunr_db &lt; db/schema.sql</code></p>
+<h4 id="you-do-define-activerecord-models">You Do: Define ActiveRecord Models</h4>
+<p>Create files for your <code>Artist</code> and <code>Song</code> classes in the <code>models</code> folder.</p>
+<p>Remember that the file names should be singular, to match the class name: <code>models/song.rb</code>, <code>models/artist.rb</code></p>
+<h4 id="i-do-using-console-rb">I Do: Using <code>console.rb</code></h4>
+<p>We&apos;ve created a file for you called <code>console.rb</code>. Take a minute to read through it and see what it&apos;s doing.</p>
+<p>This file isn&apos;t special, we&apos;ve just written it so that it loads active record, connects to the database, loads our models, and then gives us a pry console.</p>
+<p>We can use <code>console.rb</code> to test our AR models without loading up sinatra. It&apos;s just for playing around with them.</p>
+<h4 id="you-do-play-with-console-rb">You Do: Play with <code>console.rb</code></h4>
+<p>Use <code>console.rb</code> to create 2 artists, and 4 songs, and associate the songs with artists.</p>
+<p><code>$ bundle exec ruby console.rb</code></p>
+<h4 id="we-do-load-seed-data">We Do: Load Seed Data</h4>
+<p>Take a look at <code>db/seeds.rb</code>. We&apos;ve taken some data from the iTunes API, and formatted it / saved it so we can load it into our database using AR.</p>
+<p>Go ahead and run the seed script:
+<code>$ bundle exec ruby db/seeds.rb</code></p>
+<p>Use the <code>console.rb</code> to verify that the data loaded correctly.</p>
+<h2 id="2-setting-up-our-sinatra-app">2. Setting up our sinatra app</h2>
+<p><em>You can proceed with your code, or checkout the <code>solution_step_1</code> branch to continue.</em></p>
+<p>Now that our database / data model is all setup, let&apos;s build a web app to let us interact with that data.</p>
+<p>To begin, let&apos;s set up the main <code>app.rb</code> file, which will connect to the database, load our models, and define the homepage route.</p>
+<h4 id="i-do-setup-app-rb-to-load-files">I do: Setup <code>app.rb</code> to load files</h4>
+<p>Demonstrate using <code>require_relative</code> to load connection file:</p>
+<pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra/reloader&apos;</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">&apos;active_record&apos;</span>
 
-matt=#
-</code></pre><h3 id="common-mistake">Common Mistake</h3>
-<p>If you see this when your run <code>psql</code>, you have not started the PostgresApp first.</p>
-<pre><code>$ psql
-psql: could not connect to server: No such file or directory
-    Is the server running locally and accepting
-    connections on Unix domain socket &quot;/tmp/.s.PGSQL.5432&quot;?
-</code></pre><h2 id="play-with-these-commands">Play with these commands</h2>
-<pre><code>\l
-# Lists all databases
+<span class="hljs-comment"># Load the file to connect to the DB</span>
+require_relative <span class="hljs-string">&apos;db/connection.rb&apos;</span>
 
-CREATE DATABASE pbj;
-\l
-# What changed?
-# What happens if we don&apos;t use a semicolon?
+<span class="hljs-comment"># Load models</span>
+require_relative <span class="hljs-string">&apos;models/artist&apos;</span>
+require_relative <span class="hljs-string">&apos;models/song&apos;</span>
+</code></pre>
+<h4 id="you-do-add-the-home-route">You do: Add the &apos;home&apos; Route</h4>
+<p>Create a route for the &apos;root&apos; or &apos;home&apos; route, which is a get request to &apos;/&apos;.</p>
+<p>It should render an erb file called <code>home.erb</code> in views. That view should just have a heading and some info about tunr.</p>
+<h2 id="3-add-routes-for-artists">3. Add Routes for Artists</h2>
+<p><em>You can proceed with your code, or checkout the <code>solution_step_2</code> branch to continue.</em></p>
+<p>Now that we have the basic structure in place, let&apos;s start to put everything together.</p>
+<p>Step-by-step, we&apos;re going to add the 7 RESTful routes for artists, and the corresponding views. We&apos;re also going to use AR to make sure that the data is persisted.</p>
+<h4 id="i-do-create-the-index-route">I Do: Create the <code>index</code> Route</h4>
+<pre><code class="lang-ruby"><span class="hljs-comment"># controllers/artists.rb</span>
 
-\c pbj
-# What might C stand for?
+get <span class="hljs-string">&apos;/artists&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all
+  erb <span class="hljs-symbol">:<span class="hljs-string">&quot;artists/index&quot;</span></span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h4 id="you-do-create-the-show-route">You Do: Create the <code>show</code> Route</h4>
+<h4 id="i-do-create-the-new-create-routes">I Do: Create the <code>new/create</code> Routes</h4>
+<pre><code class="lang-ruby">post <span class="hljs-string">&apos;/artists&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.create(params[<span class="hljs-symbol">:artist</span>])
+  redirect <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h4 id="you-do-create-the-edit-update-routes">You Do: Create the <code>edit/update</code> Routes</h4>
+<p>A caveat: to make a <code>put</code> request, we need to &apos;fake it&apos; in our form with a hidden input for the <code>_method</code> param:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&quot;/artists/&lt;%= @artist.id %&gt;&quot;</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">&quot;post&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;hidden&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;_method&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;put&quot;</span>&gt;</span>
 
-\d
-# Lists all tables
+  <span class="hljs-comment">&lt;!-- rest of form here --&gt;</span>
 
-\?
-# Shows available commands if you get stuck
-</code></pre><pre><code>CREATE TABLE students ( id SERIAL PRIMARY KEY, first_name VARCHAR NOT NULL, last_name VARCHAR NOT NULL, quote TEXT, birthday VARCHAR, ssn INT NOT NULL UNIQUE );
-\d
-SELECT * FROM students;
-</code></pre><h2 id="a-sql-command">A SQL Command</h2>
-<ul>
-<li>What are different components?<ul>
-<li>CREATE TABLE: command to define a new table</li>
-<li>followed by a list of the columns in the table</li>
-</ul>
-</li>
-</ul>
-<pre><code>id SERIAL PRIMARY KEY
-first_name VARCHAR NOT NULL
-last_name VARCHAR NOT NULL
-quote TEXT
-birthday VARCHAR
-ssn INT NOT NULL UNIQUE
-</code></pre><hr>
-<h3 id="defining-a-column">Defining a column</h3>
-<ul>
-<li><code>id SERIAL PRIMARY KEY</code><ul>
-<li><code>id</code>: column name, how we will refer to this column</li>
-<li><code>SERIAL</code> is the data type (similar to integer or string).  It&apos;s a special datatype for unique identifier columns, which the db auto-increments.</li>
-<li><code>PRIMARY KEY</code>: a special constraint which indicates a unique identifier for each row.</li>
-</ul>
-</li>
-</ul>
-<p>Take a few minutes to research the other rows.</p>
-<h2 id="breakin-stuff">Breakin&apos; stuff</h2>
-<pre><code>SELECT *
-
-SELECT (
-
-\q
-</code></pre><h2 id="crud">CRUD</h2>
-<ul>
-<li>CRUD stands for the most basic interactions we want to have with any database<ul>
-<li>What might CRUD stand for?</li>
-</ul>
-</li>
-</ul>
-<pre><code>SELECT * FROM students;
-# What does it do?
-# What does * stand for?
-
-INSERT INTO students (first_name, last_name) VALUES (&apos;Robin&apos;, &apos;Thomas&apos;);
-# This won&apos;t work!
-
-INSERT INTO students (first_name, last_name, quote, birthday, ssn) VALUES (&apos;Robin&apos;, &apos;Thomas&apos;, &apos;Two goldfish are in a tank. One says, &quot;Know how to drive this thing?&quot;&apos;, &apos;April 1&apos;, 8675309);
-SELECT * FROM students;
-
-UPDATE students SET first_name = &apos;Robert&apos; WHERE first_name = &apos;Robin&apos;;
-SELECT * FROM students;
-
-DELETE FROM students WHERE first_name = &apos;Robin&apos;;
-SELECT * FROM students;
-
-DROP TABLE students;
-
-DROP DATABASE pbj;
-</code></pre><h2 id="where-s-all-this-data-stored-anyway">Where&apos;s all this data stored, anyway?</h2>
-<ul>
-<li>Look in PostgresApp preferences.  You should see <code>~/Library/Application\ Support/Postgres/var-9.4</code>.  Let&apos;s take a look in there.</li>
-<li>We see <code>postgres-server.log</code></li>
-<li>Check out a file within <code>global/</code>. What is THAT?<ul>
-<li>This is binary (not text) data, spread out across multiple files</li>
-</ul>
-</li>
-<li><a href="http://www.postgresql.org/docs/9.0/static/storage-file-layout.html" target="_blank">More info</a></li>
-</ul>
-<h2 id="exercise">Exercise!</h2>
-<ul>
-<li>Create authors
-author:
-first_name (required),
-last_name (required),
-pen_name (optional),
-birthdate (optional)</li>
-</ul>
-<p>First, let&apos;s nail down the data types.
-Then, insert some data.</p>
-<h2 id="and-then">And then...</h2>
-<p>Control the results:</p>
-<pre><code>SELECT * from authors;
-
-SELECT * FROM authors ORDER BY first_name ASC;
-
-SELECT last_name, first_name FROM authors ORDER BY last_name DESC;
-
-# by length of last_name
-SELECT * FROM books WHERE CHAR_LENGTH(last_name) &lt; 8;
-
-# Limit what is returned
-SELECT last_name FROM authors WHERE CHAR_LENGTH(last_name) &gt; 8;
-
-# Select an author by first letter
-SELECT * FROM authors WHERE first_name LIKE  &apos;R%&apos;;
-# % is a wildcard (like &quot;*&quot;)
-
-# old enough to drive?
-# birthday &gt; ???
-</code></pre><p>It&apos;s important to note that you haven&apos;t changed anything.  These are read-only views into the data.</p>
-<h2 id="putting-it-with-ruby">Putting it with Ruby</h2>
-<pre><code>require &quot;pg&quot;
-connection = PG.connect(:hostaddr =&gt; &quot;127.0.0.1&quot;, :port =&gt; 5432, :dbname =&gt; &quot;pbj&quot;)
-results = connection.exec(&quot;SELECT * FROM authors&quot;)
-
-#Does NOT return a hash!
-
-results.each do |item|
-  puts item
-end
-</code></pre><h2 id="sekurrity">Sekurrity!</h2>
-<ul>
-<li>What security holes do you see here?<ul>
-<li>Let&apos;s say I want to update the database with something a user writes into their computer...</li>
-<li>They could pretty easily make my code execute a DROP TABLE or something.</li>
-<li>SQL injection</li>
-<li><a href="xkcd.png">Obligatory visual aid</a></li>
-<li><a href="car.jpg">Other obligatory visual aid</a></li>
-</ul>
-</li>
-</ul>
-<pre><code>connection.prepare(&apos;insert_student_statement&apos;, &apos;INSERT INTO authors (first_name, last_name, pen_name) values ($1, $2, $3, $4, $5)&apos;)
-connection.exec_prepared(&apos;insert_student_statement&apos;, [ &apos;J.K.&apos;, &apos;Rowling&apos;, &apos;Robert Gailbraith&apos;, &quot;1965/07/31&quot;])
-</code></pre><h2 id="joins">Joins</h2>
-<p>Add books!
-books: title, published_at</p>
-<p>Then fill it in.  Don&apos;t forget the relationship to author.</p>
-<p>Bonus: Try it with Ruby.</p>
-<h2 id="joins">Joins</h2>
-<ul>
-<li>Inner Join<ul>
-<li>Combines records that match both sides</li>
-</ul>
-</li>
-<li>Left/Right Join<ul>
-<li>Combines records of one side with matching record from other side, and fills in null for remaining</li>
-</ul>
-</li>
-<li><p>Outer join</p>
-<ul>
-<li>Combines all records of both sides with matching record from other side, and fills in null for remaining.</li>
-</ul>
-</li>
-<li><p>Huh?</p>
-<ul>
-<li>Try it yourself</li>
-</ul>
-</li>
-</ul>
-<pre><code>SELECT * FROM books INNER JOIN books ON (books.author_id = author.id);
-
-SELECT * FROM authors INNER JOIN books ON (books.author_id = author.id);
-
-SELECT authors.*, book.title FROM authors INNER JOIN books ON (books.author_id = author.id);
-
-SELECT authors.*, books.*
-FROM authors
-LEFT OUTER JOIN books
-ON (books.author_id = author.id);
-
-SELECT authors.*, books.*
-FROM authors
-LEFT JOIN books
-ON (books.author_id = author.id);
-</code></pre><p><a href="http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/" target="_blank">http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/</a></p>
-<h3 id="non-relational-database-no-sql">Non-relational database (No SQL)</h3>
-<ul>
-<li>A non-relational databse is like a hash<ul>
-<li>A collection of key / value pairs</li>
-<li>Don&apos;t need follow the same schema<ul>
-<li>i.e. There aren&apos;t column headers defining what everything in the 3rd column is</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Different ways of naming things<ul>
-<li>Table = Relation<ul>
-<li>Confusing, because it SHOWS relations, isn&apos;t a relation itself</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="homework">Homework</h2>
-<p>none</p>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;submit&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Create&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+</code></pre>
+<h4 id="you-do-create-the-delete-routes">You Do: Create the <code>delete</code> Routes</h4>
+<h2 id="4-add-routes-for-songs">4. Add Routes for Songs</h2>
+<p><em>You can proceed with your code, or checkout the <code>solution_step_3</code> branch to continue.</em></p>
+<p>Now that we have artists, let&apos;s add the 7 RESTful routes for songs, and the corresponding views.</p>
+<p>For now, just use a text box to let users input the <code>artist_id</code> when creating / editing a song.</p>
+<h4 id="you-do-create-all-seven-routes">You Do: Create All Seven Routes</h4>
+<h2 id="5-recap">5. Recap</h2>
 
                     
                     </section>
@@ -1124,10 +953,10 @@ ON (books.author_id = author.id);
         </div>
 
         
-        <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html" class="navigation navigation-prev " aria-label="Previous page: Domain Modeling"><i class="fa fa-angle-left"></i></a>
+        <a href="../../04-ruby-mvc-sinatra/sinatra-rest/readme.html" class="navigation navigation-prev " aria-label="Previous page: Sinatra &amp; REST"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../04-ruby-mvc-sinatra/active-record-intro/readme.html" class="navigation navigation-next " aria-label="Next page: Active Record"><i class="fa fa-angle-right"></i></a>
+        <a href="../../05-mvc-with-rails/readme.html" class="navigation navigation-next " aria-label="Next page: MVC with Rails"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
