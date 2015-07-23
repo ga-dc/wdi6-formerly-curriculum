@@ -1,8 +1,5 @@
 # Sinatra and ActiveRecord
 
-https://github.com/ga-dc/textbook/blob/master/Sinatra/db/wdidc5.md
-https://github.com/ga-students/addbass/tree/master/w04/d03_sinatra_db
-
 ## Learning Objectives
 
 - Explain the role of ActiveRecord in a web app
@@ -51,15 +48,25 @@ Here's a summary of the important folders / files in our app. It's important to 
 
 * **tunr**
   - **db**
+    - seeds (sample data)
+    - database configuration and connection files
   - **models**
+    - classes that inherit from ActiveRecord
   - **controllers**
+    - route definitions (`get "/artists" do`)
   - **views**
+    - erb templates
     - *layout.erb*
+      - a template for every view 
+      - calls `yield` (loads another template)
   - **public**
+    - static assets
+      - JS, CSS, images, fonts
   - *app.rb*
+   - the entry point to our application
+   - start the application with `ruby app.rb`
   - *console.rb*
-
-** !!!!!! Include description of each folder / file here !!!!!! **
+    - interact with models and data in the database
 
 ## 1. Data Model
 
@@ -153,11 +160,25 @@ Step-by-step, we're going to add the 7 RESTful routes for artists, and the corre
 
 #### I Do: Create the `index` Route
 
+```ruby
+# controllers/artists.rb
+
+get '/artists' do
+  @artists = Artist.all
+  erb :"artists/index"
+end
+```
+
 #### You Do: Create the `show` Route
 
 #### I Do: Create the `new/create` Routes
 
-Using
+```ruby
+post '/artists' do
+  @artist = Artist.create(params[:artist])
+  redirect "/artists/#{@artist.id}"
+end
+```
 
 #### You Do: Create the `edit/update` Routes
 
@@ -187,5 +208,3 @@ For now, just use a text box to let users input the `artist_id` when creating / 
 #### You Do: Create All Seven Routes
 
 ## 5. Recap
-
-*You can proceed with your code, or checkout the `solution_step_3` branch to continue.*
