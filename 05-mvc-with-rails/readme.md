@@ -4,6 +4,8 @@ Build a scalable, maintainable, and secure web application that manipulates data
 
 ## Learning Objectives
 
+### RSpec
+
 ### MVC/Intro to Rails
 - Explain what Ruby on Rails is and it's architectural components (rMVC)
 - Explain the lifecycle of an HTTP request in Ruby on Rails
