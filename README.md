@@ -31,6 +31,7 @@
     * [Databases](04-ruby-mvc-sinatra/databases/readme.md)
     * [Active Record](04-ruby-mvc-sinatra/active-record-intro/readme.md)
     * [Sinatra & REST](04-ruby-mvc-sinatra/sinatra-rest/readme.md)
+    * [Sinatra & Active Record](04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.md)
 * [MVC with Rails](05-mvc-with-rails/readme.md)
 * [Project 2](https://github.com/ga-dc/pbj-project2/blob/master/readme.md)
 * [APIs with Rails and Express](07-apis-with-rails-and-express/readme.md)
