@@ -15,6 +15,15 @@ Build a scalable, maintainable, and secure web application that manipulates data
 
 ### Models & Migrations
 
+- Use `rake` to create, edit, and update, and seed the db
+- Use rails generators to create migrations.
+- Use rails migrations to create tables and modify columns
+- Undo a migration with `rake db:rollback`
+- Create migrations that associate one model with another.
+- Identify the impacts of editing existing migrations.
+- Use `timestamps` to timestamp crud actions
+- Use shorthand syntax to create migrations from the command line.
+
 ### Views & Controllers
 - Utilize controllers to query the database
 - Use error driven development in Rails to identify common errors and implement solutions for them.

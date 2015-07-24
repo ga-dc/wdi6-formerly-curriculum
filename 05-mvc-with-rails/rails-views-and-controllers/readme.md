@@ -1,0 +1,5 @@
+- Utilize controllers to query the database
+- Use error driven development in Rails to identify common errors and implement solutions for them.
+- Explain how the router directs route to a specific controller application
+- Explain how controller actions map to specific views
+- Use instance variables defined in controller actions inside corresponding views.
