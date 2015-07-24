@@ -52,6 +52,12 @@ Build a scalable, maintainable, and secure web application that manipulates data
 - Implement nested routes in a Rails application.
 
 ### Sessions & Auth
+- Contrast the use cases for cookies and sessions.
+- Define and then access a session variable in a Rails application.
+- Create a (very) simple hashing algorithm.
+- Describe the differences between hashing and encoding.
+- Add sign up, sign in, and sign out functionality to a Rails application.
+- Securely store and access passwords.
 
 ### Deployment
 

@@ -4,6 +4,19 @@ Build an interactive web application that persists data.
 
 ## Learning Objectives
 
+## Unit Testing with RSpec
+
+- Explain the purpose unit testing
+- Explain what role RSpec plays in testing
+- Explain the TDD/BDD Mantra
+- Describe RSpec's basic syntax
+- Define the role of expectations and matchers
+- Explain why isolating tests is a best practice
+- List common expectations and the scenarios they support
+- Differentiate between testing return values and side effects
+- Describe why we avoid testing internal implementation
+
+
 ### Ruby Basics
 
 - Compare/contrast Ruby and Javascript as programming languages.
