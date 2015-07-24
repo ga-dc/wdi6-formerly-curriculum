@@ -9,9 +9,11 @@ Build a scalable, maintainable, and secure web application that manipulates data
 - Explain the lifecycle of an HTTP request in Ruby on Rails
 - Explain how Convention over Configuration relates to Ruby on Rails
 - Explain the structure of a rails application (folders & files)
+- Adam Sug: Compare and contrast the structure Sinatra and Rails appps
 - Create a new Ruby on Rails application
 - Create a Rails App with a RESTful interface
 - Follow Rails naming conventions when creating models, views and controllers
+- Use error driven development in Rails to identify common errors and implement solutions for them.
 
 ### Models & Migrations
 
@@ -25,22 +27,25 @@ Build a scalable, maintainable, and secure web application that manipulates data
 - Use shorthand syntax to create migrations from the command line.
 
 ### Views & Controllers
-- Utilize controllers to query the database
-- Use error driven development in Rails to identify common errors and implement solutions for them.
-- Explain how the router directs route to a specific controller application
+
+- Describe the role of controllers and views in a Rails app
+- Explain how the router directs requests to a specific controller and action
 - Explain how controller actions map to specific views
-- Use instance variables defined in controller actions inside corresponding views.
-- Adam sug.: Use `strong_params` to limit what attributes can be modified
-- Adam sug.: Something about layouts and stylesheet_link_tag / javascript_include_tag
+- Describe the Rails convention for implicity rendering a view from an action
+- Use `strong_params` to limit what attributes can be modified
+- Describe the role of instance variables in sharing information between an action and its view
+- Describe the difference between a `redirect` and a `render`
 
 ### Helpers
 
-- Describe how Rails' helper methods make our code mode readable and flexible
+- Describe how Rails' built-in helper methods make our code mode readable and flexible
 - Use Rails' path helper methods to generate paths for links and redirects
 - Generate links in views using `link_to`
+- Generate images in views using `image_tag`
 - Generate model forms using the `form_for` helper
 - Generate non-model forms using  the `form_tag` helper
-- Explain the use of an authenticity tokens in Rails forms
+- Describe what a CSRF attack is [example video](https://www.youtube.com/watch?v=uycmHQM_h64)
+- Explain the purpose of authenticity tokens in Rails forms
 
 ### Routing & Resources
 - Review the relationship between HTTP requests and controller actions.
@@ -64,6 +69,7 @@ Build a scalable, maintainable, and secure web application that manipulates data
 ### Deployment
 
 - Describe the major points of a `12-factor` as applied to deployment
+- Describe about layouts and stylesheet_link_tag / javascript_include_tag
 - Use environment variables to keep sensitive data out of code
 - Deploy a rails application using heroku
 - List common pitfalls and their solutions when deploying to heroku
