@@ -17,8 +17,10 @@ Build a scalable, maintainable, and secure web application that manipulates data
 
 ### Models & Migrations
 
+- Create a new rails application with postgres as the default
 - Use `rake` to create, edit, and update, and seed the db
 - Use rails generators to create migrations.
+- Use rails console to inspect and manipulate models
 - Use rails migrations to create tables and modify columns
 - Undo a migration with `rake db:rollback`
 - Create migrations that associate one model with another.
