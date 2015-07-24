@@ -16,7 +16,7 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 ## Thur Jul 23
 
 - Alexander Bannon
-- **Open Appointment Time**
+- Isabella Brookes
 
 ## Mon Jul 27
 
@@ -25,7 +25,6 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 
 ## Wed Jul 29
 
-- Isabella Brookes
 - Silvia Brown
 
 ## Thur Jul 30
