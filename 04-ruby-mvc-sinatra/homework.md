@@ -11,7 +11,8 @@
 | Tuesday       |                                | [create views / wireframes](https://github.com/ga-dc/landlord-3) |
 | Wednesday     |                                | [persist data with active record](https://github.com/ga-dc/landlord-2) |
 | Thursday      |                                | [connect sinatra to db](https://github.com/ga-dc/landlord-4) |
-| Friday        |                                |            |
+| Friday        |                                | [Reading - Intro to Rails](https://github.com/ga-dc/rails_intro_hw)           |
+| Friday        |                                | [Reading - Intro to RSpec](https://github.com/ga-dc/rspec_prerequisites)           |
 
 ## Jelly
 | Date Assigned | Notes                          | Assignment |
@@ -23,4 +24,5 @@
 | Tuesday       |                                | [persist data with active record](https://github.com/ga-dc/landlord-2) |
 | Wednesday     |                                | [create views / wireframes](https://github.com/ga-dc/landlord-3) |
 | Thursday      |                                | [connect sinatra to db](https://github.com/ga-dc/landlord-4) |
-| Friday        |                                |            |
+| Friday        |                                | [Reading - Intro to Rails](https://github.com/ga-dc/rails_intro_hw)           |
+| Friday        | Due next Thursday AM           | [Reading - Intro to RSpec](https://github.com/ga-dc/rspec_prerequisites)           |
