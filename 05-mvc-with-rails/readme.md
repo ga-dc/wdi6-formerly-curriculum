@@ -26,7 +26,7 @@ Build a scalable, maintainable, and secure web application that manipulates data
 
 ### Routing & Resources
 - Review how to define routes.
-- Identify the role `routes.rb` plays in the Rails MVC model.
+- Identify the role a router (`routes.rb`) plays in the Rails MVC model.
 - Create routes for individual pages in Rails, both RESTful and otherwise.
 - Use `resources` to define routes for a RESTful controller.
 - Use `rake routes` to display RESTful routes.
