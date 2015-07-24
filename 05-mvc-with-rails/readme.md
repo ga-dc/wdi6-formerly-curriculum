@@ -66,8 +66,12 @@ Build a scalable, maintainable, and secure web application that manipulates data
 
 ### Deployment
 
-- Describe the major points of a `12-factor` as applied to deployment
-- Describe about layouts and stylesheet_link_tag / javascript_include_tag
+- Describe the difference between development, test, and production environments
+- List and contrast different methods of deploying an application
+- Describe the major points of a `12-factor` application as applied to deployment
 - Use environment variables to keep sensitive data out of code
 - Deploy a rails application using heroku
+- Run migrations on heroku
+- Debug errors on heroku (heroku logs)
 - List common pitfalls and their solutions when deploying to heroku
+- Describe the role of the asset pipeline in rails
