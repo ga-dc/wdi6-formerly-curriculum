@@ -17,8 +17,10 @@ Build a scalable, maintainable, and secure web application that manipulates data
 
 ### Models & Migrations
 
+- Create a new rails application with postgres as the default
 - Use `rake` to create, edit, and update, and seed the db
 - Use rails generators to create migrations.
+- Use rails console to inspect and manipulate models
 - Use rails migrations to create tables and modify columns
 - Undo a migration with `rake db:rollback`
 - Create migrations that associate one model with another.
@@ -48,21 +50,25 @@ Build a scalable, maintainable, and secure web application that manipulates data
 - Explain the purpose of authenticity tokens in Rails forms
 
 ### Routing & Resources
-- Review how to define routes.
+- Review the relationship between HTTP requests and controller actions.
 - Identify the role a router (`routes.rb`) plays in the Rails MVC model.
 - Create routes for individual pages in Rails, both RESTful and otherwise.
 - Use `resources` to define routes for a RESTful controller.
 - Use `rake routes` to display RESTful routes.
 - Implement route names in Rails link helpers.
 - Implement nested routes in a Rails application.
+- Describe how path helpers work for nested routes.
+- Implement `form_for` to build a form for a nested resource.
 
 ### Sessions & Auth
-- Contrast the use cases for cookies and sessions.
+- Contrast the use cases for cookies, sessions, and permanent storage.
 - Define and then access a session variable in a Rails application.
 - Create a (very) simple hashing algorithm.
 - Describe the differences between hashing and encoding.
 - Add sign up, sign in, and sign out functionality to a Rails application.
 - Securely store and access passwords.
+- Describe the functionality added by `has_secure_password`.
+- Differentiate between authentication and authorization.
 
 ### Deployment
 
