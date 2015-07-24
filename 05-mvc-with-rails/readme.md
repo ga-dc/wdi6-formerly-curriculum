@@ -30,8 +30,17 @@ Build a scalable, maintainable, and secure web application that manipulates data
 - Explain how the router directs route to a specific controller application
 - Explain how controller actions map to specific views
 - Use instance variables defined in controller actions inside corresponding views.
+- Adam sug.: Use `strong_params` to limit what attributes can be modified
+- Adam sug.: Something about layouts and stylesheet_link_tag / javascript_include_tag
 
 ### Helpers
+
+- Describe how Rails' helper methods make our code mode readable and flexible
+- Use Rails' path helper methods to generate paths for links and redirects
+- Generate links in views using `link_to`
+- Generate model forms using the `form_for` helper
+- Generate non-model forms using  the `form_tag` helper
+- Explain the use of an authenticity tokens in Rails forms
 
 ### Routing & Resources
 - Review how to define routes.
@@ -43,5 +52,16 @@ Build a scalable, maintainable, and secure web application that manipulates data
 - Implement nested routes in a Rails application.
 
 ### Sessions & Auth
+- Contrast the use cases for cookies and sessions.
+- Define and then access a session variable in a Rails application.
+- Create a (very) simple hashing algorithm.
+- Describe the differences between hashing and encoding.
+- Add sign up, sign in, and sign out functionality to a Rails application.
+- Securely store and access passwords.
 
 ### Deployment
+
+- Describe the major points of a `12-factor` as applied to deployment
+- Use environment variables to keep sensitive data out of code
+- Deploy a rails application using heroku
+- List common pitfalls and their solutions when deploying to heroku
