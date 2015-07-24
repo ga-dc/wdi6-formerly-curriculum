@@ -66,6 +66,7 @@ System wouldn't work if we didn't have a sense of an order.
 Example: Nerdiest joke I know...
   * The barman says: “We don’t serve faster-than-light particles here.” A
     tachyon enters a bar.
+
 ## TCP/IP Stack (the Internet protocol suite)
 
 ### Summary of Layers
@@ -84,12 +85,12 @@ Discuss
   * TCP/IP
   * UDP
 * Application layer
-  * HTTP (2)
-  * FTP (2)
-  * GOPHER (2)
+  * HTTP
+  * FTP
+  * GOPHER
 
 What is the purpose of the protocol stack?
-**encapsulation**
+**abstraction**
 
 ![Image](http://upload.wikimedia.org/wikipedia/commons/c/c4/IP_stack_connections.svg)
 
