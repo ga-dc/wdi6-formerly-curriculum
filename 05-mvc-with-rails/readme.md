@@ -43,13 +43,15 @@ Build a scalable, maintainable, and secure web application that manipulates data
 - Explain the use of an authenticity tokens in Rails forms
 
 ### Routing & Resources
-- Review how to define routes.
+- Review the relationship between HTTP requests and controller actions.
 - Identify the role a router (`routes.rb`) plays in the Rails MVC model.
 - Create routes for individual pages in Rails, both RESTful and otherwise.
 - Use `resources` to define routes for a RESTful controller.
 - Use `rake routes` to display RESTful routes.
 - Implement route names in Rails link helpers.
 - Implement nested routes in a Rails application.
+- Describe how path helpers work for nested routes.
+- Implement `form_for` to build a form for a nested resource.
 
 ### Sessions & Auth
 - Contrast the use cases for cookies and sessions.
