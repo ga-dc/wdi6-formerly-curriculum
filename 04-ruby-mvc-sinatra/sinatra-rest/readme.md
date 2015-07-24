@@ -221,3 +221,9 @@ Forms with a GET action are useful for search forms.
 ## You do: Emergency Complement
 
 https://github.com/ga-dc/emergency_compliment
+
+### Sample Quiz Questions
+
+- List the 5 HTTP request methods. How do they relate to the 4 crud actions?
+- What is the purpose of sinatra's `layout.erb` file?
+- Write an html `<script>` tag that links to a js file in `public/js/app.js`
