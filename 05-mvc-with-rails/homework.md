@@ -5,7 +5,7 @@
 ## Peanut Butter
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Monday        |                                | [Scribble MVC](https://github.com/ga-dc/scribble#mvc)   |
+| Monday        |                                | [WDInstagram to Rails](https://github.com/ga-dc/WDInstgram_rails)  |
 | Tuesday       |                                | [Scribble Models and Migrations](https://github.com/ga-dc/scribble#models--migrations)   |
 | Tuesday       |                                | [Scribble Views and Controllers](https://github.com/ga-dc/scribble#views--controllers)   |
 | Wednesday     |                                | [Scribble Helpers](https://github.com/ga-dc/scribble#helpers) |
@@ -17,7 +17,7 @@
 ## Jelly
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Monday        |                                | [Scribble MVC](https://github.com/ga-dc/scribble#mvc)   |
+| Monday        |                                | [WDInstagram to Rails](https://github.com/ga-dc/WDInstgram_rails)  |
 | Monday        |                                | [Scribble Models and Migrations](https://github.com/ga-dc/scribble#models--migrations)   |
 | Tuesday       |                                | [Scribble Views and Controllers](https://github.com/ga-dc/scribble#views--controllers) |
 | Tuesday       |                                | [Scribble Helpers](https://github.com/ga-dc/scribble#helpers) |
