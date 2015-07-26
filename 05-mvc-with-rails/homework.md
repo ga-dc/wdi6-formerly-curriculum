@@ -1,4 +1,4 @@
-# Homework (Weeks 3 and 4)
+# Homework (Week 5)
 
 **Note** Homework this week will only be collected on Thursday (complete Scribble) and Friday (Hogwarts).
 
