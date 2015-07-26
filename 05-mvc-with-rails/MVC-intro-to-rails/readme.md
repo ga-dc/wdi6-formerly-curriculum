@@ -156,6 +156,7 @@ end
 ```
 
 Let's refresh:
+<br>
 ![unknown_action](images/unknown_action.png)
 
 Oh noes another error. When we go to `http://localhost:3000/artists` our router says it knows where to send it. It's sending it to the artists controller and expects it to do the index action. Unfortunately we haven't defined it yet, so it's unknown. Lets go ahead and define one now
@@ -251,6 +252,11 @@ following line in `application_controller.rb`:
 
 ```ruby
     protect_from_forgery with: :exception
+```
+
+and inside `config/application.rb`
+```ruby
+config.action_controller.permit_all_parameters = true
 ```
 
 ### Run rails server
