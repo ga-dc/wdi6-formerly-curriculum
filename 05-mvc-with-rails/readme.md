@@ -9,7 +9,7 @@ Build a scalable, maintainable, and secure web application that manipulates data
 - Explain the lifecycle of an HTTP request in Ruby on Rails
 - Explain how Convention over Configuration relates to Ruby on Rails
 - Explain the structure of a rails application (folders & files)
-- Adam Sug: Compare and contrast the structure Sinatra and Rails appps
+- Compare and contrast the structure Sinatra and Rails appps
 - Create a new Ruby on Rails application
 - Create a Rails App with a RESTful interface
 - Follow Rails naming conventions when creating models, views and controllers
