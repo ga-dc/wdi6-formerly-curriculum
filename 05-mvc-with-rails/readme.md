@@ -30,6 +30,10 @@ Build a scalable, maintainable, and secure web application that manipulates data
 - Explain how the router directs route to a specific controller application
 - Explain how controller actions map to specific views
 - Use instance variables defined in controller actions inside corresponding views.
+- Differentiate between implicit and explicit rendering
+- Differentiate between rendering and redirecting
+- explain how how css and javascript are linked to a rails view
+- Prevent mass assignment using strong paramters
 
 ### Helpers
 
