@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.3" data-basepath="../.." data-revision="Mon Jul 27 2015 14:00:20 GMT+0000 (UTC)">
+    <div class="book" data-level="5.3" data-basepath="../.." data-revision="Mon Jul 27 2015 14:16:56 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -917,7 +917,11 @@ wherever <code>belongs_to</code> appears in the model definition.</p>
 <h2 id="you-do-use-rails-console">You do: Use rails console</h2>
 <p>to create at least three songs that are associated with the previous two artists.</p>
 <h2 id="break">Break</h2>
-<h2 id="we-do-how-to-deal-with-mistakes">We do: How to deal with mistakes</h2>
+<h2 id="we-do-seeds">We do: Seeds</h2>
+<p>First, let&apos;s add in the missing data for seeds:</p>
+<pre><code>$ git pull git@github.com:ga-dc/tunr_rails seeds
+$ rake db:seed
+</code></pre><h2 id="we-do-how-to-deal-with-mistakes">We do: How to deal with mistakes</h2>
 <p>I forgot to tell you all about timestamps. Rails can automatically timestamp when 
 objects are created and updated. Let&#x2019;s create a new migration to add timestamp columns
 to the artists table.</p>
@@ -937,7 +941,15 @@ to the artists table.</p>
 environment, but NOT in a production environment. If you are working on an application
 with other developers, avoid using <code>rake db:rollback</code> after code has been pushed, and
 create new migrations that can be migrated forward on other machines.</p>
+<p>What is the difference between creating migrations that fix previous mistakes, vs this workflow:</p>
+<ol>
+<li>make mistake</li>
+<li>rake db:migrate</li>
+<li>fix wrong migration file</li>
+<li>rake db:migrate:reset || rake db:drop:all &amp;&amp; rake db:create &amp;&amp; rake db:migrate</li>
+</ol>
 <p>Users will be very upset if you destroy their data. </p>
+<h2 id="you-do-create-a-migration-and-roll-it-back">You do: Create a migration and roll it back</h2>
 
                     
                     </section>
