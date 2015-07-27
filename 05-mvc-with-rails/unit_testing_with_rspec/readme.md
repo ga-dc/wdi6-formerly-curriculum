@@ -281,9 +281,9 @@ Add support for farewell, for each language.
 ---
 
 ## Mocks & Stubs
-- Stubbing and Mocking makes your component examples independent of other components.
-- You can stub methods on objects to let them return whatever you like.
-- And you can use mock objects to replace instances of other classes.
+Sometimes our Unit Under Test must interact with other object.  If these objects are difficult to setup or their response may be slow or non-deterministic -- like an external service that we contact via te internet.  It can make sense to mock out the other object, to create a "fake" object that supports the interface you need but returns a fixed, expected value.  This makes your component examples independent of other components.
+- You can use mock objects the replace the entire object, just supporting the interface you need (the methods and attribute that your Unit Under Test actually interacts with).
+- You can stub specific methods on "real" objects to let them return whatever you like.
 
 ---
 
@@ -300,6 +300,8 @@ allow(book).to receive(:title).and_return("The RSpec Book")
 
 Now that you have had some small exercises to get familiar with the syntax, let's practice the concept.
 
+https://github.com/ga-dc/learn_ruby_via_rspec
+
 ---
 
 ## Homework:
@@ -311,9 +313,9 @@ https://github.com/ga-dc/scrabbler
 
 ---
 
-## Bonus:
+## Want more? Need clarification?
 
-
+There are plenty of exercises in TestFrist.org
 
 ---
 
@@ -341,59 +343,3 @@ https://github.com/ga-dc/scrabbler
 - Mocks & Stubs
   - http://rubydoc.info/gems/rspec-mocks/frames
   - http://rubydoc.info/gems/rspec-mocks/frames
-
----
-
-
-## TDD vs. BDD
-
-A brief history
-
-Emergent design
-
-## Why BDD?
-
-Limited self discipline.
-Environment that leads us in the right direction.
-
-“BDD puts the focus on behavior instead of structure, and it does so at every level of development.”
-
-Excerpt From: David Chelimsky. “The RSpec Book (for Matthew Scilipoti).” iBooks.
-
-## Given, When, Then, the BDD triad
-
-I have found that most of the problems that software development teams face are communication problems.  So I get excited when I read something like this:
-
-> “BDD aims to help communication by simplifying the language we use to describe scenarios in which the software will be used: Given some context, When some event occurs, Then I expect some outcome.” -- David Chelimsky
-
-
-Given, When, Then, the BDD triad
-
-## Why RSpec?
-“We use RSpec to write executable examples of the expected behavior of a small bit of code in a controlled context.”
-
-Excerpt From: David Chelimsky. “The RSpec Book (for Matthew Scilipoti).” iBooks.
-
-
-
-## DSL?
-
-We hypothesized that a focus on behavior could
-
-!!! Use examples from
-
-
-
-## Exercise: Mini Code Retreat
-
-scrabble
-
-https://github.com/ga-dc/bowling_game
-
-## Homework:
-
-http://testfirst.org/learn_ruby
-
-## References:
-- "The RSpec Book", David Chelimsky
-- Magic Tricks of Testing - Sandi Metz
