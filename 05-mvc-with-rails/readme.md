@@ -1,10 +1,20 @@
-# MVC with Rails
+# MVC with Rails`
 
 Build a scalable, maintainable, and secure web application that manipulates data.
 
 ## Learning Objectives
 
-### RSpec
+### Unit Testing with RSpec
+
+- Explain the purpose unit testing
+- Explain what role RSpec plays in testing
+- Explain the TDD/BDD Mantra
+- Describe RSpec's basic syntax
+- Define the role of expectations and matchers
+- Explain why isolating tests is a best practice
+- List common expectations and the scenarios they support
+- Differentiate between testing return values and side effects
+- Describe why we avoid testing internal implementation
 
 ### MVC/Intro to Rails
 - Explain what Ruby on Rails is and it's architectural components (rMVC)
