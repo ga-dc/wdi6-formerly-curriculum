@@ -5,7 +5,6 @@ Build a scalable, maintainable, and secure web application that manipulates data
 ## Learning Objectives
 
 ### Unit Testing with RSpec
-
 - Explain the purpose unit testing
 - Explain what role RSpec plays in testing
 - Explain the TDD/BDD Mantra

@@ -65,7 +65,7 @@ We have a Person model and a Person spec (a specification or test). This is the 
 
 ---
 
-## What does an RSpec test look like?
+## What does an RSpec specification (or "test") look like?
 
 ``` ruby
 require_relative '../models/person'  # a reference to our code
@@ -102,30 +102,112 @@ describe Person do
       subject(:tony) { Person.new("Tony", "Italian") }
 
       it "should offer a greeting in Italian" do
-        expect(tony.greeting).to eql("Ciao, mi chiamo Tony.")
+        # legacy syntax - the old DSL
+        tony.greeting.should eql("Ciao, mi chiamo Tony.")
+        # equivalent to:
+        # expect(tony.greeting).to eql("Ciao, mi chiamo Tony.")
       end
     end
   end
 end
 ```
 
+### The Spec
 The first line is a reference to our library code.  We need to access to the classes we have written.
+
+Well skim through the code, gaining a high level knowledge of what is expected, then we'll return to hash out the details.
 
 `describe` is a new keyword provided by RSpec (part of its DSL).  Here it indicates that a `Person` is the "Unit Under Test".  First we show examples of what we can expect as we contruct new people.  Then, we describe the functionality of the `greeting` method, specifically within the specific context of each language.  This is ruby code, indicating how our library (or model) code should behave.
 
-Where does `@matt` come from?  How about `bob` and `tony`?
+### Test Isolation
+Returning to the top, we see `@matt` being instantiated.
+  Introduce isolation.
+  1. Setup
+  2. Test
+  3. Teardown
 
-Discuss isolation (language), `subject`.
+### Expectation and Matcher
+Then we see our first spec or "expectation".
+```
+expect(@matt).to be_an_instance_of(Person)
+```
+
+RSpec assertions have two components: expectation and matcher.
+
+We expect `@matt` to be something.  We identify that "something" with a Matcher:
+
+> Expectation: `expect(@matt).to `
+
+> Matcher: `be_an_instance_of(Person)`
+
+Everything else exists to support Expectations and Matchers.
+
+### Legacy syntax (should)
+
+In addition to `expect(iut).to matcher`, RSpec supports another syntax: `should`.   That expectation is slightly different.  It uses the older `should` syntax.  
+
+You may see this:
+```
+it "should default #language to 'English'" do
+  expect(@matt.language).to eq("English")
+end
+```
+Written as:
+```
+it "should default #language to 'English'" do
+  @matt.language.should eq("English")
+end
+```
+
+The underlying implementation of "should" was "messy". You can see that they had to dynamically adjust our library code `@matt.language` to support the `should` method.
+
+The new syntax works like jQuery's `$()` syntax.  We use `expect(IUT)` to "wrap" the Item Under Test, so that it supports the `to` method.  The `to` method accepts a matcher.
+
+While we adjust the use of parenthesis for readability, we are really passing the "matcher" to the "expectation".
+
+
+### Exercise: Getting familiar
+
+LearnRuby: 00 Hello World
+
+We are going to use a website called LearnRuby to practice reading specifications.
+
+Follow these instructions carefully, if you think you are lost, re-read the instructions, I expect you missed a step.
+
+These exercises increase in complexity.  They will exercise your ruby knowledge and your RSpec knowledge at the same time.  If you ever find yourself getting ahead, feel free to do any of these exercises.    Conversaly, if you feel a little lost, back up.  Do some of the exercises we skipped.
+
+Let's start at the very beginning.  DO the introduction and "00 Hello World".  What a very fine place to start.
+
+http://testfirst.org/learn_ruby
+
+`git clone git://github.com/alexch/learn_ruby.git`
+
+
+### Context
+
+As we move int the the description of the `greeting` method.  We see our first "context": `"for default language (English)"`.  Within this block, we expect the language of our person to be "English" and we will write specs accordingly.  You can see this as we move down through each supported language.
+
+Where did `@matt` come from? `before(:each)`  How about `bob` and `tony`?
+
+`subject` is another part of the RSpec DSL.  We found that the subject of each test was an important componenet, so we made it a first class citizen.  While we still setup some things in `before` blocks, you will usually see the item "under test" defined in a `subject` block.
+
+The following subject block indicates that there will be a variable named `bob` available within this block of specs.  You can expect it to be assigned a person, named "Bob".
+```
+subject(:bob) { Person.new("Bob") }
+```
+
+ The code within the block is assigned to the dynamically created variable.  This variable is named after the symbol.  So, during these specs, the variable `bob` will hold a reference to the person under test.
+
 
 ---
 
-Let's review those results again.  See where they come from?  Now, we'll try changing our code and see the specs fail.  Take a minute to adjust the code and run the specs a few times.
+Let's review those results again (`$ rspec`).  See where they come from?  Now, let's review `describe`, `context`, `it`, "expectations", and "matchers", by changing our code and see the specs fail.  Take a few minutes to adjust the code and run the specs a few times.  Play with it.  See how your actions in the code AND in the specs affect the output.
 
 Ok, let's change everything back.  Are we back to Green?  Good.
 
 ---
 
-### Think, pair, share.  
+### Think, pair, share.  Support another language
 Let's take a few minutes to specify that a Person can greet in Spanish too. We'll stick to the specification for now, then add the implementation in a minute.
 
 In spanish, we should greet with "Hola me llamo Maria."  
@@ -151,7 +233,7 @@ when /spanish/i
 
 ---
 
-### Think, pair, share.  
+### Think, pair, share.  What aren't we testing?
 Let's take a few minutes to think about what we aren't testing.
 
 Sit quietly for 2 minutes.  Think like a tester.  What code exists that aren't testing.  What examples would be good to clarify what our code can do?
@@ -159,16 +241,40 @@ Sit quietly for 2 minutes.  Think like a tester.  What code exists that aren't t
 Next, we'll discuss with our pair for 4 minutes.
 Then, we'll share a few examples with the class.
 
----
-
-Exercise: Implement your suggestions.
-
-- Uses passed name
-- Unsupported language
+- That we are using the passed `name` argument.
+- What happens with an unsupported language
 
 ---
 
+### Exercise: Implement your suggestions.
 
+- Specify that we utilize the passed name
+- Specify the response to an Unsupported language
+
+I recommend that you review the available Matchers in the [RSpec documentation](???).  These are live documents, written using "relish" to ensure they keep pace with the code.
+
+---
+
+### We avoid testing implementation
+Here's something else we aren't testing.
+We aren't testing that `greeting` uses a `select/case` statement.  That would be testing the internal implementation. Let's be clear, I should be free to write whatever code I want, inside of the `greeter` method, in order to achieve the results the specs indicate. Let's say our team creates a new translation library.  I should be able to swap out my naive implementation and replace it with that.  The following code tells the ItalianTranslator to translate this phrase from English.
+
+```
+tony = Person.new("tony", ItalianTranslator)
+```
+I would replace the code in `greeting` with:
+```
+def greeting
+  phrase = "Hello, my name is #{name}"
+  language.convert_from(phrase, :en)
+end
+```
+
+-----
+
+### Exercise: Add farewell.
+
+Add support for farewell, for each language.
 
 ---
 
