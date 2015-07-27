@@ -8,10 +8,15 @@
 - Generate images in views using `image_tag`
 - Generate model forms using the `form_for` helper
 - Generate non-model forms using  the `form_tag` helper
-- Describe what a CSRF attack is [example video](https://www.youtube.com/watch?v=uycmHQM_h64)
+- Describe what a CSRF attack is
 - Explain the purpose of authenticity tokens in Rails forms
 
-## What are Helpers?
+### References
+
+* [image_tag](http://apidock.com/rails/ActionView/Helpers/AssetTagHelper/image_tag)
+* [link_to](http://apidock.com/rails/ActionView/Helpers/UrlHelper/link_to)
+* [form_for](http://apidock.com/rails/ActionView/Helpers/FormHelper/form_for)
+## What are Helpers? (5 minutes - 5)
 
 If we look at our app, there are a lot of places where we're writing a lot of
 text, and where that text follows a common pattern. Think about the similarities
@@ -26,7 +31,7 @@ so we don't have to type it out, and so that our code is more readable. (A side
 benefit here is that if our routes change, we don't have to go fix all of our
 links, forms, etc.)
 
-## Path Helpers
+## Path Helpers (10 minutes - 15)
 
 Path helpers are methods that generate paths. These helpers can be used anywhere
 you would have manually typed out a path as a string, e.g. "/artists",
@@ -64,7 +69,18 @@ Another example:
 
 Path helpers can be used in controllers & views.
 
-## Link Helpers
+### Exercise (10 minutes - 25)
+
+1. Clone our starter code for [tunr-rails-helpers](https://github.com/ga-dc/tunr-rails-helpers)
+2. Replace the routes with `resources`.
+3. Replace all hard-coded paths in the controllers with path helpers.
+
+#### Bonus:
+
+Replace all hard-coded paths in link / form tags in the views. We'll be replacing
+them soon using link/form helpers.
+
+## Link Helpers (10 minutes - 35)
 
 The link helper `link_to` generates link (`<a>`) tags. In general, `link_to`
 takes two arguments:
@@ -96,7 +112,11 @@ the second object is an instance of an ActiveRecord Model:
 <% end %>
 ```
 
-## HTML Options
+### Exercise (15 minutes - 50)
+
+Replace all links (<a> tags) in tunr-rails-helpers with `link_to`.
+
+## HTML Options (10 minutes - 1:00)
 
 Almost any helper method that generates HTML tags, can take a set of HTML
 options. This is commonly used to set the `class` and/or `id` attributes, but
@@ -111,7 +131,7 @@ Example:
 For more examples, see the [API Docs for Rails link_to](http://apidock.com/rails/ActionView/Helpers/UrlHelper/link_to)
 
 
-## Image Helpers
+## Image Helpers (5 minutes - 1:05)
 
 The `image_tag` helper generates an `<img>` tag.
 
@@ -144,4 +164,100 @@ size and alt.
 <%= image_tag @artist.photo_url, alt: "Photo of #{@artist.name}", size: "400x400" %>
 ```
 
-## Form Helpers
+### Exercise (5 minutes - 1:10)
+
+Replace the <img> tag with the image_tag helper in tunr-rails-helpers.
+
+Bonus:
+Add some icon images to `app/assets/images` and use image_tag to add icons where
+appropriate (e.g. replace the `(+)` link)
+
+# BREAK (10 minutes - 1:20)
+
+
+## Form Helpers (20 minutes - 1:40)
+
+Rails includes two helper methods to build forms: `form_for` and `form_tag`.
+
+Today, we'll only be looking at `form_for`, which builds forms specifically
+for creating / updating our models (e.g. songs / artists etc).
+
+The other helper, `form_tag` is for building generic forms, for example a
+search form.
+
+Here's an example of using form_for:
+
+```
+<h2>Create Panda</h2>
+
+<%= form_for @panda do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :favorite_food %>
+  <%= f.text_field :favorite_food %>
+
+  <%= f.label :age %>
+  <%= f.number_field :age %>
+
+  <%= f.label :cute %>
+  <%= f.check_box :cute %>
+
+  <%= f.submit "Make a brand new panda!"%>
+<% end %>
+```
+
+Important facts about the `form_for` helper:
+
+* It takes one argument, the object to create / update (it must be an AR object)
+  * If the object is **new** (not saved to DB), it will create a form to **create**
+  * If the object is not new (no id), it will create an form to update (prepopulated)
+* Methods to generate labels and inputs take one argument, the name of the attribute
+* The submit button takes an optional argument for the text on the button
+  * If you omit the argument, it will say either "Create Panda" or "Update Panda" accordingly (subbing in the name of your model)
+
+### Exercise (20 minutes - 2:00)
+
+Replace all forms in tunr-rails-helpers with `form_for` tags.
+
+## Why use form_for? (15 minutes - 2:15)
+
+The form helpers are useful for a few reasons:
+
+### Cleaner Code
+
+Our new form code is much more consise, easier-to-read and update, and less
+prone to errors than the old, more verbose form.
+
+### Reduced Duplication
+
+You may have noticed that our create / update forms are now exactly the same.
+This is because Rails can detect whether we're creating a new object or editing
+an existing one.
+
+Thus, we can later on use the same view in both contexts. (This approach is
+called using **partials**).
+
+### Protection from CSRF
+
+A very common attack against web apps is something called **Cross-site Request
+Forgery**. This occurs when a user visits a malcious site, and that site tricks
+the user's browser into making a request to your site. This request could be a
+POST request that modifies data under the target user's account.
+
+[Video explaining how CSRF works](https://www.youtube.com/watch?v=uycmHQM_h64)
+
+Rails prevents this by embedding a special token each time it generates a form.
+
+Any time a POST/PUT/DELETE request comes in, Rails checks that the form data
+includes a token it recently gave out to that user (they eventually expire).
+
+If the token isn't present (or doesn't match), then the request is rejected.
+
+We can manually include that token in our forms, but `form_for` and `form_tag`
+do it for us.
+
+## Summary (10 minutes - 2:25)
+
+Rails' helper methods are great at keeping our code readable, flexible and DRY,
+so use em!
