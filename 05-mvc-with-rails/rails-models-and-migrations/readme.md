@@ -20,6 +20,7 @@ How do you know it worked?
 
 - `rails c`
 - `psql -d tunr_development`
+- `rails dbconsole`
 
 ## What is Rake?
 
@@ -75,7 +76,10 @@ class CreateArtists < ActiveRecord::Migration
 end
 ```
 
-You can create the artists table with `rake db:migrate`
+t represents the table we're creating, and we can use methods like `string`, `integer`, and other
+data types to create columns of that type, passing in the name of the column as a symbol.
+
+You can create the artists table and run this migration with `rake db:migrate`
 
 ## You do: view db/schema.rb
 
@@ -86,8 +90,10 @@ The above command created this file. Take a minute to read through it.
 to create at least two artists.
 
 ```
-$ rails c
+$ rails console
 ```
+
+`rails c` is short for `rails console`
 
 ## You do: Create the migration for Songs
 
@@ -110,6 +116,11 @@ class CreateSongs < ActiveRecord::Migration
   end
 end
 ```
+
+`references` is used when the column represents a foreign key for another table. It appears
+wherever `belongs_to` appears in the model definition.
+
+`t.references :artist` is equivilant to `t.integer :artist_id`
 
 ## You do: Use rails console
 
