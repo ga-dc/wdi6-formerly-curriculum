@@ -22,8 +22,7 @@ The reading discussed TDD/BDD.  Indicating that testing is as much about design,
 
 ---
 
-## Let's look at a rspec_person_example
-
+## Let's look at a [rspec_person_example](https://github.com/ga-dc/rspec_person_example)
 
 When I run `rspec` in the `rspec_person_example` dir, what do we see?
 
@@ -168,24 +167,27 @@ While we adjust the use of parenthesis for readability, we are really passing th
 
 ### Exercise: Getting familiar
 
-LearnRuby: 00 Hello World
-
 We are going to use a website called LearnRuby to practice reading specifications.
 
-Follow these instructions carefully, if you think you are lost, re-read the instructions, I expect you missed a step.
+Follow these instructions carefully, if you think you are lost, re-read the instructions, I expect you missed a step.  Due to Learn Ruby's setup, you will use `rake` instead of `rspec`.  The rake task is configuring and running rspec.
 
-These exercises increase in complexity.  They will exercise your ruby knowledge and your RSpec knowledge at the same time.  If you ever find yourself getting ahead, feel free to do any of these exercises.    Conversaly, if you feel a little lost, back up.  Do some of the exercises we skipped.
+These exercises increase in complexity.  They will exercise your ruby knowledge and your RSpec knowledge at the same time.  If you ever find yourself getting ahead, feel free to do any of these exercises.    Conversely, if you feel a little lost, back up.  Do some of the exercises we skipped.
 
-Let's start at the very beginning.  DO the introduction and "00 Hello World".  What a very fine place to start.
+Let's start at the very beginning.  What a very fine place to start.
 
-http://testfirst.org/learn_ruby
+http://testfirst.org/learn_ruby#install
 
-`git clone git://github.com/alexch/learn_ruby.git`
+1. Start from `wdi/exercises`.
+2. `git clone git://github.com/alexch/learn_ruby.git`
+3. Once you get the materials, open learn_ruby/index.html in your favorite web browser. Further instructions await therein.
 
+We'll continue together until through the first few steps.
+
+Continue with 00_hello.  We'll do this for 8 minutes.
 
 ### Context
 
-As we move int the the description of the `greeting` method.  We see our first "context": `"for default language (English)"`.  Within this block, we expect the language of our person to be "English" and we will write specs accordingly.  You can see this as we move down through each supported language.
+As we move into the the description of the `greeting` method, we see our first "context": `"for default language (English)"`.  Within this block, we expect the language of our person to be "English" and we will write specs accordingly.  You can see this as we move down through each supported language.
 
 Where did `@matt` come from? `before(:each)`  How about `bob` and `tony`?
 
@@ -251,7 +253,7 @@ Then, we'll share a few examples with the class.
 - Specify that we utilize the passed name
 - Specify the response to an Unsupported language
 
-I recommend that you review the available Matchers in the [RSpec documentation](???).  These are live documents, written using "relish" to ensure they keep pace with the code.
+I recommend that you review the available Matchers in the [RSpec documentation](https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers).  These are live documents, written using "relish" to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (3.3).
 
 ---
 
@@ -278,8 +280,6 @@ Add support for farewell, for each language.
 
 ---
 
-
-
 ## Mocks & Stubs
 - Stubbing and Mocking makes your component examples independent of other components.
 - You can stub methods on objects to let them return whatever you like.
@@ -296,35 +296,13 @@ allow(book).to receive(:title).and_return("The RSpec Book")
 
 ```
 
+---
 
-## Expect an error?
-``` ruby
-describe Object, "#non_existent_message" do
-  it "should raise" do
-    expect{Object.non_existent_message}.to raise_error(NameError)
-  end
-end
-
-describe Object, "#public_instance_methods" do
-  it "should not raise" do
-    expect{Object.public_instance_methods}.to_not raise_error(NameError)
-  end
-end
-```
+Now that you have had some small exercises to get familiar with the syntax, let's practice the concept.
 
 ---
 
-Exercise: 00_hell0_world
-
-http://testfirst.org/learn_ruby, 00_hello_world
-
-Note: Follow these directions closely.  They will walk you through each step.  Due to learn_ruby's setup, you will use `rake` instead of `rspec`.  The rake task is configuring and running rspec.
-
----
-
-Now that you have had some small exercises to cement the language
-
-## Exercise:
+## Homework:
 
 Scoring a Scrabble game.
 Break it into small pieces and have pairs iterate, then switch pairs and repeat.
@@ -333,13 +311,9 @@ https://github.com/ga-dc/scrabbler
 
 ---
 
-## Homework:
+## Bonus:
 
-http://testfirst.org/learn_ruby
-01 Temperature
-02 Calculator
-03 Simon Says
-08 Book Titles
+
 
 ---
 
