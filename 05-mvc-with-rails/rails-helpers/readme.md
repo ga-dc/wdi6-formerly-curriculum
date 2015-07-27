@@ -16,6 +16,7 @@
 * [image_tag](http://apidock.com/rails/ActionView/Helpers/AssetTagHelper/image_tag)
 * [link_to](http://apidock.com/rails/ActionView/Helpers/UrlHelper/link_to)
 * [form_for](http://apidock.com/rails/ActionView/Helpers/FormHelper/form_for)
+
 ## What are Helpers? (5 minutes - 5)
 
 If we look at our app, there are a lot of places where we're writing a lot of
