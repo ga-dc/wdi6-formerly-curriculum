@@ -1,3 +1,14 @@
+# Unit Testing with RSpec
+- Explain the purpose unit testing
+- Explain what role RSpec plays in testing
+- Explain the TDD/BDD Mantra
+- Describe RSpec's basic syntax
+- Define the role of expectations and matchers
+- Explain why isolating tests is a best practice
+- List common expectations and the scenarios they support
+- Differentiate between testing return values and side effects
+- Describe why we avoid testing internal implementation
+
 ---
 
 ## What is RSpec?
@@ -5,228 +16,163 @@
   - RSpec is a testing framework for the Ruby programming language.  It's a Domain Specific Language for writing live specifications about your code.
   - Released on May 18, 2007
 
+These are specifications about YOUR code that you can run to ensure your code is doing what it should.  Think back to the way you code.  You create a part of a web page, then you browse to that page to test it.  To ensure that it is doing as you expect.  Then you add another feature.  And test bot features.  Then you add a third feature and test... just the third feature.  Imagine if you had a battery of automated specs, which run against your code, so you can see if your new changes fit your new requirements and EVERY requirement that came before this.
+
+The reading discussed TDD/BDD.  Indicating that testing is as much about design, helping you to architect a maintainable application, as it is about creating a body of regression tests.  In this lesson, we are focusing on the safety net.  Design is hard, BDD makes it easier, but need the basic skills first.
+
+---
+
+## Let's look at a rspec_person_example
+
+
+When I run `rspec` in the `rspec_person_example` dir, what do we see?
+
+```
+Person
+  Constructor
+    should create a new instance of class Person
+    should have a name
+    should default #language to 'English'
+  #greeting
+    for default language (English)
+      should offer a greeting in English
+    when language is 'Italian'
+      should offer a greeting in Italian
+
+Finished in 0.00565 seconds (files took 0.14281 seconds to load)
+5 examples, 0 failures
+```
+
+This tells me quite a bit about a Person.  I see that Person should have a Constructor that accepts name and (possibly) language.  From the constructor, I see the Person might support many languages, starting with English.  Then, I see that a Person can greet in English or Italian.
+
+
+Let's review `spec/person_spec.rb`.  This is the specification for a Person.  It indicates how we can expect a Person to function.  We can trust it to act in this manner.  Here, we see what some examples of how to initialize a Person.
+
+
+
+```
+rspec_person_example/
+├── models
+│   └── person.rb
+└── spec
+    ├── person_spec.rb
+    └── spec_helper.rb
+
+2 directories, 3 files
+```
+
+We have a Person model and a Person spec (a specification or test). This is the typical RSpec convention.  Specs live under the spec directory and echo the models in our system with the `_spec` suffix.
+
 ---
 
 ## What does an RSpec test look like?
 
-~~~~ ruby
-describe User do
-  context 'with admin privileges' do
-    before :each do
-      @admin = Admin.get(1)
-    end
+``` ruby
+require_relative '../models/person'  # a reference to our code
 
-    it 'should exist' do
-      expect(@admin).not_to be_nil
-    end
-
-    it 'should have a name' do
-      expect(@admin.name).not_to be_false
-    end
-  end
-
-  #...
-end
-~~~~
-
----
-
-## Getting set up
-
-- Make sure you are in the proper directory.
-- Create a file to work in called person.rb
-- In the terminal:
-
-~~~~ sh
-  rspec --init
-~~~~
-
----
-
-## What just happened?
-
-- We added a hidden .rspec file that puts rspec in our directory.
-
-- We created a spec directory that will hold the files necessary for tsting with RSpec.
-
-  - Let's look inside the spec directory.
-
-   - spec_helper.rb
-
----
-
-
-## Let's Play a bit.
-- Create a file called person_spec.rb
-  - Open person_spec.rb
-    - require 'spec_helper'
-    - require_relative '../person'
-  - Write this into this person_spec.rb file.
-
-~~~~ ruby
 describe Person do
-  before :each do
-    @randy = Person.new
-  end
-end
-~~~~
+  describe "Constructor" do
+    before(:each) do
+      @matt = Person.new("Matt")
+    end
 
----
-
-## Run RSpec
-- In the terminal, in the proper directory
-~~~~ sh
-rspec
-~~~~
-
-- What happens?
-
----
-
-## Code
-
-- We need to have a class called Person
-
-~~~~ ruby
-class Person
-
-end
-~~~~
-
-~~~~ sh
-rspec
-~~~~
-
----
-
-## Let's write our first test
-
-~~~~ ruby
-describe "#new" do
-  it "should create a new instance of class Person" do
-    expect(@randy).to be_an_instance_of(Person)
-  end
-end
-~~~~
-
-- What code would we need to write to satisfy this test?
-
-~~~~ sh
-rspec
-~~~~
-
----
-
-## Code!
-
-~~~~ ruby
-class Person
-  def initialize
-  end
-end
-~~~~
-
----
-
-## More tests
-
-~~~~ ruby
-describe "#say_hello" do
-  it "should be expected to say offer a greeting" do
-    expect(@randy.say_hello).to eql("Hola!")
-  end
-end
-~~~~
-
-- What code would we need to write to satisfy this test?
-
-~~~~ sh
-rspec
-~~~~
-
----
-
-## Code
-
-~~~~ ruby
-class Person
-  def initialize
-  end
-
-  def say_hello
-    "Hola!"
-  end
-end
-~~~~
-
----
-
-## More More Tests!
-
-~~~~ ruby
-describe "#verify_sentience" do
-  it "is expected to not respond negatively" do
-    expect(@randy.verify_sentience).to_not be(false)
-  end
-end
-~~~~
-
-- What code would we need to write to satisfy this test?
-
-~~~~ sh
-rspec
-~~~~
-
----
-
-## Code!
-
-~~~~ ruby
-class Person
-  def initialize
-  end
-
-  def say_hello
-    "Hola!"
-  end
-
-  def verify_sentience
-    true
-  end
-end
-~~~~
-
----
-
-## All the tests!
-
-~~~~ ruby
-describe Person do
-  before :each do
-    @randy = Person.new
-  end
-
-  describe "#new" do
     it "should create a new instance of class Person" do
-      expect(@randy).to be_an_instance_of(Person)
+      expect(@matt).to be_an_instance_of(Person)
     end
-  end #End describe #new
 
-  describe "#say_hello" do
-    it "should be expected to say say hello" do
-      expect(@randy.say_hello).to eql("Hola!")
+    it "should have a name" do
+      expect(@matt.name).to_not be_nil
     end
-  end #End describe #say_hello
 
-  describe "#verify_sentience" do
-    it "is expected to not respond negatively" do
-      expect(@randy.verify_sentience).to_not be(false)
+    it "should default #language to 'English'" do
+      expect(@matt.language).to eq("English")
     end
-  end #End describe #verify_sentience
+  end
+
+  describe "#greeting" do
+    context "for default language (English)" do
+      subject(:bob) { Person.new("Bob") }
+
+      it "should offer a greeting in English" do
+        expect(bob.greeting).to eql("Hello, my name is Bob.")
+      end
+    end
+
+    context "when language is 'Italian'" do
+      subject(:tony) { Person.new("Tony", "Italian") }
+
+      it "should offer a greeting in Italian" do
+        expect(tony.greeting).to eql("Ciao, mi chiamo Tony.")
+      end
+    end
+  end
 end
-~~~~
+```
+
+The first line is a reference to our library code.  We need to access to the classes we have written.
+
+`describe` is a new keyword provided by RSpec (part of its DSL).  Here it indicates that a `Person` is the "Unit Under Test".  First we show examples of what we can expect as we contruct new people.  Then, we describe the functionality of the `greeting` method, specifically within the specific context of each language.  This is ruby code, indicating how our library (or model) code should behave.
+
+Where does `@matt` come from?  How about `bob` and `tony`?
+
+Discuss isolation (language), `subject`.
 
 ---
+
+Let's review those results again.  See where they come from?  Now, we'll try changing our code and see the specs fail.  Take a minute to adjust the code and run the specs a few times.
+
+Ok, let's change everything back.  Are we back to Green?  Good.
+
+---
+
+### Think, pair, share.  
+Let's take a few minutes to specify that a Person can greet in Spanish too. We'll stick to the specification for now, then add the implementation in a minute.
+
+In spanish, we should greet with "Hola me llamo Maria."  
+
+---
+
+```
+context "when language is 'Spanish'" do
+  subject(:maria) { Person.new("Maria", "Spanish") }
+
+  it "should offer a greeting in Spanish" do
+    expect(maria.greeting).to eql("Hola me llamo Maria.")
+  end
+end
+```
+
+---
+
+```
+when /spanish/i
+  "Hola me llamo #{name}."
+```
+
+---
+
+### Think, pair, share.  
+Let's take a few minutes to think about what we aren't testing.
+
+Sit quietly for 2 minutes.  Think like a tester.  What code exists that aren't testing.  What examples would be good to clarify what our code can do?
+
+Next, we'll discuss with our pair for 4 minutes.
+Then, we'll share a few examples with the class.
+
+---
+
+Exercise: Implement your suggestions.
+
+- Uses passed name
+- Unsupported language
+
+---
+
+
+
+---
+
+
 
 ## Mocks & Stubs
 - Stubbing and Mocking makes your component examples independent of other components.
@@ -237,32 +183,16 @@ end
 
 ## Example
 
-~~~~ ruby
+``` ruby
 book = instance_double("Book", :pages => 250)
 allow(book).to receive(:title) { "The RSpec Book" }
 allow(book).to receive(:title).and_return("The RSpec Book")
 
-~~~~
+```
 
----
-
-## Expect an error?
-
-~~~~ ruby
-describe ValidatingWidget do
-  it "fails validation with no name (using error_on)" do
-    ValidatingWidget.new.should have(1).error_on(:name)
-  end
-
-  it "fails validation with no name (using errors_on)" do
-    ValidatingWidget.new.should have(1).errors_on(:name)
-  end
-~~~~
-
----
 
 ## Expect an error?
-~~~~ ruby
+``` ruby
 describe Object, "#non_existent_message" do
   it "should raise" do
     expect{Object.non_existent_message}.to raise_error(NameError)
@@ -274,22 +204,36 @@ describe Object, "#public_instance_methods" do
     expect{Object.public_instance_methods}.to_not raise_error(NameError)
   end
 end
-~~~~
+```
 
 ---
 
-## Exercises:
+Exercise: 00_hell0_world
 
-Scrabble scoring COde Retreat
+http://testfirst.org/learn_ruby, 00_hello_world
 
+Note: Follow these directions closely.  They will walk you through each step.  Due to learn_ruby's setup, you will use `rake` instead of `rspec`.  The rake task is configuring and running rspec.
+
+---
+
+Now that you have had some small exercises to cement the language
+
+## Exercise:
+
+Scoring a Scrabble game.
 Break it into small pieces and have pairs iterate, then switch pairs and repeat.
 
+https://github.com/ga-dc/scrabbler
 
 ---
 
 ## Homework:
 
 http://testfirst.org/learn_ruby
+01 Temperature
+02 Calculator
+03 Simon Says
+08 Book Titles
 
 ---
 
