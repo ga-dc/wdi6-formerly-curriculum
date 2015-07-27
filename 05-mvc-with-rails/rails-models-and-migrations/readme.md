@@ -130,6 +130,13 @@ to create at least three songs that are associated with the previous two artists
 
 ## Break
 
+## We do: Seeds
+
+First, let's add in the missing data for seeds:
+
+    $ git pull git@github.com:ga-dc/tunr_rails seeds
+    $ rake db:seed
+
 ## We do: How to deal with mistakes
 
 I forgot to tell you all about timestamps. Rails can automatically timestamp when 
@@ -159,6 +166,15 @@ environment, but NOT in a production environment. If you are working on an appli
 with other developers, avoid using `rake db:rollback` after code has been pushed, and
 create new migrations that can be migrated forward on other machines.
 
+What is the difference between creating migrations that fix previous mistakes, vs this workflow:
+
+1. make mistake
+2. rake db:migrate
+3. fix wrong migration file
+4. rake db:migrate:reset || rake db:drop:all && rake db:create && rake db:migrate
+
 Users will be very upset if you destroy their data. 
+
+## You do: Create a migration and roll it back
 
 
