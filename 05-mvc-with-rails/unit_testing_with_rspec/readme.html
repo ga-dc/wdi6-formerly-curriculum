@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Mon Jul 27 2015 13:00:20 GMT+0000 (UTC)">
+    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Mon Jul 27 2015 14:00:20 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -831,194 +831,201 @@
                 
                     <section class="normal" id="section-">
                     
-                        <hr>
+                        <h1 id="unit-testing-with-rspec">Unit Testing with RSpec</h1>
+<ul>
+<li>Explain the purpose unit testing</li>
+<li>Explain what role RSpec plays in testing</li>
+<li>Explain the TDD/BDD Mantra</li>
+<li>Describe RSpec&apos;s basic syntax</li>
+<li>Define the role of expectations and matchers</li>
+<li>Explain why isolating tests is a best practice</li>
+<li>List common expectations and the scenarios they support</li>
+<li>Differentiate between testing return values and side effects</li>
+<li>Describe why we avoid testing internal implementation</li>
+</ul>
+<hr>
 <h2 id="what-is-rspec">What is RSpec?</h2>
 <ul>
 <li>RSpec is a testing framework for the Ruby programming language.  It&apos;s a Domain Specific Language for writing live specifications about your code.</li>
 <li>Released on May 18, 2007</li>
 </ul>
+<p>These are specifications about YOUR code that you can run to ensure your code is doing what it should.  Think back to the way you code.  You create a part of a web page, then you browse to that page to test it.  To ensure that it is doing as you expect.  Then you add another feature.  And test bot features.  Then you add a third feature and test... just the third feature.  Imagine if you had a battery of automated specs, which run against your code, so you can see if your new changes fit your new requirements and EVERY requirement that came before this.</p>
+<p>The reading discussed TDD/BDD.  Indicating that testing is as much about design, helping you to architect a maintainable application, as it is about creating a body of regression tests.  In this lesson, we are focusing on the safety net.  Design is hard, BDD makes it easier, but need the basic skills first.</p>
 <hr>
-<h2 id="what-does-an-rspec-test-look-like">What does an RSpec test look like?</h2>
-<pre><code class="lang-ruby">describe <span class="hljs-constant">User</span> <span class="hljs-keyword">do</span>
-  context <span class="hljs-string">&apos;with admin privileges&apos;</span> <span class="hljs-keyword">do</span>
-    before <span class="hljs-symbol">:each</span> <span class="hljs-keyword">do</span>
-      <span class="hljs-variable">@admin</span> = <span class="hljs-constant">Admin</span>.get(<span class="hljs-number">1</span>)
+<h2 id="let-s-look-at-a-rspec-person-example-https-github-com-ga-dc-rspec-person-example">Let&apos;s look at a <a href="https://github.com/ga-dc/rspec_person_example" target="_blank">rspec_person_example</a></h2>
+<p>When I run <code>rspec</code> in the <code>rspec_person_example</code> dir, what do we see?</p>
+<pre><code>Person
+  Constructor
+    should create a new instance of class Person
+    should have a name
+    should default #language to &apos;English&apos;
+  #greeting
+    for default language (English)
+      should offer a greeting in English
+    when language is &apos;Italian&apos;
+      should offer a greeting in Italian
+
+Finished in 0.00565 seconds (files took 0.14281 seconds to load)
+5 examples, 0 failures
+</code></pre><p>This tells me quite a bit about a Person.  I see that Person should have a Constructor that accepts name and (possibly) language.  From the constructor, I see the Person might support many languages, starting with English.  Then, I see that a Person can greet in English or Italian.</p>
+<p>Let&apos;s review <code>spec/person_spec.rb</code>.  This is the specification for a Person.  It indicates how we can expect a Person to function.  We can trust it to act in this manner.  Here, we see what some examples of how to initialize a Person.</p>
+<pre><code>rspec_person_example/
+&#x251C;&#x2500;&#x2500; models
+&#x2502;   &#x2514;&#x2500;&#x2500; person.rb
+&#x2514;&#x2500;&#x2500; spec
+    &#x251C;&#x2500;&#x2500; person_spec.rb
+    &#x2514;&#x2500;&#x2500; spec_helper.rb
+
+2 directories, 3 files
+</code></pre><p>We have a Person model and a Person spec (a specification or test). This is the typical RSpec convention.  Specs live under the spec directory and echo the models in our system with the <code>_spec</code> suffix.</p>
+<hr>
+<h2 id="what-does-an-rspec-specification-or-test-look-like">What does an RSpec specification (or &quot;test&quot;) look like?</h2>
+<pre><code class="lang-ruby">require_relative <span class="hljs-string">&apos;../models/person&apos;</span>  <span class="hljs-comment"># a reference to our code</span>
+
+describe <span class="hljs-constant">Person</span> <span class="hljs-keyword">do</span>
+  describe <span class="hljs-string">&quot;Constructor&quot;</span> <span class="hljs-keyword">do</span>
+    before(<span class="hljs-symbol">:each</span>) <span class="hljs-keyword">do</span>
+      <span class="hljs-variable">@matt</span> = <span class="hljs-constant">Person</span>.new(<span class="hljs-string">&quot;Matt&quot;</span>)
     <span class="hljs-keyword">end</span>
 
-    it <span class="hljs-string">&apos;should exist&apos;</span> <span class="hljs-keyword">do</span>
-      expect(<span class="hljs-variable">@admin</span>).not_to be_nil
-    <span class="hljs-keyword">end</span>
-
-    it <span class="hljs-string">&apos;should have a name&apos;</span> <span class="hljs-keyword">do</span>
-      expect(<span class="hljs-variable">@admin</span>.name).not_to be_false
-    <span class="hljs-keyword">end</span>
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-comment">#...</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<hr>
-<h2 id="getting-set-up">Getting set up</h2>
-<ul>
-<li>Make sure you are in the proper directory.</li>
-<li>Create a file to work in called person.rb</li>
-<li>In the terminal:</li>
-</ul>
-<pre><code class="lang-sh">  rspec --init
-</code></pre>
-<hr>
-<h2 id="what-just-happened">What just happened?</h2>
-<ul>
-<li><p>We added a hidden .rspec file that puts rspec in our directory.</p>
-</li>
-<li><p>We created a spec directory that will hold the files necessary for tsting with RSpec.</p>
-<ul>
-<li><p>Let&apos;s look inside the spec directory.</p>
-<ul>
-<li>spec_helper.rb</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="let-s-play-a-bit">Let&apos;s Play a bit.</h2>
-<ul>
-<li>Create a file called person_spec.rb<ul>
-<li>Open person_spec.rb<ul>
-<li>require &apos;spec_helper&apos;</li>
-<li>require_relative &apos;../person&apos;</li>
-</ul>
-</li>
-<li>Write this into this person_spec.rb file.</li>
-</ul>
-</li>
-</ul>
-<pre><code class="lang-ruby">describe <span class="hljs-constant">Person</span> <span class="hljs-keyword">do</span>
-  before <span class="hljs-symbol">:each</span> <span class="hljs-keyword">do</span>
-    <span class="hljs-variable">@randy</span> = <span class="hljs-constant">Person</span>.new
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<hr>
-<h2 id="run-rspec">Run RSpec</h2>
-<ul>
-<li><p>In the terminal, in the proper directory</p>
-<pre><code class="lang-sh">rspec
-</code></pre>
-</li>
-<li><p>What happens?</p>
-</li>
-</ul>
-<hr>
-<h2 id="code">Code</h2>
-<ul>
-<li>We need to have a class called Person</li>
-</ul>
-<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-
-<span class="hljs-keyword">end</span>
-</code></pre>
-<pre><code class="lang-sh">rspec
-</code></pre>
-<hr>
-<h2 id="let-s-write-our-first-test">Let&apos;s write our first test</h2>
-<pre><code class="lang-ruby">describe <span class="hljs-string">&quot;#new&quot;</span> <span class="hljs-keyword">do</span>
-  it <span class="hljs-string">&quot;should create a new instance of class Person&quot;</span> <span class="hljs-keyword">do</span>
-    expect(<span class="hljs-variable">@randy</span>).to be_an_instance_of(<span class="hljs-constant">Person</span>)
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<ul>
-<li>What code would we need to write to satisfy this test?</li>
-</ul>
-<pre><code class="lang-sh">rspec
-</code></pre>
-<hr>
-<h2 id="code">Code!</h2>
-<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<hr>
-<h2 id="more-tests">More tests</h2>
-<pre><code class="lang-ruby">describe <span class="hljs-string">&quot;#say_hello&quot;</span> <span class="hljs-keyword">do</span>
-  it <span class="hljs-string">&quot;should be expected to say offer a greeting&quot;</span> <span class="hljs-keyword">do</span>
-    expect(<span class="hljs-variable">@randy</span>.say_hello).to eql(<span class="hljs-string">&quot;Hola!&quot;</span>)
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<ul>
-<li>What code would we need to write to satisfy this test?</li>
-</ul>
-<pre><code class="lang-sh">rspec
-</code></pre>
-<hr>
-<h2 id="code">Code</h2>
-<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>say_hello
-    <span class="hljs-string">&quot;Hola!&quot;</span>
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<hr>
-<h2 id="more-more-tests">More More Tests!</h2>
-<pre><code class="lang-ruby">describe <span class="hljs-string">&quot;#verify_sentience&quot;</span> <span class="hljs-keyword">do</span>
-  it <span class="hljs-string">&quot;is expected to not respond negatively&quot;</span> <span class="hljs-keyword">do</span>
-    expect(<span class="hljs-variable">@randy</span>.verify_sentience).to_not be(<span class="hljs-keyword">false</span>)
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<ul>
-<li>What code would we need to write to satisfy this test?</li>
-</ul>
-<pre><code class="lang-sh">rspec
-</code></pre>
-<hr>
-<h2 id="code">Code!</h2>
-<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>say_hello
-    <span class="hljs-string">&quot;Hola!&quot;</span>
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>verify_sentience
-    <span class="hljs-keyword">true</span>
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<hr>
-<h2 id="all-the-tests">All the tests!</h2>
-<pre><code class="lang-ruby">describe <span class="hljs-constant">Person</span> <span class="hljs-keyword">do</span>
-  before <span class="hljs-symbol">:each</span> <span class="hljs-keyword">do</span>
-    <span class="hljs-variable">@randy</span> = <span class="hljs-constant">Person</span>.new
-  <span class="hljs-keyword">end</span>
-
-  describe <span class="hljs-string">&quot;#new&quot;</span> <span class="hljs-keyword">do</span>
     it <span class="hljs-string">&quot;should create a new instance of class Person&quot;</span> <span class="hljs-keyword">do</span>
-      expect(<span class="hljs-variable">@randy</span>).to be_an_instance_of(<span class="hljs-constant">Person</span>)
+      expect(<span class="hljs-variable">@matt</span>).to be_an_instance_of(<span class="hljs-constant">Person</span>)
     <span class="hljs-keyword">end</span>
-  <span class="hljs-keyword">end</span> <span class="hljs-comment">#End describe #new</span>
 
-  describe <span class="hljs-string">&quot;#say_hello&quot;</span> <span class="hljs-keyword">do</span>
-    it <span class="hljs-string">&quot;should be expected to say say hello&quot;</span> <span class="hljs-keyword">do</span>
-      expect(<span class="hljs-variable">@randy</span>.say_hello).to eql(<span class="hljs-string">&quot;Hola!&quot;</span>)
+    it <span class="hljs-string">&quot;should have a name&quot;</span> <span class="hljs-keyword">do</span>
+      expect(<span class="hljs-variable">@matt</span>.name).to_not be_nil
     <span class="hljs-keyword">end</span>
-  <span class="hljs-keyword">end</span> <span class="hljs-comment">#End describe #say_hello</span>
 
-  describe <span class="hljs-string">&quot;#verify_sentience&quot;</span> <span class="hljs-keyword">do</span>
-    it <span class="hljs-string">&quot;is expected to not respond negatively&quot;</span> <span class="hljs-keyword">do</span>
-      expect(<span class="hljs-variable">@randy</span>.verify_sentience).to_not be(<span class="hljs-keyword">false</span>)
+    it <span class="hljs-string">&quot;should default #language to &apos;English&apos;&quot;</span> <span class="hljs-keyword">do</span>
+      expect(<span class="hljs-variable">@matt</span>.language).to eq(<span class="hljs-string">&quot;English&quot;</span>)
     <span class="hljs-keyword">end</span>
-  <span class="hljs-keyword">end</span> <span class="hljs-comment">#End describe #verify_sentience</span>
+  <span class="hljs-keyword">end</span>
+
+  describe <span class="hljs-string">&quot;#greeting&quot;</span> <span class="hljs-keyword">do</span>
+    context <span class="hljs-string">&quot;for default language (English)&quot;</span> <span class="hljs-keyword">do</span>
+      subject(<span class="hljs-symbol">:bob</span>) { <span class="hljs-constant">Person</span>.new(<span class="hljs-string">&quot;Bob&quot;</span>) }
+
+      it <span class="hljs-string">&quot;should offer a greeting in English&quot;</span> <span class="hljs-keyword">do</span>
+        expect(bob.greeting).to eql(<span class="hljs-string">&quot;Hello, my name is Bob.&quot;</span>)
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+
+    context <span class="hljs-string">&quot;when language is &apos;Italian&apos;&quot;</span> <span class="hljs-keyword">do</span>
+      subject(<span class="hljs-symbol">:tony</span>) { <span class="hljs-constant">Person</span>.new(<span class="hljs-string">&quot;Tony&quot;</span>, <span class="hljs-string">&quot;Italian&quot;</span>) }
+
+      it <span class="hljs-string">&quot;should offer a greeting in Italian&quot;</span> <span class="hljs-keyword">do</span>
+        <span class="hljs-comment"># legacy syntax - the old DSL</span>
+        tony.greeting.should eql(<span class="hljs-string">&quot;Ciao, mi chiamo Tony.&quot;</span>)
+        <span class="hljs-comment"># equivalent to:</span>
+        <span class="hljs-comment"># expect(tony.greeting).to eql(&quot;Ciao, mi chiamo Tony.&quot;)</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
+<h3 id="the-spec">The Spec</h3>
+<p>The first line is a reference to our library code.  We need to access to the classes we have written.</p>
+<p>Well skim through the code, gaining a high level knowledge of what is expected, then we&apos;ll return to hash out the details.</p>
+<p><code>describe</code> is a new keyword provided by RSpec (part of its DSL).  Here it indicates that a <code>Person</code> is the &quot;Unit Under Test&quot;.  First we show examples of what we can expect as we contruct new people.  Then, we describe the functionality of the <code>greeting</code> method, specifically within the specific context of each language.  This is ruby code, indicating how our library (or model) code should behave.</p>
+<h3 id="test-isolation">Test Isolation</h3>
+<p>Returning to the top, we see <code>@matt</code> being instantiated.
+  Introduce isolation.</p>
+<ol>
+<li>Setup</li>
+<li>Test</li>
+<li>Teardown</li>
+</ol>
+<h3 id="expectation-and-matcher">Expectation and Matcher</h3>
+<p>Then we see our first spec or &quot;expectation&quot;.</p>
+<pre><code>expect(@matt).to be_an_instance_of(Person)
+</code></pre><p>RSpec assertions have two components: expectation and matcher.</p>
+<p>We expect <code>@matt</code> to be something.  We identify that &quot;something&quot; with a Matcher:</p>
+<blockquote>
+<p>Expectation: <code>expect(@matt).to</code></p>
+<p>Matcher: <code>be_an_instance_of(Person)</code></p>
+</blockquote>
+<p>Everything else exists to support Expectations and Matchers.</p>
+<h3 id="legacy-syntax-should">Legacy syntax (should)</h3>
+<p>In addition to <code>expect(iut).to matcher</code>, RSpec supports another syntax: <code>should</code>.   That expectation is slightly different.  It uses the older <code>should</code> syntax.  </p>
+<p>You may see this:</p>
+<pre><code>it &quot;should default #language to &apos;English&apos;&quot; do
+  expect(@matt.language).to eq(&quot;English&quot;)
+end
+</code></pre><p>Written as:</p>
+<pre><code>it &quot;should default #language to &apos;English&apos;&quot; do
+  @matt.language.should eq(&quot;English&quot;)
+end
+</code></pre><p>The underlying implementation of &quot;should&quot; was &quot;messy&quot;. You can see that they had to dynamically adjust our library code <code>@matt.language</code> to support the <code>should</code> method.</p>
+<p>The new syntax works like jQuery&apos;s <code>$()</code> syntax.  We use <code>expect(IUT)</code> to &quot;wrap&quot; the Item Under Test, so that it supports the <code>to</code> method.  The <code>to</code> method accepts a matcher.</p>
+<p>While we adjust the use of parenthesis for readability, we are really passing the &quot;matcher&quot; to the &quot;expectation&quot;.</p>
+<h3 id="exercise-getting-familiar">Exercise: Getting familiar</h3>
+<p>We are going to use a website called LearnRuby to practice reading specifications.</p>
+<p>Follow these instructions carefully, if you think you are lost, re-read the instructions, I expect you missed a step.  Due to Learn Ruby&apos;s setup, you will use <code>rake</code> instead of <code>rspec</code>.  The rake task is configuring and running rspec.</p>
+<p>These exercises increase in complexity.  They will exercise your ruby knowledge and your RSpec knowledge at the same time.  If you ever find yourself getting ahead, feel free to do any of these exercises.    Conversely, if you feel a little lost, back up.  Do some of the exercises we skipped.</p>
+<p>Let&apos;s start at the very beginning.  What a very fine place to start.</p>
+<p><a href="http://testfirst.org/learn_ruby#install" target="_blank">http://testfirst.org/learn_ruby#install</a></p>
+<ol>
+<li>Start from <code>wdi/exercises</code>.</li>
+<li><code>git clone git://github.com/alexch/learn_ruby.git</code></li>
+<li>Once you get the materials, open learn_ruby/index.html in your favorite web browser. Further instructions await therein.</li>
+</ol>
+<p>We&apos;ll continue together until through the first few steps.</p>
+<p>Continue with 00_hello.  We&apos;ll do this for 8 minutes.</p>
+<h3 id="context">Context</h3>
+<p>As we move into the the description of the <code>greeting</code> method, we see our first &quot;context&quot;: <code>&quot;for default language (English)&quot;</code>.  Within this block, we expect the language of our person to be &quot;English&quot; and we will write specs accordingly.  You can see this as we move down through each supported language.</p>
+<p>Where did <code>@matt</code> come from? <code>before(:each)</code>  How about <code>bob</code> and <code>tony</code>?</p>
+<p><code>subject</code> is another part of the RSpec DSL.  We found that the subject of each test was an important componenet, so we made it a first class citizen.  While we still setup some things in <code>before</code> blocks, you will usually see the item &quot;under test&quot; defined in a <code>subject</code> block.</p>
+<p>The following subject block indicates that there will be a variable named <code>bob</code> available within this block of specs.  You can expect it to be assigned a person, named &quot;Bob&quot;.</p>
+<pre><code>subject(:bob) { Person.new(&quot;Bob&quot;) }
+</code></pre><p> The code within the block is assigned to the dynamically created variable.  This variable is named after the symbol.  So, during these specs, the variable <code>bob</code> will hold a reference to the person under test.</p>
+<hr>
+<p>Let&apos;s review those results again (<code>$ rspec</code>).  See where they come from?  Now, let&apos;s review <code>describe</code>, <code>context</code>, <code>it</code>, &quot;expectations&quot;, and &quot;matchers&quot;, by changing our code and see the specs fail.  Take a few minutes to adjust the code and run the specs a few times.  Play with it.  See how your actions in the code AND in the specs affect the output.</p>
+<p>Ok, let&apos;s change everything back.  Are we back to Green?  Good.</p>
+<hr>
+<h3 id="think-pair-share-support-another-language">Think, pair, share.  Support another language</h3>
+<p>Let&apos;s take a few minutes to specify that a Person can greet in Spanish too. We&apos;ll stick to the specification for now, then add the implementation in a minute.</p>
+<p>In spanish, we should greet with &quot;Hola me llamo Maria.&quot;  </p>
+<hr>
+<pre><code>context &quot;when language is &apos;Spanish&apos;&quot; do
+  subject(:maria) { Person.new(&quot;Maria&quot;, &quot;Spanish&quot;) }
+
+  it &quot;should offer a greeting in Spanish&quot; do
+    expect(maria.greeting).to eql(&quot;Hola me llamo Maria.&quot;)
+  end
+end
+</code></pre><hr>
+<pre><code>when /spanish/i
+  &quot;Hola me llamo #{name}.&quot;
+</code></pre><hr>
+<h3 id="think-pair-share-what-aren-t-we-testing">Think, pair, share.  What aren&apos;t we testing?</h3>
+<p>Let&apos;s take a few minutes to think about what we aren&apos;t testing.</p>
+<p>Sit quietly for 2 minutes.  Think like a tester.  What code exists that aren&apos;t testing.  What examples would be good to clarify what our code can do?</p>
+<p>Next, we&apos;ll discuss with our pair for 4 minutes.
+Then, we&apos;ll share a few examples with the class.</p>
+<ul>
+<li>That we are using the passed <code>name</code> argument.</li>
+<li>What happens with an unsupported language</li>
+</ul>
+<hr>
+<h3 id="exercise-implement-your-suggestions">Exercise: Implement your suggestions.</h3>
+<ul>
+<li>Specify that we utilize the passed name</li>
+<li>Specify the response to an Unsupported language</li>
+</ul>
+<p>I recommend that you review the available Matchers in the <a href="https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers" target="_blank">RSpec documentation</a>.  These are live documents, written using &quot;relish&quot; to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (3.3).</p>
+<hr>
+<h3 id="we-avoid-testing-implementation">We avoid testing implementation</h3>
+<p>Here&apos;s something else we aren&apos;t testing.
+We aren&apos;t testing that <code>greeting</code> uses a <code>select/case</code> statement.  That would be testing the internal implementation. Let&apos;s be clear, I should be free to write whatever code I want, inside of the <code>greeter</code> method, in order to achieve the results the specs indicate. Let&apos;s say our team creates a new translation library.  I should be able to swap out my naive implementation and replace it with that.  The following code tells the ItalianTranslator to translate this phrase from English.</p>
+<pre><code>tony = Person.new(&quot;tony&quot;, ItalianTranslator)
+</code></pre><p>I would replace the code in <code>greeting</code> with:</p>
+<pre><code>def greeting
+  phrase = &quot;Hello, my name is #{name}&quot;
+  language.convert_from(phrase, :en)
+end
+</code></pre><hr>
+<h3 id="exercise-add-farewell">Exercise: Add farewell.</h3>
+<p>Add support for farewell, for each language.</p>
 <hr>
 <h2 id="mocks-stubs">Mocks &amp; Stubs</h2>
 <ul>
@@ -1033,37 +1040,14 @@ allow(book).to receive(<span class="hljs-symbol">:title</span>) { <span class="h
 allow(book).to receive(<span class="hljs-symbol">:title</span>).and_return(<span class="hljs-string">&quot;The RSpec Book&quot;</span>)
 </code></pre>
 <hr>
-<h2 id="expect-an-error">Expect an error?</h2>
-<pre><code class="lang-ruby">describe <span class="hljs-constant">ValidatingWidget</span> <span class="hljs-keyword">do</span>
-  it <span class="hljs-string">&quot;fails validation with no name (using error_on)&quot;</span> <span class="hljs-keyword">do</span>
-    <span class="hljs-constant">ValidatingWidget</span>.new.should have(<span class="hljs-number">1</span>).error_on(<span class="hljs-symbol">:name</span>)
-  <span class="hljs-keyword">end</span>
-
-  it <span class="hljs-string">&quot;fails validation with no name (using errors_on)&quot;</span> <span class="hljs-keyword">do</span>
-    <span class="hljs-constant">ValidatingWidget</span>.new.should have(<span class="hljs-number">1</span>).errors_on(<span class="hljs-symbol">:name</span>)
-  <span class="hljs-keyword">end</span>
-</code></pre>
-<hr>
-<h2 id="expect-an-error">Expect an error?</h2>
-<pre><code class="lang-ruby">describe <span class="hljs-constant">Object</span>, <span class="hljs-string">&quot;#non_existent_message&quot;</span> <span class="hljs-keyword">do</span>
-  it <span class="hljs-string">&quot;should raise&quot;</span> <span class="hljs-keyword">do</span>
-    expect{<span class="hljs-constant">Object</span>.non_existent_message}.to raise_error(<span class="hljs-constant">NameError</span>)
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-
-describe <span class="hljs-constant">Object</span>, <span class="hljs-string">&quot;#public_instance_methods&quot;</span> <span class="hljs-keyword">do</span>
-  it <span class="hljs-string">&quot;should not raise&quot;</span> <span class="hljs-keyword">do</span>
-    expect{<span class="hljs-constant">Object</span>.public_instance_methods}.to_not raise_error(<span class="hljs-constant">NameError</span>)
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<hr>
-<h2 id="exercises">Exercises:</h2>
-<p>Scrabble scoring COde Retreat</p>
-<p>Break it into small pieces and have pairs iterate, then switch pairs and repeat.</p>
+<p>Now that you have had some small exercises to get familiar with the syntax, let&apos;s practice the concept.</p>
 <hr>
 <h2 id="homework">Homework:</h2>
-<p><a href="http://testfirst.org/learn_ruby" target="_blank">http://testfirst.org/learn_ruby</a></p>
+<p>Scoring a Scrabble game.
+Break it into small pieces and have pairs iterate, then switch pairs and repeat.</p>
+<p><a href="https://github.com/ga-dc/scrabbler" target="_blank">https://github.com/ga-dc/scrabbler</a></p>
+<hr>
+<h2 id="bonus">Bonus:</h2>
 <hr>
 <h2 id="references">References:</h2>
 <ul>
