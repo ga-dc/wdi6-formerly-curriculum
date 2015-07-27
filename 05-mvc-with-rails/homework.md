@@ -14,6 +14,7 @@
 | Thursday      |                                | [Scribble Sessions](https://github.com/ga-dc/scribble#sessions) |
 | Thursday      |                                | [Scribble Deployment](https://github.com/ga-dc/scribble#deployment) |
 | Friday        |                                | [Hogwarts](https://github.com/ga-dc/hogwarts_rails) |
+| Friday        |                                | [Project 2 Prep](https://github.com/ga-dc/pbj-project2/blob/master/schedule.md#friday-731) |
 
 ## Jelly
 | Date Assigned | Notes                          | Assignment |
@@ -27,4 +28,5 @@
 | Thursday      |                                | [Scribble Deployment](https://github.com/ga-dc/scribble#deployment) |
 | Thursday      |                                | [Scrabbler](https://github.com/ga-dc/scrabbler)  |
 | Friday        |                                | [Hogwarts](https://github.com/ga-dc/hogwarts_rails) |
+| Friday        |                                | [Project 2 Prep](https://github.com/ga-dc/pbj-project2/blob/master/schedule.md#friday-731) |
 
