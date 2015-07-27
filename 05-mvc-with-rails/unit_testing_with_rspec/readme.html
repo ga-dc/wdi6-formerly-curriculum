@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Mon Jul 27 2015 15:05:44 GMT+0000 (UTC)">
+    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Mon Jul 27 2015 15:35:59 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1028,10 +1028,10 @@ end
 <p>Add support for farewell, for each language.</p>
 <hr>
 <h2 id="mocks-stubs">Mocks &amp; Stubs</h2>
+<p>Sometimes our Unit Under Test must interact with other object.  If these objects are difficult to setup or their response may be slow or non-deterministic -- like an external service that we contact via te internet.  It can make sense to mock out the other object, to create a &quot;fake&quot; object that supports the interface you need but returns a fixed, expected value.  This makes your component examples independent of other components.</p>
 <ul>
-<li>Stubbing and Mocking makes your component examples independent of other components.</li>
-<li>You can stub methods on objects to let them return whatever you like.</li>
-<li>And you can use mock objects to replace instances of other classes.</li>
+<li>You can use mock objects the replace the entire object, just supporting the interface you need (the methods and attribute that your Unit Under Test actually interacts with).</li>
+<li>You can stub specific methods on &quot;real&quot; objects to let them return whatever you like.</li>
 </ul>
 <hr>
 <h2 id="example">Example</h2>
@@ -1041,13 +1041,15 @@ allow(book).to receive(<span class="hljs-symbol">:title</span>).and_return(<span
 </code></pre>
 <hr>
 <p>Now that you have had some small exercises to get familiar with the syntax, let&apos;s practice the concept.</p>
+<p><a href="https://github.com/ga-dc/learn_ruby_via_rspec" target="_blank">https://github.com/ga-dc/learn_ruby_via_rspec</a></p>
 <hr>
 <h2 id="homework">Homework:</h2>
 <p>Scoring a Scrabble game.
 Break it into small pieces and have pairs iterate, then switch pairs and repeat.</p>
 <p><a href="https://github.com/ga-dc/scrabbler" target="_blank">https://github.com/ga-dc/scrabbler</a></p>
 <hr>
-<h2 id="bonus">Bonus:</h2>
+<h2 id="want-more-need-clarification">Want more? Need clarification?</h2>
+<p>There are plenty of exercises in TestFrist.org</p>
 <hr>
 <h2 id="references">References:</h2>
 <ul>
@@ -1079,37 +1081,6 @@ Break it into small pieces and have pairs iterate, then switch pairs and repeat.
 <li><a href="http://rubydoc.info/gems/rspec-mocks/frames" target="_blank">http://rubydoc.info/gems/rspec-mocks/frames</a></li>
 </ul>
 </li>
-</ul>
-<hr>
-<h2 id="tdd-vs-bdd">TDD vs. BDD</h2>
-<p>A brief history</p>
-<p>Emergent design</p>
-<h2 id="why-bdd">Why BDD?</h2>
-<p>Limited self discipline.
-Environment that leads us in the right direction.</p>
-<p>&#x201C;BDD puts the focus on behavior instead of structure, and it does so at every level of development.&#x201D;</p>
-<p>Excerpt From: David Chelimsky. &#x201C;The RSpec Book (for Matthew Scilipoti).&#x201D; iBooks.</p>
-<h2 id="given-when-then-the-bdd-triad">Given, When, Then, the BDD triad</h2>
-<p>I have found that most of the problems that software development teams face are communication problems.  So I get excited when I read something like this:</p>
-<blockquote>
-<p>&#x201C;BDD aims to help communication by simplifying the language we use to describe scenarios in which the software will be used: Given some context, When some event occurs, Then I expect some outcome.&#x201D; -- David Chelimsky</p>
-</blockquote>
-<p>Given, When, Then, the BDD triad</p>
-<h2 id="why-rspec">Why RSpec?</h2>
-<p>&#x201C;We use RSpec to write executable examples of the expected behavior of a small bit of code in a controlled context.&#x201D;</p>
-<p>Excerpt From: David Chelimsky. &#x201C;The RSpec Book (for Matthew Scilipoti).&#x201D; iBooks.</p>
-<h2 id="dsl">DSL?</h2>
-<p>We hypothesized that a focus on behavior could</p>
-<p>!!! Use examples from</p>
-<h2 id="exercise-mini-code-retreat">Exercise: Mini Code Retreat</h2>
-<p>scrabble</p>
-<p><a href="https://github.com/ga-dc/bowling_game" target="_blank">https://github.com/ga-dc/bowling_game</a></p>
-<h2 id="homework">Homework:</h2>
-<p><a href="http://testfirst.org/learn_ruby" target="_blank">http://testfirst.org/learn_ruby</a></p>
-<h2 id="references">References:</h2>
-<ul>
-<li>&quot;The RSpec Book&quot;, David Chelimsky</li>
-<li>Magic Tricks of Testing - Sandi Metz</li>
 </ul>
 
                     
