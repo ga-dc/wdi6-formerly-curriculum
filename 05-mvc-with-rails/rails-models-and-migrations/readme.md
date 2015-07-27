@@ -1,5 +1,20 @@
 # Rails Models and Migrations
 
+## Learning Objectives
+
+- Create a new rails application with postgres as the default
+- Use `rake` to create, edit, and update, and seed the db
+- Use rails generators to create migrations.
+- Use rails console to inspect and manipulate models
+- Use rails migrations to create tables and modify columns
+- Undo a migration with `rake db:rollback`
+- Create migrations that associate one model with another.
+- Identify the impacts of editing existing migrations.
+- Use `timestamps` to timestamp crud actions
+- Use shorthand syntax to create migrations from the command line.
+
+---
+
 The files we’ll be working with in this lesson are highlighted in blue below:
 
 ![](https://dl.dropboxusercontent.com/s/2zho5ekuhxpp5lx/Screenshot%202015-07-26%2010.26.28.png?dl=0)
