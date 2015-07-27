@@ -264,4 +264,4 @@ Run rails server and test out your site. It's not all too much different from Si
 
 ## Closing(5/150)
 Review LO's
-Homework will be to port WDInstagram to a rails app. [here](linktofollow)
+Homework will be to port WDInstagram to a rails app. [here](https://github.com/ga-dc/WDInstgram_rails)
