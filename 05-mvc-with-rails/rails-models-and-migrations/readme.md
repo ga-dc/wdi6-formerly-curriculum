@@ -12,6 +12,8 @@ Create a new rails application, specifying postgres as the database
 
 This creates 92 new files in a directory called tunr. (I counted w/ `find . -type f | wc -l`)
 
+The solution for this exercise has already been posted: https://github.com/ga-dc/tunr-rails-models-and-migrations/tree/solution
+
 ## tunr/config/database.yml
 
 Specifies the database connection options. By default, rails uses the development options.
