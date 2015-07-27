@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>jQuery | Summary</title>
+        <title>MVC Intro to Rails | Summary</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.1.0">
@@ -25,10 +25,10 @@
         
     
     
-    <link rel="next" href="../../02-intermediate-front-end/jquery/jquery-two.html" />
+    <link rel="next" href="../../05-mvc-with-rails/rails-models-and-migrations/readme.html" />
     
     
-    <link rel="prev" href="../../02-intermediate-front-end/git_branching/readme.html" />
+    <link rel="prev" href="../../05-mvc-with-rails/readme.html" />
     
 
         
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="2.4" data-basepath="../.." data-revision="Mon Jul 27 2015 00:07:36 GMT+0000 (UTC)">
+    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Mon Jul 27 2015 00:07:36 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -319,7 +319,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.4" data-path="02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+        <li class="chapter " data-level="2.4" data-path="02-intermediate-front-end/jquery/jquery-intro-selectors.html">
             
                 
                     <a href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html">
@@ -571,7 +571,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="5.1" data-path="05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+        <li class="chapter active" data-level="5.1" data-path="05-mvc-with-rails/MVC-intro-to-rails/readme.html">
             
                 
                     <a href="../../05-mvc-with-rails/MVC-intro-to-rails/readme.html">
@@ -816,359 +816,199 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="jquery-part-i">jQuery: Part I</h1>
+                        <h1 id="mvc-intro-to-rails">MVC - Intro to Rails</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Review how to select elements using Vanilla Javascript.</li>
-<li>Differentiate between a Javascript library and framework.</li>
-<li>Define jQuery as a JS library.</li>
-<li>Define what a CDN (&quot;Content Delivery Network&quot;) is and how to use one.</li>
-<li>Use jQuery selectors to select DOM elements.</li>
-<li>Differentiate between DOM and jQuery objects.</li>
-<li>Explain when and how to use Vanilla JS vs. jQuery.</li>
-<li>Compare code examples in Vanilla JS and jQuery.</li>
-<li>Define <code>$(document).ready()</code> and some jQuery methods.</li>
+<li>Explain what Ruby on Rails is and it&apos;s architectural components (rMVC)</li>
+<li>Explain the lifecycle of an HTTP request in Ruby on Rails</li>
+<li>Explain how Convention over Configuration relates to Ruby on Rails</li>
+<li>Explain the structure of a rails application (folders &amp; files)</li>
+<li>Compare and contrast the structure Sinatra and Rails appps</li>
+<li>Create a new Ruby on Rails application</li>
+<li>Create a Rails App with a RESTful interface</li>
+<li>Follow Rails naming conventions when creating models, views and controllers</li>
+<li>Use error driven development in Rails to identify common errors and implement solutions for them.</li>
 </ul>
-<h2 id="selecting-dom-elements-using-vanilla-js-20min">Selecting DOM elements using Vanilla JS (20min)</h2>
-<p>Before we talk about jQuery, I want to make sure we&apos;re on top of our Javascript -- or as we&apos;ll refer to it today, &quot;Vanilla JS&quot; -- selectors.</p>
-<p>If I want to select a DOM element using Vanilla JS, how would I do that?</p>
-<ul>
-<li>Q: Somebody demonstrate how to select all the <code>&lt;p&gt;</code> elements on a page.</li>
-</ul>
-<p>Before we dive into the world of jQuery, let&apos;s make sure we&apos;ve got our Vanilla JS selectors down pat with an exercise...</p>
-<h3 id="exercise-js-selector-review-10min">Exercise: JS Selector Review (10min)</h3>
-<p>Follow along with &quot;My Blawg&quot;: <a href="https://github.com/amaseda/jquery-inclass-blawg" target="_blank">https://github.com/amaseda/jquery-inclass-blawg</a></p>
-<ul>
-<li>Clone: <code>$ git clone git@github.com:amaseda/jquery-inclass-blawg.git</code></li>
-<li>Open: <code>$ open index.html</code></li>
-<li>We&apos;ll be using this as an example throughout today&apos;s class.</li>
-</ul>
-<p>Instructions: Write down how you would select the following DOM objects on &quot;My Blawg&quot; using Vanilla JS selectors.  </p>
+<h2 id="opening-framing-5-5">Opening Framing (5/5)</h2>
+<p>So we&apos;ve learned about Sinatra, your very first web framework! It&apos;s great. It&apos;s an awesome tool to get a quick page up and running. So why would we ever want to learn Rails? So Sinatra is kind of like a shovel for web development. Rails is kind of like a nuclear powered back hoe for web development. We need to know how to work a shovel before we get the keys to the back hoe. Many of the same conventions you used in Sinatra will transition into rails, but more importantly, there&apos;s alot more. Rails is a heavy duty web framework that follows relatively strict conventions in order to streamline web development.</p>
+<blockquote>
+<p>It is designed to make programming web applications easier by making assumptions about what every developer needs to get started. It makes the assumption that there is the &quot;best&quot; way to do things, and it&apos;s designed to encourage that way - and in some cases to discourage alternatives. - Ruby on Rails guide</p>
+<p>Rails is a framework with lots of rules/conventions. Pay attention to the conventions you&apos;ll need to follow for rails throughout the week.</p>
+</blockquote>
+<p><img src="http://i.stack.imgur.com/Sf2OQ.png" alt="rMVC"></p>
+<h2 id="rmvc-10-15">rMVC (10/15)</h2>
+<p>The design pattern that rails is built around is rMVC - router, model, view and controller.</p>
+<p>Life Cycle of the request/response in Rails:</p>
 <ol>
-<li>The first <code>&lt;a&gt;</code> element on the page.  </li>
-<li>All <code>&lt;a&gt;</code> elements on the page.  </li>
-<li>Using an id, the h1 at the top of the page.  </li>
-<li>All elements with class <code>post</code>.  </li>
-<li>The first element with class <code>post</code>.  </li>
-<li>The second element with class <code>post</code>.  </li>
-<li>The HTML content of the first <code>&lt;p&gt;</code> element on the page.  </li>
+<li><p>A user of our web application submits a request to our application&apos;s server. It can come in a myriad of ways. Maybe someone typing in a URL and hitting enter or maybe a user submitting a form on our application.</p>
+</li>
+<li><p>The request hits the router of the application.</p>
+</li>
+<li><p>The application than either doesn&apos;t recognize the route (error) or it does recognize it and sends it to a controller.</p>
+</li>
+<li><p>Once the request hits the controller, its then going to query the database through Active Record(the model) for the information specified in the controller.</p>
+</li>
+<li><p>Once the controller has the information from the model that it needs it sends it to the view</p>
+</li>
+<li><p>The view takes the objects from the controller and sends a response to the user.</p>
+</li>
 </ol>
-<p>We&apos;ll revisit this after talking about jQuery for a bit...  </p>
-<h2 id="intro-to-jquery-10min">Intro to jQuery (10min)</h2>
-<h3 id="javascript-library">Javascript library</h3>
-<p>What is a library?</p>
-<ul>
-<li>Q: Has anybody used a JS library before?</li>
-<li>A collection of Javascript functions and methods that make writing Javascript an easier, smoother and ultimately shorter experience.</li>
-<li>Under the hood, all Javascript libraries are written using Javascript. So technically, there is nothing you can do using a library that can&apos;t already be done using Vanilla JS.</li>
-<li>There are tons of them: <a href="https://www.javascripting.com/" target="_blank">https://www.javascripting.com/</a><ul>
-<li>Some suited for particular uses like data visualization(D3.js), 3D imaging (Three.js), charts (Chart.js), autocomplete functionality (Typeahead.js) and many more...</li>
-</ul>
-</li>
-</ul>
-<p>Not the same thing as a Javascript framework.</p>
-<ul>
-<li>Not only provides tools like a library does, but also defines the architecture of your code (e.g., syntax, folder structure). Basically, a set of rules you have to follow.</li>
-<li>Examples: AngularJS, Ember.js.</li>
-</ul>
-<p>Sometimes &quot;library&quot; and &quot;framework&quot; are used interchangeably, but they are not the same. The difference will be more apparent as you get some experience with both as the course progresses.  </p>
-<h3 id="what-is-jquery">What is jQuery?</h3>
-<p>The &quot;Write Less, Do More&quot; JS library</p>
-<ul>
-<li>A general purpose library that provides an alternate and easier way to run Javascript.</li>
-<li>At its core, jQuery lets us select and manipulate DOM elements.</li>
-<li>Can also...<ul>
-<li>Manipulate CSS</li>
-<li>Event listeners</li>
-<li>AJAX</li>
-<li>Animations</li>
-</ul>
-</li>
-</ul>
-<p>Like Javascript, jQuery works in all browsers.  </p>
-<p>Because of all this, jQuery is the most popular JS library on the web.  </p>
-<h2 id="setting-up-jquery-10min">Setting up jQuery (10min)</h2>
-<p>There are two ways to go about including jQuery on a website.</p>
-<ul>
-<li>In both cases, we include the jQuery script file (<code>jquery-2.1.4.js</code>) as we would our usual app.js file using <code>&lt;script&gt;</code>.</li>
-<li>Q: Where in our HTML should we include the <code>jquery-2.1.4.js</code> file?<ul>
-<li>How/when is Javascript processed by the browser?</li>
-<li>Relative to the <code>&lt;script&gt;</code> that includes our <code>app.js</code> file?</li>
-</ul>
-</li>
-</ul>
-<h3 id="download">Download</h3>
-<ul>
-<li><a href="https://jquery.com/download/" target="_blank">https://jquery.com/download/</a></li>
-<li>Minified vs. Uncompressed<ul>
-<li>Minified<ul>
-<li>No whitespace, no comments, shortened variable names.</li>
-<li>Q: Why would we want something minified?<ul>
-<li>Improve site load time.</li>
-<li>If something goes wrong with your jQuery code, hard to debug since it&apos;s all on one line.</li>
-<li>Used when a website is ready for production.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Uncompressed<ul>
-<li>Unmodified jQuery - can see it all!</li>
-<li>Will use this in case we need to debug and take a look at what&apos;s going on under the hood.</li>
-<li>Used when a website is in development.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="import">Import</h3>
-<p>You don&apos;t have to host jQuery yourself. You can pull it from the web via a Content Delivery Network (CDN).</p>
-<p>What is a CDN?</p>
-<ul>
-<li>&quot;Serve content to end-users with high availability and high performance.&quot;</li>
-<li>Broad term for a distributed system of servers -- sometimes spread across the world -- that serves content to users, whether that&apos;s videos, software or, in this case, a Javascript library.<ul>
-<li>In the case of jQuery, this CDN is usually Google.</li>
-</ul>
-</li>
-</ul>
-<p>Include with a <code>&lt;script&gt;</code> tag in HTML that links to some URL.</p>
-<ul>
-<li>Keep this handy: <code>&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js&quot;&gt;&lt;/script&gt;</code></li>
-</ul>
-<h2 id="jquery-selectors-20min">jQuery Selectors (20min)</h2>
-<p>The most basic concept of jQuery is to &quot;select some elements and do something with them.&quot;</p>
-<ul>
-<li>This class, we&apos;re going to focus on the &quot;selecting.&quot; We&apos;ll touch upon the &quot;doing something&quot; if there&apos;s time at the end, but you&apos;ll learn a lot more about that during Andy&apos;s lesson this week.</li>
-</ul>
-<p><code>$( &quot;h2&quot; ).html();</code></p>
-<ul>
-<li><p>The selector: <code>$( &quot;h2&quot; )</code></p>
-<ul>
-<li><p>Select a DOM element by its CSS selector.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// By tag</span>
-<span class="hljs-comment">// What does this look like in the console?</span>
-$( <span class="hljs-string">&quot;h2&quot;</span> );
-
-<span class="hljs-comment">// By class</span>
-$( <span class="hljs-string">&quot;.nav-link&quot;</span> );
-
-<span class="hljs-comment">// By id</span>
-$( <span class="hljs-string">&quot;#click-me&quot;</span> );
-
-<span class="hljs-comment">// Q: What does this one select?</span>
-$( <span class="hljs-string">&quot;#blog div&quot;</span> );
-
-<span class="hljs-comment">// Q: How about this one?</span>
-$( <span class="hljs-string">&quot;.post h2&quot;</span> );
-
-<span class="hljs-comment">// Q: One more.</span>
-<span class="hljs-comment">// Yes, you can use CSS pseudo-selectors to select DOM elements!</span>
-$( <span class="hljs-string">&quot;div:nth-child(2)&quot;</span> )
-
-<span class="hljs-comment">// Q: Last one, promise.</span>
-<span class="hljs-comment">// You can also select by HTML attribute.</span>
-<span class="hljs-comment">// Format: tag + [ attributeName=&apos;attributeValue&apos; ]</span>
-<span class="hljs-comment">// Take note of single quotation marks.</span>
-$( <span class="hljs-string">&quot;img[ src=&apos;img/5.jpeg&apos; ]&quot;</span> )
+<p>Let&apos;s take a look at some rails code.</p>
+<h2 id="rails-folder-file-structure-15-30">Rails folder/file structure (15/30)</h2>
+<p>The first thing that I want to do, is just create a new rails applications. But I think first what we should do is ensure we have rails. <code>$ gem install rails</code>. Next I want to actually create my rails application:</p>
+<pre><code class="lang-bash">$ rails new tunr <span class="hljs-operator">-d</span> postgresql
 </code></pre>
-</li>
-<li><p>jQuery runs the equivalent <code>document.querySelectorAll()</code> on the DOM element you are selecting.</p>
+<p>You can see already there are many folders and files generated from just that one command.</p>
+<p><img src="images/rails_folders.png" alt="Rails folder structure"></p>
+<p>It can be quite daunting at first. It&apos;ll take some getting used to, but more importantly, you&apos;re already familiar with alot of the stuff in rails we&apos;ll be using. Additionally, you can ignore alot of the other stuff until you need to incorporate some weird gem/dependency. So we started learning about &quot;convention over configuration&quot; during the class for Active Record. As we scale to a rails size application, We can quickly see the need for conventions in such a massive framework.</p>
+<p>The first folder we&apos;ll talk about is the <code>app</code> folder:</p>
+<p><img src="images/rails_app.png" alt="Rails app folder"></p>
+<p>This folder is the the most important folder in your entire application. It&apos;ll have pretty much most of the programs functionality resting in it.</p>
 <ul>
-<li>Q: What does <code>querySelectorAll()</code> do in Vanilla JS?</li>
-<li>If you select an element of which there is more than one, jQuery will return all of them.</li>
-<li>Returns a jQuery object, which functions like an array -- has zero-index, length -- but it&apos;s not one!</li>
-<li><p>If a jQuery selector returns multiple elements, you can pull out an individual element using the <code>.eq()</code> method.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Returns all h2 elements on a page.</span>
-$( <span class="hljs-string">&quot;h2&quot;</span> )
+<li><code>assets</code> - This will be where all of your CSS, JS, and image files belong.</li>
+<li><code>controllers</code> - This folder will contain all controllers.(ST - WG) What do controllers do for us?</li>
+<li><code>helpers</code> - This is where you can define any helper methods for your application</li>
+<li><code>mailers</code> - Won&apos;t be covering mailers in the scope of this class. Mailers are utilized to send and receive email within a rails application. But it&apos;s pretty simple, if you want to learn more about it. You can look <a href="http://guides.rubyonrails.org/action_mailer_basics.html" target="_blank">here</a></li>
+<li><code>models</code> - this folder will contain our AR models.</li>
+<li><code>views</code> - This folder contains all of the views in this application.</li>
+</ul>
+<blockquote>
+<p>These folders are easily the most important part of your application. Not to say the other parts aren&apos;t.</p>
+</blockquote>
+<p>The <code>bin</code> folder contains binstubs. Not going over this in the scope of this class, but basically they&apos;re used as wrappers around ruby gem executables(like pry) to be used in lieu of <code>bundle exec</code></p>
+<p>The <code>config</code> is another folder that&apos;s pretty important. The file you&apos;ll most be visiting is <code>routes.rb</code> This is the router in rMVC.</p>
+<p>The <code>db</code> folder is one you&apos;ll be working in for a bit of time as well. This contains the seed file but additionally it will also contain your migrations which you&apos;ll be going over in the next class.</p>
+<p>In the main directory there are a couple of files your familiar with, the <code>Gemfile</code> and <code>Gemfile.lock</code></p>
+<h2 id="tunr-port-to-rails">Tunr Port to Rails</h2>
+<h3 id="configuring-models-and-db-10-40">Configuring models and DB (10/40)</h3>
+<p>If you want to work from the same Sinatra app that I will be working with, it can found <a href="https://github.com/ga-dc/sinatra_tunr_to_rails" target="_blank">here</a>
+The first thing that I want to do is connect our rails app to the tunr db that we made in our Sinatra version. We want to go into the <code>config/database.yml</code> file:</p>
+<pre><code class="lang-yml">development:
+  &lt;</code></pre>
+<p>The next thing that I want to do is port my model definitions. All you need to do is create the exact same model files in the sinatra_tunr for the <code>app/models</code> folder in the rails app. Create two files <code>app/models/artist.rb</code> and <code>app/models/song.rb</code> and fill the contents.</p>
+<p><code>app/models/artist.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Artist</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  has_many <span class="hljs-symbol">:songs</span>, <span class="hljs-symbol">dependent:</span> <span class="hljs-symbol">:destroy</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p><code>app/models/song.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Song</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  belongs_to <span class="hljs-symbol">:artist</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Let&apos;s run rails console and play with our models to test for a good connection to the database(5m to make sure everyone has a connection to the database):</p>
+<h3 id="routes-the-non-rails-way-15-55">Routes(the non rails way)(15/55)</h3>
+<p>Great, now that we&apos;ve established a connection to our database let move on to building out our routes.</p>
+<p>Basically what were doing here is mapping out what the different routes of our application will be just like our controllers in sinatra did for us. Let&apos;s pull from the artists controller first. Here&apos;s an example before/after for the first one:</p>
+<pre><code class="lang-ruby"><span class="hljs-comment"># in sinatra</span>
+get <span class="hljs-string">&quot;/artists&quot;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all
+  erb(<span class="hljs-symbol">:<span class="hljs-string">&quot;artists/index&quot;</span></span>)
+<span class="hljs-keyword">end</span>
 
-<span class="hljs-comment">// Returns the second h2 element on a page.</span>
-$( <span class="hljs-string">&quot;h2&quot;</span> ).eq(<span class="hljs-number">1</span>)
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Method: <code>.html()</code></p>
-<ul>
-<li>jQuery comes with tons of methods that we can use to traverse and modify the DOM, among other things.</li>
-<li>In this example we&apos;re looking at <code>.html()</code>, which returns the HTML contents of a DOM object.</li>
-<li>We&apos;ll go over a few today, and you&apos;ll go over a lot more of them with Andy during your second jQuery class.</li>
-</ul>
-</li>
-</ul>
-<p>We Do: What would <code>$( &quot;h2&quot; ).html();</code> look like in Javascript?</p>
-<ul>
-<li>Let&apos;s try some more JS to jQuery conversion with an exercise...</li>
-</ul>
-<h3 id="exercise-using-jquery-selectors-10min">Exercise: Using jQuery Selectors (10min)</h3>
-<p>Select the following DOM objects on the Blawg using jQuery selectors.  </p>
-<ol>
-<li>All <code>&lt;a&gt;</code> elements on the page.</li>
-<li>The first <code>&lt;a&gt;</code> element on the page.</li>
-<li>Using an id, the h1 at the top of the page.  </li>
-<li>All elements with class <code>post</code>.  </li>
-<li>The first element with class <code>post</code>.  </li>
-<li>The second element with class <code>post</code>.  </li>
-<li>The HTML content of the first <code>&lt;a&gt;</code> element on the page.  </li>
-<li>Using a CSS pseudo-selector, the third element with class <code>post</code>.</li>
-<li>Using an HTML attribute, the fourth <code>img</code> on the page.  </li>
-</ol>
-<p>Reference: <a href="https://api.jquery.com/" target="_blank">https://api.jquery.com/</a></p>
-<h2 id="jquery-objects-vs-dom-elements-10min">jQuery Objects vs. DOM Elements (10min)</h2>
-<p>jQuery objects are not the same thing as DOM elements.</p>
-<ul>
-<li>DOM elements are returned when using Vanilla JS selectors.<ul>
-<li>You can only use Javascript methods on DOM elements.</li>
-</ul>
-</li>
-<li>A jQuery object is a jQuery-specific collection of DOM elements.</li>
-</ul>
-<p>Because of this difference, You CANNOT chain jQuery and Vanilla JS selectors/methods.  </p>
-<pre><code class="lang-javascript">  <span class="hljs-comment">// Chaining Vanilla JS is OK.</span>
-  <span class="hljs-built_in">document</span>.getElementById( <span class="hljs-string">&quot;click-me&quot;</span> ).innerHTML;
+post <span class="hljs-string">&quot;/artists&quot;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-variable">@artist</span> = artist.create!(params[<span class="hljs-symbol">:artist</span>])
+  redirect(<span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>)
+<span class="hljs-keyword">end</span>
 
-  <span class="hljs-comment">// Same with jQuery.</span>
-  $( <span class="hljs-string">&quot;#click-me&quot;</span> ).html();
+<span class="hljs-comment"># Becomes this in routes.rb:</span>
+get <span class="hljs-string">&quot;artists&quot;</span> =&gt; <span class="hljs-string">&quot;artists#index&quot;</span>
+post <span class="hljs-string">&quot;artists&quot;</span> =&gt; <span class="hljs-string">&quot;artists#create&quot;</span>
+</code></pre>
+<blockquote>
+<p>the actions for put/delete requests are update/destroy</p>
+</blockquote>
+<h3 id="break-you-do-create-the-rest-of-the-routes-including-all-the-song-routes-20-75">BREAK + You do - create the rest of the routes including all the song routes (20/75)</h3>
+<p>For the next part of the class</p>
+<h2 id="error-driven-development-30-105">Error Driven Development (30/105)</h2>
+<p>I&apos;m going to be using error driven development to show some common errors and their solutions.</p>
+<p>Alright, I want to go ahead and test one of these routes out. In the terminal start up your rails server <code>$ rails s</code> And open a new terminal tab <code>cmd + &quot;t&quot;</code> and type <code>rake routes</code>. This shows you every route that is defined in <code>config/routes.rb</code></p>
+<p>Lets go into our browser and go to <code>http://localhost:3000/artists</code> and we&apos;ll see:</p>
+<p><img src="images/routing_error.png" alt="routing error"></p>
+<p>So the application receives the request and says, <code>/artists</code> I know what to do here. I need to send this to the artists controller.</p>
+<p>Then finally we hit this error above. <code>unintialized constant ArtistsController</code> that means we have to create that controller. So let&apos;s go ahead and do that. <code>$ touch app/controllers/artists_controller.rb</code></p>
+<p>In <code>app/controllers/artists_controller.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArtistsController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
 
-  <span class="hljs-comment">// You cannot, however, mix the two. This will not work...</span>
-  <span class="hljs-built_in">document</span>.getElementById( <span class="hljs-string">&quot;click-me&quot;</span> ).html();
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Let&apos;s refresh:
+<br>
+<img src="images/unknown_action.png" alt="unknown_action"></p>
+<p>Oh noes another error. When we go to <code>http://localhost:3000/artists</code> our router says it knows where to send it. It&apos;s sending it to the artists controller and expects it to do the index action. Unfortunately we haven&apos;t defined it yet, so it&apos;s unknown. Lets go ahead and define one now</p>
+<p>In <code>app/controllers/artists_controller.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArtistsController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
 
-  <span class="hljs-comment">// Neither will this...</span>
-  $( <span class="hljs-string">&quot;#click-me&quot;</span> ).innerHTML;
-</code></pre>
-<p>There are some &quot;exceptions&quot; to this no-chaining rule...</p>
-<p>You CAN run Vanilla JS inside jQuery, and vice-versa. Let me show you what I mean with another Blawg example...</p>
-<pre><code class="lang-javascript">  <span class="hljs-comment">// Select a DOM element with an id of click-me</span>
-  <span class="hljs-keyword">var</span> clickMe = <span class="hljs-built_in">document</span>.getElementById( <span class="hljs-string">&quot;click-me&quot;</span> );
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>index
 
-  <span class="hljs-comment">// We set up an event listener for clickMe using Vanilla JS</span>
-  <span class="hljs-comment">// But then we execute jQuery code inside that event listener!</span>
-  clickMe.addEventListener( <span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-    $( <span class="hljs-string">&quot;body&quot;</span> ).css( <span class="hljs-string">&quot;background-color&quot;</span>, <span class="hljs-string">&quot;lemonchiffon&quot;</span> );
-  })
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Great let&apos;s reload:
+<img src="images/template_missing.png" alt="template_missing"></p>
+<p>Another one .... We&apos;ll get more into this later. But this one is yelling at us for not having a view ready yet. Specifically in this case, the index view. So let&apos;s create that. Let&apos;s first make a directory and file in the terminal:</p>
+<pre><code class="lang-bash">$ mkdir app/views/artists
+$ touch app/views/artists/index.html.erb
+</code></pre>
+<p>Inside <code>app/views/artist/index.html.erb</code>:
+Just put <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code></p>
+<p>And finally:</p>
+<p><img src="images/hello_world.png" alt="hello_world"></p>
+<p>Hooray! That&apos;s really awesome. But not all that useful. Really what we want is all of the artists. If only we had some existing code and we can just copy stuff, we do! Lets take a look at our artist index view in our sinatra app.</p>
+<pre><code class="lang-ruby">&lt;h2&gt;Artists &lt;a href=&quot;/artists/new&quot;&gt;(+)&lt;/a&gt;&lt;/h2&gt;
 
-  <span class="hljs-comment">// We can flip that around.</span>
-  <span class="hljs-comment">// You&apos;ll learn jQuery event listeners later...</span>
-  $( <span class="hljs-string">&quot;#click-me&quot;</span> ).on( <span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-built_in">document</span>.body.style.backgroundColor = <span class="hljs-string">&quot;lemonchiffon&quot;</span>;
-  })
+&lt;ul&gt;
+  &lt;% @artists.each do |artist| %&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;/artists/&lt;%= artist.id %&gt;&quot;&gt;
+        &lt;%= artist.name %&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;% end %&gt;
+&lt;/ul&gt;
 </code></pre>
-<p>You can also target DOM objects originally selected using Vanilla JS.  </p>
-<pre><code class="lang-javascript">  <span class="hljs-comment">// The DOM element(s) is saved to a variable using Vanilla JS.</span>
-  <span class="hljs-keyword">var</span> clickMe = <span class="hljs-built_in">document</span>.getElementById( <span class="hljs-string">&quot;click-me&quot;</span> );
+<p>Yep, looks good, lets shove all this stuff into the <code>app/views/artist/index.html.erb</code>.</p>
+<p>Let&apos;s refresh the page:</p>
+<p><img src="images/no_method_error.png" alt="no_method_error"></p>
+<p>When we look at this error it says <code>undefined method &apos;each&apos; for nil:NilClass</code></p>
+<p>That&apos;s because <code>@artists</code> isn&apos;t defined. Let&apos;s define that now in the index action of our artists controller. In <code>app/controllers/artists_controller.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArtistsController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
 
-  <span class="hljs-comment">// We can then select that same element using jQuery.</span>
-  <span class="hljs-comment">// Note: no quotations marks are used when selecting a variable that contains a DOM element(s).</span>
-  $( clickMe );
-
-  <span class="hljs-comment">// We can inspect...</span>
-  clickMeContents = $( clickMe ).html();
-  <span class="hljs-built_in">console</span>.log( clickMeContents );
-  =&gt; <span class="hljs-string">&quot;Click Me!&quot;</span>
-
-  <span class="hljs-comment">// ...and modify them too.</span>
-  $( clickMe ).css( <span class="hljs-string">&quot;background-color&quot;</span>, <span class="hljs-string">&quot;pink&quot;</span> );
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>index
+    <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
 </code></pre>
-<h2 id="jquery-vs-vanilla-js-10min">jQuery vs. Vanilla JS (10min)</h2>
-<p>Q: Now that we&apos;ve gone over jQuery for a bit, what are some reasons you think somebody would use jQuery over Vanilla JS?</p>
+<h3 id="you-do-the-rest-of-it-45-145">You do - THE REST OF IT. (45/145)</h3>
+<p>We&apos;ve already done all of the code in Sinatra. All you&apos;re doing is changing the code from a sinatra app to a rails app.</p>
+<h4 id="port-controller-file">Port Controller File</h4>
 <ul>
-<li>What about Vanilla JS over jQuery?</li>
+<li>copy the contents of the Sinatra Controllers and convert each block into a method/action on the rails app. Make sure the method/action names match what you have defined in the router.</li>
+<li>convert all <code>redirect()</code> statements to <code>redirect_to()</code>. Replace all <code>erb()</code> statements with <code>render()</code> statements.(or omit them if the name of the file matches the controller and action name)</li>
 </ul>
-<p>Easier</p>
-<ul>
-<li>Abstracts Vanilla JS into shorter, more concise and intuitive syntax</li>
-<li>Reduces development time</li>
-<li>...but only if you&apos;re doing plenty of element selection and event handling!<ul>
-<li>Some people have a tendency to automatically include jQuery, regardless of what they&apos;re doing.</li>
-<li><a href="http://needsmorejquery.com/" target="_blank">needsmorejquery.com/</a>.</li>
-</ul>
-</li>
-</ul>
-<p>Speed</p>
-<ul>
-<li>Vanilla JS is faster. Only relevant, however, when dealing with large amounts of code.</li>
-<li><a href="http://www.sitepoint.com/jquery-vs-raw-javascript-1-dom-forms/" target="_blank">http://www.sitepoint.com/jquery-vs-raw-javascript-1-dom-forms/</a></li>
-</ul>
-<p>Make sure you&apos;re familiar with Vanilla JS and jQuery, but use whichever one you feel more comfortable with. Or use both!</p>
-<p>Onto some jQuery methods!</p>
-<h2 id="-document-ready-5min">$( document ).ready( ) (5min)</h2>
-<p>A page can&apos;t be manipulated safely until the document is &quot;ready.&quot; jQuery detects this state of readiness for you. Code included inside <code>$( document ).ready()</code> will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute.</p>
-<pre><code class="lang-javascript">  $( <span class="hljs-built_in">document</span> ).ready( <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-comment">// Any code placed in here will only run once the DOM has been fully loaded.</span>
-  })
+<h4 id="copy-views">Copy Views</h4>
+<p>Copy over the <code>views/artists</code> folder into <code>app/views</code> in our Rails app. We used
+the Rails convention in Sinatra, so the only thing we have to do is rename
+each file from something like <code>new.erb</code> to <code>new.html.erb</code>.</p>
+<p>Also, copy over the <code>layout.erb</code> file into
+<code>app/views/layouts/application.html.erb</code>. Make sure to keep the Rails&apos; generated
+content in the <code>&lt;head&gt;</code> though.</p>
+<h4 id="fix-authenticty-token-issues">Fix Authenticty Token Issues</h4>
+<p>Rails protects us from an attack called a Cross-Site Forgery Request or &apos;CSRF&apos;.
+It does this by embedding a unique key into each form it generates for us, and
+rejecting non-GET requests without the key.</p>
+<p>To allow us to use non-Rails forms (until tomorrow), we need to comment out the
+following line in <code>application_controller.rb</code>:</p>
+<pre><code class="lang-ruby">    protect_from_forgery <span class="hljs-symbol">with:</span> <span class="hljs-symbol">:exception</span>
 </code></pre>
-<h2 id="some-jquery-methods-10min">Some jQuery Methods (10min)</h2>
-<p>Sometimes we want to select a particular aspect of a DOM element, like its HTML content or CSS properties.</p>
-<ul>
-<li>That&apos;s where jQuery&apos;s methods come in.</li>
-</ul>
-<p>The jQuery methods we will be going over today are both &quot;getters&quot; and &quot;setters&quot;.</p>
-<ul>
-<li>Q: Anybody want to guess what those two terms mean?<ul>
-<li>Getter: returns a value</li>
-<li>Setter: sets/replaces a value</li>
-<li>The version of the method that is triggered depends on how many arguments are fed into it.</li>
-</ul>
-</li>
-</ul>
-<p><code>.html()</code></p>
-<ul>
-<li><p>Without any arguments, gets the HTML content of a DOM object.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Returns HTML content of a DOM element of id &quot;title&quot;</span>
-$( <span class="hljs-string">&quot;#title&quot;</span> ).html();
-# =&gt; <span class="hljs-string">&quot;My Blawg&quot;</span>
+<p>and inside <code>config/application.rb</code></p>
+<pre><code class="lang-ruby">config.action_controller.permit_all_parameters = <span class="hljs-keyword">true</span>
 </code></pre>
-</li>
-<li><p>With an argument, replaces the HTML content of a DOM object.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Replaces HTML content of a DOM element of id &quot;title&quot; with &apos;Adrian&apos;s Blawg&apos;</span>
-$( <span class="hljs-string">&quot;#title&quot;</span> ).html( <span class="hljs-string">&quot;Adrian&apos;s Blawg&quot;</span> );
-</code></pre>
-</li>
-<li><p>If a collection is selected, the method is performed on the first item in the collection.</p>
-</li>
-</ul>
-<p><code>.attr()</code></p>
-<ul>
-<li><p>With an HTML attribute as an argument, returns the value of that attribute.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Returns image source</span>
-$( <span class="hljs-string">&quot;img&quot;</span> ).attr( <span class="hljs-string">&quot;src&quot;</span> );
-</code></pre>
-</li>
-<li><p>With an HTML attribute and value as arguments, replaces the current value of that attribute with the new value.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Sets image source</span>
-$( <span class="hljs-string">&quot;img&quot;</span> ).attr( <span class="hljs-string">&quot;src&quot;</span>, <span class="hljs-string">&quot;http://ak-hdl.buzzfed.com/static/2013-12/enhanced/webdr07/3/12/anigif_enhanced-buzz-15393-1386091162-37.gif&quot;</span>)
-</code></pre>
-</li>
-</ul>
-<p><code>.css()</code></p>
-<ul>
-<li><p>With a CSS attribute name as an argument, returns the current value of that attribute.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Returns the background color of the body</span>
-$( <span class="hljs-string">&quot;body&quot;</span> ).css( <span class="hljs-string">&quot;background-color&quot;</span> );
-=&gt; <span class="hljs-string">&quot;#FAFAFA&quot;</span>
-</code></pre>
-</li>
-<li><p>With a CSS attribute and value as arguments, replaces the current values of that attribute with the new one.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Sets background color of the body to red</span>
-$( <span class="hljs-string">&quot;body&quot;</span> ).css( <span class="hljs-string">&quot;background-color&quot;</span>, <span class="hljs-string">&quot;lemonchiffon&quot;</span> );
-</code></pre>
-</li>
-<li><p>If a collection is selected, the method is performed on the first item in the collection.</p>
-</li>
-</ul>
-<h3 id="exercise-get-n-set-10min">Exercise: Get &apos;n&apos; Set (10min)</h3>
-<p>&quot;Get or &quot;Set&quot; the following values using jQuery selectors and methods.  </p>
-<ol>
-<li>Get the HTML content of the second <code>&lt;p&gt;</code> element on the page.  </li>
-<li>Set the HTML content of the second <code>&lt;p&gt;</code> to something else weird.  </li>
-<li>Get the background color of the body.  </li>
-<li>Set the background color of the body to &quot;burlywood&quot;.  </li>
-<li>Get the <code>alt</code> value of the fourth <code>&lt;img&gt;</code> on the page.  </li>
-<li>Set the <code>alt</code> value of the fourth <code>&lt;img&gt;</code> to something else.  </li>
-</ol>
-<p>Reference: <a href="https://api.jquery.com/" target="_blank">https://api.jquery.com/</a></p>
-<h2 id="homework-pixart">Homework: Pixart</h2>
-<p><a href="https://github.com/ga-dc/pixart_js" target="_blank">https://github.com/ga-dc/pixart_js</a></p>
+<h3 id="run-rails-server">Run rails server</h3>
+<p>Run rails server and test out your site. It&apos;s not all too much different from Sinatra. Except it splits the conerns of routing from controllers, and makes assumptions about what your files are called.</p>
+<h2 id="closing-5-150">Closing(5/150)</h2>
+<p>Review LO&apos;s
+Homework will be to port WDInstagram to a rails app. <a href="linktofollow">here</a></p>
 
                     
                     </section>
@@ -1179,10 +1019,10 @@ $( <span class="hljs-string">&quot;body&quot;</span> ).css( <span class="hljs-st
         </div>
 
         
-        <a href="../../02-intermediate-front-end/git_branching/readme.html" class="navigation navigation-prev " aria-label="Previous page: Git Branching"><i class="fa fa-angle-left"></i></a>
+        <a href="../../05-mvc-with-rails/readme.html" class="navigation navigation-prev " aria-label="Previous page: MVC with Rails"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../02-intermediate-front-end/jquery/jquery-two.html" class="navigation navigation-next " aria-label="Next page: jQuery 2"><i class="fa fa-angle-right"></i></a>
+        <a href="../../05-mvc-with-rails/rails-models-and-migrations/readme.html" class="navigation navigation-next " aria-label="Next page: Models and Migrations"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
