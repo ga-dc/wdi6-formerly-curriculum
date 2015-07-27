@@ -1,5 +1,7 @@
 # Rails Models and Migrations
 
+The files we’ll be working with in this lesson are highlighted in blue below:
+
 ![](https://dl.dropboxusercontent.com/s/2zho5ekuhxpp5lx/Screenshot%202015-07-26%2010.26.28.png?dl=0)
 
 ## We do
