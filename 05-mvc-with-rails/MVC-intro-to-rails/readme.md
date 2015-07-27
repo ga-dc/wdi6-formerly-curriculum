@@ -77,6 +77,10 @@ The `db` folder is one you'll be working in for a bit of time as well. This cont
 In the main directory there are a couple of files your familiar with, the `Gemfile` and `Gemfile.lock`
 
 ## Tunr Port to Rails
+The sinatra app we'll be working with is located [here](https://github.com/ga-dc/sinatra_tunr_to_rails)
+
+Please make sure you create the database, upload the schema and seed your database.
+
 ### Configuring models and DB (10/40)
 If you want to work from the same Sinatra app that I will be working with, it can found [here](https://github.com/ga-dc/sinatra_tunr_to_rails)
 The first thing that I want to do is connect our rails app to the tunr db that we made in our Sinatra version. We want to go into the `config/database.yml` file:
