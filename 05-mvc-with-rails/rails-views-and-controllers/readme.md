@@ -160,6 +160,8 @@ end
 
 > the require method ensurezs that a specific parameter is present. Throws an error otherwise. The permit method returns a copy of the parameters object, returning only the permitted keys and values.
 
+> note that we encapsulate the artist_params in a private method because we only want this available to this particular class and it shouldn't work outside the scope of the controller
+
 The only thing we have left to do is update our controller actions that use params to create or update an artist.
 
 in `app/controllers/artists_controller.rb`:
