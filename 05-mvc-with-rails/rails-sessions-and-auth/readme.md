@@ -10,6 +10,8 @@
 - Describe the functionality of `has_secure_password`.
 - Differentiate between authentication and authorization.
 
+**Please follow along with the lesson plan.**
+
 ## Adding users
 
 Currently, Tunr just supports one single user. It would be nice if it could have multiple users. Whenever a user logs in, they'd see only *their* artists and songs.
@@ -19,7 +21,7 @@ To start, let's create a User model. It's going to be really simple, with just a
 ```
 rails generate migration create_users
 ```
-```
+```rb
 # db/migrate/[timestamp]_users.db
 
 class CreateUsers < ActiveRecord::Migration
@@ -40,7 +42,7 @@ rake db:migrate
 
 Let's make sure each user has a unique username, and always has a password:
 
-```
+```rb
 # app/models/user.rb
 
 class User < ActiveRecord::Base
@@ -55,7 +57,7 @@ end
 
 #### What kind of HTTP request should go to each action?
 
-```
+```rb
 # config/routes.rb
 
 Rails.application.routes.draw do
@@ -73,8 +75,6 @@ end
 
 Now we'll need a controller to actually receive and respond to these requests.
 
-We'll come back to `signout` later.
-
 - If a username isn't provided, throw an error
 - If a password isn't provided, throw an error
 - If a password is provided...
@@ -83,7 +83,9 @@ We'll come back to `signout` later.
     - If the password doesn't match, throw an error
     - If the password matches, the user is signed in
 
-```
+We'll come back to `signout` later.
+
+```rb
 # app/controllers/users_controller.rb
 
 class UsersController < ApplicationController
@@ -127,7 +129,7 @@ end
 
 Next, we'll create a sign-in form. The form will POST to that `/signin` route.
 
-```
+```erb
 # app/views/users/signin_prompt.html.erb
 
 <%= form_tag("/signin", method: "post") do %>
@@ -139,16 +141,16 @@ Next, we'll create a sign-in form. The form will POST to that `/signin` route.
 
 ...and lastly, we'll make a link to the sign-in page on the main application layout.
 
-```
+```erb
 # app/views/layout/application.html.erb
 
-...
+# ...
 <nav>
   <a href="/signin">Sign in</a>
   <a href="/songs">Songs</a>
   <a href="/artists">Artists</a>
 </nav>
-...
+# ...
 ```
 
 ...and now if we run our application, we can see that it's working successfully!
@@ -159,17 +161,17 @@ Next, we'll create a sign-in form. The form will POST to that `/signin` route.
 
 Rails gives us a handy method for showing users error messages, called `flash`. It's a hash that is generated in one controller action, and is accessible only in the *next* controller action. That is: a flash message is single-use.
 
-```
+```rb
 # app/controllers/users_controller.rb
 
   def signin
-...
+# ...
     flash[:sign_in_message] = message
   end
-...
+# ...
 ```
 
-```
+```erb
 # app/users/signin_prompt.html.erb
 
 <h2><%= flash[:sign_in_message] %></h2>
