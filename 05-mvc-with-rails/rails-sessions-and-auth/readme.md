@@ -10,7 +10,310 @@
 - Describe the functionality added by `has_secure_password`.
 - Differentiate between authentication and authorization.
 
-## What's a cookie?
+## Adding users
+
+Currently, Tunr just supports one single user. It would be nice if it could have multiple users. Whenever a user logs in, they'd see only *their* artists and songs.
+
+To start, let's create a User model. It's going to be really simple, with just a username and password:
+
+```
+rails generate migration create_users
+```
+```
+# db/migrate/[timestamp]_users.db
+
+class CreateUsers < ActiveRecord::Migration
+  def change
+    create_table :users do |t|
+      t.string :username
+      t.string :password
+
+      t.timestamps null: false
+    end
+  end
+end
+```
+```
+rake db:migrate
+```
+
+Let's make sure each user has a unique username, and always has a password:
+
+```
+# app/models/user.rb
+
+class User < ActiveRecord::Base
+  validates :username, presence: true, uniqueness: true
+  validates :password, presence: true
+end
+```
+
+#### What actions should a user have, to start off with?
+- To make things a little simpler, instead of having actions for signing up and signin in, we'll just have one: if someone tries to sign in with a username that doesn't exist, an account will be created for them.
+- Also, we won't add in an "edit password" functionality yet.
+
+#### What kind of HTTP request should go to each action?
+
+```
+# config/routes.rb
+
+Rails.application.routes.draw do
+  root to: 'artists#index'
+  get '/songs', to: 'songs#index'
+  resources :artists do
+    resources :songs
+    resources :genres
+  end
+  post '/signin', to: 'users#signin'
+  get '/signout', to: 'users#signout'
+end
+```
+
+Now we'll need a controller to actually receive and respond to these requests.
+
+We'll come back to `signout` later.
+
+- If a username isn't provided, throw an error
+- If a password isn't provided, throw an error
+- If a password is provided...
+  - If a username doesn't exist in the database, it should be created
+  - If a username does exist...
+    - If the password doesn't match, throw an error
+    - If the password matches, the user is signed in
+
+```
+# app/controllers/users_controller.rb
+
+class UsersController < ApplicationController
+  def signin
+    if params[:username].strip == ""
+      message = "You forgot to enter a username!"
+    elsif params[:password].strip == ""
+      message = "You forgot to enter a password!"
+    else
+      if !User.find_by(username: params[:username])
+        if User.create(username: params[:username], password: params[:password])
+          message = "Your account has been created!"
+        else
+          message = "Your account couldn't be created. Did you enter a unique username and password?"
+        end
+      else
+        if User.find_by(username: params[:username]).password != params[:password]
+          message = "Your password's wrong!"
+        else
+          message = "You're signed in, #{params[:username]}! :)"
+        end
+      end
+    end
+    puts "-" * 50
+    puts message
+    redirect_to :back
+  end
+
+  def signout
+
+  end
+end
+```
+
+Finally, we'll create a sign-in form in the main application layout so it appears across the top of every page. The form will POST to that `/signin` route.
+
+```
+# app/views/layouts/application.html.erb
+
+...
+<h1>Tun.r</h1>
+<%= form_tag("/signin", method: "post") do %>
+  <input type="text" name="username" placeholder="username" />
+  <input type="password" name="password" placeholder="password" />
+  <input type="submit" value="Sign in" />
+<% end %>
+...
+```
+
+...and now if we run our application, we can see that it's working successfully!
+
+## The Flash
+
+`puts`ing out error messages isn't very helpful, since the user is never going to be able to see them.
+
+Rails gives us a handy method for showing users error messages, called `flash`. It's a hash that is generated in one controller action, and is accessible only in the *next* controller action. That is: a flash message is single-use.
+
+```
+# app/controllers/users_controller.rb
+
+  def signin
+...
+    flash[:sign_in_message] = message
+    redirect_to :back
+  end
+...
+```
+
+```
+# app/views/layouts/application.html.erb
+
+...
+<h1>Tun.r</h1>
+<h2><%= flash[:sign_in_message] %></h2>
+<%= form_tag("/signin", method: "post") do %>
+  <input type="text" name="username" placeholder="username" />
+  <input type="password" name="password" placeholder="password" />
+  <input type="submit" value="Sign in" />
+<% end %>
+...
+```
+
+## Password security
+
+#### All the passwords are stored in the database as plain text. Why is that a problem?
+
+Most people use the same password for many sites. Anyone with access to the database could see people's passwords and easily try them out on other sites.
+
+### Two truths and a lie:
+
+- Washington is an expensive city in which to live.
+- Jesse has nice hair.
+- It is possible to make something 100% secure.
+
+There is no such thing as a completely secure system. With enough time and effort, anything can be hacked.
+
+Your best bet is to make it **annoying** to hack your system.
+
+#### Given two systems, what would make a hacker choose to hack one over the other?
+- Effort required
+- Potential payout
+- Severity of consequences
+
+All hackers choose their targets with a simple formula:
+```
+desire to hack = (perceived payout relative other targets) - (perceived effort relative other targets)
+```
+
+That means you can protect yourself either by making it look like the data your app stores is worthless, *or* by making your app more annoying to hack than other apps.
+
+If all you're protecting is a handful of e-mail addresses or comments on a minor blog, a box asking "What is 3 + 7?" is probably sufficient protection. Even though it's easy to hack, there are so many other sites with even less protection, and those are the ones hackers will target.
+
+### Hashing
+
+#### So how can we make it annoying to try to hack the passwords in our database?
+- Encrypt
+  - But what if someone figures out your encryption algorithm?
+
+Instead, we use **hashing**, which is like encryption but without the need to decrypt.
+
+For example, take this number:
+
+```
+33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601
+```
+
+This is my password, encrypted with an algorithm. I'll give you some hints: my password is a 7-digit number, and the algorithm is taking that number to the 40th power. So to find my password, all you need to do is find a calculator and enter:
+
+```
+33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601 ^ (1/40)
+```
+
+#### Why am I still confident that you won't figure out my password?
+- Because that's a really, really difficult calculation for any computer to make!
+
+So let's say instead of my password, the database stores this number, which is only about 260 bytes as a string. When I enter my password, my app takes whatever I entered to the 40th power. If it matches, even though it doesn't know my actual password, it knows I entered my password correctly. If what I entered is just one number off, the calculation's result will be completely different, and it won't match.
+
+This way, the only place my actual password is stored is in my own human memory.
+
+Could someone hack my password? Yes, but it would take a tremendous amount of computer power.
+
+Hashing is used very, very widely in **authentication** -- that is, making sure someone is who they say they are.
+
+## Hashing Tunr
+
+We're going to use a gem called "bcrypt" that uses a really secure hashing algorithm.
+
+```
+# Gemfile
+
+...
+gem 'bcrypt'
+...
+```
+```
+bundle install
+```
+
+Let's play around with it in the rails console:
+
+```
+rails c
+```
+
+If we run this multiple times, we get a different result each time:
+
+```
+> BCrypt::Password.create("hello")
+```
+
+That's because to keep things *really* secure, BCrypt adds some random extra letters onto the end of the hash. These extra letters are called a **salt**. This process is **salting a hash**.
+
+To check whether a string matches the hash, we first have to let BCrypt decode its hash:
+
+```
+> BCrypt::Password.create("hello")
+ => "$2a$10$yADYNXdzkZC6bLElijmYxuT2bLjG09Oe7i/7asficgWqgHqbj73Ge"
+> hash = "$2a$10$yADYNXdzkZC6bLElijmYxuT2bLjG09Oe7i/7asficgWqgHqbj73Ge"
+> decoded_hash = BCrypt::Password.new(hash)
+> decoded_hash.is_password?("hello")
+ => false
+> decoded_hash.is_password?("Hello")
+ => true
+```
+
+Putting this all together in Tunr:
+
+```
+# app/controllers/users_controller.rb
+
+...
+def signin
+  if params[:username].strip == ""
+    message = "You forgot to enter a username!"
+  elsif params[:password].strip == ""
+    message = "You forgot to enter a password!"
+  else
+    if !User.find_by(username: params[:username])
+      if User.create(
+        username: params[:username],
+        password: BCrypt::Password.create(params[:password].strip)
+      )
+        message = "Your account has been created!"
+      else
+        message = "Your account couldn't be created. Did you enter a unique username and password?"
+      end
+    else
+      decoded_hash = BCrypt::Password.new(User.find_by(username: params[:username]).password)
+      if decoded_hash.is_password?(params[:password]) == false
+        message = "Your password's wrong!"
+      else
+        message = "You're signed in, #{params[:username]}! :)"
+      end
+    end
+  end
+  flash[:sign_in_message] = message
+  redirect_to :back
+end
+...
+```
+
+## User persistence
+
+#### What's missing from our user sign-in process?
+#### If I refresh the page, am I still signed in?
+
+We need to figure out a way to have Rails remember I'm signed in.
+
+#### Why not just created an "is_signed_in" column in my User table?
+- How would Rails now how to sign out? More importantly, if multiple users are accessing the app, how would Rails know which signed_in user is on which computer?
+
+## Cookie Monster
 
 ### We do:
 1. In Chrome, go to Preferences
@@ -65,9 +368,7 @@ tz=America%2FNew_York; _ga=GA1.2.3456.7890; _gat=1"
 
 Hiding from scripts, expiration dates, secure connections only...
 
-#### Why does security with cookies seem to be such a big deal?
-
-## Reading and writing cookies
+#### Turn and talk: Why does security with cookies seem to be such a big deal?
 
 ### Writing
 
@@ -105,163 +406,160 @@ To **read** my cookie, I just use `cookies["Why did the chicken cross the road?"
 
 Note that `cookies` is a **hash**, just like any other hash. If I put `<%= cookies.to_json %>` in my `.html.erb`, it'll show me all the cookies for this domain (`localhost`, in this case).
 
-## Applying to Tunr
+### Applying to Tunr
 
-Currently, Tunr just supports one single user. It would be nice if it could have multiple users. Whenever a user logs in, they'd see only *their* artists and songs.
-
-To start, let's add a "sign-in" form. We'll put it in the main application layout so that the form appears across the top of every page.
-
-The form just needs a text field for a username, and a "Submit" button. We'll worry about passwords and stuff later.
-
-```
-# app/views/layouts/application.html.erb
-
-<form method="post" action="/signin">
-  <input type="text" name="username" placeholder="username" />
-  <input type="submit" value="Sign in" />
-</form>
-```
-
-Now we need to make the form able to actually do something. The form is POSTing to `/signin`, so let's make the appropriate route:
-
-```
-# config/routes.rb
-
-Rails.application.routes.draw do
-  root to: 'artists#index'
-  get '/songs', to: 'songs#index'
-  post '/signin', to: 'application#signin'
-  resources :artists do
-    resources :songs
-    resources :genres
-  end
-end
-```
-
-I made the route direct the request to the `signin` method of the Application controller, so we'd better create that method.
-
-*(In this controller, you'll see something about "forgery" and "CSRF". We'll talk about that later; ignore it for now.)*
+This doesn't solve the staying-logged-in problem, but we can add a nice touch to our app by having it "remember" your username. You've probably seen those "Remember me?" boxes whenever you log in somewhere.
 
 This `signin` method should get the `username` from the `params` that were POSTed. Then, let's have it save the username as a cookie, and redirect the user back to where they were before.
 
 ```
-# app/controllers/application_controller.rb
+# app/controllers/users_controller.rb
 
-class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
-
-  def signin
-    cookies[:username] = {
-      value: params[:username],
-      expires: 100.years.from_now
-    }
-    redirect_to :back
-  end
+def signin
+...
+else
+  message = "You're signed in, #{params[:username]}! :)"
+  cookies[:username] = params[:username]
 end
+...
 ```
 
 Finally, so we can see our handiwork, lets change the sign-in form so that the username is automatically filled in if the "username" cookie is set.
 
-We'll also need to add in a line of "magic" that has to do with the "protect_from_forgery" thing we saw before. Again, we'll talk about what it does in a bit.
-
 ```
-<form method="post" action="/signin">
-  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
-  <input type="text" name="username" placeholder="username" value="<%= cookies[:username] %>" />
+# app/views/layouts/application.html.erb
+
+...
+<h2><%= flash[:sign_in_message] %></h2>
+<%= form_tag("/signin", method: "post") do %>
+  <input type="text" name="username" placeholder="username" value="<%= cookies[:username] %>"/>
+  <input type="password" name="password" placeholder="password" />
   <input type="submit" value="Sign in" />
-</form>
+<% end %>
+...
 ```
 
 Now, when I type in a username and "Sign in", my username is filled in! I can close the browser, and when I go back to the page it'll still be there.
 
-This is exactly how those "Remember me?" checkboxes you see when logging in on so many sites work.
-
 Hopefully you can start to see the utility of cookies. They were originally invented for e-commerce, to let you store the items in your shopping cart on, say, Amazon. Now they're used for all kinds of things.
 
-### Bringing in the database
+### Same old problem
 
-The goal for this app is for it to serve as your personal playlist. Each user will see only the songs and artists they created.
+Now we can show the username on every page of the app. But this isn't actually keeping the user signed in on every page of the app.
 
-Having this "remember me" functionality is a nice user interface thing, but it doesn't really *do* anything. Also, the data is just stored in the browser. As the app creator, I want the user data to be stored on my server.
+We could just create a cookie called `is_signed_in` and set that to true.
 
-Let's create a user model!
+#### What could go wrong with using an `is_signed_in` cookie?
+- Cookies are stored on the user's computer. This means we're basically relying on a user to tell us whether or not they're logged in. That's not very secure. There are Chrome extensions that let you add and edit the cookies on your computer. **We** want to tell the **user** whether or not they're logged in, not have them tell us.
 
-```
-rails generate model user
-```
+## Sessions
 
-Our User table is going to be really simple, with just a username and password:
+Remember `flash` messages? Those are a lot like cookies, except instead of being stored on the user's browser, they're stored on **your server**.
 
-```
-# db/migrate/[timestamp]_users.db
+This is an example of a **session variable**. It's like a cookie in reverse. A cookie is stored on the user's browser and associated with a particular domain. A session variable is stored on the server and associated with a particular user's browser.
 
-class Users < ActiveRecord::Migration
-  def change
-    create_table :users do |t|
-      t.string :username
-      t.string :password
-    end
-  end
-end
-```
+Because session variables are stored on your server, the user can't manipulate them.
 
-Now we need to make that POST `sign-in` method actually do something.
+### How sessions work
 
-- If a user with that username doesn't exist, it should be created, and the username and password saved as cookies so that neither needs to be re-entered
-- If a user with that username *does* exist, its password should be compared with the password that was just entered
-  - If the password is the same, a "welcome" message should be displayed, and the username and password saved as cookies
-  - If it's different, an "error" message should be displayed, and the `username` cookie is made a blank string
+When your browser starts interacting with a server -- that is, when you go to a website -- the server gives you a unique ID and stores it as a cookie on your computer.
 
-### How do we make an error message?
-A special Rails thingy called **flash**. It's a hash that's passed to the next action, and then erased.
+Then, the server can save data and store it, associated with that ID.
+
+Like this:
 
 ```
-# app/controllers/application_controller.rb
+# USER'S BROWSER
+
+cookies = {
+  "google.com": {...},
+  "tunr.com": {
+    "username": "robin",
+    "session_id": "8675309"
+  }
+}
+```
+
+```
+# YOUR SERVER
+
+session_vars = {
+  "1234567": {...},
+  "8675309": {
+    "is_logged_in": true
+  }
+}
+```
+
+Whenever you use a session variable in your code, your server just checks the user's browser for that cookie, gets the ID, and then looks up all the session variables for that ID.
+
+Rails automatically generates that ID for you. We can see it in our cookies:
+
+```
+Name: _tunr_session
+Content:  abcdefghijklmnopqrstuvwxyz
+Domain: localhost
+Path: /
+Send for: Any kind of connection
+Accessible to script: No (HttpOnly)
+Created:  Tuesday, July 28, 2015 at 10:54:08 AM
+Expires:  When the browsing session ends
+```
+
+#### Looking at this cookie, why would you say session variables are called "ession variables"?
+- The session ID is destroyed when your browsing session ends, making those session variables inaccessible.
+
+### Applying to Tunr
+
+Let's add an `is_logged_in` session variable to Tunr. We'll create it in the Users controller. We also may as well do something with the `signout` action we created before: we'll just have it clear all the session variables.
+
+```
+# app/controllers/users_controller.rb
 
 def signin
-  if !User.find_by(username: params[:username])
-    User.create(username: params[:username], password: params[:password])
-    flash[:signin] = "We created an account for you, #{@user.username}!"
-    cookies[:username] = params[:username]
-    cookies[:password] = params[:password]
-  else
-    @user = User.find_by(username: params[:username])
-    if @user.password == params[:password]
-      flash[:signin] = "You're signed in, #{@user.username}!"
-      cookies[:username] = params[:username]
-      cookies[:password] = params[:password]
-    else
-      flash[:signin] = "Your password is wrong!"
-    end
-  end
+...
+  message = "You're signed in, #{params[:username]}! :)"
+  cookies[:username] = params[:username]
+  session[:is_logged_in] = true
+  session[:user] = User.find_by(username: params[:username])
+...
+end
+
+def signout
+  reset_session
   redirect_to :back
 end
 ```
 
-Let's add the "password" field to the sign-in form. Let's also make a place to put an error message if someone enters the wrong password, and a welcome message if they put in the right one.
+Now let's modify the application layout accordingly. The sign-in form should show up only if the user isn't signed in. If they **are** signed in, we'll show a "sign out" link.
 
 ```
 # app/views/layouts/application.html.erb
 
-<h2><%= flash[:signin] %></h2>
-<form method="post" action="../signin">
-  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
-  <input type="text" name="username" placeholder="username" value="<%= cookies[:username] %>"/>
-  <input type="password" name="password" placeholder="password" value="<%= cookies[:password] %>"/>
-  <input type="submit" value="Sign in" />
-</form>
+...
+<h2><%= flash[:sign_in_message] %></h2>
+<% if session[:is_signed_in] %>
+  <h2><%= session[:user]["username"] %>: <a href="/signout">sign out</a></h2>
+<% else %>
+  <%= form_tag("/signin", method: "post") do %>
+    <input type="text" name="username" placeholder="username" value="<%= cookies[:username] %>" />
+    <input type="password" name="password" placeholder="password" />
+    <input type="submit" value="Sign in" />
+  <% end %>
+<% end %>
+...
 ```
 
-### Associating the User with songs and artists
+## Putting it all together
+
+The goal for this app is for it to serve as your personal playlist. Each user will see only the songs and artists they created.
 
 Now that we're letting the app have multiple users, we need to associate each song and artist with a particular user.
 
 **Important note:** The way the app's set up, if 30 users all add "Bohemian Rhapsody" to their playlist, there will be 30 copies of "Bohemian Rhapsody" and in the "Songs" table, and at least 30 copies of "Queen" in the "Artists" table. This isn't very efficient, but it's useful for demonstrating the concepts we're covering here.
 
 #### How do we associate songs and artists with a user?
-- Give the `songs` and `artists` tables a `user_id` column
+- Give the `songs` and `artists` tables a `user_id` column?
   - We can actually do it with less work. Each song already belongs to an artist, so we'll just make each artist belong to a user and leave the songs alone -- that is, we'll **add a `user_id` column to the `artists` table**. *(This means you can't have a song without an artist, but I'm OK with that.)*
 
 ```
@@ -272,7 +570,7 @@ rails generate migration addUsersToArtists
 
 class AddUserToArtists < ActiveRecord::Migration
   def change
-    add_column :artists, :user_id, :string
+    add_column :artists, :user_id, :integer
   end
 end
 ```
@@ -292,10 +590,11 @@ end
 # app/models/user.rb
 
 class User < ActiveRecord::Base
+  validates :username, presence: true, uniqueness: true
+  validates :password, presence: true
   has_many :artists, dependent: :destroy
 end
 ```
-
 
 Let's **change the `artists` controller so that whenever you add an artist, it saves the username**.
 
@@ -303,8 +602,8 @@ Let's **change the `artists` controller so that whenever you add an artist, it s
 # app/controllers/artists_controller.rb
 
 def create
-  @artist = Artist.create!(artist_params.merge({user_id: cookies["username"]}))
-  redirect_to (artist_path(@artist))
+  @artist = Artist.create!(artist_params.merge({user_id: session[:user]["id"]}))
+  redirect_to artist_path(@artist)
 end
 ```
 
@@ -314,7 +613,7 @@ With this done, we can **modify the controller to show the songs and artists for
 # app/controllers/artists_controller.rb
 
 def index
-  @artists = Artist.where(user_id: cookies["username"])
+  @artists = session[:user] ? User.find(session[:user]["id"]).artists : []
 end
 ```
 
@@ -340,62 +639,6 @@ So you go to the app, enter your username and password, click "sign in", it chec
 - Save a cookie called "is_logged_in"?
   - That would make your site really insecure. There are Chrome extensions that let you create cookies for any site. Someone could come to your site and just make an "is_logged_in" cookie.
 
-#### Another issue: All the passwords are stored in the database as plain text. Why is that a problem?
-
-Most people use the same password for many sites. Anyone with access to the database could see people's passwords and easily try them out on other sites.
-
-### Two truths and a lie:
-
-- Washington is an expensive city in which to live.
-- Jesse has nice hair.
-- It is possible to make something 100% secure.
-
-There is no such thing as a completely secure system. With enough time and effort, anything can be hacked.
-
-#### Given two systems, what would make a hacker choose to hack one over the other?
-- Effort required
-- Potential payout
-- Severity of consequences
-
-All hackers choose their targets with a simple formula:
-```
-desire to hack = (perceived payout relative other targets) - (perceived effort relative other targets)
-```
-
-That means you can protect yourself either by making it look like the data your app stores is worthless, *or* by making your app more annoying to hack than other apps.
-
-If all you're protecting is a handful of e-mail addresses or comments on a minor blog, a box asking "What is 3 + 7?" is probably sufficient protection. Even though it's easy to hack, there are so many other sites with even less protection, and those are the ones hackers will target.
-
-### Hashing
-
-#### So how can we make it annoying to try to hack the passwords in our database?
-- Encrypt
-  - But what if someone figures out your encryption algorithm?
-
-Instead, we use **hashing**, which is like encryption but without the need to decrypt.
-
-For example, take this number:
-
-```
-33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601
-```
-
-This is my password, encrypted with an algorithm. I'll give you some hints: my password is a 7-digit number, and the algorithm is taking that number to the 40th power. So to find my password, all you need to do is find a calculator and enter:
-
-```
-33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601 ^ (1/40)
-```
-
-#### Why am I still confident that you won't figure out my password?
-- Because that's a really, really difficult calculation for any computer to make!
-
-So let's say instead of my password, the database stores this number, which is only about 260 bytes as a string. When I enter my password, my app takes whatever I entered to the 40th power. If it matches, even though it doesn't know my actual password, it knows I entered my password correctly. If what I entered is just one number off, the calculation's result will be completely different, and it won't match.
-
-This way, the only place my actual password is stored is in my own human memory.
-
-Could someone hack my password? Yes, but it would take a tremendous amount of computer power.
-
-Hashing is used very, very widely in **authentication** -- that is, making sure someone is who they say they are.
 
 ## Sessions
 
