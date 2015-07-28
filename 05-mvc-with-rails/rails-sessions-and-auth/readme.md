@@ -16,7 +16,7 @@
 
 Currently, Tunr just supports one single user. It would be nice if it could have multiple users. Whenever a user logs in, they'd see only *their* artists and songs.
 
-To start, let's create a User model. It's going to be really simple, with just a username and password:
+To start, let's **create a User model**. It's going to be really simple, with just a username and password:
 
 ```
 rails generate migration create_users
@@ -40,7 +40,7 @@ We'll talk about why this is `password_digest` instead of just `password` later.
 rake db:migrate
 ```
 
-Let's make sure each user has a unique username, and always has a password:
+Let's **validate** that each user has a unique username, and always has a password:
 
 ```rb
 # app/models/user.rb
@@ -56,6 +56,8 @@ end
 - Also, we won't add in an "edit password" functionality yet.
 
 ##### What kind of HTTP request should go to each action?
+
+Now we'll set up the **routes** to direct requests to the proper controller actions:
 
 ```rb
 # config/routes.rb
@@ -84,6 +86,8 @@ Now we'll need a controller to actually receive and respond to these requests.
     - If the password matches, the user is signed in
 
 We'll come back to `signout` later.
+
+Let's make the **users controller**:
 
 ```rb
 # app/controllers/users_controller.rb
@@ -127,7 +131,7 @@ class UsersController < ApplicationController
 end
 ```
 
-Next, we'll create a sign-in form. The form will POST to that `/signin` route.
+Next, we'll create **a sign-in form**. The form will POST to that `/signin` route.
 
 ```erb
 # app/views/users/signin_prompt.html.erb
@@ -139,7 +143,7 @@ Next, we'll create a sign-in form. The form will POST to that `/signin` route.
 <% end %>
 ```
 
-...and lastly, we'll make a link to the sign-in page on the main application layout.
+...and lastly, we'll make a link to the sign-in page on the **main application layout**.
 
 ```erb
 # app/views/layout/application.html.erb
@@ -153,13 +157,15 @@ Next, we'll create a sign-in form. The form will POST to that `/signin` route.
 # ...
 ```
 
-...and now if we run our application, we can see that it's working successfully!
+...and now if we **run** our application, we can see that it's working successfully!
 
 ## The Flash
 
 `puts`ing out error messages isn't very helpful, since the user is never going to be able to see them.
 
 Rails gives us a handy method for showing users error messages, called `flash`. It's a hash that is generated in one controller action, and is accessible only in the *next* controller action. That is: a flash message is single-use.
+
+Let's **add flash messages to the Users controller**:
 
 ```rb
 # app/controllers/users_controller.rb
@@ -170,6 +176,8 @@ Rails gives us a handy method for showing users error messages, called `flash`. 
   end
 # ...
 ```
+
+...and make the flash messages **show up in the view**:
 
 ```erb
 # app/users/signin_prompt.html.erb
@@ -247,6 +255,8 @@ Hashing is used very, very widely in **authentication** -- that is, making sure 
 
 We're going to use a gem called "bcrypt" that uses a really secure hashing algorithm.
 
+Add it to your **Gemfile**...
+
 ```
 # Gemfile
 
@@ -254,17 +264,20 @@ We're going to use a gem called "bcrypt" that uses a really secure hashing algor
 gem 'bcrypt'
 # ...
 ```
+
+...and **install the Gem**:
+
 ```
 bundle install
 ```
 
-Let's play around with it in the rails console:
+Let's play around with it in the **rails console**:
 
 ```
 rails c
 ```
 
-If we run this multiple times, we get a different result each time:
+BCrypt's hashing method is `BCrypt::Password.create`. If we run this multiple times, we get a different result each time:
 
 ```
 > BCrypt::Password.create("hello")
@@ -285,7 +298,7 @@ To check whether a string matches the hash, we first have to let BCrypt decode i
  => true
 ```
 
-Putting this all together in Tunr:
+Putting this all together in Tunr, we'll **hash passwords in the Users controller**:
 
 ```rb
 # app/controllers/users_controller.rb
@@ -329,7 +342,7 @@ Rails provides a method called `has_secure_password` does... about what you woul
 - Making sure the password is between 8 and 72 characters
 - If you have a "type your password again to confirm it" field, it makes sure they match
 
-To use it, just add it to your User model in place of `validates :password`, etc.
+To use it, just **add has_secure_password to your User model** in place of `validates :password`, etc.
 
 ```rb
 # app/models/user.rb
@@ -409,45 +422,7 @@ Hiding from scripts, expiration dates, secure connections only...
 
 ### Writing
 
-Modifying cookies is super easy. In Tunr:
-```rb
-# controllers/artists_controller.rb
-
-def index
-  cookies["Why did the chicken cross the road?"] = "To get to the other side"
-  @artists = Artist.all
-end
-```
-
-Now, when I go to the `artists#index` page (that is, the main page)... nothing seems to happen. But if I check the cookies for `localhost` in Chrome, there's now a cookie called `Why+did+the+chicken+cross+the+road%3F`, with the value "To get to the other side"!
-
-I can change the expiration time of my cookie like this:
-
-```rb
-def index
-  cookies["Why did the chicken cross the road?"] = {
-    value: "To get to the other side",
-    expires: 10.seconds.from_now
-  }
-  @artists = Artist.all
-end
-```
-
-If I immediately look at the cookies for `localhost` I can see this cookie. If I close the window, wait a few seconds, and look again, it's vanished!
-
-By default, the expiration time is "when the current session ends" -- that is, when the browser is closed.
-
-### Reading
-
-To **read** my cookie, I just use `cookies["Why did the chicken cross the road?"]`. I can put this right in an `.html.erb` page.
-
-Note that `cookies` is a **hash**, just like any other hash. If I put `<%= cookies.to_json %>` in my `.html.erb`, it'll show me all the cookies for this domain (`localhost`, in this case).
-
-### Applying to Tunr
-
-This doesn't solve the staying-signed-in problem, but we can add a nice touch to our app by having it "remember" your username. You've probably seen those "Remember me?" boxes whenever you log in somewhere.
-
-This `signin` method should get the `username` from the `params` that were POSTed. Then, let's have it save the username as a cookie, and redirect the user back to where they were before.
+Modifying cookies is super easy. Let's have Tunr "remember" the username **when users run the signin controller action** by saving it as a cookie:
 
 ```rb
 # app/controllers/users_controller.rb
@@ -461,7 +436,34 @@ end
 # ...
 ```
 
-Finally, so we can see our handiwork, lets change the sign-in form so that the username is automatically filled in if the "username" cookie is set.
+If I check the cookies for `localhost` in Chrome, there's now a cookie called `username`!
+
+I can change the expiration time of my cookie like this:
+
+```rb
+# app/controllers/users_controller.rb
+
+def signin
+# ...
+else
+  message = "You're signed in, #{params[:username]}! :)"
+  cookies[:username] = {
+    value: params[:username],
+    expires: 100.years.from_now
+  }
+end
+# ...
+```
+
+If I make this `10.seconds.from_now`, sign in again, and immediately look at the cookies for `localhost` I can see this cookie. If I close the window, wait a few seconds, and look again, it's vanished!
+
+By default, the expiration time is "when the current session ends" -- that is, when the browser is closed.
+
+### Reading
+
+`cookies` is a **hash**, just like any other hash. If I put `<%= cookies.to_json %>` in my `.html.erb`, it'll show me all the cookies for this domain (`localhost`, in this case).
+
+To **read** my cookie, I just use `cookies[:username]`. I'll put this in the `signin_prompt` page to **have the username filled in automatically**:
 
 ```erb
 # app/views/users/signin_prompt.html.erb
@@ -546,7 +548,7 @@ Expires:  When the browsing session ends
 
 ### Applying to Tunr
 
-Let's add an `is_signed_in` session variable to Tunr. We'll create it in the Users controller. We also may as well do something with the `signout` action we created before: we'll just have it clear all the session variables.
+Let's add an `is_signed_in` session variable to Tunr. We'll create it in the Users controller. We also may as well do something with the `signout` action we created before: we'll just have **the signout controller action clear all the session variables**.
 
 ```rb
 # app/controllers/users_controller.rb
@@ -566,7 +568,7 @@ def signout
 end
 ```
 
-Now let's modify the application layout accordingly. If the user isn't signed in, we'll show a "sign in" link. If they **are** signed in, we'll show a "sign out" link.
+Now let's **modify the application layout accordingly**. If the user isn't signed in, we'll show a "sign in" link. If they **are** signed in, we'll show a "sign out" link.
 
 ```erb
 # app/views/layouts/application.html.erb
@@ -597,6 +599,8 @@ In this case, we're going to use it to authenticate the user before every action
 - Authorizing is giving someone special privileges
   - So when you've *authenticated* a user, they are *authorized* to use your app
 
+Let's **update the application controller to authenticate before every action**:
+
 ```rb
 # app/controllers/application_controller.rb
 
@@ -619,7 +623,9 @@ end
 
 If we run the app now... we'll get a "too many redirects" error. That's because we're telling the app to redirect to the signin page before every action... including just trying to go to the signin page. So when someone is directed to the signin page, they're redirected to the signin page, and redirected, and redirected...
 
-We want this authentication to happen on every action **except** the user actions. So we can use another special method called `skip_before_action`:
+We want this authentication to happen on every action **except** the user actions. So we can use another special method called `skip_before_action`.
+
+Let's update the **User controller** to prevent authentication, and therefore an infinite loop:
 
 ```rb
 # app/controllers/users_controller.rb
