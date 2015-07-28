@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Tue Jul 28 2015 20:57:11 GMT+0000 (UTC)">
+    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Tue Jul 28 2015 20:58:16 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -944,12 +944,12 @@
   validates <span class="hljs-symbol">:password_digest</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h4 id="what-actions-should-a-user-have-to-start-off-with">What actions should a user have, to start off with?</h4>
+<h5 id="what-actions-should-a-user-have-to-start-off-with">What actions should a user have, to start off with?</h5>
 <ul>
 <li>To make things a little simpler, instead of having actions for signing up and signin in, we&apos;ll just have one: if someone tries to sign in with a username that doesn&apos;t exist, an account will be created for them.</li>
 <li>Also, we won&apos;t add in an &quot;edit password&quot; functionality yet.</li>
 </ul>
-<h4 id="what-kind-of-http-request-should-go-to-each-action">What kind of HTTP request should go to each action?</h4>
+<h5 id="what-kind-of-http-request-should-go-to-each-action">What kind of HTTP request should go to each action?</h5>
 <pre><code class="lang-rb"><span class="hljs-comment"># config/routes.rb</span>
 
 <span class="hljs-constant">Rails</span>.application.routes.draw <span class="hljs-keyword">do</span>
@@ -1061,7 +1061,7 @@
 </span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
 </span></code></pre>
 <h2 id="password-security">Password security</h2>
-<h4 id="all-the-passwords-are-stored-in-the-database-as-plain-text-why-is-that-a-problem">All the passwords are stored in the database as plain text. Why is that a problem?</h4>
+<h5 id="all-the-passwords-are-stored-in-the-database-as-plain-text-why-is-that-a-problem">All the passwords are stored in the database as plain text. Why is that a problem?</h5>
 <p>Most people use the same password for many sites. Anyone with access to the database could see people&apos;s passwords and easily try them out on other sites.</p>
 <h3 id="two-truths-and-a-lie">Two truths and a lie:</h3>
 <ul>
@@ -1071,7 +1071,7 @@
 </ul>
 <p>There is no such thing as a completely secure system. With enough time and effort, anything can be hacked.</p>
 <p>Your best bet is to make it <strong>annoying</strong> to hack your system.</p>
-<h4 id="given-two-systems-what-would-make-a-hacker-choose-to-hack-one-over-the-other">Given two systems, what would make a hacker choose to hack one over the other?</h4>
+<h5 id="given-two-systems-what-would-make-a-hacker-choose-to-hack-one-over-the-other">Given two systems, what would make a hacker choose to hack one over the other?</h5>
 <ul>
 <li>Effort required</li>
 <li>Potential payout</li>
@@ -1082,7 +1082,7 @@
 </code></pre><p>That means you can protect yourself either by making it look like the data your app stores is worthless, <em>or</em> by making your app more annoying to hack than other apps.</p>
 <p>If all you&apos;re protecting is a handful of e-mail addresses or comments on a minor blog, a box asking &quot;What is 3 + 7?&quot; is probably sufficient protection. Even though it&apos;s easy to hack, there are so many other sites with even less protection, and those are the ones hackers will target.</p>
 <h3 id="hashing">Hashing</h3>
-<h4 id="so-how-can-we-make-it-annoying-to-try-to-hack-the-passwords-in-our-database">So how can we make it annoying to try to hack the passwords in our database?</h4>
+<h5 id="so-how-can-we-make-it-annoying-to-try-to-hack-the-passwords-in-our-database">So how can we make it annoying to try to hack the passwords in our database?</h5>
 <ul>
 <li>Encrypt<ul>
 <li>But what if someone figures out your encryption algorithm?</li>
@@ -1094,7 +1094,7 @@
 <pre><code>33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601
 </code></pre><p>This is my password, encrypted with an algorithm. I&apos;ll give you some hints: my password is a 7-digit number, and the algorithm is taking that number to the 40th power. So to find my password, all you need to do is find a calculator and enter:</p>
 <pre><code>33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601 ^ (1/40)
-</code></pre><h4 id="why-am-i-still-confident-that-you-won-t-figure-out-my-password">Why am I still confident that you won&apos;t figure out my password?</h4>
+</code></pre><h5 id="why-am-i-still-confident-that-you-won-t-figure-out-my-password">Why am I still confident that you won&apos;t figure out my password?</h5>
 <ul>
 <li>Because that&apos;s a really, really difficult calculation for any computer to make!</li>
 </ul>
@@ -1174,10 +1174,10 @@ gem &apos;bcrypt&apos;
 <span class="hljs-keyword">end</span>
 </code></pre>
 <h2 id="user-persistence">User persistence</h2>
-<h4 id="what-s-missing-from-our-user-sign-in-process">What&apos;s missing from our user sign-in process?</h4>
-<h4 id="if-i-refresh-the-page-am-i-still-signed-in">If I refresh the page, am I still signed in?</h4>
+<h5 id="what-s-missing-from-our-user-sign-in-process">What&apos;s missing from our user sign-in process?</h5>
+<h5 id="if-i-refresh-the-page-am-i-still-signed-in">If I refresh the page, am I still signed in?</h5>
 <p>We need to figure out a way to have Rails remember I&apos;m signed in.</p>
-<h4 id="why-not-just-created-an-is-signed-in-column-in-my-user-table">Why not just created an &quot;is_signed_in&quot; column in my User table?</h4>
+<h5 id="why-not-just-created-an-is-signed-in-column-in-my-user-table">Why not just created an &quot;is_signed_in&quot; column in my User table?</h5>
 <ul>
 <li>How would Rails now how to sign out? More importantly, if multiple users are accessing the app, how would Rails know which signed_in user is on which computer?</li>
 </ul>
@@ -1191,7 +1191,7 @@ gem &apos;bcrypt&apos;
 <li>Scroll to <code>github.com</code></li>
 </ol>
 <p>Click around on the different &quot;buttons&quot; or &quot;tabs&quot;. In particular, look at <code>dotcom_user</code>, <code>signed_in</code>, and <code>tz</code>.</p>
-<h4 id="turn-and-talk-what-do-you-see-what-do-these-do">Turn and talk: What do you see? What do these do?</h4>
+<h5 id="turn-and-talk-what-do-you-see-what-do-these-do">Turn and talk: What do you see? What do these do?</h5>
 <p>A <em>cookie</em> is a piece of data stored on your computer by your web browser and associated with a particular website.</p>
 <h3 id="example-cookies">Example cookies:</h3>
 <p>From Github:</p>
@@ -1212,14 +1212,14 @@ Send for: Secure connections only
 Accessible to script: No (HttpOnly)
 Created: Saturday, July 25, 2015 at 6:07:09 PM
 Expires: When the browsing session ends
-</code></pre><h4 id="what-might-be-the-purpose-of-these-cookies">What might be the purpose of these cookies?</h4>
-<h4 id="why-is-github-s-expiration-date-so-far-in-the-future-while-wells-fargo-s-is-when-the-browsing-session-ends">Why is Github&apos;s expiration date so far in the future, while Wells Fargo&apos;s is when the browsing session ends?</h4>
-<h4 id="what-s-the-significance-of-send-for-secure-connections-only">What&apos;s the significance of &apos;Send for: Secure connections only&apos;?</h4>
+</code></pre><h5 id="what-might-be-the-purpose-of-these-cookies">What might be the purpose of these cookies?</h5>
+<h5 id="why-is-github-s-expiration-date-so-far-in-the-future-while-wells-fargo-s-is-when-the-browsing-session-ends">Why is Github&apos;s expiration date so far in the future, while Wells Fargo&apos;s is when the browsing session ends?</h5>
+<h5 id="what-s-the-significance-of-send-for-secure-connections-only">What&apos;s the significance of &apos;Send for: Secure connections only&apos;?</h5>
 <p>Notice the &quot;Accessible to script&quot;. Cookies can be accessed via Javascript.</p>
 <p>If you go to <code>github.com</code>, open the console, and type <code>document.cookies</code>, you&apos;ll get something like this:</p>
 <pre><code>tz=America%2FNew_York; _ga=GA1.2.3456.7890; _gat=1&quot;
 </code></pre><p>Hiding from scripts, expiration dates, secure connections only...</p>
-<h4 id="turn-and-talk-why-does-security-with-cookies-seem-to-be-such-a-big-deal">Turn and talk: Why does security with cookies seem to be such a big deal?</h4>
+<h5 id="turn-and-talk-why-does-security-with-cookies-seem-to-be-such-a-big-deal">Turn and talk: Why does security with cookies seem to be such a big deal?</h5>
 <h3 id="writing">Writing</h3>
 <p>Modifying cookies is super easy. In Tunr:</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># controllers/artists_controller.rb</span>
@@ -1272,7 +1272,7 @@ Expires: When the browsing session ends
 <h3 id="same-old-problem">Same old problem</h3>
 <p>Now we can remember the user&apos;s username. But we&apos;re not actually remembering the user is signed in.</p>
 <p>We could just create a cookie called <code>is_signed_in</code> and set that to true.</p>
-<h4 id="what-could-go-wrong-with-using-an-is-signed-in-cookie">What could go wrong with using an <code>is_signed_in</code> cookie?</h4>
+<h5 id="what-could-go-wrong-with-using-an-is-signed-in-cookie">What could go wrong with using an <code>is_signed_in</code> cookie?</h5>
 <ul>
 <li>Cookies are stored on the user&apos;s computer. This means we&apos;re basically relying on a user to tell us whether or not they&apos;re signed in. That&apos;s not very secure. There are Chrome extensions that let you add and edit the cookies on your computer. <strong>We</strong> want to tell the <strong>user</strong> whether or not they&apos;re signed in, not have them tell us.</li>
 </ul>
@@ -1311,7 +1311,7 @@ Send for: Any kind of connection
 Accessible to script: No (HttpOnly)
 Created:  Tuesday, July 28, 2015 at 10:54:08 AM
 Expires:  When the browsing session ends
-</code></pre><h4 id="looking-at-this-cookie-why-would-you-say-session-variables-are-called-ession-variables">Looking at this cookie, why would you say session variables are called &quot;ession variables&quot;?</h4>
+</code></pre><h5 id="looking-at-this-cookie-why-would-you-say-session-variables-are-called-ession-variables">Looking at this cookie, why would you say session variables are called &quot;ession variables&quot;?</h5>
 <ul>
 <li>The session ID is destroyed when your browsing session ends, making those session variables inaccessible.</li>
 </ul>
@@ -1352,7 +1352,7 @@ Expires:  When the browsing session ends
 <p>We&apos;ll tighten up this app even more by making it so you can&apos;t see <strong>anything</strong> unless you&apos;ve logged in.</p>
 <p>We&apos;re going to use a method called <code>before_action</code>. This lets us do something before <em>every single action</em> happens.</p>
 <p>In this case, we&apos;re going to use it to authenticate the user before every action.</p>
-<h4 id="what-s-the-difference-between-authenticate-and-authorize">What&apos;s the difference between &quot;authenticate&quot; and &quot;authorize&quot;?</h4>
+<h5 id="what-s-the-difference-between-authenticate-and-authorize">What&apos;s the difference between &quot;authenticate&quot; and &quot;authorize&quot;?</h5>
 <ul>
 <li>Authenticating is checking whether someone is who they say they are</li>
 <li>Authorizing is giving someone special privileges<ul>
@@ -1390,7 +1390,7 @@ Expires:  When the browsing session ends
 <p>The goal for this app is for it to serve as your personal playlist. Each user will see only the songs and artists they created.</p>
 <p>Now that we&apos;re letting the app have multiple users, we need to associate each song and artist with a particular user.</p>
 <p><strong>Important note:</strong> The way the app&apos;s set up, if 30 users all add &quot;Bohemian Rhapsody&quot; to their playlist, there will be 30 copies of &quot;Bohemian Rhapsody&quot; and in the &quot;Songs&quot; table, and at least 30 copies of &quot;Queen&quot; in the &quot;Artists&quot; table. This isn&apos;t very efficient, but it&apos;s useful for demonstrating the concepts we&apos;re covering here.</p>
-<h4 id="how-do-we-associate-songs-and-artists-with-a-user">How do we associate songs and artists with a user?</h4>
+<h5 id="how-do-we-associate-songs-and-artists-with-a-user">How do we associate songs and artists with a user?</h5>
 <ul>
 <li>Give the <code>songs</code> and <code>artists</code> tables a <code>user_id</code> column?<ul>
 <li>We can actually do it with less work. Each song already belongs to an artist, so we&apos;ll just make each artist belong to a user and leave the songs alone -- that is, we&apos;ll <strong>add a <code>user_id</code> column to the <code>artists</code> table</strong>. <em>(This means you can&apos;t have a song without an artist, but I&apos;m OK with that.)</em></li>
@@ -1438,7 +1438,7 @@ Expires:  When the browsing session ends
 <span class="hljs-keyword">end</span>
 </code></pre>
 <h2 id="review">Review</h2>
-<h4 id="what-are-the-steps-for-adding-user-authentication">What are the steps for adding user authentication?</h4>
+<h5 id="what-are-the-steps-for-adding-user-authentication">What are the steps for adding user authentication?</h5>
 <ol>
 <li>User migration</li>
 <li>User model</li>
@@ -1451,21 +1451,21 @@ Expires:  When the browsing session ends
 </li>
 <li>Routes</li>
 </ol>
-<h4 id="what-are-the-three-bcrypt-methods-we-used">What are the three BCrypt methods we used?</h4>
+<h5 id="what-are-the-three-bcrypt-methods-we-used">What are the three BCrypt methods we used?</h5>
 <ul>
 <li><code>hash = BCrypt::Password.create(&quot;hello&quot;)</code></li>
 <li><code>decoded_hash = BCrypt::Password.new(hash)</code></li>
 <li><code>decoded_hash.is_password?(&quot;hello&quot;)</code></li>
 </ul>
-<h4 id="where-are-a-cookies-and-b-session-variables-stored">Where are (a) cookies and (b) session variables stored?</h4>
+<h5 id="where-are-a-cookies-and-b-session-variables-stored">Where are (a) cookies and (b) session variables stored?</h5>
 <ul>
 <li>(a) the server, (b) the browser</li>
 <li>(a) the browser, (b) the database</li>
 <li>(a) the database, (b) the server</li>
 <li>(a) the browser, (b) the server</li>
 </ul>
-<h4 id="what-s-the-difference-between-encryption-and-hashing">What&apos;s the difference between encryption and hashing?</h4>
-<h4 id="what-s-the-difference-between-authenticating-and-authorizing">What&apos;s the difference between authenticating and authorizing?</h4>
+<h5 id="what-s-the-difference-between-encryption-and-hashing">What&apos;s the difference between encryption and hashing?</h5>
+<h5 id="what-s-the-difference-between-authenticating-and-authorizing">What&apos;s the difference between authenticating and authorizing?</h5>
 <h2 id="to-close-devise-demo">To close: Devise demo</h2>
 <p><a href="https://github.com/plataformatec/devise" target="_blank">https://github.com/plataformatec/devise</a></p>
 <p>Devise does everything we just did, and more, in about 3 steps. <strong>HOWEVER</strong>, you have to start from a pretty blank slate. In particular, if you already have a User model, Devise is going to try to overwrite it and things will get really complicated.</p>
