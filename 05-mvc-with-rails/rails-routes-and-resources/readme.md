@@ -326,7 +326,7 @@ And that'll do it. Let's refresh our page...
 
 If you haven't noticed already, converting our application to nested resources requires a very EDD approach.  
 
-So now what? The link helper our an individual song inside of our .each enumerator isn't working.
+So now what? The link helper for an individual song inside of our .each enumerator isn't working.
 
 ```html
 # /views/artists/show.html.erb
