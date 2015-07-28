@@ -233,10 +233,10 @@ artist            GET    /artists/:id(.:format)                       artists#sh
                   DELETE /artists/:id(.:format)                       artists#destroy
 ```
 
-Having seen this, let's make a To-Do list of things to change in our Rails app so that we can successfully use nested resources.
-1. Link Helpers
-2. Form Helpers
-3. Songs Controller
+Having seen this, let's make a To-Do list of things to change in our Rails app so that we can successfully use nested resources.  
+1. Link Helpers  
+2. Form Helpers  
+3. Songs Controller  
 
 ### Link Helpers
 
