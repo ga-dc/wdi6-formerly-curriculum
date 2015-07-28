@@ -203,7 +203,7 @@ Okay, so our `routes.rb` file is updated with nested resources. Let's see them i
 
 ### Uh oh. It broke...
 
-![First error](/images/first-error.png)
+![First error](images/first-error.png)
 
 That's okay. You're going to spend the next hour fixing it!
 * Spend 5 minutes looking through your application and think about what we need to change in order to accommodate our new routing system.
