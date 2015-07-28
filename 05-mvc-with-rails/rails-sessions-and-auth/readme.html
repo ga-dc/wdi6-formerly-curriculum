@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Tue Jul 28 2015 19:31:25 GMT+0000 (UTC)">
+    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Tue Jul 28 2015 20:55:03 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -918,50 +918,53 @@
 <li>Describe the functionality of <code>has_secure_password</code>.</li>
 <li>Differentiate between authentication and authorization.</li>
 </ul>
+<p><strong>Please follow along with the lesson plan.</strong></p>
 <h2 id="adding-users">Adding users</h2>
 <p>Currently, Tunr just supports one single user. It would be nice if it could have multiple users. Whenever a user logs in, they&apos;d see only <em>their</em> artists and songs.</p>
 <p>To start, let&apos;s create a User model. It&apos;s going to be really simple, with just a username and password:</p>
 <pre><code>rails generate migration create_users
-</code></pre><pre><code># db/migrate/[timestamp]_users.db
+</code></pre><pre><code class="lang-rb"><span class="hljs-comment"># db/migrate/[timestamp]_users.db</span>
 
-class CreateUsers &lt; ActiveRecord::Migration
-  def change
-    create_table :users do |t|
-      t.string :username
-      t.string :password_digest
-    end
-  end
-end
-</code></pre><p>We&apos;ll talk about why this is <code>password_digest</code> instead of just <code>password</code> later.</p>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateUsers</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>change
+    create_table <span class="hljs-symbol">:users</span> <span class="hljs-keyword">do</span> |t|
+      t.string <span class="hljs-symbol">:username</span>
+      t.string <span class="hljs-symbol">:password_digest</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>We&apos;ll talk about why this is <code>password_digest</code> instead of just <code>password</code> later.</p>
 <pre><code>rake db:migrate
 </code></pre><p>Let&apos;s make sure each user has a unique username, and always has a password:</p>
-<pre><code># app/models/user.rb
+<pre><code class="lang-rb"><span class="hljs-comment"># app/models/user.rb</span>
 
-class User &lt; ActiveRecord::Base
-  validates :username, presence: true, uniqueness: true
-  validates :password_digest, presence: true
-end
-</code></pre><h4 id="what-actions-should-a-user-have-to-start-off-with">What actions should a user have, to start off with?</h4>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  validates <span class="hljs-symbol">:username</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-keyword">true</span>
+  validates <span class="hljs-symbol">:password_digest</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h4 id="what-actions-should-a-user-have-to-start-off-with">What actions should a user have, to start off with?</h4>
 <ul>
 <li>To make things a little simpler, instead of having actions for signing up and signin in, we&apos;ll just have one: if someone tries to sign in with a username that doesn&apos;t exist, an account will be created for them.</li>
 <li>Also, we won&apos;t add in an &quot;edit password&quot; functionality yet.</li>
 </ul>
 <h4 id="what-kind-of-http-request-should-go-to-each-action">What kind of HTTP request should go to each action?</h4>
-<pre><code># config/routes.rb
+<pre><code class="lang-rb"><span class="hljs-comment"># config/routes.rb</span>
 
-Rails.application.routes.draw do
-  root to: &apos;artists#index&apos;
-  get &apos;/songs&apos;, to: &apos;songs#index&apos;
-  resources :artists do
-    resources :songs
-    resources :genres
-  end
-  get &apos;/signin&apos;, to: &apos;users#signin_prompt&apos;
-  post &apos;/signin&apos;, to: &apos;users#signin&apos;
-  get &apos;/signout&apos;, to: &apos;users#signout&apos;
-end
-</code></pre><p>Now we&apos;ll need a controller to actually receive and respond to these requests.</p>
-<p>We&apos;ll come back to <code>signout</code> later.</p>
+<span class="hljs-constant">Rails</span>.application.routes.draw <span class="hljs-keyword">do</span>
+  root <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;artists#index&apos;</span>
+  get <span class="hljs-string">&apos;/songs&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;songs#index&apos;</span>
+  resources <span class="hljs-symbol">:artists</span> <span class="hljs-keyword">do</span>
+    resources <span class="hljs-symbol">:songs</span>
+    resources <span class="hljs-symbol">:genres</span>
+  <span class="hljs-keyword">end</span>
+  get <span class="hljs-string">&apos;/signin&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;users#signin_prompt&apos;</span>
+  post <span class="hljs-string">&apos;/signin&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;users#signin&apos;</span>
+  get <span class="hljs-string">&apos;/signout&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;users#signout&apos;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now we&apos;ll need a controller to actually receive and respond to these requests.</p>
 <ul>
 <li>If a username isn&apos;t provided, throw an error</li>
 <li>If a password isn&apos;t provided, throw an error</li>
@@ -975,83 +978,89 @@ end
 </ul>
 </li>
 </ul>
-<pre><code># app/controllers/users_controller.rb
+<p>We&apos;ll come back to <code>signout</code> later.</p>
+<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
 
-class UsersController &lt; ApplicationController
-  def signin
-    if params[:username].strip == &quot;&quot;
-      message = &quot;You forgot to enter a username!&quot;
-    elsif params[:password].strip == &quot;&quot;
-      message = &quot;You forgot to enter a password!&quot;
-    else
-      if !User.find_by(username: params[:username])
-        if User.create(
-          username: params[:username],
-          password_digest: params[:password]
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>signin
+    <span class="hljs-keyword">if</span> params[<span class="hljs-symbol">:username</span>].strip == <span class="hljs-string">&quot;&quot;</span>
+      message = <span class="hljs-string">&quot;You forgot to enter a username!&quot;</span>
+    <span class="hljs-keyword">elsif</span> params[<span class="hljs-symbol">:password</span>].strip == <span class="hljs-string">&quot;&quot;</span>
+      message = <span class="hljs-string">&quot;You forgot to enter a password!&quot;</span>
+    <span class="hljs-keyword">else</span>
+      <span class="hljs-keyword">if</span> !<span class="hljs-constant">User</span>.find_by(<span class="hljs-symbol">username:</span> params[<span class="hljs-symbol">:username</span>])
+        <span class="hljs-keyword">if</span> <span class="hljs-constant">User</span>.create(
+          <span class="hljs-symbol">username:</span> params[<span class="hljs-symbol">:username</span>],
+          <span class="hljs-symbol">password_digest:</span> params[<span class="hljs-symbol">:password</span>]
         )
-          message = &quot;Your account has been created!&quot;
-        else
-          message = &quot;Your account couldn&apos;t be created. Did you enter a unique username and password?&quot;
-        end
-      else
-        if User.find_by(username: params[:username]).password_digest != params[:password]
-          message = &quot;Your password&apos;s wrong!&quot;
-        else
-          message = &quot;You&apos;re signed in, #{params[:username]}! :)&quot;
-        end
-      end
-    end
-    puts &quot;-&quot; * 50
+          message = <span class="hljs-string">&quot;Your account has been created!&quot;</span>
+        <span class="hljs-keyword">else</span>
+          message = <span class="hljs-string">&quot;Your account couldn&apos;t be created. Did you enter a unique username and password?&quot;</span>
+        <span class="hljs-keyword">end</span>
+      <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-constant">User</span>.find_by(<span class="hljs-symbol">username:</span> params[<span class="hljs-symbol">:username</span>]).password_digest != params[<span class="hljs-symbol">:password</span>]
+          message = <span class="hljs-string">&quot;Your password&apos;s wrong!&quot;</span>
+        <span class="hljs-keyword">else</span>
+          message = <span class="hljs-string">&quot;You&apos;re signed in, <span class="hljs-subst">#{params[<span class="hljs-symbol">:username</span>]}</span>! :)&quot;</span>
+        <span class="hljs-keyword">end</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+    puts <span class="hljs-string">&quot;-&quot;</span> * <span class="hljs-number">50</span>
     puts message
-    redirect_to :back
-  end
+    redirect_to <span class="hljs-symbol">:back</span>
+  <span class="hljs-keyword">end</span>
 
-  def signin_prompt
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>signin_prompt
 
-  end
+  <span class="hljs-keyword">end</span>
 
-  def signout
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>signout
 
-  end
-end
-</code></pre><p>Next, we&apos;ll create a sign-in form. The form will POST to that <code>/signin</code> route.</p>
-<pre><code># app/views/users/signin_prompt.html.erb
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Next, we&apos;ll create a sign-in form. The form will POST to that <code>/signin</code> route.</p>
+<pre><code class="lang-erb"><span class="xml"># app/views/users/signin_prompt.html.erb
 
-&lt;%= form_tag(&quot;/signin&quot;, method: &quot;post&quot;) do %&gt;
-  &lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;username&quot; /&gt;
-  &lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;password&quot; /&gt;
-  &lt;input type=&quot;submit&quot; value=&quot;Sign in&quot; /&gt;
-&lt;% end %&gt;
-</code></pre><p>...and lastly, we&apos;ll make a link to the sign-in page on the main application layout.</p>
-<pre><code># app/views/layout/application.html.erb
+</span>&lt;%=<span class="ruby"> form_tag(<span class="hljs-string">&quot;/signin&quot;</span>, <span class="hljs-symbol">method:</span> <span class="hljs-string">&quot;post&quot;</span>) <span class="hljs-keyword">do</span> </span>%&gt;<span class="xml">
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;username&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;username&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;password&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;password&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;password&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;submit&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Sign in&quot;</span> /&gt;</span>
+</span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
+</span></code></pre>
+<p>...and lastly, we&apos;ll make a link to the sign-in page on the main application layout.</p>
+<pre><code class="lang-erb"><span class="xml"># app/views/layout/application.html.erb
 
-...
-&lt;nav&gt;
-  &lt;a href=&quot;/signin&quot;&gt;Sign in&lt;/a&gt;
-  &lt;a href=&quot;/songs&quot;&gt;Songs&lt;/a&gt;
-  &lt;a href=&quot;/artists&quot;&gt;Artists&lt;/a&gt;
-&lt;/nav&gt;
-...
-</code></pre><p>...and now if we run our application, we can see that it&apos;s working successfully!</p>
+# ...
+<span class="hljs-tag">&lt;<span class="hljs-title">nav</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/signin&quot;</span>&gt;</span>Sign in<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/songs&quot;</span>&gt;</span>Songs<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/artists&quot;</span>&gt;</span>Artists<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">nav</span>&gt;</span>
+# ...
+</span></code></pre>
+<p>...and now if we run our application, we can see that it&apos;s working successfully!</p>
 <h2 id="the-flash">The Flash</h2>
 <p><code>puts</code>ing out error messages isn&apos;t very helpful, since the user is never going to be able to see them.</p>
 <p>Rails gives us a handy method for showing users error messages, called <code>flash</code>. It&apos;s a hash that is generated in one controller action, and is accessible only in the <em>next</em> controller action. That is: a flash message is single-use.</p>
-<pre><code># app/controllers/users_controller.rb
+<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
 
-  def signin
-...
-    flash[:sign_in_message] = message
-  end
-...
-</code></pre><pre><code># app/users/signin_prompt.html.erb
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>signin
+<span class="hljs-comment"># ...</span>
+    flash[<span class="hljs-symbol">:sign_in_message</span>] = message
+  <span class="hljs-keyword">end</span>
+<span class="hljs-comment"># ...</span>
+</code></pre>
+<pre><code class="lang-erb"><span class="xml"># app/users/signin_prompt.html.erb
 
-&lt;h2&gt;&lt;%= flash[:sign_in_message] %&gt;&lt;/h2&gt;
-&lt;%= form_tag(&quot;/signin&quot;, method: &quot;post&quot;) do %&gt;
-  &lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;username&quot; /&gt;
-  &lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;password&quot; /&gt;
-  &lt;input type=&quot;submit&quot; value=&quot;Sign in&quot; /&gt;
-&lt;% end %&gt;
-</code></pre><h2 id="password-security">Password security</h2>
+<span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span></span>&lt;%=<span class="ruby"> flash[<span class="hljs-symbol">:sign_in_message</span>] </span>%&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+</span>&lt;%=<span class="ruby"> form_tag(<span class="hljs-string">&quot;/signin&quot;</span>, <span class="hljs-symbol">method:</span> <span class="hljs-string">&quot;post&quot;</span>) <span class="hljs-keyword">do</span> </span>%&gt;<span class="xml">
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;username&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;username&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;password&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;password&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;password&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;submit&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Sign in&quot;</span> /&gt;</span>
+</span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
+</span></code></pre>
+<h2 id="password-security">Password security</h2>
 <h4 id="all-the-passwords-are-stored-in-the-database-as-plain-text-why-is-that-a-problem">All the passwords are stored in the database as plain text. Why is that a problem?</h4>
 <p>Most people use the same password for many sites. Anyone with access to the database could see people&apos;s passwords and easily try them out on other sites.</p>
 <h3 id="two-truths-and-a-lie">Two truths and a lie:</h3>
