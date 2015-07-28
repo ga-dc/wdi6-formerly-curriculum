@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 16:41:27 GMT+0000 (UTC)">
+    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 17:08:43 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -961,6 +961,10 @@ root <span class="hljs-symbol">:to</span> =&gt; <span class="hljs-string">&quot;
 <h2 id="resourcesful-routes-5-25">Resourcesful Routes (5 / 25)</h2>
 <p><strong>NOTE:</strong> I may use the terms &quot;resources&quot; and &quot;model&quot; interchangeably.</p>
 <p>During Adam&apos;s class you learned a bit of Rails wizardry that allowed you to generate all of your application&apos;s RESTful routes using one word: <strong>resources</strong>!</p>
+<ul>
+<li>Explicitly tells Rails that we will be using RESTful routes.</li>
+<li>Generates path helpers, which we&apos;ll look at shortly.</li>
+</ul>
 <pre><code class="lang-rb"><span class="hljs-comment"># This is all we need to generate the RESTful routes for a model</span>
 resources <span class="hljs-symbol">:artists</span>
 resources <span class="hljs-symbol">:songs</span>
@@ -1158,6 +1162,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <ul>
 <li>If we try refreshing our home page again, it should work!</li>
 <li>This is the only exception to nested resources that we&apos;ll be using in Tunr.</li>
+<li>If you click on the &quot;Songs&quot; link, it won&apos;t work. Don&apos;t worry about that for now.</li>
 </ul>
 <h3 id="let-s-click-on-an-artist">Let&apos;s click on an artist...</h3>
 <p>Another error! What went wrong this time?</p>
@@ -1195,7 +1200,6 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 </ul>
 <p>And that&apos;ll do it. Let&apos;s refresh our page...</p>
 <p><img src="images/fourth-error.png" alt="Fourth Error"></p>
-<p>If you haven&apos;t noticed already, converting our application to nested resources requires a very EDD approach.  </p>
 <p>So now what? The link helper for an individual song inside of our .each enumerator isn&apos;t working.</p>
 <pre><code class="lang-html"># /views/artists/show.html.erb
 
@@ -1227,25 +1231,29 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <p><strong>YOU DO:</strong> From an artist show page, click on a song. You should get an error.</p>
 <ul>
 <li>I want you to try fixing the <code>songs/show.html.erb</code> file.</li>
-<li><strong>HINT:</strong> You might have to add an instance variable to <code>songs_controller.rb</code>.</li>
+<li><strong>HINT:</strong> You might have to add an instance variable to <code>songs_controller.rb</code>.<ul>
+<li>Remember, our song routes don&apos;t look the same as they did before!</li>
+</ul>
+</li>
 <li>I&apos;ll check in after 5 minutes.</li>
 </ul>
 <h3 id="form-helpers">Form Helpers</h3>
-<p>Let&apos;s take a look at our Song form and corresponding controller action...</p>
-<pre><code class="lang-erb"><span class="xml"># /controllers/songs_controller.rb
+<p>From the song show page, click on &quot;(edit)&quot;. Of course, we get an error...</p>
+<p><img src="images/fifth-error.png" alt="Fifth Error"></p>
+<p>Why is that? Let&apos;s look at our new song form in <code>/views/songs/new.html.erb</code>.</p>
+<pre><code class="lang-rb"><span class="hljs-comment"># /controllers/songs_controller.rb</span>
 
-# new
-def new
-  @song = Song.new
-end
+<span class="hljs-comment"># new</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> </span>new
+  <span class="hljs-variable">@song</span> = <span class="hljs-constant">Song</span>.new
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="lang-html"># /views/songs/new.html.erb
 
-
-# /views/songs/new.html.erb
-
-</span>&lt;%=<span class="ruby"> form_for <span class="hljs-variable">@song</span> <span class="hljs-keyword">do</span> |f| </span>%&gt;<span class="xml">
+<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">form_for</span> @<span class="hljs-attribute">song</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">f</span>| %&gt;</span>
   # form contents
-</span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
-</span></code></pre>
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
+</code></pre>
 <p>We need to associate each new song with an artist. To do that, we need to provide our <code>form_for</code> helpers with both an artist and song as arguments.</p>
 <ul>
 <li>That means we first need to define the artist in question in our controller action. Then we can modify our form.</li>
@@ -1257,15 +1265,28 @@ end
   <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:artist_id</span>])
   <span class="hljs-variable">@song</span> = <span class="hljs-constant">Song</span>.new
 <span class="hljs-keyword">end</span>
-
-
-<span class="hljs-comment"># /views/songs/new.html.erb</span>
-
-&lt;%= form_for [<span class="hljs-variable">@artist</span>, <span class="hljs-variable">@song</span>] <span class="hljs-keyword">do</span> |f| %&gt;
-  <span class="hljs-comment"># form contents</span>
-&lt;% <span class="hljs-keyword">end</span> %&gt;
 </code></pre>
-<p><strong>NEXT:</strong> Fix the <code>create</code> controller action so that we add songs to artists!</p>
+<p>Now let&apos;s modify our form.</p>
+<ul>
+<li>When feeding multiple arguments to <code>form_for</code>, we have to place them inside of an array.</li>
+</ul>
+<pre><code class="lang-html"># /views/songs/new.html.erb
+
+<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">form_for</span> [@<span class="hljs-attribute">artist</span>, @<span class="hljs-attribute">song</span>] <span class="hljs-attribute">do</span> |<span class="hljs-attribute">f</span>| %&gt;</span>
+  # form contents
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
+</code></pre>
+<p><strong>WE DO:</strong> So that takes care of the form. Now we need to fix the <code>create</code> controller action in <code>songs_controller.rb</code> so that we can add songs to artists!</p>
+<ul>
+<li>We need an artist to add a song to, right? How do we set that up.</li>
+<li>How should we modify <code>@song</code> so that it&apos;s saved to the proper artist?</li>
+<li>Where would it make most sense to redirect to? Let&apos;s try the artist show page -- what path should be use?</li>
+</ul>
+<p><strong>YOU DO:</strong> Now you do the rest! It seems pretty daunting, I know, but you won&apos;t have to change anything beyond link helpers, form helpers and controller actions.</p>
+<ul>
+<li>Strongly encourage you to work with each other on this.</li>
+<li>Me and the support instructor are also here to help.</li>
+</ul>
 <h2 id="break-10-135">BREAK (10 / 135)</h2>
 <h2 id="additional-optional-reading">Additional (Optional) Reading</h2>
 <ul>
