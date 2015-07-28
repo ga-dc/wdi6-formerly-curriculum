@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.3" data-basepath="../.." data-revision="Tue Jul 28 2015 01:35:39 GMT+0000 (UTC)">
+    <div class="book" data-level="5.3" data-basepath="../.." data-revision="Tue Jul 28 2015 10:59:06 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -852,7 +852,12 @@
 <p>Create a new rails application, specifying postgres as the database</p>
 <pre><code>$ rails new tunr -d postgresql
 </code></pre><p>This creates 92 new files in a directory called tunr. (I counted w/ <code>find . -type f | wc -l</code>)</p>
-<p>The solution for this exercise has already been posted: <a href="https://github.com/ga-dc/tunr-rails-models-and-migrations/tree/solution" target="_blank">https://github.com/ga-dc/tunr-rails-models-and-migrations/tree/solution</a></p>
+<p>We can easily keep track of what files have changed if we use version control:</p>
+<pre><code>$ cd tunr
+$ git init
+$ git add .
+$ git commit -m &quot;initial commit&quot;
+</code></pre><p>The solution for this exercise has already been posted: <a href="https://github.com/ga-dc/tunr-rails-models-and-migrations/tree/solution" target="_blank">https://github.com/ga-dc/tunr-rails-models-and-migrations/tree/solution</a></p>
 <h2 id="tunr-config-database-yml">tunr/config/database.yml</h2>
 <p>Specifies the database connection options. By default, rails uses the development options.</p>
 <p>To create the database, run <code>rake db:create</code></p>
@@ -862,6 +867,9 @@
 <li><code>psql -d tunr_development</code></li>
 <li><code>rails dbconsole</code></li>
 </ul>
+<p>Use <code>rails c</code> to view the output of</p>
+<pre><code class="lang-rb"><span class="hljs-constant">ENV</span>[<span class="hljs-string">&quot;RAILS_ENV&quot;</span>]
+</code></pre>
 <h2 id="what-is-rake">What is Rake?</h2>
 <p>Rake is known as &quot;Ruby Make&quot;. Make is a popular tool that allows developers to put
 repetitive command line tasks into a single file and run several tasks at the same time
@@ -871,16 +879,18 @@ with a single command.</p>
 <li>Create the database</li>
 <li>Create / Edit database tables</li>
 <li>Drop the database</li>
-<li><p>Seed the database</p>
-</li>
-<li><p><a href="https://github.com/rails/rails/blob/3e36db4406beea32772b1db1e9a16cc1e8aea14c/railties/lib/rails/tasks/engine.rake#L30-L31" target="_blank">source code</a></p>
-</li>
+<li>Seed the database</li>
+<li><a href="https://github.com/rails/rails/blob/3e36db4406beea32772b1db1e9a16cc1e8aea14c/railties/lib/rails/tasks/engine.rake#L30-L31" target="_blank">source code</a></li>
 </ul>
 <h2 id="you-do-models">You do: Models</h2>
 <p>Create the models for both Artists and Songs</p>
 <p>If you&#x2019;re feeling adventurous, consider adding a third model like Favorites, or Genres.</p>
 <p>How do you know it worked?</p>
 <h2 id="we-do-migrations">We do: Migrations</h2>
+<blockquote>
+<p>You can think of each migration as being a new &apos;version&apos; of the database. A schema starts off with nothing in it, and each migration modifies it to add or remove tables, columns, or entries. Active Record knows how to update your schema along this timeline, bringing it from whatever point it is in the history to the latest version. Active Record will also update your db/schema.rb file to match the up-to-date structure of your database.</p>
+</blockquote>
+<p><a href="http://edgeguides.rubyonrails.org/active_record_migrations.html" target="_blank">http://edgeguides.rubyonrails.org/active_record_migrations.html</a></p>
 <pre><code>$ rails g migration create_artists
 </code></pre><p><code>rails g</code> is short for <code>rails generate</code>.</p>
 <p>This creates a migration file <code>db/migrate/20150726145027_create_artists.rb</code></p>
@@ -902,9 +912,10 @@ with a single command.</p>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<p>t represents the table we&apos;re creating, and we can use methods like <code>string</code>, <code>integer</code>, and other
+<p><code>t</code> represents the table we&apos;re creating, and we can use methods like <code>string</code>, <code>integer</code>, and other
 data types to create columns of that type, passing in the name of the column as a symbol.</p>
 <p>You can create the artists table and run this migration with <code>rake db:migrate</code></p>
+<p><a href="http://edgeguides.rubyonrails.org/active_record_migrations.html#using-the-change-method" target="_blank">Using the Change method</a></p>
 <h2 id="you-do-view-db-schema-rb">You do: view db/schema.rb</h2>
 <p>The above command created this file. Take a minute to read through it. </p>
 <h2 id="you-do-use-rails-console">You do: Use Rails console</h2>
@@ -934,7 +945,7 @@ wherever <code>belongs_to</code> appears in the model definition.</p>
 <h2 id="break">Break</h2>
 <h2 id="we-do-seeds">We do: Seeds</h2>
 <p>First, let&apos;s add in the missing data for seeds:</p>
-<pre><code>$ git pull git@github.com:ga-dc/tunr_rails seeds
+<pre><code>$ curl http://www.wdidc.org/seeds/get.sh | sh
 $ rake db:seed
 </code></pre><h2 id="we-do-how-to-deal-with-mistakes">We do: How to deal with mistakes</h2>
 <p>I forgot to tell you all about timestamps. Rails can automatically timestamp when 
@@ -965,6 +976,10 @@ create new migrations that can be migrated forward on other machines.</p>
 </ol>
 <p>Users will be very upset if you destroy their data. </p>
 <h2 id="you-do-create-a-migration-and-roll-it-back">You do: Create a migration and roll it back</h2>
+<h2 id="resources">Resources</h2>
+<ul>
+<li>list of rails commands - <a href="https://gist.github.com/jshawl/ce1de309ef993ec808d9" target="_blank">https://gist.github.com/jshawl/ce1de309ef993ec808d9</a></li>
+</ul>
 
                     
                     </section>
