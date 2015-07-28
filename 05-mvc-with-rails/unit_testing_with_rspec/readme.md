@@ -179,9 +179,22 @@ http://testfirst.org/learn_ruby#install
 
 1. Start from `wdi/exercises`.
 2. `git clone git://github.com/alexch/learn_ruby.git`
+3. Learn Ruby expects a particular version of RSpec.
+```
+gem install rspec --version '< 3.0'
+```
+4. LearnRuby uses the legacy "should " syntax. To avoid deprecation warnings, let's configure rspec to allow this syntax. Make sure your "rspec_config.rb" file looks like this:
+``` ruby
+# rspec_config.rb
+RSpec.configure do |c|
+  c.fail_fast = true
+  c.color = true
+  c.expect_with(:rspec) { |with| with.syntax = :should }
+end
+```
 3. Once you get the materials, open learn_ruby/index.html in your favorite web browser. Further instructions await therein.
 
-We'll continue together until through the first few steps.
+We'll continue together through the first few steps.
 
 Continue with 00_hello.  We'll do this for 8 minutes.
 
