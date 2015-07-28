@@ -243,7 +243,7 @@ Having seen this, let's make a To-Do list of things to change in our Rails app s
 
 ### Let's take another look at that error...
 
-![First error](/images/first-error.png)
+![First error](images/first-error.png)
 
 Our application doesn't seem to like the `songs_path` in our `application.html.`erb` left over from our former life as a non-nested-resource application.
 
@@ -283,7 +283,7 @@ If we enter `rake routes` into our terminal again, you'll notice that `songs_pat
 
 Another error! What went wrong this time?
 
-![Second error](/images/second-error.png)
+![Second error](images/second-error.png)
 
 Our app does not like the `new_song_path` we used in a link helper in our `artists/show.html.erb` file.
 
@@ -305,7 +305,7 @@ What do we need to replace this path helper with?
 By nesting resources, `new_song_path` became `new_artist_song_path` since every song we create is now created in the context of an artist.
 * But our app is still giving us an error. WHY?!
 
-![Third error](/images/third-error.png)
+![Third error](images/third-error.png)
 
 You'll notice that we're getting a different error this time that ends with: `missing required keys: [:artist_id]`
 * **Q:** Does anybody know what else we have to do to our link helper to fix this?
@@ -322,7 +322,7 @@ We need to feed our `new_artist_song_path` helper an artist as a variable.
 
 And that'll do it. Let's refresh our page...
 
-![Fourth Error](/images/fourth-error.png)
+![Fourth Error](images/fourth-error.png)
 
 If you haven't noticed already, converting our application to nested resources requires a very EDD approach.  
 
