@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 17:08:43 GMT+0000 (UTC)">
+    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 17:18:22 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1282,8 +1282,19 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <li>How should we modify <code>@song</code> so that it&apos;s saved to the proper artist?</li>
 <li>Where would it make most sense to redirect to? Let&apos;s try the artist show page -- what path should be use?</li>
 </ul>
+<pre><code class="lang-rb"><span class="hljs-comment"># /controllers/songs_controller.rb</span>
+
+<span class="hljs-comment"># create</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> </span>create
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:artist_id</span>])
+  <span class="hljs-variable">@song</span> = <span class="hljs-variable">@artist</span>.songs.create(song_params)
+
+  redirect_to artist_songs_path(<span class="hljs-variable">@artist</span>, <span class="hljs-variable">@song</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
 <p><strong>YOU DO:</strong> Now you do the rest! It seems pretty daunting, I know, but you won&apos;t have to change anything beyond link helpers, form helpers and controller actions.</p>
 <ul>
+<li>If you feel lost, follow the error.</li>
 <li>Strongly encourage you to work with each other on this.</li>
 <li>Me and the support instructor are also here to help.</li>
 </ul>
