@@ -368,11 +368,24 @@ So now what? The link helper for an individual song inside of our .each enumerat
 
 ### Form Helpers
 
-From the song show page, click on "(edit)". Of course, we get an error...
+Something else we'll need to change are forms. Let's try making a new song.
+* From an artist show page, click on the "(+)" next to "Songs".
 
-![Fifth Error](images/fifth-error.png)
+No immediate error! But it's not working quite yet. Let's try creating a song.
 
-Why is that? Let's look at our new song form in `/views/songs/new.html.erb`.
+![Sixth error](images/sixth-error.png)
+
+So the error isn't as specific as the ones we've already encountered, but it looks like our application is trying to post to a `/songs` route.
+* Our application does not support that particular route and controller action.
+* Let's take a look at `songs/new.html.erb` and `songs_controller.rb` and see what we need to fix it...
+
+```html
+# /views/songs/new.html.erb
+
+<%= form_for @song do |f| %>
+  # form contents
+<% end %>
+```
 
 ```rb
 # /controllers/songs_controller.rb
@@ -381,14 +394,6 @@ Why is that? Let's look at our new song form in `/views/songs/new.html.erb`.
 def new
   @song = Song.new
 end
-```
-
-```html
-# /views/songs/new.html.erb
-
-<%= form_for @song do |f| %>
-  # form contents
-<% end %>
 ```
 
 We need to associate each new song with an artist. To do that, we need to provide our `form_for` helpers with both an artist and song as arguments.
@@ -406,6 +411,7 @@ end
 
 Now let's modify our form.
 * When feeding multiple arguments to `form_for`, we have to place them inside of an array.
+* In this case, we're not only giving it a new song (via `@song`) but also the artist we'll be adding it to (via `@artist`).
 
 ```html
 # /views/songs/new.html.erb
@@ -428,7 +434,7 @@ def create
   @artist = Artist.find(params[:artist_id])
   @song = @artist.songs.create(song_params)
 
-  redirect_to artist_songs_path(@artist, @song)
+  redirect_to artist_path(@artist)
 end
 ```
 
