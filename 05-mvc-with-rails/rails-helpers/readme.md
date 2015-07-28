@@ -25,7 +25,7 @@
   * [link_to](http://apidock.com/rails/ActionView/Helpers/UrlHelper/link_to)
   * [form_for](http://apidock.com/rails/ActionView/Helpers/FormHelper/form_for)
 
-## What are Helpers? (5 minutes)
+## What are Helpers? (5 minutes - 00:05)
 
 If we look at our app, there are a lot of places where we're writing a lot of
 text, and where that text follows a common pattern. Think about the similarities
@@ -40,7 +40,7 @@ so we don't have to type it out, and so that our code is more readable. (A side
 benefit here is that if our routes change, we don't have to go fix all of our
 links, forms, etc.)
 
-## Path Helpers (10 minutes)
+## Path Helpers (10 minutes - 00:15)
 
 Path helpers are methods that generate paths. These helpers can be used anywhere
 you would have manually typed out a path as a string, e.g. "/artists",
@@ -78,7 +78,7 @@ Another example:
 
 Path helpers can be used in controllers & views.
 
-### Exercise (10 minutes)
+### Exercise (10 minutes - 00:25)
 
 1. Clone our starter code for [tunr-rails-helpers](https://github.com/ga-dc/tunr-rails-helpers)
 2. Replace the routes with `resources`.
@@ -89,7 +89,7 @@ Path helpers can be used in controllers & views.
 Replace all hard-coded paths in link / form tags in the views. We'll be replacing
 them soon using link/form helpers.
 
-## Link Helpers (10 minutes)
+## Link Helpers (10 minutes - 00:35)
 
 The link helper `link_to` generates link (`<a>`) tags. In general, `link_to`
 takes two arguments:
@@ -121,11 +121,11 @@ the second object is an instance of an ActiveRecord Model:
 <% end %>
 ```
 
-### Exercise (15 minutes)
+### Exercise (15 minutes - 00:50)
 
 Replace all links (<a> tags) in tunr-rails-helpers with `link_to`.
 
-## HTML Options (10 minutes)
+## HTML Options (10 minutes - 01:00)
 
 Almost any helper method that generates HTML tags, can take a set of HTML
 options. This is commonly used to set the `class` and/or `id` attributes, but
@@ -140,7 +140,7 @@ Example:
 For more examples, see the [API Docs for Rails link_to](http://apidock.com/rails/ActionView/Helpers/UrlHelper/link_to)
 
 
-## Image Helpers (5 minutes)
+## Image Helpers (5 minutes - 01:05)
 
 The `image_tag` helper generates an `<img>` tag.
 
@@ -173,7 +173,7 @@ size and alt.
 <%= image_tag @artist.photo_url, alt: "Photo of #{@artist.name}", size: "400x400" %>
 ```
 
-### Exercise (5 minutes)
+### Exercise (5 minutes - 01:10)
 
 Replace the <img> tag with the image_tag helper in tunr-rails-helpers.
 
@@ -181,7 +181,7 @@ Bonus:
 Add some icon images to `app/assets/images` and use image_tag to add icons where
 appropriate (e.g. replace the `(+)` link)
 
-## Form Helpers (20 minutes)
+## Form Helpers (20 minutes - 01:30)
 
 Rails includes two helper methods to build forms: `form_for` and `form_tag`.
 
@@ -222,11 +222,11 @@ Important facts about the `form_for` helper:
 * The submit button takes an optional argument for the text on the button
   * If you omit the argument, it will say either "Create Panda" or "Update Panda" accordingly (subbing in the name of your model)
 
-### Exercise (20 minutes)
+### Exercise (20 minutes - 01:50)
 
 Replace all forms in tunr-rails-helpers with `form_for` tags.
 
-## Why use form_for? (15 minutes)
+## Why use form_for? (15 minutes - 02:05)
 
 The form helpers are useful for a few reasons:
 
@@ -263,7 +263,7 @@ If the token isn't present (or doesn't match), then the request is rejected.
 We can manually include that token in our forms, but `form_for` and `form_tag`
 do it for us.
 
-## Partials (10 minutes)
+## Partials (10 minutes - 02:15)
 
 Partial templates - usually just called "partials" - are another technique to
 break down a view into more manageable chunks. With a partial, you can move the
@@ -324,7 +324,7 @@ can use the shorter syntax and omit the word `partial:`
 <%= render "form" %>
 ```
 
-## Exercise (10 minutes)
+## Exercise (10 minutes - 02:25)
 
 Replace any remaining duplication of forms in Tunr using partials.
 
@@ -332,7 +332,7 @@ Bonus:
 There are other areas of Tunr that have minor code duplication. Find them and
 replace those areas with partials as well.
 
-## Summary (5 minutes)
+## Summary (5 minutes - 02:30)
 
 Rails' helper methods are great at keeping our code readable, flexible and DRY,
 so use em!
