@@ -250,9 +250,9 @@ We're going to use a gem called "bcrypt" that uses a really secure hashing algor
 ```
 # Gemfile
 
-...
+# ...
 gem 'bcrypt'
-...
+# ...
 ```
 ```
 bundle install
@@ -287,10 +287,10 @@ To check whether a string matches the hash, we first have to let BCrypt decode i
 
 Putting this all together in Tunr:
 
-```
+```rb
 # app/controllers/users_controller.rb
 
-...
+# ...
 def signin
   if params[:username].strip == ""
     message = "You forgot to enter a username!"
@@ -318,7 +318,7 @@ def signin
   flash[:sign_in_message] = message
   redirect_to :back
 end
-...
+# ...
 ```
 
 ## has_secure_password
@@ -331,7 +331,7 @@ Rails provides a method called `has_secure_password` does... about what you woul
 
 To use it, just add it to your User model in place of `validates :password`, etc.
 
-```
+```rb
 # app/models/user.rb
 
 class User < ActiveRecord::Base
@@ -410,7 +410,7 @@ Hiding from scripts, expiration dates, secure connections only...
 ### Writing
 
 Modifying cookies is super easy. In Tunr:
-```
+```rb
 # controllers/artists_controller.rb
 
 def index
@@ -423,7 +423,7 @@ Now, when I go to the `artists#index` page (that is, the main page)... nothing s
 
 I can change the expiration time of my cookie like this:
 
-```
+```rb
 def index
   cookies["Why did the chicken cross the road?"] = {
     value: "To get to the other side",
@@ -449,21 +449,21 @@ This doesn't solve the staying-signed-in problem, but we can add a nice touch to
 
 This `signin` method should get the `username` from the `params` that were POSTed. Then, let's have it save the username as a cookie, and redirect the user back to where they were before.
 
-```
+```rb
 # app/controllers/users_controller.rb
 
 def signin
-...
+# ...
 else
   message = "You're signed in, #{params[:username]}! :)"
   cookies[:username] = params[:username]
 end
-...
+# ...
 ```
 
 Finally, so we can see our handiwork, lets change the sign-in form so that the username is automatically filled in if the "username" cookie is set.
 
-```
+```erb
 # app/views/users/signin_prompt.html.erb
 
 <h2><%= flash[:sign_in_message] %></h2>
@@ -548,16 +548,16 @@ Expires:  When the browsing session ends
 
 Let's add an `is_signed_in` session variable to Tunr. We'll create it in the Users controller. We also may as well do something with the `signout` action we created before: we'll just have it clear all the session variables.
 
-```
+```rb
 # app/controllers/users_controller.rb
 
 def signin
-...
+# ...
   message = "You're signed in, #{params[:username]}! :)"
   cookies[:username] = params[:username]
   session[:is_signed_in] = true
   session[:user] = User.find_by(username: params[:username])
-...
+# ...
 end
 
 def signout
@@ -568,10 +568,10 @@ end
 
 Now let's modify the application layout accordingly. If the user isn't signed in, we'll show a "sign in" link. If they **are** signed in, we'll show a "sign out" link.
 
-```
+```erb
 # app/views/layouts/application.html.erb
 
-...
+# ...
 <nav>
   <% if session[:is_signed_in] %>
     <a href="/signout"><%= session[:user]["username"] %>: sign out</a></h2>
@@ -581,7 +581,7 @@ Now let's modify the application layout accordingly. If the user isn't signed in
   <a href="/songs">Songs</a>
   <a href="/artists">Artists</a>
 </nav>
-...
+# ...
 ```
 
 ### Before actions
@@ -597,7 +597,7 @@ In this case, we're going to use it to authenticate the user before every action
 - Authorizing is giving someone special privileges
   - So when you've *authenticated* a user, they are *authorized* to use your app
 
-```
+```rb
 # app/controllers/application_controller.rb
 
 class ApplicationController < ActionController::Base
@@ -621,12 +621,12 @@ If we run the app now... we'll get a "too many redirects" error. That's because 
 
 We want this authentication to happen on every action **except** the user actions. So we can use another special method called `skip_before_action`:
 
-```
+```rb
 # app/controllers/users_controller.rb
 
 class UsersController < ApplicationController
   skip_before_action :authenticate
-...
+# ...
 end
 ```
 
@@ -645,7 +645,7 @@ Now that we're letting the app have multiple users, we need to associate each so
 ```
 rails generate migration addUsersToArtists
 ```
-```
+```rb
 # db/migrate/[timestamp]_add_users_to_artists.rb
 
 class AddUserToArtists < ActiveRecord::Migration
@@ -657,7 +657,7 @@ end
 
 Now let's make sure we can do `@user.artists` and `@artist.user` and so forth by **updating the Artist model and creating a User model**:
 
-```
+```rb
 # app/models/artist.rb
 
 class Artist < ActiveRecord::Base
@@ -666,7 +666,7 @@ class Artist < ActiveRecord::Base
 end
 ```
 
-```
+```rb
 # app/models/user.rb
 
 class User < ActiveRecord::Base
@@ -678,7 +678,7 @@ end
 
 Let's **change the `artists` controller so that whenever you add an artist, it saves the username**.
 
-```
+```rb
 # app/controllers/artists_controller.rb
 
 def create
@@ -689,7 +689,7 @@ end
 
 With this done, we can **modify the controller to show the songs and artists for this user only**.
 
-```
+```rb
 # app/controllers/artists_controller.rb
 
 def index
@@ -741,7 +741,7 @@ rails generate devise user
 rake db:migrate
 ```
 
-```
+```rb
 # app/controllers/application_controller.rb
 
 class ApplicationController < ActionController::Base
