@@ -7,7 +7,7 @@
 - Describe the differences between hashing and encoding.
 - Add sign-in, sign-up, and sign-out functionality to a Rails application.
 - Securely store and access passwords.
-- Describe the functionality added by `has_secure_password`.
+- Describe the functionality of `has_secure_password`.
 - Differentiate between authentication and authorization.
 
 ## Adding users
@@ -26,11 +26,14 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.string :username
-      t.string :password
+      t.string :password_digest
     end
   end
 end
 ```
+
+We'll talk about why this is `password_digest` instead of just `password` later.
+
 ```
 rake db:migrate
 ```
@@ -42,7 +45,7 @@ Let's make sure each user has a unique username, and always has a password:
 
 class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
-  validates :password, presence: true
+  validates :password_digest, presence: true
 end
 ```
 
@@ -91,13 +94,16 @@ class UsersController < ApplicationController
       message = "You forgot to enter a password!"
     else
       if !User.find_by(username: params[:username])
-        if User.create(username: params[:username], password: params[:password])
+        if User.create(
+          username: params[:username],
+          password_digest: params[:password]
+        )
           message = "Your account has been created!"
         else
           message = "Your account couldn't be created. Did you enter a unique username and password?"
         end
       else
-        if User.find_by(username: params[:username]).password != params[:password]
+        if User.find_by(username: params[:username]).password_digest != params[:password]
           message = "Your password's wrong!"
         else
           message = "You're signed in, #{params[:username]}! :)"
@@ -292,14 +298,14 @@ def signin
     if !User.find_by(username: params[:username])
       if User.create(
         username: params[:username],
-        password: BCrypt::Password.create(params[:password].strip)
+        password_digest: BCrypt::Password.create(params[:password].strip)
       )
         message = "Your account has been created!"
       else
         message = "Your account couldn't be created. Did you enter a unique username and password?"
       end
     else
-      decoded_hash = BCrypt::Password.new(User.find_by(username: params[:username]).password)
+      decoded_hash = BCrypt::Password.new(User.find_by(username: params[:username]).password_digest)
       if decoded_hash.is_password?(params[:password]) == false
         message = "Your password's wrong!"
       else
@@ -311,6 +317,25 @@ def signin
   redirect_to :back
 end
 ...
+```
+
+## has_secure_password
+
+Rails provides a method called `has_secure_password` does... about what you would expect from the name. This includes:
+- Making sure a User isn't created without a password
+- Makes sure your User model has a `password_digest` column. A digest is the hashed value of something -- that is, the big long random string. (The way your password would look after you've digested it, if you will.)
+- Making sure the password is between 8 and 72 characters
+- If you have a "type your password again to confirm it" field, it makes sure they match
+
+To use it, just add it to your User model in place of `validates :password`, etc.
+
+```
+# app/models/user.rb
+
+class User < ActiveRecord::Base
+  validates :username, presence: true, uniqueness: true
+  has_secure_password
+end
 ```
 
 ## User persistence
@@ -644,7 +669,7 @@ end
 
 class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
-  validates :password, presence: true
+  has_secure_password
   has_many :artists, dependent: :destroy
 end
 ```
