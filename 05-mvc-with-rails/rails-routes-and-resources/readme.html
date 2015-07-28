@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 17:20:08 GMT+0000 (UTC)">
+    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 17:56:11 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1238,21 +1238,29 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <li>I&apos;ll check in after 5 minutes.</li>
 </ul>
 <h3 id="form-helpers">Form Helpers</h3>
-<p>From the song show page, click on &quot;(edit)&quot;. Of course, we get an error...</p>
-<p><img src="images/fifth-error.png" alt="Fifth Error"></p>
-<p>Why is that? Let&apos;s look at our new song form in <code>/views/songs/new.html.erb</code>.</p>
+<p>Something else we&apos;ll need to change are forms. Let&apos;s try making a new song.</p>
+<ul>
+<li>From an artist show page, click on the &quot;(+)&quot; next to &quot;Songs&quot;.</li>
+</ul>
+<p>No immediate error! But it&apos;s not working quite yet. Let&apos;s try creating a song.</p>
+<p><img src="images/sixth-error.png" alt="Sixth error"></p>
+<p>So the error isn&apos;t as specific as the ones we&apos;ve already encountered, but it looks like our application is trying to post to a <code>/songs</code> route.</p>
+<ul>
+<li>Our application does not support that particular route and controller action.</li>
+<li>Let&apos;s take a look at <code>songs/new.html.erb</code> and <code>songs_controller.rb</code> and see what we need to fix it...</li>
+</ul>
+<pre><code class="lang-html"># /views/songs/new.html.erb
+
+<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">form_for</span> @<span class="hljs-attribute">song</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">f</span>| %&gt;</span>
+  # form contents
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
+</code></pre>
 <pre><code class="lang-rb"><span class="hljs-comment"># /controllers/songs_controller.rb</span>
 
 <span class="hljs-comment"># new</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> </span>new
   <span class="hljs-variable">@song</span> = <span class="hljs-constant">Song</span>.new
 <span class="hljs-keyword">end</span>
-</code></pre>
-<pre><code class="lang-html"># /views/songs/new.html.erb
-
-<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">form_for</span> @<span class="hljs-attribute">song</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">f</span>| %&gt;</span>
-  # form contents
-<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
 </code></pre>
 <p>We need to associate each new song with an artist. To do that, we need to provide our <code>form_for</code> helpers with both an artist and song as arguments.</p>
 <ul>
@@ -1269,6 +1277,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <p>Now let&apos;s modify our form.</p>
 <ul>
 <li>When feeding multiple arguments to <code>form_for</code>, we have to place them inside of an array.</li>
+<li>In this case, we&apos;re not only giving it a new song (via <code>@song</code>) but also the artist we&apos;ll be adding it to (via <code>@artist</code>).</li>
 </ul>
 <pre><code class="lang-html"># /views/songs/new.html.erb
 
@@ -1289,7 +1298,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
   <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:artist_id</span>])
   <span class="hljs-variable">@song</span> = <span class="hljs-variable">@artist</span>.songs.create(song_params)
 
-  redirect_to artist_songs_path(<span class="hljs-variable">@artist</span>, <span class="hljs-variable">@song</span>)
+  redirect_to artist_path(<span class="hljs-variable">@artist</span>)
 <span class="hljs-keyword">end</span>
 </code></pre>
 <p><strong>YOU DO:</strong> Now you do the rest! It seems pretty daunting, I know, but you won&apos;t have to change anything beyond link helpers, form helpers and controller actions.</p>
