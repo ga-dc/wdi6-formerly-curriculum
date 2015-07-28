@@ -33,7 +33,7 @@ get "/artists/", to "artists#index"
 ```
 
 Basically, a simplification of the controller actions in Rails and Sinatra
-* **WE DO:** Help me write the route for our controller's `update` -- not `edit` -- method.
+* **WE DO:** Walk me through writing the route for our `update` -- not `edit` -- method.
 
 ```rb
 # update
@@ -193,6 +193,9 @@ post "/artists/:artist_id/songs" to "songs#create"
 Okay, so our `routes.rb` file is updated with nested resources. Let's see them in action and fire up our Tunr app!
 
 ### Uh oh. It broke...
+
+![First error](/images/first-error.png)
+
 That's okay. You're going to spend the next hour fixing it!
 * Spend 5 minutes looking through your application and think about what we need to change in order to accommodate our new routing system.
 * Don't worry about solving the problem immediately. Start by identifying things we need to change.
@@ -234,26 +237,138 @@ artist            GET    /artists/:id(.:format)                       artists#sh
 ```
 
 Having seen this, let's make a To-Do list of things to change in our Rails app so that we can successfully use nested resources.  
-1. Link Helpers  
-2. Form Helpers  
-3. Songs Controller  
+  1. Link Helpers  
+  2. Form Helpers  
+  3. Songs Controller  
 
-### Link Helpers
+### Let's take another look at that error...
 
-Adam mentioned during his helpers class that when our routes change, we don't have to go and update our links.
-* But when switching to nested resources, we do...
+![First error](/images/first-error.png)
 
-Let's start with our Song's `index.html.erb`...
+Our application doesn't seem to like the `songs_path` in our `application.html.`erb` left over from our former life as a non-nested-resource application.
+
+```erb
+# /views/layouts/application.html.erb
+
+<nav>
+    <%= link_to "Songs", songs_path %>
+    <%= link_to "Artists", artists_path %>
+</nav>
+```
+
+This link would normally take us to a list of all the songs in our database.
+* I think we should keep this route!
+* We're going to cheat a little bit and preserve this non-nested route by making a change in `routes.rb`.
 
 ```rb
-# /views/songs/index.html.erb
+# config/routes.rb
+
+Rails.application.routes.draw do
+  root to: 'artists#index'
+
+  resources :artists do
+    resources :songs
+  end
+
+  # We're creating non-nested resources for Song, but only allowing the index controller action
+  resources :songs, only: :index
+end
 ```
+
+If we enter `rake routes` into our terminal again, you'll notice that `songs_path` now appears at the bottom of the list.
+* If we try refreshing our home page again, it should work!
+* This is the only exception to nested resources that we'll be using in Tunr.
+
+### Let's click on an artist...
+
+Another error! What went wrong this time?
+
+![Second error](/images/second-error.png)
+
+Our app does not like the `new_song_path` we used in a link helper in our `artists/show.html.erb` file.
+
+```html
+# /views/artists/show.html.erb
+
+<h3>Songs <%= link_to "(+)", new_song_path %></h3>
+```
+
+What do we need to replace this path helper with?
+* **HINT:** Look at `rake routes`!
+
+```html
+# /views/artists/show.html.erb
+
+<h3>Songs <%= link_to "(+)", new_artist_song_path %></h3>
+```
+
+By nesting resources, `new_song_path` became `new_artist_song_path` since every song we create is now created in the context of an artist.
+* But our app is still giving us an error. WHY?!
+
+![Third error](/images/third-error.png)
+
+You'll notice that we're getting a different error this time that ends with: `missing required keys: [:artist_id]`
+* **Q:** Does anybody know what else we have to do to our link helper to fix this?
+
+```html
+# /views/artists/show.html.erb
+
+# Feed @artist as an argument to the path helper
+<h3>Songs <%= link_to "(+)", new_artist_song_path( @artist ) %></h3>
+```
+
+We need to feed our `new_artist_song_path` helper an artist as a variable.
+* Now our app knows which artist it is rendering a new song form for.
+
+And that'll do it. Let's refresh our page...
+
+![Fourth Error](/images/fourth-error.png)
+
+If you haven't noticed already, converting our application to nested resources requires a very EDD approach.  
+
+So now what? The link helper our an individual song inside of our .each enumerator isn't working.
+
+```html
+# /views/artists/show.html.erb
+
+<ul>
+  <% @artist.songs.each do |song| %>
+    <li>
+      <%= link_to "#{song.title} (#{song.album})", song %>
+    </li>
+  <% end %>
+</ul>
+```
+
+**WE DO:** Help me out with this one.
+* We don't have a path helper at the moment. What page are we trying to link to?
+* So which path helper do we need to add?
+* Do we need to feed it a variable? If so, how many?
+
+```html
+# Feed the path helper an argument for @artist
+# As well as songs, since each link goes to a particular song
+# We use the iteration variable for song since we're in an enumerator
+<ul>
+  <% @artist.songs.each do |song| %>
+    <li>
+      <%= link_to "#{song.title} (#{song.album})", artist_song_path( @artist, song ) %>
+    </li>
+  <% end %>
+</ul>
+```
+
+**YOU DO:** From an artist show page, click on a song. You should get an error.
+* I want you to try fixing the `songs/show.html.erb` file.
+* **HINT:** You might have to add an instance variable to `songs_controller.rb`.
+* I'll check in after 5 minutes.
+
 
 ### Form Helpers
 
-Let's start with our new Song form and corresponding controller action...
+Let's take a look at our Song form and corresponding controller action...
 
-```rb
+```erb
 # /controllers/songs_controller.rb
 
 # new
@@ -291,17 +406,16 @@ end
 
 **NEXT:** Fix the `create` controller action so that we add songs to artists!
 
-
+## BREAK (10 / 135)
 
 ## Additional (Optional) Reading
 * [Rails Routing From The Outside In](http://guides.rubyonrails.org/routing.html)
 * [The Lowdown On Routes](https://blog.engineyard.com/2010/the-lowdown-on-routes-in-rails-3)
 * [Scoping Rails Routes](http://notahat.com/2014/02/05/scoping-rails-routes.html)
 
-## Homework
+## Homework (15 / 150)
 [Add nested resources to your Blog!](https://github.com/ga-dc/scribble#routes)
 
-## Rails Review  
 Spend the remaining class-time either working on your homework or you can ask me questions on anything you've learned this week.
 
 ## Sample Quiz Questions
