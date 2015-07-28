@@ -130,12 +130,55 @@ With path helpers, we can tidy up the other helpers you guys have alrady impleme
 
 ### Link Helpers
 
-**INCLUDE A CONVERSION EXAMPLE**
+```rb
+# views/artists/index.html.erb
+
+# From this...
+<h2>Artists <a href="/artists/new">(+)</a></h2>
+```
+
+```rb
+# ...to this
+<h2>Artists <%= link_to "(+)", new_artist_path %></h2>
+```
 <br><br>
 
 ### Form Helpers
 
-**INCLUDE A CONVERSION EXAMPLE**
+```rb
+# views/artists/new.html.erb
+
+# From this...
+<form method="post" action="/artists">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>Name</label>
+  <input type="text" name="artist[name]">
+
+  <label>Photo Url</label>
+  <input type="text" name="artist[photo_url]">
+
+  <label>Nationality</label>
+  <input type="text" name="artist[nationality]">
+
+  <input type="submit" value="Create Artist">
+</form>
+```
+
+```html
+# ...to this
+<%= form_for @artist do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :photo_url %>
+  <%= f.text_field :photo_url %>
+
+  <%= f.label :nationality %>
+  <%= f.text_field :nationality %>
+
+  <%= f.submit %>
+```
 <br><br>
 
 ## Nested Resources (15 / 55)
