@@ -59,6 +59,8 @@ root :to => "artists#index"
 **NOTE:** I may use the terms "resources" and "model" interchangeably.
 
 During Adam's class you learned a bit of Rails wizardry that allowed you to generate all of your application's RESTful routes using one word: **resources**!
+* Explicitly tells Rails that we will be using RESTful routes.
+* Generates path helpers, which we'll look at shortly.
 
 ```rb
 # This is all we need to generate the RESTful routes for a model
@@ -278,6 +280,7 @@ end
 If we enter `rake routes` into our terminal again, you'll notice that `songs_path` now appears at the bottom of the list.
 * If we try refreshing our home page again, it should work!
 * This is the only exception to nested resources that we'll be using in Tunr.
+* If you click on the "Songs" link, it won't work. Don't worry about that for now.
 
 ### Let's click on an artist...
 
@@ -324,8 +327,6 @@ And that'll do it. Let's refresh our page...
 
 ![Fourth Error](images/fourth-error.png)
 
-If you haven't noticed already, converting our application to nested resources requires a very EDD approach.  
-
 So now what? The link helper for an individual song inside of our .each enumerator isn't working.
 
 ```html
@@ -361,22 +362,28 @@ So now what? The link helper for an individual song inside of our .each enumerat
 **YOU DO:** From an artist show page, click on a song. You should get an error.
 * I want you to try fixing the `songs/show.html.erb` file.
 * **HINT:** You might have to add an instance variable to `songs_controller.rb`.
+  * Remember, our song routes don't look the same as they did before!
 * I'll check in after 5 minutes.
 
 
 ### Form Helpers
 
-Let's take a look at our Song form and corresponding controller action...
+From the song show page, click on "(edit)". Of course, we get an error...
 
-```erb
+![Fifth Error](images/fifth-error.png)
+
+Why is that? Let's look at our new song form in `/views/songs/new.html.erb`.
+
+```rb
 # /controllers/songs_controller.rb
 
 # new
 def new
   @song = Song.new
 end
+```
 
-
+```html
 # /views/songs/new.html.erb
 
 <%= form_for @song do |f| %>
@@ -395,8 +402,12 @@ def new
   @artist = Artist.find(params[:artist_id])
   @song = Song.new
 end
+```
 
+Now let's modify our form.
+* When feeding multiple arguments to `form_for`, we have to place them inside of an array.
 
+```html
 # /views/songs/new.html.erb
 
 <%= form_for [@artist, @song] do |f| %>
@@ -404,7 +415,14 @@ end
 <% end %>
 ```
 
-**NEXT:** Fix the `create` controller action so that we add songs to artists!
+**WE DO:** So that takes care of the form. Now we need to fix the `create` controller action in `songs_controller.rb` so that we can add songs to artists!
+  * We need an artist to add a song to, right? How do we set that up.
+  * How should we modify `@song` so that it's saved to the proper artist?
+  * Where would it make most sense to redirect to? Let's try the artist show page -- what path should be use?
+
+**YOU DO:** Now you do the rest! It seems pretty daunting, I know, but you won't have to change anything beyond link helpers, form helpers and controller actions.
+* Strongly encourage you to work with each other on this.
+* Me and the support instructor are also here to help.
 
 ## BREAK (10 / 135)
 
