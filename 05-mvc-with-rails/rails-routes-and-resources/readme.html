@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 19:08:27 GMT+0000 (UTC)">
+    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 19:31:25 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1016,15 +1016,14 @@ song        <span class="hljs-constant">GET</span>    /songs/<span class="hljs-s
 </ul>
 <p>Path helpers vary between routes</p>
 <ul>
-<li><code>index</code>: <code>artists_path</code></li>
-<li><strong>Q:</strong> What about the path helper <code>edit</code>? How is it different from <code>index</code>?<ul>
-<li>Takes an object as an argument.<ul>
+<li><code>index</code>: <code>artists_path</code><ul>
+<li>Why do we add <code>_path</code>? Generates a relative path (vs. <code>_url</code>).</li>
+</ul>
+</li>
+<li><strong>Q:</strong> What about the path helper <code>edit</code>? How is it different from <code>index</code>. Takes an object as an argument.<ul>
 <li><code>artists_path( some_artist )    # &quot;/artists/:id/edit&quot;</code></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><strong>WHEN DO NON-NESTED PATH HELPERS TAKE ARGUMENTS (e.g., songs#show view edit link, artists#show view edit link)</strong></li>
 </ul>
 <p>Only four path helpers for each model.</p>
 <ul>
@@ -1085,7 +1084,16 @@ song        <span class="hljs-constant">GET</span>    /songs/<span class="hljs-s
 <ul>
 <li>We want our Songs to exist in the context of a parent Artist.</li>
 <li>Currently we can visit an artist show page, which includes a link of all that artist&apos;s songs.</li>
-<li>But we want to be able to visit a URL like this: <code>http://www.tu.nr/3/songs/</code></li>
+<li>But we want to be able to visit a URL like this: <code>http://www.tu.nr/artists/3/songs/</code><ul>
+<li>What would it mean to have songs/3/artists -- why do we do it this way?<ul>
+<li>Reflects our data structure -- songs are dependent on an artist</li>
+<li>This structure is the most concise way to express our hierarchy of info</li>
+<li>Also gives users the ability to edit the URL for specific info</li>
+<li>Q: What can we predict about this response based on this URL?</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>This is where nested resources come in...</li>
 </ul>
 <p>Let&apos;s update our router...</p>
@@ -1121,7 +1129,10 @@ get <span class="hljs-string">&quot;/artists/:artist_id/songs/:id&quot;</span> t
 <p><br><br></p>
 <p><strong>YOU DO:</strong> Spend the next 5 minutes writing out the individual routes for our nested resources model.</p>
 <ul>
-<li>We will not be replacing our resources statements in the <code>routes.rb</code> file with this.</li>
+<li>We will not be replacing our resources statements in the <code>routes.rb</code> file with this.<ul>
+<li>Rephrase and answer why? Why are we writing these out?</li>
+</ul>
+</li>
 <li><strong>DO NOT</strong> check our answers with <code>rake routes</code> quite yet...
 <br><br></li>
 </ul>
@@ -1134,7 +1145,7 @@ get <span class="hljs-string">&quot;/artists/:artist_id/songs/:id&quot;</span> t
 <p>That&apos;s okay. You&apos;re going to spend the next hour fixing it!</p>
 <ul>
 <li>Spend 5 minutes looking through your application and think about what we need to change in order to accommodate our new routing system.</li>
-<li>Don&apos;t worry about solving the problem immediately. Start by identifying things we need to change.</li>
+<li>Don&apos;t worry about solving the problem immediately. Start by identifying files we need to change.</li>
 </ul>
 <h3 id="bonuses">Bonuses</h3>
 <p>If you find yourself moving along faster than my pace, try implementing the following...</p>
@@ -1181,37 +1192,10 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 </ol>
 <h3 id="let-s-take-another-look-at-that-error">Let&apos;s take another look at that error...</h3>
 <p><img src="images/first-error.png" alt="First error"></p>
-<p>Our application doesn&apos;t seem to like the <code>songs_path</code> in our <code>application.html.erb</code> left over from our former life as a non-nested-resource application.</p>
-<pre><code class="lang-erb"><span class="xml"># /views/layouts/application.html.erb
-
-<span class="hljs-tag">&lt;<span class="hljs-title">nav</span>&gt;</span>
-    </span>&lt;%=<span class="ruby"> link_to <span class="hljs-string">&quot;Songs&quot;</span>, songs_path </span>%&gt;<span class="xml">
-    </span>&lt;%=<span class="ruby"> link_to <span class="hljs-string">&quot;Artists&quot;</span>, artists_path </span>%&gt;<span class="xml">
-<span class="hljs-tag">&lt;/<span class="hljs-title">nav</span>&gt;</span>
-</span></code></pre>
-<p>This link would normally take us to a list of all the songs in our database.</p>
+<p>How do we fix this? <strong>DELETE IT</strong>.</p>
 <ul>
-<li>I think we should keep this route!</li>
-<li>We&apos;re going to cheat a little bit and preserve this non-nested route by making a change in <code>routes.rb</code>.</li>
-</ul>
-<pre><code class="lang-rb"><span class="hljs-comment"># config/routes.rb</span>
-
-<span class="hljs-constant">Rails</span>.application.routes.draw <span class="hljs-keyword">do</span>
-  root <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;artists#index&apos;</span>
-
-  resources <span class="hljs-symbol">:artists</span> <span class="hljs-keyword">do</span>
-    resources <span class="hljs-symbol">:songs</span>
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-comment"># We&apos;re creating non-nested resources for Song, but only allowing the index controller action</span>
-  resources <span class="hljs-symbol">:songs</span>, <span class="hljs-symbol">only:</span> <span class="hljs-symbol">:index</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>If we enter <code>rake routes</code> into our terminal again, you&apos;ll notice that <code>songs_path</code> now appears at the bottom of the list.</p>
-<ul>
-<li>If we try refreshing our home page again, it should work!</li>
-<li>This is the only exception to nested resources that we&apos;ll be using in Tunr.</li>
-<li>If you click on the &quot;Songs&quot; link, it won&apos;t work. Don&apos;t worry about that for now.
+<li>The original link took us to a list of all the songs in our application.</li>
+<li>While getting rid of it may be a bad move from a usability standpoint, by implementing nested resources we made the decision that songs will never exist independent from an artist.
 <br><br></li>
 </ul>
 <h3 id="let-s-click-on-an-artist">Let&apos;s click on an artist...</h3>
@@ -1245,10 +1229,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 # Feed @artist as an argument to the path helper
 <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span>Songs <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">link_to</span> &quot;(+)&quot;, <span class="hljs-attribute">new_artist_song_path</span>( @<span class="hljs-attribute">artist</span> ) %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
 </code></pre>
-<p>We need to feed our <code>new_artist_song_path</code> helper an artist as a variable.</p>
-<ul>
-<li>Now our app knows which artist it is rendering a new song form for.</li>
-</ul>
+<p>We need to feed our <code>new_artist_song_path</code> helper an artist as a variable. Now our app knows which artist it is rendering a new song form for.  </p>
 <p>And that&apos;ll do it. Let&apos;s refresh our page...
 <br><br></p>
 <p><img src="images/fourth-error.png" alt="Fourth Error"></p>
@@ -1266,7 +1247,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <p><br><br></p>
 <p><strong>WE DO:</strong> Help me out with this one.</p>
 <ul>
-<li>We don&apos;t have a path helper at the moment. What page are we trying to link to?</li>
+<li>We don&apos;t have a path helper in the above example. What page are we trying to link to?</li>
 <li>So which path helper do we need to add?</li>
 <li>Do we need to feed it a variable? If so, how many?</li>
 </ul>
