@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 18:09:31 GMT+0000 (UTC)">
+    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 18:21:29 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1039,11 +1039,48 @@ song        <span class="hljs-constant">GET</span>    /songs/<span class="hljs-s
 <br><br></li>
 </ul>
 <h3 id="link-helpers">Link Helpers</h3>
-<p><strong>INCLUDE A CONVERSION EXAMPLE</strong>
-<br><br></p>
+<pre><code class="lang-rb"><span class="hljs-comment"># views/artists/index.html.erb</span>
+
+<span class="hljs-comment"># From this...</span>
+&lt;h2&gt;<span class="hljs-constant">Artists</span> &lt;a href=<span class="hljs-string">&quot;/artists/new&quot;</span>&gt;(+)&lt;<span class="hljs-regexp">/a&gt;&lt;/h</span>2&gt;
+</code></pre>
+<pre><code class="lang-rb"># ...to this
+&lt;h2&gt;Artists &lt;%= link_to &quot;(+)&quot;, new_artist_path %&gt;&lt;/h2&gt;
+</code></pre>
+<p><br><br></p>
 <h3 id="form-helpers">Form Helpers</h3>
-<p><strong>INCLUDE A CONVERSION EXAMPLE</strong>
-<br><br></p>
+<pre><code class="lang-rb"># views/artists/new.html.erb
+
+# From this...
+&lt;form method=&quot;post&quot; action=&quot;/artists&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;authenticity_token&quot; value=&quot;&lt;%= form_authenticity_token %&gt;&quot;&gt;
+
+  &lt;label&gt;Name&lt;/label&gt;
+  &lt;input type=&quot;text&quot; name=&quot;artist[name]&quot;&gt;
+
+  &lt;label&gt;Photo Url&lt;/label&gt;
+  &lt;input type=&quot;text&quot; name=&quot;artist[photo_url]&quot;&gt;
+
+  &lt;label&gt;Nationality&lt;/label&gt;
+  &lt;input type=&quot;text&quot; name=&quot;artist[nationality]&quot;&gt;
+
+  &lt;input type=&quot;submit&quot; value=&quot;Create Artist&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+<pre><code class="lang-html"># ...to this
+<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">form_for</span> @<span class="hljs-attribute">artist</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">f</span>| %&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">f.label</span> <span class="hljs-attribute">:name</span> %&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">f.text_field</span> <span class="hljs-attribute">:name</span> %&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">f.label</span> <span class="hljs-attribute">:photo_url</span> %&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">f.text_field</span> <span class="hljs-attribute">:photo_url</span> %&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">f.label</span> <span class="hljs-attribute">:nationality</span> %&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">f.text_field</span> <span class="hljs-attribute">:nationality</span> %&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">f.submit</span> %&gt;</span>
+</code></pre>
+<p><br><br></p>
 <h2 id="nested-resources-15-55">Nested Resources (15 / 55)</h2>
 <p>The way our app is currently routed isn&apos;t too helpful, right?</p>
 <ul>
