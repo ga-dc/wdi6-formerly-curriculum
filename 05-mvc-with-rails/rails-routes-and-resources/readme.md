@@ -108,15 +108,17 @@ You've seen most of this information before: HTTP request verbs, routes and cont
 **Q:** Can somebody remind me what helpers are and how path helpers fit into that category?
 * **Helpers** make our lives easier and save us the trouble of writing out long, repetitive code.
 * **Path helpers** are references to routes and controller actions.
+* Build them using the prefixes from `rake routes`.
 
 Path helpers vary between routes
 * `index`: `artists_path`
-  * Why do we add `_path`? Generates a relative path (vs. `_url`).
+* Why do we add `_path`? Generates a relative path (vs. `_url`).
 * **Q:** What about the path helper `edit`? How is it different from `index`. Takes an object as an argument.
   * `artists_path( some_artist )    # "/artists/:id/edit"`
 
 Only four path helpers for each model.
-* Some paths can be used for multiple routes (e.g., `artist_path` covers `artists#show` `#update` and `#destroy`). Their purpose depends on context.
+* Some paths can be used for multiple routes (e.g., `artist_path` covers `artists#show` `#update` and `#destroy`).
+* **Q:** Their purpose depends on context. How does HTML know which version of a route to run?
 <br><br>
 
 ## Routes and Helpers (5 / 40)
@@ -183,24 +185,11 @@ The way our app is currently routed isn't too helpful, right?
 * We want our Songs to exist in the context of a parent Artist.
 * Currently we can visit an artist show page, which includes a link of all that artist's songs.
 * But we want to be able to visit a URL like this: `http://www.tu.nr/artists/3/songs/`
-  * What would it mean to have songs/3/artists -- why do we do it this way?
-    * Reflects our data structure -- songs are dependent on an artist
-    * This structure is the most concise way to express our hierarchy of info
-    * Also gives users the ability to edit the URL for specific info
-    * Q: What can we predict about this response based on this URL?
-* This is where nested resources come in...
-
-Let's update our router...
-
-```rb
-# Going from this...
-resources :artists, :songs
-
-# ...to this.
-resources :artists do
-  resources :songs
-end
-```
+* What would it mean to have a URL like that? Why do we do it this way?
+  * It reflects our data structure. Songs are dependent on an artist
+  * It's also the most concise way to express our information hierarchy.
+  * Also gives users the ability to edit the URL to retrieve specific information.
+  * Q: What can we predict about this response based on this URL?
 
 Say we want to list all the Songs by a given Artist. That index route will look something like this...
 
@@ -216,7 +205,7 @@ And our show route will look something like this...
 get "/artists/:id/songs/:id" to "songs#show"
 ```
 
-**Q:** What do you think of these routes? Do you notice anything wrong with them?
+**Q:** What do you think of this show route? Do you notice anything wrong with them?
 * Um, `:id` is used twice. What if they have different values?
 * Exactly! So our routes are going to look something more like this...
 
@@ -238,6 +227,20 @@ post "/artists/:artist_id/songs" to "songs#create"
 * We will not be replacing our resources statements in the `routes.rb` file with this.
   * Rephrase and answer why? Why are we writing these out?
 * **DO NOT** check our answers with `rake routes` quite yet...
+
+Let's update our router...
+
+```rb
+# Going from this...
+resources :artists, :songs
+
+# ...to this.
+resources :artists do
+  resources :songs
+end
+```
+
+
 <br><br>
 
 ## BREAK (10 / 65)
@@ -467,8 +470,19 @@ end
 ```
 <br><br>
 
-**YOU DO:** Now you do the rest! It seems pretty daunting, I know, but you won't have to change anything beyond link helpers, form helpers and controller actions.
+**YOU DO:** Now you do the rest! Debug the following pages/forms so that they don't generate any errors upon loading/submission.
+* `/views/artists`
+  * `edit.html.erb`
+  * `index.html.erb`
+  * `new.html.erb`
+* `/views/songs`
+  * `edit.html.erb`
+  * `index.html.erb`
+  * `show.html.erb`
+
+It seems pretty daunting, but you won't have to change anything beyond link helpers, form helpers and controller actions.
 * If you feel lost, follow the error.
+* Dont worry if you don't get to all of them.
 * Strongly encourage you to work with each other on this.
 * Me and the support instructor are also here to help.
 <br><br>
