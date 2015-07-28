@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 17:56:11 GMT+0000 (UTC)">
+    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 18:09:31 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -916,7 +916,8 @@
 <li>Implement route names in Rails link helpers.</li>
 <li>Implement nested routes in a Rails application.</li>
 <li>Describe how path helpers work for nested routes.</li>
-<li>Implement form_for to build a form for a nested resource.</li>
+<li>Implement form_for to build a form for a nested resource.
+<br><br></li>
 </ul>
 <h2 id="the-router-5-10">The Router (5 / 10)</h2>
 <p>It&apos;s our good ol&apos; friend the Rails rMVC diagram!</p>
@@ -928,7 +929,8 @@
 <ul>
 <li>The gateway to the rMVC (router / model / view / controller).</li>
 <li>So something like this <code>get &quot;/students/2&quot;</code> is directed to the students controller show route.</li>
-<li>Returns an error if the HTTP request is unrecognizable and/or does not match a controller action.</li>
+<li>Returns an error if the HTTP request is unrecognizable and/or does not match a controller action.
+<br><br></li>
 </ul>
 <h2 id="routes-10-20">Routes (10 / 20)</h2>
 <p>You guys dove into Rails&apos; <code>routes.rb</code> file in Andy&apos;s MVC class and create individual routes for pages using Sinatra-like syntax.</p>
@@ -950,7 +952,6 @@ put <span class="hljs-string">&quot;/artists/:id&quot;</span>, to <span class="h
 <ul>
 <li>Just replace the model reference in the HTTP request and controller method.</li>
 </ul>
-<p><strong>C&amp;P:</strong> Commented out individual routes for Artists and Songs.</p>
 <p>You already took care of this in an earlier class, but we can also define the default route that is triggered when a user visits the home page of our application using the <code>root</code> keyword.</p>
 <ul>
 <li>In the below example we direct the user to our artists index page.</li>
@@ -958,6 +959,7 @@ put <span class="hljs-string">&quot;/artists/:id&quot;</span>, to <span class="h
 <pre><code class="lang-rb"><span class="hljs-comment"># When we visit http://localhost:3030/, we trigger the index action in our Artists controller</span>
 root <span class="hljs-symbol">:to</span> =&gt; <span class="hljs-string">&quot;artists#index&quot;</span>
 </code></pre>
+<p><br><br></p>
 <h2 id="resourcesful-routes-5-25">Resourcesful Routes (5 / 25)</h2>
 <p><strong>NOTE:</strong> I may use the terms &quot;resources&quot; and &quot;model&quot; interchangeably.</p>
 <p>During Adam&apos;s class you learned a bit of Rails wizardry that allowed you to generate all of your application&apos;s RESTful routes using one word: <strong>resources</strong>!</p>
@@ -974,7 +976,8 @@ resources <span class="hljs-symbol">:artists</span>, <span class="hljs-symbol">:
 </code></pre>
 <p><code>resources</code> is Rails&apos; preferred method of RESTfully using the router.</p>
 <ul>
-<li><code>resources</code> assumes by Rails convention that you are using properly named controllers -- in this case, <code>artists_controller.rb</code> and <code>songs_controller.rb</code> -- and connects our routes -- also properly-named -- to them.</li>
+<li><code>resources</code> assumes by Rails convention that you are using properly named controllers -- in this case, <code>artists_controller.rb</code> and <code>songs_controller.rb</code> -- and connects our routes -- also properly-named -- to them.
+<br><br></li>
 </ul>
 <h2 id="rake-routes-10-35">Rake Routes (10 / 35)</h2>
 <p>If you&apos;re ever confused as to what routes are available to you based on how you have set up your <code>routes.rb</code> file, Ruby has a handy tool that tells you.</p>
@@ -1003,7 +1006,8 @@ song        <span class="hljs-constant">GET</span>    /songs/<span class="hljs-s
 </code></pre>
 <p>You&apos;ve seen most of this information before: HTTP request verbs, routes and controller actions.</p>
 <ul>
-<li>Path helpers are new, at least from what we learned in Sinatra. You started to learn about them during Adam&apos;s helpers class.</li>
+<li>Path helpers are new, at least from what we learned in Sinatra. You started to learn about them during Adam&apos;s helpers class.
+<br><br></li>
 </ul>
 <h3 id="path-helpers">Path Helpers</h3>
 <p><strong>Q:</strong> Can somebody remind me what helpers are and how path helpers fit into that category?</p>
@@ -1025,17 +1029,21 @@ song        <span class="hljs-constant">GET</span>    /songs/<span class="hljs-s
 </ul>
 <p>Only four path helpers for each model.</p>
 <ul>
-<li>Some paths can be used for multiple routes (e.g., <code>artist_path</code> covers <code>artists#show</code> <code>#update</code> and <code>#destroy</code>). Their purpose depends on context.</li>
+<li>Some paths can be used for multiple routes (e.g., <code>artist_path</code> covers <code>artists#show</code> <code>#update</code> and <code>#destroy</code>). Their purpose depends on context.
+<br><br></li>
 </ul>
 <h2 id="routes-and-helpers-5-40">Routes and Helpers (5 / 40)</h2>
 <p>With path helpers, we can tidy up the other helpers you guys have alrady implemented in Tunr.</p>
 <ul>
-<li>Q: What sort of helpers have we already encountered this week?</li>
+<li>Q: What sort of helpers have we already encountered this week?
+<br><br></li>
 </ul>
 <h3 id="link-helpers">Link Helpers</h3>
-<p><strong>INCLUDE A CONVERSION EXAMPLE</strong></p>
+<p><strong>INCLUDE A CONVERSION EXAMPLE</strong>
+<br><br></p>
 <h3 id="form-helpers">Form Helpers</h3>
-<p><strong>INCLUDE A CONVERSION EXAMPLE</strong></p>
+<p><strong>INCLUDE A CONVERSION EXAMPLE</strong>
+<br><br></p>
 <h2 id="nested-resources-15-55">Nested Resources (15 / 55)</h2>
 <p>The way our app is currently routed isn&apos;t too helpful, right?</p>
 <ul>
@@ -1070,19 +1078,23 @@ get <span class="hljs-string">&quot;/artists/:id/songs/:id&quot;</span> to <span
 get <span class="hljs-string">&quot;/artists/:artist_id/songs&quot;</span> to <span class="hljs-string">&quot;songs#index&quot;</span>
 get <span class="hljs-string">&quot;/artists/:artist_id/songs/:id&quot;</span> to <span class="hljs-string">&quot;songs#show&quot;</span>
 </code></pre>
+<p><br><br></p>
 <p><strong>WE DO:</strong> What do you think the route for our Song create method would look like?</p>
 <pre><code class="lang-rb">post <span class="hljs-string">&quot;/artists/:artist_id/songs&quot;</span> to <span class="hljs-string">&quot;songs#create&quot;</span>
 </code></pre>
+<p><br><br></p>
 <p><strong>YOU DO:</strong> Spend the next 5 minutes writing out the individual routes for our nested resources model.</p>
 <ul>
 <li>We will not be replacing our resources statements in the <code>routes.rb</code> file with this.</li>
-<li><strong>DO NOT</strong> check our answers with <code>rake routes</code> quite yet...</li>
+<li><strong>DO NOT</strong> check our answers with <code>rake routes</code> quite yet...
+<br><br></li>
 </ul>
 <h2 id="break-10-65">BREAK (10 / 65)</h2>
+<p><br><br></p>
 <h2 id="let-s-implement-nested-routes-in-tunr-60-125">Let&apos;s implement nested routes in Tunr! (60 / 125)</h2>
 <p>Okay, so our <code>routes.rb</code> file is updated with nested resources. Let&apos;s see them in action and fire up our Tunr app!</p>
 <h3 id="uh-oh-it-broke">Uh oh. It broke...</h3>
-<p><img src="../../images/first-error.png" alt="First error"></p>
+<p><img src="images/first-error.png" alt="First error"></p>
 <p>That&apos;s okay. You&apos;re going to spend the next hour fixing it!</p>
 <ul>
 <li>Spend 5 minutes looking through your application and think about what we need to change in order to accommodate our new routing system.</li>
@@ -1092,7 +1104,8 @@ get <span class="hljs-string">&quot;/artists/:artist_id/songs/:id&quot;</span> t
 <p>If you find yourself moving along faster than my pace, try implementing the following...</p>
 <ul>
 <li>A third model for Genre that has a <code>belongs_to</code> relationship with Artists.</li>
-<li>There are also some advanced topics included in &quot;Additional Reading&quot; at the bottom of the lesson plan.</li>
+<li>There are also some advanced topics included in &quot;Additional Reading&quot; at the bottom of the lesson plan.
+<br><br></li>
 </ul>
 <h3 id="let-s-look-at-rake-routes-again">Let&apos;s look at <code>rake routes</code> again...</h3>
 <p>Has anything changed?</p>
@@ -1128,7 +1141,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <ol>
 <li>Link Helpers  </li>
 <li>Form Helpers  </li>
-<li>Songs Controller  </li>
+<li>Songs Controller<br><br><br></li>
 </ol>
 <h3 id="let-s-take-another-look-at-that-error">Let&apos;s take another look at that error...</h3>
 <p><img src="images/first-error.png" alt="First error"></p>
@@ -1162,7 +1175,8 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <ul>
 <li>If we try refreshing our home page again, it should work!</li>
 <li>This is the only exception to nested resources that we&apos;ll be using in Tunr.</li>
-<li>If you click on the &quot;Songs&quot; link, it won&apos;t work. Don&apos;t worry about that for now.</li>
+<li>If you click on the &quot;Songs&quot; link, it won&apos;t work. Don&apos;t worry about that for now.
+<br><br></li>
 </ul>
 <h3 id="let-s-click-on-an-artist">Let&apos;s click on an artist...</h3>
 <p>Another error! What went wrong this time?</p>
@@ -1182,7 +1196,8 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 </code></pre>
 <p>By nesting resources, <code>new_song_path</code> became <code>new_artist_song_path</code> since every song we create is now created in the context of an artist.</p>
 <ul>
-<li>But our app is still giving us an error. WHY?!</li>
+<li>But our app is still giving us an error. WHY?!
+<br><br></li>
 </ul>
 <p><img src="images/third-error.png" alt="Third error"></p>
 <p>You&apos;ll notice that we&apos;re getting a different error this time that ends with: <code>missing required keys: [:artist_id]</code></p>
@@ -1198,7 +1213,8 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <ul>
 <li>Now our app knows which artist it is rendering a new song form for.</li>
 </ul>
-<p>And that&apos;ll do it. Let&apos;s refresh our page...</p>
+<p>And that&apos;ll do it. Let&apos;s refresh our page...
+<br><br></p>
 <p><img src="images/fourth-error.png" alt="Fourth Error"></p>
 <p>So now what? The link helper for an individual song inside of our .each enumerator isn&apos;t working.</p>
 <pre><code class="lang-html"># /views/artists/show.html.erb
@@ -1211,6 +1227,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
   <span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
 </code></pre>
+<p><br><br></p>
 <p><strong>WE DO:</strong> Help me out with this one.</p>
 <ul>
 <li>We don&apos;t have a path helper at the moment. What page are we trying to link to?</li>
@@ -1228,6 +1245,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
   <span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
 </code></pre>
+<p><br><br></p>
 <p><strong>YOU DO:</strong> From an artist show page, click on a song. You should get an error.</p>
 <ul>
 <li>I want you to try fixing the <code>songs/show.html.erb</code> file.</li>
@@ -1235,7 +1253,8 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <li>Remember, our song routes don&apos;t look the same as they did before!</li>
 </ul>
 </li>
-<li>I&apos;ll check in after 5 minutes.</li>
+<li>I&apos;ll check in after 5 minutes.
+<br><br></li>
 </ul>
 <h3 id="form-helpers">Form Helpers</h3>
 <p>Something else we&apos;ll need to change are forms. Let&apos;s try making a new song.</p>
@@ -1285,6 +1304,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
   # form contents
 <span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
 </code></pre>
+<p><br><br></p>
 <p><strong>WE DO:</strong> So that takes care of the form. Now we need to fix the <code>create</code> controller action in <code>songs_controller.rb</code> so that we can add songs to artists!</p>
 <ul>
 <li>We need an artist to add a song to, right? How do we set that up.</li>
@@ -1301,22 +1321,27 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
   redirect_to artist_path(<span class="hljs-variable">@artist</span>)
 <span class="hljs-keyword">end</span>
 </code></pre>
+<p><br><br></p>
 <p><strong>YOU DO:</strong> Now you do the rest! It seems pretty daunting, I know, but you won&apos;t have to change anything beyond link helpers, form helpers and controller actions.</p>
 <ul>
 <li>If you feel lost, follow the error.</li>
 <li>Strongly encourage you to work with each other on this.</li>
-<li>Me and the support instructor are also here to help.</li>
+<li>Me and the support instructor are also here to help.
+<br><br></li>
 </ul>
 <h2 id="break-10-135">BREAK (10 / 135)</h2>
+<p><br><br></p>
 <h2 id="additional-optional-reading">Additional (Optional) Reading</h2>
 <ul>
 <li><a href="http://guides.rubyonrails.org/routing.html" target="_blank">Rails Routing From The Outside In</a></li>
 <li><a href="https://blog.engineyard.com/2010/the-lowdown-on-routes-in-rails-3" target="_blank">The Lowdown On Routes</a></li>
-<li><a href="http://notahat.com/2014/02/05/scoping-rails-routes.html" target="_blank">Scoping Rails Routes</a></li>
+<li><a href="http://notahat.com/2014/02/05/scoping-rails-routes.html" target="_blank">Scoping Rails Routes</a>
+<br><br></li>
 </ul>
 <h2 id="homework-15-150">Homework (15 / 150)</h2>
 <p><a href="https://github.com/ga-dc/scribble#routes" target="_blank">Add nested resources to your Blog!</a></p>
-<p>Spend the remaining class-time either working on your homework or you can ask me questions on anything you&apos;ve learned this week.</p>
+<p>Spend the remaining class-time either working on your homework or you can ask me questions on anything you&apos;ve learned this week.
+<br><br></p>
 <h2 id="sample-quiz-questions">Sample Quiz Questions</h2>
 
                     
