@@ -27,8 +27,6 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :username
       t.string :password
-
-      t.timestamps null: false
     end
   end
 end
@@ -64,6 +62,7 @@ Rails.application.routes.draw do
     resources :songs
     resources :genres
   end
+  get '/signin', to: 'users#signin_prompt'
   post '/signin', to: 'users#signin'
   get '/signout', to: 'users#signout'
 end
@@ -110,24 +109,39 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
+  def signin_prompt
+
+  end
+
   def signout
 
   end
 end
 ```
 
-Finally, we'll create a sign-in form in the main application layout so it appears across the top of every page. The form will POST to that `/signin` route.
+Next, we'll create a sign-in form. The form will POST to that `/signin` route.
 
 ```
-# app/views/layouts/application.html.erb
+# app/views/users/signin_prompt.html.erb
 
-...
-<h1>Tun.r</h1>
 <%= form_tag("/signin", method: "post") do %>
   <input type="text" name="username" placeholder="username" />
   <input type="password" name="password" placeholder="password" />
   <input type="submit" value="Sign in" />
 <% end %>
+```
+
+...and lastly, we'll make a link to the sign-in page on the main application layout.
+
+```
+# app/views/layout/application.html.erb
+
+...
+<nav>
+  <a href="/signin">Sign in</a>
+  <a href="/songs">Songs</a>
+  <a href="/artists">Artists</a>
+</nav>
 ...
 ```
 
@@ -145,23 +159,19 @@ Rails gives us a handy method for showing users error messages, called `flash`. 
   def signin
 ...
     flash[:sign_in_message] = message
-    redirect_to :back
   end
 ...
 ```
 
 ```
-# app/views/layouts/application.html.erb
+# app/users/signin_prompt.html.erb
 
-...
-<h1>Tun.r</h1>
 <h2><%= flash[:sign_in_message] %></h2>
 <%= form_tag("/signin", method: "post") do %>
   <input type="text" name="username" placeholder="username" />
   <input type="password" name="password" placeholder="password" />
   <input type="submit" value="Sign in" />
 <% end %>
-...
 ```
 
 ## Password security
@@ -322,7 +332,7 @@ We need to figure out a way to have Rails remember I'm signed in.
 - Click "All cookies and site data"
 - Scroll to `github.com`
 
-Click around on the different "buttons" or "tabs". In particular, look at `dotcom_user`, `logged_in`, and `tz`.
+Click around on the different "buttons" or "tabs". In particular, look at `dotcom_user`, `signed_in`, and `tz`.
 
 #### Turn and talk: What do you see? What do these do?
 
@@ -408,7 +418,7 @@ Note that `cookies` is a **hash**, just like any other hash. If I put `<%= cooki
 
 ### Applying to Tunr
 
-This doesn't solve the staying-logged-in problem, but we can add a nice touch to our app by having it "remember" your username. You've probably seen those "Remember me?" boxes whenever you log in somewhere.
+This doesn't solve the staying-signed-in problem, but we can add a nice touch to our app by having it "remember" your username. You've probably seen those "Remember me?" boxes whenever you log in somewhere.
 
 This `signin` method should get the `username` from the `params` that were POSTed. Then, let's have it save the username as a cookie, and redirect the user back to where they were before.
 
@@ -427,16 +437,14 @@ end
 Finally, so we can see our handiwork, lets change the sign-in form so that the username is automatically filled in if the "username" cookie is set.
 
 ```
-# app/views/layouts/application.html.erb
+# app/views/users/signin_prompt.html.erb
 
-...
 <h2><%= flash[:sign_in_message] %></h2>
 <%= form_tag("/signin", method: "post") do %>
   <input type="text" name="username" placeholder="username" value="<%= cookies[:username] %>"/>
   <input type="password" name="password" placeholder="password" />
   <input type="submit" value="Sign in" />
 <% end %>
-...
 ```
 
 Now, when I type in a username and "Sign in", my username is filled in! I can close the browser, and when I go back to the page it'll still be there.
@@ -445,12 +453,12 @@ Hopefully you can start to see the utility of cookies. They were originally inve
 
 ### Same old problem
 
-Now we can show the username on every page of the app. But this isn't actually keeping the user signed in on every page of the app.
+Now we can remember the user's username. But we're not actually remembering the user is signed in.
 
 We could just create a cookie called `is_signed_in` and set that to true.
 
 #### What could go wrong with using an `is_signed_in` cookie?
-- Cookies are stored on the user's computer. This means we're basically relying on a user to tell us whether or not they're logged in. That's not very secure. There are Chrome extensions that let you add and edit the cookies on your computer. **We** want to tell the **user** whether or not they're logged in, not have them tell us.
+- Cookies are stored on the user's computer. This means we're basically relying on a user to tell us whether or not they're signed in. That's not very secure. There are Chrome extensions that let you add and edit the cookies on your computer. **We** want to tell the **user** whether or not they're signed in, not have them tell us.
 
 ## Sessions
 
@@ -486,7 +494,7 @@ cookies = {
 session_vars = {
   "1234567": {...},
   "8675309": {
-    "is_logged_in": true
+    "is_signed_in": true
   }
 }
 ```
@@ -511,7 +519,7 @@ Expires:  When the browsing session ends
 
 ### Applying to Tunr
 
-Let's add an `is_logged_in` session variable to Tunr. We'll create it in the Users controller. We also may as well do something with the `signout` action we created before: we'll just have it clear all the session variables.
+Let's add an `is_signed_in` session variable to Tunr. We'll create it in the Users controller. We also may as well do something with the `signout` action we created before: we'll just have it clear all the session variables.
 
 ```
 # app/controllers/users_controller.rb
@@ -520,7 +528,7 @@ def signin
 ...
   message = "You're signed in, #{params[:username]}! :)"
   cookies[:username] = params[:username]
-  session[:is_logged_in] = true
+  session[:is_signed_in] = true
   session[:user] = User.find_by(username: params[:username])
 ...
 end
@@ -531,23 +539,68 @@ def signout
 end
 ```
 
-Now let's modify the application layout accordingly. The sign-in form should show up only if the user isn't signed in. If they **are** signed in, we'll show a "sign out" link.
+Now let's modify the application layout accordingly. If the user isn't signed in, we'll show a "sign in" link. If they **are** signed in, we'll show a "sign out" link.
 
 ```
 # app/views/layouts/application.html.erb
 
 ...
-<h2><%= flash[:sign_in_message] %></h2>
-<% if session[:is_signed_in] %>
-  <h2><%= session[:user]["username"] %>: <a href="/signout">sign out</a></h2>
-<% else %>
-  <%= form_tag("/signin", method: "post") do %>
-    <input type="text" name="username" placeholder="username" value="<%= cookies[:username] %>" />
-    <input type="password" name="password" placeholder="password" />
-    <input type="submit" value="Sign in" />
+<nav>
+  <% if session[:is_signed_in] %>
+    <a href="/signout"><%= session[:user]["username"] %>: sign out</a></h2>
+  <% else %>
+    <a href="/signin">Sign in</a>
   <% end %>
-<% end %>
+  <a href="/songs">Songs</a>
+  <a href="/artists">Artists</a>
+</nav>
 ...
+```
+
+### Before actions
+
+We'll tighten up this app even more by making it so you can't see **anything** unless you've logged in.
+
+We're going to use a method called `before_action`. This lets us do something before *every single action* happens.
+
+In this case, we're going to use it to authenticate the user before every action.
+
+#### What's the difference between "authenticate" and "authorize"?
+- Authenticating is checking whether someone is who they say they are
+- Authorizing is giving someone special privileges
+  - So when you've *authenticated* a user, they are *authorized* to use your app
+
+```
+# app/controllers/application_controller.rb
+
+class ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+  before_action :authenticate
+
+  private
+  def authenticate
+    if !session[:is_signed_in]
+      redirect_to "/signin"
+    end
+  end
+end
+```
+
+*(**Note** that `protect_from_forgery` thing: that works via sessions. It inserts a hidden random string on every form in your app. When that form is submitted, Rails compares that string against a session variable it set for you.)*
+
+If we run the app now... we'll get a "too many redirects" error. That's because we're telling the app to redirect to the signin page before every action... including just trying to go to the signin page. So when someone is directed to the signin page, they're redirected to the signin page, and redirected, and redirected...
+
+We want this authentication to happen on every action **except** the user actions. So we can use another special method called `skip_before_action`:
+
+```
+# app/controllers/users_controller.rb
+
+class UsersController < ApplicationController
+  skip_before_action :authenticate
+...
+end
 ```
 
 ## Putting it all together
@@ -613,38 +666,9 @@ With this done, we can **modify the controller to show the songs and artists for
 # app/controllers/artists_controller.rb
 
 def index
-  @artists = session[:user] ? User.find(session[:user]["id"]).artists : []
+  @artists = User.find(session[:user]["id"]).artists
 end
 ```
-
-Without cookies to keep the username on every page of the app, the user would have to type their username every single time they wanted to add a new artist.
-
-## Security
-
-Now imagine instead of songs and artists this app stored transactions and bank accounts. If you knew someone else's username, you could see all their transactions.
-
-No problem: we'll create a "users" model that has a username and a password. The passwords will be stored in the database:
-
-|id|username|password|
-|-|-|-|
-|1|robertakarobin|spatulabagel|
-|2|andykim|argylesocks|
-|3|adambray|correcthorsebatterystaple|
-
-So you go to the app, enter your username and password, click "sign in", it checks to make sure the password matches your username... And then what?
-
-#### How can we keep the user from needing to enter their password on every page?
-- Save the password as a cookie?
-  - Anyone else who uses your computer could go into Chrome, look at the cookies, and see your password
-- Save a cookie called "is_logged_in"?
-  - That would make your site really insecure. There are Chrome extensions that let you create cookies for any site. Someone could come to your site and just make an "is_logged_in" cookie.
-
-
-## Sessions
-
-Let's go back to our old problem: how to keep Tunr users from needing to enter their password on every page of the app.
-
-We're keeping their username as a cookie, and their password as a hash in the database.
 
 ## Review
 
@@ -654,3 +678,4 @@ We're keeping their username as a cookie, and their password as a hash in the da
   - (a) the database, (b) the server
   - (a) the browser, (b) the server
 - What's the difference between encryption and hashing?
+- What's the difference between authenticating and authorizing?
