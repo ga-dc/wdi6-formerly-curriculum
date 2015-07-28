@@ -111,10 +111,9 @@ You've seen most of this information before: HTTP request verbs, routes and cont
 
 Path helpers vary between routes
 * `index`: `artists_path`
-* **Q:** What about the path helper `edit`? How is it different from `index`?
-  * Takes an object as an argument.
-    * `artists_path( some_artist )    # "/artists/:id/edit"`
-* **WHEN DO NON-NESTED PATH HELPERS TAKE ARGUMENTS (e.g., songs#show view edit link, artists#show view edit link)**
+  * Why do we add `_path`? Generates a relative path (vs. `_url`).
+* **Q:** What about the path helper `edit`? How is it different from `index`. Takes an object as an argument.
+  * `artists_path( some_artist )    # "/artists/:id/edit"`
 
 Only four path helpers for each model.
 * Some paths can be used for multiple routes (e.g., `artist_path` covers `artists#show` `#update` and `#destroy`). Their purpose depends on context.
@@ -183,7 +182,12 @@ With path helpers, we can tidy up the other helpers you guys have alrady impleme
 The way our app is currently routed isn't too helpful, right?
 * We want our Songs to exist in the context of a parent Artist.
 * Currently we can visit an artist show page, which includes a link of all that artist's songs.
-* But we want to be able to visit a URL like this: `http://www.tu.nr/3/songs/`
+* But we want to be able to visit a URL like this: `http://www.tu.nr/artists/3/songs/`
+  * What would it mean to have songs/3/artists -- why do we do it this way?
+    * Reflects our data structure -- songs are dependent on an artist
+    * This structure is the most concise way to express our hierarchy of info
+    * Also gives users the ability to edit the URL for specific info
+    * Q: What can we predict about this response based on this URL?
 * This is where nested resources come in...
 
 Let's update our router...
@@ -232,6 +236,7 @@ post "/artists/:artist_id/songs" to "songs#create"
 
 **YOU DO:** Spend the next 5 minutes writing out the individual routes for our nested resources model.
 * We will not be replacing our resources statements in the `routes.rb` file with this.
+  * Rephrase and answer why? Why are we writing these out?
 * **DO NOT** check our answers with `rake routes` quite yet...
 <br><br>
 
@@ -248,7 +253,7 @@ Okay, so our `routes.rb` file is updated with nested resources. Let's see them i
 
 That's okay. You're going to spend the next hour fixing it!
 * Spend 5 minutes looking through your application and think about what we need to change in order to accommodate our new routing system.
-* Don't worry about solving the problem immediately. Start by identifying things we need to change.
+* Don't worry about solving the problem immediately. Start by identifying files we need to change.
 
 
 ### Bonuses
@@ -296,40 +301,9 @@ Having seen this, let's make a To-Do list of things to change in our Rails app s
 
 ![First error](images/first-error.png)
 
-Our application doesn't seem to like the `songs_path` in our `application.html.erb` left over from our former life as a non-nested-resource application.
-
-```erb
-# /views/layouts/application.html.erb
-
-<nav>
-    <%= link_to "Songs", songs_path %>
-    <%= link_to "Artists", artists_path %>
-</nav>
-```
-
-This link would normally take us to a list of all the songs in our database.
-* I think we should keep this route!
-* We're going to cheat a little bit and preserve this non-nested route by making a change in `routes.rb`.
-
-```rb
-# config/routes.rb
-
-Rails.application.routes.draw do
-  root to: 'artists#index'
-
-  resources :artists do
-    resources :songs
-  end
-
-  # We're creating non-nested resources for Song, but only allowing the index controller action
-  resources :songs, only: :index
-end
-```
-
-If we enter `rake routes` into our terminal again, you'll notice that `songs_path` now appears at the bottom of the list.
-* If we try refreshing our home page again, it should work!
-* This is the only exception to nested resources that we'll be using in Tunr.
-* If you click on the "Songs" link, it won't work. Don't worry about that for now.
+How do we fix this? **DELETE IT**.
+* The original link took us to a list of all the songs in our application.
+* While getting rid of it may be a bad move from a usability standpoint, by implementing nested resources we made the decision that songs will never exist independent from an artist.
 <br><br>
 
 ### Let's click on an artist...
@@ -371,8 +345,7 @@ You'll notice that we're getting a different error this time that ends with: `mi
 <h3>Songs <%= link_to "(+)", new_artist_song_path( @artist ) %></h3>
 ```
 
-We need to feed our `new_artist_song_path` helper an artist as a variable.
-* Now our app knows which artist it is rendering a new song form for.
+We need to feed our `new_artist_song_path` helper an artist as a variable. Now our app knows which artist it is rendering a new song form for.  
 
 And that'll do it. Let's refresh our page...
 <br><br>
@@ -395,7 +368,7 @@ So now what? The link helper for an individual song inside of our .each enumerat
 <br><br>
 
 **WE DO:** Help me out with this one.
-* We don't have a path helper at the moment. What page are we trying to link to?
+* We don't have a path helper in the above example. What page are we trying to link to?
 * So which path helper do we need to add?
 * Do we need to feed it a variable? If so, how many?
 
