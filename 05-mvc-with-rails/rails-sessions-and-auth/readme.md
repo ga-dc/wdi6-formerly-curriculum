@@ -10,16 +10,18 @@
 - Describe the functionality of `has_secure_password`.
 - Differentiate between authentication and authorization.
 
+**Please follow along with the lesson plan.**
+
 ## Adding users
 
 Currently, Tunr just supports one single user. It would be nice if it could have multiple users. Whenever a user logs in, they'd see only *their* artists and songs.
 
-To start, let's create a User model. It's going to be really simple, with just a username and password:
+To start, let's **create a User model**. It's going to be really simple, with just a username and password:
 
 ```
 rails generate migration create_users
 ```
-```
+```rb
 # db/migrate/[timestamp]_users.db
 
 class CreateUsers < ActiveRecord::Migration
@@ -38,9 +40,9 @@ We'll talk about why this is `password_digest` instead of just `password` later.
 rake db:migrate
 ```
 
-Let's make sure each user has a unique username, and always has a password:
+Let's **validate** that each user has a unique username, and always has a password:
 
-```
+```rb
 # app/models/user.rb
 
 class User < ActiveRecord::Base
@@ -49,13 +51,15 @@ class User < ActiveRecord::Base
 end
 ```
 
-#### What actions should a user have, to start off with?
+##### What actions should a user have, to start off with?
 - To make things a little simpler, instead of having actions for signing up and signin in, we'll just have one: if someone tries to sign in with a username that doesn't exist, an account will be created for them.
 - Also, we won't add in an "edit password" functionality yet.
 
-#### What kind of HTTP request should go to each action?
+##### What kind of HTTP request should go to each action?
 
-```
+Now we'll set up the **routes** to direct requests to the proper controller actions:
+
+```rb
 # config/routes.rb
 
 Rails.application.routes.draw do
@@ -73,8 +77,6 @@ end
 
 Now we'll need a controller to actually receive and respond to these requests.
 
-We'll come back to `signout` later.
-
 - If a username isn't provided, throw an error
 - If a password isn't provided, throw an error
 - If a password is provided...
@@ -83,7 +85,11 @@ We'll come back to `signout` later.
     - If the password doesn't match, throw an error
     - If the password matches, the user is signed in
 
-```
+We'll come back to `signout` later.
+
+Let's make the **users controller**:
+
+```rb
 # app/controllers/users_controller.rb
 
 class UsersController < ApplicationController
@@ -125,9 +131,9 @@ class UsersController < ApplicationController
 end
 ```
 
-Next, we'll create a sign-in form. The form will POST to that `/signin` route.
+Next, we'll create **a sign-in form**. The form will POST to that `/signin` route.
 
-```
+```erb
 # app/views/users/signin_prompt.html.erb
 
 <%= form_tag("/signin", method: "post") do %>
@@ -137,21 +143,21 @@ Next, we'll create a sign-in form. The form will POST to that `/signin` route.
 <% end %>
 ```
 
-...and lastly, we'll make a link to the sign-in page on the main application layout.
+...and lastly, we'll make a link to the sign-in page on the **main application layout**.
 
-```
+```erb
 # app/views/layout/application.html.erb
 
-...
+# ...
 <nav>
   <a href="/signin">Sign in</a>
   <a href="/songs">Songs</a>
   <a href="/artists">Artists</a>
 </nav>
-...
+# ...
 ```
 
-...and now if we run our application, we can see that it's working successfully!
+...and now if we **run** our application, we can see that it's working successfully!
 
 ## The Flash
 
@@ -159,17 +165,21 @@ Next, we'll create a sign-in form. The form will POST to that `/signin` route.
 
 Rails gives us a handy method for showing users error messages, called `flash`. It's a hash that is generated in one controller action, and is accessible only in the *next* controller action. That is: a flash message is single-use.
 
-```
+Let's **add flash messages to the Users controller**:
+
+```rb
 # app/controllers/users_controller.rb
 
   def signin
-...
+# ...
     flash[:sign_in_message] = message
   end
-...
+# ...
 ```
 
-```
+...and make the flash messages **show up in the view**:
+
+```erb
 # app/users/signin_prompt.html.erb
 
 <h2><%= flash[:sign_in_message] %></h2>
@@ -182,7 +192,7 @@ Rails gives us a handy method for showing users error messages, called `flash`. 
 
 ## Password security
 
-#### All the passwords are stored in the database as plain text. Why is that a problem?
+##### All the passwords are stored in the database as plain text. Why is that a problem?
 
 Most people use the same password for many sites. Anyone with access to the database could see people's passwords and easily try them out on other sites.
 
@@ -196,7 +206,7 @@ There is no such thing as a completely secure system. With enough time and effor
 
 Your best bet is to make it **annoying** to hack your system.
 
-#### Given two systems, what would make a hacker choose to hack one over the other?
+##### Given two systems, what would make a hacker choose to hack one over the other?
 - Effort required
 - Potential payout
 - Severity of consequences
@@ -212,7 +222,7 @@ If all you're protecting is a handful of e-mail addresses or comments on a minor
 
 ### Hashing
 
-#### So how can we make it annoying to try to hack the passwords in our database?
+##### So how can we make it annoying to try to hack the passwords in our database?
 - Encrypt
   - But what if someone figures out your encryption algorithm?
 
@@ -230,7 +240,7 @@ This is my password, encrypted with an algorithm. I'll give you some hints: my p
 33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601 ^ (1/40)
 ```
 
-#### Why am I still confident that you won't figure out my password?
+##### Why am I still confident that you won't figure out my password?
 - Because that's a really, really difficult calculation for any computer to make!
 
 So let's say instead of my password, the database stores this number, which is only about 260 bytes as a string. When I enter my password, my app takes whatever I entered to the 40th power. If it matches, even though it doesn't know my actual password, it knows I entered my password correctly. If what I entered is just one number off, the calculation's result will be completely different, and it won't match.
@@ -245,24 +255,29 @@ Hashing is used very, very widely in **authentication** -- that is, making sure 
 
 We're going to use a gem called "bcrypt" that uses a really secure hashing algorithm.
 
+Add it to your **Gemfile**...
+
 ```
 # Gemfile
 
-...
+# ...
 gem 'bcrypt'
-...
+# ...
 ```
+
+...and **install the Gem**:
+
 ```
 bundle install
 ```
 
-Let's play around with it in the rails console:
+Let's play around with it in the **rails console**:
 
 ```
 rails c
 ```
 
-If we run this multiple times, we get a different result each time:
+BCrypt's hashing method is `BCrypt::Password.create`. If we run this multiple times, we get a different result each time:
 
 ```
 > BCrypt::Password.create("hello")
@@ -283,12 +298,12 @@ To check whether a string matches the hash, we first have to let BCrypt decode i
  => true
 ```
 
-Putting this all together in Tunr:
+Putting this all together in Tunr, we'll **hash passwords in the Users controller**:
 
-```
+```rb
 # app/controllers/users_controller.rb
 
-...
+# ...
 def signin
   if params[:username].strip == ""
     message = "You forgot to enter a username!"
@@ -316,7 +331,7 @@ def signin
   flash[:sign_in_message] = message
   redirect_to :back
 end
-...
+# ...
 ```
 
 ## has_secure_password
@@ -327,9 +342,9 @@ Rails provides a method called `has_secure_password` does... about what you woul
 - Making sure the password is between 8 and 72 characters
 - If you have a "type your password again to confirm it" field, it makes sure they match
 
-To use it, just add it to your User model in place of `validates :password`, etc.
+To use it, just **add has_secure_password to your User model** in place of `validates :password`, etc.
 
-```
+```rb
 # app/models/user.rb
 
 class User < ActiveRecord::Base
@@ -340,12 +355,12 @@ end
 
 ## User persistence
 
-#### What's missing from our user sign-in process?
-#### If I refresh the page, am I still signed in?
+##### What's missing from our user sign-in process?
+##### If I refresh the page, am I still signed in?
 
 We need to figure out a way to have Rails remember I'm signed in.
 
-#### Why not just created an "is_signed_in" column in my User table?
+##### Why not just created an "is_signed_in" column in my User table?
 - How would Rails now how to sign out? More importantly, if multiple users are accessing the app, how would Rails know which signed_in user is on which computer?
 
 ## Cookie Monster
@@ -359,7 +374,7 @@ We need to figure out a way to have Rails remember I'm signed in.
 
 Click around on the different "buttons" or "tabs". In particular, look at `dotcom_user`, `signed_in`, and `tz`.
 
-#### Turn and talk: What do you see? What do these do?
+##### Turn and talk: What do you see? What do these do?
 
 A *cookie* is a piece of data stored on your computer by your web browser and associated with a particular website.
 
@@ -389,9 +404,9 @@ Created: Saturday, July 25, 2015 at 6:07:09 PM
 Expires: When the browsing session ends
 ```
 
-#### What might be the purpose of these cookies?
-#### Why is Github's expiration date so far in the future, while Wells Fargo's is when the browsing session ends?
-#### What's the significance of 'Send for: Secure connections only'?
+##### What might be the purpose of these cookies?
+##### Why is Github's expiration date so far in the future, while Wells Fargo's is when the browsing session ends?
+##### What's the significance of 'Send for: Secure connections only'?
 
 Notice the "Accessible to script". Cookies can be accessed via Javascript.
 
@@ -403,65 +418,54 @@ tz=America%2FNew_York; _ga=GA1.2.3456.7890; _gat=1"
 
 Hiding from scripts, expiration dates, secure connections only...
 
-#### Turn and talk: Why does security with cookies seem to be such a big deal?
+##### Turn and talk: Why does security with cookies seem to be such a big deal?
 
 ### Writing
 
-Modifying cookies is super easy. In Tunr:
-```
-# controllers/artists_controller.rb
+Modifying cookies is super easy. Let's have Tunr "remember" the username **when users run the signin controller action** by saving it as a cookie:
 
-def index
-  cookies["Why did the chicken cross the road?"] = "To get to the other side"
-  @artists = Artist.all
+```rb
+# app/controllers/users_controller.rb
+
+def signin
+# ...
+else
+  message = "You're signed in, #{params[:username]}! :)"
+  cookies[:username] = params[:username]
 end
+# ...
 ```
 
-Now, when I go to the `artists#index` page (that is, the main page)... nothing seems to happen. But if I check the cookies for `localhost` in Chrome, there's now a cookie called `Why+did+the+chicken+cross+the+road%3F`, with the value "To get to the other side"!
+If I check the cookies for `localhost` in Chrome, there's now a cookie called `username`!
 
 I can change the expiration time of my cookie like this:
 
-```
-def index
-  cookies["Why did the chicken cross the road?"] = {
-    value: "To get to the other side",
-    expires: 10.seconds.from_now
+```rb
+# app/controllers/users_controller.rb
+
+def signin
+# ...
+else
+  message = "You're signed in, #{params[:username]}! :)"
+  cookies[:username] = {
+    value: params[:username],
+    expires: 100.years.from_now
   }
-  @artists = Artist.all
 end
+# ...
 ```
 
-If I immediately look at the cookies for `localhost` I can see this cookie. If I close the window, wait a few seconds, and look again, it's vanished!
+If I make this `10.seconds.from_now`, sign in again, and immediately look at the cookies for `localhost` I can see this cookie. If I close the window, wait a few seconds, and look again, it's vanished!
 
 By default, the expiration time is "when the current session ends" -- that is, when the browser is closed.
 
 ### Reading
 
-To **read** my cookie, I just use `cookies["Why did the chicken cross the road?"]`. I can put this right in an `.html.erb` page.
+`cookies` is a **hash**, just like any other hash. If I put `<%= cookies.to_json %>` in my `.html.erb`, it'll show me all the cookies for this domain (`localhost`, in this case).
 
-Note that `cookies` is a **hash**, just like any other hash. If I put `<%= cookies.to_json %>` in my `.html.erb`, it'll show me all the cookies for this domain (`localhost`, in this case).
+To **read** my cookie, I just use `cookies[:username]`. I'll put this in the `signin_prompt` page to **have the username filled in automatically**:
 
-### Applying to Tunr
-
-This doesn't solve the staying-signed-in problem, but we can add a nice touch to our app by having it "remember" your username. You've probably seen those "Remember me?" boxes whenever you log in somewhere.
-
-This `signin` method should get the `username` from the `params` that were POSTed. Then, let's have it save the username as a cookie, and redirect the user back to where they were before.
-
-```
-# app/controllers/users_controller.rb
-
-def signin
-...
-else
-  message = "You're signed in, #{params[:username]}! :)"
-  cookies[:username] = params[:username]
-end
-...
-```
-
-Finally, so we can see our handiwork, lets change the sign-in form so that the username is automatically filled in if the "username" cookie is set.
-
-```
+```erb
 # app/views/users/signin_prompt.html.erb
 
 <h2><%= flash[:sign_in_message] %></h2>
@@ -482,7 +486,7 @@ Now we can remember the user's username. But we're not actually remembering the 
 
 We could just create a cookie called `is_signed_in` and set that to true.
 
-#### What could go wrong with using an `is_signed_in` cookie?
+##### What could go wrong with using an `is_signed_in` cookie?
 - Cookies are stored on the user's computer. This means we're basically relying on a user to tell us whether or not they're signed in. That's not very secure. There are Chrome extensions that let you add and edit the cookies on your computer. **We** want to tell the **user** whether or not they're signed in, not have them tell us.
 
 ## Sessions
@@ -539,23 +543,23 @@ Created:  Tuesday, July 28, 2015 at 10:54:08 AM
 Expires:  When the browsing session ends
 ```
 
-#### Looking at this cookie, why would you say session variables are called "ession variables"?
+##### Looking at this cookie, why would you say session variables are called "ession variables"?
 - The session ID is destroyed when your browsing session ends, making those session variables inaccessible.
 
 ### Applying to Tunr
 
-Let's add an `is_signed_in` session variable to Tunr. We'll create it in the Users controller. We also may as well do something with the `signout` action we created before: we'll just have it clear all the session variables.
+Let's add an `is_signed_in` session variable to Tunr. We'll create it in the Users controller. We also may as well do something with the `signout` action we created before: we'll just have **the signout controller action clear all the session variables**.
 
-```
+```rb
 # app/controllers/users_controller.rb
 
 def signin
-...
+# ...
   message = "You're signed in, #{params[:username]}! :)"
   cookies[:username] = params[:username]
   session[:is_signed_in] = true
   session[:user] = User.find_by(username: params[:username])
-...
+# ...
 end
 
 def signout
@@ -564,12 +568,12 @@ def signout
 end
 ```
 
-Now let's modify the application layout accordingly. If the user isn't signed in, we'll show a "sign in" link. If they **are** signed in, we'll show a "sign out" link.
+Now let's **modify the application layout accordingly**. If the user isn't signed in, we'll show a "sign in" link. If they **are** signed in, we'll show a "sign out" link.
 
-```
+```erb
 # app/views/layouts/application.html.erb
 
-...
+# ...
 <nav>
   <% if session[:is_signed_in] %>
     <a href="/signout"><%= session[:user]["username"] %>: sign out</a></h2>
@@ -579,7 +583,7 @@ Now let's modify the application layout accordingly. If the user isn't signed in
   <a href="/songs">Songs</a>
   <a href="/artists">Artists</a>
 </nav>
-...
+# ...
 ```
 
 ### Before actions
@@ -590,12 +594,14 @@ We're going to use a method called `before_action`. This lets us do something be
 
 In this case, we're going to use it to authenticate the user before every action.
 
-#### What's the difference between "authenticate" and "authorize"?
+##### What's the difference between "authenticate" and "authorize"?
 - Authenticating is checking whether someone is who they say they are
 - Authorizing is giving someone special privileges
   - So when you've *authenticated* a user, they are *authorized* to use your app
 
-```
+Let's **update the application controller to authenticate before every action**:
+
+```rb
 # app/controllers/application_controller.rb
 
 class ApplicationController < ActionController::Base
@@ -617,14 +623,16 @@ end
 
 If we run the app now... we'll get a "too many redirects" error. That's because we're telling the app to redirect to the signin page before every action... including just trying to go to the signin page. So when someone is directed to the signin page, they're redirected to the signin page, and redirected, and redirected...
 
-We want this authentication to happen on every action **except** the user actions. So we can use another special method called `skip_before_action`:
+We want this authentication to happen on every action **except** the user actions. So we can use another special method called `skip_before_action`.
 
-```
+Let's update the **User controller** to prevent authentication, and therefore an infinite loop:
+
+```rb
 # app/controllers/users_controller.rb
 
 class UsersController < ApplicationController
   skip_before_action :authenticate
-...
+# ...
 end
 ```
 
@@ -636,14 +644,14 @@ Now that we're letting the app have multiple users, we need to associate each so
 
 **Important note:** The way the app's set up, if 30 users all add "Bohemian Rhapsody" to their playlist, there will be 30 copies of "Bohemian Rhapsody" and in the "Songs" table, and at least 30 copies of "Queen" in the "Artists" table. This isn't very efficient, but it's useful for demonstrating the concepts we're covering here.
 
-#### How do we associate songs and artists with a user?
+##### How do we associate songs and artists with a user?
 - Give the `songs` and `artists` tables a `user_id` column?
   - We can actually do it with less work. Each song already belongs to an artist, so we'll just make each artist belong to a user and leave the songs alone -- that is, we'll **add a `user_id` column to the `artists` table**. *(This means you can't have a song without an artist, but I'm OK with that.)*
 
 ```
 rails generate migration addUsersToArtists
 ```
-```
+```rb
 # db/migrate/[timestamp]_add_users_to_artists.rb
 
 class AddUserToArtists < ActiveRecord::Migration
@@ -655,7 +663,7 @@ end
 
 Now let's make sure we can do `@user.artists` and `@artist.user` and so forth by **updating the Artist model and creating a User model**:
 
-```
+```rb
 # app/models/artist.rb
 
 class Artist < ActiveRecord::Base
@@ -664,7 +672,7 @@ class Artist < ActiveRecord::Base
 end
 ```
 
-```
+```rb
 # app/models/user.rb
 
 class User < ActiveRecord::Base
@@ -676,7 +684,7 @@ end
 
 Let's **change the `artists` controller so that whenever you add an artist, it saves the username**.
 
-```
+```rb
 # app/controllers/artists_controller.rb
 
 def create
@@ -687,7 +695,7 @@ end
 
 With this done, we can **modify the controller to show the songs and artists for this user only**.
 
-```
+```rb
 # app/controllers/artists_controller.rb
 
 def index
@@ -697,7 +705,7 @@ end
 
 ## Review
 
-#### What are the steps for adding user authentication?
+##### What are the steps for adding user authentication?
 1. User migration
 - User model
 - Install BCrypt gem
@@ -707,19 +715,19 @@ end
   - Sign out
 - Routes
 
-#### What are the three BCrypt methods we used?
+##### What are the three BCrypt methods we used?
 - `hash = BCrypt::Password.create("hello")`
 - `decoded_hash = BCrypt::Password.new(hash)`
 - `decoded_hash.is_password?("hello")`
 
-#### Where are (a) cookies and (b) session variables stored?
+##### Where are (a) cookies and (b) session variables stored?
 - (a) the server, (b) the browser
 - (a) the browser, (b) the database
 - (a) the database, (b) the server
 - (a) the browser, (b) the server
 
-#### What's the difference between encryption and hashing?
-#### What's the difference between authenticating and authorizing?
+##### What's the difference between encryption and hashing?
+##### What's the difference between authenticating and authorizing?
 
 ## To close: Devise demo
 
@@ -739,7 +747,7 @@ rails generate devise user
 rake db:migrate
 ```
 
-```
+```rb
 # app/controllers/application_controller.rb
 
 class ApplicationController < ActionController::Base
