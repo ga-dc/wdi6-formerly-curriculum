@@ -134,7 +134,7 @@ can be used to set any attributes.
 Example:
 
 ```
-<%= link_to panda.name, @panda, class: "fancy-panda" %>
+<%= link_to @panda.name, @panda, class: "fancy-panda" %>
 ```
 
 For more examples, see the [API Docs for Rails link_to](http://apidock.com/rails/ActionView/Helpers/UrlHelper/link_to)
