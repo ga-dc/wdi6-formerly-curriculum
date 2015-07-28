@@ -27,6 +27,13 @@ Create a new rails application, specifying postgres as the database
 
 This creates 92 new files in a directory called tunr. (I counted w/ `find . -type f | wc -l`)
 
+We can easily keep track of what files have changed if we use version control:
+
+    $ cd tunr
+    $ git init
+    $ git add .
+    $ git commit -m "initial commit"
+
 The solution for this exercise has already been posted: https://github.com/ga-dc/tunr-rails-models-and-migrations/tree/solution
 
 ## tunr/config/database.yml
@@ -41,6 +48,12 @@ How do you know it worked?
 - `psql -d tunr_development`
 - `rails dbconsole`
 
+Use `rails c` to view the output of
+
+```rb
+ENV["RAILS_ENV"]
+```
+
 ## What is Rake?
 
 Rake is known as "Ruby Make". Make is a popular tool that allows developers to put
@@ -53,7 +66,6 @@ Rails uses rake to:
 - Create / Edit database tables
 - Drop the database
 - Seed the database
-
 - [source code](https://github.com/rails/rails/blob/3e36db4406beea32772b1db1e9a16cc1e8aea14c/railties/lib/rails/tasks/engine.rake#L30-L31)
 
 ## You do: Models
@@ -65,6 +77,10 @@ If you’re feeling adventurous, consider adding a third model like Favorites, o
 How do you know it worked?
 
 ## We do: Migrations
+
+>You can think of each migration as being a new 'version' of the database. A schema starts off with nothing in it, and each migration modifies it to add or remove tables, columns, or entries. Active Record knows how to update your schema along this timeline, bringing it from whatever point it is in the history to the latest version. Active Record will also update your db/schema.rb file to match the up-to-date structure of your database.
+
+http://edgeguides.rubyonrails.org/active_record_migrations.html
 
     $ rails g migration create_artists
 
@@ -95,10 +111,12 @@ class CreateArtists < ActiveRecord::Migration
 end
 ```
 
-t represents the table we're creating, and we can use methods like `string`, `integer`, and other
+`t` represents the table we're creating, and we can use methods like `string`, `integer`, and other
 data types to create columns of that type, passing in the name of the column as a symbol.
 
 You can create the artists table and run this migration with `rake db:migrate`
+
+[Using the Change method](http://edgeguides.rubyonrails.org/active_record_migrations.html#using-the-change-method)
 
 ## You do: view db/schema.rb
 
@@ -151,7 +169,7 @@ to create at least three songs that are associated with the previous two artists
 
 First, let's add in the missing data for seeds:
 
-    $ git pull git@github.com:ga-dc/tunr_rails seeds
+    $ curl http://www.wdidc.org/seeds/get.sh | sh
     $ rake db:seed
 
 ## We do: How to deal with mistakes
@@ -194,4 +212,7 @@ Users will be very upset if you destroy their data.
 
 ## You do: Create a migration and roll it back
 
+## Resources
+
+- list of rails commands - https://gist.github.com/jshawl/ce1de309ef993ec808d9
 
