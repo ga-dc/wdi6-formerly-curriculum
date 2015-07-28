@@ -1,15 +1,26 @@
-# MVC with Rails
+# MVC with Rails`
 
 Build a scalable, maintainable, and secure web application that manipulates data.
 
 ## Learning Objectives
+
+### Unit Testing with RSpec
+- Explain the purpose unit testing
+- Explain what role RSpec plays in testing
+- Explain the TDD/BDD Mantra
+- Describe RSpec's basic syntax
+- Define the role of expectations and matchers
+- Explain why isolating tests is a best practice
+- List common expectations and the scenarios they support
+- Differentiate between testing return values and side effects
+- Describe why we avoid testing internal implementation
 
 ### MVC/Intro to Rails
 - Explain what Ruby on Rails is and it's architectural components (rMVC)
 - Explain the lifecycle of an HTTP request in Ruby on Rails
 - Explain how Convention over Configuration relates to Ruby on Rails
 - Explain the structure of a rails application (folders & files)
-- Adam Sug: Compare and contrast the structure Sinatra and Rails appps
+- Compare and contrast the structure Sinatra and Rails appps
 - Create a new Ruby on Rails application
 - Create a Rails App with a RESTful interface
 - Follow Rails naming conventions when creating models, views and controllers
@@ -72,8 +83,12 @@ Build a scalable, maintainable, and secure web application that manipulates data
 
 ### Deployment
 
-- Describe the major points of a `12-factor` as applied to deployment
-- Describe about layouts and stylesheet_link_tag / javascript_include_tag
+- Describe the difference between development, test, and production environments
+- List and contrast different methods of deploying an application
+- Describe the major points of a `12-factor` application as applied to deployment
 - Use environment variables to keep sensitive data out of code
 - Deploy a rails application using heroku
+- Run migrations on heroku
+- Debug errors on heroku (heroku logs)
 - List common pitfalls and their solutions when deploying to heroku
+- Describe the role of the asset pipeline in rails
