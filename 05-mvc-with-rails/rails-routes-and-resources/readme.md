@@ -8,6 +8,7 @@
 * Implement nested routes in a Rails application.
 * Describe how path helpers work for nested routes.
 * Implement form_for to build a form for a nested resource.
+<br><br>
 
 ## The Router (5 / 10)
 
@@ -20,6 +21,7 @@ The router matches an HTTP request to the corresponding controller action.
 * The gateway to the rMVC (router / model / view / controller).
 * So something like this `get "/students/2"` is directed to the students controller show route.
 * Returns an error if the HTTP request is unrecognizable and/or does not match a controller action.
+<br><br>
 
 ## Routes (10 / 20)
 
@@ -43,8 +45,6 @@ put "/artists/:id", to "artists#update"
 This would look the exact same for our Song model
 * Just replace the model reference in the HTTP request and controller method.
 
-**C&P:** Commented out individual routes for Artists and Songs.
-
 You already took care of this in an earlier class, but we can also define the default route that is triggered when a user visits the home page of our application using the `root` keyword.
 * In the below example we direct the user to our artists index page.
 
@@ -52,13 +52,15 @@ You already took care of this in an earlier class, but we can also define the de
 # When we visit http://localhost:3030/, we trigger the index action in our Artists controller
 root :to => "artists#index"
 ```
-
+<br><br>
 
 ## Resourcesful Routes (5 / 25)
 
 **NOTE:** I may use the terms "resources" and "model" interchangeably.
 
 During Adam's class you learned a bit of Rails wizardry that allowed you to generate all of your application's RESTful routes using one word: **resources**!
+* Explicitly tells Rails that we will be using RESTful routes.
+* Generates path helpers, which we'll look at shortly.
 
 ```rb
 # This is all we need to generate the RESTful routes for a model
@@ -71,7 +73,7 @@ resources :artists, :songs
 
 `resources` is Rails' preferred method of RESTfully using the router.
 * `resources` assumes by Rails convention that you are using properly named controllers -- in this case, `artists_controller.rb` and `songs_controller.rb` -- and connects our routes -- also properly-named -- to them.
-
+<br><br>
 
 ## Rake Routes (10 / 35)
 
@@ -102,7 +104,7 @@ song        GET    /songs/:id(.:format)        songs#show
 
 You've seen most of this information before: HTTP request verbs, routes and controller actions.
 * Path helpers are new, at least from what we learned in Sinatra. You started to learn about them during Adam's helpers class.
-
+<br><br>
 
 ### Path Helpers  
 **Q:** Can somebody remind me what helpers are and how path helpers fit into that category?
@@ -118,20 +120,66 @@ Path helpers vary between routes
 
 Only four path helpers for each model.
 * Some paths can be used for multiple routes (e.g., `artist_path` covers `artists#show` `#update` and `#destroy`). Their purpose depends on context.
-
+<br><br>
 
 ## Routes and Helpers (5 / 40)
 
 With path helpers, we can tidy up the other helpers you guys have alrady implemented in Tunr.
 * Q: What sort of helpers have we already encountered this week?
+<br><br>
 
 ### Link Helpers
 
-**INCLUDE A CONVERSION EXAMPLE**
+```rb
+# views/artists/index.html.erb
+
+# From this...
+<h2>Artists <a href="/artists/new">(+)</a></h2>
+```
+
+```rb
+# ...to this
+<h2>Artists <%= link_to "(+)", new_artist_path %></h2>
+```
+<br><br>
 
 ### Form Helpers
 
-**INCLUDE A CONVERSION EXAMPLE**
+```rb
+# views/artists/new.html.erb
+
+# From this...
+<form method="post" action="/artists">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>Name</label>
+  <input type="text" name="artist[name]">
+
+  <label>Photo Url</label>
+  <input type="text" name="artist[photo_url]">
+
+  <label>Nationality</label>
+  <input type="text" name="artist[nationality]">
+
+  <input type="submit" value="Create Artist">
+</form>
+```
+
+```html
+# ...to this
+<%= form_for @artist do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :photo_url %>
+  <%= f.text_field :photo_url %>
+
+  <%= f.label :nationality %>
+  <%= f.text_field :nationality %>
+
+  <%= f.submit %>
+```
+<br><br>
 
 ## Nested Resources (15 / 55)
 The way our app is currently routed isn't too helpful, right?
@@ -175,18 +223,22 @@ get "/artists/:id/songs/:id" to "songs#show"
 get "/artists/:artist_id/songs" to "songs#index"
 get "/artists/:artist_id/songs/:id" to "songs#show"
 ```
+<br><br>
 
 **WE DO:** What do you think the route for our Song create method would look like?
 
 ```rb
 post "/artists/:artist_id/songs" to "songs#create"
 ```
+<br><br>
 
 **YOU DO:** Spend the next 5 minutes writing out the individual routes for our nested resources model.
 * We will not be replacing our resources statements in the `routes.rb` file with this.
 * **DO NOT** check our answers with `rake routes` quite yet...
+<br><br>
 
 ## BREAK (10 / 65)
+<br><br>
 
 ## Let's implement nested routes in Tunr! (60 / 125)
 
@@ -194,7 +246,7 @@ Okay, so our `routes.rb` file is updated with nested resources. Let's see them i
 
 ### Uh oh. It broke...
 
-![First error](/images/first-error.png)
+![First error](images/first-error.png)
 
 That's okay. You're going to spend the next hour fixing it!
 * Spend 5 minutes looking through your application and think about what we need to change in order to accommodate our new routing system.
@@ -205,7 +257,7 @@ That's okay. You're going to spend the next hour fixing it!
 If you find yourself moving along faster than my pace, try implementing the following...
 * A third model for Genre that has a `belongs_to` relationship with Artists.
 * There are also some advanced topics included in "Additional Reading" at the bottom of the lesson plan.
-
+<br><br>
 
 ### Let's look at `rake routes` again...
 Has anything changed?
@@ -240,6 +292,7 @@ Having seen this, let's make a To-Do list of things to change in our Rails app s
   1. Link Helpers  
   2. Form Helpers  
   3. Songs Controller  
+  <br><br>
 
 ### Let's take another look at that error...
 
@@ -278,6 +331,8 @@ end
 If we enter `rake routes` into our terminal again, you'll notice that `songs_path` now appears at the bottom of the list.
 * If we try refreshing our home page again, it should work!
 * This is the only exception to nested resources that we'll be using in Tunr.
+* If you click on the "Songs" link, it won't work. Don't worry about that for now.
+<br><br>
 
 ### Let's click on an artist...
 
@@ -304,6 +359,7 @@ What do we need to replace this path helper with?
 
 By nesting resources, `new_song_path` became `new_artist_song_path` since every song we create is now created in the context of an artist.
 * But our app is still giving us an error. WHY?!
+<br><br>
 
 ![Third error](images/third-error.png)
 
@@ -321,10 +377,9 @@ We need to feed our `new_artist_song_path` helper an artist as a variable.
 * Now our app knows which artist it is rendering a new song form for.
 
 And that'll do it. Let's refresh our page...
+<br><br>
 
 ![Fourth Error](images/fourth-error.png)
-
-If you haven't noticed already, converting our application to nested resources requires a very EDD approach.  
 
 So now what? The link helper for an individual song inside of our .each enumerator isn't working.
 
@@ -339,6 +394,7 @@ So now what? The link helper for an individual song inside of our .each enumerat
   <% end %>
 </ul>
 ```
+<br><br>
 
 **WE DO:** Help me out with this one.
 * We don't have a path helper at the moment. What page are we trying to link to?
@@ -357,31 +413,43 @@ So now what? The link helper for an individual song inside of our .each enumerat
   <% end %>
 </ul>
 ```
+<br><br>
 
 **YOU DO:** From an artist show page, click on a song. You should get an error.
 * I want you to try fixing the `songs/show.html.erb` file.
 * **HINT:** You might have to add an instance variable to `songs_controller.rb`.
+  * Remember, our song routes don't look the same as they did before!
 * I'll check in after 5 minutes.
-
+<br><br>
 
 ### Form Helpers
 
-Let's take a look at our Song form and corresponding controller action...
+Something else we'll need to change are forms. Let's try making a new song.
+* From an artist show page, click on the "(+)" next to "Songs".
 
-```erb
+No immediate error! But it's not working quite yet. Let's try creating a song.
+
+![Sixth error](images/sixth-error.png)
+
+So the error isn't as specific as the ones we've already encountered, but it looks like our application is trying to post to a `/songs` route.
+* Our application does not support that particular route and controller action.
+* Let's take a look at `songs/new.html.erb` and `songs_controller.rb` and see what we need to fix it...
+
+```html
+# /views/songs/new.html.erb
+
+<%= form_for @song do |f| %>
+  # form contents
+<% end %>
+```
+
+```rb
 # /controllers/songs_controller.rb
 
 # new
 def new
   @song = Song.new
 end
-
-
-# /views/songs/new.html.erb
-
-<%= form_for @song do |f| %>
-  # form contents
-<% end %>
 ```
 
 We need to associate each new song with an artist. To do that, we need to provide our `form_for` helpers with both an artist and song as arguments.
@@ -395,27 +463,58 @@ def new
   @artist = Artist.find(params[:artist_id])
   @song = Song.new
 end
+```
 
+Now let's modify our form.
+* When feeding multiple arguments to `form_for`, we have to place them inside of an array.
+* In this case, we're not only giving it a new song (via `@song`) but also the artist we'll be adding it to (via `@artist`).
 
+```html
 # /views/songs/new.html.erb
 
 <%= form_for [@artist, @song] do |f| %>
   # form contents
 <% end %>
 ```
+<br><br>
 
-**NEXT:** Fix the `create` controller action so that we add songs to artists!
+**WE DO:** So that takes care of the form. Now we need to fix the `create` controller action in `songs_controller.rb` so that we can add songs to artists!
+  * We need an artist to add a song to, right? How do we set that up.
+  * How should we modify `@song` so that it's saved to the proper artist?
+  * Where would it make most sense to redirect to? Let's try the artist show page -- what path should be use?
+
+```rb
+# /controllers/songs_controller.rb
+
+# create
+def create
+  @artist = Artist.find(params[:artist_id])
+  @song = @artist.songs.create(song_params)
+
+  redirect_to artist_path(@artist)
+end
+```
+<br><br>
+
+**YOU DO:** Now you do the rest! It seems pretty daunting, I know, but you won't have to change anything beyond link helpers, form helpers and controller actions.
+* If you feel lost, follow the error.
+* Strongly encourage you to work with each other on this.
+* Me and the support instructor are also here to help.
+<br><br>
 
 ## BREAK (10 / 135)
+<br><br>
 
 ## Additional (Optional) Reading
 * [Rails Routing From The Outside In](http://guides.rubyonrails.org/routing.html)
 * [The Lowdown On Routes](https://blog.engineyard.com/2010/the-lowdown-on-routes-in-rails-3)
 * [Scoping Rails Routes](http://notahat.com/2014/02/05/scoping-rails-routes.html)
+<br><br>
 
 ## Homework (15 / 150)
 [Add nested resources to your Blog!](https://github.com/ga-dc/scribble#routes)
 
 Spend the remaining class-time either working on your homework or you can ask me questions on anything you've learned this week.
+<br><br>
 
 ## Sample Quiz Questions
