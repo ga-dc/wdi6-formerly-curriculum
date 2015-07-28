@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Domain Modeling | Summary</title>
+        <title>Sessions and Auth | Summary</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.1.0">
@@ -25,10 +25,10 @@
         
     
     
-    <link rel="next" href="../../04-ruby-mvc-sinatra/databases/readme.html" />
+    <link rel="next" href="../../05-mvc-with-rails/rails-deployment/readme.html" />
     
     
-    <link rel="prev" href="../../04-ruby-mvc-sinatra/problem_modeling/readme.html" />
+    <link rel="prev" href="../../05-mvc-with-rails/rails-helpers/readme.html" />
     
 
         
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="4.4" data-basepath="../.." data-revision="Tue Jul 28 2015 16:01:09 GMT+0000 (UTC)">
+    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Tue Jul 28 2015 16:01:09 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -475,7 +475,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.4" data-path="04-ruby-mvc-sinatra/domain_modeling/readme.html">
+        <li class="chapter " data-level="4.4" data-path="04-ruby-mvc-sinatra/domain_modeling/readme.html">
             
                 
                     <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html">
@@ -661,7 +661,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.7" data-path="05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+        <li class="chapter active" data-level="5.7" data-path="05-mvc-with-rails/rails-sessions-and-auth/readme.html">
             
                 
                     <a href="../../05-mvc-with-rails/rails-sessions-and-auth/readme.html">
@@ -906,94 +906,326 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="domain-modeling-erd">Domain Modeling &amp; ERD</h1>
+                        <h1 id="sessions-and-auth">Sessions and Auth</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Draw an Entity Relationship Diagram (ERD) using proper notation</li>
-<li>Identify and diagram a one-to-one, one-to-many, many-to-many relationship between d ta entities (physical/virtual)</li>
-<li>Create a domain model by listing its parts (entities, relationships, attributes a d behavior)</li>
-<li>Distinguish between entities &amp; attributes (and when you should use one over the o her)</li>
-<li>Discuss data normalization needs and techniques</li>
+<li>Contrast the use cases for cookies, sessions, and permanent storage.</li>
+<li>Define and then access a session variable in a Rails application.</li>
+<li>Create a (very) simple hashing algorithm.</li>
+<li>Describe the differences between hashing and encoding.</li>
+<li>Add sign-in, sign in, and sign out functionality to a Rails application.</li>
+<li>Securely store and access passwords.</li>
+<li>Describe the functionality added by <code>has_secure_password</code>.</li>
+<li>Differentiate between authentication and authorization.</li>
 </ul>
-<h3 id="framing">Framing</h3>
-<p>User stories clarify the features we need for a good user experience.  We use them to prioritize order and scope.  Today, we will identify the information required to support those user stories.  We refer to this as the Domain, or Domain Model.  The Domain Model specifies the data and the relationships between this data.  We use it to decide what needs to be persisted.</p>
-<h3 id="talking-points">Talking Points</h3>
-<ul>
-<li>When problem modeling, we often think of things in terms of nouns and verbs</li>
-<li>The verbs can be completely captured in code, and since code is saved, they are saved</li>
-<li>The nouns are represented with placeholders in code (objects, variables, etc)</li>
-<li>The actual data attached to nouns needs to be persisted! Eg. Game scores, the To-Do list, student list</li>
-</ul>
-<h1 id="-i-do"><strong>I do</strong></h1>
-<h4 id="domain-modeling">Domain Modeling</h4>
-<ul>
-<li>Attributes only, not behavior.</li>
-<li>A domain model in problem solving and software engineering is a conceptual model of all the topics related to a specific problem.</li>
-<li>It describes the various entities, their attributes, roles, and relationships, plus the constraints that govern the problem domain.</li>
-<li><strong>It does not describe solutions to the problem.</strong></li>
-</ul>
-<h4 id="erd">ERD?</h4>
-<ul>
-<li>An ERD is a tool we use to visualize and describe the data relating to the major entities that will exist in out programs.</li>
-<li>Ultimately lends itself to planning out and creating our database table structure.</li>
-<li>We keep our data separate from our behavior.</li>
-<li><p>There are multiple syntaxes or schemas for diagramming this data.  Here&apos;s a diagram for an orchard, generated by the <code>rails-erd</code> gem.
-<img src="http://voormedia.github.io/rails-erd/images/orchard-bachman.png" alt="erd"></p>
-</li>
-<li><p>The squares represent our entities and are filled with the attributes associated with our entity.</p>
-</li>
-<li><p>The arrows between the squares indicate how the entities relate to one another.</p>
-<ul>
-<li>There are several types of relationships:<ul>
-<li>One-to-many: An Company has many Orchards</li>
-<li>Many-to-many: An Orchard has many PickingRobots and a PickingRobot works in many Orchards<ul>
-<li>Requires a join table.</li>
-</ul>
-</li>
-<li>One-to-one: A User has one Profile<ul>
-<li>Usually denotes that one entity should be an attribute of the other</li>
-<li>Usually separated for physical space considerations</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>What would iTunes look like?
-<img src="https://cdzdfw2009.files.wordpress.com/2009/06/mc_erd2.jpg" alt=""></p>
-</li>
-</ul>
-<h3 id="library">Library</h3>
-<p><strong>You do in pairs</strong></p>
-<ul>
-<li>Draw an ERD for a library</li>
-<li><strong>Make sure to walk among tables and provide guidance with syntax of ERD, validity of attributes</strong></li>
-<li><p>Settle on a common library schema</p>
-</li>
-<li><p>Books</p>
-<ul>
-<li>title</li>
-<li>author</li>
-<li>year</li>
-<li>genre</li>
-<li>pages</li>
-</ul>
-</li>
-</ul>
-<h2 id="modeling-notes">Modeling Notes</h2>
-<h3 id="why">Why?</h3>
+<h2 id="what-s-a-cookie">What&apos;s a cookie?</h2>
+<h3 id="we-do">We do:</h3>
 <ol>
-<li>Allows you to name your purpose</li>
-<li>List possible:<ul>
-<li>Entities (Nouns)</li>
-<li>Attributes (Adjectives)</li>
-<li>Relationships</li>
-<li>Reduce unnecessary entities</li>
-<li>Behaviors (verbs)</li>
+<li>In Chrome, go to Preferences</li>
+<li>Show advanced settings</li>
+<li>Click &quot;Content settings&quot;</li>
+<li>Click &quot;All cookies and site data&quot;</li>
+<li>Scroll to <code>github.com</code></li>
+</ol>
+<p>Click around on the different &quot;buttons&quot; or &quot;tabs&quot;. In particular, look at <code>dotcom_user</code>, <code>logged_in</code>, and <code>tz</code>.</p>
+<h4 id="turn-and-talk-what-do-you-see-what-do-these-do">Turn and talk: What do you see? What do these do?</h4>
+<p>A <em>cookie</em> is a piece of data stored on your computer by your web browser and associated with a particular website.</p>
+<h3 id="example-cookies">Example cookies:</h3>
+<p>From Github:</p>
+<pre><code>Name: dotcom_user
+Content: RobertAKARobin
+Domain: .github.com
+Path: /
+Send for: Secure connections only
+Accessible to script: No (HttpOnly)
+Created: Wednesday, July 22, 2015 at 7:04:22 PM
+Expires: Sunday, July 22, 2035 at 7:04:22 PM
+</code></pre><p>Normally my online banking account only has 5 cookies, but as soon as I log in it gets an additional 15 or so, including this one:</p>
+<pre><code>Name: FORTUNE_COOKIE
+Content: abcd-efgh-ijkl-mnop-qrst-uvwx-yz12-3456
+Domain: .online.wellsfargo.com
+Path: /
+Send for: Secure connections only
+Accessible to script: No (HttpOnly)
+Created: Saturday, July 25, 2015 at 6:07:09 PM
+Expires: When the browsing session ends
+</code></pre><h4 id="what-might-be-the-purpose-of-these-cookies">What might be the purpose of these cookies?</h4>
+<h4 id="why-is-github-s-expiration-date-so-far-in-the-future-while-wells-fargo-s-is-when-the-browsing-session-ends">Why is Github&apos;s expiration date so far in the future, while Wells Fargo&apos;s is when the browsing session ends?</h4>
+<h4 id="what-s-the-significance-of-send-for-secure-connections-only">What&apos;s the significance of &apos;Send for: Secure connections only&apos;?</h4>
+<p>Notice the &quot;Accessible to script&quot;. Cookies can be accessed via Javascript.</p>
+<p>If you go to <code>github.com</code>, open the console, and type <code>document.cookies</code>, you&apos;ll get something like this:</p>
+<pre><code>tz=America%2FNew_York; _ga=GA1.2.3456.7890; _gat=1&quot;
+</code></pre><p>Hiding from scripts, expiration dates, secure connections only...</p>
+<h4 id="why-does-security-with-cookies-seem-to-be-such-a-big-deal">Why does security with cookies seem to be such a big deal?</h4>
+<h2 id="reading-and-writing-cookies">Reading and writing cookies</h2>
+<h3 id="writing">Writing</h3>
+<p>Modifying cookies is super easy. In Tunr:</p>
+<pre><code># controllers/artists_controller.rb
+
+def index
+  cookies[&quot;Why did the chicken cross the road?&quot;] = &quot;To get to the other side&quot;
+  @artists = Artist.all
+end
+</code></pre><p>Now, when I go to the <code>artists#index</code> page (that is, the main page)... nothing seems to happen. But if I check the cookies for <code>localhost</code> in Chrome, there&apos;s now a cookie called <code>Why+did+the+chicken+cross+the+road%3F</code>, with the value &quot;To get to the other side&quot;!</p>
+<p>I can change the expiration time of my cookie like this:</p>
+<pre><code>def index
+  cookies[&quot;Why did the chicken cross the road?&quot;] = {
+    value: &quot;To get to the other side&quot;,
+    expires: 10.seconds.from_now
+  }
+  @artists = Artist.all
+end
+</code></pre><p>If I immediately look at the cookies for <code>localhost</code> I can see this cookie. If I close the window, wait a few seconds, and look again, it&apos;s vanished!</p>
+<p>By default, the expiration time is &quot;when the current session ends&quot; -- that is, when the browser is closed.</p>
+<h3 id="reading">Reading</h3>
+<p>To <strong>read</strong> my cookie, I just use <code>cookies[&quot;Why did the chicken cross the road?&quot;]</code>. I can put this right in an <code>.html.erb</code> page.</p>
+<p>Note that <code>cookies</code> is a <strong>hash</strong>, just like any other hash. If I put <code>&lt;%= cookies.to_json %&gt;</code> in my <code>.html.erb</code>, it&apos;ll show me all the cookies for this domain (<code>localhost</code>, in this case).</p>
+<h2 id="applying-to-tunr">Applying to Tunr</h2>
+<p>Currently, Tunr just supports one single user. It would be nice if it could have multiple users. Whenever a user logs in, they&apos;d see only <em>their</em> artists and songs.</p>
+<p>To start, let&apos;s add a &quot;sign-in&quot; form. We&apos;ll put it in the main application layout so that the form appears across the top of every page.</p>
+<p>The form just needs a text field for a username, and a &quot;Submit&quot; button. We&apos;ll worry about passwords and stuff later.</p>
+<pre><code># app/views/layouts/application.html.erb
+
+&lt;form method=&quot;post&quot; action=&quot;/signin&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;username&quot; /&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Sign in&quot; /&gt;
+&lt;/form&gt;
+</code></pre><p>Now we need to make the form able to actually do something. The form is POSTing to <code>/signin</code>, so let&apos;s make the appropriate route:</p>
+<pre><code># config/routes.rb
+
+Rails.application.routes.draw do
+  root to: &apos;artists#index&apos;
+  get &apos;/songs&apos;, to: &apos;songs#index&apos;
+  post &apos;/signin&apos;, to: &apos;application#signin&apos;
+  resources :artists do
+    resources :songs
+    resources :genres
+  end
+end
+</code></pre><p>I made the route direct the request to the <code>signin</code> method of the Application controller, so we&apos;d better create that method.</p>
+<p><em>(In this controller, you&apos;ll see something about &quot;forgery&quot; and &quot;CSRF&quot;. We&apos;ll talk about that later; ignore it for now.)</em></p>
+<p>This <code>signin</code> method should get the <code>username</code> from the <code>params</code> that were POSTed. Then, let&apos;s have it save the username as a cookie, and redirect the user back to where they were before.</p>
+<pre><code># app/controllers/application_controller.rb
+
+class ApplicationController &lt; ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+
+  def signin
+    cookies[:username] = {
+      value: params[:username],
+      expires: 100.years.from_now
+    }
+    redirect_to :back
+  end
+end
+</code></pre><p>Finally, so we can see our handiwork, lets change the sign-in form so that the username is automatically filled in if the &quot;username&quot; cookie is set.</p>
+<p>We&apos;ll also need to add in a line of &quot;magic&quot; that has to do with the &quot;protect_from_forgery&quot; thing we saw before. Again, we&apos;ll talk about what it does in a bit.</p>
+<pre><code>&lt;form method=&quot;post&quot; action=&quot;/signin&quot;&gt;
+  &lt;%= tag(:input, :type =&gt; &quot;hidden&quot;, :name =&gt; request_forgery_protection_token.to_s, :value =&gt; form_authenticity_token) %&gt;
+  &lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;username&quot; value=&quot;&lt;%= cookies[:username] %&gt;&quot; /&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Sign in&quot; /&gt;
+&lt;/form&gt;
+</code></pre><p>Now, when I type in a username and &quot;Sign in&quot;, my username is filled in! I can close the browser, and when I go back to the page it&apos;ll still be there.</p>
+<p>This is exactly how those &quot;Remember me?&quot; checkboxes you see when logging in on so many sites work.</p>
+<p>Hopefully you can start to see the utility of cookies. They were originally invented for e-commerce, to let you store the items in your shopping cart on, say, Amazon. Now they&apos;re used for all kinds of things.</p>
+<h3 id="bringing-in-the-database">Bringing in the database</h3>
+<p>The goal for this app is for it to serve as your personal playlist. Each user will see only the songs and artists they created.</p>
+<p>Having this &quot;remember me&quot; functionality is a nice user interface thing, but it doesn&apos;t really <em>do</em> anything. Also, the data is just stored in the browser. As the app creator, I want the user data to be stored on my server.</p>
+<p>Let&apos;s create a user model!</p>
+<pre><code>rails generate model user
+</code></pre><p>Our User table is going to be really simple, with just a username and password:</p>
+<pre><code># db/migrate/[timestamp]_users.db
+
+class Users &lt; ActiveRecord::Migration
+  def change
+    create_table :users do |t|
+      t.string :username
+      t.string :password
+    end
+  end
+end
+</code></pre><p>Now we need to make that POST <code>sign-in</code> method actually do something.</p>
+<ul>
+<li>If a user with that username doesn&apos;t exist, it should be created, and the username and password saved as cookies so that neither needs to be re-entered</li>
+<li>If a user with that username <em>does</em> exist, its password should be compared with the password that was just entered<ul>
+<li>If the password is the same, a &quot;welcome&quot; message should be displayed, and the username and password saved as cookies</li>
+<li>If it&apos;s different, an &quot;error&quot; message should be displayed, and the <code>username</code> cookie is made a blank string</li>
 </ul>
 </li>
-<li>Implement</li>
-</ol>
+</ul>
+<h3 id="how-do-we-make-an-error-message">How do we make an error message?</h3>
+<p>A special Rails thingy called <strong>flash</strong>. It&apos;s a hash that&apos;s passed to the next action, and then erased.</p>
+<pre><code># app/controllers/application_controller.rb
+
+def signin
+  if !User.find_by(username: params[:username])
+    User.create(username: params[:username], password: params[:password])
+    flash[:signin] = &quot;We created an account for you, #{@user.username}!&quot;
+    cookies[:username] = params[:username]
+    cookies[:password] = params[:password]
+  else
+    @user = User.find_by(username: params[:username])
+    if @user.password == params[:password]
+      flash[:signin] = &quot;You&apos;re signed in, #{@user.username}!&quot;
+      cookies[:username] = params[:username]
+      cookies[:password] = params[:password]
+    else
+      flash[:signin] = &quot;Your password is wrong!&quot;
+    end
+  end
+  redirect_to :back
+end
+</code></pre><p>Let&apos;s add the &quot;password&quot; field to the sign-in form. Let&apos;s also make a place to put an error message if someone enters the wrong password, and a welcome message if they put in the right one.</p>
+<pre><code># app/views/layouts/application.html.erb
+
+&lt;h2&gt;&lt;%= flash[:signin] %&gt;&lt;/h2&gt;
+&lt;form method=&quot;post&quot; action=&quot;../signin&quot;&gt;
+  &lt;%= tag(:input, :type =&gt; &quot;hidden&quot;, :name =&gt; request_forgery_protection_token.to_s, :value =&gt; form_authenticity_token) %&gt;
+  &lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;username&quot; value=&quot;&lt;%= cookies[:username] %&gt;&quot;/&gt;
+  &lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;password&quot; value=&quot;&lt;%= cookies[:password] %&gt;&quot;/&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Sign in&quot; /&gt;
+&lt;/form&gt;
+</code></pre><h3 id="associating-the-user-with-songs-and-artists">Associating the User with songs and artists</h3>
+<p>Now that we&apos;re letting the app have multiple users, we need to associate each song and artist with a particular user.</p>
+<p><strong>Important note:</strong> The way the app&apos;s set up, if 30 users all add &quot;Bohemian Rhapsody&quot; to their playlist, there will be 30 copies of &quot;Bohemian Rhapsody&quot; and in the &quot;Songs&quot; table, and at least 30 copies of &quot;Queen&quot; in the &quot;Artists&quot; table. This isn&apos;t very efficient, but it&apos;s useful for demonstrating the concepts we&apos;re covering here.</p>
+<h4 id="how-do-we-associate-songs-and-artists-with-a-user">How do we associate songs and artists with a user?</h4>
+<ul>
+<li>Give the <code>songs</code> and <code>artists</code> tables a <code>user_id</code> column<ul>
+<li>We can actually do it with less work. Each song already belongs to an artist, so we&apos;ll just make each artist belong to a user and leave the songs alone -- that is, we&apos;ll <strong>add a <code>user_id</code> column to the <code>artists</code> table</strong>. <em>(This means you can&apos;t have a song without an artist, but I&apos;m OK with that.)</em></li>
+</ul>
+</li>
+</ul>
+<pre><code>rails generate migration addUsersToArtists
+</code></pre><pre><code># db/migrate/[timestamp]_add_users_to_artists.rb
+
+class AddUserToArtists &lt; ActiveRecord::Migration
+  def change
+    add_column :artists, :user_id, :string
+  end
+end
+</code></pre><p>Now let&apos;s make sure we can do <code>@user.artists</code> and <code>@artist.user</code> and so forth by <strong>updating the Artist model and creating a User model</strong>:</p>
+<pre><code># app/models/artist.rb
+
+class Artist &lt; ActiveRecord::Base
+  has_many :songs, dependent: :destroy
+  belongs_to :user
+end
+</code></pre><pre><code># app/models/user.rb
+
+class User &lt; ActiveRecord::Base
+  has_many :artists, dependent: :destroy
+end
+</code></pre><p>Let&apos;s <strong>change the <code>artists</code> controller so that whenever you add an artist, it saves the username</strong>.</p>
+<pre><code># app/controllers/artists_controller.rb
+
+def create
+  @artist = Artist.create!(artist_params.merge({user_id: cookies[&quot;username&quot;]}))
+  redirect_to (artist_path(@artist))
+end
+</code></pre><p>With this done, we can <strong>modify the controller to show the songs and artists for this user only</strong>.</p>
+<pre><code># app/controllers/artists_controller.rb
+
+def index
+  @artists = Artist.where(user_id: cookies[&quot;username&quot;])
+end
+</code></pre><p>Without cookies to keep the username on every page of the app, the user would have to type their username every single time they wanted to add a new artist.</p>
+<h2 id="security">Security</h2>
+<p>Now imagine instead of songs and artists this app stored transactions and bank accounts. If you knew someone else&apos;s username, you could see all their transactions.</p>
+<p>No problem: we&apos;ll create a &quot;users&quot; model that has a username and a password. The passwords will be stored in the database:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>username</th>
+<th>password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>robertakarobin</td>
+<td>spatulabagel</td>
+</tr>
+<tr>
+<td>2</td>
+<td>andykim</td>
+<td>argylesocks</td>
+</tr>
+<tr>
+<td>3</td>
+<td>adambray</td>
+<td>correcthorsebatterystaple</td>
+</tr>
+</tbody>
+</table>
+<p>So you go to the app, enter your username and password, click &quot;sign in&quot;, it checks to make sure the password matches your username... And then what?</p>
+<h4 id="how-can-we-keep-the-user-from-needing-to-enter-their-password-on-every-page">How can we keep the user from needing to enter their password on every page?</h4>
+<ul>
+<li>Save the password as a cookie?<ul>
+<li>Anyone else who uses your computer could go into Chrome, look at the cookies, and see your password</li>
+</ul>
+</li>
+<li>Save a cookie called &quot;is_logged_in&quot;?<ul>
+<li>That would make your site really insecure. There are Chrome extensions that let you create cookies for any site. Someone could come to your site and just make an &quot;is_logged_in&quot; cookie.</li>
+</ul>
+</li>
+</ul>
+<h4 id="another-issue-all-the-passwords-are-stored-in-the-database-as-plain-text-why-is-that-a-problem">Another issue: All the passwords are stored in the database as plain text. Why is that a problem?</h4>
+<p>Most people use the same password for many sites. Anyone with access to the database could see people&apos;s passwords and easily try them out on other sites.</p>
+<h3 id="two-truths-and-a-lie">Two truths and a lie:</h3>
+<ul>
+<li>Washington is an expensive city in which to live.</li>
+<li>Jesse has nice hair.</li>
+<li>It is possible to make something 100% secure.</li>
+</ul>
+<p>There is no such thing as a completely secure system. With enough time and effort, anything can be hacked.</p>
+<h4 id="given-two-systems-what-would-make-a-hacker-choose-to-hack-one-over-the-other">Given two systems, what would make a hacker choose to hack one over the other?</h4>
+<ul>
+<li>Effort required</li>
+<li>Potential payout</li>
+<li>Severity of consequences</li>
+</ul>
+<p>All hackers choose their targets with a simple formula:</p>
+<pre><code>desire to hack = (perceived payout relative other targets) - (perceived effort relative other targets)
+</code></pre><p>That means you can protect yourself either by making it look like the data your app stores is worthless, <em>or</em> by making your app more annoying to hack than other apps.</p>
+<p>If all you&apos;re protecting is a handful of e-mail addresses or comments on a minor blog, a box asking &quot;What is 3 + 7?&quot; is probably sufficient protection. Even though it&apos;s easy to hack, there are so many other sites with even less protection, and those are the ones hackers will target.</p>
+<h3 id="hashing">Hashing</h3>
+<h4 id="so-how-can-we-make-it-annoying-to-try-to-hack-the-passwords-in-our-database">So how can we make it annoying to try to hack the passwords in our database?</h4>
+<ul>
+<li>Encrypt<ul>
+<li>But what if someone figures out your encryption algorithm?</li>
+</ul>
+</li>
+</ul>
+<p>Instead, we use <strong>hashing</strong>, which is like encryption but without the need to decrypt.</p>
+<p>For example, take this number:</p>
+<pre><code>33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601
+</code></pre><p>This is my password, encrypted with an algorithm. I&apos;ll give you some hints: my password is a 7-digit number, and the algorithm is taking that number to the 40th power. So to find my password, all you need to do is find a calculator and enter:</p>
+<pre><code>33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601 ^ (1/40)
+</code></pre><h4 id="why-am-i-still-confident-that-you-won-t-figure-out-my-password">Why am I still confident that you won&apos;t figure out my password?</h4>
+<ul>
+<li>Because that&apos;s a really, really difficult calculation for any computer to make!</li>
+</ul>
+<p>So let&apos;s say instead of my password, the database stores this number, which is only about 260 bytes as a string. When I enter my password, my app takes whatever I entered to the 40th power. If it matches, even though it doesn&apos;t know my actual password, it knows I entered my password correctly. If what I entered is just one number off, the calculation&apos;s result will be completely different, and it won&apos;t match.</p>
+<p>This way, the only place my actual password is stored is in my own human memory.</p>
+<p>Could someone hack my password? Yes, but it would take a tremendous amount of computer power.</p>
+<p>Hashing is used very, very widely in <strong>authentication</strong> -- that is, making sure someone is who they say they are.</p>
+<h2 id="sessions">Sessions</h2>
+<p>Let&apos;s go back to our old problem: how to keep Tunr users from needing to enter their password on every page of the app.</p>
+<p>We&apos;re keeping their username as a cookie, and their password as a hash in the database.</p>
+<h2 id="review">Review</h2>
+<ul>
+<li>Where are (a) cookies and (b) session variables stored?<ul>
+<li>(a) the server, (b) the browser</li>
+<li>(a) the browser, (b) the database</li>
+<li>(a) the database, (b) the server</li>
+<li>(a) the browser, (b) the server</li>
+</ul>
+</li>
+<li>What&apos;s the difference between encryption and hashing?</li>
+</ul>
 
                     
                     </section>
@@ -1004,10 +1236,10 @@
         </div>
 
         
-        <a href="../../04-ruby-mvc-sinatra/problem_modeling/readme.html" class="navigation navigation-prev " aria-label="Previous page: Problem Modeling"><i class="fa fa-angle-left"></i></a>
+        <a href="../../05-mvc-with-rails/rails-helpers/readme.html" class="navigation navigation-prev " aria-label="Previous page: Helpers"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../04-ruby-mvc-sinatra/databases/readme.html" class="navigation navigation-next " aria-label="Next page: Databases"><i class="fa fa-angle-right"></i></a>
+        <a href="../../05-mvc-with-rails/rails-deployment/readme.html" class="navigation navigation-next " aria-label="Next page: Deployment"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
