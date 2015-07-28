@@ -51,11 +51,11 @@ class User < ActiveRecord::Base
 end
 ```
 
-#### What actions should a user have, to start off with?
+##### What actions should a user have, to start off with?
 - To make things a little simpler, instead of having actions for signing up and signin in, we'll just have one: if someone tries to sign in with a username that doesn't exist, an account will be created for them.
 - Also, we won't add in an "edit password" functionality yet.
 
-#### What kind of HTTP request should go to each action?
+##### What kind of HTTP request should go to each action?
 
 ```rb
 # config/routes.rb
@@ -184,7 +184,7 @@ Rails gives us a handy method for showing users error messages, called `flash`. 
 
 ## Password security
 
-#### All the passwords are stored in the database as plain text. Why is that a problem?
+##### All the passwords are stored in the database as plain text. Why is that a problem?
 
 Most people use the same password for many sites. Anyone with access to the database could see people's passwords and easily try them out on other sites.
 
@@ -198,7 +198,7 @@ There is no such thing as a completely secure system. With enough time and effor
 
 Your best bet is to make it **annoying** to hack your system.
 
-#### Given two systems, what would make a hacker choose to hack one over the other?
+##### Given two systems, what would make a hacker choose to hack one over the other?
 - Effort required
 - Potential payout
 - Severity of consequences
@@ -214,7 +214,7 @@ If all you're protecting is a handful of e-mail addresses or comments on a minor
 
 ### Hashing
 
-#### So how can we make it annoying to try to hack the passwords in our database?
+##### So how can we make it annoying to try to hack the passwords in our database?
 - Encrypt
   - But what if someone figures out your encryption algorithm?
 
@@ -232,7 +232,7 @@ This is my password, encrypted with an algorithm. I'll give you some hints: my p
 33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601 ^ (1/40)
 ```
 
-#### Why am I still confident that you won't figure out my password?
+##### Why am I still confident that you won't figure out my password?
 - Because that's a really, really difficult calculation for any computer to make!
 
 So let's say instead of my password, the database stores this number, which is only about 260 bytes as a string. When I enter my password, my app takes whatever I entered to the 40th power. If it matches, even though it doesn't know my actual password, it knows I entered my password correctly. If what I entered is just one number off, the calculation's result will be completely different, and it won't match.
@@ -342,12 +342,12 @@ end
 
 ## User persistence
 
-#### What's missing from our user sign-in process?
-#### If I refresh the page, am I still signed in?
+##### What's missing from our user sign-in process?
+##### If I refresh the page, am I still signed in?
 
 We need to figure out a way to have Rails remember I'm signed in.
 
-#### Why not just created an "is_signed_in" column in my User table?
+##### Why not just created an "is_signed_in" column in my User table?
 - How would Rails now how to sign out? More importantly, if multiple users are accessing the app, how would Rails know which signed_in user is on which computer?
 
 ## Cookie Monster
@@ -361,7 +361,7 @@ We need to figure out a way to have Rails remember I'm signed in.
 
 Click around on the different "buttons" or "tabs". In particular, look at `dotcom_user`, `signed_in`, and `tz`.
 
-#### Turn and talk: What do you see? What do these do?
+##### Turn and talk: What do you see? What do these do?
 
 A *cookie* is a piece of data stored on your computer by your web browser and associated with a particular website.
 
@@ -391,9 +391,9 @@ Created: Saturday, July 25, 2015 at 6:07:09 PM
 Expires: When the browsing session ends
 ```
 
-#### What might be the purpose of these cookies?
-#### Why is Github's expiration date so far in the future, while Wells Fargo's is when the browsing session ends?
-#### What's the significance of 'Send for: Secure connections only'?
+##### What might be the purpose of these cookies?
+##### Why is Github's expiration date so far in the future, while Wells Fargo's is when the browsing session ends?
+##### What's the significance of 'Send for: Secure connections only'?
 
 Notice the "Accessible to script". Cookies can be accessed via Javascript.
 
@@ -405,7 +405,7 @@ tz=America%2FNew_York; _ga=GA1.2.3456.7890; _gat=1"
 
 Hiding from scripts, expiration dates, secure connections only...
 
-#### Turn and talk: Why does security with cookies seem to be such a big deal?
+##### Turn and talk: Why does security with cookies seem to be such a big deal?
 
 ### Writing
 
@@ -484,7 +484,7 @@ Now we can remember the user's username. But we're not actually remembering the 
 
 We could just create a cookie called `is_signed_in` and set that to true.
 
-#### What could go wrong with using an `is_signed_in` cookie?
+##### What could go wrong with using an `is_signed_in` cookie?
 - Cookies are stored on the user's computer. This means we're basically relying on a user to tell us whether or not they're signed in. That's not very secure. There are Chrome extensions that let you add and edit the cookies on your computer. **We** want to tell the **user** whether or not they're signed in, not have them tell us.
 
 ## Sessions
@@ -541,7 +541,7 @@ Created:  Tuesday, July 28, 2015 at 10:54:08 AM
 Expires:  When the browsing session ends
 ```
 
-#### Looking at this cookie, why would you say session variables are called "ession variables"?
+##### Looking at this cookie, why would you say session variables are called "ession variables"?
 - The session ID is destroyed when your browsing session ends, making those session variables inaccessible.
 
 ### Applying to Tunr
@@ -592,7 +592,7 @@ We're going to use a method called `before_action`. This lets us do something be
 
 In this case, we're going to use it to authenticate the user before every action.
 
-#### What's the difference between "authenticate" and "authorize"?
+##### What's the difference between "authenticate" and "authorize"?
 - Authenticating is checking whether someone is who they say they are
 - Authorizing is giving someone special privileges
   - So when you've *authenticated* a user, they are *authorized* to use your app
@@ -638,7 +638,7 @@ Now that we're letting the app have multiple users, we need to associate each so
 
 **Important note:** The way the app's set up, if 30 users all add "Bohemian Rhapsody" to their playlist, there will be 30 copies of "Bohemian Rhapsody" and in the "Songs" table, and at least 30 copies of "Queen" in the "Artists" table. This isn't very efficient, but it's useful for demonstrating the concepts we're covering here.
 
-#### How do we associate songs and artists with a user?
+##### How do we associate songs and artists with a user?
 - Give the `songs` and `artists` tables a `user_id` column?
   - We can actually do it with less work. Each song already belongs to an artist, so we'll just make each artist belong to a user and leave the songs alone -- that is, we'll **add a `user_id` column to the `artists` table**. *(This means you can't have a song without an artist, but I'm OK with that.)*
 
@@ -699,7 +699,7 @@ end
 
 ## Review
 
-#### What are the steps for adding user authentication?
+##### What are the steps for adding user authentication?
 1. User migration
 - User model
 - Install BCrypt gem
@@ -709,19 +709,19 @@ end
   - Sign out
 - Routes
 
-#### What are the three BCrypt methods we used?
+##### What are the three BCrypt methods we used?
 - `hash = BCrypt::Password.create("hello")`
 - `decoded_hash = BCrypt::Password.new(hash)`
 - `decoded_hash.is_password?("hello")`
 
-#### Where are (a) cookies and (b) session variables stored?
+##### Where are (a) cookies and (b) session variables stored?
 - (a) the server, (b) the browser
 - (a) the browser, (b) the database
 - (a) the database, (b) the server
 - (a) the browser, (b) the server
 
-#### What's the difference between encryption and hashing?
-#### What's the difference between authenticating and authorizing?
+##### What's the difference between encryption and hashing?
+##### What's the difference between authenticating and authorizing?
 
 ## To close: Devise demo
 
