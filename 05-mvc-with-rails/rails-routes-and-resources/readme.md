@@ -54,9 +54,7 @@ root :to => "artists#index"
 ```
 <br><br>
 
-## Resourcesful Routes (5 / 25)
-
-**NOTE:** I may use the terms "resources" and "model" interchangeably.
+## Resourceful Routes (5 / 25)
 
 During Adam's class you learned a bit of Rails wizardry that allowed you to generate all of your application's RESTful routes using one word: **resources**!
 * Explicitly tells Rails that we will be using RESTful routes.
@@ -298,7 +296,7 @@ Having seen this, let's make a To-Do list of things to change in our Rails app s
 
 ![First error](images/first-error.png)
 
-Our application doesn't seem to like the `songs_path` in our `application.html.`erb` left over from our former life as a non-nested-resource application.
+Our application doesn't seem to like the `songs_path` in our `application.html.erb` left over from our former life as a non-nested-resource application.
 
 ```erb
 # /views/layouts/application.html.erb
