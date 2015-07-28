@@ -54,9 +54,7 @@ root :to => "artists#index"
 ```
 <br><br>
 
-## Resourcesful Routes (5 / 25)
-
-**NOTE:** I may use the terms "resources" and "model" interchangeably.
+## Resourceful Routes (5 / 25)
 
 During Adam's class you learned a bit of Rails wizardry that allowed you to generate all of your application's RESTful routes using one word: **resources**!
 * Explicitly tells Rails that we will be using RESTful routes.
