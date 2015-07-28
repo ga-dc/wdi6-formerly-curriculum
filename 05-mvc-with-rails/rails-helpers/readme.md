@@ -7,17 +7,25 @@
 - Generate links in views using `link_to`
 - Generate images in views using `image_tag`
 - Generate model forms using the `form_for` helper
-- Generate non-model forms using  the `form_tag` helper
+- DRY up views using partials.
 - Describe what a CSRF attack is
 - Explain the purpose of authenticity tokens in Rails forms
 
 ### References
 
-* [image_tag](http://apidock.com/rails/ActionView/Helpers/AssetTagHelper/image_tag)
-* [link_to](http://apidock.com/rails/ActionView/Helpers/UrlHelper/link_to)
-* [form_for](http://apidock.com/rails/ActionView/Helpers/FormHelper/form_for)
+* **Rails Guides**
+  * [path heleprs](http://guides.rubyonrails.org/routing.html#path-and-url-helpers)
+  * [image_tag](http://guides.rubyonrails.org/layouts_and_rendering.html#asset-tag-helpers)
+  * [link_to](http://guides.rubyonrails.org/getting_started.html#adding-links)
+  * [form_for](http://guides.rubyonrails.org/getting_started.html#the-first-form)
 
-## What are Helpers? (5 minutes - 5)
+
+* **API Docs**
+  * [image_tag](http://apidock.com/rails/ActionView/Helpers/AssetTagHelper/image_tag)
+  * [link_to](http://apidock.com/rails/ActionView/Helpers/UrlHelper/link_to)
+  * [form_for](http://apidock.com/rails/ActionView/Helpers/FormHelper/form_for)
+
+## What are Helpers? (5 minutes)
 
 If we look at our app, there are a lot of places where we're writing a lot of
 text, and where that text follows a common pattern. Think about the similarities
@@ -32,7 +40,7 @@ so we don't have to type it out, and so that our code is more readable. (A side
 benefit here is that if our routes change, we don't have to go fix all of our
 links, forms, etc.)
 
-## Path Helpers (10 minutes - 15)
+## Path Helpers (10 minutes)
 
 Path helpers are methods that generate paths. These helpers can be used anywhere
 you would have manually typed out a path as a string, e.g. "/artists",
@@ -70,7 +78,7 @@ Another example:
 
 Path helpers can be used in controllers & views.
 
-### Exercise (10 minutes - 25)
+### Exercise (10 minutes)
 
 1. Clone our starter code for [tunr-rails-helpers](https://github.com/ga-dc/tunr-rails-helpers)
 2. Replace the routes with `resources`.
@@ -81,7 +89,7 @@ Path helpers can be used in controllers & views.
 Replace all hard-coded paths in link / form tags in the views. We'll be replacing
 them soon using link/form helpers.
 
-## Link Helpers (10 minutes - 35)
+## Link Helpers (10 minutes)
 
 The link helper `link_to` generates link (`<a>`) tags. In general, `link_to`
 takes two arguments:
@@ -113,11 +121,11 @@ the second object is an instance of an ActiveRecord Model:
 <% end %>
 ```
 
-### Exercise (15 minutes - 50)
+### Exercise (15 minutes)
 
 Replace all links (<a> tags) in tunr-rails-helpers with `link_to`.
 
-## HTML Options (10 minutes - 1:00)
+## HTML Options (10 minutes)
 
 Almost any helper method that generates HTML tags, can take a set of HTML
 options. This is commonly used to set the `class` and/or `id` attributes, but
@@ -132,7 +140,7 @@ Example:
 For more examples, see the [API Docs for Rails link_to](http://apidock.com/rails/ActionView/Helpers/UrlHelper/link_to)
 
 
-## Image Helpers (5 minutes - 1:05)
+## Image Helpers (5 minutes)
 
 The `image_tag` helper generates an `<img>` tag.
 
@@ -165,7 +173,7 @@ size and alt.
 <%= image_tag @artist.photo_url, alt: "Photo of #{@artist.name}", size: "400x400" %>
 ```
 
-### Exercise (5 minutes - 1:10)
+### Exercise (5 minutes)
 
 Replace the <img> tag with the image_tag helper in tunr-rails-helpers.
 
@@ -173,10 +181,7 @@ Bonus:
 Add some icon images to `app/assets/images` and use image_tag to add icons where
 appropriate (e.g. replace the `(+)` link)
 
-# BREAK (10 minutes - 1:20)
-
-
-## Form Helpers (20 minutes - 1:40)
+## Form Helpers (20 minutes)
 
 Rails includes two helper methods to build forms: `form_for` and `form_tag`.
 
@@ -217,11 +222,11 @@ Important facts about the `form_for` helper:
 * The submit button takes an optional argument for the text on the button
   * If you omit the argument, it will say either "Create Panda" or "Update Panda" accordingly (subbing in the name of your model)
 
-### Exercise (20 minutes - 2:00)
+### Exercise (20 minutes)
 
 Replace all forms in tunr-rails-helpers with `form_for` tags.
 
-## Why use form_for? (15 minutes - 2:15)
+## Why use form_for? (15 minutes)
 
 The form helpers are useful for a few reasons:
 
@@ -258,7 +263,76 @@ If the token isn't present (or doesn't match), then the request is rejected.
 We can manually include that token in our forms, but `form_for` and `form_tag`
 do it for us.
 
-## Summary (10 minutes - 2:25)
+## Partials (10 minutes)
+
+Partial templates - usually just called "partials" - are another technique to
+break down a view into more manageable chunks. With a partial, you can move the
+code for rendering a particular piece of a view into a separate file, and
+include it in other views. This is especially useful for reducing duplication
+in our views.
+
+Partials look just like regular views (using HTML and ERB), only their file
+names MUST start with an underscore.
+
+Anywhere we want to include a partial, we "render" the partial in that part in
+the view.
+
+Let's look at an example in Tunr, specifically the forms for artists. There's
+a lot of duplication in `views/artists/edit.html.erb` and
+`views/artists/new.html.erb`.
+
+Let's create a new partial, and call it `_form.html.erb`:
+
+```bash
+touch app/views/artists/_form.html.erb
+```
+
+Inside this partial, let's copy / paste the duplicated code:
+
+```
+<%= form_for @artist do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :photo_url %>
+  <%= f.text_field :photo_url %>
+
+  <%= f.label :nationality %>
+  <%= f.text_field :nationality %>
+
+  <%= f.submit %>
+<% end %>
+```
+
+Now, in our views for `new` and `edit`, let's replace the form code with
+rendering the partial:
+
+```
+<%= render partial: "form" %>
+```
+
+Notice that the underscore is ONLY in the file name, when we refer to the
+partial (when rendering it), we OMIT the underscore.
+
+There are more complex ways to use partials, such as passing in variables to
+be used by the partial, but most of the time, we don't need such functionality.
+
+In cases where we don't need to set any options when we render the partial, we
+can use the shorter syntax and omit the word `partial:`
+
+```
+<%= render "form" %>
+```
+
+## Exercise (10 minutes)
+
+Replace any remaining duplication of forms in Tunr using partials.
+
+Bonus:
+There are other areas of Tunr that have minor code duplication. Find them and
+replace those areas with partials as well.
+
+## Summary (5 minutes)
 
 Rails' helper methods are great at keeping our code readable, flexible and DRY,
 so use em!
