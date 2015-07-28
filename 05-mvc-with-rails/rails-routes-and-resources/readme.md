@@ -420,7 +420,20 @@ Now let's modify our form.
   * How should we modify `@song` so that it's saved to the proper artist?
   * Where would it make most sense to redirect to? Let's try the artist show page -- what path should be use?
 
+```rb
+# /controllers/songs_controller.rb
+
+# create
+def create
+  @artist = Artist.find(params[:artist_id])
+  @song = @artist.songs.create(song_params)
+
+  redirect_to artist_songs_path(@artist, @song)
+end
+```
+
 **YOU DO:** Now you do the rest! It seems pretty daunting, I know, but you won't have to change anything beyond link helpers, form helpers and controller actions.
+* If you feel lost, follow the error.
 * Strongly encourage you to work with each other on this.
 * Me and the support instructor are also here to help.
 
