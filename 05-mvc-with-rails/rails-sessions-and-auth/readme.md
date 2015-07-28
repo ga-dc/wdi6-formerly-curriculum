@@ -42,7 +42,7 @@ Expires: Sunday, July 22, 2035 at 7:04:22 PM
 Normally my online banking account only has 5 cookies, but as soon as I log in it gets an additional 15 or so, including this one:
 ```
 Name: FORTUNE_COOKIE
-Content: abcd-efgh-ijkl-mnop-qrst-uvwx-yz12-3456 
+Content: abcd-efgh-ijkl-mnop-qrst-uvwx-yz12-3456
 Domain: .online.wellsfargo.com
 Path: /
 Send for: Secure connections only
@@ -105,7 +105,7 @@ To **read** my cookie, I just use `cookies["Why did the chicken cross the road?"
 
 Note that `cookies` is a **hash**, just like any other hash. If I put `<%= cookies.to_json %>` in my `.html.erb`, it'll show me all the cookies for this domain (`localhost`, in this case).
 
-### Applying to Tunr
+## Applying to Tunr
 
 Currently, Tunr just supports one single user. It would be nice if it could have multiple users. Whenever a user logs in, they'd see only *their* artists and songs.
 
@@ -180,11 +180,145 @@ This is exactly how those "Remember me?" checkboxes you see when logging in on s
 
 Hopefully you can start to see the utility of cookies. They were originally invented for e-commerce, to let you store the items in your shopping cart on, say, Amazon. Now they're used for all kinds of things.
 
-### Let's build out Tunr a bit, mentally:
+### Bringing in the database
 
-We can add "username" columns to the "songs" and "artists" tables. When a user adds a new song, the song is associated with the username stored in the cookie. When the user signs in, we can look up all the songs in the database that have their username, and show those only, ignoring the rest.
+The goal for this app is for it to serve as your personal playlist. Each user will see only the songs and artists they created.
 
-Without cookies to keep the username on every page of the app, the user would have to type their username every single time they wanted to add a new song.
+Having this "remember me" functionality is a nice user interface thing, but it doesn't really *do* anything. Also, the data is just stored in the browser. As the app creator, I want the user data to be stored on my server.
+
+Let's create a user model!
+
+```
+rails generate model user
+```
+
+Our User table is going to be really simple, with just a username and password:
+
+```
+# db/migrate/[timestamp]_users.db
+
+class Users < ActiveRecord::Migration
+  def change
+    create_table :users do |t|
+      t.string :username
+      t.string :password
+    end
+  end
+end
+```
+
+Now we need to make that POST `sign-in` method actually do something.
+
+- If a user with that username doesn't exist, it should be created, and the username and password saved as cookies so that neither needs to be re-entered
+- If a user with that username *does* exist, its password should be compared with the password that was just entered
+  - If the password is the same, a "welcome" message should be displayed, and the username and password saved as cookies
+  - If it's different, an "error" message should be displayed, and the `username` cookie is made a blank string
+
+### How do we make an error message?
+A special Rails thingy called **flash**. It's a hash that's passed to the next action, and then erased.
+
+```
+# app/controllers/application_controller.rb
+
+def signin
+  if !User.find_by(username: params[:username])
+    User.create(username: params[:username], password: params[:password])
+    flash[:signin] = "We created an account for you, #{@user.username}!"
+    cookies[:username] = params[:username]
+    cookies[:password] = params[:password]
+  else
+    @user = User.find_by(username: params[:username])
+    if @user.password == params[:password]
+      flash[:signin] = "You're signed in, #{@user.username}!"
+      cookies[:username] = params[:username]
+      cookies[:password] = params[:password]
+    else
+      flash[:signin] = "Your password is wrong!"
+    end
+  end
+  redirect_to :back
+end
+```
+
+Let's add the "password" field to the sign-in form. Let's also make a place to put an error message if someone enters the wrong password, and a welcome message if they put in the right one.
+
+```
+# app/views/layouts/application.html.erb
+
+<h2><%= flash[:signin] %></h2>
+<form method="post" action="../signin">
+  <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+  <input type="text" name="username" placeholder="username" value="<%= cookies[:username] %>"/>
+  <input type="password" name="password" placeholder="password" value="<%= cookies[:password] %>"/>
+  <input type="submit" value="Sign in" />
+</form>
+```
+
+### Associating the User with songs and artists
+
+Now that we're letting the app have multiple users, we need to associate each song and artist with a particular user.
+
+**Important note:** The way the app's set up, if 30 users all add "Bohemian Rhapsody" to their playlist, there will be 30 copies of "Bohemian Rhapsody" and in the "Songs" table, and at least 30 copies of "Queen" in the "Artists" table. This isn't very efficient, but it's useful for demonstrating the concepts we're covering here.
+
+#### How do we associate songs and artists with a user?
+- Give the `songs` and `artists` tables a `user_id` column
+  - We can actually do it with less work. Each song already belongs to an artist, so we'll just make each artist belong to a user and leave the songs alone -- that is, we'll **add a `user_id` column to the `artists` table**. *(This means you can't have a song without an artist, but I'm OK with that.)*
+
+```
+rails generate migration addUsersToArtists
+```
+```
+# db/migrate/[timestamp]_add_users_to_artists.rb
+
+class AddUserToArtists < ActiveRecord::Migration
+  def change
+    add_column :artists, :user_id, :string
+  end
+end
+```
+
+Now let's make sure we can do `@user.artists` and `@artist.user` and so forth by **updating the Artist model and creating a User model**:
+
+```
+# app/models/artist.rb
+
+class Artist < ActiveRecord::Base
+  has_many :songs, dependent: :destroy
+  belongs_to :user
+end
+```
+
+```
+# app/models/user.rb
+
+class User < ActiveRecord::Base
+  has_many :artists, dependent: :destroy
+end
+```
+
+
+Let's **change the `artists` controller so that whenever you add an artist, it saves the username**.
+
+```
+# app/controllers/artists_controller.rb
+
+def create
+  @artist = Artist.create!(artist_params.merge({user_id: cookies["username"]}))
+  redirect_to (artist_path(@artist))
+end
+```
+
+With this done, we can **modify the controller to show the songs and artists for this user only**.
+
+```
+# app/controllers/artists_controller.rb
+
+def index
+  @artists = Artist.where(user_id: cookies["username"])
+end
+```
+
+Without cookies to keep the username on every page of the app, the user would have to type their username every single time they wanted to add a new artist.
 
 ## Security
 
