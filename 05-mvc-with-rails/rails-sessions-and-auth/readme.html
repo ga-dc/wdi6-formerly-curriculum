@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Wed Jul 29 2015 20:31:24 GMT+0000 (UTC)">
+    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Wed Jul 29 2015 20:47:12 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1167,10 +1167,10 @@ gem &apos;bcrypt&apos;
 <ul>
 <li>Making sure a User isn&apos;t created without a password</li>
 <li>Makes sure your User model has a <code>password_digest</code> column. A digest is the hashed value of something -- that is, the big long random string. (The way your password would look after you&apos;ve digested it, if you will.)</li>
-<li>Making sure the password is between 8 and 72 characters</li>
+<li>Making sure the password is less than or equal to 72 characters</li>
 <li>If you have a &quot;type your password again to confirm it&quot; field, it makes sure they match</li>
 </ul>
-<p>To use it, just <strong>add has_secure_password to your User model</strong>: </p>
+<p>To use it, just <strong>add has_secure_password to your User model</strong>:</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># app/models/user.rb</span>
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>

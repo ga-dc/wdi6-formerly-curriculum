@@ -30,11 +30,11 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 
 - Outcomes
 
-## Wed Jul 28
+## Wed Jul 29
 
 - Eddie P.
 - Lon P.
 
-## Thur Jul 29
+## Thur Jul 30
 
 - Justin P.
