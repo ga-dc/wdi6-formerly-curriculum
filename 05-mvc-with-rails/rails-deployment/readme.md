@@ -2,13 +2,13 @@
 
 ## Learning Objectives
 
-- List and contrast different methods of deploying an application
+- Define 'deployment', and contrast different methods of deploying an application
 - Describe the difference between development, test, and production environments
-- Describe the major points of a `12-factor` application as applied to deployment
-- Use environment variables to keep sensitive data out of code
 - Deploy a rails application using heroku
 - Run migrations on heroku
-- Debug errors on heroku (heroku logs)
+- Debug errors on heroku (using logs)
+- Describe the major points of a `12-factor` application as applied to deployment
+- Use environment variables to keep sensitive data out of code
 - List common pitfalls and their solutions when deploying to heroku
 - Describe the role of the asset pipeline in rails
 
@@ -26,11 +26,14 @@ the internet, such that people can use our app.
 
 There are generally a few things we need for an app to be properly deployed:
 
-* the server(s) must be on and connected to the internet
-* the server must be running the correct services (web, database, email, git, etc)
-* the server(s) must have the proper dependencies installed (e.g. ruby, our gems, postgres, etc)
-* we must get our code onto the server and run it
-* we must configure our running app with any configuration that is unique to that environment
+* **server** - the server(s) must be on and connected to the internet
+* **services** - the server must be running the correct services (web,
+  database, email, etc)
+* **dependencies** - the server(s) must have the proper dependencies installed
+(e.g. ruby, our gems, postgres, etc)
+* **code** - we must get our code onto the server and run it
+* **config** - we must configure our running app with any configuration that is
+unique to that environment
 
 ### Many ways to deploy
 
@@ -39,9 +42,11 @@ code onto a server by:
 
 * FTP'ing the files onto the server
 * Adding a git remote and using `git push` to send the files over
-* Putting the files on a flash drive, attaching it to a homing pigeon, and having someone receive the pigeon and copying the files over
+* Putting the files on a flash drive, attaching it to a homing pigeon, and
+having someone receive the pigeon and copying the files over
 
 ### Heroku
+
 Today, we'll be using a service called Heroku to deploy our apps, because it
 makes all the above steps easy. For example, Heroku automatically:
 
@@ -71,10 +76,10 @@ settings might include:
 * whether or not to reload code on each request (for debugging vs performance)
 * where to save log information (error logs, etc)
 
+### development environment
 
-### development
-
-Development is the default environment, and is what we are in when we run the app locally.
+Development is the default environment, and is what we are in when we run the
+app locally.
 
 In this mode:
 
@@ -84,7 +89,7 @@ In this mode:
 * logs are written to `log/development.log`
 * your CSS / JS will not be combined into one file
 
-### test
+### test environment
 
 * Rails will connect to your test database
 * The DB will be wiped between each test
@@ -92,7 +97,7 @@ In this mode:
 * code is reloaded on each request (so you don't have to restart the server)
 * logs are written to `log/test.log`
 
-### production
+### production environment
 
 * Rails will connect to your production database
 * Rails will NOT display full error messages (just a generic 'error' page)
@@ -142,9 +147,23 @@ $ git push heroku master
 This will push our code onto the server, and in response, Heroku will install
 all the dependancies for our app (using bundler), and start it up.
 
+### Visiting Our Site
+
+We could open our site manually by typing the URL into the browser, but Heroku
+gives us a convenient tool to do this from our app's folder in the command line.
+
+Simply run the following command to open the site in your default browser:
+
+```bash
+$ heroku open
+```
+
 ## Running Migrations on Heroku
 
-By default, Heroku creates a Postgres database for our app, but doesn't run
+You may have noticed that we got an error when we tried to visit any page
+dependent on our database.
+
+That's because Heroku creates a Postgres database for our app, but doesn't run
 any migrations. To run our migrations on Heroku, we use the `heroku run`
 command:
 
@@ -152,13 +171,59 @@ command:
 $ heroku run rake db:migrate
 ```
 
-The `heroku run` command will take the command immediately after it and run it
-on your Heroku server, instead of locally.
-
-## The Twelve-Factor App
+In general, the `heroku run` command will take the command immediately after it
+and run it on your Heroku server, instead of locally.
 
 ## Debugging Production Errors
 
+To debug errors in production, we need to look at the logs. With heroku, we can
+run `heroku logs` to see the most recent log entries.
+
+Here are some common ways to run this command:
+
+```bash
+$ heroku logs             # print the most recent entries and quit
+$ heroku logs -n 2000     # print the 2000 most recent entries and quit
+$ heroku logs -t          # 'tail' - print the most recent entries and continue to print new ones until we quit using ctrl-c
+```
+
+You may notice that our logs don't look complete. This is because by default,
+rails is logging to `log/production.log`, but Heroku won't look at that file.
+
+Instead, we need rails to log elsewhere, so Heroku can capture that info for us.
+To do so, we need to add a gem into our app:
+
+```ruby
+group :production do
+  gem 'rails_12factor'
+end
+```
+
+Note we're specifying that this gem should only be loaded in the production
+environment, not locally.
+
+This gem does two things:
+
+* configures rails to print logs to STDOUT, so Heroku can capture them
+* configures rails to serve our static assets (CSS/JS/images). More on this later
+
+### The Twelve-Factor App
+
+You may be wondering about the name of that gem... it's based on an idea called
+'The Twelve-Factor App', which is a set of 12 principles that modern apps should
+follow so that they can be deployed on any provider, and can scale up easily
+(i.e. can grow as the userbase grows).
+
+We don't have time to go in-depth today, but you can find more info about this
+idea on the [Twelve-Factor Site](http://12factor.net).
+
+
 ## Common Pitfalls
+
+The most common pitfalls when deploying to Heroku are:
+
+* not including the `rails_12factor` and `pg` gems
+* not running `rake db:migrate`
+* not 
 
 ## Rails Asset Pipeline
