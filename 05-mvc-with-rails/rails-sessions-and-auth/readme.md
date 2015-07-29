@@ -40,14 +40,13 @@ We'll talk about why this is `password_digest` instead of just `password` later.
 rake db:migrate
 ```
 
-Let's **validate** that each user has a unique username, and always has a password:
+We'll need to **create the user model**. We could add in fancy validations to make sure passwords are at least 8 characters or what-have-you, but that's a "nice-to-have" we can come back to later.
 
 ```rb
 # app/models/user.rb
 
 class User < ActiveRecord::Base
-  validates :username, presence: true, uniqueness: true
-  validates :password_digest, presence: true
+
 end
 ```
 
@@ -342,13 +341,12 @@ Rails provides a method called `has_secure_password` does... about what you woul
 - Making sure the password is between 8 and 72 characters
 - If you have a "type your password again to confirm it" field, it makes sure they match
 
-To use it, just **add has_secure_password to your User model** in place of `validates :password`, etc.
+To use it, just **add has_secure_password to your User model**: 
 
 ```rb
 # app/models/user.rb
 
 class User < ActiveRecord::Base
-  validates :username, presence: true, uniqueness: true
   has_secure_password
 end
 ```
@@ -676,7 +674,6 @@ end
 # app/models/user.rb
 
 class User < ActiveRecord::Base
-  validates :username, presence: true, uniqueness: true
   has_secure_password
   has_many :artists, dependent: :destroy
 end
