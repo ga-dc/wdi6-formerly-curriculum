@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Wed Jul 29 2015 01:51:23 GMT+0000 (UTC)">
+    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Wed Jul 29 2015 10:26:35 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -936,12 +936,11 @@
 </code></pre>
 <p>We&apos;ll talk about why this is <code>password_digest</code> instead of just <code>password</code> later.</p>
 <pre><code>rake db:migrate
-</code></pre><p>Let&apos;s <strong>validate</strong> that each user has a unique username, and always has a password:</p>
+</code></pre><p>We&apos;ll need to <strong>create the user model</strong>. We could add in fancy validations to make sure passwords are at least 8 characters or what-have-you, but that&apos;s a &quot;nice-to-have&quot; we can come back to later.</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># app/models/user.rb</span>
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
-  validates <span class="hljs-symbol">:username</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-keyword">true</span>
-  validates <span class="hljs-symbol">:password_digest</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>
+
 <span class="hljs-keyword">end</span>
 </code></pre>
 <h5 id="what-actions-should-a-user-have-to-start-off-with">What actions should a user have, to start off with?</h5>
@@ -1171,11 +1170,10 @@ gem &apos;bcrypt&apos;
 <li>Making sure the password is between 8 and 72 characters</li>
 <li>If you have a &quot;type your password again to confirm it&quot; field, it makes sure they match</li>
 </ul>
-<p>To use it, just <strong>add has_secure_password to your User model</strong> in place of <code>validates :password</code>, etc.</p>
+<p>To use it, just <strong>add has_secure_password to your User model</strong>: </p>
 <pre><code class="lang-rb"><span class="hljs-comment"># app/models/user.rb</span>
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
-  validates <span class="hljs-symbol">:username</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-keyword">true</span>
   has_secure_password
 <span class="hljs-keyword">end</span>
 </code></pre>
@@ -1419,7 +1417,6 @@ Expires:  When the browsing session ends
 <pre><code class="lang-rb"><span class="hljs-comment"># app/models/user.rb</span>
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
-  validates <span class="hljs-symbol">:username</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-keyword">true</span>
   has_secure_password
   has_many <span class="hljs-symbol">:artists</span>, <span class="hljs-symbol">dependent:</span> <span class="hljs-symbol">:destroy</span>
 <span class="hljs-keyword">end</span>
