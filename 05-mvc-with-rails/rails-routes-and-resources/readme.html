@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Tue Jul 28 2015 23:51:33 GMT+0000 (UTC)">
+    <div class="book" data-level="5.5" data-basepath="../.." data-revision="Wed Jul 29 2015 01:51:23 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1077,23 +1077,22 @@ song        <span class="hljs-constant">GET</span>    /songs/<span class="hljs-s
   <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">f.text_field</span> <span class="hljs-attribute">:nationality</span> %&gt;</span>
 
   <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">f.submit</span> %&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
 </code></pre>
 <p><br><br></p>
 <h2 id="nested-resources-15-55">Nested Resources (15 / 55)</h2>
 <p>The way our app is currently routed isn&apos;t too helpful, right?</p>
 <ul>
-<li>We want our Songs to exist in the context of a parent Artist.</li>
 <li>Currently we can visit an artist show page, which includes a link of all that artist&apos;s songs.</li>
-<li>But we want to be able to visit a URL like this: <code>http://www.tu.nr/artists/3/songs/</code></li>
+<li>But we want to be able to visit a URL like this: <code>http://www.tu.nr/artists/3/songs/12</code></li>
 <li>What would it mean to have a URL like that? Why do we do it this way?<ul>
-<li>It reflects our data structure. Songs are dependent on an artist</li>
-<li>It&apos;s also the most concise way to express our information hierarchy.</li>
-<li>Also gives users the ability to edit the URL to retrieve specific information.</li>
-<li>Q: What can we predict about this response based on this URL?</li>
+<li>It concisely reflects our data structure: all songs are dependent on an artist.</li>
+<li>Also allows users to access specific information using the URL.</li>
 </ul>
 </li>
+<li>Ultimately, we want to structure our routes so that all Songs exist in the context of a parent Artist.</li>
 </ul>
-<p>Say we want to list all the Songs by a given Artist. That index route will look something like this...</p>
+<p>So our ideal Song index will look something like this...</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># songs#index</span>
 get <span class="hljs-string">&quot;/artists/:id/songs&quot;</span> to <span class="hljs-string">&quot;songs#index&quot;</span>
 </code></pre>
@@ -1111,11 +1110,7 @@ get <span class="hljs-string">&quot;/artists/:artist_id/songs&quot;</span> to <s
 get <span class="hljs-string">&quot;/artists/:artist_id/songs/:id&quot;</span> to <span class="hljs-string">&quot;songs#show&quot;</span>
 </code></pre>
 <p><br><br></p>
-<p><strong>WE DO:</strong> What do you think the route for our Song create method would look like?</p>
-<pre><code class="lang-rb">post <span class="hljs-string">&quot;/artists/:artist_id/songs&quot;</span> to <span class="hljs-string">&quot;songs#create&quot;</span>
-</code></pre>
-<p><br><br></p>
-<p><strong>YOU DO:</strong> Spend the next 5 minutes writing out the individual routes for our nested resources model.</p>
+<p><strong>YOU DO:</strong> Spend the next 3 minutes writing out the individual routes for our nested resources model.</p>
 <ul>
 <li>We will not be replacing our resources statements in the <code>routes.rb</code> file with this.<ul>
 <li>Rephrase and answer why? Why are we writing these out?</li>
@@ -1276,11 +1271,11 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <li>From an artist show page, click on the &quot;(+)&quot; next to &quot;Songs&quot;.</li>
 </ul>
 <p>No immediate error! But it&apos;s not working quite yet. Let&apos;s try creating a song.</p>
-<p><img src="images/sixth-error.png" alt="Sixth error"></p>
-<p>So the error isn&apos;t as specific as the ones we&apos;ve already encountered, but it looks like our application is trying to post to a <code>/songs</code> route.</p>
+<p><img src="images/seventh-error.png" alt="Seventh error"></p>
+<p>Looks like our form is trying to access a <code>/songs</code> route.</p>
 <ul>
-<li>Our application does not support that particular route and controller action.</li>
-<li>Let&apos;s take a look at <code>songs/new.html.erb</code> and <code>songs_controller.rb</code> and see what we need to fix it...</li>
+<li>Our application does not support that particular route.</li>
+<li>Let&apos;s take a look at <code>songs/new.html.erb</code> and <code>songs_controller.rb</code> and see how we can fix this...</li>
 </ul>
 <pre><code class="lang-html"># /views/songs/new.html.erb
 
