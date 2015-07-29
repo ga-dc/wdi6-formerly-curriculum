@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.6" data-basepath="../.." data-revision="Wed Jul 29 2015 15:33:28 GMT+0000 (UTC)">
+    <div class="book" data-level="5.6" data-basepath="../.." data-revision="Wed Jul 29 2015 15:39:58 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1064,8 +1064,8 @@ search form.</p>
 </code></pre><p>Important facts about the <code>form_for</code> helper:</p>
 <ul>
 <li>It takes one argument, the object to create / update (it must be an AR object)<ul>
-<li>If the object is <strong>new</strong> (not saved to DB), it will create a form to <strong>create</strong></li>
-<li>If the object is not new (no id), it will create an form to update (prepopulated)</li>
+<li>If the object is <strong>new</strong> (not saved to DB, <code>object.new_record? == true</code>), it will create a form to <strong>create</strong></li>
+<li>If the object is not new (id exists, <code>object.new_record? == false</code>), it will create an form to update (prepopulated)</li>
 </ul>
 </li>
 <li>Methods to generate labels and inputs take one argument, the name of the attribute</li>
