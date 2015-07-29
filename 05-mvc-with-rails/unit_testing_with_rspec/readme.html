@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Wed Jul 29 2015 13:15:38 GMT+0000 (UTC)">
+    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Wed Jul 29 2015 15:33:28 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1042,9 +1042,19 @@ end
 <ol>
 <li>Start from <code>wdi/exercises</code>.</li>
 <li><code>git clone git://github.com/alexch/learn_ruby.git</code></li>
+<li>Learn Ruby expects a particular version of RSpec.<pre><code>gem install rspec --version &apos;&lt; 3.0&apos;
+</code></pre></li>
+<li>LearnRuby uses the legacy &quot;should &quot; syntax. To avoid deprecation warnings, let&apos;s configure rspec to allow this syntax. Make sure your &quot;rspec_config.rb&quot; file looks like this:<pre><code class="lang-ruby"><span class="hljs-comment"># rspec_config.rb</span>
+<span class="hljs-constant">RSpec</span>.configure <span class="hljs-keyword">do</span> |c|
+c.fail_fast = <span class="hljs-keyword">true</span>
+c.color = <span class="hljs-keyword">true</span>
+c.expect_with(<span class="hljs-symbol">:rspec</span>) { |with| with.syntax = <span class="hljs-symbol">:should</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+</li>
 <li>Once you get the materials, open learn_ruby/index.html in your favorite web browser. Further instructions await therein.</li>
 </ol>
-<p>We&apos;ll continue together until through the first few steps.</p>
+<p>We&apos;ll continue together through the first few steps.</p>
 <p>Continue with 00_hello.  We&apos;ll do this for 8 minutes.</p>
 <h3 id="context">Context</h3>
 <p>As we move into the the description of the <code>greeting</code> method, we see our first &quot;context&quot;: <code>&quot;for default language (English)&quot;</code>.  Within this block, we expect the language of our person to be &quot;English&quot; and we will write specs accordingly.  You can see this as we move down through each supported language.</p>
