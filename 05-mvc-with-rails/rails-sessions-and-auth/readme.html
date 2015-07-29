@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Wed Jul 29 2015 20:47:12 GMT+0000 (UTC)">
+    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Wed Jul 29 2015 21:44:13 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1465,28 +1465,6 @@ Expires:  When the browsing session ends
 </ul>
 <h5 id="what-s-the-difference-between-encryption-and-hashing">What&apos;s the difference between encryption and hashing?</h5>
 <h5 id="what-s-the-difference-between-authenticating-and-authorizing">What&apos;s the difference between authenticating and authorizing?</h5>
-<h2 id="to-close-devise-demo">To close: Devise demo</h2>
-<p><a href="https://github.com/plataformatec/devise" target="_blank">https://github.com/plataformatec/devise</a></p>
-<p>Devise does everything we just did, and more, in about 3 steps. <strong>HOWEVER</strong>, you have to start from a pretty blank slate. In particular, if you already have a User model, Devise is going to try to overwrite it and things will get really complicated.</p>
-<pre><code># Gemfile
-
-gem &apos;devise&apos;
-</code></pre><pre><code>bundle install
-rails generate devise:install
-rails generate devise user
-rake db:migrate
-</code></pre><pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/application_controller.rb</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActionController::Base</span></span></span>
-  <span class="hljs-comment"># Prevent CSRF attacks by raising an exception.</span>
-  <span class="hljs-comment"># For APIs, you may want to use :null_session instead.</span>
-  protect_from_forgery <span class="hljs-symbol">with:</span> <span class="hljs-symbol">:exception</span>
-  before_action <span class="hljs-symbol">:authenticate_user!</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>...and now it asks us to sign in and stuff!</p>
-<p>Devise provides error messages, password editing, password resetting, and all kinds of stuff. However, there are small tweaks you need to make out-of-the-box. Fortunately the documentation walks you through most of it, and documentation elsewhere on the web walks you through the rest:</p>
-<p><a href="https://github.com/plataformatec/devise" target="_blank">https://github.com/plataformatec/devise</a></p>
 
                     
                     </section>
