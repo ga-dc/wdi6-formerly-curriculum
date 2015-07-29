@@ -562,7 +562,7 @@ end
 
 def signout
   reset_session
-  redirect_to :back
+  redirect_to root_url
 end
 ```
 
