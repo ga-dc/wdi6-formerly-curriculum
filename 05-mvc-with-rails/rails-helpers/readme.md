@@ -216,8 +216,8 @@ Here's an example of using form_for:
 Important facts about the `form_for` helper:
 
 * It takes one argument, the object to create / update (it must be an AR object)
-  * If the object is **new** (not saved to DB), it will create a form to **create**
-  * If the object is not new (no id), it will create an form to update (prepopulated)
+  * If the object is **new** (not saved to DB, `object.new_record? == true`), it will create a form to **create**
+  * If the object is not new (id exists, `object.new_record? == false`), it will create an form to update (prepopulated)
 * Methods to generate labels and inputs take one argument, the name of the attribute
 * The submit button takes an optional argument for the text on the button
   * If you omit the argument, it will say either "Create Panda" or "Update Panda" accordingly (subbing in the name of your model)
