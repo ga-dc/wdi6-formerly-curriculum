@@ -18,3 +18,7 @@ As always, please include:
 3. A brief note describing where you stopped, what in particular you had trouble with, what went well, and anything else you feel like including!
 
 **Even if you're not done, please make sure you've made a pull request with what you have completed by 9:00am each day.**
+
+Note: On your submissions, please **phrase your questions as questions**! Physical question marks are our visual cues to know we should respond to something.
+
+Also, please give us specific error messages or behaviors to take a look at. "Seeding the database isn't working" doesn't give us much to respond to. Instead, please phrase it as "Why does `rake db:seed` throw an error?" or "`rake db:seed` doesn't throw an error, but nothing shows up in the database. Why?"
