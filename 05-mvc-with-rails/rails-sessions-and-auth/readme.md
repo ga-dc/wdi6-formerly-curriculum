@@ -338,10 +338,10 @@ end
 Rails provides a method called `has_secure_password` does... about what you would expect from the name. This includes:
 - Making sure a User isn't created without a password
 - Makes sure your User model has a `password_digest` column. A digest is the hashed value of something -- that is, the big long random string. (The way your password would look after you've digested it, if you will.)
-- Making sure the password is between 8 and 72 characters
+- Making sure the password is less than or equal to 72 characters
 - If you have a "type your password again to confirm it" field, it makes sure they match
 
-To use it, just **add has_secure_password to your User model**: 
+To use it, just **add has_secure_password to your User model**:
 
 ```rb
 # app/models/user.rb
@@ -760,4 +760,3 @@ end
 Devise provides error messages, password editing, password resetting, and all kinds of stuff. However, there are small tweaks you need to make out-of-the-box. Fortunately the documentation walks you through most of it, and documentation elsewhere on the web walks you through the rest:
 
 https://github.com/plataformatec/devise
-
