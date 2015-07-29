@@ -34,14 +34,6 @@ A route to our index page would look like this:
 get "/artists/", to "artists#index"
 ```
 
-Basically, a simplification of the controller actions in Rails and Sinatra
-* **WE DO:** Walk me through writing the route for our `update` -- not `edit` -- method.
-
-```rb
-# update
-put "/artists/:id", to "artists#update"
-```
-
 This would look the exact same for our Song model
 * Just replace the model reference in the HTTP request and controller method.
 
