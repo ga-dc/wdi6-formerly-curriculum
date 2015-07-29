@@ -12,7 +12,7 @@
 | Wednesday     |                                | [Scribble Helpers](https://github.com/ga-dc/scribble#helpers) |
 | Wednesday     |                                | [Scribble Routes](https://github.com/ga-dc/scribble#routes) |
 | Thursday      |                                | [Scribble Sessions](https://github.com/ga-dc/scribble#sessions) |
-| Thursday      |                                | [Scribble Deployment](https://github.com/ga-dc/scribble#deployment) (due Fri @ 9)|
+| Thursday      |                                | [Scribble Deployment](https://github.com/ga-dc/scribble#deployment) (due Fri @ 9am)|
 | Friday        |                                | [Hogwarts](https://github.com/ga-dc/hogwarts_rails) |
 | Friday        |                                | [Project 2 Prep](https://github.com/ga-dc/pbj-project2/blob/master/schedule.md#friday-731) |
 
@@ -25,7 +25,7 @@
 | Tuesday       |                                | [Scribble Helpers](https://github.com/ga-dc/scribble#helpers) |
 | Wednesday     |                                | [Scribble Routes](https://github.com/ga-dc/scribble#routes) |
 | Wednesday     |                                | [Scribble Sessions](https://github.com/ga-dc/scribble#sessions) |
-| Thursday      |                                | [Scribble Deployment](https://github.com/ga-dc/scribble#deployment) (due Fri @ 9)|
+| Thursday      |                                | [Scribble Deployment](https://github.com/ga-dc/scribble#deployment) (due Fri @ 9am)|
 | Thursday      |                                | [Scrabbler](https://github.com/ga-dc/scrabbler)  |
 | Friday        |                                | [Hogwarts](https://github.com/ga-dc/hogwarts_rails) |
 | Friday        |                                | [Project 2 Prep](https://github.com/ga-dc/pbj-project2/blob/master/schedule.md#friday-731) |
