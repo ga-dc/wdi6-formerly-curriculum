@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.8" data-basepath="../.." data-revision="Wed Jul 29 2015 18:59:30 GMT+0000 (UTC)">
+    <div class="book" data-level="5.8" data-basepath="../.." data-revision="Wed Jul 29 2015 20:31:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -909,13 +909,13 @@
                         <h1 id="deployment">Deployment</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>List and contrast different methods of deploying an application</li>
+<li>Define &apos;deployment&apos;, and contrast different methods of deploying an application</li>
 <li>Describe the difference between development, test, and production environments</li>
-<li>Describe the major points of a <code>12-factor</code> application as applied to deployment</li>
-<li>Use environment variables to keep sensitive data out of code</li>
 <li>Deploy a rails application using heroku</li>
 <li>Run migrations on heroku</li>
-<li>Debug errors on heroku (heroku logs)</li>
+<li>Debug errors on heroku (using logs)</li>
+<li>Describe the major points of a <code>12-factor</code> application as applied to deployment</li>
+<li>Use environment variables to keep sensitive data out of code</li>
 <li>List common pitfalls and their solutions when deploying to heroku</li>
 <li>Describe the role of the asset pipeline in rails</li>
 </ul>
@@ -930,11 +930,14 @@ the internet, such that people can use our app.</p>
 <h3 id="requirements-for-deploying">Requirements for Deploying</h3>
 <p>There are generally a few things we need for an app to be properly deployed:</p>
 <ul>
-<li>the server(s) must be on and connected to the internet</li>
-<li>the server must be running the correct services (web, database, email, git, etc)</li>
-<li>the server(s) must have the proper dependencies installed (e.g. ruby, our gems, postgres, etc)</li>
-<li>we must get our code onto the server and run it</li>
-<li>we must configure our running app with any configuration that is unique to that environment</li>
+<li><strong>server</strong> - the server(s) must be on and connected to the internet</li>
+<li><strong>services</strong> - the server must be running the correct services (web,
+database, email, etc)</li>
+<li><strong>dependencies</strong> - the server(s) must have the proper dependencies installed
+(e.g. ruby, our gems, postgres, etc)</li>
+<li><strong>code</strong> - we must get our code onto the server and run it</li>
+<li><strong>config</strong> - we must configure our running app with any configuration that is
+unique to that environment</li>
 </ul>
 <h3 id="many-ways-to-deploy">Many ways to deploy</h3>
 <p>There are lots of ways to do each of these steps. For example, we can get our
@@ -942,7 +945,8 @@ code onto a server by:</p>
 <ul>
 <li>FTP&apos;ing the files onto the server</li>
 <li>Adding a git remote and using <code>git push</code> to send the files over</li>
-<li>Putting the files on a flash drive, attaching it to a homing pigeon, and having someone receive the pigeon and copying the files over</li>
+<li>Putting the files on a flash drive, attaching it to a homing pigeon, and
+having someone receive the pigeon and copying the files over</li>
 </ul>
 <h3 id="heroku">Heroku</h3>
 <p>Today, we&apos;ll be using a service called Heroku to deploy our apps, because it
@@ -972,8 +976,9 @@ settings might include:</p>
 <li>whether or not to reload code on each request (for debugging vs performance)</li>
 <li>where to save log information (error logs, etc)</li>
 </ul>
-<h3 id="development">development</h3>
-<p>Development is the default environment, and is what we are in when we run the app locally.</p>
+<h3 id="development-environment">development environment</h3>
+<p>Development is the default environment, and is what we are in when we run the
+app locally.</p>
 <p>In this mode:</p>
 <ul>
 <li>Rails will connect to your development database</li>
@@ -982,7 +987,7 @@ settings might include:</p>
 <li>logs are written to <code>log/development.log</code></li>
 <li>your CSS / JS will not be combined into one file</li>
 </ul>
-<h3 id="test">test</h3>
+<h3 id="test-environment">test environment</h3>
 <ul>
 <li>Rails will connect to your test database</li>
 <li>The DB will be wiped between each test</li>
@@ -990,7 +995,7 @@ settings might include:</p>
 <li>code is reloaded on each request (so you don&apos;t have to restart the server)</li>
 <li>logs are written to <code>log/test.log</code></li>
 </ul>
-<h3 id="production">production</h3>
+<h3 id="production-environment">production environment</h3>
 <ul>
 <li>Rails will connect to your production database</li>
 <li>Rails will NOT display full error messages (just a generic &apos;error&apos; page)</li>
@@ -1024,17 +1029,59 @@ this new remote:</p>
 </code></pre>
 <p>This will push our code onto the server, and in response, Heroku will install
 all the dependancies for our app (using bundler), and start it up.</p>
+<h3 id="visiting-our-site">Visiting Our Site</h3>
+<p>We could open our site manually by typing the URL into the browser, but Heroku
+gives us a convenient tool to do this from our app&apos;s folder in the command line.</p>
+<p>Simply run the following command to open the site in your default browser:</p>
+<pre><code class="lang-bash">$ heroku open
+</code></pre>
 <h2 id="running-migrations-on-heroku">Running Migrations on Heroku</h2>
-<p>By default, Heroku creates a Postgres database for our app, but doesn&apos;t run
+<p>You may have noticed that we got an error when we tried to visit any page
+dependent on our database.</p>
+<p>That&apos;s because Heroku creates a Postgres database for our app, but doesn&apos;t run
 any migrations. To run our migrations on Heroku, we use the <code>heroku run</code>
 command:</p>
 <pre><code class="lang-bash">$ heroku run rake db:migrate
 </code></pre>
-<p>The <code>heroku run</code> command will take the command immediately after it and run it
-on your Heroku server, instead of locally.</p>
-<h2 id="the-twelve-factor-app">The Twelve-Factor App</h2>
+<p>In general, the <code>heroku run</code> command will take the command immediately after it
+and run it on your Heroku server, instead of locally.</p>
 <h2 id="debugging-production-errors">Debugging Production Errors</h2>
+<p>To debug errors in production, we need to look at the logs. With heroku, we can
+run <code>heroku logs</code> to see the most recent log entries.</p>
+<p>Here are some common ways to run this command:</p>
+<pre><code class="lang-bash">$ heroku logs             <span class="hljs-comment"># print the most recent entries and quit</span>
+$ heroku logs -n <span class="hljs-number">2000</span>     <span class="hljs-comment"># print the 2000 most recent entries and quit</span>
+$ heroku logs -t          <span class="hljs-comment"># &apos;tail&apos; - print the most recent entries and continue to print new ones until we quit using ctrl-c</span>
+</code></pre>
+<p>You may notice that our logs don&apos;t look complete. This is because by default,
+rails is logging to <code>log/production.log</code>, but Heroku won&apos;t look at that file.</p>
+<p>Instead, we need rails to log elsewhere, so Heroku can capture that info for us.
+To do so, we need to add a gem into our app:</p>
+<pre><code class="lang-ruby">group <span class="hljs-symbol">:production</span> <span class="hljs-keyword">do</span>
+  gem <span class="hljs-string">&apos;rails_12factor&apos;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Note we&apos;re specifying that this gem should only be loaded in the production
+environment, not locally.</p>
+<p>This gem does two things:</p>
+<ul>
+<li>configures rails to print logs to STDOUT, so Heroku can capture them</li>
+<li>configures rails to serve our static assets (CSS/JS/images). More on this later</li>
+</ul>
+<h3 id="the-twelve-factor-app">The Twelve-Factor App</h3>
+<p>You may be wondering about the name of that gem... it&apos;s based on an idea called
+&apos;The Twelve-Factor App&apos;, which is a set of 12 principles that modern apps should
+follow so that they can be deployed on any provider, and can scale up easily
+(i.e. can grow as the userbase grows).</p>
+<p>We don&apos;t have time to go in-depth today, but you can find more info about this
+idea on the <a href="http://12factor.net" target="_blank">Twelve-Factor Site</a>.</p>
 <h2 id="common-pitfalls">Common Pitfalls</h2>
+<p>The most common pitfalls when deploying to Heroku are:</p>
+<ul>
+<li>not including the <code>rails_12factor</code> and <code>pg</code> gems</li>
+<li>not running <code>rake db:migrate</code></li>
+<li>not </li>
+</ul>
 <h2 id="rails-asset-pipeline">Rails Asset Pipeline</h2>
 
                     
