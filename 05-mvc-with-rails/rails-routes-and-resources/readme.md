@@ -177,21 +177,20 @@ With path helpers, we can tidy up the other helpers you guys have alrady impleme
   <%= f.text_field :nationality %>
 
   <%= f.submit %>
+<% end %>
 ```
 <br><br>
 
 ## Nested Resources (15 / 55)
 The way our app is currently routed isn't too helpful, right?
-* We want our Songs to exist in the context of a parent Artist.
 * Currently we can visit an artist show page, which includes a link of all that artist's songs.
-* But we want to be able to visit a URL like this: `http://www.tu.nr/artists/3/songs/`
+* But we want to be able to visit a URL like this: `http://www.tu.nr/artists/3/songs/12`
 * What would it mean to have a URL like that? Why do we do it this way?
-  * It reflects our data structure. Songs are dependent on an artist
-  * It's also the most concise way to express our information hierarchy.
-  * Also gives users the ability to edit the URL to retrieve specific information.
-  * Q: What can we predict about this response based on this URL?
+  * It concisely reflects our data structure: all songs are dependent on an artist.
+  * Also allows users to access specific information using the URL.
+* Ultimately, we want to structure our routes so that all Songs exist in the context of a parent Artist.
 
-Say we want to list all the Songs by a given Artist. That index route will look something like this...
+So our ideal Song index will look something like this...
 
 ```rb
 # songs#index
@@ -216,14 +215,7 @@ get "/artists/:artist_id/songs/:id" to "songs#show"
 ```
 <br><br>
 
-**WE DO:** What do you think the route for our Song create method would look like?
-
-```rb
-post "/artists/:artist_id/songs" to "songs#create"
-```
-<br><br>
-
-**YOU DO:** Spend the next 5 minutes writing out the individual routes for our nested resources model.
+**YOU DO:** Spend the next 3 minutes writing out the individual routes for our nested resources model.
 * We will not be replacing our resources statements in the `routes.rb` file with this.
   * Rephrase and answer why? Why are we writing these out?
 * **DO NOT** check our answers with `rake routes` quite yet...
@@ -403,11 +395,11 @@ Something else we'll need to change are forms. Let's try making a new song.
 
 No immediate error! But it's not working quite yet. Let's try creating a song.
 
-![Sixth error](images/sixth-error.png)
+![Seventh error](images/seventh-error.png)
 
-So the error isn't as specific as the ones we've already encountered, but it looks like our application is trying to post to a `/songs` route.
-* Our application does not support that particular route and controller action.
-* Let's take a look at `songs/new.html.erb` and `songs_controller.rb` and see what we need to fix it...
+Looks like our form is trying to access a `/songs` route.
+* Our application does not support that particular route.
+* Let's take a look at `songs/new.html.erb` and `songs_controller.rb` and see how we can fix this...
 
 ```html
 # /views/songs/new.html.erb
