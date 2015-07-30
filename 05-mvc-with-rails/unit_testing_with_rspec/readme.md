@@ -32,7 +32,7 @@ She propounds that our Unit Tests should be:
 - Fast
 - Few
 
-They need to be thorough enough to identify an issue at the moment when it occurs.  They need to be stable so that we can trust them.  No [flickering tests](http://sk176h.blogspot.com/2013/05/flickering-scenario.html).  They need to be fast so that we can run all our tests everytime we make a change - or we will stop running them.  They need to be few so...  They need to be few so that... awww, go watch the talk already.
+They need to be thorough enough to identify an issue at the moment when it occurs.  They need to be stable so that we can trust them.  No [flickering tests](http://sk176h.blogspot.com/2013/05/flickering-scenario.html).  They need to be fast so that we can run all our tests every time we make a change - or we will stop running them.  They need to be few so...  They need to be few so that... awww, go watch the talk already.
 
 
 ## What is RSpec?
@@ -139,7 +139,7 @@ The first line is a reference to our library code.  We need to access to the cla
 
 Well skim through the code, gaining a high level knowledge of what is expected, then we'll return to hash out the details.
 
-`describe` is a new keyword provided by RSpec (part of its DSL).  Here it indicates that a `Person` is the "Unit Under Test".  First we show examples of what we can expect as we contruct new people.  Then, we describe the functionality of the `greeting` method, specifically within the specific context of each language.  This is ruby code, indicating how our library (or model) code should behave.
+`describe` is a keyword provided by RSpec (part of its DSL).  Here it indicates that a `Person` is the "Unit Under Test".  First we show examples of what we can expect as we construct new people.  Then, we describe the functionality of the `greeting` method, specifically within the specific context of each language.  This is ruby code, indicating how our library (or model) code should behave.
 
 ### Test Isolation
 Returning to the top, we see `@matt` being instantiated.
@@ -215,7 +215,7 @@ RSpec.configure do |c|
   c.expect_with(:rspec) { |with| with.syntax = :should }
 end
 ```
-3. Once you get the materials, open learn_ruby/index.html in your favorite web browser. Further instructions await therein.
+5. Once you get the materials, open learn_ruby/index.html in your favorite web browser. Further instructions await therein.
 
 We'll continue together through the first few steps.
 
@@ -341,10 +341,10 @@ Notice how a block is used to delay execution.  `#expect` controls when to run `
 
 A. Because it needs to record the count before and after that code is run.
 
-While checking for side-effects is perfectly reasonable, this particular check is pretty weak.  Just checking that the count increases, does not verify that foods_eaten contains the "banana".  Our `#eat` method could have added anyting to `#foods_eaten`.
+While checking for side-effects is perfectly reasonable, this particular check is pretty weak.  Just checking that the count increases, does not verify that foods_eaten contains the "banana".  Our `#eat` method could have added anything to `#foods_eaten`.
 
 ### How many Matchers are there?
-I recommend that you review the available Matchers in the [RSpec documentation](https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers).  The RSpec docs are great!  They are a mix of specifications and documentation as live documents.  Written using the "relish" app to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (3.3).
+I recommend that you review the available Matchers in the [RSpec documentation](https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers).  The RSpec docs are great!  They are a mix of specifications and documentation as live documents.  Written using the "relish" app to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (v3.3).
 
 ### We avoid testing implementation
 Here's something else we aren't testing.  We aren't testing that `greeting` uses a `select/case` statement.  That would be testing the internal implementation. Let's be clear, I should be free to write whatever code I want, inside of the `greeter` method, in order to achieve the results the specs indicate. Let's say our team creates a new translation library.  I should be able to swap out my naive implementation and replace it with that.  To do that we test against the interface of the class -- the public methods -- not the internal implementation.  The following code tells the ItalianTranslator to translate this phrase from English.
@@ -454,6 +454,6 @@ There are plenty of exercises in TestFirst.org.  We recommend a path in [Learn R
 1. design/architecture/maintainability.
 2. Red, Green, Refactor.  We write a test that fails, indicating that the freature is not supported.  Then, we adjust code until it passes (turns Green).  Lastly, we refactor our app using the knowledge we gained from supporting the spec.
 3. `describe` and `context`
-4. It ensures out tests are stabile, eliminates confusing dependencies, and minimizes "flickering" tests.
-5. Queries and Commands.  For Queries we verify return values, while we check side-effects for commands.
-6. It makes it really hard to refactor.
+4. It ensures our tests are stable, eliminates confusing dependencies, and minimizes "flickering" tests.
+5. Queries and Commands.  For Queries we verify return values, while we check side-effects for Commands.
+6. Testing internal implementation makes it really hard to refactor away from that implementation.
