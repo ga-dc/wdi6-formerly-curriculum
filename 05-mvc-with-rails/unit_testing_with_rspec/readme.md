@@ -266,9 +266,65 @@ Then, we'll share a few examples with the class.
 - Specify that we utilize the passed name
 - Specify the response to an Unsupported language
 
-I recommend that you review the available Matchers in the [RSpec documentation](https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers).  These are live documents, written using "relish" to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (3.3).
+### Specify Side-effects
+
+So far, we've been specifying the expected return value of methods.  We can also specify the expected side-effects.  Does this method do what it should do to our system?
+
+Think back to [oop_monkey](https://github.com/ga-dc/oop_monkey).  Remember that our app kept track of the foods that our monkey ate?
+
+In  [monkey_spec.rb](https://github.com/ga-dc/oop_monkey/blob/master/spec/monkey_spec.rb), we saw an example of specifying the side-effect.
+
+> Q. What changes when `matt.eat("banana")`?  How can we verify this?
 
 ---
+
+A. "banana" is added to `matt.foods_eaten`.
+
+```
+it "can eat a food (a string)" do
+  matt = Monkey.new("Matt", "Mandrill")
+  matt.eat("banana")
+  matt.eat("PB&J")
+
+  # we can make more general expectations, like expect(this_array) to include something
+  expect(matt.foods_eaten).to include("banana")
+  expect(matt.foods_eaten).to include("PB&J")
+end
+```
+
+This is specifying what side-effect `#eat` has on our system.
+
+### Think, Pair, Share: "Change" Matcher
+
+> Q. How could we test this using the ["change" matcher](http://www.relishapp.com/rspec/rspec-expectations/v/3-3/docs/built-in-matchers/change-matcher)?
+
+```
+expect { do_something }.to change(object, :attribute)
+```
+
+---
+
+```
+describe '#eat(food)' do
+  it "adds the passed food to #foods_eaten" do
+    matt = Monkey.new("Matt", "Mandrill")
+    # specify via side-effect
+    expect { matt.eat("banana") }.to change{matt.foods_eaten.size}.by(1)
+  end
+end
+```
+
+Notice how a block is used to delay execution.  `#expect` controls when to run `matt.eat("banana")`.  
+
+> Q. Why does it need to do this?
+
+---
+
+A. Because it needs to record the count before and after that code is run.
+
+While checking for side-effects is perfectly reasonable, this particular check is pretty weak.  Just checking that the count increases, does not verify that foods_eaten contains the "banana".  Our `#eat` method could have added anyting to `#foods_eaten`.
+
+I recommend that you review the available Matchers in the [RSpec documentation](https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers).  These are live documents, written using "relish" to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (3.3).
 
 ### We avoid testing implementation
 Here's something else we aren't testing.
@@ -311,12 +367,6 @@ allow(book).to receive(:title).and_return("The RSpec Book")
 
 ---
 
-Now that you have had some small exercises to get familiar with the syntax, let's practice the concept.
-
-https://github.com/ga-dc/learn_ruby_via_rspec
-
----
-
 ## Homework:
 
 Scoring a Scrabble game.
@@ -328,7 +378,7 @@ https://github.com/ga-dc/scrabbler
 
 ## Want more? Need clarification?
 
-There are plenty of exercises in TestFrist.org
+There are plenty of exercises in TestFirst.org.  We recommend a path in [Learn Ruby via RSpec]( https://github.com/ga-dc/learn_ruby_via_rspec)
 
 ---
 
