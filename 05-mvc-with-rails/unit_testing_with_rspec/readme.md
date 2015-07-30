@@ -395,6 +395,26 @@ allow(translator).to receive(:convert_from) { "Ciao, mi chiamo Tony." }
 ```
 
 So then when I use this *mock* in my tests, `tony` returns the phrase I expect and I can test that I process that result correctly.
+
+---
+
+## Review
+
+1. The practice of TDD provides a safety net of regression tests and tends to improve `______________`.
+2. What is the TDD Mantra?  Explain each step.
+3. What 2 commands are used to indicate what we are testing now?
+4. Why is isolating tests a good practice?
+5. What are the two main categories of things we test for?  And how do they differ?
+6. What is the downside of testing internal implementation?
+
+---
+
+## Conclusion
+
+The ruby community drank the testing koolaid.  We've felt the benefits.  Rails was the first web framework that supported testing out of the box.  The generators create a skeleton test, encouraging you to get in there and fill it out.
+
+Every single person that comes in here to talk to you - from alumni to seasoned veteran - espouses the importance of testing.  It's a learning curve.  It will be slow... at first.  Stick with it.  Keep at it.  Climb that curve.  Impress your interviewers.
+
 ---
 
 ## Homework:
@@ -413,26 +433,27 @@ There are plenty of exercises in TestFirst.org.  We recommend a path in [Learn R
 ---
 
 ## References:
-- "The RSpec Book", David Chelimsky
-- Magic Tricks of Testing - Sandi Metz
+- ["The RSpec Book", David Chelimsky](https://pragprog.com/book/achbd/the-rspec-book).  It's a little dated (as most tech. book are), but full of wisdom.
+- [Magic Tricks of Testing - Sandi Metz](https://www.google.com/search?client=safari&rls=en&q=sandi+metz+magic+trick+of+testing&ie=UTF-8&oe=UTF-8)
 
 ---
 
 ## Additional Resources
 
+- [Code School RSpec](https://www.codeschool.com/courses/testing-with-rspec)
+- [RSpec for Newbies](http://code.tutsplus.com/tutorials/ruby-for-newbies-testing-with-rspec--net-21297)
+- Mocks & Stubs]
+  - https://www.relishapp.com/rspec/rspec-mocks/docs
+  - http://www.martinfowler.com/bliki/TestDouble.html
 - RSpec Cheatsheets:
-
   - https://www.anchor.com.au/wp-content/uploads/rspec_cheatsheet_attributed.pdf
-  - https://gist.github.com/byplayer/965857
 
-- Code School RSpec:
+## Review Answers
+---
 
-  - https://www.codeschool.com/courses/testing-with-rspec
-
-- RSpec for Newbies:
-
-  - http://code.tutsplus.com/tutorials/ruby-for-newbies-testing-with-rspec--net-21297
-
-- Mocks & Stubs
-  - http://rubydoc.info/gems/rspec-mocks/frames
-  - http://rubydoc.info/gems/rspec-mocks/frames
+1. design/architecture/maintainability.
+2. Red, Green, Refactor.  We write a test that fails, indicating that the freature is not supported.  Then, we adjust code until it passes (turns Green).  Lastly, we refactor our app using the knowledge we gained from supporting the spec.
+3. `describe` and `context`
+4. It ensures out tests are stabile, eliminates confusing dependencies, and minimizes "flickering" tests.
+5. Queries and Commands.  For Queries we verify return values, while we check side-effects for commands.
+6. It makes it really hard to refactor.
