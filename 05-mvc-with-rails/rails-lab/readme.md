@@ -10,7 +10,7 @@ For this week's lab you and a partner will be creating Pinspiration, an idea-sha
 
 Pinspiration requires registration to use. Users can upload, save, sort, and manage images—known as pins—and other media content (e.g., videos and images) through collections known as "pinboards". Pinspiration acts as a personalized media platform. Users can browse the content of others on the main page.
 
-## Workflow
+## Suggested Workflow
 
 Not sure where to start? Try tackling your application in the following order...
   1. Database
