@@ -17,7 +17,7 @@
 - [Getting Started Deploying Rails on Heroku](https://devcenter.heroku.com/articles/getting-started-with-rails4)
 - [The Twelve-Factor App](http://12factor.net)
 
-## What is Deployment?
+## What is Deployment? (15 minutes)
 
 Deployment is the act of putting our app up on one or more servers connected to
 the internet, such that people can use our app.
@@ -57,7 +57,7 @@ makes all the above steps easy. For example, Heroku automatically:
 And if we need to change configuration information, we can set configuration
 variables using `heroku config`, e.g.
 
-## Rails 'Environments'
+## Rails 'Environments' (15 minutes)
 
 By default, a Rails app can be run in any of three different environments. The
 three default environments are:
@@ -110,7 +110,7 @@ We usually think of deploying our app to mean 'deploying into production'. By
 production, we mean the 'public' version of our site. The one with the important
 data that all of our users are using.
 
-## Setting Up Heroku
+## Deploying to Heroku (30 minutes)
 
 We're going to use Heroku to deploy our app, because it has a free tier, and is
 incredibly easy to get started with.
@@ -123,7 +123,7 @@ deploy, deploy code updates, and manage our server(s).
 Follow the instructions on the
 [Heroku Toolbelt site](https://toolbelt.heroku.com) to get it installed.
 
-## Creating / Deploying our App
+### Creating our App
 
 The first time we want to deploy a new app, we need to tell Heroku to create a
 new server:
@@ -136,9 +136,12 @@ $ heroku create <your_app_name>
 Make sure to choose something unique but meaningful for `your_app_name`, e.g.
 `wdi-dc6-adam-tunr`. The app will be hosted at `your_app_name.herokuapp.com`.
 
-When we run this command, heroku will automatically add a new git remote, called
-`heroku`. To actually deploy our code onto the new server, we simply push to
-this new remote:
+
+### Deploying the App
+
+When we run `heroku create`, heroku will automatically add a new git remote,
+called `heroku`. To actually deploy our code onto the new server, we simply push
+to this new remote:
 
 ```bash
 $ git push heroku master
@@ -158,7 +161,7 @@ Simply run the following command to open the site in your default browser:
 $ heroku open
 ```
 
-## Running Migrations on Heroku
+### Running Migrations on Heroku
 
 You may have noticed that we got an error when we tried to visit any page
 dependent on our database.
@@ -174,7 +177,9 @@ $ heroku run rake db:migrate
 In general, the `heroku run` command will take the command immediately after it
 and run it on your Heroku server, instead of locally.
 
-## Debugging Production Errors
+## BREAK (10 minutes)
+
+## Debugging Errors in Production (15 minutes)
 
 To debug errors in production, we need to look at the logs. With heroku, we can
 run `heroku logs` to see the most recent log entries.
@@ -190,8 +195,13 @@ $ heroku logs -t          # 'tail' - print the most recent entries and continue 
 You may notice that our logs don't look complete. This is because by default,
 rails is logging to `log/production.log`, but Heroku won't look at that file.
 
-Instead, we need rails to log elsewhere, so Heroku can capture that info for us.
-To do so, we need to add a gem into our app:
+Instead, we need rails to log to a place that Heroku can see. The easiest way
+to do that is to is with the gem below.
+
+### The `rails_12factor` gem
+
+Heroku provides a gem called `rails_12factor`. To include this gem, first,
+include it in your `Gemfile` (near the bottom is fine).
 
 ```ruby
 group :production do
@@ -202,12 +212,21 @@ end
 Note we're specifying that this gem should only be loaded in the production
 environment, not locally.
 
-This gem does two things:
+Anytime we make changes locally, we have to add/commit/push to heroku to see
+our changes take effect:
 
-* configures rails to print logs to STDOUT, so Heroku can capture them
-* configures rails to serve our static assets (CSS/JS/images). More on this later
+```bash
+$ git add Gemfile Gemfile.lock
+$ git commit -m "include rails_12factor gem in production, to fix logging and assets"
+$ git push heroku master
+```
 
-### The Twelve-Factor App
+Adding this gem does two things in production:
+
+* configures rails to print logs to STDOUT, so Heroku can capture them for us
+* configures rails to serve our static assets (CSS/JS/images). See [Asset Pipeline](#rails-asset-pipeline) below for more info
+
+#### What the heck is 12factor?
 
 You may be wondering about the name of that gem... it's based on an idea called
 'The Twelve-Factor App', which is a set of 12 principles that modern apps should
@@ -217,13 +236,59 @@ follow so that they can be deployed on any provider, and can scale up easily
 We don't have time to go in-depth today, but you can find more info about this
 idea on the [Twelve-Factor Site](http://12factor.net).
 
-
-## Common Pitfalls
+## Common Pitfalls (20 minutes)
 
 The most common pitfalls when deploying to Heroku are:
 
 * not including the `rails_12factor` and `pg` gems
-* not running `rake db:migrate`
-* not 
+* not running `heroku run rake db:migrate`
+* can't drop / reset your database
+* saving user-uploaded data to the filesystem (instead of a service like AWS S3)
+* checking in sensitive information into your public repository
 
-## Rails Asset Pipeline
+### Not Using the Right Gems
+
+Your app must include both the `rails_12factor` and `pg` gems if you are
+deploying to production.
+
+### Not Running Migrations on Heroku
+
+Don't forget to run `heroku run rake db:migrate` after you include new
+migrations, or your app won't work correctly.
+
+### Can't Drop / Reset Your Database
+
+On heroku, we can't run `heroku run rake db:drop`. Instead you need to run:
+
+```bash
+$ heroku pg:reset DATABASE_URL
+$ heroku run rake db:migrate
+```
+
+### Saving User Uploaded Data
+
+Instead of saving user-uploaded data to the local filesystem, we need to store
+those files somewhere permanent (heroku can wipe our filesystem at any time).
+
+AWS S3 is a popular option if you're using heroku. For more info, see one of the
+following links, depending on what gem you're using for file-upload.
+
+* [CarrierWave + AWS](https://github.com/carrierwaveuploader/carrierwave#using-amazon-s3)
+* [Paperclip + AWS](https://devcenter.heroku.com/articles/paperclip-s3)
+
+### Avoiding Sensitive Info in Repos
+
+Right now, we don't have any sensitive info in our repos, but if we use other
+services / APIs in our app, we'll almost certainly need to configure our app
+with API or other access keys.
+
+IT IS VERY UNSAFE TO CHECK THESE KEYS INTO YOUR REPOSITORY!!!!!! (i.e. include
+them in your code).
+
+Instead, you should use environment variables in your code, and set the
+environment variables on the server when you deploy.
+
+The easiest way to do this is using one of the gems available to help you. We
+suggest [figaro](https://github.com/laserlemon/figaro).
+
+## Rails Asset Pipeline (45 minutes)
