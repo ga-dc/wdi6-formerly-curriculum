@@ -1,4 +1,4 @@
-# Unit Testing with RSpec
+# Unit Testing with RSpec (5m)
 - Explain the purpose Unit testing
 - Explain what role RSpec plays in testing
 - Explain the TDD/BDD Mantra
@@ -10,7 +10,7 @@
 - Describe why we avoid testing internal implementation
 
 
-## Unit Testing
+## Unit Testing (10m)
 
 As our applications increase in complexity, we need a saftey net.  We need something to ensure that we "Do no harm".  We need a battery of automated tests.  These are specifications about YOUR code that you can run to ensure your code is doing what it should.  
 
@@ -35,7 +35,7 @@ She propounds that our Unit Tests should be:
 They need to be thorough enough to identify an issue at the moment when it occurs.  They need to be stable so that we can trust them.  No [flickering tests](http://sk176h.blogspot.com/2013/05/flickering-scenario.html).  They need to be fast so that we can run all our tests every time we make a change - or we will stop running them.  They need to be few so...  They need to be few so that... awww, go watch the talk already.
 
 
-## What is RSpec?
+### What is RSpec?
 
 RSpec is a testing framework for the Ruby programming language.  RSpec makes it easier to write tests.  It's a Domain Specific Language for writing live specifications about your code.  It was released on May 18, 2007, so it's benn around for a while.  It is the defacto testing framework.
 
@@ -45,7 +45,10 @@ Today, don't worry about *when* you write your tests.  **Just focus on writing t
 
 ---
 
-## Let's look at a [rspec_person_example](https://github.com/ga-dc/rspec_person_example)
+## Let's look at an example (30m)
+
+I don't expect you to type this with me, but this code is available at [rspec_person_example](https://github.com/ga-dc/rspec_person_example)
+
 
 When I run `rspec` in the `rspec_person_example` dir, what do we see?
 
@@ -87,7 +90,7 @@ We have a Person model and a Person spec (a specification or test). This is the 
 
 ---
 
-## What does an RSpec specification (or "test") look like?
+### What does an RSpec specification (or "test") look like?
 
 ``` ruby
 require_relative '../models/person'  # a reference to our code
@@ -199,7 +202,7 @@ The new syntax works like jQuery's `$()` syntax.  We use `expect(IUT)` to "wrap"
 While we adjust the use of parenthesis for readability, we are really passing the "matcher" to the "expectation".
 
 
-### Exercise: Getting familiar
+### Exercise: Getting familiar (15m)
 
 We are going to use a website called LearnRuby to practice reading specifications.
 
@@ -232,6 +235,10 @@ We'll continue together through the first few steps.
 
 Continue with 00_hello.  We'll do this for 8 minutes.
 
+## Break (10m)
+
+## Wrapping up the example review (20m)
+
 ### Context
 
 As we move into the the description of the `greeting` method, we see our first "context": `"for default language (English)"`.  Within this block, we expect the language of our person to be "English" and we will write specs accordingly.  You can see this as we move down through each supported language.
@@ -247,7 +254,7 @@ subject(:bob) { Person.new("Bob") }
 
 The code within the block is assigned to the dynamically created variable.  This variable is named after the symbol.  So, during these specs, the variable `bob` will hold a reference to the person under test.
 
----
+### Review and play
 
 Let's review those results again (`$ rspec`).  See where they come from?  Now, let's review `describe`, `context`, `it`, "expectations", and "matchers", by changing our code and see the specs fail.  Take a few minutes to adjust the code and run the specs a few times.  Play with it.  See how your actions in the code AND in the specs affect the output.
 
@@ -255,10 +262,10 @@ Ok, let's change everything back.  Are we back to Green?  Good.
 
 ---
 
-### Think, pair, share.  Support another language
+### Exercise: Support another language (15m)
 Let's take a few minutes to specify that a Person can greet in Spanish too. We'll stick to the specification for now, then add the implementation in a minute.
 
-In spanish, we should greet with "Hola me llamo Maria."  
+In Spanish, we should greet with "Hola me llamo Maria."  
 
 ---
 
@@ -281,20 +288,25 @@ when /spanish/i
 
 ---
 
-### Think, pair, share.  What aren't we testing?
+### Think, pair, share.  What aren't we testing? (5m)
 Let's take a few minutes to think about what we aren't testing.
 
-Sit quietly for 2 minutes.  Think like a tester.  What code exists that aren't testing.  What examples would be good to clarify what our code can do?
+Sit quietly for 1 minutes.  Think like a tester.  What code exists that aren't testing.  What examples would be good to clarify what our code can do?
 
-Next, we'll discuss with our pair for 4 minutes.
+Next, we'll discuss with our pair for 2 minutes.
 Then, we'll share a few examples with the class.
 
 
-### Exercise: Implement your suggestions.
+### Exercise: Implement your suggestions. (15m)
 
 - Specify the setters for :name, :language
 - Specify that we utilize the passed name
 - Specify the response to an Unsupported language
+  - What expectation would we use for this?
+
+## Break (10m)
+
+## What are we expecting? (25m)
 
 ### Specify State or Side-effects
 
@@ -324,7 +336,7 @@ end
 
 This is specifying what side-effect `#eat` has on our system.
 
-### Think, Pair, Share: "Change" Matcher
+### Demo: "Change" Matcher
 
 > Q. How could we test this using the ["change" matcher](http://www.relishapp.com/rspec/rspec-expectations/v/3-3/docs/built-in-matchers/change-matcher)?
 
@@ -377,9 +389,9 @@ My test does not change.  The new code still returns a phrase in Italian.  `tony
 
 While I can say that `tony.greeting` should call `ItalianTranslator.convert_from`, I *probably* don't want to.  That binds me to the *current* implementation.
 
------
+---
 
-### Exercise: Add farewell.
+### Exercise (optional): Add farewell. (15m)
 
 Add support for farewell, for each language.  
 - Decide on the functionality you want.
@@ -387,6 +399,12 @@ Add support for farewell, for each language.
 - Avoid testing the implementation
 
 ---
+
+## It depends (10m)
+
+All of these "rules"come with the caveat, "If it makes more sense to break the rules.  Break them."
+
+For instance, if ItalianTranslator utilized a 3rd party, external service, I probably just want to check that I am calling it correctly.  And that's where mocks and stubs come in.
 
 ## Mocks & Stubs
 Sometimes our Unit Under Test must interact with other object.  If these objects are difficult to setup or their response may be slow or non-deterministic -- like an external service that we contact via te internet.  It can make sense to mock out the other object, to create a "fake" object that supports the interface you need but returns a fixed, expected value.  This makes your component examples independent of other components.
@@ -396,7 +414,7 @@ Sometimes our Unit Under Test must interact with other object.  If these objects
 Earlier, I passed in `TranslatorItalian` and I called the `convert_from` method on it.  If that was a service somewhere else on the web, then my unit tests probably do not wan tot call it.
 ---
 
-## Example
+### Mock Example
 
 ``` ruby
 # create mock object that will act like my 3rd party translator
@@ -411,7 +429,9 @@ So then when I use this *mock* in my tests, `tony` returns the phrase I expect a
 
 ---
 
-## Review
+## Conclusion (10m)
+
+### Review
 
 1. The practice of TDD provides a safety net of regression tests and tends to improve `______________`.
 2. What is the TDD Mantra?  Explain each step.
@@ -420,9 +440,8 @@ So then when I use this *mock* in my tests, `tony` returns the phrase I expect a
 5. What are the two main categories of things we test for?  And how do they differ?
 6. What is the downside of testing internal implementation?
 
----
 
-## Conclusion
+### TATFT
 
 The ruby community drank the testing koolaid.  We've felt the benefits.  Rails was the first web framework that supported testing out of the box.  The generators create a skeleton test, encouraging you to get in there and fill it out.
 
