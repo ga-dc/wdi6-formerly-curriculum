@@ -37,6 +37,8 @@ end
 We'll talk about why this is `password_digest` instead of just `password` later.
 
 ```
+rake db:drop
+rake db:create
 rake db:migrate
 ```
 
@@ -46,17 +48,60 @@ We'll need to **create the user model**. We could add in fancy validations to ma
 # app/models/user.rb
 
 class User < ActiveRecord::Base
-
+  validates :username, presence: true, uniqueness: true
+  validates :password_digest, presence: true
 end
 ```
 
-##### What actions should a user have, to start off with?
-- To make things a little simpler, instead of having actions for signing up and signin in, we'll just have one: if someone tries to sign in with a username that doesn't exist, an account will be created for them.
-- Also, we won't add in an "edit password" functionality yet.
+Next, we'll create **a sign-up form**. The form will POST to a `/sign_up` route that we have yet to create.
 
-##### What kind of HTTP request should go to each action?
+```erb
+# app/views/users/sign_up.html.erb
+
+<h2>Sign up</h2>
+<%= form_tag("/sign_up", method: "post") do %>
+  <input type="text" name="username" placeholder="username" />
+  <input type="password" name="password" placeholder="password" />
+  <input type="password" name="password_confirmation" placeholder="password again" />
+  <input type="submit" value="Sign up" />
+<% end %>
+```
+
+Then, we'll create **a sign-in form**. The form will POST to a `/sign_in` route, which again we have yet to create.
+
+```erb
+# app/views/users/sign_in.html.erb
+
+<h2>Sign in</h2>
+<%= form_tag("/sign_in", method: "post") do %>
+  <input type="text" name="username" placeholder="username" />
+  <input type="password" name="password" placeholder="password" />
+  <input type="submit" value="Sign in" />
+<% end %>
+```
+
+Next, we'll make links to sign-in, sign-up, and sign-out on the **main application layout**. *(We don't actually have a page for sign-out yet... But we will... sort of!)*
+
+```erb
+# app/views/layout/application.html.erb
+
+# ...
+<h1>Tun.r</h1>
+<nav>
+  <a href="/sign_in">Sign in</a>
+  <a href="/sign_up">Sign up</a>
+  <a href="/sign_out">Sign out</a>
+  <a href="/songs">Songs</a>
+  <a href="/artists">Artists</a>
+</nav>
+# ...
+```
 
 Now we'll set up the **routes** to direct requests to the proper controller actions:
+
+##### What actions should a user have?
+- We won't add in an "edit password" functionality yet.
+##### What kind of HTTP request should go to each action?
 
 ```rb
 # config/routes.rb
@@ -68,23 +113,15 @@ Rails.application.routes.draw do
     resources :songs
     resources :genres
   end
-  get '/signin', to: 'users#signin_prompt'
-  post '/signin', to: 'users#signin'
-  get '/signout', to: 'users#signout'
+  get '/sign_in', to: 'users#sign_in'
+  post '/sign_in', to: 'users#sign_in!'
+  get '/sign_up', to: 'users#sign_up'
+  post '/sign_up', to: 'users#sign_up!'
+  get '/sign_out', to: 'users#sign_out'
 end
 ```
 
 Now we'll need a controller to actually receive and respond to these requests.
-
-- If a username isn't provided, throw an error
-- If a password isn't provided, throw an error
-- If a password is provided...
-  - If a username doesn't exist in the database, it should be created
-  - If a username does exist...
-    - If the password doesn't match, throw an error
-    - If the password matches, the user is signed in
-
-We'll come back to `signout` later.
 
 Let's make the **users controller**:
 
@@ -92,68 +129,48 @@ Let's make the **users controller**:
 # app/controllers/users_controller.rb
 
 class UsersController < ApplicationController
-  def signin
-    if params[:username].strip == ""
-      message = "You forgot to enter a username!"
-    elsif params[:password].strip == ""
-      message = "You forgot to enter a password!"
+
+  def sign_up
+  end
+
+  def sign_up!
+    user = User.new(
+      username: params[:username],
+      password_digest: params[:password]
+    )
+    if params[:password_confirmation] != params[:password]
+      message = "Your passwords don't match!"
+    elsif user.save
+      message = "Your account has been created!"
     else
-      if !User.find_by(username: params[:username])
-        if User.create(
-          username: params[:username],
-          password_digest: params[:password]
-        )
-          message = "Your account has been created!"
-        else
-          message = "Your account couldn't be created. Did you enter a unique username and password?"
-        end
-      else
-        if User.find_by(username: params[:username]).password_digest != params[:password]
-          message = "Your password's wrong!"
-        else
-          message = "You're signed in, #{params[:username]}! :)"
-        end
-      end
+      message = "Your account couldn't be created. Did you enter a unique username and password?"
     end
-    puts "-" * 50
     puts message
-    redirect_to :back
+    redirect_to action: :sign_up
   end
 
-  def signin_prompt
-
+  def sign_in
   end
 
-  def signout
-
+  def sign_in!
+    @user = User.find_by(username: params[:username])
+    if !@user
+      message = "This user doesn't exist!"
+    elsif @user.password_digest != params[:password]
+      message = "Your password's wrong!"
+    else
+      message = "You're signed in, #{@user.username}!"
+    end
+    puts message
+    redirect_to action: :sign_in
   end
+
+  def sign_out
+    puts "You're signed out!"
+    redirect_to root_url
+  end
+
 end
-```
-
-Next, we'll create **a sign-in form**. The form will POST to that `/signin` route.
-
-```erb
-# app/views/users/signin_prompt.html.erb
-
-<%= form_tag("/signin", method: "post") do %>
-  <input type="text" name="username" placeholder="username" />
-  <input type="password" name="password" placeholder="password" />
-  <input type="submit" value="Sign in" />
-<% end %>
-```
-
-...and lastly, we'll make a link to the sign-in page on the **main application layout**.
-
-```erb
-# app/views/layout/application.html.erb
-
-# ...
-<nav>
-  <a href="/signin">Sign in</a>
-  <a href="/songs">Songs</a>
-  <a href="/artists">Artists</a>
-</nav>
-# ...
 ```
 
 ...and now if we **run** our application, we can see that it's working successfully!
@@ -169,24 +186,38 @@ Let's **add flash messages to the Users controller**:
 ```rb
 # app/controllers/users_controller.rb
 
-  def signin
+  def sign_in!
 # ...
-    flash[:sign_in_message] = message
+    flash[:notice] = message
   end
+
+  def sign_up!
 # ...
+    flash[:notice] = message
+  end
+
+  def sign_out
+# ...
+    flash[:notice] = message
+  end
+
+  end
 ```
 
 ...and make the flash messages **show up in the view**:
 
 ```erb
-# app/users/signin_prompt.html.erb
+# app/users/application.html.erb
 
-<h2><%= flash[:sign_in_message] %></h2>
-<%= form_tag("/signin", method: "post") do %>
-  <input type="text" name="username" placeholder="username" />
-  <input type="password" name="password" placeholder="password" />
-  <input type="submit" value="Sign in" />
-<% end %>
+<h1>Tun.r</h1>
+<nav>
+  <a href="/sign_in">Sign in</a>
+  <a href="/sign_up">Sign up</a>
+  <a href="/sign_out">Sign out</a>
+  <a href="/songs">Songs</a>
+  <a href="/artists">Artists</a>
+</nav>
+<h2><%= flash[:notice] %>
 ```
 
 ## Password security
@@ -302,35 +333,49 @@ Putting this all together in Tunr, we'll **hash passwords in the Users controlle
 ```rb
 # app/controllers/users_controller.rb
 
-# ...
-def signin
-  if params[:username].strip == ""
-    message = "You forgot to enter a username!"
-  elsif params[:password].strip == ""
-    message = "You forgot to enter a password!"
-  else
-    if !User.find_by(username: params[:username])
-      if User.create(
-        username: params[:username],
-        password_digest: BCrypt::Password.create(params[:password].strip)
-      )
-        message = "Your account has been created!"
-      else
-        message = "Your account couldn't be created. Did you enter a unique username and password?"
-      end
-    else
-      decoded_hash = BCrypt::Password.new(User.find_by(username: params[:username]).password_digest)
-      if decoded_hash.is_password?(params[:password]) == false
-        message = "Your password's wrong!"
-      else
-        message = "You're signed in, #{params[:username]}! :)"
-      end
-    end
+class UsersController < ApplicationController
+
+  def sign_up
   end
-  flash[:sign_in_message] = message
-  redirect_to :back
+
+  def sign_up!
+    user = User.new(
+      username: params[:username],
+      password_digest: BCrypt::Password.create(params[:password])
+    )
+    if params[:password_confirmation] != params[:password]
+      message = "Your passwords don't match!"
+    elsif user.save
+      message = "Your account has been created!"
+    else
+      message = "Your account couldn't be created. Did you enter a unique username and password?"
+    end
+    flash[:notice] = message
+    redirect_to action: :sign_up
+  end
+
+  def sign_in
+  end
+
+  def sign_in!
+    @user = User.find_by(username: params[:username])
+    if !@user
+      message = "This user doesn't exist!"
+    elsif !BCrypt::Password.new(@user.password_digest).is_password?(params[:password])
+      message = "Your password's wrong!"
+    else
+      message = "You're signed in, #{@user.username}!"
+    end
+    flash[:notice] = message
+    redirect_to action: :sign_in
+  end
+
+  def sign_out
+    flash[:notice] = "You're signed out!"
+    redirect_to root_url
+  end
+
 end
-# ...
 ```
 
 ## has_secure_password
@@ -347,8 +392,17 @@ To use it, just **add has_secure_password to your User model**:
 # app/models/user.rb
 
 class User < ActiveRecord::Base
+  validates :username, presence: true, uniqueness: true
   has_secure_password
 end
+```
+
+Let's re-create the database so now it contains only secure passwords:
+
+```
+rake db:drop
+rake db:create
+rake db:migrate
 ```
 
 ## User persistence
@@ -420,17 +474,19 @@ Hiding from scripts, expiration dates, secure connections only...
 
 ### Writing
 
-Modifying cookies is super easy. Let's have Tunr "remember" the username **when users run the signin controller action** by saving it as a cookie:
+Modifying cookies is super easy. Let's have Tunr "remember" the username **when users run the sign_in controller action** by saving it as a cookie:
 
 ```rb
 # app/controllers/users_controller.rb
 
-def signin
+def sign_in!
 # ...
-else
-  message = "You're signed in, #{params[:username]}! :)"
-  cookies[:username] = params[:username]
+  else
+    message = "You're signed in, #{@user.username}! "
+    cookies[:username] = @user.username
+  end
 end
+
 # ...
 ```
 
@@ -441,14 +497,15 @@ I can change the expiration time of my cookie like this:
 ```rb
 # app/controllers/users_controller.rb
 
-def signin
+def sign_in!
 # ...
-else
-  message = "You're signed in, #{params[:username]}! :)"
-  cookies[:username] = {
-    value: params[:username],
-    expires: 100.years.from_now
-  }
+  else
+    message = "You're signed in, #{@user.username}! "
+    cookies[:username] = {
+      value: @user.username,
+      expires: 100.years.from_now
+    }
+  end
 end
 # ...
 ```
@@ -461,13 +518,13 @@ By default, the expiration time is "when the current session ends" -- that is, w
 
 `cookies` is a **hash**, just like any other hash. If I put `<%= cookies.to_json %>` in my `.html.erb`, it'll show me all the cookies for this domain (`localhost`, in this case).
 
-To **read** my cookie, I just use `cookies[:username]`. I'll put this in the `signin_prompt` page to **have the username filled in automatically**:
+To **read** my cookie, I just use `cookies[:username]`. I'll put this in the `sign_in_prompt` page to **have the username filled in automatically**:
 
 ```erb
-# app/views/users/signin_prompt.html.erb
+# app/views/users/sign_in_prompt.html.erb
 
-<h2><%= flash[:sign_in_message] %></h2>
-<%= form_tag("/signin", method: "post") do %>
+<h2>Sign in</h2>
+<%= form_tag("/sign_in", method: "post") do %>
   <input type="text" name="username" placeholder="username" value="<%= cookies[:username] %>"/>
   <input type="password" name="password" placeholder="password" />
   <input type="submit" value="Sign in" />
@@ -546,37 +603,42 @@ Expires:  When the browsing session ends
 
 ### Applying to Tunr
 
-Let's add an `is_signed_in` session variable to Tunr. We'll create it in the Users controller. We also may as well do something with the `signout` action we created before: we'll just have **the signout controller action clear all the session variables**.
+Let's add an `is_signed_in` session variable to Tunr. We'll create it in the Users controller. 
 
 ```rb
 # app/controllers/users_controller.rb
 
-def signin
+def sign_in!
 # ...
-  message = "You're signed in, #{params[:username]}! :)"
-  cookies[:username] = params[:username]
-  session[:is_signed_in] = true
-  session[:user] = User.find_by(username: params[:username])
+  else
+    message = "You're signed in, #{@user.username}! "
+    cookies[:username] = {
+      value: @user.username,
+      expires: 100.years.from_now
+    }
+    session[:user] = @user
+  end
 # ...
 end
 
-def signout
+def sign_out!
   reset_session
   redirect_to root_url
 end
 ```
 
-Now let's **modify the application layout accordingly**. If the user isn't signed in, we'll show a "sign in" link. If they **are** signed in, we'll show a "sign out" link.
+Now let's **modify the application layout accordingly**. If the user isn't signed in, we'll show "sign in" and "sign up" links. If they **are** signed in, we'll show a "sign out" link.
 
 ```erb
 # app/views/layouts/application.html.erb
 
 # ...
 <nav>
-  <% if session[:is_signed_in] %>
-    <a href="/signout"><%= session[:user]["username"] %>: sign out</a></h2>
+  <% if session[:user] %>
+    <a href="/sign_out"><%= session[:user]["username"] %>: sign out</a></h2>
   <% else %>
-    <a href="/signin">Sign in</a>
+    <a href="/sign_up">Sign up</a>
+    <a href="/sign_in">Sign in</a>
   <% end %>
   <a href="/songs">Songs</a>
   <a href="/artists">Artists</a>
@@ -610,8 +672,8 @@ class ApplicationController < ActionController::Base
 
   private
   def authenticate
-    if !session[:is_signed_in]
-      redirect_to "/signin"
+    if !session[:user]
+      redirect_to "/sign_in"
     end
   end
 end
@@ -619,7 +681,7 @@ end
 
 *(**Note** that `protect_from_forgery` thing: that works via sessions. It inserts a hidden random string on every form in your app. When that form is submitted, Rails compares that string against a session variable it set for you.)*
 
-If we run the app now... we'll get a "too many redirects" error. That's because we're telling the app to redirect to the signin page before every action... including just trying to go to the signin page. So when someone is directed to the signin page, they're redirected to the signin page, and redirected, and redirected...
+If we run the app now... we'll get a "too many redirects" error. That's because we're telling the app to redirect to the sign_in page before every action... including just trying to go to the sign_in page. So when someone is directed to the sign_in page, they're redirected to the sign_in page, and redirected, and redirected...
 
 We want this authentication to happen on every action **except** the user actions. So we can use another special method called `skip_before_action`.
 
@@ -647,7 +709,7 @@ Now that we're letting the app have multiple users, we need to associate each so
   - We can actually do it with less work. Each song already belongs to an artist, so we'll just make each artist belong to a user and leave the songs alone -- that is, we'll **add a `user_id` column to the `artists` table**. *(This means you can't have a song without an artist, but I'm OK with that.)*
 
 ```
-rails generate migration addUsersToArtists
+rails generate migration add_users_to_artists
 ```
 ```rb
 # db/migrate/[timestamp]_add_users_to_artists.rb
@@ -657,6 +719,12 @@ class AddUserToArtists < ActiveRecord::Migration
     add_column :artists, :user_id, :integer
   end
 end
+```
+
+```
+rake db:drop
+rake db:create
+rake db:migrate
 ```
 
 Now let's make sure we can do `@user.artists` and `@artist.user` and so forth by **updating the Artist model and creating a User model**:
@@ -675,7 +743,7 @@ end
 
 class User < ActiveRecord::Base
   has_secure_password
-  has_many :artists, dependent: :destroy
+  has_many :artists
 end
 ```
 
@@ -685,8 +753,9 @@ Let's **change the `artists` controller so that whenever you add an artist, it s
 # app/controllers/artists_controller.rb
 
 def create
-  @artist = Artist.create!(artist_params.merge({user_id: session[:user]["id"]}))
-  redirect_to artist_path(@artist)
+  @user = User.find(session[:user]["id"])
+  @artist = @user.artists.create!(artist_params)
+  redirect_to (artist_path(@artist))
 end
 ```
 
