@@ -34,8 +34,8 @@ You and your partner should aim to implement all the features listed at and belo
 ## Level 1
 
 Implement two models...  
-1. Pin  
-2. User  
+  1. Pin  
+  2. User  
 
 Pins have...  
 - a title
