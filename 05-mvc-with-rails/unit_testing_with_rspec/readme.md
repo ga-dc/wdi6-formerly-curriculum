@@ -1,5 +1,5 @@
 # Unit Testing with RSpec
-- Explain the purpose unit testing
+- Explain the purpose Unit testing
 - Explain what role RSpec plays in testing
 - Explain the TDD/BDD Mantra
 - Describe RSpec's basic syntax
@@ -9,16 +9,39 @@
 - Differentiate between testing return values and side effects
 - Describe why we avoid testing internal implementation
 
----
+
+## Unit Testing
+
+As our applications increase in complexity, we need a saftey net.  We need something to ensure that we "Do no harm".  We need a battery of automated tests.  These are specifications about YOUR code that you can run to ensure your code is doing what it should.  
+
+Think back to the way you code.  You create a part of a web page, then you browse to that page to test it.  To ensure that it is doing as you expect.  Then you add another feature.  And test both features.  Then you add a third feature and test... just the third feature.  Imagine if you had a battery of automated specs, which run against your code, so you can see if your new changes fit your new requirements and EVERY requirement that came before this.
+
+There a few levels of testing. Acceptance tests verify our apps at the lvel of user interaction.  They visit web pages, click on links, validate the DOM.  Integration tests check the interaction between objects.  Unit tests check the smallest level.  The functionality of a specific method.
+
+Sandi Metz (author of POODiR), has a talk titled "The Magic Tricks of Testing".  
+
+She discuses that:
+- Unit tests stand in contrast to integration tests
+- Unit tests focus on small pieces of code, like single objects
+- The intent is to ensure the correct functioning of your app at the atomic level
+- These tests are conducted in isolation, without reference to external objects, as much as possible (using mocks and stubs as placeholders when necessary)
+
+She propounds that our Unit Tests should be:
+- Thorough
+- Stable
+- Fast
+- Few
+
+They need to be thorough enough to identify an issue at the moment when it occurs.  They need to be stable so that we can trust them.  No [flickering tests](http://sk176h.blogspot.com/2013/05/flickering-scenario.html).  They need to be fast so that we can run all our tests everytime we make a change - or we will stop running them.  They need to be few so...  They need to be few so that... awww, go watch the talk already.
+
 
 ## What is RSpec?
 
-  - RSpec is a testing framework for the Ruby programming language.  It's a Domain Specific Language for writing live specifications about your code.
-  - Released on May 18, 2007
-
-These are specifications about YOUR code that you can run to ensure your code is doing what it should.  Think back to the way you code.  You create a part of a web page, then you browse to that page to test it.  To ensure that it is doing as you expect.  Then you add another feature.  And test bot features.  Then you add a third feature and test... just the third feature.  Imagine if you had a battery of automated specs, which run against your code, so you can see if your new changes fit your new requirements and EVERY requirement that came before this.
+RSpec is a testing framework for the Ruby programming language.  RSpec makes it easier to write tests.  It's a Domain Specific Language for writing live specifications about your code.  It was released on May 18, 2007, so it's benn around for a while.  It is the defacto testing framework.
 
 The reading discussed TDD/BDD.  Indicating that testing is as much about design, helping you to architect a maintainable application, as it is about creating a body of regression tests.  In this lesson, we are focusing on the safety net.  Design is hard, BDD makes it easier, but need the basic skills first.
+
+Today, don't worry about *when* you write your tests.  **Just focus on writing tests.**  Later, when you are more comfortable writing tests, you can begin to use them to drive your design.
 
 ---
 
@@ -211,8 +234,7 @@ The following subject block indicates that there will be a variable named `bob` 
 subject(:bob) { Person.new("Bob") }
 ```
 
- The code within the block is assigned to the dynamically created variable.  This variable is named after the symbol.  So, during these specs, the variable `bob` will hold a reference to the person under test.
-
+The code within the block is assigned to the dynamically created variable.  This variable is named after the symbol.  So, during these specs, the variable `bob` will hold a reference to the person under test.
 
 ---
 
@@ -256,19 +278,16 @@ Sit quietly for 2 minutes.  Think like a tester.  What code exists that aren't t
 Next, we'll discuss with our pair for 4 minutes.
 Then, we'll share a few examples with the class.
 
-- That we are using the passed `name` argument.
-- What happens with an unsupported language
-
----
 
 ### Exercise: Implement your suggestions.
 
+- Specify the setters for :name, :language
 - Specify that we utilize the passed name
 - Specify the response to an Unsupported language
 
-### Specify Side-effects
+### Specify State or Side-effects
 
-So far, we've been specifying the expected return value of methods.  We can also specify the expected side-effects.  Does this method do what it should do to our system?
+Sandi breaks Unit tests in two groups: Queries and Commands.  So far, we've been specifying the expected return value of methods.  That covers the Queries.  We can also specify the expected side-effects.  A Command performs some action and we can assert that commands do what they are supposed to.  Does this method do what it should do to our system?
 
 Think back to [oop_monkey](https://github.com/ga-dc/oop_monkey).  Remember that our app kept track of the foods that our monkey ate?
 
@@ -324,11 +343,11 @@ A. Because it needs to record the count before and after that code is run.
 
 While checking for side-effects is perfectly reasonable, this particular check is pretty weak.  Just checking that the count increases, does not verify that foods_eaten contains the "banana".  Our `#eat` method could have added anyting to `#foods_eaten`.
 
-I recommend that you review the available Matchers in the [RSpec documentation](https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers).  These are live documents, written using "relish" to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (3.3).
+### How many Matchers are there?
+I recommend that you review the available Matchers in the [RSpec documentation](https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers).  The RSpec docs are great!  They are a mix of specifications and documentation as live documents.  Written using the "relish" app to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (3.3).
 
 ### We avoid testing implementation
-Here's something else we aren't testing.
-We aren't testing that `greeting` uses a `select/case` statement.  That would be testing the internal implementation. Let's be clear, I should be free to write whatever code I want, inside of the `greeter` method, in order to achieve the results the specs indicate. Let's say our team creates a new translation library.  I should be able to swap out my naive implementation and replace it with that.  The following code tells the ItalianTranslator to translate this phrase from English.
+Here's something else we aren't testing.  We aren't testing that `greeting` uses a `select/case` statement.  That would be testing the internal implementation. Let's be clear, I should be free to write whatever code I want, inside of the `greeter` method, in order to achieve the results the specs indicate. Let's say our team creates a new translation library.  I should be able to swap out my naive implementation and replace it with that.  To do that we test against the interface of the class -- the public methods -- not the internal implementation.  The following code tells the ItalianTranslator to translate this phrase from English.
 
 ```
 tony = Person.new("tony", ItalianTranslator)
@@ -341,11 +360,18 @@ def greeting
 end
 ```
 
+My test does not change.  The new code still returns a phrase in Italian.  `tony.greeting.should eql("Ciao, mi chiamo Tony.")` still passes.  The internal implementation is free to change.
+
+While I can say that `tony.greeting` should call `ItalianTranslator.convert_from`, I *probably* don't want to.  That binds me to the *current* implementation.
+
 -----
 
 ### Exercise: Add farewell.
 
-Add support for farewell, for each language.
+Add support for farewell, for each language.  
+- Decide on the functionality you want.
+- Specify the requirements
+- Avoid testing the implementation
 
 ---
 
@@ -354,17 +380,21 @@ Sometimes our Unit Under Test must interact with other object.  If these objects
 - You can use mock objects the replace the entire object, just supporting the interface you need (the methods and attribute that your Unit Under Test actually interacts with).
 - You can stub specific methods on "real" objects to let them return whatever you like.
 
+Earlier, I passed in `TranslatorItalian` and I called the `convert_from` method on it.  If that was a service somewhere else on the web, then my unit tests probably do not wan tot call it.
 ---
 
 ## Example
 
 ``` ruby
-book = instance_double("Book", :pages => 250)
-allow(book).to receive(:title) { "The RSpec Book" }
-allow(book).to receive(:title).and_return("The RSpec Book")
-
+# create mock object that will act like my 3rd party translator
+translator = instance_double("ItalianTranslator")
+# make this double *support* the method I need AND return the value I want.
+allow(translator).to receive(:convert_from).and_return("Ciao, mi chiamo Tony.")
+# is the same as...
+allow(translator).to receive(:convert_from) { "Ciao, mi chiamo Tony." }
 ```
 
+So then when I use this *mock* in my tests, `tony` returns the phrase I expect and I can test that I process that result correctly.
 ---
 
 ## Homework:
