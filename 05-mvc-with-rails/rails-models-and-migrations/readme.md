@@ -216,3 +216,8 @@ Users will be very upset if you destroy their data.
 
 - list of rails commands - https://gist.github.com/jshawl/ce1de309ef993ec808d9
 
+## Sample quiz questions
+
+- Why are migrations timestamped, and how does this affect our development workflow?
+- What is the difference between creating a migration to add a column, vs editing an existing migration and `rake db:migrate:reset`ting?
+
