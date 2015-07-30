@@ -141,15 +141,26 @@ Well skim through the code, gaining a high level knowledge of what is expected, 
 
 `describe` is a keyword provided by RSpec (part of its DSL).  Here it indicates that a `Person` is the "Unit Under Test".  First we show examples of what we can expect as we construct new people.  Then, we describe the functionality of the `greeting` method, specifically within the specific context of each language.  This is ruby code, indicating how our library (or model) code should behave.
 
-### Test Isolation
+## Test Isolation
 Returning to the top, we see `@matt` being instantiated.
-  Introduce isolation.
-  1. Setup
-  2. Test
-  3. Teardown
 
-### Expectation and Matcher
-Then we see our first spec or "expectation".
+```
+before(:each) do
+  @matt = Person.new("Matt")
+end
+```
+
+When running unit tests, we expect each test to run "in isolation".  To be separate for every other test.  These tests manipulate our system.  They add rows to the Database. They change existing information.  They configure and tests the results.  We don't want the configuration and/or changes in one test to affect other tests.
+
+RSpec uses this convention:
+1. Setup
+2. Test
+3. Teardown
+
+The setup is run prior to each test and a teardown is run following each test, which resets our system.
+
+## Expectation and Matcher
+After the setup (`before`), we see our first spec or "expectation".
 ```
 expect(@matt).to be_an_instance_of(Person)
 ```
@@ -206,9 +217,9 @@ http://testfirst.org/learn_ruby#install
 ```
 gem install rspec --version '< 3.0'
 ```
-4. LearnRuby uses the legacy "should " syntax. To avoid deprecation warnings, let's configure rspec to allow this syntax. Make sure your "rspec_config.rb" file looks like this:
+4. LearnRuby uses the legacy "should " syntax. To avoid deprecation warnings, let's configure rspec to allow this syntax. Make sure your "learn_ruby/rspec_config.rb" file has this last line:
 ``` ruby
-# rspec_config.rb
+# learn_ruby/rspec_config.rb
 RSpec.configure do |c|
   c.fail_fast = true
   c.color = true
@@ -344,7 +355,9 @@ A. Because it needs to record the count before and after that code is run.
 While checking for side-effects is perfectly reasonable, this particular check is pretty weak.  Just checking that the count increases, does not verify that foods_eaten contains the "banana".  Our `#eat` method could have added anything to `#foods_eaten`.
 
 ### How many Matchers are there?
-I recommend that you review the available Matchers in the [RSpec documentation](https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers).  The RSpec docs are great!  They are a mix of specifications and documentation as live documents.  Written using the "relish" app to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (v3.3).
+Let's review the available Matchers in the [RSpec documentation](https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers).  The RSpec docs are great!  They are a mix of specifications and documentation as live documents.  Written using the "relish" app to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (v3.3).
+
+Don't miss "Predicate matchers"!
 
 ### We avoid testing implementation
 Here's something else we aren't testing.  We aren't testing that `greeting` uses a `select/case` statement.  That would be testing the internal implementation. Let's be clear, I should be free to write whatever code I want, inside of the `greeter` method, in order to achieve the results the specs indicate. Let's say our team creates a new translation library.  I should be able to swap out my naive implementation and replace it with that.  To do that we test against the interface of the class -- the public methods -- not the internal implementation.  The following code tells the ItalianTranslator to translate this phrase from English.
