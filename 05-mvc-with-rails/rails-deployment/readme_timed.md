@@ -17,7 +17,7 @@
 - [Getting Started Deploying Rails on Heroku](https://devcenter.heroku.com/articles/getting-started-with-rails4)
 - [The Twelve-Factor App](http://12factor.net)
 
-## What is Deployment? (15 minutes)
+## What is Deployment? (15 minutes; 10:00-10:15)
 
 Deployment is the act of putting our app up on one or more servers connected to
 the internet, such that people can use our app.
@@ -57,7 +57,7 @@ makes all the above steps easy. For example, Heroku automatically:
 And if we need to change configuration information, we can set configuration
 variables using `heroku config`, e.g.
 
-## Rails 'Environments' (15 minutes)
+## Rails 'Environments' (15 minutes; 10:15-10:30)
 
 By default, a Rails app can be run in any of three different environments. The
 three default environments are:
@@ -110,7 +110,7 @@ We usually think of deploying our app to mean 'deploying into production'. By
 production, we mean the 'public' version of our site. The one with the important
 data that all of our users are using.
 
-## Exercise: Reading the Heroku Rails Guide (15 minutes)
+## Exercise: Reading the Heroku Rails Guide (15 minutes; 10:30-10:45)
 
 Take 10 minutes to pair up with a partner and skim the [Getting Started with
 Rails 4 on Heroku](https://devcenter.heroku.com/articles/getting-started-with-rails4).
@@ -118,7 +118,7 @@ Rails 4 on Heroku](https://devcenter.heroku.com/articles/getting-started-with-ra
 We'll take 5 minutes for discussion, and for much of the rest of this lesson,
 we'll be walking through many of these steps.
 
-## Deploying to Heroku (30 minutes)
+## Deploying to Heroku (30 minutes; 10:45-11:15)
 
 We're going to use Heroku to deploy our app, because it has a free tier, and is
 incredibly easy to get started with.
@@ -186,9 +186,9 @@ $ heroku run rake db:migrate
 In general, the `heroku run` command will take the command immediately after it
 and run it on your Heroku server, instead of locally.
 
-## BREAK (10 minutes)
+## BREAK (10 minutes; 11:15-11:25)
 
-## Debugging Errors in Production (15 minutes)
+## Debugging Errors in Production (15 minutes; 11:25-11:40)
 
 To debug errors in production, we need to look at the logs. With heroku, we can
 run `heroku logs` to see the most recent log entries.
@@ -245,7 +245,7 @@ follow so that they can be deployed on any provider, and can scale up easily
 We don't have time to go in-depth today, but you can find more info about this
 idea on the [Twelve-Factor Site](http://12factor.net).
 
-## Common Pitfalls (20 minutes)
+## Common Pitfalls (20 minutes; 11:40-12:00)
 
 The most common pitfalls when deploying to Heroku are:
 
@@ -300,7 +300,7 @@ environment variables on the server when you deploy.
 The easiest way to do this is using one of the gems available to help you. We
 suggest [figaro](https://github.com/laserlemon/figaro).
 
-## Rails Asset Pipeline (30 minutes)
+## Rails Asset Pipeline (30 minutes; 12:00-12:30)
 
 ### What is the asset pipeline?
 

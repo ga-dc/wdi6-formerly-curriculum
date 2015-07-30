@@ -1,0 +1,8 @@
+## What is Deployment? (15 minutes; 10:00-10:15)
+## Rails 'Environments' (15 minutes; 10:15-10:30)
+## Exercise: Reading the Heroku Rails Guide (15 minutes; 10:30-10:45)
+## Deploying to Heroku (30 minutes; 10:45-11:15)
+## BREAK (10 minutes; 11:15-11:25)
+## Debugging Errors in Production (15 minutes; 11:25-11:40)
+## Common Pitfalls (20 minutes; 11:40-12:00)
+## Rails Asset Pipeline (30 minutes; 12:00-12:30)
