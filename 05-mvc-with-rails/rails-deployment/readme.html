@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.8" data-basepath="../.." data-revision="Thu Jul 30 2015 01:54:53 GMT+0000 (UTC)">
+    <div class="book" data-level="5.8" data-basepath="../.." data-revision="Thu Jul 30 2015 01:59:30 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1126,6 +1126,33 @@ environment variables on the server when you deploy.</p>
 <p>The easiest way to do this is using one of the gems available to help you. We
 suggest <a href="https://github.com/laserlemon/figaro" target="_blank">figaro</a>.</p>
 <h2 id="rails-asset-pipeline-45-minutes">Rails Asset Pipeline (45 minutes)</h2>
+<h3 id="what-is-the-asset-pipeline">What is the asset pipeline?</h3>
+<p>The asset pipeline is a feature in rails to manage our assets:</p>
+<ul>
+<li>stylesheets (CSS)</li>
+<li>javascript (JS)</li>
+<li>images</li>
+</ul>
+<p>It is implemented using a gem called &apos;sprockets&apos; that is built into rails.</p>
+<p>You might have used it (if you put stuff in <code>app/assets</code>).</p>
+<h3 id="what-does-it-do">What does it do?</h3>
+<p>Formerly in Rails (as in Sinatra), you simply served up images, css and javascript as flat files in the public directory.</p>
+<p>The asset pipeline can do any of the following (configurable):</p>
+<ul>
+<li>concatenates CSS and JS</li>
+<li>compresses/minifies CSS and JS</li>
+<li>fingerprints file-names for caching purposes</li>
+<li>pre-processes assets (so they can include ERB, or even SASS / CoffeeScript)</li>
+<li>provides helper methods to reference assets</li>
+</ul>
+<h3 id="why">Why?</h3>
+<ul>
+<li><strong>Concatenating</strong> - By serving one file rather than many, the load time of pages can be greatly reduced because the browser makes fewer requests.</li>
+<li><strong>Compression/minification</strong> - reduces the file size enabling the browser to download it faster.</li>
+<li><strong>Fingerprinting</strong> file-names allows browsers to cache (avoid downloading the same file twice)</li>
+<li><strong>SASS</strong> can clean up and improve our CSS</li>
+<li><strong>Helpers</strong> make it easy to reference our assets in ruby, even when fingerprinting means we don&apos;t know the exact file name</li>
+</ul>
 
                     
                     </section>
