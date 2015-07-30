@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Thu Jul 30 2015 01:59:30 GMT+0000 (UTC)">
+    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Thu Jul 30 2015 03:02:21 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1097,8 +1097,46 @@ Then, we&apos;ll share a few examples with the class.</p>
 <li>Specify that we utilize the passed name</li>
 <li>Specify the response to an Unsupported language</li>
 </ul>
-<p>I recommend that you review the available Matchers in the <a href="https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers" target="_blank">RSpec documentation</a>.  These are live documents, written using &quot;relish&quot; to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (3.3).</p>
+<h3 id="specify-side-effects">Specify Side-effects</h3>
+<p>So far, we&apos;ve been specifying the expected return value of methods.  We can also specify the expected side-effects.  Does this method do what it should do to our system?</p>
+<p>Think back to <a href="https://github.com/ga-dc/oop_monkey" target="_blank">oop_monkey</a>.  Remember that our app kept track of the foods that our monkey ate?</p>
+<p>In  <a href="https://github.com/ga-dc/oop_monkey/blob/master/spec/monkey_spec.rb" target="_blank">monkey_spec.rb</a>, we saw an example of specifying the side-effect.</p>
+<blockquote>
+<p>Q. What changes when <code>matt.eat(&quot;banana&quot;)</code>?  How can we verify this?</p>
+</blockquote>
 <hr>
+<p>A. &quot;banana&quot; is added to <code>matt.foods_eaten</code>.</p>
+<pre><code>it &quot;can eat a food (a string)&quot; do
+  matt = Monkey.new(&quot;Matt&quot;, &quot;Mandrill&quot;)
+  matt.eat(&quot;banana&quot;)
+  matt.eat(&quot;PB&amp;J&quot;)
+
+  # we can make more general expectations, like expect(this_array) to include something
+  expect(matt.foods_eaten).to include(&quot;banana&quot;)
+  expect(matt.foods_eaten).to include(&quot;PB&amp;J&quot;)
+end
+</code></pre><p>This is specifying what side-effect <code>#eat</code> has on our system.</p>
+<h3 id="think-pair-share-change-matcher">Think, Pair, Share: &quot;Change&quot; Matcher</h3>
+<blockquote>
+<p>Q. How could we test this using the <a href="http://www.relishapp.com/rspec/rspec-expectations/v/3-3/docs/built-in-matchers/change-matcher" target="_blank">&quot;change&quot; matcher</a>?</p>
+</blockquote>
+<pre><code>expect { do_something }.to change(object, :attribute)
+</code></pre><hr>
+<pre><code>describe &apos;#eat(food)&apos; do
+  it &quot;adds the passed food to #foods_eaten&quot; do
+    matt = Monkey.new(&quot;Matt&quot;, &quot;Mandrill&quot;)
+    # specify via side-effect
+    expect { matt.eat(&quot;banana&quot;) }.to change{matt.foods_eaten.size}.by(1)
+  end
+end
+</code></pre><p>Notice how a block is used to delay execution.  <code>#expect</code> controls when to run <code>matt.eat(&quot;banana&quot;)</code>.  </p>
+<blockquote>
+<p>Q. Why does it need to do this?</p>
+</blockquote>
+<hr>
+<p>A. Because it needs to record the count before and after that code is run.</p>
+<p>While checking for side-effects is perfectly reasonable, this particular check is pretty weak.  Just checking that the count increases, does not verify that foods_eaten contains the &quot;banana&quot;.  Our <code>#eat</code> method could have added anyting to <code>#foods_eaten</code>.</p>
+<p>I recommend that you review the available Matchers in the <a href="https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers" target="_blank">RSpec documentation</a>.  These are live documents, written using &quot;relish&quot; to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (3.3).</p>
 <h3 id="we-avoid-testing-implementation">We avoid testing implementation</h3>
 <p>Here&apos;s something else we aren&apos;t testing.
 We aren&apos;t testing that <code>greeting</code> uses a <code>select/case</code> statement.  That would be testing the internal implementation. Let&apos;s be clear, I should be free to write whatever code I want, inside of the <code>greeter</code> method, in order to achieve the results the specs indicate. Let&apos;s say our team creates a new translation library.  I should be able to swap out my naive implementation and replace it with that.  The following code tells the ItalianTranslator to translate this phrase from English.</p>
@@ -1125,16 +1163,13 @@ allow(book).to receive(<span class="hljs-symbol">:title</span>) { <span class="h
 allow(book).to receive(<span class="hljs-symbol">:title</span>).and_return(<span class="hljs-string">&quot;The RSpec Book&quot;</span>)
 </code></pre>
 <hr>
-<p>Now that you have had some small exercises to get familiar with the syntax, let&apos;s practice the concept.</p>
-<p><a href="https://github.com/ga-dc/learn_ruby_via_rspec" target="_blank">https://github.com/ga-dc/learn_ruby_via_rspec</a></p>
-<hr>
 <h2 id="homework">Homework:</h2>
 <p>Scoring a Scrabble game.
 Break it into small pieces and have pairs iterate, then switch pairs and repeat.</p>
 <p><a href="https://github.com/ga-dc/scrabbler" target="_blank">https://github.com/ga-dc/scrabbler</a></p>
 <hr>
 <h2 id="want-more-need-clarification">Want more? Need clarification?</h2>
-<p>There are plenty of exercises in TestFrist.org</p>
+<p>There are plenty of exercises in TestFirst.org.  We recommend a path in <a href="https://github.com/ga-dc/learn_ruby_via_rspec" target="_blank">Learn Ruby via RSpec</a></p>
 <hr>
 <h2 id="references">References:</h2>
 <ul>
