@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Thu Jul 30 2015 15:02:52 GMT+0000 (UTC)">
+    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Thu Jul 30 2015 16:31:35 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -906,7 +906,7 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="unit-testing-with-rspec">Unit Testing with RSpec</h1>
+                        <h1 id="unit-testing-with-rspec-5m">Unit Testing with RSpec (5m)</h1>
 <ul>
 <li>Explain the purpose Unit testing</li>
 <li>Explain what role RSpec plays in testing</li>
@@ -918,7 +918,7 @@
 <li>Differentiate between testing return values and side effects</li>
 <li>Describe why we avoid testing internal implementation</li>
 </ul>
-<h2 id="unit-testing">Unit Testing</h2>
+<h2 id="unit-testing-10m">Unit Testing (10m)</h2>
 <p>As our applications increase in complexity, we need a saftey net.  We need something to ensure that we &quot;Do no harm&quot;.  We need a battery of automated tests.  These are specifications about YOUR code that you can run to ensure your code is doing what it should.  </p>
 <p>Think back to the way you code.  You create a part of a web page, then you browse to that page to test it.  To ensure that it is doing as you expect.  Then you add another feature.  And test both features.  Then you add a third feature and test... just the third feature.  Imagine if you had a battery of automated specs, which run against your code, so you can see if your new changes fit your new requirements and EVERY requirement that came before this.</p>
 <p>There a few levels of testing. Acceptance tests verify our apps at the lvel of user interaction.  They visit web pages, click on links, validate the DOM.  Integration tests check the interaction between objects.  Unit tests check the smallest level.  The functionality of a specific method.</p>
@@ -937,13 +937,14 @@
 <li>Fast</li>
 <li>Few</li>
 </ul>
-<p>They need to be thorough enough to identify an issue at the moment when it occurs.  They need to be stable so that we can trust them.  No <a href="http://sk176h.blogspot.com/2013/05/flickering-scenario.html" target="_blank">flickering tests</a>.  They need to be fast so that we can run all our tests everytime we make a change - or we will stop running them.  They need to be few so...  They need to be few so that... awww, go watch the talk already.</p>
-<h2 id="what-is-rspec">What is RSpec?</h2>
+<p>They need to be thorough enough to identify an issue at the moment when it occurs.  They need to be stable so that we can trust them.  No <a href="http://sk176h.blogspot.com/2013/05/flickering-scenario.html" target="_blank">flickering tests</a>.  They need to be fast so that we can run all our tests every time we make a change - or we will stop running them.  They need to be few so...  They need to be few so that... awww, go watch the talk already.</p>
+<h3 id="what-is-rspec">What is RSpec?</h3>
 <p>RSpec is a testing framework for the Ruby programming language.  RSpec makes it easier to write tests.  It&apos;s a Domain Specific Language for writing live specifications about your code.  It was released on May 18, 2007, so it&apos;s benn around for a while.  It is the defacto testing framework.</p>
 <p>The reading discussed TDD/BDD.  Indicating that testing is as much about design, helping you to architect a maintainable application, as it is about creating a body of regression tests.  In this lesson, we are focusing on the safety net.  Design is hard, BDD makes it easier, but need the basic skills first.</p>
 <p>Today, don&apos;t worry about <em>when</em> you write your tests.  <strong>Just focus on writing tests.</strong>  Later, when you are more comfortable writing tests, you can begin to use them to drive your design.</p>
 <hr>
-<h2 id="let-s-look-at-a-rspec-person-example-https-github-com-ga-dc-rspec-person-example">Let&apos;s look at a <a href="https://github.com/ga-dc/rspec_person_example" target="_blank">rspec_person_example</a></h2>
+<h2 id="let-s-look-at-an-example-30m">Let&apos;s look at an example (30m)</h2>
+<p>I don&apos;t expect you to type this with me, but this code is available at <a href="https://github.com/ga-dc/rspec_person_example" target="_blank">rspec_person_example</a></p>
 <p>When I run <code>rspec</code> in the <code>rspec_person_example</code> dir, what do we see?</p>
 <pre><code>Person
   Constructor
@@ -970,7 +971,7 @@ Finished in 0.00565 seconds (files took 0.14281 seconds to load)
 2 directories, 3 files
 </code></pre><p>We have a Person model and a Person spec (a specification or test). This is the typical RSpec convention.  Specs live under the spec directory and echo the models in our system with the <code>_spec</code> suffix.</p>
 <hr>
-<h2 id="what-does-an-rspec-specification-or-test-look-like">What does an RSpec specification (or &quot;test&quot;) look like?</h2>
+<h3 id="what-does-an-rspec-specification-or-test-look-like">What does an RSpec specification (or &quot;test&quot;) look like?</h3>
 <pre><code class="lang-ruby">require_relative <span class="hljs-string">&apos;../models/person&apos;</span>  <span class="hljs-comment"># a reference to our code</span>
 
 describe <span class="hljs-constant">Person</span> <span class="hljs-keyword">do</span>
@@ -1017,17 +1018,22 @@ describe <span class="hljs-constant">Person</span> <span class="hljs-keyword">do
 <h3 id="the-spec">The Spec</h3>
 <p>The first line is a reference to our library code.  We need to access to the classes we have written.</p>
 <p>Well skim through the code, gaining a high level knowledge of what is expected, then we&apos;ll return to hash out the details.</p>
-<p><code>describe</code> is a new keyword provided by RSpec (part of its DSL).  Here it indicates that a <code>Person</code> is the &quot;Unit Under Test&quot;.  First we show examples of what we can expect as we contruct new people.  Then, we describe the functionality of the <code>greeting</code> method, specifically within the specific context of each language.  This is ruby code, indicating how our library (or model) code should behave.</p>
-<h3 id="test-isolation">Test Isolation</h3>
-<p>Returning to the top, we see <code>@matt</code> being instantiated.
-  Introduce isolation.</p>
+<p><code>describe</code> is a keyword provided by RSpec (part of its DSL).  Here it indicates that a <code>Person</code> is the &quot;Unit Under Test&quot;.  First we show examples of what we can expect as we construct new people.  Then, we describe the functionality of the <code>greeting</code> method, specifically within the specific context of each language.  This is ruby code, indicating how our library (or model) code should behave.</p>
+<h2 id="test-isolation">Test Isolation</h2>
+<p>Returning to the top, we see <code>@matt</code> being instantiated.</p>
+<pre><code>before(:each) do
+  @matt = Person.new(&quot;Matt&quot;)
+end
+</code></pre><p>When running unit tests, we expect each test to run &quot;in isolation&quot;.  To be separate for every other test.  These tests manipulate our system.  They add rows to the Database. They change existing information.  They configure and tests the results.  We don&apos;t want the configuration and/or changes in one test to affect other tests.</p>
+<p>RSpec uses this convention:</p>
 <ol>
 <li>Setup</li>
 <li>Test</li>
 <li>Teardown</li>
 </ol>
-<h3 id="expectation-and-matcher">Expectation and Matcher</h3>
-<p>Then we see our first spec or &quot;expectation&quot;.</p>
+<p>The setup is run prior to each test and a teardown is run following each test, which resets our system.</p>
+<h2 id="expectation-and-matcher">Expectation and Matcher</h2>
+<p>After the setup (<code>before</code>), we see our first spec or &quot;expectation&quot;.</p>
 <pre><code>expect(@matt).to be_an_instance_of(Person)
 </code></pre><p>RSpec assertions have two components: expectation and matcher.</p>
 <p>We expect <code>@matt</code> to be something.  We identify that &quot;something&quot; with a Matcher:</p>
@@ -1049,7 +1055,7 @@ end
 </code></pre><p>The underlying implementation of &quot;should&quot; was &quot;messy&quot;. You can see that they had to dynamically adjust our library code <code>@matt.language</code> to support the <code>should</code> method.</p>
 <p>The new syntax works like jQuery&apos;s <code>$()</code> syntax.  We use <code>expect(IUT)</code> to &quot;wrap&quot; the Item Under Test, so that it supports the <code>to</code> method.  The <code>to</code> method accepts a matcher.</p>
 <p>While we adjust the use of parenthesis for readability, we are really passing the &quot;matcher&quot; to the &quot;expectation&quot;.</p>
-<h3 id="exercise-getting-familiar">Exercise: Getting familiar</h3>
+<h3 id="exercise-getting-familiar-15m">Exercise: Getting familiar (15m)</h3>
 <p>We are going to use a website called LearnRuby to practice reading specifications.</p>
 <p>Follow these instructions carefully, if you think you are lost, re-read the instructions, I expect you missed a step.  Due to Learn Ruby&apos;s setup, you will use <code>rake</code> instead of <code>rspec</code>.  The rake task is configuring and running rspec.</p>
 <p>These exercises increase in complexity.  They will exercise your ruby knowledge and your RSpec knowledge at the same time.  If you ever find yourself getting ahead, feel free to do any of these exercises.    Conversely, if you feel a little lost, back up.  Do some of the exercises we skipped.</p>
@@ -1060,7 +1066,7 @@ end
 <li><code>git clone git://github.com/alexch/learn_ruby.git</code></li>
 <li>Learn Ruby expects a particular version of RSpec.<pre><code>gem install rspec --version &apos;&lt; 3.0&apos;
 </code></pre></li>
-<li>LearnRuby uses the legacy &quot;should &quot; syntax. To avoid deprecation warnings, let&apos;s configure rspec to allow this syntax. Make sure your &quot;rspec_config.rb&quot; file looks like this:<pre><code class="lang-ruby"><span class="hljs-comment"># rspec_config.rb</span>
+<li>LearnRuby uses the legacy &quot;should &quot; syntax. To avoid deprecation warnings, let&apos;s configure rspec to allow this syntax. Make sure your &quot;learn_ruby/rspec_config.rb&quot; file has this last line:<pre><code class="lang-ruby"><span class="hljs-comment"># learn_ruby/rspec_config.rb</span>
 <span class="hljs-constant">RSpec</span>.configure <span class="hljs-keyword">do</span> |c|
 c.fail_fast = <span class="hljs-keyword">true</span>
 c.color = <span class="hljs-keyword">true</span>
@@ -1072,6 +1078,8 @@ c.expect_with(<span class="hljs-symbol">:rspec</span>) { |with| with.syntax = <s
 </ol>
 <p>We&apos;ll continue together through the first few steps.</p>
 <p>Continue with 00_hello.  We&apos;ll do this for 8 minutes.</p>
+<h2 id="break-10m">Break (10m)</h2>
+<h2 id="wrapping-up-the-example-review-20m">Wrapping up the example review (20m)</h2>
 <h3 id="context">Context</h3>
 <p>As we move into the the description of the <code>greeting</code> method, we see our first &quot;context&quot;: <code>&quot;for default language (English)&quot;</code>.  Within this block, we expect the language of our person to be &quot;English&quot; and we will write specs accordingly.  You can see this as we move down through each supported language.</p>
 <p>Where did <code>@matt</code> come from? <code>before(:each)</code>  How about <code>bob</code> and <code>tony</code>?</p>
@@ -1079,13 +1087,13 @@ c.expect_with(<span class="hljs-symbol">:rspec</span>) { |with| with.syntax = <s
 <p>The following subject block indicates that there will be a variable named <code>bob</code> available within this block of specs.  You can expect it to be assigned a person, named &quot;Bob&quot;.</p>
 <pre><code>subject(:bob) { Person.new(&quot;Bob&quot;) }
 </code></pre><p>The code within the block is assigned to the dynamically created variable.  This variable is named after the symbol.  So, during these specs, the variable <code>bob</code> will hold a reference to the person under test.</p>
-<hr>
+<h3 id="review-and-play">Review and play</h3>
 <p>Let&apos;s review those results again (<code>$ rspec</code>).  See where they come from?  Now, let&apos;s review <code>describe</code>, <code>context</code>, <code>it</code>, &quot;expectations&quot;, and &quot;matchers&quot;, by changing our code and see the specs fail.  Take a few minutes to adjust the code and run the specs a few times.  Play with it.  See how your actions in the code AND in the specs affect the output.</p>
 <p>Ok, let&apos;s change everything back.  Are we back to Green?  Good.</p>
 <hr>
-<h3 id="think-pair-share-support-another-language">Think, pair, share.  Support another language</h3>
+<h3 id="exercise-support-another-language-15m">Exercise: Support another language (15m)</h3>
 <p>Let&apos;s take a few minutes to specify that a Person can greet in Spanish too. We&apos;ll stick to the specification for now, then add the implementation in a minute.</p>
-<p>In spanish, we should greet with &quot;Hola me llamo Maria.&quot;  </p>
+<p>In Spanish, we should greet with &quot;Hola me llamo Maria.&quot;  </p>
 <hr>
 <pre><code>context &quot;when language is &apos;Spanish&apos;&quot; do
   subject(:maria) { Person.new(&quot;Maria&quot;, &quot;Spanish&quot;) }
@@ -1098,17 +1106,22 @@ end
 <pre><code>when /spanish/i
   &quot;Hola me llamo #{name}.&quot;
 </code></pre><hr>
-<h3 id="think-pair-share-what-aren-t-we-testing">Think, pair, share.  What aren&apos;t we testing?</h3>
+<h3 id="think-pair-share-what-aren-t-we-testing-5m">Think, pair, share.  What aren&apos;t we testing? (5m)</h3>
 <p>Let&apos;s take a few minutes to think about what we aren&apos;t testing.</p>
-<p>Sit quietly for 2 minutes.  Think like a tester.  What code exists that aren&apos;t testing.  What examples would be good to clarify what our code can do?</p>
-<p>Next, we&apos;ll discuss with our pair for 4 minutes.
+<p>Sit quietly for 1 minutes.  Think like a tester.  What code exists that aren&apos;t testing.  What examples would be good to clarify what our code can do?</p>
+<p>Next, we&apos;ll discuss with our pair for 2 minutes.
 Then, we&apos;ll share a few examples with the class.</p>
-<h3 id="exercise-implement-your-suggestions">Exercise: Implement your suggestions.</h3>
+<h3 id="exercise-implement-your-suggestions-15m">Exercise: Implement your suggestions. (15m)</h3>
 <ul>
 <li>Specify the setters for :name, :language</li>
 <li>Specify that we utilize the passed name</li>
-<li>Specify the response to an Unsupported language</li>
+<li>Specify the response to an Unsupported language<ul>
+<li>What expectation would we use for this?</li>
 </ul>
+</li>
+</ul>
+<h2 id="break-10m">Break (10m)</h2>
+<h2 id="what-are-we-expecting-25m">What are we expecting? (25m)</h2>
 <h3 id="specify-state-or-side-effects">Specify State or Side-effects</h3>
 <p>Sandi breaks Unit tests in two groups: Queries and Commands.  So far, we&apos;ve been specifying the expected return value of methods.  That covers the Queries.  We can also specify the expected side-effects.  A Command performs some action and we can assert that commands do what they are supposed to.  Does this method do what it should do to our system?</p>
 <p>Think back to <a href="https://github.com/ga-dc/oop_monkey" target="_blank">oop_monkey</a>.  Remember that our app kept track of the foods that our monkey ate?</p>
@@ -1128,7 +1141,7 @@ Then, we&apos;ll share a few examples with the class.</p>
   expect(matt.foods_eaten).to include(&quot;PB&amp;J&quot;)
 end
 </code></pre><p>This is specifying what side-effect <code>#eat</code> has on our system.</p>
-<h3 id="think-pair-share-change-matcher">Think, Pair, Share: &quot;Change&quot; Matcher</h3>
+<h3 id="demo-change-matcher">Demo: &quot;Change&quot; Matcher</h3>
 <blockquote>
 <p>Q. How could we test this using the <a href="http://www.relishapp.com/rspec/rspec-expectations/v/3-3/docs/built-in-matchers/change-matcher" target="_blank">&quot;change&quot; matcher</a>?</p>
 </blockquote>
@@ -1147,9 +1160,10 @@ end
 </blockquote>
 <hr>
 <p>A. Because it needs to record the count before and after that code is run.</p>
-<p>While checking for side-effects is perfectly reasonable, this particular check is pretty weak.  Just checking that the count increases, does not verify that foods_eaten contains the &quot;banana&quot;.  Our <code>#eat</code> method could have added anyting to <code>#foods_eaten</code>.</p>
+<p>While checking for side-effects is perfectly reasonable, this particular check is pretty weak.  Just checking that the count increases, does not verify that foods_eaten contains the &quot;banana&quot;.  Our <code>#eat</code> method could have added anything to <code>#foods_eaten</code>.</p>
 <h3 id="how-many-matchers-are-there">How many Matchers are there?</h3>
-<p>I recommend that you review the available Matchers in the <a href="https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers" target="_blank">RSpec documentation</a>.  The RSpec docs are great!  They are a mix of specifications and documentation as live documents.  Written using the &quot;relish&quot; app to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (3.3).</p>
+<p>Let&apos;s review the available Matchers in the <a href="https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers" target="_blank">RSpec documentation</a>.  The RSpec docs are great!  They are a mix of specifications and documentation as live documents.  Written using the &quot;relish&quot; app to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (v3.3).</p>
+<p>Don&apos;t miss &quot;Predicate matchers&quot;!</p>
 <h3 id="we-avoid-testing-implementation">We avoid testing implementation</h3>
 <p>Here&apos;s something else we aren&apos;t testing.  We aren&apos;t testing that <code>greeting</code> uses a <code>select/case</code> statement.  That would be testing the internal implementation. Let&apos;s be clear, I should be free to write whatever code I want, inside of the <code>greeter</code> method, in order to achieve the results the specs indicate. Let&apos;s say our team creates a new translation library.  I should be able to swap out my naive implementation and replace it with that.  To do that we test against the interface of the class -- the public methods -- not the internal implementation.  The following code tells the ItalianTranslator to translate this phrase from English.</p>
 <pre><code>tony = Person.new(&quot;tony&quot;, ItalianTranslator)
@@ -1161,7 +1175,7 @@ end
 </code></pre><p>My test does not change.  The new code still returns a phrase in Italian.  <code>tony.greeting.should eql(&quot;Ciao, mi chiamo Tony.&quot;)</code> still passes.  The internal implementation is free to change.</p>
 <p>While I can say that <code>tony.greeting</code> should call <code>ItalianTranslator.convert_from</code>, I <em>probably</em> don&apos;t want to.  That binds me to the <em>current</em> implementation.</p>
 <hr>
-<h3 id="exercise-add-farewell">Exercise: Add farewell.</h3>
+<h3 id="exercise-optional-add-farewell-15m">Exercise (optional): Add farewell. (15m)</h3>
 <p>Add support for farewell, for each language.  </p>
 <ul>
 <li>Decide on the functionality you want.</li>
@@ -1169,6 +1183,9 @@ end
 <li>Avoid testing the implementation</li>
 </ul>
 <hr>
+<h2 id="it-depends-10m">It depends (10m)</h2>
+<p>All of these &quot;rules&quot;come with the caveat, &quot;If it makes more sense to break the rules.  Break them.&quot;</p>
+<p>For instance, if ItalianTranslator utilized a 3rd party, external service, I probably just want to check that I am calling it correctly.  And that&apos;s where mocks and stubs come in.</p>
 <h2 id="mocks-stubs">Mocks &amp; Stubs</h2>
 <p>Sometimes our Unit Under Test must interact with other object.  If these objects are difficult to setup or their response may be slow or non-deterministic -- like an external service that we contact via te internet.  It can make sense to mock out the other object, to create a &quot;fake&quot; object that supports the interface you need but returns a fixed, expected value.  This makes your component examples independent of other components.</p>
 <ul>
@@ -1176,7 +1193,7 @@ end
 <li>You can stub specific methods on &quot;real&quot; objects to let them return whatever you like.</li>
 </ul>
 <h2 id="earlier-i-passed-in-translatoritalian-and-i-called-the-convert-from-method-on-it-if-that-was-a-service-somewhere-else-on-the-web-then-my-unit-tests-probably-do-not-wan-tot-call-it">Earlier, I passed in <code>TranslatorItalian</code> and I called the <code>convert_from</code> method on it.  If that was a service somewhere else on the web, then my unit tests probably do not wan tot call it.</h2>
-<h2 id="example">Example</h2>
+<h3 id="mock-example">Mock Example</h3>
 <pre><code class="lang-ruby"><span class="hljs-comment"># create mock object that will act like my 3rd party translator</span>
 translator = instance_double(<span class="hljs-string">&quot;ItalianTranslator&quot;</span>)
 <span class="hljs-comment"># make this double *support* the method I need AND return the value I want.</span>
@@ -1186,7 +1203,8 @@ allow(translator).to receive(<span class="hljs-symbol">:convert_from</span>) { <
 </code></pre>
 <p>So then when I use this <em>mock</em> in my tests, <code>tony</code> returns the phrase I expect and I can test that I process that result correctly.</p>
 <hr>
-<h2 id="review">Review</h2>
+<h2 id="conclusion-10m">Conclusion (10m)</h2>
+<h3 id="review">Review</h3>
 <ol>
 <li>The practice of TDD provides a safety net of regression tests and tends to improve <code>______________</code>.</li>
 <li>What is the TDD Mantra?  Explain each step.</li>
@@ -1195,8 +1213,7 @@ allow(translator).to receive(<span class="hljs-symbol">:convert_from</span>) { <
 <li>What are the two main categories of things we test for?  And how do they differ?</li>
 <li>What is the downside of testing internal implementation?</li>
 </ol>
-<hr>
-<h2 id="conclusion">Conclusion</h2>
+<h3 id="tatft">TATFT</h3>
 <p>The ruby community drank the testing koolaid.  We&apos;ve felt the benefits.  Rails was the first web framework that supported testing out of the box.  The generators create a skeleton test, encouraging you to get in there and fill it out.</p>
 <p>Every single person that comes in here to talk to you - from alumni to seasoned veteran - espouses the importance of testing.  It&apos;s a learning curve.  It will be slow... at first.  Stick with it.  Keep at it.  Climb that curve.  Impress your interviewers.</p>
 <hr>
@@ -1234,9 +1251,9 @@ Break it into small pieces and have pairs iterate, then switch pairs and repeat.
 <li>design/architecture/maintainability.</li>
 <li>Red, Green, Refactor.  We write a test that fails, indicating that the freature is not supported.  Then, we adjust code until it passes (turns Green).  Lastly, we refactor our app using the knowledge we gained from supporting the spec.</li>
 <li><code>describe</code> and <code>context</code></li>
-<li>It ensures out tests are stabile, eliminates confusing dependencies, and minimizes &quot;flickering&quot; tests.</li>
-<li>Queries and Commands.  For Queries we verify return values, while we check side-effects for commands.</li>
-<li>It makes it really hard to refactor.</li>
+<li>It ensures our tests are stable, eliminates confusing dependencies, and minimizes &quot;flickering&quot; tests.</li>
+<li>Queries and Commands.  For Queries we verify return values, while we check side-effects for Commands.</li>
+<li>Testing internal implementation makes it really hard to refactor away from that implementation.</li>
 </ol>
 
                     
