@@ -175,7 +175,9 @@ Select the following DOM objects on the Blawg using jQuery selectors.
   8. Using a CSS pseudo-selector, the third element with class `post`.
   9. Using an HTML attribute, the fourth `img` on the page.  
 
-Reference: [https://api.jquery.com/](https://api.jquery.com/)
+#### Reference:
+[https://api.jquery.com/](https://api.jquery.com/)
+[https://api.jquery.com/category/selectors/](https://api.jquery.com/category/selectors/)
 
 ## jQuery Objects vs. DOM Elements (10min)
 
