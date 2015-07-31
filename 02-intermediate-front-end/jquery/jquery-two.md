@@ -140,7 +140,7 @@ Assume the following html for the following examples:
 
   ```javascript
     $(".awesome").removeClass("add three classes")
-    // removes the classes add, three and classes to all elements in the jQuery object selected
+    // removes the classes add, three and classes from all elements in the jQuery object selected
   ```
 
 - `.children()`
