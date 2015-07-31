@@ -1,7 +1,7 @@
 # Front End Fundamentals
 
 ## Learning Goal
-Build an interactive web-page that utilizes HTML, CSS, and JavaScript
+To be able to build an interactive web-page that utilizes HTML, CSS, and JavaScript
 
 ## Learning Objectives
 
