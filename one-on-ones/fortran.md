@@ -1,24 +1,41 @@
-# Fortran One on One Schedule 
-Unless otherwise scheduled, we'll meet at 5:00!
+# Dart One on One Schedule
 
-- Week 5
-  - Tue
-    - Lisa
-  - Wed
-    - 4:30 Arash
-    - 5:00 **Open appointment time**
-  - Thur
-    - 4:30 Adrian
-    - 5:00 Melissa
-  - Fri
-    - Leigh
-- Week 6
-  - Tue
-    - Omari
-  - Wed
-    - 4:30 Yvonne
-    - 5:00 **Open appointment time**
-  - Thur
-    - Rachel
-  - Fri
-    - Ksenia
+One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
+
+## Mon Aug 3
+
+- Omari
+
+## Wed Aug 5
+
+- Yvonne
+- **Open Appointment Time**
+
+## Thur Aug 6
+
+- Rachel
+
+## Fri Aug 7
+
+- Ksenia
+
+-----
+
+## Mon Aug 10
+
+- Lisa
+
+## Wed Aug 12
+
+- Arash
+- **Open Appointment Time**
+
+## Thur Aug 13
+
+- Adrian
+- Melissa
+
+## Fri Aug 14
+
+- Leigh
+
