@@ -120,9 +120,9 @@ for(i in names){
 }
 ```
 
-- Again this for loop starts with the keyword `for`.
-- In parentheses contains the iteratee followed by the keyword `in` followed by the complex data type you would like to iterate over(array or object)
-- In the brackets contains the code you would like executed for each iteration of the loop
+- Again, this loop starts with the keyword `for`.
+- The set of parentheses contains the iteratee, followed by the keyword `in,`which is followed by the complex data type you would like to iterate over (array or object).
+- The brackets contain the code you would like executed for each iteration of the loop.
 
 ### You Do - Write a for loop that prints odd numbers to 100. Do not use conditionals
 
