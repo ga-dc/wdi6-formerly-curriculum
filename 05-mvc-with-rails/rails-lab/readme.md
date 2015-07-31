@@ -16,4 +16,4 @@ https://github.com/ga-dc/pinspiration
 
 # Homework
 
-Pinspiration will be due Monday morning.
+https://github.com/ga-dc/chill_out
