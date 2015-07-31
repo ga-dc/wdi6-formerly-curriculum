@@ -74,3 +74,9 @@ Use best-practices and libraries to write, share, and deploy high-quality code.
 - Create user stories for existing web applications
 - Differentiate MVP from application.
 - Generate user stories in order to create proof of concept for MVP(minimum viable product)
+
+##Kseni'as Stupid Edit
+- Edit, edit, edit.
+- More edits.
+- What do you call a cow with no legs? ground beef.
+- har har har
