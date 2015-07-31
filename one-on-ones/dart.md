@@ -2,31 +2,31 @@
 
 One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
 
-## Tue Jul 21
+## Mon Aug 3
 
-- Jeff Jones 
+- Jeff Jones
 - Samuel Key
 
-## Wed Jul 22
+## Wed Aug 5
 
-- Jeremy Koulish 
-- Christine Lovett 
+- Jeremy Koulish
+- Christine Lovett
 
-## Thur Jul 23 
+## Thur Aug 6
 
 - Anand Moses
 - **Open Appointment Time**
 
-## Mon Jul 27 
+## Mon Aug 10
 
-- Ryan Kahle 
-- Taewan Kim 
+- Ryan Kahle
+- Taewan Kim
 
-## Wed Jul 29
+## Wed Aug 12
 
-- Lana Kushnir 
+- Lana Kushnir
 - John Master
 
-## Thur Jul 30
+## Thur Aug 13
 
 - **Open Appointment Time**

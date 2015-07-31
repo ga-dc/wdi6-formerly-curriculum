@@ -2,31 +2,30 @@
 
 One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
 
-## Tue Jul 21
-*Note change of date due to shifted outcomes programming*
+## Mon Aug 3
 
 - Erica Andersen
 - Erik Anderson
 
-## Wed Jul 22
+## Wed Aug 5
 
 - Jared Arkin
 - Walter Augustine
 
-## Thur Jul 23
+## Thur Aug 6
 
 - Alexander Bannon
 - Isabella Brookes
 
-## Mon Jul 27
+## Mon Aug 10
 
 - Thomas Beach
 - Robert Benjamin
 
-## Wed Jul 29
+## Wed Aug 12
 
 - Silvia Brown
 
-## Thur Jul 30
+## Thur Aug 13
 
 - **Open Appointment Time**
