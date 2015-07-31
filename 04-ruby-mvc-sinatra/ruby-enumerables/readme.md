@@ -37,7 +37,7 @@ Runs the loop until a condition is true (or while that condition is false).
 counter = 1
 until( counter > 10 ) do
   puts counter
-  counter++
+  counter += 1
 end
 ```
 
