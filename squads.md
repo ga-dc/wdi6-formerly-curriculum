@@ -6,7 +6,7 @@
 | ---------------- | ----------------- | ----------------- | ---------------- | ------------------ | ------------------- |
 | **Adam Bray**    | **Adrian Maseda** | **Andy Kim**      | **Jesse Shawl**  | **Matt Scilipoti** | **Robin Thomas**    |
 | Erica Andersen   | Kevin Cole Jr     | Philip Engles     | Jeff Jones       | Laura Nawrocki     | Lisa Scott          |
-| Erik Anderson    | Matthew Curtis    | Matthew Ficke     | Joseph Kahle     | Cheikh Ndiongue    | Arash Shahry        |
+| Erik Anderson    | Matthew Curtis    | Matthew Ficke     | J.('Ryan') Kahle | Cheikh Ndiongue    | Arash Shahry        |
 | Jared Arkin      | Peter Cutler      | Cameron Fry       | Samuel Key       | Nick Olds          | Adrian Shepelavey   |
 | Walter Augustine | Preston Davies    | Amruta Ghate      | Taewan Kim       | Rosel Padilla      | Melissa Steffan     |
 | Alexander Bannon | Nayana Davis      | Stephen Gheysens  | Jeremy Koulish   | Edward Park        | Leigh Varley        |
