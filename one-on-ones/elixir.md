@@ -2,39 +2,32 @@
 
 One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
 
-## Mon Jul 20
+## Mon Aug 3
 
 - Outcomes
 
-## Tue Jul 21
+## Wed Aug 5
 
 - Laura N.
 - **Open Appointment Time**
 - Eddie P.
 
-## Wed Jul 22
+## Thur Aug 6
 
 - Cheikh N.
 - Nicholas O.
 
-## Thur Jul 23
+## Mon Aug 10
 
 - Malissa R.
-
-## Mon Jul 27
-
 - Rosel P.
+
+## Wed Aug 12
+
 - **Open Appointment Time**
-
-## Tue Jul 28
-
-- Outcomes
-
-## Wed Jul 29
-
-- Eddie P.
 - Lon P.
 
-## Thur Jul 30
+## Thur Aug 13
 
+- Eddie P.
 - Justin P.
