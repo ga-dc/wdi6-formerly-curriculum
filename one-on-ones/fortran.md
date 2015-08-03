@@ -1,6 +1,6 @@
 # Dart One on One Schedule
 
-One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
+One on ones are generally from 4:30pm to 5:00pm on Mondays, Wednesdays, and Thursdays.
 
 ## Mon Aug 3
 
