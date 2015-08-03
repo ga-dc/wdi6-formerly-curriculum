@@ -13,6 +13,7 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 - 10:30 - 10:45 Ryan
 - 11:00 - 11:15 Lana
 - 11:15 - 11:30 John
+- 11:30 - 11:45 Taewan
 
 
 ## Mon Aug 10
