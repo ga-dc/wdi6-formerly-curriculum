@@ -65,7 +65,7 @@ columns on the command line, Rails will automatically generate the correct
 migration for us.
 
 ```bash
-$ rails g migration Attendance user:references event:references num_guests:integer
+$ rails g model Attendance user:references event:references num_guests:integer
 ```
 
 This will generate an Attendance model, with `user_id`, `event_id` and
