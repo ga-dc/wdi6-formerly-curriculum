@@ -52,6 +52,9 @@ This is some of the stuff that it's given us:
 
 ![railsgdeviseuser](images/railsgdeviseuser.png)
 
+> Take a look at the devise source code! and you can see all of the different controllers
+
+
 Its alot but of stuff to look at, but let's break it down. Going from top to bottom excluding some of the files we won't be using for this class.
 
 The first thing that was created was a migration for this model. In `db/migrate/<somedate>_devise_create_users.rb` there's alot of information here, but I think most pertinent to us in the scope of user auth is the email and password attributes.
@@ -157,3 +160,5 @@ This documentation contains alot of great information.
 
 - Customize devise views
 - Customize devise model attributes
+
+If you want to add devise to a brand new rails application check out this [blog post](http://andrewsunglaekim.github.io/Getting-a-handle-on-devise/)
