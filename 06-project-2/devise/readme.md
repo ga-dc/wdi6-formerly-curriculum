@@ -16,9 +16,7 @@ Run the normal commands in the terminal:
 
 ```bash
 $ bundle install
-$ rake db:create
-$ rake db:migrate
-$ rake db:seed
+$ rake db:create db:migrate db:seed
 ```
 
 What we have here is a basic single Model CRUD application. Much like scribble but without comments. You can type in `$ rake routes` into the terminal to see what all the available routes are. If you run rails server and look around the site you can see there's full CRUD for our Post model.
@@ -51,6 +49,9 @@ $ rails generate devise user
 This is some of the stuff that it's given us:
 
 ![railsgdeviseuser](images/railsgdeviseuser.png)
+
+> Take a look at the devise source code! and you can see all of the different controllers
+
 
 Its alot but of stuff to look at, but let's break it down. Going from top to bottom excluding some of the files we won't be using for this class.
 
@@ -156,4 +157,6 @@ Let's do the following:
 This documentation contains alot of great information.
 
 - Customize devise views
-- Customize devise model attributes
+- Customize devise model attributes [Direct Link to Docs](https://github.com/plataformatec/devise#strong-parameters)
+
+If you want to add devise to a brand new rails application check out this [blog post](http://andrewsunglaekim.github.io/Getting-a-handle-on-devise/)
