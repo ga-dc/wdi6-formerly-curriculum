@@ -21,7 +21,7 @@ $ rake db:create db:migrate db:seed
 
 What we have here is a basic single Model CRUD application. Much like scribble but without comments. You can type in `$ rake routes` into the terminal to see what all the available routes are. If you run rails server and look around the site you can see there's full CRUD for our Post model.
 
-## Devise -setup
+## Devise -setup (15/30)
 
 Let's start integrating devise into our application. The first thing I should do is add `devise` to the `Gemfile` in our rails main directory.
 
@@ -76,7 +76,7 @@ The next thing that was added was `devise_for :users` in our `config/routes.rb`
 That one line of code opens routes to alot of devise user authentication controller actions
 
 
-## Devise -configuration
+## Devise -configuration(15/45)
 add this to `config/environments/development.rb`:
 
 ```ruby
@@ -103,6 +103,8 @@ Let's also add a root path to our `config/routes.rb`:
 ```ruby
 root 'posts#index'
 ```
+
+## Devise Helpers (15/60)
 
 Let's go ahead and fire up our server `$rails s` and sign up for our site!
 
