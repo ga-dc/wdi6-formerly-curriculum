@@ -82,7 +82,7 @@ add this to `config/environments/development.rb`:
 ```ruby
  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
  ```
-> an email there is no context for host and port where as other urls are relative and don't need explicit host and port
+> In an email there is no context for host and port where as other urls are relative and don't need explicit host and port
 
  I think it'd be nice we just went ahead and added a logout button to the layout so that we can easily log in and log out as a user. So in our `app/views/layouts/application.html.erb` add the following code:
 
@@ -149,6 +149,7 @@ Let's do the following:
 > note that since we don't have the `authenticate_user!` helper on the index action, if we were to access posts directly without authenticating it would error out. So to fix that we should enter some if/else conditional to handle this.
 
 - in the create action , change `@post = Post.new(post_params)` to `@post = current_user.posts.build(post_params)`
+> So we aren't able use new on the posts helper method. `.build` is the equivalent of `.new` and `.create` is the the same when using has_many helper getters. Additionally when we `.build` or `.create` we don't have to pass in the foreign_key or object in as an argument because we're "building" or "creating" off of that object.
 
 ## What you can look forward to with devise! (Should you want to learn more on your own, or if we have extra time I can talk about devise views a little bit.)
 
