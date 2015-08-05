@@ -16,9 +16,7 @@ Run the normal commands in the terminal:
 
 ```bash
 $ bundle install
-$ rake db:create
-$ rake db:migrate
-$ rake db:seed
+$ rake db:create db:migrate db:seed
 ```
 
 What we have here is a basic single Model CRUD application. Much like scribble but without comments. You can type in `$ rake routes` into the terminal to see what all the available routes are. If you run rails server and look around the site you can see there's full CRUD for our Post model.
