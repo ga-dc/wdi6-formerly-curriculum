@@ -159,6 +159,6 @@ Let's do the following:
 This documentation contains alot of great information.
 
 - Customize devise views
-- Customize devise model attributes
+- Customize devise model attributes [Direct Link to Docs](https://github.com/plataformatec/devise#strong-parameters)
 
 If you want to add devise to a brand new rails application check out this [blog post](http://andrewsunglaekim.github.io/Getting-a-handle-on-devise/)
