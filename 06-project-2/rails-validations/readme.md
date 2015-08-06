@@ -176,13 +176,14 @@ We'll need a [validation helper](http://guides.rubyonrails.org/active_record_val
 
 Don't forget to **reload!** to incorporate your changes.
 
-Bonus:
+**Bonus:**
 - Verify the length.  What is the shortest possible url?  The longest?
 - Use a more strict regular expression.
 - Check out what validators exist with `song.validators` & `song.validators_on`.
 
 ---
 
+Possible solution:
 ``` ruby
 class Song < ActiveRecord::Base
   belongs_to :artist
@@ -219,7 +220,7 @@ Messaging, safety, and speed.  We want helpful, accurate messages at the highest
 ### Recap
 Without validations there are no constraints on our model.  Almost all models need some basic constraints.  Rails provides a validation framework that supports declaring, verifying, and reporting problems.
 
-## Errors (10 min)
+## Errors (15 min)
 
 > Q. Speaking of reporting... why does AR provide song.errors?
 ---
@@ -228,19 +229,68 @@ We used it for debugging support.  It's nice for that.  However, it was designed
 
 ``` ruby
 # songs_controller
-???
+def create
+  @artist = Artist.find(params[:artist_id])
+  @song = @artist.songs.build(song_params)
+  if @song.create
+    redirect_to artist_song_path(@artist, @song)
+  else
+    render :new
+  end
+end
 ```
 
-What happens now?  Opening the browser, let's create a Song without a title, it brings us back to "new", but ew don't know why.  If we check our log we'll see:
+What happens now?  Opening the browser, let's create a Song without a title.  Browsing to `http://localhost:3000/songs`, we see an error.
 
 ```
-???
+undefined method `name' for nil:NilClass
 ```
 
-After the save fails, the @song object now has all the errors itemized in @song.errors. Errors might occur when we are adding a new Song or updating an existing song.  We want to improve both those views so that, if errors exist, we loop through the errors and display them to our user.  Fortunately, a single partial is shared by both, "songs/_form.html.erb".
+I see `song.artist.name`.  Apparently, `song.artist`, is returning `nil`.  One of our songs does not have an Artist.  We have bad data.  Make a note to add a validation to ensure a Song has an "artist". :)
+
+I'm focusing on create right now.  Let's go straight there.  Navigating to "Norah Jones", I see her 'id' is 3.  Now, I can visit "http://localhost:3000/artists/3/songs/new".  
+
+
+I want to attempt to create a song without any informaiton, so I leave it all blank and press "Create Song".  It brings us back to "new", but ew don't know why.  If we check our log we'll see:
+
+``` ruby
+Started POST "/artists/3/songs" for ::1 at 2015-08-06 12:15:50 -0400
+Processing by SongsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lN3Sl1/Ne9MGtGbUhxA7gQWmRFTVge9NbbQnvzP5Ov3MRiMGNSqZWxOVngQwX4f8TxXKKsIKtO9Ectb/o/Artw==", "song"=>{"title"=>"", "album"=>"", "preview_url"=>""}, "commit"=>"Create Song", "artist_id"=>"3"}
+  Artist Load (0.2ms)  SELECT  "artists".* FROM "artists" WHERE "artists"."id" = $1 LIMIT 1  [["id", 3]]
+   (0.2ms)  BEGIN
+   (0.2ms)  ROLLBACK
+  Rendered songs/_form.html.erb (3.9ms)
+  Rendered songs/new.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 55ms (Views: 32.8ms | ActiveRecord: 5.8ms)
+```
+
+``` ruby
+# songs_controller
+def create
+  @artist = Artist.find(params[:artist_id])
+  @song = @artist.songs.build(song_params)
+  if @song.create
+    redirect_to artist_song_path(@artist, @song)
+  else
+    render :new
+  end
+end
+```
+
+We see evidence that our save did not work.  
+- We start the POST.  
+- We make it into the controller.  
+- We retrieve the Artist.  
+- When should see an `INSERT` into our database, we see a `ROLLBACK`.
+- Then, we see it is rendering "songs/new.html.erb", instead of redirecting.
+
+**WE** know it, but our users don't.
+
+As we saw, after the save fails, the @song object has all the errors itemized in @song.errors. Errors might occur when we are adding a new Song or updating an existing song.  We want to improve both those views so that, if errors exist, we loop through the errors and display them to our user.  Fortunately, a single partial is shared by both, "songs/_form.html.erb".
 
 ``` html
-# app/views/songs/_form.html.erb
+<!-- app/views/songs/_form.html.erb -->
 <% if @song.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
@@ -254,7 +304,16 @@ After the save fails, the @song object now has all the errors itemized in @song.
 <% end %>
 ```
 
-Now, if we try to create a new, invalid Song.  We see why.  Furthermore, if you use the Rails form helpers to generate your forms, it will generate an extra <div> around the entry. allowing us to use css to highlight the affected fields.
+Now, if we try to create a new, invalid Song.  We see why.  
+
+```
+1 error prohibited this song from being saved:
+
+Title can't be blank
+```
+
+
+Furthermore, if you use the Rails form helpers to generate your forms, it will generate an extra <div> around the entry. allowing us to use css to highlight the affected fields.
 
 ``` css
 .field_with_errors {
@@ -271,20 +330,22 @@ See how much that helps?
 
 Provide feedback to the User for Artist creation and updates.
 
-Questions?  Check the [docs](http://guides.rubyonrails.org/active_record_validations.html#displaying-validation-errors-in-views) first.
+Questions?  Check the [validation docs](http://guides.rubyonrails.org/active_record_validations.html#displaying-validation-errors-in-views) first.  They're awesome!
 
-Bonus: use simple_form
+**Bonus:** Use [simple_form](https://github.com/plataformatec/simple_form). It displays errors in-line.
+
 
 ## Conclusion
 
-We discussed the need for constraints.  We need to validate that our Objects adhere to our business rules.  AR provides validation helpers to support this.  We identified that they belong in our Model, where business logic lives.  Then, we familiarized ourselves with the provided validators and used a few.  Finally, we used the built in errors to provide feedback to our user.
+We discussed the need for constraints.  We need to validate that our Objects adhere to our business rules.  AR provides validation helpers to support this.  We identified that they belong in our Model, where business logic lives.  Then, we familiarized ourselves with the provided validators and used a few.  Finally, we used the built-in errors framework to provide feedback to our user.
+
 
 ## Further reading:
 
-- Ensure you familiarize yourself with the [available validation helpers](???).
-- Since rails isn't meant to cover every scenario, you will probably be tasked with creating your own [custom validations](???)
-- It's important to know which methods utilize validations and which bypass them: [???](???)
-- We can even indicate when validations should run via [callbacks](???).
+- Ensure you familiarize yourself with the [provided validation helpers](http://guides.rubyonrails.org/active_record_validations.html#validation-helpers).
+- Since rails isn't meant to cover every scenario, you will probably be tasked with creating your own [custom validations](http://guides.rubyonrails.org/active_record_validations.html#performing-custom-validations)
+- It's important to know which methods utilize validations and which bypass them: [Skipping validations](http://guides.rubyonrails.org/active_record_validations.html#skipping-validations)
+- We can even indicate when validations should run via [callbacks](http://guides.rubyonrails.org/active_record_validations.html#when-does-validation-happen-questionmark).
 - [Rails and rake](http://guides.rubyonrails.org/command_line.html#rake).
   - tl;dr
 ```
