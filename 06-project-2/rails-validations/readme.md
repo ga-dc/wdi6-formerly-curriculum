@@ -9,12 +9,11 @@
 
 ## What are Validations? (5 min)
 
-Validations are constraints on a system that ensure data integrity.
+Put simply, validations are rules.  In software development, they are constraints on a system that ensure data integrity.
 
 Databases provide their own constraints.  For instance, a **foreign_key constraint** between Artists and Songs ensures that any `artist_id` we assign to a Song actually exists in the Artists table.  If not, it will raise an error and not allow that Song to be created.
 
 In MVC, business rules go in the Model.  ActiveRecord (AR) provides helpers to ensure that only valid data is stored in your database.  With them, you can ensure that specific information is present.  Or unique.  You can verify that email addresses, phone numbers, and social security numbers are properly formatted.  You can validate numbers and dates, protecting age fields and birthdates to ensure users are not 1000 years old.
-
 
 ### Research: Section 1.1 (5 min)
 
@@ -24,7 +23,7 @@ Rails has a great reference for Validations in their [guide](http://guides.rubyo
 
 Their example:
 
-```
+``` ruby
 class Person < ActiveRecord::Base
   validates :name, presence: true
 end
@@ -40,7 +39,10 @@ I don't want to spend this hour repeating what the Rails Guides say.  Instead, l
 
 ## Experiencing Validations (20 min)
 
-Let's build upon a previous lesson. "tunr_validations" will start with the solution from "tunr_rails". First, we'll discuss validations for a Song.  I'll walk through the implementation. Then, you will ensure the Artist is validated.
+Let's build upon a previous lesson. "tunr_validations" will start with the solution from "tunr_rails".
+- First, we'll discuss validations for a Song.  
+- I'll walk through the implementation.
+- Then, you will ensure the Artist is validated.
 
 ### Setup
 
@@ -53,14 +55,9 @@ rake db:drop
 rake db:setup
 ```
 
-Curious about `db:setup`?  Ask rake.
-```
-rake -D db:setup
-# Also
-rake -T db
-```
+Curious about `db:setup`?  See "Further reading" below... later.  For now, see the results on your screen.  It created the db, setup your db schema, and seeded.  Moving along...
 
-We are going to be spending most of this lesson in `rails console`.
+We are going to be spending most of this lesson in the console.  In a new tab, start `rails console`.
 
 We are going to be working with songs.  Let's ensure we start with a clean slate.
 ``` ruby
@@ -100,8 +97,17 @@ We just instantiated a new song, without any information -- no title, no album, 
 
 We can even save it.
 ``` ruby
-???
+> song.save
+   (0.2ms)  BEGIN
+  SQL (30.0ms)  INSERT INTO "songs" DEFAULT VALUES RETURNING "id"
+   (125.0ms)  COMMIT
+ => true
+
+> song.new_record?
+  => false
 ```
+
+It saved. :(
 
 > What should be required?
 ---
@@ -115,34 +121,48 @@ class Song < ActiveRecord::Base
 end
 ```
 
-Can we save it now?
+How does our Song behave now?
 
-Don't forget to **reload!** to use our changes.
+Don't forget to **reload!** to use our changes.  This resets the console, so our `song` variable is gone.  We need to re-initialize it.
 ``` ruby
 > reload!
-???
+Reloading...
+ => true
+
+> song = Song.new
+  => #<Song id: nil, title: nil, album: nil, preview_url: nil, artist_id: nil>
 ```
 
-> Q. Is `song` valid?
+> Q. Is it valid?
 ---
 
 ``` ruby
 > song.valid?
  => false
 ```
-Nope.  
 
-What caused the issue?  Again, ask `song`.
+Nope.
+
+Why, specifically, is it not valid?  Again, we can ask `song`.
 ``` ruby
 > song.errors.messages
- => {:password=>["can't be blank"]}
+ => {:title=>["can't be blank"]}
 ```
 
 And if we try to save it?
 
 ``` ruby
-???
+> song.save
+    (0.2ms)  BEGIN
+    (0.2ms)  ROLLBACK
+  => false
 ```
+
+> Q. Why wasn't our song saved?
+---
+
+Because it is NOT valid.
+
 
 ### You do: Ensure each song has a preview_url. (10 min)
 
@@ -173,8 +193,31 @@ class Song < ActiveRecord::Base
 end
 ```
 
+### Duplication
+
+You *may* see overlap.  We can use both the SQL constraint and the AR validation.
+
+``` sql
+ create_table "songs", force: :cascade do |t|
+    t.string  "title", null: false
+    ...
+```
+``` ruby
+class Song < ActiveRecord::Base
+  ...
+  validates :title, presence: true
+end
+```
+
+> Q. Why would we do this?
+---
+
+Messaging, safety, and speed.  We want helpful, accurate messages at the highest level (closest to the developer and users) [messaging, speed].  For security, we need constraints at the lowest level (closest to the database) [safety, speed].  You may even add client-side validations, in javascript, to avoid the call back to the server [messaging, speed].
+
+> "I would highly recommend doing it in both places. Doing it in the model saves you a database query (possibly across the network) that will essentially error out, and doing it in the database guarantees data consistency." --[aseem](http://programming.nullanswer.com/question/25109141)
+
 ### Recap
-Without validations there are no constraints on our model.  Almost all models need some basic constraints.  Rails provides a validation framework that supports declaring, verifying, and reporting issues (??? better word).
+Without validations there are no constraints on our model.  Almost all models need some basic constraints.  Rails provides a validation framework that supports declaring, verifying, and reporting problems.
 
 ## Errors (10 min)
 
@@ -242,3 +285,10 @@ We discussed the need for constraints.  We need to validate that our Objects adh
 - Since rails isn't meant to cover every scenario, you will probably be tasked with creating your own [custom validations](???)
 - It's important to know which methods utilize validations and which bypass them: [???](???)
 - We can even indicate when validations should run via [callbacks](???).
+- [Rails and rake](http://guides.rubyonrails.org/command_line.html#rake).
+  - tl;dr
+```
+rake -D db:setup
+# Also
+rake -T db
+```
