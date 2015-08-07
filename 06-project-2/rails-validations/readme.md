@@ -228,11 +228,11 @@ Without validations there are no constraints on our model.  Almost all models ne
 We used it for debugging support.  It's nice for that.  However, it was designed to provide a common framework for providing feedback to the user.  This is why, when we have a problem saving or updating a model,  we `render` the page.
 
 ``` ruby
-# songs_controller
+# songs_controller.rb
 def create
   @artist = Artist.find(params[:artist_id])
   @song = @artist.songs.build(song_params)
-  if @song.create
+  if @song.save
     redirect_to artist_song_path(@artist, @song)
   else
     render :new
@@ -270,7 +270,7 @@ Completed 200 OK in 55ms (Views: 32.8ms | ActiveRecord: 5.8ms)
 def create
   @artist = Artist.find(params[:artist_id])
   @song = @artist.songs.build(song_params)
-  if @song.create
+  if @song.save
     redirect_to artist_song_path(@artist, @song)
   else
     render :new
@@ -307,9 +307,10 @@ As we saw, after the save fails, the @song object has all the errors itemized in
 Now, if we try to create a new, invalid Song.  We see why.  
 
 ```
-1 error prohibited this song from being saved:
+2 errors prohibited this song from being saved:
 
 Title can't be blank
+Preview url must start with 'http'
 ```
 
 
@@ -353,3 +354,34 @@ rake -D db:setup
 # Also
 rake -T db
 ```
+
+## Questions
+
+1. Which component, of Rails MVC, is responsible for the business logic?
+2. Write the validation to verify that a User's age is between 13 and 125 (inclusive), but does not require them to provide an age.
+3. What would `user.errors.messages` return (for the above User), if you assigned `user.age = 12`?
+4. Assume you visit "/customers/new" and enter some invalid information.  Given this controller code, what url would your browser be on after pressing "Create Customer"?
+
+  ``` ruby
+  class CustomersController < ApplicationController
+    def new
+      @customer = Customer.new
+    end
+
+    def create
+      @customer = Customer.new(customer_params)
+      if @customer.save
+        redirect_to customer_path(@customer)
+      else
+        render :new
+      end
+    end
+    ...
+    private
+    def customer_params
+      params.require(:customer).permit(:first_name, :last_name, :age)
+    end
+  end
+  ```
+
+5. Give one reason why we might have the similar validations in the browser, model, and database layer of our application.
