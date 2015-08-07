@@ -32,7 +32,7 @@ internet architecture standards.
 - Explain the difference between a responsive website and a mobile-specific website.
 - Identify and use relative units like `em`, `rem`, `vh`, `vw`, etc..
 - List the different media query values and their conditions.
-- Use the iOS simulator and Safari console to debug responsive CSS.
+- Use the iOS simulator, Safari console, and Chrome Dev tools to debug responsive CSS.
 - Compare mobile-first to desktop-first responsive design
 
 ### CSS Transitions & Animations
