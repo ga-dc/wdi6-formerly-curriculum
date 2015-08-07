@@ -228,11 +228,11 @@ Without validations there are no constraints on our model.  Almost all models ne
 We used it for debugging support.  It's nice for that.  However, it was designed to provide a common framework for providing feedback to the user.  This is why, when we have a problem saving or updating a model,  we `render` the page.
 
 ``` ruby
-# songs_controller
+# songs_controller.rb
 def create
   @artist = Artist.find(params[:artist_id])
   @song = @artist.songs.build(song_params)
-  if @song.create
+  if @song.save
     redirect_to artist_song_path(@artist, @song)
   else
     render :new
@@ -270,7 +270,7 @@ Completed 200 OK in 55ms (Views: 32.8ms | ActiveRecord: 5.8ms)
 def create
   @artist = Artist.find(params[:artist_id])
   @song = @artist.songs.build(song_params)
-  if @song.create
+  if @song.save
     redirect_to artist_song_path(@artist, @song)
   else
     render :new
@@ -307,9 +307,10 @@ As we saw, after the save fails, the @song object has all the errors itemized in
 Now, if we try to create a new, invalid Song.  We see why.  
 
 ```
-1 error prohibited this song from being saved:
+2 errors prohibited this song from being saved:
 
 Title can't be blank
+Preview url must start with 'http'
 ```
 
 
