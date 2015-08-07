@@ -12,7 +12,7 @@ internet architecture standards.
 ### Ajax
 - Explain the difference between synchronous and asynchronous program execution
 - Explain why synchronous program execution is not conducive to the front-end.
-- Use jQuery $.ajax() method to make asynchronous GET requests for data.
+- Use jQuery `$.ajax()` method to make asynchronous GET requests for data.
 - Use jQuery's 'promise-like' methods to handle AJAX responses asynchronously.
 - Render new HTML content using data loaded from an Ajax request.
 - Perform POST, PUT, and DELETE requests to an API to modify data.
