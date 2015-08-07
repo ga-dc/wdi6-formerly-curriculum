@@ -8,6 +8,11 @@ internet architecture standards.
 ### Apis
 
 ### Grid Systems
+- Explain the benefits of using CSS grids in web design.
+- Identify the basic components of a grid.
+- Build a grid from scratch.
+- Use a grid to implement responsive web design.
+- Examine how grids are utilized in a front-end framework (e.g., Bootstrap).
 
 ### Ajax
 - Explain the difference between synchronous and asynchronous program execution
