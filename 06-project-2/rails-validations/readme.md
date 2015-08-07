@@ -354,3 +354,34 @@ rake -D db:setup
 # Also
 rake -T db
 ```
+
+## Questions
+
+1. Which component, of Rails MVC, is responsible for the business logic?
+2. Write the validation to verify that a User's age is between 13 and 125 (inclusive), but does not require them to provide an age.
+3. What would `user.errors.messages` return (for the above User), if you assigned `user.age = 12`?
+4. Assume you visit "/customers/new" and enter some invalid information.  Given this controller code, what url would your browser be on after pressing "Create Customer"?
+
+  ``` ruby
+  class CustomersController < ApplicationController
+    def new
+      @customer = Customer.new
+    end
+
+    def create
+      @customer = Customer.new(customer_params)
+      if @customer.save
+        redirect_to customer_path(@customer)
+      else
+        render :new
+      end
+    end
+    ...
+    private
+    def customer_params
+      params.require(:customer).permit(:first_name, :last_name, :age)
+    end
+  end
+  ```
+
+5. Give one reason why we might have the similar validations in the browser, model, and database layer of our application.
