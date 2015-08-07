@@ -358,7 +358,7 @@ rake -T db
 ## Questions
 
 1. Which component, of Rails MVC, is responsible for the business logic?
-2. Write the validation to verify that a User's age is between 13 and 125 (inclusive), but does not require them to provide an age.
+2. Assume the user's age is an optional field.  Write the validation to verify that a User's age is between 13 and 125 (inclusive).
 3. What would `user.errors.messages` return (for the above User), if you assigned `user.age = 12`?
 4. Assume you visit "/customers/new" and enter some invalid information.  Given this controller code, what url would your browser be on after pressing "Create Customer"?
 
