@@ -8,6 +8,10 @@
 * Use `has_many through` to connect two models via a join model in Rails
 * Use a many-to-many relationship to implement a feature in a Rails app
 
+### Screencast of this lesson
+
+[Screencast on Youtube](https://www.youtube.com/watch?v=JxW8lJzLhxI)
+
 ### References
 
 * [Rails Guides - Has Many Through](http://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)

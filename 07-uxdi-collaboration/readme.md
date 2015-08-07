@@ -35,4 +35,13 @@ internet architecture standards.
 - Use the iOS simulator and Safari console to debug responsive CSS.
 - Compare mobile-first to desktop-first responsive design
 
-### Animations
+### CSS Transitions & Animations
+
+- Describe what it means to transition or animate in CSS
+- List the types of properties that can / can't be animated
+- Use the `transition` declaration to change element properties on events
+- Describe the purpose and syntax of css `keyframes`
+- List and describe the purpose of the `animation` properties
+- Compare & contrast CSS Transitions and Animations
+- Create complex animations using CSS animation properties
+- Compare & contrast using CSS and JS for animations
