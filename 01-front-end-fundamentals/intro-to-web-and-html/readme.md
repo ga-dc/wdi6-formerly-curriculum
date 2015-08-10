@@ -13,33 +13,52 @@
 - Link to a given file using either absolute and relative paths.
 - Use Chrome Dev Tools to inspect an element.
 
-## How the web works
+## The purpose of this class
 
-[Picture](http://i.imgur.com/AfiaMQP.png)
+We'll be going over how the web works, and then, more interestingly, how to make a website using HTML and CSS.
 
-### The example
-It's Februray 12th, 1864. The rulers of the world are all sending telegrams to the White House wishing President Lincoln a happy 55th birthday.
+##### Have you used a website-builder like Squarespace or Wix or Wordpress or Drupal before?
+##### Why are we going into HTML and CSS and code in general, when there are services that make websites for you without you having to touch a line of code?
 
-Queen Victoria writes out a message. She gives it to the Royal Telegraph Operator. He taps it in to the telegraph machine as Morse Code.
+The analogy I like to use to explain this is Microsoft Word. Out-of-the-box, you can use Word to make a document that looks 75% like what you had in mind. In order to make it 100% like what you had in mind, you either need to know Word *extremely* well, or you just need to use another program.
 
-A telegraph operator in Washington hears the Morse Code, and translates it back into English.
+##### Have you ever had the experience of spending 3 hours on a Word document just trying to get your stupid image to align the right way?
 
-President Lincoln is really busy, so he's written out a generic "thanks for the birthday wishes" response on a piece of paper and put it in the Presidential Filing Cabinet.
+Content Management Systems, aka CMS-es, aka or website-builders, will quickly give you a website that looks pretty OK. If "pretty OK" is all you want, and your intent is just to get a web store online as quickly as possible, then a CMS is the way to go.
 
-Whenever a birthday message is received in Washington, the Presidential Telegraph Operator translates Lincoln's response into Morse Code and sends it back.
+If, however, you want to have a site that's 100% the way you want it, and to have complete control over your appearance and product, then you need to pop the hood and use code.
 
-Queen Victoria's telegraph operator translates Lincoln's response from Morse Code into English.
+## Let's talk about how the web works
 
-### The reality
-An author writes a file of content, and puts it in a computer called a host.
+##### Are you familiar with Morse Code?
 
-Whenever a user wants the content, their web browser sends a request to the host's server. The server retrieves the file from the host and responds with its content.
+The web basically works exactly the same way as Morse Code, except instead of dots and dashes we use ones and zeros, and things go really fast.
+
+![Picture](http://i.imgur.com/AfiaMQP.png)
+
+### Here's my metaphor
+It's Februray 12th, 1864. The rulers of the world are all sending telegrams, via Morse Code, to the White House wishing President Lincoln a happy 55th birthday.
+
+President Lincoln is really busy, so he's written a generic "thanks for the birthday wishes" response on a piece of paper and put it in the Presidential Filing Cabinet.
+
+Whenever a birthday message is received in Washington, the Presidential Telegraph Operator gets Lincoln's response from the filing cabinet, translates it into Morse Code, and sends it back.
+
+Queen Victoria writes out a message. She gives it to her Royal Telegraph Operator. He sends it to Washington as Morse Code.
+
+The Presidential Telegraph Operator in Washington hears the Morse Code, and translates it into English. He sees it's a birthday message. He gets Lincoln's response from the filing cabinet, translates it into Morse Code, and sends it back.
+
+Queen Victoria's telegraph operator translates Lincoln's response from Morse Code into English. He gives the response to the Queen.
+
+### Here's what happens in reality
+An author writes a file which contains content. She puts it in a computer called a host.
+
+Whenever a user wants the content, their web browser sends a request to the host. An application on the host called a server retrieves the file from inside the host and responds with its content.
 
 The user's browser translates the content into a webpage and displays it on the screen.
 
-### Break it down
+### Let's break it down into keywords
 
-Keywords
+Here are some of the important words I just used:
 - User
 - Browser
 - Content
@@ -51,42 +70,75 @@ Keywords
 
 A host is just a computer, a lot like yours.
 
-A server is an application that lives on the host computer, receives requests made to it, and sends responses.
+A server is an application that lives on the host computer, receives requests made to it, and sends responses as digital pulses.
 
-A browser is an application that lives on your computer, sends requests, and translates responses into the stuff you see.
+A browser is an application that lives on your computer, sends requests, and translates the response's digital pulses into the stuff you see.
 
 We need the browser because information can only be sent one "bit" at a time -- that is, a single zero or one.
-- This is why your internet service provider advertises speeds in "megabits" or "gigabits", rather than "megabytes" or "gigabytes": you can't send eight zeroes or ones at a time.
+- *This is why your internet service provider advertises speeds in "megabits" or "gigabits", rather than "megabytes" or "gigabytes": you can't send eight zeroes or ones at a time.*
 
-## The cloud
+## Quick interjection: the Cloud
 
-http://i.imgur.com/xDGYGZV.jpg
+![The cloud](http://i.imgur.com/xDGYGZV.jpg)
 
-## Owning a website
+"The Cloud" is a way of storing data on the Internet. It's a misleading term because it sounds like you're saving data into thin air. Really, you're just saving data on a bunch of host computers. That way, if one host goes down, another host's got your back.
 
-Need two things
-- Domain
-- Host
+## To own a website...
 
-A host is a place to put your files, with a server application that responds to requests for files.
+...you need two things:
+- A domain
+- A host
 
-Each host as a "phone number", called an IP address. A domain is like a phone directory listing for that number.
+A host is a computer on which you put your files. This computer has an application called a server that responds to requests for files.
+
+Each host computer has a "phone number", called an IP address. A domain is like a phone directory listing for that number.
 - When I tell Siri to "find me a plumber", she searches the phone directory for a phone number listed under "plumber".
 - When you enter "Google" into your browser, your browser searches the domain name registry for an IP address listed under "Google."
 
-My host is $6 a month. Domains are usually $15 a year.
+My host costs $6 a month. Domains are usually $15 a year.
 
 Any computer can be a host
-- Show my IP address and have them go to it, see it's on my computer
+##### If you enter in your address bar the IP address at which my computer is currently connected, you'll be able to access my computer.
 
 ### Adding files to your host
 
-A lot like adding files to a computer: drag and drop into a folder
+It's just like adding files to a computer: drag and drop into a folder.
+
+A webpage is a file written mainly in a language called HTML. Web browsers turn digital impulses into HTML, and then turn that HTML into something visual.
+
+This is called *abstraction*: taking something super granular and turning it into something easier to grasp. For example, turning digital signals into HTML, or turning HTML into a visual webpage.
+
+Next, we'll get into HTML, but first, let's take a...
 
 # Break!
 
 ## Building a website
 
+All you need to build a website is a computer, and two pieces of software: a web browser (Chrome, Safari, Firefox, Internet Explorer), and a text editor.
+
+### Text editors
+
+When I started, my text editor was TextEdit, which is in the Applications folder of any Mac. The Windows equivalent is NotePad.
+
+##### Go ahead and open TextEdit on your Mac, or Notepad on your PC. On a Mac, it's inside your Applications folder. You can also use Spotlight to find it.
+
+The text editor you use doesn't matter. The only thing that matters is that it has to be *plain text*.
+
+A text editor is *not* plain text if it secretly hides a bunch of code inside the files you make. This is how Word records whether text should be bold, italic, red, blue, and so on. This is called *rich text*.
+
+A text editor is *plain text* if, when you look at a file, you see *everything* inside it -- no hidden code.
+
+For example, if I create and save a blank Word document, it's actually about 20 kilobytes. If I create and save a blank document in TextEdit, it's 0 bytes. If I look at a Word document in TextEdit, I see a heinous mess, which is all the hidden code.
+
+##### Please go to `File > Preferences` in TextEdit. In the `New Document` tab, make sure `Plain Text` is selected at the top instead of `Rich Text`. Also, un-select all of the `Options` at the bottom. On the `Open and Save` tab, select `Display HTML files as HTML code instead of formatted text`. Then, quit and re-open TextEdit.
+
+### Now we're ready to learn HTML
+
+You may think you know HTML, but you're probably doing it *wrong*. HTML done right makes creating a website a breeze. HTML done wrong means you do lots and lots of deleting, writing a little bit, and deleting again.
+
+
+
+*(Pass out business cards.)*
 - Requirements
   - A text editor
   - A web browser
@@ -247,3 +299,4 @@ https://github.com/ga-dc/html_resume
     - `<div style="text-align:center;"></div>`
 - Why do we write `<img />` and not `<img></img>`?
 - Why is it important to keep semantics (HTML) separate from style (CSS)?
+
