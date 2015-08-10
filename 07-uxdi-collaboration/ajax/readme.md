@@ -18,6 +18,8 @@ Turn and talk to you neighbor, why might synchronus programming not be effective
 
 We don't want to sit around and wait for code to execute before we load the rest of our script. It would be really nice if we could just describe what we want to happen when the code finally does execute, in a callback.
 
+Let's look at google maps. How would this site work with things not happening asynchronously?
+
 ## `$.ajax`- JSON (10/25)
 
 For the first part of this lesson, we'll be using the [weather underground api](http://www.wunderground.com/weather/api/d/docs)
@@ -52,7 +54,7 @@ $ touch index.html
 $ touch script.js
 ```
 
-We're going to load of some bare bones content to load jquery and our scripty file in the `index.html`:
+We're going to load of some bare bones content to load jquery and our script file in the `index.html`:
 
 ```html
 <!DOCTYPE html>
@@ -133,7 +135,7 @@ We can drill through this response just like any other JS object.
 ## AJAX - CUD intro (5/75)
 So we've used AJAX to do an asynchronous `get` request to a third party API. But it wouldn't make sense for us to be able to do CUD functionality to that same site. They probably don't want anyone that's not a developer there to be able to update the weather however we want. That is not to say that kind of functionality doesn't exist, we just don't have access to it.
 
-It just so happens we've built a new Rails API (through matt's class) where we can do full CRUD with AJAX. Go ahead and fork and clone [this repo](#). We can now use `$.ajax()` to CRUD the models of our tunr app! Let's go ahead and create a new artists controller action and corresponding view: `test_ajax`
+It just so happens we've built a new Rails API (through matt's class) where we can do full CRUD with AJAX. Go ahead and fork and clone [this repo](https://github.com/ga-dc/tunr_ajax). We can now use `$.ajax()` to CRUD the models of our tunr app! Let's go ahead and create a new artists controller action and corresponding view: `test_ajax`
 
 ## Setting up a view to test AJAX with (10/85)
 Let's update our routes in `config/routes.rb` for a new route to test all of our AJAX calls in:
@@ -187,12 +189,13 @@ $(document).ready(function(){
 })
 ```
 
+> If we drill through this response, we can see all of the artists that were seeded in the database.
+
 ## You do - (10/100)
 In the `.done` promise, create a div that contains all of the artists name
 
 Bonus- Create a div for each artist that has the image and nationality  information in it as well.
 
-> If we drill through this response, we can see all of the artists that were seeded in the database.
 
 ## AJAX Post (10/110)
 Let's try and create an artist through AJAX. Let's update our `app/assets/javascripts/application.js`:
