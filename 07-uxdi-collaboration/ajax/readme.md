@@ -99,6 +99,7 @@ $(document).ready(function(){
   })
 })
 ```
+> You'll notice there are 3 functions that are tacked onto the AJAX call. These are known as promises. What are promises? They're just callbacks that may or may not happen. In the `.done()` promise if that ajax is executed successfully, the block of code inside it will execute. In the `.fail()` promise, if that ajax is not executed successfully, the block of code inside it will execute. In the `.always()` promise, code block inside will always occur regardless of the ajax's success.
 
 > If we mess up the URL even by one character, it goes from being a success to a failure. SO be sure to make sure your end points are... on point!
 
