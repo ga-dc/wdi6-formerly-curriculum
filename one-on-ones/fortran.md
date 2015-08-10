@@ -2,25 +2,6 @@
 
 One on ones are generally from 4:30pm to 5:00pm on Mondays, Wednesdays, and Thursdays.
 
-## Mon Aug 3
-
-- Omari
-
-## Wed Aug 5
-
-- Yvonne
-- Leigh
-
-## Thur Aug 6
-
-- Rachel
-
-## Fri Aug 7
-
-- Ksenia
-
------
-
 ## Mon Aug 10
 
 - Lisa
@@ -39,3 +20,21 @@ One on ones are generally from 4:30pm to 5:00pm on Mondays, Wednesdays, and Thur
 
 - Leigh
 
+-----
+
+## Mon Aug 17
+
+- Omari
+
+## Wed Aug 19
+
+- Yvonne
+- Leigh
+
+## Thur Aug 20
+
+- Rachel
+
+## Fri Aug 21
+
+- Ksenia
