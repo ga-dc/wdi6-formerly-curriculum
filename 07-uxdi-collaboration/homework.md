@@ -11,7 +11,7 @@ As a bonus, consider implementing the topics into your collaborative project thi
 |---------------|--------------------------------|------------|
 | Monday        |                                |   |
 | Tuesday       |                                |   |
-| Tuesday       |                                |   |
+| Tuesday       |                                | [How Ajax Works](http://www.noupe.com/design/how-ajax-works.html)   |
 | Wednesday     |                                | [Responsive Web Design](http://alistapart.com/article/responsive-web-design)  |
 | Wednesday     |                                |   |
 | Thursday      |                                |   |
@@ -22,7 +22,7 @@ As a bonus, consider implementing the topics into your collaborative project thi
 ## Jelly
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Monday        |                                |   |
+| Monday        |                                | [How Ajax Works](http://www.noupe.com/design/how-ajax-works.html)   |
 | Monday        |                                |   |
 | Tuesday       |                                |   |
 | Tuesday       |                                |   |
