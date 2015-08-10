@@ -175,7 +175,7 @@ Great, everything's working. Let's try doing a get request to our API like we di
 
 ```javascript
 $(document).ready(function(){
-  $(".test_ajax").on("click", function(){
+  $(".test_ajax_get").on("click", function(){
     $.ajax({
       type: 'GET',
       dataType: 'json',
@@ -189,13 +189,42 @@ $(document).ready(function(){
 })
 ```
 
-> If we drill through this response, we can see all of the artists that were seeded in the database.
+> If we drill through this response, we can see all of the artists that were seeded in the database. Here in the done response I could display whatever i want from the response.
 
-## You do - (10/100)
-In the `.done` promise, create a div that contains all of the artists name
+## Setup for AJAX post (10/100)
+Lets update the `app/views/artists/test_ajax.html.erb`:
 
-Bonus- Create a div for each artist that has the image and nationality  information in it as well.
+```html
+<!-- div attached to event handler -->
+<div class="test_ajax_get">AJAX GET!!</div>
 
+<!-- form for ajax post and put request -->
+<label>Name:</label>
+<input class="name" type="text">
+<label>Photo_url:</label>
+<input class="photo_url" type="text">
+<label>Nationality:</label>
+<input class="nationality" type="text">
+
+<!-- divs attached to event handlers -->
+<div class="test_ajax_post">AJAX POST!!</div>
+<div class="test_ajax_put">AJAX PUT!!</div>
+<div class="test_ajax_delete">AJAX DELETE!!</div>
+
+<h1>Articles</h1>
+<ul class="articles">
+  <% @artists.each do |artist| %>
+    <li>
+      <a href="/artists/<%= artist.id %>">
+        <%= artist.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
+
+```
+
+> We can see now that artists are in this view as well as some input fields to help us generate some artists
 
 ## AJAX Post (10/110)
 Let's try and create an artist through AJAX. Let's update our `app/assets/javascripts/application.js`:
@@ -215,13 +244,14 @@ $(".test_ajax_post").on("click", function(){
 })
 ```
 
-As you can see, every time I click on this button another artists get's generated.
+As you can see, every time I click on this button another artists get's generated. This is awesome, we can now create things in our database on the client side. But there's a problem here. We've hardcoded the attributes.
 
 We hardcoded some values here, but how might we be able to dynamically aquire data on the client side instead of hardcoding values? (ST-WG)
 
 ## You do - Work in pairs (20/130)
-- create a inputs for new artists in `app/views/artists/test_ajax.html.erb`
-- use those DOM elements to dynamically create artists using AJAX
+- use the input fields to dynamically generate artists on the client side
+
+- BONUS - not only does it create on the client side, but it also changes in the view layer to reflect the update in the database. hint: check out the response!
 
 ## AJAX PUT (10/140)
 Let's now update an existing artist by adding another ajax call to our next event listener:
@@ -241,6 +271,8 @@ $(".test_ajax_put").on("click", function(){
 })
 ```
 
+> note this is really just to show you how put requests work, normally we would not hardcode the url. We'll get more into this during OOJS/front end frameworks. But think about how we could modify the DOM in order to effectively use AJAX put requests
+
 ## AJAX DELETE(10/150)
 Let's update our JS for our final event listener to delete a record in our database through AJAX in `app/assets/javascripts/application.js`:
 
@@ -251,7 +283,7 @@ $(".test_ajax_delete").on("click", function(){
     dataType: 'json',
     url: "http://localhost:3000/artists/9"
   }).done(function(response){
-    console.log("shiz got deleted")
+    console.log("DELETED")
     console.log(response)
   }).fail(function(){
     console.log("failed to delete")
@@ -259,7 +291,11 @@ $(".test_ajax_delete").on("click", function(){
 })
 ```
 
-## You do! On your own time
-Try and recreate these AJAX request on another app you've created like scribbler or your project. Be sure to make sure your controller actions repond to json.
+> read above comments for ajax put
 
-Try and incorporate AJAX into your collaborative project /w UXDI!
+## You do! On your own time(Practice makes perfect:smile:)
+- Try the same thing with songs resources
+
+- Try and recreate these AJAX request on another app you've created like scribbler or your project. Be sure to make sure your controller actions repond to json.
+
+- Try and incorporate AJAX into your collaborative project /w UXDI!
