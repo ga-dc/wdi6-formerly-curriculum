@@ -186,9 +186,14 @@ $(document).ready(function(){
 })
 ```
 
+## You do - (10/100)
+In the `.done` promise, create a div that contains all of the artists name
+
+Bonus- Create a div for each artist that has the image and nationality  information in it as well.
+
 > If we drill through this response, we can see all of the artists that were seeded in the database.
 
-## AJAX Post (10/100)
+## AJAX Post (10/110)
 Let's try and create an artist through AJAX. Let's update our `app/assets/javascripts/application.js`:
 
 ```javascript
@@ -210,11 +215,11 @@ As you can see, every time I click on this button another artists get's generate
 
 We hardcoded some values here, but how might we be able to dynamically aquire data on the client side instead of hardcoding values? (ST-WG)
 
-## You do - Work in pairs (20/120)
+## You do - Work in pairs (20/130)
 - create a inputs for new artists in `app/views/artists/test_ajax.html.erb`
 - use those DOM elements to dynamically create artists using AJAX
 
-## AJAX PUT (10/130)
+## AJAX PUT (10/140)
 Let's now update an existing artist by adding another ajax call to our next event listener:
 
 ```javascript
@@ -232,7 +237,7 @@ $(".test_ajax_put").on("click", function(){
 })
 ```
 
-## AJAX DELETE(10/140)
+## AJAX DELETE(10/150)
 Let's update our JS for our final event listener to delete a record in our database through AJAX in `app/assets/javascripts/application.js`:
 
 ```javascript
@@ -250,4 +255,7 @@ $(".test_ajax_delete").on("click", function(){
 })
 ```
 
-## You do... more to follow
+## You do! On your own time
+Try and recreate these AJAX request on another app you've created like scribbler or your project. Be sure to make sure your controller actions repond to json.
+
+Try and incorporate AJAX into your collaborative project /w UXDI!
