@@ -5,9 +5,25 @@ internet architecture standards.
 
 ## Learning Objectives
 
+### Development for Designers (for UXDI)
+- What's a web developer?
+  - What problems do they solve?
+  - What tools do they use?
+  - What is their role in the product development life cycle?
+- Agile Workflows
+  - Scrum & Sprints
+  - vs. Waterfall
+- Contributing to Code
+  - Git && GitHub
+  - Features & User Stories
+- Developers and Designers
+  - Semantic HTML
+  - How code is related to design
+
 ### APIs
 - Describe what an API is, and why we might use one.
 - Explain the common role of JSON on the web.
+- Describe the purpose and syntax of `respond_to`
 - Make a Rails app that provides a JSON API.
 - Use an external API (via HTTParty) to gather data and utilize it in a Rails application
 
@@ -23,6 +39,7 @@ internet architecture standards.
 - Explain the difference between synchronous and asynchronous program execution
 - Explain why synchronous program execution is not conducive to the front-end.
 - Use jQuery `$.ajax()` method to make asynchronous GET requests for data.
+- Distinguish between a callback and a promise.
 - Use jQuery's 'promise-like' methods to handle AJAX responses asynchronously.
 - Render new HTML content using data loaded from an Ajax request.
 - Perform POST, PUT, and DELETE requests to an API to modify data.
