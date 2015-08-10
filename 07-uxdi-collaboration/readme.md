@@ -14,8 +14,9 @@ internet architecture standards.
 ### Grid Systems
 - Explain the benefits of using CSS grids in web design.
 - Identify the basic components of a grid.
+- Review float, clearfix and other CSS properties.
 - Build a grid from scratch.
-- Use a grid to implement responsive web design.
+- Use nested columns in a grid.
 - Examine how grids are utilized in a front-end framework (e.g., Bootstrap).
 
 ### Ajax
