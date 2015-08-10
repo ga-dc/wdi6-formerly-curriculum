@@ -1,6 +1,6 @@
 # Feedback on Feedback
 
-On Monday, the instructors met to go over your Week 6 feedback and evaluations. These are the notes we individually wrote down about what we personally and we as a group could do better.
+On Monday, the instructors met to go over your Week 6 feedback and evaluations. These are the notes we wrote down about what we personally and we as a group could do better and think about.
 
 - Delivery
   - Slow down our delivery.
