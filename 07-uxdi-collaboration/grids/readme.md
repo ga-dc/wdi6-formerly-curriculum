@@ -158,6 +158,10 @@ So our rows are actually good to go!
 </body>
 ```
 
+What does this look like?
+
+!["just rows columns"](img/just-rows-columns.png)
+
 Right now, we can...
 * **Separate content into rows and columns.**
   * What does it look like when we turn `float` off?
@@ -379,15 +383,15 @@ Let's see how that changed our page...
 
 ## Exercise: Match That Grid (20min)
 
-Use what we have learned in class to recreate the grid structure for [this website]().
+Use what we have learned in class to recreate the grid structure for [Craig's List](http://washingtondc.craigslist.org/).
 * Clear out the HTML in the `<body>` of `index.html` and build it from scratch using the CSS selectors we created.
 * Don't worry about content. Just outline the main portions of the site.
+* Start simple. Begin with the larger, outermost containers and work your way to the sub-containers.
 * **NOTE:** I would suggest removing the gutters / margin from the CSS and resetting your widths to their original values.
 
 ### Bonus
 * Add gutters / margin wherever necessary.
 * Replace the column class selector syntax (e.g., `.column-6`) with your own!
-* Implement nested columns and/or rows.
 * Add some content to your columns. Keep it simple - we don't expect you to recreate the site.
 
 ## Front-End Frameworks
@@ -417,7 +421,7 @@ Bootstrap uses a similar class selector syntax for columns as what we used in ou
 
 ### Exercise: Implement Bootstrap (20min)
 
-Let's implement the grid you created in the last exercise using Bootstrap.
+Let's implement the [Craig's List grid](http://washingtondc.craigslist.org/) you created in the last exercise using Bootstrap.
   1. Link the Bootstrap stylesheet to your `index.html` file [using a CDN](http://getbootstrap.com/getting-started/).
   2. Implement the same grid from the last exercise using Bootstrap row and column class selectors.
   3. If you finish early, feel free to experiment with responsive column widths and/or add some additional styling to your page.
@@ -426,3 +430,4 @@ Let's implement the grid you created in the last exercise using Bootstrap.
 
 * [Learn Layout: Clearfix](http://learnlayout.com/clearfix.html)
 * [Bootstrap CSS Documentation](http://getbootstrap.com/css/)
+* [Grits, a grid system made by Jesse](http://jshawl.github.io/grits/)
