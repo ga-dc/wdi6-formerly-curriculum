@@ -32,7 +32,7 @@ So if you go to this URL, you'll see a really gigantic hash. It can be really in
 
 Turns out, we can actually access this json object using Javascript!
 
-> JSON stands for Javascript Object Notation. JSON can come in a bunch of different ways. But at the end of the day, it's just a hash.
+> JSON stands for Javascript Object Notation. JSON can come in a bunch of different ways. But at the end of the day, it's just an object(hash in ruby).
 
 ## `$.ajax` - get (25/50)
 The jquery library gives us access to this awesome thing called asynchronous javascript and xml(AJAX). With the help of AJAX we can do server side requests asynchronously on the client without having to send an actual browser request that reloads the page.
