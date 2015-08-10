@@ -2,13 +2,13 @@
 
 
 ## Peanut Butter
+
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
 | Monday        |                                |   |
-| Monday        |                                |   |
 | Tuesday       |                                |   |
 | Tuesday       |                                |   |
-| Wednesday     |                                |   |
+| Wednesday     |                                | [Responsive Web Design](http://alistapart.com/article/responsive-web-design)  |
 | Wednesday     |                                |   |
 | Thursday      |                                |   |
 | Thursday      |                                |   |
@@ -22,7 +22,7 @@
 | Monday        |                                |   |
 | Tuesday       |                                |   |
 | Tuesday       |                                |   |
-| Wednesday     |                                |   |
+| Wednesday     |                                | [Responsive Web Design](http://alistapart.com/article/responsive-web-design) |
 | Wednesday     |                                |   |
 | Thursday      |                                |   |
 | Thursday      |                                |   |
