@@ -9,7 +9,7 @@ As a bonus, consider implementing the topics into your collaborative project thi
 
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Monday        |                                |   |
+| Monday        |                                | [Ready for APIs? (wait for the article)](http://www.forbes.com/sites/mckinsey/2014/01/07/ready-for-apis-three-steps-to-unlock-the-data-economys-most-promising-channel/), [The Twitter API](http://highscalability.com/blog/2013/7/8/the-architecture-twitter-uses-to-deal-with-150m-active-users.html)  |
 | Tuesday       |                                |   |
 | Tuesday       |                                | [How Ajax Works](http://www.noupe.com/design/how-ajax-works.html)   |
 | Wednesday     |                                | [Responsive Web Design](http://alistapart.com/article/responsive-web-design)  |
@@ -32,4 +32,3 @@ As a bonus, consider implementing the topics into your collaborative project thi
 | Thursday      |                                |   |
 | Friday        |                                |   |
 | Friday        |                                |   |
-
