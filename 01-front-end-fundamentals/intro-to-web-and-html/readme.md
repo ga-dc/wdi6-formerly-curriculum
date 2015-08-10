@@ -97,7 +97,8 @@ Each host computer has a "phone number", called an IP address. A domain is like 
 
 My host costs $6 a month. Domains are usually $15 a year.
 
-Any computer can be a host
+Any computer can be a host. In fact, my computer is currently a host running a server. To prove it:
+
 ##### If you enter in your address bar the IP address at which my computer is currently connected, you'll be able to access my computer.
 
 ### Adding files to your host
@@ -136,7 +137,187 @@ For example, if I create and save a blank Word document, it's actually about 20 
 
 You may think you know HTML, but you're probably doing it *wrong*. HTML done right makes creating a website a breeze. HTML done wrong means you do lots and lots of deleting, writing a little bit, and deleting again.
 
+Let's say you want to make a webpage of your favorite jokes. We're going to do this using **fake HTML**. (Don't bother writing it down!)
 
+```
+What does a cloud wear on its butt?
+Thunderpants.
+
+What do you call a cow with no legs?
+Ground beef.
+```
+
+You want the jokes' set-ups to attract attention, so let's make them orange:
+
+```
+<orange>What does a cloud wear on its butt?</orange>
+Thunderpants.
+
+<orange>What do you call a cow with no legs?</orange>
+Ground beef.
+```
+
+This is what HTML looks like. You take some text, and at each end of it you put **tags**. The tag at the end -- the closing tag -- looks like the tag at the start -- the open tag -- but with a slash in it.
+
+Two tags make one **element**.
+
+Elements have to **nest**. That is, every element has to be completely inside another element (like those Russian dolls).
+
+So if I wanted to make the jokes' set-ups orange and underlined, I might do this:
+
+```
+<orange><underline>What does a cloud wear on its butt?</underline></orange>
+```
+
+However, this would be **wrong**:
+
+```
+<orange><underline>What does a cloud wear on its butt?</orange></underline>
+```
+
+Now the `underline` element ends sort-of inside the `orange` element and also sort-of outside it.
+
+So now our whole webpage looks like this:
+
+```
+<orange><underline>What does a cloud wear on its butt?</underline></orange>
+Thunderpants.
+
+<orange><underline>What do you call a cow with no legs?</underline></orange>
+Ground beef.
+```
+
+This looks pretty good! Looking at it, you can tell what's going on.
+
+##### Let's say instead of 2 jokes, you have 100 jokes. Then you decide that instead of orange and underlined, you want the set-ups to be green and underlined. What do I have to do?
+##### To give you a hint: how many times do I have to do it?
+
+Wouldn't it be nice if we could just make a rule that says, "OK, I want every set-up to be orange and underlined." Then, if we want to change all the set-ups, we can just change that rule! One thing to change, instead of 100.
+
+## We do this using a language *different* from HTML called **CSS**:
+
+```
+<div class="setup">What does a cloud wear on its butt?</div>
+Thunderpants.
+
+<div class="setup">What do you call a cow with no legs?</div>
+Ground beef.
+```
+```
+.setup{
+  color: green;
+  text-decoration:underline;
+}
+```
+
+Here, we're using actual HTML. `div` stands for `division`, as in, "a chunk of a webpage." 
+
+The tags look a little different. I've given the `div` elements an **attribute**. 
+
+##### What is an 'attribute' of a person?
+
+An attribute of an element is a small modification to it. In this case, we're giving the divs a "class", which is like a "type". *(Note that attributes are only in the start tag, not the close tag.)*
+
+In my CSS, the `.` before `setup` is a **selector**. `.setup` means "select every element with a `class` of `setup`, and then do something to it".
+
+The "somethings" we're "doing" here is changing the color to green, and decorating the text with an underline.
+
+This is how all CSS looks: you have a selector, followed by the **properties** you want to change and the **values** you want to give them.
+
+There are many selectors. For example, if I wanted to just select all `div` elements, I would write `div` without the `.`. If I forget the `.` before `setup`, it would mean "select all `setup` elements", and `setup` isn't a kind of element.
+
+Now, if I want to change the color of all my setups, I just need to change one line of code!
+
+### Here's an example of bad HTML and CSS:
+
+```
+<div class="green">What does a cloud wear on its butt?</div>
+Thunderpants.
+
+<div class="green">What do you call a cow with no legs?</div>
+Ground beef.
+```
+```
+.green{
+  color: green;
+}
+```
+
+##### Why is this "bad" HTML and CSS?
+
+If I want to change the color of the setups, I can still just change one line of code. But now I have something like this:
+
+```
+.green{
+  color: red;
+}
+```
+
+That is, the things with the `class` of `green` are now `red`. That's really confusing for web designers looking at your code -- including you!
+
+## This introduces the separation of semantics and style
+
+This is the most important rule of web design: *you should never put anything indicative of style in your HTML*. That is, you should never give elements classes of `centered` or `big` or `pink`. Instead, you should give them classes like `header` or `paragraph` or `punchline`.
+
+This is called **semantic naming**: naming things according to their *function*, rather than how you want them to look. This is because *form follows function*: the way you want elements to look is *always* based on the purpose of the element on the page.
+
+You always want headers to stand out and be obvious. You always want paragraphs to use Times New Roman. You always want links to be blue, unless they're in your navigation bar, in which case you want them to be grey.
+
+HTML is usually written first in one file, and then its CSS is written in another. *If you write HTML perfectly, you'll never need to touch it once you start writing CSS.* 
+
+For example, here's semantically-named, *good* HTML:
+
+```
+<div class="page">
+  <div class="header">Robin's Favorite Jokes</div>
+
+  <div class="joke">
+    <div class="setup">What does a cloud wear on its butt?</div>
+    <div class="punchline">Thunderpants.</div>
+  </div>
+
+  <div class="joke">
+    <div class="setup">What do you call a cow with no legs?</div>
+    <div class="punchline">Ground beef.</div>
+  </div>
+</div>
+```
+
+This brings up another way of making your code good and easy-to-read:
+
+## Indent
+
+The way the code above has been indented, it's really easy to see which elements are inside which other elements. Indentation is a visual cue.
+
+**This is really important.** This is the easiest, simpliest way to make your code look good to everyone else. Indent. It seems silly, but it can make all the difference between someone hiring you and someone tossing your resume in the trash. If they can't read your code, they can't tell whether you're any good at what you do, and won't hire you.
+
+## Writing `class` all the time gets old
+
+This is why HTML comes built-in with many elements beyond just `div` that have implied classes: they tell you the purpose *of whatever's inside them* without you needing to write `class` everywhere.
+
+For instance, the humble `<p>` tag. `p` stands for "paragraph". This might be a good substitute in place of `<div class="punchline">`. It still makes semantic sense, and it's a lot easier to write.
+
+There are over 130 HTML elements that come standard on every web browser. Don't worry -- you'll use about 20 of them for 90% of things, the same way you use the same 100 words for 90% of conversations.
+
+### HTML also comes built-in with special characters
+
+A **special character** is a character other than `a` through `z`, `0` through `9`, and the most common punctuation marks, like comma, period, and hyphen.
+
+One example is the trademark "tm" symbol. To include it on a webpage, you'd write `&tradem;`.
+
+This is because different computers have different ways of translating 0s and 1s into text. On Macs, the "tm" symbol might be a certain sequence of 0s and 1s. On PCs, it might be another. Writing `&tradem;` tells a web browser, "Just show a trademark symbol with whatever sequence of 0s and 1s you want."
+
+##### Have you ever seen a Microsoft Word document where the quotation marks or apostrophes were all replaced with a few characters of gibberish?
+
+This is an example of an **encoding error**: different computers recording quotation marks or apostrophes as different sequences of 0s and 1s.
+
+Reglar quotes, `"`, are a standard character. But fancy curly quotes -- which Word uses -- are a special character. To use them on a webpage, you'd write `&ldquo;` or `&rdquo;`.
+
+Special characters all have the same form: an ampersand, followed by an abbreviation, followed by a semicolon.
+
+Interestingly, ampersand is also a special character. This is because web browsers always think ampersands indicate a special character, so if you just want to display an ampersand, you have to tell it that you just want to *show* an ampersand, not actually use it to create another special character. It's written as `&amp;`.
+
+Same for the angle brackets used in HTML. A web browser thinks anything inside angle brackets is an HTML tag. To have the browser show angle brackets instead of reading them as HTML, you'd write `&lt;` (less than) and `&gt;` (greater than).
 
 *(Pass out business cards.)*
 - Requirements
