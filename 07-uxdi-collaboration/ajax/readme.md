@@ -192,7 +192,7 @@ $(document).ready(function(){
 > If we drill through this response, we can see all of the artists that were seeded in the database. Here in the done response I could display whatever i want from the response.
 
 ## Setup for AJAX post (10/100)
-Lets update the `app/views/artists/test_ajax.html.erb`:
+Lets update our view to include some input fields and all of our existing articles in `app/views/artists/test_ajax.html.erb`:
 
 ```html
 <!-- div attached to event handler -->
