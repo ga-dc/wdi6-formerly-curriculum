@@ -5,9 +5,9 @@ On Monday, the instructors met to go over your Week 6 feedback and evaluations. 
 ## Things we're doing differently
 
 ### Our top 3
-- Improved approachability: We really care about each of you. We feel we haven't been doing an adequate job of demonstrating that. While we want to foster your independence, perhaps we've been erring on the side of *too much* independence. We'll make a greater effort to check in on students and make ourselves available for answering questions, technical and existential.
-- Improved pacing: This class is commonly described as "drinking from the firehose," but that doesn't mean we need to play into that expectation. We've already passed along to central GA your feedback on improving the Fundamentals pre-work. Additionally, we'll hold each other accountable on the pacing of our own lessons: not going too fast, and keeping an even pace in the amount of content delivered from class to class.
-- Differentiation: We're going to further our efforts to provide content to suit the needs of students of all comfort levels. Starting next week, on Wednesday and Thursday one classroom will be used for review from 9 to 10, while the other classroom will be used for "looking ahead": a morning exercise, or discussion on an advanced topic.
+- **Improved approachability**: We really care about each of you. We feel we haven't been doing an adequate job of demonstrating that. While we want to foster your independence, perhaps we've been erring on the side of *too much* independence. We'll make a greater effort to check in on students and make ourselves available for answering questions, technical and existential.
+- **Improved pacing**: This class is commonly described as "drinking from the firehose," but that doesn't mean we need to play into that expectation. We've already passed along to central GA your feedback on improving the Fundamentals pre-work. Additionally, we'll hold each other accountable on the pacing of our own lessons: not going too fast, and keeping an even pace in the amount of content delivered from class to class.
+- **Differentiation**: We're going to further our efforts to provide content to suit the needs of students of all comfort levels. Starting next week, on Wednesday and Thursday one classroom will be used for review from 9 to 10, while the other classroom will be used for "looking ahead": a morning exercise, or discussion on an advanced topic.
 
 
 In the spirit of transparency, we're also including all of the notes we collectively wrote down:
