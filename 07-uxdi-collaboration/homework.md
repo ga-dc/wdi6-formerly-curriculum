@@ -15,7 +15,7 @@ As a bonus, consider implementing the topics into your collaborative project thi
 | Wednesday     |                                | [Responsive Web Design](http://alistapart.com/article/responsive-web-design)  |
 | Wednesday     |                                | [Transitions and Animations](http://learn.shayhowe.com/advanced-html-css/transitions-animations/) |
 | Thursday      |                                |  Prepare for collaboration showcase |
-| Friday        | Optional! (No deliverable)     | [Spotify.me](https://github.com/ga-dc/spotify-me) |
+| Friday        | TBD |   |
 
 ## Jelly
 | Date Assigned | Notes                          | Assignment |
@@ -26,10 +26,5 @@ As a bonus, consider implementing the topics into your collaborative project thi
 | Wednesday     |                                | [Responsive Web Design](http://alistapart.com/article/responsive-web-design) |
 | Wednesday     |                                | [Transitions and Animations](http://learn.shayhowe.com/advanced-html-css/transitions-animations/) |
 | Thursday      |                                |  Prepare for collaboration showcase |
-| Friday        | Optional! (No deliverable)     | [Spotify.me](https://github.com/ga-dc/spotify-me) |
+| Friday        | TBD |   |
 
-## Optionality
-
-For the Spotify.me exercise, you are not required to turn anything in. If you'd like feedback on your code and/or solution
-submit a pull request to this repository - https://github.com/ga-dc/spotify-me - and we will give feedback shortly after you
-turn it in.
