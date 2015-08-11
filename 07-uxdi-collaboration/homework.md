@@ -13,22 +13,14 @@ As a bonus, consider implementing the topics into your collaborative project thi
 | Tuesday       |                                | [How Ajax Works](http://www.noupe.com/design/how-ajax-works.html)   |
 | Tuesday       |                                | [Outcomes Resume - Rough Draft](http://outcomes.wdidc.org/assignments/20)   |
 | Wednesday     |                                | [Responsive Web Design](http://alistapart.com/article/responsive-web-design)  |
-| Wednesday     |                                |   |
 | Thursday      |                                |   |
-| Thursday      |                                |   |
-| Friday        |                                |   |
 | Friday        |                                |   |
 
 ## Jelly
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
 | Monday        |                                | [How Ajax Works](http://www.noupe.com/design/how-ajax-works.html)   |
-| Monday        |                                |   |
 | Tuesday       |                                | [Outcomes Resume - Rough Draft](http://outcomes.wdidc.org/assignments/20)   |
-| Tuesday       |                                |   |
 | Wednesday     |                                | [Responsive Web Design](http://alistapart.com/article/responsive-web-design) |
-| Wednesday     |                                |   |
 | Thursday      |                                |   |
-| Thursday      |                                |   |
-| Friday        |                                |   |
 | Friday        |                                |   |
