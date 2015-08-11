@@ -15,7 +15,7 @@ As a bonus, consider implementing the topics into your collaborative project thi
 | Wednesday     |                                | [Responsive Web Design](http://alistapart.com/article/responsive-web-design)  |
 | Wednesday     |                                | [Transitions and Animations](http://learn.shayhowe.com/advanced-html-css/transitions-animations/) |
 | Thursday      |                                |  Prepare for collaboration showcase |
-| Friday        | Optional! (No deliverable)     | [Spotify.me](https://github.com/ga-dc/spotify-me) |
+| Friday        | Optional! (No deliverable)<sup>[*](#optional)</sup>  | [Spotify.me](https://github.com/ga-dc/spotify-me) |
 
 ## Jelly
 | Date Assigned | Notes                          | Assignment |
@@ -26,4 +26,7 @@ As a bonus, consider implementing the topics into your collaborative project thi
 | Wednesday     |                                | [Responsive Web Design](http://alistapart.com/article/responsive-web-design) |
 | Wednesday     |                                | [Transitions and Animations](http://learn.shayhowe.com/advanced-html-css/transitions-animations/) |
 | Thursday      |                                |  Prepare for collaboration showcase |
-| Friday        | Optional! (No deliverable)     | [Spotify.me](https://github.com/ga-dc/spotify-me) |
+| Friday        | Optional! (No deliverable)<sup>[*](#optional)</sup>  | [Spotify.me](https://github.com/ga-dc/spotify-me) |
+
+<a name="optional">*</a>: Submissions for this assignment are not required. If you'd like feedback on this assignment,
+submit a pull request to that repository, and we will do a code review!
