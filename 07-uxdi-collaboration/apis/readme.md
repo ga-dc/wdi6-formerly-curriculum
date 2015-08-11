@@ -183,7 +183,7 @@ A. Use the "jbuilder" renderer to generate "json".
 
 jBuilder has simple, succint declaration for generating json.
 
-`json.extract! model, array of attributes`
+`json.extract! model, array of methods`
 
 ``` ruby
 # app/views/artists/show.json.jbuilder
@@ -199,6 +199,10 @@ It's your turn to do the same for Songs.  Songs#show should return:
 `:id, :title, :artist_name`
 
 Tip: `json.extract!` only works with methods on the passed model.
+
+``` ruby
+json.extract! @song, :id, :title, :artist_name
+```
 
 ### I do: Tunr artists#index
 
@@ -300,6 +304,9 @@ Today, we'll use CocoaRestClient.  It makes POSTing requests easy.
 - Method: POST
 
 Add your Artist data to "Request Body".  Sometimes, I prefer the "Raw Input".
+```
+{ "artist": { "name" : "Sting" }}
+```
 Press "Submit".
 
 More html.  Drat.
