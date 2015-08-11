@@ -10,15 +10,18 @@
 
 ## Overview
 
-> “APIs are going to be the driver for the digital economy and unless they [companies] are talking about APIs already, they will be left behind.” -- James Parton of Twilio
+> “APIs are going to be **the driver for the digital economy** and unless they [companies] are talking about APIs already, they will be left behind.” -- James Parton of Twilio
 
 
-> Twitter no longer wants to be a web app. Twitter wants to be a set of APIs that power mobile clients worldwide, acting as one of the largest real-time event busses on the planet.
+> Twitter no longer wants to be a web app. Twitter wants to be **a set of APIs that power mobile clients worldwide**, acting as one of the largest real-time event busses on the planet.
 
+So... whatever it is, this API thing sounds kind of important.
 
 ## What is an API? (30 min)
 
-Up to this point, we have built applications for humans.  We created views that render html, so that a user can view and interact.  
+Up to this point, we have built applications for humans.  We created views that render html, so that a user can view and interact.
+
+
 ### Demo: Single user presses button
 
 ??? App displays requests per second.  Renders HTML.  Only instructor.
@@ -35,7 +38,7 @@ Up to this point, we have built applications for humans.  We created views that 
 
 [How do we browse?](http://www.smartinsights.com/mobile-marketing/mobile-marketing-analytics/mobile-marketing-statistics/)
 
-It's not just US anymore.  [The Internet of Things](https://en.wikipedia.org/wiki/Internet_of_Things)
+It's not just **us** anymore.  [The Internet of Things](https://en.wikipedia.org/wiki/Internet_of_Things)
 
 
 ### Native Mobile Apps
@@ -50,12 +53,12 @@ Native Mobile Apps are mostly just pretty faces on API calls.  Behind the scenes
 
 It provides a structure and style for visual presentation.
 
-The mobile app wants a native experience.  An a Mac, we want it to look and feel like a Mac.  On Windows, it should look and feel like Windows.
+The mobile app wants a native experience.  On a Mac, we want it to look and feel like a Mac.  On Windows, it should look and feel like Windows.
 
 > Q. Do we need the structure and style anymore?
 ---
 
-No.  We don't want the structure and style anymore.  In fact, it just extra baggage.  We would ignore it.  We just want the data.  We'll make it look "native".  We want a concise format for sharing data.
+No.  We don't want the structure and style anymore.  In fact, it just extra baggage.  We would ignore it.  We just want the data.  We'll use iOS tools to make it look "native".  We want a concise format for sharing data.
 
 ### JSON (Javascript Object Notation)
 
@@ -78,6 +81,7 @@ Even with mobile, we're still talking about humans interacting with textfields a
 
 #### Demo: Multiple users using cocoa-rest-client
 
+
 ??? Same server.  Students install cocoa-rest-client.  Open up to class.  Service displays RpS.
 
 Review/discuss output.
@@ -85,7 +89,7 @@ Review/discuss output.
 
 ### Machine to machine
 
-> "It is easy for humans to read and write. It is easy for machines to parse and generate."
+> "It [json] is easy for humans to read and write. It is easy for machines to parse and generate."
 
 
 
@@ -101,6 +105,11 @@ Discuss magnitude of differences:
 - ramp up
 - 24/7, never gets tired, hungry
 
+### Why just data?
+
+??? Pull it all together
+There are times when we just need the data.  ???
+
 ## RESTful Review (10 min)
 
 - Everything is a Resource
@@ -111,39 +120,210 @@ Discuss magnitude of differences:
   - new -> create
   - edit -> update
 
-## Rails and json (75 min)
+## Rails and json (30 min)
 
+A few decisions have been made for us:
+- following RESTful routes
+- requests are formatted as JSON
+
+We know how to support RESTful routes in Rails.  Let's work on JSON.  
+
+The two main JSON renderers are [jBuilder](https://github.com/rails/jbuilder) and Active Resource Serializers.  Rails uses jBuilder by default, so we'll start there.
 
 ### I do: Tunr artists#show
 
-- jBuilder.  Why?  Basic `json.extract!`
-- demonstrate via cocoa-rest-client
+Artists#show is a pretty small, well-defined step, let's start there.
 
-### You do: Tunr songs#show
-  :id, :title, :artist_name
+If I ask for html, Rails renders html.
+If I ask for JSON, Rails renders json.
+
+I want `/artists/4.json` to return this:
+``` json
+{
+  id: 4,
+  name: "Lykke Li",
+  photo_url: "http://www.chartattack.com/wp-content/uploads/2012/07/lykke-li-newmain1-photo-by-daniel-jackson.jpg",
+  nationality: "Sweeden",
+  created_at: "2015-08-11T02:44:24.173Z",
+  updated_at: "2015-08-11T02:44:24.173Z"
+}
+```
+
+Why `.json`? Check out `rake routes`:
+``` ruby
+Prefix  Verb  URI Pattern             Controller#Action
+artist  GET   /artists/:id(.:format)  artists#show
+```
+
+See `(.:format)`?  That means our routes support passing a format at the end of the path, using dot-notation (like a file extension).
+
+
+Requesting "GET" from CocoaRestCLient: `http://localhost:3000/artists/3.json`, we see a lot of something.  Not very helpful.  What is that?
+
+HTML?  Let's look at that in a browser.
+`Missing template artists/show, application/show with {:locale=>[:en], **:formats=>[:json]**`.
+
+The important bits are:
+- Missing template artists/show
+- **:formats=>[:json]**
+
+Rails is expecting a JSON view.
+
+Adding `app/views/artists/show.json.jbuilder`
+
+> Q. What do these suffixes mean?
+---
+
+A. Use the "jbuilder" renderer to generate "json".
+
+jBuilder has simple, succint declaration for generating json.
+
+`json.extract! model, array of attributes`
+
+``` ruby
+# app/views/artists/show.json.jbuilder
+json.extract! @artist, :id, :name, :photo_url, :nationality, :created_at, :updated_at
+```
+
+Demonstrate via browser and cocoa-rest-client.
+
+### You do: Tunr songs#show (15 min)
+
+It's your turn to do the same for Songs.  Songs#show should return:
+
+`:id, :title, :artist_name`
+
+Tip: `json.extract!` only works with methods on the passed model.
 
 ### I do: Tunr artists#index
 
-- jBuilder: add json.array, json.url
+Let's move on to artists#index.  We want a list of Artists.  JSON supports Objects and... Arrays.  How handy.
 
-### You do: Tunr songs#index
+``` ruby
+json.array!(@artists) do |artist|
+  json.extract! artist, :id, :name
+  json.url artist_url(artist, format: :json)
+end
+```
 
-### I do Tunr artists#create
+This loops through all the @artists, rendering a json object (with id and name) and also returns the url for said artist.
 
+Demonstrate in browser.
 
-> Q. What do we have to update to support create?
+### You do: Tunr songs#index (10 min)
+
+Your turn to do the same with Songs.  We want a list of songs and the url for each Song resource.
+
+### I do Tunr artists#create (20 min)
+
+It's high time we created an Artist.
+
+> Q. What do we have to change to support create?
 ---
 
-- Discuss new -> create, edit->update.  no view
+- Discuss new -> create, edit->update.
   - what is the purpose of "new"
   - what is the correlation in an API?
+    -  no view needed for "new", just pass in request.
 
 > Q. Knowing that, what do we have to update to support create?
 ---
 
-- Controller updates (from solution)
+Just the Controller!
+
+### respond_to
+
+As expected, since we hane to support, or respond to, multiple formats, Rails provides a helper.
+
+``` ruby
+respond_to
+```
+
+`respond_to` provides the requested format to a block of ruby code.
+
+We are starting with:
+
+``` ruby
+# POST /artists
+def create
+  @artist = Artist.new(artist_params)
+  if @artist.save
+    redirect_to (artist_path(@artist))
+  else
+    render :new
+  end
+end
+```
+
+We need to update the response to respond to the format.
+
+``` ruby
+# POST /artists
+# POST /artists.json
+def create
+  @artist = Artist.new(artist_params)
+
+  respond_to do |format|
+    if @artist.save
+      format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
+      format.json { render :show, status: :created, location: @artist }
+    else
+      format.html { render :new }
+      format.json { render json: @artist.errors, status: :unprocessable_entity }
+    end
+  end
+end
+```
+
+I read this as:
+- If we successfully save the @artist...
+  - When the requested format is "html", we redirect to the show page for the @artist.  
+  - When the requested format is "json", we return the @artist as JSON, with an HTTP status of "201 Created".
+
+- If save fails...
+  - When the requested format is "html", we render the :new page - to show the human the error of their ways.
+  - When the requested format is "json", we return the error as JSON and inform the requesting computer that we have an "unprocessable_entity".  Trust me, they'll understand.
+
+Let's test it.  How do we send a POST request in the browser?  Via a form.
+
+Let's use CocoaRestClient.
+
+More html.  Drat.
+
+This is an error page, rendered as html.  Sometimes you just have to wade through the html.  Scroll down until you get to the "body".
+``` html
+ <h1>
+  ActionController::InvalidAuthenticityToken
+    in ArtistsController#create
+</h1>
+```
+
+Ah yes.  Rails uses an Authenticity token for security.  It will provide it for any request made within a form it renders.   CocoaRestClient is decidedly not that.  Let's temporarily adjust that setting for testing pruposes.  When we go back to using html forms, we can set it back.
+
+``` ruby
+class ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  # protect_from_forgery with: :exception
+  # support API, see: http://stackoverflow.com/questions/9362910/rails-warning-cant-verify-csrf-token-authenticity-for-json-devise-requests
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+end
+```
+
+Testing again, we see what we expect... success (201 Created), **BUT** see none of the passed data in the new Artist. :(
+
+Checking the server logs, we see:
+```
+Can't verify CSRF token authenticity
+```
+
+Did we configure CocoaRstClient to say the ContentType was "application/json"?  Nope.
+
+Success!
 
 ### You do: Tunr songs#create, songs#update
+
+Your turn.  Make sure we can create and update Songs via requests that expect JSON.
 
 ### [optional] Active Model Serializers
 - brief overview/comparison
@@ -154,10 +334,11 @@ Other companies have created something similar.  Some follow the REST guidelines
 
 ### Short demo of HTTParty
 
-### Exercise: movie
-
 ### Exercise: pull song info from ???
+- songkick
+- spotify
 
+### Optional Movie HTTParty
 
 ## Conclusion
 
