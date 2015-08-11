@@ -15,22 +15,6 @@ Whiteboard a wireframe for [Craigslist](http://washingtondc.craigslist.org/).
 * Keep an eye for width, height, proportion, number of components.
 * [Sample wireframe.](http://www.comentum.com/images/wireframes-sample/ecommerce/home.png)
 
-## Some History (5 / 15)
-
-Let's go back in time, back to when the "Internet" became a thing.
-* Back then there was no such thing as layout. Just documents, with "stuff" floating around in them.
-
-Then came tables, the first semblance of a grid-like structure.
-* These were super popular in the '90s. [Space Jam anyone](http://www.warnerbros.com/archive/spacejam/movie/jam.htm)?
-  * Show on Pesticide.io.
-* Downside: very hard to maintain and no semantic HTML. Just look at the [source code](view-source:http://www.warnerbros.com/archive/spacejam/movie/jam.htm).
-
-Then came floats.
-* With floats we were able to align things to the left and right.
-* We found ourselves doing this pretty often to a lot of different elements. Patterns emerged.
-* Perhaps there is a semantic way to make our lives easier and condense all this floating into a few "utility classes."
-* Enter grids...
-
 ## Why use a CSS grid? (5 / 20)
 
 ### Structure
@@ -165,7 +149,7 @@ So our rows are actually good to go!
 }
 ```
 
-**YOU DO:** Let's give our rows and columns a spin.
+Let's give our rows and columns a spin.
 * Take a minute or two to create some rows and columns in `index.html` using the class selectors we just made.
 * What functionality do we currently have? What do we need to add?
 
@@ -238,8 +222,6 @@ Most grids have a column size of 12.
 .column-11 { width: 91.66%; }
 .column-12 { width: 100%; }
 ```
-
-TODO: COLUMN*= SHORTCUT
 
 You don't have to use the same class selector syntax as the above example.
 * You can and should customize your grid to fit your own needs.
@@ -502,7 +484,6 @@ There are tons of front-end frameworks out there -- like Bootstrap, Foundation, 
 Bootstrap uses a similar class selector syntax for columns as what we used in our from-scratch example.
 * `col-md-6`
 * Begins with `col-` and ends with `-6`, the width of that column.
-* **Note:** You no longer need to use a `.column` class.
 * Bootstrap also helps out with responsive design and allows us to set multiple column widths depending on the user's device.
   * In this example, `md` stands for "medium" and covers most laptops and desktops.
   * Don't worry about the other sizes for now. You'll learn about Responsive Web Design later this week.
