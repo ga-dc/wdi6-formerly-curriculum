@@ -24,14 +24,11 @@ Up to this point, we have built applications for humans.  We created views that 
 
 ### Demo: Single user presses button
 
-??? App displays requests per second.  Renders HTML.  Only instructor.
+App displays number of requests.  Renders HTML.  Only instructor.
 
+### Demo: Multiple users sending requests
 
-### Demo: Multiple users using pressing button ???
-
-??? Same server.  All students pressing.  Open up to class.
-
-
+Same server.  All students pressing.  Open up to class.
 
 > Q. Are there other ways to interact with our web servers?
 ---
@@ -42,8 +39,10 @@ It's not just **us** anymore.  [The Internet of Things](https://en.wikipedia.org
 
 
 ### Native Mobile Apps
-Share example: ???
 
+Discuss examples.
+
+Check out these stats;
 - http://www.smartinsights.com/wp-content/uploads/2014/03/Mobile-stats-vs-desktop-users-global-550x405.png
 
 Native Mobile Apps are mostly just pretty faces on API calls.  Behind the scenes, the mobile app may be making calls to multiple APIs to gather and update information.  
@@ -81,8 +80,7 @@ Even with mobile, we're still talking about humans interacting with textfields a
 
 #### Demo: Multiple users using cocoa-rest-client
 
-
-??? Same server.  Students install cocoa-rest-client.  Open up to class.  Service displays RpS.
+Same server.  Students install cocoa-rest-client.  Open up to class.  Service displays RpS.
 
 Review/discuss output.
 
@@ -91,13 +89,11 @@ Review/discuss output.
 
 > "It [json] is easy for humans to read and write. It is easy for machines to parse and generate."
 
-
+What happens when these machines get together?  Speed happens.
 
 #### Demo: computer places requests.
 
-??? Same app.  Called from script.  App tracks click per second.  Renders json.
-
-Both human and computer RPS on screen together (query_params?).
+Same app.  Called from script.  App tracks click per second.  Renders json.
 
 Discuss magnitude of differences:
 - speed
@@ -107,18 +103,20 @@ Discuss magnitude of differences:
 
 ### Why just data?
 
-??? Pull it all together
-There are times when we just need the data.  ???
+There are times when we just need the data.  For those times, we want a concise format.  
 
 ## RESTful Review (10 min)
 
 - Everything is a Resource
+
 - Different formats.  Rails defaults to :html.  json, csv, xml, ..???
-- http verbs + action
+
+- Let's create the http verbs + action table
   - show
   - index
   - new -> create
   - edit -> update
+
 
 ## Rails and json (30 min)
 
@@ -214,7 +212,7 @@ Demonstrate in browser.
 
 Your turn to do the same with Songs.  We want a list of songs and the url for each Song resource.
 
-### I do Tunr artists#create (20 min)
+### I do Tunr artists#create (30 min)
 
 It's high time we created an Artist.
 
@@ -328,22 +326,58 @@ Your turn.  Make sure we can create and update Songs via requests that expect JS
 ### [optional] Active Model Serializers
 - brief overview/comparison
 
-## 3rd Party APIs (45 min)
+## 3rd Party APIs (15 min)
 
-Other companies have created something similar.  Some follow the REST guidelines, some don't.
+Other companies have created something similar.  Some follow the REST guidelines, some don't.  When we want ot retruve information from them we nedd to make an http request from within our application.  There are a few libraries that help with this.  We'll review [HTTParty](https://github.com/jnunemaker/httparty).
 
 ### Short demo of HTTParty
 
-### Exercise: pull song info from ???
-- songkick
-- spotify
+- After adding it to our Gemfile.  We can start using it right away,
 
-### Optional Movie HTTParty
+``` ruby
+response = HTTParty.get('https://api.stackexchange.com/2.2/questions?site=stackoverflow')
+```
+
+Checkout the response:
+```
+response.code
+response.message
+response.body
+response.headers
+```
+
+Or better yet, you can make a PORO (Plain Old Ruby Object) class and use that.
+```
+class StackExchange
+  include HTTParty
+  base_uri 'api.stackexchange.com'
+
+  def initialize(service, page)
+    @options = { query: {site: service, page: page} }
+  end
+
+  def questions
+    self.class.get("/2.2/questions", @options)
+  end
+
+  def users
+    self.class.get("/2.2/users", @options)
+  end
+end
+```
+
+Using it from `rails console`:
+``` ruby
+stack_exchange = StackExchange.new("stackoverflow", 1)
+```
+``` ruby
+stack_exchange.questions
+stack_exchange.users
+```
 
 ## Conclusion
 
-???
-
+Review Learning Objectives
 
 ## Resources:
 - https://github.com/mmattozzi/cocoa-rest-client
