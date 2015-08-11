@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Views and Controllers | Summary</title>
+        <title>APIs | Summary</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -25,10 +25,10 @@
         
     
     
-    <link rel="next" href="../../05-mvc-with-rails/rails-routes-and-resources/readme.html" />
+    <link rel="next" href="../../07-uxdi-collaboration/ajax/readme.html" />
     
     
-    <link rel="prev" href="../../05-mvc-with-rails/rails-models-and-migrations/readme.html" />
+    <link rel="prev" href="../../05-mvc-with-rails/rails-deployment/readme.html" />
     
 
         
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.4" data-basepath="../.." data-revision="Tue Aug 11 2015 17:41:50 GMT+0000 (UTC)">
+    <div class="book" data-level="7.1" data-basepath="../.." data-revision="Tue Aug 11 2015 17:41:50 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -616,7 +616,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="5.4" data-path="05-mvc-with-rails/rails-views-and-controllers/readme.html">
+        <li class="chapter " data-level="5.4" data-path="05-mvc-with-rails/rails-views-and-controllers/readme.html">
             
                 
                     <a href="../../05-mvc-with-rails/rails-views-and-controllers/readme.html">
@@ -719,7 +719,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="7.1" data-path="07-uxdi-collaboration/apis/readme.html">
+        <li class="chapter active" data-level="7.1" data-path="07-uxdi-collaboration/apis/readme.html">
             
                 
                     <a href="../../07-uxdi-collaboration/apis/readme.html">
@@ -925,171 +925,286 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="views-and-controllers">Views and Controllers</h1>
+                        <h1 id="apis">APIs</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Describe the role of controllers and views in a Rails app</li>
-<li>Explain how the router directs requests to a specific controller and action</li>
-<li>Explain how controller actions map to specific views</li>
-<li>Describe the Rails convention for implicity rendering a view from an action</li>
-<li>Use <code>strong_params</code> to limit what attributes can be modified</li>
-<li>Describe the role of instance variables in sharing information between an action and its view</li>
-<li>Describe the difference between a <code>redirect</code> and a <code>render</code></li>
+<li>Describe what an API is, and why we might use one.</li>
+<li>Explain the common role of JSON on the web.</li>
+<li>Describe the purpose and syntax of <code>respond_to</code></li>
+<li>Make a Rails app that provides a JSON API.</li>
+<li>Use an external API (via HTTParty) to gather data and utilize it in a Rails application</li>
 </ul>
-<h2 id="opening-framing-5-5">Opening Framing (5/5)</h2>
-<p>So we&apos;ve gone over how to port an existing Sinatra app into a rails app. We&apos;ve also talked about models and migrations. The next layer we want to discuss more in depth is Views and Controllers. What&apos;s really happening when someone goes to a route that belongs to our site?</p>
-<h2 id="route-controller-action-relationship-15-20">Route/Controller/action relationship (15/20)</h2>
-<p>Let&apos;s start by typing rake routes in our current code base:</p>
-<pre><code class="lang-bash">Prefix Verb   URI Pattern                 Controller<span class="hljs-comment">#Action</span>
-   artists GET    /artists(.:format)          artists<span class="hljs-comment">#index</span>
-artists_new GET    /artists/new(.:format)      artists<span class="hljs-comment">#new</span>
-           POST   /artists(.:format)          artists<span class="hljs-comment">#create</span>
-           GET    /artists/:id(.:format)      artists<span class="hljs-comment">#show</span>
-           GET    /artists/:id/edit(.:format) artists<span class="hljs-comment">#edit</span>
-           PUT    /artists/:id(.:format)      artists<span class="hljs-comment">#update</span>
-           DELETE /artists/:id(.:format)      artists<span class="hljs-comment">#destroy</span>
-     songs GET    /songs(.:format)            songs<span class="hljs-comment">#index</span>
- songs_new GET    /songs/new(.:format)        songs<span class="hljs-comment">#new</span>
-           POST   /songs(.:format)            songs<span class="hljs-comment">#create</span>
-           GET    /songs/:id(.:format)        songs<span class="hljs-comment">#show</span>
-           GET    /songs/:id/edit(.:format)   songs<span class="hljs-comment">#edit</span>
-           PUT    /songs/:id(.:format)        songs<span class="hljs-comment">#update</span>
-           DELETE /songs/:id(.:format)        songs<span class="hljs-comment">#destroy</span>
-</code></pre>
-<p>Lets take the index action for example.</p>
+<h2 id="overview">Overview</h2>
+<blockquote>
+<p>&#x201C;APIs are going to be <strong>the driver for the digital economy</strong> and unless they [companies] are talking about APIs already, they will be left behind.&#x201D; -- James Parton of Twilio</p>
+<p>Twitter no longer wants to be a web app. Twitter wants to be <strong>a set of APIs that power mobile clients worldwide</strong>, acting as one of the largest real-time event busses on the planet.</p>
+</blockquote>
+<p>So... whatever it is, this API thing sounds kind of important.</p>
+<h2 id="what-is-an-api-30-min">What is an API? (30 min)</h2>
+<p>Up to this point, we have built applications for humans.  We created views that render html, so that a user can view and interact.</p>
+<h3 id="demo-single-user-presses-button">Demo: Single user presses button</h3>
+<p>App displays number of requests.  Renders HTML.  Only instructor.</p>
+<h3 id="demo-multiple-users-sending-requests">Demo: Multiple users sending requests</h3>
+<p>Same server.  All students pressing.  Open up to class.</p>
+<h2 id="-q-are-there-other-ways-to-interact-with-our-web-servers">&gt; Q. Are there other ways to interact with our web servers?</h2>
+<p><a href="http://www.smartinsights.com/mobile-marketing/mobile-marketing-analytics/mobile-marketing-statistics/" target="_blank">How do we browse?</a></p>
+<p>It&apos;s not just <strong>us</strong> anymore.  <a href="https://en.wikipedia.org/wiki/Internet_of_Things" target="_blank">The Internet of Things</a></p>
+<h3 id="native-mobile-apps">Native Mobile Apps</h3>
+<p>Discuss examples.</p>
+<p>Check out these stats;</p>
 <ul>
-<li><p>The user types in a url that matches our server. The router will say, &quot;I recognize this route! I know exactly what to do&quot;.</p>
+<li><a href="http://www.smartinsights.com/wp-content/uploads/2014/03/Mobile-stats-vs-desktop-users-global-550x405.png" target="_blank">http://www.smartinsights.com/wp-content/uploads/2014/03/Mobile-stats-vs-desktop-users-global-550x405.png</a></li>
+</ul>
+<p>Native Mobile Apps are mostly just pretty faces on API calls.  Behind the scenes, the mobile app may be making calls to multiple APIs to gather and update information.  </p>
+<h2 id="-q-what-is-the-role-of-html-css">&gt; Q. What is the role of html &amp; css?</h2>
+<p>It provides a structure and style for visual presentation.</p>
+<p>The mobile app wants a native experience.  On a Mac, we want it to look and feel like a Mac.  On Windows, it should look and feel like Windows.</p>
+<h2 id="-q-do-we-need-the-structure-and-style-anymore">&gt; Q. Do we need the structure and style anymore?</h2>
+<p>No.  We don&apos;t want the structure and style anymore.  In fact, it just extra baggage.  We would ignore it.  We just want the data.  We&apos;ll use iOS tools to make it look &quot;native&quot;.  We want a concise format for sharing data.</p>
+<h3 id="json-javascript-object-notation">JSON (Javascript Object Notation)</h3>
+<p><a href="https://simple.wikipedia.org/wiki/JSON" target="_blank">Basic definition of JSON</a></p>
+<h2 id="-q-from-the-reading-last-night-what-are-some-benefits-of-json">&gt; Q.  From the reading last night.  What are some benefits of JSON?</h2>
+<p><a href="http://json.org" target="_blank">JSON</a> is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate.</p>
+<h2 id="-q-what-two-data-structures-does-json-represent">&gt; Q. What two data structures does JSON represent?</h2>
+<ul>
+<li>a collection of key/value pairs (JS object, Ruby Hash).<ul>
+<li><code>{ key: value }</code></li>
+</ul>
 </li>
-<li><p>The router says, &quot;a GET request to the &apos;/artists&apos;? No problem, hey artists controller you need to perform the index action&quot;</p>
-</li>
-<li><p>The artists controller says, &quot;An index action? I got one of those.&quot; Let see, it says here I need to ask the model(Active Record) for some information, hey model, i need all of the artists.</p>
-</li>
-<li><p>Thanks for all the artists, Now I&apos;m going to send all this information to the view. The view than generates a response to the client.</p>
+<li>an ordered list of values (Array)<ul>
+<li><code>[ value0, value1, ... ]</code></li>
+</ul>
 </li>
 </ul>
-<h2 id="render-vs-redirect-20-40">Render vs Redirect (20/40)</h2>
-<p>Let&apos;s take a closer look at index action of our Artists Controller:</p>
-<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> </span>index
-  <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all.order(<span class="hljs-symbol">:id</span>).reverse
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>If we remember back to Sinatra, you&apos;ll notice that we&apos;re not explicitly telling the application which view file to render.</p>
-<p>That&apos;s because rails has implicit rendering. Basically rails is smart enough to know if the artists controller action is called index, then it will look for the index view in the artist folder.</p>
-<p>You can explicity change the implicit render by calling the <code>render</code> method in the action of a controller. Something like this:</p>
-<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> </span>index
-  <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all.order(<span class="hljs-symbol">:id</span>).reverse
-  render <span class="hljs-symbol">:index</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>You could also redirect rather than render. Who can tell me the differences between redirecting and rendering? (ST-WG)</p>
-<p>We would never do something like this, but if we did.</p>
-<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> </span>index
-  <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all.order(<span class="hljs-symbol">:id</span>).reverse
-  redirect_to <span class="hljs-string">&quot;https://www.google.com&quot;</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>The request would hit our router, then hit the controller index action and query the database. Then it immediately submits a request to the route provided.</p>
-<h2 id="instance-variables-15-55">Instance variables (15/55)</h2>
-<p>We use instance variables in our controller actions, so we can have programmatic access to variables inside of our views. More often than not these instance variables will contain objects from the database.</p>
-<p>Let&apos;s take our artists controller show action and add some things.</p>
-<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> </span>show
-  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:id</span>])
-  <span class="hljs-variable">@songs</span> = <span class="hljs-variable">@artist</span>.songs
-  <span class="hljs-variable">@food</span> = <span class="hljs-string">&quot;pizza&quot;</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>We are looking for an artist in our database by it&apos;s id. We find it and store it in an instance variable. We can now use that inside the <code>app/views/artists/show.html.erb</code></p>
+<p>Even with mobile, we&apos;re still talking about humans interacting with textfields and buttons - there&apos;s just another layer in between.  </p>
+<h4 id="demo-multiple-users-using-cocoa-rest-client">Demo: Multiple users using cocoa-rest-client</h4>
+<p>Same server.  Students install cocoa-rest-client.  Open up to class.  Service displays RpS.</p>
+<p>Review/discuss output.</p>
+<h3 id="machine-to-machine">Machine to machine</h3>
 <blockquote>
-<p>It should be noted that while we practice a separation of concerns we aren&apos;t just limited to querying for only artists in the artists controller. Additionally, we can store just about anything we could have normally stored in a ruby variable.</p>
+<p>&quot;It [json] is easy for humans to read and write. It is easy for machines to parse and generate.&quot;</p>
 </blockquote>
-<p>In our <code>app/views/artists/show.html.erb</code></p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>My favorite food is <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> @<span class="hljs-attribute">food</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> @<span class="hljs-attribute">artist.name</span> %&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/artists/&lt;%= @artist.id %&gt;/edit&quot;</span>&gt;</span>(edit)<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">h4</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> @<span class="hljs-attribute">artist.nationality</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&apos;artist-photo&apos;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;&lt;%= @artist.photo_url %&gt;&quot;</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span>Songs<span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">%</span> @<span class="hljs-attribute">songs.each</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">song</span>| %&gt;</span>
-    <span class="hljs-comment">&lt;!-- build the list element for each song --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/songs/&lt;%= song.id %&gt;&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">song.title</span> %&gt;</span> (<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">song.album</span> %&gt;</span>)
-      <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<p>What happens when these machines get together?  Speed happens.</p>
+<h4 id="demo-computer-places-requests">Demo: computer places requests.</h4>
+<p>Same app.  Called from script.  App tracks click per second.  Renders json.</p>
+<p>Discuss magnitude of differences:</p>
+<ul>
+<li>speed</li>
+<li>quantity</li>
+<li>ramp up</li>
+<li>24/7, never gets tired, hungry</li>
+</ul>
+<h3 id="why-just-data">Why just data?</h3>
+<p>There are times when we just need the data.  For those times, we want a concise format.  </p>
+<h2 id="restful-review-10-min">RESTful Review (10 min)</h2>
+<ul>
+<li><p>Everything is a Resource</p>
+</li>
+<li><p>Different formats.  Rails defaults to :html.  json, csv, xml, ..???</p>
+</li>
+<li><p>Let&apos;s create the http verbs + action table</p>
+<ul>
+<li>show</li>
+<li>index</li>
+<li>new -&gt; create</li>
+<li>edit -&gt; update</li>
+</ul>
+</li>
+</ul>
+<h2 id="rails-and-json-30-min">Rails and json (30 min)</h2>
+<p>A few decisions have been made for us:</p>
+<ul>
+<li>following RESTful routes</li>
+<li>requests are formatted as JSON</li>
+</ul>
+<p>We know how to support RESTful routes in Rails.  Let&apos;s work on JSON.  </p>
+<p>The two main JSON renderers are <a href="https://github.com/rails/jbuilder" target="_blank">jBuilder</a> and Active Resource Serializers.  Rails uses jBuilder by default, so we&apos;ll start there.</p>
+<h3 id="i-do-tunr-artists-show">I do: Tunr artists#show</h3>
+<p>Artists#show is a pretty small, well-defined step, let&apos;s start there.</p>
+<p>If I ask for html, Rails renders html.
+If I ask for JSON, Rails renders json.</p>
+<p>I want <code>/artists/4.json</code> to return this:</p>
+<pre><code class="lang-json">{
+  id: <span class="hljs-number">4</span>,
+  name: <span class="hljs-string">&quot;Lykke Li&quot;</span>,
+  photo_url: <span class="hljs-string">&quot;http://www.chartattack.com/wp-content/uploads/2012/07/lykke-li-newmain1-photo-by-daniel-jackson.jpg&quot;</span>,
+  nationality: <span class="hljs-string">&quot;Sweeden&quot;</span>,
+  created_at: <span class="hljs-string">&quot;2015-08-11T02:44:24.173Z&quot;</span>,
+  updated_at: <span class="hljs-string">&quot;2015-08-11T02:44:24.173Z&quot;</span>
+}
 </code></pre>
-<p>Here, in this view, you can see the use of all three instance variables we defined in the show action of the artists controller.</p>
-<h2 id="break-10-65">Break (10/65)</h2>
-<h2 id="sanitization-strong-params-30-95">Sanitization/Strong Params 30/95</h2>
-<p>Rails is setup such that it doesn&apos;t allow just any old parameters to be accompanied by a post request. This is why we had to do some additional configuration changes to get our Sinatra forms to work.</p>
-<p>Since it is horrible practice to configure it the way we did, let&apos;s go back and change it back to having security.</p>
-<p>We&apos;re going to remove <code>config.action_controller.permit_all_parameters = true</code> from our <code>config/application.rb</code></p>
-<p>As well as uncomment <code>protect_from_forgery with: :exception</code> in our <code>app/controllers/application_controller.rb</code></p>
-<p>What&apos;s ultimately going to happen when we update our forms?</p>
-<p>Any time a userviews a form to create, update or destroy a resource, the rails app create a random <code>authenticity_token</code> and stores it in a session. When the user than submits the form, rails will look for the authenticity_token compares it to the one stored in the session, and if they match allow the request to continue.</p>
-<p>If someone was trying to update our database in some way other than our application, it would be denied.</p>
-<p>The first thing that I want do is add the authenticity_token in our <code>new</code> form.</p>
-<p>Add the hidden input field that contains the auth token in `app/views/artists/new.html.erb&apos;:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&quot;/artists&quot;</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">&quot;post&quot;</span> &gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;hidden&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;authenticity_token&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;&lt;%= form_authenticity_token %&gt;&quot;</span>&gt;</span>
-  ... more form code
+<p>Why <code>.json</code>? Check out <code>rake routes</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-constant">Prefix</span>  <span class="hljs-constant">Verb</span>  <span class="hljs-constant">URI</span> <span class="hljs-constant">Pattern</span>             <span class="hljs-constant">Controller</span><span class="hljs-comment">#Action</span>
+artist  <span class="hljs-constant">GET</span>   /artists/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)  artists<span class="hljs-comment">#show</span>
 </code></pre>
-<p>Now we should update our Artists controller a bit.</p>
-<p>First let&apos;s create a private method that will allow us to pull information from the form.</p>
-<p>in <code>app/controllers/artists_controller.rb</code>:</p>
-<pre><code class="lang-ruby">private
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>artist_params
-  params.<span class="hljs-keyword">require</span>(<span class="hljs-symbol">:artist</span>).permit(<span class="hljs-symbol">:name</span>, <span class="hljs-symbol">:photo_url</span>, <span class="hljs-symbol">:nationality</span>)
+<p>See <code>(.:format)</code>?  That means our routes support passing a format at the end of the path, using dot-notation (like a file extension).</p>
+<p>Requesting &quot;GET&quot; from CocoaRestCLient: <code>http://localhost:3000/artists/3.json</code>, we see a lot of something.  Not very helpful.  What is that?</p>
+<p>HTML?  Let&apos;s look at that in a browser.
+<code>Missing template artists/show, application/show with {:locale=&gt;[:en], **:formats=&gt;[:json]**</code>.</p>
+<p>The important bits are:</p>
+<ul>
+<li>Missing template artists/show</li>
+<li><strong>:formats=&gt;[:json]</strong></li>
+</ul>
+<p>Rails is expecting a JSON view.</p>
+<p>Adding <code>app/views/artists/show.json.jbuilder</code></p>
+<h2 id="-q-what-do-these-suffixes-mean">&gt; Q. What do these suffixes mean?</h2>
+<p>A. Use the &quot;jbuilder&quot; renderer to generate &quot;json&quot;.</p>
+<p>jBuilder has simple, succint declaration for generating json.</p>
+<p><code>json.extract! model, array of attributes</code></p>
+<pre><code class="lang-ruby"><span class="hljs-comment"># app/views/artists/show.json.jbuilder</span>
+json.extract! <span class="hljs-variable">@artist</span>, <span class="hljs-symbol">:id</span>, <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">:photo_url</span>, <span class="hljs-symbol">:nationality</span>, <span class="hljs-symbol">:created_at</span>, <span class="hljs-symbol">:updated_at</span>
+</code></pre>
+<p>Demonstrate via browser and cocoa-rest-client.</p>
+<h3 id="you-do-tunr-songs-show-15-min">You do: Tunr songs#show (15 min)</h3>
+<p>It&apos;s your turn to do the same for Songs.  Songs#show should return:</p>
+<p><code>:id, :title, :artist_name</code></p>
+<p>Tip: <code>json.extract!</code> only works with methods on the passed model.</p>
+<h3 id="i-do-tunr-artists-index">I do: Tunr artists#index</h3>
+<p>Let&apos;s move on to artists#index.  We want a list of Artists.  JSON supports Objects and... Arrays.  How handy.</p>
+<pre><code class="lang-ruby">json.array!(<span class="hljs-variable">@artists</span>) <span class="hljs-keyword">do</span> |artist|
+  json.extract! artist, <span class="hljs-symbol">:id</span>, <span class="hljs-symbol">:name</span>
+  json.url artist_url(artist, <span class="hljs-symbol">format:</span> <span class="hljs-symbol">:json</span>)
 <span class="hljs-keyword">end</span>
 </code></pre>
-<blockquote>
-<p>the require method ensurezs that a specific parameter is present. Throws an error otherwise. The permit method returns a copy of the parameters object, returning only the permitted keys and values.</p>
-<p>note that we encapsulate the artist_params in a private method because we only want this available to this particular class and it shouldn&apos;t work outside the scope of the controller</p>
-</blockquote>
-<p>The only thing we have left to do is update our controller actions that use params to create or update an artist.</p>
-<p>in <code>app/controllers/artists_controller.rb</code>:</p>
-<pre><code class="lang-ruby"><span class="hljs-comment">#### before</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>create
-  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.new(params[<span class="hljs-symbol">:artist</span>])
-  <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>.save
-    redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
-  <span class="hljs-keyword">else</span>
-    redirect_to <span class="hljs-string">&quot;/posts/new&quot;</span>
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>update
-  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:id</span>])
-  <span class="hljs-variable">@artist</span>.update(params[<span class="hljs-symbol">:artist</span>])
-  redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
-<span class="hljs-keyword">end</span>  
-
-<span class="hljs-comment">#### after  </span>
+<p>This loops through all the @artists, rendering a json object (with id and name) and also returns the url for said artist.</p>
+<p>Demonstrate in browser.</p>
+<h3 id="you-do-tunr-songs-index-10-min">You do: Tunr songs#index (10 min)</h3>
+<p>Your turn to do the same with Songs.  We want a list of songs and the url for each Song resource.</p>
+<h3 id="i-do-tunr-artists-create-30-min">I do Tunr artists#create (30 min)</h3>
+<p>It&apos;s high time we created an Artist.</p>
+<h2 id="-q-what-do-we-have-to-change-to-support-create">&gt; Q. What do we have to change to support create?</h2>
+<ul>
+<li>Discuss new -&gt; create, edit-&gt;update.<ul>
+<li>what is the purpose of &quot;new&quot;</li>
+<li>what is the correlation in an API?<ul>
+<li>no view needed for &quot;new&quot;, just pass in request.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="-q-knowing-that-what-do-we-have-to-update-to-support-create">&gt; Q. Knowing that, what do we have to update to support create?</h2>
+<p>Just the Controller!</p>
+<h3 id="respond-to">respond_to</h3>
+<p>As expected, since we hane to support, or respond to, multiple formats, Rails provides a helper.</p>
+<pre><code class="lang-ruby">respond_to
+</code></pre>
+<p><code>respond_to</code> provides the requested format to a block of ruby code.</p>
+<p>We are starting with:</p>
+<pre><code class="lang-ruby"><span class="hljs-comment"># POST /artists</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> </span>create
   <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.new(artist_params)
   <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>.save
-    redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
+    redirect_to (artist_path(<span class="hljs-variable">@artist</span>))
   <span class="hljs-keyword">else</span>
-    redirect_to <span class="hljs-string">&quot;/posts/new&quot;</span>
+    render <span class="hljs-symbol">:new</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
+</code></pre>
+<p>We need to update the response to respond to the format.</p>
+<pre><code class="lang-ruby"><span class="hljs-comment"># POST /artists</span>
+<span class="hljs-comment"># POST /artists.json</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> </span>create
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.new(artist_params)
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>update
-  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:id</span>])
-  <span class="hljs-variable">@artist</span>.update(artist_params)
-  redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
+  respond_to <span class="hljs-keyword">do</span> |format|
+    <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>.save
+      format.html { redirect_to <span class="hljs-variable">@artist</span>, <span class="hljs-symbol">notice:</span> <span class="hljs-string">&apos;Artist was successfully created.&apos;</span> }
+      format.json { render <span class="hljs-symbol">:show</span>, <span class="hljs-symbol">status:</span> <span class="hljs-symbol">:created</span>, <span class="hljs-symbol">location:</span> <span class="hljs-variable">@artist</span> }
+    <span class="hljs-keyword">else</span>
+      format.html { render <span class="hljs-symbol">:new</span> }
+      format.json { render <span class="hljs-symbol">json:</span> <span class="hljs-variable">@artist</span>.errors, <span class="hljs-symbol">status:</span> <span class="hljs-symbol">:unprocessable_entity</span> }
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<p>Great, now we&apos;re protected!</p>
-<h2 id="you-do-30-125">You do - (30/125)</h2>
+<p>I read this as:</p>
 <ul>
-<li>Incorporate strong params for the song model now.</li>
+<li><p>If we successfully save the @artist...</p>
+<ul>
+<li>When the requested format is &quot;html&quot;, we redirect to the show page for the @artist.  </li>
+<li>When the requested format is &quot;json&quot;, we return the @artist as JSON, with an HTTP status of &quot;201 Created&quot;.</li>
 </ul>
-<h2 id="open-review-25-150">Open Review (25/150)</h2>
+</li>
+<li><p>If save fails...</p>
+<ul>
+<li>When the requested format is &quot;html&quot;, we render the :new page - to show the human the error of their ways.</li>
+<li>When the requested format is &quot;json&quot;, we return the error as JSON and inform the requesting computer that we have an &quot;unprocessable_entity&quot;.  Trust me, they&apos;ll understand.</li>
+</ul>
+</li>
+</ul>
+<p>Let&apos;s test it.  How do we send a POST request in the browser?  Via a form.</p>
+<p>Let&apos;s use CocoaRestClient.</p>
+<p>More html.  Drat.</p>
+<p>This is an error page, rendered as html.  Sometimes you just have to wade through the html.  Scroll down until you get to the &quot;body&quot;.</p>
+<pre><code class="lang-html"> <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>
+  ActionController::InvalidAuthenticityToken
+    in ArtistsController#create
+<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+</code></pre>
+<p>Ah yes.  Rails uses an Authenticity token for security.  It will provide it for any request made within a form it renders.   CocoaRestClient is decidedly not that.  Let&apos;s temporarily adjust that setting for testing pruposes.  When we go back to using html forms, we can set it back.</p>
+<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActionController::Base</span></span></span>
+  <span class="hljs-comment"># Prevent CSRF attacks by raising an exception.</span>
+  <span class="hljs-comment"># For APIs, you may want to use :null_session instead.</span>
+  <span class="hljs-comment"># protect_from_forgery with: :exception</span>
+  <span class="hljs-comment"># support API, see: http://stackoverflow.com/questions/9362910/rails-warning-cant-verify-csrf-token-authenticity-for-json-devise-requests</span>
+  protect_from_forgery <span class="hljs-symbol">with:</span> <span class="hljs-symbol">:null_session</span>, <span class="hljs-symbol">if:</span> <span class="hljs-constant">Proc</span>.new { |c| c.request.format == <span class="hljs-string">&apos;application/json&apos;</span> }
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Testing again, we see what we expect... success (201 Created), <strong>BUT</strong> see none of the passed data in the new Artist. :(</p>
+<p>Checking the server logs, we see:</p>
+<pre><code>Can&apos;t verify CSRF token authenticity
+</code></pre><p>Did we configure CocoaRstClient to say the ContentType was &quot;application/json&quot;?  Nope.</p>
+<p>Success!</p>
+<h3 id="you-do-tunr-songs-create-songs-update">You do: Tunr songs#create, songs#update</h3>
+<p>Your turn.  Make sure we can create and update Songs via requests that expect JSON.</p>
+<h3 id="-optional-active-model-serializers">[optional] Active Model Serializers</h3>
+<ul>
+<li>brief overview/comparison</li>
+</ul>
+<h2 id="3rd-party-apis-15-min">3rd Party APIs (15 min)</h2>
+<p>Other companies have created something similar.  Some follow the REST guidelines, some don&apos;t.  When we want ot retruve information from them we nedd to make an http request from within our application.  There are a few libraries that help with this.  We&apos;ll review <a href="https://github.com/jnunemaker/httparty" target="_blank">HTTParty</a>.</p>
+<h3 id="short-demo-of-httparty">Short demo of HTTParty</h3>
+<ul>
+<li>After adding it to our Gemfile.  We can start using it right away,</li>
+</ul>
+<pre><code class="lang-ruby">response = <span class="hljs-constant">HTTParty</span>.get(<span class="hljs-string">&apos;https://api.stackexchange.com/2.2/questions?site=stackoverflow&apos;</span>)
+</code></pre>
+<p>Checkout the response:</p>
+<pre><code>response.code
+response.message
+response.body
+response.headers
+</code></pre><p>Or better yet, you can make a PORO (Plain Old Ruby Object) class and use that.</p>
+<pre><code>class StackExchange
+  include HTTParty
+  base_uri &apos;api.stackexchange.com&apos;
+
+  def initialize(service, page)
+    @options = { query: {site: service, page: page} }
+  end
+
+  def questions
+    self.class.get(&quot;/2.2/questions&quot;, @options)
+  end
+
+  def users
+    self.class.get(&quot;/2.2/users&quot;, @options)
+  end
+end
+</code></pre><p>Using it from <code>rails console</code>:</p>
+<pre><code class="lang-ruby">stack_exchange = <span class="hljs-constant">StackExchange</span>.new(<span class="hljs-string">&quot;stackoverflow&quot;</span>, <span class="hljs-number">1</span>)
+</code></pre>
+<pre><code class="lang-ruby">stack_exchange.questions
+stack_exchange.users
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>Review Learning Objectives</p>
+<h2 id="resources">Resources:</h2>
+<ul>
+<li><a href="https://github.com/mmattozzi/cocoa-rest-client" target="_blank">https://github.com/mmattozzi/cocoa-rest-client</a></li>
+</ul>
 
                     
                     </section>
@@ -1100,10 +1215,10 @@ artists_new GET    /artists/new(.:format)      artists<span class="hljs-comment"
         </div>
 
         
-        <a href="../../05-mvc-with-rails/rails-models-and-migrations/readme.html" class="navigation navigation-prev " aria-label="Previous page: Models and Migrations"><i class="fa fa-angle-left"></i></a>
+        <a href="../../05-mvc-with-rails/rails-deployment/readme.html" class="navigation navigation-prev " aria-label="Previous page: Deployment"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../05-mvc-with-rails/rails-routes-and-resources/readme.html" class="navigation navigation-next " aria-label="Next page: Routes and Resources"><i class="fa fa-angle-right"></i></a>
+        <a href="../../07-uxdi-collaboration/ajax/readme.html" class="navigation navigation-next " aria-label="Next page: Ajax"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
