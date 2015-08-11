@@ -24,11 +24,16 @@ Let's look at google maps. How would this site work with things not happening as
 
 For the first part of this lesson, we'll be using the [weather underground api](http://www.wunderground.com/weather/api/d/docs)
 
+## You do sign up and register for a key!
+You guys can signup and register for your very own key!
+
 So if we go to this link, and we go to the example in the middle of the page, we can see a url, something like: `http://api.wunderground.com/api/Your_Key/conditions/q/CA/San_Francisco.json`
 
-You guys can signup and register for your very own key! For now, let's just use mine: `http://api.wunderground.com/api/f28a93cae85945b6/conditions/q/CA/San_Francisco.json`
+Let go to this url `http://api.wunderground.com/api/f28a93cae85945b6/conditions/q/CA/San_Francisco.json`:
 
-Lets not go crazy and screw your instructor though, we only have a rate limit of 500!
+> replace my key with yours if you've registered and received a key
+
+If you're using the key provided in the lesson plan, we only have a rate limit of 500 so please don't over use!
 
 So if you go to this URL, you'll see a really gigantic hash. It can be really intimidating at first. But let's just start clicking around till we find some information we might want to display.
 
@@ -101,7 +106,7 @@ $(document).ready(function(){
   })
 })
 ```
-> You'll notice there are 3 functions that are tacked onto the AJAX call. These are known as promises. What are promises? They're just callbacks that may or may not happen. In the `.done()` promise if that ajax is executed successfully, the block of code inside it will execute. In the `.fail()` promise, if that ajax is not executed successfully, the block of code inside it will execute. In the `.always()` promise, code block inside will always occur regardless of the ajax's success.
+> You'll notice there are 3 functions that are tacked onto the AJAX call. These are known as promises. What are promises? They're just callbacks that may or may not happen. A promise represents the future result of an asynchronous operation. In the `.done()` promise if that ajax is executed successfully, the block of code inside it will execute. In the `.fail()` promise, if that ajax is not executed successfully, the block of code inside it will execute. In the `.always()` promise, code block inside will always occur regardless of the ajax's success.
 
 > If we mess up the URL even by one character, it goes from being a success to a failure. SO be sure to make sure your end points are... on point!
 
@@ -135,7 +140,11 @@ We can drill through this response just like any other JS object.
 ## AJAX - CUD intro (5/75)
 So we've used AJAX to do an asynchronous `get` request to a third party API. But it wouldn't make sense for us to be able to do CUD functionality to that same site. They probably don't want anyone that's not a developer there to be able to update the weather however we want. That is not to say that kind of functionality doesn't exist, we just don't have access to it.
 
-It just so happens we've built a new Rails API (through matt's class) where we can do full CRUD with AJAX. Go ahead and fork and clone [this repo](https://github.com/ga-dc/tunr_ajax). We can now use `$.ajax()` to CRUD the models of our tunr app! Let's go ahead and create a new artists controller action and corresponding view: `test_ajax`
+It just so happens we've built a new Rails API (through matt's class) where we can do full CRUD with AJAX. Go ahead and fork and clone [this repo](https://github.com/ga-dc/tunr_ajax).
+
+Once you've cloned the repo cd into it and run the commands  `$bundle install`, `$rake db:create`, `$rake db:migrate` and `$rake db:seed` in the terminal
+
+We can now use `$.ajax()` to CRUD the models of our tunr app! Let's go ahead and create a new artists controller action and corresponding view: `test_ajax`
 
 ## Setting up a view to test AJAX with (10/85)
 Let's update our routes in `config/routes.rb` for a new route to test all of our AJAX calls in:
@@ -154,10 +163,10 @@ end
 in `app/views/artists/test_ajax.html.erb`:
 
 ```html
-<div class="test_ajax_get">AJAX!</div>
-<div class="test_ajax_post">AJAX!</div>
-<div class="test_ajax_put">AJAX!</div>
-<div class="test_ajax_delete">AJAX!</div>
+<div class="test_ajax_get">AJAX GET!</div>
+<div class="test_ajax_post">AJAX POST!</div>
+<div class="test_ajax_put">AJAX PUT!</div>
+<div class="test_ajax_delete">AJAX DELETE!</div>
 ```
 
 We're just going to add a quick event listener to this div inside `app/assets/javascripts/application.js`:
@@ -189,7 +198,7 @@ $(document).ready(function(){
 })
 ```
 
-> If we drill through this response, we can see all of the artists that were seeded in the database. Here in the done response I could display whatever i want from the response.
+> If access the objects in this response, we can see all of the artists that were seeded in the database. Here in the done response I could display whatever i want from the response.
 
 ## Setup for AJAX post (10/100)
 Lets update our view to include some input fields and all of our existing articles in `app/views/artists/test_ajax.html.erb`:
@@ -293,9 +302,22 @@ $(".test_ajax_delete").on("click", function(){
 
 > read above comments for ajax put
 
+### Bonus exercises for put and delete
+- create a button or link, when clicked creates in line editing for an artist
+- should then also create a button that submits an AJAX put request to update that artist in the database and change the view on the client side if need be
+- create a button or link for each artist that submits an AJAX delete request to delete an artist in the database, update the view in the client side accordingly.
+
 ## You do! On your own time(Practice makes perfect:smile:)
 - Try the same thing with songs resources
 
 - Try and recreate these AJAX request on another app you've created like scribbler or your project. Be sure to make sure your controller actions repond to json.
 
 - Try and incorporate AJAX into your collaborative project /w UXDI!
+
+## Sample quiz questions
+
+1. Write an AJAX GET request to a known end point.
+
+2. How does a promise differ from a callback?
+
+3. Write an AJAX POST to create an object in a rails application.
