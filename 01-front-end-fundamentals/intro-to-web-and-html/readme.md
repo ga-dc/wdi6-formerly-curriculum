@@ -29,3 +29,15 @@ Content Management Systems, aka CMS-es, aka or website-builders, will quickly gi
 If, however, you want to have a site that's 100% the way you want it, and to have complete control over your appearance and product, then you need to pop the hood and use code.
 
 ## Let's talk about how the web works...
+
+-----
+
+## Quiz Questions
+
+- Which of the following is the best way to center the text in div?
+    - `<div><center></center></div>`
+    - `<div align="center"></div>`
+    - `<style>div{ text-align:center; }</style>`
+    - `<div style="text-align:center;"></div>`
+- Why do we write `<img />` and not `<img></img>`?
+- Why is it important to keep semantics (HTML) separate from style (CSS)?

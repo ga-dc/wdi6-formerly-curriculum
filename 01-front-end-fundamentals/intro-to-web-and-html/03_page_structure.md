@@ -74,4 +74,8 @@ The problem is there are certain elements *every* webpage needs to have. The com
 
 ## You must have exactly one of each of these elements on every webpage.
 
-(Insert Fresh Prince exercise here)
+##### Quick review: What's the difference between `<head>`, `<h1>` (headline), and `<header>`?
+
+[Insert Fresh Prince exercise here](https://github.com/ga-dc/belair_biography)
+
+[Homework: HTML_Resume](https://github.com/ga-dc/html_resume)
