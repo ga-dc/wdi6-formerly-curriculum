@@ -1,37 +1,57 @@
 # CSS Grids
 
 ## Learning Objectives
-* Explain the benefits of using CSS grids in web design.
+* Explain why we use CSS grids.
 * Identify the basic components of a grid.
 * Review float, clearfix and other CSS properties.
 * Build a grid from scratch.
 * Use nested columns in a grid.
 * Examine how grids are utilized in a front-end framework (e.g., Bootstrap).
 
-## Opening Exercise
+## Opening Exercise (10 / 10)
 
-Whiteboard a wireframe for [TBD website].
+Whiteboard a wireframe for [Craigslist](http://washingtondc.craigslist.org/).
 * Focus on the site's overall structure and main components, not the specific content.
 * Keep an eye for width, height, proportion, number of components.
 * [Sample wireframe.](http://www.comentum.com/images/wireframes-sample/ecommerce/home.png)
 
-## Why use a CSS grid?
+## Some History (5 / 15)
+
+Let's go back in time, back to when the "Internet" became a thing.
+* Back then there was no such thing as layout. Just documents, with "stuff" floating around in them.
+
+Then came tables, the first semblance of a grid-like structure.
+* These were super popular in the '90s. [Space Jam anyone](http://www.warnerbros.com/archive/spacejam/movie/jam.htm)?
+  * Show on Pesticide.io.
+* Downside: very hard to maintain and no semantic HTML. Just look at the [source code](view-source:http://www.warnerbros.com/archive/spacejam/movie/jam.htm).
+
+Then came floats.
+* With floats we were able to align things to the left and right.
+* We found ourselves doing this pretty often to a lot of different elements. Patterns emerged.
+* Perhaps there is a semantic way to make our lives easier and condense all this floating into a few "utility classes."
+* Enter grids...
+
+## Why use a CSS grid? (5 / 20)
 
 ### Structure
 * Debugging CSS is a PAIN. It's easy to start throwing CSS selectors and properties at a problem, but once you get in too deep, it's hard to dig your way back out.
 * Grids aren't a cure-all to CSS woes, but they give your site a form and structure to work from.
 
-## Basic components of a grid
+### Reusability
+* While debugging may suck, laying out things isn't always particularly difficult.
+* Grids make the layout process easier because of resusable, semantically-named "utility classes" (i.e., a library of CSS class selectors).
+
+## Basic components of a grid (5 / 25)
 
 ### Rows
 * The highest-level component of a grid.
 * Comprised of columns.
-* [Show where rows are on an example website]
 
 ### Columns
 * Contain and separate site content.
-* [Show where columns are on an example website].
 
+### Gutters
+* Provides spacing between our columns. Optional, but useful.
 
 ## Let's build a grid
 
@@ -79,7 +99,7 @@ Let's start by creating `.column` and `.row` class selectors.
 
 Before we start defining widths and giving our grid system some versatility, we need to take care of a few things...
 
-### Box-Sizing
+### Box-Sizing (10 / 35)
 
 **Q:** By default, what is `width` defined as?
 * width = content
@@ -94,15 +114,19 @@ We want to be able to explicitly define our column widths so that they also incl
 
 .row, .column {
   /* By default, box-sizing is set to content-box */
-  box-sixing: border-box;
+  box-sizing: border-box;
 }
 ```
 
-### Clearfix
+### Clearfix (10 / 45)
 
 Our grid relies on being able to float columns. These columns will most likely contain content of various sizes.
 * We need to make sure each piece of content is constrained to its respective row and column containers
-* This is where the clearfix technique comes in. Fortunately, it's easy to implement (as long as you don't care about how your site looks in Internet Explorer).
+
+Let's [illustrate this problem](https://jsfiddle.net/w0m0L8sg/).
+* As this code stands, we have a row that contains two squares. But these squares are overflowing out of the row, which appears as a straight black line.
+
+This is where the clearfix technique comes in. Fortunately, it's easy to implement (as long as you don't care about how your site looks in Internet Explorer).
 
 ```css
 .row {
@@ -125,7 +149,10 @@ Easy, right? But like I said, if we want to help out our IE friends, implementin
 }
 ```
 
-### Define Column Behavior
+[Strangely enough](https://en.wikipedia.org/wiki/Internet_Explorer_box_model_bug), something that Internet Explorer actually got right was `box-sizing`.
+* IE6, released back in 2006, had `box-sizing` set to `border-box` by default.
+
+### Define Column Behavior (15 / 60)
 
 So our rows are actually good to go!
 * They're just horizontal containers.
@@ -135,7 +162,6 @@ So our rows are actually good to go!
 ```css
 .column {
   float: left;
-  position: relative;
 }
 ```
 
@@ -172,12 +198,13 @@ We need to...
 * **Define total width.** In any scenario, we want our total grid width to cover the entire page.
 * **Give everything some space.** Our grid will look better if we give our rows and columns some breathing room.
 
-### Create Columns with Specific Widths
+### BREAK (10 / 70)
 
-**REF:** Show either example website or student whiteboard response from earlier example.
+### Create Columns with Specific Widths (15 / 85)
 
 So we want to define our column widths not by the width of their content but how much of the page we want them to take up.
 * Ex. a sidebar nav that takes up 1/6 of total page width.
+* This is actually a topic of debate. Learn more [here](http://alistapart.com/article/content-out-layout).
 
 Most grids have a column size of 12.
 * That means the total column width for each row should equal 12.
@@ -211,6 +238,8 @@ Most grids have a column size of 12.
 .column-11 { width: 91.66%; }
 .column-12 { width: 100%; }
 ```
+
+TODO: COLUMN*= SHORTCUT
 
 You don't have to use the same class selector syntax as the above example.
 * You can and should customize your grid to fit your own needs.
@@ -255,7 +284,6 @@ Let's also add some styling that will help us visualize this better.
 
 .column {
   float: left;
-  position: relative;
   border: 2px solid Tomato;
   border-radius: 20px;
   text-align: center;
@@ -264,8 +292,7 @@ Let's also add some styling that will help us visualize this better.
 /* Let's give the sections of our site some width/height */
 .header > .column,
 .footer > .column {
-  height: 50px;
-  line-height: 50px;
+  padding: 25px;
 }
 
 .middle > .column {
@@ -284,16 +311,24 @@ Let's also add some styling that will help us visualize this better.
 }
 ```
 
+!["before adding gutters"](img/pre-adding-gutters.png)
+
 Let's take another look at our `index.html` in the browser.
 * You can see our website has some form now.
 * Our sections could use some space though...
 
-### Gutters
+### Gutters (15 / 100)
+
+Wrapping your head around gutters is harder than you might think. Even in planning for this lesson, I struggled thinking of the best way to teach this.
 
 **Q:** How should we go about putting space between the sections of our site?
 * What CSS properties do we have at our disposal?
 
-Let's give each of our columns a little bit of margin. That should put just enough space between them.
+We could try padding?
+* But changing padding wouldn't make a difference since `box-sizing` is set to `border-box`.
+
+What about margin? Maybe.
+* Let's give each of our columns a little bit of margin. That should put just enough space between them.
 
 ```css
 
@@ -316,8 +351,7 @@ Let's see what our webpage looks like now...
 
 Ahh, what happened?
 * Our width calculations are messed up since we added a 1% margin to each column.
-* **Q:** How do we go about fixing this?
-* Let's adjust our widths...
+* **Q:** How could we fix this? How about adjusting our widths?
 
 ```css
 /* Since we added 1% margin to each column, we need to adjust our widths by -2% (1% on the left, 1% on the right). */
@@ -336,14 +370,63 @@ Ahh, what happened?
 .column-12 { width: 98%; }
 ```
 
-Did that work?
+That does work...
 
 !["gutters post width adjustment"](img/gutters-post-width-adjustment.png)
 
-Nice! Why did we have to do this? Didn't we set our `box-sizing` to `border-box` earlier in the class?
-* Yes, but that does include `margin`. Our CSS would have automatically adjustd for any changes to `border` or `padding`.
+...but it can get pretty tedious.  
 
-#### Nested Columns
+And what if we want some parts of our page to have larger/smaller gutters than others. How do we account for that?
+
+#### Spacers
+
+The best way to go about adding gutters is using something called "spacers".
+* These are `<div>`'s that we place inside of our columns.
+* We can then give these spacers margins without displacing our columns.
+  * These margins count towards the content width of our column, meaning that they are included as width under box-sizing.
+
+Let's add some spacers to `index.html`...
+
+```html
+<body>
+  ...
+  <div class="row middle">
+    <div class="column column-2">
+      <div class="spacer">-</div>
+    </div>
+    <div class="column column-8">
+      <!-- Place column content inside spacer -->
+      <div class="spacer">So much content.</div>
+    </div>
+    <div class="column column-2">-</div>
+  </div>
+  ...
+</body>
+```
+
+Now let's create a `.spacer` selector in `style.css`
+
+```css
+.spacer {
+  /* Let's add a background color to our spacers so they're clearly visible.*/
+  background: lightblue;
+
+  /* Now let's give our spacers a left and right margin of 10px */
+  margin: 0 10px 0 10px;
+}
+```
+
+The result...
+
+!["spacers added"](img/spacers-added.png)
+
+Now we have some space between our columns' content.
+* The whitespace is the margins generated by our spacer elements.
+* If we wanted, we could go in and give each of our spacers custom margins. Potential for customization is high here.
+
+### Nested Columns (10 / 110)
+
+Last thing about grids I want to talk about are nested columns...
 
 We can "incept" our grid and plant columns within columns.
 * For example, say we want the middle column in the center of our site to be divided into three content sections.
@@ -370,7 +453,7 @@ We can "incept" our grid and plant columns within columns.
 And while we're at it, let's change the border color of our nested columns so we can see them better.
 
 ```css
-.column > .column {
+.column .column {
   border: 2px solid springgreen;
 }
 ```
@@ -379,22 +462,28 @@ Let's see how that changed our page...
 
 !["nested columns"](img/nested-columns.png)
 
-**Be Warned:** Making columns (and rows) work might require a fair amount of tweaking depending on how your grid and gutters are set up.
+**Be Warned:** Making nested columns (and rows) work might require a fair amount of tweaking depending on how your grid and gutters are set up.
 
-## Exercise: Match That Grid (20min)
+## Exercise: Match That Grid (15 / 125)
 
-Use what we have learned in class to recreate the grid structure for [Craig's List](http://washingtondc.craigslist.org/).
+Use what we have learned in class to recreate the grid structure for [Craigslist](http://washingtondc.craigslist.org/).
 * Clear out the HTML in the `<body>` of `index.html` and build it from scratch using the CSS selectors we created.
 * Don't worry about content. Just outline the main portions of the site.
 * Start simple. Begin with the larger, outermost containers and work your way to the sub-containers.
+* Hold off on gutters and spacers until you've built a basic grid.
+* Use your wireframe from the opening exercise as guidance.
 * **NOTE:** I would suggest removing the gutters / margin from the CSS and resetting your widths to their original values.
 
 ### Bonus
-* Add gutters / margin wherever necessary.
+* Add gutters and spacers wherever necessary.
 * Replace the column class selector syntax (e.g., `.column-6`) with your own!
 * Add some content to your columns. Keep it simple - we don't expect you to recreate the site.
 
-## Front-End Frameworks
+## Break (10 / 135)
+
+## Front-End Frameworks (10 / 145)
+
+You don't always have to build a grid from the ground up.
 
 **Q:** What is a CSS front-end framework?
 * Like a library, in that it gives us a toolkit that we can use to streamline the front-end development process.
@@ -419,7 +508,7 @@ Bootstrap uses a similar class selector syntax for columns as what we used in ou
   * In this example, `md` stands for "medium" and covers most laptops and desktops.
   * Don't worry about the other sizes for now. You'll learn about Responsive Web Design later this week.
 
-### Exercise: Implement Bootstrap (20min)
+### Exercise: Implement Bootstrap (10 / 155)
 
 Let's implement the [Craig's List grid](http://washingtondc.craigslist.org/) you created in the last exercise using Bootstrap.
   1. Link the Bootstrap stylesheet to your `index.html` file [using a CDN](http://getbootstrap.com/getting-started/).
@@ -428,6 +517,10 @@ Let's implement the [Craig's List grid](http://washingtondc.craigslist.org/) you
 
 ## Additional Reading
 
+* [Pesticide.io](http://pesticide.io/)
+* [Internet Explorer Box Model Bug](https://en.wikipedia.org/wiki/Internet_Explorer_box_model_bug)
 * [Learn Layout: Clearfix](http://learnlayout.com/clearfix.html)
+* [A New Micro Clearfix Hack](http://nicolasgallagher.com/micro-clearfix-hack/)
+* [Content-Out Layout](http://alistapart.com/article/content-out-layout)
 * [Bootstrap CSS Documentation](http://getbootstrap.com/css/)
-* [Grits, a grid system made by Jesse](http://jshawl.github.io/grits/)
+* [Grits, a grid system made by Jesse Shawl](http://jshawl.github.io/grits/)
