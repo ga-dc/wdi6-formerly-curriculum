@@ -35,7 +35,7 @@ Let go to this url `http://api.wunderground.com/api/f28a93cae85945b6/conditions/
 
 If you're using the key provided in the lesson plan, we only have a rate limit of 500 so please don't over use!
 
-So if you go to this URL, you'll see a really gigantic hash. It can be really intimidating at first. But let's just start clicking around till we find some information we might want to display.
+So if you go to this URL, you'll see a really gigantic object(hash in ruby). It can be really intimidating at first. But let's just start clicking around till we find some information we might want to display.
 
 Turns out, we can actually access this json object using Javascript!
 
