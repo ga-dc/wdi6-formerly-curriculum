@@ -472,7 +472,6 @@ Use what we have learned in class to recreate the grid structure for [Craigslist
 * Start simple. Begin with the larger, outermost containers and work your way to the sub-containers.
 * Hold off on gutters and spacers until you've built a basic grid.
 * Use your wireframe from the opening exercise as guidance.
-* **NOTE:** I would suggest removing the gutters / margin from the CSS and resetting your widths to their original values.
 
 ### Bonus
 * Add gutters and spacers wherever necessary.
