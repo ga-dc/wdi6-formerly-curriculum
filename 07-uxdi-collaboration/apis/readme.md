@@ -12,6 +12,7 @@
 
 > “APIs are going to be **the driver for the digital economy** and unless they [companies] are talking about APIs already, they will be left behind.” -- James Parton of Twilio
 
+And...
 
 > Twitter no longer wants to be a web app. Twitter wants to be **a set of APIs that power mobile clients worldwide**, acting as one of the largest real-time event busses on the planet.
 
@@ -21,14 +22,15 @@ So... whatever it is, this API thing sounds kind of important.
 
 Up to this point, we have built applications for humans.  We created views that render html, so that a user can view and interact.
 
+I want to perform an experiment.  The results are rather predictable, but I feel it's important for us to see this again.
 
 ### Demo: Single user presses button
 
-App displays number of requests.  Renders HTML.  Only instructor.
+THis is a very basic app.  It simply logs requests.  When I press this link, that number increments.  That's it.
 
 ### Demo: Multiple users sending requests
 
-Same server.  All students pressing.  Open up to class.
+Same server.  Now, I want all of you to press the link.  Pretty fast, huh?
 
 > Q. Are there other ways to interact with our web servers?
 ---
@@ -78,12 +80,17 @@ No.  We don't want the structure and style anymore.  In fact, it just extra bagg
 
 Even with mobile, we're still talking about humans interacting with textfields and buttons - there's just another layer in between.  
 
-#### Demo: Multiple users using cocoa-rest-client
+#### Demo: Multiple users using http requests (cocoa-rest-client).
 
-Same server.  Students install cocoa-rest-client.  Open up to class.  Service displays RpS.
+Let's send requests like the mobile apps do.  A basic http request.
+CocoaRestClient is a native OSX app for making requests: [Download CocoaRestClient (v 1.3.9)](https://github.com/mmattozzi/cocoa-rest-client/releases/download/1.3.9/CocoaRestClient-1.3.9.dmg).
 
-Review/discuss output.
+- Type in the "url"
+- Ensure the "method" is "GET"
+- Press "Submit".  
+Voila, the request count increases.  No waiting for that pesky refresh.
 
+Compare `?requestCount=Human` to '?requestCount=computer'
 
 ### Machine to machine
 
@@ -93,7 +100,9 @@ What happens when these machines get together?  Speed happens.
 
 #### Demo: computer places requests.
 
-Same app.  Called from script.  App tracks click per second.  Renders json.
+Same app.  Called from script.  
+
+zoom zoom.
 
 Discuss magnitude of differences:
 - speed
@@ -103,30 +112,28 @@ Discuss magnitude of differences:
 
 ### Why just data?
 
-There are times when we just need the data.  For those times, we want a concise format.  
+Thats's all we need. All this information, from all these browsers and all these servers, has to travel through the network.  That's almost certainly the slowest part of the request cycle.  We want to minimize the bits.  There are times when we just need the data.  For those times, we want a concise format.  
 
 ## RESTful Review (10 min)
 
 - Everything is a Resource
-
-- Different formats.  Rails defaults to :html.  json, csv, xml, ..???
-
 - Let's create the http verbs + action table
   - show
   - index
   - new -> create
   - edit -> update
 
-
 ## Rails and json (30 min)
 
-A few decisions have been made for us:
+Resources can be represented by many formats.  Rails defaults to :html.  But it can easily respond with json, csv, xml, and others.
+
+It's time to get Rails to act like an API, in addition to it's html responsibilities.  A few decisions have been made for us:
 - following RESTful routes
 - requests are formatted as JSON
 
-We know how to support RESTful routes in Rails.  Let's work on JSON.  
+We are already supporting RESTful routes in Rails.  We can see that in our `rake routes`.  Let's work on JSON.  
 
-The two main JSON renderers are [jBuilder](https://github.com/rails/jbuilder) and Active Resource Serializers.  Rails uses jBuilder by default, so we'll start there.
+The two main JSON renderers (in use today) are [jBuilder](https://github.com/rails/jbuilder) and [Active Model Serializers](https://github.com/rails-api/active_model_serializers).  Rails uses jBuilder by default, so use that.
 
 ### I do: Tunr artists#show
 
@@ -282,9 +289,18 @@ I read this as:
   - When the requested format is "html", we render the :new page - to show the human the error of their ways.
   - When the requested format is "json", we return the error as JSON and inform the requesting computer that we have an "unprocessable_entity".  Trust me, they'll understand.
 
-Let's test it.  How do we send a POST request in the browser?  Via a form.
+> Q. Let's test it.  How do we send a POST request in the browser?
+---
 
-Let's use CocoaRestClient.
+Usually via a form.
+
+Today, we'll use CocoaRestClient.  It makes POSTing requests easy.
+
+- Enter url: localhost:3000/artists
+- Method: POST
+
+Add your Artist data to "Request Body".  Sometimes, I prefer the "Raw Input".
+Press "Submit".
 
 More html.  Drat.
 
@@ -315,7 +331,7 @@ Checking the server logs, we see:
 Can't verify CSRF token authenticity
 ```
 
-Did we configure CocoaRstClient to say the ContentType was "application/json"?  Nope.
+Did we configure CocoaRstClient to say the ContentType was "application/json"?  Nope.  Try again.
 
 Success!
 
