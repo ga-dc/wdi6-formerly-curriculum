@@ -32,7 +32,7 @@ Project 2 Check-ins (one-on-one, beginning just after standup)
 
 ## Mon Aug 10
 
-- Rosel P.
+- Rosel P. (temporary switch with Laura, due to Project 2)
 - **Open Appointment Time**
 
 ## Tue Aug 11
@@ -41,9 +41,28 @@ Project 2 Check-ins (one-on-one, beginning just after standup)
 
 ## Wed Aug 12
 
-- Eddie P.
-- Lon P.
+- Cheik
+- Nic
 
 ## Thur Aug 13
 
-- Justin P.
+- Malissa
+
+---
+
+## Mon Aug 17
+
+- Laura (temporary switch with Rosel, due to Project 2)
+
+## Tue Aug 18
+
+- Outcomes
+
+## Wed Aug 19
+
+- Eddie
+- Lon
+
+## Thu Aug 20
+
+- Justin

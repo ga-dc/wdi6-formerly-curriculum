@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="7.1" data-basepath="../.." data-revision="Tue Aug 11 2015 19:23:00 GMT+0000 (UTC)">
+    <div class="book" data-level="7.1" data-basepath="../.." data-revision="Tue Aug 11 2015 19:30:53 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -937,15 +937,19 @@
 <h2 id="overview">Overview</h2>
 <blockquote>
 <p>&#x201C;APIs are going to be <strong>the driver for the digital economy</strong> and unless they [companies] are talking about APIs already, they will be left behind.&#x201D; -- James Parton of Twilio</p>
+</blockquote>
+<p>And...</p>
+<blockquote>
 <p>Twitter no longer wants to be a web app. Twitter wants to be <strong>a set of APIs that power mobile clients worldwide</strong>, acting as one of the largest real-time event busses on the planet.</p>
 </blockquote>
 <p>So... whatever it is, this API thing sounds kind of important.</p>
 <h2 id="what-is-an-api-30-min">What is an API? (30 min)</h2>
 <p>Up to this point, we have built applications for humans.  We created views that render html, so that a user can view and interact.</p>
+<p>I want to perform an experiment.  The results are rather predictable, but I feel it&apos;s important for us to see this again.</p>
 <h3 id="demo-single-user-presses-button">Demo: Single user presses button</h3>
-<p>App displays number of requests.  Renders HTML.  Only instructor.</p>
+<p>THis is a very basic app.  It simply logs requests.  When I press this link, that number increments.  That&apos;s it.</p>
 <h3 id="demo-multiple-users-sending-requests">Demo: Multiple users sending requests</h3>
-<p>Same server.  All students pressing.  Open up to class.</p>
+<p>Same server.  Now, I want all of you to press the link.  Pretty fast, huh?</p>
 <h2 id="-q-are-there-other-ways-to-interact-with-our-web-servers">&gt; Q. Are there other ways to interact with our web servers?</h2>
 <p><a href="http://www.smartinsights.com/mobile-marketing/mobile-marketing-analytics/mobile-marketing-statistics/" target="_blank">How do we browse?</a></p>
 <p>It&apos;s not just <strong>us</strong> anymore.  <a href="https://en.wikipedia.org/wiki/Internet_of_Things" target="_blank">The Internet of Things</a></p>
@@ -977,16 +981,23 @@
 </li>
 </ul>
 <p>Even with mobile, we&apos;re still talking about humans interacting with textfields and buttons - there&apos;s just another layer in between.  </p>
-<h4 id="demo-multiple-users-using-cocoa-rest-client">Demo: Multiple users using cocoa-rest-client</h4>
-<p>Same server.  Students install cocoa-rest-client.  Open up to class.  Service displays RpS.</p>
-<p>Review/discuss output.</p>
+<h4 id="demo-multiple-users-using-http-requests-cocoa-rest-client">Demo: Multiple users using http requests (cocoa-rest-client).</h4>
+<p>Let&apos;s send requests like the mobile apps do.  A basic http request.
+CocoaRestClient is a native OSX app for making requests: <a href="https://github.com/mmattozzi/cocoa-rest-client/releases/download/1.3.9/CocoaRestClient-1.3.9.dmg" target="_blank">Download CocoaRestClient (v 1.3.9)</a>.</p>
+<ul>
+<li>Type in the &quot;url&quot;</li>
+<li>Ensure the &quot;method&quot; is &quot;GET&quot;</li>
+<li>Press &quot;Submit&quot;.<br>Voila, the request count increases.  No waiting for that pesky refresh.</li>
+</ul>
+<p>Compare <code>?requestCount=Human</code> to &apos;?requestCount=computer&apos;</p>
 <h3 id="machine-to-machine">Machine to machine</h3>
 <blockquote>
 <p>&quot;It [json] is easy for humans to read and write. It is easy for machines to parse and generate.&quot;</p>
 </blockquote>
 <p>What happens when these machines get together?  Speed happens.</p>
 <h4 id="demo-computer-places-requests">Demo: computer places requests.</h4>
-<p>Same app.  Called from script.  App tracks click per second.  Renders json.</p>
+<p>Same app.  Called from script.  </p>
+<p>zoom zoom.</p>
 <p>Discuss magnitude of differences:</p>
 <ul>
 <li>speed</li>
@@ -995,15 +1006,11 @@
 <li>24/7, never gets tired, hungry</li>
 </ul>
 <h3 id="why-just-data">Why just data?</h3>
-<p>There are times when we just need the data.  For those times, we want a concise format.  </p>
+<p>Thats&apos;s all we need. All this information, from all these browsers and all these servers, has to travel through the network.  That&apos;s almost certainly the slowest part of the request cycle.  We want to minimize the bits.  There are times when we just need the data.  For those times, we want a concise format.  </p>
 <h2 id="restful-review-10-min">RESTful Review (10 min)</h2>
 <ul>
-<li><p>Everything is a Resource</p>
-</li>
-<li><p>Different formats.  Rails defaults to :html.  json, csv, xml, ..???</p>
-</li>
-<li><p>Let&apos;s create the http verbs + action table</p>
-<ul>
+<li>Everything is a Resource</li>
+<li>Let&apos;s create the http verbs + action table<ul>
 <li>show</li>
 <li>index</li>
 <li>new -&gt; create</li>
@@ -1012,13 +1019,14 @@
 </li>
 </ul>
 <h2 id="rails-and-json-30-min">Rails and json (30 min)</h2>
-<p>A few decisions have been made for us:</p>
+<p>Resources can be represented by many formats.  Rails defaults to :html.  But it can easily respond with json, csv, xml, and others.</p>
+<p>It&apos;s time to get Rails to act like an API, in addition to it&apos;s html responsibilities.  A few decisions have been made for us:</p>
 <ul>
 <li>following RESTful routes</li>
 <li>requests are formatted as JSON</li>
 </ul>
-<p>We know how to support RESTful routes in Rails.  Let&apos;s work on JSON.  </p>
-<p>The two main JSON renderers are <a href="https://github.com/rails/jbuilder" target="_blank">jBuilder</a> and Active Resource Serializers.  Rails uses jBuilder by default, so we&apos;ll start there.</p>
+<p>We are already supporting RESTful routes in Rails.  We can see that in our <code>rake routes</code>.  Let&apos;s work on JSON.  </p>
+<p>The two main JSON renderers (in use today) are <a href="https://github.com/rails/jbuilder" target="_blank">jBuilder</a> and <a href="https://github.com/rails-api/active_model_serializers" target="_blank">Active Model Serializers</a>.  Rails uses jBuilder by default, so use that.</p>
 <h3 id="i-do-tunr-artists-show">I do: Tunr artists#show</h3>
 <p>Artists#show is a pretty small, well-defined step, let&apos;s start there.</p>
 <p>If I ask for html, Rails renders html.
@@ -1051,7 +1059,7 @@ artist  <span class="hljs-constant">GET</span>   /artists/<span class="hljs-symb
 <h2 id="-q-what-do-these-suffixes-mean">&gt; Q. What do these suffixes mean?</h2>
 <p>A. Use the &quot;jbuilder&quot; renderer to generate &quot;json&quot;.</p>
 <p>jBuilder has simple, succint declaration for generating json.</p>
-<p><code>json.extract! model, array of attributes</code></p>
+<p><code>json.extract! model, array of methods</code></p>
 <pre><code class="lang-ruby"><span class="hljs-comment"># app/views/artists/show.json.jbuilder</span>
 json.extract! <span class="hljs-variable">@artist</span>, <span class="hljs-symbol">:id</span>, <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">:photo_url</span>, <span class="hljs-symbol">:nationality</span>, <span class="hljs-symbol">:created_at</span>, <span class="hljs-symbol">:updated_at</span>
 </code></pre>
@@ -1060,6 +1068,8 @@ json.extract! <span class="hljs-variable">@artist</span>, <span class="hljs-symb
 <p>It&apos;s your turn to do the same for Songs.  Songs#show should return:</p>
 <p><code>:id, :title, :artist_name</code></p>
 <p>Tip: <code>json.extract!</code> only works with methods on the passed model.</p>
+<pre><code class="lang-ruby">json.extract! <span class="hljs-variable">@song</span>, <span class="hljs-symbol">:id</span>, <span class="hljs-symbol">:title</span>, <span class="hljs-symbol">:artist_name</span>
+</code></pre>
 <h3 id="i-do-tunr-artists-index">I do: Tunr artists#index</h3>
 <p>Let&apos;s move on to artists#index.  We want a list of Artists.  JSON supports Objects and... Arrays.  How handy.</p>
 <pre><code class="lang-ruby">json.array!(<span class="hljs-variable">@artists</span>) <span class="hljs-keyword">do</span> |artist|
@@ -1134,8 +1144,16 @@ json.extract! <span class="hljs-variable">@artist</span>, <span class="hljs-symb
 </ul>
 </li>
 </ul>
-<p>Let&apos;s test it.  How do we send a POST request in the browser?  Via a form.</p>
-<p>Let&apos;s use CocoaRestClient.</p>
+<h2 id="-q-let-s-test-it-how-do-we-send-a-post-request-in-the-browser">&gt; Q. Let&apos;s test it.  How do we send a POST request in the browser?</h2>
+<p>Usually via a form.</p>
+<p>Today, we&apos;ll use CocoaRestClient.  It makes POSTing requests easy.</p>
+<ul>
+<li>Enter url: localhost:3000/artists</li>
+<li>Method: POST</li>
+</ul>
+<p>Add your Artist data to &quot;Request Body&quot;.  Sometimes, I prefer the &quot;Raw Input&quot;.</p>
+<pre><code>{ &quot;artist&quot;: { &quot;name&quot; : &quot;Sting&quot; }}
+</code></pre><p>Press &quot;Submit&quot;.</p>
 <p>More html.  Drat.</p>
 <p>This is an error page, rendered as html.  Sometimes you just have to wade through the html.  Scroll down until you get to the &quot;body&quot;.</p>
 <pre><code class="lang-html"> <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>
@@ -1155,7 +1173,7 @@ json.extract! <span class="hljs-variable">@artist</span>, <span class="hljs-symb
 <p>Testing again, we see what we expect... success (201 Created), <strong>BUT</strong> see none of the passed data in the new Artist. :(</p>
 <p>Checking the server logs, we see:</p>
 <pre><code>Can&apos;t verify CSRF token authenticity
-</code></pre><p>Did we configure CocoaRstClient to say the ContentType was &quot;application/json&quot;?  Nope.</p>
+</code></pre><p>Did we configure CocoaRstClient to say the ContentType was &quot;application/json&quot;?  Nope.  Try again.</p>
 <p>Success!</p>
 <h3 id="you-do-tunr-songs-create-songs-update">You do: Tunr songs#create, songs#update</h3>
 <p>Your turn.  Make sure we can create and update Songs via requests that expect JSON.</p>
