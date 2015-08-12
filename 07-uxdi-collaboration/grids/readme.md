@@ -104,6 +104,9 @@ We want to be able to explicitly define our column widths so that they also incl
 }
 ```
 
+[Strangely enough](https://en.wikipedia.org/wiki/Internet_Explorer_box_model_bug), something that Internet Explorer actually got right was `box-sizing`.
+* IE6, released back in 2006, had `box-sizing` set to `border-box` by default.
+
 ### Clearfix (10 / 40)
 
 Our grid relies on being able to float columns. These columns will most likely contain content of various sizes.
@@ -134,9 +137,6 @@ Easy, right? But like I said, if we want to help out our IE friends, implementin
   clear: both;
 }
 ```
-
-[Strangely enough](https://en.wikipedia.org/wiki/Internet_Explorer_box_model_bug), something that Internet Explorer actually got right was `box-sizing`.
-* IE6, released back in 2006, had `box-sizing` set to `border-box` by default.
 
 ### Define Column Behavior (15 / 55)
 
@@ -457,7 +457,7 @@ Use what we have learned in class to recreate the grid structure for [Craigslist
 
 Notes
 * Don't worry about content. Just outline the main portions of the site.
-* Start simple. Begin with the larger, outermost containers and work your way to the sub-containers.
+* Start simple. Begin with the larger, outermost containers and work your way inside.
 * Hold off on gutters and modules until you've built a basic grid.
 * Not every `<div>` you create has to be a row or column.
 * Use your wireframe from the opening exercise as guidance.
@@ -497,7 +497,7 @@ Bootstrap uses a similar class selector syntax for columns as what we used in ou
 
 ### Exercise: Implement Bootstrap (10 / 150)
 
-Let's implement the [Craig's List grid](http://washingtondc.craigslist.org/) you created in the last exercise using Bootstrap
+Let's implement the [Craigslist grid](http://washingtondc.craigslist.org/) you created in the last exercise using Bootstrap
 * In your exercise `index.html` file, link to the Bootstrap stylesheet [using a CDN](http://getbootstrap.com/getting-started/).
 * You can keep using `style.css` too.
 * Implement the same grid from the last exercise using Bootstrap row and column class selectors. Again, not every `<div>` needs to a row or column.
