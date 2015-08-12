@@ -11,19 +11,21 @@
 ## Opening Exercise (10 / 10)
 
 Whiteboard a wireframe for [Craigslist](http://washingtondc.craigslist.org/).
-* Focus on the site's overall structure and main components, not the specific content.
-* Keep an eye for width, height, proportion, number of components.
+* Focus on the main components of the page, sections that would be defined by the rows and columns in our grid.
+* Don't worry about site content (e.g., text, images).
+* Keep an eye out for width, height, proportion, number of components.
 * [Sample wireframe.](http://www.comentum.com/images/wireframes-sample/ecommerce/home.png)
 
 ## Why use a CSS grid? (5 / 20)
 
 ### Structure
-* Debugging CSS is a PAIN. It's easy to start throwing CSS selectors and properties at a problem, but once you get in too deep, it's hard to dig your way back out.
-* Grids aren't a cure-all to CSS woes, but they give your site a form and structure to work from.
+* A simple way to apply layout to a webpage. Not only makes our lives as developers easier, but also benefits the user through design.
+* Avoid stressful CSS debugging by starting out on the right foot.
 
 ### Reusability
-* While debugging may suck, laying out things isn't always particularly difficult.
 * Grids make the layout process easier because of resusable, semantically-named "utility classes" (i.e., a library of CSS class selectors).
+* Grids aren't limited to a particular project. We can apply them to pretty much everything we do.
+* Grids are highly customizable. You can really make them your own.
 
 ## Basic components of a grid (5 / 25)
 
@@ -225,7 +227,8 @@ Most grids have a column size of 12.
 
 You don't have to use the same class selector syntax as the above example.
 * You can and should customize your grid to fit your own needs.
-* Ex. `.col-2-3` = a column that takes up 2/3 width of its parent container
+* Ex. `.col-2-3` = a column that takes up 2/3 width of its parent container.
+* If you want to see some alternate syntax, check out [Jesse's grid](http://jshawl.github.io/grits/)!
 
 Let's apply these selectors to `index.html` in a way that resembles an actual website.
 * Note the addition of the `.header` `.middle` and `.footer` class selectors to our rows.
@@ -259,7 +262,7 @@ Let's apply these selectors to `index.html` in a way that resembles an actual we
 ```
 
 Let's also add some styling that will help us visualize this better.
-* Note we gave our `.header` `.middle` and `.footer` selectors some explicit heights.
+* Note we give our `.header` `.middle` and `.footer` selectors some explicit padding and heights.
 
 ```css
 /* style.css */
@@ -271,7 +274,6 @@ Let's also add some styling that will help us visualize this better.
   text-align: center;
 }
 
-/* Let's give the sections of our site some width/height */
 .header > .column,
 .footer > .column {
   padding: 25px;
@@ -300,8 +302,6 @@ Let's take another look at our `index.html` in the browser.
 * Our sections could use some space though...
 
 ### Gutters (15 / 95)
-
-Wrapping your head around gutters is harder than you might think. Even in planning for this lesson, I struggled thinking of the best way to teach this.
 
 **Q:** How should we go about putting space between the sections of our site?
 * What CSS properties do we have at our disposal?
@@ -360,25 +360,25 @@ That does work...
 
 And what if we want some parts of our page to have larger/smaller gutters than others. How do we account for that?
 
-#### Spacers
+#### Modules
 
-The best way to go about adding gutters is using something called "spacers".
+The best way to go about adding gutters is using "modules".
 * These are `<div>`'s that we place inside of our columns.
-* We can then give these spacers margins without displacing our columns.
-  * These margins count towards the content width of our column, meaning that they are included as width under box-sizing.
+* We can then give these modules margins without displacing our columns.
+* These margins count towards the content width of our column, meaning that they are included as width under `border-box`.
 
-Let's add some spacers to `index.html`...
+Let's add some modules to `index.html`...
 
 ```html
 <body>
   ...
   <div class="row middle">
     <div class="column column-2">
-      <div class="spacer">-</div>
+      <div class="module">-</div>
     </div>
     <div class="column column-8">
-      <!-- Place column content inside spacer -->
-      <div class="spacer">So much content.</div>
+      <!-- Place column content inside module -->
+      <div class="module">So much content.</div>
     </div>
     <div class="column column-2">-</div>
   </div>
@@ -386,14 +386,14 @@ Let's add some spacers to `index.html`...
 </body>
 ```
 
-Now let's create a `.spacer` selector in `style.css`
+Now let's create a `.module` selector in `style.css`
 
 ```css
-.spacer {
-  /* Let's add a background color to our spacers so they're clearly visible.*/
+.module {
+  /* Let's add a background color to our modules so they're clearly visible.*/
   background: lightblue;
 
-  /* Now let's give our spacers a left and right margin of 10px */
+  /* Now let's give our modules a left and right margin of 10px */
   margin: 0 10px 0 10px;
 }
 ```
@@ -403,8 +403,8 @@ The result...
 !["spacers added"](img/spacers-added.png)
 
 Now we have some space between our columns' content.
-* The whitespace is the margins generated by our spacer elements.
-* If we wanted, we could go in and give each of our spacers custom margins. Potential for customization is high here.
+* The whitespace is the margins generated by our module elements.
+* If we wanted, we could go in and give each of our modules custom margins. Potential for customization is high here.
 
 ### Nested Columns (10 / 105)
 
@@ -449,14 +449,21 @@ Let's see how that changed our page...
 ## Exercise: Match That Grid (15 / 120)
 
 Use what we have learned in class to recreate the grid structure for [Craigslist](http://washingtondc.craigslist.org/).
-* Clear out the HTML in the `<body>` of `index.html` and build it from scratch using the CSS selectors we created.
+* Start out by copying our in-class files into an exercise folder.
+  * `$ mkdir exercise`
+  * `$ cp index.html style.css exercise`
+* In your exercise `index.html`, clear out all the content in `<body>`. We're going to start from scratch here.
+* Do not clear out anything in your exercise `style.css` though. We're still going to use this.
+
+Notes
 * Don't worry about content. Just outline the main portions of the site.
 * Start simple. Begin with the larger, outermost containers and work your way to the sub-containers.
-* Hold off on gutters and spacers until you've built a basic grid.
+* Hold off on gutters and modules until you've built a basic grid.
+* Not every `<div>` you create has to be a row or column.
 * Use your wireframe from the opening exercise as guidance.
 
 ### Bonus
-* Add gutters and spacers wherever necessary.
+* Add gutters and modules wherever necessary.
 * Replace the column class selector syntax (e.g., `.column-6`) with your own!
 * Add some content to your columns. Keep it simple - we don't expect you to recreate the site.
 
@@ -490,10 +497,11 @@ Bootstrap uses a similar class selector syntax for columns as what we used in ou
 
 ### Exercise: Implement Bootstrap (10 / 150)
 
-Let's implement the [Craig's List grid](http://washingtondc.craigslist.org/) you created in the last exercise using Bootstrap.
-  1. Link the Bootstrap stylesheet to your `index.html` file [using a CDN](http://getbootstrap.com/getting-started/).
-  2. Implement the same grid from the last exercise using Bootstrap row and column class selectors.
-  3. If you finish early, feel free to experiment with responsive column widths and/or add some additional styling to your page.
+Let's implement the [Craig's List grid](http://washingtondc.craigslist.org/) you created in the last exercise using Bootstrap
+* In your exercise `index.html` file, link to the Bootstrap stylesheet [using a CDN](http://getbootstrap.com/getting-started/).
+* You can keep using `style.css` too.
+* Implement the same grid from the last exercise using Bootstrap row and column class selectors. Again, not every `<div>` needs to a row or column.
+* If you finish early, feel free to experiment with responsive column widths and/or add some additional styling to your page.
 
 ## Additional Reading
 
