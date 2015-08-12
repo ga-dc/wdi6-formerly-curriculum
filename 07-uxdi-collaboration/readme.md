@@ -60,6 +60,7 @@ internet architecture standards.
 - Use the `transition` declaration to change element properties on events
 - Describe the purpose and syntax of css `keyframes`
 - List and describe the purpose of the `animation` properties
+- Describe the importance of prefixing CSS properties
 - Compare & contrast CSS Transitions and Animations
 - Create complex animations using CSS animation properties
 - Compare & contrast using CSS and JS for animations
