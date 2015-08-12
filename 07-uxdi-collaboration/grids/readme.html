@@ -34,7 +34,7 @@
     <body>
         
         
-    <div class="book" data-level="7.3" data-basepath="../.." data-revision="Tue Aug 11 2015 20:48:21 GMT+0000 (UTC)">
+    <div class="book" data-level="7.3" data-basepath="../.." data-revision="Wed Aug 12 2015 11:46:03 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -936,20 +936,22 @@
 <h2 id="opening-exercise-10-10">Opening Exercise (10 / 10)</h2>
 <p>Whiteboard a wireframe for <a href="http://washingtondc.craigslist.org/" target="_blank">Craigslist</a>.</p>
 <ul>
-<li>Focus on the site&apos;s overall structure and main components, not the specific content.</li>
-<li>Keep an eye for width, height, proportion, number of components.</li>
+<li>Focus on the main components of the page, sections that would be defined by the rows and columns in our grid.</li>
+<li>Don&apos;t worry about site content (e.g., text, images).</li>
+<li>Keep an eye out for width, height, proportion, number of components.</li>
 <li><a href="http://www.comentum.com/images/wireframes-sample/ecommerce/home.png" target="_blank">Sample wireframe.</a></li>
 </ul>
 <h2 id="why-use-a-css-grid-5-20">Why use a CSS grid? (5 / 20)</h2>
 <h3 id="structure">Structure</h3>
 <ul>
-<li>Debugging CSS is a PAIN. It&apos;s easy to start throwing CSS selectors and properties at a problem, but once you get in too deep, it&apos;s hard to dig your way back out.</li>
-<li>Grids aren&apos;t a cure-all to CSS woes, but they give your site a form and structure to work from.</li>
+<li>A simple way to apply layout to a webpage. Not only makes our lives as developers easier, but also benefits the user through design.</li>
+<li>Avoid stressful CSS debugging by starting out on the right foot.</li>
 </ul>
 <h3 id="reusability">Reusability</h3>
 <ul>
-<li>While debugging may suck, laying out things isn&apos;t always particularly difficult.</li>
 <li>Grids make the layout process easier because of resusable, semantically-named &quot;utility classes&quot; (i.e., a library of CSS class selectors).</li>
+<li>Grids aren&apos;t limited to a particular project. We can apply them to pretty much everything we do.</li>
+<li>Grids are highly customizable. You can really make them your own.</li>
 </ul>
 <h2 id="basic-components-of-a-grid-5-25">Basic components of a grid (5 / 25)</h2>
 <h3 id="rows">Rows</h3>
@@ -1142,7 +1144,8 @@
 <p>You don&apos;t have to use the same class selector syntax as the above example.</p>
 <ul>
 <li>You can and should customize your grid to fit your own needs.</li>
-<li>Ex. <code>.col-2-3</code> = a column that takes up 2/3 width of its parent container</li>
+<li>Ex. <code>.col-2-3</code> = a column that takes up 2/3 width of its parent container.</li>
+<li>If you want to see some alternate syntax, check out <a href="http://jshawl.github.io/grits/" target="_blank">Jesse&apos;s grid</a>!</li>
 </ul>
 <p>Let&apos;s apply these selectors to <code>index.html</code> in a way that resembles an actual website.</p>
 <ul>
@@ -1176,7 +1179,7 @@
 </code></pre>
 <p>Let&apos;s also add some styling that will help us visualize this better.</p>
 <ul>
-<li>Note we gave our <code>.header</code> <code>.middle</code> and <code>.footer</code> selectors some explicit heights.</li>
+<li>Note we give our <code>.header</code> <code>.middle</code> and <code>.footer</code> selectors some explicit padding and heights.</li>
 </ul>
 <pre><code class="lang-css"><span class="hljs-comment">/* style.css */</span>
 
@@ -1187,7 +1190,6 @@
   <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> center</span></span>;
 }</span>
 
-<span class="hljs-comment">/* Let&apos;s give the sections of our site some width/height */</span>
 <span class="hljs-class">.header</span> &gt; <span class="hljs-class">.column</span>,
 <span class="hljs-class">.footer</span> &gt; <span class="hljs-class">.column</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">25px</span></span></span>;
@@ -1215,7 +1217,6 @@
 <li>Our sections could use some space though...</li>
 </ul>
 <h3 id="gutters-15-95">Gutters (15 / 95)</h3>
-<p>Wrapping your head around gutters is harder than you might think. Even in planning for this lesson, I struggled thinking of the best way to teach this.</p>
 <p><strong>Q:</strong> How should we go about putting space between the sections of our site?</p>
 <ul>
 <li>What CSS properties do we have at our disposal?</li>
@@ -1266,37 +1267,35 @@
 <p><img src="img/gutters-post-width-adjustment.png" alt="&quot;gutters post width adjustment&quot;"></p>
 <p>...but it can get pretty tedious.  </p>
 <p>And what if we want some parts of our page to have larger/smaller gutters than others. How do we account for that?</p>
-<h4 id="spacers">Spacers</h4>
-<p>The best way to go about adding gutters is using something called &quot;spacers&quot;.</p>
+<h4 id="modules">Modules</h4>
+<p>The best way to go about adding gutters is using &quot;modules&quot;.</p>
 <ul>
 <li>These are <code>&lt;div&gt;</code>&apos;s that we place inside of our columns.</li>
-<li>We can then give these spacers margins without displacing our columns.<ul>
-<li>These margins count towards the content width of our column, meaning that they are included as width under box-sizing.</li>
+<li>We can then give these modules margins without displacing our columns.</li>
+<li>These margins count towards the content width of our column, meaning that they are included as width under <code>border-box</code>.</li>
 </ul>
-</li>
-</ul>
-<p>Let&apos;s add some spacers to <code>index.html</code>...</p>
+<p>Let&apos;s add some modules to <code>index.html</code>...</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
   ...
   <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;row middle&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;column column-2&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spacer&quot;</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;module&quot;</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;column column-8&quot;</span>&gt;</span>
-      <span class="hljs-comment">&lt;!-- Place column content inside spacer --&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spacer&quot;</span>&gt;</span>So much content.<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-comment">&lt;!-- Place column content inside module --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;module&quot;</span>&gt;</span>So much content.<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;column column-2&quot;</span>&gt;</span>-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
   ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
 </code></pre>
-<p>Now let&apos;s create a <code>.spacer</code> selector in <code>style.css</code></p>
-<pre><code class="lang-css"><span class="hljs-class">.spacer</span> <span class="hljs-rules">{
-  <span class="hljs-comment">/* Let&apos;s add a background color to our spacers so they&apos;re clearly visible.*/</span>
+<p>Now let&apos;s create a <code>.module</code> selector in <code>style.css</code></p>
+<pre><code class="lang-css"><span class="hljs-class">.module</span> <span class="hljs-rules">{
+  <span class="hljs-comment">/* Let&apos;s add a background color to our modules so they&apos;re clearly visible.*/</span>
   <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> lightblue</span></span>;
 
-  <span class="hljs-comment">/* Now let&apos;s give our spacers a left and right margin of 10px */</span>
+  <span class="hljs-comment">/* Now let&apos;s give our modules a left and right margin of 10px */</span>
   <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span></span></span>;
 }</span>
 </code></pre>
@@ -1304,8 +1303,8 @@
 <p><img src="img/spacers-added.png" alt="&quot;spacers added&quot;"></p>
 <p>Now we have some space between our columns&apos; content.</p>
 <ul>
-<li>The whitespace is the margins generated by our spacer elements.</li>
-<li>If we wanted, we could go in and give each of our spacers custom margins. Potential for customization is high here.</li>
+<li>The whitespace is the margins generated by our module elements.</li>
+<li>If we wanted, we could go in and give each of our modules custom margins. Potential for customization is high here.</li>
 </ul>
 <h3 id="nested-columns-10-105">Nested Columns (10 / 105)</h3>
 <p>Last thing about grids I want to talk about are nested columns...</p>
@@ -1341,15 +1340,25 @@
 <h2 id="exercise-match-that-grid-15-120">Exercise: Match That Grid (15 / 120)</h2>
 <p>Use what we have learned in class to recreate the grid structure for <a href="http://washingtondc.craigslist.org/" target="_blank">Craigslist</a>.</p>
 <ul>
-<li>Clear out the HTML in the <code>&lt;body&gt;</code> of <code>index.html</code> and build it from scratch using the CSS selectors we created.</li>
+<li>Start out by copying our in-class files into an exercise folder.<ul>
+<li><code>$ mkdir exercise</code></li>
+<li><code>$ cp index.html style.css exercise</code></li>
+</ul>
+</li>
+<li>In your exercise <code>index.html</code>, clear out all the content in <code>&lt;body&gt;</code>. We&apos;re going to start from scratch here.</li>
+<li>Do not clear out anything in your exercise <code>style.css</code> though. We&apos;re still going to use this.</li>
+</ul>
+<p>Notes</p>
+<ul>
 <li>Don&apos;t worry about content. Just outline the main portions of the site.</li>
 <li>Start simple. Begin with the larger, outermost containers and work your way to the sub-containers.</li>
-<li>Hold off on gutters and spacers until you&apos;ve built a basic grid.</li>
+<li>Hold off on gutters and modules until you&apos;ve built a basic grid.</li>
+<li>Not every <code>&lt;div&gt;</code> you create has to be a row or column.</li>
 <li>Use your wireframe from the opening exercise as guidance.</li>
 </ul>
 <h3 id="bonus">Bonus</h3>
 <ul>
-<li>Add gutters and spacers wherever necessary.</li>
+<li>Add gutters and modules wherever necessary.</li>
 <li>Replace the column class selector syntax (e.g., <code>.column-6</code>) with your own!</li>
 <li>Add some content to your columns. Keep it simple - we don&apos;t expect you to recreate the site.</li>
 </ul>
@@ -1383,12 +1392,13 @@
 </li>
 </ul>
 <h3 id="exercise-implement-bootstrap-10-150">Exercise: Implement Bootstrap (10 / 150)</h3>
-<p>Let&apos;s implement the <a href="http://washingtondc.craigslist.org/" target="_blank">Craig&apos;s List grid</a> you created in the last exercise using Bootstrap.</p>
-<ol>
-<li>Link the Bootstrap stylesheet to your <code>index.html</code> file <a href="http://getbootstrap.com/getting-started/" target="_blank">using a CDN</a>.</li>
-<li>Implement the same grid from the last exercise using Bootstrap row and column class selectors.</li>
+<p>Let&apos;s implement the <a href="http://washingtondc.craigslist.org/" target="_blank">Craig&apos;s List grid</a> you created in the last exercise using Bootstrap</p>
+<ul>
+<li>In your exercise <code>index.html</code> file, link to the Bootstrap stylesheet <a href="http://getbootstrap.com/getting-started/" target="_blank">using a CDN</a>.</li>
+<li>You can keep using <code>style.css</code> too.</li>
+<li>Implement the same grid from the last exercise using Bootstrap row and column class selectors. Again, not every <code>&lt;div&gt;</code> needs to a row or column.</li>
 <li>If you finish early, feel free to experiment with responsive column widths and/or add some additional styling to your page.</li>
-</ol>
+</ul>
 <h2 id="additional-reading">Additional Reading</h2>
 <ul>
 <li><a href="http://pesticide.io/" target="_blank">Pesticide.io</a></li>
