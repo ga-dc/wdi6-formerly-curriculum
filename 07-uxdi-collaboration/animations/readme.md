@@ -55,6 +55,7 @@ Work with a partner to implement as many of these exercises as you can:
 * [CSS Dock 1](http://zurb.com/playground/osx-dock) or [CSS Dock 2](https://github.com/michaelhue/cssdock) (Transitions and Animations)
 * [Image Hover Effects](http://tympanus.net/Tutorials/OriginalHoverEffects/) (Transitions and Animations)
 * [Solar System in CSS](http://neography.com/journal/our-solar-system-in-css3/) (Transitions and Animations)
+* [Clock]()
 
 ## Break (10 Minutes)
 
