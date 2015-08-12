@@ -1,4 +1,4 @@
-# Dart One on One Schedule
+# Fortran One on One Schedule
 
 One on ones are generally from 4:30pm to 5:00pm on Mondays, Wednesdays, and Thursdays.
 
