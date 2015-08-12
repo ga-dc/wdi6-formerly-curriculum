@@ -35,13 +35,15 @@ multiple values at once, etc.
 
 Breakout into groups of 4... each group will have 20 minutes to prepare a short
 explanation / demo of their assigned topic. Your demos should take **no longer than
-4 minutes**.
+5 minutes**.
 
-Group 1: CSS Transforms (No animation)
-Group 2: What is CSS Animation (High-level overview)
-Group 3: CSS Transitions
-Group 4: CSS Animations (basic keyframes and syntax)
-Group 5: CSS Animations (timing functions)
+| Group | Topic                                              |
+|-------|----------------------------------------------------|
+| 1     | CSS Transforms (No animation)                      |
+| 2     | CSS Transitions                                    |
+| 3     | CSS Animations (basic keyframes and syntax)        |
+| 4     | CSS Animations (timing functions)                  |
+| 5     | CSS Animations (iterations / repeats / direction ) |
 
 ## Break (10 minutes)
 
