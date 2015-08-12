@@ -34,7 +34,7 @@
     <body>
         
         
-    <div class="book" data-level="7.3" data-basepath="../.." data-revision="Wed Aug 12 2015 11:46:03 GMT+0000 (UTC)">
+    <div class="book" data-level="7.3" data-basepath="../.." data-revision="Wed Aug 12 2015 13:32:14 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1024,6 +1024,10 @@
   <span class="hljs-rule"><span class="hljs-attribute">box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
 }</span>
 </code></pre>
+<p><a href="https://en.wikipedia.org/wiki/Internet_Explorer_box_model_bug" target="_blank">Strangely enough</a>, something that Internet Explorer actually got right was <code>box-sizing</code>.</p>
+<ul>
+<li>IE6, released back in 2006, had <code>box-sizing</code> set to <code>border-box</code> by default.</li>
+</ul>
 <h3 id="clearfix-10-40">Clearfix (10 / 40)</h3>
 <p>Our grid relies on being able to float columns. These columns will most likely contain content of various sizes.</p>
 <ul>
@@ -1050,10 +1054,6 @@
   clear: both</span></span>;
 }
 </code></pre>
-<p><a href="https://en.wikipedia.org/wiki/Internet_Explorer_box_model_bug" target="_blank">Strangely enough</a>, something that Internet Explorer actually got right was <code>box-sizing</code>.</p>
-<ul>
-<li>IE6, released back in 2006, had <code>box-sizing</code> set to <code>border-box</code> by default.</li>
-</ul>
 <h3 id="define-column-behavior-15-55">Define Column Behavior (15 / 55)</h3>
 <p>So our rows are actually good to go!</p>
 <ul>
@@ -1351,7 +1351,7 @@
 <p>Notes</p>
 <ul>
 <li>Don&apos;t worry about content. Just outline the main portions of the site.</li>
-<li>Start simple. Begin with the larger, outermost containers and work your way to the sub-containers.</li>
+<li>Start simple. Begin with the larger, outermost containers and work your way inside.</li>
 <li>Hold off on gutters and modules until you&apos;ve built a basic grid.</li>
 <li>Not every <code>&lt;div&gt;</code> you create has to be a row or column.</li>
 <li>Use your wireframe from the opening exercise as guidance.</li>
@@ -1392,7 +1392,7 @@
 </li>
 </ul>
 <h3 id="exercise-implement-bootstrap-10-150">Exercise: Implement Bootstrap (10 / 150)</h3>
-<p>Let&apos;s implement the <a href="http://washingtondc.craigslist.org/" target="_blank">Craig&apos;s List grid</a> you created in the last exercise using Bootstrap</p>
+<p>Let&apos;s implement the <a href="http://washingtondc.craigslist.org/" target="_blank">Craigslist grid</a> you created in the last exercise using Bootstrap</p>
 <ul>
 <li>In your exercise <code>index.html</code> file, link to the Bootstrap stylesheet <a href="http://getbootstrap.com/getting-started/" target="_blank">using a CDN</a>.</li>
 <li>You can keep using <code>style.css</code> too.</li>
