@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Problem Modeling | Summary</title>
+        <title>Responsive Web Design | Summary</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -25,10 +25,8 @@
         
     
     
-    <link rel="next" href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html" />
     
-    
-    <link rel="prev" href="../../04-ruby-mvc-sinatra/ruby-enumerables/readme.html" />
+    <link rel="prev" href="../../07-uxdi-collaboration/animations/readme.html" />
     
 
         
@@ -36,7 +34,7 @@
     <body>
         
         
-    <div class="book" data-level="4.3" data-basepath="../.." data-revision="Thu Aug 13 2015 13:18:52 GMT+0000 (UTC)">
+    <div class="book" data-level="7.5" data-basepath="../.." data-revision="Thu Aug 13 2015 13:18:52 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -460,7 +458,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.3" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
+        <li class="chapter " data-level="4.3" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
             
                 
                     <a href="../../04-ruby-mvc-sinatra/problem_modeling/readme.html">
@@ -779,7 +777,7 @@
             
         </li>
     
-        <li class="chapter " data-level="7.5" data-path="07-uxdi-collaboration/responsive-web-design/readme.html">
+        <li class="chapter active" data-level="7.5" data-path="07-uxdi-collaboration/responsive-web-design/readme.html">
             
                 
                     <a href="../../07-uxdi-collaboration/responsive-web-design/readme.html">
@@ -955,162 +953,120 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="problems">Problems</h1>
-<blockquote>
-<p>That&apos;s why they pay us the big money.</p>
-<p>If the problem was easy, they wouldn&apos;t pay us like this.</p>
-</blockquote>
+                        <h1 id="responsive-web-design">Responsive Web Design</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Demonstrate how to break a problem into relevant parts</li>
-<li>Demonstrate multiple solutions, identifying tradeoffs</li>
-<li>Indicate what is easily solvable</li>
-<li>Identify areas of high/low risk
--</li>
+<li>Use media queries to adjust styles for different viewport sizes.</li>
+<li>Explain the difference between a responsive website and a mobile-specific website.</li>
+<li>Identify and use relative units like <code>em</code>, <code>rem</code>, <code>vh</code>, <code>vw</code>, etc..</li>
+<li>List the different media query values and their conditions.</li>
+<li>Use the iOS simulator, Safari console, and Chrome Dev tools to debug responsive CSS.</li>
+<li>Compare mobile-first to desktop-first responsive design</li>
 </ul>
-<h2 id="the-table-waiter-problem">The Table Waiter Problem</h2>
-<p>Let&apos;s jump right in.  We&apos;ll work on a problem together and then discuss helpful practices and procedures.</p>
-<p>Join your squad at a section of whiteboard and solve this problem.  We need a volunteer to record the steps you take and practices you use.</p>
+<h2 id="opening">Opening</h2>
+<p>Ultimately we are trying to answer the question:</p>
+<blockquote>
+<p>How do we build web applications and sites for an optimal interaction experience on a multitude of devices?</p>
+</blockquote>
+<h3 id="how-we-got-here">How we got here</h3>
+<p>In the beginning, there was no CSS. Every site looked nearly identical. As styling web pages became more common,
+developers began structuring their pages with table layouts and fixed-width CSS.</p>
+<p>Many designers still ask</p>
+<blockquote>
+<p>What are the most common dimensions for a website design?</p>
+</blockquote>
+<p>You tell me! <a href="http://screensiz.es" target="_blank">http://screensiz.es</a></p>
+<h2 id="you-do-turn-and-talk">You do: Turn and Talk</h2>
+<p>What makes a design fixed? What makes a design fluid? What makes a site responsive?</p>
+<p>Check out <a href="http://mediaqueri.es" target="_blank">mediaqueri.es</a> for inspiration.</p>
+<h2 id="mobile-specific-sites">Mobile Specific Sites</h2>
+<p>One way to create optimal experiences for mobile users is a dedicated mobile site.</p>
+<p>You know you&apos;re on one when you see <code>m.</code> in the url!</p>
+<p>Compare <a href="https://m.ups.com" target="_blank">https://m.ups.com</a> with <a href="https://ups.com" target="_blank">https://ups.com</a></p>
+<p><img src="http://imgs.xkcd.com/comics/server_attention_span.png" alt=""></p>
+<h2 id="media-queries">Media Queries</h2>
+<p>One way to adjust the styles depending on the device&apos;s size is by using media queries:</p>
+<pre><code class="lang-css"><span class="hljs-tag">body</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> papayawhip</span></span>;
+}</span>
+
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (max-width: <span class="hljs-number">400px</span>)</span>{
+  <span class="hljs-tag">body</span><span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> tomato</span></span>;
+  }</span>
+}
+</code></pre>
+<p>The <code>max-width</code> is the device&apos;s viewport size.</p>
+<p>A device&apos;s viewport is different from both its screen size and resolution.
+Check out <a href="http://www.quirksmode.org/mobile/viewports.html" target="_blank">this article</a> if you&apos;re interested in why.</p>
+<p>Other possible values include</p>
+<pre><code>/* these are most commonly used */
+min-width | max-width | min-height | max-height
+
+/* these are possible, but less common */
+| width | height
+| device-width | min-device-width | max-device-width
+| device-height | min-device-height | max-device-height
+| aspect-ratio | min-aspect-ratio | max-aspect-ratio | max-device-aspect-ratio
+| device-aspect-ratio | min-device-aspect-ratio |
+| color | min-color | max-color
+| color-index | min-color-index | max-color-index
+| monochrome | min-monochrome | max-monochrome
+| resolution | min-resolution | max-resolution
+| scan | grid
+</code></pre><h2 id="you-do">You do</h2>
+<p>Working with the example above, create a <a href="https://jsfiddle.net/" target="_blank">jsfiddle</a>, <a href="http://codepen.io/pen/" target="_blank">codepen</a>, or <a href="http://justinjackson.ca/words.html" target="_blank">webpage</a> that includes at least two media queries.</p>
+<p>When the viewport is less than 800px wide, make the background yellow. When the viewport is less
+than 400px wide, make the background green.</p>
+<p><img src="https://dl.dropboxusercontent.com/s/o8xh3hdql9oijo2/mediaqueries.gif?dl=0" alt=""></p>
+<h4 id="bonus">Bonus</h4>
+<p>try out a few of the properties above. You can combine media queries to get several different results.</p>
+<p>i.e. what combination of media queries could produce the following grid as the viewport <a href="http://maximin.tv/srm/" target="_blank">changes size</a>?</p>
+<table>
+<thead>
+<tr>
+<th>green</th>
+<th>yellow</th>
+<th>red</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>turqouise</td>
+<td>green</td>
+<td>purple</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mobile-first-vs-desktop-first">Mobile first vs Desktop first</h2>
+<p>What is the difference between starting with the smallest viewport and applying styles as the viewport size increases
+and starting with the largest viewport size as the default?</p>
+<p>Do the order of the media queries matter? Yes.</p>
+<p>Do media queries affect specificty? No.</p>
+<h2 id="relative-units-of-measurement">Relative units of measurement</h2>
+<p>So far, we&apos;ve been working with pixels (absolute unit of measurement) and percentages (relative unit of measurements)</p>
+<h3 id="you-do-research-the-following-units">You do: research the following units</h3>
+<p>Form groups with your tables to research, discuss, and demo one of the following
+pair:</p>
 <ul>
-<li>A waiter has N tables, each with 2-4 guests.</li>
-<li>The waiter makes rounds between each of their tables, the bar, and the kitchen.</li>
-<li>The waiter takes drink orders for a new table, then submits them to the bar.</li>
-<li>Drinks are delivered when all table orders are ready.</li>
-<li>The waiter takes food orders for a new table, then submits them to the kitchen.</li>
-<li>Food is delivered when all table orders are ready.</li>
-<li>The waiter checks idle tables for additional requests, then submits them appropriately.</li>
-<li>Additional requested items are delivered when all table orders are ready.</li>
+<li>em and rem</li>
+<li>vh and vw</li>
+<li>vmin and vmax</li>
+<li>ex and ch</li>
 </ul>
-<hr>
+<h2 id="we-do-convert-the-craigslist-grid">We do: Convert the &quot;Craigslist Grid&quot;</h2>
+<p>Let&apos;s convert <a href="http://dabble.site/grid.html" target="_blank">the grid we had yesterday</a> to adjust the layout when the viewport size changes.</p>
+<pre><code>$ curl -O http://dabble.site/grid.html
+</code></pre><p>Eventually, we&apos;ll end up with <a href="http://dabble.site/grid-v1.html" target="_blank">http://dabble.site/grid-v1.html</a></p>
+<h2 id="you-do-007-exercise">You do: 007 Exercise</h2>
+<p><a href="https://github.com/ga-dc/responsive_007" target="_blank">https://github.com/ga-dc/responsive_007</a></p>
+<h2 id="we-do-check-it-out-w-chrome-dev-tools">We do: Check it out w/ Chrome dev tools</h2>
+<p>Be sure to include</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;viewport&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">&quot;width=device-width&quot;</span>&gt;</span>
+</code></pre>
 <blockquote>
-<p>Q. In one sentence, what problem did you solve?</p>
+<p>Mobile Safari introduced the &quot;viewport meta tag&quot; to let web developers control the viewport&apos;s size and scale. Many other mobile browsers now support this tag, although it is not part of any web standard. </p>
 </blockquote>
-<hr>
-<p>A.  That&apos;s probably a good first step right?  This was intentionally open ended.  I bet that one problem you identified is that this isn&apos;t just a Table Waiter problem, it&apos;s also a group dynamics problem.</p>
-<hr>
-<h3 id="steps">Steps ?</h3>
-<blockquote>
-<p>Q. Going around the room, where going to build a list of our steps.  Group 1 provides their step 1, Group 2 provides <em>their</em> step 2, and so on.</p>
-</blockquote>
-<hr>
-<h3 id="synch-or-asynch">Synch or Asynch</h3>
-<blockquote>
-<p>Q. Can we just follow these steps in order, top to bottom?</p>
-</blockquote>
-<p>A. No way.  Right?  We have to respond to events.  After I deliver drinks, I need to evaluate the next step, based on some business rules.</p>
-<h3 id="steps">Steps</h3>
-<ul>
-<li>clarify the problem</li>
-<li>brainstorm</li>
-<li>organize/select</li>
-<li>prototype</li>
-<li>review</li>
-<li>double down or pivot</li>
-</ul>
-<hr>
-<h4 id="clarify-the-problem">Clarify the problem:</h4>
-<blockquote>
-<p>Seek first to understand, then to be understood. - Steven Covey</p>
-</blockquote>
-<p>Make sure you are solving the right problem.  &quot;Get out of the office&quot; is a phrase often used to remind Founders that they need to get close to their users.  To see the customers using our app in their natural environment.</p>
-<h4 id="brainstorm">Brainstorm:</h4>
-<blockquote>
-<p>What is now proved was once only imagined. - William Blake</p>
-</blockquote>
-<p>No judgement.  Just ideas.  No lists. No categorization.  Use techniques that get ideas from all types of people; quiet/loud, writers/drawers, analytical/empathetic.  Use colors, crayons, paper, whiteboard.</p>
-<h4 id="organize-select">Organize/Select:</h4>
-<blockquote>
-<p>It is not enough to just do your best or work hard. You must know what to work on. - W. Edwards Deming (Father of ideas that made Toyota great, foundation for Lean Manufacturing)</p>
-</blockquote>
-<p><img src="who_spectrum_dan_roam.jpg" alt=""></p>
-<p>The black pen people grab the pen and run to the board, drawing out their ideas.  The yellow pen people wait, then highlight what&apos;s important.  The red pen people wait even longer, then go to the board, cross out and redraw, further clarifying.</p>
-<h4 id="prototype">Prototype:</h4>
-<blockquote>
-<p>Nobody ever got fired for hiring IBM. - the multitudes</p>
-</blockquote>
-<p>Back in the day, IBM&apos;s claim to fame was starting 3 &quot;skunk works&quot; for any large project.  After an initial prototype, they would merge members and ideas from the three into one.</p>
-<p>Get immediate ROI.</p>
-<h4 id="review">Review:</h4>
-<blockquote>
-<p>By three methods we may learn wisdom: First, by reflection, which is noblest; Second, by imitation, which is easiest; and third by experience, which is the bitterest. - Confucius</p>
-</blockquote>
-<p>Retrospectives provide the vehicle for improvement.</p>
-<h4 id="double-down-or-pivot">Double down or pivot:</h4>
-<p>Finally we need to decide, do we continue down the current path or do we face reality and change direction?</p>
-<p>I read about a company that made extremely high quality drill bits.  Competition from overseas, provided bits that were good enough, but much cheaper.  This company realize that they weren&apos;t jazzed about drill bits, it was creating holes under exacting specifications.  So they pivoted, to making holes in tough materials, with innovative methods, like hydro-drilling.</p>
-<hr>
-<blockquote>
-<p>There are three principal means of acquiring knowledge... observation of nature, reflection, and experimentation.</p>
-<p>Observation collects facts;</p>
-<p>reflection combines them;</p>
-<p>experimentation verifies the result of that combination.</p>
-<p>Denis Diderot</p>
-</blockquote>
-<hr>
-<h2 id="practices">Practices:</h2>
-<blockquote>
-<p>Q. (3 min) Pick 2 helpful practices and 1 anti-practice.</p>
-</blockquote>
-<hr>
-<p>Practices:</p>
-<ul>
-<li>brainstorm</li>
-<li>prototype</li>
-<li>timebox</li>
-<li>change the abtraction level</li>
-<li>paradigm shift</li>
-<li>phone a friend</li>
-<li>simplify</li>
-<li>think outside the box</li>
-</ul>
-<h3 id="timebox">Timebox:</h3>
-<blockquote>
-<p>fugit inreparabile tempus - Virgil</p>
-<p>&quot;it escapes, irretrievable time&quot;</p>
-</blockquote>
-<p>Allocate a fixed period of time to each activity.  Make a conscious decision to continue or move on.  This is at all time scales (30 min to weeks).</p>
-<h3 id="shift-abstraction-level">Shift Abstraction Level:</h3>
-<blockquote>
-<p>Do not seek to follow in the footsteps of the men of old; seek what they sought. - Matsuo Basho</p>
-</blockquote>
-<p>You can rarely solve a disagreement battling at the level of the problem.  Either go up to ensure you have the same goals.  Or go down to discuss an actual example.</p>
-<h3 id="paradigm-shift">Paradigm Shift:</h3>
-<blockquote>
-<p>Turn frustration into fascination. - Jim Roan</p>
-</blockquote>
-<p>Look at the problem from a different point of view.  Tackle it from a different direction.</p>
-<p>&quot;My flight leaves in 45 minutes. My taxi driver turns around, &quot;The good news is we&apos;re only 10 miles from the airport. The bad news? We won&apos;t be there for about an hour and a half.&quot;  Suddenly I&apos;m... fascinated.  Where are all these people going?  (Nowhere is the only appropriate answer)  Do they sit in this everyday?  Can I make it if I get out an walk?&quot;</p>
-<h3 id="phone-a-friend">Phone a friend</h3>
-<blockquote>
-<p>Quack</p>
-</blockquote>
-<p><img src="Rubber_duck_assisting_with_debugging.jpg" alt="Rubber Ducking"></p>
-<p>I&apos;m simply amazed at how many issues can be solved by simply sharing your problem.  Often, it gets your brain to provide the answer you need.</p>
-<h3 id="simplify">Simplify</h3>
-<blockquote>
-<p>KISS - Gene Simmons</p>
-<p>The key to organization is getting comfortable with your trashcan and your delete key.  - Matt Scilipoti</p>
-</blockquote>
-<p>Simplify.  Simplify.  Reduce.  Cut scope.  Tackle the problem in isolation.</p>
-<h3 id="think-outside-the-box">Think outside the box</h3>
-<blockquote>
-<p>If we weren&apos;t all crazy, we would go insane.  - Jimmy Buffet.</p>
-</blockquote>
-<p>Is there some wacky, crazy, no-one would ever do this idea that just might work?  How just something significantly different.  Spend a few moments considering them.</p>
-<p>Think about the guy that invented fiberboard, a mix of sawdust and glue.  He bought up all the contracts for collecting sawdust from sawmills.  People paid him to come collect the raw materials for his product.</p>
-<hr>
-<h2 id="exercise">Exercise:</h2>
-<p>This time focus on following the provided steps.  Pick an &quot;accountabili-buddy&quot; to hold you to it.</p>
-<p><a href="https://github.com/ga-dc/problem_modeling" target="_blank">https://github.com/ga-dc/problem_modeling</a></p>
-<hr>
-<h2 id="suggested-reading">Suggested Reading</h2>
-<ul>
-<li><a href="http://tompeters.com/cool-friends/roam-dan/" target="_blank">http://tompeters.com/cool-friends/roam-dan/</a></li>
-</ul>
-<h2 id="attributions">Attributions</h2>
-<ul>
-<li>&quot;Rubber duck assisting with debugging&quot; by Tom Morris - Own work. Licensed under CC BY-SA 3.0 via Wikimedia Commons - <a href="https://commons.wikimedia.org/wiki/File:Rubber_duck_assisting_with_debugging.jpg#/media/File:Rubber_duck_assisting_with_debugging.jpg" target="_blank">https://commons.wikimedia.org/wiki/File:Rubber_duck_assisting_with_debugging.jpg#/media/File:Rubber_duck_assisting_with_debugging.jpg</a></li>
-</ul>
 
                     
                     </section>
@@ -1121,10 +1077,8 @@
         </div>
 
         
-        <a href="../../04-ruby-mvc-sinatra/ruby-enumerables/readme.html" class="navigation navigation-prev " aria-label="Previous page: Ruby Enumerables"><i class="fa fa-angle-left"></i></a>
+        <a href="../../07-uxdi-collaboration/animations/readme.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Animations"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html" class="navigation navigation-next " aria-label="Next page: Domain Modeling"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

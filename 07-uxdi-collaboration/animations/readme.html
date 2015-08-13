@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Problem Modeling | Summary</title>
+        <title>Animations | Summary</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -25,10 +25,10 @@
         
     
     
-    <link rel="next" href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html" />
+    <link rel="next" href="../../07-uxdi-collaboration/responsive-web-design/readme.html" />
     
     
-    <link rel="prev" href="../../04-ruby-mvc-sinatra/ruby-enumerables/readme.html" />
+    <link rel="prev" href="../../07-uxdi-collaboration/grids/readme.html" />
     
 
         
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="4.3" data-basepath="../.." data-revision="Thu Aug 13 2015 13:18:52 GMT+0000 (UTC)">
+    <div class="book" data-level="7.4" data-basepath="../.." data-revision="Thu Aug 13 2015 13:18:52 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -460,7 +460,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.3" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
+        <li class="chapter " data-level="4.3" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
             
                 
                     <a href="../../04-ruby-mvc-sinatra/problem_modeling/readme.html">
@@ -764,7 +764,7 @@
             
         </li>
     
-        <li class="chapter " data-level="7.4" data-path="07-uxdi-collaboration/animations/readme.html">
+        <li class="chapter active" data-level="7.4" data-path="07-uxdi-collaboration/animations/readme.html">
             
                 
                     <a href="../../07-uxdi-collaboration/animations/readme.html">
@@ -955,162 +955,98 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="problems">Problems</h1>
-<blockquote>
-<p>That&apos;s why they pay us the big money.</p>
-<p>If the problem was easy, they wouldn&apos;t pay us like this.</p>
-</blockquote>
-<h2 id="learning-objectives">Learning Objectives</h2>
+                        <h1 id="css-transitions-animations">CSS Transitions &amp; Animations</h1>
 <ul>
-<li>Demonstrate how to break a problem into relevant parts</li>
-<li>Demonstrate multiple solutions, identifying tradeoffs</li>
-<li>Indicate what is easily solvable</li>
-<li>Identify areas of high/low risk
--</li>
+<li>Describe the importance of prefixing CSS properties</li>
+<li>Describe what a CSS transform is, and give some examples</li>
+<li>Describe what it means to transition or animate in CSS</li>
+<li>List the types of properties that can / can&apos;t be animated</li>
+<li>Use the <code>transition</code> declaration to change element properties on events</li>
+<li>Describe the purpose and syntax of css <code>keyframes</code></li>
+<li>List and describe the purpose of the <code>animation</code> properties</li>
+<li>Compare &amp; contrast CSS Transitions and Animations</li>
+<li>Create complex animations using CSS animation properties</li>
+<li>Compare &amp; contrast using CSS and JS for animations</li>
 </ul>
-<h2 id="the-table-waiter-problem">The Table Waiter Problem</h2>
-<p>Let&apos;s jump right in.  We&apos;ll work on a problem together and then discuss helpful practices and procedures.</p>
-<p>Join your squad at a section of whiteboard and solve this problem.  We need a volunteer to record the steps you take and practices you use.</p>
+<h2 id="intro-10-minutes">Intro (10 minutes)</h2>
+<p>Today we&apos;ll be covering 3 major topics, each somewhat related:</p>
 <ul>
-<li>A waiter has N tables, each with 2-4 guests.</li>
-<li>The waiter makes rounds between each of their tables, the bar, and the kitchen.</li>
-<li>The waiter takes drink orders for a new table, then submits them to the bar.</li>
-<li>Drinks are delivered when all table orders are ready.</li>
-<li>The waiter takes food orders for a new table, then submits them to the kitchen.</li>
-<li>Food is delivered when all table orders are ready.</li>
-<li>The waiter checks idle tables for additional requests, then submits them appropriately.</li>
-<li>Additional requested items are delivered when all table orders are ready.</li>
+<li>CSS Transforms (2D)</li>
+<li>CSS Transitions</li>
+<li>CSS Animations</li>
+<li>Prefixing</li>
 </ul>
-<hr>
-<blockquote>
-<p>Q. In one sentence, what problem did you solve?</p>
-</blockquote>
-<hr>
-<p>A.  That&apos;s probably a good first step right?  This was intentionally open ended.  I bet that one problem you identified is that this isn&apos;t just a Table Waiter problem, it&apos;s also a group dynamics problem.</p>
-<hr>
-<h3 id="steps">Steps ?</h3>
-<blockquote>
-<p>Q. Going around the room, where going to build a list of our steps.  Group 1 provides their step 1, Group 2 provides <em>their</em> step 2, and so on.</p>
-</blockquote>
-<hr>
-<h3 id="synch-or-asynch">Synch or Asynch</h3>
-<blockquote>
-<p>Q. Can we just follow these steps in order, top to bottom?</p>
-</blockquote>
-<p>A. No way.  Right?  We have to respond to events.  After I deliver drinks, I need to evaluate the next step, based on some business rules.</p>
-<h3 id="steps">Steps</h3>
+<p><strong>Transforms</strong> are a set of CSS properties that take a an element and transform
+it&apos;s shape, e.g. rotating it, scaling it, skewing it, etc.</p>
+<p><strong>Transitions</strong> let us tell the browser how to change a property over time. For
+example, if the height of an element changes (due to a :hover selector, for
+example), we can tell the browser to change the height gradually over 1 second.</p>
+<p><strong>Animations</strong> are similar to transitions, in that they let us have properties
+change over time, but they give us more control over how those changes happen.
+For example, we have more control over how the animation repeats, change between
+multiple values at once, etc.</p>
+<p><strong>Prefixing</strong> - If you&apos;re using chrome, you won&apos;t need to prefix any properties
+for this lesson, but in general, it&apos;s a good idea to check <a href="caniuse.com">Can I Use</a>
+to see if you need to use prefixes to support most users. For CSS Animations,
+you should use prefixes to ensure support for Safari, IE, and other browsers.</p>
+<p>The easiest way to do this is with <a href="http://leaverou.github.io/prefixfree/" target="_blank">prefix free</a>.</p>
+<h2 id="group-breakouts-50-minutes">Group Breakouts (50 minutes)</h2>
+<p>Breakout into groups of 4... each group will have 20 minutes to prepare a short
+explanation / demo of their assigned topic. Your demos should take <strong>no longer than
+5 minutes</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>CSS Transforms (No animation)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>CSS Transitions</td>
+</tr>
+<tr>
+<td>3</td>
+<td>CSS Animations (basic keyframes and syntax)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>CSS Animations (timing functions)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>CSS Animations (iterations / repeats / direction )</td>
+</tr>
+</tbody>
+</table>
+<h2 id="break-10-minutes">Break (10 minutes)</h2>
+<h2 id="lab-50-minutes">Lab (50 minutes)</h2>
+<p>Work with a partner to implement as many of these exercises as you can:</p>
 <ul>
-<li>clarify the problem</li>
-<li>brainstorm</li>
-<li>organize/select</li>
-<li>prototype</li>
-<li>review</li>
-<li>double down or pivot</li>
+<li><a href="https://github.com/ga-dc/css-accordion" target="_blank">CSS Accordion</a></li>
+<li><a href="https://github.com/ga-dc/dolphin-cat-css-animations" target="_blank">DolphinCat!</a></li>
+<li><a href="https://github.com/adambray/clock-bro" target="_blank">Clock</a></li>
 </ul>
-<hr>
-<h4 id="clarify-the-problem">Clarify the problem:</h4>
-<blockquote>
-<p>Seek first to understand, then to be understood. - Steven Covey</p>
-</blockquote>
-<p>Make sure you are solving the right problem.  &quot;Get out of the office&quot; is a phrase often used to remind Founders that they need to get close to their users.  To see the customers using our app in their natural environment.</p>
-<h4 id="brainstorm">Brainstorm:</h4>
-<blockquote>
-<p>What is now proved was once only imagined. - William Blake</p>
-</blockquote>
-<p>No judgement.  Just ideas.  No lists. No categorization.  Use techniques that get ideas from all types of people; quiet/loud, writers/drawers, analytical/empathetic.  Use colors, crayons, paper, whiteboard.</p>
-<h4 id="organize-select">Organize/Select:</h4>
-<blockquote>
-<p>It is not enough to just do your best or work hard. You must know what to work on. - W. Edwards Deming (Father of ideas that made Toyota great, foundation for Lean Manufacturing)</p>
-</blockquote>
-<p><img src="who_spectrum_dan_roam.jpg" alt=""></p>
-<p>The black pen people grab the pen and run to the board, drawing out their ideas.  The yellow pen people wait, then highlight what&apos;s important.  The red pen people wait even longer, then go to the board, cross out and redraw, further clarifying.</p>
-<h4 id="prototype">Prototype:</h4>
-<blockquote>
-<p>Nobody ever got fired for hiring IBM. - the multitudes</p>
-</blockquote>
-<p>Back in the day, IBM&apos;s claim to fame was starting 3 &quot;skunk works&quot; for any large project.  After an initial prototype, they would merge members and ideas from the three into one.</p>
-<p>Get immediate ROI.</p>
-<h4 id="review">Review:</h4>
-<blockquote>
-<p>By three methods we may learn wisdom: First, by reflection, which is noblest; Second, by imitation, which is easiest; and third by experience, which is the bitterest. - Confucius</p>
-</blockquote>
-<p>Retrospectives provide the vehicle for improvement.</p>
-<h4 id="double-down-or-pivot">Double down or pivot:</h4>
-<p>Finally we need to decide, do we continue down the current path or do we face reality and change direction?</p>
-<p>I read about a company that made extremely high quality drill bits.  Competition from overseas, provided bits that were good enough, but much cheaper.  This company realize that they weren&apos;t jazzed about drill bits, it was creating holes under exacting specifications.  So they pivoted, to making holes in tough materials, with innovative methods, like hydro-drilling.</p>
-<hr>
-<blockquote>
-<p>There are three principal means of acquiring knowledge... observation of nature, reflection, and experimentation.</p>
-<p>Observation collects facts;</p>
-<p>reflection combines them;</p>
-<p>experimentation verifies the result of that combination.</p>
-<p>Denis Diderot</p>
-</blockquote>
-<hr>
-<h2 id="practices">Practices:</h2>
-<blockquote>
-<p>Q. (3 min) Pick 2 helpful practices and 1 anti-practice.</p>
-</blockquote>
-<hr>
-<p>Practices:</p>
+<h3 id="bonuses">Bonuses</h3>
+<p>Look at the following examples, try to re-create them from scratch using as little
+starter code as possible.</p>
 <ul>
-<li>brainstorm</li>
-<li>prototype</li>
-<li>timebox</li>
-<li>change the abtraction level</li>
-<li>paradigm shift</li>
-<li>phone a friend</li>
-<li>simplify</li>
-<li>think outside the box</li>
+<li><a href="http://tympanus.net/Tutorials/AnimatedButtons/index.html" target="_blank">Animated Buttons</a> (Transitions and Animations)</li>
+<li><a href="http://tympanus.net/Tutorials/OriginalHoverEffects/" target="_blank">Image Hover Effects</a> (Transitions and Animations)</li>
+<li><a href="http://neography.com/journal/our-solar-system-in-css3/" target="_blank">Solar System in CSS</a> (Transitions and Animations)</li>
 </ul>
-<h3 id="timebox">Timebox:</h3>
-<blockquote>
-<p>fugit inreparabile tempus - Virgil</p>
-<p>&quot;it escapes, irretrievable time&quot;</p>
-</blockquote>
-<p>Allocate a fixed period of time to each activity.  Make a conscious decision to continue or move on.  This is at all time scales (30 min to weeks).</p>
-<h3 id="shift-abstraction-level">Shift Abstraction Level:</h3>
-<blockquote>
-<p>Do not seek to follow in the footsteps of the men of old; seek what they sought. - Matsuo Basho</p>
-</blockquote>
-<p>You can rarely solve a disagreement battling at the level of the problem.  Either go up to ensure you have the same goals.  Or go down to discuss an actual example.</p>
-<h3 id="paradigm-shift">Paradigm Shift:</h3>
-<blockquote>
-<p>Turn frustration into fascination. - Jim Roan</p>
-</blockquote>
-<p>Look at the problem from a different point of view.  Tackle it from a different direction.</p>
-<p>&quot;My flight leaves in 45 minutes. My taxi driver turns around, &quot;The good news is we&apos;re only 10 miles from the airport. The bad news? We won&apos;t be there for about an hour and a half.&quot;  Suddenly I&apos;m... fascinated.  Where are all these people going?  (Nowhere is the only appropriate answer)  Do they sit in this everyday?  Can I make it if I get out an walk?&quot;</p>
-<h3 id="phone-a-friend">Phone a friend</h3>
-<blockquote>
-<p>Quack</p>
-</blockquote>
-<p><img src="Rubber_duck_assisting_with_debugging.jpg" alt="Rubber Ducking"></p>
-<p>I&apos;m simply amazed at how many issues can be solved by simply sharing your problem.  Often, it gets your brain to provide the answer you need.</p>
-<h3 id="simplify">Simplify</h3>
-<blockquote>
-<p>KISS - Gene Simmons</p>
-<p>The key to organization is getting comfortable with your trashcan and your delete key.  - Matt Scilipoti</p>
-</blockquote>
-<p>Simplify.  Simplify.  Reduce.  Cut scope.  Tackle the problem in isolation.</p>
-<h3 id="think-outside-the-box">Think outside the box</h3>
-<blockquote>
-<p>If we weren&apos;t all crazy, we would go insane.  - Jimmy Buffet.</p>
-</blockquote>
-<p>Is there some wacky, crazy, no-one would ever do this idea that just might work?  How just something significantly different.  Spend a few moments considering them.</p>
-<p>Think about the guy that invented fiberboard, a mix of sawdust and glue.  He bought up all the contracts for collecting sawdust from sawmills.  People paid him to come collect the raw materials for his product.</p>
-<hr>
-<h2 id="exercise">Exercise:</h2>
-<p>This time focus on following the provided steps.  Pick an &quot;accountabili-buddy&quot; to hold you to it.</p>
-<p><a href="https://github.com/ga-dc/problem_modeling" target="_blank">https://github.com/ga-dc/problem_modeling</a></p>
-<hr>
-<h2 id="suggested-reading">Suggested Reading</h2>
-<ul>
-<li><a href="http://tompeters.com/cool-friends/roam-dan/" target="_blank">http://tompeters.com/cool-friends/roam-dan/</a></li>
-</ul>
-<h2 id="attributions">Attributions</h2>
-<ul>
-<li>&quot;Rubber duck assisting with debugging&quot; by Tom Morris - Own work. Licensed under CC BY-SA 3.0 via Wikimedia Commons - <a href="https://commons.wikimedia.org/wiki/File:Rubber_duck_assisting_with_debugging.jpg#/media/File:Rubber_duck_assisting_with_debugging.jpg" target="_blank">https://commons.wikimedia.org/wiki/File:Rubber_duck_assisting_with_debugging.jpg#/media/File:Rubber_duck_assisting_with_debugging.jpg</a></li>
-</ul>
+<h2 id="break-10-minutes">Break (10 Minutes)</h2>
+<h2 id="questions-recap-20-minutes">Questions / Recap  (20 minutes)</h2>
+<h3 id="css-js-animations">CSS / JS Animations</h3>
+<p>CSS Animations are easy and mostly compatible, so they&apos;re often a good choice
+for basic animation needs. For anything more complex, such as animation that
+depends on user input, you&apos;ll need to use Javascript. There are good libraries
+for animation, including jQuery UI, and <a href="http://greensock.com/gsap" target="_blank">GSAP (Greensock Animation Platform)</a></p>
 
                     
                     </section>
@@ -1121,10 +1057,10 @@
         </div>
 
         
-        <a href="../../04-ruby-mvc-sinatra/ruby-enumerables/readme.html" class="navigation navigation-prev " aria-label="Previous page: Ruby Enumerables"><i class="fa fa-angle-left"></i></a>
+        <a href="../../07-uxdi-collaboration/grids/readme.html" class="navigation navigation-prev " aria-label="Previous page: Grid Systems"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html" class="navigation navigation-next " aria-label="Next page: Domain Modeling"><i class="fa fa-angle-right"></i></a>
+        <a href="../../07-uxdi-collaboration/responsive-web-design/readme.html" class="navigation navigation-next " aria-label="Next page: Responsive Web Design"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
