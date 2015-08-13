@@ -134,3 +134,13 @@ Eventually, we'll end up with http://dabble.site/grid-v1.html
 ## You do: 007 Exercise
 
 https://github.com/ga-dc/responsive_007
+
+## We do: Check it out w/ Chrome dev tools
+
+Be sure to include
+
+```html
+<meta name="viewport" content="width=device-width">
+```
+
+>Mobile Safari introduced the "viewport meta tag" to let web developers control the viewport's size and scale. Many other mobile browsers now support this tag, although it is not part of any web standard. 
