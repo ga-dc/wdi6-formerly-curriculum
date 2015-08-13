@@ -26,6 +26,12 @@ Many designers still ask
 
 You tell me! http://screensiz.es
 
+## You do: Turn and Talk
+
+What makes a design fixed? What makes a design fluid? What makes a site responsive?
+
+Check out [mediaqueri.es](http://mediaqueri.es) for inspiration.
+
 ## Mobile Specific Sites
 
 One way to create optimal experiences for mobile users is a dedicated mobile site.
@@ -83,6 +89,8 @@ Working with the example above, create a [jsfiddle](https://jsfiddle.net/), [cod
 When the viewport is less than 800px wide, make the background yellow. When the viewport is less
 than 400px wide, make the background green.
 
+![](https://dl.dropboxusercontent.com/s/o8xh3hdql9oijo2/mediaqueries.gif?dl=0)
+
 #### Bonus
 try out a few of the properties above. You can combine media queries to get several different results.
 
@@ -126,5 +134,3 @@ Eventually, we'll end up with http://dabble.site/grid-v1.html
 ## You do: 007 Exercise
 
 https://github.com/ga-dc/responsive_007
-
-## You do: 
