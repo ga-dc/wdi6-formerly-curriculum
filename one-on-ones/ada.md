@@ -14,9 +14,9 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 
 ## Thur Aug 13
 
-- Silvia Brown (5:00pm)
-- Jared Arkin (4:30pm)
-- Robert Benjamin (5:15pm)
+- Silvia Brown (4:30pm)
+- Jared Arkin (5:00pm)
+- Robert Benjamin (5:30pm)
 
 ## Friday Aug 14
 
