@@ -2,10 +2,11 @@
 
 One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
 
+Order was randomly assigned via Array#shuffle.
 
 ## Mon Aug 10
 
-- Rosel P. (temporary switch with Laura, due to Project 2)
+- Rosel P.
 - **Open Appointment Time**
 
 ## Tue Aug 11
@@ -15,7 +16,6 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 ## Wed Aug 12
 
 - Cheik
-- Nic
 
 ## Thur Aug 13
 
@@ -25,7 +25,8 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 
 ## Mon Aug 17
 
-- Laura (temporary switch with Rosel, due to Project 2)
+- Lon
+- Justine
 
 ## Tue Aug 18
 
@@ -33,9 +34,9 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 
 ## Wed Aug 19
 
-- Eddie
-- Lon
+- Nic
+- Laura
 
 ## Thu Aug 20
 
-- Justin
+- Eddie
