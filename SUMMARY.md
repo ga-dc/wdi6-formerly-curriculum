@@ -46,6 +46,8 @@
   * [APIs](07-uxdi-collaboration/apis/readme.md)
   * [Ajax](07-uxdi-collaboration/ajax/readme.md)
   * [Grid Systems](07-uxdi-collaboration/grids/readme.md)
+  * [Animations](07-uxdi-collaboration/animations/readme.md)
+  * [Responsive Web Design](07-uxdi-collaboration/responsive-web-design/readme.md)
 * [Users and Authentication in APIs](08-users-and-authentication-in-apis/readme.md)
 * [Project 3](https://github.com/ga-dc/pbj-project3/blob/master/readme.md)
 * [MV* with Backbone](10-mvw-with-backbone/readme.md)
