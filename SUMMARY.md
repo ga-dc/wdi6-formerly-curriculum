@@ -1,6 +1,10 @@
 # GA's WDI-DC Course Summary
 
 * [An Introduction](README.md)
+* Peanut Butter & Jelly
+  * [Squad Breakdown](squads.md)
+  * [Homework Submission Process](homework-submission-process.md)
+  * [One-on-Ones](one-on-ones/readme.md)
 * [Front End Fundamentals](01-front-end-fundamentals/readme.md)
     * [Command Line Interface](01-front-end-fundamentals/command-line/readme.md)
     * [Git](01-front-end-fundamentals/git/readme.md)
