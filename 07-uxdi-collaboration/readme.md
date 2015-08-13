@@ -1,7 +1,7 @@
-# APIs with Rails and Express
+# UXDI Collaboration: The Interactive Web
 
-Build programmatically accessible web applications using
-internet architecture standards.
+APIs: Build programmatically accessible web applications using internet architecture standards.
+Interactivity: AJAX, Grids, and Animations
 
 ## Learning Objectives
 

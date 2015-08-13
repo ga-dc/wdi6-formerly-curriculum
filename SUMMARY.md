@@ -1,4 +1,4 @@
-# Summary
+# GA's WDI-DC Course Summary
 
 * [An Introduction](README.md)
 * [Front End Fundamentals](01-front-end-fundamentals/readme.md)
@@ -42,13 +42,13 @@
     * [Sessions and Auth](05-mvc-with-rails/rails-sessions-and-auth/readme.md)
     * [Deployment](05-mvc-with-rails/rails-deployment/readme.md)
 * [Project 2](https://github.com/ga-dc/pbj-project2/blob/master/readme.md)
-* [APIs with Rails and Express](07-apis-with-rails-and-express/readme.md)
+* [UXDI Collaboration: The Interactive Web](07-uxdi-collaboration/readme.md)
   * [APIs](07-uxdi-collaboration/apis/readme.md)
   * [Ajax](07-uxdi-collaboration/ajax/readme.md)
   * [Grid Systems](07-uxdi-collaboration/grids/readme.md)
   * [Animations](07-uxdi-collaboration/animations/readme.md)
   * [Responsive Web Design](07-uxdi-collaboration/responsive-web-design/readme.md)
-* [Users and Authentication in APIs](08-users-and-authentication-in-apis/readme.md)
+* ["Single Page" Web Applications](08-single-page-web-apps/readme.md)
 * [Project 3](https://github.com/ga-dc/pbj-project3/blob/master/readme.md)
 * [MV* with Backbone](10-mvw-with-backbone/readme.md)
 * [MV* with Angular](11-mvw-with-angular/readme.md)
