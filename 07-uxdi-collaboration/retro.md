@@ -4,6 +4,8 @@
 
 [Instructions here!](https://docs.google.com/document/d/1_rab9iyZA45RLauff5Zug4w3y-I9J0ijIH20pu0fbQM/pub)
 
+## 3:15 - 3:30: Break
+
 ## 3:30 - 4:00: Retro
 
 Students retro with their project teams.
@@ -21,6 +23,8 @@ Students retro with their project teams.
 ## 4:15 - 4:45: Instructor Panel (Classroom 2)
 
 What questions have you wanted to ask your instructors, but haven't had a chance to ask? Ask us anything!
+
+## 4:45 - 5:00: Break
 
 ## 5 - 5:20: Guided Activity
 
