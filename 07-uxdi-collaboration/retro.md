@@ -2,6 +2,8 @@
 
 ## 1:30 - 3:15: Presentations
 
+[Instructions here!](https://docs.google.com/document/d/1_rab9iyZA45RLauff5Zug4w3y-I9J0ijIH20pu0fbQM/pub)
+
 ## 3:30 - 4:00: Retro
 
 Students retro with their project teams:
