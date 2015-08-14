@@ -14,9 +14,29 @@ Build an interactive "single page" web application that persists data.
 
 ### Express Routing
 
-## Intro to SPA
+- Define the parts of a route
+- Extract routes to separate files
+- Explain the `all` routing method
+- Support multiple functions for a single route
+- Describe the role of response methods
+
+### Intro to SPA
+
+- Compare / contrast single page applications with traditional web applications
+- Explain the concept of deep linking and why it's useful
+- Bootstrap an application at load
+- Use the history api to update the url
+- Identify common problems with single page applications
 
 ### JS Prototypes and Constructors
+- List the advantages of object oriented javascript relative its alternatives.
+- Contrast an object, a hash, and an array.
+- Explain the role of a constructor in an object.
+- Describe at least two ways to create a new instance of an object.
+- Provide definitions for both classical and prototypal inheritance, or provide a description of the difference between the two.
+- Use the Chrome element inspector to traverse through the prototypal tree.
+- Add a property and a method to all instances of a prototype.
+- Given an occurrence of `this`, explain to which object it refers, and provide a method by which you could find out to what it refers.
 
 ### Sequelize
 
@@ -33,5 +53,12 @@ Build an interactive "single page" web application that persists data.
 ### OOJS 2: CUD
 
 ### JS TDD
+
+- Explain the purpose of Unit testing and TDD/BDD.
+- Review RSpec and test syntax.
+- Describe Jasmine.
+- Setup Jasmine for a Rails project.
+- Compare/Contrast Jasmine & RSpec.
+- Explain how `this` is used within Jasmine.
 
 ### Mini-Lesson: Canvas
