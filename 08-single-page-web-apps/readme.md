@@ -14,6 +14,12 @@ Build an interactive "single page" web application that persists data.
 
 ### Express Routing
 
+- Define the parts of a route
+- Extract routes to separate files
+- Explain the `all` routing method
+- Support multiple functions for a single route
+- Describe the role of response methods
+
 ## Intro to SPA
 
 ### JS Prototypes and Constructors
