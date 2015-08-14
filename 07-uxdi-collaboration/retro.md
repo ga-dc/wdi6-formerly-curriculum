@@ -7,7 +7,6 @@
 ## 3:30 - 4:00: Retro
 
 Students retro with their project teams.
-
 [Use this form as a team](https://docs.google.com/forms/d/14nC6Ck_cz_DWhWtBBH6wiw7uQamhXs7ANsUFw2OfeJk/viewform)
 
 [Feedback Form - Fill out individually (option) ](https://docs.google.com/forms/d/1lTD6clql8Y3zAhGxn-KeaaEIXTwYNDSrUB_qRcgUrv8/viewform)
