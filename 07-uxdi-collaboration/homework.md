@@ -15,7 +15,7 @@ As a bonus, consider implementing the topics into your collaborative project thi
 | Wednesday     |                                | [Responsive Web Design](http://alistapart.com/article/responsive-web-design)  |
 | Wednesday     |                                | [Transitions and Animations](http://learn.shayhowe.com/advanced-html-css/transitions-animations/) |
 | Thursday      |                                |  Prepare for collaboration showcase |
-| Friday        | [Fun With APIs](https://github.com/ga-dc/fun_with_apis)] |   |
+| Friday        |                                |  [Fun With APIs](https://github.com/ga-dc/fun_with_apis) |
 
 ## Jelly
 | Date Assigned | Notes                          | Assignment |
@@ -26,4 +26,4 @@ As a bonus, consider implementing the topics into your collaborative project thi
 | Wednesday     |                                | [Responsive Web Design](http://alistapart.com/article/responsive-web-design) |
 | Wednesday     |                                | [Transitions and Animations](http://learn.shayhowe.com/advanced-html-css/transitions-animations/) |
 | Thursday      |                                |  Prepare for collaboration showcase |
-| Friday        | [Fun With APIs](https://github.com/ga-dc/fun_with_apis)] |   |
+| Friday        |                                |  [Fun With APIs](https://github.com/ga-dc/fun_with_apis) |
