@@ -14,7 +14,7 @@ Students retro with their project teams.
 ### Forms
 [Use this form as a team](https://docs.google.com/forms/d/14nC6Ck_cz_DWhWtBBH6wiw7uQamhXs7ANsUFw2OfeJk/viewform)
 
-[Feedback Form - Fill out individually (option) ](https://docs.google.com/forms/d/1lTD6clql8Y3zAhGxn-KeaaEIXTwYNDSrUB_qRcgUrv8/viewform)
+[Feedback Form - Fill out individually afterwards (optional) ](https://docs.google.com/forms/d/1lTD6clql8Y3zAhGxn-KeaaEIXTwYNDSrUB_qRcgUrv8/viewform)
 
 ## 4:00 - 4:15: Break
 
