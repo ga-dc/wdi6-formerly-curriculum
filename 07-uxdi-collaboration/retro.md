@@ -26,6 +26,6 @@ What questions have you wanted to ask your instructors, but haven't had a chance
 
 ## 4:45 - 5:00: Break
 
-## 5 - 5:20: Guided Activity
+## 5:00 - 5:20: Guided Activity
 
 Meet in Classroom 2
