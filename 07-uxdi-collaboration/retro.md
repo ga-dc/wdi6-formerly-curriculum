@@ -24,4 +24,4 @@ What questions have you wanted to ask your instructors, but haven't had a chance
 
 ## 5 - 5:20: Guided Activity
 
-Meet in classrooms 1/2/3
+Meet in Classroom 2
