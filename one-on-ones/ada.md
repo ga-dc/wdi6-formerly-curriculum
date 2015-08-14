@@ -18,6 +18,8 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 - Jared Arkin (5:00pm)
 - Robert Benjamin (5:30pm)
 
-## Friday Aug 14
+## Mon Aug 17
 
-- Walter Augustine (4:30pm)
+- Walter Augustine
+- Erica Andersen
+- Erik Anderson
