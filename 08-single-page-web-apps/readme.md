@@ -20,7 +20,13 @@ Build an interactive "single page" web application that persists data.
 - Support multiple functions for a single route
 - Describe the role of response methods
 
-## Intro to SPA
+### Intro to SPA
+
+- Compare / contrast single page applications with traditional web applications
+- Explain the concept of deep linking and why it's useful
+- Bootstrap an application at load
+- Use the history api to update the url
+- Identify common problems with single page applications
 
 ### JS Prototypes and Constructors
 
