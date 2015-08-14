@@ -14,7 +14,19 @@ Build an interactive "single page" web application that persists data.
 
 ### Express Routing
 
-## Intro to SPA
+- Define the parts of a route
+- Extract routes to separate files
+- Explain the `all` routing method
+- Support multiple functions for a single route
+- Describe the role of response methods
+
+### Intro to SPA
+
+- Compare / contrast single page applications with traditional web applications
+- Explain the concept of deep linking and why it's useful
+- Bootstrap an application at load
+- Use the history api to update the url
+- Identify common problems with single page applications
 
 ### JS Prototypes and Constructors
 - List the advantages of object oriented javascript relative its alternatives.
