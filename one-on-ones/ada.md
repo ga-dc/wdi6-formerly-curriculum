@@ -7,25 +7,19 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 - Erica Andersen
 - Erik Anderson
 
-## Wed Aug 5
-
-- Jared Arkin
-- Walter Augustine
-
-## Thur Aug 6
-
-- Alexander Bannon
-- Isabella Brookes
-
-## Mon Aug 10
-
-- Thomas Beach
-- Robert Benjamin
-
 ## Wed Aug 12
 
-- Silvia Brown
+- Thomas Beach (4:00pm)
+- Alexander Bannon (4:30pm)
 
 ## Thur Aug 13
 
-- **Open Appointment Time**
+- Silvia Brown (4:30pm)
+- Jared Arkin (5:00pm)
+- Robert Benjamin (5:30pm)
+
+## Mon Aug 17
+
+- Walter Augustine
+- Erica Andersen
+- Erik Anderson
