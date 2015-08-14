@@ -20,6 +20,14 @@ Build an interactive "single page" web application that persists data.
 
 ### Sequelize
 
+* Describe what sequelize is
+* Use sequelize to connect to a DB in JS
+* Define a model in sequelize that has getters and setters
+* Define the roll of callbacks in Sequelize
+* Use sequelize to find models from the DB
+* Use sequelize to perform CRUD on model instances
+* Compare / contrast Sequelize and ActiveRecord
+
 ### OOJS 1: Reading
 
 ### OOJS 2: CUD
