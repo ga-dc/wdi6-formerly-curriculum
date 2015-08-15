@@ -23,11 +23,13 @@ On **every submission** -- that is, on every pull request (or, sometimes, issue)
 We'd love to go through and add comments to your code in its entirety, but that's extremely time-consuming. Please let us know with what specific things you are most concerned and we'll focus our review there.
 
 If you would like feedback on something that isn't working, please follow the format:
-```
-I tried this:
-I expected this to happen:
-This happened instead: (Include any error messages or specific behaviors)
-```
+
+>I tried this:
+
+>I expected this to happen:
+
+>This happened instead: (**Include error messages**)
+
 
 Finally, if you'd like feedback or an answer to a question from an instructor *other* than the one assigned to check your submission (see below), please include their first name in your pull request / issue. 
 
