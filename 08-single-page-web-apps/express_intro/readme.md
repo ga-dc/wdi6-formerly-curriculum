@@ -14,7 +14,7 @@ PKI(5 m) List out the things we've covered in class. It is SO much stuff. We've 
 
 > Node.js is not a framework. It is an application runtime environment that allows you to write server-side applications in javascript. Javascript that does not depend on a browser.
 
-Frameworks like rails, are a very opinionated frameworks. (st-wg) Express is much less so. There are holy wars over which frameworks are better for reason x or y, but they all pretty much do the same thing just with a different syntax. Today we'll be learning about express.
+Frameworks like rails, are a very opinionated frameworks. (st-wg) Express is much less so. There are holy wars over which frameworks are better for reason x or y, but they all pretty much do the same thing just with a different syntax. Today we'll be learning about express. Express by itself, is much more like Sinatra, it feels very manual.
 
 ## Hello World - Express (we do 30/45)
 To start, Lets create a simple hello world express application.
@@ -129,18 +129,131 @@ app.get("/:name", function(req, res){
 ## Break(10/60)
 
 ## You do: 99 Bottle of Beer(20/80)
-The readme can be found [here](https://github.com/ga-dc/99_bottles_of_beer)
+The readme can be found [here](https://github.com/ga-dc/99_bottles_express)
 - Don't worry about the double bonus, and of course this will be in express instead of sinatra.
 
-## Views
+## Views (20/100)
+Let's leverage our [solution to 99 Bottles of Beer](https://github.com/ga-dc/99_bottles_express/tree/solution) to learn about views.2
+
 Remember how we utilized erb in Sinatra and rails?  We need to be able to do the same sort of templating with Express. For express we'll use handlebars. To install handlebars into our node application enter the following in the terminal:
 
 ```bash
 $ npm install --save hbs
 ```
 
-Then we need to set out view engine to be handle bars inside of the `application.js`:
+Then we need to set the view engine to be handle bars inside of the `application.js`:
 
 ```javascript
 app.set("view engine", "hbs")
 ```
+
+Let's go ahead and create a directory and some views. In the root directory of the express 99 bottles application. In the terminal:
+
+```bash
+$ mkdir views
+$ touch views/index.hbs
+$ touch views/layout.hbs
+```
+
+Let's change up our existing `application.js` to utilize a template rather than sending in a string directly.
+
+In `application.js`:
+
+```javascript
+// instead of
+// app.get("/:numberOfBottles?", function( req, res ){
+//   var bottles = req.params.numberOfBottles || 99
+//   var next = bottles - 1
+//   if (bottles > 1){
+//     res.send(bottles + " bottles of beer on the wall <a href='/" + next + "'>Take one down pass it around")
+//   }
+//   else{
+//     res.send("1 bottle of beer on the wall <a href='/'>Start Over</a>")
+//   }
+// })
+
+// we want this
+app.get("/:numberOfBottles?", function( req, res ){
+  var bottles = req.params.numberOfBottles || 99
+  var next = bottles - 1
+  res.render("index", {bottles: bottles, next: next})
+})
+```
+
+> So instead of sending a string directly to the response of that get request, we instead want to render a view. The `.render` function takes two arguments here. The first is the view we want to render. The second argument is an object. We can use the keys in this object inside the view to access the values in these key-value pairs.
+
+The only problem is our view is empty! Let's go ahead and change that now. In `views/layouts.hbs`:
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  </head>
+  <body>
+   {{{body}}}
+  </body>
+</html>
+```
+
+This is also a great time to note how we serve static assets. Notice we linked a stylesheet in our layout file. We are able to do this, because in our `application.js` we use `app.use(express.static(__dirname + '/public'))` in our code base. This allows us to utilize files in that folder in the layout.
+
+Finally we should update our index view to reflect the same strings we had before. In `views/index.hbs`:
+
+```html
+{{bottles}} bottles of beer on the wall.
+{{#if next}}
+  <a href='/{{next}}'>Take One Down, Pass it Around</a>
+{{else}}
+  <a href='/'>Start Over</a>
+{{/if}}
+```
+
+> Like in ERB, we're able to use objects in our view. Additionally we can utilize control flow in our view as well!
+
+## module.exports (20/120)
+`module.exports` allows us to separate our js files by exposing their contents as one global variable. The global variable isn't assigned until we require the file.
+
+For example:
+```js
+// aCustomModule.js
+module.exports = {
+  sayHello: function(){
+    console.log("hello world")
+  }
+}
+```
+
+```js
+// in app.js
+// instantiate global variable to grant access to module we've created
+var customModule = require("./aCustomModule.js")
+
+// use variable to call the .sayHello(function) defined in aCustomModule.js
+customModule.sayHello()
+```
+
+Well, we can actually separate our concerns using `module.exports` If we change our get request in `application.js`:
+
+```js
+app.get("/:numBottles?", routes.index )
+```
+
+to this instead. We could create a routes module that defines our index route. Lets create a `routes.js` file `$ touch routes.js` and place the following contents:
+
+```js
+module.exports = {
+  index: function( req, res ){
+    var numBottles = req.params.numBottles || 99
+    var next = numBottles - 1
+    res.render('index',{
+      numBottles: parseInt(numBottles),
+      next: next
+    })
+  }
+}
+```
+
+> You can see that almost nothing has changed, really we just namespaced the functionality into a different file. What advantages does that bring to us with regard to separation of concerns in MVC? (st-wg)
+
+You can start to see the neccessity of `module.export` when we start to add models to our application. If we had the 7 RESTful routes that rails have for each model, you can start to see how keeping everything in the `application.js` can begin to become unwieldy. 
