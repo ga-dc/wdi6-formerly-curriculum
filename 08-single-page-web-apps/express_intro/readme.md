@@ -4,7 +4,7 @@
 - Compare and contrast Javascript in the browser vs JS on the server
 - Compare and contrast express JS to Rails && Sinatra.
 - Use npm to manage project dependencies
-- Use module.exports and require to organize code into models, views, and controllers
+- Use module.exports and require to organize code
 - Use Handlebars templates to simplify rendering on the back-end
 - Use and configure middleware like body-parser to handle form submissions
 - Link to static assets in an Express application
@@ -256,4 +256,4 @@ module.exports = {
 
 > You can see that almost nothing has changed, really we just namespaced the functionality into a different file. What advantages does that bring to us with regard to separation of concerns in MVC? (st-wg)
 
-You can start to see the neccessity of `module.export` when we start to add models to our application. If we had the 7 RESTful routes that rails have for each model, you can start to see how keeping everything in the `application.js` can begin to become unwieldy. 
+You can start to see the neccessity of `module.export` when we start to add models to our application. If we had the 7 RESTful routes that rails have for each model, you can start to see how keeping everything in the `application.js` can begin to become unwieldy.
