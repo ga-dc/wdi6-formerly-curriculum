@@ -129,3 +129,18 @@ app.get("/:name", function(req, res){
 ## Break(10/60)
 
 ## You do: 99 Bottle of Beer(20/80)
+The readme can be found [here](https://github.com/ga-dc/99_bottles_of_beer)
+- Don't worry about the double bonus, and of course this will be in express instead of sinatra.
+
+## Views
+Remember how we utilized erb in Sinatra and rails?  We need to be able to do the same sort of templating with Express. For express we'll use handlebars. To install handlebars into our node application enter the following in the terminal:
+
+```bash
+$ npm install --save hbs
+```
+
+Then we need to set out view engine to be handle bars inside of the `application.js`:
+
+```javascript
+app.set("view engine", "hbs")
+```
