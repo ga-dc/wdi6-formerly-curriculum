@@ -257,3 +257,5 @@ module.exports = {
 > You can see that almost nothing has changed, really we just namespaced the functionality into a different file. What advantages does that bring to us with regard to separation of concerns in MVC? (st-wg)
 
 You can start to see the neccessity of `module.export` when we start to add models to our application. If we had the 7 RESTful routes that rails have for each model, you can start to see how keeping everything in the `application.js` can begin to become unwieldy.
+
+## Break (10/130)
