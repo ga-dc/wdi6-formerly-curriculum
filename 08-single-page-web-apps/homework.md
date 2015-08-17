@@ -20,6 +20,8 @@ Moving forward, there will be three due dates per week for homework:
   - **Graded by:** Your squad instructor
   - **Grades logged & feedback returned by:** Monday, 6:00pm
 
+## [Please see the homework requirements in greater detail here.](https://github.com/ga-dc/pbj/blob/master/homework-process.md)
+
 ## Peanut Butter && Jelly
 
 | Date Assigned | Notes                          | Assignment |
