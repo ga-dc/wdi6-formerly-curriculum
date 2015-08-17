@@ -238,14 +238,14 @@ describe( "A person", function(){
 ## Getting Started
 
 First, we're going to install jasmine-node globally.
-* `$ npm install jasmine-node -g`
+* `$ npm install  -g jasmine-node`
 * Now we can use Jasmine across projects.
 
 ## What are we going to test?
 
 During this lesson we are going to write tests for and create a calculator application.
 * We're going to stick with Javascript here. No HTML/CSS at the moment.
-* We're going to write this using Node, so you're going to see some unfamiliar syntax.
+* This will involve some Node syntax beyond what you've already seen.
 * I'll try to explain as we go along, but don't worry understanding it 100% now. You'll learn more about Node as the week goes on.
 
 ## Let's get to work (20 / 55)
@@ -428,8 +428,11 @@ Refactor your calculator.js file so that instead of writing out a bunch of `func
 ## Exercise + Homework: Clock Hands (30 / 150)
 
 With the remaining time in class I'd like you to create this [Clock Hands angle calculator](https://github.com/ga-dc/sundial) using a TDD approach.
+* Combine problem solving with TDD.
 * There is no single way to do this, so feel free to create whatever tests you would like.
-* While you're together, I encourage you to tackle this exercise pair-programming style. Have one person write the test and the other write the code to make it pass. Switch with each test.
+* While you're together, I encourage you to tackle this exercise pair-programming style.
+  * First, outline the problem. Think about not only how to approach it but what tests you will need to support it.
+  * Keep switching off: have one person write a test and the other write the code to make it pass.
 
 ## Additional Reading
 
