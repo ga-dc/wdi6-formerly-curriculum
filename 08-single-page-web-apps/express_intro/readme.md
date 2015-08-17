@@ -14,7 +14,7 @@ PKI(5 m) List out the things we've covered in class. It is SO much stuff. We've 
 
 > Node.js is not a framework. It is an application runtime environment that allows you to write server-side applications in javascript. Javascript that does not depend on a browser.
 
-Frameworks like rails, are a very opinionated frameworks. (st-wg) Express is much less so. There are holy wars over which frameworks are better for reason x or y, but they all pretty much do the same thing just with a different syntax. Today we'll be learning about express. Express by itself, is much more like Sinatra, it feels very manual.
+Frameworks like rails, are very opinionated frameworks. (st-wg) Express is much less so. There are holy wars over which frameworks are better for reason x or y, but they all pretty much do the same thing just with a different syntax. Today we'll be learning about express. Express by itself, is much more like Sinatra, it feels very manual.
 
 ## Hello World - Express (we do 30/45)
 To start, Lets create a simple hello world express application.
