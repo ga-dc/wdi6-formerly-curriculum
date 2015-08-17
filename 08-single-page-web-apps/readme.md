@@ -60,5 +60,7 @@ Build an interactive "single page" web application that persists data.
 - Explain the purpose of TDD/BDD.
 - Review RSpec and standard testing syntax.
 - Describe Jasmine.
+- List components of a Jasmine test.
 - Compare/Contrast Jasmine & RSpec.
 - Implement TDD using Jasmine.
+- Use different Jasmine matchers.
