@@ -3,8 +3,10 @@
 * Explain the purpose of TDD/BDD.
 * Review RSpec and standard testing syntax.
 * Describe Jasmine.
+* List components of a Jasmine test.
 * Compare/Contrast Jasmine & RSpec.
 * Implement TDD using Jasmine.
+* Use different Jasmine matchers.
 
 ## Do You Test? (5 / 5)
 
