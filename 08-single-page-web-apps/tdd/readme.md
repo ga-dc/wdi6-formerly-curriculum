@@ -364,13 +364,15 @@ Follow the same process and add some functionality to our calculator.
   4. Exponential
 
 ### Bonus
-Test for error messages when your calculator makes an invalid operation.
-* For example, test to make sure that your calculator returns a helpful error message when it tries to divide by 0.
-
+Make us of `beforeEach`  
+  
 Test and add some advanced functionality.
 * Average
 * Factorial
 * Logarithmic
+
+Test for error messages when your calculator makes an invalid operation.
+* For example, test to make sure that your calculator returns a helpful error message when it tries to divide by 0.
 
 ## Exercise (Cont.): Add Some Matchers (10 / 95)
 
