@@ -17,8 +17,8 @@ Build an interactive "single page" web application that persists data.
 - Define the parts of a route
 - Extract routes to separate files
 - Explain the `all` routing method
-- Support multiple functions for a single route
 - Describe the role of response methods
+- Extract routes to a separate file
 
 ### Intro to SPA
 
