@@ -199,7 +199,7 @@ The only problem is our view is empty! Let's go ahead and change that now. In `v
 
 This is also a great time to note how we serve static assets. Notice we linked a stylesheet in our layout file. We are able to do this, because in our `application.js` we use `app.use(express.static(__dirname + '/public'))` in our code base. This allows us to utilize files in that folder in the layout.
 
-Notice that the {{{body}}} syntax. This is because Handlebars by default escapes HTML and you need the additional set of brackets to indicate that you want to render the tags in the body as HTML.
+Notice the {{{body}}} syntax. This is because Handlebars by default escapes HTML and you need the additional set of brackets to indicate that you want to render the tags in the body as HTML.
 
 Finally we should update our index view to reflect the same strings we had before. In `views/index.hbs`:
 
