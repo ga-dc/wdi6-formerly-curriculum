@@ -134,7 +134,7 @@ The readme can be found [here](https://github.com/ga-dc/99_bottles_express)
 ## Views (20/100)
 > One thing to note about views for today. We want to give you an initial introduction into how views can be generated through templating to achieve the same effects that erb did for us in Sinatra/Rails. However, during the course of this week, we won't be using to much server-side rendered views. Instead we'll be focusing more of this week on how we render views on the client side.
 
-Let's leverage our [solution to 99 Bottles of Beer](https://github.com/ga-dc/99_bottles_express/tree/solution) to learn about views.2
+Let's leverage our [solution to 99 Bottles of Beer](https://github.com/ga-dc/99_bottles_express/tree/solution) to learn about views.
 
 Remember how we utilized erb in Sinatra and rails?  We need to be able to do the same sort of templating with Express. For express we'll use handlebars. To install handlebars into our node application enter the following in the terminal:
 
@@ -330,3 +330,10 @@ app.post("/", function(req, res){
 
 ## HW
 You can find hw for tonight [here](https://github.com/ga-dc/do_something_express_part1)
+
+## Sample Quiz Questions
+- What is `npm`?
+
+- Write a get request using any path as you would in an express application.
+
+- How does `module.exports` help us with separation of concerns?
