@@ -2,31 +2,45 @@
 
 One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
 
-## Mon Jul 6 
+## Tuesday August 4th
 
-- Jeff Jones 
+- 9am squad scrum
+- 9:15 - 9:30 Jeff
+- 9:30 - 9:45 Sam
+- 9:45 - 10:00 Jeremy
+- 10:00 - 10:15 Christine
+- 10:15 - 10:30 Anand
+- 10:30 - 10:45 Ryan
+- 11:00 - 11:15 Lana
+- 11:15 - 11:30 John
+- 11:30 - 11:45 Taewan
+
+
+## Mon Aug 10
+
+- Jeff Jones
 - Samuel Key
 
-## Wed Jul 8 
+## Wed Aug 12
 
-- Jeremy Koulish 
-- Christine Lovett 
+- Jeremy Koulish
+- Christine Lovett
 
-## Thur Jul 9 
+## Thur Aug 13
 
 - Anand Moses
 - **Open Appointment Time**
 
-## Mon Jul 13 
+## Mon Aug 17
 
-- Ryan Kahle 
-- Taewan Kim 
+- Ryan Kahle
+- Taewan Kim
 
-## Wed Jul 15
+## Wed Aug 19
 
-- Lana Kushnir 
+- Lana Kushnir
 - John Master
 
-## Thur Jul 16
+## Thur Aug 20
 
 - **Open Appointment Time**

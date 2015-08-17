@@ -2,32 +2,41 @@
 
 One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
 
-## Mon Jul 6
+Order was randomly assigned via Array#shuffle.
 
-- Laura Nawrocki
+## Mon Aug 10
+
+- Rosel P.
 - **Open Appointment Time**
 
-## Wed Jul 8
+## Tue Aug 11
 
-- Cheikh Ndiongue
-- Nicholas Olds
+- Outcomes
 
-## Thur Jul 9
+## Wed Aug 12
 
-- Malissa Cruz Romero
+- Cheik
+
+## Thur Aug 13
+
+- Malissa
 
 ---
 
-## Mon Jul 13
+## Mon Aug 17
 
-- Rosel Padilla
-- **Open Appointment Time**
+- Lon
+- Justine
 
-## Wed Jul 15
+## Tue Aug 18
 
-- Edward Park
-- Lon Phelps
+- Outcomes
 
-## Thur Jul 16
+## Wed Aug 19
 
-- Justin Price
+- Nic
+- Laura
+
+## Thu Aug 20
+
+- Eddie

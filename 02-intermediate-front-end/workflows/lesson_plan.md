@@ -43,13 +43,26 @@ We'll be talking about/using a better model/methodology of SDLC in particular. A
 - requirements cannot be fully collected at the beginning of the software development cycle, therefore continuous customer or stakeholder involvement is very important.
 
 <b>Responding to change over following a plan:</b>
-- agile methods are focused on quick responses to change and continuous development.[11]n-profit organization that promotes software development according to the manifesto's values and principles.
+- agile methods are focused on quick responses to change and continuous development.
 
 > about the items in bold, while there is value in the items on the right, we value the items on the left more.
 
 > TLDR of above, TRY SOMETHING react to feedback
 
-The Basic Implementation of Agile workflow is rapid development based on quick iterations known as sprints. Traditionally in the development environments sprints can last anywhere from 1-4 weeks. For your projects you can structure your own sprints in even smaller increments.
+The Basic Implementation of Agile workflow is rapid development based on quick iterations known as sprints. Traditionally in the development environments sprints can last anywhere from 1-4 weeks. Development teams can build trust in their clientele/customer base by delivering early and often.
+
+This also provides the additional benefit of allowing for steering. Changing the direction of the project on a per iteration basis if need be.
+
+
+### What does that mean for you guys?
+For your projects you can structure your own sprints in even smaller increments. Maybe even 1 or 2 days. Perhaps shorter! Get something done in the sprint and iterate on it
+
+### Paper Plane Exercise Waterfall vs Agile
+
+### Scheduling
+When planning these sprints, set concrete goals for yourself. I'm going to achieve X by 12:30 so that I can get started on Y after lunch. I will finish Y by close of business so that I can start on Z. You could scale even further than that.
+
+Traditionally during the project weeks you'll have time to work from home. It is VITAL that you guys schedule yourselves well.
 
 > But the idea behind it, short get stuff done periods of time, and constantly iterating. Getting something to work MVP
 

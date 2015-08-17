@@ -1,23 +1,40 @@
-# One on One Schedule 
-One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
+# Fortran One on One Schedule
 
-## Mon Jul 6
-Lisa Scott - 4:30
-Rachel Warren - 5:00
+One on ones are generally from 4:30pm to 5:00pm on Mondays, Wednesdays, and Thursdays.
 
-## Wed Jul 8
-Ksenia Coulter - 4:30
-Yvonne Wang - 5:00
+## Mon Aug 10
 
-## Thur Jul 9
-Adrian Shepelavey - 4:30
-Leigh Varley - 5:00
+- Lisa
 
-## Mon Jul 13
-Melissa Steffan - 4:30
-Omari Mayers-Walker - 5:00
+## Wed Aug 12
 
-## Wed Jul 15
-Arash Shahry - 5:00
+- Arash
+- **Open Appointment Time**
 
+## Thur Aug 13
 
+- Adrian
+- Melissa
+
+## Fri Aug 14
+
+- Leigh
+
+-----
+
+## Mon Aug 17
+
+- Omari
+
+## Wed Aug 19
+
+- Yvonne
+- Leigh
+
+## Thur Aug 20
+
+- Rachel
+
+## Fri Aug 21
+
+- Ksenia
