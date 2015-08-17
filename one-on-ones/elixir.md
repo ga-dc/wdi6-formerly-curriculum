@@ -26,7 +26,7 @@ Order was randomly assigned via Array#shuffle.
 ## Mon Aug 17
 
 - Lon
-- Justine
+- Justin
 
 ## Tue Aug 18
 
