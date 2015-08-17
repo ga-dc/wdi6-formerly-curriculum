@@ -365,7 +365,7 @@ Follow the same process and add some functionality to our calculator.
 
 ### Bonus
 Make us of `beforeEach`  
-  
+
 Test and add some advanced functionality.
 * Average
 * Factorial
