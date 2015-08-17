@@ -266,7 +266,7 @@ We're going to leverage code from the [hello-express app](https://github.com/ga-
 
 The first thing that I want to do is add a form to our `hello.hbs`:
 
-```
+```html
 Hello {{name}}
 
 <form action="/" method="post">
@@ -280,7 +280,7 @@ Let's go ahead and try entering a name and hitting enter:
 
 How can we fix this?(st-wg) In `app.js`:
 
-```
+```js
 app.post("/", function(req, res){
   res.send("can post")
 })
@@ -288,7 +288,7 @@ app.post("/", function(req, res){
 
 Well it works, but it's not super valuable, we're not even getting our parameter. Let's add some stuff in `app.js`:
 
-```
+```js
 app.post("/", function(req, res){
   res.send("hello " + req.params.name)
 })
