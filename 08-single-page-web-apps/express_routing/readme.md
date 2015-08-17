@@ -71,7 +71,7 @@ Cross cutting concerns.  Like authentication, authorization, and loading the par
 app.all('*', requireAuthentication, loadUser);
 ```
 
-## Route Paths (10 min)
+## Route Paths (30 min)
 
 Back to the docs for [Routing Paths](http://expressjs.com/guide/routing.html#route-paths)
 
@@ -150,10 +150,13 @@ app.get('/', function (req, res){
 Andy covered this.  It's used to render a view template with your chosen templating language.
 
 
-## Exercise: The Bowling Game (30 min)
+## Exercise: The Bowling Game (45 min)
 
 https://github.com/ga-dc/bowling_game_express
 
+- At 10 min: You have reviewed the project.  Have a handle on dependencies and routes.  You've run "mocha -w" and you've seen that your app doesn't fare too well. :)  Working on "gutter game".
+- At 30 min: "gutter game", "single pin game", and "partial game, no closed frames" work.
+- At 45 min: Still battling with "spare" and/or "strike".
 
 ## exports (20 min)
 
