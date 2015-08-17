@@ -21,76 +21,12 @@ app.METHOD(path, [callback...], callback)
 - `path` is a path on the server, and
 - `callback` is the function executed when the route is matched.
 
-### You Do, Pair and Share: Write basic CRUD routes for a Song. (15 min)
+### Exercise: Pair and Share: Write basic CRUD routes for a Song. (15 min)
 
-- Follow RESTful conventions
-- Just the route, returning a helpful message.
-
-Like this...
-
-``` javascript
-var express = require('express');
-var app = express();
-
-// songs#index
-app.get('/songs', function (req, res) {
-  res.send('GET index of Songs');
-});
-```
-
----
+https://github.com/ga-dc/song_routes_express
 
 Note: earlier reading did not discuss :id placeholders
 
-``` js
-var express = require('express');
-var app = express();
-
-app.listen(4000, function(){
-  console.log("app listening on port 4000");
-});
-
-
-// root route
-app.get('/', function (req, res){
-  res.redirect('/songs');
-});
-
-// songs#index
-app.get('/songs', function (req, res) {
-  res.send('GET index of Songs');
-});
-
-// songs#new
-app.get('/songs/new', function (req, res) {
-  res.send('GET to gather info for a new Song');
-});
-
-// songs#show
-app.get('/songs/:id', function (req, res) {
-  res.send('GET to show Song:' + req.params.id);
-});
-
-// songs#create
-app.post('/songs', function (req, res) {
-  res.send('POST to create a Song');
-});
-
-// songs#edit
-app.get('/songs/:id/edit', function (req, res) {
-  res.send('GET to gather info to update Song:' + req.params.id);
-});
-
-// songs#update
-app.patch('/songs/:id', function (req, res) {
-  res.send('PATCH to update Song:' + req.params.id);
-});
-
-// songs#delete
-app.delete('/songs/:id', function (req, res) {
-  res.send('DELETE Song:' + req.params.id);
-});
-```
 
 ## Other Request methods (15 min)
 
@@ -181,7 +117,8 @@ Andy covered this.  It's used to render a view template with your chosen templat
 
 ## Exercise: The Bowling Game (30 min)
 
-https://github.com/ga-dc/bowling_game
+https://github.com/ga-dc/bowling_game_express
+
 
 ## exports (20 min)
 
@@ -192,7 +129,9 @@ In order to simplify your index.js, you will find it helpful to extract your rou
 
 ## Exercise: Extract your Bowling Game routes to a separate file (15 min)
 
+https://github.com/ga-dc/song_routes_express
 
+For solution, see branch "solution_extract_routes".
 
 ## Resources
 - http://expressjs.com/guide/routing.html
