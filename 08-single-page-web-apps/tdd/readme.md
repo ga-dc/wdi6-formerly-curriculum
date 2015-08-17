@@ -1,10 +1,10 @@
 ## Learning Objectives
 
 * Explain the purpose of TDD/BDD.
-* Review RSpec and test syntax.
+* Review RSpec and standard testing syntax.
 * Describe Jasmine.
 * Compare/Contrast Jasmine & RSpec.
-* Setup Jasmine for a Node Project.
+* Implement TDD using Jasmine.
 
 ## Do You Test? (5 / 5)
 
