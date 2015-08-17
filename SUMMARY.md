@@ -53,6 +53,8 @@
   * [Animations](07-uxdi-collaboration/animations/readme.md)
   * [Responsive Web Design](07-uxdi-collaboration/responsive-web-design/readme.md)
 * ["Single Page" Web Applications](08-single-page-web-apps/readme.md)
+  * [Intro to Express ](08-single-page-web-apps/express_intro/readme.md)
+  * [Express Routing](08-single-page-web-apps/express_routing/readme.md)
 * [Project 3](https://github.com/ga-dc/pbj-project3/blob/master/readme.md)
 * [MV* with Backbone](10-mvw-with-backbone/readme.md)
 * [MV* with Angular](11-mvw-with-angular/readme.md)
