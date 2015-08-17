@@ -133,6 +133,8 @@ The readme can be found [here](https://github.com/ga-dc/99_bottles_express)
 - Don't worry about the double bonus, and of course this will be in express instead of sinatra.
 
 ## Views (20/100)
+> One thing to note about views for today. We want to give you an initial introduction into how views can be generated through templating to achieve the same effects that erb did for us in Sinatra/Rails. However, during the course of this week, we won't be using to much server-side rendered views. Instead we'll be focusing more of this week on how we render views on the client side.
+
 Let's leverage our [solution to 99 Bottles of Beer](https://github.com/ga-dc/99_bottles_express/tree/solution) to learn about views.2
 
 Remember how we utilized erb in Sinatra and rails?  We need to be able to do the same sort of templating with Express. For express we'll use handlebars. To install handlebars into our node application enter the following in the terminal:
@@ -259,3 +261,92 @@ module.exports = {
 You can start to see the neccessity of `module.export` when we start to add models to our application. If we had the 7 RESTful routes that rails have for each model, you can start to see how keeping everything in the `application.js` can begin to become unwieldy.
 
 ## Break (10/130)
+
+## Bodyparser & Post requests (20/150)
+We're going to leverage code from the [hello-express app](https://github.com/ga-dc/hello-express) we built earlier. I've added some hbs views so go ahead and clone this code if you want to follow along.
+
+The first thing that I want to do is add a form to our `hello.hbs`:
+
+```
+Hello {{name}}
+
+<form action="/" method="post">
+  <input type="text" name="name">
+</form>
+```
+
+Let's go ahead and try entering a name and hitting enter:
+
+```get CANNOT POST/```
+
+How can we fix this?(st-wg) In `app.js`:
+
+```
+app.post("/", function(req, res){
+  res.send("can post")
+})
+```
+
+Well it works, but it's not super valuable, we're not even getting our parameter. Let's add some stuff in `app.js`:
+
+```
+app.post("/", function(req, res){
+  res.send("hello " + req.params.name)
+})
+```
+
+hello undefined... oh man.. and just to be sure let's `console.log(req.params)` . It's an empty object!
+
+So we're not getting anything from params, turns out we need to install middleware in order to get form data and JSON data in a POST request for express applications.
+
+> middleware is code that runs in between receiving the request and responding. Body-parser used to be included to express, but they took it out. Why might they do that?
+
+In the terminal:
+
+```bash
+$ npm install --save body-parser
+```
+
+In `app.js`:
+
+```js
+// configure app to use body parser
+var bodyParser = require("body-parser")
+
+app.use(bodyParser.json()) //handles json post requests
+app.use(bodyParser.urlencoded({ extended: true })) // handles form submissions
+```
+
+Another thing to note is that, in express, `params` is always for parameters in the url. parameters in form data is `body`
+
+So we change the final post request in app.js to:
+
+```js
+app.post("/", function(req, res){
+  res.render("hello", {name: req.body.name})
+})
+```
+
+## You do - Ultimate Complimate(if time allows)
+
+## HW
+Homework tonight is to create an express app!
+
+In your application
+- Create a variable `todos` as an array of 5 objects.
+  - Each object should contain 3 properties
+    - id, integer
+    - body, string
+    - completed, boolean
+- Create an index route that shows a list of all of the objects
+  - each todo should have a link to its corresponding show page.
+  - each todo will have its body and its completed status
+- Create a show route that shows one single `todo`
+- Create a `POST` route that allows you to add an object to the array
+  - *note that this will not update the file, if you exit the application and restart, you will lose everything created in the `POST` route.*
+
+### BONUS
+- Make a post/put request that changes an existing todo from uncompleted to completed. Maybe render different index view to visualize the completed todos versus incomplete.
+
+### Super BONUS
+- Using file I/O fake the funk of a database!
