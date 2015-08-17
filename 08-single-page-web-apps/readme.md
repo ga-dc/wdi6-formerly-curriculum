@@ -61,4 +61,3 @@ Build an interactive "single page" web application that persists data.
 - Compare/Contrast Jasmine & RSpec.
 - Explain how `this` is used within Jasmine.
 
-### Mini-Lesson: Canvas
