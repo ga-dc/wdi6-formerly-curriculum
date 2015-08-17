@@ -27,7 +27,16 @@ behavior. Why might we want to do this? Object-oriented programming provides us
 with opportunities to clean up our procedural code and model it more-closely to
 the external world.
 
-Suppose we were building a card game. We'd start by building a deck. What does
+This becomes **very** important as our front-end code grows in complexity. Even
+a simple app like DoSomething will have lots of code on the front end to do
+things like:
+
+* render data from the back end
+* update the state of the page as data changes
+* respond to events like clicking buttons / links
+* send requests to the back end to fetch / update / destroy data
+
+Suppose we were building a card game (this example doesn't matter front-end vs back-end). We'd start by building a deck. What does
 the deck of cards look like? Perhaps:
 
 ```js
@@ -75,7 +84,9 @@ deck[0].beat(deck[1]) ? "Player 1 wins!" : "Player 2 wins!"
 ```
 
 The reason this is simpler is easy: we've encapsulated the comparison logic in
-the card object itself, as well as each card's numerical value.
+the card object itself, as well as each card's numerical value. Additionally,
+each card has a well-defined interface (the data and methods that can be
+accessed / called)
 
 ## Making Objects
 
@@ -146,6 +157,10 @@ using constructors and prototypes).
 Constructor functions are a lot like the `makeCar` function we just created, but
 they're supported by JS and we use the `new` keyword to use the constructor
 function.
+
+Note that constructor functions start with a capital letter to make it obvious
+that they are constructors. This isn't necessary, but is a convention and you
+should follow it!
 
 ```js
 function Person(initialName) {
@@ -231,6 +246,9 @@ bob.speak() // "Hello! I'm Bob"
 To see an object's prototype, you can look at the `__proto__` property. It's
 generally not a good idea to change the prototype directly by assigning to the
 `__proto__` property.
+
+Prototype is a property on constructor functions, while __proto__ is the
+property on objects, and is used in the lookup chain.
 
 ### Exercise: Car Constructor with Prototypes
 

@@ -29,28 +29,31 @@ Build an interactive "single page" web application that persists data.
 - Identify common problems with single page applications
 
 ### JS Prototypes and Constructors
-- List the advantages of object oriented javascript relative its alternatives.
-- Contrast an object, a hash, and an array.
-- Explain the role of a constructor in an object.
-- Describe at least two ways to create a new instance of an object.
-- Provide definitions for both classical and prototypal inheritance, or provide a description of the difference between the two.
+- Explain the importance of OOJS in front-end code
+- Describe the role of constructor functions, and how they work
+- Use constructor functions to create objects with shared properties (like classes)
+- Describe what a prototype object is, and how they are used in JS
+- Differentiate between `__proto__` and Animal.prototype
+- Diagram the relationship between an object, its constructor, and prototype
+- Use `Object.create` to create inheritance relationships
+- Compare / contrast classical and prototypal inheritance
 - Use the Chrome element inspector to traverse through the prototypal tree.
-- Add a property and a method to all instances of a prototype.
-- Given an occurrence of `this`, explain to which object it refers, and provide a method by which you could find out to what it refers.
 
 ### Sequelize
 
-* Describe what sequelize is
-* Use sequelize to connect to a DB in JS
-* Define a model in sequelize that has getters and setters
-* Define the roll of callbacks in Sequelize
-* Use sequelize to find models from the DB
-* Use sequelize to perform CRUD on model instances
-* Compare / contrast Sequelize and ActiveRecord
+- Describe what sequelize is
+- Use sequelize to connect to a DB in JS
+- Define a model in sequelize that has getters and setters
+- Define the roll of callbacks in Sequelize
+- Use sequelize to find models from the DB
+- Use sequelize to perform CRUD on model instances
+- Compare / contrast Sequelize and ActiveRecord
 
 ### OOJS 1: Reading
 
 ### OOJS 2: CUD
+
+- Use AJAX
 
 ### JS TDD
 
@@ -60,4 +63,3 @@ Build an interactive "single page" web application that persists data.
 - Setup Jasmine for a Rails project.
 - Compare/Contrast Jasmine & RSpec.
 - Explain how `this` is used within Jasmine.
-
