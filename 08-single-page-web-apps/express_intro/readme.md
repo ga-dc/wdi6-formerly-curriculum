@@ -296,7 +296,7 @@ app.post("/", function(req, res){
 
 hello undefined... oh man.. and just to be sure let's `console.log(req.params)` . It's an empty object!
 
-So we're not getting anything from params, turns out we need to install middleware in order to get form data and JSON data in a POST request for express applications.
+So we're not getting anything from params, turns out we need to install middleware in order to get form data and JSON data in a POST request for express applications. Rails and Sinatra already include the middleware to handle this(RACK). By default express does not, so we need to install it manually.
 
 > middleware is code that runs in between receiving the request and responding. Body-parser used to be included to express, but they took it out. Why might they do that?
 
