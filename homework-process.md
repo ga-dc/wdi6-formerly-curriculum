@@ -50,3 +50,6 @@ In general, there will be three due dates per week for homework:
   - **Due by:** Friday, 11:00am
   - **Graded by:** Your squad instructor
   - **Grades logged & feedback returned by:** Monday, 6:00pm
+
+**Late homework will not be accepted**. We're flexible and accomodating. If you have issues submitting homework
+please let us know. Otherwise late homework will not be accepted.
