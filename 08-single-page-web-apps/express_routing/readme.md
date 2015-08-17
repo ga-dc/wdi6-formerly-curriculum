@@ -75,18 +75,47 @@ app.all('*', requireAuthentication, loadUser);
 
 Back to the docs for [Routing Paths](http://expressjs.com/guide/routing.html#route-paths)
 
-> Q.
-
+> Q. What are the 3 ways to indicate a route?
 ---
 
+- Straight, exact string match.
+- String pattern
+- Regular Expression
+
+
+### Regular Expressions (light)
+
+We are throwing these regular expressions at you again.  It's high time we shared a little about them.  Regular expressions are a specialized syntax for matching portions of text. In js and ruby, a RegEx is wrapped in forward slashes (`/expression/`).
+
+I am going to show you a few example in [Rubular](http://rubular.com), a Ruby regular expression editor.
+
+Enter "a" as the regular expression and add some fruits to "Your test string".
+
+> Q. What is it doing?
+---
+
+Correct.  It's indicating everywhere the letter "a" appears.  In most applications, we would use this to indicate if the string had an "a" contained somewhere in it.  
+
+F0r instance, if we wanted to match routes that had the word "song" in then, we would use `/song/`.
+
+Take a minute to review the the Regex Quick Reference at the bottom of Rubular.  Try the other example from the docs: `/.*fly$/`
+
+> Q. What are the `.`, `*`, and `$` used for?
+---
+
+From the docs, that regex "will match butterfly, dragonfly; but not butterflyman, dragonfly man, and so on".  Let me break it down... this RegEx matches all strings that:
+- start with anything `.*` and
+- end in `fly$`.  
+
+The dollar sign indicates "End of line".  To be honest, I think that is the same as `/fly$/`.  Let's try it.
+
+
+This is by no means a thorough overview of RegExes, but it should be enough to get you started.  One of the most powerful features of RegEx's is "capture groups". You indicate portions of the string should be captured for later use - but that, is for another lesson.
 
 ### Express Route Tester
 
-[Express Route Tester](http://forbeslindesay.github.io/express-route-tester/?_ga=1.256234632.2070291842.1433362238) can be a handy tool for testing basic Express routes
+Similarly, let's take a look at the [Express Route Tester](http://forbeslindesay.github.io/express-route-tester/?_ga=1.256234632.2070291842.1433362238).  It can be a handy tool for testing basic Express routes.
 
-## Exercise: Write route paths to support each route. (15 min)
-
-???
 
 ## Response Methods (20 min)
 
