@@ -54,10 +54,8 @@ Build an interactive "single page" web application that persists data.
 
 ### JS TDD
 
-- Explain the purpose of Unit testing and TDD/BDD.
-- Review RSpec and test syntax.
+- Explain the purpose of TDD/BDD.
+- Review RSpec and standard testing syntax.
 - Describe Jasmine.
-- Setup Jasmine for a Rails project.
 - Compare/Contrast Jasmine & RSpec.
-- Explain how `this` is used within Jasmine.
-
+- Implement TDD using Jasmine.
