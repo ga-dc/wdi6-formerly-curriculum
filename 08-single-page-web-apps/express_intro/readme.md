@@ -130,7 +130,6 @@ app.get("/:name", function(req, res){
 
 ## You do: 99 Bottle of Beer(20/80)
 The readme can be found [here](https://github.com/ga-dc/99_bottles_express)
-- Don't worry about the double bonus, and of course this will be in express instead of sinatra.
 
 ## Views (20/100)
 > One thing to note about views for today. We want to give you an initial introduction into how views can be generated through templating to achieve the same effects that erb did for us in Sinatra/Rails. However, during the course of this week, we won't be using to much server-side rendered views. Instead we'll be focusing more of this week on how we render views on the client side.
