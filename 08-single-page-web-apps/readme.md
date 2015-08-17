@@ -41,13 +41,16 @@ Build an interactive "single page" web application that persists data.
 
 ### Sequelize
 
-- Describe what sequelize is
+- Compare / contrast Sequelize and ActiveRecord
 - Use sequelize to connect to a DB in JS
 - Define a model in sequelize that has getters and setters
 - Define the roll of callbacks in Sequelize
-- Use sequelize to find models from the DB
-- Use sequelize to perform CRUD on model instances
-- Compare / contrast Sequelize and ActiveRecord
+- Describe why database are asynchronous (and what asynchronous means)
+- Use Sequelize to find models from the DB
+- Use Sequelize to perform CRUD on model instances
+- Create an API with CRUD functionality using Express and Sequelize
+- Map a directory / file structure conducive to DB modeling
+- Map Rails / ActiveRecord methods to Express / Sequelize methods
 
 ### OOJS 1: Reading
 
