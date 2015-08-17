@@ -10,7 +10,7 @@
 - Link to static assets in an Express application
 
 ## Opening Framing (15/15)
-PKI(5 m) List out the things we've covered in class. It is SO much stuff. We've pretty much covered the entire stack. Everything we cover from here on out is an extension of what we've already learned or a different language than we're used to. Today we'll be talking about expressJS. You've already used express, only the language was ruby and the framework was Sinatra. So you haven't actually used express, but you'll see many similarities. Express is a framework built on top of node.
+PKI(5 m) List out the things we've covered in class. It is SO much stuff. We've pretty much covered the entire stack. Everything we cover from here on out is an extension of what we've already learned or a different language than we're used to. Today we'll be talking about expressJS the "e" in the MEAN stack. Which incidentally is super buzz wordy right now. You've already used express, only the language was ruby and the framework was Sinatra. So you haven't actually used express, but you'll see many similarities. Express is a framework built on top of node.
 
 > Node.js is not a framework. It is an application runtime environment that allows you to write server-side applications in javascript. Javascript that does not depend on a browser.
 
