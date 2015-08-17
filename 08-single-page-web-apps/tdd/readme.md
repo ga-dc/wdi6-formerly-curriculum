@@ -381,6 +381,7 @@ We've already played around with one matcher in our test expectations: `.toBe( )
   * `.toBeNull()`
   * `.toContain()`
   * `.not.` (matcher prefix)
+* You can use these inside your already-existing specs or create brand new functions to test.
 * Need help? Look at the [Jasmine Documentation](http://jasmine.github.io/2.0/introduction.html#section-Matchers).
 
 ### Bonus
@@ -422,45 +423,9 @@ Refactor your calculator.js file so that instead of writing out a bunch of `func
 
 [Here's the calculator solution](https://github.com/ga-dc/jasmine-calculator) in case you need some guidance.
 
-## Render Test Results in the Browser (10 / 120)
+## Break (10 / 120)
 
-A cool Jasmine feature is that you can create a `SpecRunner.html` file to render test results in the browser.
-* Here's a [SpecRunner template](https://github.com/jasmine/jasmine/blob/master/grunt/templates/SpecRunner.html.jst). All you need to do is reference your own JS and spec files.
-* Ours will look like this...
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Jasmine Spec Runner v<%= jasmineVersion %></title>
-
-  <link rel="shortcut icon" type="image/png" href="lib/jasmine-<%= jasmineVersion %>/jasmine_favicon.png">
-  <link rel="stylesheet" href="lib/jasmine-<%= jasmineVersion %>/jasmine.css">
-
-  <script src="lib/jasmine-<%= jasmineVersion %>/jasmine.js"></script>
-  <script src="lib/jasmine-<%= jasmineVersion %>/jasmine-html.js"></script>
-  <script src="lib/jasmine-<%= jasmineVersion %>/boot.js"></script>
-
-  <!-- include source files here... -->
-  <script src="calculator.js"></script>
-
-  <!-- include spec files here... -->
-  <!-- <script src="spec/SpecHelper.js"></script> -->
-  <script src="spec/calculator-spec.js"></script>
-
-</head>
-
-<body>
-</body>
-</html>
-```
-
-[INSERT SCREENSHOT OF FUNCTIONING SPECRUNNER.HTML]
-
-## Break (10 / 130)
-
-## Exercise + Homework: Clock Hands (20 / 150)
+## Exercise + Homework: Clock Hands (30 / 150)
 
 With the remaining time in class I'd like you to create this [Clock Hands angle calculator](https://github.com/ga-dc/sundial) using a TDD approach.
 * There is no single way to do this, so feel free to create whatever tests you would like.
