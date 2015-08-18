@@ -4,15 +4,15 @@
 
 - Explain the importance of OOJS in front-end code
 - Describe the role of constructor functions, and how they work
-- Use constructor functions to create objects with shared properties (like classes)
+- Use constructor functions and the `new` keyword to create objects with shared properties (like classes)
 - Describe what a prototype object is, and how they are used in JS
 - Differentiate between `__proto__` and Animal.prototype
 - Diagram the relationship between an object, its constructor, and prototype
-- Use `Object.create` to create inheritance relationships
+- Compare `Object.create` vs constructors
 - Compare / contrast classical and prototypal inheritance
 - Use the Chrome element inspector to traverse through the prototypal tree.
 
-## Object Orientation
+## Object Orientation (10 minutes)
 
 Hi! This is an object: `{}`. Now you're oriented.
 
@@ -88,7 +88,7 @@ the card object itself, as well as each card's numerical value. Additionally,
 each card has a well-defined interface (the data and methods that can be
 accessed / called)
 
-## Making Objects
+## Making Objects (10 minutes)
 
 So far, we've had to make our objects 'by hand', i.e. using object literals:
 
@@ -129,7 +129,7 @@ and color), and others stay the same, for example, `fuel` starts at 100, and
 
 Why don't we build a function that makes these objects for us!
 
-### Exercise
+### Exercise (10 minutes)
 
 Define a function: `makeCar()` that takes two parameters (model, color) and
 makes a new object literal for a car using those params, and returns that object.
@@ -142,7 +142,7 @@ var celica = makeCar("Toy-Yoda Celica", "limegreen");
 
 See solution in `car.js`
 
-## Constructor Functions
+## Constructor Functions (20 minutes)
 
 It's so common that we need to make objects with similar properties / methods
 that programming languages usually have some features to help with this. In
@@ -188,13 +188,15 @@ When we run a constructor function with `new`, Javascript will automatically:
 2. Call the constructor function on that object (this -> the new object)
 3. Return the object
 
-### Exercise: Car Constructor Function
+### Exercise: Car Constructor Function (10 minutes)
 
 Write a constructor function to replace our `makeCar` function earlier.
 
 See car.js for a solution.
 
-## Prototypes
+## Lunch
+
+## Prototypes (20 minutes)
 
 There's one problem with our constructor function... every time we create a new
 car, it's creating new copies of the `refuel` and `drive` functions. This isn't
@@ -241,21 +243,120 @@ bob.name // "Bob"
 bob.speak() // "Hello! I'm Bob"
 ```
 
-### INSERT DIAGRAM HERE
+![Prototype Chain Diagram - Simple](images/prototype_chain_simple.jpg)
 
-To see an object's prototype, you can look at the `__proto__` property. It's
+To see an object's prototype, you can look at the `.__proto__` property. It's
 generally not a good idea to change the prototype directly by assigning to the
 `__proto__` property.
 
-Prototype is a property on constructor functions, while __proto__ is the
+**Note**: `.prototype` is a property on constructor functions, while `.__proto__` is the
 property on objects, and is used in the lookup chain.
 
-### Exercise: Car Constructor with Prototypes
+### Exercise: Car Constructor with Prototypes (10 minutes)
 
-Write a constructor function with prototypes for our cars.
+Update the constructor function for our car to define the methods on prototypes
+rather than on the individual instances themselves.
 
-See car.js for a solution.
+See `car.js` for a solution.
 
-## Exercise: Monkey
+## Exercise: Monkey (20 minutes)
 
-Insert link to monkey OOP exercise (same as ruby, but in JS, with TDD).
+Work on the [OOP Monkey Exercise](https://github.com/ga-dc/oop_monkey/tree/js) (same as in Ruby, now in JS!).
+
+Make sure you check out the `js` branch before beginning!
+
+`$ git checkout js`
+
+## Inheritance (15 minutes)
+
+In general, we're not going to be using inheritance with javascript, but it's
+worth just mentioning how it can be accomplished.
+
+```js
+////////////////////////////////
+// Animal (Parent) Class
+////////////////////////////////
+function Animal( name ){
+  this.name = name;
+}
+
+Animal.prototype.kingdom = "Animalia";
+Animal.prototype.breathe = function() {console.log("Inhale... exhale...")};
+
+
+////////////////////////////////
+// HELLO THIS IS DOG
+////////////////////////////////
+function Dog(name, breed){
+  this.name = name;
+  this.breed = breed;
+}
+
+// Important! Set up the link in the prototype chain connecting Dogs to Animals
+Dog.prototype = new Animal();
+
+// Add any methods / properties shared by all dogs.
+Dog.prototype.bark = function(){ console.log("Woof")};
+Dog.prototype.species = "Canis canis"
+
+////////////////////////////////
+// Testing our dawgs
+////////////////////////////////
+var spot = new Dog("Spot", "Beagle");
+
+// from Animal prototype
+spot.kingdom;
+spot.breathe();
+
+// from Dog prototype
+spot.bark();
+spot.species;
+
+// from Dog properties
+spot.name;
+spot.breed;
+```
+
+![Prototypal Inheritance Chain](images/prototype_chain_inheritance.jpg)
+
+## Object.create (20 minutes)
+
+So we won't use this often (if ever in this class), but you may see examples
+of using `Object.create`. This method creates a new object, and sets the
+prototype of the new object to be the existing object.
+
+An example might help:
+
+```js
+var Person = {
+  species: "Homo Sapiens",
+  speak: function() { console.log("Hello")}
+};
+
+var me = Object.create(Person);
+
+me.speak();
+me.species;
+```
+
+Just like before, we can use `this` inside our methods:
+
+```js
+var Person = {
+  species: "Homo Sapiens",
+  speak: function() { console.log("Hello! I'm " + this.name)}
+};
+
+var me = Object.create(Person);
+me.name = "Adam";
+
+me.speak()
+me.species
+```
+
+
+## Sample Questions
+
+* What are constructor functions and the new keyword? How are they related?
+* What is a prototype? Why do we care about them?
+* Describe how we use prototypes to set up inheritance in JS
