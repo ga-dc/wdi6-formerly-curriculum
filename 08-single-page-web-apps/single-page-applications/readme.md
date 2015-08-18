@@ -43,41 +43,31 @@ Ultimately we are trying to create a more "native" experience for web-based appl
 Every web page has a URL. We link to pages via these URLs and bookmark them. Without relying on URLs, how
 do we represent state in an application?
 
+Trello is an excellent example of a SPA. Try clicking around on a few cards and
+watch how the URL changes.
+
+Question: Does every "state" of the application have a corresponding URL?
+
 ### Search Engine Optimization
 
 How can Google index our content if the content is hidden behind event listeners and ajax requests?
+
+- Serve a raw html version as well? https://cdnjs.com/libraries/backbone.js/tutorials/seo-for-single-page-apps
+- Start with a fully funcional html app, and "progressively enhance"
 
 ### Analytics
 
 Similar to the above, URL's are often the #1 indicator for collecting analytics (counting page views). How do measure
 who is doing what when there's only one page load per person?
 
+- https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
+
 ### Progressive Enhancement vs Graceful degradation
 
 Some users have JS disabled, or at least more recent features are unavailable. Should we build an app
 that progresses as more features become available, or an app that degrades gracefully? (Like Gmail's this is taking a long time to load...)
 
-## We do: Boostrapping
-
-"Bootstrapping" an application consists of loading *one* HTML file on the initial page load,
-and letting the router load the correct state based on what is in the URL.
-
-Let's create a new express app and hardcode some items to send on initial page load:
-
-```js
-app.get("/", function(request, response){
-  response.sendFile(__dirname + "/app/views/index.html");
-});
-```
-
-- Setup handlebars
-- Find some sample gifs
-- load into view
-- create a form
-
-## You do
-
-- When the user searches for something, make a post request, update the view
+- https://jakearchibald.com/2013/progressive-enhancement-still-important/
 
 How do we reflect this new state?
 
@@ -89,6 +79,10 @@ Ask them to follow our steps exactly?
 
 Wouldn't it be nice if we could reflect the state of our application in the URL?
 
+>In the context of the World Wide Web, deep linking is the use of a hyperlink that links to a specific, generally searchable or indexed, piece of web content on a website (e.g. "http://example.com/path/page"), rather than the website's home page (e.g. "http://example.com/").
+
+A practical example of this is Trello's card detail view.
+
 A common solution before HTML5 was to add a hash to the URL with `window.location.hash`
 
 ## HTML5 History API
@@ -99,18 +93,67 @@ I was reading [this article](http://diveintohtml5.info/history.html) late one ni
 
 But seriously, the HTML5 history API allows us to manipulate the URL without a hash and without refreshing the page.
 
-Here's what we're going to do:
+## We do: Dive into Dogs Local Setup
 
-1. When the user clicks, update the url
-2. When the page loads, load the correct state.
+    git clone git@github.com:ga-dc/dive-into-dogs
+    cd dive-into-dogs
+    npm install
+    nodemon
+
+## You do: Ajaxify the Prev and Next Buttons
+
+Setup event listeners for the previous and next buttons.
+
+When the user clicks on either button, load the contents of the button's `href` attribute using `$.getJSON`
 
 ## We do: `history.pushState()`
 
->history.pushState(null, null, "pizza.html")
+https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history#Adding_and_modifying_history_entries
 
-Back and forward buttons
+The HTML5 history api allows us to programatically manipulate the browser history with `history.pushState()`
 
-## You do: [FOLLOW EXAMPLE ON DIVEINTO SITE]
+```js
+var stateObj = { user: "jesse" }
+history.pushState(stateObj, "page 2", "profile.html")
+```
 
+It takes three arguments:
 
+1. State object
+  - useful for maintaining state (what does this mean?)
+2. Title
+3. Url
+  - must be same origin
 
+## You do: update the URL using `pushState()`
+
+## We do: Handling Back and Forward Buttons
+
+Currently, the back and forward buttons update the url but not the content on the page. 
+
+We can set an event listener for a `popstate` event:
+
+```js
+window.addEventListener("popstate", function(event) {
+  console.log(location.pathname)
+}, false)
+```
+
+This event fires on page load, in addition to the back and forward clicks. We can prevent that
+with a 1 second timeout
+
+```js
+setTimeout(function(){
+  window.addEventListener("popstate", function(event) {
+    console.log(location.pathname)
+  }, false)
+},1)
+```
+
+## You do: Handle back and forward buttons
+
+### Bonus! 
+
+Can you think of a way to load a list of all the images when the page loads?
+
+i.e. no Ajax requests *or* full page refreshes.

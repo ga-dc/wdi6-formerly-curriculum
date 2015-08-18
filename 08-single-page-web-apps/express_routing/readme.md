@@ -71,9 +71,9 @@ Cross cutting concerns.  Like authentication, authorization, and loading the par
 app.all('*', requireAuthentication, loadUser);
 ```
 
-## Route Paths (30 min)
+## Route Paths (10 min)
 
-Back to the docs for [Routing Paths](http://expressjs.com/guide/routing.html#route-paths)
+Research: Back to the docs for [Routing Paths](http://expressjs.com/guide/routing.html#route-paths)(5 min).
 
 > Q. What are the 3 ways to indicate a route?
 ---
@@ -82,40 +82,19 @@ Back to the docs for [Routing Paths](http://expressjs.com/guide/routing.html#rou
 - String pattern
 - Regular Expression
 
+What are you likely to use?  You've already seen them.  The exact match of a string and the specific string pattern (colon) that captures a value.  If we have time, I've included an optional, light intro to Regular Expressions.
 
-### Regular Expressions (light)
+- String
+``` js
+app.get("/songs" ...
+```
 
-We are throwing these regular expressions at you again.  It's high time we shared a little about them.  Regular expressions are a specialized syntax for matching portions of text. In js and ruby, a RegEx is wrapped in forward slashes (`/expression/`).
+- String pattern
+``` js
+app.get('/songs/:id' ...
+```
 
-I am going to show you a few example in [Rubular](http://rubular.com), a Ruby regular expression editor.
-
-Enter "a" as the regular expression and add some fruits to "Your test string".
-
-> Q. What is it doing?
----
-
-Correct.  It's indicating everywhere the letter "a" appears.  In most applications, we would use this to indicate if the string had an "a" contained somewhere in it.  
-
-F0r instance, if we wanted to match routes that had the word "song" in then, we would use `/song/`.
-
-Take a minute to review the the Regex Quick Reference at the bottom of Rubular.  Try the other example from the docs: `/.*fly$/`
-
-> Q. What are the `.`, `*`, and `$` used for?
----
-
-From the docs, that regex "will match butterfly, dragonfly; but not butterflyman, dragonfly man, and so on".  Let me break it down... this RegEx matches all strings that:
-- start with anything `.*` and
-- end in `fly$`.  
-
-The dollar sign indicates "End of line".  To be honest, I think that is the same as `/fly$/`.  Let's try it.
-
-
-This is by no means a thorough overview of RegExes, but it should be enough to get you started.  One of the most powerful features of RegEx's is "capture groups". You indicate portions of the string should be captured for later use - but that, is for another lesson.
-
-### Express Route Tester
-
-Similarly, let's take a look at the [Express Route Tester](http://forbeslindesay.github.io/express-route-tester/?_ga=1.256234632.2070291842.1433362238).  It can be a handy tool for testing basic Express routes.
-
+That covers the request end of routing.  On to the response.
 
 ## Response Methods (20 min)
 
@@ -126,6 +105,8 @@ A. html and json.
 
 
 The [docs](http://expressjs.com/guide/routing.html#response-methods) share many more.
+
+### res.json
 
 That `res.json` looks handy.  THe link takes us to http://expressjs.com/4x/api.html.  If you search for
 `res.json([body])`, we'll find what we are looking for.
@@ -149,14 +130,67 @@ app.get('/', function (req, res){
 
 Andy covered this.  It's used to render a view template with your chosen templating language.
 
+### res.jsonp
+
+You will hear more about this in the Single Page Application lesson.  ???
 
 ## Exercise: The Bowling Game (45 min)
 
 https://github.com/ga-dc/bowling_game_express
 
-- At 10 min: You have reviewed the project.  Have a handle on dependencies and routes.  You've run "mocha -w" and you've seen that your app doesn't fare too well. :)  Working on "gutter game".
-- At 30 min: "gutter game", "single pin game", and "partial game, no closed frames" work.
-- At 45 min: Still battling with "spare" and/or "strike".
+- 4 min:  Read through the docs.  If you aren't familiar with how to score a bowling game, just skim the rules for now.  You don't need the scoring details... yet.
+
+> Q. What do we know about this application?
+---
+
+Discuss:
+- a bowling game
+  - bowl, knock down pins, add to score
+- routes
+  - bowl (POST): What does this return?  What are side-effects?
+  - score (GET): What does this return?  What are side-effects?
+  - hint: At some point, you are going to want to reset your game, reset/start route
+- basic scoring - open frames only
+- dependencies
+- tests are totally optional (mocha -w)
+  - Require
+    - start(GET)
+    - bowl/:pins (POST)
+    - score (GET), returns `{score: value}`
+
+
+It's been about 10 minutes. We have reviewed the project.  We have a handle on dependencies and routes.  You've run "mocha -w" and you've seen that your app doesn't fare too well. :)  
+
+> Q. What are our first steps?
+---
+
+- avoid strike/spare
+- score (GET)
+  - route work?
+  - { score: 0 }
+- bowl/:pins (POST)
+  - avoid strike/spare
+  - change score?
+- reset sore
+
+> Q: Examples?
+---
+
+On whiteboard:
+- Start: {score: 0}
+- Roll/0: {score: 0}
+- Roll/1: {score: 1}
+- Roll/5: {score: 5}
+- Multiple frames: easy scoring
+- Whole game: all gutter balls
+  - It's right about here you are wishing you had automated tests.
+- Whole game: all 1 pin
+
+Go to it.  We'll check in in 10 minutes.
+
+- (10/25 min) CFU: Fist to 5, Who wants to me to share returning a score?  bowl/:pins updates score?
+
+- (20/45 min): Expect "gutter game", "single pin game", and "partial game, no closed frames" work.
 
 ## exports (20 min)
 
@@ -210,3 +244,37 @@ Your index.js should shorten considerably.  Hopefully, letting you see more of t
 - http://expressjs.com/guide/routing.html
 - Really like the organization I see in [this tutorial](https://thewayofcode.wordpress.com/2013/04/21/how-to-build-and-test-rest-api-with-nodejs-express-mocha/)
 - Looking for more?  We recommend NodeSchool's [ExpressWorks](https://github.com/azat-co/expressworks)
+
+
+### [Optional] Regular Expression, light (20 min)
+
+We are throwing these regular expressions at you again.  It's high time we shared a little about them.  Regular expressions are a specialized syntax for matching portions of text. In js and ruby, a RegEx is wrapped in forward slashes (`/expression/`).
+
+I am going to show you a few example in [Rubular](http://rubular.com), a Ruby regular expression editor.
+
+Enter "a" as the regular expression and add some fruits to "Your test string".
+
+> Q. What is it doing?
+---
+
+Correct.  It's indicating everywhere the letter "a" appears.  In most applications, we would use this to indicate if the string had an "a" contained somewhere in it.  
+
+F0r instance, if we wanted to match routes that had the word "song" in then, we would use `/song/`.
+
+Take a minute to review the the Regex Quick Reference at the bottom of Rubular.  Try the other example from the docs: `/.*fly$/`
+
+> Q. What are the `.`, `*`, and `$` used for?
+---
+
+From the docs, that regex "will match butterfly, dragonfly; but not butterflyman, dragonfly man, and so on".  Let me break it down... this RegEx matches all strings that:
+- start with anything `.*` and
+- end in `fly$`.  
+
+The dollar sign indicates "End of line".  To be honest, I think that is the same as `/fly$/`.  Let's try it.
+
+
+This is by no means a thorough overview of RegExes, but it should be enough to get you started.  One of the most powerful features of RegEx's is "capture groups". You indicate portions of the string should be captured for later use - but that, is for another lesson.
+
+### Express Route Tester
+
+Similarly, let's take a look at the [Express Route Tester](http://forbeslindesay.github.io/express-route-tester/?_ga=1.256234632.2070291842.1433362238).  It can be a handy tool for testing basic Express routes.

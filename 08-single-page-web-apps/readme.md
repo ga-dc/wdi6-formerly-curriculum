@@ -17,8 +17,8 @@ Build an interactive "single page" web application that persists data.
 - Define the parts of a route
 - Extract routes to separate files
 - Explain the `all` routing method
-- Support multiple functions for a single route
 - Describe the role of response methods
+- Extract routes to a separate file
 
 ### Intro to SPA
 
@@ -41,13 +41,16 @@ Build an interactive "single page" web application that persists data.
 
 ### Sequelize
 
-- Describe what sequelize is
+- Compare / contrast Sequelize and ActiveRecord
 - Use sequelize to connect to a DB in JS
 - Define a model in sequelize that has getters and setters
 - Define the roll of callbacks in Sequelize
-- Use sequelize to find models from the DB
-- Use sequelize to perform CRUD on model instances
-- Compare / contrast Sequelize and ActiveRecord
+- Describe why database are asynchronous (and what asynchronous means)
+- Use Sequelize to find models from the DB
+- Use Sequelize to perform CRUD on model instances
+- Create an API with CRUD functionality using Express and Sequelize
+- Map a directory / file structure conducive to DB modeling
+- Map Rails / ActiveRecord methods to Express / Sequelize methods
 
 ### OOJS 1: Reading
 
@@ -57,9 +60,10 @@ Build an interactive "single page" web application that persists data.
 
 ### JS TDD
 
-- Explain the purpose of Unit testing and TDD/BDD.
-- Review RSpec and test syntax.
+- Explain the purpose of TDD/BDD.
+- Review RSpec and standard testing syntax.
 - Describe Jasmine.
-- Setup Jasmine for a Rails project.
+- List components of a Jasmine test.
 - Compare/Contrast Jasmine & RSpec.
-- Explain how `this` is used within Jasmine.
+- Implement TDD using Jasmine.
+- Use different Jasmine matchers.
