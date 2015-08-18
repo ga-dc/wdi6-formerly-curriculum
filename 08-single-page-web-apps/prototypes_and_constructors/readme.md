@@ -215,7 +215,7 @@ that object. An example:
 
 ```js
 function Person(initialName) {
-  this.name = initiaName;
+  this.name = initialName;
 }
 
 Person.prototype.species = "Homo Sapiens";
