@@ -193,7 +193,19 @@ Object
 
 ## Models
 
+...are pretty similar to ActiveRecord models, only they have different magic words.
 
+Sequelize has [all the data types you would expect](http://docs.sequelizejs.com/en/latest/api/datatypes/). It's kind of annoying to have to write `Sequelize.STRING` instead of just `string`, but such is life.
+
+As you can see from the very useful example in the `Artist` model, you can add custom functions to models in Node just as you did in Rails.
+
+The one really different thing is...
+
+### Where associations go
+
+In ActiveRecord, you'd put `has_many :songs` in your model. In Node, you must define your associations *after all your models have been loaded*.
+
+In this app, I defined my associations in the `connection` file.
 
 ## Connecting to the database
 
@@ -204,3 +216,9 @@ Let's take a look at that file.
 ### connection.js
 
 The first two lines give us an object representing Sequelize itself, and an object represeting Sequelize's connection to my database.
+
+Next, we load the models.
+
+Then, we define the **associations** for the models. Note that I've arranged it this way so the associations are set up after the models have been loaded.
+
+Again, in Node you have to define your associations after all your models have been loaded. I can't put `Artist.hasMany(Song)` in my Artist model because if 
