@@ -34,7 +34,7 @@
     <body>
         
         
-    <div class="book" data-level="9.2" data-basepath="../.." data-revision="Tue Aug 18 2015 02:44:29 GMT+0000 (UTC)">
+    <div class="book" data-level="9.2" data-basepath="../.." data-revision="Tue Aug 18 2015 13:04:02 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1102,36 +1102,31 @@ Read Routing, Route Methods, and Route Paths.  Stop at Route Handlers.</li>
 <p>Cross cutting concerns.  Like authentication, authorization, and loading the parent of a nested route.</p>
 <pre><code class="lang-js">app.all(<span class="hljs-string">&apos;*&apos;</span>, requireAuthentication, loadUser);
 </code></pre>
-<h2 id="route-paths-30-min">Route Paths (30 min)</h2>
-<p>Back to the docs for <a href="http://expressjs.com/guide/routing.html#route-paths" target="_blank">Routing Paths</a></p>
+<h2 id="route-paths-10-min">Route Paths (10 min)</h2>
+<p>Research: Back to the docs for <a href="http://expressjs.com/guide/routing.html#route-paths" target="_blank">Routing Paths</a>(5 min).</p>
 <h2 id="-q-what-are-the-3-ways-to-indicate-a-route">&gt; Q. What are the 3 ways to indicate a route?</h2>
 <ul>
 <li>Straight, exact string match.</li>
 <li>String pattern</li>
 <li>Regular Expression</li>
 </ul>
-<h3 id="regular-expressions-light">Regular Expressions (light)</h3>
-<p>We are throwing these regular expressions at you again.  It&apos;s high time we shared a little about them.  Regular expressions are a specialized syntax for matching portions of text. In js and ruby, a RegEx is wrapped in forward slashes (<code>/expression/</code>).</p>
-<p>I am going to show you a few example in <a href="http://rubular.com" target="_blank">Rubular</a>, a Ruby regular expression editor.</p>
-<p>Enter &quot;a&quot; as the regular expression and add some fruits to &quot;Your test string&quot;.</p>
-<h2 id="-q-what-is-it-doing">&gt; Q. What is it doing?</h2>
-<p>Correct.  It&apos;s indicating everywhere the letter &quot;a&quot; appears.  In most applications, we would use this to indicate if the string had an &quot;a&quot; contained somewhere in it.  </p>
-<p>F0r instance, if we wanted to match routes that had the word &quot;song&quot; in then, we would use <code>/song/</code>.</p>
-<p>Take a minute to review the the Regex Quick Reference at the bottom of Rubular.  Try the other example from the docs: <code>/.*fly$/</code></p>
-<h2 id="-q-what-are-the-and-used-for">&gt; Q. What are the <code>.</code>, <code>*</code>, and <code>$</code> used for?</h2>
-<p>From the docs, that regex &quot;will match butterfly, dragonfly; but not butterflyman, dragonfly man, and so on&quot;.  Let me break it down... this RegEx matches all strings that:</p>
+<p>What are you likely to use?  You&apos;ve already seen them.  The exact match of a string and the specific string pattern (colon) that captures a value.  If we have time, I&apos;ve included an optional, light intro to Regular Expressions.</p>
 <ul>
-<li>start with anything <code>.*</code> and</li>
-<li>end in <code>fly$</code>.  </li>
+<li><p>String</p>
+<pre><code class="lang-js">app.get(<span class="hljs-string">&quot;/songs&quot;</span> ...
+</code></pre>
+</li>
+<li><p>String pattern</p>
+<pre><code class="lang-js">app.get(<span class="hljs-string">&apos;/songs/:id&apos;</span> ...
+</code></pre>
+</li>
 </ul>
-<p>The dollar sign indicates &quot;End of line&quot;.  To be honest, I think that is the same as <code>/fly$/</code>.  Let&apos;s try it.</p>
-<p>This is by no means a thorough overview of RegExes, but it should be enough to get you started.  One of the most powerful features of RegEx&apos;s is &quot;capture groups&quot;. You indicate portions of the string should be captured for later use - but that, is for another lesson.</p>
-<h3 id="express-route-tester">Express Route Tester</h3>
-<p>Similarly, let&apos;s take a look at the <a href="http://forbeslindesay.github.io/express-route-tester/?_ga=1.256234632.2070291842.1433362238" target="_blank">Express Route Tester</a>.  It can be a handy tool for testing basic Express routes.</p>
+<p>That covers the request end of routing.  On to the response.</p>
 <h2 id="response-methods-20-min">Response Methods (20 min)</h2>
 <h2 id="-q-what-kind-of-responses-have-we-given-so-far">&gt; Q. What kind of responses have we given so far?</h2>
 <p>A. html and json.</p>
 <p>The <a href="http://expressjs.com/guide/routing.html#response-methods" target="_blank">docs</a> share many more.</p>
+<h3 id="res-json">res.json</h3>
 <p>That <code>res.json</code> looks handy.  THe link takes us to <a href="http://expressjs.com/4x/api.html" target="_blank">http://expressjs.com/4x/api.html</a>.  If you search for
 <code>res.json([body])</code>, we&apos;ll find what we are looking for.</p>
 <p>&quot;This method is identical to res.send() with an object or array as the parameter. However, you can use it to convert other values to JSON, such as null, and undefined. (although these are technically not valid JSON).&quot;</p>
@@ -1145,12 +1140,74 @@ app.get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-functi
 </code></pre>
 <h3 id="res-render">res.render</h3>
 <p>Andy covered this.  It&apos;s used to render a view template with your chosen templating language.</p>
+<h3 id="res-jsonp">res.jsonp</h3>
+<p>You will hear more about this in the Single Page Application lesson.  ???</p>
 <h2 id="exercise-the-bowling-game-45-min">Exercise: The Bowling Game (45 min)</h2>
 <p><a href="https://github.com/ga-dc/bowling_game_express" target="_blank">https://github.com/ga-dc/bowling_game_express</a></p>
 <ul>
-<li>At 10 min: You have reviewed the project.  Have a handle on dependencies and routes.  You&apos;ve run &quot;mocha -w&quot; and you&apos;ve seen that your app doesn&apos;t fare too well. :)  Working on &quot;gutter game&quot;.</li>
-<li>At 30 min: &quot;gutter game&quot;, &quot;single pin game&quot;, and &quot;partial game, no closed frames&quot; work.</li>
-<li>At 45 min: Still battling with &quot;spare&quot; and/or &quot;strike&quot;.</li>
+<li>4 min:  Read through the docs.  If you aren&apos;t familiar with how to score a bowling game, just skim the rules for now.  You don&apos;t need the scoring details... yet.</li>
+</ul>
+<h2 id="-q-what-do-we-know-about-this-application">&gt; Q. What do we know about this application?</h2>
+<p>Discuss:</p>
+<ul>
+<li>a bowling game<ul>
+<li>bowl, knock down pins, add to score</li>
+</ul>
+</li>
+<li>routes<ul>
+<li>bowl (POST): What does this return?  What are side-effects?</li>
+<li>score (GET): What does this return?  What are side-effects?</li>
+<li>hint: At some point, you are going to want to reset your game, reset/start route</li>
+</ul>
+</li>
+<li>basic scoring - open frames only</li>
+<li>dependencies</li>
+<li>tests are totally optional (mocha -w)<ul>
+<li>Require<ul>
+<li>start(GET)</li>
+<li>bowl/:pins (POST)</li>
+<li>score (GET), returns <code>{score: value}</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>It&apos;s been about 10 minutes. We have reviewed the project.  We have a handle on dependencies and routes.  You&apos;ve run &quot;mocha -w&quot; and you&apos;ve seen that your app doesn&apos;t fare too well. :)  </p>
+<h2 id="-q-what-are-our-first-steps">&gt; Q. What are our first steps?</h2>
+<ul>
+<li>avoid strike/spare</li>
+<li>score (GET)<ul>
+<li>route work?</li>
+<li>{ score: 0 }</li>
+</ul>
+</li>
+<li>bowl/:pins (POST)<ul>
+<li>avoid strike/spare</li>
+<li>change score?</li>
+</ul>
+</li>
+<li>reset sore</li>
+</ul>
+<h2 id="-q-examples">&gt; Q: Examples?</h2>
+<p>On whiteboard:</p>
+<ul>
+<li>Start: {score: 0}</li>
+<li>Roll/0: {score: 0}</li>
+<li>Roll/1: {score: 1}</li>
+<li>Roll/5: {score: 5}</li>
+<li>Multiple frames: easy scoring</li>
+<li>Whole game: all gutter balls<ul>
+<li>It&apos;s right about here you are wishing you had automated tests.</li>
+</ul>
+</li>
+<li>Whole game: all 1 pin</li>
+</ul>
+<p>Go to it.  We&apos;ll check in in 10 minutes.</p>
+<ul>
+<li><p>(10/25 min) CFU: Fist to 5, Who wants to me to share returning a score?  bowl/:pins updates score?</p>
+</li>
+<li><p>(20/45 min): Expect &quot;gutter game&quot;, &quot;single pin game&quot;, and &quot;partial game, no closed frames&quot; work.</p>
+</li>
 </ul>
 <h2 id="exports-20-min">exports (20 min)</h2>
 <p>In order to simplify your index.js, you will find it helpful to extract your routes to separate files.</p>
@@ -1193,6 +1250,24 @@ song_routes.setup(app);
 <li>Really like the organization I see in <a href="https://thewayofcode.wordpress.com/2013/04/21/how-to-build-and-test-rest-api-with-nodejs-express-mocha/" target="_blank">this tutorial</a></li>
 <li>Looking for more?  We recommend NodeSchool&apos;s <a href="https://github.com/azat-co/expressworks" target="_blank">ExpressWorks</a></li>
 </ul>
+<h3 id="-optional-regular-expression-light-20-min">[Optional] Regular Expression, light (20 min)</h3>
+<p>We are throwing these regular expressions at you again.  It&apos;s high time we shared a little about them.  Regular expressions are a specialized syntax for matching portions of text. In js and ruby, a RegEx is wrapped in forward slashes (<code>/expression/</code>).</p>
+<p>I am going to show you a few example in <a href="http://rubular.com" target="_blank">Rubular</a>, a Ruby regular expression editor.</p>
+<p>Enter &quot;a&quot; as the regular expression and add some fruits to &quot;Your test string&quot;.</p>
+<h2 id="-q-what-is-it-doing">&gt; Q. What is it doing?</h2>
+<p>Correct.  It&apos;s indicating everywhere the letter &quot;a&quot; appears.  In most applications, we would use this to indicate if the string had an &quot;a&quot; contained somewhere in it.  </p>
+<p>F0r instance, if we wanted to match routes that had the word &quot;song&quot; in then, we would use <code>/song/</code>.</p>
+<p>Take a minute to review the the Regex Quick Reference at the bottom of Rubular.  Try the other example from the docs: <code>/.*fly$/</code></p>
+<h2 id="-q-what-are-the-and-used-for">&gt; Q. What are the <code>.</code>, <code>*</code>, and <code>$</code> used for?</h2>
+<p>From the docs, that regex &quot;will match butterfly, dragonfly; but not butterflyman, dragonfly man, and so on&quot;.  Let me break it down... this RegEx matches all strings that:</p>
+<ul>
+<li>start with anything <code>.*</code> and</li>
+<li>end in <code>fly$</code>.  </li>
+</ul>
+<p>The dollar sign indicates &quot;End of line&quot;.  To be honest, I think that is the same as <code>/fly$/</code>.  Let&apos;s try it.</p>
+<p>This is by no means a thorough overview of RegExes, but it should be enough to get you started.  One of the most powerful features of RegEx&apos;s is &quot;capture groups&quot;. You indicate portions of the string should be captured for later use - but that, is for another lesson.</p>
+<h3 id="express-route-tester">Express Route Tester</h3>
+<p>Similarly, let&apos;s take a look at the <a href="http://forbeslindesay.github.io/express-route-tester/?_ga=1.256234632.2070291842.1433362238" target="_blank">Express Route Tester</a>.  It can be a handy tool for testing basic Express routes.</p>
 
                     
                     </section>
