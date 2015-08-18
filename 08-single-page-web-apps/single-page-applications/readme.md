@@ -79,6 +79,10 @@ Ask them to follow our steps exactly?
 
 Wouldn't it be nice if we could reflect the state of our application in the URL?
 
+>In the context of the World Wide Web, deep linking is the use of a hyperlink that links to a specific, generally searchable or indexed, piece of web content on a website (e.g. "http://example.com/path/page"), rather than the website's home page (e.g. "http://example.com/").
+
+A practical example of this is Trello's card detail view.
+
 A common solution before HTML5 was to add a hash to the URL with `window.location.hash`
 
 ## HTML5 History API
