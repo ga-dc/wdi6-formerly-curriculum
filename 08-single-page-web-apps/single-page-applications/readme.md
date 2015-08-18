@@ -157,3 +157,8 @@ setTimeout(function(){
 Can you think of a way to load a list of all the images when the page loads?
 
 i.e. no Ajax requests *or* full page refreshes.
+
+## Sample Quiz Questions
+
+1. What does the HTML5 history api allow us to do?
+2. What is one problem that Single Page Applications face that traditional web apps don't?
