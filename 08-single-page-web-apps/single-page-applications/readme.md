@@ -108,7 +108,22 @@ When the user clicks on either button, load the contents of the button's `href` 
 
 ## We do: `history.pushState()`
 
->history.pushState(null, null, "pizza.html")
+https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history#Adding_and_modifying_history_entries
+
+The HTML5 history api allows us to programatically manipulate the browser history with `history.pushState()`
+
+```js
+var stateObj = { user: "jesse" }
+history.pushState(stateObj, "page 2", "profile.html")
+```
+
+It takes three arguments:
+
+1. State object
+  - useful for maintaining state (what does this mean?)
+2. Title
+3. Url
+  - must be same origin
 
 ## You do: update the URL using `pushState()`
 
@@ -136,3 +151,9 @@ setTimeout(function(){
 ```
 
 ## You do: Handle back and forward buttons
+
+### Bonus! 
+
+Can you think of a way to load a list of all the images when the page loads?
+
+i.e. no Ajax requests *or* full page refreshes.
