@@ -31,11 +31,11 @@ Build an interactive "single page" web application that persists data.
 ### JS Prototypes and Constructors
 - Explain the importance of OOJS in front-end code
 - Describe the role of constructor functions, and how they work
-- Use constructor functions to create objects with shared properties (like classes)
+- Use constructor functions and the `new` keyword to create objects with shared properties (like classes)
 - Describe what a prototype object is, and how they are used in JS
 - Differentiate between `__proto__` and Animal.prototype
 - Diagram the relationship between an object, its constructor, and prototype
-- Use `Object.create` to create inheritance relationships
+- Compare `Object.create` vs constructors
 - Compare / contrast classical and prototypal inheritance
 - Use the Chrome element inspector to traverse through the prototypal tree.
 
