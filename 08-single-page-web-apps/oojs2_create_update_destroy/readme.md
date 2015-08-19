@@ -281,15 +281,16 @@ artist is inherently asyn, it may take a while, so the method lets us ask "when
 you're done updating, run this callback". In this case, the callback is to
 render the show view.
 
-## Deleting Artists
+## Deleting Artists (You Do in Groups of 2) (30 minutes)
 
-### Adding the "Delete" button (on the Edit Form)
+Implement a feature so that the `edit` form has an additional button, which is
+labeled 'Delete Artist'.
 
-### Responding to the Delete Action
+When the button is clicked, it should:
 
-### Adding the `destroy` method to our Artist Model
-
-### Updating the View (Fading Out the `el`)
+1. Call the `destroy` method on the Artist model. (you'll need to write that)
+2. That method should make an AJAX delete request to delete the artist by ID.
+3. Once the response has come back (and not before!) you should fade out the artist view's $el. (jQuery has a fadeOut method that makes this easy!)
 
 ## Bonus
 
