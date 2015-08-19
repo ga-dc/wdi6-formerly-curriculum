@@ -60,7 +60,7 @@ We've already encountered TDD once with RSpec. What's RSpec?
 * We didn't get around to it in class but it can integrate with Rails.
 
 In RSpec, we engaged in "Unit Testing."
-• A way to test the most basic component of a program.
+* A way to test the most basic component of a program.
 
 Here's a sample from Matt's lesson, in which we tested the functionality of a Person class.
 * In particular the Person class' constructor method.
