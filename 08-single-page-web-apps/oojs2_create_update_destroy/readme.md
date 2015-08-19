@@ -75,10 +75,111 @@ supposed to do.
 ![artist view methods](images/artist_view_methods.png)
 
 ## Editing Artists
+
+Our first feature, editing, will be the most intense, so don't worry, it gets
+better after this!
+
+Overall, we want our feature to work like this:
+
+1. Click the edit button
+2. The view changes such that the various bits of text become editable fields
+3. We edit the text in the fields and click submit.
+4. The app updates the database
+5. The app re-renders the artist to look like before, but with updated information
+
+Let's take it step by step!
+
 ### Adding the Edit Button
-### Making the "Edit" Template
-### Rendering the Edit View
-### Swapping Out the `el`
+
+The edit button needs to be in our existing `artistTemplate`, since it
+needs to be visible on each artist's "show" view.
+
+Let's add the button to the template:
+
+```js
+// html.append("<button class='showSongs'>Show Songs</button>");
+html.append("<button class='editArtist'>Edit Artist</button>");
+// html.append("<div class='songs'></div>");
+```
+
+Now we need to update our `render` method to add the appropriate event listener
+on the button:
+
+```js
+var editButton = self.$el.find(".editArtist");
+
+editButton.on("click", function() {
+  self.renderEditForm();
+});
+```
+
+Note that we're saying "when I click on the edit button", call the
+`renderEditForm` method, so we should probably write that next!
+
+### Rendering the Edit Form
+
+Just like our rendering for the "show view", we'll need a method that:
+
+1. Uses a template to build the HTML
+2. Updates the `$el` to contain the new HTML
+3. Adds any event listeners as needed
+
+#### Making the Edit Form Template
+
+Our template for the edit form is pretty similar to the one we wrote for "show".
+The main difference is that here we're using `<input>` tags for `name` and
+`photoUrl`, that are pre-populated with the artist's current values.
+
+```js
+artistEditTemplate: function(artist) {
+  var html = $("<div>");
+  html.append("<input name='name' value='" + artist.name + "'>");
+  html.append("<img class='artist-photo' src='" + artist.photoUrl + "'>");
+  html.append("<input name='photoUrl' value='" + artist.photoUrl + "'>");
+  html.append("<button class='updateArtist'>Update Artist</button>");
+  html.append("<button class='deleteArtist'>Delete Artist</button>");
+  return(html);
+}
+```
+
+#### Updating The El
+
+Now that we have the template, let's write our `renderEditForm` method:
+
+Right now, we've tackled using the template to generate HTML, and using that
+HTML to update our view's `$el`.
+
+```js
+renderEditForm: function() {
+  var self = this;
+  self.$el.html(this.artistEditTemplate(this.artist));
+},
+```
+
+But notice our submit button doesn't do anything!
+
+#### Adding the Button Event Listener
+
+Let's add an event listener. When the user clicks the **Update Artist** button,
+we want to run a function that updates the artist:
+
+```js
+renderEditForm: function() {
+  var self = this;
+  self.$el.html(this.artistEditTemplate(this.artist));
+
+  self.$el.find(".updateArtist").on("click", function() {
+    self.updateArtist();
+  });
+},
+```
+
+Note the use of `$el.find(some_selector)` to ensure we only add an event
+listener the the button that this view is responsible for (and not any other
+views, like for a different artist).
+
+At this point, we've added the funtionality to show the edit form... next we
+need to actually take the data from the form and update the artist accordingly.
 
 ## Updating Artist on Submission
 ### The `updateArtist` method
