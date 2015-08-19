@@ -182,14 +182,113 @@ At this point, we've added the funtionality to show the edit form... next we
 need to actually take the data from the form and update the artist accordingly.
 
 ## Updating Artist on Submission
+
+Once the user has submitted the form, we need to:
+
+1. Gather the data from the form.
+2. Ask the front-end `Artist` model to update using the gathered data
+3. Have the `Artist` model make an AJAX `patch` (similar to a `put`) request to our back-end
+4. Update the view to show the artist with the updated information.
+
 ### The `updateArtist` method
+
+The `updateArtist` method in our view is what will orchestrate this
+functionality.
+
+### Gathering Data from the Form
+
+First, we need to gather the data the user entered, then, we call the `update`
+method on our artist, passing in the new data. (We'll make the `update` method)
+next.
+
+```js
+updateArtist: function() {
+  var self = this;
+  var data = {  name:     $('input[name=name]').val(),
+                photoUrl: $('input[name=photoUrl]').val() };
+  self.artist.update(data);
+},
+```
+
 ### Adding `update` and `reload` methods to our Artist model
+
+Since our view has asked the artist to update, we need to write that method!
+
+This method takes the data passed in, and uses it to make an AJAX **patch**
+request to our backend. The backend then responds with the updated artist info.
+
+Note that we have to specify in our AJAX call that the method is patch. This
+is the appropriate verb to specify that we may only update some attributes.
+
+We also have to specify that we're sending JSON (the `contentType`), and we have
+to pass in the data to use for the update as JSON. We do that using
+`JSON.stringify()`. The data we're converting to JSON is the data that came from
+the form:
+
+```js
+update: function(artistData) {
+  var self = this;
+
+  var url = "http://localhost:3000/artists/" + this.id;
+  var request = $.ajax({
+    url: url,
+    method: "patch",
+    data: JSON.stringify(artistData),
+    contentType : 'application/json'
+  }).then(
+    function(updatedArtistInfo) {self.reload(updatedArtistInfo);}
+  );
+  return request;
+},
+```
+
+Note that this method only updates the backend! We also need to `reload` our
+copy of the artist that in our front-end app. To do that, we call the
+`reload` method (which we're about to write) after the backend has updated the
+artist successfully.
+
+#### Reloading
+
+To reload the artist, we take the updated artist data, and use it to update
+each property on our artist model:
+
+```js
+reload: function(newData){
+  for(var attrname in newData) {
+    this[attrname] = newData[attrname];
+  }
+}
+```
+
 ### Updating the `el` (show updated artist info)
 
+Back in the view, we should update it so that **after** the update has been
+made, and the artist has been reloaded, we re-render the 'show' view for the
+artist (to get rid of the form, and display the updated data).
+
+```js
+updateArtist: function() {
+    var self = this;
+    var data = {  name:     $('input[name=name]').val(),
+                  photoUrl: $('input[name=photoUrl]').val() };
+    self.artist.update(data).then(function() { self.render(); });
+  },
+```
+
+Why can we call `.then` on `artist.update()`? That's because in our update
+method, we returned the jQuery promise object. In other words, updating an
+artist is inherently asyn, it may take a while, so the method lets us ask "when
+you're done updating, run this callback". In this case, the callback is to
+render the show view.
+
 ## Deleting Artists
+
 ### Adding the "Delete" button (on the Edit Form)
+
 ### Responding to the Delete Action
+
 ### Adding the `destroy` method to our Artist Model
+
 ### Updating the View (Fading Out the `el`)
 
 ## Creating New Artists
