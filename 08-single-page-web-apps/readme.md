@@ -53,6 +53,12 @@ Build an interactive "single page" web application that persists data.
 - Map Rails / ActiveRecord methods to Express / Sequelize methods
 
 ### OOJS 1: Reading
+- use `$.ajax` to populate objects in the front end(client-side)
+- differentiate between "class methods" and "instance (prototyped) methods" in JS.
+- use OOJS to build model and view objects
+- Utilize promises to access the response from an `$.ajax` request
+- render views on the client-side utilizing JS objects in your application.
+
 
 ### OOJS 2: CUD
 
