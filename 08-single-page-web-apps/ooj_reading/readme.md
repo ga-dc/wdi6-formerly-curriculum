@@ -201,7 +201,7 @@ Let's test this out in the console.
 
 ```
 var bluesTraveler = new Artist({name: "blues traveler", photoUrl: "someURL", nationality: "murica", id: 6})
-var bluesTravelerView = new Artist(bluesTraveler)
+var bluesTravelerView = new ArtistView(bluesTraveler)
 bluesTravelerView.render()
 ```
 
