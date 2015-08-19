@@ -57,16 +57,18 @@ If I run both of them concurrently, you can see for yourself that they look like
 
 ### Node:
 ```bash
+npm install
 createdb tunr_db
-node db/sync.js
+node db/migrate.js
 node db/seeds.js
 nodemon app.js
 ```
 ### Sinatra:
 ```bash
+git checkout origin/solution_step_4
 createdb tunr_db
 psql -f db/schema.sql tunr_db
-ruby seeds.rb
+ruby db/seeds.rb
 ruby app.rb
 ```
 
@@ -238,13 +240,29 @@ Sequelize has [all the data types you would expect](http://docs.sequelizejs.com/
 
 As you can see from the very useful example in the `Artist` model, you can add custom functions to models in Node just as you did in Rails.
 
-The one really different thing is...
+The two really different things ar...
 
 ### Where associations go
 
 In ActiveRecord, you'd put `has_many :songs` in your model. In Node, you must define your associations *after all your models have been loaded*.
 
 In this app, I defined my associations in the `connection` file.
+
+### Where you put instance methods
+
+```
+var model = sequelize.define("artist", {
+
+},
+{
+  instanceMethods: {
+    shout: function(){
+      console.log("My name is " + this.name + "!");
+    }
+  }
+}
+);
+```
 
 ## Connecting to the database
 
@@ -263,3 +281,24 @@ Then, we define the **associations** for the models. Note that I've arranged it 
 Again, in Node you have to define your associations after all your models have been loaded. I can't put `Artist.hasMany(Song)` in my Artist model because if Node hasn't loaded the Song model yet it doesn't know what it should be linking Artists to.
 
 I end the file by making a big ol' object into which I'll put the things I need later: the two sequelizes and my models.
+
+## Controllers
+
+...follow pretty much the exact same concepts as the `seeds.js` file with chained "thens".
+
+## Views
+
+...in this case use Handlebars, which we'll cover later.
+
+## Kwiz Kwestions
+
+- List 1 Sequelize method and its ActiveRecord counterpart.
+  - findById, find
+- How do callbacks and asynchronicity factor into Sequelize?
+  - Sequelize methods are asynchonous, so you need to provide a callback to say what should happen after a given method is doen.
+- Where should you declare associations in a Sequelize app? ( Hint: Before or after you require your models? )
+  - After you declare your models, ideally right after they're loaded when the app starts.
+- There are 3 different ways to set up your database tables in a Sequelize app. What are 2?
+  - schema.sql
+  - `sequelize db:migrate`
+  - `sequelize.sync`

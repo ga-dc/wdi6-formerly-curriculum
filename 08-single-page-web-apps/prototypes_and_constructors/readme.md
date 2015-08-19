@@ -219,8 +219,8 @@ function Dog(name, breed) {
   this.breed = breed;
 }
 
-Person.prototype.species = "Canis Canis";
-Person.prototype.bark = function() { return "Woof! I'm " + this.name; }
+Dog.prototype.species = "Canis Canis";
+Dog.prototype.bark = function() { return "Woof! I'm " + this.name; }
 
 
 // OR Alternate form:
@@ -232,8 +232,8 @@ Dog.prototype = {
 }
 
 // Our objects work just as they did before!
-var spot = new Person("Spot", "Beagle");
-var rufus =  new Person("Rufus", "Poodle");
+var spot = new Dog("Spot", "Beagle");
+var rufus =  new Dog("Rufus", "Poodle");
 
 spot.name // "Spot"
 spot.breed // "Beagle"
