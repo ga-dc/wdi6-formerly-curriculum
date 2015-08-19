@@ -1,7 +1,7 @@
 ## Learning Objectives
 
 * Explain the methodology behind Test Driven Development (TDD).
-* Compare/Contrast Jasmine and RSpec.
+* Review RSpec and general testing syntax.
 * Describe Jasmine.
 * List components of a Jasmine test.
 * Implement TDD using Jasmine.
