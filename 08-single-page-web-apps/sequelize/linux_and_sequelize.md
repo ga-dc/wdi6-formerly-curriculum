@@ -6,12 +6,12 @@ Our research indicates that sequelize uses a "host" connection instead of a "loc
 
 We're providing instructions for the second option.
 
-1. Create the new role, with a password.
+1. Create the new role, with a password. Start `psql` and run:
 ```
-CREATE ROLE sequelize_user WITH SUPERUSER PASSWORD 'sequelize_password';
+CREATE ROLE sequelize_user WITH SUPERUSER LOGIN PASSWORD 'sequelize_password';
 ```
 
-2.  Update config/connection.js
+2.  In the tunr_node_hbs app, update db/connection.js
 
 Replace this line:
 ```
@@ -19,5 +19,6 @@ var sequelize = new Sequelize("postgres:///tunr_db");
 ```
 with:
 ```
+# workaround for linux "host" connection. See: linux_and_sequelize.md
 var sequelize = new Sequelize('postgres://sequelize_user:sequelize_password@localhost:5432/tunr_db');
 ```
