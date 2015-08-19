@@ -13,6 +13,40 @@
 - Map a directory / file structure conducive to DB modeling
 - Map Rails / ActiveRecord methods to Express / Sequelize methods
 
+## Today's class...
+
+...is about how we're going to do databases in Node. We're going to cover this by exploring Tunr: the original Sinatra version, and the Express version I ported over from Sinatra.
+
+That is, we're going to learn about the Express app by comparing it to the Sinatra app.
+
+##### What advantages does an app running in Express have over the same app running in Sinatra?
+
+Nothing, really. The end-user won't notice. The difference is just in whether you prefer Javascript or Ruby.
+
+One downside of Express is that it's not as "plug and play" as Sinatra: you're responsible for more things.
+
+One *upside* of Express is that it's not as "plug and play" as Sinatra: you're responsible for more things. Personally, I kinda like that Node requires me to have more control and be more explicit.
+
+But **you**, dear student, have a *tremendous* advantage in being able to make this app either in Sinatra or in Node.
+
+### Sequelize
+
+For Rails and Sinatra, we used ActiveRecord to interact with the database. For Node, we're going to use Sequelize.
+
+This is an ORM a lot like ActiveRecord. Also like ActiveRecord, it can be used with MySQL, SQLite, and Postgres databases, and more.
+
+There are many other databases and ORMs, like MongoDB, which is a big buzzword these days.
+
+### Why aren't we learning MongoDB?
+
+Because Mongo isn't a relational database. It stores data as big blobs of JSON. That's useful if you want to mostly store huge chunks of data -- documents, images, and so on.
+
+But we're much more concerned with small bits of data that we want to be able to relate to each other: Artists and Songs, Posts and Comments, Doctors and Patients, and so on.
+
+Doing that is a sonic pain in Mongo.
+
+Sequelize can use **Postgres** -- what we've been using -- which is really nice because it's familiar and we can still poke around in the database using `psql`.
+
 ## Let's start at the end
 
 Download [tunr_node_hbs](https://github.com/ga-dc/tunr_node_hbs).
@@ -40,30 +74,6 @@ I'd like you to take 5 minutes, with the people at your table, to just compare t
 
 ##### What's different between them?
 ##### What's the same?
-
-## Today's class...
-
-...is going to be pretty much just exploring this app, paying special attention to how all the database stuff works.
-
-In Rails and Sinatra, we use ActiveRecord to interact with the database. In Node, we use Sequelize.
-
-##### What advantages does this app running in Express have over this app running in Sinatra?
-
-Nothing, really. The difference is just in whether you prefer Javascript or Ruby.
-
-One downside of Express is that it's not as "plug and play" as Sinatra: you're responsible for more things.
-
-One *upside* of Express is that it's not as "plug and play" as Sinatra: you're responsible for more things. Personally, I kinda like that Node requires me to have more control and be more explicit.
-
-But **you**, dear student, have a *tremendous* advantage in being able to make this app either in Sinatra or in Node.
-
-### Why not MongoDB?
-
-Because Mongo isn't a relational database. It stores data as big blobs of JSON. That's useful if you want to mostly store huge chunks of data -- documents, images, and so on -- but we're much more concerned with small bits of data that we want to be able to relate to each other: Artists and Songs, Posts and Comments, and so on.
-
-Doing that is a sonic pain in Mongo. The general consensus among developers is that Mongo should be avoided.
-
-Sequelize uses **Postgres** -- what we've been using -- which is really nice because it's familiar and we can still poke around in the database using `psql`.
 
 ## Setting up the database
 
@@ -103,8 +113,6 @@ We're not making production-level apps yet, though, so for now we'll just keep s
 
 ...run `node db/migrate.js`
 
-## Seeding
-
 ##### Wild guess as to how we'll seed the database?
 
 Run `node db/seeds.js` and away you go!
@@ -113,7 +121,34 @@ Check `psql` to verify all the data is there.
 
 Better yet, run `nodemon app.js` and go to `localhost:3000`!
 
-### seeds.js
+## You do:
+
+With your table, take 30 minutes to turn the Express version of Tunr into an app that does something completely different -- just by changing the names and fields of the models.
+
+This app gives you two models with a has-many and belongs-to relationship. Instead of Artists and Songs, it could just as easily be Movies and Reviews, Breweries and Beers, Kardashians and Significant Others, the list goes on.
+
+*Don't create any new files. Don't create any new functions. Don't delete and create model fields. Just replace words.*
+
+In half an hour, we'll go around the room and ask one person from each table to say how their table changed Tunr.
+
+### As you do this
+
+Write down any Sequelize methods you come across. See what Sequelize methods have replaced the ActiveRecord ones. We'll pool what we found and make a cheat sheet for the class.
+
+### Keep in mind
+
+As you have it in front of you, the app works just fine. If all you're doing is replacing words, that means any errors you encounter will almost certainly be caused by typos. So when you get an error, **don't thrash**. Just `console.log` line-by-line until you find the line where your app breaks, and, thus, the line where you have a typo.
+
+### Afterward
+
+##### What Sequelize methods did you write down?
+-----
+
+## Now that you have a decent idea of how this app is layed out...
+
+I'm going to go through Tunr and explain the things you encountered.
+
+## seeds.js
 
 Looking at the top of this file, you can I've `require`d two big JSON files.
 
@@ -149,7 +184,7 @@ I didn't *have* to use `.then`. I could have used...
 
 ### Nested callbacks
 
-That would result in something like:
+That would result in something like...
 
 ```js
 DB.models.Artist.bulkCreate(data.artists).then(function(){
@@ -161,20 +196,24 @@ DB.models.Artist.bulkCreate(data.artists).then(function(){
 });
 ```
 
-This is the innocent-looking entrance to what is called...
+...which is a few steps away from...
+
+![PHP Hadouken](http://i.imgur.com/BtjZedW.jpg)
+
+...which is called:
 
 ### Callback Hell
 
 You wake up one day and find you have 47 nested callbacks, have to hit "tab" 47 times for each new line, and your wife has left you and your house has burned down.
 
-It makes no difference from a performance standpoint. It's *real nice* from a readability standpoint.
+It makes no difference from a performance standpoint. It's *real aggravating* from a readability standpoint.
 
 ### What's actually going on in this file
 
 1. We create a bunch of Artists from seed data.
-- From the database, we retrieve all the artists we just created.
-- Using the artists we retrieved, we take the Song seed data, loop through it, and figure out the ID of the artist to which each song belongs. Then we create a bunch of Songs from that updated data.
-- We tell Node to shut off.
+- **Then**, from the database, we retrieve all the artists we just created.
+- **Then**, using the artists we retrieved, we take the Song seed data, loop through it, and figure out the ID of the artist to which each song belongs. Then we create a bunch of Songs from that updated data.
+- **Then** we tell Node to shut off.
 
 ### Note:
 - If you're going to have chained `then`s, the function inside each `then` needs to `return` the asynchronous function inside it.
@@ -215,10 +254,12 @@ Let's take a look at that file.
 
 ### connection.js
 
-The first two lines give us an object representing Sequelize itself, and an object represeting Sequelize's connection to my database.
+The first two lines give us an object representing Sequelize itself, and an object represeting Sequelize's connection to my database. The convention for naming these is bizarre and confusing in that it seems to be to use the word "sequelize" for both, one capitalized and the other not. Such is life.
 
 Next, we load the models.
 
 Then, we define the **associations** for the models. Note that I've arranged it this way so the associations are set up after the models have been loaded.
 
-Again, in Node you have to define your associations after all your models have been loaded. I can't put `Artist.hasMany(Song)` in my Artist model because if 
+Again, in Node you have to define your associations after all your models have been loaded. I can't put `Artist.hasMany(Song)` in my Artist model because if Node hasn't loaded the Song model yet it doesn't know what it should be linking Artists to.
+
+I end the file by making a big ol' object into which I'll put the things I need later: the two sequelizes and my models.
