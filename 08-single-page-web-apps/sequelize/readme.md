@@ -57,16 +57,18 @@ If I run both of them concurrently, you can see for yourself that they look like
 
 ### Node:
 ```bash
+npm install
 createdb tunr_db
-node db/sync.js
+node db/migrate.js
 node db/seeds.js
 nodemon app.js
 ```
 ### Sinatra:
 ```bash
+git checkout origin/solution_step_4
 createdb tunr_db
 psql -f db/schema.sql tunr_db
-ruby seeds.rb
+ruby db/seeds.rb
 ruby app.rb
 ```
 
