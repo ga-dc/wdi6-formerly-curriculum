@@ -10,7 +10,7 @@
 
 ## Do You Test? (5 / 5)
 
-**THINK-PAIR-SHARE**: We’ve already seen how to work with tests in ruby. To get us back in that mindset, spend the next few minutes to think-pair-share on:
+**THINK-PAIR-SHARE**: We’ve already applied Test Driven Development to Ruby. To get us back in that mindset, spend the next few minutes to think-pair-share on:
 
 * Why test?
 * Why not test?
