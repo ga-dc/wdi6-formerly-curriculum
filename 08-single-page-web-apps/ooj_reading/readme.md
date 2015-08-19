@@ -227,6 +227,8 @@ ArtistView.prototype ={
 }
 ```
 
+> We'll get into templating later, probably using handlerbars! Which you're already familiar with! Instead of an `artistTemplate()` function there will be some handlebars syntax
+
 Really I want to do this sort of behavior for all artists on page load. So let's do that in `public/js/script.js`:
 
 ```js
@@ -271,7 +273,6 @@ Artist.prototype.fetchSongs = function(){
   .then(function(response){
     var songs = []
     for(var i = 0; i < response.length; i++){
-      // TODO: should this be this.songs?
       songs.push(new Song(response[i]))
     }
     return songs
