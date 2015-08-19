@@ -1,7 +1,9 @@
 # Linux and Sequelize
 
-Our research indicates that sequelize uses a "host" connection instead of a "local" connection.  "Host" connections require a password.  We have two options:
+If you are having authentication errors when connecting to your database, the following should help.  Our research indicates that Sequelize uses a "host" connection instead of a "local" connection.  "Host" connections require a password.  We have two options:
+
 1. add a password to the default user (`$ whoami`).  This means that we would have to add username/password to every db configuration (including Rails).
+
 2. (preferred) Create a new role for use with Sequelize.
 
 We're providing instructions for the second option.
