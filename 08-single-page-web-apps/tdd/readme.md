@@ -103,15 +103,15 @@ Today we're diving into the world of Javascript testing.
 ## Behavior-Driven Development (5 / 25)
 
 What does "Behavior Driven Development" mean and how is it different from TDD?
-* BDD integrates Agile development into TDD.
-  * What is the purpose of the application? What are your user stories?
-  * Only create tests that contribute to that direction.
-  * Make sure that the purpose of your application is reflected in your tests.
-* We've actually already been implementing it.
-  * Verbose test descriptions. Can be read in plain English.
-  * BDD is less concerned with the granularity of our tests and more with whether its key components work.
+* TDD tells us how we should test. BDD informs which tests we should be running.
+  * What is the purpose of your application? What are your user stories?
+  * Make sure that your tests reflect the direction and purpose of your application.
+  * BDD is less concerned with the granularity of your tests and more with whether they test the key functionality of your application.
 * BDD is not defined by what functions or keywords you use to test your code.
   * It's a process to simplify and refine the number of tests you are running.
+* We've already started implementing it.
+  * Verbose test descriptions. Can be read in plain English.
+  * In today's in-class example, we'll be creating a basic Calculator application and testing its key features.
 
 ## Meet Jasmine (10 / 35)
 
@@ -334,8 +334,7 @@ exports.add = function(){
 }
 ```
 
-Wait, what in the world is `exports`?!
-* Our first dose of Node syntax. Don't worry, though, it's pretty straightforward.
+`exports`? What's that?
 * With `exports` we can, well, "export" `add` or any other function in `calculator.js` to another javascript file.
   * Say we had an `accounting.js` file. We could give it full calculator functionality by `require`ing `calculator.js`.
 
@@ -423,7 +422,7 @@ We've already played around with one matcher in our test expectations: `.toBe( )
 
 ## Break (10 / 110)
 
-## Exercise + Homework: Clock Hands (40 / 150)
+## Exercise + Homework: Clock Hands (30 / 140)
 
 With the remaining time in class I'd like you to create this [Clock Hands angle calculator](https://github.com/ga-dc/sundial) using a TDD approach.
 * Combine problem solving with TDD.
@@ -431,6 +430,8 @@ With the remaining time in class I'd like you to create this [Clock Hands angle 
 * While you're together, I encourage you to tackle this exercise pair-programming style.
   * First, outline the problem. Think about not only how to approach it but what tests you will need to support it.
   * Keep switching off: have one person write a test and the other write the code to make it pass.
+
+## Questions + Closing (10 / 150)
 
 ## Additional Reading
 
