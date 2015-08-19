@@ -214,33 +214,33 @@ Any properties / methods defined on an object's prototype are available on the
 that object. An example:
 
 ```js
-function Person(initialName) {
-  this.name = initialName;
+function Dog(name, breed) {
+  this.name = name;
+  this.breed = breed;
 }
 
-Person.prototype.species = "Homo Sapiens";
-Person.prototype.speak = function() { return "Hello! I'm " + this.name; }
+Person.prototype.species = "Canis Canis";
+Person.prototype.bark = function() { return "Woof! I'm " + this.name; }
 
 
 // OR Alternate form:
 // The disadvantage here is that we're overwriting any existing properties on
 // the prototype
-Person.prototype = {
-  species = "Homo Sapiens",
-  speak: function() {
-    return "Hello! I'm " + this.name;
-  }
+Dog.prototype = {
+  species = "Canis Canis",
+  speak: function() { return "Woof! I'm " + this.name; }
 }
 
 // Our objects work just as they did before!
-var adam = new Person("Adam");
-var bob =  new Person("Bob");
+var spot = new Person("Spot", "Beagle");
+var rufus =  new Person("Rufus", "Poodle");
 
-adam.name // "Adam"
-adam.speak() // "Hello! I'm Adam"
+spot.name // "Spot"
+spot.breed // "Beagle"
+adam.bark() // "Hello! I'm Adam"
 
-bob.name // "Bob"
-bob.speak() // "Hello! I'm Bob"
+rufus.name // "Rufus"
+rufus.bark() // "Hello! I'm Rufus"
 ```
 
 ![Prototype Chain Diagram - Simple](images/prototype_chain_simple.jpg)
