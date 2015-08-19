@@ -10,7 +10,7 @@
 ## Opening Framing (10/10)
 We've learned how to make web applications with RESTful routing. We've even learned how to create them as API's that respond with JSON. Additionally, we've also learned how to make requests to API in order to access data. But really all we did with that data was maybe create a single div in the promise of the ajax request. This isn't really ideal.
 
-I think instead, it would be great if we could take that ajax response, and encapsulate the information we want into JS objects on the client-side. Then with those objects we can render views utilizing view objects.
+I think instead, it would be great if we could take that ajax response, and encapsulate the information we want into JS objects on the client-side. Then with those objects we can render views utilizing view objects. In the same way we used rails/ruby to group functionality and separate concerns, we can do similar things with JS objects on the client side.
 
 > One thing to note about this class, and WDI as a whole. We teach you many many tools. You won't use every tool all the time, but start to identify good use cases for these tools. IE. if you were building a hole in the ground a foot deep, a back hoe might be a bit much and a shovel might do the trick. That said OOJS is not the end all be all of doing things on the front end.
 
@@ -21,17 +21,21 @@ We want to be able to create these views strictly on the client-side. Minus the 
 ## Setup (10/20)
 The first thing we should do is fork/clone the [tunr repo here](https://github.com/ga-dc/tunr_node_oojs).
 
-Let's start by
+Let's start by installing dependencies and starting the server.
 
-Let's creating a couple of folders, setup our application that we forked/cloned and run our server.
 
 ```bash
-$ mkdir public/js
-$ mkdir public/js/models
-$ mkdir public/js/views
 $ npm install
 $ nodemon app.js
 ```
+
+Let's create a couple of folders as well
+
+```bash
+ $ mkdir public/js
+ $ mkdir public/js/models
+ $ mkdir public/js/views
+ ```
 
 If we go into our browser we can view all the endpoints and see that everythings responding to json. Take a look at `app.js`, `controllers/artists.js` and `controllers/artists.js` and you can see the different routes.
 
@@ -48,7 +52,6 @@ In `public/js/models/artist.js`:
 
 ```js
 var Artist = function(info){
-  var self = this;
   this.name = info.name;
   this.photoUrl = info.photoUrl;
   this.nationality = info.nationality;
@@ -69,7 +72,7 @@ var artist = new Artist()
 What gives? We haven't included the script file in our layout file. In `views/layout.hbs`:
 
 ```html
-<script src="js/models/artist.js"></script>
+<script src="/js/models/artist.js"></script>
 ```
 
 Lets try it again ....:
@@ -154,7 +157,7 @@ Sick, we now have access to our artists in our database on the  client side.
 ## Break (10/70)
 
 ## Views - Artist (20/90)
-We have the ability to create objects in JS from the database on the client side. We need to additionally render views based on those models. Lets start by creating and editing `public/js/views/artistView.js`:
+We have the ability to create objects in JS from the database on the client side. We need to additionally render views based on those models. There's lots of ways to build views as well as lots of front end frameworks that do it as well. This is just one way. Adrian will be teaching a mini lesson on react on friday for another! Lets start by creating and editing `public/js/views/artistView.js`:
 
 ```js
 var ArtistView = function(artist){
@@ -202,7 +205,9 @@ var bluesTravelerView = new Artist(bluesTraveler)
 bluesTravelerView.render()
 ```
 
-I see quick refactor opportunity in `public/js/views/artistView.js`:
+Great, we see the view was generated and rendered to our page!
+
+I see a quick refactor opportunity in `public/js/views/artistView.js`:
 
 ```js
 ArtistView.prototype ={
@@ -278,7 +283,7 @@ Artist.prototype.fetchSongs = function(){
 }
 ```
 
-> note the similarities between `.fetch()` and `.fetchSongs()`. Though there are many similarities, I want to note the differences. `.fetch()` is a class method which is called on the constructor function itself. `.fetchSongs` is an instance method and is available for each instance of the Artist constructor.
+> note the similarities between `.fetch()` and `.fetchSongs()`. Though there are many similarities, I want to note the differences. `.fetch()` is a class method which is called on the constructor function to get all of the artists. `.fetchSongs` is an instance method and is available for each instance of the Artist constructor and grabs all of the songs for that single artist.
 
 So we're able to get the songs for each artist. Now we want the ability to generate a view for each song so we can append it to the artist.
 
@@ -318,8 +323,6 @@ render: function(){
   var songsDiv = self.$el.find("div.songs")
   showButton.on("click", function(){
     self.toggleSongs(songsDiv)
-
-
   })
 },
 
