@@ -219,8 +219,8 @@ function Dog(name, breed) {
   this.breed = breed;
 }
 
-Person.prototype.species = "Canis Canis";
-Person.prototype.bark = function() { return "Woof! I'm " + this.name; }
+Dog.prototype.species = "Canis Canis";
+Dog.prototype.bark = function() { return "Woof! I'm " + this.name; }
 
 
 // OR Alternate form:
