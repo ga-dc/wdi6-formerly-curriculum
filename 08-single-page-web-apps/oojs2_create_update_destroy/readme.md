@@ -291,6 +291,28 @@ render the show view.
 
 ### Updating the View (Fading Out the `el`)
 
-## Creating New Artists
+## Bonus
+
+Try to implement any of the following features:
+
+### Creating New Artists
+
+At the top of the page is a link or button for "Add Artist". When the button is
+clicked, a form should appear (empty). Submitting the form should:
+
+1. Create a new artist on the backend
+2. Update the view to render the new artist
+
+### Playing Songs
+
+Add a button next to each song. When the button is clicked, it should:
+
+1. Add an `audio` element tied to the song's `previewUrl`.
+2. Stop / Remove any other auido players on the page.
 
 ## Summary
+
+That's it... we've written our first full(ish)-featured single page app. Time to
+go relax at the SPA! ;)
+
+![Relaxing Spa](http://barcelonasalon-spa.com/wp-content/uploads/2012/12/spa5.jpg)
