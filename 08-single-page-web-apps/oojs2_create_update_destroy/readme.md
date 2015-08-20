@@ -13,8 +13,7 @@
 
 Our goal for today is to complete our app so that we have basic CRUD
 functionality for artists. This means we'll be able to Create, Edit/Update,
-and Destroy artists. We won't really be adding functionality to songs, given
-the time, but the same principles apply.
+and Destroy artists. Additions to songs functionality will be a bonus.
 
 Overall, our app has a couple of parts that work together to create that lovely
 Single Page App Experience (SPA® Experience) ;)
@@ -47,6 +46,10 @@ backend has a few parts:
 Our front-end code runs in the browser, and interfaces with the backend (over
 HTTP) to request or update data, and then render the appropriate HTML.
 
+It's worth noting that today, our front end code is served by the backend, but
+really, it could live as a totally separate web app, or even native mobile /
+desktop app! (That's the beauty of having an API, it can be used by any app).
+
 * `script.js` - this is the main file that waits for the page to finish loading,
   and then starts up our app. In this case, it fetches all artists, and then
   displays them.
@@ -66,7 +69,7 @@ going to have at the end of today in our views. The highlighted ones are the
 ones we'll be working on in this lesson.
 
 Take 5 minutes to talk with your partner about what you think each method is
-supposed to do.
+supposed to do and how it might work.
 
 #### Artist Model Methods
 ![artist model methods](images/artist_model_methods.png)
@@ -75,6 +78,9 @@ supposed to do.
 ![artist view methods](images/artist_view_methods.png)
 
 ## Editing Artists
+
+For starter code, see the [oojs_part2_starter branch](https://github.com/ga-dc/tunr_node_oojs/tree/oojs_part2_starter)
+For reference solution to just artists, see the [oojs_part2_edit branch](https://github.com/ga-dc/tunr_node_oojs/tree/oojs_part2_edit)
 
 Our first feature, editing, will be the most intense, so don't worry, it gets
 better after this!
@@ -85,7 +91,8 @@ Overall, we want our feature to work like this:
 2. The view changes such that the various bits of text become editable fields
 3. We edit the text in the fields and click submit.
 4. The app updates the database
-5. The app re-renders the artist to look like before, but with updated information
+5. The app re-renders the artist to look like before, but with updated
+   information
 
 Let's take it step by step!
 
@@ -187,7 +194,8 @@ Once the user has submitted the form, we need to:
 
 1. Gather the data from the form.
 2. Ask the front-end `Artist` model to update using the gathered data
-3. Have the `Artist` model make an AJAX `patch` (similar to a `put`) request to our back-end
+3. Have the `Artist` model make an AJAX `patch` (similar to a `put`) request to
+   our back-end
 4. Update the view to show the artist with the updated information.
 
 ### The `updateArtist` method
@@ -283,6 +291,10 @@ render the show view.
 
 ## Deleting Artists (You Do in Groups of 2) (30 minutes)
 
+For starter code, see the [oojs_part2_edit branch](https://github.com/ga-dc/tunr_node_oojs/tree/oojs_part2_edit)
+For a solution, see the [oojs_part2_delete branch](https://github.com/ga-dc/tunr_node_oojs/tree/oojs_part2_delete)
+
+
 Implement a feature so that the `edit` form has an additional button, which is
 labeled 'Delete Artist'.
 
@@ -290,7 +302,8 @@ When the button is clicked, it should:
 
 1. Call the `destroy` method on the Artist model. (you'll need to write that)
 2. That method should make an AJAX delete request to delete the artist by ID.
-3. Once the response has come back (and not before!) you should fade out the artist view's $el. (jQuery has a fadeOut method that makes this easy!)
+3. Once the response has come back (and not before!) you should fade out the
+   artist view's $el. (jQuery has a fadeOut method that makes this easy!)
 
 ## Bonus
 
@@ -310,6 +323,17 @@ Add a button next to each song. When the button is clicked, it should:
 
 1. Add an `audio` element tied to the song's `previewUrl`.
 2. Stop / Remove any other auido players on the page.
+
+### Update URLs (pushState)
+
+Use `history.pushState` to update the url and reflect what you're editing. You
+should be able to reload the page and go right back to the edit view
+
+### CRUD songs
+
+Add full CRUD functionality for songs. Either make a new main view like for
+artists, or add edit / delete buttons next to each song, and a "new song" button
+for each artist.
 
 ## Summary
 
