@@ -248,8 +248,6 @@ First, we're going to install jasmine-node globally.
 
 During this lesson we are going to write tests for and create a calculator application.
 * We're going to stick with Javascript here. No HTML/CSS at the moment.
-* This will involve some Node syntax beyond what you've already seen.
-* I'll try to explain as we go along, but don't worry understanding it 100% now. You'll learn more about Node as the week goes on.
 
 ## Let's get to work (20 / 55)
 
