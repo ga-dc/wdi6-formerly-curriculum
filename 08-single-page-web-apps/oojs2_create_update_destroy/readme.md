@@ -82,6 +82,16 @@ supposed to do and how it might work.
 For starter code, see the [oojs_part2_starter branch](https://github.com/ga-dc/tunr_node_oojs/tree/oojs_part2_starter)
 For reference solution to just artists, see the [oojs_part2_edit branch](https://github.com/ga-dc/tunr_node_oojs/tree/oojs_part2_edit)
 
+Before we begin, make sure your repo is set up:
+
+1. If you simply cloned the repo (didn't fork it), skip to step 3.
+2. If you forked and cloned, you won't have the most recent branches, so
+   re-clone the repo from [GA-DC](https://github.com/ga-dc/tunr_node_oojs)
+3. `cd` into your most recent clone
+4. `git fetch`
+5. `git checkout oojs_part2_starter`
+
+
 Our first feature, editing, will be the most intense, so don't worry, it gets
 better after this!
 
