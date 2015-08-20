@@ -74,7 +74,7 @@ supposed to do and how it might work.
 #### Artist Model Methods
 ![artist model methods](images/artist_model_methods.png)
 
-#### Artist Model Methods
+#### Artist View Methods
 ![artist view methods](images/artist_view_methods.png)
 
 ## Editing Artists
