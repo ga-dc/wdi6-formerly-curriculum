@@ -6,19 +6,24 @@
 * Nest React components.
 * Modify the state of a React component through events.
 
+## What is ReactJS?
 
-# What is ReactJS?
+### A Video!
+
+[https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510)
 
 ### Some History (5 / 5)
 The first thing most people hear about React is "Facebook uses it."
 * Recently went open-source.
 
-### ReactJS in the MVC (5 / 10)
+### React in the MVC (5 / 10)
 This week you were introduced to the Javascript MVC model.
-* **ReactJS only concerns our "Views".**
+* **React only concerns our "Views".**
   * What does "view" mean in Javascript? Compared to Rails?
   * Visual representations of our models - not the entire page.
-* ReactJS can coexist with Models and Controllers. The user can set those up however they see fit.
+* React can coexist with Models and Controllers. The user can set those up however they see fit.
+* This means that React can also coexist with other Javascript frameworks.
+  * Let them handle the models and controllers, and have React sort out the views.
 
 # Housekeeping
 
@@ -26,7 +31,7 @@ Clone [this repo](https://github.com/ga-dc/react-inclass).
 * Contains a simple Express server that we'll use in today's class.
 * We need to include some React script files: `react.js` and `JSXTransformer.js`
   * Available as a download [here](http://facebook.github.io/react/downloads/react-0.11.2.zip).
-  * Or available via CDNs [here]().
+  * Or available via CDNs [here](https://cdnjs.com/libraries/react/).
 
 
 # Components
@@ -85,7 +90,7 @@ var Hello = React.createClass({
   }
 })
 
-// Many tutorials will use React.renderComponent, which has been phased out
+// Many tutorials will use React.renderComponent, which has been phased out. Change outlined here: http://bit.ly/1E81Whs
 React.render(
   <Hello />,
   document.getElementById( "container" )
@@ -99,13 +104,10 @@ React.render(
 
 What language is `<Hello />` written in? **JSX.**
 * Similar to XML.
-* JSX is an alternate syntax for Javascript.
+* JSX is an alternate syntax for Javascript that helps us visualize what a Virtual DOM node will look like.
   * React can actually be run without JSX.
   * When we say `<Hello />`, in plain Javascript we are actually saying `React.DOM.div( null, "Hello world.")`
     * Basically, a string of React methods that create a virtual DOM node.
-
-Let's see what this looks like in the browser console...
-* [FIGURE THIS OUT]
 
 ## Hello World: A Little Dynamic (10 / 30)
 
@@ -162,7 +164,7 @@ React.render(
 ## Exercise: A Blog Post (15 / 45)
 
 Let's have some practice creating a React component for scratch. How about a blog post?
-* Create a Post object / model that has the following properties:
+* Define a Post constructor that has the following properties:
   1. title
   2. author
   3. body
@@ -186,7 +188,7 @@ var post = new Post({
   title: "My First Post",
   author: "Adrian",
   body: "Check it out. This is the first post on my dope blog!",
-  comments: [ "First!", "Second!", "This blog sucks." ]
+  comments: [ "First!", "Second!", "This blog needs more GIFs." ]
 });
 
 // Define component (PostView)
@@ -447,9 +449,17 @@ React.render(
 
 ## What's Next? (5 / 100)
 
+* Events
+* Forms
+
 ## Questions / Closing (5 / 105)
 
 Having learned the basics of React, what are some benefits to using it vs. a different framework or plain ol' Javascript?
+
+## Additional Reading
+
+* [React DC (Meetup)](http://www.meetup.com/React-DC/)
+* [Tic-Tac-Toe Using React (by Jesse Shawl)](https://github.com/jshawl/react-tic-tac-toe)
 
 # TO DO
 * Is there a difference between the two renders?
