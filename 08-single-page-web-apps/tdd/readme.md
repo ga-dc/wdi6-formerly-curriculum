@@ -6,7 +6,6 @@
 * List components of a Jasmine test.
 * Implement TDD using Jasmine.
 * Use different Jasmine matchers.
-* Use Jasmine to test asynchronous Javascript.
 
 ## Do You Test? (5 / 5)
 
@@ -38,10 +37,6 @@ Testing is essential when working on large, complex projects.
 
 ### The Process (5 / 15)
 
-Testing gives us more control over our code.
-* We anticipate our errors with tests.
-* We can't move forward with faulty code because these tests must pass.
-
 ![tdd flowchart](img/tdd-flowchart.png)
 
 TDD step by step.
@@ -54,13 +49,9 @@ TDD step by step.
 
 ### Unit Testing (5 / 20)
 
-We've already encountered TDD once with RSpec. What's RSpec?
-* Ruby framework.
-* Domain-specific language (DSL) for testing Ruby code.
-* We didn't get around to it in class but it can integrate with Rails.
-
-In RSpec, we engaged in "Unit Testing."
-* A way to test the most basic component of a program.
+We've already encountered TDD once with RSpec. Back then, we engaged in "Unit Testing."
+* Addresses the **what** of testing, while TDD covers the **when** and **why**.
+* Test the most basic component of an application. Not necessarily the smallest.
 
 Here's a sample from Matt's lesson, in which we tested the functionality of a Person class.
 * In particular the Person class' constructor method.
@@ -93,17 +84,19 @@ describe Person do
 end
 ```
 
+We'll be doing this again when testing Javascript.
+
 ## Jasmine
 
 Today we're diving into the world of Javascript testing.
 * One JS testing framework is Jasmine.
-  * Not the only one. There's Mocha, QUnit and more...
+  * Not the only one. There's [Mocha](https://mochajs.org/), [QUnit](https://qunitjs.com/) and more...
 * It bills itself as a "Behavior Driven Development" framework...
 
 ## Behavior-Driven Development (5 / 25)
 
 What does "Behavior Driven Development" mean and how is it different from TDD?
-* TDD tells us how we should test. BDD informs which tests we should be running.
+* BDD informs **which** tests we should be running.
   * What is the purpose of your application? What are your user stories?
   * Make sure that your tests reflect the direction and purpose of your application.
   * BDD is less concerned with the granularity of your tests and more with whether they test the key functionality of your application.
@@ -213,7 +206,7 @@ Expectations are the meat-and-potatoes of our tests.
 
 **4. Refactor**
 
-Could we make our tests here DRYer?
+Could we make these tests DRYer?
 * We instantiate the `person` variable twice. Is there a function available that will let us do this once?
 
 ```js
@@ -279,9 +272,13 @@ Let's break this test down according to its parts. First, **the suite**.
 ```js
 var calculator = require( "../calculator" )
 
-describe( "addition", function(){
-  // Tests for our addition function will go in here.
-});
+describe( "a calculator", function(){
+
+  describe( "addition method", function(){
+    // Tests for our addition function will go in here.
+  });
+
+})
 ```
 
 Next up, let's make **a spec**.
@@ -291,8 +288,8 @@ Next up, let's make **a spec**.
 ```js
 var calculator = require( "../calculator" )
 
-describe( "addition", function(){
-  it( "should add 2 and 2", function(){
+describe( "addition method", function(){
+  it( "should add two numbers", function(){
     // Expectations go in here.
   })
 });
@@ -304,8 +301,8 @@ And finally, let's create **the expectations** for our test.
 ```js
 var calculator = require( "../calculator" )
 
-describe( "addition", function(){
-  it( "should add 2 and 2", function(){
+describe( "addition method", function(){
+  it( "should add two numbers", function(){
     // Let's store the sum of our addition function.
     // Because our add function will be stored in calculator.js, we can reference it as such...
     var sum = calculator.add( 2, 2 );
@@ -355,9 +352,10 @@ Let's run our test again.
 
 You've already spent some time this week stepping up your OOJS game.
 * So you might be wondering why we're exporting our calculator methods individually.
-* Let's reformat our calculator to reflect a Javascript object and "export that" to our spec file.
+* Let's reformat our calculator into a Javascript object and "export" it to our spec file.
 * How do we go about doing that?
   * `module.exports`! Help me set that up.
+  * What's the different between `exports.functionName` and `module.exports`?
 * Won't require any changes to our tests. Just `calculator.js`.
   * Why is that?
 
@@ -393,11 +391,14 @@ Follow the same process and add some functionality to our calculator.
   5. Average
 
 ### Bonus
-Implement `beforeEach`.  
+Implement `beforeEach` so that it initializes a `total` variable before each test.
+* Create a test that verifies the value of `total` after running multiple methods.
+  * e.g., Make sure `total` is the correct value after running `calculator.add` and `calculator.subtract` in a single test.
+* Reset the value of total using `afterEach`.
 
 Test and add some advanced functionality.
-* Factorial
-* Logarithmic
+* [Factorial](http://www.mathsisfun.com/definitions/factorial.html)
+* [Logarithmic](https://www.mathsisfun.com/algebra/logarithms.html)
 
 Test for error messages when your calculator makes an invalid operation.
 * For example, test to make sure that your calculator returns a helpful error message when it tries to divide by 0.
