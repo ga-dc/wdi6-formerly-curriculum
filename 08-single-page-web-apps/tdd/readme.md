@@ -390,6 +390,8 @@ Follow the same process and add some functionality to our calculator.
   4. Exponential
   5. Average
 
+[Here's the calculator solution](https://github.com/ga-dc/jasmine-calculator) in case you need some guidance.
+
 ### Bonus
 Implement `beforeEach` so that it initializes a `total` variable before each test.
 * Create a test that verifies the value of `total` after running multiple methods.
