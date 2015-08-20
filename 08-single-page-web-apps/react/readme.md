@@ -22,7 +22,7 @@ This week you were introduced to the Javascript MVC model.
 
 # Housekeeping
 
-Clone this repo.
+Clone [this repo](https://github.com/ga-dc/react-inclass).
 * Contains a simple Express server that we'll use in today's class.
 * We need to include some React script files: `react.js` and `JSXTransformer.js`
   * Available as a download [here](http://facebook.github.io/react/downloads/react-0.11.2.zip).
