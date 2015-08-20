@@ -26,7 +26,7 @@ Order was randomly assigned via Array#shuffle.
 ## Mon Aug 17
 
 - Lon
-- Justin
+- Justin (bumped to Thu, due to scheduling conflict)
 
 ## Tue Aug 18
 
@@ -40,3 +40,4 @@ Order was randomly assigned via Array#shuffle.
 ## Thu Aug 20
 
 - Eddie
+- Justin
