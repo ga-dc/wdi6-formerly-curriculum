@@ -1,20 +1,25 @@
 ## Learning Objectives
 
 * Explain what ReactJS is.
-* Compare React to other Javascript frameworks and libraries.
-* Create and render a React component in the browser.
+* Explain the component model of web development.
+* Create and render React components in the browser.
 * Nest React components.
 * Modify the state of a React component through events.
 
 ## What is ReactJS?
 
-### A Video!
+### A Video Introduction (5 / 5)
 
 [https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510)
 
 ### Some History (5 / 5)
 The first thing most people hear about React is "Facebook uses it."
 * Recently went open-source.
+* Born out of their frustration with the traditional MVC model and how.
+  * Re-rendering something meant re-rendering everything (or just a lot).
+  * That had negative implications on processing power and ultimately user experience, which at times became glitchy and laggy.
+
+
 
 ### React in the MVC (5 / 10)
 This week you were introduced to the Javascript MVC model.
@@ -38,9 +43,16 @@ Clone [this repo](https://github.com/ga-dc/react-inclass).
 
 ## Hello World: A Very Basic Component (10 / 20)
 
-The basic unit you'll be working with in ReactJS is a component.
-* What does a component look like? Let's start with a simple "Hello World" example.
-* This is a little messy but we're going to write out our Javascript directly in our HTML file.
+The basic unit you'll be working with in ReactJS is a **component**.
+* It sounds like a simple word, but using "components" is a pretty different way of approaching web development.
+
+Throughout class we have separated HTML, CSS and Javascript.
+* With components, the lines between those three become a bit blurry.
+* Instead, we organize our web apps according to small, reusable components that define their own content, presentation and behavior.
+* Basically, everything we need is condensed into a small capsule.
+* This'll become more clear as we start defining some components...
+
+What does a component look like? Let's start with a simple "Hello World" example.
 
 ```js
 <script type="text/jsx">
@@ -49,10 +61,10 @@ The basic unit you'll be working with in ReactJS is a component.
 </script>
 ```
 
-What the hell is JSX?
+What is JSX?
 > JSX is a XML-like syntax extension to ECMAScript without any defined semantics.
 
-The purpose of JSX will be more apparent as we start building out our application.
+I'll explain JSX as we encounter it in our application.
 * Just know for now that...
   * Our `script` tag needs a type of "text/jsx".
   * The content of `script` must begin with this pseudo-comment: `/** @jsx React.DOM */`
@@ -67,17 +79,21 @@ var Hello = React.createClass({
 })
 ```
 
-What do we see here?
-  1. `var Hello`
-    * This is the component we're creating. In this example, we are creating a "Hello" component.
-  2. `React.createClass`
-    * This is the React library method we use to create our component definition.
-    * Takes an object as an argument.
-  3. `render`
-    * Every component has, at minimum, a render method.
-    * Generates a virtual DOM node that will be added to the actual DOM.
-    * The contents of this node are defined in the method's return statement.
-      * At the moment, this return value looks exactly like HTML. But it's not...
+1. `var Hello`
+  * This is the component we're creating. In this example, we are creating a "Hello" component.
+
+2. `React.createClass`
+  * This is the React library method we use to create our component definition.
+  * Takes an object as an argument.
+
+3. `render`
+  * Every component has, at minimum, a render method.
+  * Generates a Virtual DOM node that will be added to the actual DOM.
+    * What does a Virtual DOM node sound like it does?
+    * Looks just like a regular ol' DOM node, but it's not yet attached to the DOM.
+    * Instead, it acts as a staging area for changes that will eventually be implemented.
+  * The contents of this node are defined in the method's return statement.
+    * At the moment, this return value looks exactly like HTML. But it's not...
 
 So we've created the template for our component. But how do we actually render it?
 
@@ -133,9 +149,9 @@ React.render(
 In the above example, we replaced "world" with `{this.props.name}`  
 
 What are `.props`?
-* Properties.
-* Immutable. These cannot be changed while your program is running.
-* Passed in as attributes to the JSX element in our `.render` method.
+* Properties! Every component has a `.props` property.
+* Properties are immutable and cannot be changed while your program is running.
+* We define properties in development and pass them in as attributes to the JSX element in our `.render` method.
 
 We can create multiple properties for a component.
 
@@ -292,14 +308,15 @@ React.render(
 ## State (15 / 85)
 
 We already went over properties.
-* The thing about properties, is, you can't change them.
+* The thing about properties is, you can't change them.
 * What do we do about values that need to be changed after a component is rendered?
 * That's where **state** comes in.
 
 Values stored in a component's state are mutable attributes.
-* Setting up and modifying state is not as straightforward as properties.
-* We need to set up some methods. Lets revisit our old `Hello` example.
-  * Let's incorporate a counter into our greeting.
+* Like properties, we can access state values using `this.state.val`
+* Setting up and modifying state is not as straightforward as properties. Requires multiple methods
+
+Lets implement state in our earlier `Hello` example by incorporating a counter into our greeting.
 
 ```js
 var Hello = React.createClass({
@@ -372,6 +389,9 @@ React.render(
 
 Whenever we run `.setState`, our component "diff's" the current DOM, and compares the Virtual DOM node with the updated state to the current DOM.
 * Only replaces the current DOM with parts that have changed.
+* This is super important! Using React, we only change parts of the DOM that need to be changed.
+  * Implications on performance.
+  * We **do not** re-render the entire component like we have been in class.
 
 ## Exercise: Implement State (10 / 95)
 
@@ -459,7 +479,7 @@ Having learned the basics of React, what are some benefits to using it vs. a dif
 ## Additional Reading
 
 * [React DC (Meetup)](http://www.meetup.com/React-DC/)
-* [Tic-Tac-Toe Using React (by Jesse Shawl)](https://github.com/jshawl/react-tic-tac-toe)
+* [React Tic-Tac-Toe (by Jesse Shawl)](https://github.com/jshawl/react-tic-tac-toe)
 
 # TO DO
 * Is there a difference between the two renders?
