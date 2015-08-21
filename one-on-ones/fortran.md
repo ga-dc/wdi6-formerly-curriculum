@@ -2,39 +2,45 @@
 
 One on ones are generally from 4:30pm to 5:00pm on Mondays, Wednesdays, and Thursdays.
 
-## Mon Aug 10
+## Project 3
+
+There will be no scheduled one-on-ones this week.
+
+-----
+
+## Mon Aug 31
 
 - Lisa
 
-## Wed Aug 12
+## Wed Sep 2
 
 - Arash
 - **Open Appointment Time**
 
-## Thur Aug 13
+## Thur Sep 3
 
 - Adrian
 - Melissa
 
-## Fri Aug 14
+## Fri Sep 4
 
 - Leigh
 
 -----
 
-## Mon Aug 17
+## Mon Sep 7
 
 - Omari
 
-## Wed Aug 19
+## Wed Sep 8
 
 - Yvonne
 - Leigh
 
-## Thur Aug 20
+## Thur Sep 9
 
 - Rachel
 
-## Fri Aug 21
+## Fri Sep 10
 
 - Ksenia
