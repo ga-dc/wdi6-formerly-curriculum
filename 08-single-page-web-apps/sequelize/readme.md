@@ -162,9 +162,15 @@ Now things get weird.
 
 You see all of those `.then`s? jQuery also has `.then`, and `.done`, and `.fail`, and others.
 
-The rest of this file is a bunch of asynchonous things happening -- that is, a chain of events where we don't want the next event to start until the current event has completed.
+The rest of this file is a bunch of *asynchonous* things happening -- that is, a bunch of events starting at the same time.
 
-The events in this case are CRUD interactions with the database.
+Most operations in Javascript are *synchronous*: one line of Javascript is executed, then the next line is executed when that first is completed, then the next line is executed when *that* one is complete, and so on -- just like you'd read a book. However, there are some operations that are *asynchronous*: Javascript starts executing whatever's written on one line, and doesn't want for that execution to stop before starting the next line.
+
+Sometimes this is good: if you have a Javascript slideshow loading a whole bunch of images, you don't want your entire webpage to hang until the last image is loaded. You want the image loading and the rest of your Javascript to happen asynchronously.
+
+However, there are certainly times during which you want *asynchronous* things to happen *synchronously*. So you chain them together in such a way that events happen in a specific order: one event can't start until the previous event has completed. (Remember those "promise" objects from jQuery?)
+
+In this case, the asynchronous events that we're forcing to happen synchronously are CRUD interactions with the database.
 
 ActiveRecord doesn't make you worry about this. If you have:
 ```js
