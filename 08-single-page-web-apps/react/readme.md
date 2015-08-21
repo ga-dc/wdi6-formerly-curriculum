@@ -190,49 +190,7 @@ Let's have some practice creating a React component for scratch. How about a blo
 
 ### Solution
 
-```js
-// Model / Constructor
-var Post = function( info ){
-  this.title = info.title;
-  this.author = info.author;
-  this.body = info.body;
-  this.comments = info.comments;
-}
-
-// Create Post object
-var post = new Post({
-  title: "My First Post",
-  author: "Adrian",
-  body: "Check it out. This is the first post on my dope blog!",
-  comments: [ "First!", "Second!", "This blog needs more GIFs." ]
-});
-
-// Define component (PostView)
-var PostView = React.createClass({
-  render: function(){
-    return (
-      <div class="post">
-        <h2>Hello {this.props.title}</h2>
-        <h4>By {this.props.author}</h4>
-        <p>{this.props.body}</p>
-        <h3>Comments</h3>
-          <p>{this.props.comment}</p>
-      </div>
-    );
-  }
-});
-
-// Render component
-React.render(
-  <PostView
-    title={post.title}
-    author={post.author}
-    body={post.body}
-    comment={post.comments[0]}
-  />,
-  document.getElementById( "container" )
-);
-```
+[https://gist.github.com/amaseda/efeb9d6ee266f8fa3178](https://gist.github.com/amaseda/efeb9d6ee266f8fa3178)
 
 ## Nested Components (5 / 50)
 
@@ -254,54 +212,7 @@ We can nest Comment components within a PostView component
 
 ### Solution
 
-```js
-var Post = function( info ){
-  this.title = info.title;
-  this.author = info.author;
-  this.body = info.body;
-  this.comments = info.comments;
-}
-
-var post = new Post({
-  title: "My First Post",
-  author: "Adrian",
-  body: "Check it out. This is the first post on my dope blog!",
-  comments: [ "First!", "Second!", "This blog sucks." ]
-});
-
-var PostView = React.createClass({
-  render: function(){
-    return (
-      <div class="post">
-        <h2>Hello {this.props.title}</h2>
-        <h4>By {this.props.author}</h4>
-        <p>{this.props.body}</p>
-        <h3>Comments</h3>
-          <CommentView commentBody={post.comments[0]}/>
-          <CommentView commentBody={post.comments[1]}/>
-          <CommentView commentBody={post.comments[2]}/>
-      </div>
-    );
-  }
-});
-
-var CommentView = React.createClass({
-  render: function(){
-    return (
-      <p>{this.props.commentBody}</p>
-    );
-  }
-})
-
-React.render(
-  <PostView
-    title={post.title}
-    author={post.author}
-    body={post.body}
-  />,
-  document.getElementById( "container" )
-);
-```
+[https://gist.github.com/amaseda/0eba4f73b1ec8073ea0a](https://gist.github.com/amaseda/0eba4f73b1ec8073ea0a)
 
 ## Break (10 / 70)
 
@@ -404,68 +315,7 @@ Let's create a state for our earlier blog example. We want to be able to edit th
 
 ### Solution
 
-```js
-var Post = function( info ){
-  this.title = info.title;
-  this.author = info.author;
-  this.body = info.body;
-  this.comments = info.comments;
-}
-
-var post = new Post({
-  title: "My First Post",
-  author: "Adrian",
-  body: "Check it out. This is the first post on my dope blog!",
-  comments: [ "First!", "Second!", "This blog sucks." ]
-});
-
-var PostView = React.createClass({
-  getInitialState: function(){
-    return {
-      body: this.props.body
-    }
-  },
-
-  editPost: function(){
-    var newBody = prompt( "What would you like your post to say?" );
-    this.setState({
-      body: newBody
-    })
-  },
-
-  render: function(){
-    return (
-      <div class="post">
-        <h2>Hello {this.props.title}</h2>
-        <h4>By {this.props.author}</h4>
-        <p>{this.state.body}</p>
-        <button onClick={ this.editPost }>Edit Post</button>
-        <h3>Comments</h3>
-          <CommentView commentBody={post.comments[0]}/>
-          <CommentView commentBody={post.comments[1]}/>
-          <CommentView commentBody={post.comments[2]}/>
-      </div>
-    );
-  }
-});
-
-var CommentView = React.createClass({
-  render: function(){
-    return (
-      <p>{this.props.commentBody}</p>
-    );
-  }
-})
-
-React.render(
-  <PostView
-    title={post.title}
-    author={post.author}
-    body={post.body}
-  />,
-  document.getElementById( "container" )
-);
-```
+[https://gist.github.com/amaseda/0118e488caad10030e6d](https://gist.github.com/amaseda/0118e488caad10030e6d)
 
 ## What's Next? (5 / 100)
 
@@ -476,18 +326,12 @@ React.render(
 
 Having learned the basics of React, what are some benefits to using it vs. a different framework or plain ol' Javascript?
 
-## Additional Reading
-
-* [React DC (Meetup)](http://www.meetup.com/React-DC/)
-* [React Tic-Tac-Toe (by Jesse Shawl)](https://github.com/jshawl/react-tic-tac-toe)
-
-# TO DO
-* Is there a difference between the two renders?
-* Why don't you need to include the nested component in `React.render`?
-* Can you only set a state value to a component property value?
 * What is the obvious benefit(s) of React?
   - Clear HTML structure of rendered components.
   - Nicely compartmentalized properties via props and state.
   - Easily pass in values from model to view.
-* Is it okay if I sum up the magic of React using some 3rd party example in the end?
-* Time / possible to incorporate form into example?
+
+## Additional Reading
+
+* [React DC (Meetup)](http://www.meetup.com/React-DC/)
+* [React Tic-Tac-Toe (by Jesse Shawl)](https://github.com/jshawl/react-tic-tac-toe)
