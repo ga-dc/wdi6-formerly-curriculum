@@ -30,4 +30,9 @@ Moving forward, there will be three due dates per week for homework:
 | Tuesday       |                                | [Do Something - Part 2](https://github.com/ga-dc/do_something_express_part2) & Outcomes Resume Final Draft due|
 | Wednesday     |                                | [Do Something - Part 3](https://github.com/ga-dc/do_something_express_part3) |
 | Thursday      | PB also needs to do [Clock Hands](https://github.com/ga-dc/sundial) | [Do Something - Part 4](https://github.com/ga-dc/do_something_express_part4) |
-| Friday        |                                | [Project 3 TBD](#)
+| Friday        |                                | No Homework!* |
+
+*Please discuss with your group members about what you'd like to do/research over the weekend.
+
+Instructors **are not** requiring or suggesting that you work over the weekend. Please be considerate
+of others in your group as you think about what to do over the weekend.
