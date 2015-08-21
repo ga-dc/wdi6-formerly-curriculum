@@ -8,18 +8,15 @@
 
 ## What is ReactJS?
 
-### A Video Introduction (5 / 5)
-
-[https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510)
-
-### Some History (5 / 5)
+### Some History (10 / 10)
 The first thing most people hear about React is "Facebook uses it."
 * Recently went open-source.
 * Born out of their frustration with the traditional MVC model and how.
   * Re-rendering something meant re-rendering everything (or just a lot).
   * That had negative implications on processing power and ultimately user experience, which at times became glitchy and laggy.
+* So they found a creative way to tackle this that flips the Javascript MVC on its head and, in a way, shakes up everything you guys have learned in class so far.
 
-
+Here's a taste of what React is all about: [https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&t=510)  
 
 ### React in the MVC (5 / 10)
 This week you were introduced to the Javascript MVC model.
