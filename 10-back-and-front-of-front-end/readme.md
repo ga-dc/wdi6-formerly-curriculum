@@ -36,14 +36,23 @@ The back-end-y front-end, and the front-end-y front-end.
 ## Front-end design (Classroom 1)
 
 ### SASS (1)
-
-### SASS (2)
+- Explain what a preprocessor is and what problem it solves
+- Use variables and nesting to dry up CSS
+- Use color functions to create dynamic color schemes
+- Explain what `&` is and why we use it
+- Use @include and @extend to create mixins and inherit from other rules
 
 ### Bootstrap (1)
 
 ### Bootstrap (2)
 
 ### Leaflet and Map APIs
+- While using the leaflet JS library:
+  - create a map using
+  - create markers on a map
+  - create popups
+  - handle events on a map
+- Explain what geoJSON is and how map apis like leaflet utilize it.
 
 ### Flex-box
 - Given a desktop-first webpage, make it look presentable on mobile devices (and vice-versa) with as little CSS as possible
