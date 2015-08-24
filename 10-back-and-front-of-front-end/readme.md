@@ -111,7 +111,7 @@ The back-end-y front-end, and the front-end-y front-end.
 - Explain what geoJSON is and how map apis like leaflet utilize it.
 
 ### Flex-box
-- what problem does it solve?
+- ** what problem does it solve? **
 - Given a desktop-first webpage, make it look presentable on mobile devices (and vice-versa) with as little CSS as possible
 - Contrast Flex Containers and Flex Items
 - Determine browser compatability and appropriate vendor prefixing.
