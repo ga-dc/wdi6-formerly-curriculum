@@ -4,17 +4,25 @@ Remember to ask for technical help via [git issues](https://github.com/ga-dc/pbj
 
 ## Mini-lessons
 
-Mini-lessons are *optional*. Each will be **2:00 - 3:00pm in Classroom 2 (Jelly)**.
+Mini-lessons are *optional*.
 
-### Tues: Authentication (Jesse)
+### Authentication with Sequelize (Jesse)
+#### Tues, 2:00 - 3:00, Classroom 2
 
-Adding authentication to your Express app.
+Adding authentication to your Express app the old-fashioned way.
 
-### Wed: Git Clinic (Robin)
+### Git Clinic (Robin)
+#### Wed, 2:00 - 3:00, Clasroom 2
 
 How to troubleshoot merge conflicts and general Git funk.
 
-### Thur: Deployfest (Adrian)
+### Authentication with Twitter (Jesse)
+#### Wed, 3:30 - 4:30, Classroom 2
+
+Adding authentication to your Express app using the Twitter API.
+
+### Deployfest (Adrian)
+#### Thur, 2:00 - 3:00, Classroom 2
 
 Work as a class to get everyone's apps up on Heroku!
 
