@@ -71,3 +71,9 @@ The back-end-y front-end, and the front-end-y front-end.
 - Describe what an IIFE is, and why it's useful when writing a plugin
 
 ### Pseudo-selectors and pseudo-elements
+
+- Describe what pseudo means in the context of CSS
+- Define what pseudo classes are in CSS
+- List some common pseudo classes and some possible uses for each
+- Define what pseudo elements are in CSS, and differentiate them from psuedo classes
+- List some common pseudo elements and some possible uses for each
