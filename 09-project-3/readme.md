@@ -6,23 +6,23 @@ Remember to ask for technical help via [git issues](https://github.com/ga-dc/pbj
 
 Mini-lessons are *optional*.
 
-### Authentication with Sequelize (Jesse)
-#### Tues, 2:00 - 3:00, Classroom 2
+### Authentication with Sequelize 
+#### Tues, 2:00 - 3:00, Classroom 2, Jesse
 
 Adding authentication to your Express app the old-fashioned way.
 
-### Git Clinic (Robin)
-#### Wed, 2:00 - 3:00, Clasroom 2
+### Git Clinic 
+#### Wed, 2:00 - 3:00, Clasroom 2, Robin
 
 How to troubleshoot merge conflicts and general Git funk.
 
-### Authentication with Twitter (Jesse)
-#### Wed, 3:30 - 4:30, Classroom 2
+### Authentication with Twitter 
+#### Wed, 3:30 - 4:30, Classroom 2, Jesse
 
 Adding authentication to your Express app using the Twitter API.
 
-### Deployfest (Adrian)
-#### Thur, 2:00 - 3:00, Classroom 2
+### Deployfest 
+#### Thur, 2:00 - 3:00, Classroom 2, Adrian
 
 Work as a class to get everyone's apps up on Heroku!
 
