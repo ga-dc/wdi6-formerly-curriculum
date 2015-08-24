@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="9.1" data-basepath="../.." data-revision="Fri Aug 21 2015 17:32:11 GMT+0000 (UTC)">
+    <div class="book" data-level="9.1" data-basepath="../.." data-revision="Mon Aug 24 2015 14:50:20 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1203,6 +1203,7 @@ app.get(<span class="hljs-string">&quot;/:numberOfBottles?&quot;</span>, <span c
 <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
 </code></pre>
 <p>This is also a great time to note how we serve static assets. Notice we linked a stylesheet in our layout file. We are able to do this, because in our <code>application.js</code> we use <code>app.use(express.static(__dirname + &apos;/public&apos;))</code> in our code base. This allows us to utilize files in that folder in the layout.</p>
+<p>Notice the <code>{{{body}}}</code> syntax. This is because Handlebars by default escapes HTML and you need the additional set of brackets to indicate that you want to render the tags in the body as HTML.</p>
 <p>Finally we should update our index view to reflect the same strings we had before. In <code>views/index.hbs</code>:</p>
 <pre><code class="lang-html">{{bottles}} bottles of beer on the wall.
 {{#if next}}
