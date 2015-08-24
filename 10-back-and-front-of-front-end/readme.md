@@ -80,21 +80,19 @@ The back-end-y front-end, and the front-end-y front-end.
 - Use @include and @extend to create mixins and inherit from other rules
 
 ### Bootstrap (1)
-- Explain the benefits (and shortcomings) of using a front-end framework.
+- Explain the benefits (and shortcomings) of using a design framework.
+- Describe the use cases for using Bootstrap as a library versus as a framework.
+- List 10 useful classes from the Bootstrap library.
+- Compare and contrast Bootstrap with other front-end frameworks (e.g., Foundation and Material Design).
+
+### Bootstrap (2)
+- How to override Bootstrap's default styles.
+- Differentiate between advanced Bootstrap inputs.
 - Creative a responsive, mobile-first grid system.
-- Use Bootstrap CSS to style...
-  - Buttons.
-  - Forms.
-  - Tables.
-- Explore Bootstrap's component library.
 - Use Bootstrap JS to...
   - Create a modal.
   - Create a drop-down menu.
   - Create a slider.
-- Compare and contrast Bootstrap with other front-end frameworks (e.g., Foundation and Material Design).
-- Look ahead to [Bootstrap 4](http://blog.getbootstrap.com/2015/08/19/bootstrap-4-alpha/).
-
-### Bootstrap (2)
 
 ### Leaflet and Map APIs
 - While using the leaflet JS library:
