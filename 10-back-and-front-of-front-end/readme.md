@@ -72,12 +72,20 @@ The back-end-y front-end, and the front-end-y front-end.
 
 ## Front-end design (Classroom 1)
 
-### SASS (1)
+### Sass (1)
 - Explain what a preprocessor is and what problem it solves
 - Use variables and nesting to dry up CSS
 - Use color functions to create dynamic color schemes
 - Explain what `&` is and why we use it
 - Use @include and @extend to create mixins and inherit from other rules
+
+
+### Sass (2)
+- Use control directives for conditionals (@if)
+- Use control directives for loops (@for, @each and @while)
+- Use pure Sass functions to make reusable logic
+- Create a Pull Request to sass
+
 
 ### Bootstrap (1)
 - Explain the benefits (and shortcomings) of using a design framework.
