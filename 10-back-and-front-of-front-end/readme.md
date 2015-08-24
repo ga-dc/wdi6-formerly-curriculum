@@ -46,6 +46,8 @@ The back-end-y front-end, and the front-end-y front-end.
 - Define dynamic routes.
 - Give examples of using :params in routes and actions.
 - Recall the order in which routes are matched.
+- Differentiate between `pushState : true` and `pushState : false`
+- Describe of `trigger` as it applies to actions and routes
 
 ### Routers (2)
 
