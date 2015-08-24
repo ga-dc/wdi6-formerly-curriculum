@@ -22,6 +22,7 @@ The back-end-y front-end, and the front-end-y front-end.
 - Install backbone into a rails application
 - Associate a backbone model and collection with a rails backend
 - Perform CRUD actions using backbone's RESTful API
+- Compare BB models with AR models
 
 
 ### Views and Events: Models
