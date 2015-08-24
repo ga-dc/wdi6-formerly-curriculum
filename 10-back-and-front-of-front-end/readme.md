@@ -111,8 +111,10 @@ The back-end-y front-end, and the front-end-y front-end.
 - Explain what geoJSON is and how map apis like leaflet utilize it.
 
 ### Flex-box
+- what problem does it solve?
 - Given a desktop-first webpage, make it look presentable on mobile devices (and vice-versa) with as little CSS as possible
 - Contrast Flex Containers and Flex Items
+- Determine browser compatability and appropriate vendor prefixing.
 - Draw a diagram that includes: Flex Container, Flex Item, Main and Cross Axes, Starts and Ends for all Axes, and Main and Cross Sizes
 - Contrast `align-items` and `align-self`
 - Explain what is meant by the "Holy Grail Layout"
