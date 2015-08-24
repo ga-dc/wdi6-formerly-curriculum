@@ -8,7 +8,21 @@ The back-end-y front-end, and the front-end-y front-end.
 
 ### Models and Collections (1)
 
+- Describe the benefits of using a front end framework
+- Explain how libraries differ from frameworks.
+- Define a new backbone model and create instances
+- Perform CRUD actions on a backbone model
+
 ### Models and Collections (2)
+
+- Explain what a collection is in backbone
+- Define a new backbone collection
+- Use the backbone collection to store models
+- Perform CRUD on a collection
+- Install backbone into a rails application
+- Associate a backbone model and collection with a rails backend
+- Perform CRUD actions using backbone's RESTful API
+
 
 ### Views and Events: Models
 - Define the role of a View in a Backbone app
