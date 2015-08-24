@@ -122,11 +122,11 @@ The back-end-y front-end, and the front-end-y front-end.
 ### jQuery Plug-ins
 
 - Define what a jQuery plugin is
-- Describe where to find existing jQuery (and how to install them)
+- Describe where to find existing jQuery Plugins (and how to install them)
 - Research and utilize a published jQuery Plugin
 - Describe the basic structure of a jQuery Plugin
 - Write your own jQuery Plugin
-- Describe what an IIFE is, and why it's useful when writing a plugin
+- Utilize an Immediately Invoked Function Expression (IIFE) to locally scope jQuery
 
 ### Pseudo-selectors and pseudo-elements
 
