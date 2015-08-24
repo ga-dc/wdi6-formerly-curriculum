@@ -43,7 +43,20 @@ The back-end-y front-end, and the front-end-y front-end.
 
 ### Marionette (1)
 
+- Describe Marionette and what it adds to BackBone
+- Break app into Marionette Regions
+- Utilize Backbone Models & Collections
+- Compare and Contrast the Marionette Views (ItemView, CollectionView, and CompositeView)
+- Utilize Marionette Templates
+
+
 ### Marionette (2)
+
+- Utilize Marionette Utilities to ease development
+- Utilize Marionette Behaviors to share interactions across views
+- Utilize Marionette Radio to decouple communication
+- Learn to love annotated source code
+- Update an existing app adding Marionette incrementally
 
 -----
 
