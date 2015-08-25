@@ -20,7 +20,7 @@ var celica = {
 /////////////////////////////////////////////
 
 function makeCar(model, color) {
-  car = {};
+  var car = {};
   car.model = model;
   car.color = color;
   car.fuel = 100;
@@ -31,6 +31,7 @@ function makeCar(model, color) {
   car.refuel = function() {
     this.fuel = 100;
   }
+  return car;
 }
 
 /////////////////////////////////////////////
