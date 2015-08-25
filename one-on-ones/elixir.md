@@ -4,40 +4,44 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 
 Order was randomly assigned via Array#shuffle.
 
-## Mon Aug 10
+## Week 9, Project 3
 
-- Rosel P.
-- **Open Appointment Time**
+No scheduled one-on-ones during Project 3 week.
 
-## Tue Aug 11
+## Week 10
 
-- Outcomes
+### Mon Aug 31
+  - Cheikh
 
-## Wed Aug 12
-
-- Cheik
-
-## Thur Aug 13
-
-- Malissa
-
----
-
-## Mon Aug 17
-
-- Lon
-- Justin (bumped to Thu, due to scheduling conflict)
-
-## Tue Aug 18
+### Tue Sep 01
 
 - Outcomes
 
-## Wed Aug 19
+### Wed Sep 02
 
-- Nic
 - Laura
+- Justin
 
-## Thu Aug 20
+### Thur Sep 03
+
+- Rosel
+
+
+##  Week 11
+
+### Mon Sep 07
 
 - Eddie
-- Justin
+
+### Tue Sep 08
+
+- Outcomes
+
+### Wed Sep 09
+
+- Lon
+- Malissa
+
+### Thu Sep 10
+
+- Nic
