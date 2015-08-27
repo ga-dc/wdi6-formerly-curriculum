@@ -1,6 +1,6 @@
 # Deployfest
 
-Deployfest isn't so much a class as it is a "deployment clinic." We're here to help with whatever deployment issues you may be having.  
+Deployfest isn't so much a class as it is a "deployment clinic." We're here to help with whatever deployment issues you may be having and walk through common issues the class is experiencing.  
 
 Below, however, are some suggestions for things to try out before raising your hand...
 
@@ -18,3 +18,7 @@ More often that not, solving deployment issues requires a good deal of Googling.
 What should you Google?
 * If you aren't able to deploy, Google the error that shows up in your terminal after trying to push your app.
 * If you are able to deploy but your app doesn't load/function propertly, see what shows up after running `$ heroku logs` in the Terminal.
+
+## Help Each Other Out
+
+If you notice somebody running into the same problem as you, try working together on debugging it!
