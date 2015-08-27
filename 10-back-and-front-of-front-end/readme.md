@@ -30,6 +30,7 @@ The back-end-y front-end, and the front-end-y front-end.
 - Define the role of an `el` in a Backbone View
 - Differentiate between an "assigned" `el` and a "constructed" `el`
 - Use a Backbone View to render a Model's data in the browser
+- Use handlebars templates in BB to simplify rendering a view
 - Make a View "listen for" and respond to DOM events
 - Make a View "listen for" and respond to Model events
 
@@ -50,23 +51,6 @@ The back-end-y front-end, and the front-end-y front-end.
 - Describe of `trigger` as it applies to actions and routes
 
 ### Routers (2)
-
-### Marionette (1)
-
-- Describe Marionette and what it adds to BackBone
-- Break app into Marionette Regions
-- Utilize Backbone Models & Collections
-- Compare and Contrast the Marionette Views (ItemView, CollectionView, and CompositeView)
-- Utilize Marionette Templates
-
-
-### Marionette (2)
-
-- Utilize Marionette Utilities to ease development
-- Utilize Marionette Behaviors to share interactions across views
-- Utilize Marionette Radio to decouple communication
-- Learn to love annotated source code
-- Update an existing app adding Marionette incrementally
 
 -----
 
