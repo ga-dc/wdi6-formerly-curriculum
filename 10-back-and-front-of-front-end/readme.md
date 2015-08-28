@@ -79,7 +79,7 @@ The back-end-y front-end, and the front-end-y front-end.
 - Compare and contrast Bootstrap with other front-end frameworks (e.g., Foundation and Material Design).
 
 ### Bootstrap (2)
-- How to override Bootstrap's default styles.
+- Override a given Bootstrap default style.
 - Differentiate between advanced Bootstrap inputs.
 - Creative a responsive, mobile-first grid system.
 - Use Bootstrap JS to...
