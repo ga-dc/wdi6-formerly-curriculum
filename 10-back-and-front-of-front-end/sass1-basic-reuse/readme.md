@@ -18,9 +18,11 @@
 
 > Sass is an extension of CSS that adds power and elegance to the basic language.
 
+> You write a combination of CSS and SassScript, which compiles to proper CSS.
+
 > It allows you to use variables, nested rules, mixins, inline imports, and more, all with a fully CSS-compatible syntax.
 
-> Sass helps keep large stylesheets well-organized, and get small stylesheets up and running quickly...
+> Sass helps keep large stylesheets well-organized, and helps get small stylesheets up and running quickly...
 
 
 ## The Finished Product
@@ -72,12 +74,28 @@ Student(s) displays result.  Discuss steps and reasoning.
 Sass allows us to intermingle css and SassScript.  Similar to how ERB allowed us to embed Ruby in our html.  One thing this gives us the variable.
 
 Assignment (note the dollar sign):
-
 ``` sass
 $variableName: value
 ```
 
-Usage: `$variableName`
+Usage:
+``` sass
+css_declaration: $variableName
+```
+
+### Real world example:
+
+Assignment:
+``` sass
+$colorPrimary: #badda55;
+```
+
+Usage:
+``` sass
+background-color: $colorPrimary;
+```
+
+
 
 ### Exercise: Variables & Colors (30 min)
 
@@ -180,11 +198,13 @@ Results in:
 
 ---
 
-We reference the compiled **css** file.  Our front-end **ignores the sass**.
+The browser only supports CSS.  We reference the compiled **css** file.  Our front-end **ignores the sass**.  That's why we don't put the sass files in "public/".
 
 ## style.scss vs style.sass (5 min)
 
-???
+Sass supports to "styles": sass (*.sass) and Sassy CSS (*.scss).  They both use the same SassScript.  The .scss format is a superset of CSS3.  The .sass is a bit more concise and uses indentation to indicate blocks of CSS, but it requires a full rewrite of your css.
+
+Further reading: http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better
 
 ## Nesting (10 min)
 
@@ -221,7 +241,7 @@ a{
  - Loops
    - Bamsay: http://codepen.io/mattscilipoti/pen/doxgBX?editors=110
 
-Thoughts:
+Goals:
 - No "I do"
   - students already familiar with basic programming concepts (variables etc.)
 - minimal lecture.  Use sass docs.
