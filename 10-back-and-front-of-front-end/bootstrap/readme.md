@@ -1,0 +1,46 @@
+# Bootstrap
+
+- Looks a lot like Github-flavored Markdown
+
+- Meta viewport
+  - `<meta name="viewport" content="width=device-width, initial-scale=1">`
+- Containers
+  - .container
+    - Fixed width and responsive
+  - .container-fluid
+    - Full-width and not responsive
+  - Containers can't nest
+- Grids
+  - 12 columns
+  - xs (phones), sm (tablets), md (desktops), lg (big desktops)
+    - The width at which you want it to be responsive
+    - Can combine: `class="col-xs-3 col-lg-1"`
+  - Must go inside a div class container
+- Useful tags
+  - `<mark> <code> <kbd> <pre> <samp>`
+- Color classes
+  - For `text-` and `bg-`
+  - Muted, important, success, info, warning, danger
+- Typography classes
+  - list-inline, dl-horizontal, pre-scrollable
+- Weird words
+  - Jumbotron
+  - Well
+  - Glyphicon
+    - Will be hard to run locally
+  - Badge
+  - Progress bar
+    - Can have internal label
+    - Stacked, animated...
+  - List groups
+  - Navbar
+  - Dropdowns
+  - Panels
+  - Carousel
+  - Modal
+  - Tooltip
+- Really swank stuff
+  - Popover
+  - Scrollspy
+  - Affix
+- Alerts can have fades
