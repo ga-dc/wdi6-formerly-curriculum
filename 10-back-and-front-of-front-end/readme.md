@@ -58,6 +58,7 @@ The back-end-y front-end, and the front-end-y front-end.
 
 ### Sass (1)
 - Explain what a preprocessor is and what problem it solves
+- Contrast sass and scss format
 - Use variables and nesting to dry up CSS
 - Use color functions to create dynamic color schemes
 - Explain what `&` is and why we use it
