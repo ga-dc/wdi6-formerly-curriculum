@@ -14,6 +14,18 @@
 - Compare BB models with AR models
 
 ## Opening Framing (5/5)
+
+How we got here:
+1. vanilla js
+  - a lot of code to write
+2. jQuery
+  - easier to do more
+  - easier to write more bad code
+3. OOJS
+  - more structured but a royal pain to write
+4. Frameworks
+  - All the structure of OOJS with the ease of writing like jQuery.
+
 What's the purpose of a front end framework? JS and all of it's many libraries are great, but you can start building and building your application and all of a sudden there's no structure and everything's soup.
 
 ### libraries (2.5/7.5)
@@ -21,11 +33,13 @@ What's the purpose of a front end framework? JS and all of it's many libraries a
 - libraries gives us tools to utilize.
 - abstracts code and allows us to write our code more succinctly
 - allows us to write applications faster and easier
+- lots of options, very few rules (jQuery)
 
 ### frameworks (2.5/10)
 
 - like libraries in that it gives us tools to utilize
 - additionally they provide structure and conventions users have to follow in order for them to work.
+- Lots of rules (convention), few options (Ruby on Rails)
 
 ## What is a front end framework? (5/15)
 - a library that attempts to move some or all application logic to the browser, while providing a simple interface for keeping the front-end in sync with the back-end
@@ -126,7 +140,7 @@ An object that represents data attributes and behavioral logic related to an ent
 Let's define our very first backbone model. In `js/models/grumble.js`:
 
 ```javascript
-Grumble = Backbone.Model.extend({
+var Grumble = Backbone.Model.extend({
 
 })
 
@@ -217,7 +231,7 @@ grumble.clear()
 ### Initialize
 Backbone models also come with an initialize function(like ruby classes)
 ```javascript
-Grumble = Backbone.Model.extend({
+var Grumble = Backbone.Model.extend({
   defaults:{
     completed: false
   },
