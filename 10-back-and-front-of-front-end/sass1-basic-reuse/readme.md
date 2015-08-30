@@ -109,7 +109,7 @@ Timings:
   - Discuss [string interpolation](http://webdesign.tutsplus.com/tutorials/all-you-ever-need-to-know-about-sass-interpolation--cms-21375).
 - 15 min: Start discussion: proper naming, usage. Students slack out examples.
 
-#### Colors
+#### Research: Color Functions (15 min)
 
 Let's stay right here and play with colors.
 
@@ -128,85 +128,17 @@ I see five:
 
 But... they are all based off of just 2 colors.  The primary color is Cerulean Blue (#2A52BE, my favorite color).  The secondary color is "Jesse" Green (#bada55).
 
-[Check it out](http://codepen.io/mattscilipoti/pen/xwKrMR?editors=110).
+[Check it out](http://codepen.io/mattscilipoti/pen/xwKrMR?editors=110). Look for `darken()`, `lighten()`, and `rgba()`
+
 
 Review [Sass color options](http://sass-lang.com/documentation/Sass/Script/Functions.html).
 
-## Intro to SassScript
 
-We've been playing with SassScript.  Sass is fully CSS3-compatible, meaning you *can* write css the way you always have.  But, where's the fun in that? More importantly, you can start with a plain old css file and enhance it.  You can use SassScript to make writing css more pleasant.  Note: this doesn't change the functionality of css.  In the end, Sass uses a concise language, SassScript, to generate the verbose css required to make your page sing.
-
-> Q: If I said SassScript is like other languages, what would you expect?
----
-
-It has:
-- variables
-- conditionals
-- loops
-- functions
-- reuse form other files
-
-It has all that.
-
-
-### Sass Features
-
-- Fully CSS3-compatible
-- Language extensions such as variables, nesting, and mixins
-- Many useful functions for manipulating colors and other values
-- Advanced features like control directives for libraries
-- Well-formatted, customizable output
-
-In this lesson, we are covering the portions that helpers that enhance css.  The next lesson will dig deeper into the programmatic aspects of Sass.
-
-## Preprocessor? Precompiler? (10 min)
-
-How do we use it?
-
-![Compile Steps](http://i0.wp.com/css-diary.com/wp-content/uploads/2014/07/sass.png?resize=700%2C400)
-
-```
-gem install sass
-```
-```
-sass --watch input:output
-```
-
-### Example:
-
-Start with this:
-```
-├── assets
-│   └── sass
-│       └── style.scss
-└── public
-```
-Precomile the sass to css.
-```
-sass --watch assets/sass/style.scss:public/style.css
-```
-Results in:
-```
-├── assets
-│   └── sass
-│       └── style.scss
-└── public
-    └── style.css
-```
-
-> Q. What happens in our code?
-
----
-
-The browser only supports CSS.  We reference the compiled **css** file.  Our front-end **ignores the sass**.  That's why we don't put the sass files in "public/".
-
-## style.scss vs style.sass (5 min)
-
-Sass supports to "styles": sass (*.sass) and Sassy CSS (*.scss).  They both use the same SassScript.  The .scss format is a superset of CSS3.  The .sass is a bit more concise and uses indentation to indicate blocks of CSS, but it requires a full rewrite of your css.
-
-Further reading: http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better
+## Break (10 min)
 
 ## Nesting (10 min)
+
+As we've seen, CSS isn't very dry.  Take this nested CSS, for example.
 
 ```scss
 h1{
@@ -228,6 +160,27 @@ a{
 }
 ```
 
+## Mixins & Inheritance (10 min)
+
+Remember the clearfix problem from the CSS2 lesson.  Imagine trying to remember that "fix" and typing it in correctly everytime you needed it.  Now, you can make a `clearfix` mixin that codifies the rules.  Then, those rules can be included in any CSS rule we want.
+
+Let's look at this in precess.co.
+
+```scss
+@mixin clearfix(){
+  content: '';
+  display:table;
+  clear:both;
+}
+
+body:after{
+  @include clearfix();
+}
+```
+
+## Conclusion
+
+
 ## References
 - [All you ever needed to know about Sass interpolation](http://webdesign.tutsplus.com/tutorials/all-you-ever-need-to-know-about-sass-interpolation--cms-21375)
 - [3D Buttons with Sass](https://jesse.sh/makes-3d-buttons-with-sass/)
@@ -237,9 +190,6 @@ a{
   - http://sass-lang.com/documentation/Sass/Script/Functions.html
   - https://robots.thoughtbot.com/controlling-color-with-sass-color-functions
   - http://jackiebalzer.com/color
-## Exercises:
- - Loops
-   - Bamsay: http://codepen.io/mattscilipoti/pen/doxgBX?editors=110
 
 Goals:
 - No "I do"
