@@ -13,21 +13,21 @@
 - Perform CRUD actions using backbone's RESTful API
 - Compare BB models with AR models
 
-## Opening Framing
+## Opening Framing (5/5)
 What's the purpose of a front end framework? JS and all of it's many libraries are great, but you can start building and building your application and all of a sudden there's no structure and everything's soup.
 
-### libraries (5m)
+### libraries (2.5/7.5)
 
 - libraries gives us tools to utilize.
 - abstracts code and allows us to write our code more succinctly
 - allows us to write applications faster and easier
 
-### frameworks (5m)
+### frameworks (2.5/10)
 
 - like libraries in that it gives us tools to utilize
 - additionally they provide structure and conventions users have to follow in order for them to work.
 
-## What is a front end framework?
+## What is a front end framework? (5/15)
 - a library that attempts to move some or all application logic to the browser, while providing a simple interface for keeping the front-end in sync with the back-end
 - applications can run completely in the browser, minimizing server load since the server is only accessed when the front end needs to synchronize data with the backend
 - server sends over the app in the initial request (HTML/CSS/JS) then JS makes all subsequent requests with AJAX
@@ -35,16 +35,16 @@ What's the purpose of a front end framework? JS and all of it's many libraries a
 - loads everything from the database on page load (data and templates) then renders/updates the page content based on user interaction.
 
 
-### What is backbone? (30m)
-Individual reading(10m)
+### What is backbone? (25/40)
+Individual reading(10/25)
 - Go to [backbonejs documentation](http://backbonejs.org/)
   - Read from Getting Started to Backbone.Model
 
-### T&T(5m)
+### T&T(5/30)
 - With what you know about OOJS, jot down some ideas about what you think Backbone is and why you would use it.
 
 ---
-## Backbone JS
+## Backbone JS (10/40)
 - a js library that was built to mimic the rMVC structure of Rails
 - router, views, models/collections
   - organize code into separate components that are able to interact fluidly with each other to build robust, client/browser based web applications
@@ -53,14 +53,8 @@ Individual reading(10m)
 - provides objects that help separate concerns on the front end
 - provides an interface, API, for communicating with a server back end
 
-
-## Backbone Models()
-What's a model? What was it in rails?
-To rehash:
-An object that represents data attributes and behavioral logic related to an entity. It provides CRUD functionality for that data
-
-Let's create some models!
-Before we do that, let's set up our file structure and our dependencies for a new static site!
+## Setup 20/60
+Before we implement backbone for the application we're building this week, let's set up our file structure and our dependencies for a new static site!
 
 We're going to create a static html application. Go ahead and create a new directory we're going to work in, let's call it `grumblr`. We're calling it grumblr but know that it's really just a single model CRUD application. I heard you guys like todo apps.
 
@@ -69,7 +63,7 @@ mkdir grumblr
 cd grumblr
 ```
 
-Cool, lets make some folders and files.
+Lets make some folders and files we're going to need for our backbone application.
 
 ```bash
 touch index.html
@@ -79,17 +73,25 @@ touch js/app.js
 touch js/models/grumble.js
 ```
 
-> Something to note, backbone doesn't yell at you for having your code in the wrong folders. However, going forward it will be nice for you and future you to separate our concerns. You will see the more of this importance when we get into backbone views and routing.
+> Something to note, backbone doesn't yell at you for having your code in the wrong folders. However, going forward it will be nice for you and future you to separate our concerns. You will see the more of this importance when we get into backbone views and routing. Additionally note that we are just using a static `index.html` page to create this application. Backbone can sit on top of frameworks like rails and express as well. The configuration and setups can be a bit different depending on the domain you're working in.
 
-*** PUT IN BOWER NOTES ***
+### Bower
+Bower is a package manager that allows us to manage dependencies. To install it we run:
+
+```bash
 npm install -g bower
+```
+
+Additionally, we also want to install all of the dependencies we'll be needing for this application:
+
+```bash
 bower install jquery
 bower install handlebars
 bower install underscore
 bower install backbone
+```
 
-The first thing I want to do is make sure all of our dependencies are loaded from a CDN.(Order is important!) Retrieve libraries from [here](https://cdnjs.com/)
-In my `index.html`:
+Let's make sure we include these dependencies in our `index.html`:
 
 ```html
 <!DOCTYPE html>
@@ -100,16 +102,26 @@ In my `index.html`:
   </head>
   <body>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
-    <script src="js/models/grumble.js"></script>
-    <script src="js/app.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/underscore/underscore-min.js"></script>
+  <script src="bower_components/handlebars/handlebars.min.js"></script>
+  <script src="bower_components/backbone/backbone-min.js"></script>
+  <script src="js/models/grumble.js"></script>
+  <script src="js/app.js"></script>
   </body>
 </html>
 
 ```
 > Order is very important here. Note that underscore is a dependency of backbone and that jquery is a dependency of underscore. As a result we load jquery first, then underscore, then backbone. Additionally we want our model definition to follow the backbone dependency because we will be using backbone abstractions inside of the model file. And finally we also include the main `app.js` which will require our model definitions.
+
+> We could have also installed dependencies using CDN's or downloading the source code for the dependencies as well. Additionally we have install the handlebars dependency. We won't be using this one today, but we'll be needing it for views tomorrow.
+
+## Break 10/70
+
+## Backbone Models(50/120)
+What's a model? What was it in rails?
+To rehash:
+An object that represents data attributes and behavioral logic related to an entity. It provides CRUD functionality for that data
 
 Let's define our very first backbone model. In `js/models/grumble.js`:
 
@@ -139,35 +151,45 @@ TLDR version: cid is short for client id, cid is assigned by backbone.js client 
 
 There's alot of other stuff happening here that backbone's doing but the important part of it is the attributes object nested within our backbone object.
 
-## Getting and setting attributes
+### Getting and setting attributes
 ### Setting attributes(also updates)
 Attributes can be set in a number of ways.
 - We can set them on instantiation of the object ie
-`var grumble = new Grumble({author: "bob", body: "learned backbone today!!"})`
+```js
+var grumble = new Grumble({author: "bob", content: "learned backbone today!!"})
+```
 - We can set them on an existing objects
-`grumble.set("difficulty", 5)`
-`grumble.set({timeOfDay: "morning", visibility:"daytime"})`
+```js
+grumble.set("difficulty", 5)
+```
+```js
+grumble.set({timeOfDay: "morning", visibility:"daytime"})
+```
   - can also set functions as attributes
   ```javascript
   grumble.set({
     logBody: function(){
-      console.log(this.body)
+      console.log(this.content)
     }
     })
   ```
 - we can also use `attributes`
-`grumble.attributes.newAttribute = "this is a new attribute"`
+```js
+grumble.attributes.newAttribute = "this is a new attribute"
+```
 - We can also set defaults in the model definition.
 in `js/models/grumble.js`:
 ```javascript
 Grumble = Backbone.Model.extend({
   defaults:{
-    completed: false
+    content: "the default content!"
   }
 })
 ```
-`var grumble = new Grumble()`
-#### Getting attributes
+```js
+var grumble = new Grumble()
+```
+### Getting attributes
 
 ```js
 grumble.get("attributeName")
@@ -179,9 +201,18 @@ grumble.attributes.attributeName
 > `.get` / ` .set` are generally preferred over direct access via `.attributes`
 
 ### Deleting attributes
-`grumble.unset("attributeName")`
-check with `grumble.has("attrbuteName")`
-`grumble.clear()` - removes all attributes of a model
+```js
+grumble.unset("attributeName")
+```
+check with:
+```js
+grumble.has("attrbuteName")
+```
+
+remove all attributes of a model with:
+```js
+grumble.clear()
+```
 
 ### Initialize
 Backbone models also come with an initialize function(like ruby classes)
@@ -196,10 +227,10 @@ Grumble = Backbone.Model.extend({
 })
 ```
 
-### Backbone Collections ()
-What is a backbone collection? A collection acts as an intelligent wrapper for like models. It provides a set of methods for performing the CRUD operations on models of the collection.
+## Backbone Collections (30/150)
+What is a backbone collection? A collection acts as an intelligent wrapper for like models. It provides a set of methods for performing the CRUD operations on models of the collection. Create and edit the file `js/collections/grumbles.js`:
 
-#### Creating a collection
+### Creating a collection
 ```javascript
 var Grumbles = Backbone.Collection.extend({
   initialize:function(){
@@ -258,7 +289,11 @@ Collections can use the following:
 - shift
 - length
 
-### AJAX /w BB
+## Lunch
+## Class Ex - Reminders Part 1(30/30)
+Look at the repo [here]()
+
+### AJAX /w BB 60/90
 So we've learned how to create backbone models and collections, but it'd be really nice if we could define our models/collections through an existing backend. Enter rails. But it doesn't have to be! But for the purposes of this class we'll use a nice and simple rails application that we've created for you.
 
 You can pull the code for our backend [here](https://github.com/ga-dc/grumblr_rails_api)
@@ -288,6 +323,24 @@ var Grumble = Backbone.Model.extend({
 
 Everything you did before is the same. The only difference now is if we want to make changes to the database. We just need to call `.save()` on the instance of the object.
 
+```js
+grumble.set({authorName: "bob", content: "smith", title: "the title", photoUrl: "http://placebear.com/400/400"})
+
+grumble.save()
+```
+
+> If we have our rails application running, we can refresh the page and see our new grumble got saved to our database.
+
+One thing to note is that the `.save()` function returns a promise object that allows us to use the object that was saved as an argument. Something like this:
+
+```js
+grumble.save().then(function(response){
+  console.log(response)
+})
+```
+
+> the response in this log is the object(key-value pairs) that was saved in the database.
+
 #### Collections
 Now let's create our collection definition in `app/assets/javascripts/backbone/collections/grumblesCollection.js`:
 
@@ -296,7 +349,7 @@ var GrumblesCollection = Backbone.Collection.extend({
   initialize: function() {
     console.log('New Grumbles Collection');
   },
-  model: GrumbleModel,
+  model: Grumble,
   url: '/grumbles'
 });
 ```
@@ -305,6 +358,8 @@ Again, the rules are much the same for manipulating data within the collection.
 Similarly to ActiveRecord there is a create method that can be called on a collection:
 
 ```javascript
-  collection.create({attributeName: attibuteValue})
+collection.create({authorName: "bob", content: "smith", title: "the title", photoUrl: "http://placebear.com/400/400"})
 ```
 will actually save an instance of that model to the database, so long as you meet the strong params requirements.
+
+## Class Ex - Reminders Part 2 (60/150)
