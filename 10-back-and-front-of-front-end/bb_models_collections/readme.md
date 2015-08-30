@@ -293,7 +293,7 @@ Collections can use the following:
 ## Class Ex - Reminders Part 1(30/30)
 Look at the repo [here]()
 
-### AJAX /w BB 60/90
+## AJAX /w BB (60/90)
 So we've learned how to create backbone models and collections, but it'd be really nice if we could define our models/collections through an existing backend. Enter rails. But it doesn't have to be! But for the purposes of this class we'll use a nice and simple rails application that we've created for you.
 
 You can pull the code for our backend [here](https://github.com/ga-dc/grumblr_rails_api)
@@ -341,7 +341,7 @@ grumble.save().then(function(response){
 
 > the response in this log is the object(key-value pairs) that was saved in the database.
 
-#### Collections
+### Collections
 Now let's create our collection definition in `app/assets/javascripts/backbone/collections/grumblesCollection.js`:
 
 ```javascript
