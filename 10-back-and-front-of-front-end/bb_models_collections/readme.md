@@ -291,7 +291,7 @@ Collections can use the following:
 
 ## Lunch
 ## Class Ex - Reminders Part 1(30/30)
-Look at the repo [here]()
+Look at the repo [here](https://github.com/ga-dc/reminder#part-1)
 
 ## AJAX /w BB (60/90)
 So we've learned how to create backbone models and collections, but it'd be really nice if we could define our models/collections through an existing backend. Enter rails. But it doesn't have to be! But for the purposes of this class we'll use a nice and simple rails application that we've created for you.
@@ -363,3 +363,4 @@ collection.create({authorName: "bob", content: "smith", title: "the title", phot
 will actually save an instance of that model to the database, so long as you meet the strong params requirements.
 
 ## Class Ex - Reminders Part 2 (60/150)
+Look at the repo [here](https://github.com/ga-dc/reminder#part-2)
