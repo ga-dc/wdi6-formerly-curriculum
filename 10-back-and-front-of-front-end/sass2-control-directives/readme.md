@@ -83,11 +83,28 @@ Sass supports to "styles": sass (*.sass) and Sassy CSS (*.scss).  They both use 
 
 Further reading: http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better
 
-## @if
 
-???
+## Conditionals (@if)
 
-## BAMSAY! (20 min)
+Let's take a few minutes to read about [@if](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#control_directives__expressions)
+
+> Q: Any points of interest?
+
+---
+
+### Exercise: Flash (15 min)
+
+Let's go back to the Flash messages.  This time, we will create mixin with a conditional that sets the text color to `#fff` if the background is dark enough and `#000` if the background is light enough.
+
+http://codepen.io/mattscilipoti/pen/XmWbgq
+
+Hint: you can check the "lightness" of a color.
+
+Bonus: what if we had more flash types?
+
+## Loops
+
+### BAMSAY! (20 min)
 
 Look at [BAMSAY](http://codepen.io/jshawl/full/cLJal)
 
@@ -164,7 +181,7 @@ Timings:
 ```
 $offset: 10;
 @for $i from 0 through $offset{
-  ???
+  text-shadow: 0+$i,
 }
 ```
 - 20 min: You have worked out the plan for the button and have started to codify it.
@@ -177,7 +194,52 @@ Now we've added "function" and "mixin" to our list, joining "variables" and "loo
 
 ## Sass and Rails (30 min)
 
-???
+The [sass-rails gem](https://github.com/rails/sass-rails) is provided for working with Sass in Rails. I found that my words of wisdom were lining up with nicely with their documentation.  They've got you covered.  
 
-## [Optional] Create a Pull Request to Sass
-## [Optional] Review of School Health app, Group 5
+### Research (15 min)
+
+That said, let's practice reading documentation together. We'll discuss how to pull out the important points and gotchas.
+https://github.com/rails/sass-rails
+
+> Q. What stood out to you?
+
+---
+
+- Sass is supported by default (by Asset Pipeline).
+- Configuration has caveats.  Must review when/if I configure something.
+- Important Note!?!
+- Glob Imports.  Looks powerful.  Note the "Note".
+- One "Asset Helper" for each media type.  Where are the "Asset Helpers" used?  
+- Tests?  Why would I run the tests?
+
+### Organization
+
+http://www.mattboldt.com/organizing-css-and-sass-rails/
+
+Don't miss the comments.
+
+#### tl;dr
+
+- Use @import to explicitly require each file you need, in the order you require them (rather than `*= require_tree .`).  Judicious use of  file glob `@import "mixins/*"`).
+- Use `main.scss` to load your app's dependencies (vars, mixins, etc.), then the page styles.
+- Development adds links to .scss source
+- Load vendors (i.e. Bootstrap) in application.css, before you include main.scss
+- Note: You need to load all your dependencies in the file that uses them.  If you have more than one layout, you may need a "main" file for each, to load the dependencies in each.
+
+The [Rails Guides](http://guides.rubyonrails.org/asset_pipeline.html) are a recommended resource too.
+
+## Conclusion
+
+We covered a lot about Sass, but we're really just scratching the surface.  Make time to review the docs and look over fun examples online.  It's important get some more ideas about what we can do with sass and css.
+
+- How we use sass files in a standard html page?
+- Do we need to run `sass --watch` when working in Rails?
+- What directive should we use to require other sass files?
+- Name 3 benefits of Sass.
+
+## [Optional] Review an app from Project 3.  Look for ways to remove duplication and improve documenting intent.
+
+## References
+- [3D Buttons with Sass](https://jesse.sh/makes-3d-buttons-with-sass/)
+- [WDI5](https://github.com/ga-dc/milk-and-cookies/tree/master/w10/d01_sass)
+- http://precess.co
