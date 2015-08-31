@@ -327,7 +327,7 @@ $ rails s
 ```
 
 ### Models
-Remember all that complex ajax stuff we used to get information from a server? Well BB abstracts all of that for you and makes it much easier. All we have to do is change up our model definition slightly! In `app/assets/javascripts/backbone/models/grumbleModel.js`:
+Remember all that complex ajax stuff we used to get information from a server? Well BB abstracts all of that for you and makes it much easier. All we have to do is change up our model definition slightly! In 'js/models/grumble.js`:
 
 ```javascript
 var Grumble = Backbone.Model.extend({
@@ -348,7 +348,7 @@ grumble.save()
 
 > If we have our rails application running, we can refresh the page and see our new grumble got saved to our database.
 
-One thing to note is that the `.save()` function returns a promise object that allows us to use the object that was saved as an argument. Something like this:
+One thing to note is that the `.save()` function returns a deferred object that allows us to use the object that was saved as an argument. Something like this:
 
 ```js
 grumble.save().then(function(response){
@@ -359,7 +359,7 @@ grumble.save().then(function(response){
 > the response in this log is the object(key-value pairs) that was saved in the database.
 
 ### Collections
-Now let's create our collection definition in `app/assets/javascripts/backbone/collections/grumblesCollection.js`:
+Now let's change our collection definition in `js/collections/grumbles.js`:
 
 ```javascript
 var GrumblesCollection = Backbone.Collection.extend({

@@ -8,7 +8,7 @@ There will be no scheduled one-on-ones this week.
 
 -----
 
-## Mon Aug 31
+## Tue Sep 1
 
 - Lisa
 

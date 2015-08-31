@@ -1,11 +1,15 @@
 # Homework (Week 10)
 
+Homework this week is due Wednesday and Friday.
+
+For homework on unrelated repos (e.g. SASS and Bootstrap/Foundation), please submit *two* pull requests on the due date -- one for each repo.
+
 ## Front End of the Front End (Peanut Butter)
 
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Monday        |                                |            |
-| Tuesday       |                                |            |
+| Monday        |                                | [Sassify your Portfolio](https://github.com/ga-dc/portfolio_pages#sass)  |
+| Tuesday       |                                | [Grumblr Redesign](https://github.com/ga-dc/grumblr_css_redesign)           |
 | Wednesday     |                                |            |
 | Thursday      |                                |            |
 | Friday        |                                |            |
@@ -14,7 +18,7 @@
 
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Monday        |                                |            |
+| Monday        |                                | [Grumblr Models and Collections for Comments](https://github.com/ga-dc/grumblr_backbone#part-one) |
 | Tuesday       |                                |            |
 | Wednesday     |                                |            |
 | Thursday      |                                |            |
