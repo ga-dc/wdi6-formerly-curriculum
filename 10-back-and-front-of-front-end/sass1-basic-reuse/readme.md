@@ -115,11 +115,10 @@ Timings:
 
 Let's stay right here and play with colors.
 
-> Q. How many colors do you see on this page?
-
+Q. How many colors do you see on this page?
 ---
 
-
+> A.
 I see five:
 - font color
 - first character
@@ -156,9 +155,13 @@ As we've seen, CSS isn't very dry.  Take this nested CSS, for example.
 }
 ```
 
-> Q. What does this do?
+Q. What does that css do?
+---
 
-## The & selector (10 min)
+> A. Student responses.
+
+
+### The & selector (10 min)
 
 Copy this scss into precess.co.  
 ```scss
@@ -219,11 +222,10 @@ While we're here, make note of those comments.  Some are in the compiled CSS.  S
 
 [Docs](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#comments)
 
-> Q. Why would we want that?
-
+Q. Why would we want that?
 ---
 
-See the example.
+> A. See the example.
 
 
 ## Exercise: Flash (15 min)

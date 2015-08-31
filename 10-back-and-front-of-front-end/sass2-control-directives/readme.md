@@ -72,10 +72,10 @@ Results in:
     └── style.css
 ```
 
-> Q. What happens in our code?
-
+Q. What happens in our code?
 ---
 
+> A.
 The browser only supports CSS.  We reference the compiled **css** file.  Our front-end **ignores the sass**.  That's why we don't put the sass files in "public/".
 
 ## style.scss vs style.sass (5 min)
@@ -93,6 +93,9 @@ Let's take a few minutes to read about [@if](http://sass-lang.com/documentation/
 
 ---
 
+A. Student responses.
+
+
 ### Exercise: Flash (15 min)
 
 Let's go back to the Flash messages.  This time, we will create mixin with a conditional that sets the text color to `#fff` if the background is dark enough and `#000` if the background is light enough.
@@ -109,10 +112,10 @@ Look at [BAMSAY](http://codepen.io/jshawl/full/cLJal)
 
 Check out the css.  Lots of text-shadow's, huh?  You want to type all of them?
 
-> Q. Why not?
-
+Q. Why not?
 ---
 
+> A.
 - boring!
 - error prone
 - time consuming
@@ -120,11 +123,10 @@ Check out the css.  Lots of text-shadow's, huh?  You want to type all of them?
 
 Let's systematize it.  Let's specify what it takes to draw these shadows.  And then **codify** it.
 
-> Q. How did we create BAMSAY?
-
+Q. How did we create BAMSAY?
 ---
 
-Lot's of text-shadows.
+> A. Lot's of text-shadows.
 
 ### Exercise: BAMSAY (20 min)
 
@@ -184,10 +186,10 @@ The [sass-rails gem](https://github.com/rails/sass-rails) is provided for workin
 That said, let's practice reading documentation together. We'll discuss how to pull out the important points and gotchas.
 https://github.com/rails/sass-rails
 
-> Q. What stood out to you?
-
+Q. What stood out to you?
 ---
 
+> A.
 - Sass is supported by default (by Asset Pipeline).
 - Configuration has caveats.  Must review when/if I configure something.
 - Important Note!?!
