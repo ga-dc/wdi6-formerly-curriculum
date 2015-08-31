@@ -15,6 +15,7 @@
 ## Opening Framing (5/5)
 
 How we got here:
+
 1. vanilla js
   - a lot of code to write
 
