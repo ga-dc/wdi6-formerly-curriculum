@@ -1,25 +1,23 @@
-# Ada One on One Schedule
+# Ada - One on One Schedule
 
 One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
 
-## Mon Aug 3
+## Wed Sep 2
 
-- Erica Andersen
-- Erik Anderson
-
-## Wed Aug 12
-
-- Thomas Beach (4:00pm)
 - Alexander Bannon (4:30pm)
+- Thomas Beach (5:00pm)
 
-## Thur Aug 13
+## Thurs Sep 3
+
+- Walter Augustine (4:30pm)
+- Erik Anderson (5:00pm)
+
+## Mon Sep 7
 
 - Silvia Brown (4:30pm)
 - Jared Arkin (5:00pm)
-- Robert Benjamin (5:30pm)
 
-## Mon Aug 17
+## Wed Sep 9
 
-- Walter Augustine
-- Erica Andersen
-- Erik Anderson
+- Erica Andersen  (4:30pm)
+- Robert Benjamin (5:00pm)
