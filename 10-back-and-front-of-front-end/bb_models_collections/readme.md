@@ -348,7 +348,7 @@ grumble.save()
 
 > If we have our rails application running, we can refresh the page and see our new grumble got saved to our database.
 
-One thing to note is that the `.save()` function returns a promise object that allows us to use the object that was saved as an argument. Something like this:
+One thing to note is that the `.save()` function returns a deferred object that allows us to use the object that was saved as an argument. Something like this:
 
 ```js
 grumble.save().then(function(response){
