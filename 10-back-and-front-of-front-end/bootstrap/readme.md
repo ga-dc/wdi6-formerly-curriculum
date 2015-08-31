@@ -1,9 +1,10 @@
 # Bootstrap
 
-- Looks a lot like Github-flavored Markdown
-
 - Meta viewport
   - `<meta name="viewport" content="width=device-width, initial-scale=1">`
+- `fn` + F2 in Chrome to select all rendered HTML
+
+- Looks a lot like Github-flavored Markdown
 - Containers
   - .container
     - Fixed width and responsive
