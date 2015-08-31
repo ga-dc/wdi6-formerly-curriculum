@@ -1,5 +1,9 @@
 # Homework (Week 10)
 
+Homework this week is due Wednesday and Friday.
+
+For homework on unrelated repos (e.g. SASS and Bootstrap/Foundation), please submit *two* pull requests on the due date -- one for each repo.
+
 ## Front End of the Front End (Peanut Butter)
 
 | Date Assigned | Notes                          | Assignment |
