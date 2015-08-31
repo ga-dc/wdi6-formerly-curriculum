@@ -89,7 +89,7 @@ css_declaration: $variableName
 
 Assignment:
 ``` sass
-$colorPrimary: #badda55;
+$colorPrimary: blue;
 ```
 
 Usage:
@@ -218,7 +218,7 @@ While we're here, make note of those comments.  Some are in the compiled CSS.  S
 
 - CSS Style Comments remain (`/* comment */`).
 - Single line comments do not (`// comment`)
-```
+
 
 [Docs](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#comments)
 
