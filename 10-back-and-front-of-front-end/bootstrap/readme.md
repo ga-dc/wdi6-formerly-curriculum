@@ -275,6 +275,10 @@ This lets me drastically DRY up that form HTML from before:
 
 ...is just picking and choosing the classes you want.
 
+## You do: Redesign Grumblr!
+
+https://github.com/ga-dc/grumblr_css_redesign
+
 ## Questions
 
 - What's the difference between a framework and a library?
