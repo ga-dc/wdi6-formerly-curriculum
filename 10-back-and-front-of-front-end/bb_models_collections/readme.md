@@ -8,7 +8,6 @@
 - Define a new backbone collection
 - Use the backbone collection to store models
 - Perform CRUD on a collection
-- Install backbone into a rails application
 - Associate a backbone model and collection with a rails backend
 - Perform CRUD actions using backbone's RESTful API
 - Compare BB models with AR models
