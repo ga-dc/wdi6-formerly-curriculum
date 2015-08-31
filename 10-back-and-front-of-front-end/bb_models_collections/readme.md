@@ -359,7 +359,7 @@ grumble.save().then(function(response){
 > the response in this log is the object(key-value pairs) that was saved in the database.
 
 ### Collections
-Now let's create our collection definition in `app/assets/javascripts/backbone/collections/grumblesCollection.js`:
+Now let's change our collection definition in `app/assets/javascripts/backbone/collections/grumbles.js`:
 
 ```javascript
 var GrumblesCollection = Backbone.Collection.extend({
