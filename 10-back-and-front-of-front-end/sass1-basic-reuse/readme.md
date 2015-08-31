@@ -1,4 +1,4 @@
-# Sass - Basic Reuse
+  # Sass - Basic Reuse
 
 - Explain what a preprocessor is and what problem it solves
 - Use variables and nesting to dry up CSS
@@ -151,6 +151,7 @@ h1{
 
 ## The & selector (10 min)
 
+Copy this scss into precess.co.  
 ```scss
 a{
   color: #BADA55;
@@ -159,6 +160,13 @@ a{
   }
 }
 ```
+
+> Q: What happened?  How can we use this?
+
+---
+
+- Remove duplication.  
+- Group similar rule together.
 
 ## Mixins & Inheritance (10 min)
 
@@ -178,7 +186,14 @@ body:after{
 }
 ```
 
+## Exercise: Flash (15 min)
+http://codepen.io/mattscilipoti/pen/XmWbgq
+
 ## Conclusion
+
+- Write the Sass to assign a color for every `h1`.  Style each `h2` with a color that "compliments" the color used by your `h1`.
+- How do `@mixin` and `@include` work together to make css more managable?
+- Name 3 benefits of Sass.
 
 
 ## References
