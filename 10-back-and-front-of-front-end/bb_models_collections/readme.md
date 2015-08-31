@@ -17,11 +17,14 @@
 How we got here:
 1. vanilla js
   - a lot of code to write
+
 2. jQuery
   - easier to do more
   - easier to write more bad code
+
 3. OOJS
   - more structured but a royal pain to write
+  
 4. Frameworks
   - All the structure of OOJS with the ease of writing like jQuery.
 
