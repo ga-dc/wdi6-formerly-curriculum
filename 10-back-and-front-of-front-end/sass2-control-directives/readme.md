@@ -1,5 +1,6 @@
 # Sass: Control Directive, Functions, and other worlds.
 
+- Explain what a preprocessor is and what problem it solves
 - Use control directives for conditionals (@if)
 - Use control directives for loops (@for, @each and @while)
 - Use pure Sass functions to make reusable logic
@@ -123,7 +124,7 @@ Let's systematize it.  Let's specify what it takes to draw these shadows.  And t
 
 ---
 
-Lot's of text-shadow.
+Lot's of text-shadows.
 
 ### Exercise: BAMSAY (20 min)
 
