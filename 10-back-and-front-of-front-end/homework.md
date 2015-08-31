@@ -4,7 +4,7 @@
 
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Monday        |                                |            |
+| Monday        |                                | [Sassify your Portfolio](https://github.com/ga-dc/portfolio_pages#sass)  |
 | Tuesday       |                                |            |
 | Wednesday     |                                |            |
 | Thursday      |                                |            |
