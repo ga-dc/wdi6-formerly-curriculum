@@ -14,7 +14,7 @@
 
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
-| Monday        |                                |            |
+| Monday        |                                | [Grumblr Models and Collections for Comments](https://github.com/ga-dc/grumblr_backbone#part-one) |
 | Tuesday       |                                |            |
 | Wednesday     |                                |            |
 | Thursday      |                                |            |
