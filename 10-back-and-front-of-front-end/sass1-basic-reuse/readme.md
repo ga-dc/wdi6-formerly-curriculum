@@ -1,6 +1,5 @@
   # Sass - Basic Reuse
 
-- Explain what a preprocessor is and what problem it solves
 - Use variables and nesting to dry up CSS
 - Use color functions to create dynamic color schemes
 - Explain what `&` is and why we use it
@@ -40,9 +39,10 @@ Here are a few examples of Jesse playing with CSS/Sass.  Let's look at the css t
 
 You task is to [make this](http://codepen.io/mattscilipoti/full/xwKrMR).  Have fun.  Make portions of it stand out -- **using just CSS**.  Don't worry about Sass yet.
 
-- Step 1: Start a new Pen.  I recommend you Log in/sign up for CodePen.io.
+- Step 1: Start a new Pen on CodePen.io.  I recommend you Log in/sign up for CodePen.io.
 - Step 2: Decide how you will approach the problem.
 - Step 3: Add some html.  Add some css.  Iterate.
+- Step 4: Look for things that might benefit from a variable: remove duplication, signify intent, or to make change easier.
 
 Suggestions:
 - Use a [google font](https://www.google.com/fonts).
@@ -63,9 +63,11 @@ Timing Expectations:
 - 25 min: Fto5 to continue
 - 35 min: Discuss after the break.
 
+Bonus: Review and/or reproduce any of the other examples.
+
 ## Break (10 min)
 
-## Discuss your "Sass" examples (10 min)
+## Discuss your examples (10 min)
 
 Student(s) displays result.  Discuss steps and reasoning.
 
@@ -102,7 +104,7 @@ background-color: $colorPrimary;
 Use variables to signify intent.  
 - Extract some values in your css to variables.  Choose helpful names.  
 - Identify duplication and things that vary frequently.  Think about what you changed a few times as you were building this.  What are you likely to change in the future?  Turn these into "vary"ables.  
-- Put them at the top of your script, so that you can use to configure your "page".
+- Put them at the top of your script, so that you can use them to configure your "page".
 
 Timings:
 - 5 min: Status.
@@ -141,22 +143,35 @@ Review [Sass color options](http://sass-lang.com/documentation/Sass/Script/Funct
 As we've seen, CSS isn't very dry.  Take this nested CSS, for example.
 
 ```scss
-h1{
+.nav a{
   text-decoration:none;
-  a:hover{
-    text-decoration:underline;
-  }
+}
+
+.nav li{
+  display: inline-block;
+}
+
+.nav a:hover{
+  text-decoration:underline;
 }
 ```
+
+> Q. What does this do?
 
 ## The & selector (10 min)
 
 Copy this scss into precess.co.  
 ```scss
-a{
-  color: #BADA55;
-  &:hover{
-    color: blue;
+
+.nav{
+  & li{
+    display: inline-block;
+  }
+  & a{
+  text-decoration:none;
+    &:hover{
+      text-decoration:underline;
+    }
   }
 }
 ```
@@ -166,25 +181,50 @@ a{
 ---
 
 - Remove duplication.  
-- Group similar rule together.
+- Group similar rules together.  
+
+An ecosystem that encourages best practices?  I love that.
 
 ## Mixins & Inheritance (10 min)
 
-Remember the clearfix problem from the CSS2 lesson.  Imagine trying to remember that "fix" and typing it in correctly everytime you needed it.  Now, you can make a `clearfix` mixin that codifies the rules.  Then, those rules can be included in any CSS rule we want.
+Remember the clearfix problem from the CSS2 lesson.  We had to write specific css to ensure floats did not effect the next element. Imagine trying to remember that "fix" and typing it in correctly every time you needed it.  Now, you can make a `clearfix` mixin that codifies the rules.  Then, those rules can be included in any CSS rule we want.
 
 Let's look at this in precess.co.
 
 ```scss
+// Make this in one file
 @mixin clearfix(){
+  /* clearfix */
   content: '';
   display:table;
   clear:both;
 }
 
-body:after{
+// Use it in many others
+body::after{
+  @include clearfix();
+}
+
+.nav::after{
   @include clearfix();
 }
 ```
+
+### Comments
+While we're here, make note of those comments.  Some are in the compiled CSS.  Some are not.
+
+- CSS Style Comments remain (`/* comment */`).
+- Single line comments do not (`// comment`)
+```
+
+[Docs](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#comments)
+
+> Q. Why would we want that?
+
+---
+
+See the example.
+
 
 ## Exercise: Flash (15 min)
 http://codepen.io/mattscilipoti/pen/XmWbgq
@@ -197,6 +237,7 @@ http://codepen.io/mattscilipoti/pen/XmWbgq
 
 
 ## References
+
 - [All you ever needed to know about Sass interpolation](http://webdesign.tutsplus.com/tutorials/all-you-ever-need-to-know-about-sass-interpolation--cms-21375)
 - [3D Buttons with Sass](https://jesse.sh/makes-3d-buttons-with-sass/)
 - [WDI5](https://github.com/ga-dc/milk-and-cookies/tree/master/w10/d01_sass)
@@ -205,11 +246,3 @@ http://codepen.io/mattscilipoti/pen/XmWbgq
   - http://sass-lang.com/documentation/Sass/Script/Functions.html
   - https://robots.thoughtbot.com/controlling-color-with-sass-color-functions
   - http://jackiebalzer.com/color
-
-Goals:
-- No "I do"
-  - students already familiar with basic programming concepts (variables etc.)
-- minimal lecture.  Use sass docs.
-  - break into pieces.  e.g. read, exercise on "variables".  Then, read, exercise on "@if". etc.
-- PROBLEM!?!
-- Get students to share You do, instead of me presenting my solution.
