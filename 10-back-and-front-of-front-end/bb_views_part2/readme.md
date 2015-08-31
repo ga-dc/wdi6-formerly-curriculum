@@ -17,7 +17,7 @@ This morning Adam went over three types of views we will encounter in Backbone.
 
 This afternoon, we will go over the latter two.
 
-## Collection View
+## Model View
 
 So we have a model view for each Grumble. What can it do?
 * Generate a DOM representation of each Grumble.
@@ -25,11 +25,13 @@ So we have a model view for each Grumble. What can it do?
   * Attached to the DOM using a `render` method.
 * Acts as a controller. Manages CRUD interactions with model.
   * Listening for events, not only in the DOM but also in the model!
-  * `updateGrumble`, `deleteGrumble`.
+    * `updateGrumble`, `deleteGrumble`.
+    * Two way data binding: changes in the model inform the view, and vice-versa.
   * It also handles non-CRUD interactions (e.g., toggle form, change background to lemonchiffon).
 * Generates DOM elements (e.g., forms) required for CRUD interactions.
   * Defined by a Handlebars template: `grumbleFormTemplate`.
-  * A mini "specialty view" of sorts.
+
+## Collection View
 
 Next: a **collection view** that does the same thing for multiple models in different scenarios.
   * When we first load Grumblr, all of our Grumbles should be rendered.
@@ -37,7 +39,9 @@ Next: a **collection view** that does the same thing for multiple models in diff
 
 ## Let's Get Started
 
-If you need a starting point for the remainder of this lesson, fork and clone from [this branch](https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_solution).
+If you need a starting point for the remainder of this lesson, fork and clone [this repo](https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_solution).
+* In terminal: `$ git fetch`
+* Then: `$ git checkout views_part_1_solution`
 
 Let's begin as we did earlier in class and create our collection view in `/js/backbone/views/grumblesList.js`...
 * What is the syntax we have used so far to create Backbone models and views?
