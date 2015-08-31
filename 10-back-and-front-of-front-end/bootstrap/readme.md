@@ -277,7 +277,7 @@ This lets me drastically DRY up that form HTML from before:
 
 ## You do: Redesign Grumblr!
 
-https://github.com/RobertAKARobin/grumblr_css_redesign/tree/master
+https://github.com/ga-dc/grumblr_css_redesign
 
 ## Questions
 
