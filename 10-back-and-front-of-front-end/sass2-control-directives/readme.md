@@ -104,8 +104,6 @@ Bonus: what if we had more flash types?
 
 ## Loops
 
-### BAMSAY! (20 min)
-
 Look at [BAMSAY](http://codepen.io/jshawl/full/cLJal)
 
 Check out the css.  Lots of text-shadow's, huh?  You want to type all of them?
@@ -125,27 +123,11 @@ Let's systematize it.  Let's specify what it takes to draw these shadows.  And t
 
 ---
 
-What is the element?  Start there.
-Small steps.
+Lot's of text-shadow.
 
-Before long, you'll want to add all the text-shadows.
+### Exercise: BAMSAY (20 min)
 
-Take a look at the css:
-```
-text-shadow: -1px 0px 0px #fefefe,
--2px 1px 0px #fefefe,
--3px 2px 0px #fefefe,
--4px 3px 0px #fefefe,
--5px 4px 0px #fefefe,
--6px 5px 0px #fefefe,
-...
--41px 40px 0px #fefefe
-```
-
-Start at?
-Increment what?
-Decrement what?
-Until?
+http://github.com/ga-dc/bamsay
 
 ## Lunch (60 min)
 
