@@ -1,5 +1,10 @@
 # Bootstrap
 
+Screencasts:
+- [Part 1](http://youtu.be/Nerq19rQFrc)
+- [Part 2](http://youtu.be/iTeqXPIvgys)
+- [Part 3](http://youtu.be/O-sh4Hb3FUw)
+
 ## Leaning Adjectives
 
 - Explain the benefits (and shortcomings) of using a design framework.
