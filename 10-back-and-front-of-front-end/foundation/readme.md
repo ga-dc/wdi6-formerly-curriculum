@@ -5,7 +5,32 @@
 - Describe a situation in which using Foundation might be preferable to using Bootstrap, and a situation in which the reverse is true
 - Explain what is meant by "breadcrumbs"
 
-## How's this different from Bootstrap?
+## But first, some reading
+
+[How to make your site look half-decent (for programmers, by a programmer)](https://24ways.org/2012/how-to-make-your-site-look-half-decent)
+
+## What is "good design", anyway?
+
+Some quick design tips:
+- No more than 2 fonts. The exceptions is when you use a font for a logo or something else big and off by itself.
+- Your fonts should either be exactly the same, or completely different. Otherwise you get into a sort-of "uncanny valley". A page with both Helvetica and Verdana looks really weird.
+- Avoid black; use `#222`. Avoid white; use `#eee`.
+- Use textured backgrounds. They make a page significantly easier on the eyes.
+- If you find yourself with more than 3 `float`ing elements, you should probably do something differently. They're a pain in the butt to manage.
+- 1 pixel of text-shadow can add a nice softening effect to text.
+- Borderless is "in" right now.
+
+### Graceful Degradation and Progressive Enhancement
+
+[Straight from the W3](http://www.w3.org/wiki/Graceful_degradation_versus_progressive_enhancement):
+
+> **Graceful degradation** is the practice of building your web functionality so that it provides a certain level of user experience in more modern browsers, but it will also degrade gracefully to a lower level of user in experience in older browsers.
+
+> **Progressive enhancement** is similar, but it does things the other way round. You start by establishing a basic level of user experience that all browsers will be able to provide when rendering your web site, but you also build in more advanced functionality that will automatically be available to browsers that can use it.
+
+**TLDR**: Make your browser look good for modern browsers, and then make tweaks so it looks good in your grandma's IE5... or do it the other way around. Pick one.
+
+## How's Foundation different from Bootstrap?
 
 Wow. We get *way* more changes out-of-the-box.
 
