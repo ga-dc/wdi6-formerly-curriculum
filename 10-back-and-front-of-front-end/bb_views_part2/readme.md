@@ -26,7 +26,6 @@ So we have a model view for each Grumble. What can it do?
 * Acts as a controller. Manages CRUD interactions with model.
   * Listening for events, not only in the DOM but also in the model!
     * `updateGrumble`, `deleteGrumble`.
-    * Two way data binding: changes in the model inform the view, and vice-versa.
   * It also handles non-CRUD interactions (e.g., toggle form, change background to lemonchiffon).
 * Generates DOM elements (e.g., forms) required for CRUD interactions.
   * Defined by a Handlebars template: `grumbleFormTemplate`.

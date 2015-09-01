@@ -19,7 +19,7 @@ For homework on unrelated repos (e.g. SASS and Bootstrap/Foundation), please sub
 | Date Assigned | Notes                          | Assignment |
 |---------------|--------------------------------|------------|
 | Monday        |                                | [Grumblr Models and Collections for Comments](https://github.com/ga-dc/grumblr_backbone#part-one) |
-| Tuesday       |                                |            |
+| Tuesday       |                                | [Grumblr Views for Comments](https://github.com/ga-dc/grumblr_backbone/tree/hw_day_2) |
 | Wednesday     |                                |            |
 | Thursday      |                                |            |
 | Friday        |                                |            |
