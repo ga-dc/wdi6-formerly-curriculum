@@ -16,7 +16,7 @@
 * [Backbone Tutorials](https://backbonetutorials.com)
 * [Backbone.js for absolute beginners](http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/)
 
-## Intro - What are Backbone Views? (10 minutes)
+## Intro - What are Backbone Views? (10 minutes; 10:00-10:10)
 
 In Backbone, views are the objects responsible for:
 
@@ -65,7 +65,7 @@ var view = new App.Views.Grumble({model: my_grumble});
 view.model // returns the my_grumble instance
 ```
 
-## The `el` in Backbone (10 minutes)
+## The `el` in Backbone (10 minutes; 10:10-10:20)
 
 Just like in our 'hand-rolled' OOJS, our views will have an `el` property, which
 represents the corresponding element.
@@ -82,7 +82,7 @@ Note that it's possible to specify the `.el` property explicitly. In that case,
 Backbone won't create the `el`, but will use what we specified. We'll use this
 approach for our collection views later.
 
-### Exercise: Define our Grumble View (10 minutes)
+### Exercise: Define our Grumble View (10 minutes; 10:20-10:30)
 
 Define a view in `js/backbone/views/grumble.js`. You should define the view such
 that it's 'el' will be a div with class 'grumble'.
@@ -105,13 +105,13 @@ grumbleView.$el
 // expect to see a div with class grumble
 ```
 
-## Rendering (5 minutes)
+## Rendering (5 minutes; 10:30-10:35)
 
 Just like in vanilla JS, we usually want to render HTML and put it into the
 `el`. This method could be called anything, but convention is to call it
 `render`.
 
-### Exercise: Define a basic render method (10 minutes)
+### Exercise: Define a basic render method (10 minutes; 10:35-10:45)
 
 Use the `.html()` method to fill your view's `el` with some basic HTML. For now,
 just make an `<h2>` and set it's content to be the grumble's title.
@@ -139,9 +139,9 @@ grumbleView.render()
 grumbleView.$el
 ```
 
-## Break (10 minutes)
+## Break (10 minutes; 10:45-10:55)
 
-## Handlebars Templates (10 minutes)
+## Handlebars Templates (10 minutes; 10:55-11:05)
 
 It's no fun (and quite error-prone) to build our HTML using jQuery methods
 like `.append()`, etc. It's much better to use a templating library, such as
@@ -170,7 +170,7 @@ And the in our index.html:
 </head>
 ```
 
-### Exercise: Define a Handlebars Template (10 minutes)
+### Exercise: Define a Handlebars Template (10 minutes; 11:05-11:15)
 
 1. Define a handlebars template for our grumble. (See the sample HTML below)
 2. On initialize, set a `this.template` property, which should point to a
@@ -200,7 +200,7 @@ Sample HTML:
 </div>
 ```
 
-## Responding to Model Events (10 minutes)
+## Responding to Model Events (10 minutes; 11:15-11:25)
 
 One of the great features of backbone is the events system. There are two types
 of events, model/collection events, and view events. We'll take a look at both,
@@ -220,12 +220,12 @@ As a general guide, we prefer to use `.listenTo()` over `.on`, in that it allows
 the listening object to be in charge rather than the object that is triggering
 events.
 
-### Think Pair Share (5 minutes)
+### Think Pair Share (5 minutes; 11:25-11:30)
 
 Take a moment to look at the catalog of events in the above documentation.
 Which events do you think we might use most often, and why?
 
-### Exercise: Re-render on Change (5 minutes)
+### Exercise: Re-render on Change (5 minutes; 11:30-11:35)
 
 A very common pattern is to have a view listen to it's model for change events,
 and re-render in response. Take a moment to set this up. Hint: you'll only need
@@ -250,7 +250,7 @@ $('#grumbles').append(grumbleView.$el)
 my_grumble.set('title', "Cats are the Best!"); // watch the page update automatically!
 ```
 
-## Aside: Fetching, Rendering, and Auto-Appending (5 minutes)
+## Aside: Fetching, Rendering, and Auto-Appending (5 minutes; 11:35-11:40)
 
 So we don't have to keep testing this in the console, let's do write some quick
 code in `app.js` to auto-fetch all grumbles, and display them.
@@ -272,7 +272,7 @@ $(document).ready(function() {
 
 We'll see later that this sort of thing will be handled by a collection view.
 
-## View Events (5 minutes)
+## View Events (5 minutes; 11:40-11:45)
 
 The last main feature of backbone views is the DOM event system. It's really
 just a nicer way to handle events. Instead of writing a bunch of jQuery like
@@ -299,7 +299,7 @@ honkHorn: function() {
 This keeps our event declarations in one place, and encourages us to write
 re-usable methods on our view.
 
-### Exercise: Adding Deletion when "X" is clicked (10 minutes)
+### Exercise: Adding Deletion when "X" is clicked (10 minutes; 11:45-11:55)
 
 Add an event such that when the user clicks on the delete span, a method called
 `deleteGrumble` is called. This method should be defined on the view and should:
@@ -307,7 +307,7 @@ Add an event such that when the user clicks on the delete span, a method called
 1. Destroy the associated grumble model.
 2. Fade out the el.
 
-### Exercise: Rendering Edit Template when Edit is Clicked (10 minutes)
+### Exercise: Rendering Edit Template when Edit is Clicked (10 minutes; 11:55-12:05)
 
 When the user clicks the `edit` button, call the `renderEditForm` method, which
 should:
@@ -331,7 +331,7 @@ The template should produce HTML that looks like this for the updated `el`:
 </div>
 ```
 
-### Exercise: Update Grumble when Form is Submitted (10 minutes)
+### Exercise: Update Grumble when Form is Submitted (10 minutes; 12:05-12:15)
 
 When the user clicks the `update` button, call the `updateGrumble` method.
 
@@ -343,7 +343,7 @@ This method should should:
 to update the grumble.
 3. Re-render the show view.
 
-### Exercise: Cancel Button (5 minutes)
+### Exercise: Cancel Button (5 minutes; 12:15-12:20)
 
 When the user clicks the `cancel` button, go back to the show view.
 
