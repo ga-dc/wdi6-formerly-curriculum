@@ -207,7 +207,7 @@ We've already gone everything we need to know in order to create a specialty vie
 * You're going to spend the rest of this class making one.
 * It will looking something like the `createView` below.
 
-![createView](/img/view-diagram.png)
+![createView](img/view-diagram.png)
 
 ## Exercise: Specialty View for Creating Grumbles
 
