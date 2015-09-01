@@ -5,10 +5,15 @@
 - List the responsibilities of the Backbone router.
 - Define static routes, actions and initialize a router.
 - Define dynamic routes.
+- utilize `.navigate()` on a backbone router to update the url
 - Give examples of using :params in routes and actions.
 - Recall the order in which routes are matched.
-- Describe of trigger as it applies to actions and routes
+- Describe trigger as it applies to actions and routes.
 
+adam notes
+- differentiate between states that view controllers create vs the minimal state that the router creates
+- fragmented urls
+- anchor links (also talk about trigger here)
 
 ## Opening Framing (5/5)
 We have the makings of a pretty sick single page application now. We've got mostly full CRUD functionality for both grumbles and comments and things are even looking alot better thanks to Robin's bootstrap styles. As it stands we've got all the functionality we wanted in our MVP, but there's just one thing that's missing.
@@ -113,13 +118,207 @@ $(document).ready(function() {
 
 If we open the `index.html` file, we can see `Index route was called`.
 
-## Define a `new` route (You do - 10/55)
+## Define a `grumbles/new` route (You do - 10/55)
 - add another key-value pair to the routes object in the router
-- define a call back function to append the string "New route was called" to the body
+- define a call back function `newGrumble` to append the string "New route was called" to the body
 - make sure the call back fires off based on the fragment url `#new`
 - test the route by opening the `index.html` in your browser and adding `#new` to the URL.
 
 ## Break (10/65)
 
-## Initialize
+## Initialize (15/80)
 So this is all really great, but really it's not doing anything but appending a hard coded string into the DOM. Really what we want to be doing is creating views that reflect the state the DOM based off of the URL.
+
+It just so happens we have some views already defined! That makes life much easier. Although we can't really have a view until we have a collection. In order to get the collection we need to make an ajax `.fetch()` call. The question is, where can we do this?
+
+Just like in all other Backbone object constructors, `Backbone.Router` comes with an `initialize` function we can define as a callback for when we instantiate a backbone router.
+
+Let's update our router definition to include an `initialize` function.
+
+In `js/backbone/routers/grumble.js`:
+
+```js
+initialize: function() {
+  App.Collections.grumbles = new App.Collections.Grumbles();
+  App.Views.grumbleList = new App.Views.GrumbleList({collection: App.Collections.grumbles});
+  App.Views.grumbleCreate = new App.Views.GrumbleCreate({collection: App.Collections.grumbles});
+}
+```
+
+> In the initialize method, I've instantiated the following:
+- a new grumbles collection in `App.Collections.grumbles`
+- a new grumbles list view in `App.Views.grumbleList`
+- a new grumbles create view in `App.Views.grumbleCreate`
+
+One thing to note here is that we haven't made any calls to the database yet. As soon as we call `fetch()`, it will trigger an event to render the view. Which is not something we want to do on the routers instantiation.
+
+(ST-WG) Where should we call `.fetch()` instead?
+
+## The *REAL* `index` (5/85)
+
+If you said in our `index` function, you are correct! Let's get rid of the one line of jquery that we hardcoded and replace it with a `fetch()` on our collection.
+
+In the `index` function of `js/backbone/routers/grumble.js`:
+
+```js
+index: function(){
+  App.Collections.grumbles.fetch()
+}
+```
+
+If we look in our browser and refresh the page we can now see our listView at the index route.
+
+## The *REAL* `new` - you do (20/105)
+- change the function definition of `newGrumble` to render the listView as well as the form for a new grumble.
+- test your route by adding `#new` to the end of the url.
+
+## Break (10/115)
+
+## URL updating (20/135)
+Awesome, we've done some deep linking by setting up some routes. Everything works like it used too, we can even just go directly to the fragmented url `#new` and can see our form automatically renders without hitting the button.
+
+> fragmented url is just the part of the url with the `#`. The optional last part of a URL for a document. Typically used to identify a portion of a document but additionally can trigger events in backbone.
+
+The only issue is if we hit the button and the form goes away, the `#new` is still in the url. Additionally, when at the root route and we toggle the form, it doesn't update the url to include `#new`. Currently users have no way of referencing or bookmarking the state of the app unless they know the code base.
+
+We want to add functionality so that the url updates as we change state in our application. We can do this by `.navigate()` on the instance of our grumble router.
+
+Let's go into the console of our browser and execute this line of code:
+
+```js
+App.Routers.grumble.navigate("billybob")
+```
+
+> Note the `.navigate()` is being called on the router that we instantiated in `js/app.js`. The string argument that is passed in is the url fragment that will be added to the url.
+
+When we hit enter, notice the change in the url. AWESOME!!!
+
+(ST-WG) Knowing what we know about this last line of code we executed in the console of our browser, where can we utilize code similar to it in our application to update the url for our `new` route?
+
+If we look at our `grumbleCreate` view we can see that we have a `toggleButton` function. I think this would be a great place to try out adding url updates.
+
+In `js/backbone/views/grumbleCreate.js`:
+
+```js
+toggleButton: function(state){
+  if(state === "New Grumble"){
+    this.$(".new").text("Hide Form")
+    App.Routers.grumble.navigate('grumbles/new')
+  }else{
+    this.$(".new").text("New Grumble")
+    App.Routers.grumble.navigate('')
+  }
+}
+```
+
+Hmmm.. the function is called `toggleButton` and updating a url doesn't seem like it belongs there. Perhaps we should abstract this into another function so it's not so tightly coupled. Let's remove the `.navigate` calls from the `toggleButton` function and create a new function `toggleUrlState` that handles that logic.
+
+In `js/backbone/views/grumbleCreate.js`:
+
+```js
+toggleButton: function(state){
+  if(state === "New Grumble"){
+    this.$(".new").text("Hide Form")
+  }else{
+    this.$(".new").text("New Grumble")
+  }
+},
+toggleUrlState: function(state){
+  if(state === "New Grumble"){
+    App.Routers.grumble.navigate('')
+  }else{
+    App.Routers.grumble.navigate('grumbles/new')
+  }
+}
+```
+
+## Url updating - you do (15/150)
+It'll be important going forward that whenever we render our listView that the url gets updated to the root route.
+
+- Have your browser url navigate to the root route any time the listView is rendered
+
+
+## Lunch
+
+## Routing for editing a grumble - Overview (5/5)
+So before we left off, we managed state in our application by updating urls and providing deep links for the index and new grumble route. The last state that we haven't encapsulated is the editing capability of our application.
+
+It would be really nice if we could deep link to an edit form for a particular model. IE if I click on update Grumble it should update the url such that I can visit that url later and the edit form for that specific grumble is open.
+
+In order for us to be able to identify a specific grumble we're going to need some sort of unique identifier. What might that be? (ST-WG)
+
+An ID!!!
+
+So an id will be somewhere in the url. Additionally that id will dynamically change depending on which grumble has the edit form open. We need to be able to pass in a params value from the url, and backbone allows us to do just that.
+
+## Backbone params in the url (15/20)
+Let's update our `routes` property in our router.
+
+In `js/backbone/routers/grumble.js`:
+
+```js
+routes: {
+  '': 'index',
+  'grumbles/new': 'newGrumble',
+  'grumbles/:id/edit': 'editGrumble'
+}
+```
+
+> notice the `:id` in the path for the last route. This is a parameter value that we pass in as an argument to the callback.
+
+Let's do something simple for now just so we can see the parameter value in a simple view that we append.
+
+In `js/backbone/routers/grumble.js`:
+
+```js
+editGrumble: function(id){
+  $("body").append("this is the params value in the edit route: " + id)
+}
+```
+
+Let's go ahead and test this by refreshing the browser and appending `#grumbles/15/edit` to the browser. We can see that `this is the params value in the edit route: 15` gets rendered on to the page.
+
+## Finding a way to get the view (20/40)
+So we have a way to put an id in the URL, but that's really not enough. We need to get the model or view thats associated with that id.
+
+Currently we have no way of doing that. (ST-WG) How might we go about finding a particular model or view associated by id?
+
+We could look the collection that we instantiated. Fetch the collection from our database loop through each of the models to find the one we want by id, and then create a view and render the edit form of that view.
+
+There's a problem with that though
+- All of the views for each grumble exists already, we would be creating 2 views for one model.
+
+If we look at our listView, we can see that we have a property, views. This array contains each individual grumble view. Why don't we create a function that accepts an id argument for our listView that loops through all of the individual views and returns the one that matches the id.
+
+Add this function definition in `js/backbone/views/grumbleList.js`:
+
+```js
+findView: function(id){
+  for(var i = 0; i < this.views.length; i++){
+    if(this.views[i].model.get("id") == id){
+      view = this.views[i]
+    }
+  }
+  return view
+}
+```
+
+## Rendering the edit form (15/55)
+Now that we have the ability to target a specific view based on id. The rest is pretty simple! We want to call `fetch()` which triggers an event to render all of the grumbles. Inside of a promise afterward, we can run our `findView` function to get the view we need to call `renderEditForm()` on.
+
+```js
+editGrumble: function(id){
+  App.Collections.grumbles.fetch().then(function() {
+    view = App.Views.listView.findView(id);
+    view.renderEditForm();
+  });
+}
+```
+
+## Break (10/65)
+
+## Updating Urls for editing - you do (20/85)
+
+Sick! Now we have deep linking for our edit routes. What's missing?
+
+## You do- Grumble show route ()
