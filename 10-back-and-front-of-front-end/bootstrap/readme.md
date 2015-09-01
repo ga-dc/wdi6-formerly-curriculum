@@ -119,7 +119,7 @@ But anyway...
   - `<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">`
 - You can download `bootstrap.css` or the minified version, `bootstrap.min.css`.
   - https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css
-- You can download the uncompiled source code as SASS or LESS, pick the components you want, and compile that.
+- You can download the uncompiled source code as SASS or LESS (which we'll touch on later), pick the components you want, and compile that.
   - http://getbootstrap.com/getting-started/#download
 
 ### Containers
@@ -135,7 +135,7 @@ Inside a container, you can use Bootstrap's built-in grid system. It lets you br
 </div>
 ```
 
-The middle value indicates the viewport width for which you want a particular container to be optimized:
+This indicates how many columns you want to appear on which size screen. So a div with `class="col-lg-9 col-sm-12"` would be 9/12ths the width of a desktop screen, and 12/12ths the width of a mobile screen.
 
 `xs` (phones), `sm` (tablets), `md` (desktops), `lg` (big desktops)
 
