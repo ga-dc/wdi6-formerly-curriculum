@@ -20,6 +20,16 @@ Some quick design tips:
 - 1 pixel of text-shadow can add a nice softening effect to text.
 - Borderless is "in" right now.
 
+### Graceful Degradation and Progressive Enhancement
+
+[Straight from the W3](http://www.w3.org/wiki/Graceful_degradation_versus_progressive_enhancement):
+
+> **Graceful degradation** is the practice of building your web functionality so that it provides a certain level of user experience in more modern browsers, but it will also degrade gracefully to a lower level of user in experience in older browsers.
+
+> **Progressive enhancement** is similar, but it does things the other way round. You start by establishing a basic level of user experience that all browsers will be able to provide when rendering your web site, but you also build in more advanced functionality that will automatically be available to browsers that can use it.
+
+**TLDR**: Make your browser look good for modern browsers, and then make tweaks so it looks good in your grandma's IE5... or do it the other way around. Pick one.
+
 ## How's Foundation different from Bootstrap?
 
 Wow. We get *way* more changes out-of-the-box.
