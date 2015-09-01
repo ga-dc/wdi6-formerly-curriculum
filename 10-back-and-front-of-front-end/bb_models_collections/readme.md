@@ -1,4 +1,11 @@
 # Backbone Models and Collections
+## Screen Casts
+[Video 1](https://www.youtube.com/watch?v=llq2O25g8kY)
+[Video 2](https://www.youtube.com/watch?v=I2pQXRhCYc0)
+[Video 3](https://www.youtube.com/watch?v=06Mzemj9vaE)
+[Video 4](https://www.youtube.com/watch?v=XvrWxUOrAkE)
+[Video 5](https://www.youtube.com/watch?v=kdzyPt26SmY)
+
 ## Learning Objectives
 - Describe the benefits of using a front end framework
 - Explain how libraries differ from frameworks.
@@ -25,7 +32,7 @@ How we got here:
 
 3. OOJS
   - more structured but a royal pain to write
-  
+
 4. Frameworks
   - All the structure of OOJS with the ease of writing like jQuery.
 
