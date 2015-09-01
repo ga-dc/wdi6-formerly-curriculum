@@ -17,7 +17,7 @@ This morning Adam went over three types of views we will encounter in Backbone.
 
 This afternoon, we will go over the latter two.
 
-## Model View
+## Model View (5)
 
 So we have a model view for each Grumble. What can it do?
 * Generate a DOM representation of each Grumble.
@@ -37,15 +37,15 @@ Next: a **collection view** that does the same thing for multiple models in diff
   * When we first load Grumblr, all of our Grumbles should be rendered.
   * When we create a new Grumble, it should be added to our existing list of Grumbles.
 
-## Let's Get Started
+## Let's Get Started (5)
+
+**Make sure the Grumblr Rails backend is still running.**
 
 If you need a starting point for the remainder of this lesson, fork and clone [this repo](https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_solution).
-* In terminal: `$ git fetch`
 * Then: `$ git checkout views_part_1_solution`
 
 Let's begin as we did earlier in class and create our collection view in `/js/backbone/views/grumblesList.js`...
 * What is the syntax we have used so far to create Backbone models and views?
-* What function do all of our Backbone objects need?
 
 ```js
 // /js/backbone/views/grumblesList.js
@@ -59,7 +59,7 @@ App.Views.GrumblesList = Backbone.View.extend({
 });
 ```
 
-## el
+## el (5)
 
 Next, we're going to bind our collection view to a DOM element.
 * What's that mean?
@@ -83,9 +83,9 @@ Essentially, we are "coupling" our view with the DOM.
 * Why do you think that is?
 * If we don't set an `el` property, we create a ghost `el` that lives in Javascript until we manually attached it to the DOM.
 
-**NOTE** This **does not** replace the `$el` property we use to build the DOM representation of our collection.
+**NOTE:** This **does not** replace the `$el` property we use to build the DOM representation of our collection.
 
-## renderOne
+## renderOne (5)
 
 Our collection view is a collection of model views.
 * We're going to use this view to generate multiple model views.
@@ -94,27 +94,14 @@ Our collection view is a collection of model views.
 Why do we need a `renderOne` method?
 * Wouldn't a method that renders an entire collection do just fine?
 
-### Exercise: Create a `renderOne` method.
+### Exercise: Create a `renderOne` method. (15)
 
 What To Do
 * Instantiate a function that takes a model as an argument.
 * Create a view for the passed-in model.
 * Append that model view to the collection view.
 
-```js
-App.Views.GrumblesList = Backbone.View.extend({
-  el: "#grumbles",
-
-  initialize: function(){
-    console.log( "Grumbles view initialized!" );
-  },
-
-  renderOne: function( grumble ){
-    var view = new App.Views.Grumble({ model: grumble });
-    this.$el.prepend( view.$el );
-  }
-});
-```
+[Solution](https://gist.github.com/amaseda/f31724ee83a05fc70538)
 
 ### How Can I Test If It Works?
 
@@ -123,7 +110,7 @@ Open `index.html` and try entering the following in your browser console.
 
 ```js
 var grumbles = new App.Collections.Grumbles();
-var grumblesList = new App.Views.GrumblsList({ collection: grumbles });
+var grumblesList = new App.Views.GrumblesList({ collection: grumbles });
 grumblesList.$el;
 // => Should return DOM representation of your collection
 
@@ -136,65 +123,57 @@ var grumble = new App.Model.Grumble({
 grumblesList.renderOne( grumble );
 ```
 
+**Why does hovering over newly created collection reference what was already loaded into the DOM?**
+
 ## renderAll
 
 Now our collection view's `$el` property contains all of our model views. The next step is to append that `$el` to the DOM.
 * We don't need to deal with any additional Handlebars templates here since that's taken care of inside each of our model views.
 
-### Exercise: Create a `renderAll` method.
+### Exercise: Create a `renderAll` method. (15)
 
-Steps
+What To Do
 * Clear out the collection view's current $el property.
 * Iterate through our collection (i.e., our collection's models) and render its individual model views.
 
+[Solution](https://gist.github.com/amaseda/c68a7c53d7517096c47f)
+
+### How Can I Test If It Works?
+
+Open `index.html`. In the console...  
+
 ```js
-App.Views.GrumblesList = Backbone.View.extend({
-  el: "#grumbles",
-
-  initialize: function(){
-    console.log( "Grumbles view initialized!" );
-  },
-
-  renderOne: function( grumble ){
-    var view = new App.Views.Grumble({ model: grumble });
-    this.$el.prepend( view.$el );
-  },
-
-  renderAll: function(){
-    this.$el.empty();
-    this.collection.each( this.renderOne.bind(this) );
-  }
-});
+var grumbles = new App.Collections.Grumbles();
+var grumblesList = new App.Views.GrumblesList({ collection: grumbles });
+grumbles.fetch();
+grumblesList.renderAll();
 ```
 
 ## Event Listeners
 
 Like our model view, our collection view also needs event listeners so that it re-renders upon any change.
 
-### Exercise: Create event listeners for our collection view.
+### Exercise: Create event listeners for our collection view. (10)
 
 What To Do
-* Create a listener that re-renders our entire view upon reset.
-* Create a listener that renders a new model view when one is added to our collection.
+* Create a listener that re-renders our entire view upon **reset**.
+* Create a listener that renders a new model view when a model is **added** to our collection.
+* **HINT:** Use Backbone [events documentation](http://backbonejs.org/#Events) if you need help.
+
+[Solution](https://gist.github.com/amaseda/4d5718eaf13241277ebd)
+
+### How Can I Test If It Works?
+
+Open `index.html`. In the console...  
 
 ```js
-App.Views.GrumblesList = Backbone.View.extend({
-  el: "#grumbles",
-
-  initialize: function(){
-    this.listenTo(this.collection, 'reset', this.renderAll);
-    this.listenTo(this.collection, 'add', this.renderOne);
-  },
-
-  renderOne: function( grumble ){
-    var view = new App.Views.Grumble({ model: grumble });
-    this.$el.prepend( view.$el );
-  },
-
-  renderAll: function(){
-    this.$el.empty();
-    this.collection.each( this.renderOne.bind(this) );
-  }
+var grumbles = new App.Collections.Grumbles();
+var grumblesList = new App.Views.GrumblesList({ collection: grumbles });
+grumbles.add({
+  authorName: "Chewbacca",
+  content: "Wrrrroaarrohhh",
+  title: "Hello there",
+  photoUrl: "http://img1.owned.com/media/images/2/3/2/1/23217/tupacca_540.jpg"
 });
 ```
 
@@ -202,40 +181,23 @@ Hold up. Why don't we need to pass in an argument to the `renderOne` callback in
 * Awesome Backbone feature: it just knows!
 * "add" inherently passes in a model.
 
-## Test Collection View in Console
-
 ## Update app.js
 
-### Exercise: Update `app.js` so our application instantiates and renders a collection view.
+### Exercise: Update `app.js` so our application instantiates and renders a collection view. (10)
 
 What To Do
 * Instantiate a collection.
 * Instantiate a collection view and pass in a collection.
 
-```js
-// app.js
-
-App = {
-  Models: {},
-  Views: {},
-  Collections: {},
-  Routers: {}
-};
-
-$(document).ready(function() {
-  var grumbles = new App.Collections.Grumbles();
-  var grumblesList = new App.Views.GrumblesList({ collection: grumbles });
-  grumbles.fetch({ reset: true })
-});
-```
+[Solution](https://gist.github.com/amaseda/a3390f6adfb8f727c5f5)
 
 That's it...for now.
 * As we continue building on our Backbone application, we'll revisit our collection view and add on some additional functionality.
 * Wait, we don't need DOM events here? Why?
 
-## Break
+## Break (10)
 
-## Specialty Views
+## Specialty Views (5)
 
 So we have views for our Grumbles -- model and collection. What about one for our new Grumble form?
 * Let's make a **specialty view.**
@@ -246,18 +208,17 @@ We've already gone everything we need to know in order to create a specialty vie
 * You're going to spend the rest of this class making one.
 * It will looking something like the `createView` below.
 
-![view diagram](img/view-diagram.png)
-* **NOTE TO SELF: Will create own version of this diagram and highlight `createView`.**
+![createView](img/view-diagram.png)
 
 ## Exercise: Specialty View for Creating Grumbles
 
 Questions to Consider
-* What will the HTML of my "create" form look like? Where do I define that?
+* What will the HTML of my "create" form look like? Where do I define that? Could I use an existing template?
 * How do I add a new Grumble to my collection and collection view?
 * How do I update the database with my new Grumble?
 * When/where do I tell my application to render the form?
 
-### Part 1: View and Template
+### Part 1: View and Template (30)
 
 What To Do
 * Start by adding the following HTML to the top of your HTML `<body>`.
@@ -276,12 +237,13 @@ What To Do
 * Define an `initialize` method that inserts your template into the view's `$el`.
   * **Hint:** Use `.html()`.
 
-### Part 2: Create The Grumble
+### Part 2: Create The Grumble (30)
 
 * Define a `createGrumble` method that creates a Grumble based on user input to your template form. This method should...
   * Create an object literal that contains your new Grumble model's data.
   * Save this object literal as a model in your collection.
-* Create an event that will trigger your `createGrumble` method.
+* Create an event listener that will trigger your `createGrumble` method.
+  * **Hint:** This could be for a DOM event.
 
 ### Bonus: Toggle Form
 
@@ -289,55 +251,8 @@ Your createGrumbleView should be hidden upon page load. If the user wants to cre
 
 ### Solution
 
-```js
-App.Views.GrumbleCreate = Backbone.View.extend({
-  el: "#createGrumble",
+[Solution](https://gist.github.com/amaseda/d9414ce5ce381932a747)
 
-  events: {
-    'click .new':    'toggleForm',
-    'click .cancel': 'toggleForm',
-    'click .submit': 'createGrumble'
-  },
-
-  initialize: function(){
-
-    this.template = Handlebars.compile($("#grumbleFormTemplate").html());
-
-    this.$(".formContainer").html(this.template({}));
-    this.$(".formContainer").hide();
-  },
-
-  toggleForm: function(){
-    this.toggleButton(this.$(".new").text());
-    this.toggleUrlState(this.$(".new").text());
-    event.preventDefault();
-    this.$(".formContainer").slideToggle();
-  },
-
-  toggleButton: function(state){
-    if(state === "New Grumble"){
-      this.$(".new").text("Hide Form")
-    }else{
-      this.$(".new").text("New Grumble")
-    }
-  },
-
-  createGrumble: function(){
-    event.preventDefault();
-    var data = {
-      title: this.$("[name='title']").val(),
-      authorName: this.$("[name='authorName']").val(),
-      content: this.$("[name='content']").val(),
-      photoUrl: this.$("[name='photoUrl']").val()
-    }
-    this.collection.create(data);
-
-    this.$el.find("input, textarea").val("");
-    this.toggleForm();
-  },
-});
-```
-
-## Break
+## Break (10)
 
 ## Homework: Grumble Comments
