@@ -17,7 +17,7 @@ This morning Adam went over three types of views we will encounter in Backbone.
 
 This afternoon, we will go over the latter two.
 
-## Model View
+## Model View (5)
 
 So we have a model view for each Grumble. What can it do?
 * Generate a DOM representation of each Grumble.
@@ -37,7 +37,7 @@ Next: a **collection view** that does the same thing for multiple models in diff
   * When we first load Grumblr, all of our Grumbles should be rendered.
   * When we create a new Grumble, it should be added to our existing list of Grumbles.
 
-## Let's Get Started
+## Let's Get Started (5)
 
 **Make sure the Grumblr Rails backend is still running.**
 
@@ -59,7 +59,7 @@ App.Views.GrumblesList = Backbone.View.extend({
 });
 ```
 
-## el
+## el (5)
 
 Next, we're going to bind our collection view to a DOM element.
 * What's that mean?
@@ -85,7 +85,7 @@ Essentially, we are "coupling" our view with the DOM.
 
 **NOTE:** This **does not** replace the `$el` property we use to build the DOM representation of our collection.
 
-## renderOne
+## renderOne (5)
 
 Our collection view is a collection of model views.
 * We're going to use this view to generate multiple model views.
@@ -94,7 +94,7 @@ Our collection view is a collection of model views.
 Why do we need a `renderOne` method?
 * Wouldn't a method that renders an entire collection do just fine?
 
-### Exercise: Create a `renderOne` method.
+### Exercise: Create a `renderOne` method. (15)
 
 What To Do
 * Instantiate a function that takes a model as an argument.
@@ -130,7 +130,7 @@ grumblesList.renderOne( grumble );
 Now our collection view's `$el` property contains all of our model views. The next step is to append that `$el` to the DOM.
 * We don't need to deal with any additional Handlebars templates here since that's taken care of inside each of our model views.
 
-### Exercise: Create a `renderAll` method.
+### Exercise: Create a `renderAll` method. (15)
 
 What To Do
 * Clear out the collection view's current $el property.
@@ -153,7 +153,7 @@ grumblesList.renderAll();
 
 Like our model view, our collection view also needs event listeners so that it re-renders upon any change.
 
-### Exercise: Create event listeners for our collection view.
+### Exercise: Create event listeners for our collection view. (10)
 
 What To Do
 * Create a listener that re-renders our entire view upon reset.
@@ -182,7 +182,7 @@ Hold up. Why don't we need to pass in an argument to the `renderOne` callback in
 
 ## Update app.js
 
-### Exercise: Update `app.js` so our application instantiates and renders a collection view.
+### Exercise: Update `app.js` so our application instantiates and renders a collection view. (10)
 
 What To Do
 * Instantiate a collection.
@@ -194,9 +194,9 @@ That's it...for now.
 * As we continue building on our Backbone application, we'll revisit our collection view and add on some additional functionality.
 * Wait, we don't need DOM events here? Why?
 
-## Break
+## Break (10)
 
-## Specialty Views
+## Specialty Views (5)
 
 So we have views for our Grumbles -- model and collection. What about one for our new Grumble form?
 * Let's make a **specialty view.**
@@ -207,6 +207,8 @@ We've already gone everything we need to know in order to create a specialty vie
 * You're going to spend the rest of this class making one.
 * It will looking something like the `createView` below.
 
+![createView](/img/view-diagram.png)
+
 ## Exercise: Specialty View for Creating Grumbles
 
 Questions to Consider
@@ -215,7 +217,7 @@ Questions to Consider
 * How do I update the database with my new Grumble?
 * When/where do I tell my application to render the form?
 
-### Part 1: View and Template
+### Part 1: View and Template (30)
 
 What To Do
 * Start by adding the following HTML to the top of your HTML `<body>`.
@@ -234,7 +236,7 @@ What To Do
 * Define an `initialize` method that inserts your template into the view's `$el`.
   * **Hint:** Use `.html()`.
 
-### Part 2: Create The Grumble
+### Part 2: Create The Grumble (30)
 
 * Define a `createGrumble` method that creates a Grumble based on user input to your template form. This method should...
   * Create an object literal that contains your new Grumble model's data.
@@ -250,6 +252,6 @@ Your createGrumbleView should be hidden upon page load. If the user wants to cre
 
 [Solution](https://gist.github.com/amaseda/d9414ce5ce381932a747)
 
-## Break
+## Break (10)
 
 ## Homework: Grumble Comments
