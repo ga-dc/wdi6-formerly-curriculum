@@ -4,6 +4,7 @@
 - List 3 ways Foundation is different from Bootstrap
 - Describe a situation in which using Foundation might be preferable to using Bootstrap, and a situation in which the reverse is true
 - Explain what is meant by "breadcrumbs"
+- Explain the concepts of graceful degradation and progressive enhancement.
 
 ## But first, some reading
 
@@ -29,6 +30,12 @@ Some quick design tips:
 > **Progressive enhancement** is similar, but it does things the other way round. You start by establishing a basic level of user experience that all browsers will be able to provide when rendering your web site, but you also build in more advanced functionality that will automatically be available to browsers that can use it.
 
 **TLDR**: Make your browser look good for modern browsers, and then make tweaks so it looks good in your grandma's IE5... or do it the other way around. Pick one.
+
+Foundation, Bootstrap, and pretty much every other major front-end libary or framework takes care of this for you.
+
+In Foundation, you see Modernizr, which adds modern Javascript functionality to outdated browsers -- like `Array.indexOf()`.
+
+This shouldn't be confused with Normalize, which makes sure your webpage -- before you've added any other CSS to it -- looks the same across all browsers by providing, for instance, a new default font and specific button styling.
 
 ## How's Foundation different from Bootstrap?
 
