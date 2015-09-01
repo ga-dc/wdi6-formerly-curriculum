@@ -6,7 +6,7 @@
 - Make a page multi-paginated without using Javascript
 - Create custom radio buttons and drop-down menus using CSS
 
-## Make CSS American
+## Make CSS proud to be American
 
 Take 10 minutes to do this:
 
@@ -20,7 +20,7 @@ Well, what might you Google?
 
 ### In retrospect
 
-...you should probably never actually make artwork in CSS. As you saw in the SASS lesson, people *do*, but it's much more just for kicks than for any practical purpose, in the same way that someone wrote [COBOL on COGS](http://www.coboloncogs.org/INDEX.HTM) -- a back-end framework based on Rails, but written in a programming language that hasn't really been used in 30 years.
+...you should probably never actually make artwork in CSS. As you saw in the SASS lesson, [people *do*](http://www.bypeople.com/50-impressive-css-drawings/), but it's much more just for kicks than for any practical purpose.
 
 ## Pseudo-selectors
 
@@ -34,43 +34,47 @@ Pseudo-selectors all start with a colon. So if I wanted to select every `div` th
 
 #### What other pseudo-selectors have you seen?
 
-- Pseudo-classes
-  - `:hover`
-  - `:visited`
-  - `:active`
-  - `:disabled`
-  - `:checked`
-  - `:focus`
-  - `:target`
-  - `:first-letter`
-  - `:first-line`
-  - `:first-of-type`
-  - `:last-of-type`
-  - `:only-of-type`
-  - `:nth-of-type`
-  - `:nth-of-last-type`
-  - `:first-child`
-  - `:last-child`
-  - `:only-child`
-  - `:nth-child`
-  - `:nth-of-last-child`
-  - `:empty`
-  - `:not`
-- pseudo-elements
-  - `:after`
-  - `:before`
+...augmented by the pseudo-selectors I've seen.
+
+##### Pseudo-classes
+- `:hover`
+- `:visited`
+- `:active`
+- `:disabled`
+- `:checked`
+- `:focus`
+- `:target`
+- `:empty`
+- `:not`
+
+
+- `:first-letter`
+- `:first-line`
+- `:first-of-type`
+- `:last-of-type`
+- `:only-of-type`
+- `:nth-of-type`
+- `:nth-of-last-type`
+- `:first-child`
+- `:last-child`
+- `:only-child`
+- `:nth-child`
+- `:nth-of-last-child`
+
+
+##### pseudo-elements
+- `:after`
+- `:before`
 
 You can treat pseudo-selectors just like any other selector in that you can chain them together:
 
 #### What does this select, in English?
 
-### Multiples
-
 `nav a:nth-of-type(odd):active`
 
 > "Inside every `nav`, select every odd-numbered anchor that is currently being clicked upon."
 
-You can select any multiples of elements:
+### You can select any multiples of elements
 
 `tr:nth-of-type(3n+3)`
 
@@ -91,7 +95,7 @@ HTML checkboxes and radio buttons are virtually impossible to style, just becaus
 
 ### Radio buttons
 
-It's easy to make your own with CSS:
+It's easy to make your own with CSS using `this+that`, which indicates "any `that` preceded immediately by a `this`":
 
 ```html
 <input type="radio" name="country" value="USA" id="countryUSA" /><label for="countryUSA">USA</label>
@@ -108,7 +112,6 @@ input[type=radio]{
   overflow:hidden;
   position:absolute;
   opacity:0.01;
-  /* In some browsers, just using display:none would mean this element isn't included in form submissions. */
 }
 input[type=radio]+label{
   display:block;
@@ -120,6 +123,10 @@ input[type=radio]:checked+label{
   color:#eee;
 }
 ```
+
+Why go to all that trouble on the radio button?
+
+I'd use `display:none`, but in some (dumb) browsers, display:none means the element isn't included in form submissions.
 
 ### Drop-downs
 
@@ -134,6 +141,8 @@ HTML has drop-down menus built-in...
 ```
 
 ...but they're ugly, and virtually impossible to style. You can make your own in the same way as your custom labels above.
+
+The HTML is a bunch of radio buttons with labels, but you can use CSS to make them appear like a drop-down. It's still semantically valid, AND it looks great!
 
 ```html
 <div class="dropdown">
@@ -175,6 +184,20 @@ HTML has drop-down menus built-in...
 
 ## Pagination
 
+We've used some Javascript to make single-page apps appear to have multiple views. But you can do the same thing with the `:target` selector in CSS.
+
+You've probably seen URLs like this:
+
+```
+http://something.com/index.html#aboutMe
+```
+
+The `#` at the end indicates an anchor (or jump-tag, or jump-to). The browser is going to look for an element with the ID of `aboutMe`, and if it exists, it'll try to scroll to that element such that it's aligned with the top of the screen. If you click on a jump-tag referencing an element on the current page, it will *not* reload the page. This is handy for jumping around sections. (See any Github readme.)
+
+The element indicated by the jump-tag is then considered "targeted", meaning we can select it with `:target`.
+
+*This* means we can do stuff like show only the element that has been targeted, creating the illusion of having separate pages.
+
 ```html
 <nav>
   <a href="#aboutMe">About me</a>
@@ -213,4 +236,15 @@ With the person at your table, write out *in English* what each of the following
 - `button.active.edit#update`
   - What's "wrong" with this selector?
 
-## To be continued
+## Continue working on your portfolio page
+
+If you're certain you don't have more you'd like to add to it, let your instructor know!
+
+## (For those letting the instructor know)
+
+**Write an exercise** for a future WDI student learning pseudo-selectors:
+
+1. Create a "hook". What's the scenario? Maybe a shopkeeper in Legend of Zelda needs a website? Maybe the student has been tasked with refactoring the code for a crusty old Geocities page and making it HTML5/CSS3-compliant?
+- Create starter code. This should be enough that students have an idea of where to start. If there's a lot of "busywork" that they need to do (e.g. doing `npm init` or `bower install bootstrap-sass`) maybe do that for them.
+- Create a `readme.md` file. Anticipate questions students may have about the prompt and try to address those.
+- Push it to **your** Github. Share your exercise with `/r/web_design` or `/r/programming`!
