@@ -72,20 +72,18 @@ The back-end-y front-end, and the front-end-y front-end.
 - Create a Pull Request to sass
 
 
-### Bootstrap (1)
+### Bootstrap
 - Explain the benefits (and shortcomings) of using a design framework.
 - Describe the use cases for using Bootstrap as a library versus as a framework.
 - List 10 useful classes from the Bootstrap library.
 - Compare and contrast Bootstrap with other front-end frameworks (e.g., Foundation and Material Design).
 
-### Bootstrap (2)
-- Override a given Bootstrap default style.
-- Differentiate between advanced Bootstrap inputs.
-- Creative a responsive, mobile-first grid system.
-- Use Bootstrap JS to...
-  - Create a modal.
-  - Create a drop-down menu.
-  - Create a slider.
+### Foundation
+
+- List 3 ways Foundation is different from Bootstrap
+- Describe a situation in which using Foundation might be preferable to using Bootstrap, and a situation in which the reverse is true
+- Explain what is meant by "breadcrumbs"
+- Explain the concepts of graceful degradation and progressive enhancement.
 
 ### Leaflet and Map APIs
 - While using the leaflet JS library:
