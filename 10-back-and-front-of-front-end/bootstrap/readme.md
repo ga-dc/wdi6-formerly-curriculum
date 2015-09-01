@@ -11,6 +11,8 @@
 
 ### This is a Backbone app
 
+[Here's the source code.](http://github.com/ga-dc/grumblr_backbone)
+
 Quick crash course in Backbone: The HTML is pretty much just a template that uses Handlebars syntax. I define the models being used in the application (Grumbles and Comments in this case), and Backbone takes care of all the AJAX calls and stuff for me.
 
 To get a better idea of what's going on underneath the hood, you can Inspect Element, click on the `<html>` tag, and hit `fn` + `F2`, and it'll show you all of the HTML **after it has been rendered by Javascript**.
