@@ -156,8 +156,9 @@ Like our model view, our collection view also needs event listeners so that it r
 ### Exercise: Create event listeners for our collection view. (10)
 
 What To Do
-* Create a listener that re-renders our entire view upon reset.
-* Create a listener that renders a new model view when one is added to our collection.
+* Create a listener that re-renders our entire view upon **reset**.
+* Create a listener that renders a new model view when a model is **added** to our collection.
+* **HINT:** Use Backbone [events documentation](http://backbonejs.org/#Events) if you need help.
 
 [Solution](https://gist.github.com/amaseda/4d5718eaf13241277ebd)
 
