@@ -1,5 +1,9 @@
 # Foundation
 
+Screencasts
+- [Part 1](http://youtu.be/aLtWccm8Ayo)
+- [Part 2](http://youtu.be/A9Mn2UoUW-k)
+
 ## Loaning Objections
 - List 3 ways Foundation is different from Bootstrap
 - Describe a situation in which using Foundation might be preferable to using Bootstrap, and a situation in which the reverse is true
