@@ -11,11 +11,12 @@ No scheduled one-on-ones during Project 3 week.
 ## Week 10
 
 ### Mon Aug 31
-  - Cheikh
+
+- Outcomes
 
 ### Tue Sep 01
 
-- Outcomes
+- Cheikh
 
 ### Wed Sep 02
 
@@ -25,7 +26,6 @@ No scheduled one-on-ones during Project 3 week.
 ### Thur Sep 03
 
 - Rosel
-
 
 ##  Week 11
 
