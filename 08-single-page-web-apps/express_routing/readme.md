@@ -278,3 +278,10 @@ This is by no means a thorough overview of RegExes, but it should be enough to g
 ### Express Route Tester
 
 Similarly, let's take a look at the [Express Route Tester](http://forbeslindesay.github.io/express-route-tester/?_ga=1.256234632.2070291842.1433362238).  It can be a handy tool for testing basic Express routes.
+
+
+## Conclusion
+
+- What action do you expect this route to perform: `app.post('/authors', function() {...}`?
+- Explain the `req` and `res` variables in `app.get('/authors', function(req, res){...})`
+- Write a root route that redirects to '/authors'.
