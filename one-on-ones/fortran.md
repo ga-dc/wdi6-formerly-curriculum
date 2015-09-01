@@ -31,6 +31,7 @@ There will be no scheduled one-on-ones this week.
 ## Mon Sep 7
 
 - Omari
+- Ksenia
 
 ## Wed Sep 8
 
@@ -43,4 +44,4 @@ There will be no scheduled one-on-ones this week.
 
 ## Fri Sep 10
 
-- Ksenia
+
