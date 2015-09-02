@@ -1,18 +1,13 @@
 # Backbone Routers
 
 - Explain what role a router plays in a front-end application.
-- Identify the router's role in the Backbone MVC model.
-- List the responsibilities of the Backbone router.
+- Identify the router's role/responsibilities in the Backbone MVC model.
 - Define static routes, actions and initialize a router.
-- Define dynamic routes.
 - utilize `.navigate()` on a backbone router to update the url
+- Define dynamic routes.
 - Give examples of using :params in routes and actions.
 - Recall the order in which routes are matched.
 - Describe {trigger: true} as it applies to actions and routes.
-
-adam notes
-
-- anchor links (also talk about trigger here)
 
 ## Opening Framing (5/5)
 We have the makings of a pretty sick single page application now. We've got mostly full CRUD functionality for both grumbles and comments and things are even looking alot better thanks to Robin's bootstrap styles. As it stands we've got all the functionality we wanted in our MVP, but there's just one thing that's missing.
