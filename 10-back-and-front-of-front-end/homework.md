@@ -10,7 +10,7 @@ For homework on unrelated repos (e.g. SASS and Bootstrap/Foundation), please sub
 |---------------|--------------------------------|------------|
 | Monday        |                                | [Sassify your Portfolio](https://github.com/ga-dc/portfolio_pages#sass)  |
 | Tuesday       |                                | [Grumblr Redesign](https://github.com/ga-dc/grumblr_css_redesign)           |
-| Wednesday     |                                |            |
+| Wednesday     |                                | [Mapping: Plannr](https://github.com/ga-dc/plannr)           |
 | Thursday      |                                |            |
 | Friday        |                                |            |
 
