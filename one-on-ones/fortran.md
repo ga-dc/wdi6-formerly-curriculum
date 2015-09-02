@@ -11,7 +11,6 @@ One on ones are generally from 4:30pm to 5:00pm on Mondays, Wednesdays, and Thur
 ## Wed Sep 2
 
 - Arash
-- **Open Appointment Time**
 
 ## Thur Sep 3
 
