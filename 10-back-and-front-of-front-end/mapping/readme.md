@@ -10,8 +10,9 @@
 ## Why Are We Having A Class on Maps? (5 / 5)
 
 It's no secret you can do some seriously cool stuff with maps online. Some examples...
-* [Map with Curved Lines](http://www.amcharts.com/demos/map-with-curved-lines/)
-* [Google's Project Sunroof](https://www.google.com/get/sunroof#a=112%20Stanley%20St%2C%20Redwood%20City%2C%20CA%2094062%2C%20USA&b=125&f=lease&np=18&p=1&sh=1)
+* Design: [Map with Curved Lines](http://www.amcharts.com/demos/map-with-curved-lines/)
+* Making a Difference: [Google's Project Sunroof](https://www.google.com/get/sunroof#a=112%20Stanley%20St%2C%20Redwood%20City%2C%20CA%2094062%2C%20USA&b=125&f=lease&np=18&p=1&sh=1)
+* Adding Functionality: [Mapbox Showcase](https://www.mapbox.com/showcase/)
 * Do you all have any examples?
 
 We can do crazy, radically-different cool things with maps. But at the core of all these examples is geographical data.
