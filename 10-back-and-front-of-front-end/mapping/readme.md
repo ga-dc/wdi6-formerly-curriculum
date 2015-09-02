@@ -1,12 +1,11 @@
 ## Leaflet and Map APIs
 * Examine the value of mapping in modern-day web development.
-* Compare and contrast popular mapping APIs.
 * Using the Leaflet JS library...
-  * Create a map using
-  * Create markers on a map
-  * Create popups
-  * Handle events on a map
-* Explain what geoJSON is and how map apis like leaflet utilize it.
+  * Create a map.
+  * Add markers and shapes to a map.
+  * Add pop-ups to a map.
+  * Handle events on a map.
+* Explain what geoJSON is and how Leaflet uses it.
 
 ## Why Are We Having A Class on Maps? (5 / 5)
 
