@@ -281,7 +281,7 @@ var clickPopup = L.popup();
 
 // Now define when and how `clickPopup` will appear.
 map.on( "click", function( event ){
-  popup
+  clickPopup
   .setLatLng( event.latlng )
   .setContent( "Coordinates: " + event.latlng.toString() )
   .openOn( map );
