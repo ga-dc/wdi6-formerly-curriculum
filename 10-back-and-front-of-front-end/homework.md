@@ -20,6 +20,6 @@ For homework on unrelated repos (e.g. SASS and Bootstrap/Foundation), please sub
 |---------------|--------------------------------|------------|
 | Monday        |                                | [Grumblr Models and Collections for Comments](https://github.com/ga-dc/grumblr_backbone#part-one) |
 | Tuesday       |                                | [Grumblr Views for Comments](https://github.com/ga-dc/grumblr_backbone/tree/hw_day_2) |
-| Wednesday     |                                |            |
+| Wednesday     |                                | [Do a Backbone Tutorial](https://github.com/ga-dc/backbone_tutorial_hw) |
 | Thursday      |                                |            |
 | Friday        |                                |            |
