@@ -289,9 +289,9 @@ map.on( "click", function( event ){
 
 Check out Leaflet's [event documentation](http://leafletjs.com/reference.html#events) if you want to learn more.
 
-### Exercise: Click for Marker and Pop-Up
+### Exercise: Click = Marker + Pop-Up (10)
 
-Create an event listener that creates a marker wherever the user clicks.
+Create an event listener that adds a marker to the map wherever the user clicks.
 * That marker should also have a pop-up that displays the latitude-longitude for that location.
 
 ## GeoJSON
@@ -303,7 +303,7 @@ Create an event listener that creates a marker wherever the user clicks.
 GeoJSON is essentially a JSON object that contains a variety of information about a point or area (or a collection of the two) on a map.
 * With Leaflet, rather than hardcode information about a marker, circle or polygon into our code, we can import that geographical information using GeoJSON.
 
-### GeoJSON Components (10 / 105)
+### GeoJSON Components (10 / 115)
 
 All GeoJSON objects must have a `type` value, which can equal a Geometry type, "Feature" or "FeatureCollection".
 * Geometry types
@@ -365,18 +365,13 @@ And we should see something like this...
 * [Here's our earlier monuments example](https://gist.github.com/amaseda/e6abab0e337098a036ba).
 * More info [here](https://help.github.com/articles/mapping-geojson-files-on-github/).
 
-## Exercise: Using GeoJSON (10 / 115)
+## Exercise: Using GeoJSON (10 / 125)
 
-Use a "Feature Collection" to recreate the markers and polygons you created in the two earlier exercises.
+Use a "Feature Collection" to recreate the markers and polygons you created in the first two Marker and Polygon exercises.
 * What exactly is a Feature Collection? An array of features.
 * Need help? Leaflet's [GeoJSON documentation](http://leafletjs.com/examples/geojson.html) will start you on the right path.
 
-## Break (10 / 125)
-
-## What's Next?
-
-We only scratched the surface during this class.
-* [Choropleth maps](http://leafletjs.com/examples/choropleth.html).
+## Break (10 / 135)
 
 ## Homework: Trip Planner
 
@@ -389,10 +384,6 @@ Steps
   * Click listeners for the markers that display the address, latitude-longitude coordinates an user notes about the location.
 * Use Leaflet and GeoJSON to...
   * Create a polygon that uses the aforementioned coordinates as corners.
-
-### Bonus
-
-* [Disable scroll-zoom](https://www.mapbox.com/mapbox.js/example/v1.0.0/disable-zooming-panning/).
 
 ## Sample Quiz Questions
 
