@@ -2,30 +2,30 @@
 
 One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
 
-## Mon Aug 10
+## Tues Sept 1
 
-- Kevin Cole Jr
-- Matt Curtis
+- Mike Dulik
 
-## Wed Aug 12
+## Wed Sept 2
 
-- Peter Cutler
-- Preston Davies
+- Paul Doulatshahi
 
-## Thur Aug 13
+## Thur Sept 3
 
 - Nayana Davis
 - **Open Appointment Time**
 
-## Mon Aug 17
+## Mon Sept 7
 
 - Karl Donus
-- Paul Doulatshahi
+- Kevin Cole Jr.
 
-## Wed Aug 19
+## Wed Sept 9
 
-- Mike Dulik
+- Peter Cutler
+- Preston Davies
 
-## Thur Aug 20
+## Thur Sept 10
 
+- Matt Curtis
 - **Open Appointment Time**
