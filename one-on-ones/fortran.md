@@ -2,10 +2,6 @@
 
 One on ones are generally from 4:30pm to 5:00pm on Mondays, Wednesdays, and Thursdays.
 
-## Project 3
-
-There will be no scheduled one-on-ones this week.
-
 -----
 
 ## Tue Sep 1
@@ -20,11 +16,11 @@ There will be no scheduled one-on-ones this week.
 ## Thur Sep 3
 
 - Adrian
-- Melissa
 
 ## Fri Sep 4
 
 - Leigh
+- Melissa
 
 -----
 
