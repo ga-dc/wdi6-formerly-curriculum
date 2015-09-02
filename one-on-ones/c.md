@@ -9,7 +9,7 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 
 ## Thurs Sept 3
 
--Matt
+- Matt
 - Cameron
 
 
