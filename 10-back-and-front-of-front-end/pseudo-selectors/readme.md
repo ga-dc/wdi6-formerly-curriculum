@@ -1,5 +1,11 @@
 # Pseudo-Pseulectors
 
+- Screencasts
+  - [Part 1](http://youtu.be/O9dpZj4XWmA)
+  - [Part 2](http://youtu.be/sd8xY2jUXpc)
+  - [Part 3](http://youtu.be/c-AsuaboyeI)
+  - [Part 4](http://youtu.be/s7hM9RDgkRY)
+
 ## Lemming Expletives
 - Describe what "pseudo" means in the context of CSS
 - Describe how to select even and odd elements on a page
