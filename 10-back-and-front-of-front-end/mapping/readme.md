@@ -373,17 +373,7 @@ Use a "Feature Collection" to recreate the markers and polygons you created in t
 
 ## Break (10 / 135)
 
-## Homework: Trip Planner
-
-Steps
-* Create an HTML form. Users will use this form to enter an address.
-* Submitting this form should trigger an API call to the [OpenCage Geocoder](http://geocoder.opencagedata.com/demo.html) (the same API from this morning's in-class example).
-  * The Geocoder will convert the submitted address to latitude-longitude coordinates.
-* Use Leaflet to...
-  * Convert coordinates to map markers.
-  * Click listeners for the markers that display the address, latitude-longitude coordinates an user notes about the location.
-* Use Leaflet and GeoJSON to...
-  * Create a polygon that uses the aforementioned coordinates as corners.
+## Homework: [Trip Planner](https://github.com/ga-dc/plannr)
 
 ## Sample Quiz Questions
 
