@@ -39,8 +39,8 @@ If you don't already have it, make sure you have the [grumblr_rails_api](https:/
 Next, in your `grumblr_backbone` repo pull down the `routing_starter` branch.
 
 ```bash
-$ git checkout -b routing_starter
-$ git pull origin routing_starter
+$ git fetch
+$ git checkout routing_starter
 # make sure origin is our version of the repo. Or utilize upstream if our version is the upstream.
 ```
 
