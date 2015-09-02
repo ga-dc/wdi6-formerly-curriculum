@@ -190,7 +190,9 @@ Make five markers!
 * **BUT**, you must use a loop or enumerator to create and render these markers.
 * Use whatever container you want (e.g., array, object) to pass in coordinates to your loop.
 
-**BONUS:** Write a function that generates coordinates from a place description (e.g., "The White House DC") using the [OpenCage Geocoder API](http://geocoder.opencagedata.com/demo.html), and use it to generate the coordinates for your markers.
+**BONUS I:** Write a function that takes coordinates from a form and uses them to add markers to a map.
+
+**BONUS II:** Write a function that generates coordinates from a place description (e.g., "The White House DC") using the [OpenCage Geocoder API](http://geocoder.opencagedata.com/demo.html). Then, add markers to your map using those coordinates.
 * Use [this demo](http://geocoder.opencagedata.com/demo.html) to generate a sample URL.
 * You can sign up for an API key [here](http://geocoder.opencagedata.com/api.html#quickstart). If you're having trouble, you can use mine.
 
@@ -227,9 +229,12 @@ var washington = L.polygon([
 
 ### You Do: Markers to Shapes (10 / 65)
 
-Modify the previous exercise so that it generates a polygon whose corners are the same five map markers.
+Modify the previous exercise so that you are using a loop to generate a polygon.
+* The five coordinates you entered earlier should now be the corners of a polygon.
 
-**BONUS:** Try out the earlier bonus if you haven't already and apply it to this exercise prompt.
+**BONUS:**
+
+**BONUS II:** Try out the earlier bonus if you haven't already and apply it to this exercise prompt.
 
 ## Break (10 / 75)
 
@@ -246,10 +251,7 @@ var generalAssembly = L.marker( [38.9048542, -77.0339403] ).addTo( map );
 
 // Create a pop-up.
 generalAssembly.bindPopup(
-  "<h3>General Assembly DC</h3>
-  <p>1133 15th St., NW</p>
-  <p>8th Floor</p>
-  <p>Washington, DC 20005</p>"
+  "<h3>General Assembly DC</h3><p>1133 15th St., NW</p><p>8th Floor</p><p>Washington, DC 20005</p>"
 )
 ```
 
@@ -361,20 +363,16 @@ And we should see something like this...
 
 !["geojson monument trail"](img/geojson-monument-trail.png)
 
+**Fun Fact:** GitHub has GeoJSON support.
+* If you save a `.geojson` file in a repo, Github uses Leaflet to render that data in the browser.
+* [Here's our earlier monuments example](https://gist.github.com/amaseda/e6abab0e337098a036ba).
+* More info [here](https://help.github.com/articles/mapping-geojson-files-on-github/).
+
 ## Exercise: Using GeoJSON (10 / 115)
 
 Use a "Feature Collection" to recreate the markers and polygons you created in the two earlier exercises.
 * What exactly is a Feature Collection? An array of features.
 * Need help? Leaflet's [GeoJSON documentation](http://leafletjs.com/examples/geojson.html) will start you on the right path.
-
-* BONUS: Generate geographical information (e.g., lat/long using a 3rd-party API).
-
-## GeoJSON (Cont.)
-
-**Fun Fact:** GitHub has GeoJSON support.
-* If you save a `.geojson` file in a repo, Github uses Leaflet to render that data in the browser.
-* [Here's our earlier monuments example](https://gist.github.com/amaseda/e6abab0e337098a036ba).
-* More info [here](https://help.github.com/articles/mapping-geojson-files-on-github/).
 
 ## Break (10 / 125)
 
