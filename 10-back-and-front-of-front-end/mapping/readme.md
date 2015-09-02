@@ -231,9 +231,7 @@ var washington = L.polygon([
 Modify the previous exercise so that you are using a loop to generate a polygon.
 * The five coordinates you entered earlier should now be the corners of a polygon.
 
-**BONUS:**
-
-**BONUS II:** Try out the earlier bonus if you haven't already and apply it to this exercise prompt.
+**BONUSES I & II:** Try out the earlier bonuses if you haven't already and apply them to this exercise prompt.
 
 ## Break (10 / 75)
 
