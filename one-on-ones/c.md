@@ -2,30 +2,28 @@
 
 One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thursdays.
 
-## Mon Aug 10
+## Wed Sep 2
 
 - Philip
 
-## Wed Aug 12
+
+## Thurs Sept 3
 
 - Matt
 - Cameron
 
-## Thur Aug 13
-
-- Amy
 
 ---
 
-## Mon Aug 17
+## Tues Sept 8
 
 - Stephen
 
-## Wed Aug 19
+## Wed Sept 9
 
 - Kristin
 - Moose
 
-## Thur Aug 20
+## Thur Sept 10
 
 - Erica
