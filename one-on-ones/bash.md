@@ -9,6 +9,7 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 ## Wed Sept 2
 
 - Paul Doulatshahi
+- **Open Appointment Time**
 
 ## Thur Sept 3
 
