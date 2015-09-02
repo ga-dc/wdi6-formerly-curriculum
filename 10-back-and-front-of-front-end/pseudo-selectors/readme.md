@@ -6,25 +6,43 @@
 - Make a page multi-paginated without using Javascript
 - Create custom radio buttons and drop-down menus using CSS
 
+## Artwork in CSS
+
+- http://www.cssplay.co.uk/menu/three_d
+- http://mozilla.seanmartell.com/raindrop/
+- [My personal favorite](http://www.romancortes.com/blog/bush-css/)
+
+#### Why *shouldn't* you make a habit of creating artwork in CSS?
+
+For one thing, there's a strong likelihood your CSS artwork will look terrible in other browsers.
+
+For another thing, it takes a long time.
+
+That said, it's great practice, and it's *fun*.
+
 ## Make CSS proud to be American
 
-Take 10 minutes to do this:
+To begin, I'd like you to "warm up" by using CSS to take an HTML table and make it look like the American flag.
+
+I've provided the table. However, there are no classes or IDs on any of the elements. Nonetheless, your goal is to accomplish this *without* touching the HTML at all -- just the CSS.
+
+You may have never used the CSS involved here before, so as you work on this, think about what you'd need to Google to make this happen. When you successfully Google something, **please write down what you Googled**.
+
+Please work individually:
 
 https://github.com/ga-dc/murican_css
 
-Feel free to work with someone.
+#### What did you Google?
 
-"But Robin, I don't know how!"
+#### What were the results?
 
-Well, what might you Google?
+### Let's look at the solution...
 
-### In retrospect
-
-...you should probably never actually make artwork in CSS. As you saw in the SASS lesson, [people *do*](http://www.bypeople.com/50-impressive-css-drawings/), but it's much more just for kicks than for any practical purpose.
+-----
 
 ## Pseudo-selectors
 
-`:nth-child()` is one. More specifically, it's a pseudo-*class*.
+`:nth-child()` is one. More specifically, it's a pseudo-*class*. They let us do all sorts of things we had to use jQuery to do back in the day.
 
 #### What does "pseudo" mean?
 
@@ -32,53 +50,13 @@ It's Latin (or Greek or something) for "false". `:nth-child()` is a "false class
 
 Pseudo-selectors all start with a colon. So if I wanted to select every `div` that was the 4th child of its parent, I'd write `div:nth-child(4)`.
 
-#### What other pseudo-selectors have you seen?
+### Whee, math!
 
-...augmented by the pseudo-selectors I've seen.
+You can do **very simple math** in these pseudo-selectors. If I wanted to select every third element, I'd write `div:nth-child(3n)`.
 
-##### Pseudo-classes
-- `:hover`
-- `:visited`
-- `:active`
-- `:disabled`
-- `:checked`
-- `:focus`
-- `:target`
-- `:empty`
-- `:not`
+`n` is the number of the current element. So when CSS looks at the first `div`, it multiples `3 * 1`, and actually selects the 3rd div. When CSS looks at the second `div`, it multiplies `3 * 2`, and actually selects the 6th div.
 
-
-- `:first-letter`
-- `:first-line`
-- `:first-of-type`
-- `:last-of-type`
-- `:only-of-type`
-- `:nth-of-type`
-- `:nth-of-last-type`
-- `:first-child`
-- `:last-child`
-- `:only-child`
-- `:nth-child`
-- `:nth-of-last-child`
-
-
-##### pseudo-elements
-- `:after`
-- `:before`
-
-You can treat pseudo-selectors just like any other selector in that you can chain them together:
-
-#### What does this select, in English?
-
-`nav a:nth-of-type(odd):active`
-
-> "Inside every `nav`, select every odd-numbered anchor that is currently being clicked upon."
-
-### You can select any multiples of elements
-
-`tr:nth-of-type(3n+3)`
-
-This will select every 3rd row. How? `n` represents the element's number of its particular type. For example:
+If I wanted to select the first 9 `divs`, I'd use `div:nth-child(-n + 10)`. When the browser looks at the first `div`, it evaluates `-1 + 10`, and selects the 9th div. When it looks at the second `div` it evaluates `-2 + 10` and selects the 8th div.
 
 ```html
 <tr><!-- I'm the 0th of my type. (3 * 0) + 3 is 3, so instead of me being selected, the 3rd <tr> is selected--></tr>
@@ -88,6 +66,71 @@ This will select every 3rd row. How? `n` represents the element's number of its 
 <tr></tr>
 <tr></tr>
 ```
+
+### Odds and evens
+
+You *could* do `:nth-child(2n)`, but you can also just use the words "odd" and "even", as in `:nth-child(odd) and `:nth-child(even)`.
+
+Here's a handy site for demonstrating all this:
+
+https://css-tricks.com/examples/nth-child-tester/
+
+### Getting really crazy
+
+You can treat pseudo-selectors just like any other selector in that you can chain them together:
+
+If I wanted to select all the elements between 10 and 18, I'd use `div:nth-child(n + 9):nth-child(-n + 19)`.
+
+There are probably more interesting things you can select, but my brain starts to hurt after thinking about it after a while.
+
+## CSS Color Box
+
+https://github.com/ga-dc/css_color_box
+
+## Pscavenger Hunt
+
+There are lots of CSS pseudo-selectors, and they're really useful.
+
+Look up each of the selectors below, and write down what it does.
+
+- Group 1
+  - `:hover`
+  - `:visited`
+  - `:active`
+- Group 2
+  - `:disabled`
+  - `:checked`
+  - `:focus`
+- Group 3
+  - `:target`
+  - `:first-letter`
+  - `:first-line`
+- Group 4
+  - `:empty`
+  - `:not`
+- Group 5
+  - `:first-of-type`
+  - `:last-of-type`
+  - `:only-of-type`
+  - `:nth-of-type`
+- Group 6
+  - `:first-child`
+  - `:last-child`
+  - `:only-child`
+  - `:nth-child`
+- Group 7
+  - `:nth-of-last-type`
+  - `:nth-of-last-child`
+- Group 8
+  - `:after`
+  - `:before`
+
+
+#### What does this select, in English?
+
+`nav a:nth-of-type(odd):active`
+
+> "Inside every `nav`, select every odd-numbered anchor that is currently being clicked upon."
 
 ## Forms
 
@@ -198,6 +241,10 @@ The element indicated by the jump-tag is then considered "targeted", meaning we 
 
 *This* means we can do stuff like show only the element that has been targeted, creating the illusion of having separate pages.
 
+Here's an example (the orange flash):
+
+http://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-an-unsorted-array/17782979#17782979
+
 ```html
 <nav>
   <a href="#aboutMe">About me</a>
@@ -237,6 +284,8 @@ With the person at your table, write out *in English* what each of the following
   - What's "wrong" with this selector?
 
 ## Continue working on your portfolio page
+
+Try building a navigation menu, or creating the illusion of there being multiple pages on your one webpage.
 
 If you're certain you don't have more you'd like to add to it, let your instructor know!
 
