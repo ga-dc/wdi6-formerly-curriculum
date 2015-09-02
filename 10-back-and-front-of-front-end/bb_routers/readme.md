@@ -8,11 +8,10 @@
 - utilize `.navigate()` on a backbone router to update the url
 - Give examples of using :params in routes and actions.
 - Recall the order in which routes are matched.
-- Describe trigger as it applies to actions and routes.
+- Describe {trigger: true} as it applies to actions and routes.
 
 adam notes
-- differentiate between states that view controllers create vs the minimal state that the router creates
-- fragmented urls
+
 - anchor links (also talk about trigger here)
 
 ## Opening Framing (5/5)
@@ -29,7 +28,7 @@ Additionally, if I enter that url into another window, assuming i'm in the same 
 ### Doc Dive (8~)
 [Read from Backbone.Router to the `route` subsection ](http://backbonejs.org/#Router)
 
-- Backbone routers are used for routing your applications URL's
+- Backbone routers are used for routing your applications' URLs
 - provides linkable, bookmarkable, shareable URLs for important locations in the app.
 - The routes hash maps URLs with parameters to functions on your router
 
@@ -77,7 +76,7 @@ $(document).ready(function() {
 });
 ```
 
-> We got rid of our collection instantiation and view instantiationsbecause that will be the job of the router. Additionally we created another name space in our global `App` object for `Routers`
+> We got rid of our collection instantiation and view instantiations because that will be the job of the router. Additionally we created another name space in our global `App` object for `Routers`
 
 The next thing we should do is create a file for our router defintion and link it in our `index.html`. In the terminal:
 
@@ -90,7 +89,12 @@ In `index.html`:
 <script src="js/backbone/routers/grumble.js"></script>
 ```
 
-## Define Backbone Router `index` route(I do - 10/45)
+## DeepLinking and Fragmented urls (10/45)
+One purpose of the backbone router is for deep linking. We want to be able to bookmark our webpage such that when a certain url is entered the state of the application reflects the url. Additionally we use fragmented urls to do this. Fragmented urls are at the end of a url and are preceded by a `#`. We use fragmented urls because they can fire off backbone events when they get updated.
+
+> Another thing to note is that when we set up a deep link. The purpose is not neccessarily to completely preserve state. The idea is to get the most important things perserved in state. An example of this that we'll see later is the editing capability. We can open up multiple edit forms for each view. But it would extremely difficult and unweildy to perserve 4 different editform to be open in a certain state. We're able to do it, but sometimes it's just not worth the time.
+
+## Define Backbone Router `index` route(I do - 10/55)
 Let's define our router in `js/backbone/routers/grumble.js`:
 
 ```js
@@ -118,15 +122,16 @@ $(document).ready(function() {
 
 If we open the `index.html` file, we can see `Index route was called`.
 
-## Define a `grumbles/new` route (You do - 10/55)
+## Break (10/65)
+
+## Define a `grumbles/new` route (You do - 10/75)
 - add another key-value pair to the routes object in the router
 - define a call back function `newGrumble` to append the string "New route was called" to the body
 - make sure the call back fires off based on the fragment url `#new`
 - test the route by opening the `index.html` in your browser and adding `#new` to the URL.
 
-## Break (10/65)
 
-## Initialize (15/80)
+## Initialize (15/90)
 So this is all really great, but really it's not doing anything but appending a hard coded string into the DOM. Really what we want to be doing is creating views that reflect the state the DOM based off of the URL.
 
 It just so happens we have some views already defined! That makes life much easier. Although we can't really have a view until we have a collection. In order to get the collection we need to make an ajax `.fetch()` call. The question is, where can we do this?
@@ -154,7 +159,7 @@ One thing to note here is that we haven't made any calls to the database yet. As
 
 (ST-WG) Where should we call `.fetch()` instead?
 
-## The *REAL* `index` (5/85)
+## The *REAL* `index` (5/95)
 
 If you said in our `index` function, you are correct! Let's get rid of the one line of jquery that we hardcoded and replace it with a `fetch()` on our collection.
 
@@ -168,13 +173,13 @@ index: function(){
 
 If we look in our browser and refresh the page we can now see our listView at the index route.
 
-## The *REAL* `new` - you do (20/105)
+## The *REAL* `new` - you do (20/115)
 - change the function definition of `newGrumble` to render the listView as well as the form for a new grumble.
 - test your route by adding `#new` to the end of the url.
 
-## Break (10/115)
+## Break (10/125)
 
-## URL updating (20/135)
+## URL updating (20/145)
 Awesome, we've done some deep linking by setting up some routes. Everything works like it used too, we can even just go directly to the fragmented url `#new` and can see our form automatically renders without hitting the button.
 
 > fragmented url is just the part of the url with the `#`. The optional last part of a URL for a document. Typically used to identify a portion of a document but additionally can trigger events in backbone.
@@ -232,11 +237,11 @@ toggleUrlState: function(state){
 }
 ```
 
-## Url updating - you do (15/150)
-It'll be important going forward that whenever we render our listView that the url gets updated to the root route.
+## Using an anchor tag. (5/150)
 
-- Have your browser url navigate to the root route any time the listView is rendered
+We can actually have an anchor tag that links directly to one of the deep links that we've created. Clicking on this link will actually fire off the call back that the router maps to that url.
 
+> When we use the `.navigate()` function we can also pass in a second argument, an object with the key-value pair of `{trigger: true}`. That is when we navigate to that url it will in addition fire the call back associated with the route. Though this is generally bad practice as this is not the default behavior.
 
 ## Lunch
 
@@ -321,4 +326,14 @@ editGrumble: function(id){
 
 Sick! Now we have deep linking for our edit routes. What's missing?
 
-## You do- Grumble show route ()
+- In your JS, update the urls to reflect the state change in the DOM
+- test your routes in the browser and see if the url updates when you click the edit grumble button
+
+## You do- Grumble show route (remainder of class)
+- Your job is to create a show route for individual grumbles.
+- The idea is to have the routes `/grumbles/:id` map to view that shows 1 grumble and its comments.
+- make sure this route is deep linked
+
+### Bonus
+- add a button to the the grumble view that allows a user to switch from the index view(all grumbles) to the show view of that grumble.
+- When the button in the grumble view is clicked on the index view, it transitions that grumble view into the show view. And vice versa.
