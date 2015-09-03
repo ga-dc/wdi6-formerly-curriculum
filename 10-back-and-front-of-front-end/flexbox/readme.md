@@ -12,7 +12,7 @@
 
 I have a div. I would like to center it vertically and horizontally on my page.
 
-#### What should I try?
+#### You tell me: What should I try?
 
 Here's some starter code:
 
@@ -80,7 +80,7 @@ Lastly, you can also do nice things like control how you want things to line up 
 
 I want my footer to lie along the bottom of my page.
 
-#### What should I try?
+#### You tell me: What should I try?
 
 Starter code:
 
