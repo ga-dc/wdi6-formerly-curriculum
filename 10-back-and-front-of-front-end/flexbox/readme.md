@@ -10,9 +10,11 @@
 
 ## Problem 1: Vertical alignment
 
-I have a div. I would like to center it on my page.
+I have a div. I would like to center it vertically and horizontally on my page.
 
 #### What should I try?
+
+Here's some starter code:
 
 ```html
 <body>
@@ -64,23 +66,23 @@ div{
 
 When you declare `display:flex` on a container, it becomes a **flex container**.
 
-You use `flex-direction` to indicate whether you want the items in the container -- the **flex items** -- to "read" left-to-right (`row`), right-to-left (`row-reverse`), top-to-bottom (`column`), **or** bottom-to-top (`column-reverse`).
+First, you use `flex-direction` to indicate whether you want the items in the container -- the **flex items** -- to "read" left-to-right (`row`), right-to-left (`row-reverse`), top-to-bottom (`column`), **or** bottom-to-top (`column-reverse`).
 
 When you specify a flex-direction, you can think of it as placing an axis in that direction across your flex container. So if you use `flex-direction:row` or `row-reverse`, this **main axis** will be the same as the X-axis (horizontal) on a graph. Otherwise, it'll be the Y-axis.
 
-Flex box lets you determine how you want to align or **justify** the items along this main axis using the `justify-content` property. It'll do nice things for you like let you put even spacing between all the items (`spacing-between` and `spacing-around`).
+Then, you determine how you want to align or **justify** the items along this main axis using the `justify-content` property. It'll do nice things for you like let you put even spacing between all the items (`spacing-between` and `spacing-around`).
 
-You can also control how you align the items along the axis that goes across the main axis -- the **cross axis**, if you will. If you have `flex-direction:row`, the main axis is the X-axis, and the cross-axis is the Y-axis.
+Finally, you control how you align the items along the axis that goes across the main axis -- the **cross axis**, if you will -- with the `align-items` property. If you have `flex-direction:row`, the main axis is the X-axis, and the cross-axis is the Y-axis.
 
-You control the cross-axis alignment using the `align-items` property.
-
-You can also do nice things like control how you want things to line up across the cross-axis by using `align-content`, such as `space-between` and `space-around`.
+Lastly, you can also do nice things like control how you want things to line up across the cross-axis by using `align-content`, such as `space-between` and `space-around`.
 
 ## Problem 2: Make the footer stick
 
 I want my footer to lie along the bottom of my page.
 
 #### What should I try?
+
+Starter code:
 
 ```html
 <body>
@@ -105,6 +107,8 @@ footer{
   background-color:#888;
 }
 ```
+
+Making the footer lie against the bottom of my *screen* is pretty easy: I can just use absolute or fixed positioning. However, using absolute or fixed positioning means everything else on the page ignores my footer. The text of my `main` could easily run under my footer. I want the text of my `main` to "push" my footer to the end of the page.
 
 ### Flex-box to the rescue
 
