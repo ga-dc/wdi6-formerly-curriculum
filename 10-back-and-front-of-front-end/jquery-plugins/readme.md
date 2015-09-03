@@ -2,74 +2,137 @@
 
 ## Learning Objectives
 
+- Define what a jQuery plugin is
+- Describe where to find existing jQuery Plugins (and how to install them)
 - Research and utilize a published jQuery Plugin
-- Describe basic anatomy of a jQuery Plugin
-- Create your own jQuery Plugin
-
+- Describe the basic structure of a jQuery Plugin
+- Write your own jQuery Plugin
+- Utilize an Immediately Invoked Function Expression (IIFE) to locally scope jQuery
 
 
 ## Framing
 
-This is the last week of instruction.  We are moving farther toward a guided learning experience.
+What are jQuery Plugins?
+
+Officially, plugins are "simply a new method that we use to extend jQuery's prototype object."  In practice, they enable to us to extend jQuery's functionality, from adding simple methods to jQuery objects (think `$()`) to the [jQuery UI plugin](http://jqueryui.com) that is maintained by the jQuery team.
+
+> jQuery UI is a curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library. Whether you're building highly interactive web applications or you just need to add a date picker to a form control, jQuery UI is the perfect choice.
+
+So you can see, they can be simple or rather complex.
+
 
 ## Utilizing a published plugin
 
-(TPS: 4/2/5) What are the 2 common steps for utilizing a plugin?
+Let's familiarize ourselves with jQuery plugins by investigating a couple.  How do we use them?
 
-Review these 2 plugins:
+### Research existing plugins (T/P/S:7/3/5; 15 min)
 - [isotope.metafizzy.co](http://isotope.metafizzy.co)
 - [packery.metafizzy.co](http://packery.metafizzy.co)
 
+Q. What are the 2 common steps for utilizing a plugin?
+---
 
-
-## 2 Steps
-
+> A. 2 Steps for utilizing
 - include/install
 - initialize/configure/customize
 
-## How many ways to install/include it?
-
-### Group work (Install via/Initialize via)
-
-1. Download, jQuery
-2. CDN, jQuery
-3. Node, Vanilla JS
-4. Rails, HTML
 
 ## Basic anatomy of a jQuery Plugin?
-- (research: 5 min) Review some plugins at https://plugins.jquery.com
+
+What else can we expect from jQuery plugins?  How do we use them?
+
+### Group work: (10/10: 20 min)
+
+Start in https://learn.jquery.com/plugins/
+Review some random plugins:
 - look for commonality
 - look for patterns
 - look for convention
 
+Break into groups.  When we get back together, we will be answering these questions, together.
+
+Questions:
+1. Where do we find jQuery Plugins?
+2. What is the basic anatomy of a jQuery Plugin?
+3. What do we add to our app to utilize them?
+4. Name some ways to install/initialize a jQuery plugin.
+
+---
 
 
-Surprise. Plugins have moved to:
+> Answers:
 
-https://www.npmjs.com/browse/keyword/jquery-plugin
+1. Where?
+  Surprise. Plugins have moved to: https://www.npmjs.com/browse/keyword/jquery-plugin
 
-## Basic anatomy of a jQuery Plugin
+2. Basic Anatomy?
+  Initialize with:
+  - a single function
+  - pass options
 
-- a single function
-- with options
+  Some have supporting functions
 
-## Basic anatomy of a jQuery Plugin
+3. What do we add?
+  - Include vendor's javascript file
+  - [maybe] add provided css
+  - update our css using documented classes
+  - initialize with jQuery, js, or (sometimes) html
 
-Initialize with:
-- a single function
-- with options
+4. How to install?
+  - Download, jQuery
+  - CDN, jQuery
+  - Node, Vanilla JS
+  - Rails, HTML
 
-Some have supporting functions
 
-## Your Own Plugin - Tutorial
+### Pair up: Use it (15 min)
 
+- Pick a plugin.
+- Pick one installation method and attempt to install & utilize.  
+- After 7 minutes, install using the next method.
+
+Q. Which do you prefer?  Why?
+---
+
+Q. What was common to both?
+---
+
+
+## Your Own Plugin - Tutorial (30 min)
+
+??? TODO
 w11/d02_diy_plugin/
 
-## Your Own Plugin
+## Break (10 min)
 
+## What's an IIFE? (20 min)
+
+An Immediately Invoked Function Expression (IIFE), is exactly what it sounds like... a function that is invoked immediately.
+
+```js
+(function(){
+  // add some code here,
+  //   including other functions.
+
+})() // and then invoke it immediately
+```
+
+See those trailing parens?  We define an anonymous function and immediately invoke it.
+
+Q. Why would we do that?
+---
+
+
+Not sure?  Read [I love my IIFE](http://gregfranko.com/blog/i-love-my-iife/)
+
+---
+
+> A.
+- to locally scope jQuery.  
+- To use the $ without fear of corruption from another library.
+
+
+## Your Own Plugin (60 min)
+
+??? TODO
 w11/d03_gif_of_the_day/
-
-## Screencasts
-
-- 1 of 2: https://youtu.be/RamVN6mwlkQ
-- 2 of 2: https://youtu.be/i41txYNeN2Y
