@@ -16,7 +16,6 @@ a single page application that persists data.
 
 Please break up into groups of 4 or 5, and tackle one of the following prompts:
 
-- [Blackjack](https://github.com/ga-dc/pbj-project1#blackjack)
 - [Concentration](https://github.com/ga-dc/pbj-project1#concentration)
 - [Trivia](https://github.com/ga-dc/pbj-project1#self-scoring-trivia)
 - [Flash Cards](https://github.com/ga-dc/pbj-project1#flash-cards)
