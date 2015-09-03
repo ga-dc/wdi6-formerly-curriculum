@@ -4,7 +4,6 @@ Over the past week, you and your classmates have learned a ton about:
 
 - Backbone
   - Models, Views, and Collections
-  - Marionette
 - Sass
 - Flexbox
 - Map APIs
