@@ -156,6 +156,8 @@ https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties
 
 http://philipwalton.github.io/solved-by-flexbox/
 
+http://bennettfeely.com/flexplorer/
+
 #### What were your definitions?
 
 ### Recap
@@ -188,6 +190,10 @@ body{
   }
 }
 ```
+
+## Exorcize
+
+https://github.com/ga-dc/hyrule_potion_shop
 
 ### ...and that's it.
 
