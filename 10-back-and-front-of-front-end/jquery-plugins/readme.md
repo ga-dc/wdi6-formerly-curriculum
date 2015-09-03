@@ -91,6 +91,8 @@ Questions:
 - Pick one installation method and attempt to install & utilize.  
 - After 7 minutes, install using the next method.
 
+You've only got 7 minutes, so focus on installation and easy demo.
+
 Q. Which do you prefer?  Why?
 ---
 
@@ -100,8 +102,7 @@ Q. What was common to both?
 
 ## Your Own Plugin - Tutorial (30 min)
 
-??? TODO
-w11/d02_diy_plugin/
+https://github.com/ga-dc/diy_plugin
 
 ## Break (10 min)
 
@@ -119,12 +120,11 @@ An Immediately Invoked Function Expression (IIFE), is exactly what it sounds lik
 
 See those trailing parens?  We define an anonymous function and immediately invoke it.
 
-Q. Why would we do that?
----
+Why would we do that?  Read
+- [jQuery Best Practices](http://gregfranko.com/blog/jquery-best-practices/)
+- [I love my IIFE](http://gregfranko.com/blog/i-love-my-iife/)
 
-
-Not sure?  Read [I love my IIFE](http://gregfranko.com/blog/i-love-my-iife/)
-
+Q. Why do we use an IIFE?
 ---
 
 > A.
@@ -132,7 +132,13 @@ Not sure?  Read [I love my IIFE](http://gregfranko.com/blog/i-love-my-iife/)
 - To use the $ without fear of corruption from another library.
 
 
-## Your Own Plugin (60 min)
+## Your Own Plugin: GIF of the Day (60 min)
 
-??? TODO
-w11/d03_gif_of_the_day/
+https://github.com/ga-dc/gif_of_the_day
+
+## Conclusion
+
+- Where do we find jQuery Plugins?
+- What are the 2 steps for utilizing a jQuery Plugin?
+- What is the basic anatomy of a jQuery plugin?
+- Why doe we love IIFEs?
