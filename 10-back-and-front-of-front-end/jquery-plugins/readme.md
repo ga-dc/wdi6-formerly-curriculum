@@ -20,6 +20,18 @@ Officially, plugins are "simply a new method that we use to extend jQuery's prot
 
 So you can see, they can be simple or rather complex.
 
+But, you may be asking yourselves, "Why Matt?, Why do we care?" <pause>
+
+You tell me.  Check out these demos.
+
+- [isotope](http://codepen.io/desandro/full/nFrte)
+- [tablesorter]http://tablesorter.com/docs/#Demo
+
+Q. Why do we care?
+---
+
+> A. Encapsulation of really cool functionality, so we can reuse and share.
+
 
 ## Utilizing a published plugin
 
@@ -28,6 +40,7 @@ Let's familiarize ourselves with jQuery plugins by investigating a couple.  How 
 ### Research existing plugins (T/P/S:7/3/5; 15 min)
 - [isotope.metafizzy.co](http://isotope.metafizzy.co)
 - [packery.metafizzy.co](http://packery.metafizzy.co)
+- [tablesorter]http://tablesorter.com/docs/#Introduction
 
 Q. What are the 2 common steps for utilizing a plugin?
 ---
@@ -136,9 +149,31 @@ Q. Why do we use an IIFE?
 
 https://github.com/ga-dc/gif_of_the_day
 
+## Don't break the chain!
+
+jQuery functions, by convention, are chainable.  We should remember to return the jQuery object so other methods can be chained.
+
+```js
+// allow jQuery chaining
+return this;
+```
+
+Chaining example:
+```js
+$("#welcome").text("Hello, world!").css("color", "blue");
+```
+
+
 ## Conclusion
 
 - Where do we find jQuery Plugins?
 - What are the 2 steps for utilizing a jQuery Plugin?
 - What is the basic anatomy of a jQuery plugin?
 - Why doe we love IIFEs?
+
+
+## Additional Resources
+
+- http://www.sitepoint.com/how-to-develop-a-jquery-plugin/
+- http://blog.npmjs.org/post/111475741445/publishing-your-jquery-plugin-to-npm-the-quick
+- http://www.jquery-tutorial.net/introduction/method-chaining/
