@@ -144,6 +144,10 @@ Q. Why do we use an IIFE?
 - to locally scope jQuery.  
 - To use the $ without fear of corruption from another library.
 
+### Common mistake
+
+If you forget to wrap your IIFE in parens, you will get `SyntaxError: Function statements must have a name.`
+
 
 ## Your Own Plugin: GIF of the Day (60 min)
 
