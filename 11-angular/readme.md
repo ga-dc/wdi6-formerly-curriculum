@@ -2,17 +2,18 @@
 ## Angular Intro, Controllers, and Directives
 - Describe the benefits of using a front end framework
 - Explain how libraries differ from frameworks.
-- Compare MV* paradigm with traditional MVC
+- Compare MVVM paradigm with traditional MVC
 - Build an angular controller with hard coded data.
-- Render controller data in the view
-- bind data with a controller variable
-- explain the difference and similarities between $scope and controllerAs (should we talk about this? seems conflatey)
-- explain what angular directives do and how they are leveraged to execute JS
+- Render controller data in the view using angular expressions
+- explain why controllerAs is preferred over `$scope`
+- explain what angular directives are and do
+- contrast angular directives and javascript event listeners
 - use ng-repeat to iterate over data
 - use ng-if & ng-hide/ng-show to hide and show elements
-- use ng-submit to create hard coded objects on the client
-- use ng-click to execute JS functionality from your controller
+- use `ng-submit`/`ng-click` to run controller functions when a form is submitted or a button is clicked
 - explain how angular utilizes `ng-model` to leverage 2-way data binding in fluid user experience
+- explain 2 way databinding
+- explain how angular utilizes `ng-model` to execute 2-way databinding
 
 ## Custom Directives
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
