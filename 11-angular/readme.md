@@ -2,7 +2,8 @@
 ## Angular Intro, Controllers, and Directives
 - Describe the benefits of using a front end framework
 - Explain how libraries differ from frameworks.
-- Build a controller with hard coded data.
+- Compare MV* paradigm with traditional MVC
+- Build an angular controller with hard coded data.
 - Render controller data in the view
 - bind data with a controller variable
 - explain the difference and similarities between $scope and controllerAs (should we talk about this? seems conflatey)
@@ -10,6 +11,8 @@
 - use ng-repeat to iterate over data
 - use ng-if & ng-hide/ng-show to hide and show elements
 - use ng-submit to create hard coded objects on the client
+- use ng-click to execute JS functionality from your controller
+- explain how angular utilizes `ng-model` to leverage 2-way data binding in fluid user experience
 
 ## Custom Directives
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
@@ -18,7 +21,7 @@
 - Explain what the acronym "EACM" stands for
 
 ## Angularfire
-- Create a diagram of the Websockets model 
+- Create a diagram of the Websockets model
 - Create and configure a Firebase back-end
 - Create a Javascript that communicates with a Firebase back-end
 - Explain the difference between HTTP and Websockets, and provide an advantage and disadvantage of each
