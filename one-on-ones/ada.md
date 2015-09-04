@@ -12,12 +12,13 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 - Walter Augustine (4:30pm)
 - Erik Anderson (5:00pm)
 
-## Mon Sep 7
-
-- Silvia Brown (4:30pm)
-- Jared Arkin (5:00pm)
-
 ## Wed Sep 9
 
 - Erica Andersen  (4:30pm)
 - Robert Benjamin (5:00pm)
+- Walter Augustine (5:30pm)
+
+## Thurs Sep 7
+
+- Silvia Brown (4:30pm)
+- Jared Arkin (5:00pm)
