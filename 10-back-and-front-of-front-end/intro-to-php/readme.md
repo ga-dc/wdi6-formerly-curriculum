@@ -282,7 +282,9 @@ Let's do something useful...
 First, download Composer:
 
 ```sh
-curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+exec bash -l
 ```
 
 Then, set up a `composer.json` that requires a PHP library called PHPMailer:
@@ -294,12 +296,12 @@ composer require phpmailer/phpmailer
 ```PHP
 <?php
 
-$host     = "ssl://smtp.gmail.com";
-$port     = 587;
-$username = "robertgfthomas@gmail.com";
-$password = "my password would go here";
-$realname = "Robin Thomas";
-$recipient= "robin.thomas@ga.co";
+$host     = "secure139.inmotionhosting.com";
+$port     = 465;
+$username = "wdi@robertgfthomas.com";
+$password = "some password";
+$realname = "WDI Student";
+$recipient= "robertgfthomas@gmail.com";
 
 $subject  = "I'm sending an e-mail with PHPMailer!";
 $body     = "Isn't that neat?\n\nSincerely,\n\nMe";
@@ -310,7 +312,7 @@ $mail = new PHPMailer();
 $mail->isSMTP();
 $mail->SMTPDebug = 4;
 $mail->SMTPAuth = true;
-$mail->SMTPSecure = "tls";
+$mail->SMTPSecure = "ssl";
 
 $mail->Host = $host;
 $mail->Port = $port;    
@@ -335,15 +337,3 @@ if($mail->send()){
 
 ?>
 ```
-
-## Afterthoughts
-
-Oops. Installing PHP is tricky. Shouldn't just use built-in Apache. Download XAMPP:
-
-https://www.apachefriends.org
-
-```
-cd /Applications/XAMPP/xamppfiles/htdocs
-```
-
-Set permissions for `htdocs` folder.
