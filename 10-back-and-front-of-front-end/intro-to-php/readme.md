@@ -67,6 +67,16 @@ There are several reasons to like PHP:
 
 Now we can easily see all of the information we're getting from the server, as well as all of the GET and POST parameters, cookies, etc.
 
+### I use PHP...
+
+...for rapid prototyping. When I want to make a quick script in a hurry, PHP is my go-to.
+
+For example, my `index.php` is extremely useful to me. I use it to navigate around all my various repos and code projects.
+
+The Apache that serves my `index.php` is actually public. If you go to my IP address, you'll be on my computer.
+
+I didn't realize until I'd been doing this for a while that anyone with my IP address could potentially read every single file on my computer. I changed that in a hurry!
+
 ## Install PHP
 
 Download XAMPP:
@@ -112,7 +122,7 @@ echo quiznosToaster($sandwich);
 
 Then, go to `localhost/hello.php`.
 
-## Try writing FizzBuzz in PHP
+### Try writing FizzBuzz in PHP
 
 Remember the rules:
 
@@ -133,56 +143,197 @@ for($x = 1; $x <= 100; $x++){
   }else{
     echo $x;
   }
-  echo PHP_EOL;
+  echo "\n";
 }
 
 ?>
 ```
 
-## You Do (5 min): Make PHP output Fizzbuzz to a file
+### Make the output go into a file
 
-## GET and POST in PHP
-
-- Look at `$_SERVER`. What does it give you?
-- Add in a GET parameter
-- Make a POST request with Postman
-
-## You Do (10 min): Make an HTML form that POSTs to Fizzbuzz
-
-PHP should output the contents to a file AND return a success message in JSON.
-
-## PHP Gems
-
-It doesn't really have any. You just download a library and put it in your root folder.
-
-Download PHPmailer: https://github.com/PHPMailer/PHPMailer
-
-## Make the form!
-
+Hint:
+```PHP
+file_put_contents($filename, $content, FILE_APPEND);
 ```
-require "PHPMailerAutoload.php";
-$mail = new PHPMailer;    
+
+Without FILE_APPEND, it just overwrites the file with that filename.
+
+```PHP
+<?php
+
+for($x = 1; $x <= 100; $x++){
+  if($x % 15 == 0){
+    $output = "Fizz";
+  }else if($x % 3 == 0){
+    $output = "Buzz";
+  }else if($x % 5 == 0){
+    $output = "FizzBuzz";
+  }else{
+    $output = $x;
+  }
+  file_put_contents("output.txt", $output . "\n", FILE_APPEND);
+}
+
+?>
+```
+
+### Instead of 100, GET the number
+
+Hint: GET parameters come from the URL. If your URL is `foo.php?myname=john`, it creates a GET parameter called `myname` with the value of `john`.
+
+Hint 2: All the GET parameters are in an array called `$_GET`. You retrieve values from an array just like you would in Javascript.
+
+```PHP
+<?php
+
+for($x = 1; $x <= $_GET["number"]; $x++){
+  if($x % 15 == 0){
+    $output = "Fizz";
+  }else if($x % 3 == 0){
+    $output = "Buzz";
+  }else if($x % 5 == 0){
+    $output = "FizzBuzz";
+  }else{
+    $output = $x;
+  }
+  file_put_contents("output.txt", $output . "\n", FILE_APPEND);
+}
+
+?>
+```
+
+### Grand finale
+
+Starting with the first goal, and seeing how many you can get, make a script that:
+- Responds to a POST request with a sequence of FizzBuzzes for 1-100
+- Instead of 100, FizzBuzzes using a number from a POST parameter
+- Gets a name from a POST parameter
+- Saves the name and number as a valid JSON string in a `.json` file
+- **Adds** the name and number **to** a valid JSON string in a `.json` file
+- Rejects the request if the name parameter is not a string and the number parameter is not a number
+
+So the output would look something like:
+```JSON
+{
+    "steve": [
+        100,
+        23,
+        25
+    ],
+    "joe": [
+        9
+    ],
+    "margaret": [
+        78,
+        2
+    ]
+}
+```
+
+Hint:
+- `$array = json_decode($json, true)`
+- `$json = json_encode($array)`
+
+```PHP
+<?php
+
+$number = $_POST["number"];
+$name = $_POST["name"];
+
+$filename = "output.json";
+$requests = json_decode(file_get_contents($filename), true);
+$requests[$name][] = $number;
+file_put_contents($filename, json_encode($requests));
+
+for($x = 1; $x <= $number; $x++){
+  if($x % 15 == 0){
+    $output = "Fizz";
+  }else if($x % 3 == 0){
+    $output = "Buzz";
+  }else if($x % 5 == 0){
+    $output = "FizzBuzz";
+  }else{
+    $output = $x;
+  }
+  echo($output . "\n");
+}
+
+?>
+```
+
+## Congrats! You now know how to:
+
+- Write functions
+- Define variables
+- Save to a file
+- Read a file
+- Loop
+- Turn JSON into an array / object, and vice-versa
+- Respond to HTTP requests
+
+If I put this script online right now, it would work fine!
+
+-----
+
+Let's do something useful...
+
+## Make a "contact me" form
+
+First, download Composer:
+
+```sh
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+```
+
+Then, set up a `composer.json` that requires a PHP library called PHPMailer:
+```sh
+composer init
+composer require phpmailer/phpmailer
+```
+
+```PHP
+<?php
+
+$host     = "ssl://smtp.gmail.com";
+$port     = 587;
+$username = "robertgfthomas@gmail.com";
+$password = "my password would go here";
+$realname = "Robin Thomas";
+$recipient= "robin.thomas@ga.co";
+
+$subject  = "I'm sending an e-mail with PHPMailer!";
+$body     = "Isn't that neat?\n\nSincerely,\n\nMe";
+
+require __DIR__ . "/vendor/autoload.php";
+
+$mail = new PHPMailer();
 $mail->isSMTP();
-$mail->Host = "something.website.come";
+$mail->SMTPDebug = 4;
 $mail->SMTPAuth = true;
-$mail->Username = "hello@robertakarobin.com";
-$mail->Password = $_password;
-$mail->SMTPSecure = 'ssl';
-$mail->Port = 465;    
-$mail->SetFrom($emailMe, $fromName);
-$mail->AddReplyTo($emailMe, $fromName);
-$mail->AddAddress($emailThem);
-$mail->AddCC($emailMe);
+$mail->SMTPSecure = "tls";
+
+$mail->Host = $host;
+$mail->Port = $port;    
+$mail->Username = $username;
+$mail->Password = $password;
+
+$mail->setFrom($username, $realname);
+$mail->addReplyTo($username, $realname);
+$mail->addAddress($recipient);
+$mail->addCC($username);
+
 $mail->WordWrap = 5000;
 $mail->isHTML(false);
 $mail->ContentType = "text/plain";
 $mail->Subject = $subject;
 $mail->Body = $body;
 if($mail->send()){
-  echo(json_encode(array("success" => true, "message" => "yay")));
+  echo("It worked!");
 }else{
-  echo(json_encode(array("success" => false, "message" => "boo")));
+  echo("Sad panda. " . $mail->ErrorInfo);
 }
+
+?>
 ```
 
 ## Afterthoughts
