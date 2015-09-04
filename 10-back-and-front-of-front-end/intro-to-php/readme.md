@@ -205,7 +205,6 @@ for($x = 1; $x <= $_GET["number"]; $x++){
 ### Grand finale
 
 Starting with the first goal, and seeing how many you can get, make a script that:
-- Responds to a POST request with a sequence of FizzBuzzes for 1-100
 - Instead of 100, FizzBuzzes using a number from a POST parameter
 - Gets a name from a POST parameter
 - Saves the name and number as a valid JSON string in a `.json` file
@@ -293,6 +292,8 @@ composer init
 composer require phpmailer/phpmailer
 ```
 
+Then, copy and paste the code below, use the password I provided in class, and watch in despair as this proceeds to not work for god-knows-what reason.
+
 ```PHP
 <?php
 
@@ -335,5 +336,30 @@ if($mail->send()){
   echo("Sad panda. " . $mail->ErrorInfo);
 }
 
+?>
+```
+
+## API requests
+
+Taken from [my old job at Coinbase](http://coinbase.robertgfthomas.com/docs.html).
+
+```PHP
+<?php
+  $ch = curl_init();
+  curl_setopt_array($ch, array(
+    CURLOPT_URL => "https://coinbase.com/api/v1/buttons",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => array(
+      "CONTENT_TYPE: application/json",
+      "ACCESS_KEY: DNxNFjHpqY4ZPohj",
+      "ACCESS_NONCE: 1407535265561757",
+      "ACCESS_SIGNATURE: " . hash_hmac("sha256", '1407535265561757https://coinbase.com/api/v1/buttons{"button":{"name":"test","price_string":1.23,"price_currency_iso":"USD"}}', "sYrtSUDqVOU7Wj05pTOKJ3GKv6BRt6iZ")
+    ),
+    CURLOPT_POSTFIELDS => '{"button":{"name":"test","price_string":1.23,"price_currency_iso":"USD"}}',
+    CURLOPT_POST => true
+  ));
+  $results = curl_exec($ch);
+  curl_close($ch);
+  echo $results
 ?>
 ```
