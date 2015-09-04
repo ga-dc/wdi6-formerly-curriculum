@@ -32,7 +32,7 @@
 ## Custom Directives
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
 - Explain the purpose of each of the four directive options
-- Use a custom directive to render an array of objects source from JSON
+- Use a custom directive to render an array of objects
 - Explain what the acronym "EACM" stands for
 
 ## Angularfire
