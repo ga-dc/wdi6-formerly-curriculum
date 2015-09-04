@@ -13,7 +13,12 @@ Over the past week, you and your classmates have learned a ton about:
 Given your new front-end expertise, we'd like you to revisit Project 1, and build
 a single page application that persists data.
 
-Please break up into groups of 4 or 5, and tackle one of the following prompts:
+**Please Note**, this is your chance to get more practice with the topics
+we covered this week. We are **not** expecting a finished product. Please take
+this opportunity to experiment with the material and learn from classmates
+in the other track.
+
+Please break up into groups of 4 or 5 (2 or 3 from each track), and tackle one of the following prompts:
 
 - [Concentration](https://github.com/ga-dc/pbj-project1#concentration)
 - [Trivia](https://github.com/ga-dc/pbj-project1#self-scoring-trivia)
