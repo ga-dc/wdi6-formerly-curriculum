@@ -31,9 +31,8 @@
 
 ## Custom Directives
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
-- Explain the purpose of each of the four directive options
+- Explain the purpose of each of the four directive options, and the four options for the "restrict" directive, E, A, C, M
 - Use a custom directive to render an array of objects
-- Explain what the acronym "EACM" stands for
 
 ## Angularfire
 - Create a diagram of the Websockets model
