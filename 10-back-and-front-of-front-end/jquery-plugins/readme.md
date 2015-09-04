@@ -181,3 +181,7 @@ $("#welcome").text("Hello, world!").css("color", "blue");
 - http://www.sitepoint.com/how-to-develop-a-jquery-plugin/
 - http://blog.npmjs.org/post/111475741445/publishing-your-jquery-plugin-to-npm-the-quick
 - http://www.jquery-tutorial.net/introduction/method-chaining/
+
+## Screencasts
+
+- http://youtu.be/N0iM6DznupQ
