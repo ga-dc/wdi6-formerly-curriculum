@@ -1,4 +1,4 @@
-# Learning Objectives - Week 11 Agular!
+# Learning Objectives - Week 11 - Christina Angulara!
 ## Angular Intro, Controllers, and Directives
 - Describe the benefits of using a front end framework
 - Explain how libraries differ from frameworks.
