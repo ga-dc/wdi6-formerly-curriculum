@@ -337,15 +337,3 @@ if($mail->send()){
 
 ?>
 ```
-
-## Afterthoughts
-
-Oops. Installing PHP is tricky. Shouldn't just use built-in Apache. Download XAMPP:
-
-https://www.apachefriends.org
-
-```
-cd /Applications/XAMPP/xamppfiles/htdocs
-```
-
-Set permissions for `htdocs` folder.
