@@ -40,3 +40,4 @@
 - Create a Javascript that communicates with a Firebase back-end
 - Explain the difference between HTTP and Websockets, and provide an advantage and disadvantage of each
 - Use a custom directive to render an array of objects sourced from Firebase
+- Explain what Angularfire is and how it differs from Firebase
