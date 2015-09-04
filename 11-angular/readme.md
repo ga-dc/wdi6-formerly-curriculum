@@ -14,6 +14,10 @@
 ## Templating, Routing, and Services
 
 - Explain what dependency injection is and what problem it solves
+- Explain the purpose of the $routeProvider in Angular
+- Explain the purpose of templates in Angular
+- Explain the purpose of services in Angular
+- Compare/contrast the components of angular to OOJS / Backbone.js
 - Use $routeProvider and $location to access query parameters and update the URL
 - Use the ng-view directive to load angular templates
 - Define multiple controllers in a single module
