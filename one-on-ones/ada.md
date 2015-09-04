@@ -9,7 +9,6 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 
 ## Thurs Sep 3
 
-- Walter Augustine (4:30pm)
 - Erik Anderson (5:00pm)
 
 ## Wed Sep 9
