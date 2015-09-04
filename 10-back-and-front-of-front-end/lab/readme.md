@@ -19,6 +19,12 @@ Please break up into groups of 4 or 5, and tackle one of the following prompts:
 - [Trivia](https://github.com/ga-dc/pbj-project1#self-scoring-trivia)
 - [Flash Cards](https://github.com/ga-dc/pbj-project1#flash-cards)
 
+**Feeling adventurous?**
+
+- [Super Tic Tac Toe](http://bejofo.net/images/uttt.gif)
+- [Connect 4](http://www.knowledgeadventure.com/games/connect-four/)
+
+
 ## Requirements
 
 Your application must persist data. You are welcome to use either Rails or Express
