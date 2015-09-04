@@ -1,5 +1,9 @@
 # Flex Box
 
+Screencasts
+- [Part 1](http://youtu.be/wBlBTO7mqoI)
+- [Part 2](http://youtu.be/_I58MXDnBEs)
+
 ## Objective Learnings
 - Give an example of a problem solved by Flex Box
 - Given a desktop-first webpage, make it look presentable on mobile devices (and vice-versa) with as little CSS as possible
