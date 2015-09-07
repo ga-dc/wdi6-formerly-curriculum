@@ -5,9 +5,9 @@
 - Render controller data in the view
 - bind data with a controller variable
 - explain what angular directives do and how they are leveraged to execute JS
-- Use ng-repeat to iterate over data
-- use ng-if & ng-hide/ng-show to hide and show elements
-- use ng-submit to create hard coded objects on the client
+- Use `ng-repeat` to iterate over data
+- use `ng-hide`/`ng-show` to hide and show elements
+- use `ng-submit` to create hard coded objects on the client
 
 ## highlevel overview of FEFW
 ## Opening Framing (5/5)
