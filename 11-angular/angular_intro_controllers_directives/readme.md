@@ -63,7 +63,7 @@ T&T - Some points to think about (5)
 - uses HTML as your template language and lets you extend HTML's syntax to express your application's functionality
 - allows you to utilize html attributes to add behavior through JS. (directives)
 - changes are reflected in various areas and persisted immediately without page refresh
-- it's weird, there'll be a lot of logic in the dom.
+- it's interesting, there'll be a lot of logic in the dom.
 
 ## Setup (5/40)
 Let's set up an angular environment
@@ -81,8 +81,8 @@ $ touch js/app.js
 Bower Installation:
 ```bash
 $ npm install -g bower
-$ bower install jquery
-$ bower install angular
+$ bower install --save jquery
+$ bower install --save angular
 ```
 
 > installing bower globally so that we can add this dependency to our system
@@ -115,7 +115,7 @@ We're going to add an immediately invoked function expression to instantiate our
 })()
 ```
 
-> the first argument is the name of the angular module. The second argument is an array of modules on which the current module will depend on. This is an immediately invoked function expression.
+> the first argument is the name of the angular module. The second argument is an array of modules on which the current module will depend on. This is an immediately invoked function expression. We immediately invoke in order to start the angular application
 
 ## Directives (5/50)
 Directives are markers on a DOM element that tell AngularJS's HTML compiler to attach a specified behavior to that DOM element (e.g. via event listeners).
@@ -145,7 +145,7 @@ Because we defined our ng-app we are able to use `{{}}` much in the same way we 
 
 ## Break (10/70)
 ## Angular controllers (10/80)
-It's not really enough just to basic JS expressions, that just like hardcoding values into the DOM. We're never really going to do this, but we will be using expressions to access objects. We can do this sort of behavior with controllers. Let's create the controller file `$ touch js/controllers/todos.js` and add the following code:
+It's not really enough just to use basic JS expressions, that just like hardcoding values into the DOM. We're never really going to do this, but we will be using expressions to access objects. We can do this sort of behavior with controllers. Let's create the controller file `$ touch js/controllers/todos.js` and add the following code:
 
 ```js
 var app = angular.module("todo")
@@ -160,6 +160,12 @@ app.controller("todoController", function(){
 ```
 
 > We've instantiated a controller on our main app. This is where all the logic will be contained. We'll be learning later this week how to fetch data from an external API, that behavior will belong in the controller. For now, we've hardcoded 4 strings as a property for the controller acting as our API fetch for our model. Our model is a todo string
+
+Additionally we need to add this controller as a dependency to our `index.html`:
+
+```html
+<script src="js/controllers/todos.js"></script>
+```
 
 ### Setup & add controller and seed data in controller - you do - grumblr (20/100)
 - Set up the `grumblr` application as an angular application.
@@ -271,7 +277,7 @@ In the past with OOJS or Backbone we generated a whole bunch of html through JS 
 </div>
 ```
 
-> All we've done here, is print each todo with it coresponding index value.
+> All we've done here, is print each todo with it coresponding index value. It is important to note that `$index` is the index value for each iteration of the `ng-repeat`
 
 Let's also add the form that we'll be using to edit each corresponding grumble. In `index.html`:
 
@@ -333,6 +339,8 @@ this.create = function(){
   this.todos.unshift(this.content)
 }
 ```
+
+> unshift is just like push, only it adds the argument as the first element of the array instead of the last.
 
 We can also use `ng-model` to fill out the values of the form itself. We will need this bit of functionality to program the logic of our edit functionality. In `index.html`:
 
