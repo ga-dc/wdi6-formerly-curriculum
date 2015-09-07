@@ -22,9 +22,6 @@
 
 ### The List!
 
-Count off in each room. This is your primary group. Make contact with the other group
-to share resources, but please work primarily with your in-class group.
-
 1. React.js
 2. Meteor.js
 3. Python/Django
