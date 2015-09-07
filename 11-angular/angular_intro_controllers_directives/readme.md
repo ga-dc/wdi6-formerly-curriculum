@@ -149,7 +149,7 @@ It's not really enough just to use basic JS expressions, that just like hardcodi
 
 ```js
 var app = angular.module("todo")
-app.controller("todoController", function(){
+app.controller("todosController", function(){
   this.todos = [
     "Walk the Dog",
     "Buy Groceries",
