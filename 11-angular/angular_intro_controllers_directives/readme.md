@@ -372,8 +372,7 @@ this.edit = function(index){
 // when called, this will replace the content of a todo at at an index value that
 // passed in as an argument.
 this.update = function(index){
-  var todo = this.todos[index]
-  todo = this.content
+  this.todos[index] = this.content
 }
 ```
 
