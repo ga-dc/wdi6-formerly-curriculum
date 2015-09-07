@@ -134,7 +134,7 @@ Let's add our very first directive. In the `index.html`:
 
 > ng-app defines which portion of the html that our JS will be applied to. In this case, we're adding it to the `<html>` so we extend our JS functionality to the entire DOM. The domain of the directive begins and ends with the opening and closing tags of the html element the directive is defined in.
 
-`ng-app` says which HTML element is going to the "box" inside which all of our Angular stuff goes.
+`ng-app` says which HTML element is going to be the "box" inside which all of our Angular stuff goes.
 
 ## Angular expression (10/60)
 ### `{{}}`(5)
