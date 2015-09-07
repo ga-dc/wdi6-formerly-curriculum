@@ -72,8 +72,8 @@ Let's set up an angular environment
 
 Files/folders:
 ``` bash
-$ mkdir angular_app
-$ cd angular_app
+$ mkdir todo_angular
+$ cd todo_angular
 $ touch index.html
 $ mkdir js
 $ mkdir js/controllers
@@ -82,9 +82,12 @@ $ touch js/app.js
 
 Bower Installation:
 ```bash
+$ npm install -g bower
 $ bower install jquery
 $ bower install angular
 ```
+
+> installing bower globally so that we can add this dependency to our system
 
 `index.html`:
 ```html
@@ -103,7 +106,7 @@ $ bower install angular
 </html>
 ```
 
-> In the `index.html` file, we are linking to the bower components we installed before and linking to our main `js/app.js` file
+> In the `index.html` file, we are linking to the bower components we already installed before along with our main `js/app.js` file
 
 ## Creating angular app (5/45)
 We're going to add an immediately invoked function expression to instantiate our angular application. In `js/app.js`:
@@ -129,12 +132,12 @@ Let's add our very first directive. In the `index.html`:
 > ng-app defines which portion of the html that our JS will be applied to. In this case, we're adding it to the `<html>` so we extend our JS functionality to the entire DOM. The domain of the directive begins and ends with the opening and closing tags of the html element the directive is defined in.
 
 ## Angular expression (10/60)
-### `{{}}`
+### `{{}}`(5)
 Because we defined our ng-app we are able to use `{{}}` much in the same way we used `<%%>` in ruby.
 
 `{{}}` allows us to execute JS code in the `index.html`
 
-### You do write these expressions and what generates on the page. Try other things out!
+### You do write these expressions and what generates on the page. Try other things out! (5)
 ```html
 <div>{{5 + 5}}</div>
 <div>{{5 == "5"}}</div>
@@ -160,7 +163,7 @@ app.controller("todoController", function(){
 
 > We've instantiated a controller on our main app. This is where all the logic will be contained. We'll be learning later this week how to fetch data from an external API, that behavior will belong in the controller. For now, we've hardcoded 4 strings as a property for the controller acting as our API fetch for our model. Our model is a todo string
 
-### You do- Grumbles Setup & add controller and seed data in controller (20/100)
+### Setup & add controller and seed data in controller - you do - grumblr (20/100)
 - Set up the `grumblr` application as an angular application.
 - Create an angular application in the main js file
 - Create an angular controller
@@ -174,16 +177,16 @@ app.controller("todoController", function(){
 In `index.html`:
 ```html
 <div ng-controller='todosController as todosCtrl'>
-
+  <p>{{todosCtrl.todos[0]}}</p>
 </div>
 ```
 
-> we used the `ng-controller` directive here in order to instantiate our controller in the DOM. In the same way that `ng-app` established the domain of the js functionality in the html element, the `ng-controller` establishes the domain in this div. Additionally, we have access to all values and methods we define in our controller in this domain.
+> we used the `ng-controller` directive here in order to instantiate our controller in the DOM. In the same way that `ng-app` established the domain of the js functionality in the html element, the `ng-controller` establishes the domain in this div. Another thing to note, is that we've created an instance of our controller definition which has access to all values and methods we defined in our controller in this domain. That instance is known as the "ViewModel".
 
-### Accessing values in the Controller - You do
+### Accessing values in the Controller - You do (5/105)
 In the div above, use `{{}}` (an angular expression) to access a todo from the controller.
 
-## Controller Functions
+## Controller Functions (20/125)
 We need to be able to define functions that interact with our models and views. We do this through the controller.
 
 Let's create a function in our controller and see if we can utilize it in the DOM. In `js/controllers/todos.js`:
@@ -196,7 +199,7 @@ Let's create a function in our controller and see if we can utilize it in the DO
 
 > all we did here is add a function to our controller we can use this functionality in a variety of ways.
 
-## show ng-click directive in order to execute function in the browser
+### `ng-click`
 Sometimes we want JS functionality we've defined in a controller to execute on click. Enter `ng-click`. `ng-click` is just a directive that's value is an associated controller function that is assigned to an HTML element. When clicked, it will fire off the callback associated in the controller. We're going to update the html and nest an `ng-click` anchor tag (`<a></a>`) in our `<div>` that contains the controller.
 
 ```html
@@ -226,8 +229,8 @@ Let's instantiate a property of our controller and replace our `.sayHello()` fun
 
 > All we've done here. Is instantiate a property of our controller to false. Then defined the `.toggleForm()` function of our controller to change `this.formIsVisible` between true and false any time that function is called
 
-## Update `index.html`
-We need to now link our JS that we just made to the HTML. We can do this by utilizing an angular directive that hides or shows the element in which the directive is assigned based on the boolean result inside the value of attribute.
+## `ng-show`
+We need to now link our JS that we just made to the HTML. We can do this by utilizing an angular directive(`ng-show`) that hides or shows the element in which the directive is assigned based on the boolean result inside the value of attribute.
 
 We now need to link `.formIsVisible` to an actual form. We can do this by utilizing an angular directive that displays or hides the form based on whether `.formIsVisible` evaluates to true or false. In `index.html`:
 
@@ -243,21 +246,23 @@ We now need to link `.formIsVisible` to an actual form. We can do this by utiliz
 
 > `ng-click` is used here to toggle the value of `todosCtrl.formIsVisible` between true and false. `ng-show` is being used here to evaluate `todosCtrl.formIsVisible` and show the form if it's true and hide if it's false. If we click on `New Todo`, we can see that the form appears and disappears.
 
-> ---- talk about 2 way data binding here?
+> ---- talk about 2 way data binding here? is this a form of 2 way data binding?
 
-## Fill out form - you do - grumble (20)
+## Create form - you do - grumble (25/150)
 1. Initialize a controller in the DOM
 2. add a property to the grumble controller that is a boolean value in the script file
 3. add a function to toggle a form to create Grumbles
-4. add an `ng-click` to call the function defined in step 3 that changes the boolean value of the property in the first step
-5. add a form with an `ng-show` that uses the property in step 1
+4. add an `ng-click` to call the function defined in step 3 that changes the boolean value of the property in step 2
+5. add a form with an `ng-show` that uses the property in step 2
 6. The form should contain label and input tags for:
   - title
   - author name
   - content
   - photo url
 
-## ng repeat
+## Lunch
+
+## ng repeat (15/15)
 Right now all we can do with our form is toggle it, but we'll be learning later today how to use the form to create a new todo. But first, let's render all of our todos using a new angular directive.
 
 In the past with OOJS or Backbone we generated a whole bunch of html through JS itself. In angular we'll be using directives through the html to execute this same sort of behavior. It feels more railsy/handlebarsy then OOJS or backbone. In `index.html`:
@@ -296,15 +301,19 @@ Earlier, we added a property and function to our controller and used some angula
 </div>
 ```
 
-> Note that we utilized a seemingly uninstantiated global variable `editTodo`. `ng-repeat`, however, establishes a scope for `editTodo`. If we utilized the same logic as the last time we did this behavior (ie using `formIsVisible`) any time we click on one, all of the edit forms would open. We're using the scope of the `ng-repeat` to our advantage.
+> Note that we utilized a seemingly uninstantiated global variable `editTodo`. `ng-repeat`, however, establishes a scope for `editTodo`. If we utilized the same logic as the last time we did this behavior (ie using `todoCtrl.formIsVisible`) any time we click on one, all of the edit forms would open. Because we never instantiated editTodo it by default is undefined, which is falsey. So we use `!editTodo` so that we show them initially. We're using the scope of the `ng-repeat` to our advantage because there is a new scope for each iteration.
 
-## You do - grumblr ng-repeat
+## `ng repeat` - you do - grumblr (20/35)
 - Display all of the hardcoded grumbles on to the screen using `ng-repeat`
 - Make sure that you display all of the information for each grumble(title, author name, content, photo url)
 - make sure each grumble has a toggleable edit form.
 
+## View Model - Revisted! (5/40)
+ViewModel is a model which has been tailored to support a specific UI, helping in easing data binding. In our case, when we did `ng-controller="todosController as todosCtrl"`, we're creating a new instance of our controller -- the View Model -- that is tailored to support our interface. In this way, we can use the View Model to access functions and properties we've defined in our controller. Everytime we load the DOM we create a new View Model based on the functionality defined in the controller.
 
-## ng-model
+## ng-model + break(40/80)
+We can utilize the view model in a variety of ways. We'll be using view model to leverage the angular directive `ng-model` to retreive and set data. We can actually just create properties on the view model to serve this end.
+
 We can see all of our todos, we can even toggle forms to create new ones and edit existing ones. Theres just one problem. We can't actually create or edit todos yet. We need a way to access the values of the input elements and call a function to create the Todo in the form. We'll be using `ng-model` and `ng-submit` to do these things. Let's get the functionality working for creating Todos. In `index.html`:
 
 ```html
@@ -362,7 +371,7 @@ this.update = function(index){
 }
 ```
 
-## Grumbles - you do edit/update functionality
+## edit/update functionality - you do - grumblr (30/110)
 We've finished our todo app with everything except for delete functionality.
 You do:
 - Update grumblr to match the functionality of Todos
@@ -370,8 +379,5 @@ You do:
 
 > Remember the todo app utilized an array of "strings". You'll need to figure out how the functionalities for strings map to the functionalities for objects.
 
-## Grumbles - you do delete functionality
+## delete functionality - you do - grumblr (20/130)
 Using what you know about angular directives and controllers, update the view(`index.html`) and the controller (`js/controllers/grumbles.js`) to incorporate delete functionality for your grumbles.
-
-
-$scope ????
