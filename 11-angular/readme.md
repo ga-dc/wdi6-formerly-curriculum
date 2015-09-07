@@ -15,19 +15,6 @@
 - explain 2 way databinding
 - explain how angular utilizes `ng-model` to execute 2-way databinding
 
-## Custom Directives
-- DRY a given Angular app by extracting repeating logic and HTML into custom directives
-- Explain the purpose of each of the four directive options
-- Use a custom directive to render an array of objects source from JSON
-- Explain what the acronym "EACM" stands for
-
-## Angularfire
-- Create a diagram of the Websockets model
-- Create and configure a Firebase back-end
-- Create a Javascript that communicates with a Firebase back-end
-- Explain the difference between HTTP and Websockets, and provide an advantage and disadvantage of each
-- Use a custom directive to render an array of objects sourced from Firebase
-
 ## Templating, Routing, and Services
 
 - Explain what dependency injection is and what problem it solves
@@ -41,3 +28,16 @@
 - Create restful client-side routes using $routeProvider
 - Create a custom service to access data from an api
 - Create separate views and routes for each CRUD action
+
+## Custom Directives
+- DRY a given Angular app by extracting repeating logic and HTML into custom directives
+- Explain the purpose of each of the four directive options, and the four options for the "restrict" directive, E, A, C, M
+- Use a custom directive to render an array of objects
+
+## Angularfire
+- Create a diagram of the Websockets model
+- Create and configure a Firebase back-end
+- Create a Javascript that communicates with a Firebase back-end
+- Explain the difference between HTTP and Websockets, and provide an advantage and disadvantage of each
+- Use a custom directive to render an array of objects sourced from Firebase
+- Explain what Angularfire is and how it differs from Firebase
