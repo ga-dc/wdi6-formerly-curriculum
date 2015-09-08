@@ -24,6 +24,8 @@ into smaller pieces. Additionally, our app will have proper, linkable routes.
 Finally, we'll introduce a service so that we can connect to an API to store our
 data.
 
+Today's objectives include:
+
 1. Represent state via routes.
 2. Decouple views from behavior.
 3. Persist data.
@@ -33,46 +35,126 @@ data.
 Make sure it's working locally, and motivate how the current app has the three
 problems listed above.
 
+To obtain the starter code for today, `cd` to `grumblr_angular`:
+
+    $ git checkout -b templating-and-routing origin/controllers-and-directives-with-comments
+
 ## Services
 
-Service vs Factory vs Provider
+First up, we'll convert the hardcoded data to read from an external API using a service.
+
+- **Factory**
+  - You create an object, attach properties and methods, and return that object
+- **Service**
+  - Like a factory, but instantiated with `new`. Instead of defining an object and returning it, we
+  attach properties and methods to `this`
+- **Provider**
+  - Used to create configurable Service objects. Useful if you wanted to have separate development and production URLs
 
 ### Create Grumble Service
 
-bower install ngresource
-add ngResource js/app.js && index.html
+Install [angular-resource](https://docs.angularjs.org/api/ngResource)
+
+    $ bower install angular-resource
+
+Link to it in index.html
+
+```html
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+```
+
+Add `ngResource` as a dependency to our application.
+
+```js
+// js/app.js
+
+var app = angular.module('grumblr', [
+  'grumbleControllers',
+  'ngResource'
+])
+```
 
 create a new file in `js/services/grumble.js` and include in index.html
 
 ```js
-return $resource
+// js/services/grumble.js
+(function() {
+  var grumbleServices = angular.module('grumbleServices', ['ngResource']);
+  grumbleServices.factory('Grumble', ['$resource', function($resource) {
+    return $resource('http://grumblr.wdidc.org/grumbles/:id');
+  }]);
+})();
 ```
+
+Out of the box, this gives us several methods for our newly defined `Grumble` service:
+
+- `Grumble.get`
+- `Grumble.save`
+- `Grumble.query`
+- `Grumble.remove`
+- `Grumble.delete`
+
+>When the data is returned from the server then the object is an instance of the resource class. The actions save, remove and delete are available on it as methods with the $ prefix. This allows you to easily perform CRUD operations (create, read, update, delete) on server-side data like this:
+
+```js
+var User = $resource('/user/:userId', {userId:'@id'});
+var user = User.get({userId:123}, function() {
+  user.abc = true;
+  user.$save();
+});
+```
+
 
 ### Update Index Controller (I do)
 
-in js/controllers/grumble.js
-
 ```js
-this.grumbles = Grumble.query()
+// js/controllers/grumbles.js
+// index controller
+grumbleControllers.controller('grumblesController', ['Grumble', function(Grumble) {
+  this.grumbles = Grumble.query();
+}]);
 ```
 
 ### You do: Delete, and create
 
-we'll come back to this
+[Docs here](https://docs.angularjs.org/api/ngResource/service/$resource#usage)
+
+We'll come back to this
 
 ## Creating Templates / Routes
+
+As our application grows in complexity, it becomes more difficult to manage state.
+
+We'll use the built-in angular router and templating to separate our concerns.
+
 ### How the pieces fit together
+
+![](https://i-msdn.sec.s-msft.com/dynimg/IC416621.png)
+???
+
 ### Add `ngRoute`
 
-* `$ bower install --save angular-route`
-* Add script tag to index
-* Add as a dependency of our app in app.js (`ngRoute`)
+    $ bower install --save angular-route
+
+```html
+<!-- index.html -->
+<script src="bower_components/angular-route/angular-route.js"></script>
+```
+
+
+```js
+// js/app.js
+angular.module('grumblr', [
+    'ngRoute',
+    'ngResource',
+    'grumbleControllers'
+])
+```
 
 Create a routes.js file:
 
-bower install ng-route
-
 ```js
+// routes.js
 (function(){
  var router = angular.module('grumbleRouter', []);
  router.config(['$routeProvider', function($routeProvider){
@@ -86,6 +168,16 @@ bower install ng-route
 ```
 
 add `grumbleRouter` to `app.js` as module dependency.
+
+```js
+// js/app.js
+angular.module('grumblr', [
+    'ngRoute',
+    'ngResource',
+    'grumbleControllers',
+    'grumbleRouter'
+])
+```
 
 #### Index (I do)
 
