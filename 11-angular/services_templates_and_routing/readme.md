@@ -51,7 +51,7 @@ First up, we'll convert the hardcoded data to read from an external API using a 
 - **Provider**
   - Used to create configurable Service objects. Useful if you wanted to have separate development and production URLs
 
-### Create Grumble Service
+### Create Grumble Factory
 
 Install [angular-resource](https://docs.angularjs.org/api/ngResource)
 
@@ -97,7 +97,7 @@ Out of the box, this gives us several methods for our newly defined `Grumble` se
 >When the data is returned from the server then the object is an instance of the resource class. The actions save, remove and delete are available on it as methods with the $ prefix. This allows you to easily perform CRUD operations (create, read, update, delete) on server-side data like this:
 
 ```js
-var User = $resource('/user/:userId', {userId:'@id'});
+var User = $resource('/user/:userId');
 var user = User.get({userId:123}, function() {
   user.abc = true;
   user.$save();
@@ -119,7 +119,9 @@ grumbleControllers.controller('grumblesController', ['Grumble', function(Grumble
 
 [Docs here](https://docs.angularjs.org/api/ngResource/service/$resource#usage)
 
-We'll come back to this
+We'll refactor this later and separate logic into separate controllers.
+
+## Break 
 
 ## Creating Templates / Routes
 
@@ -140,7 +142,6 @@ We'll use the built-in angular router and templating to separate our concerns.
 <!-- index.html -->
 <script src="bower_components/angular-route/angular-route.js"></script>
 ```
-
 
 ```js
 // js/app.js
@@ -206,7 +207,7 @@ well, almost. We need to create a separate controller for the show page. Typical
 Let's create a new controller:
 
 ```js
-...controller('grumbleController',['$routeParams','$location',function($routeParams, $location){
+...controller('grumbleController',['$routeParams','Grumble', function($routeParams, Grumble){
     this.grumble = Grumble.get({id: $routeParams.id})
   }])
 ```
@@ -225,7 +226,7 @@ This template should display:
 - grumble content
 - grumble photoUrl
 
-Add a link on index page to link to show page.
+Add a link (using `ng-href`)on index page to link to show page.
 
 
 #### $location (we do)
@@ -252,8 +253,9 @@ Without the callback, the view would update before the delete request returns fr
 
 We can force a reload of the data by updating the applications path.
 
+## Lunch
 
-#### New (I do)
+#### New/Create Grumble (I do)
 
 - link to a new page
 - define a route
