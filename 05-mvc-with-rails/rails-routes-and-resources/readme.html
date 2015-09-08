@@ -8,7 +8,7 @@
         <title>Routes and Resources | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.3.0">
+        <meta name="generator" content="GitBook 2.3.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="6.5" data-basepath="../.." data-revision="Tue Sep 08 2015 14:08:50 GMT+0000 (UTC)">
+    <div class="book" data-level="6.5" data-basepath="../.." data-revision="Tue Sep 08 2015 18:21:20 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1430,7 +1430,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <pre><code class="lang-rb"><span class="hljs-comment"># /controllers/songs_controller.rb</span>
 
 <span class="hljs-comment"># new</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>new
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">new</span></span>
   <span class="hljs-variable">@song</span> = <span class="hljs-constant">Song</span>.new
 <span class="hljs-keyword">end</span>
 </code></pre>
@@ -1441,7 +1441,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <pre><code class="lang-rb"><span class="hljs-comment"># /controllers/songs_controller.rb</span>
 
 <span class="hljs-comment"># new</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>new
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">new</span></span>
   <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:artist_id</span>])
   <span class="hljs-variable">@song</span> = <span class="hljs-constant">Song</span>.new
 <span class="hljs-keyword">end</span>
@@ -1467,7 +1467,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <pre><code class="lang-rb"><span class="hljs-comment"># /controllers/songs_controller.rb</span>
 
 <span class="hljs-comment"># create</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>create
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
   <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:artist_id</span>])
   <span class="hljs-variable">@song</span> = <span class="hljs-variable">@artist</span>.songs.create(song_params)
 

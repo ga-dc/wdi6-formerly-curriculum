@@ -31,7 +31,7 @@ No scheduled one-on-ones during Project 3 week.
 
 ### Mon Sep 07
 
-- Eddie
+Holiday
 
 ### Tue Sep 08
 
@@ -45,3 +45,8 @@ No scheduled one-on-ones during Project 3 week.
 ### Thu Sep 10
 
 - Nic
+- Cheikh
+
+### Fri Sep 11
+
+- Eddie

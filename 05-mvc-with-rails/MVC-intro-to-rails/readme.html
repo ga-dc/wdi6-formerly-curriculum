@@ -8,7 +8,7 @@
         <title>MVC Intro to Rails | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.3.0">
+        <meta name="generator" content="GitBook 2.3.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="6.2" data-basepath="../.." data-revision="Tue Sep 08 2015 14:08:50 GMT+0000 (UTC)">
+    <div class="book" data-level="6.2" data-basepath="../.." data-revision="Tue Sep 08 2015 18:21:20 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1182,7 +1182,7 @@ post <span class="hljs-string">&quot;artists&quot;</span> =&gt; <span class="hlj
 <p>In <code>app/controllers/artists_controller.rb</code>:</p>
 <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArtistsController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>index
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
 
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
@@ -1217,7 +1217,7 @@ Just put <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code></p>
 <p>That&apos;s because <code>@artists</code> isn&apos;t defined. Let&apos;s define that now in the index action of our artists controller. In <code>app/controllers/artists_controller.rb</code>:</p>
 <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArtistsController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>index
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
     <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>

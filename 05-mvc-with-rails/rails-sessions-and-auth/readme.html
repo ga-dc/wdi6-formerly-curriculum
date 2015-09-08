@@ -8,7 +8,7 @@
         <title>Sessions and Auth | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.3.0">
+        <meta name="generator" content="GitBook 2.3.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="6.7" data-basepath="../.." data-revision="Tue Sep 08 2015 14:08:50 GMT+0000 (UTC)">
+    <div class="book" data-level="6.7" data-basepath="../.." data-revision="Tue Sep 08 2015 18:21:20 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1077,7 +1077,7 @@
 </code></pre><pre><code class="lang-rb"><span class="hljs-comment"># db/migrate/[timestamp]_users.db</span>
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateUsers</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>change
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
     create_table <span class="hljs-symbol">:users</span> <span class="hljs-keyword">do</span> |t|
       t.string <span class="hljs-symbol">:username</span>
       t.string <span class="hljs-symbol">:password_digest</span>
@@ -1160,10 +1160,10 @@ rake db:migrate
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_up
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_up</span></span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_up!
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_up!</span></span>
     user = <span class="hljs-constant">User</span>.new(
       <span class="hljs-symbol">username:</span> params[<span class="hljs-symbol">:username</span>],
       <span class="hljs-symbol">password_digest:</span> params[<span class="hljs-symbol">:password</span>]
@@ -1179,10 +1179,10 @@ rake db:migrate
     redirect_to <span class="hljs-symbol">action:</span> <span class="hljs-symbol">:sign_up</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_in
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in</span></span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_in!
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in!</span></span>
     <span class="hljs-variable">@user</span> = <span class="hljs-constant">User</span>.find_by(<span class="hljs-symbol">username:</span> params[<span class="hljs-symbol">:username</span>])
     <span class="hljs-keyword">if</span> !<span class="hljs-variable">@user</span>
       message = <span class="hljs-string">&quot;This user doesn&apos;t exist!&quot;</span>
@@ -1195,7 +1195,7 @@ rake db:migrate
     redirect_to <span class="hljs-symbol">action:</span> <span class="hljs-symbol">:sign_in</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_out
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_out</span></span>
     puts <span class="hljs-string">&quot;You&apos;re signed out!&quot;</span>
     redirect_to root_url
   <span class="hljs-keyword">end</span>
@@ -1209,17 +1209,17 @@ rake db:migrate
 <p>Let&apos;s <strong>add flash messages to the Users controller</strong>:</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_in!
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in!</span></span>
 <span class="hljs-comment"># ...</span>
     flash[<span class="hljs-symbol">:notice</span>] = message
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_up!
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_up!</span></span>
 <span class="hljs-comment"># ...</span>
     flash[<span class="hljs-symbol">:notice</span>] = message
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_out
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_out</span></span>
 <span class="hljs-comment"># ...</span>
     flash[<span class="hljs-symbol">:notice</span>] = message
   <span class="hljs-keyword">end</span>
@@ -1310,10 +1310,10 @@ gem &apos;bcrypt&apos;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_up
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_up</span></span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_up!
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_up!</span></span>
     user = <span class="hljs-constant">User</span>.new(
       <span class="hljs-symbol">username:</span> params[<span class="hljs-symbol">:username</span>],
       <span class="hljs-symbol">password_digest:</span> <span class="hljs-constant">BCrypt::Password</span>.create(params[<span class="hljs-symbol">:password</span>])
@@ -1329,10 +1329,10 @@ gem &apos;bcrypt&apos;
     redirect_to <span class="hljs-symbol">action:</span> <span class="hljs-symbol">:sign_up</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_in
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in</span></span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_in!
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in!</span></span>
     <span class="hljs-variable">@user</span> = <span class="hljs-constant">User</span>.find_by(<span class="hljs-symbol">username:</span> params[<span class="hljs-symbol">:username</span>])
     <span class="hljs-keyword">if</span> !<span class="hljs-variable">@user</span>
       message = <span class="hljs-string">&quot;This user doesn&apos;t exist!&quot;</span>
@@ -1345,7 +1345,7 @@ gem &apos;bcrypt&apos;
     redirect_to <span class="hljs-symbol">action:</span> <span class="hljs-symbol">:sign_in</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_out
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_out</span></span>
     flash[<span class="hljs-symbol">:notice</span>] = <span class="hljs-string">&quot;You&apos;re signed out!&quot;</span>
     redirect_to root_url
   <span class="hljs-keyword">end</span>
@@ -1423,7 +1423,7 @@ Expires: When the browsing session ends
 <p>Modifying cookies is super easy. Let&apos;s have Tunr &quot;remember&quot; the username <strong>when users run the sign_in controller action</strong> by saving it as a cookie:</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_in!
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in!</span></span>
 <span class="hljs-comment"># ...</span>
   <span class="hljs-keyword">else</span>
     message = <span class="hljs-string">&quot;You&apos;re signed in, <span class="hljs-subst">#{<span class="hljs-variable">@user</span>.username}</span>! &quot;</span>
@@ -1437,7 +1437,7 @@ Expires: When the browsing session ends
 <p>I can change the expiration time of my cookie like this:</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_in!
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in!</span></span>
 <span class="hljs-comment"># ...</span>
   <span class="hljs-keyword">else</span>
     message = <span class="hljs-string">&quot;You&apos;re signed in, <span class="hljs-subst">#{<span class="hljs-variable">@user</span>.username}</span>! &quot;</span>
@@ -1515,7 +1515,7 @@ Expires:  When the browsing session ends
 <p>Let&apos;s add an <code>is_signed_in</code> session variable to Tunr. We&apos;ll create it in the Users controller. </p>
 <pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_in!
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in!</span></span>
 <span class="hljs-comment"># ...</span>
   <span class="hljs-keyword">else</span>
     message = <span class="hljs-string">&quot;You&apos;re signed in, <span class="hljs-subst">#{<span class="hljs-variable">@user</span>.username}</span>! &quot;</span>
@@ -1528,7 +1528,7 @@ Expires:  When the browsing session ends
 <span class="hljs-comment"># ...</span>
 <span class="hljs-keyword">end</span>
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>sign_out!
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_out!</span></span>
   reset_session
   redirect_to root_url
 <span class="hljs-keyword">end</span>
@@ -1571,7 +1571,7 @@ Expires:  When the browsing session ends
   before_action <span class="hljs-symbol">:authenticate</span>
 
   private
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>authenticate
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">authenticate</span></span>
     <span class="hljs-keyword">if</span> !session[<span class="hljs-symbol">:user</span>]
       redirect_to <span class="hljs-string">&quot;/sign_in&quot;</span>
     <span class="hljs-keyword">end</span>
@@ -1604,7 +1604,7 @@ Expires:  When the browsing session ends
 </code></pre><pre><code class="lang-rb"><span class="hljs-comment"># db/migrate/[timestamp]_add_users_to_artists.rb</span>
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddUserToArtists</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>change
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
     add_column <span class="hljs-symbol">:artists</span>, <span class="hljs-symbol">:user_id</span>, <span class="hljs-symbol">:integer</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
@@ -1630,7 +1630,7 @@ rake db:migrate
 <p>Let&apos;s <strong>change the <code>artists</code> controller so that whenever you add an artist, it saves the username</strong>.</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/artists_controller.rb</span>
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>create
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
   <span class="hljs-variable">@user</span> = <span class="hljs-constant">User</span>.find(session[<span class="hljs-symbol">:user</span>][<span class="hljs-string">&quot;id&quot;</span>])
   <span class="hljs-variable">@artist</span> = <span class="hljs-variable">@user</span>.artists.create!(artist_params)
   redirect_to (artist_path(<span class="hljs-variable">@artist</span>))
@@ -1639,7 +1639,7 @@ rake db:migrate
 <p>With this done, we can <strong>modify the controller to show the songs and artists for this user only</strong>.</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/artists_controller.rb</span>
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>index
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
   <span class="hljs-variable">@artists</span> = <span class="hljs-constant">User</span>.find(session[<span class="hljs-symbol">:user</span>][<span class="hljs-string">&quot;id&quot;</span>]).artists
 <span class="hljs-keyword">end</span>
 </code></pre>

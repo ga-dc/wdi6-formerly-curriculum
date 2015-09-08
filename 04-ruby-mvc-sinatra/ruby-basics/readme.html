@@ -8,7 +8,7 @@
         <title>Ruby Basics | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.3.0">
+        <meta name="generator" content="GitBook 2.3.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Tue Sep 08 2015 14:08:50 GMT+0000 (UTC)">
+    <div class="book" data-level="5.1" data-basepath="../.." data-revision="Tue Sep 08 2015 18:21:20 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1634,7 +1634,7 @@ language = gets.chomp.to_s
 <li><code>end</code> - closes the method</li>
 </ul>
 <pre><code class="lang-ruby"><span class="hljs-comment"># A method that doubles a number. A number-to-be-doubled is taken in as an argument.</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>double( number )
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">double</span><span class="hljs-params">( number )</span></span>
   doubled_number = number * <span class="hljs-number">2</span>
   <span class="hljs-keyword">return</span> doubled_number
 <span class="hljs-keyword">end</span>
@@ -1645,7 +1645,7 @@ language = gets.chomp.to_s
 <li>We encourage you to use <strong>explicit returns</strong> so we know exactly what your method is returning.</li>
 </ul>
 <pre><code class="lang-ruby"><span class="hljs-comment"># A method that doubles a number. A number is taken in as an argument.</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>double( number )
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">double</span><span class="hljs-params">( number )</span></span>
   doubled_number = number * <span class="hljs-number">2</span>
   doubled_number
 <span class="hljs-keyword">end</span>
@@ -1661,7 +1661,7 @@ double <span class="hljs-number">3</span>
 <ul>
 <li>In the below example, if we do not provide our <code>double</code> method with an argument, it will default to 5.</li>
 </ul>
-<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> </span>double( number=<span class="hljs-number">5</span> )
+<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">double</span><span class="hljs-params">( number=<span class="hljs-number">5</span> )</span></span>
   doubled_number = number * <span class="hljs-number">2</span>
   puts <span class="hljs-string">&quot;Your doubled number is <span class="hljs-subst">#{doubled_number}</span>&quot;</span>
   <span class="hljs-keyword">return</span> doubled_number

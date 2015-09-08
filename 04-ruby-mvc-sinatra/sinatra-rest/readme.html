@@ -8,7 +8,7 @@
         <title>Sinatra &amp; REST | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.3.0">
+        <meta name="generator" content="GitBook 2.3.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Tue Sep 08 2015 14:08:50 GMT+0000 (UTC)">
+    <div class="book" data-level="5.7" data-basepath="../.." data-revision="Tue Sep 08 2015 18:21:20 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1200,7 +1200,7 @@ get <span class="hljs-string">&apos;/:num_bottles&apos;</span> <span class="hljs
 <p>If you have a collection to loop through, like an array or a hash, you use
 a slightly different syntax:</p>
 <pre><code class="lang-html"><span class="hljs-comment">&lt;!-- /views/index.erb --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">%</span> @<span class="hljs-attribute">num_bottles.times</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">i</span>| %&gt;</span>  <span class="hljs-comment">&lt;!-- <span class="hljs-doctag"><span class="hljs-keyword">note</span></span> the missing `=` --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> @<span class="hljs-attribute">num_bottles.times</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">i</span>| %&gt;</span>  <span class="hljs-comment">&lt;!-- note the missing `=` --&gt;</span>
   bottle #<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">i</span> %&gt;</span> is on the wall. 
 <span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;/&lt;%= @next %&gt;&apos;</span>&gt;</span>Take one down.<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>

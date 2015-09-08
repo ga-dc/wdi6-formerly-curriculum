@@ -8,7 +8,7 @@
         <title>Active Record | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.3.0">
+        <meta name="generator" content="GitBook 2.3.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5.6" data-basepath="../.." data-revision="Tue Sep 08 2015 14:08:50 GMT+0000 (UTC)">
+    <div class="book" data-level="5.6" data-basepath="../.." data-revision="Tue Sep 08 2015 18:21:20 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1139,7 +1139,7 @@ $ createdb wdi_db
 <pre><code class="lang-sql"><span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> students;</span>
 
 <span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> students (
-  id <span class="hljs-built_in">SERIAL</span> <span class="hljs-keyword">PRIMARY</span> <span class="hljs-keyword">KEY</span>,
+  <span class="hljs-keyword">id</span> <span class="hljs-built_in">SERIAL</span> PRIMARY <span class="hljs-keyword">KEY</span>,
   first_name <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
   last_name <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
   age <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
@@ -1327,7 +1327,7 @@ And every Post belongs to a certain user.</p>
 <span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> instructors;</span>
 
 <span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> students (
-  id <span class="hljs-built_in">SERIAL</span> <span class="hljs-keyword">PRIMARY</span> <span class="hljs-keyword">KEY</span>,
+  <span class="hljs-keyword">id</span> <span class="hljs-built_in">SERIAL</span> PRIMARY <span class="hljs-keyword">KEY</span>,
   first_name <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
   last_name <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
   age <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
@@ -1336,7 +1336,7 @@ And every Post belongs to a certain user.</p>
 );</span>
 
 <span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> instructors (
-  id <span class="hljs-built_in">SERIAL</span> <span class="hljs-keyword">PRIMARY</span> <span class="hljs-keyword">KEY</span>,
+  <span class="hljs-keyword">id</span> <span class="hljs-built_in">SERIAL</span> PRIMARY <span class="hljs-keyword">KEY</span>,
   first_name <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
   last_name <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
   age <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>

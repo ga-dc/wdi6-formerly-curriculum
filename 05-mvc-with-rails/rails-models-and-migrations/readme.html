@@ -8,7 +8,7 @@
         <title>Models and Migrations | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.3.0">
+        <meta name="generator" content="GitBook 2.3.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="6.3" data-basepath="../.." data-revision="Tue Sep 08 2015 14:08:50 GMT+0000 (UTC)">
+    <div class="book" data-level="6.3" data-basepath="../.." data-revision="Tue Sep 08 2015 18:21:20 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1121,7 +1121,7 @@ with a single command.</p>
 </code></pre><p><code>rails g</code> is short for <code>rails generate</code>.</p>
 <p>This creates a migration file <code>db/migrate/20150726145027_create_artists.rb</code></p>
 <pre><code class="lang-rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateArtists</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>change
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
     create_table <span class="hljs-symbol">:artists</span> <span class="hljs-keyword">do</span> |t|
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
@@ -1129,7 +1129,7 @@ with a single command.</p>
 </code></pre>
 <p>This file defines the structure of a new table called &quot;artists&quot;.</p>
 <pre><code class="lang-rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateArtists</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>change
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
     create_table <span class="hljs-symbol">:artists</span> <span class="hljs-keyword">do</span> |t|
       t.string <span class="hljs-symbol">:name</span> 
       t.string <span class="hljs-symbol">:photo_url</span> 
@@ -1153,7 +1153,7 @@ data types to create columns of that type, passing in the name of the column as 
 </code></pre><p>The above command creates the following file:</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># db/migrate/20150726150324_create_songs.rb</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateSongs</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>change
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
     create_table <span class="hljs-symbol">:songs</span> <span class="hljs-keyword">do</span> |t|
       t.string <span class="hljs-symbol">:title</span>
       t.string <span class="hljs-symbol">:album</span>
@@ -1180,7 +1180,7 @@ to the artists table.</p>
 <pre><code>$ rails g migration add_timestamps_to_artists
 </code></pre><pre><code class="lang-rb"><span class="hljs-comment"># 20150726150946_add_timestamps_to_artists.rb</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddTimestampsToArtists</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>change
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
     add_column <span class="hljs-symbol">:artists</span>, <span class="hljs-symbol">:created_at</span>, <span class="hljs-symbol">:datetime</span>
     add_column <span class="hljs-symbol">:artists</span>, <span class="hljs-symbol">:updated_at</span>, <span class="hljs-symbol">:datetime</span>
   <span class="hljs-keyword">end</span>

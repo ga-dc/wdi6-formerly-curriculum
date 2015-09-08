@@ -8,7 +8,7 @@
         <title>Views and Controllers | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.3.0">
+        <meta name="generator" content="GitBook 2.3.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="6.4" data-basepath="../.." data-revision="Tue Sep 08 2015 14:08:50 GMT+0000 (UTC)">
+    <div class="book" data-level="6.4" data-basepath="../.." data-revision="Tue Sep 08 2015 18:21:20 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1101,21 +1101,21 @@ artists_new GET    /artists/new(.:format)      artists<span class="hljs-comment"
 </ul>
 <h2 id="render-vs-redirect-20-40">Render vs Redirect (20/40)</h2>
 <p>Let&apos;s take a closer look at index action of our Artists Controller:</p>
-<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> </span>index
+<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
   <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all.order(<span class="hljs-symbol">:id</span>).reverse
 <span class="hljs-keyword">end</span>
 </code></pre>
 <p>If we remember back to Sinatra, you&apos;ll notice that we&apos;re not explicitly telling the application which view file to render.</p>
 <p>That&apos;s because rails has implicit rendering. Basically rails is smart enough to know if the artists controller action is called index, then it will look for the index view in the artist folder.</p>
 <p>You can explicity change the implicit render by calling the <code>render</code> method in the action of a controller. Something like this:</p>
-<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> </span>index
+<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
   <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all.order(<span class="hljs-symbol">:id</span>).reverse
   render <span class="hljs-symbol">:index</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
 <p>You could also redirect rather than render. Who can tell me the differences between redirecting and rendering? (ST-WG)</p>
 <p>We would never do something like this, but if we did.</p>
-<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> </span>index
+<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
   <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all.order(<span class="hljs-symbol">:id</span>).reverse
   redirect_to <span class="hljs-string">&quot;https://www.google.com&quot;</span>
 <span class="hljs-keyword">end</span>
@@ -1124,7 +1124,7 @@ artists_new GET    /artists/new(.:format)      artists<span class="hljs-comment"
 <h2 id="instance-variables-15-55">Instance variables (15/55)</h2>
 <p>We use instance variables in our controller actions, so we can have programmatic access to variables inside of our views. More often than not these instance variables will contain objects from the database.</p>
 <p>Let&apos;s take our artists controller show action and add some things.</p>
-<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> </span>show
+<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
   <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:id</span>])
   <span class="hljs-variable">@songs</span> = <span class="hljs-variable">@artist</span>.songs
   <span class="hljs-variable">@food</span> = <span class="hljs-string">&quot;pizza&quot;</span>
@@ -1174,7 +1174,7 @@ artists_new GET    /artists/new(.:format)      artists<span class="hljs-comment"
 <p>First let&apos;s create a private method that will allow us to pull information from the form.</p>
 <p>in <code>app/controllers/artists_controller.rb</code>:</p>
 <pre><code class="lang-ruby">private
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>artist_params
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">artist_params</span></span>
   params.<span class="hljs-keyword">require</span>(<span class="hljs-symbol">:artist</span>).permit(<span class="hljs-symbol">:name</span>, <span class="hljs-symbol">:photo_url</span>, <span class="hljs-symbol">:nationality</span>)
 <span class="hljs-keyword">end</span>
 </code></pre>
@@ -1185,7 +1185,7 @@ artists_new GET    /artists/new(.:format)      artists<span class="hljs-comment"
 <p>The only thing we have left to do is update our controller actions that use params to create or update an artist.</p>
 <p>in <code>app/controllers/artists_controller.rb</code>:</p>
 <pre><code class="lang-ruby"><span class="hljs-comment">#### before</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>create
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
   <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.new(params[<span class="hljs-symbol">:artist</span>])
   <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>.save
     redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
@@ -1194,14 +1194,14 @@ artists_new GET    /artists/new(.:format)      artists<span class="hljs-comment"
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>update
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span></span>
   <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:id</span>])
   <span class="hljs-variable">@artist</span>.update(params[<span class="hljs-symbol">:artist</span>])
   redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
 <span class="hljs-keyword">end</span>  
 
 <span class="hljs-comment">#### after  </span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>create
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
   <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.new(artist_params)
   <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>.save
     redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
@@ -1210,7 +1210,7 @@ artists_new GET    /artists/new(.:format)      artists<span class="hljs-comment"
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>update
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span></span>
   <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:id</span>])
   <span class="hljs-variable">@artist</span>.update(artist_params)
   redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
