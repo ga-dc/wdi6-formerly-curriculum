@@ -159,7 +159,7 @@ Create a routes.js file:
  var router = angular.module('grumbleRouter', []);
  router.config(['$routeProvider', function($routeProvider){
    $routeProvider.when("/grumbles",{
-     templateUrl: 'views/grumbles/index.html',
+     templateUrl: 'js/views/grumbles/index.html',
      controller: 'grumblesController',
      controllerAs: 'grumblesCtrl'
    }); 
@@ -167,7 +167,11 @@ Create a routes.js file:
 })();
 ```
 
-add `grumbleRouter` to `app.js` as module dependency.
+Specifying `controller` and `controllerAs` in the router config allows us to remove `ng-controller` from our view.
+
+Effectively, this means each view will have its own controller.
+
+Next, let's add `grumbleRouter` to `app.js` as module dependency.
 
 ```js
 // js/app.js
@@ -195,28 +199,59 @@ in it:
 </div>
 ```
 
-#### Show (You do)
+### Show (You do)
 
 well, almost. We need to create a separate controller for the show page. Typically, you will see one controller per view.
 
 Let's create a new controller:
 
 ```js
-var grumbles = //hardcoded data
 ...controller('grumbleController',['$routeParams','$location',function($routeParams, $location){
     this.grumble = Grumble.get({id: $routeParams.id})
   }])
 ```
 
-#### You do: define a new route `/grumbles/:id` that loads the controller we jsut created and a view that you create
+#### You do: define a new route `/grumbles/:id` 
 
-add a link on index page to link to show route
+that: 
 
-move delete link to show page
+- loads the controller we just created 
+- loads a new template in `js/views/grumbles/show.html`
+
+This template should display:
+
+- grumble title
+- grumble author name
+- grumble content
+- grumble photoUrl
+
+Add a link on index page to link to show page.
+
 
 #### $location (we do)
 
-add delete to redirect back after deleting
+Move delete link to show page. It would be useful if we could redirect the user
+or rather, update the url and switch out the template after a Grumble is deleted.
+
+We can manipulate the url using angular's `$location` service:
+
+```js
+// js/controllers/grumbles.js
+// show controller (handles delete link on show page)
+grumbleControllers.controller('grumbleController', ['$routeParams','$location','Grumble', function($routeParams, $location, Grumble){
+  this.grumble = Grumble.get({id: $routeParams.id});
+  this.delete = function(id){
+    Grumble.delete({id: id}, function(){
+      $location.path("/grumbles")
+    });
+  }
+}]);
+```
+
+Without the callback, the view would update before the delete request returns from the server.
+
+We can force a reload of the data by updating the applications path.
+
 
 #### New (I do)
 
@@ -225,26 +260,38 @@ add delete to redirect back after deleting
 - create newGrumbleController
 - new template in js/views called new.html
 
-
 #### Edit (You do)
 
 do the same as above, but with edit!
- but just the route and view, dont worry about updating
+but just the route and view, dont worry about updating grumbles on the server
 
-##
 
 ### I do: Edit/ Update
 
-add 
+Angular doesn't have opinions about REST or how things get updated. As a result,
+we have to create our own `update` method which will make a `PUT` request
+to the server.
 
 ```js
-update: {method: 'PUT'}
+grumbleServices.factory('Grumble', ['$resource', function($resource) {
+  return $resource('http://grumblr.wdidc.org/grumbles/:id', {}, {
+    update: {method:'PUT'}
+  });
+}]);
 ```
 
-Angular doesn't have opinions about REST or how things get updated
+You can now update a grumble like so:
 
-update should take grumble id
+```js
+this.grumble.$update
+// or
+Grumble.update(this.grumble, function(){
 
+  $location.path("/grumbles/" + self.id)
+})
+```
+
+### Update edit view to update grumbles on server
 
 
 
