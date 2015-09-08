@@ -115,9 +115,11 @@ We're going to add an immediately invoked function expression to instantiate our
 })()
 ```
 
-> the first argument is the name of the angular module. The second argument is an array of modules on which the current module will depend on. This is an immediately invoked function expression. We immediately invoke in order to start the angular application
+> the first argument is the name of the angular module. The second argument is an array of modules on which the current module will depend on. This is an immediately invoked function expression. We immediately invoke in order to start the angular application and to prevent the pollution of the global namespaces
 
 ## Directives (5/50)
+Directives are Angular's way of letting you make custom elements and attributes. HTML elements and attributes can have different behaviors. Angular lets you make different behaviors for these elements and attributes for these, too.
+
 Directives are markers on a DOM element that tell AngularJS's HTML compiler to attach a specified behavior to that DOM element (e.g. via event listeners).
 
 ### Our first directive - ng-app.
@@ -145,7 +147,7 @@ Because we defined our ng-app we are able to use `{{}}` much in the same way we 
 
 ## Break (10/70)
 ## Angular controllers (10/80)
-It's not really enough just to use basic JS expressions, that just like hardcoding values into the DOM. We're never really going to do this, but we will be using expressions to access objects. We can do this sort of behavior with controllers. Let's create the controller file `$ touch js/controllers/todos.js` and add the following code:
+This is cool, but not very useful. We're basically just hard-coding in data here, which we'll never do in a "real" app. Instead, we want to dynamically insert data. **Controllers** are the go-between for views (our HTML) and our data. Let's create the controller file `$ touch js/controllers/todos.js` and add the following code:
 
 ```js
 var app = angular.module("todo")
@@ -185,7 +187,9 @@ In `index.html`:
 </div>
 ```
 
-> we used the `ng-controller` directive here in order to instantiate our controller in the DOM. In the same way that `ng-app` established the domain of the js functionality in the html element, the `ng-controller` establishes the domain in this div. Another thing to note, is that we've created an instance of our controller definition which has access to all values and methods we defined in our controller in this domain. That instance is known as the "ViewModel".
+> we used the `ng-controller` directive here in order to instantiate our controller in the DOM. In the same way that `ng-app` established the domain of the js functionality in the html element, the `ng-controller` establishes the domain in this div.
+
+> `todosCtrl` is an instance of our controller. `ng-controller` gives this whole div access to all the values and methods defined in that controller. This instance of a controller is called a "ViewModel".
 
 ### Accessing values in the Controller - You do (5/105)
 In the div above, use `{{}}` (an angular expression) to access a todo from the controller.
@@ -204,7 +208,7 @@ Let's create a function in our controller and see if we can utilize it in the DO
 > all we did here is add a function to our controller we can use this functionality in a variety of ways.
 
 ### `ng-click`
-Sometimes we want JS functionality we've defined in a controller to execute on click. Enter `ng-click`. `ng-click` is just a directive that's value is an associated controller function that is assigned to an HTML element. When clicked, it will fire off the callback associated in the controller. We're going to update the html and nest an `ng-click` anchor tag (`<a></a>`) in our `<div>` that contains the controller.
+Sometimes we want JS functionality we've defined in a controller to execute on click. Enter `ng-click`. `ng-click` says which controller function you want to execute when that HTML element is clicked. We're going to update the html and nest an `ng-click` anchor tag (`<a></a>`) in our `<div>` that contains the controller.
 
 ```html
 <a href="#" ng-click="todosCtrl.sayHello()">Say Hello</a>
@@ -231,10 +235,10 @@ Let's instantiate a property of our controller and replace our `.sayHello()` fun
   }
 ```
 
-> All we've done here. Is instantiate a property of our controller to false. Then defined the `.toggleForm()` function of our controller to change `this.formIsVisible` between true and false any time that function is called
+> All we've done here is instantiate a property of our controller to false. Then defined the `.toggleForm()` function of our controller to change `this.formIsVisible` between true and false any time that function is called
 
 ## `ng-show`
-We need to now link our JS that we just made to the HTML. We can do this by utilizing an angular directive(`ng-show`) that hides or shows the element in which the directive is assigned based on the boolean result inside the value of attribute.
+We now need to link `.formIsVisible` to an actual form. We can do this by using an angular directive called `ng-show`. This adds a `display:none` using CSS if something is `true`. In this case, we're going to hide the form if `.formIsVisible` evaluates to `true`. In `index.html`:
 
 We now need to link `.formIsVisible` to an actual form. We can do this by utilizing an angular directive that displays or hides the form based on whether `.formIsVisible` evaluates to true or false. In `index.html`:
 
@@ -250,11 +254,10 @@ We now need to link `.formIsVisible` to an actual form. We can do this by utiliz
 
 > `ng-click` is used here to toggle the value of `todosCtrl.formIsVisible` between true and false. `ng-show` is being used here to evaluate `todosCtrl.formIsVisible` and show the form if it's true and hide if it's false. If we click on `New Todo`, we can see that the form appears and disappears.
 
-> ---- talk about 2 way data binding here? is this a form of 2 way data binding?
 
 ## Create form - you do - grumble (25/150)
-1. Initialize a controller in the DOM
-2. add a property to the grumble controller that is a boolean value in the script file
+1. Use `ng-controller` to initialize a controller in your view
+2. In the controller JS file, give the controller a property that is either `true` or `false` (like `.formIsVisible`)
 3. add a function to toggle a form to create Grumbles
 4. add an `ng-click` to call the function defined in step 3 that changes the boolean value of the property in step 2
 5. add a form with an `ng-show` that uses the property in step 2
@@ -313,7 +316,7 @@ Earlier, we added a property and function to our controller and used some angula
 - make sure each grumble has a toggleable edit form.
 
 ## View Model - Revisted! (5/40)
-ViewModel is a model which has been tailored to support a specific UI, helping in easing data binding. In our case, when we did `ng-controller="todosController as todosCtrl"`, we're creating a new instance of our controller -- the View Model -- that is tailored to support our interface. In this way, we can use the View Model to access functions and properties we've defined in our controller. Everytime we load the DOM we create a new View Model based on the functionality defined in the controller.
+ViewModel is a model which has been tailored to support a specific UI, helping in easing data binding. In our case, when we did `ng-controller="todosController as todosCtrl"`, we're creating a new instance of our controller (`todosCtrl`) -- the View Model -- that is tailored to support our interface. In this way, we can use the View Model to access functions and properties we've defined in our controller. Everytime we load the DOM we create a new View Model based on the functionality defined in the controller.
 
 ## ng-model + break(40/80)
 We can utilize the view model in a variety of ways. We'll be using view model to leverage the angular directive `ng-model` to retreive and set data. We can actually just create properties on the view model to serve this end.
