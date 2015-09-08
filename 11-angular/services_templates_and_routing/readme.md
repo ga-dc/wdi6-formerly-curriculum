@@ -33,7 +33,34 @@ data.
 Make sure it's working locally, and motivate how the current app has the three
 problems listed above.
 
-## Create Grumble Router / Templates
+## Services
+
+Service vs Factory vs Provider
+
+### Create Grumble Service
+
+bower install ngresource
+add ngResource js/app.js && index.html
+
+create a new file in `js/services/grumble.js` and include in index.html
+
+```js
+return $resource
+```
+
+### Update Index Controller (I do)
+
+in js/controllers/grumble.js
+
+```js
+this.grumbles = Grumble.query()
+```
+
+### You do: Delete, and create
+
+we'll come back to this
+
+## Creating Templates / Routes
 ### How the pieces fit together
 ### Add `ngRoute`
 
@@ -41,19 +68,91 @@ problems listed above.
 * Add script tag to index
 * Add as a dependency of our app in app.js (`ngRoute`)
 
+Create a routes.js file:
 
+bower install ng-route
 
-### Creating Templates / Routes
+```js
+(function(){
+ var router = angular.module('grumbleRouter', []);
+ router.config(['$routeProvider', function($routeProvider){
+   $routeProvider.when("/grumbles",{
+     templateUrl: 'views/grumbles/index.html',
+     controller: 'grumblesController',
+     controllerAs: 'grumblesCtrl'
+   }); 
+ }]);
+})();
+```
+
+add `grumbleRouter` to `app.js` as module dependency.
+
 #### Index (I do)
+
+in index.html add
+
+`<div ng-view></div>`
+
+Create a new file `js/views/grumbles/index.html`
+
+in it:
+
+```html
+<div class='grumbles' ng-repeat>
+
+</div>
+```
+
 #### Show (You do)
+
+well, almost. We need to create a separate controller for the show page. Typically, you will see one controller per view.
+
+Let's create a new controller:
+
+```js
+var grumbles = //hardcoded data
+...controller('grumbleController',['$routeParams','$location',function($routeParams, $location){
+    this.grumble = Grumble.get({id: $routeParams.id})
+  }])
+```
+
+#### You do: define a new route `/grumbles/:id` that loads the controller we jsut created and a view that you create
+
+add a link on index page to link to show route
+
+move delete link to show page
+
+#### $location (we do)
+
+add delete to redirect back after deleting
+
 #### New (I do)
+
+- link to a new page
+- define a route
+- create newGrumbleController
+- new template in js/views called new.html
+
+
 #### Edit (You do)
+
+do the same as above, but with edit!
+ but just the route and view, dont worry about updating
 
 ##
 
-## Services
-### Create Grumble Service
-### Update Index Controller (I do)
-### Update Show Controller (You do)
-### Update New Controller (I do)
-### Update Edit Controller (You do)
+### I do: Edit/ Update
+
+add 
+
+```js
+update: {method: 'PUT'}
+```
+
+Angular doesn't have opinions about REST or how things get updated
+
+update should take grumble id
+
+
+
+
