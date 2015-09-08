@@ -16,14 +16,40 @@
 
 ## Overview of Today's Lesson (role of Templates, Routers, and Services)
 
+Introduce templates / routers / services / multiple controllers at a high level,
+we're introducing these components to make our app more maintainable / readable.
+Specifically, we'll be removing logic from the view, and breaking our views down
+into smaller pieces. Additionally, our app will have proper, linkable routes.
 
-## Create Grumble Router / Templates / Controllers
-### How the three pieces fit together
+Finally, we'll introduce a service so that we can connect to an API to store our
+data.
+
+1. Represent state via routes.
+2. Decouple views from behavior.
+3. Persist data.
+
+## Walkthrough of Current App
+
+Make sure it's working locally, and motivate how the current app has the three
+problems listed above.
+
+## Create Grumble Router / Templates
+### How the pieces fit together
 ### Add `ngRoute`
-### Index (I do) (Entails creating 'index controller' and view template)
-### Show (You do)
-### New (I do)
-### Edit (You do)
+
+* `$ bower install --save angular-route`
+* Add script tag to index
+* Add as a dependency of our app in app.js (`ngRoute`)
+
+
+
+### Creating Templates / Routes
+#### Index (I do)
+#### Show (You do)
+#### New (I do)
+#### Edit (You do)
+
+##
 
 ## Services
 ### Create Grumble Service
