@@ -321,6 +321,10 @@ ViewModel is a model which has been tailored to support a specific UI, helping i
 ## ng-model + break(40/80)
 We can utilize the view model in a variety of ways. We'll be using view model to leverage the angular directive `ng-model` to retreive and set data. We can actually just create properties on the view model to serve this end.
 
+### show example of 2 way data binding
+
+> you can update the view from the model, and the model with the view.
+
 We can see all of our todos, we can even toggle forms to create new ones and edit existing ones. Theres just one problem. We can't actually create or edit todos yet. We need a way to access the values of the input elements and call a function to create the Todo in the form. We'll be using `ng-model` and `ng-submit` to do these things. Let's get the functionality working for creating Todos. In `index.html`:
 
 ```html
