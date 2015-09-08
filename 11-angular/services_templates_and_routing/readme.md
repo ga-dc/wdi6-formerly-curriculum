@@ -267,7 +267,6 @@ We can force a reload of the data by updating the applications path.
 do the same as above, but with edit!
 but just the route and view, dont worry about updating grumbles on the server
 
-
 ### I do: Edit/ Update
 
 Angular doesn't have opinions about REST or how things get updated. As a result,
@@ -285,15 +284,19 @@ grumbleServices.factory('Grumble', ['$resource', function($resource) {
 You can now update a grumble like so:
 
 ```js
-this.grumble.$update
+this.grumble.$update({id: this.grumble.id})
 // or
-Grumble.update(this.grumble, function(){
-
+Grumble.update({id: this.grumble.id}, this.grumble, function(){
   $location.path("/grumbles/" + self.id)
 })
 ```
 
 ### Update edit view to update grumbles on server
 
+- Create an `edit` route
+- Link to it from the show view
+- Create an edit template
+- Create an `editGrumble` controller with an `update` method
+- invoke `update()` using `ng-click` or `ng-submit`
 
 
