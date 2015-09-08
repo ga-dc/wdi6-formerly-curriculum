@@ -17,16 +17,16 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 - Anand Moses
 - **Open Appointment Time**
 
-## Mon Sep 7
+## Wed Sep 9
 
 - Ryan Kahle
 - Taewan Kim
 
-## Wed Sep 9
+## Thu Sep 10
 
 - Lana Kushnir
 - John Master
 
-## Thur Sep 10
+## Fri Sep 11
 
 - **Open Appointment Time**
