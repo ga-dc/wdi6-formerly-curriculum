@@ -53,7 +53,11 @@ First up, we'll convert the hardcoded data to read from an external API using a 
 
 ### Create Grumble Factory
 
-Install [angular-resource](https://docs.angularjs.org/api/ngResource)
+By default, angular does not include a way to read and manipulate the URL.
+
+There is a separate module, called [angular-resource](https://docs.angularjs.org/api/ngResource).
+
+Install with:
 
     $ bower install angular-resource
 
@@ -119,6 +123,11 @@ grumbleControllers.controller('grumblesController', ['Grumble', function(Grumble
 
 [Docs here](https://docs.angularjs.org/api/ngResource/service/$resource#usage)
 
+- Use `ng-click` to call a controller method on click
+- Define a method in the controller `delete`, which uses our new `Grumble` service.
+- Reuse existing HTML when possible
+  - https://github.com/ga-dc/grumblr_angular/blob/controllers-and-directives/index.html 
+
 We'll refactor this later and separate logic into separate controllers.
 
 ## Break 
@@ -132,7 +141,10 @@ We'll use the built-in angular router and templating to separate our concerns.
 ### How the pieces fit together
 
 ![](https://i-msdn.sec.s-msft.com/dynimg/IC416621.png)
-???
+
+You should recognize this diagram from yesterday's discussion of MVVM.
+
+For each route, we will have a corresponding diagram.
 
 ### Add `ngRoute`
 
