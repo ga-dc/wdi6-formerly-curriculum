@@ -6,7 +6,7 @@
 |            | module     |                 | gem                 |
 |            | controller |                 | controller's action |
 |            | resource   |                 | model               |
-|            | model      |                 | model's field       |
+|            | ng-model   |                 | model's field       |
 |            | directive  |                 | helper              |
 |            | service    |                 | ActiveRecord::Base  |
 |            | view       |                 | view                |
