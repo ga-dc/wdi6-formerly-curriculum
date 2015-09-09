@@ -23,20 +23,16 @@ One on ones are generally from 4:30pm to 5:00pm on Mondays, Wednesdays, and Thur
 
 -----
 
-## Mon Sep 7
+## Wed Sep 8
 
 - Omari
 - Ksenia
 
-## Wed Sep 8
+## Thur Sep 9
 
 - Yvonne
 - Leigh
 
-## Thur Sep 9
-
-- Rachel
-
 ## Fri Sep 10
 
-
+- Rachel
