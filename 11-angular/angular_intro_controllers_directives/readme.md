@@ -236,7 +236,7 @@ Let's instantiate a property of our controller and replace our `.sayHello()` fun
 > All we've done here is instantiate a property of our controller to false. Then defined the `.toggleForm()` function of our controller to change `this.formIsVisible` between true and false any time that function is called
 
 ## `ng-show`
-We now need to link `.formIsVisible` to an actual form. We can do this by using an angular directive called `ng-show`. This adds a `display:none` using CSS if something is `true`. In this case, we're going to hide the form if `.formIsVisible` evaluates to `true`. In `index.html`:
+We now need to link `.formIsVisible` to an actual form. We can do this by using an angular directive called `ng-show`. This adds a `display:none` using CSS if something is `false`. In this case, we're going to hide the form if `.formIsVisible` evaluates to `true`. In `index.html`:
 
 We now need to link `.formIsVisible` to an actual form. We can do this by utilizing an angular directive that displays or hides the form based on whether `.formIsVisible` evaluates to true or false. In `index.html`:
 
