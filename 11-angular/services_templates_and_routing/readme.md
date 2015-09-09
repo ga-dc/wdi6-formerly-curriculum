@@ -16,32 +16,38 @@
 
 ## Overview of Today's Lesson (role of Templates, Routers, and Services)
 
-Introduce templates / routers / services / multiple controllers at a high level,
-we're introducing these components to make our app more maintainable / readable.
-Specifically, we'll be removing logic from the view, and breaking our views down
-into smaller pieces. Additionally, our app will have proper, linkable routes.
+We'll:
 
-Finally, we'll introduce a service so that we can connect to an API to store our
-data.
+- use a service so that we can connect to an API to store our data.
+- use templates to organize reusable chunks of HTML.
+- use multiple controllers to give context to a view.
+- use a router to read and update the url to represent state.
 
-Today's objectives include:
-
-1. Represent state via routes.
-2. Decouple views from behavior.
-3. Persist data.
 
 ## Walkthrough of Current App
 
-Make sure it's working locally, and motivate how the current app has the three
+    $ git clone git@github.com:ga-dc/grumblr_angular.git
+
+Current Problems:
+
+1. No url changes or representation of state.
+2. All HTML is in a single file.
+3. Data does not persist.
+
+Make sure it's working locally, and show how the current app has the three
 problems listed above.
 
 To obtain the starter code for today, `cd` to `grumblr_angular`:
 
     $ git checkout -b templating-and-routing origin/controllers-and-directives-with-comments
+    $ bower install
+    $ python -m SimpleHTTPServer
 
 ## Services
 
 First up, we'll convert the hardcoded data to read from an external API using a service.
+
+Useful terminology:
 
 - **Factory**
   - You create an object, attach properties and methods, and return that object
@@ -59,7 +65,7 @@ There is a separate module, called [angular-resource](https://docs.angularjs.org
 
 Install with:
 
-    $ bower install angular-resource
+    $ bower install --save angular-resource
 
 Link to it in index.html
 
@@ -80,6 +86,11 @@ var app = angular.module('grumblr', [
 
 create a new file in `js/services/grumble.js` and include in index.html
 
+```html
+<!-- index.html -->
+<script src="js/services/grumble.js"></script>
+```
+
 ```js
 // js/services/grumble.js
 (function() {
@@ -88,6 +99,20 @@ create a new file in `js/services/grumble.js` and include in index.html
     return $resource('http://grumblr.wdidc.org/grumbles/:id');
   }]);
 })();
+```
+
+and add `grumbleServices` as a dependency in `app.js`
+
+```js
+// app.js
+
+(function() {
+  var app = angular.module('grumblr', [
+    'grumbleControllers',
+    'ngResource',
+    'grumbleServices'
+  ]);
+})()
 ```
 
 Out of the box, this gives us several methods for our newly defined `Grumble` service:
@@ -101,13 +126,13 @@ Out of the box, this gives us several methods for our newly defined `Grumble` se
 >When the data is returned from the server then the object is an instance of the resource class. The actions save, remove and delete are available on it as methods with the $ prefix. This allows you to easily perform CRUD operations (create, read, update, delete) on server-side data like this:
 
 ```js
+// for example...
 var User = $resource('/user/:userId');
 var user = User.get({userId:123}, function() {
   user.abc = true;
   user.$save();
 });
 ```
-
 
 ### Update Index Controller (I do)
 
@@ -119,12 +144,12 @@ grumbleControllers.controller('grumblesController', ['Grumble', function(Grumble
 }]);
 ```
 
-### You do: Delete, and create
+### You do: Delete, and Create
 
 [Docs here](https://docs.angularjs.org/api/ngResource/service/$resource#usage)
 
-- Use `ng-click` to call a controller method on click
-- Define a method in the controller `delete`, which uses our new `Grumble` service.
+Replace the `update` and `create` methods to use our new `Grumble` service.
+
 - Reuse existing HTML when possible
   - https://github.com/ga-dc/grumblr_angular/blob/controllers-and-directives/index.html 
 
@@ -240,6 +265,10 @@ This template should display:
 
 Add a link (using `ng-href`)on index page to link to show page.
 
+Finish early? Check out [ui-router](https://github.com/angular-ui/ui-router) from the angular-ui team
+and replace the ng-router with ui-router.
+
+Or read the [tldr version](http://stackoverflow.com/a/21024270/850825)
 
 #### $location (we do)
 
