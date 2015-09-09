@@ -54,9 +54,8 @@ What's the purpose of a front end framework? JS and all of it's many libraries a
 Take a look at [this quick overview of angular](http://www.tutorialspoint.com/angularjs/angularjs_overview.htm)(10)
 
 T&T - Some points to think about (5)
-- How does the MVC pattern differ on the front-end vs back-end, what are it similarities?
-- What do front end frameworks provide?
-- How does angular differ from front-end frameworks?
+- What are some features or characteristics of Angular?
+- How does Angular compare/differ from Backbone (or other front-end frameworks)?
 
 ## Angular (5/35)
 - structural front end framework for dynamic web apps
@@ -349,6 +348,8 @@ this.create = function(){
 
 > unshift is just like push, only it adds the argument as the first element of the array instead of the last.
 
+## `ng-model` & `createGrumble` - you do (20/100)
+
 We can also use `ng-model` to fill out the values of the form itself. We will need this bit of functionality to program the logic of our edit functionality. In `index.html`:
 
 ```html
@@ -383,7 +384,7 @@ this.update = function(index){
 }
 ```
 
-## edit/update functionality - you do - grumblr (30/110)
+## edit/update functionality - you do - grumblr (30/130)
 We've finished our todo app with everything except for delete functionality.
 You do:
 - Update grumblr to match the functionality of Todos
@@ -391,5 +392,5 @@ You do:
 
 > Remember the todo app utilized an array of "strings". You'll need to figure out how the functionalities for strings map to the functionalities for objects.
 
-## delete functionality - you do - grumblr (20/130)
+## delete functionality - you do - grumblr (20/150)
 Using what you know about angular directives and controllers, update the view(`index.html`) and the controller (`js/controllers/grumbles.js`) to incorporate delete functionality for your grumbles.
