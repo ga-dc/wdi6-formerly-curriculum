@@ -2,12 +2,11 @@
 - Describe the benefits of using a front end framework
 - Explain how libraries differ from frameworks.
 - Build a controller with hard coded data.
-- Render controller data in the view
-- bind data with a controller variable
-- explain what angular directives do and how they are leveraged to execute JS
-- Use `ng-repeat` to iterate over data
-- use `ng-hide`/`ng-show` to hide and show elements
-- use `ng-submit` to create hard coded objects on the client
+- Render and bind controller data in the view.
+- Explain what angular directives do and how they are leveraged to execute JS.
+- Use `ng-repeat` to iterate over data.
+- use `ng-hide`/`ng-show` to hide and show elements.
+- use `ng-submit` to create hard coded objects on the client.
 
 ## highlevel overview of FEFW
 ## Opening Framing (5/5)
@@ -317,7 +316,7 @@ Earlier, we added a property and function to our controller and used some angula
 ## View Model - Revisted! (5/40)
 ViewModel is a model which has been tailored to support a specific UI, helping in easing data binding. In our case, when we did `ng-controller="todosController as todosCtrl"`, we're creating a new instance of our controller (`todosCtrl`) -- the View Model -- that is tailored to support our interface. In this way, we can use the View Model to access functions and properties we've defined in our controller. Everytime we load the DOM we create a new View Model based on the functionality defined in the controller.
 
-## ng-model + break(40/80)
+## ng-model + break (40/80)
 We can utilize the view model in a variety of ways. We'll be using view model to leverage the angular directive `ng-model` to retreive and set data. We can actually just create properties on the view model to serve this end.
 
 ### show example of 2 way data binding
@@ -349,6 +348,11 @@ this.create = function(){
 > unshift is just like push, only it adds the argument as the first element of the array instead of the last.
 
 ## `ng-model` & `createGrumble` - you do (20/100)
+
+Add the create same functionality we just did for todo's for your Grumblr application.
+* **NOTE:** we're not just saving a single property this time.
+
+## edit & update
 
 We can also use `ng-model` to fill out the values of the form itself. We will need this bit of functionality to program the logic of our edit functionality. In `index.html`:
 
