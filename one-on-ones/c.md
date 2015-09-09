@@ -15,15 +15,15 @@ One on ones are generally from 4:30pm to 5:30pm on Mondays, Wednesdays, and Thur
 
 ---
 
-## Tues Sept 8
+## Wed Sept 9
 
 - Stephen
 
-## Wed Sept 9
+## Thurs Sept 10
 
 - Kristin
 - Moose
 
-## Thur Sept 10
+## Fri Sept 11
 
 - Erica
