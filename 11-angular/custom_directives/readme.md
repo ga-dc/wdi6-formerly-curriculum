@@ -126,6 +126,8 @@ For now, we'll leave `show` alone and just get this working in `index`.
   })();
   ```
 
+  One thing to note is that Angular expects you to write the directive's name as camelCase inside the directive *file*, but as spine case inside the *HTML*. `.directive('grumbleCake')` automatically turns into `<grumble-cake>`.
+
 6. Now we'll tell the directive what to use as a template:
 
   ```js
@@ -334,7 +336,9 @@ There isn't one.
 
 ### The story of Robin and Angular
 
-I *love* Angular. It's so useful! However, I was originally pretty frustrated with it.
+I *love* Angular. It's so useful! It lets me rapidly prototype a single-page app in a much more visual way since things are governed so much by the HTML.
+
+However, until recently I was pretty frustrated with Angular.
 
 At my last job, I was asked to learn Angular to make an app. It *kicked my butt*. It seemed so "draw the rest of the effing owl". I couldn't even find adequate definitions for "controller" and "directive", let alone know when to use which. I was spared from total failure only by the fact that GA came along and poached me.
 
@@ -425,3 +429,15 @@ There's as much a right answer to these as there is to:
 
 **The only answer is to pick the one you like the best and stick with it.**
 
+## Review questions
+
+- What does the mnemonic "MACE" stand for?
+  - Comment, Attribute, Class, Element
+- What's the difference between `template` and `templateUrl`?
+  - `template` uses a string as a template; `templateUrl` uses a whole file
+- In the Grumblr app, would it be better to have a `directives` folder with `grumbleDirectives.js` and `commentDirectives.js` inside it, or a `grumble` folder with `grumbleDirectives.js` inside it and a `comment` folder with `commentDirectives.js` inside it?
+  - It's your choice!
+- If I'm making a "grumble cake" custom directive, should I write it `grumble-cake` in the directive file and `<grumbleCake>` in the HTML, or the other way around?
+  - The other way around.
+- What's the purpose of the `link` property of a directive?
+  - You can define scope variables inside it -- that is, the data that's available inside your custom directive. Putting `scope.name = "Steve"` inside `link` means you can use `{{name}}` inside your directive's template.
