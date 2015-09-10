@@ -14,7 +14,7 @@ You've heard that there are database options, other than Postgresql.  Today, we'
 
 ### Exercise: Your own Firebase
 
-It's time to create your own Firebase and see what it can do. The first thing we need to do is sign up for a free Firebase account.  We recommend this naming convention: `wdi-grumbler-your_initials` (i.e. `wdi-grumbler-mms`).
+It's time to create your own Firebase and see what it can do. The first thing we need to do is [sign up for a free Firebase account](https://www.firebase.com/signup/).  We recommend this naming convention: `wdi-grumbler-your_initials` (i.e. `wdi-grumbler-mms`).
 
 A brand new Firebase app will automatically be created with its own unique URL ending in firebaseio.com. We'll use this URL during the lesson.
 
@@ -29,7 +29,7 @@ See how the database is updated as each block lands on the board?  This database
 
 ### Quickstart
 
-When you have some time, I recommend you follow the [AngularFire Quickstart](https://www.firebase.com/docs/web/libraries/angular/quickstart.html).  Through that, you will create a simple html page that will let you play with AngularFire.
+When you have some time, I recommend you follow the [AngularFire Quickstart](https://www.firebase.com/docs/web/libraries/angular/quickstart.html).  Through that, you will create a simple html page that will let you play with AngularFire.  Right now, I'll show you what real-time, three-way binding looks like.
 
 ## Websockets
 
@@ -48,7 +48,9 @@ AngularFire is a library for connecting Angular to Firebase.  Similar to ActiveR
 
 ### Grumbler and Firebase
 
-Let's use our new found knowledge to update Grumbler.  This will be a walk through.  We'll work hard to take small, discreet steps.  We'll even debug when the way isn't clear.  Starting where your homework left off:
+Let's use our new found knowledge to update Grumbler.  The goal is to have Grumbler persist to Firebase, using AngularFire.  The functionality will be exactly the same, just the persistence has changed.   
+
+This will be a walk through.  We'll work hard to take small, discreet steps.  We'll even debug when the way isn't clear.  Starting where your homework left off:
 
 ```
 $ git checkout -b templating-and-routing-with-comments origin/templating-and-routing-with-comments
