@@ -362,15 +362,28 @@ Unlike, say, Rails, which was written with pretty explicit rules in mind, Angula
 
 There are lots of choices you have to make *for which there aren't "right" answers*, and that have no bearing on the performance of your app whatsoever:
 
-##### What are some of these choice?
+##### What are some of these choices that don't have right answers?
 
 - Put methods in directives or controllers?
 - Use directives as elements or attributes?
 - Use Firebase or AJAX?
-- More or fewer files?
-  - We put all of the controllers in one big file, but could totally have put them in separate files.
 - Use `<data-grumble>` or `<grumble>`?
 - Use a CDN or Bower?
+- More or fewer files?
+  - We put all of the controllers in one big file, but could totally have put them in separate files.
+  ```js
+  // grumbleDirective.js
+  angular.module('grumblr').directive('grumble')...
+  ```
+  ```js
+  // commentDirective.js
+  angular.module('grumblr').directive('comment')...
+  ```
+  ```html
+  // index.html
+  <script src="directives/grumbleDirective.js"></script>
+  <script src="directives/commentDirective.js"></script>
+  ```
 - Organize your files by the model they relate to, or by the type of file?
   ```
   directives/
