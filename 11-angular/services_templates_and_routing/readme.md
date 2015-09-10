@@ -280,7 +280,7 @@ We can manipulate the url using angular's `$location` service:
 ```js
 // js/controllers/grumbles.js
 // show controller (handles delete link on show page)
-grumbleControllers.controller('grumbleController', ['$routeParams','$location','Grumble', function($routeParams, $location, Grumble){
+app.controller('grumbleController', ['$routeParams','$location','Grumble', function($routeParams, $location, Grumble){
   this.grumble = Grumble.get({id: $routeParams.id});
   this.delete = function(id){
     Grumble.delete({id: id}, function(){
