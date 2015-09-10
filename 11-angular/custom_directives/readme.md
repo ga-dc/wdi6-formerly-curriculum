@@ -95,8 +95,6 @@ I can think of a few reasons:
 
 ### Custom directives are the "flagship" of Angular
 
-Without directives, Angular is just another MVC-ish framework.
-
 So: let's make one!
 
 ```
@@ -336,6 +334,8 @@ There isn't one.
 
 ### The story of Robin and Angular
 
+I *love* Angular. It's so useful! However, I was originally pretty frustrated with it.
+
 At my last job, I was asked to learn Angular to make an app. It *kicked my butt*. It seemed so "draw the rest of the effing owl". I couldn't even find adequate definitions for "controller" and "directive", let alone know when to use which. I was spared from total failure only by the fact that GA came along and poached me.
 
 Going it over again before this class, I ran into the same trouble.
@@ -356,7 +356,9 @@ The absence of resources telling me the rules and restrictions and the "right" t
 
 Unlike, say, Rails, which was written with pretty explicit rules in mind, Angular is in some ways a much more flexible framework: you use it however you want to use it.
 
-There are lots of choices you have to make *for which there aren't "right" answers*, and that have no bearing on the performance of your app whatsoever:
+There are lots of choices you have to make *for which there aren't "right" answers*, and that have no bearing on the performance of your app whatsoever.
+
+Once I discovered that Angular is owl-less, I started *loving* it.
 
 ##### What are some of these choices that don't have right answers?
 
