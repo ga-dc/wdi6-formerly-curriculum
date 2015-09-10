@@ -435,8 +435,8 @@ There's as much a right answer to these as there is to:
   - Comment, Attribute, Class, Element
 - What's the difference between `template` and `templateUrl`?
   - `template` uses a string as a template; `templateUrl` uses a whole file
-- In the Grumblr app, would it be better to have a `directives` folder with `grumbleDirectives.js` and `commentDirectives.js` inside it, or a `grumble` folder with `grumbleDirectives.js` inside it and a `comment` folder with `commentDirectives.js` inside it?
-  - It's your choice!
+- In the Grumblr app, should you have a `directives` folder with `grumbleDirectives.js` and `commentDirectives.js` inside it, or a `grumble` folder with `grumbleDirectives.js` inside it and a `comment` folder with `commentDirectives.js` inside it?
+  - It's your choice! But it's becoming more convention to do it the second way and organize files by the model to which they refer, rather than by the type of file.
 - If I'm making a "grumble cake" custom directive, should I write it `grumble-cake` in the directive file and `<grumbleCake>` in the HTML, or the other way around?
   - The other way around.
 - What's the purpose of the `link` property of a directive?
