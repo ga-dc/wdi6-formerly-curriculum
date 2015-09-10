@@ -100,7 +100,7 @@ I can think of a few reasons:
 So: let's make one!
 
 ```
-git checkout -b origin/templating-and-routing-with-comments templating-and-routing-with-comments
+git checkout -b templating-and-routing-with-comments origin/templating-and-routing-with-comments 
 ```
 
 ## Grumble `show`
