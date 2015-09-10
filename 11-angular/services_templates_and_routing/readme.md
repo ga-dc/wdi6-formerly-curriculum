@@ -128,7 +128,7 @@ Out of the box, this gives us several methods for our newly defined `Grumble` se
 ```js
 // for example...
 var User = $resource('/user/:userId');
-var user = User.get({userId:123}, function() {
+var user = User.get({userId:123}, function(user) {
   user.abc = true;
   user.$save();
 });
