@@ -1,5 +1,7 @@
 # Custom Directives
 
+[Screencast](https://youtu.be/_JKtEbOfX0o)
+
 ## Lenin's Objections
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
 - Explain the purpose of each of the four directive options, and the four options for the "restrict" directive, E, A, C, M
