@@ -264,7 +264,7 @@ I can add a parameter called `replace` that will have my template *replace* the 
 </div>
 ```
 
-This is nice if you're anal-retentive about your HTML validating.
+This makes it easier to keep your HTML validated, over having to write `<data-grumble>`.
 
 ### Do you want to put methods in the directive itself?
 
