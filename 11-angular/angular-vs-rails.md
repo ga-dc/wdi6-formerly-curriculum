@@ -1,7 +1,7 @@
 # Angular vs Rails
 
 
-| An Angular | ...        | is like a Rails | ...                 |
+| An Angular | ...        | is (sort-of) like a Rails | ...                 |
 |------------|------------|-----------------|---------------------|
 |            | module     |                 | gem                 |
 |            | controller |                 | controller's action |
@@ -10,4 +10,3 @@
 |            | directive  |                 | helper              |
 |            | service    |                 | ActiveRecord::Base  |
 |            | view       |                 | view                |
-    
