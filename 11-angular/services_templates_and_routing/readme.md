@@ -10,7 +10,7 @@
 - Explain the purpose of templates in Angular
 - Use the ng-view directive to load angular templates
 - Define multiple controllers in a single module
-- Use $routeProvider and $location to access query parameters and update the URL
+- Use $routeParams and $location to access query parameters and update the URL
 - Create separate views and routes for each CRUD action
 - Compare/contrast the components of angular to OOJS / Backbone.js
 
@@ -59,9 +59,9 @@ Useful terminology:
 
 ### Create Grumble Factory
 
-By default, angular does not include a way to read and manipulate the URL.
+By default, angular does not include a way to interact with APIs.
 
-There is a separate module, called [angular-resource](https://docs.angularjs.org/api/ngResource).
+For that, there is a separate module, called [angular-resource](https://docs.angularjs.org/api/ngResource).
 
 Install with:
 
