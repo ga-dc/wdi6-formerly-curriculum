@@ -2,6 +2,7 @@
 
 ## Lenin's Objections
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
+- Explain the purpose of each of the four directive options, and the four options for the "restrict" directive, E, A, C, M
 - Use a custom directive to render an array of objects
 
 ## This class is about tidying up
@@ -160,3 +161,256 @@ We've effectively created a little widget we can use anywhere on our app!
 
 ##### Do the same for `edit` and `new`
 - What needs to change in the HTML of the partial for this to work?
+
+## Directive options
+
+### What kind of directive do you want?
+
+I mentioned before that custom directives can be elements, attibutes, comments, or classes. For example, as far as Angular is concerned, these are all the same:
+
+```
+<grumble-cake></grumble-cake>
+<div grumble-cake></div>
+<div class="grumble-cake"></div>
+<!-- directive:grumble-cake -->
+```
+
+If you're looking for a mnemonic by which to remember these, use `MACE`, where `M` is the 'm' in 'comment'.
+
+If you only want your directive to be available as an element or an attribute, you'd add `restrict: 'EA'` to your directive:
+
+```js
+(function(){
+  var directives = angular.module('grumbleDirectives',[]);
+  directives.directive('grumble', function(){
+    return {
+      templateUrl: "views/grumbles/_grumble.html",
+      restrict: "EA"
+    }
+  });
+})();
+```
+
+### Do you want your template to be a string or another file?
+
+We've been having our directives load their HTML from another file. But you can also put the HTML right in your directive as a string: just swap `templateUrl` with `template`:
+
+```js
+(function(){
+  var directives = angular.module('grumbleDirectives',[]);
+  directives.directive('grumble', function(){
+    return {
+      template: "<h1>{{grumble.title}}</h1>"
+    }
+  });
+})();
+```
+
+### Do you want your directive to *replace* the HTML that calls it, or just go inside it?
+
+If my directive looks like this:
+```js
+(function(){
+  var directives = angular.module('grumbleDirectives',[]);
+  directives.directive('grumble', function(){
+    return {
+      template: "<h1>Slim Shady</h1>"
+    }
+  });
+})();
+```
+
+...and my HTML looks like this:
+```html
+<div>
+  <grumble></grumble>
+</div>
+```
+
+...what actually gets rendered in the browser is this:
+```html
+<div>
+  <grumble><h1>Slim Shady</h1></grumble>
+</div>
+```
+
+I can add a parameter called `replace` that will have my template *replace* the directive that calls it:
+```js
+(function(){
+  var directives = angular.module('grumbleDirectives',[]);
+  directives.directive('grumble', function(){
+    return {
+      template: "<h1>Slim Shady</h1>",
+      replace: true
+    }
+  });
+})();
+```
+
+```html
+<div>
+  <h1>Slim Shady</h1>
+</div>
+```
+
+This is nice if you're anal-retentive about your HTML validating.
+
+### Do you want to put methods in the directive itself?
+
+You can give a directive its own methods and properties that will show up in the view using a `link` function. For instance, here I am adding a property:
+
+```js
+(function(){
+  var directives = angular.module('grumbleDirectives',[]);
+  directives.directive('grumble', function(){
+    return {
+      template: "<h1>{{myName}}</h1>",
+      link: function(scope, element, attributes){
+        scope.myName = "Slim Shady";
+      }
+    }
+  });
+})();
+```
+
+...and here I am adding a method:
+
+```js
+(function(){
+  var directives = angular.module('grumbleDirectives',[]);
+  directives.directive('grumble', function(){
+    return {
+      template: "<h1 ng-click='say(myName)'>Click me!</h1>",
+      link: function(scope, element, attributes){
+        scope.myName = "Slim Shady",
+        scope.say = function(what){
+          alert(what);
+        }
+      }
+    }
+  });
+})();
+```
+
+`link` will always take the same three arguments: `scope`, `element`, and `attributes`. The only one you really need to worry about is `scope`. It's an object that when you attach things to it makes them available inside your directive.
+
+This is a **big deal**. It means **we don't have to use controllers at all for this directive**.
+
+In the `grumble` controller, we have this method:
+
+```js
+this.delete = function(id){
+  Grumble.delete({id: id}, function(){
+    $location.path("/grumbles")
+  });
+}
+```
+
+I can remove it from the controller and plunk it right in the directive:
+
+```js
+(function(){
+  var directives = angular.module('grumbleDirectives',[]);
+  directives.directive('grumble', function(){
+    return {
+      templateUrl: "views/grumbles/_grumble.html",
+      scope: function(scope, element, attributes){
+        scope.delete = function(id){
+            Grumble.delete({id: id}, function(){
+              $location.path("/grumbles")
+            });
+          }
+        }
+      }
+    }
+  });
+})();
+```
+
+## We've covered four "options":
+
+- `restrict: "EACM"`
+- `replace`
+- `template` and `templateUrl`
+- `link`
+
+##### What's the *right* way to use them?
+
+There isn't one.
+
+### The story of Robin and Angular
+
+At my last job, I was asked to learn Angular to make an app. It *kicked my butt*. It seemed so "draw the rest of the effing owl". I couldn't even find adequate definitions for "controller" and "directive", let alone know when to use which. I was spared from total failure only by the fact that GA came along and poached me.
+
+Going it over again before this class, I ran into the same trouble.
+
+#### In retrospect, this reminds me very much of when I was selling Noteboards.
+
+Folks around the world had been asking me to sell them internationally. I had a vague idea that I needed to pay tariffs or at least fill out some paperwork to do so. I looked for instructions. I *couldn't find them anywhere*.
+
+This seemed so "draw the rest of the effing owl". It was like how to register to sell internationally was a state secret. Being the law-abiding citizen I am, and not wanting to get in trouble, I ended up just not selling them internationally at all.
+
+...until one day, about 6 months in, it hit me:
+
+**There is no owl.**
+
+The absence of resources telling me the rules and restrictions and the "right" thing to do meant there weren't rules and restrictions. All I had to do was mail them, and unless I was selling in excess of some random big number or selling some controller substance, I didn't have to worry about covering my butt. The choices were all my own.
+
+### Angular has fewer owls than you think
+
+Unlike, say, Rails, which was written with pretty explicit rules in mind, Angular is in some ways a much more flexible framework: you use it however you want to use it.
+
+There are lots of choices you have to make *for which there aren't "right" answers*, and that have no bearing on the performance of your app whatsoever:
+
+##### What are some of these choice?
+
+- Put methods in directives or controllers?
+- Use directives as elements or attributes?
+- Use Firebase or AJAX?
+- More or fewer files?
+  - We put all of the controllers in one big file, but could totally have put them in separate files.
+- Use `<data-grumble>` or `<grumble>`?
+- Use a CDN or Bower?
+- Organize your files by the model they relate to, or by the type of file?
+  ```
+  directives/
+    grumble.js
+    comment.js
+  controllers/
+    grumble.js
+    comment.js
+  ```
+  ```
+  grumble/
+    directives.js
+    controllers.js
+  comment/
+    directive.js
+    controllers.js
+  ```
+- Have a whole bunch of modules, or one?
+  - We made a module to hold all of our directives:
+  ```js
+  (function(){
+    var directives = angular.module('grumbleDirectives',[]);
+    directives.directive("grumble")...
+    directives.directive("somethingElse")...
+  })();
+  ```
+  ...but we could just attach them to the main module we defined in `app.js`:
+  ```js
+  (function(){
+    angular.module('grumblr');
+    .directive("grumble")...
+    .directive("somethingElse")...
+  })();
+  ```
+
+There's as much a right answer to these as there is to:
+- Hyphens or underscores?
+- 2 spaces or 4?
+- Tabs or spaces?
+- Atom or SublimeText?
+
+**The only answer is to pick the one you like the best and stick with it.**
+
