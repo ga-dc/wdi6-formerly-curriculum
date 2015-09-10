@@ -7,59 +7,49 @@
 - Deploy your app to Firebase Hosting
 
 
-## Introduction
+## Introduction (10 min)
 
-You've heard that there are database options, other than Postgresql.  Today, we'll investigate one, Firebase.
-
-### Websockets
-
-http -> Websockets
-send letter -> phone
-
-??? Diagram
-
-## Exercise: Your own Firebase (20 min)
-
-[Intro to Firebase & AngularFire](https://www.firebase.com/docs/web/libraries/angular/guide/intro-to-angularfire.html#section-angularfire-intro)
-
-> Questions
-- Benefits of Firebase?
-
-- Review examples
-
-Deliverable: a database, with specified objects, using GUI
+You've heard that there are database options, other than Postgresql.  Today, we'll investigate one, Firebase. Firebase is a Platform as a Service (PaaS) that provides a graphical interface to set up a back end, both the database and api.
 
 
-## Demo: Tetris
+### Exercise: Your own Firebase
+
+It's time to create your own Firebase and see what it can do. The first thing we need to do is sign up for a free Firebase account.  We recommend this naming convention: `wdi-grumbler-your_initials` (i.e. `wdi-grumbler-mms`).
+
+A brand new Firebase app will automatically be created with its own unique URL ending in firebaseio.com. We'll use this URL during the lesson.
 
 
+## Demos (10 min)
 
-## Exercise: Read/Write data (20 min)
+### Tetris
 
-basic index.html/app.js, write/read
+Check [this out](https://www.firebase.com/tutorial/#session/gf3bu09wvlf).
 
-https://www.firebase.com/docs/web/quickstart.html
+See how the database is updated as each block lands on the board?  This database is updated in real-time to store game data.
 
+### Quickstart
 
-Timings:
- - 10 min: cdn
- - 20 min: write/read
+When you have some time, I recommend you follow the [AngularFire Quickstart](https://www.firebase.com/docs/web/libraries/angular/quickstart.html).  Through that, you will create a simple html page that will let you play with AngularFire.
 
-Deliverable: a database, with specified objects, using JS
+## Websockets
 
-## Break (10 min)
+To achieve this kind of performance, we are using a different connection mechanism: Websockets.  Up until this point, we have used HTTP (HypeText Transfer Protocol) which supports the familiar request/response cycle.  Using a Websocket maintains a connection between your browser and the server, allowing data to be passed back and forth.  These connections are persistent (always on), full duplex (simultaneously bi-directional) and blazingly fast.
+
+Picture HTTP as the our postal system, you send out some letters to a friend overseas.  The system delivers these letters through various paths and arrive safely.  Your friend reads them and sends a letter back.  In http, the server can not send you a message unless you request one: the request/response cycle.
+
+Whereas Websockets is more like a phone call.  You have the ability to hold a conversation, talking at the same time.  Once you have initiated a connection with the server, both an you can send messages, as needed.
+
+![Web Sockets lifetime](http://www.pubnub.com/blog/wp-content/uploads/2014/09/WebSockets-Diagram.png)
+
 
 ## AngularFire
 
-
-### We do: require, write/read object (30 min)
-
-simple angular App
-
+AngularFire is a library for connecting Angular to Firebase.  Similar to ActiveRecord and Sequelize.
 
 ### Grumbler and Firebase
 
 Let's use our new found knowledge to update Grumbler.  This will be a walk through.  We'll work hard to take small, discreet steps.  We'll even debug when the way isn't clear.  Starting where your homework left off:
+
 ```
 $ git checkout -b templating-and-routing-with-comments origin/templating-and-routing-with-comments
 ```
@@ -69,10 +59,12 @@ Big picture:
 - replace the existing service
 - update for interface changes
 
-#### install & require dependencies
+#### install & require dependencies (5 min)
+
 ```
-bower install angularfire --save
+$ bower install angularfire --save
 ```
+
 Q. What just happened?
 ---
 
@@ -91,7 +83,7 @@ var firebaseRef = new Firebase("https://ga-dc-wdi-grumblr.firebaseio.com/grumble
 firebaseRef.set({"title": "We have a connection!"});
 ```
 
-#### A Firebase Resource
+#### A Firebase Resource (10 min)
 
 Q.  We want to use this firebase database instead of our calls to our RESTful API.  What do we replace?
 ---
@@ -105,7 +97,9 @@ Q. How do we know what interface we need to support?
 ---
 > A. Check usage in the Controllers.
 
-First, we need a connection.
+But first, we need a connection.
+
+In js/services/grumble.js:
 
 ```js
 (function() {
@@ -126,11 +120,12 @@ We need to connect to the remote Firebase.  From our reading, we know that we st
 - store the base url in `firebaseUrl`
 - make a reference to the specific path, provided by Firebase, for checking connection: `/.info/connected`.
 - Listen for any changes in the data stored at this location via [`on`](https://www.firebase.com/docs/web/api/query/on.html).
-```
+
+```js
 connectedRef.on("value", ...
 ```
 
-#### What makes a resource?
+#### What makes a resource? (5 min)
 
 Q. How are we creating the current ngResource?
 ---
@@ -141,7 +136,7 @@ This service manages persisting our Grumbles.  We want to use the same names and
 
 Let's add our new dependency: "firebase".
 
-```
+```js
 var grumbleServices = angular.module('grumbleServices', ['ngResource', 'firebase']);
 ```
 
@@ -156,15 +151,17 @@ Q. What does our index controller expect?
 
 To manage a list of grumblers, we'll need an Array.
 
-#### Research: [Synchronized Arrays](https://www.firebase.com/docs/web/libraries/angular/guide/synchronized-arrays.html)
+#### Research: [Synchronized Arrays](https://www.firebase.com/docs/web/libraries/angular/guide/synchronized-arrays.html) (5 min)
 
 
-### Grumble.query()
+#### Get the grumbles  (15 min)
+
+In js/services/grumble.js:
 
 ```js
-grumbleServices.factory('GrumbleFirebase', ['$firebaseObject','$firebaseArray', grumbleFirebase]);
+grumbleServices.factory('Grumble', ['$firebaseObject','$firebaseArray', grumbleFirebase]);
 
-// Manages resources in friebase
+// Manages resources in firebase
 // mirrors ngResource interface
 function grumbleFirebase($firebaseObject, $firebaseArray) {
   // get reference to grumbles "namespace"
@@ -184,8 +181,7 @@ function grumbleFirebase($firebaseObject, $firebaseArray) {
 
 - get the reference to our grumbles
 - create an Angular Factory, passing the Firebase dependencies
-- retrieve our grumbles
-- support `Grumble.query()`, see "js/controllers/grumbles.js"
+- retrieve our grumbles, via `Grumble.query()`, as the controller expects (see: "js/controllers/grumbles.js")
 - return our Grumble
 
 Let's refresh our list of grumbles: http://localhost:3000/#/grumbles.  
@@ -195,7 +191,9 @@ Q. What do you see?  Nothing? Why?
 
 > A. (sing it with me) Weeeee ain't got no grumbles. Nobody.  Cares for them.  Nobody. I-i-i-i-i-i'm so...
 
-### And so, they created a Grumble
+### Break (10 min)
+
+### Create a grumble (30 min)
 
 Looking in our controller, we see:
 
@@ -220,15 +218,15 @@ var Grumble = {
 ```
 
 Returning to the browser, we create a new Grumble.  Only to see:
+
 ```
 Argument 'grumbleController' is not a
 ```
 
 Not much to go on.  What's the url?
 
-```
-http://localhost:3000/#/grumbles/undefined
-```
+`http://localhost:3000/#/grumbles/undefined`
+
 
 Q. What's missing?
 ---
@@ -249,12 +247,12 @@ Saving (for create) Object {title: "test 99", authorName: "mms"}
 
 What does `add` do?
 
-> $add(newData)
+> [$add(newData)](https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-firebasearray-addnewdata)
 
 >Creates a new record in the database and adds the record to our local synchronized array.
 >This method returns a promise which is resolved after data has been saved to the server. The promise resolves to the Firebase reference for the newly added record, providing easy access to its key.
 
-And here's why they pay me the big bucks.
+They provide this example:
 
 ```js
 var list = $firebaseArray(ref);
@@ -267,7 +265,11 @@ list.$add({ foo: "bar" }).then(function(ref) {
 
 Oh.  It doesn't change the grumble that is passed in.  It resolves to a reference for the newly added record.  We could return the new key, but we would have to change the Controller to support that.  The Controller expects a grumbler.  Let's send back a grumbler with an `id`.
 
-```
+More about the returned [Data Snapshpot](https://www.firebase.com/docs/web/api/datasnapshot/)
+
+In the end, it probably makes sense to just return the id, but we are trying to minimize change and follow the existing conventions.  I indicate this via "WORKAROUND" and "TODO".
+
+```js
 // WORKAROUND: this is the original Grumbler, with it's new id.
 // TODO: just pass the id/key
 grumble.id = ref.key();
@@ -280,7 +282,7 @@ Q. What do you expect when we refresh this page?
 
 > A.
 
-```
+```js
 {{ grumbleCtrl.grumble.title }}
 ```
 
@@ -289,11 +291,11 @@ Q. What's wrong?
 
 > A. We are on the "show" route.  Our new Resource only supports `query` & `save`.
 
-Workaround.  Check via index for now.  Ah, that looks much better.  But wait!  Look at those links.  Where's the id?
+Workaround.  Check via index for now.  Ah, that looks much better.  
 
-### Update the links on the index view.
+But wait!  Look at those links.  Where's the id?
 
-Seriously?  This is why they pay us to do this.  And.. this is the point where you realize why you took this course.
+#### Index links (10 min)
 
 Remember back when we researched [Synchronized Arrays](https://www.firebase.com/docs/web/libraries/angular/guide/synchronized-arrays.html)?  In there they mentioned,
 > We can also access an item's id in ng-repeat with $id.
@@ -315,9 +317,9 @@ Don't forget the one in `Grumble.save`.
 After updating index.html and  
 
 
-### You DO: Finally, we show the Grumble. (35 min)
+### You Do: Finally, we show the Grumble. (30 min)
 
-
+Continue updating our new firebaeResource until CRUD is supported.
 
 Timings:
 - Break?
@@ -330,18 +332,52 @@ Hints:
 - `mockComment = { authorName: 'REPLACE ME', created_at: '01/01/77', content: "Please replace me?" };`
 
 
+### Deploy!
+
+Install the tools:
+
+```
+$ npm install -g firebase-tools
+```
+
+Initialize the app (only needed once):
+
+```
+$ firebase init
+```
+
+Deploy
+
+```
+$ firebase deploy
+```
+
+Check it out!
+
+```
+$ firebase open
+```
+
+## [optional] Zoom zoom
+
+Let's study Websockets just a bit more.
+
+https://www.chrome.com/racer
+
+
 ## Conclusion (5 min)
 
-??? Needs questions
-
-
-
-
+- List 3 benefits of Firebase
+- Explain 2 benefits of Websockets
+- Explain 2 downsides of Websockets
 
 
 
 ## Resources
 
-- https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-42/q1_2015_img1.png
+-  [AngularFire Quickstart](https://www.firebase.com/docs/web/libraries/angular/quickstart.html).  - [Firebase examples](https://www.firebase.com/docs/web/examples.html)
+- [Firebase Hosting](https://www.firebase.com/docs/hosting/quickstart.html)
 - [Simple (ruby) Server](http://www.benjaminoakes.com/2013/09/13/ruby-simple-http-server-minimalist-rake/)
-- https://www.firebase.com/tutorial/#session/gf3bu09wvlf
+- [Controller as](http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/)
+- [And again](http://toddmotto.com/digging-into-angulars-controller-as-syntax/)
+- [Firebase Hosting](https://www.firebase.com/docs/hosting/quickstart.html)
