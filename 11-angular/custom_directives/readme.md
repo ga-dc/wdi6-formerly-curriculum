@@ -448,6 +448,12 @@ There *are* conventions that you can adhere to, which would be a good idea for m
 
 https://github.com/johnpapa/angular-styleguide
 
+The "final solution" for Grumblr was made trying to adhere more-or-less to these guidelines:
+
+https://github.com/ga-dc/grumblr_angular/tree/firebase-and-directives-with-comments-and-grouped-by-module
+
+BONUS: Take that and make it look pretty!
+
 ## Review questions
 
 - What does the mnemonic "MACE" stand for?
