@@ -2,7 +2,6 @@
 
 ## Lenin's Objections
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
-- Explain the purpose of each of the four directive options, and the four options for the "restrict" directive, E, A, C, M
 - Use a custom directive to render an array of objects
 
 ## This class is about tidying up
