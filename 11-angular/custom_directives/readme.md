@@ -11,15 +11,13 @@ That is: breaking things up into separate files.
 
 We approached Angular a bit differently than we did, say, Node. You see how we have all of our controllers in one file? We could totally split those up into separate files, and in Node, we probably would have started off that way. Here, though we're starting with very few files.
 
-Take a look at the Grumbles controller file. It's only 46 lines long and I feel like it's tough to read.
+Take a look at the Grumbles controller file. It's only 46 lines long and I feel like it's hard to tell which controller is where. It would only take me an extra 2 seconds to figure out, though, which begs the question...
 
-When I say "tough to read", I mean it takes me more than about 2 seconds to see where something is on a page.
-
-**Who cares about 2 seconds? [Relevant visual aid.](http://i.imgur.com/Ssz6pjF.png)**
+**Why is 2 seconds important? [Relevant visual aid.](http://i.imgur.com/Ssz6pjF.png)**
 
 ### All of programming is shortcuts
 
-I've said this a couple times before: programming is making shortcuts. The first programmer wrote in 0s and 1s. The second programmer got tired of writing 0s and 1s and invented machine code to do it for him (or her). The third programmer got tired of writing machine code and invented assembly code. The fourth programmer got tired of writing assembly and invented C. The fifth programmer got tired of writing C and invented Ruby. And on the sixth day, God rested.
+Programming is making shortcuts. The first programmer wrote in 0s and 1s. The second programmer got tired of writing 0s and 1s and invented machine code to do it for him (or her). The third programmer got tired of writing machine code and invented assembly code. The fourth programmer got tired of writing assembly and invented C. The fifth programmer got tired of writing C and invented Ruby. And on the sixth day, God rested.
 
 Indenting is a tiny thing that has a tremendous impact on the usability of your code. Breaking things up into files is the same. It doesn't affect the performance of your app at all -- maybe by a couple milliseconds -- it just improves the readability.
 
@@ -55,13 +53,11 @@ Ever wished there was a `<comment-box>` or a `<random-bill-murray-img>` element?
 
 One of Angular's sort-of "mission statements" is "to be what HTML would have been if it was designed from the start with web apps in mind."
 
-### Things that are weird about directives
+### Things to keep in mind about directives
 
-#### First: They're called "directives"
+#### First: You can think of them as "Angular elements"
 
-This is a dumb name. If it was up to me, I'd call them "Angular elements" or something much more intuitive.
-
-In fact, I got so frustrated with Angular's goofy way of naming things that I created a [cheat sheet of which Angular terms map to which Rails terms](../angular-vs-rails.md).
+To help me keep straight what Angular's terms mean, I made a [cheat sheet of which Angular terms map to which Rails terms](../angular-vs-rails.md).
 
 Directives are most like helpers in Rails.
 
@@ -73,9 +69,9 @@ Directives are most like helpers in Rails.
 
 They all add HTML to a view.
 
-#### Second: They don't validate :(
+#### Second: Use `data-` to make them validate
 
-If you try to validate HTML with `<div ng-repeat>` in it, you'll get a big ol' error saying `ng-repeat` isn't an allowed attribute.
+If you try to validate HTML with `<div ng-repeat>` in it, you'll get an error saying `ng-repeat` isn't an allowed attribute.
 
 This has an easy fix:
 
@@ -85,9 +81,9 @@ For example: `<data-comment>` or `<div data-ng-repeat>`. This is how you signal 
 
 Angular can be very picky about whether or not you've properly nested and closed elements, so using `data-` is very helpful. (That said, we did *not* use `data-` in the Grumblr solutions. We also didn't use `<!DOCTYPE html>`. Sigh.)
 
-#### Third: They're mixing logic with HTML
+#### Third: They mix logic with HTML
 
-That is: they do pretty much everything we've told you *not* to do with HTML. You're discouraged from using the `onclick=` attribute, and now all of a sudden you're being told to use `ng-click=`.
+You're discouraged from using the `onclick=` attribute, and now all of a sudden you're being told to use `ng-click=`?
 
 ##### A question to which I don't have a well-articulated answer: why is this good?
 
