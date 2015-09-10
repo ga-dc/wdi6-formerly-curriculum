@@ -148,7 +148,7 @@ grumbleControllers.controller('grumblesController', ['Grumble', function(Grumble
 
 [Docs here](https://docs.angularjs.org/api/ngResource/service/$resource#usage)
 
-Replace the `update` and `create` methods to use our new `Grumble` service.
+Replace the `delete` and `create` methods to use our new `Grumble` service.
 
 - Reuse existing HTML when possible
   - https://github.com/ga-dc/grumblr_angular/blob/controllers-and-directives/index.html
