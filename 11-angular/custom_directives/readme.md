@@ -177,7 +177,7 @@ For instance, I'm going to add a property called `myName` to `scope`. That will 
 
 You can add entire methods to scope and make those available in your HTML. I'll make a method that alerts my name:
 
-```
+```js
 (function(){
   var directives = angular.module('grumbleDirectives',[]);
   directives.directive('myCustomDirective', function(){
@@ -312,33 +312,6 @@ I can add `replace: true` and that will have my template *replace* the element t
 
 The HTML validator doesn't like custom elements, and you **can't** just add `data-` before them to make them work. So `replace` makes it easier to keep your HTML validated.
 
-### Writing HTML inside a Javascript file is kind of annoying
-
-Angular lets you put all the HTML inside a completely different file using `templateUrl` instead of `template`.
-
-First, make a file inside the `views/grumbles` folder called `_grumble_show.html`. Rails convention for partials is to put an underscore `_` at the beginning of their file name, so we may as well do that here. Inside it, put:
-
-```html
-<h1>Hi there, {{myName}}!</h1>
-```
-
-Now, replace `template` in the directive's JS file with `templateUrl` and a link to the `_grumble_show.html` file *relative the main `index.html` file*:
-
-```js
-(function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('myCustomDirective', function(){
-    return {
-      templateUrl: "views/grumbles/_grumble_show.html",
-      replace: true,
-      link: function(scope){
-        scope.myName = "Slim Shady";
-      }
-    }
-  });
-})();
-```
-
 ## Attributes
 
 So far we've seen a bunch of ways of getting things *out* of the Javascript and *into* the HTML. But how do we get things out of the HTML and into the Javascript?
@@ -395,6 +368,33 @@ It yells at me about using a non-standard attribute -- one that doesn't come bui
 This doesn't affect the behavior of the attribute at all -- Angular just ignored the `data-`.
 
 This is **good, standard practice** because it makes any custom HTML you created -- which could potentially disrupt other components on a page -- much more visible to other developers.
+
+### Writing HTML inside a Javascript file is kind of annoying
+
+Angular lets you put all the HTML inside a completely different file using `templateUrl` instead of `template`.
+
+First, make a file inside the `views/grumbles` folder called `_grumble_show.html`. Rails convention for partials is to put an underscore `_` at the beginning of their file name, so we may as well do that here. Inside it, put:
+
+```html
+<h1>Hi there, {{myName}}!</h1>
+```
+
+Now, replace `template` in the directive's JS file with `templateUrl` and a link to the `_grumble_show.html` file *relative the main `index.html` file*:
+
+```js
+(function(){
+  var directives = angular.module('grumbleDirectives',[]);
+  directives.directive('myCustomDirective', function(){
+    return {
+      templateUrl: "views/grumbles/_grumble_show.html",
+      replace: true,
+      link: function(scope){
+        scope.myName = "Slim Shady";
+      }
+    }
+  });
+})();
+```
 
 ## Making a more useful directive
 
