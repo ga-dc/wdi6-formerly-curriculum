@@ -1,0 +1,1633 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Sass 1: Basic Reuse | Welcome to GA&#39;s WDI-DC</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.3.3">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../10-back-and-front-of-front-end/sass2-control-directives/readme.html" />
+    
+    
+    <link rel="prev" href="../../10-back-and-front-of-front-end/pseudo-selectors/readme.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="11.2.8" data-basepath="../.." data-revision="Fri Sep 11 2015 19:42:02 GMT+0000 (UTC)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        An Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" >
+            
+            <span><b>1.</b> Peanut Butter &amp; Jelly</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="squads.html">
+            
+                
+                    <a href="../../squads.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Squad Breakdown
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="homework-submission-process.html">
+            
+            <span><b>1.2.</b> Homework Submission Process</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="one-on-ones/readme.html">
+            
+                
+                    <a href="../../one-on-ones/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        One-on-Ones
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="01-front-end-fundamentals/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Front End Fundamentals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="01-front-end-fundamentals/command-line/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/command-line/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Command Line Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="01-front-end-fundamentals/git/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/git/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Git
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Intro to Web and HTML
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="01-front-end-fundamentals/css/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/css/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        CSS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="01-front-end-fundamentals/javascript-data-types/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-data-types/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        JavaScript Data Types
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="01-front-end-fundamentals/javascript-loops-conditionals/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-loops-conditionals/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        JavaScript Loops &amp; Conditionals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="01-front-end-fundamentals/javascript-objects-DOM/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-objects-DOM/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        JavaScript Objects and DOM
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="01-front-end-fundamentals/morning-exercises.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/morning-exercises.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.8.</b>
+                        
+                        Morning Exercises
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="02-intermediate-front-end/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Intermediate Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="02-intermediate-front-end/scope-context-closures/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Scope, Context, and Closures
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="02-intermediate-front-end/scope-context-closures/scope.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/scope.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.</b>
+                        
+                        Scope
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="02-intermediate-front-end/scope-context-closures/context.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/context.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.2.</b>
+                        
+                        Context
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="02-intermediate-front-end/scope-context-closures/closures.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/closures.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.3.</b>
+                        
+                        Closures
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="02-intermediate-front-end/events-and-callbacks/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/events-and-callbacks/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Events and Callbacks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="02-intermediate-front-end/git_branching/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/git_branching/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Git Branching
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        jQuery
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="02-intermediate-front-end/jquery/jquery-two.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-two.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        jQuery 2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="02-intermediate-front-end/workflows/lesson_plan.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/workflows/lesson_plan.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Workflows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="02-intermediate-front-end/css2/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/css2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        CSS 2 (Layout &amp; Fonts)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="02-intermediate-front-end/homework.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/homework.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Homework Assignments
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" >
+            
+                
+                    <a target="_blank" href="https:/github.com/ga-dc/pbj-project1/blob/master/readme.md">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Project 1
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="04-ruby-mvc-sinatra/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Ruby + MVC with Sinatra
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="04-ruby-mvc-sinatra/ruby-basics/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-basics/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Ruby Basics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Ruby Enumerables
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/problem_modeling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Problem Modeling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="04-ruby-mvc-sinatra/domain_modeling/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Domain Modeling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="04-ruby-mvc-sinatra/databases/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/databases/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="04-ruby-mvc-sinatra/active-record-intro/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/active-record-intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        Active Record
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        Sinatra &amp; REST
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        Sinatra &amp; Active Record
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="05-mvc-with-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        MVC with Rails
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="05-mvc-with-rails/unit_testing_with_rspec/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/unit_testing_with_rspec/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Unit Testing with RSpec
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        MVC Intro to Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="05-mvc-with-rails/rails-models-and-migrations/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-models-and-migrations/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Models and Migrations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="05-mvc-with-rails/rails-views-and-controllers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-views-and-controllers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Views and Controllers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="05-mvc-with-rails/rails-routes-and-resources/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-routes-and-resources/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Routes and Resources
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="05-mvc-with-rails/rails-helpers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-helpers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Helpers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Sessions and Auth
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="05-mvc-with-rails/rails-deployment/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-deployment/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Deployment
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" >
+            
+                
+                    <a target="_blank" href="https:/github.com/ga-dc/pbj-project2/blob/master/readme.md">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Project 2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="07-uxdi-collaboration/readme.html">
+            
+                
+                    <a href="../../07-uxdi-collaboration/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        UXDI Collaboration: The Interactive Web
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="07-uxdi-collaboration/apis/readme.html">
+            
+                
+                    <a href="../../07-uxdi-collaboration/apis/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        APIs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="07-uxdi-collaboration/ajax/readme.html">
+            
+                
+                    <a href="../../07-uxdi-collaboration/ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Ajax
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="07-uxdi-collaboration/grids/readme.html">
+            
+                
+                    <a href="../../07-uxdi-collaboration/grids/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Grid Systems
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="07-uxdi-collaboration/animations/readme.html">
+            
+                
+                    <a href="../../07-uxdi-collaboration/animations/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        Animations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="07-uxdi-collaboration/responsive-web-design/readme.html">
+            
+                
+                    <a href="../../07-uxdi-collaboration/responsive-web-design/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        Responsive Web Design
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="08-single-page-web-apps/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        &quot;Single Page&quot; Web Applications
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="08-single-page-web-apps/express_intro/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/express_intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Intro to Express
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="08-single-page-web-apps/express_routing/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/express_routing/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Express Routing
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" >
+            
+                
+                    <a target="_blank" href="https:/github.com/ga-dc/pbj-project3/blob/master/readme.md">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Project 3
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="10-back-and-front-of-front-end/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Back and Front of Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1" >
+            
+            <span><b>11.1.</b> BackBone</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1.1" data-path="10-back-and-front-of-front-end/bb_models_collections/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/bb_models_collections/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.1.</b>
+                        
+                        Models and Collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2" data-path="10-back-and-front-of-front-end/bb_views_part1/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/bb_views_part1/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.2.</b>
+                        
+                        Views (part 1)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.3" data-path="10-back-and-front-of-front-end/bb_views_part2/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/bb_views_part2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.3.</b>
+                        
+                        Views (part 2)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.4" data-path="10-back-and-front-of-front-end/bb_routers/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/bb_routers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.4.</b>
+                        
+                        Routers
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" >
+            
+            <span><b>11.2.</b> Front End</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.2.1" data-path="10-back-and-front-of-front-end/bootstrap/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/bootstrap/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.1.</b>
+                        
+                        Bootstrap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2.2" data-path="10-back-and-front-of-front-end/flexbox/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/flexbox/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.2.</b>
+                        
+                        Flex Box
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2.3" data-path="10-back-and-front-of-front-end/foundation/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/foundation/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.3.</b>
+                        
+                        Foundation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2.4" data-path="10-back-and-front-of-front-end/intro-to-php/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/intro-to-php/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.4.</b>
+                        
+                        Intro to PHP
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2.5" data-path="10-back-and-front-of-front-end/jquery-plugins/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/jquery-plugins/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.5.</b>
+                        
+                        jQuery Plugins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2.6" data-path="10-back-and-front-of-front-end/mapping/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/mapping/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.6.</b>
+                        
+                        Mapping
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2.7" data-path="10-back-and-front-of-front-end/pseudo-selectors/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/pseudo-selectors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.7.</b>
+                        
+                        Pseudo Selectors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="11.2.8" data-path="10-back-and-front-of-front-end/sass1-basic-reuse/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/sass1-basic-reuse/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.8.</b>
+                        
+                        Sass 1: Basic Reuse
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2.9" data-path="10-back-and-front-of-front-end/sass2-control-directives/readme.html">
+            
+                
+                    <a href="../../10-back-and-front-of-front-end/sass2-control-directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.9.</b>
+                        
+                        Sass 2: Control Directives
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="11-angular/readme.html">
+            
+                
+                    <a href="../../11-angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        MVW with Angular
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="12.1" data-path="11-angular/angular_intro_controllers_directives/readme.html">
+            
+                
+                    <a href="../../11-angular/angular_intro_controllers_directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.1.</b>
+                        
+                        Angular Intro: Controllers &amp; Directives
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.2" data-path="11-angular/services_templates_and_routing/readme.html">
+            
+                
+                    <a href="../../11-angular/services_templates_and_routing/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.2.</b>
+                        
+                        Services, Templates, and Routing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.3" data-path="11-angular/custom_directives/readme.html">
+            
+                
+                    <a href="../../11-angular/custom_directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.3.</b>
+                        
+                        Custom Directives
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.4" data-path="11-angular/firebase_in_angular/readme.html">
+            
+                
+                    <a href="../../11-angular/firebase_in_angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.4.</b>
+                        
+                        AngularFire: Firebase &amp; Angular
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.5" data-path="11-angular/angular-vs-rails.html">
+            
+                
+                    <a href="../../11-angular/angular-vs-rails.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.</b>
+                        
+                        Angular vs. Rails
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="13" >
+            
+                
+                    <a target="_blank" href="https:/github.com/ga-dc/pbj-project4/blob/master/readme.md">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        Portfolio Project
+                    </a>
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Welcome to GA&#39;s WDI-DC</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="sass-basic-reuse">Sass - Basic Reuse</h1>
+<ul>
+<li>Use variables and nesting to dry up CSS</li>
+<li>Use color functions to create dynamic color schemes</li>
+<li>Explain what <code>&amp;</code> is and why we use it</li>
+<li>Use @include and @extend to create mixins and inherit from other rules</li>
+</ul>
+<h2 id="what-is-sass-15-min">What is Sass? (15 min)</h2>
+<p><img src="http://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg" alt="Sass Icon">
+<img src="http://sass-lang.com/assets/img/illustrations/glasses-2087d741.svg" alt="Sass Glasses"></p>
+<hr>
+<h3 id="some-would-say-sass-is">Some would say Sass is...</h3>
+<h2 id="-syntactically-awesome-stylesheets-http-codepen-io-mattscilipoti-full-xwkrmr"><a href="http://codepen.io/mattscilipoti/full/xwKrMR" target="_blank">Syntactically Awesome Stylesheets</a>.</h2>
+<blockquote>
+<p>Sass is an extension of CSS that adds power and elegance to the basic language.</p>
+<p>You write a combination of CSS and SassScript, which compiles to proper CSS.</p>
+<p>It allows you to use variables, nested rules, mixins, inline imports, and more, all with a fully CSS-compatible syntax.</p>
+<p>Sass helps keep large stylesheets well-organized, and helps get small stylesheets up and running quickly...</p>
+</blockquote>
+<h2 id="the-finished-product">The Finished Product</h2>
+<p>Here are a few examples of Jesse playing with CSS/Sass.  Let&apos;s look at the css that is required to produce this effect.  Then, compare that to the Sass we used to generate the css.</p>
+<ul>
+<li><a href="http://codepen.io/jshawl/pen/cLJal" target="_blank">BAMSAY</a></li>
+<li><a href="http://codepen.io/jshawl/pen/nHDLz" target="_blank">Boxes</a></li>
+<li><a href="http://codepen.io/jshawl/pen/wpeit" target="_blank">Bullseye</a></li>
+<li><a href="http://codepen.io/jshawl/pen/bcjyH" target="_blank">A Button</a></li>
+<li><a href="http://codepen.io/jshawl/pen/cJjIm" target="_blank">Forest</a></li>
+<li><a href="http://codepen.io/jshawl/pen/cnyrJ" target="_blank">Space Invader</a></li>
+</ul>
+<h3 id="exercise-syntastically-awesome-stylesheets-35-min">Exercise: Syntastically Awesome Stylesheets (35 min)</h3>
+<p>You task is to <a href="http://codepen.io/mattscilipoti/full/xwKrMR" target="_blank">make this</a>.  Have fun.  Make portions of it stand out -- <strong>using just CSS</strong>.  Don&apos;t worry about Sass yet.</p>
+<ul>
+<li>Step 1: Start a new Pen on CodePen.io.  I recommend you Log in/sign up for CodePen.io.</li>
+<li>Step 2: Decide how you will approach the problem.</li>
+<li>Step 3: Add some html.  Add some css.  Iterate.</li>
+<li>Step 4: Look for things that might benefit from a variable: remove duplication, signify intent, or to make change easier.</li>
+</ul>
+<p>Suggestions:</p>
+<ul>
+<li>Use a <a href="https://www.google.com/fonts" target="_blank">google font</a>.</li>
+<li>Highlight the first character.  Css has a selector for that.</li>
+</ul>
+<p>Timing Expectations:</p>
+<ul>
+<li><p>5 min: Your own CodePen.  We see the phrase.  Identified the components needed and steps to reach your goal. Researching how to highlight the characters.</p>
+<ul>
+<li>Discuss:<ul>
+<li>What elements?</li>
+<li>Which characters are highlighted?</li>
+<li>How?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>15 min:  Shaping up nicely. First letters are highlighted.  Playing with that middle &quot;s&quot;.</p>
+<ul>
+<li>Discuss:<ul>
+<li>All of your first characters should be highlighted.  If not, I recommend you adjust your approach.  Discuss.</li>
+<li>How did you highlight?  Specifics.<ul>
+<li><code>::first-letter</code>.  Breaking &quot;Stylesheets&quot; into two elements. Only &quot;block&quot; elements (including &quot;inline-block&quot;).  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>25 min: Fto5 to continue</li>
+<li>35 min: Discuss after the break.</li>
+</ul>
+<p>Bonus: Review and/or reproduce any of the other examples.</p>
+<h2 id="break-10-min">Break (10 min)</h2>
+<h2 id="discuss-your-examples-10-min">Discuss your examples (10 min)</h2>
+<p>Student(s) displays result.  Discuss steps and reasoning.</p>
+<h2 id="variables">Variables</h2>
+<p>Sass allows us to intermingle css and SassScript.  Similar to how ERB allowed us to embed Ruby in our html.  One thing this gives us the variable.</p>
+<p>Assignment (note the dollar sign):</p>
+<pre><code class="lang-sass">$variableName: value
+</code></pre>
+<p>Usage:</p>
+<pre><code class="lang-sass">css_declaration: $variableName
+</code></pre>
+<h3 id="real-world-example">Real world example:</h3>
+<p>Assignment:</p>
+<pre><code class="lang-sass">$colorPrimary: blue;
+</code></pre>
+<p>Usage:</p>
+<pre><code class="lang-sass">background-color: $colorPrimary;
+</code></pre>
+<h3 id="exercise-variables-colors-30-min">Exercise: Variables &amp; Colors (30 min)</h3>
+<p>Use variables to signify intent.  </p>
+<ul>
+<li>Extract some values in your css to variables.  Choose helpful names.  </li>
+<li>Identify duplication and things that vary frequently.  Think about what you changed a few times as you were building this.  What are you likely to change in the future?  Turn these into &quot;vary&quot;ables.  </li>
+<li>Put them at the top of your script, so that you can use them to configure your &quot;page&quot;.</li>
+</ul>
+<p>Timings:</p>
+<ul>
+<li>5 min: Status.<ul>
+<li>Discuss <a href="http://webdesign.tutsplus.com/tutorials/all-you-ever-need-to-know-about-sass-interpolation--cms-21375" target="_blank">string interpolation</a>.</li>
+</ul>
+</li>
+<li>15 min: Start discussion: proper naming, usage. Students slack out examples.</li>
+</ul>
+<h4 id="research-color-functions-15-min">Research: Color Functions (15 min)</h4>
+<p>Let&apos;s stay right here and play with colors.</p>
+<h2 id="q-how-many-colors-do-you-see-on-this-page">Q. How many colors do you see on this page?</h2>
+<blockquote>
+<p>A.
+I see five:</p>
+<ul>
+<li>font color</li>
+<li>first character<ul>
+<li>background-color</li>
+<li>border-color</li>
+<li>box-shadow</li>
+</ul>
+</li>
+<li>background</li>
+</ul>
+</blockquote>
+<p>But... they are all based off of just 2 colors.  The primary color is Cerulean Blue (#2A52BE, my favorite color).  The secondary color is &quot;Jesse&quot; Green (#bada55).</p>
+<p><a href="http://codepen.io/mattscilipoti/pen/xwKrMR?editors=110" target="_blank">Check it out</a>. Look for <code>darken()</code>, <code>lighten()</code>, and <code>rgba()</code></p>
+<p>Review <a href="http://sass-lang.com/documentation/Sass/Script/Functions.html" target="_blank">Sass color options</a>.</p>
+<h2 id="break-10-min">Break (10 min)</h2>
+<h2 id="nesting-10-min">Nesting (10 min)</h2>
+<p>As we&apos;ve seen, CSS isn&apos;t very dry.  Take this nested CSS, for example.</p>
+<pre><code class="lang-scss"><span class="hljs-class">.nav</span> <span class="hljs-tag">a</span>{
+  <span class="hljs-attribute">text-decoration</span><span class="hljs-value">:none;</span>
+}
+
+<span class="hljs-class">.nav</span> <span class="hljs-tag">li</span>{
+  <span class="hljs-attribute">display</span><span class="hljs-value">: inline-block;</span>
+}
+
+<span class="hljs-class">.nav</span> <span class="hljs-tag">a</span><span class="hljs-pseudo">:hover</span>{
+  <span class="hljs-attribute">text-decoration</span><span class="hljs-value">:underline;</span>
+}
+</code></pre>
+<h2 id="q-what-does-that-css-do">Q. What does that css do?</h2>
+<blockquote>
+<p>A. Student responses.</p>
+</blockquote>
+<h3 id="the-selector-10-min">The &amp; selector (10 min)</h3>
+<p>Copy this scss into precess.co.  </p>
+<pre><code class="lang-scss">
+<span class="hljs-class">.nav</span>{
+  &amp; <span class="hljs-tag">li</span>{
+    <span class="hljs-attribute">display</span><span class="hljs-value">: inline-block;</span>
+  }
+  &amp; <span class="hljs-tag">a</span>{
+  <span class="hljs-attribute">text-decoration</span><span class="hljs-value">:none;</span>
+    &amp;<span class="hljs-pseudo">:hover</span>{
+      <span class="hljs-attribute">text-decoration</span><span class="hljs-value">:underline;</span>
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Q: What happened?  How can we use this?</p>
+</blockquote>
+<hr>
+<ul>
+<li>Remove duplication.  </li>
+<li>Group similar rules together.  </li>
+</ul>
+<p>An ecosystem that encourages best practices?  I love that.</p>
+<h2 id="mixins-inheritance-10-min">Mixins &amp; Inheritance (10 min)</h2>
+<p>Remember the clearfix problem from the CSS2 lesson.  We had to write specific css to ensure floats did not effect the next element. Imagine trying to remember that &quot;fix&quot; and typing it in correctly every time you needed it.  Now, you can make a <code>clearfix</code> mixin that codifies the rules.  Then, those rules can be included in any CSS rule we want.</p>
+<p>Let&apos;s look at this in precess.co.</p>
+<pre><code class="lang-scss"><span class="hljs-comment">// Make this in one file</span>
+<span class="hljs-at_rule">@<span class="hljs-keyword">mixin</span><span class="hljs-preprocessor"> clearfix</span>(){</span>
+  <span class="hljs-comment">/* clearfix */</span>
+  <span class="hljs-attribute">content</span><span class="hljs-value">: <span class="hljs-string">&apos;&apos;</span>;</span>
+  <span class="hljs-attribute">display</span><span class="hljs-value">:table;</span>
+  <span class="hljs-attribute">clear</span><span class="hljs-value">:both;</span>
+}
+
+<span class="hljs-comment">// Use it in many others</span>
+<span class="hljs-tag">body</span><span class="hljs-pseudo">::after</span>{
+  <span class="hljs-at_rule">@<span class="hljs-keyword">include</span><span class="hljs-preprocessor"> clearfix</span>();</span>
+}
+
+<span class="hljs-class">.nav</span><span class="hljs-pseudo">::after</span>{
+  <span class="hljs-at_rule">@<span class="hljs-keyword">include</span><span class="hljs-preprocessor"> clearfix</span>();</span>
+}
+</code></pre>
+<h3 id="comments">Comments</h3>
+<p>While we&apos;re here, make note of those comments.  Some are in the compiled CSS.  Some are not.</p>
+<ul>
+<li>CSS Style Comments remain (<code>/* comment */</code>).</li>
+<li>Single line comments do not (<code>// comment</code>)</li>
+</ul>
+<p><a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#comments" target="_blank">Docs</a></p>
+<h2 id="q-why-would-we-want-that">Q. Why would we want that?</h2>
+<blockquote>
+<p>A. See the example.</p>
+</blockquote>
+<h2 id="exercise-flash-15-min">Exercise: Flash (15 min)</h2>
+<p><a href="http://codepen.io/mattscilipoti/pen/XmWbgq" target="_blank">http://codepen.io/mattscilipoti/pen/XmWbgq</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<ul>
+<li>Write the Sass to assign a color for every <code>h1</code>.  Style each <code>h2</code> with a color that &quot;compliments&quot; the color used by your <code>h1</code>.</li>
+<li>How do <code>@mixin</code> and <code>@include</code> work together to make css more managable?</li>
+<li>Name 3 benefits of Sass.</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://webdesign.tutsplus.com/tutorials/all-you-ever-need-to-know-about-sass-interpolation--cms-21375" target="_blank">All you ever needed to know about Sass interpolation</a></li>
+<li><a href="https://jesse.sh/makes-3d-buttons-with-sass/" target="_blank">3D Buttons with Sass</a></li>
+<li><a href="https://github.com/ga-dc/milk-and-cookies/tree/master/w10/d01_sass" target="_blank">WDI5</a></li>
+<li><a href="http://precess.co" target="_blank">http://precess.co</a></li>
+<li>Colors<ul>
+<li><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html" target="_blank">http://sass-lang.com/documentation/Sass/Script/Functions.html</a></li>
+<li><a href="https://robots.thoughtbot.com/controlling-color-with-sass-color-functions" target="_blank">https://robots.thoughtbot.com/controlling-color-with-sass-color-functions</a></li>
+<li><a href="http://jackiebalzer.com/color" target="_blank">http://jackiebalzer.com/color</a></li>
+</ul>
+</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../10-back-and-front-of-front-end/pseudo-selectors/readme.html" class="navigation navigation-prev " aria-label="Previous page: Pseudo Selectors"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../10-back-and-front-of-front-end/sass2-control-directives/readme.html" class="navigation navigation-next " aria-label="Next page: Sass 2: Control Directives"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
