@@ -7,6 +7,12 @@
 - Explain the purpose of each of the four directive options, and the four options for the "restrict" directive, E, A, C, M
 - Use a custom directive to render an array of objects
 
+Note that what we cover in class isn't using Firebase; it's picking up where you left off yesterday afternoon.
+
+```
+git checkout -b templating-and-routing-with-comments origin/templating-and-routing-with-comments 
+```
+
 ## This class is about tidying up
 
 That is: breaking things up into separate files.
@@ -88,10 +94,6 @@ I can think of a few reasons:
 Without them, Angular is just another MVC framework.
 
 So: let's make one!
-
-```
-git checkout -b templating-and-routing-with-comments origin/templating-and-routing-with-comments 
-```
 
 ## Grumble `show`
 
