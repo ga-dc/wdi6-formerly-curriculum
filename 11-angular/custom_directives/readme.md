@@ -310,7 +310,6 @@ I can add `replace: true` and that will have my template *replace* the element t
 </div>
 ```
 
-The HTML validator doesn't like custom elements, and you **can't** just add `data-` before them to make them work. So `replace` makes it easier to keep your HTML validated.
 
 ## Attributes
 
@@ -368,6 +367,8 @@ It yells at me about using a non-standard attribute -- one that doesn't come bui
 This doesn't affect the behavior of the attribute at all -- Angular just ignored the `data-`.
 
 This is **good, standard practice** because it makes any custom HTML you created -- which could potentially disrupt other components on a page -- much more visible to other developers.
+
+Similarly, the HTML validator doesn't like custom elements, and you **can't** just add `data-` before them to make them work. `<grumble>` doesn't validate, and neither does `<data-grumble>`. So `replace` makes it easier to keep your HTML validated.
 
 ### Writing HTML inside a Javascript file is kind of annoying
 
