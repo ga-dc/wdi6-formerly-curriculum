@@ -55,9 +55,7 @@ Ever wished there was a `<comment-box>` or a `<random-bill-murray-img>` element?
 
 One of Angular's sort-of "mission statements" is "to be what HTML would have been if it was designed from the start with web apps in mind."
 
-### Things to keep in mind about directives
-
-#### First: You can think of them as "Angular elements"
+### You can think of them as "Angular elements"
 
 To help me keep straight what Angular's terms mean, I made a [cheat sheet of which Angular terms map to which Rails terms](../angular-vs-rails.md).
 
@@ -71,19 +69,7 @@ Directives are most like helpers in Rails.
 
 They all add HTML to a view.
 
-#### Second: Use `data-` to make them validate
-
-If you try to validate HTML with `<div ng-repeat>` in it, you'll get an error saying `ng-repeat` isn't an allowed attribute.
-
-This has an easy fix:
-
-**Any time you use a non-standard element or attribute, put `data-` in front of it.**
-
-For example: `<data-comment>` or `<div data-ng-repeat>`. This is how you signal that you're aware you're using non-standard HTML and it isn't simply a typo.
-
-Angular can be very picky about whether or not you've properly nested and closed elements, so using `data-` is very helpful. (That said, we did *not* use `data-` in the Grumblr solutions. We also didn't use `<!DOCTYPE html>`. Sigh.)
-
-#### Third: They mix logic with HTML
+### "But what about separating my concerns?"
 
 You're discouraged from using the `onclick=` attribute, and now all of a sudden you're being told to use `ng-click=`?
 
@@ -99,6 +85,8 @@ I can think of a few reasons:
 
 ### Custom directives are the "flagship" of Angular
 
+Without them, Angular is just another MVC framework.
+
 So: let's make one!
 
 ```
@@ -107,7 +95,9 @@ git checkout -b templating-and-routing-with-comments origin/templating-and-routi
 
 ## Grumble `show`
 
-- In `index.html`, add this custom directive: `<grumble />`. Refresh the page, and you shouldn't see anything.
+- In `index.html`, add this custom directive: `<my-custom-directive></my-custom-directive>`. Refresh the page, and you shouldn't see anything.
+
+  **Note about self-closing tags:** This directive doesn't have any text content, so you could use a self-closing tag, `<my-custom-directive />`. However, Angular's pretty picky about self-closing tags. If your entire page goes blank when you're using a custom directive with a self-closing tag, try using open and close tags instead.
 
 - Now we'll give the directive its behavior. Let's make `js/directives/grumble.js`.
 
@@ -116,22 +106,22 @@ git checkout -b templating-and-routing-with-comments origin/templating-and-routi
   ```js
   (function(){
     var directives = angular.module('grumbleDirectives',[]);
-    directives.directive('grumble', function(){
-
+    directives.directive('myCustomDirective', function(){
+        
     });
   })();
   ```
 
-  One thing to note is that Angular expects you to write the directive's name as camelCase inside the directive *file*, but as spine case inside the *HTML*. `.directive('grumbleCake')` automatically turns into `<grumble-cake>`.
+  One thing to note is that Angular expects you to write the directive's name as camelCase inside the directive *file*, but as spine case inside the *HTML*. `.directive('myCustomDirective')` automatically turns into `<my-custom-directive>`.
 
 - Now we'll tell the directive what to use as a template:
 
   ```js
   (function(){
     var directives = angular.module('grumbleDirectives',[]);
-    directives.directive('grumble', function(){
+    directives.directive('myCustomDirective', function(){
       return {
-        template: "<h1>{{grumble.title}}</h1>"
+        template: "<h1>Hi there!</h1>"
       }
     });
   })();
@@ -143,79 +133,110 @@ git checkout -b templating-and-routing-with-comments origin/templating-and-routi
 
 ...and that's it! Run it, and see what happens.
 
-### Pretty cool, but not a great template
-
-What I'd like to put here is all the HTML that's used for showing the information about a grumble. That is: the HTML that's identical between `index.html` and `show.html`. We'll make a directive with this as a template.
-
-For now, we'll leave `show` alone and just get this working in `index`.
-
-- Let's create a blank `.html` file into which we'll put the template, or "partial", for the Grumble info. Rails convention for partials is to put an underscore `_` at the beginning of their file name, so we may as well do that here: `_grumble.html`.
-
-- Cut and paste the relevant HTML into it from `index.html`.
-
-- Where the HTML used to be in `index.html`, put the HTML version of the directive you just made -- `<grumble />` in this case (or `<grumble></grumble>`).  Make sure you name your directive something that isn't a variable on your page. That is: don't put `<comment>` inside `ng-repeat="grumble in grumbles"`.
-
-- Finally, instead of using `template`, we'll use `templateUrl`:
-  ```js
-  (function(){
-    var directives = angular.module('grumbleDirectives',[]);
-    directives.directive('grumble', function(){
-      return {
-        templateUrl: "views/grumbles/_grumble.html"
-      }
-    });
-  })();
-  ```
-  - It's important to note that the path to the view is relative *the main index.html*, rather than the directive file.
-
-Run it, see what happens, **and that's it!**
-
-We've effectively created a little widget we can use anywhere on our app!
-
-##### What might be good candidates for which to make custom directives "in the wild"?
-- Date picker
-- Video player
-- Trello card
-
-##### Swap out the HTML in `show.html` with the `<grumble />` directive.
-
-If you aren't caught up yet, you can checkout the solution code:
-
-```
-git checkout -b origin/custom-directives custom-directives
-```
-
-##### Do the same for `edit` and `new`
-- What needs to change in the HTML of the partial for this to work?
-
 ## Directive options
 
-### What kind of directive do you want?
+Directives can be given a parameter called `link`. It'll automatically be run every time an instance of that directive is created.
 
-I mentioned before that custom directives can be elements, attibutes, comments, or classes. For example, as far as Angular is concerned, these are all the same:
-
-```
-<grumble-cake></grumble-cake>
-<div grumble-cake></div>
-<div class="grumble-cake"></div>
-<!-- directive:grumble-cake -->
-```
-
-If you're looking for a mnemonic by which to remember these, use `MACE`: coMment, Attribute, Class, Element.
-
-If you only want your directive to be available as an element or an attribute, you'd add `restrict: 'EA'` to your directive:
+For example: 
 
 ```js
 (function(){
   var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('grumble', function(){
+  directives.directive('myCustomDirective', function(){
     return {
-      templateUrl: "views/grumbles/_grumble.html",
-      restrict: "EA"
+      template: "<h1>Hi there!</h1>",
+      link: function(){
+        console.log("hello")
+      }
     }
   });
 })();
 ```
+
+Now my console will print `hello` once for every instance of `<my-custom-directive>` on a page. So on the `index` page, if there are 10 Grumbles, `ng-repeat` will duplicate this directive 10 times, and I should see `hello` 10 times.
+
+Angular actually passes into this `link` function an argument called `scope`. This is an object that's available **both in the directive's JS and the directive's HTML**. So anything I add to it in the JS will be available in the HTML, and vice-versa.
+
+For instance, I'm going to add a property called `myName` to `scope`. That will let me show the value of `myName` in the HTML.
+
+```js
+(function(){
+  var directives = angular.module('grumbleDirectives',[]);
+  directives.directive('myCustomDirective', function(){
+    return {
+      template: "<h1>Hi there, {{myName}}!</h1>",
+      link: function(scope){
+        scope.myName = "Slim Shady";
+      }
+    }
+  });
+})();
+```
+
+Similarly, if I add `{{greeting = "Hello from inside the HTML!"}}` before the custom element in `index.html`, I can see `greeting` inside the JS:
+
+```html
+{{greeting = "Hello from inside the HTML!"}}
+<div class="grumbles" ng-repeat="grumble in grumblesCtrl.grumbles">
+  <my-custom-directive />
+</div>
+```
+```js
+(function(){
+  var directives = angular.module('grumbleDirectives',[]);
+  directives.directive('myCustomDirective', function(){
+    return {
+      template: "<h1>Hi there, {{myName}}!</h1>",
+      link: function(scope){
+        scope.myName = "Slim Shady";
+        console.log(scope.greeting);
+      }
+    }
+  });
+})();
+```
+
+### What kind of directive do you want?
+
+I mentioned before that custom directives can be elements, attibutes, comments, or classes. If you're looking for a mnemonic by which to remember these, use `MACE`: coMment, Attribute, Class, Element.
+
+By default, Angular makes every custom directive available as both an element and an attribute. It considers these to be the same:
+
+```html
+<my-custom-directive></my-custom-directive>
+<div my-custom-directive></div>
+```
+
+If you only want your directive to be available as an element, you add `restrict: 'E'` to your directive. This will make `<div my-custom-directive>` no longer work.
+
+```js
+(function(){
+  var directives = angular.module('grumbleDirectives',[]);
+  directives.directive('myCustomDirective', function(){
+    return {
+      template: "<h1>Hi there, {{myName}}!</h1>",
+      restrict: "E",
+      link: function(scope){
+        scope.myName = "Slim Shady";
+        console.log(scope.greeting);
+      }
+    }
+  });
+})();
+```
+
+```
+<div class="my-custom-directive"></div>
+```
+
+If you want your directive to be availble as any of the four options, you add `restrict:'MACE'` to your directive, and you can use any combination in between.
+
+You can also do them as comments, although these won't show any HTML. You'd just use them if there's some method you want to run.
+
+```
+<!-- directive:my-custom-directive -->
+```
+
 
 ### Do you want your template to be a string or another file?
 
@@ -268,18 +289,73 @@ I can add a parameter called `replace` that will have my template *replace* the 
 
 This makes it easier to keep your HTML validated, over having to write `<data-grumble>`.
 
-### Do you want to put methods in the directive itself?
+If you try to validate HTML with `<div ng-repeat>` in it, you'll get an error saying `ng-repeat` isn't an allowed attribute.
 
-You can give a directive its own methods and properties that will show up in the view using a `link` function. For instance, here I am adding a property:
+This has an easy fix:
+
+**Any time you use a non-standard element or attribute, put `data-` in front of it.**
+
+For example: `<data-comment>` or `<div data-ng-repeat>`. This is how you signal that you're aware you're using non-standard HTML and it isn't simply a typo.
+
+Angular can be very picky about whether or not you've properly nested and closed elements, so using `data-` is very helpful. (That said, we did *not* use `data-` in the Grumblr solutions. We also didn't use `<!DOCTYPE html>`. Sigh.)
+### Pretty cool, but not very useful 
+
+What I'd like to use for my template is the HTML that's used for showing the information about a grumble. That is: the HTML that's identical between `index.html` and `show.html`. We'll make a directive with this as a template.
+
+For now, we'll leave `show` alone and just get this working in `index`.
+
+- Let's create a blank `.html` file into which we'll put the template, or "partial", for the Grumble info. Rails convention for partials is to put an underscore `_` at the beginning of their file name, so we may as well do that here: `_grumble.html`.
+
+- Cut and paste into it from `index.html` the HTML that you want to be repeated for each Grumble.
+
+- Now, instead of using `template`, we'll use `templateUrl`. We'll also re-name our directive to `grumbleShow`:
+  ```js
+  (function(){
+    var directives = angular.module('grumbleDirectives',[]);
+    directives.directive('grumbleShow', function(){
+      return {
+        templateUrl: "views/grumbles/_grumble.html"
+      }
+    });
+  })();
+  ```
+  - It's important to note that the path to the view is relative *the main index.html*, rather than the directive file.
+
+- The next step is to make `grumble` available inside the partial. If you look at the partial's HTML, there's a whole lot of `grumble.title` and `grumble.id` and so on. We need to "pass in" that `grumble.`.
+
+- Where the HTML used to be in `index.html`, put the HTML version of the directive you just made, `<grumble-show grumble="grumble"></grumble>`).
+
+Run it and see what happens.
+
+We've effectively created a little widget we can use anywhere on our app!
+
+##### What might be good candidates for which to make custom directives "in the wild"?
+- Date picker
+- Video player
+- Trello card
+
+## Let's re-use the directive
+
+The whole point of this was to re-use HTML between `index.html` and `show.html`. So:
+
+In `show.html`, delete the HTML that matches the HTML of the custom directive. The directive will fill in that HTML for us now. In its place, put `<grumble></grumble>`.
+
+Refresh a `show` page.
+
+##### Turn and talk: Why doesn't the grumble show up?
+
+Looking at the `show.html` page, all of the grumble data comes from `grumbleCtrl.grumble`. Looking at the `_grumble.html` page, all of the data comes from just `grumble`. The `index` page provides `grumble` courtesy of `ng-repeat='grumble in grumbleCtrl.grumbles`. The `show` page does not provide `grumble`.
+
+## So let's just get rid of the Show controller altogether
 
 ```js
 (function(){
   var directives = angular.module('grumbleDirectives',[]);
   directives.directive('grumble', function(){
     return {
-      template: "<h1>{{myName}}</h1>",
-      link: function(scope, element, attributes){
-        scope.myName = "Slim Shady";
+      templateUrl: "views/grumbles/_grumble.html",
+      link: function(scope){
+        scope.grumble = scope.grumble || scope.grumbleCtrl.grumble;
       }
     }
   });
@@ -306,6 +382,21 @@ You can give a directive its own methods and properties that will show up in the
 ```
 
 `link` will always take the same three arguments: `scope`, `element`, and `attributes`. The only one you really need to worry about is `scope`. It's an object that when you attach things to it makes them available inside your directive.
+
+##### Swap out the HTML in `show.html` with the `<grumble />` directive.
+
+If you aren't caught up yet, you can checkout the solution code:
+
+```
+git checkout -b custom-directives origin/custom-directives 
+```
+
+##### Do the same for `edit` and `new`
+- What needs to change in the HTML of the partial for this to work?
+
+
+### Do you want to put methods in the directive itself?
+
 
 This is a **big deal**. It means **we don't have to use controllers at all for this directive**.
 
