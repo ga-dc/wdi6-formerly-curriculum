@@ -8,27 +8,27 @@
 
 ## Introduction (10 min)
 
-You've heard that there are database options, other than Postgresql.  Today, we'll investigate one, Firebase. Firebase is a Platform as a Service (PaaS) that provides a graphical interface to set up a back end, both the database and api.
+You've heard that Postgresql is not our only database option.  Today, we'll investigate one, Firebase. Firebase is a Platform as a Service (PaaS) that provides a graphical interface to set up a back end, both the database and api.
 
+We will be using the AngularFire library to access Firebase.
 
-### Exercise: Your own Firebase
-
-It's time to create your own Firebase and see what it can do. The first thing we need to do is [sign up for a free Firebase account](https://www.firebase.com/signup/).  We recommend this naming convention: `wdi-grumbler-your_initials` (i.e. `wdi-grumbler-mms`).
-
-A brand new Firebase app will automatically be created with its own unique URL ending in firebaseio.com. We'll use this URL during the lesson.
-
+Let's learn a little about both by skimming the [AngularFire Intro](https://www.firebase.com/docs/web/libraries/angular/guide/intro-to-angularfire.html).  Unfortunately, they will not allow all of us to sign up for free accounts because we are all sharing the same IP address and they have limits.  If you have an account feel free to create your own Firebase and use it during this lesson.
 
 ## Demos (10 min)
 
 ### Tetris
 
-Check [this out](https://www.firebase.com/tutorial/#session/gf3bu09wvlf).
+Before we start working with Firebase and AngularFire, let's see it in action.  Visit the page for the [Tetris Example](https://www.firebase.com/tutorial/#session/gf3bu09wvlf).
+
+Open another browser window to view the database changes, in real-time: https://gf3bu09wvlf.firebaseio-demo.com/.  Then press play.
 
 See how the database is updated as each block lands on the board?  This database is updated in real-time to store game data.
 
 ### Quickstart
 
 When you have some time, I recommend you follow the [AngularFire Quickstart](https://www.firebase.com/docs/web/libraries/angular/quickstart.html).  Through that, you will create a simple html page that will let you play with AngularFire.  Right now, I'll show you what real-time, three-way binding looks like.
+
+All that is possible with just the few lines of code.
 
 ## Websockets
 
@@ -41,9 +41,10 @@ Whereas Websockets is more like a phone call.  You have the ability to hold a co
 ![Web Sockets lifetime](http://www.pubnub.com/blog/wp-content/uploads/2014/09/WebSockets-Diagram.png)
 
 
-## AngularFire
+## [AngularFire](https://www.firebase.com/docs/web/libraries/angular/)
 
-AngularFire is a library for connecting Angular to Firebase.  Similar to ActiveRecord and Sequelize.
+AngularFire is a library for connecting Angular to Firebase.  Similar to ActiveRecord and Sequelize.  We will be using the AngularFire library to access Firebase from Angular.  They provide a [few tutorials](https://www.firebase.com/docs/web/libraries/angular/) and [many examples](https://www.firebase.com/docs/web/libraries/angular/examples.html).  Like the Tetris game we saw earlier.
+
 
 ### Grumbler and Firebase
 
@@ -55,10 +56,11 @@ This will be a walk through.  We'll work hard to take small, discreet steps.  We
 $ git checkout -b templating-and-routing-with-comments origin/templating-and-routing-with-comments
 ```
 
-Big picture:
+We should create a new branch for our changes.  The code changes we make today are available in the "firebase" branch.  I recommend something similar.  I will be working in "firebase_mms".
+
+#### The Big Picture
 - install & require dependencies
-- replace the existing service
-- update for interface changes
+- replace the existing persistence service
 
 #### install & require dependencies (5 min)
 
@@ -75,13 +77,14 @@ Q. What just happened?
 Q. How do I verify?
 ---
 
-> A. Save something via JS console
+> A. Save something to Firebase via the browser's JS console
 
-Our Grumbles have a "title", so let's use that.
+Visit 'http://ga-dc.github.io/grumblr_angular/firebase.html' to watch the database as we make changes.
 
 ```js
-var firebaseRef = new Firebase("https://ga-dc-wdi-grumblr.firebaseio.com/grumbles");
-firebaseRef.set({"title": "We have a connection!"});
+// in JS console
+var firebaseRef = new Firebase("https://wdidc.firebaseio.com/connections");
+firebaseRef.set({"MattS": "Has a connection!"});
 ```
 
 #### A Firebase Resource (10 min)
@@ -91,8 +94,9 @@ Q.  We want to use this firebase database instead of our calls to our RESTful AP
 
 > A. The Grumbler Resource service.
 
-The best possible world would be to create a new service that accesses Firebase using the same interface as the ngResource.
-Then, we can just replace that service, with no changes to the rest of the app.  We might not get there, but that's our goal.
+Currently, this resource uses ngResource to persist our grumbles to our REST API at http://grumblr.wdidc.org.  Our grumbles are available as an ngResource, with all the methods that provides.
+
+The best possible world would be to create a new service that accesses Firebase using the same interface as the ngResource.  Then, we can just replace that service, with no changes to the rest of the app.  We might not get there, but that's our goal.
 
 Q. How do we know what interface we need to support?
 ---
@@ -104,7 +108,7 @@ In js/services/grumble.js:
 
 ```js
 (function() {
-  var firebaseUrl = "https://ga-dc-wdi-grumblr.firebaseio.com";
+  var firebaseUrl = "https://wdidc.firebaseio.com";
   var connectedRef = new Firebase(firebaseUrl + "/.info/connected");
   connectedRef.on("value", function(snapshot) {
     if (snapshot.val() === true) {
@@ -116,7 +120,10 @@ In js/services/grumble.js:
 });
 ```
 
+> Aside: If you have your own Firebase, feel free to use that as `firebaseUrl`.
+
 Let's walk through this code.
+
 We need to connect to the remote Firebase.  From our reading, we know that we start with a base url and change the path to identify the specific resource we want.
 - store the base url in `firebaseUrl`
 - make a reference to the specific path, provided by Firebase, for checking connection: `/.info/connected`.
@@ -320,7 +327,7 @@ After updating index.html and
 
 ### You Do: Finally, we show the Grumble. (30 min)
 
-Continue updating our new firebaeResource until CRUD is supported.
+Continue updating our new firebaseResource until CRUD is supported.
 
 Timings:
 - Break?
