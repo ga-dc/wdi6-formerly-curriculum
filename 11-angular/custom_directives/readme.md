@@ -604,41 +604,131 @@ Then, show or hide the buttons based on the value of formType:
 If you aren't caught up yet, you can checkout the solution code:
 
 ```
-git checkout -b custom-directives origin/custom-directives 
+git checkout -b custom-directives-reused origin/custom-directives-reused
 ```
 
 ## Substituting directives for controllers
 
-In the `grumble` controller, we have this method:
+The problem now is that clicking on "New Grumble" doesn't do anything.
+
+##### Why doesn't clicking "New Grumble" do anything?
+
+We don't have a `create()` method defined inside the partial.
+
+It *is* defined inside `newGrumbleController`:
 
 ```js
-this.delete = function(id){
-  Grumble.delete({id: id}, function(){
-    $location.path("/grumbles")
-  });
+this.create = function(){
+  Grumble.save(this.grumble, function(grumble) {
+    $location.path("/grumbles/" + grumble.id);
+  })
 }
 ```
 
 I can remove it from the controller and plunk it right in the directive:
 
 ```js
-(function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('grumble', function(){
+directives.directive('grumbleSave', function(){
+  return {
+    templateUrl: "views/grumbles/_grumble_save.html",
+    replace: true,
+    scope: {
+      grumble: "=",
+      formType: "@"
+    },
+    link: function(scope){
+      this.create = function(){
+        Grumble.save(this.grumble, function(grumble) {
+          $location.path("/grumbles/" + grumble.id);
+        })
+      }
+    }
+  }
+});
+```
+
+##### Turn and talk: what needs to change for this method to work? There are 2 things.
+
+- `this` needs to be changed to `scope`.
+- `$location` and `Grumble` are dependencies that have to be injected.
+
+```js
+directives.directive('grumbleSave',[
+  "$location",
+  "Grumble",
+  function($location, Grumble){
     return {
-      templateUrl: "views/grumbles/_grumble.html",
-      scope: function(scope){
-        scope.delete = function(id){
-            Grumble.delete({id: id}, function(){
-              $location.path("/grumbles")
-            });
-          }
+      templateUrl: "views/grumbles/_grumble_save.html",
+      replace: true,
+      scope: {
+        grumble: "=",
+        formType: "@"
+      },
+      link: function(scope){
+        scope.create = function(){
+          Grumble.save(scope.grumble, function(grumble) {
+            $location.path("/grumbles/" + grumble.id);
+          });
         }
       }
     }
-  });
-})();
+  }]
+);
 ```
+
+This means I can delete the newGrumbleController altogether. So I'll delete that from `js/controllers/grumbles.js`, and I'll remove it from `routes.js`:
+
+```js
+when("/grumbles/new", {
+  templateUrl: 'views/grumbles/new.html'
+}).
+```
+
+...and when I try to save a Grumble, it works!
+
+### The last thing to change is this ugly directive
+
+The directive has way too many brackets.
+
+##### Refactor the directive so there aren't so many nested brackets
+
+One attempt:
+
+```js
+directives.directive('grumbleSave',["$location", "Grumble", grumbleSave]);
+
+function grumbleSave($location, Grumble){
+  return {
+    templateUrl: "views/grumbles/_grumble_save.html",
+    replace: true,
+    scope: {
+      grumble: "=",
+      formType: "@"
+    },
+    link: linkFunction
+  }
+  function linkFunction(scope){
+    scope.create = function(){
+      Grumble.save(scope.grumble, function(grumble) {
+        $location.path("/grumbles/" + grumble.id);
+      });
+    }
+  }
+}
+```
+
+Going along in this vein, **we don't need to have controllers at all** for these views.
+
+### Skinny controllers
+
+Angular's all about having skinny controllers, in the same way that Rails likes skinny controllers and fat models. 
+
+My [completed version of this app](https://github.com/ga-dc/grumblr_angular/tree/gh-pages) has a grand total of one controller, used just to load all the Grumbles. Everything else is in directives.
+
+A "soft" rule or guideline for when to use directives or controllers is:
+
+> Controllers should be used when you want to do something to a bunch of instances
+> Directives should be used when you want to do something to one particular instance
 
 ## We've covered four "options":
 
@@ -686,7 +776,7 @@ Once I discovered that Angular is owl-less, I started *loving* it.
 - Put methods in directives or controllers?
 - Use directives as elements or attributes?
 - Use Firebase or AJAX?
-- Use `<data-grumble>` or `<grumble>`?
+- Use `<div data-grumble>` or `<div grumble>`?
 - Use a CDN or Bower?
 - More or fewer files?
   - We put all of the controllers in one big file, but could totally have put them in separate files. The only reason we didn't is there wasn't a pressing need since this app is pretty small. But if we make lots of custom directives it might be good to make a file for each.
@@ -762,6 +852,8 @@ BONUS: Take that and make it look pretty!
   - Comment, Attribute, Class, Element
 - What's the difference between `template` and `templateUrl`?
   - `template` uses a string as a template; `templateUrl` uses a whole file
+- What's the difference between `@` and `=`?
+  - Use `@` for strings and "hard" data, use `=` for objects
 - In the Grumblr app, should you have a `directives` folder with `grumbleDirectives.js` and `commentDirectives.js` inside it, or a `grumble` folder with `grumbleDirectives.js` inside it and a `comment` folder with `commentDirectives.js` inside it?
   - It's your choice! But it's becoming more convention to do it the second way and organize files by the model to which they refer, rather than by the type of file.
 - If I'm making a "grumble cake" custom directive, should I write it `grumble-cake` in the directive file and `<grumbleCake>` in the HTML, or the other way around?
