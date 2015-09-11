@@ -74,6 +74,13 @@ Q. What just happened?
 > A. Check out bower.json and bower_components
 - git diff
 
+Add the libraries to our application, after "angular.js" and "before app.js".
+
+```js
+<script src="bower_components/firebase/firebase.js"></script>
+<script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+```
+
 Q. How do I verify?
 ---
 
@@ -107,6 +114,7 @@ But first, we need a connection.
 In js/services/grumble.js:
 
 ```js
+// in js/services/grumble.js
 (function() {
   var firebaseUrl = "https://wdidc.firebaseio.com";
   var connectedRef = new Firebase(firebaseUrl + "/.info/connected");
@@ -145,6 +153,7 @@ This service manages persisting our Grumbles.  We want to use the same names and
 Let's add our new dependency: "firebase".
 
 ```js
+// in js/services/grumble.js
 var grumbleServices = angular.module('grumbleServices', ['ngResource', 'firebase']);
 ```
 
@@ -167,6 +176,7 @@ To manage a list of grumblers, we'll need an Array.
 In js/services/grumble.js:
 
 ```js
+// in js/services/grumble.js
 grumbleServices.factory('Grumble', ['$firebaseObject','$firebaseArray', grumbleFirebase]);
 
 // Manages resources in firebase
@@ -368,7 +378,7 @@ $ firebase open
 
 ## [optional] Zoom zoom
 
-Let's study Websockets just a bit more.
+Let's "study" Websockets just a bit more.
 
 https://www.chrome.com/racer
 
@@ -376,16 +386,19 @@ https://www.chrome.com/racer
 ## Conclusion (5 min)
 
 - List 3 benefits of Firebase
-- Explain 2 benefits of Websockets
 - Explain 2 downsides of Websockets
+- Can I use any Array method to update a SynchronizedArray?
 
 
 
 ## Resources
 
--  [AngularFire Quickstart](https://www.firebase.com/docs/web/libraries/angular/quickstart.html).  - [Firebase examples](https://www.firebase.com/docs/web/examples.html)
+- The code for this exercise is available on the "firebase" branch of https://github.com/ga-dc/grumblr_angular.
+- [AngularFire Quickstart](https://www.firebase.com/docs/web/libraries/angular/quickstart.html).  - [Firebase examples](https://www.firebase.com/docs/web/examples.html)
 - [Firebase Hosting](https://www.firebase.com/docs/hosting/quickstart.html)
 - [Simple (ruby) Server](http://www.benjaminoakes.com/2013/09/13/ruby-simple-http-server-minimalist-rake/)
 - [Controller as](http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/)
 - [And again](http://toddmotto.com/digging-into-angulars-controller-as-syntax/)
-- [Firebase Hosting](https://www.firebase.com/docs/hosting/quickstart.html)
+
+## Screencasts
+- [WDI6](https://youtu.be/tpCYtV0NYEs).  It's missing the first portion (approx. 1hr)
