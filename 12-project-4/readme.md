@@ -15,6 +15,8 @@ that will help you with your final project.
 
 ## Wednesday
 
+- 11:00 - 12:00
+  - Own Your Workstation: Bash profiles, cool Homebrew tricks, and more (Matt)
 - 3:00 - 4:00
   - Deploying w/ Digital Ocean (Adrian)
 
