@@ -116,7 +116,7 @@ end
 
 > Only to note here is that we aliased our devise routes into accounts so that we can have a users resource.
 
-In `app/controllers/users_controller.rb`:
+We're going to set up a normal `index` and `show` actions for our `user` model. In `app/controllers/users_controller.rb`:
 
 ```ruby
 class UsersController < ApplicationController
@@ -133,7 +133,7 @@ end
 
 > In this controller were just doing a database query for our `index` and `show` routes.
 
-Let's first update the layout file in `app/viewslayouts/application.html.erb`:
+On to views! Let's first update the layout file in `app/viewslayouts/application.html.erb`:
 
 ```html
 <body>
@@ -167,7 +167,7 @@ Let's update the `index` view. In `app/views/users/index.html.erb`:
 <% end %>
 ```
 
-> Here we're just listing out each users email and adding a link to create a friendship with that user.
+> Here we're just listing out each users email and adding a link to create a friendship with that user (we haven't defined this functionality... yet).
 
 In `app/views/users/show.html.erb`:
 
@@ -195,7 +195,7 @@ In `app/views/users/show.html.erb`:
 </ul>
 ```
 
-> For the user show page, we're listing out the current user's friends, and listing out users that have friended the current user.
+> For the user show page, we're listing out the current user's friends, and listing out users that have friended the current user. Additionally we add a link for users to remove their friendships from the database(again, we haven't programmed this functionality... yet).
 
 All that's left is to update our `friendships` controller. In `app/controllers/friendships_controller.rb`:
 
@@ -236,6 +236,8 @@ class Friendship < ActiveRecord::Base
   end
 end
 ```
+
+> Note that even though its not saving anything to the databases in those fringe cases, it still says "Added friend." We need to update the ui such that should it not save, to display a message.
 
 Now we need to notify the user should it not pass these validations. In `app/controllers/friendship`:
 
