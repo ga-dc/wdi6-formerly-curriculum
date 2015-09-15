@@ -3,22 +3,25 @@
 ## Learning Objectives
 - explain how self referential associations are used to create relationships in a single model
 - utilize `:class_name` in order to alias a model
+- use a join table to associate instances of a single model
+- add validations on the join model
 
 
 ## Opening Framing
 We've learned about associations and how we can relate models to one another. Sometimes we need to associate instances of a model with other instances of the same model.
 
-T & T
+### ST-WG
 Think of a couple of situations where we may need to do this behavior. Conceptually, how might we execute this? Think further and think at a high level how we might be able to program this.
 
 For the purposes of this class we'll be looking at how to execute friending functionality in a rails application. Though we are looking at the domain model for friending, the functionality we'll be coding can easily transfer to another domain.(following, messaging, etc..)
 
-The application we're about to build will have 2 models `user` and `friendship`. We'll generate the `user` model with devise. The `friendship` model we'll be coding to be the join table that associates instances of users as friends.
+The application we're about to build will have 2 models, `user` and `friendship`. We'll generate the `user` model with devise. The `friendship` model we'll be coding to be the join table that associates instances of users.
 
 Let's start by creating a rails application.
 
 ```bash
 $ rails new friending_with_rails -d postgresql
+$ cd friending_with_rails
 ```
 
 We'll be using the devise gem. Go ahead and update the `Gemfile`:
@@ -30,11 +33,13 @@ gem 'devise'
 Then run the following commands in the terminal to generate our user model as well as some other files we'll need:
 
 ```bash
+$ bundle install
 $ rails g devise:install
 $ rails g devise user
 $ rails g model friendship
 $ touch app/controllers/friendships_controller.rb
 $ touch app/controllers/users_controller.rb
+$ mkdir app/views/users
 $ touch app/views/users/index.html.erb
 $ touch app/views/users/show.html.erb
 ```
@@ -247,4 +252,4 @@ def create
 end
 ```
 
-There you have it! Full friending capabilities. One thing to note, this lesson plan doesn't cover how pending friendships and accepting friendships. But that logic is just an extension of what we've already accomplished. Additionally this log, though not syntactically identical, can be transferred for any domains needing self referential associations.
+There you have it! Full friending capabilities. One thing to note, this lesson plan doesn't cover how pending friendships and accepting friendships work. But that logic is just an extension of what we've already accomplished. Additionally this functionality, though not syntactically identical, can be transferred for many domains needing self referential associations.
