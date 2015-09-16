@@ -70,7 +70,7 @@ Once your server is up and running, let's log into it via the Terminal: `$ ssh r
 * Your droplet's IP address is available on the droplet dashboard.
 * You will be prompted for a new password. Keep it simple for this example.
 
-![Log into Droplet](/img/log-in-to-droplet.png)
+![Log into Droplet](img/log-in-to-droplet.png)
 
 ## Install Node, Npm and Git
 
@@ -123,7 +123,7 @@ A web server is what will actually process incoming HTTP requests to our deploye
 
 You'll know nginx is up and running it you visit your server's IP address (e.g., `http://INSERT.IP.ADDRESS`) in the browser. You should see something like this...  
 
-![Welcome to nginx](/img/welcome-to-nginx.png)
+![Welcome to nginx](img/welcome-to-nginx.png)
 
 ## Clone the app to VPS
 
@@ -167,7 +167,7 @@ $ vim db/connection.js
 
 If you tried to migrate the application's schema to the database now, you would get the following error...
 
-![No db access](/img/no-access-db.png)
+![No db access](img/no-access-db.png)
 
 
 In order for our application to be able to access the database while running on the root account, we need to pass in some new information through Sequelize.
@@ -204,7 +204,7 @@ $ node app.js
 Visit http://YOUR.IP.ADDRESS:3000/
 * Hm, we're getting this error. Why? What do we need to change?
 
-![Localhost error](/img/localhost-error.png)
+![Localhost error](img/localhost-error.png)
 
 
 ## Set up domain and proxy server
@@ -259,7 +259,7 @@ $ sudo service nginx restart
 $ node /var/www/tunr_node_oojs
 ```
 
-![Bad gateway](/img/bad-gateway.png)
+![Bad gateway](img/bad-gateway.png)
 
 Hm, a "bad gateway" error...
 * This just means are app isn't running.
