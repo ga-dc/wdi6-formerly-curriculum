@@ -215,6 +215,8 @@ Visit http://YOUR.IP.ADDRESS:3000/
 
 ## Set up Domain
 
+Ultimately, we don't want to access our application by typing its IP address into our browser. Instead, we'd like to use a custom domain. Let's see how that would work...
+
 Enter the following into your **local** terminal, **not your droplet!** `$ sudo vim /etc/hosts`  
 * Enter whatever password you use to log into your computer.  
 
@@ -230,7 +232,7 @@ What do you see when you visit http://tunr.com:3000 in the browser?
 ## Configure a Reverse Proxy Server
 
 Now we're going to use nginx to receive and direct HTTP requests (i.e., act as a "reverse proxy server").  
-  
+
 Enter the below commands in your **droplet console**...
 
 ```
