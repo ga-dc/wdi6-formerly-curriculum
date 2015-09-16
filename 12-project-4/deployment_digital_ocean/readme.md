@@ -213,7 +213,7 @@ Visit http://YOUR.IP.ADDRESS:3000/
 ![Localhost error](img/localhost-error.png)
 
 
-## Set up domain and proxy server
+## Set up Domain
 
 Enter the following into your **local** terminal, **not your droplet!** `$ sudo vim /etc/hosts`  
 * Enter whatever password you use to log into your computer.  
@@ -227,8 +227,10 @@ What do you see when you visit http://tunr.com:3000 in the browser?
 * We're going to make a similar adjustment to our server next.
 * You may have gotten the sense that we're "faking" a URL here. And you're right! Jesse will be teaching a class tomorrow about getting your application up and running on a custom domain.
 
-## Configure a Reverse Proxy
+## Configure a Reverse Proxy Server
 
+Now we're going to use nginx to receive and direct HTTP requests (i.e., act as a "reverse proxy server").  
+  
 Enter the below commands in your **droplet console**...
 
 ```
@@ -250,7 +252,7 @@ server{
     try_files $uri @tunr;
   }
   location @tunr {
-    // Allows us to log incoming requests to our application
+    // Allows us to log incoming requests to our application.
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $remote_addr;
     proxy_set_header Host $host;
