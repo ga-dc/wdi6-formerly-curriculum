@@ -19,10 +19,11 @@ Digital Ocean only offers paid accounts, but they charge fractions of a cent per
 
 Why do we use Heroku?
 * **Automation.** Very little server-side installation required. Don't have to manage server infrastructure.
-* **Easy.** Depending on app complexity, deploying to Heroku can be a quick and easy process. Can do it in literally one CLI command.
+* **Easy.** Depending on app complexity, deploying to Heroku can be a quick and easy process. Can do it in literally one CLI command -- `git push`.
 
 What are the drawbacks of Heroku?
 * **Convention.** Deploying to Heroku requires specific configuration.
+* **Very little customization.**
 
 Why go with an alternate web server?
 * **Customization.** We can set up our production environment much like we do our development.
@@ -31,6 +32,7 @@ Why go with an alternate web server?
 Digital Ocean, in particular, has its benefits.  
 * **Quick set-up.** Can set up a new Virtual Private Server (VPS) in 60 seconds.
 * **Very fast.** Their VPS's run on solid state drives.
+* **Cheaper.** In a sense. You're paying for convenience and reliability.
 
 ## Choose an Application to Deploy
 
@@ -40,7 +42,7 @@ While you are more than welcome to try uploading your own, I suggest you use a f
 
 ## Create a Droplet
 
-A "droplet" is simply a server in Digital-Ocean-speak.  
+A "droplet" is simply a virtual private server (VPS) in Digital-Ocean-speak.  
 
 Once you have set up a Digital Ocean account, click the "Create Droplet" button in the upper-right corner of your dashboard. Once there, do the following...
 
@@ -49,6 +51,7 @@ Once you have set up a Digital Ocean account, click the "Create Droplet" button 
 3. **Select region.** We'll go with the default option of New York 3.
 4. **Select Image.** Choose Ubuntu 14.04 x64.
 5. **Add SSH Key.** Generate one by running this in your Terminal: `$ cat ~/.ssh/id_rsa.pub | pbcopy`
+  * **Note:** This is a Mac-only command.
   * This automatically copies your SSH key to your clipboard.
   * Provides increased security and easy log-in from your computer.
 
@@ -57,7 +60,7 @@ Once you have set up a Digital Ocean account, click the "Create Droplet" button 
 Once your server is up and running, let's log into it via the Terminal: `$ ssh root@your-droplets-ip`
 * We'll be logging in as the `root` user.
 * Your droplet's IP address is available on the droplet dashboard.
-* You will be prompted for a new password. Keep it simple for this example.
+* You might be prompted for a new password. Keep it simple for this example.
 
 ![Log into Droplet](img/log-in-to-droplet.png)
 
@@ -107,6 +110,7 @@ A web server is what will process and respond to incoming HTTP requests to our d
 
 A fast web server with low memory usage.
 * Key feature is that it can also act as a **reverse proxy server**. More on that later.
+* Apache is a popular alternative.
 * We can install nginx like so...
 
 `$ sudo apt-get install nginx`
@@ -131,7 +135,7 @@ $ cd /var/www
 $ git clone https://github.com/ga-dc/tunr_node_oojs.git
 $ git checkout solution
 ```
-> `/var/www` is going to be the base directory for our application.  
+> `/var/www` is going to be the base directory for all applications in this server.  
 
 > It's important that we run this application from the solution branch!  
 
@@ -154,7 +158,7 @@ $ psql
 
 ```
 # ALTER ROLE root WITH LOGIN;
-# ALTER USER root WITH password 'pick-a-password'
+# ALTER USER root WITH password 'pick-a-password';
 ```
 > Here you are setting the database password for root. We're going to use this now to edit our application's `connection.js` file. Let's exit out of psql...  
 
@@ -170,6 +174,7 @@ If you tried to migrate the application's schema to the database now, you would 
 ![No db access](img/no-access-db.png)
 
 In order for our application to be able to access the database while running on the root account, we need to pass in some new information through Sequelize.
+* We're making the below changes because the server is running on Linux.
 
 ```js
 // connection.js
@@ -225,13 +230,12 @@ What do you see when you visit http://tunr.com:3000 in the browser?
 Enter the below commands in your **droplet console**...
 
 ```
-$ cd ../../..
 $ cd /etc/nginx/sites-enabled/
 $ sudo vim tunr.com
 ```
-> Each file in this `sites-enabled` directory represents a file that is hosted on our server. We don't actually host tunr.com, but because we set up a local proxy server we can pretend we do!
+> Each file in this `sites-enabled` directory is a "virtual host" that represents an application hosted on our server. We don't actually host tunr.com, but because we set up a local proxy server we can pretend we do!
 
-Enter the following in your new file...  
+Enter the following in our new file, or "virtual host"...
 
 ```
 server{
@@ -271,3 +275,7 @@ $ forever start app.js
 > Forever is an npm module that allows a node script to run continuously. Learn more about it [here](https://www.npmjs.com/package/forever).
 
 Ta-da! All done!
+
+## Next Steps
+
+* [Configure git-push auto deploy](http://joemaller.com/990/a-web-focused-git-workflow/).
