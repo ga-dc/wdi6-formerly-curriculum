@@ -98,18 +98,24 @@ $ sudo -u postgres psql postgres
 
 ### What is a web server?
 
-A web server is what will actually process incoming HTTP requests to our deployed application.
+A web server is what will process and respond to incoming HTTP requests to our deployed application.
+* Yes, there is a difference between our droplet "server" and a "web server". The former hosts and runs our application.
 * You're no strangers do web servers. Do you remember what the equivalent for Rails is?
 * Today we'll be using one called **nginx.**
 
 ### What is nginx?
 
+A fast web server with low memory usage.
+* Key feature is that it can also act as a **reverse proxy server**. More on that later.
+* We can install nginx like so...
+
 `$ sudo apt-get install nginx`
-> What is nginx? What is a "reverse proxy"? For that matter, what is a proxy?
 
 You'll know nginx is up and running it you visit your server's IP address (e.g., `http://INSERT.IP.ADDRESS`) in the browser. You should see something like this...  
 
 ![Welcome to nginx](img/welcome-to-nginx.png)
+
+nginx is ready! Now we need our application to tell it what exactly to do with those HTTP requests...  
 
 ## Clone the app to VPS
 
@@ -127,6 +133,14 @@ $ git checkout solution
 ```
 > `/var/www` is going to be the base directory for our application.  
 
+> It's important that we run this application from the solution branch!  
+
+What happens if we try to `createdb` for our application?
+
+![No database](img/no-db.png)
+
+`root` currently has no business messing around with postgres. In psql, we need to assign `root` a role as well as some database log-in credentials.  
+
 ```
 $ cd tunr_node_oojs
 $ npm install
@@ -134,9 +148,9 @@ $ sudo -u postgres createuser root
 $ sudo su - postgres
 $ psql
 ```
-> Because the `postgres` user has superuser privileges in regards to our database, we need to create a new root user within postgres via that account.  
+> Because the `postgres` user has master database privileges, we need to use it in order to give `root` access.  
 
-> Now we're switching to the `postgres` user and entering psql.  From here on out, commands to be entered in psql will begin with #.  
+> Now we're switching to the `postgres` user and entering psql. From here on out, commands to be entered in psql will begin with #.  
 
 ```
 # ALTER ROLE root WITH LOGIN;
@@ -154,7 +168,6 @@ $ vim db/connection.js
 If you tried to migrate the application's schema to the database now, you would get the following error...
 
 ![No db access](img/no-access-db.png)
-
 
 In order for our application to be able to access the database while running on the root account, we need to pass in some new information through Sequelize.
 
