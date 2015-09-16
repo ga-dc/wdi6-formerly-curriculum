@@ -1,4 +1,4 @@
-# Deployment
+# Deploying to Digital Ocean
 
 ## Learning Objectives
 * Create a Digital Ocean droplet.
@@ -49,8 +49,8 @@ Once you have set up a Digital Ocean account, click the "Create Droplet" button 
 3. **Select region.** We'll go with the default option of New York 3.
 4. **Select Image.** Choose Ubuntu 14.04 x64.
 5. **Add SSH Key.** Generate one by running this in your Terminal: `$ cat ~/.ssh/id_rsa.pub | pbcopy`
-* This automatically copies your SSH key to your clipboard.
-* Provides increased security and easy log-in from your computer.
+  * This automatically copies your SSH key to your clipboard.
+  * Provides increased security and easy log-in from your computer.
 
 ## Log into Droplet
 
