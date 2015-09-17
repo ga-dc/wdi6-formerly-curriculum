@@ -27,6 +27,15 @@ of domain I need.
 
 ### Domain Hacks
 
+Domain hacks are clever domain choices that let you either tell a story or say something interesting with your domain, like:
+
+- https://jesse.sh/awl/
+- https://generalassemb.ly 
+- http://del.icio.us
+- http://jessicahische.is/thinkingthoughts
+
+Here are some useful registrars / tools to help you find a cool domain!
+
 - https://domainr.com/
 - http://xona.com/domainhacks/
 
@@ -45,6 +54,14 @@ for this domain is hosted.
 
 That is, we might want all of our requests to www.jesse.com to go to Heroku, all requests to files.jesse.com to
 go to Amazon S3, and all email sent to and from jesse@jesse.com to be handled via Gmail.
+
+A nameserver is like a phone book for the Internet. A server is like a phone, and a domain is like that phone's listing in the phone book. What's missing? The actual phone number.
+
+To actually access a domain, you need to know its server's IP address, e.g. 172.20.4.117. These are difficult to remember, so instead we use domains -- generalassemb.ly, google.com, and so on -- which are much more human-readable. For instance, if you type 162.243.23.12 into your address bar, it takes you to the same page as if you typed jshawl.com into your address bar.
+
+When you type jshawl.com into your browser's address bar and hit "send", that request first goes to a special computer called a Nameserver. Its whole job is to look up domains in the Domain Name System -- the "phone book" of the Internet, which has every domain listed alongside its IP address. It sees that jshawl.com is listed alongside 162.243.23.12, similar to how "Jenny Brown" is listed in the phone book alongside "867-5309".
+
+Once it's found the IP address, the nameserver forwards your request onto that IP, and business continues as usual. This all happens extremely quickly.
 
 Where do we configure this?
 
@@ -66,6 +83,10 @@ Visit digitalocean and add a domain.
 Read https://support.dnsimple.com/articles/differences-a-cname-records/
 
 If you're curious, MX records allow you to host your email with Google Apps.
+
+>Each MX record points to an email server that’s configured to process mail for that domain. There’s typically one record that points to a primary server, then additional records that point to one or more backup servers. For users to send and receive email, their domain's MX records must point to a server that can process their mail.
+
+- http://www.google.com/support/enterprise/static/postini/docs/admin/en/activate/mx_faq.html
 
 ## Connecting the Domain to our App
 
