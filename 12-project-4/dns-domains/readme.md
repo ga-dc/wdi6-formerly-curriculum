@@ -1,5 +1,7 @@
 # DNS, Domains, and Heroku
 
+- [screencast](https://vimeo.com/139603694)
+
 Today is all about purchasing a domain name and setting it up!
 
 ## DNS (Domain Name System)
