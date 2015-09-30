@@ -72,7 +72,7 @@ var result = isChecked(1);
 Consider ActiveRecord's dynamic finder methods...
 
 ```ruby
-class Artist << ActiveRecord::Base
+class Artist < ActiveRecord::Base
 end
 
 Artist.find_by_nationality("USA")
