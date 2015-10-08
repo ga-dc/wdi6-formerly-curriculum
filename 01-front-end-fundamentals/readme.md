@@ -78,6 +78,28 @@ https://github.com/ga-dc/html_resume
 - write a for loop and while loop in JS and differentiate between them
 - Utilize loops to iterate through complex data types
 - write a JS program that utilizes conditionals and loops
+### JS Functions and Objects
+
+### Functions
+- Explain what a function is
+- Define a function in JavaScript using a declaration and an expression
+- Recognize the parts of both
+- Explain arguments (introduce scope)
+- Compare and contrast the two (explain hoisting)
+- Distinguish referencing and invocation
+- State the difference between Output and Side Effects
+- Show why functions are important and giving an example
+
+### Objects
+- Discuss datatypes (simple datatypes vs. collections)
+- Define an object literal (empty and populated)
+- Compare and contrast objects and arrays
+- Identify and differentiate two modes of element retrieval
+- Compare retrieval and updating of properties
+- Explain property deletion (contrast array)
+- Introduce namespace
+- Use functions as properties (methods)
+- Use nested data structures
 
 ### JS Objects and Functions
 
