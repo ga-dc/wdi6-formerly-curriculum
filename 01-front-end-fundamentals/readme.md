@@ -127,6 +127,7 @@ https://github.com/ga-dc/html_resume
 ### JS and the Document Object Model (DOM)
 
 - Explain what the DOM is and how it is structured
+- Select and target DOM elements using helpers
 - Select and target DOM elements using a query selector
 - Change the attributes or content of a DOM element
 
@@ -135,5 +136,6 @@ https://github.com/ga-dc/html_resume
 - Identify and resolve common and uncommon "logical errors" that affect the results of your program
 - Use logs to troubleshoot errors in an application (console log in Dev Tools)
 - Conduct real-time debugging in the browser (start small, triangulation, remove code)
-- Access properties of a class using helper methods ( typeOf( ) for datatypes)
+- [confusing] Access properties of a class using helper methods ( typeOf( ) for datatypes)
+- Access properties of a object
 - Use debuggers and breakpoints to identify logical errors in expressions
