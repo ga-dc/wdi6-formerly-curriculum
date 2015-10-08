@@ -79,7 +79,7 @@ https://github.com/ga-dc/html_resume
 - Utilize loops to iterate through complex data types
 - write a JS program that utilizes conditionals and loops
 
-### Objects, Functions and DOM
+### Objects and Functions
 
 - Compare objects and key-value stores to arrays as data structures
 - Explain the difference between object properties and methods
@@ -89,6 +89,8 @@ https://github.com/ga-dc/html_resume
 - Define what a function is
 - Define hoisting
 - Differentiate between referencing and invoking a function
+
+### DOM and Debugging
 - Explain what the DOM is and how it is structured
 - Select and target DOM elements using a query selector
 - Change the attributes or content of a DOM element
