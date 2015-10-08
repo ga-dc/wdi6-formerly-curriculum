@@ -1,4 +1,4 @@
-# Intro to WDI 101
+
 
 ## Learning Objectives
 
@@ -217,7 +217,27 @@ Units/Projects:
 ## Squad Breakouts (10:20 - 11:30)
 
 ### Get to know each other
-### Expectations, not Consequences: What are your expectations for yourself?
+
+### Expectations, not Consequences
+
+#### Turn and talk: What are your expectations of yourself for this class?
+
+There are no grades for this class. There are no metrics. There's no certificate or degree you get at the end upon checking an appropriate number of boxes. Everyone will get access to the same events and classes during WDI regardless of the work they do.
+
+So what's your motivation to succeed?
+
+You. You're investing $12,000 and 500 hours in this class. What you're expecting to get in return for that investment is a job. No piece of paper General Assembly gives you will be sufficient to land your dream career. No items General Assembly makes you cross off a list will be sufficient to get a job.
+
+The only sufficient checklist is one you create for yourself. Everyone will get access to very different opportunities outside of WDI depending on the work they do inside it.
+
+We -- your instructors and staff -- do have expectations of you. We expect you to not have more than 4 absences, where 2 tardies equals 1 absence. We expect you to complete at least 80% of the homework we assign. 
+
+Most importantly, we expect you to make the most of this investment. We expect you to try your best. We expect you to let us know when you're struggling and give us an opportunity to help.
+
+But expectations are not consequences. The only consequence we will impose is that we will constantly discuss with you what our expectations are. Your actions based on that discussion are up to you.
+
+**Your** expectations are the most important - including whether you expect yourself to meet ours. You know your work ethic better than we do: please think about how we can help you to define expectations for yourself and to create a plan that sets you up to meet them.
+
 ### Student Constitution
 
 What are the expectations to which every student should be held accountable?
