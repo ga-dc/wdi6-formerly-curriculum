@@ -42,21 +42,25 @@ https://github.com/ga-dc/html_resume
 - Explain the difference between relative and absolute path
 
 ### Git
-### Conceptual
+#### Conceptual
 
-- Explain what version control is and why developers use it
-- List the main components of a git repository and how they relate:
+- Describe why developers use version control
+- Illustrate how Git works as a version control system
+- Explain how Git allows us as developers to:
+  - Revert to past versions
+  - Keep track of what each version 'meant'
+  - Compare changes to past versions
+  - Collaborate / discuss changes
+  - Be Fearless to make changes
+- Identify how the components of a local git repository relate:
   - repo, working tree, index (aka staging area), commit
-- Describe what a git remote repository is.
-- Differentiate between git as a tool, and github as a service
-- Define and differentiate between forking and cloning
+- Distinguish between git as a tool, and Github as a service
 
-### Mechanical
+#### Mechanical
 - Initialize a local git repository
 - Add and commit changes to a git repository
 - Add a remote repository, and push/pull changes to that remote
 - Use the 'fork, clone, and pull request' model to submit assignments
-- Un-initialize a git repository
 
 ### JS Data Types, Variables, and Arrays
 - Describe the role Javascript (JS) plays alongside HTML and CSS.
@@ -75,7 +79,7 @@ https://github.com/ga-dc/html_resume
 - Utilize loops to iterate through complex data types
 - write a JS program that utilizes conditionals and loops
 
-### Objects, Functions and DOM
+### JS Objects and Functions
 
 - Compare objects and key-value stores to arrays as data structures
 - Explain the difference between object properties and methods
@@ -85,9 +89,20 @@ https://github.com/ga-dc/html_resume
 - Define what a function is
 - Define hoisting
 - Differentiate between referencing and invoking a function
+
+### JS and the Document Object Model (DOM)
+
 - Explain what the DOM is and how it is structured
 - Select and target DOM elements using a query selector
 - Change the attributes or content of a DOM element
+
+### JS Debugging
+
+- Identify and resolve common and uncommon "logical errors" that affect the results of your program
+- Use logs to troubleshoot errors in an application (console log in Dev Tools)
+- Conduct real-time debugging in the browser (start small, triangulation, remove code)
+- Access properties of a class using helper methods ( typeOf( ) for datatypes)
+- Use debuggers and breakpoints to identify logical errors in expressions
 
 ### CSS Intro
 - Define the following terms: css rule, selector, declaration, property, and value
