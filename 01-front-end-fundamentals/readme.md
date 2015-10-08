@@ -62,6 +62,18 @@ https://github.com/ga-dc/html_resume
 - Add a remote repository, and push/pull changes to that remote
 - Use the 'fork, clone, and pull request' model to submit assignments
 
+### CSS Intro
+- Construct a CSS rule using selectors, declarations, properties, and values
+- Articulate the pros and cons of stylesheets, styles in the head, and in-line styles
+- Define "cascading" in the context of CSS specificity
+- Style the size, color, border, text, and font of all elements of a given tag on a page
+- Demonstrate the use of class and ID selectors to target specific element(s)
+- Distinguish between block and inline display values
+- Identify the components of the box model
+- Differentiate between the border-box and content-box values for box-sizing
+- Apply knowledge of the box model to adjust spacing between and around elements on a page
+- Bookmark 2-3 good resources that developers can use refer to for CSS help
+
 ### JS Data Types, Variables, and Arrays
 - Describe the role Javascript (JS) plays alongside HTML and CSS.
 - Define JS as a programming language.
@@ -125,15 +137,3 @@ https://github.com/ga-dc/html_resume
 - Conduct real-time debugging in the browser (start small, triangulation, remove code)
 - Access properties of a class using helper methods ( typeOf( ) for datatypes)
 - Use debuggers and breakpoints to identify logical errors in expressions
-
-### CSS Intro
-- Describe the syntactical and functional relationship between rules, selectors, declarations, properties, and values in CSS
-- Articulate the pros and cons of stylesheets, styles in the head, and in-line styles
-- Define "cascading" in the context of CSS specificity
-- Use tag name selectors to style the size, color, border, text, and font of all elements of a given tag on a page
-- Demonstrate the use of class and ID selectors to target specific element(s)
-- Distinguish between block, inline, and inline-block display values
-- Identify the components of the box model
-- Differentiate between the border-box and content-box values for box-sizing
-- Apply knowledge of the box model to adjust spacing between and around elements on a page
-- List 2-3 good resources that developers can use refer to for CSS help
