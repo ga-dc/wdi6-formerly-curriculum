@@ -1,16 +1,17 @@
 # CSS
 
-## LO's
-- Define the following terms: css rule, selector, declaration, property, and value
-- Describe the syntactic relationship between these components in CSS
-- Describe the syntactical and functional relationship between selectors, properties, and values
-- Differentiate between stylesheets, styles in the head, in-line styles
-- describe "cascading" and CSS specificity
-- Use tag name selectors to style all elements of a given tag on a page
-- Describe the difference between class and id selectors
-- Apply styles to specific elements by selecting elements with classes and ids
-- Differentiate between padding border and margin using the box model
-
+##LO's
+- Describe the syntactical and functional relationship between rules, selectors, declarations, properties, and values in CSS
+- Articulate the pros and cons of stylesheets, styles in the head, and in-line styles
+- Define "cascading" in the context of CSS specificity
+- Use tag name selectors to style the size, color, border, text, and font of all elements of a given tag on a page
+- Demonstrate the use of class and ID selectors to target specific element(s)
+- Distinguish between block, inline, and inline-block display values
+- Identify the components of the box model
+- Differentiate between the border-box and content-box values for box-sizing
+- Apply knowledge of the box model to adjust spacing between and around elements on a page
+- List 2-3 good resources that developers can use refer to for CSS help
+<!--
 ## Opening Framing (3 min)
 > Although some of this may be review from the prework, repetition is key to becoming a good programmer!
 
@@ -349,4 +350,4 @@ img {
 I think that's pretty good. There's some minor tweaks that can be made. Like font and changing the color for active links.
 
 
-## You do/ Finish for HW - Dew
+## You do/ Finish for HW - Dew -->
