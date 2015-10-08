@@ -164,11 +164,10 @@ Units/Projects:
 * Ruby / Data Persistance / Backend Dev w/ Sinatra
 * Full-stack MVC w/ Rails
 * Project 2 - Build a full-stack, data driven app w/ Rails
-* Collaborative Development (UXDi) / Adv. Front-end (JS, CSS, SASS)
-* APIs with Rails and Express
+* Building APIs with Rails and Express
+* Advanced Front-end (using API's on clientside)
 * Project 3 - Build a backend API and Front-end that consumes it
-* Users and Authentication in APIs
-* MVW with Backbone.js
+* Front-End Frameworks
 * Project 4 - Portfolio project
 
 ### Course logistics (5 minutes)
