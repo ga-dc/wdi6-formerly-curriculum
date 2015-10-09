@@ -49,26 +49,17 @@ Here’s a wireframe of Adrian as an example:
 
 [Growth Mindset](https://www.youtube.com/watch?v=-_oqghnxBmY_) - [Dr. Carol Dweck](https://en.wikipedia.org/wiki/Carol_Dweck)
 
-- For many students, this is the most mentally challenging thing they've done in their lives.
-  - This is the first time they've been bad at something in a long time.
-  - How many people have failed at something? I imagine that everyone has. At some point in this course you will falter. But that's OK! It's how we bounce back, persevere and learn from it that allows our mind to grow.
-  - [Emotional Cycle of Change](https://s-media-cache-ak0.pinimg.com/736x/3c/f4/fa/3cf4faeb2078f4f4fbb9265444bde2e0.jpg)
-    - uninformed optimism
-    - informed pessimism
-    - determination/commitment or giving up
-    - hopeful realism
-    - informed optimism
-
-- Failure and struggle are crucial aspects of this path. We don't succeed despite challenges -- we succeed because of challenges.
+- This may be the most mentally challenging thing you've ever done – the first time you've been bad at something in a long time.
+- Failure and struggle are crucial aspects of this path. We don't succeed despite challenges -- we succeed because of challenges. [The Learning Myth: Why I'll Never Tell My Son He's Smart](https://www.khanacademy.org/about/blog/post/95208400815/the-learning-myth-why-ill-never-tell-my-son-hes)
   - Unfortunately, this can hurt. Just like exercise can make you sore and tired, so should learning. Try to enjoy the burn knowing it is making you better.
   - We as instructors anticipate that you will run into hardships. When you do, don't run for the hills! Buckle down and work through the problem. Embrace the fact that the hardship will make you a better coder. Endure the struggle to grow and develop your mind.
+  - The Emotional Cycle of Change
+  ![Emotional Cycle of Change](https://s-media-cache-ak0.pinimg.com/736x/3c/f4/fa/3cf4faeb2078f4f4fbb9265444bde2e0.jpg)
 - Just memorizing stuff won't help you. Learning HOW to code will.
   - ~~You can't BS your way through code.~~
   - The fundamental standard of programming: It either works, or it doesn't. No amount of sweet-talking will make it work.
   - Programming is a mindset. It's about confidence and being open to failure. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it. AND I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
 - So many students throughout my time here say, "I don't know how to do that." or some variation of that. Many of you will say it. Just add "...yet" to it.
-
-[The Learning Myth: Why I'll Never Tell My Son He's Smart](https://www.khanacademy.org/about/blog/post/95208400815/the-learning-myth-why-ill-never-tell-my-son-hes)
 
 ### What is an immersive course? (5 minutes)
 
