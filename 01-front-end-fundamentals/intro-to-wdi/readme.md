@@ -257,7 +257,7 @@ what's been written and highlight those commonly +1'd.
 
 #### Turn and talk: What are your expectations of yourself for this class?
 
-There are no grades for this class. There are no metrics. There's no certificate or degree you get at the end upon checking an appropriate number of boxes. Everyone will get access to the same events and classes during WDI regardless of the work they do.
+There are no grades for this class. There are no metrics. There's no certificate or degree you get at the end upon checking an appropriate number of boxes.
 
 So what's your motivation to succeed?
 
