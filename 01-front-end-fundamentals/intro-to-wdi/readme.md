@@ -13,9 +13,9 @@
 
 Students and instructors meet in their assigned classrooms:
 
-Classroom 4: Jesse, John, Robin (and their squads)
-Classroom 5: Andy, Matt, Nick (and their squads)
-Classroom 6: Adam, Adrian, Erica (and their squads)
+- Classroom 4: Jesse, John, Robin (and their squads)
+- Classroom 5: Andy, Matt, Nick (and their squads)
+- Classroom 6: Adam, Adrian, Erica (and their squads)
 
 ### Welcome & Today's Schedule (10 minutes)
 
@@ -35,6 +35,17 @@ Instructor introductions.
 ### Icebreaker (20 minutes)
 
 Wireframe your partner!
+
+Find a partner. Spend 5 minutes sketching your partner. On the left, draw three things
+he or she likes, and on the right, three things he or she dislikes.
+
+Switch!
+
+For the remaining 10 minutes, we’ll go around the room and share!
+
+Here’s a wireframe of Adrian as an example:
+
+![](https://dl.dropboxusercontent.com/s/frqxj4hn044sm73/action_adrian_.jpg?dl=0)
 
 ### Growth Mindset (10 minutes)
 
@@ -286,7 +297,20 @@ Pre-work? Questions?
 
 ### Student constitution (15 minutes)
 
-### Squad Rotations (10 minutes)
+### Squad Rotations (10 minutes) (DELETE)
+### Making the most of a large cohort (5 minutes)
+
+We'll do our best to give you the best of both worlds. You'll have the
+close connections and individualized instruction of your squad. (as well as a reasonable class size). But you'll also have a chance to meet 66 other students
+with whom you can learn, teach, network, and make life-long friends.
+
+Our advice is to try to make close friends (support network), but also to work
+(pair program) with as many people as possible. One of the greatest aspects of
+a program like this is that you can work with so many different people, and gain
+exposure to their ways of things and working.
+
+We'll often encourage you to cross-pair and provide activities to help you get
+to know your fellow students.
 
 ## LUNCH BREAK (12:30 - 1:30)
 

@@ -122,22 +122,56 @@ Review from the prework - what’s a function?
 
 There are two ways to define or declare a function:
 
-```js
-var eat = function(){
-  console.log("nom nom")
-}
+### Function declaration
 
-//or
-
-function eat(){
-  console.log("nom nom")
+``` javascript
+function square(number) {
+  return number * number;
 }
 ```
+
+### Function expression
+
+``` javascript
+var square = function (number) {
+  return number * number;
+}
+```
+
+### Recognize the parts
+
+TODO: diagram here
+
+[Fist to five]
+
+### Understand the difference
 
 The difference is subtle, but important. The first function declaration is assigning an "anonymous" function to a variable.
 The second function declaration is a named function. The practical difference is:
 
 >Named functions are processed before any code is executed, meaning you can call functions before they are declared. This behavior is known as **hoisting**.
+
+#### Arguments
+
+JavaScript is flexible (i.e. it let's you do what you want) and this flexibility while empowering can also make debugging (i.e. tracking down the root of errors in your code) very difficult. A great example of this is in JavaScript's expectations of arguments.
+
+```js
+// define a function which takes two arguments
+var areEqual = function (a, b) {
+  return a === b;
+}
+// call function with two equal arguments
+areEqual('cat', 'cat');
+// returns true as expected
+areEqual(1, 2);
+// returns false as expected
+areEqual(1);
+// returns false... why?
+areEqual();
+// returns true... wat?
+
+```
+What is going on here?
 
 ### Input, Output, and Side Effects
 
