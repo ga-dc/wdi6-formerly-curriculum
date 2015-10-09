@@ -257,7 +257,20 @@ Pre-work? Questions?
 
 ### Student constitution (15 minutes)
 
-### Squad Rotations (10 minutes)
+### Squad Rotations (10 minutes) (DELETE)
+### Making the most of a large cohort (5 minutes)
+
+We'll do our best to give you the best of both worlds. You'll have the
+close connections and individualized instruction of your squad. (as well as a reasonable class size). But you'll also have a chance to meet 66 other students
+with whom you can learn, teach, network, and make life-long friends.
+
+Our advice is to try to make close friends (support network), but also to work
+(pair program) with as many people as possible. One of the greatest aspects of
+a program like this is that you can work with so many different people, and gain
+exposure to their ways of things and working.
+
+We'll often encourage you to cross-pair and provide activities to help you get
+to know your fellow students.
 
 ## LUNCH BREAK (12:30 - 1:30)
 
