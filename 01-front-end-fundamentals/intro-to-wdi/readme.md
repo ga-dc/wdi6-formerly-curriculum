@@ -13,9 +13,9 @@
 
 Students and instructors meet in their assigned classrooms:
 
-Classroom 4: Jesse, John, Robin (and their squads)
-Classroom 5: Andy, Matt, Nick (and their squads)
-Classroom 6: Adam, Adrian, Erica (and their squads)
+- Classroom 4: Jesse, John, Robin (and their squads)
+- Classroom 5: Andy, Matt, Nick (and their squads)
+- Classroom 6: Adam, Adrian, Erica (and their squads)
 
 ### Welcome & Today's Schedule (10 minutes)
 
