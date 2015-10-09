@@ -23,14 +23,12 @@ Instructor introductions.
 
 **Today's Schedule:**
 
-* 9:00  - 10:10 - Orientation (by classroom)
-* 10:20 - 11:30 - Squads meet individually
-* 11:45 - 12:30 - Entire cohort meets Production, Outcomes & Campus staff
-* 12:30 - 1:30  - Lunch
-* 1:30  - 4:00  - First Lesson (Command Line or HTML)
-* 4:00  - 5:00  - Squads meet individually
-
-### Squad Organization (5 minutes)
+- 9:00  - 10:10 - Orientation (by classroom)
+- 10:20 - 11:30 - Squads meet individually
+- 11:45 - 12:30 - Entire cohort meets Production, Outcomes & Campus staff
+- 12:30 - 1:30  - Lunch
+- 1:30  - 4:00  - First Lesson (Command Line or HTML)
+- 4:00  - 5:00  - Squads meet individually
 
 ### Icebreaker (20 minutes)
 
@@ -150,15 +148,15 @@ everything.
 
 Technologies we cover:
 
-* HTML
-* CSS / SASS
-* JavaScript
-* Ruby
-* PostgreSQL (Relational Database)
-* MongoDB (NoSQL Database)
-* Rails
-* Node.js / Express
-* Angular.js
+- HTML
+- CSS / SASS
+- JavaScript
+- Ruby
+- PostgreSQL (Relational Database)
+- MongoDB (NoSQL Database)
+- Rails
+- Node.js / Express
+- Angular.js
 
 We cover these technologies / topics because they are foundational to web
 development, and learning the underlying concepts of how they work prepares you
@@ -173,23 +171,25 @@ The course is organized by units of roughly 1 week each. Every 3 weeks, we'll
 complete a project (~3-5 days each).
 
 Units/Projects:
-* Front-end Fundamentals (HTML/CSS/JS)
-* Intermediate Front-end (Intermediate JavaScript / jQuery)
-* Project 1 - Build an application using HTML / CSS / JS
-* Ruby / Data Persistance / Backend Dev w/ Sinatra
-* Full-stack MVC w/ Rails
-* Project 2 - Build a full-stack, data driven app w/ Rails
-* Building APIs with Rails and Express
-* Advanced Front-end (using API's on clientside)
-* Project 3 - Build a backend API and Front-end that consumes it
-* Front-End Frameworks
-* Project 4 - Portfolio project
 
-### Course Logistics (5 minutes)
+- Front-end Fundamentals (HTML/CSS/JS)
+- Intermediate Front-end (Intermediate JavaScript / jQuery)
+- Project 1 - Build an application using HTML / CSS / JS
+- Ruby / Data Persistance / Backend Dev w/ Sinatra
+- Full-stack MVC w/ Rails
+- Project 2 - Build a full-stack, data driven app w/ Rails
+- Building APIs with Rails and Express
+- Advanced Front-end (using API's on clientside)
+- Project 3 - Build a backend API and Front-end that consumes it
+- Front-End Frameworks
+- Project 4 - Portfolio project
+
+### Course Logistics (10 minutes)
 
 #### Weekly Schedule
 
 ###### "Normal Weeks"
+
 - Mondays, Wednesdays, and Thursdays
   - 9:00-10:00:  Homework Review/Morning Exercise/Mini-lesson
   - 10:00-12:30: Lesson 1
@@ -217,51 +217,39 @@ Instead of the usual lesson structure, project weeks will include the following:
 - One-on-ones
   - Each student will be scheduled two half-hour one-on-one sessions with their squad leader each project week.
   - These one-on-ones are opportunities to work through stumbling blocks, ask questions, get feedback on ideas, or pair program with an instructor.
-
 - Mini-lessons
   - Sometimes, we will offer optional mini-lessons during project weeks, covering tools and techniques that are particularly relevant to the project at hand.
-
 - Office Hours
   - There will be no evening office hours during project weeks.
-
 - Outcomes
   - In most cases, the Outcomes schedule will also remain the same during project weeks
 
+#### Squads and Rotations
 
-#### Other
-- Squads will rotate classrooms after each project, so you will have the opportunity to work with just about everybody over the course of the 12 weeks.
-  - We'll all have the same lessons and the same homework. To increase instructor availability, each class' lesson schedule may vary by a day or two.
-- Instructor Communication
-  - Instructors who are not scheduled for Evening Office Hours **may not** respond to code questions via Slack or in person, even if we're in the office.
-    - **Question**: Why would we do this?
-    - **Answer**: Work/Life Balance.
-  - Feel free to send any messages to us and we'll reach out to you the next day.
-  - Should you have a logistical question, you may contact the **Student Communication Manager**
-    - This is Adrian.
+Squads will rotate classrooms after each project, so you will have the opportunity to work with just about everybody over the course of the 12 weeks.
 
+We'll all have the same lessons and the same homework. To increase instructor availability, each class' lesson schedule may vary by a day or two.
 
-- Homework and assessments
-  - You'll probably have one homework per lesson, so if you have two lessons in a day, that's two homeworks, graded separately.
-  - Homework will be graded only for *completeness*. That is, you actually attempted it yourself and didn't copy code. If you want more feedback, you'll need to ask for it.
-  - There will be one homework per week on which your squad leader will leave comments.
-  - **Question**: Is it a problem that you'll likely be able to see solutions to homework assignments before you have to do them yourself?
-- Absences and Tardies
-  - The easiest thing to do in this class is to be here at 9am every day
-  - If you're treading towards 4+ absences, we'll talk to you
-  - 2 Tardies == 1 Absence
-  - Class starts at 9:00am
-  - If you arrive after 9:00am, please wait outside the classroom until the next break.
-    - You will be marked tardy.
-    - We will likely be doing a morning exercise, which you'll be able to find in the class repo.
+### Instructor Communication
 
+- Instructors who are not scheduled for Evening Office Hours **may not** respond to code questions via Slack or in person, even if we're in the office.
+  - **Question**: Why would we do this?
+  - **Answer**: Work/Life Balance.
+- Feel free to send any messages to us and we'll reach out to you the next day.
+- Should you have a logistical question, you may contact the **Student Communication Manager**
+  - This is Adrian.
 
-## BREAK (10:10 - 10:20)
+### Student Constitution (20 minutes)
 
-## Squad Breakouts (10:20 - 11:30)
+Given four prompts (Effort, Time, Collaboration, )
+
+## BREAK (10:30 - 10:40)
+
+## Squad Breakouts (10:40 - 11:30)
 
 ### Get to know each other
 
-### Expectations, not Consequences
+### Expectations - Not Consequences
 
 #### Turn and talk: What are your expectations of yourself for this class?
 
@@ -277,40 +265,31 @@ We -- your instructors and staff -- do have expectations of you. We expect you t
 
 Most importantly, we expect you to make the most of this investment. We expect you to try your best. We expect you to let us know when you're struggling and give us an opportunity to help.
 
-But expectations are not consequences. The only consequence we will impose is that we will constantly discuss with you what our expectations are. Your actions based on that discussion are up to you.
+But expectations are not consequences. The only consequence we will impose is that we will discuss with you what our expectations are. Your actions based on that discussion are up to you.
 
 **Your** expectations are the most important - including whether you expect yourself to meet ours. You know your work ethic better than we do: please think about how we can help you to define expectations for yourself and to create a plan that sets you up to meet them.
 
-### Student Constitution
-
-What are the expectations to which every student should be held accountable?
-Pick 3 top ones; combine them at the cohort meeting
-
 ### Q and A
 
-Pre-work? Questions?
 
 ## Entire Cohort Meets (11:45 - 12:30)
 
-### GA Staff Introductions / Campus Experience (10 minutes)
-
+### GA Instructor / Staff Introductions (15 minutes)
 ### Producers - Administrative Info (10 minutes)
-#### Absence / Tardy Policy
 #### Refund Policy
 
 ### Student constitution (15 minutes)
 
-### Squad Rotations (10 minutes) (DELETE)
 ### Making the most of a large cohort (5 minutes)
 
 We'll do our best to give you the best of both worlds. You'll have the
-close connections and individualized instruction of your squad. (as well as a reasonable class size). But you'll also have a chance to meet 66 other students
+close connections and individualized instruction of your squad (7:1 student ratio). (as well as a reasonable class size). But you'll also have a chance to meet 66 other students
 with whom you can learn, teach, network, and make life-long friends.
 
 Our advice is to try to make close friends (support network), but also to work
 (pair program) with as many people as possible. One of the greatest aspects of
 a program like this is that you can work with so many different people, and gain
-exposure to their ways of things and working.
+exposure to their ways of thinking and working.
 
 We'll often encourage you to cross-pair and provide activities to help you get
 to know your fellow students.
