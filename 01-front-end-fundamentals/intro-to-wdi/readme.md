@@ -109,18 +109,14 @@ Note that none of the above mention anything about code.
 - Without fail, the students who do not ask for help do the poorest in the class.
 - Most importantly, knowing how to ask for help and where to look for answers is one of the biggest skills you can gain from this class that will be applicable as you prepare to join the professional workforce.
 
-I'm going to ask you to write something on a letter-sized piece of paper. You are allowed no more than 12 words. Please write big enough that someone can read your paper from a few feet away.
-
-When you are done, you will put the paper face-down on your table and leave the room. We'll start again at 11:15.
-
-Now, close your eyes. I want you to write what first comes to mind when I ask you to think of a time you had to ask for help.
-
-*(Collect papers, tape to board for students to review as they re-enter.)*
+Everyone should take 30 seconds to think of a time when they've asked someone
+for help. It doesn't have to be tech-related. Take 30 seconds to turn and talk
+with your tablemates about those times. What were the outcomes?
 
 - We have all asked for help. There's no shame in it. Feeling afraid to ask for help will be the biggest detriment in this class.
 - What makes asking for help effective?
   - Asking a clear problem. "I don't know any of this" isn't a clear problem. "I tried this thing and got this error" is a clear problem.
-  - We will turn you away when:
+  - We'll ask you for help when:
       - The question you're asking isn't constructive
       - It's clear you haven't made an effort to find the answer
           - First, try it yourself
@@ -132,7 +128,7 @@ Now, close your eyes. I want you to write what first comes to mind when I ask yo
 
 #### How the Class is Built
 
-GA has built a baseline curriculum, which includes topics to cover, and a
+GA's global team (including many of the instructors here) has built a baseline curriculum, which includes topics to cover, and a
 suggested order. As a local campus, we have built on and modified this
 curriculum based on own experiences as instructors, and the unique features
 of the DC job market. Each lesson is designed by the instructor that's
@@ -162,7 +158,7 @@ Technologies we cover:
 * MongoDB (NoSQL Database)
 * Rails
 * Node.js / Express
-* Backbone.js / Handlebars Templates
+* Angular.js
 
 We cover these technologies / topics because they are foundational to web
 development, and learning the underlying concepts of how they work prepares you
@@ -195,12 +191,11 @@ Units/Projects:
 
 ###### "Normal Weeks"
 - Mondays, Wednesdays, and Thursdays
-  - 9:00-10:00 Homework Review/Morning Exercise/Mini-lesson
+  - 9:00-10:00:  Homework Review/Morning Exercise/Mini-lesson
   - 10:00-12:30: Lesson 1
-  - 12:30-2:30: Lunch (1 hr) & Work Time/Office Hours
-  - 2:30-5:00: Lesson 2
-  - 5:00-5:30: Office Hours
-  - 6:00-8:00: Evening Office Hours (**except Mondays**)
+  - 12:30-2:30:  Lunch (1 hr) & Work Time/Office Hours
+  - 2:30-5:00:   Lesson 2
+  - 6:00-8:00:   Evening Office Hours (**except Mondays**)
 
 - Tuesdays
   - 9:00-11:30: Lesson 1
@@ -215,45 +210,45 @@ Units/Projects:
   - 4:00-5:00: Squad Check-in
 
 
-###### Project Weeks (3, 6, 9, 12)
+##### Project Weeks (3, 6, 9, 12)
 
-Instead of following the usual lesson structure, project weeks
+Instead of the usual lesson structure, project weeks will include the following:
 
 - One-on-ones
   - Each student will be scheduled two half-hour one-on-one sessions with their squad leader each project week.
   - These one-on-ones are opportunities to work through stumbling blocks, ask questions, get feedback on ideas, or pair program with an instructor.
 
 - Mini-lessons
-  - Sometimes, we will offer optional minilessons during project weeks, covering tools and techniques that are particularly relevant to the project at hand.
+  - Sometimes, we will offer optional mini-lessons during project weeks, covering tools and techniques that are particularly relevant to the project at hand.
 
 - Office Hours
-  - Evening Office Hours (Tues-Thurs, 6-8pm) will run as usual during project weeks
+  - There will be no evening office hours during project weeks.
 
 - Outcomes
   - In most cases, the Outcomes schedule will also remain the same during project weeks
 
 
 #### Other
-- Class Staggering
-  - Two classrooms will share a staggered schedule, in which each lesson is taught twice by the same instructor. The other classroom will have the same schedule as one of the previous classrooms, taught by a different instructor.
-  - The classes will rotate after each project, so you will have the opportunity to work with just about everybody over the course of the 12 weeks.
-  - We'll all have the same lessons and the same homework. Who had what when will just vary by a day or two between the classes.
+- Squads will rotate classrooms after each project, so you will have the opportunity to work with just about everybody over the course of the 12 weeks.
+  - We'll all have the same lessons and the same homework. To increase instructor availability, each class' lesson schedule may vary by a day or two.
 - Instructor Communication
   - Instructors who are not scheduled for Evening Office Hours **may not** respond to code questions via Slack or in person, even if we're in the office.
     - **Question**: Why would we do this?
     - **Answer**: Work/Life Balance.
+  - Feel free to send any messages to us and we'll reach out to you the next day.
   - Should you have a logistical question, you may contact the **Student Communication Manager**
-    - This is Robin.
+    - This is Adrian.
 
 
 - Homework and assessments
   - You'll probably have one homework per lesson, so if you have two lessons in a day, that's two homeworks, graded separately.
   - Homework will be graded only for *completeness*. That is, you actually attempted it yourself and didn't copy code. If you want more feedback, you'll need to ask for it.
-  - There will be one homework per week on which your pod leader will leave comments.
+  - There will be one homework per week on which your squad leader will leave comments.
   - **Question**: Is it a problem that you'll likely be able to see solutions to homework assignments before you have to do them yourself?
 - Absences and Tardies
-  - Having more than 4 absences disqualifies you for Outcomes
-  - 4 Tardies == 1 Absence
+  - The easiest thing to do in this class is to be here at 9am every day
+  - If you're treading towards 4+ absences, we'll talk to you
+  - 2 Tardies == 1 Absence
   - Class starts at 9:00am
   - If you arrive after 9:00am, please wait outside the classroom until the next break.
     - You will be marked tardy.
