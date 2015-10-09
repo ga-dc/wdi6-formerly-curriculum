@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Models and Collections | Welcome to GA&#39;s WDI-DC</title>
+        <title>JavaScript Objects and Functions | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.3">
@@ -29,10 +29,10 @@
         
     
     
-    <link rel="next" href="../../10-back-and-front-of-front-end/bb_views_part1/readme.html" />
+    <link rel="next" href="../../01-front-end-fundamentals/javascript-DOM/readme.html" />
     
     
-    <link rel="prev" href="../../10-back-and-front-of-front-end/readme.html" />
+    <link rel="prev" href="../../01-front-end-fundamentals/javascript-loops-conditionals/readme.html" />
     
 
         
@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="7.1.1" data-basepath="../.." data-revision="Fri Oct 09 2015 20:04:21 GMT+0000 (UTC)">
+    <div class="book" data-level="1.7" data-basepath="../.." data-revision="Fri Oct 09 2015 20:04:21 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -177,7 +177,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7" data-path="01-front-end-fundamentals/javascript-objects-functions/readme.html">
+        <li class="chapter active" data-level="1.7" data-path="01-front-end-fundamentals/javascript-objects-functions/readme.html">
             
                 
                     <a href="../../01-front-end-fundamentals/javascript-objects-functions/readme.html">
@@ -842,7 +842,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="7.1.1" data-path="10-back-and-front-of-front-end/bb_models_collections/readme.html">
+        <li class="chapter " data-level="7.1.1" data-path="10-back-and-front-of-front-end/bb_models_collections/readme.html">
             
                 
                     <a href="../../10-back-and-front-of-front-end/bb_models_collections/readme.html">
@@ -1262,342 +1262,244 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="backbone-models-and-collections">Backbone Models and Collections</h1>
-<h2 id="screen-casts">Screen Casts</h2>
-<p><a href="https://www.youtube.com/watch?v=llq2O25g8kY" target="_blank">Video 1</a>
-<a href="https://www.youtube.com/watch?v=I2pQXRhCYc0" target="_blank">Video 2</a>
-<a href="https://www.youtube.com/watch?v=06Mzemj9vaE" target="_blank">Video 3</a>
-<a href="https://www.youtube.com/watch?v=XvrWxUOrAkE" target="_blank">Video 4</a>
-<a href="https://www.youtube.com/watch?v=kdzyPt26SmY" target="_blank">Video 5</a></p>
+                        <h1 id="objects-functions-and-dom">Objects, Functions and DOM</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Describe the benefits of using a front end framework</li>
-<li>Explain how libraries differ from frameworks.</li>
-<li>Define a new backbone model and create instances</li>
-<li>Perform CRUD actions on a backbone model</li>
-<li>Explain what a collection is in backbone</li>
-<li>Define a new backbone collection</li>
-<li>Use the backbone collection to store models</li>
-<li>Perform CRUD on a collection</li>
-<li>Associate a backbone model and collection with a rails backend</li>
-<li>Perform CRUD actions using backbone&apos;s RESTful API</li>
-<li>Compare BB models with AR models</li>
+<li>Discuss datatypes (simple datatypes vs. collections)</li>
+<li>Compare objects and key-value stores to arrays as data structures</li>
+<li>Explain the difference between object properties and methods</li>
+<li>Create empty objects and objects with multiple properties and methods using object literal syntax</li>
+<li>Compare adding and retrieving properties to objects using dot and bracket notation</li>
+<li>Use <code>delete</code></li>
+<li>Iterate over the keys of an object to return and manipulate values</li>
+<li>Introduce namespace</li>
+<li>Explain nested data structures</li>
+<li>Write an object method</li>
+<li>Describe what a JavaScript function is</li>
+<li>Recognize the parts of a function</li>
+<li>Write a function in JavaScript using a declaration and an expression</li>
+<li>Define hoisting</li>
+<li>Differentiate between referencing and invoking a function</li>
+<li>State the difference between Output and Side Effects</li>
 </ul>
-<h2 id="opening-framing-5-5">Opening Framing (5/5)</h2>
-<p>How we got here:</p>
-<ol>
-<li><p>vanilla js</p>
+<h2 id="datatype-review">Datatype Review</h2>
+<h3 id="simple-datatypes">Simple datatypes</h3>
 <ul>
-<li>a lot of code to write</li>
+<li>number (e.g. <code>0</code>, <code>1</code>, <code>-1</code>, <code>0.5</code>, <code>1e10</code>)</li>
+<li>string (e.g. <code>&quot;Hello World!&quot;</code>, <code>&quot;A&quot;</code>, <code>&quot;&quot;</code>)</li>
+<li>booleans (i.e. <code>true</code> or <code>false</code>)</li>
 </ul>
-</li>
-<li><p>jQuery</p>
+<h3 id="collections">Collections</h3>
 <ul>
-<li>easier to do more</li>
-<li>easier to write more bad code</li>
-</ul>
-</li>
-<li><p>OOJS</p>
-<ul>
-<li>more structured but a royal pain to write</li>
-</ul>
-</li>
-<li><p>Frameworks</p>
-<ul>
-<li>All the structure of OOJS with the ease of writing like jQuery.</li>
+<li>arrays (e.g. <code>[1, 2, 3]</code>, <code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]</code>, <code>[&apos;a&apos;, 1, &apos;cat&apos;]</code>, <code>[]</code>)<ul>
+<li>index</li>
+<li>values</li>
 </ul>
 </li>
-</ol>
-<p>What&apos;s the purpose of a front end framework? JS and all of it&apos;s many libraries are great, but you can start building and building your application and all of a sudden there&apos;s no structure and everything&apos;s soup.</p>
-<h3 id="libraries-2-5-7-5">libraries (2.5/7.5)</h3>
-<ul>
-<li>libraries gives us tools to utilize.</li>
-<li>abstracts code and allows us to write our code more succinctly</li>
-<li>allows us to write applications faster and easier</li>
-<li>lots of options, very few rules (jQuery)</li>
-</ul>
-<h3 id="frameworks-2-5-10">frameworks (2.5/10)</h3>
-<ul>
-<li>like libraries in that it gives us tools to utilize</li>
-<li>additionally they provide structure and conventions users have to follow in order for them to work.</li>
-<li>Lots of rules (convention), few options (Ruby on Rails)</li>
-</ul>
-<h2 id="what-is-a-front-end-framework-5-15">What is a front end framework? (5/15)</h2>
-<ul>
-<li>a library that attempts to move some or all application logic to the browser, while providing a simple interface for keeping the front-end in sync with the back-end</li>
-<li>applications can run completely in the browser, minimizing server load since the server is only accessed when the front end needs to synchronize data with the backend</li>
-<li>server sends over the app in the initial request (HTML/CSS/JS) then JS makes all subsequent requests with AJAX</li>
-<li>provides more fluid user experience</li>
-<li>loads everything from the database on page load (data and templates) then renders/updates the page content based on user interaction.</li>
-</ul>
-<h3 id="what-is-backbone-25-40">What is backbone? (25/40)</h3>
-<p>Individual reading(10/25)</p>
-<ul>
-<li>Go to <a href="http://backbonejs.org/" target="_blank">backbonejs documentation</a><ul>
-<li>Read from Getting Started to Backbone.Model</li>
+<li>objects (e.g. <code>{&apos;name&apos;: &apos;John&apos;, &apos;nationality&apos;: &apos;USA&apos;, &apos;age&apos;: 84}</code>)<ul>
+<li>keys (e.g. <code>&apos;name&apos;</code>)</li>
+<li>values (e.g. <code>&apos;John&apos;</code>)</li>
 </ul>
 </li>
 </ul>
-<h3 id="t-t-5-30">T&amp;T(5/30)</h3>
+<h2 id="arrays-review">Arrays Review</h2>
+<p>Arrays are a complex data type - usually referred to as an ordered list.</p>
+<p><strong>How do we retrieve certain elements from an array?</strong></p>
+<p>Using an index.</p>
+<h2 id="objects">Objects</h2>
+<p>Objects too are a complex data type - usually referred to as an <em>unordered</em> list (or dictionary, or hash, or map...). They are a collection of key-value pairs called properties. The keys which we explicitly state when defining a property are analogous to our array indexes. They are how we access the associated value (more below).</p>
+<p>What kinds of things in the world fit into an array? What kinds of things fit into key-value pairs?</p>
+<p>Things to consider:</p>
 <ul>
-<li>With what you know about OOJS, jot down some ideas about what you think Backbone is and why you would use it.</li>
+<li>Books in a Library</li>
+<li>Menu items at a fast food restaurant</li>
+<li>Definitions in a dictionary</li>
+<li>List of students in WDI</li>
+<li>List of all GA courses ordered by city</li>
+</ul>
+<h3 id="create">Create</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> car = {
+  make: <span class="hljs-string">&quot;Honda&quot;</span>,
+  model: <span class="hljs-string">&quot;Civic&quot;</span>,
+  year: <span class="hljs-number">1997</span>
+}
+</code></pre>
+<h3 id="read">Read</h3>
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(car.make)
+<span class="hljs-built_in">console</span>.log(car[<span class="hljs-string">&quot;make&quot;</span>])
+</code></pre>
+<h3 id="update">Update</h3>
+<pre><code class="lang-js">car.year = <span class="hljs-number">2003</span>
+car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
+</code></pre>
+<h3 id="delete">Delete</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">delete</span> car.smell
+</code></pre>
+<h3 id="iterating">Iterating</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">for</span> (attribute <span class="hljs-keyword">in</span> car) {
+  <span class="hljs-built_in">console</span>.log(attribute);
+}
+</code></pre>
+<p><em>What does this allow us to do?</em></p>
+<h3 id="namespace">Namespace</h3>
+<h3 id="nested-collections">Nested Collections</h3>
+<p>The values in a collection can be any simple datatype or another collection. This means we can have an array of arrays, an array of objects... pretty much whatever you can think of.</p>
+<p>What kinds of things in the world would fit into an array of objects? What about an object containing arrays?</p>
+<p>[Twitter object exercise]</p>
+<h2 id="you-do-model-wdi-student">You Do: Model WDI Student</h2>
+<p>Create a variable named wdiStudent and assign it to an object literal - <code>{}</code></p>
+<p>Add three attributes, with at least one key that has a hyphen in the name, like &quot;first-name&quot;</p>
+<p>Delete one attribute</p>
+<h2 id="functions">Functions</h2>
+<p>Review from the prework - what&#x2019;s a function?</p>
+<p>There are two ways to define or declare a function:</p>
+<h3 id="function-declaration">Function declaration</h3>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params">number</span>) </span>{
+  <span class="hljs-keyword">return</span> number * number;
+}
+</code></pre>
+<h3 id="function-expression">Function expression</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> square = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">number</span>) </span>{
+  <span class="hljs-keyword">return</span> number * number;
+}
+</code></pre>
+<h3 id="recognize-the-parts">Recognize the parts</h3>
+<p>TODO: diagram here</p>
+<p>[Fist to five]</p>
+<h3 id="understand-the-difference">Understand the difference</h3>
+<p>The difference is subtle, but important. The first function declaration is assigning an &quot;anonymous&quot; function to a variable.
+The second function declaration is a named function. The practical difference is:</p>
+<blockquote>
+<p>Named functions are processed before any code is executed, meaning you can call functions before they are declared. This behavior is known as <strong>hoisting</strong>.</p>
+</blockquote>
+<h4 id="arguments">Arguments</h4>
+<p>JavaScript is flexible (i.e. it let&apos;s you do what you want) and this flexibility while empowering can also make debugging (i.e. tracking down the root of errors in your code) very difficult. A great example of this is in JavaScript&apos;s expectations of arguments.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// define a function which takes two arguments</span>
+<span class="hljs-keyword">var</span> areEqual = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a === b;
+}
+<span class="hljs-comment">// call function with two equal arguments</span>
+areEqual(<span class="hljs-string">&apos;cat&apos;</span>, <span class="hljs-string">&apos;cat&apos;</span>);
+<span class="hljs-comment">// returns true as expected</span>
+areEqual(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+<span class="hljs-comment">// returns false as expected</span>
+areEqual(<span class="hljs-number">1</span>);
+<span class="hljs-comment">// returns false... why?</span>
+areEqual();
+<span class="hljs-comment">// returns true... wat?</span>
+</code></pre>
+<p>What is going on here?</p>
+<h3 id="input-output-and-side-effects">Input, Output, and Side Effects</h3>
+<p>the input(s) to a function are known as arguments, or parameters:</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eat</span>(<span class="hljs-params">someFood</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;nom nom, i &lt;3 &quot;</span>+ someFood)
+}
+
+eat(<span class="hljs-string">&quot;pizza&quot;</span>)
+</code></pre>
+<p>It might feel like the output of this function is the string starting with &quot;nom...&quot;, but it&#x2019;s not! It&#x2019;s a side-effect.</p>
+<p>The output of a function is whatever is <code>return</code>ed from a function:</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eat</span>(<span class="hljs-params">someFood</span>)</span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;nom nom, i &lt;3 &quot;</span>+ someFood
+}
+
+<span class="hljs-keyword">var</span> lunch = eat(<span class="hljs-string">&quot;pizza&quot;</span>)
+<span class="hljs-built_in">console</span>.log(lunch)
+</code></pre>
+<h2 id="methods">Methods</h2>
+<p>Methods are functions that are attached to some object.</p>
+<pre><code class="lang-js">
+<span class="hljs-keyword">var</span> car = {
+  make: <span class="hljs-string">&quot;Honda&quot;</span>,
+  model: <span class="hljs-string">&quot;Civic&quot;</span>,
+  drive: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;vroom vroom&quot;</span>)
+  }
+}
+car.drive()
+</code></pre>
+<h2 id="dom">DOM</h2>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" target="_blank"><strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel</a>
+is a programming interface for HTML.</p>
+<p>An HTML <em>document</em> is available for us to manipulate as an object, and this object is structured like a tree:</p>
+<p>(Not like this one <a href="http://hakim.se/experiments/css/domtree/" target="_blank">http://hakim.se/experiments/css/domtree/</a>)</p>
+<p><img src="http://www.tuxradar.com/files/LXF118.tut_grease.diagram.png" alt=""></p>
+<p><a href="https://css-tricks.com/dom/" target="_blank">https://css-tricks.com/dom/</a></p>
+<h3 id="document">Document</h3>
+<p><code>document</code></p>
+<ul>
+<li><code>document.head</code></li>
+<li><code>document.body</code></li>
+</ul>
+<p>Each web page loaded in the browser has its own document object. The Document interface serves as an entry point to the web page&apos;s content</p>
+<p><code>document.body</code></p>
+<ul>
+<li>.children</li>
+<li>.childNodes</li>
+<li>.firstChild</li>
+<li>.lastChild</li>
+<li>.nextSibling</li>
+<li>.parentElement</li>
+<li>.parentNode</li>
+</ul>
+<h3 id="selecting-dom-elements">Selecting DOM elements</h3>
+<ul>
+<li>document.getElementById</li>
+<li>document.getElementsByTagName</li>
+<li>document.getElementsByClassName</li>
+<li>document.querySelector</li>
+<li>document.querySelectorAll</li>
+</ul>
+<h3 id="altering-dom-elements">Altering DOM Elements</h3>
+<ul>
+<li>.textContent</li>
+<li>.innerHTML</li>
+<li>.setAttribute(name, value);</li>
+<li>.id</li>
+<li>.classList.toggle (add, remove, contains)</li>
+<li>.style</li>
+</ul>
+<h3 id="creating-removing-dom-elements">Creating/Removing DOM Elements</h3>
+<ul>
+<li>.createElement</li>
+<li>.appendChild</li>
+<li>.removeChild</li>
+</ul>
+<h3 id="you-do-logo-hijack">You do: Logo hijack</h3>
+<ul>
+<li>Open up www.google.com in Chrome or Firefox, and open up the console.</li>
+<li>Find the Google logo and store it in a variable.</li>
+<li>Modify the source of the logo IMG so that it&apos;s a Yahoo logo instead.</li>
+<li>Find the Google search button and store it in a variable.</li>
+<li>Modify the text of the button so that it says &quot;Yahooo!&quot; instead.</li>
+</ul>
+<h2 id="events">Events</h2>
+<ul>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank">https://developer.mozilla.org/en-US/docs/Web/Events</a></p>
+</li>
+<li><p>.onclick</p>
+</li>
+<li>.addEventListener<ul>
+<li>click</li>
+<li>mouseover</li>
+</ul>
+</li>
+<li>.preventDefault()</li>
+</ul>
+<h2 id="color-scheme-switcher">Color Scheme Switcher</h2>
+<ul>
+<li><a href="http://jessicahische.is/" target="_blank">jessica hische</a></li>
+<li><a href="https://github.com/ga-dc/color-scheme-switcher" target="_blank">color scheme switcher</a></li>
 </ul>
 <hr>
-<h2 id="backbone-js-10-40">Backbone JS (10/40)</h2>
-<ul>
-<li>a js library that was built to mimic the rMVC structure of Rails</li>
-<li>router, views, models/collections<ul>
-<li>organize code into separate components that are able to interact fluidly with each other to build robust, client/browser based web applications</li>
-</ul>
-</li>
-<li>not truly a &quot;framework&quot; in that there is much more flexibility and not nearly a rigidly defined structure like rails.</li>
-<li>meant be able to be changed/altered/configured to suit your needs</li>
-<li>provides objects that help separate concerns on the front end</li>
-<li>provides an interface, API, for communicating with a server back end</li>
-</ul>
-<h2 id="setup-20-60">Setup 20/60</h2>
-<p>Before we implement backbone for the application we&apos;re building this week, let&apos;s set up our file structure and our dependencies for a new static site!</p>
-<p>We&apos;re going to create a static html application. Go ahead and create a new directory we&apos;re going to work in, let&apos;s call it <code>grumblr</code>. We&apos;re calling it grumblr but know that it&apos;s really just a single model CRUD application. I heard you guys like todo apps.</p>
-<pre><code class="lang-bash">mkdir grumblr
-<span class="hljs-built_in">cd</span> grumblr
-</code></pre>
-<p>Lets make some folders and files we&apos;re going to need for our backbone application.</p>
-<pre><code class="lang-bash">touch index.html
-mkdir js
-mkdir js/models
-touch js/app.js
-touch js/models/grumble.js
-</code></pre>
-<blockquote>
-<p>Something to note, backbone doesn&apos;t yell at you for having your code in the wrong folders. However, going forward it will be nice for you and future you to separate our concerns. You will see the more of this importance when we get into backbone views and routing. Additionally note that we are just using a static <code>index.html</code> page to create this application. Backbone can sit on top of frameworks like rails and express as well. The configuration and setups can be a bit different depending on the domain you&apos;re working in.</p>
-</blockquote>
-<h3 id="bower">Bower</h3>
-<p>Bower is a package manager that allows us to manage dependencies. To install it we run:</p>
-<pre><code class="lang-bash">npm install -g bower
-</code></pre>
-<p>Additionally, we also want to install all of the dependencies we&apos;ll be needing for this application:</p>
-<pre><code class="lang-bash">bower install jquery
-bower install handlebars
-bower install underscore
-bower install backbone
-</code></pre>
-<p>Let&apos;s make sure we include these dependencies in our <code>index.html</code>:</p>
-<pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">&quot;en&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;UTF-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Grumblr!<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/jquery/dist/jquery.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/underscore/underscore-min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/handlebars/handlebars.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/backbone/backbone-min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;js/models/grumble.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;js/app.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
-</code></pre>
-<blockquote>
-<p>Order is very important here. Note that underscore is a dependency of backbone and that jquery is a dependency of underscore. As a result we load jquery first, then underscore, then backbone. Additionally we want our model definition to follow the backbone dependency because we will be using backbone abstractions inside of the model file. And finally we also include the main <code>app.js</code> which will require our model definitions.</p>
-<p>We could have also installed dependencies using CDN&apos;s or downloading the source code for the dependencies as well. Additionally we have install the handlebars dependency. We won&apos;t be using this one today, but we&apos;ll be needing it for views tomorrow.</p>
-</blockquote>
-<h2 id="break-10-70">Break 10/70</h2>
-<h2 id="backbone-models-50-120">Backbone Models(50/120)</h2>
-<p>What&apos;s a model? What was it in rails?
-To rehash:
-An object that represents data attributes and behavioral logic related to an entity. It provides CRUD functionality for that data</p>
-<p>Let&apos;s define our very first backbone model. In <code>js/models/grumble.js</code>:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Grumble = Backbone.Model.extend({
-
-})
-</code></pre>
-<blockquote>
-<p>Much like inheriting from <code>ActiveRecord::Base</code>. Were just extending backbone model functionality into our own model definitions.</p>
-</blockquote>
-<p>Awesome! Let spin up our sweet website. (include a document ready and a console.log to show js/jquery dependency is working). In <code>js/app.js</code>:</p>
-<pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;jq loaded!&quot;</span>)
-})
-</code></pre>
-<p>Let&apos;s go into the console and create our very first instance of a backbone model. <code>var grumble = new Grumble()</code> lets see what it&apos;s given us by typing in <code>grumble</code> and hitting enter.</p>
-<p>cid?! whats that?
-<a href="http://stackoverflow.com/questions/12169822/backbone-js-id-vs-idattribute-vs-cid" target="_blank">id vs cid vs idAttribute</a></p>
-<p>TLDR version: cid is short for client id, cid is assigned by backbone.js client side and is useful if you don&apos;t have an actual id.</p>
-<p>There&apos;s alot of other stuff happening here that backbone&apos;s doing but the important part of it is the attributes object nested within our backbone object.</p>
-<h3 id="getting-and-setting-attributes">Getting and setting attributes</h3>
-<h3 id="setting-attributes-also-updates">Setting attributes(also updates)</h3>
-<p>Attributes can be set in a number of ways.</p>
-<ul>
-<li>We can set them on instantiation of the object ie<pre><code class="lang-js"><span class="hljs-keyword">var</span> grumble = <span class="hljs-keyword">new</span> Grumble({author: <span class="hljs-string">&quot;bob&quot;</span>, content: <span class="hljs-string">&quot;learned backbone today!!&quot;</span>})
-</code></pre>
-</li>
-<li>We can set them on an existing objects<pre><code class="lang-js">grumble.set(<span class="hljs-string">&quot;difficulty&quot;</span>, <span class="hljs-number">5</span>)
-</code></pre>
-<pre><code class="lang-js">grumble.set({timeOfDay: <span class="hljs-string">&quot;morning&quot;</span>, visibility:<span class="hljs-string">&quot;daytime&quot;</span>})
-</code></pre>
-<ul>
-<li>can also set functions as attributes<pre><code class="lang-javascript">grumble.set({
-logBody: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.content)
-}
-})
-</code></pre>
-</li>
-</ul>
-</li>
-<li>we can also use <code>attributes</code><pre><code class="lang-js">grumble.attributes.newAttribute = <span class="hljs-string">&quot;this is a new attribute&quot;</span>
-</code></pre>
-</li>
-<li>We can also set defaults in the model definition.
-in <code>js/models/grumble.js</code>:<pre><code class="lang-javascript">Grumble = Backbone.Model.extend({
-defaults:{
-  content: <span class="hljs-string">&quot;the default content!&quot;</span>
-}
-})
-</code></pre>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> grumble = <span class="hljs-keyword">new</span> Grumble()
-</code></pre>
-<h3 id="getting-attributes">Getting attributes</h3>
-</li>
-</ul>
-<pre><code class="lang-js">grumble.get(<span class="hljs-string">&quot;attributeName&quot;</span>)
-</code></pre>
-<pre><code class="lang-js">grumble.attributes.attributeName
-</code></pre>
-<blockquote>
-<p><code>.get</code> / <code>.set</code> are generally preferred over direct access via <code>.attributes</code></p>
-</blockquote>
-<h3 id="deleting-attributes">Deleting attributes</h3>
-<pre><code class="lang-js">grumble.unset(<span class="hljs-string">&quot;attributeName&quot;</span>)
-</code></pre>
-<p>check with:</p>
-<pre><code class="lang-js">grumble.has(<span class="hljs-string">&quot;attrbuteName&quot;</span>)
-</code></pre>
-<p>remove all attributes of a model with:</p>
-<pre><code class="lang-js">grumble.clear()
-</code></pre>
-<h3 id="initialize">Initialize</h3>
-<p>Backbone models also come with an initialize function(like ruby classes)</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Grumble = Backbone.Model.extend({
-  defaults:{
-    completed: <span class="hljs-literal">false</span>
-  },
-  initialize: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;new grumble!&quot;</span>)
-  }
-})
-</code></pre>
-<h2 id="backbone-collections-30-150">Backbone Collections (30/150)</h2>
-<p>What is a backbone collection? A collection acts as an intelligent wrapper for like models. It provides a set of methods for performing the CRUD operations on models of the collection. Create and edit the file <code>js/collections/grumbles.js</code>:</p>
-<h3 id="creating-a-collection">Creating a collection</h3>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Grumbles = Backbone.Collection.extend({
-  initialize:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;created a new grumbles collection&quot;</span>)
-  },
-  model: Grumble
-})
-</code></pre>
-<p>We add the model as an attribute of the collection so that any objects we add to this collection will be passed in as objects of the Grumble Backbone model.</p>
-<h4 id="setting-models-on-collections">Setting models on collections</h4>
-<p>How are models added to a collection?</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// on instantiation of collection</span>
-<span class="hljs-keyword">var</span> grumbles = <span class="hljs-keyword">new</span> Grumbles([grumble1, grumble2, grumble3])
-
-<span class="hljs-comment">// set on existing collection</span>
-grumbles.set([grumble1, grumble2])
-
-<span class="hljs-comment">// added to existing collection</span>
-grumbles.add(grumble1)
-</code></pre>
-<h4 id="getting-models-from-collection">Getting models from collection</h4>
-<pre><code class="lang-javascript"><span class="hljs-comment">// gets all models</span>
-grumbles.models
-
-<span class="hljs-comment">// get model based on cid</span>
-grumbles.get(<span class="hljs-string">&quot;c1&quot;</span>)
-
-<span class="hljs-comment">// like active record you can use where to return an array of objects fitting the match</span>
-grumbles.where({attributeName: <span class="hljs-string">&quot;valueOfAttribute&quot;</span>})
-<span class="hljs-comment">// findWhere finds the first match</span>
-grumbles.findWhere({attributeName: <span class="hljs-string">&quot;valueOfAttribute&quot;</span>})
-</code></pre>
-<h4 id="removing-models">Removing models</h4>
-<pre><code class="lang-javascript"><span class="hljs-comment">// removes accepts a single model object, a cid or array of model objects</span>
-grumbles.remove(<span class="hljs-string">&quot;c1&quot;</span>)
-grumbles.remove(objectVariable)
-grumbles.remove([grumble1, grumble2])
-
-<span class="hljs-comment">// reset if passed in an array of objects removes all models and replaces with the passed in model objects, if no argument is passed in, resets collection to have no models</span>
-grumbles.reset([grumble1, grumble2])
-grumbles.reset()
-</code></pre>
-<h4 id="also-of-note">Also of note</h4>
-<p>Collections can use the following:</p>
-<ul>
-<li>push</li>
-<li>pop</li>
-<li>unshift</li>
-<li>shift</li>
-<li>length</li>
-</ul>
-<h2 id="lunch">Lunch</h2>
-<h2 id="class-ex-reminders-part-1-30-30">Class Ex - Reminders Part 1(30/30)</h2>
-<p>Look at the repo <a href="https://github.com/ga-dc/reminder#part-1" target="_blank">here</a></p>
-<h2 id="ajax-w-bb-60-90">AJAX /w BB (60/90)</h2>
-<p>So we&apos;ve learned how to create backbone models and collections, but it&apos;d be really nice if we could define our models/collections through an existing backend. Enter rails. But it doesn&apos;t have to be! But for the purposes of this class we&apos;ll use a nice and simple rails application that we&apos;ve created for you.</p>
-<p>You can pull the code for our backend <a href="https://github.com/ga-dc/grumblr_rails_api" target="_blank">here</a></p>
-<p>After you fork/clone this repo, go ahead and run standard setup for a rails app:</p>
-<pre><code class="lang-bash">$ <span class="hljs-built_in">cd</span> grumblr_rails_api
-$ bundle install
-$ rake db:create
-$ rake db:migrate
-$ rake db:seed
-$ rails s
-</code></pre>
-<h3 id="models">Models</h3>
-<p>Remember all that complex ajax stuff we used to get information from a server? Well BB abstracts all of that for you and makes it much easier. All we have to do is change up our model definition slightly! In &apos;js/models/grumble.js`:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Grumble = Backbone.Model.extend({
-  urlRoot: <span class="hljs-string">&quot;http://localhost:3000/grumbles&quot;</span>,
-  defaults: {
-
-  }
-});
-</code></pre>
-<p>Everything you did before is the same. The only difference now is if we want to make changes to the database. We just need to call <code>.save()</code> on the instance of the object.</p>
-<pre><code class="lang-js">grumble.set({authorName: <span class="hljs-string">&quot;bob&quot;</span>, content: <span class="hljs-string">&quot;smith&quot;</span>, title: <span class="hljs-string">&quot;the title&quot;</span>, photoUrl: <span class="hljs-string">&quot;http://placebear.com/400/400&quot;</span>})
-
-grumble.save()
-</code></pre>
-<blockquote>
-<p>If we have our rails application running, we can refresh the page and see our new grumble got saved to our database.</p>
-</blockquote>
-<p>One thing to note is that the <code>.save()</code> function returns a deferred object that allows us to use the object that was saved as an argument. Something like this:</p>
-<pre><code class="lang-js">grumble.save().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
-  <span class="hljs-built_in">console</span>.log(response)
-})
-</code></pre>
-<blockquote>
-<p>the response in this log is the object(key-value pairs) that was saved in the database.</p>
-</blockquote>
-<h3 id="collections">Collections</h3>
-<p>Now let&apos;s change our collection definition in <code>js/collections/grumbles.js</code>:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> GrumblesCollection = Backbone.Collection.extend({
-  initialize: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;New Grumbles Collection&apos;</span>);
-  },
-  model: Grumble,
-  url: <span class="hljs-string">&apos;/grumbles&apos;</span>
-});
-</code></pre>
-<p>Again, the rules are much the same for manipulating data within the collection.
-Similarly to ActiveRecord there is a create method that can be called on a collection:</p>
-<pre><code class="lang-javascript">collection.create({authorName: <span class="hljs-string">&quot;bob&quot;</span>, content: <span class="hljs-string">&quot;smith&quot;</span>, title: <span class="hljs-string">&quot;the title&quot;</span>, photoUrl: <span class="hljs-string">&quot;http://placebear.com/400/400&quot;</span>})
-</code></pre>
-<p>will actually save an instance of that model to the database, so long as you meet the strong params requirements.</p>
-<h2 id="class-ex-reminders-part-2-60-150">Class Ex - Reminders Part 2 (60/150)</h2>
-<p>Look at the repo <a href="https://github.com/ga-dc/reminder#part-2" target="_blank">here</a></p>
+<h2 id="homework">Homework</h2>
+<p><a href="https://github.com/ga-dc/tic_tac_toe" target="_blank">https://github.com/ga-dc/tic_tac_toe</a></p>
+<hr>
+<h2 id="sample-quiz-questions">Sample Quiz Questions:</h2>
+<ol>
+<li>What is the difference between a method and an attribute?</li>
+<li>What is the difference between <code>onclick</code> and <code>addEventListener?</code></li>
+</ol>
 
                     
                     </section>
@@ -1608,10 +1510,10 @@ Similarly to ActiveRecord there is a create method that can be called on a colle
         </div>
 
         
-        <a href="../../10-back-and-front-of-front-end/readme.html" class="navigation navigation-prev " aria-label="Previous page: Back and Front of Front End"><i class="fa fa-angle-left"></i></a>
+        <a href="../../01-front-end-fundamentals/javascript-loops-conditionals/readme.html" class="navigation navigation-prev " aria-label="Previous page: JavaScript Loops and Conditionals"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../10-back-and-front-of-front-end/bb_views_part1/readme.html" class="navigation navigation-next " aria-label="Next page: Views (part 1)"><i class="fa fa-angle-right"></i></a>
+        <a href="../../01-front-end-fundamentals/javascript-DOM/readme.html" class="navigation navigation-next " aria-label="Next page: JavaScript DOM"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
