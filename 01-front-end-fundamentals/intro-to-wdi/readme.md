@@ -241,7 +241,11 @@ We'll all have the same lessons and the same homework. To increase instructor av
 
 ### Student Constitution (20 minutes)
 
-Given four prompts (Effort, Time, Collaboration, )
+Given four prompts (Effort, Time, Collaboration, Goals), students take 7 minutes
+to walk around and add their thoughts / feelings and +1 others they agree with.
+
+Instructors take a few minutes for each prompt to discuss and synthesize the
+what's been written and highlight those commonly +1'd.
 
 ## BREAK (10:30 - 10:40)
 
@@ -279,6 +283,9 @@ But expectations are not consequences. The only consequence we will impose is th
 #### Refund Policy
 
 ### Student constitution (15 minutes)
+
+Each classroom shares back the highlights from their discussions, and
+compare/contrast.
 
 ### Making the most of a large cohort (5 minutes)
 
