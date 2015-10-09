@@ -36,6 +36,17 @@ Instructor introductions.
 
 Wireframe your partner!
 
+Find a partner. Spend 5 minutes sketching your partner. On the left, draw three things
+he or she likes, and on the right, three things he or she dislikes.
+
+Switch!
+
+For the remaining 10 minutes, we’ll go around the room and share!
+
+Here’s a wireframe of Adrian as an example:
+
+![](https://dl.dropboxusercontent.com/s/frqxj4hn044sm73/action_adrian_.jpg?dl=0)
+
 ### Growth Mindset (10 minutes)
 
 [Growth Mindset](https://www.youtube.com/watch?v=-_oqghnxBmY_)
