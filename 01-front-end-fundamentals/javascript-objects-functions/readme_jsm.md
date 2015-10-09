@@ -10,7 +10,7 @@
 - Compare and contrast the two (explain hoisting)
 - Distinguish referencing and invocation
 - State the difference between Output and Side Effects
-- Show why functions are important and giving an example
+- Show why functions are important and give an example
 
 ### Objects
 - Discuss datatypes (simple datatypes vs. collections)
