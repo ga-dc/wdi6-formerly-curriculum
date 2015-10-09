@@ -1,4 +1,4 @@
-
+# Intro to WDI
 
 ## Learning Objectives
 
@@ -13,15 +13,9 @@
 
 Students and instructors meet in their assigned classrooms:
 
-<<<<<<< Updated upstream
 - Classroom 4: Jesse, John, Robin (and their squads)
 - Classroom 5: Andy, Matt, Nick (and their squads)
 - Classroom 6: Adam, Adrian, Erica (and their squads)
-=======
-* Classroom 4: Jesse, John, Robin (and their squads)
-* Classroom 5: Andy, Matt, Nick (and their squads)
-* Classroom 6: Adam, Adrian, Erica (and their squads)
->>>>>>> Stashed changes
 
 ### Welcome & Today's Schedule (10 minutes)
 
@@ -79,18 +73,16 @@ Here’s a wireframe of Adrian as an example:
 **Turn & Talk**: What's different about an immersive environment?
 
 - What does it mean to be in a "immersive course"?
+  - You will be asked to do things that are uncomfortable.
+    - *(Note that when I say "do things", I mean classes and projects, nothing weird.)*
   - You can't "win" -- and can't lose!
     - This is a noncompetitive environment.
-    - You get out what you put in.
-  - Cooperation
-    - You'll be learning, eating, growing, failing, and succeeding TOGETHER for the next 12 weeks!
-  - You may be re-learning how to learn.
+  - You will be re-learning how to learn.
     - The last time you spent 9 hours a day learning something new was in high school.
-  - You will be uncomfortable.  Regularly.
-    - Comfort Curve???
-    - Be empathetic.
-  - Balance. This intensity means that we have to make room for balance.
-    - Sleep, food, hydration, rest, and hygiene.
+  - Cooperation
+    - You'll be eating and living together for the next 12 weeks!
+  - Balance
+    - Hygeine!
   - We will not give up on you
     - Even when you might have given up on yourself!
     - None of the instructors are here just to collect a paycheck. We're nerds, about web development, education, and you.
