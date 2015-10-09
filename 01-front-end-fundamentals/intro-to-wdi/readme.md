@@ -1,3 +1,4 @@
+
 # Intro to WDI
 
 ## Learning Objectives
@@ -265,9 +266,9 @@ You. You're investing $12,000 and 500 hours in this class. What you're expecting
 
 The only sufficient checklist is one you create for yourself. Everyone will get access to very different opportunities outside of WDI depending on the work they do inside it.
 
-We -- your instructors and staff -- do have expectations of you. We expect you to not have more than 4 absences, where 2 tardies equals 1 absence. We expect you to complete at least 80% of the homework we assign.
+We -- your instructors and staff -- do have expectations of you. Most importantly, we expect you to make the most of this investment. We expect you to try your best. We expect you to let us know when you're struggling and give us an opportunity to help.
 
-Most importantly, we expect you to make the most of this investment. We expect you to try your best. We expect you to let us know when you're struggling and give us an opportunity to help.
+Statistically speaking, based on the data of the thousands of students who have completed this program, you are very likely to get a job within 90 days of completion if you turn in at least 80% of your homework, and are absent fewer than 2 times, and tardy fewer than 8. You are statistically very **unlikely** to get a job if you do not meet these expectations.
 
 But expectations are not consequences. The only consequence we will impose is that we will discuss with you what our expectations are. Your actions based on that discussion are up to you.
 
