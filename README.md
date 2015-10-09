@@ -6,4 +6,4 @@ General Assembly's Web Development Immersive Course in the District of Columbia
 - Each week's readme contains an overview of week, including Learning Objectives.
 - Each lesson has its own directory (within the week). The lesson's readme.md contains the Lesson Plan.
 
-This is published to https://ga-dc.github.io/pbj/
+This is published to https://ga-dc.github.io/curriculum/
