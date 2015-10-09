@@ -162,7 +162,7 @@ Technologies we cover:
 * MongoDB (NoSQL Database)
 * Rails
 * Node.js / Express
-* Backbone.js / Handlebars Templates
+* Angular.js
 
 We cover these technologies / topics because they are foundational to web
 development, and learning the underlying concepts of how they work prepares you
