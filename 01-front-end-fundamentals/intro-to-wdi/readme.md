@@ -7,15 +7,21 @@
 - Identify the Big Goal of the course
 - List the core expectations of instructors and students
 - Map out the topics and technologies of web development, and identify which we will and will not cover
-- List the main "Do" and "Do nots" for the class and the space
+- List the main "Dos" and "Don'ts" for the class and the space
 
 ## Orientation (By classroom) 9:00 - 10:10
 
 Students and instructors meet in their assigned classrooms:
 
+<<<<<<< Updated upstream
 - Classroom 4: Jesse, John, Robin (and their squads)
 - Classroom 5: Andy, Matt, Nick (and their squads)
 - Classroom 6: Adam, Adrian, Erica (and their squads)
+=======
+* Classroom 4: Jesse, John, Robin (and their squads)
+* Classroom 5: Andy, Matt, Nick (and their squads)
+* Classroom 6: Adam, Adrian, Erica (and their squads)
+>>>>>>> Stashed changes
 
 ### Welcome & Today's Schedule (10 minutes)
 
