@@ -1,18 +1,40 @@
 # Objects, Functions and DOM
 
-## Learning Objectives 
+## Learning Objectives
 
+- Discuss datatypes (simple datatypes vs. collections)
 - Compare objects and key-value stores to arrays as data structures
 - Explain the difference between object properties and methods
 - Create empty objects and objects with multiple properties and methods using object literal syntax
 - Compare adding and retrieving properties to objects using dot and bracket notation
+- Use `delete`
 - Iterate over the keys of an object to return and manipulate values
-- Define what a function is
+- Introduce namespace
+- Explain nested data structures
+- Write an object method
+- Describe what a JavaScript function is
+- Recognize the parts of a function
+- Write a function in JavaScript using a declaration and an expression
 - Define hoisting
 - Differentiate between referencing and invoking a function
-- Explain what the DOM is and how it is structured
-- Select and target DOM elements using a query selector
-- Change the attributes or content of a DOM element
+- State the difference between Output and Side Effects
+
+## Datatype Review
+
+### Simple datatypes
+
+- number (e.g. `0`, `1`, `-1`, `0.5`, `1e10`)
+- string (e.g. `"Hello World!"`, `"A"`, `""`)
+- booleans (i.e. `true` or `false`)
+
+### Collections
+
+- arrays (e.g. `[1, 2, 3]`, `['a', 'b', 'c']`, `['a', 1, 'cat']`, `[]`)
+  - index
+  - values
+- objects (e.g. `{'name': 'John', 'nationality': 'USA', 'age': 84}`)
+  - keys (e.g. `'name'`)
+  - values (e.g. `'John'`)
 
 ## Arrays Review
 
@@ -24,8 +46,7 @@ Using an index.
 
 ## Objects
 
-Objects too are a complex data type - usually referred to as an *un*ordered list. They are
-a collection of key-value pairs.
+Objects too are a complex data type - usually referred to as an *unordered* list (or dictionary, or hash, or map...). They are a collection of key-value pairs called properties. The keys which we explicitly state when defining a property are analogous to our array indexes. They are how we access the associated value (more below).
 
 What kinds of things in the world fit into an array? What kinds of things fit into key-value pairs?
 
@@ -36,10 +57,6 @@ Things to consider:
 - Definitions in a dictionary
 - List of students in WDI
 - List of all GA courses ordered by city
-
-#### Bonus Thoughts!
-
-What kinds of things in the world would fit into an array of objects? What about an object containing arrays?
 
 ### Create
 
@@ -62,7 +79,7 @@ console.log(car["make"])
 
 ```js
 car.year = 2003
-car.smell = "Leathery Boot" 
+car.smell = "Leathery Boot"
 ```
 
 ### Delete
@@ -70,6 +87,26 @@ car.smell = "Leathery Boot"
 ```js
 delete car.smell
 ```
+
+### Iterating
+
+```js
+for (attribute in car) {
+  console.log(attribute);
+}
+```
+
+*What does this allow us to do?*
+
+### Namespace
+
+### Nested Collections
+
+The values in a collection can be any simple datatype or another collection. This means we can have an array of arrays, an array of objects... pretty much whatever you can think of.
+
+What kinds of things in the world would fit into an array of objects? What about an object containing arrays?
+
+[Twitter object exercise]
 
 ## You Do: Model WDI Student
 
@@ -85,22 +122,56 @@ Review from the prework - what’s a function?
 
 There are two ways to define or declare a function:
 
-```js
-var eat = function(){
-  console.log("nom nom")
-}
+### Function declaration
 
-//or
-
-function eat(){
-  console.log("nom nom")
+``` javascript
+function square(number) {
+  return number * number;
 }
 ```
+
+### Function expression
+
+``` javascript
+var square = function (number) {
+  return number * number;
+}
+```
+
+### Recognize the parts
+
+TODO: diagram here
+
+[Fist to five]
+
+### Understand the difference
 
 The difference is subtle, but important. The first function declaration is assigning an "anonymous" function to a variable.
 The second function declaration is a named function. The practical difference is:
 
 >Named functions are processed before any code is executed, meaning you can call functions before they are declared. This behavior is known as **hoisting**.
+
+#### Arguments
+
+JavaScript is flexible (i.e. it let's you do what you want) and this flexibility while empowering can also make debugging (i.e. tracking down the root of errors in your code) very difficult. A great example of this is in JavaScript's expectations of arguments.
+
+```js
+// define a function which takes two arguments
+var areEqual = function (a, b) {
+  return a === b;
+}
+// call function with two equal arguments
+areEqual('cat', 'cat');
+// returns true as expected
+areEqual(1, 2);
+// returns false as expected
+areEqual(1);
+// returns false... why?
+areEqual();
+// returns true... wat?
+
+```
+What is going on here?
 
 ### Input, Output, and Side Effects
 
@@ -145,7 +216,7 @@ car.drive()
 
 ## DOM
 
-The [**D**ocument **O**bject **M**odel](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) 
+The [**D**ocument **O**bject **M**odel](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
 is a programming interface for HTML.
 
 An HTML *document* is available for us to manipulate as an object, and this object is structured like a tree:
@@ -162,7 +233,7 @@ https://css-tricks.com/dom/
   - `document.head`
   - `document.body`
 
-Each web page loaded in the browser has its own document object. The Document interface serves as an entry point to the web page's content 
+Each web page loaded in the browser has its own document object. The Document interface serves as an entry point to the web page's content
 
 `document.body`
   - .children

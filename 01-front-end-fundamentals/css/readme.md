@@ -1,23 +1,21 @@
 # CSS
 
 ##LO's
-- Describe the syntactical and functional relationship between rules, selectors, declarations, properties, and values in CSS
+- Construct a CSS rule using selectors, declarations, properties, and values
 - Articulate the pros and cons of stylesheets, styles in the head, and in-line styles
 - Define "cascading" in the context of CSS specificity
-- Use tag name selectors to style the size, color, border, text, and font of all elements of a given tag on a page
+- Style the size, color, border, text, and font of all elements of a given tag on a page
 - Demonstrate the use of class and ID selectors to target specific element(s)
-- Distinguish between block, inline, and inline-block display values
+- Distinguish between block and inline display values
 - Identify the components of the box model
 - Differentiate between the border-box and content-box values for box-sizing
 - Apply knowledge of the box model to adjust spacing between and around elements on a page
-- List 2-3 good resources that developers can use refer to for CSS help
+- Bookmark 2-3 good resources that developers can use refer to for CSS help
 <!--
 ## Opening Framing (3 min)
 > Although some of this may be review from the prework, repetition is key to becoming a good programmer!
 
 Wouldn't it be nice to make our webpages look schnazzy? Enter CSS. There is such a wide breadth of things to learn about CSS and honestly, you could probably teach a whole 12 weeks to understand all the capabilities, nuances and subtleties. So we'll only be scratching the surface with it, but I encourage you to experiment with CSS on your own. As you consistently use CSS you realize, while frustrating, becomes awesome to utilize.
-
-[family guy CSS gif](https://i.imgur.com/Q3cUg29.gif)
 
 ## In-line vs head vs stylesheets(30m)
 > Not a codealong let class know they're welcome to but may be better just to pay attention to the first hour instead of typing everything out. All notes available in lesson plan

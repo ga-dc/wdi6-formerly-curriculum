@@ -62,6 +62,18 @@ https://github.com/ga-dc/html_resume
 - Add a remote repository, and push/pull changes to that remote
 - Use the 'fork, clone, and pull request' model to submit assignments
 
+### CSS Intro
+- Construct a CSS rule using selectors, declarations, properties, and values
+- Articulate the pros and cons of stylesheets, styles in the head, and in-line styles
+- Define "cascading" in the context of CSS specificity
+- Style the size, color, border, text, and font of all elements of a given tag on a page
+- Demonstrate the use of class and ID selectors to target specific element(s)
+- Distinguish between block and inline display values
+- Identify the components of the box model
+- Differentiate between the border-box and content-box values for box-sizing
+- Apply knowledge of the box model to adjust spacing between and around elements on a page
+- Bookmark 2-3 good resources that developers can use refer to for CSS help
+
 ### JS Data Types, Variables, and Arrays
 - Describe the role Javascript (JS) plays alongside HTML and CSS.
 - Define JS as a programming language.
@@ -78,6 +90,28 @@ https://github.com/ga-dc/html_resume
 - write a for loop and while loop in JS and differentiate between them
 - Utilize loops to iterate through complex data types
 - write a JS program that utilizes conditionals and loops
+### JS Functions and Objects
+
+### Functions
+- Explain what a function is
+- Define a function in JavaScript using a declaration and an expression
+- Recognize the parts of both
+- Explain arguments (introduce scope)
+- Compare and contrast the two (explain hoisting)
+- Distinguish referencing and invocation
+- State the difference between Output and Side Effects
+- Show why functions are important and giving an example
+
+### Objects
+- Discuss datatypes (simple datatypes vs. collections)
+- Define an object literal (empty and populated)
+- Compare and contrast objects and arrays
+- Identify and differentiate two modes of element retrieval
+- Compare retrieval and updating of properties
+- Explain property deletion (contrast array)
+- Introduce namespace
+- Use functions as properties (methods)
+- Use nested data structures
 
 ### JS Objects and Functions
 
@@ -93,6 +127,7 @@ https://github.com/ga-dc/html_resume
 ### JS and the Document Object Model (DOM)
 
 - Explain what the DOM is and how it is structured
+- Select and target DOM elements using helpers
 - Select and target DOM elements using a query selector
 - Change the attributes or content of a DOM element
 
@@ -101,17 +136,6 @@ https://github.com/ga-dc/html_resume
 - Identify and resolve common and uncommon "logical errors" that affect the results of your program
 - Use logs to troubleshoot errors in an application (console log in Dev Tools)
 - Conduct real-time debugging in the browser (start small, triangulation, remove code)
-- Access properties of a class using helper methods ( typeOf( ) for datatypes)
+- [confusing] Access properties of a class using helper methods ( typeOf( ) for datatypes)
+- Access properties of a object
 - Use debuggers and breakpoints to identify logical errors in expressions
-
-### CSS Intro
-- Describe the syntactical and functional relationship between rules, selectors, declarations, properties, and values in CSS
-- Articulate the pros and cons of stylesheets, styles in the head, and in-line styles
-- Define "cascading" in the context of CSS specificity
-- Use tag name selectors to style the size, color, border, text, and font of all elements of a given tag on a page
-- Demonstrate the use of class and ID selectors to target specific element(s)
-- Distinguish between block, inline, and inline-block display values
-- Identify the components of the box model
-- Differentiate between the border-box and content-box values for box-sizing
-- Apply knowledge of the box model to adjust spacing between and around elements on a page
-- List 2-3 good resources that developers can use refer to for CSS help

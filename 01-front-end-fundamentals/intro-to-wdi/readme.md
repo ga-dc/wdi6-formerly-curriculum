@@ -1,4 +1,4 @@
-# Intro to WDI 101
+
 
 ## Learning Objectives
 
@@ -13,9 +13,9 @@
 
 Students and instructors meet in their assigned classrooms:
 
-Classroom 4: Jesse, John, Robin (and their squads)
-Classroom 5: Andy, Matt, Nick (and their squads)
-Classroom 6: Adam, Adrian, Erica (and their squads)
+- Classroom 4: Jesse, John, Robin (and their squads)
+- Classroom 5: Andy, Matt, Nick (and their squads)
+- Classroom 6: Adam, Adrian, Erica (and their squads)
 
 ### Welcome & Today's Schedule (10 minutes)
 
@@ -35,6 +35,17 @@ Instructor introductions.
 ### Icebreaker (20 minutes)
 
 Wireframe your partner!
+
+Find a partner. Spend 5 minutes sketching your partner. On the left, draw three things
+he or she likes, and on the right, three things he or she dislikes.
+
+Switch!
+
+For the remaining 10 minutes, we’ll go around the room and share!
+
+Here’s a wireframe of Adrian as an example:
+
+![](https://dl.dropboxusercontent.com/s/frqxj4hn044sm73/action_adrian_.jpg?dl=0)
 
 ### Growth Mindset (10 minutes)
 
@@ -171,32 +182,63 @@ Units/Projects:
 * Front-End Frameworks
 * Project 4 - Portfolio project
 
-### Course logistics (5 minutes)
+### Course Logistics (5 minutes)
 
-#### Weekly schedule
+#### Weekly Schedule
+
+###### "Normal Weeks"
+- Mondays, Wednesdays, and Thursdays
+  - 9:00-10:00 Homework Review/Morning Exercise/Mini-lesson
+  - 10:00-12:30: Lesson 1
+  - 12:30-2:30: Lunch (1 hr) & Work Time/Office Hours
+  - 2:30-5:00: Lesson 2
+  - 5:00-5:30: Office Hours
+  - 6:00-8:00: Evening Office Hours (**except Mondays**)
+
+- Tuesdays
+  - 9:00-11:30: Lesson 1
+  - 11:30-12:30: Lunch
+  - 12:30-3:00: Outcomes/Lesson 2
+  - 3:00-5:30: Lesson 2/Outcomes
+  - 6:00-8:00: Evening Office Hours
+
+- Fridays
+  - 9:00-3:00: Lab w/ instructor support
+  - 3:00-4:00: Peer Code Review
+  - 4:00-5:00: Squad Check-in
+
+
+###### Project Weeks (3, 6, 9, 12)
+
+Instead of following the usual lesson structure, project weeks
+
+- One-on-ones
+  - Each student will be scheduled two half-hour one-on-one sessions with their squad leader each project week.
+  - These one-on-ones are opportunities to work through stumbling blocks, ask questions, get feedback on ideas, or pair program with an instructor.
+
+- Mini-lessons
+  - Sometimes, we will offer optional minilessons during project weeks, covering tools and techniques that are particularly relevant to the project at hand.
+
+- Office Hours
+  - Evening Office Hours (Tues-Thurs, 6-8pm) will run as usual during project weeks
+
+- Outcomes
+  - In most cases, the Outcomes schedule will also remain the same during project weeks
+
 
 #### Other
-- Class staggering
-  - Usually, a lesson will be taught twice by the same instructor. So I'll teach HTML this afternoon to one class, and then HTML tomorrow to the other.
+- Class Staggering
+  - Two classrooms will share a staggered schedule, in which each lesson is taught twice by the same instructor. The other classroom will have the same schedule as one of the previous classrooms, taught by a different instructor.
+  - The classes will rotate after each project, so you will have the opportunity to work with just about everybody over the course of the 12 weeks.
   - We'll all have the same lessons and the same homework. Who had what when will just vary by a day or two between the classes.
-- One-on-ones
-  - Each student will be scheduled one half-hour slot every two weeks during which they will meet with an instructor.
-  - Talk about whatever needs to be talked about
-  - Should you need additional meetings with instructors, each instructor has open one-on-one time once per week:
-    - **Jesse**: Thursday @ 5pm - 5:30pm
-- Office Hours
-  - Led exclusively by TAs
-    - These TAs are outstanding former students from the previous class
-  - Usually 4 nights a week, from 5:30 until 7:30
 - Instructor Communication
-  - Instructors **may not** respond to code questions on Slack nor in-person after 6pm each night, even if we're in the office
-  - Should you have a logistical question, you may contact the **Student Communication Manager**
-    - This is Robin.
-  - All code questions should go to TAs
+  - Instructors who are not scheduled for Evening Office Hours **may not** respond to code questions via Slack or in person, even if we're in the office.
     - **Question** why would we do this?
     - Answer: Work Life Balance.
-  - Student communication manager
-    - If you have logistical questions or concerns, contact me (Robin)
+  - Should you have a logistical question, you may contact the **Student Communication Manager**
+    - This is Robin.
+
+
 - Homework and assessments
   - You'll probably have one homework per lesson, so if you have two lessons in a day, that's two homeworks, graded separately.
   - Homework will be graded only for *completeness*. That is, you actually attempted it yourself and didn't copy code. If you want more feedback, you'll need to ask for it.
@@ -211,14 +253,32 @@ Units/Projects:
     - We will likely be doing a morning exercise, which you'll be able to find in the class repo.
 
 
-
-
 ## BREAK (10:10 - 10:20)
 
 ## Squad Breakouts (10:20 - 11:30)
 
 ### Get to know each other
-### Expectations, not Consequences: What are your expectations for yourself?
+
+### Expectations, not Consequences
+
+#### Turn and talk: What are your expectations of yourself for this class?
+
+There are no grades for this class. There are no metrics. There's no certificate or degree you get at the end upon checking an appropriate number of boxes. Everyone will get access to the same events and classes during WDI regardless of the work they do.
+
+So what's your motivation to succeed?
+
+You. You're investing $12,000 and 500 hours in this class. What you're expecting to get in return for that investment is a job. No piece of paper General Assembly gives you will be sufficient to land your dream career. No items General Assembly makes you cross off a list will be sufficient to get a job.
+
+The only sufficient checklist is one you create for yourself. Everyone will get access to very different opportunities outside of WDI depending on the work they do inside it.
+
+We -- your instructors and staff -- do have expectations of you. We expect you to not have more than 4 absences, where 2 tardies equals 1 absence. We expect you to complete at least 80% of the homework we assign.
+
+Most importantly, we expect you to make the most of this investment. We expect you to try your best. We expect you to let us know when you're struggling and give us an opportunity to help.
+
+But expectations are not consequences. The only consequence we will impose is that we will constantly discuss with you what our expectations are. Your actions based on that discussion are up to you.
+
+**Your** expectations are the most important - including whether you expect yourself to meet ours. You know your work ethic better than we do: please think about how we can help you to define expectations for yourself and to create a plan that sets you up to meet them.
+
 ### Student Constitution
 
 What are the expectations to which every student should be held accountable?
@@ -238,7 +298,20 @@ Pre-work? Questions?
 
 ### Student constitution (15 minutes)
 
-### Squad Rotations (10 minutes)
+### Squad Rotations (10 minutes) (DELETE)
+### Making the most of a large cohort (5 minutes)
+
+We'll do our best to give you the best of both worlds. You'll have the
+close connections and individualized instruction of your squad. (as well as a reasonable class size). But you'll also have a chance to meet 66 other students
+with whom you can learn, teach, network, and make life-long friends.
+
+Our advice is to try to make close friends (support network), but also to work
+(pair program) with as many people as possible. One of the greatest aspects of
+a program like this is that you can work with so many different people, and gain
+exposure to their ways of things and working.
+
+We'll often encourage you to cross-pair and provide activities to help you get
+to know your fellow students.
 
 ## LUNCH BREAK (12:30 - 1:30)
 
