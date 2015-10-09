@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="12.1" data-basepath="../.." data-revision="Fri Oct 09 2015 19:19:18 GMT+0000 (UTC)">
+    <div class="book" data-level="12.1" data-basepath="../.." data-revision="Fri Oct 09 2015 19:41:36 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1463,12 +1463,15 @@ $ bower install --save angular
   angular.module(<span class="hljs-string">&apos;todo&apos;</span>, []);
 })()
 </code></pre>
+<p>What&apos;s a module?
+What&apos;s an immediately-invoked function (IFFE)?</p>
 <blockquote>
-<p>the first argument is the name of the angular module. The second argument is an array of modules on which the current module will depend on. This is an immediately invoked function expression. We immediately invoke in order to start the angular application and to prevent the pollution of the global namespaces</p>
+<p>The first argument is the name of the angular module. The second argument is an array of modules on which the current module will depend on. This is an immediately invoked function expression. We immediately invoke in order to start the angular application.</p>
 </blockquote>
 <h2 id="directives-5-50">Directives (5/50)</h2>
 <p>Directives are Angular&apos;s way of letting you make custom elements and attributes. HTML elements and attributes can have different behaviors. Angular lets you make different behaviors for these elements and attributes for these, too.</p>
 <p>Directives are markers on a DOM element that tell AngularJS&apos;s HTML compiler to attach a specified behavior to that DOM element (e.g. via event listeners).</p>
+<p>This definition always scares me. I might say &quot;Directives are Angular&apos;s way of letting you make custom elements and attributes. HTML elements and attributes can have different behaviors. Angular lets you make different behaviors for these elements and attributes for these, too.&quot;</p>
 <h3 id="our-first-directive-ng-app">Our first directive - ng-app.</h3>
 <p>Let&apos;s add our very first directive. In the <code>index.html</code>:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">&apos;en&apos;</span> <span class="hljs-attribute">ng-app</span>=<span class="hljs-value">&apos;todo&apos;</span>&gt;</span>
@@ -1476,6 +1479,7 @@ $ bower install --save angular
 <blockquote>
 <p>ng-app defines which portion of the html that our JS will be applied to. In this case, we&apos;re adding it to the <code>&lt;html&gt;</code> so we extend our JS functionality to the entire DOM. The domain of the directive begins and ends with the opening and closing tags of the html element the directive is defined in.</p>
 </blockquote>
+<p><code>ng-app</code> says which HTML element is going to be the &quot;box&quot; inside which all of our Angular stuff goes.</p>
 <h2 id="angular-expression-10-60">Angular expression (10/60)</h2>
 <h3 id="-5"><code>{{}}</code>(5)</h3>
 <p>Because we defined our ng-app we are able to use <code>{{}}</code> much in the same way we used <code>&lt;%%&gt;</code> in ruby.</p>
@@ -1488,7 +1492,8 @@ $ bower install --save angular
 </code></pre>
 <h2 id="break-10-70">Break (10/70)</h2>
 <h2 id="angular-controllers-10-80">Angular controllers (10/80)</h2>
-<p>This is cool, but not very useful. We&apos;re basically just hard-coding in data here, which we&apos;ll never do in a &quot;real&quot; app. Instead, we want to dynamically insert data. <strong>Controllers</strong> are the go-between for views (our HTML) and our data. Let&apos;s create the controller file <code>$ touch js/controllers/todos.js</code> and add the following code:</p>
+<p>This is cool, but not very useful. We&apos;re basically just hard-coding in data here, which we&apos;ll never do in a &quot;real&quot; app. Instead, we want to dynamically insert data. <strong>Controllers</strong> are the go-between for views (our HTML) and our data.</p>
+<p>Let&apos;s create the controller file <code>$ touch js/controllers/todos.js</code> and add the following code:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">&quot;todo&quot;</span>)
 app.controller(<span class="hljs-string">&quot;todosController&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
   <span class="hljs-keyword">this</span>.todos = [
@@ -1565,8 +1570,8 @@ app.controller(<span class="hljs-string">&quot;todosController&quot;</span>, <sp
 <p>All we&apos;ve done here is instantiate a property of our controller to false. Then defined the <code>.toggleForm()</code> function of our controller to change <code>this.formIsVisible</code> between true and false any time that function is called</p>
 </blockquote>
 <h2 id="-ng-show"><code>ng-show</code></h2>
-<p>We now need to link <code>.formIsVisible</code> to an actual form. We can do this by using an angular directive called <code>ng-show</code>. This adds a <code>display:none</code> using CSS if something is <code>false</code>. In this case, we&apos;re going to hide the form if <code>.formIsVisible</code> evaluates to <code>true</code>. In <code>index.html</code>:</p>
-<p>We now need to link <code>.formIsVisible</code> to an actual form. We can do this by utilizing an angular directive that displays or hides the form based on whether <code>.formIsVisible</code> evaluates to true or false. In <code>index.html</code>:</p>
+<p>We now need to link <code>.formIsVisible</code> to an actual form. We can do this by using an angular directive called <code>ng-show</code>. This adds a <code>display:none</code> using CSS if something is <code>true</code>. In this case, we&apos;re going to hide the form if <code>.formIsVisible</code> evaluates to <code>true</code>. In <code>index.html</code>:</p>
+<p><strong>Note:</strong> Directives all take somewhat different values! Before we had directives that looked like <code>ng-something={{something.else}}</code>, and <code>ng-something=object.method()</code>. Now we have <code>ng-show=&quot;todosCtrl.formIsVisible&quot;</code></p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">&quot;todosController as todosCtrl&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&quot;todosCtrl.toggleForm()&quot;</span>&gt;</span>New Todo<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">&quot;todosCtrl.formIsVisible&quot;</span>&gt;</span>
