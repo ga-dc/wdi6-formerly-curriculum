@@ -38,9 +38,10 @@ Wireframe your partner!
 
 ### Growth Mindset (10 minutes)
 
-[Growth Mindset](https://www.youtube.com/watch?v=-_oqghnxBmY_)
-- For many students, this is the most mentally challenging thing they've ever done in their lives.
-  - This is the first time they've been bad at something.
+[Growth Mindset](https://www.youtube.com/watch?v=-_oqghnxBmY_) - [Dr. Carol Dweck](https://en.wikipedia.org/wiki/Carol_Dweck)
+
+- For many students, this is the most mentally challenging thing they've done in their lives.
+  - This is the first time they've been bad at something in a long time.
   - How many people have failed at something? I imagine that everyone has. At some point in this course you will falter. But that's OK! It's how we bounce back, persevere and learn from it that allows our mind to grow.
   - [Emotional Cycle of Change](https://s-media-cache-ak0.pinimg.com/736x/3c/f4/fa/3cf4faeb2078f4f4fbb9265444bde2e0.jpg)
     - uninformed optimism
@@ -49,13 +50,16 @@ Wireframe your partner!
     - hopeful realism
     - informed optimism
 
+- Failure and struggle are crucial aspects of this path. We don't succeed despite challenges -- we succeed because of challenges.
+  - Unfortunately, this can hurt. Just like exercise can make you sore and tired, so should learning. Try to enjoy the burn knowing it is making you better.
+  - We as instructors anticipate that you will run into hardships. When you do, don't run for the hills! Buckle down and work through the problem. Embrace the fact that the hardship will make you a better coder. Endure the struggle to grow and develop your mind.
 - Just memorizing stuff won't help you. Learning HOW to code will.
-  - You can't BS your way through code.
+  - ~~You can't BS your way through code.~~
   - The fundamental standard of programming: It either works, or it doesn't. No amount of sweet-talking will make it work.
   - Programming is a mindset. It's about confidence and being open to failure. It's about being able to say, "Eh, I'm going to try this thing, even though I don't really understand it. AND I'm not going to get attached to it in case it doesn't work and I have to erase all my code and try something completely different."
-
 - So many students throughout my time here say, "I don't know how to do that." or some variation of that. Many of you will say it. Just add "...yet" to it.
-- We as instructors anticipate that you will run into hardships. When you do, don't run for the hills! Buckle down and work through the problem. Embrace the fact that the hardship will make you a better coder. Endure the struggle to grow and develop your mind.
+
+[The Learning Myth: Why I'll Never Tell My Son He's Smart](https://www.khanacademy.org/about/blog/post/95208400815/the-learning-myth-why-ill-never-tell-my-son-hes)
 
 ### What is an immersive course? (5 minutes)
 
@@ -230,7 +234,7 @@ You. You're investing $12,000 and 500 hours in this class. What you're expecting
 
 The only sufficient checklist is one you create for yourself. Everyone will get access to very different opportunities outside of WDI depending on the work they do inside it.
 
-We -- your instructors and staff -- do have expectations of you. We expect you to not have more than 4 absences, where 2 tardies equals 1 absence. We expect you to complete at least 80% of the homework we assign. 
+We -- your instructors and staff -- do have expectations of you. We expect you to not have more than 4 absences, where 2 tardies equals 1 absence. We expect you to complete at least 80% of the homework we assign.
 
 Most importantly, we expect you to make the most of this investment. We expect you to try your best. We expect you to let us know when you're struggling and give us an opportunity to help.
 
