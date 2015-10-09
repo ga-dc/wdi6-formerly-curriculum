@@ -232,8 +232,8 @@ Instead of following the usual lesson structure, project weeks
   - We'll all have the same lessons and the same homework. Who had what when will just vary by a day or two between the classes.
 - Instructor Communication
   - Instructors who are not scheduled for Evening Office Hours **may not** respond to code questions via Slack or in person, even if we're in the office.
-    - **Question** why would we do this?
-    - Answer: Work Life Balance.
+    - **Question**: Why would we do this?
+    - **Answer**: Work/Life Balance.
   - Should you have a logistical question, you may contact the **Student Communication Manager**
     - This is Robin.
 
