@@ -89,6 +89,7 @@ Note that none of the above mention anything about code.
 
 - This is the thing students find the hardest, and the thing that ultimately determines whether or not they will be successful in this class.
 - Without fail, the students who do not ask for help do the poorest in the class.
+- Most importantly, knowing how to ask for help and where to look for answers is one of the biggest skills you can gain from this class that will be applicable as you prepare to join the professional workforce.
 
 I'm going to ask you to write something on a letter-sized piece of paper. You are allowed no more than 12 words. Please write big enough that someone can read your paper from a few feet away.
 
