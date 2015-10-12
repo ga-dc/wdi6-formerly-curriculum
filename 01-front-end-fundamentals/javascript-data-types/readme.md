@@ -1,12 +1,16 @@
 # LEARNING OBJECTIVES
 - Describe the role Javascript plays alongside HTML and CSS.
-- Discuss Javascript as the "programming language of the web".
-- Set up and use Node to run Javascript on the command line.
 - List and describe the primitive data types.
 - Describe uses of mathematical operators in Javascript.
 - Define type coercion.
-- Describe data structures and use arrays to store data types.
+- Define and use complex data types.
+- Explain the difference between `promp` and `console.log`
 - Practice proper JS syntax and semantic variable naming.
+- Differentiate between true & false && truthy & falsey
+- Describe why control flow is utilized in computer programming
+- Write an if, else if, and else statement in JS
+- Write a for loop and while loop in JS and differentiate between them
+- Utilize loops to iterate through complex data types
 
 # HTML, CSS and Javascript (20min)
 HTML (content), CSS (style) and Javascript (behavior) as the main components of front-end web development.
@@ -15,14 +19,12 @@ HTML (content), CSS (style) and Javascript (behavior) as the main components of 
   - CSS: Styling
   - JS: ???
 
-Think-Pair-Share: students identify Javascript features in the Facebook news feed.
-- 3 minutes: individual research.
-- 3 minutes: discuss and compare findings in pairs.
-- Think about...
-  - What functionality the site has after it has loaded.
-  - What categories you could group some of these features under.
+Think-Pair-Share: students identify Javascript features in Cookie Clicker.
+- 3 minutes: Go look at it.
+- 3 minutes: Discuss and compare findings in pairs.
+- Think about what functionality the site has after it has loaded.
 - Q's for students
-  - Why would you say that's a Javascript feature?
+  - Why would you say a particular feature is "run" by Javascript instead of, say, CSS?
 
 Exercise result categories
 - Interactivity
@@ -42,17 +44,18 @@ So, to the main three components of front-end web development up in one word eac
 - CSS: Styling
 - Javascript: Behavior
 
-# JS: The Programming Language of the Web (5min)
-Javascript is considered to be THE "programming language of the web."
+# JS: The Client-Side Programming Language of the Web (5min)
 
-Before we dive into why that's the case, let's look at the first part of that statement...
+- Brief history: Created in 10 days by Brendan Eyck, of Mozilla. *Not* related to Java in any way but its name.
+  - "Java" is to "Javascript" as "ham" is to "hamster"
+
 - ST-wg: What's a programming language?
   - What can it do that a markup language like HTML can't?
   - It let's us do things! It lets us act on information, manipulate it, display it, pretty much whatever we want.
 - Javascript enables us to do all that in a browser.
   - Using the tools you learned in the pre-work (e.g., data types, loops, functions).
 
-Why is it the dominant programming language of the web?
+## Why is it the dominant programming language of the web?
 - Barriers to entry for learning Javascript are very low.
   - No additional software required to run it. Just a text editor and a browser.
     - You can even run it directly in the browser via its Javascript console.
@@ -62,22 +65,30 @@ Why is it the dominant programming language of the web?
 - Javascript has evolved since its creation.
   - One of the biggest additions to JS was AJAX, which allows use to reload parts of a page without refreshing the entire thing (just like on Facebook). Big implications for User Experience.
 - A lot of frameworks and libraries -- like Backbone and jQuery -- have emerged that enable us to do so much more -- and do it quickly -- with Javascript.
-- It's not the best. It has its problems...
-  - Some say it's messy. Uses a lot of syntax compared to other languages like Ruby and Python.
-  - Slow in its initial form.
-- Nevertheless, Javascript is used by nearly every site on the web, so we might as well learn to utilize it.
 
-# NODE (5min)
-What is it?
-- Javascript runtime environment.
-- Allows us to run Javascript code on our computers.
+# Setting up our environment (5min)
 
-Installation
-- Command line:   `$ brew install node`
-- Take a minute or two to install. Raise your hand if you run into any issues.
+## First, create your HTML and JS
 
-Uses
-- REPL
+- `index.html` and `script.js`
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yo</title>
+    <script src="script.js"></script>
+  </head>
+  <body>
+
+  </body>
+</html>
+```
+
+## Next, open the site in Chrome, and open the Dev Tools
+
+- Command + Option + I
+- The "Console" is a REPL
   - “Read-Eval-Print Loop”.
   - Programming environment that lets us run Javascript code one line at a time.
   - What does it do?
@@ -85,9 +96,6 @@ Uses
     2. (E)valuates it.
     3. (P)rints it to the console.
     4. Then it (L)oops back to the beginning, ready to (R)ead the next line of code we feed it.
-  - Command line:   `$ node`
-- Run entire Javascript files.
-  - Command line:   `$ node FILENAME`
 
 # Primitive Data Types
 
@@ -95,14 +103,18 @@ Uses
 Primitive data types are the building blocks of Javascript.
 - Whenever you do anything in Javascript, you are creating and changing these basic pieces of information.
 
-There are five primitive data types. ST-wg: What are they?
+There are five primitive data types.
+
+### ST-wg: What are they?
+
   1. Numbers
   2. Strings
   3. Booleans
   4. Undefined
   5. Null
 
-We store data types in variables.
+We store data types in variables. A variable is a "bucket" that holds data. You can pass the bucket around, empty it, refill it, etc.
+
 - Format: `var NAME = DATA;`
 
   ```javascript
@@ -202,7 +214,7 @@ Operations
       => 1
       ```
 
-NaN ("Not a number")
+### NaN ("Not a number")
 - A special number...that's not a number?
 
     ```javascript
@@ -219,27 +231,93 @@ NaN ("Not a number")
 
 - You can test whether a value is a valid number using the `isNaN()` function.
 
-    ```javascript
-    // isNaN returns false if used on a valid number.
-    var myFavoriteNumber = 5;
-    isNaN( myFavoriteNumber );
-    => false
-    ```
+```javascript
+// isNaN returns false if used on a valid number.
+var myFavoriteNumber = 5;
+isNaN( myFavoriteNumber );
+=> false
+```
+
+## Undefined & Null (5min)
+Values that indicate the lack of a meaningful value.
+- Anybody else find that weird? How is there more than one data type for nothing?
+- Q: What's the difference?
+
+Undefined: automatically applied to a variable with no value.  
+
+```javascript
+// A primitive data type of type undefined with only one value: "undefined".
+typeof undefined;
+=> "undefined"
+
+// Any property that has not been assigned a value is "undefined".
+var nothing;
+=> undefined
+
+// A function with no defined return value has a return value of "undefined".
+
+// You won't find yourself assigning "undefined" to a value. That's where "null" comes in.
+var nothing = undefined;
+```
+
+Null: an explicitly-assigned non-value.
+  - Javascript will never set anything to `null` by itself. `null` only appears when you tell it to.
+  - If I'm not mistaken, the only thing that's inherently `null` in Javascript is `null` itself!
+  - Can you imagine a situation where that would be useful?
+    - Placeholder for a variable that you know will be replaced with an actual value later on.
+
+
+So the main difference between `undefined` and `null` is intention. Other than that, they're both...nothing.
+
+### Type Coercion
+Javascript will try to make sense of any strange operations you throw at it.
+- By "strange", I mean subtracting a number from a string, or multiplying `null` by 100.
+- It does this through something called "type coercion" -- converting data types.
+
+You might encounter this when dealing with numerical values but for whatever reason some of them are in string form.
+  - Q: Have students guess what the results of the following code examples are...
+
+```javascript
+// In some cases Javascript is helpful and converts strings to numbers in the correct way.
+"3" - "2"
+=> 1
+
+// ...but sometimes it doesn't. In this example, the + operator acts as if it's concatenating two strings.
+"3" + "2"
+=> 32
+
+// And this?
+"five" * 5;
+=> NaN
+```
+
+When in doubt, convert data types that should be numbers using `parseInt()`.
+
+```javascript
+// parseInt converts a string to a number value, if available.
+parseInt( "3" );
+=> 3
+
+parseInt( "burrito" );
+=> NaN
+```
+
+There are other examples of type coercion, but the point here isn't to remember them all. Just be aware that sometimes Javascript will fire weird results back at you with no explanation. Sometimes, type coercion might be the culprit.
 
 ## Strings (10min)
 Strings are words in javascript!
 
 We instantiate strings using the "string literal" form.
 
-  ```javascript
-  // Can use single quotes to instantiate a string...
-  var greeting = 'Hello!';
+```javascript
+// Can use single quotes to instantiate a string...
+var greeting = 'Hello!';
 
-  /// ...or double quotes.
-  var greeting = "Hi there!";
-  ```  
+/// ...or double quotes.
+var greeting = "Hi there!";
+```  
 
-Escape sequences
+### Escape sequences
 - Sometimes you will need to use special characters or formatting in strings that can't be entered the same way as you would in a word processor. In these cases, you use "escape sequences".
 - Syntax: backslash + letter (e.g., `"\n"`).
 - Examples:
@@ -257,7 +335,7 @@ Escape sequences
 
 - More examples [here](http://www.javascriptkit.com/jsref/escapesequence.shtml).  
 
-Concatenation
+### Concatenation
 - Like numbers, you can add strings together using `+`.
 
   ```javascript
@@ -300,95 +378,6 @@ String methods
 - More examples [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
   - Slack to class.
 
-## Booleans (5min)
-Two values: `true`, `false`.  
-
-Oftentimes you'll be producing boolean values when comparing two values
-- Comparison operators: `==`, `===`, `<`, `>`, `<=`, `>=`
-
-  ```javascript
-  1 === 1
-  => true
-
-  1 === 2
-  => false
-
-  // Does anybody know the difference between === and ==?
-  1 == "1"
-  => true
-  ```
-
-- Logical operators: `&&`, `||`, `!`
-  - Not going to focus on these too much right now since you'll be using them more this week during your conditionals class.
-
-## Undefined & Null (5min)
-Values that indicate the lack of a meaningful value.
-- Anybody else find that weird? How is there more than one data type for nothing?
-- Q: What's the difference?
-
-Undefined: automatically applied to a variable with no value.  
-
-  ```javascript
-  // A primitive data type of type undefined with only one value: "undefined".
-  typeof undefined;
-  => "undefined"
-
-  // Any property that has not been assigned a value is "undefined".
-  var nothing;
-  => undefined
-
-  // A function with no defined return value has a return value of "undefined".
-
-  // You won't find yourself assigning "undefined" to a value. That's where "null" comes in.
-  var nothing = undefined;
-  ```
-
-Null: an explicitly-assigned non-value.
-  - Javascript will never set anything to `null` by itself. `null` only appears when you tell it to.
-  - If I'm not mistaken, the only thing that's inherently `null` in Javascript is `null` itself!
-  - Can you imagine a situation where that would be useful?
-    - Placeholder for a variable that you know will be replaced with an actual value later on.
-
-
-So the main difference between `undefined` and `null` is intention. Other than that, they're both...nothing.
-
-### Type Coercion
-Javascript will try to make sense of any strange operations you throw at it.
-- By "strange", I mean subtracting a number from a string, or multiplying `null` by 100.
-- It does this through something called "type coercion" -- converting data types.
-
-You might encounter this when dealing with numerical values but for whatever reason some of them are in string form.
-  - Q: Have students guess what the results of the following code examples are...
-
-  ```javascript
-  // In some cases Javascript is helpful and converts strings to numbers in the correct way.
-  "3" - "2"
-  => 1
-
-  // ...but sometimes it doesn't. In this example, the + operator acts as if it's concatenating two strings.
-  "3" + "2"
-  => 32
-
-  // And this?
-  "five" * 5;
-  => NaN
-  ```
-
-When in doubt, convert data types that should be numbers using `parseInt()`.
-
-```javascript
-// parseInt converts a string to a number value, if available.
-parseInt( "3" );
-=> 3
-
-parseInt( "burrito" );
-=> NaN
-```
-
-There are other examples of type coercion, but the point here isn't to remember them all. Just be aware that sometimes Javascript will fire weird results back at you with no explanation. Sometimes, type coercion might be the culprit.
-
-# BREAK (10min)
-
 # CODING EXERCISE #1 (30min)
 Temperature conversion (Part I): [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
 - Get started by forking and cloning this exercise repo. Raise your hand if you run into any problems.
@@ -407,41 +396,41 @@ Composite data types are collections that allow us to store multiple data types.
 
 There are two ways to instantiate an array...  
 
-  ```javascript
-  // Instantiate with an array literal.
-  var mountRushmore = [ "Washington", "Jefferson", "Roosevelt", "Lincoln" ];
+```javascript
+// Instantiate with an array literal.
+var mountRushmore = [ "Washington", "Jefferson", "Roosevelt", "Lincoln" ];
 
-  // Can also instantiate using the Array constructor.
-  var mountRushmore = new Array( "Washington", "Jefferson", "Roosevelt", "Lincoln" );
+// Can also instantiate using the Array constructor.
+var mountRushmore = new Array( "Washington", "Jefferson", "Roosevelt", "Lincoln" );
 
-  // Be careful when using the Array constructor. If you feed it a single numerical value, it will create an empty array of that length.
-  var numbers = new Array( 5 );
-  => [ , , , , ]
+// Be careful when using the Array constructor. If you feed it a single numerical value, it will create an empty array of that length.
+var numbers = new Array( 5 );
+=> [ , , , , ]
 
-  // ...but if you feed it anything else, it will create a single-value array.
-  var animals = new Array( "dog" );
-  => [ "dog" ]
-  ```
+// ...but if you feed it anything else, it will create a single-value array.
+var animals = new Array( "dog" );
+=> [ "dog" ]
+```
 
 Accessing array values...  
 
-  ```javascript
-  // Indexing begins at 0.
-  // How do I access the first, second and third elements of the array?
-  mountRushmore[0];
-  => "Washington"
-  mountRushmore[1];
-  => "Jefferson"
-  mountRushmore[2];
-  => "Roosevelt"
+```javascript
+// Indexing begins at 0.
+// How do I access the first, second and third elements of the array?
+mountRushmore[0];
+=> "Washington"
+mountRushmore[1];
+=> "Jefferson"
+mountRushmore[2];
+=> "Roosevelt"
 
-  // You can also place arrays within arrays.
-  var letters = [ ["a","b","c"], ["d","e","f"], ["g","h","i"] ];
+// You can also place arrays within arrays.
+var letters = [ ["a","b","c"], ["d","e","f"], ["g","h","i"] ];
 
-  // How would I go about accessing the letter "f" in the above array? Walk me through it.
-  letters[1][2];
-  => "f"
-  ```
+// How would I go about accessing the letter "f" in the above array? Walk me through it.
+letters[1][2];
+=> "f"
+```
 
 Array methods
 - There are a lot of useful methods that come with Javascript we can use to inspect and modify arrays. To learn what some of them are...
@@ -460,37 +449,98 @@ Given the array `var planeteers = [ "Looting", "Wind", "Fire", "Water", "Heart",
   - [MDN Array Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
   - Navigating documentation is a great skill to have. Some sets of documentation are harder to navigate than others, but if you have a sense of how to dig through a massive trove of information like MDN or RubyDocs, you'll become a much more efficient programmer.
 
-## Objects (5min)
-The other composite data type
-- Like arrays, can store multiple values in a single data collection.
-- Unordered collection whose collections are stored as key-value pairs.
+## Booleans (5min)
+Two values: `true`, `false`.  
 
-- Example:
+Oftentimes you'll be producing boolean values when comparing two values
+- Comparison operators: `==`, `===`, `<`, `>`, `<=`, `>=`
 
-  ```javascript
-  var teacher = {
-    name: "Adrian",
-    age: 101,
-    class: "WDI6",
-    city: "Washington"
-  }
-  ```
+```javascript
+1 === 1
+=> true
 
-- Let's make one together...
-  - Using all the data types we've gone over so far (except for `undefined` and `null`)
+1 === 2
+=> false
 
-  ```javascript
-  // Help me make a pizza object. What data types should I use?
-  var pizza = {
-    slices: 8,
-    size: "large",
-    toppings: [ "cheese", "pepperoni" ],
-    crust: "stuffed"
-  };
-  ```
+1 == "1"
+=> true
+```
 
-- Why would you use an object over an array?
-- Will go into these in-depth later this week.
+> What is the differences between the last two? When using `===`, it checks for both the data type and value. `==` only checks for value. Under the hood, though, `==` converts the data type to the same data type and then executes comparison.
+
+## true vs false (15m)
+So we all know the boolean values of `true` and `false` But there is also a concept of "truthy" and "falsey" In Javascript, the following things are "falsey":
+- false
+- 0 (zero)
+- "" (empty string)
+- null
+- undefined
+- NaN (a special Number value meaning- Not-a-Number!)
+
+> Everything else is "truthy". Why might we need this programmatic concept of "truthy" and "falsey"?(ST-WG)
+
+### Draw truth tables for ! and && (I do 2m)
+- true && true
+- true && false
+- !true
+- !false
+
+### Have students do truth tables for || (ST-WG 2m)
+- true || false
+- false || true
+- false || false
+- true || true
+
+## Comparison Operators (15m)
+Demonstrate comparison operators in node
+
+- `<`, `<=`
+- `>`, `>=`
+- `!=`, `!==`
+- `==`, `===`
+
+```javascript
+55 == "55"
+=> true
+55 === "55"
+=> false
+```
+
+## Conditionals (35m /w ex)
+
+// Have an example somewhere where one of the more unusual "falsey" values (e.g., empty string) triggers a conditional.
+
+write and narrate through the following code (10m)
+
+```javascript
+var age = 24;
+if(age < 18) {
+  console.log("You're too young to enter this club! Get outta here")
+}
+else if(age > 18 && age < 21){
+  console.log("Come on in! But no Drinking!!")
+}
+else{
+  console.log("Come on in!")
+}
+```
+
+Conditionals will always follow this pattern. There is a key word(if, else if, else). Followed by an expression that will evaluate to true or false in parentheses. Then followed by code to execute when condition is met.
+
+What's wrong with the following code?:
+
+```javascript
+var age = 24;
+if(age > 21){
+  console.log("Come on in!")
+}
+else if(age > 75){
+  console.log("Come on in, but I don't know if this is the place for you!")
+}
+else{
+  console.log("get outta here youngin!")
+}
+```
 
 # Syntax & Semantic Naming
 
@@ -527,42 +577,71 @@ Comments
 - Help out other developers and future you.
   - If anything, it will help us out when grading your projects!
 
-## Semantic Variable Naming (5min)
-Q: Take a moment to look at the following variables. Rank them from lowest to highest according to how well you think each one is named.
-
-```javascript
-var x = 5;
-var red = "red";
-var myFavoriteAnimal = "jackalope";
-```
-
-The purpose of a variable needs to be evident in the name.
-- Nope: `var x = 5;`
-- Yup: `var myFavoriteNumber = 5;`  
-
-The name of a variable cannot be tied to a particular value. What if it changes?
-- Nope: `var red = "red"`
-- Yup: `backgroundColor = "red"`  
-
 # BREAK (10min)
 
 # CODING EXERCISE #2 (20min)
 
 Temperature conversion (Part II): [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
+## Loops(60m)
 
-# Closing
+### For loop(25m)
+There are two ways to write a for loop.
 
-1. What role does Javascript play on a website?
-2. What are the five primitive data types?
-3. What are the two composite data types? When would you use each?
-4. What is an example of type coercion?
-5. What is an example of a semantically-named variable?
+#### The first:
 
-# Homework
+```javascript
+for(var i = 0; i < 10; i++){
+  console.log(i)
+}
+```
+The first part is the keyword `for`.
+Followed by 3 parts `;` separated in parentheses.
+- The first part instantiates the iteratee. Essentially gives you access to this value in your code block as i. It starts at 0 in this case.
+- The second part is the comparison expression. That means this code will continue to execute until this expression evaluates to false.
+- The third and final part is how much the iteratee is incremented after each execution of the loop
 
-[https://github.com/ga-dc/js-basics-hw](https://github.com/ga-dc/js-basics-hw)
+#### The second:
 
-# Sample Quiz Questions
+```javascript
+// instantiate an array of names
+var names = ["adam", "matt", "andy", "adrian", "robin", "jesse"]
+for(i in names){
+  console.log(names[i])
+}
+```
+
+- Again this for loop starts with the keyword `for`.
+- In parentheses contains the iteratee followed by the keyword `in` followed by the complex data type you would like to iterate over(array or object)
+- In the brackets contains the code you would like executed for each iteration of the loop
+
+### You Do - Write a for loop that prints odd numbers to 100. Do not use conditionals
+
+### While Loop(15m)
+```javascript
+var i = 0;
+while(i < 10){
+  console.log(i)
+  // don't increment at first
+}
+```
+#### ST-WG
+What are the differences between `for` and `while`?
+
+// Through example or pose question to students, have them recreate the same odd-number-printing
+// for loop using a while loop.
+
+### You do - Fizzbuzz(can use conditionals)(20m)
+
+### Homework
+- [Choose your own adventure](https://github.com/ga-dc/choose_your_own_adventure_js)
+- [JS Basics Quiz](https://github.com/ga-dc/js-basics-hw)
+
+# Review Questions
 1. When would you use an array over an object? And vice-versa?
-2. What is the difference between `undefined` and `null`?
-3. Provide an example of a semantically-named variable. Explain your choice.
+- What is the difference between `undefined` and `null`?
+- Provide an example of a semantically-named variable. Explain your choice.
+- What role does Javascript play on a website?
+- What are the five primitive data types?
+- What are the two composite data types? When would you use each?
+- What is an example of type coercion?
+- What is an example of a semantically-named variable?

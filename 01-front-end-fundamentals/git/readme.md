@@ -114,9 +114,6 @@ Students should:
 * **working tree** - the folder (and it's files and sub-folders, that are in the repository)
 * **commit** - a snapshot of the working tree at a giving time (along with a message of what changed)
 * **the index** - a staging area where we list changes we want to commit
-* **branch** - a label on a commit (it's the ancestry of the commit that constitutes what we usually consider the 'branch')
-* **tag** - also a label for a commit, but it never changes
-* **master** / development - conventional names for branches
 * **HEAD** - what is currently checked out.
 
 Instructor should diagram the various components of a git repository, and how
@@ -224,10 +221,7 @@ Once linked, you can just run `git push` to push master branch to master branch
 ## Homework
 
 ### 1. Personal Portfolio Page
-Publish a simple portfolio site using github pages. You can find more information on the [github pages guide](https://pages.github.com).
-For content, you can create something new, or just copy over your HTML/CSS/[JS] from the admissions process. (You'll likely be modifying replacing this page as the course progresses.)
-
-You'll know you got it working when visiting *your_github_username*.github.io displays your page with proper styling.
+[Part 2 of the HTML Resume](https://github.com/ga-dc/html_resume)
 
 ### 2. Fork and Clone the PBJ Repo
 
