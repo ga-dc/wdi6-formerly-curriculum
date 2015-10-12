@@ -17,12 +17,12 @@ open http://theslideshow.net/#advanced/search-advanced-query=$haircut_query&site
 
 message="$person might just have that haircut tomorrow."
 
-if [ $person == "Andy" ]; then
+if [ $person == "Erica" ]; then
   message="$person wouldn't be caught dead with a haircut like that."
 fi
 
-if [ $person == "Matt" ]; then
-  message="$person wishes he was that lucky."
+if [ $person == "Adrian" ]; then
+  message="$person wishes they wwe that lucky."
 fi
 
 echo $message

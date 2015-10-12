@@ -113,12 +113,17 @@ We're going to add an immediately invoked function expression to instantiate our
 })()
 ```
 
-> the first argument is the name of the angular module. The second argument is an array of modules on which the current module will depend on. This is an immediately invoked function expression. We immediately invoke in order to start the angular application and to prevent the pollution of the global namespaces
+What's a module?
+What's an immediately-invoked function (IFFE)?
+
+> The first argument is the name of the angular module. The second argument is an array of modules on which the current module will depend on. This is an immediately invoked function expression. We immediately invoke in order to start the angular application.
 
 ## Directives (5/50)
 Directives are Angular's way of letting you make custom elements and attributes. HTML elements and attributes can have different behaviors. Angular lets you make different behaviors for these elements and attributes for these, too.
 
 Directives are markers on a DOM element that tell AngularJS's HTML compiler to attach a specified behavior to that DOM element (e.g. via event listeners).
+
+This definition always scares me. I might say "Directives are Angular's way of letting you make custom elements and attributes. HTML elements and attributes can have different behaviors. Angular lets you make different behaviors for these elements and attributes for these, too."
 
 ### Our first directive - ng-app.
 Let's add our very first directive. In the `index.html`:
@@ -128,6 +133,8 @@ Let's add our very first directive. In the `index.html`:
 ```
 
 > ng-app defines which portion of the html that our JS will be applied to. In this case, we're adding it to the `<html>` so we extend our JS functionality to the entire DOM. The domain of the directive begins and ends with the opening and closing tags of the html element the directive is defined in.
+
+`ng-app` says which HTML element is going to be the "box" inside which all of our Angular stuff goes.
 
 ## Angular expression (10/60)
 ### `{{}}`(5)
@@ -145,7 +152,10 @@ Because we defined our ng-app we are able to use `{{}}` much in the same way we 
 
 ## Break (10/70)
 ## Angular controllers (10/80)
-This is cool, but not very useful. We're basically just hard-coding in data here, which we'll never do in a "real" app. Instead, we want to dynamically insert data. **Controllers** are the go-between for views (our HTML) and our data. Let's create the controller file `$ touch js/controllers/todos.js` and add the following code:
+
+This is cool, but not very useful. We're basically just hard-coding in data here, which we'll never do in a "real" app. Instead, we want to dynamically insert data. **Controllers** are the go-between for views (our HTML) and our data.
+
+Let's create the controller file `$ touch js/controllers/todos.js` and add the following code:
 
 ```js
 var app = angular.module("todo")
@@ -236,9 +246,9 @@ Let's instantiate a property of our controller and replace our `.sayHello()` fun
 > All we've done here is instantiate a property of our controller to false. Then defined the `.toggleForm()` function of our controller to change `this.formIsVisible` between true and false any time that function is called
 
 ## `ng-show`
-We now need to link `.formIsVisible` to an actual form. We can do this by using an angular directive called `ng-show`. This adds a `display:none` using CSS if something is `false`. In this case, we're going to hide the form if `.formIsVisible` evaluates to `true`. In `index.html`:
+We now need to link `.formIsVisible` to an actual form. We can do this by using an angular directive called `ng-show`. This adds a `display:none` using CSS if something is `true`. In this case, we're going to hide the form if `.formIsVisible` evaluates to `true`. In `index.html`:
 
-We now need to link `.formIsVisible` to an actual form. We can do this by utilizing an angular directive that displays or hides the form based on whether `.formIsVisible` evaluates to true or false. In `index.html`:
+**Note:** Directives all take somewhat different values! Before we had directives that looked like `ng-something={{something.else}}`, and `ng-something=object.method()`. Now we have `ng-show="todosCtrl.formIsVisible"`
 
 ```html
 <div ng-controller="todosController as todosCtrl">

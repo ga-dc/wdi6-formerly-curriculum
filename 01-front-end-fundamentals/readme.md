@@ -30,16 +30,26 @@ Build an interactive web-page that utilizes HTML, CSS, and JavaScript
 #### Homework
 https://github.com/ga-dc/html_resume
 
-### The Command Line
+### The CLI (Command Line Interface)
 
-- Setup your working directory for WDI
-- Compare and Contrast CLI to GUI
+#### Concepts
+
+- Compare and contrast CLIs / GUIs
+- Explain how command line usage can increase efficiency
 - Describe the anatomy of a command (statement, flags, arguments)
-- Know where to go for help
-- List common commands
+- Explain what a path is, and why the 'current path' is important in the CLI
+- Explain the difference between an absolute path and a relative path
+
+#### Mechanics
+
+- Setup your working directory / environment for WDI
+- List common commands to
+  - View the path of the current directory
+  - View the contents of a directory
+  - Navigate to different directories
+  - Manage files and directories
+- Open files and directories with Atom
 - List unsafe commands
-- Manage folders and files (using Finder and Shell)
-- Explain the difference between relative and absolute path
 
 ### Git
 #### Conceptual
@@ -127,7 +137,9 @@ https://github.com/ga-dc/html_resume
 ### JS and the Document Object Model (DOM)
 
 - Explain what the DOM is and how it is structured
+- Select and target DOM elements using DOM methods
 - Select and target DOM elements using a query selector
+- Create, read, update, and delete DOM elements
 - Change the attributes or content of a DOM element
 
 ### JS Debugging
@@ -135,5 +147,5 @@ https://github.com/ga-dc/html_resume
 - Identify and resolve common and uncommon "logical errors" that affect the results of your program
 - Use logs to troubleshoot errors in an application (console log in Dev Tools)
 - Conduct real-time debugging in the browser (start small, triangulation, remove code)
-- Access properties of a class using helper methods ( typeOf( ) for datatypes)
+- Access properties of a object
 - Use debuggers and breakpoints to identify logical errors in expressions
