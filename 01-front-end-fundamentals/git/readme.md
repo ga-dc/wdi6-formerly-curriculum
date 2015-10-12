@@ -231,14 +231,14 @@ You'll know you got it working when visiting *your_github_username*.github.io di
 
 ### 2. Fork and Clone the PBJ Repo
 
-Fork the [PBJ Repo](https://github.com/ga-dc/pbj) to your personal account. Clone *your fork* to your
+Fork the [Curriculum Repo](https://github.com/ga-dc/curriculum) to your personal account. Clone *your fork* to your
 computer in your `~/wdi` folder.
 
 NOTE: If you already have a `pbj` folder in your `~/wdi` folder, delete or rename it before you clone.
 
 ### Submission
 
-File a github issue, on https://github.com/ga-dc/pbj/issues, with a link to:
+File a github issue, on https://github.com/ga-dc/curriculum/issues, with a link to:
 * your personal github pages repo
 * the URL to see your hosted page.
 * a link to the repo you forked
