@@ -87,26 +87,16 @@ line or lines in a given commit.
 
 **Fearlessness in making changes**
 
-In developing software, we often want to experiemnt in adding a feature or
+In developing software, we often want to experiment in adding a feature or
 refactoring (rewriting) existing code. Because git makes it easy to go back to a
-known good state, we can experiement without worrying that we'll be unable to
-undo the experiemental work.
+known good state, we can experiment without worrying that we'll be unable to
+undo the experimental work.
 
 ### Core Concepts of Git Repositories (40 minutes)
 
 This section aims to introduce the core use of git, as well as the fundamental
 concepts of how git works (and associated terms).
 
-#### Exercise 1: Create a Repository and Committing Locally
-
-Students should:
-
-1. download and install the [Github for Mac client](https://mac.github.com).
-2. initialize a git repository in their `resume` folder.
-3. make an initial commit with the current version of their code (all files)
-4. modify a file (e.g. index.html) and create a new commit, with an appropriate message
-5. repeat previous step (committing) but this time, change two files.
-6. look at the 'history' tab to see the log of commits, and what changed
 
 #### Terms and Concepts (Core Git)
 
@@ -121,19 +111,20 @@ they relate.
 
 ** Insert diagram here **
 
+#### Exercise 1: Create a Repository and Committing Locally
+
+Students should:
+
+1. create a new `resume` folder in sandbox directory.
+2. initialize a git repository in the `resume` folder.
+3. make an initial commit with the current version of their code (all files)
+4. modify a file (e.g. resume.txts) and create a new commit, with an appropriate message
+5. repeat previous step (committing) but this time, change two files.
+6. view the 'history' by running `git log` to see the log of commits, and what changed
+
 ### Break (10 minutes)
 
 ### Remote Repositories and Github (30 minutes)
-
-#### Exercise 2: Publish to a remote repository on Github
-
-1. open the resume repo in the Github client
-2. ensure you have at least one commit
-3. click the 'publish' button in the upper right corner
-4. give the repo a name and description, and ensure it's public, then push it
-5. open the repo on github, and explore the code there
-6. make a change locally, commit it, and sync it
-7. open the repo on github, and note that the changes have synced
 
 #### Terms and Concepts (Remotes)
 
@@ -150,13 +141,20 @@ Instructor should diagram the clone/push/pull process.
 
 ** Insert diagram here **
 
+#### Exercise 2: Publish to a remote repository on Github
+
+1. make sure you are in the resume directory and you have nothing to commit.
+2. ensure you have at least one commit
+3. give the repo a name and description, and ensure it's public
+4. add repo as a remote and push to remote
+5. open the repo on github, and explore the code there
+6. make a change locally, commit it, and sync it
+7. open the repo on github, and note that the changes have synced
+
+
 ### Break (5 minutes)
+
 ### Forking & Pull Requests (30 minutes)
-
-#### Exercise 3: Fork, Clone and create a Pull Request
-
-Visit the [haiku](https://github.com/ga-dc/haiku) repo and follow the instructions
-there.
 
 #### Terms and Concepts (Forking and Pull Requests)
 
@@ -168,6 +166,12 @@ Instructor should diagram the fork/clone/pull request process, and how it relate
 to HW submission.
 
 ** insert diagram here **
+
+#### Exercise 3: Fork, Clone and create a Pull Request
+
+Visit the [haiku](https://github.com/ga-dc/haiku) repo and follow the instructions
+there.
+
 
 ### Closing
 
@@ -220,19 +224,19 @@ Once linked, you can just run `git push` to push master branch to master branch
 
 ## Homework
 
-### 1. Personal Portfolio Page
+### 1. Personal Resume Page
 [Part 2 of the HTML Resume](https://github.com/ga-dc/html_resume)
 
-### 2. Fork and Clone the PBJ Repo
+### 2. Fork and Clone the Curriculum Repo
 
-Fork the [PBJ Repo](https://github.com/ga-dc/pbj) to your personal account. Clone *your fork* to your
+Fork the [Curriculum Repo](https://github.com/ga-dc/curriculum) to your personal account. Clone *your fork* to your
 computer in your `~/wdi` folder.
 
 NOTE: If you already have a `pbj` folder in your `~/wdi` folder, delete or rename it before you clone.
 
 ### Submission
 
-File a github issue, on https://github.com/ga-dc/pbj/issues, with a link to:
+File a github issue, on https://github.com/ga-dc/curriculum/issues, with a link to:
 * your personal github pages repo
 * the URL to see your hosted page.
 * a link to the repo you forked
