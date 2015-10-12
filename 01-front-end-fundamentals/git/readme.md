@@ -118,13 +118,18 @@ Students should:
 1. create a new `resume` folder in sandbox directory.
 2. initialize a git repository in the `resume` folder.
 3. make an initial commit with the current version of their code (all files)
-4. modify a file (e.g. resume.txts) and create a new commit, with an appropriate message
+4. modify a file (e.g. resume.txt) and create a new commit, with an appropriate message
 5. repeat previous step (committing) but this time, change two files.
 6. view the 'history' by running `git log` to see the log of commits, and what changed
 
 ### Break (10 minutes)
 
 ### Remote Repositories and Github (30 minutes)
+
+#### Docs Dive (5 minutes)
+
+Students should briefly look over provided reading on [Git Remotes](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes)
+and prepared to discuss key takeaways.
 
 #### Terms and Concepts (Remotes)
 
@@ -151,7 +156,6 @@ Instructor should diagram the clone/push/pull process.
 6. make a change locally, commit it, and sync it
 7. open the repo on github, and note that the changes have synced
 
-
 ### Break (5 minutes)
 
 ### Forking & Pull Requests (30 minutes)
@@ -160,7 +164,6 @@ Instructor should diagram the clone/push/pull process.
 
 * **fork** - make a copy of a repo on github under a different account, used for OSS collaboration
 * **pull request** - a github feature which allows a user to suggest and discuss changes to a repo they have forked
-
 
 Instructor should diagram the fork/clone/pull request process, and how it relates
 to HW submission.
