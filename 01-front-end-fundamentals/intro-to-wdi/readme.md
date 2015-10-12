@@ -64,7 +64,7 @@ Here’s a wireframe of Adrian as an example:
 
 ### What is an immersive course? (5 minutes)
 
-**Turn & Talk**: What's different about an immersive environment?
+**Turn & Talk**: Let's take one minute to turn to our neighbors and discuss: "What's different about an immersive environment?"
 
 - What does it mean to be in a "immersive course"?
   - You can't "win" -- and can't lose!
@@ -75,7 +75,7 @@ Here’s a wireframe of Adrian as an example:
   - You may be re-learning how to learn.
     - The last time you spent 9 hours a day learning something new was in high school.
   - You will be uncomfortable.  Regularly.
-    - Comfort Curve???
+    - Emotional Cycle of Change
     - Be empathetic.
     - You will probably feel somewhat lost on this week's topic, feel more comfortable with last week lessons, and notice that a few weeks ago looks easy.
   - Balance. This intensity means that we have to make room for balance.
