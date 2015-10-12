@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Mon Oct 12 2015 17:02:10 GMT+0000 (UTC)">
+    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Mon Oct 12 2015 17:07:07 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1277,480 +1277,187 @@
 <li>Open files and directories with Atom</li>
 <li>List unsafe commands</li>
 </ul>
-<h2 id="framing-before-objectives">Framing (before Objectives)</h2>
-<p>Introduce students to the command line.  Giving them a brief taste before sharing the Learning Objectives.</p>
-<p><em>&quot;You just learned that mentors are all around you.  I&apos;d like to introduce you to your closest and best mentor.&quot;</em> <picks up="" computer=""></picks></p>
-<blockquote>
-<p>This is your computer, there are many like it, but this one is yours.<br>Your computer is your best friend.  You must master it like you master your life.<br>Your computer without you is useless.</p>
-</blockquote>
-<p><em>Think about that...</em></p>
-<blockquote>
-<p>My computer, without me, is useless.</p>
-</blockquote>
-<p>pause</p>
+<h2 id="framing">Framing</h2>
+<p>Turn &amp; Talk: Given your exposure to the command line so far (prework and
+installfest), discuss the following questions:</p>
 <ul>
-<li>Let&apos;s start owning it.</li>
-<li>Let&apos;s start playing with it.</li>
-<li>Let&apos;s create something today.</li>
-</ul>
-<p><em>Let me show you the command center of the computer.</em></p>
-<p><em>Open your computers.</em>
-(say the following while demonstrating)<br>_&quot;Hold down the Command key and press Space.  You will see this written as &quot;cmd+space&quot;.  This is Spotlight search.  You can use this to find stuff on your computer.  Right now, we want our &quot;Terminal&quot;.  Press Enter.</p>
-<p><em>You are now in the terminal.  As a developer, you will spend a lot of time here, telling your computer what to do.  Giving it very precise orders.  It can only do what we tell it to do.</em></p>
-<p>Type &quot;give me rice&quot;</p>
-<p>You should see:</p>
-<pre><code>$ give me rice
--bash: give: command not found
-</code></pre><p><em>Your computer got lost right from the start. </em></p>
-<p><em>Don&apos;t worry about memorizing the commands.  We&apos;ll cover all this again.  Just observe.</em></p>
-<p>Type <code>cd</code>.
-Type <code>pwd -P</code>.  <em>This is YOUR home dir.  We&apos;ll spend a lot of time here.  Once again, don&apos;t worry about notes, we come back here, more slowly, in a second.</em>
-Now type: <code>$ ls</code></p>
-<p>That is a listing of the files in this folder or directory.</p>
-<p><em>&quot;Let&apos;s confirm that.&quot; <code>open .</code> <split screen="" w="" Terminal="" and="" Finder="">
-Compare.</split></em></p>
-<p>Now type: <code>$ ls -l</code>.  The same files.  Different view.</p>
-<h2 id="i-do-share-the-first-3-lessons-of-the-command-line">I DO: Share the first 3 lessons of the Command Line</h2>
-<p><em>We just learned 3 very important lessons.</em></p>
-<p>Type <code>$ give me rice</code> again.</p>
-<p>STWC: What did the computer know about giving me rice?
-Nada.  Zip.  Zero. Zilch.</p>
-<h3 id="lesson-one-start-with-what-you-know">Lesson One. Start with what you know.</h3>
-<p>You build upon what you know.</p>
-<p>You also have to start with something the computer already knows and build on that.</p>
-<p>Then I had you type <code>cd</code>.  Why?  It&apos;s ok to be wrong.  That&apos;s how we move forward.
-Leading questions.</p>
-<h3 id="lesson-two-where">Lesson Two: Where?</h3>
-<p>You have to care about <em>where</em> you are.</p>
-<p>Type <code>open .</code></p>
-<p>STWC: What did that do?</p>
-<p>This dot &quot;.&quot;, is a shortcut, an abbreviation for the current dir.  This command opens my current dir in finder.  If I was somewhere else, it would open a different dir.</p>
-<pre><code>ls # lists the current dir
-</code></pre><h3 id="lesson-three-be-precise">Lesson Three:  Be precise.</h3>
-<p> I control the computer, by telling it <strong>precisely</strong> what I want.</p>
-<p><em>This will become more obvious as you go through the exercises.  But I want to highlight that <strong>everything</strong> you type in is important.</em></p>
-<ul>
-<li>Type <code>ls -l</code> and press enter</li>
-<li>Type <code>ls -w</code> and press enter</li>
-<li>Type <code>ls -a</code> and press enter</li>
-</ul>
-<p>The same files.  Different view.</p>
-<h2 id="we-do-the-terminal">We do:  The Terminal</h2>
-<blockquote>
-<p>Why would we use it, instead of the pretty GUI?</p>
-</blockquote>
-<p>Walk through the following steps (without setup/clarification)
-Work with students to write the steps of what we just did on the board.</p>
-<ol>
-<li><p>Type <code>ls</code></p>
-<ul>
-<li>What do you see?</li>
-</ul>
-</li>
-<li><p>Type <code>echo &apos;Hi there!&apos; &gt; hello.txt</code>, then <code>ls</code></p>
-<ul>
-<li>What happened?</li>
-</ul>
-</li>
-<li><p>Type <code>open hello.txt -e</code></p>
-<ul>
-<li>What happened?</li>
-</ul>
-</li>
-</ol>
-<p>Note:</p>
-<ol>
-<li><p>Get a list of the files in the current dir</p>
-</li>
-<li><p>Create a new text file called &quot;hello.txt&quot; and populate it.</p>
-</li>
-<li><p>Open that file to view it.</p>
-</li>
-</ol>
-<hr>
-<h3 id="following-the-steps-on-the-board-do-the-same-stuff-without-the-command-line">Following the steps on the board, do the same stuff WITHOUT the Command Line.</h3>
-<hr>
-<h3 id="which-way-was-easier">Which way was easier?</h3>
-<hr>
-<h2 id="demo">Demo</h2>
-<p>Now, close your computers for a second and watch this:</p>
-<pre><code>open . # watch in Finder
-ls
-</code></pre><p><em>Take note of the contents</em></p>
-<pre><code>COUNTER=0
-while [ $COUNTER -lt 50 ]; do
-    touch sample_file_$COUNTER.txt
-    let COUNTER=COUNTER+1
-done
-</code></pre><pre><code>ls
-</code></pre><p>Brief overview of the code.</p>
-<pre><code>ls sample*
-</code></pre><p><em>Are those the files I just added?  And only those?</em></p>
-<blockquote>
-<p>Say bye.  </p>
-</blockquote>
-<p><em>Don&apos;t try this at home.  The <code>rm</code> command can be dangerous.  We&apos;ll cover this soon.</em></p>
-<pre><code>rm sample*
-ls
-</code></pre><p><em>Now THAT&apos;S power.</em></p>
-<hr>
-<h3 id="this-is-called-the-command-line-also-shell-also-bash">This is called the &quot;command line&quot;, also &quot;shell&quot;, also &quot;bash&quot;.</h3>
-<ul>
-<li>The command line / shell / bash is a way of interacting with your computer without using a fancy graphical interface</li>
+<li>How is the CLI different from the GUI?</li>
+<li>What do you like / dislike about using it?</li>
+<li>It what ways might it be beter or worse for Developers? (Compared to a GUI)</li>
 </ul>
 <hr>
-<p>CFU: Shout Out, write on board</p>
-<h3 id="why-do-programmers-work-in-the-command-line">Why do programmers work in the command line?</h3>
+<h3 id="why-the-cli">Why The CLI?</h3>
+<p>The CLI has many benefits over a GUI:</p>
+<p><strong>Speed</strong>
+While it may not seem so yet, over time, most developers can achieve common
+tasks much faster using the command line. Features such as tab completion,
+history searching / modifying, and piping commands all contribute to this speed.</p>
+<p><strong>Precision</strong>
+Because of it&apos;s nature as a text-based interface, the command line provides us
+with a lot more precision. We can look at the commands we&apos;re about to enter
+and understand exactly what they will do. This also allows:</p>
+<p><strong>Repeatability / Scriptability</strong>
+The precision of commands and their text-based nature means we can easily save
+them and re-use them, or share them with others when appropriate. If you think
+back to the commands you ran during installfest, those were basically a set of
+scripts that we had you run.</p>
+<p><strong>Tools</strong>
+There are a very large number of tools available on the command line, to help
+us achieve almost any task. Most of them are built in, but we can download
+almost any others using <code>brew</code> on a mac, or <code>apt-get</code> on linux.</p>
+<p>Additionally, tools built for the command line usually follow something called
+the &apos;unix philosophy&apos;, which is that each tool should do ~1 thing, and do it
+well. Complex tasks can be achieved by chaining tools together.</p>
 <hr>
-<h3 id="brief-history-of-command-line">Brief history of Command Line</h3>
-<ul>
-<li><p>The command line is an interface to your computers&apos;s services.  To it&apos;s operating system.</p>
-</li>
-<li><p>Brief history</p>
-<ul>
-<li>We started on the command line (ok, really, keypunch cards).</li>
-<li>In 1984, <a href="https://www.youtube.com/watch?v=axSnW-ygU5g&amp;noredirect=1" target="_blank">Apple introduced the Macintosh</a>, the first, mass-marketed computer featuring a GUI.</li>
-</ul>
-</li>
-<li><p>What is a <strong>GUI</strong>?</p>
-<ul>
-<li>Graphical User Interface.  The typical OSX or Windows interface.</li>
-</ul>
-</li>
-<li><p>The Terminal</p>
-<ul>
-<li><p>OSX is BSD (Berkeley Software Distribution ).  Based on Unix.</p>
-</li>
-<li><p>A <strong>shell</strong> is a program that interacts with your operating system. The <strong>terminal</strong> runs the shell. Used to be an physical computer. Now just an app.</p>
-</li>
-<li><p>Might look familiar to old folks using old computers: no mouse</p>
-</li>
-</ul>
-</li>
-<li><p>Discuss difference between bash, shell, terminal, CLI</p>
-<ul>
-<li>bash is a shell.</li>
-<li>terminal runs a shell</li>
-<li>CLI (command line interface) is the mode.</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="lesson-one-start-with-what-it-knows-the-basic-command">Lesson One: start with what it knows.  The basic command.</h2>
-<h3 id="anatomy-of-a-command">Anatomy of a command</h3>
-<ul>
-<li><p>Example</p>
-<ul>
-<li><p>Give someone a haircut</p>
-</li>
-<li><p>Haircut style is a flag</p>
-</li>
-<li><p>Person getting haircut is argument</p>
-</li>
-<li><p><code>haircut --mohawk Matt</code></p>
-<ul>
-<li><code>haircut --mullet &quot;Billy Ray Cyrus&quot;</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Command: <code>haircut</code></p>
-</li>
-<li><p>Flag: <code>-t mohawk</code></p>
-<ul>
-<li>The command&apos;s options</li>
-</ul>
-</li>
-<li><p>Argument: <code>Matt</code></p>
-<ul>
-<li>The input that&apos;s being processed by the command</li>
-</ul>
-</li>
-<li><p>Other examples</p>
-<ul>
-<li><code>say Hello</code></li>
-<li><code>say -v ?</code></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="sometimes-it-makes-sense">Sometimes it makes sense.</h2>
-<p><em>When you need someone&apos;s assistance, what do you ask for?</em>
-Help.</p>
-<p><code>gem --help</code>
-It&apos;s not always that helpful.
-<code>ls --help</code>
-<code>ruby --help</code></p>
-<hr>
-<h2 id="you-do-t-t-1-min">You Do: T&amp;T (1 min)</h2>
-<p>What version of ruby are we using?
-Who wrote ruby?  When?</p>
-<p>You can find this within ruby&apos;s help.</p>
-<p>Discuss <code>ruby --help</code></p>
-<hr>
-<h3 id="namespaces-and-double-dashes">Namespaces and double-dashes</h3>
-<ul>
-<li><p>Discuss <code>--</code> vs <code>-</code></p>
-<ul>
-<li><code>ruby --version</code></li>
-<li><code>ruby -v</code></li>
-</ul>
-</li>
-<li><p>What does <code>ruby</code> do?</p>
-</li>
-<li><p>Keyboard shortcuts, Hot Keys</p>
-<ul>
-<li>Stop a process: Ctrl + c</li>
-<li>Copy/Paste: Cmd + c, Cmd + v</li>
-<li>Clear screen: Ctrl + k</li>
-<li>Front/end of line: Ctrl + a, Ctrl + e</li>
-</ul>
-</li>
-<li><p><code>brew install tree</code></p>
-<ul>
-<li>What does brew do?</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="you-do-research-man-3-min">You Do: Research <code>man</code> (3 min)</h2>
-<p>Let&apos;s do a little research.  The developers of each of these commands has provided a manual.  Let&apos;s google it.  If you know the answer, please don&apos;t spoil it.</p>
-<ul>
-<li>Find the manuals for:<ul>
-<li>ls</li>
-<li>cd</li>
-<li>ruby</li>
-</ul>
-</li>
-</ul>
-<p>Results on board: html pages, <code>man</code></p>
-<ul>
-<li><p>Type <code>man ruby</code></p>
-</li>
-<li><p>Introduce manuals</p>
-<ul>
-<li>Things in brackets are optional</li>
-<li>Structure of the manual</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="lesson-two-know-where-you-are">Lesson Two: Know where you are.</h2>
-<h3 id="every-command-is-executed-in-the-context-of-the-current-folder">Every command is executed in the context of the current folder</h3>
+<h2 id="basics-of-cli">Basics of CLI</h2>
+<p>You may already be familiar with some of these concepts, but it&apos;s worth
+reviewing them now, cementing the concepts and getting some more practice in.</p>
+<h3 id="everything-is-a-command">Everything is a command</h3>
+<p>First things first, on the command line, everything we enter into the command
+line is a <strong>command</strong>. When we hit enter, the command is executed.</p>
+<h3 id="commands-have-output-and-side-effects">Commands have output and side effects</h3>
+<p>Some commands have <strong>output</strong>, which is displayed on the screen for us to see.
+Examples of commands that have output might be:</p>
 <ul>
 <li><code>pwd</code></li>
-<li><p><code>pwd -P</code></p>
-</li>
-<li><p><code>cd ~</code></p>
-</li>
-<li><p><code>ls</code></p>
-</li>
-<li><p><code>cd Desktop</code></p>
-</li>
-<li><p>Go up with <code>..</code></p>
-<ul>
-<li><code>cd ..</code></li>
+<li><code>ls</code></li>
 </ul>
-</li>
-<li><p><code>cd</code> Drag and drop</p>
-</li>
-<li><p><code>cd ~</code></p>
+<p>Other commands primarily exist to have a <em>side-effect</em>, or in other words, to
+make some change, usually on our system. An example might be <code>touch</code>, which
+creates a new file.</p>
+<p>Note that often times, a command whose main job is a side effect may not provide
+any output if it succeeds. If there is an error it will provide output.</p>
+<p>Rarely, some commands may provide both an output and side effects.</p>
+<h3 id="command-syntax-flags-and-arguments">Command Syntax (Flags and Arguments)</h3>
+<p><strong>See <code>haircut</code> command for demo.</strong></p>
+<p>Commands generally consist of three parts, the command, followed by flags (aka
+options), and finally arguments.</p>
+<p>The <strong>command</strong> is the first &apos;word&apos;, e.g. <code>ls</code>, <code>cd</code>, or <code>touch</code>. It is like the
+verb, which says generally, &apos;what do I want to do&apos;.</p>
+<p>Next come the <strong>flags</strong> or <strong>options</strong>. These are optional; you may not use them
+for some commands. As the name implies, they set options to tell the command
+<strong>how</strong> to do what it&apos;s about to do. There may be zero or more options. Options
+usually start with one or two dashes. Usually one dash is for a short one letter
+abbreviation, while two dashes is for long name for the option.</p>
+<p>Finally come the arguments. These are what you want to do the action to. Usually
+these are file names, but they could be URLs, or other things.</p>
+<h3 id="commands-run-in-an-environment">Commands run in an &apos;environment&apos;</h3>
+<p>We won&apos;t go deep into environments yet, but everytime a command is run, it may
+choose to look at what are called <code>environment variables</code>. These are essentially
+variables that are semi-permanent and can provide information or options to help
+a command do its job.</p>
+<hr>
+<h2 id="break-10-minutes">BREAK (10 minutes)</h2>
+<hr>
+<h2 id="paths">Paths</h2>
+<h3 id="what-is-a-path">What is a &apos;path&apos;?</h3>
+<p>A path is the description that tells us (or a computer) where a file or folder
+is on our computer.</p>
+<p>Our terminal (shell) is always working out of a single path at a time. Commands
+that are run will take action in the current path (directory) unless we tell
+them to do otherwise.</p>
+<h3 id="relative-vs-absolute-paths">Relative vs Absolute Paths</h3>
+<p>All paths point to a single file or folder, but we can write paths to be either
+<strong>relative</strong> or <strong>absolute</strong>.</p>
+<h4 id="absolute-paths">Absolute Paths</h4>
+<p>An absolute path will always tell us excactly where the file or folder is. An
+example in the real world would be a mailing address:</p>
+<p>GA
+8th Floor
+1133 15th St NW
+Washington, DC 20003
+USA
+Earth
+Solar System
+Milky Way</p>
+<p>Absolute paths start with a <code>/</code> and go from top down (least specific to more specific):</p>
+<pre><code class="lang-bash">/Milky_Way/Solar_System/Earth/USA/Washington_DC/<span class="hljs-number">1133</span>_15th_St_NW/<span class="hljs-number">8</span>th_Floor/GA
+<span class="hljs-comment"># or a realistic example</span>
+/Users/adambray/code/work/general_assembly/courses/wdi/dc/dc7/curriculum/<span class="hljs-number">01</span>-front-end/
+</code></pre>
+<p>The first slash essentially means &quot;start at the root of the computer&apos;s file system&quot;.</p>
+<p>Some absolute paths instead start with a <code>~</code>. This is a shortcut to the absolute
+path of our home directory. So the above absolute path could also be written as</p>
+<pre><code>~/code/work/general_assembly/courses/wdi/dc/dc7/curriculum/01-front-end/
+</code></pre><h4 id="relative-paths">Relative Paths</h4>
+<p>Relative paths are interpreted starting from the directory we&apos;re in (aka the
+current working directory).</p>
+<p>They start with anything but a slash <code>/</code> or a tilde <code>~</code>.</p>
+<p>So if I were in my home directory, the path to my work folder could be written</p>
+<pre><code class="lang-bash">code/work                     <span class="hljs-comment"># relative</span>
+~/code/work                   <span class="hljs-comment"># absolute</span>
+/users/adambray/code/work/    <span class="hljs-comment"># absolute</span>
+</code></pre>
+<p>If I were in a different folder, then the relative path would point to an
+entirely different folder/file.</p>
+<p>Periods or dots are special in relative paths:</p>
 <ul>
-<li>Shortcut to home folder regardless of where you are</li>
+<li>One dot means &quot;relative to the current directory&quot;</li>
+<li>Two dots means &quot;go up to the parent directory&quot;</li>
 </ul>
-</li>
-<li><p>Tab completion</p>
-</li>
-<li><p>Other funky punctuation: <code>$</code></p>
-</li>
+<p>So if I&apos;m in <code>~/code/work</code> then the relative path <code>../personal_projects</code> means
+&quot;go up one level to the code folder, then down into personal_projects&quot;.</p>
+<p>We can use multiple <code>..</code> to go up multiple levels:</p>
+<p><code>../../documents/top_secret/lol_cats/favorites/so_many_kittenz.jpg</code> would go up
+two levels, from <code>~/code/work</code> to <code>~</code> (my home directory), and then down into
+my favorite lolcat picture.</p>
+<hr>
+<h2 id="common-commands">Common Commands</h2>
+<h3 id="getting-help-info">Getting help / info</h3>
+<p>There are three general ways to get help with a command.</p>
+<ul>
+<li>add <code>--help</code> or <code>-h</code> to the end of the command. e.g. <code>brew --help</code></li>
+<li>use the <code>man</code> tool (manual), e.g. <code>man brew</code></li>
+<li>search google</li>
 </ul>
-<h3 id="absolute-vs-relative">Absolute vs relative</h3>
+<h3 id="common-command-teachbacks">Common Command Teachbacks</h3>
+<p>Form groups of ~3 and spend 15 minutes researching and preparing a short demo
+of your command. Focus on:</p>
 <ul>
-<li><p>Your current frame of reference</p>
-</li>
-<li><p>Mailing addresses: Domestic vs international vs interplanetary vs universe</p>
-</li>
-<li><p><code>open</code> a file using an absolute path, then a relative path</p>
+<li>what it does</li>
+<li>common uses</li>
+<li>common flags or arguments</li>
+<li>any &apos;gotchas&apos;?</li>
+</ul>
+<h4 id="commands">Commands</h4>
 <ul>
-<li><code>ls</code>: lists current dir</li>
-<li><code>ls ~</code>:  lists you home directory.</li>
+<li>tab completion</li>
+<li>ls</li>
+<li>cd</li>
+<li>touch / mkdir</li>
+<li>cp</li>
+<li>mv</li>
+<li>rm</li>
+<li>atom</li>
+</ul>
+<h2 id="unsafe-commands">Unsafe Commands</h2>
+<h3 id="sudo">sudo</h3>
+<p><code>sudo</code> runs the command that follows as the SuperUser, aka &apos;root&apos; or &apos;admin&apos;.
+This means the command could potentially have destructive effects.</p>
+<p>Generally, you shouldn&apos;t need to run commands with sudo in this course. If
+you&apos;re not sure, ask an instructor.</p>
+<h3 id="rm">rm</h3>
+<p><code>rm</code> deletes files with no confirmation, and there&apos;s no <code>trash</code> to recover them
+from. Use <code>rm</code>, and especially <code>rm -rf</code> with caution.</p>
+<h2 id="exercise-cli-gardening">Exercise: CLI Gardening</h2>
+<p><a href="https://github.com/ga-dc/cli_gardening" target="_blank">CLI Gardening</a></p>
+<hr>
+<h2 id="wdi-environment">WDI Environment</h2>
+<h3 id="directory-structure">Directory Structure</h3>
+<p>Here&apos;s the suggested structure for your WDI folder. Please create the following
+folders if they do not exist.</p>
+<ul>
+<li>~/wdi<ul>
+<li>sandbox</li>
+<li>exercises</li>
+<li>curriculum</li>
+<li>projects</li>
 </ul>
 </li>
 </ul>
 <hr>
-<h3 id="we-do-our-working-dir">We DO: Our working dir</h3>
-<p>Since it&apos;s important to know where we are.  Let&apos;s create a place to do our work.  Our working directory.</p>
-<p>How do we get back to our home dir?
-<code>cd</code> or <code>cd ~</code></p>
-<p>Review home dir.</p>
-<p>Now, let&apos;s create a working dir.  How would I make a dir name &quot;ga&quot;?
-Recommend lower case, separated by underscores, no spaces or special characters.</p>
-<p><code>mkdir wdi</code></p>
-<p>now, we want to work in here.  How do we get there?</p>
-<p><code>cd wdi</code></p>
-<p>This is the relative path. Starting from where we are, we go down into the <code>wdi</code> dir.
-What is the absolute path?
-  <code>cd ~/wdi</code></p>
-<p>We have 4 major things that we do in class:</p>
-<ul>
-<li>exercises<ul>
-<li>each exercise will be a separate directory in here</li>
-</ul>
-</li>
-<li>lessons (pbj)<ul>
-<li>this is a read-only repository of the WDI lessons.</li>
-</ul>
-</li>
-<li>projects<ul>
-<li>You will work on 4 week-long projects.  They will live here.</li>
-</ul>
-</li>
-<li>sandbox<ul>
-<li>our play area.  For quick exercises.  One-offs.</li>
-<li>If it&apos;s not an assigned exercise, it goes here.</li>
-</ul>
-</li>
-</ul>
-<p>(3 min) Let&apos;s make these now.  </p>
-<p>Commands:</p>
-<pre><code>cd ~/wdi
-mkdir exercises
-mkdir pbj
-mkdir projects
-mkdir sandbox
-</code></pre><p>When complete, you should see:</p>
-<pre><code>$ tree -C ~/wdi
-wdi
-&#x251C;&#x2500;&#x2500; Rakefile
-&#x251C;&#x2500;&#x2500; installfest.yml
-&#x251C;&#x2500;&#x2500; exercises
-&#x251C;&#x2500;&#x2500; pbj
-&#x251C;&#x2500;&#x2500; projects
-&#x2514;&#x2500;&#x2500; sandbox
-</code></pre><p>Bonus: Feel free to create a readme file to describe each directory.</p>
-<hr>
-<h2 id="commands-exercise">Commands exercise</h2>
-<h3 id="13m-you-do-pair-up-assign-groups-and-figure-out-what-each-command-does">13m) You do: Pair up, assign groups, and figure out what each command does.</h3>
-<p>Each column is related commands.</p>
-<p>Play with the commands and figure out:</p>
-<ul>
-<li><p>How would you describe what the command does?</p>
-</li>
-<li><p>For what (if anything) is the command&apos;s name an abbreviation?</p>
-</li>
-<li><p>Identify a useful flag for each command</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>touch</code></td>
-<td><code>cat</code></td>
-<td><code>pwd</code></td>
-<td><code>history</code></td>
-</tr>
-<tr>
-<td><code>mkdir</code></td>
-<td><code>head</code></td>
-<td><code>tree</code></td>
-<td><code>mv</code></td>
-</tr>
-<tr>
-<td><code>ls</code></td>
-<td><code>tail</code></td>
-<td><code>open</code></td>
-<td><code>cp</code></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><p><code>ls -a</code></p>
-</li>
-<li><p><code>cp -R</code></p>
-</li>
-<li><p><code>mkdir -p</code></p>
-</li>
-<li><p>Not worth time to memorize everything; know how to look it up</p>
-</li>
-</ul>
-<p>--</p>
-<h3 id="you-do-to-oz-20-min">You Do: To OZ! (20 min)</h3>
-<p><a href="https://github.com/ga-dc/to_oz" target="_blank">https://github.com/ga-dc/to_oz</a></p>
-<hr>
-<h3 id="10m-we-do-the-dangerous-commands">10m) We do: The dangerous commands</h3>
-<h4 id="rm">rm</h4>
-<pre><code>  cd ~/wdi/sandbox
-  touch hello.txt
-  rm hello.txt
-</code></pre><ul>
-<li><p>What does <code>rm</code> stand for?</p>
-</li>
-<li><p>Why is this &quot;dangerous&quot;?</p>
-<pre><code>cd ~/wdi/exercises/to_oz/OZ
-mkdir CandyLand
-rm CandyLand
-</code></pre></li>
-<li><p>Why didn&apos;t it work?</p>
-</li>
-</ul>
-<pre><code> rm -d CandyLand
-</code></pre><ul>
-<li>What does <code>-d</code> stand for?</li>
-</ul>
-<pre><code> mkdir CandyLand
- touch CandyLand/judge.txt
- rm -d CandyLand
-</code></pre><ul>
-<li>Why didn&apos;t it work?</li>
-</ul>
-<pre><code> rm -r CandyLand
-</code></pre><ul>
-<li><p>What does <code>-r</code> stand for?</p>
-<ul>
-<li>Recursion</li>
-</ul>
-</li>
-<li><p>Safety check against deleting stuff you don&apos;t mean to delete.</p>
-</li>
-<li><p>Be <strong>super careful</strong> with <code>rm -r</code>.</p>
-</li>
-</ul>
-<hr>
-<h4 id="sudo">sudo</h4>
-<ul>
-<li>Super User DO</li>
-<li>Acting as Admin.</li>
-<li>You probably do NOT need to use <code>sudo</code>.</li>
-<li>As Spiderman knows all too well... <img src="http://treasure.diylol.com/uploads/post/image/288655/resized_how-i-feel-when-i-introduce-some-one-to-reddit-enhancement-suite-meme-generator-with-great-power-comes-great-responsibility-2e50d9.jpg" alt="&quot;With great power, comes great responsibility&quot;"></li>
-</ul>
-<hr>
-<h3 id="ding-dong-the-witch-is-dead">Ding Dong the Witch is Dead.</h3>
-<p><a href="https://github.com/ga-dc/to_oz#ding-dong-the-witch-is-dead" target="_blank">https://github.com/ga-dc/to_oz#ding-dong-the-witch-is-dead</a></p>
-<hr>
-<h2 id="closing">Closing</h2>
-<ol>
-<li>What is the absolute path to the default WDI working dir?</li>
-<li>Name 2 unsafe commands</li>
-<li>How do we found out what flags we can pass to <code>ls</code>?</li>
-<li>Can we create files with finder?</li>
-<li>Where can go for help?</li>
-</ol>
-<p>Answers (think first!):</p>
-<ol>
-<li><code>~/wdi</code></li>
-<li><code>rm</code>, <code>sudo</code></li>
-<li><code>ls --help</code>, <code>man ls</code></li>
-<li>no</li>
-<li>man, --help, google, peers instructors</li>
-</ol>
+<h2 id="exercise-kitchen-organizer">Exercise: Kitchen Organizer</h2>
+<p><a href="https://github.com/ga-dc/kitchen_organizer" target="_blank">Kitchen Organizer</a></p>
 <hr>
 <h2 id="homework">Homework</h2>
 <p><a href="https://github.com/ga-dc/command_line_fu" target="_blank">https://github.com/ga-dc/command_line_fu</a></p>
