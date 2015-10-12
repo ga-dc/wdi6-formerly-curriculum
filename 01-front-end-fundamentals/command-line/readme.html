@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Mon Oct 12 2015 12:07:11 GMT+0000 (UTC)">
+    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Mon Oct 12 2015 17:02:10 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1254,9 +1254,29 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="your-work-environment">Your Work Environment</h1>
-<h2 id="controlling-your-world">Controlling your world</h2>
-<hr>
+                        <h1 id="the-cli-command-line-interface">The CLI (Command Line Interface)</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<h3 id="concepts">Concepts</h3>
+<ul>
+<li>Compare and contrast CLIs / GUIs</li>
+<li>Explain how command line usage can increase efficiency</li>
+<li>Describe the anatomy of a command (statement, flags, arguments)</li>
+<li>Explain what a path is, and why the &apos;current path&apos; is important in the CLI</li>
+<li>Explain the difference between an absolute path and a relative path</li>
+</ul>
+<h3 id="mechanics">Mechanics</h3>
+<ul>
+<li>Setup your working directory / environment for WDI</li>
+<li>List common commands to<ul>
+<li>View the path of the current directory</li>
+<li>View the contents of a directory</li>
+<li>Navigate to different directories</li>
+<li>Manage files and directories</li>
+</ul>
+</li>
+<li>Open files and directories with Atom</li>
+<li>List unsafe commands</li>
+</ul>
 <h2 id="framing-before-objectives">Framing (before Objectives)</h2>
 <p>Introduce students to the command line.  Giving them a brief taste before sharing the Learning Objectives.</p>
 <p><em>&quot;You just learned that mentors are all around you.  I&apos;d like to introduce you to your closest and best mentor.&quot;</em> <picks up="" computer=""></picks></p>
@@ -1275,7 +1295,7 @@
 </ul>
 <p><em>Let me show you the command center of the computer.</em></p>
 <p><em>Open your computers.</em>
-(say the following while demonstrating)<br><em>&quot;Hold down the Command key and press Space.  You will see this written as &quot;cmd+space&quot;.  This is Spotlight search.  You can use this to find stuff on your computer.  Right now, we want our &quot;Terminal&quot;.  Press Enter.</em></p>
+(say the following while demonstrating)<br>_&quot;Hold down the Command key and press Space.  You will see this written as &quot;cmd+space&quot;.  This is Spotlight search.  You can use this to find stuff on your computer.  Right now, we want our &quot;Terminal&quot;.  Press Enter.</p>
 <p><em>You are now in the terminal.  As a developer, you will spend a lot of time here, telling your computer what to do.  Giving it very precise orders.  It can only do what we tell it to do.</em></p>
 <p>Type &quot;give me rice&quot;</p>
 <p>You should see:</p>
@@ -1287,22 +1307,9 @@
 Type <code>pwd -P</code>.  <em>This is YOUR home dir.  We&apos;ll spend a lot of time here.  Once again, don&apos;t worry about notes, we come back here, more slowly, in a second.</em>
 Now type: <code>$ ls</code></p>
 <p>That is a listing of the files in this folder or directory.</p>
-<p>_&quot;Let&apos;s confirm that.&quot; <code>open .</code> <split screen="" w="" Terminal="" and="" Finder="">
-Compare.</split></p>
+<p><em>&quot;Let&apos;s confirm that.&quot; <code>open .</code> <split screen="" w="" Terminal="" and="" Finder="">
+Compare.</split></em></p>
 <p>Now type: <code>$ ls -l</code>.  The same files.  Different view.</p>
-<hr>
-<h2 id="learning-objectives">Learning Objectives</h2>
-<ul>
-<li>Setup your working directory for WDI</li>
-<li>Compare and Contrast CLI to GUI</li>
-<li>Describe the anatomy of a command (statement, flags, arguments)</li>
-<li>Know where to go for help</li>
-<li>List common commands</li>
-<li>List unsafe commands</li>
-<li>Manage folders and files (using Finder and Shell)</li>
-<li>Explain the difference between relative and absolute path</li>
-</ul>
-<hr>
 <h2 id="i-do-share-the-first-3-lessons-of-the-command-line">I DO: Share the first 3 lessons of the Command Line</h2>
 <p><em>We just learned 3 very important lessons.</em></p>
 <p>Type <code>$ give me rice</code> again.</p>
@@ -1413,12 +1420,10 @@ ls
 <li><p>The Terminal</p>
 <ul>
 <li><p>OSX is BSD (Berkeley Software Distribution ).  Based on Unix.</p>
-<ul>
+</li>
 <li><p>A <strong>shell</strong> is a program that interacts with your operating system. The <strong>terminal</strong> runs the shell. Used to be an physical computer. Now just an app.</p>
 </li>
 <li><p>Might look familiar to old folks using old computers: no mouse</p>
-</li>
-</ul>
 </li>
 </ul>
 </li>
@@ -1437,16 +1442,16 @@ ls
 <li><p>Example</p>
 <ul>
 <li><p>Give someone a haircut</p>
-<ul>
+</li>
 <li><p>Haircut style is a flag</p>
 </li>
 <li><p>Person getting haircut is argument</p>
 </li>
 <li><p><code>haircut --mohawk Matt</code></p>
-</li>
+<ul>
+<li><code>haircut --mullet &quot;Billy Ray Cyrus&quot;</code></li>
 </ul>
 </li>
-<li><code>haircut --mullet &quot;Billy Ray Cyrus&quot;</code></li>
 </ul>
 </li>
 <li><p>Command: <code>haircut</code></p>
@@ -1696,17 +1701,17 @@ rm CandyLand
 <li><p>Why didn&apos;t it work?</p>
 </li>
 </ul>
-<pre><code>    rm -d CandyLand
+<pre><code> rm -d CandyLand
 </code></pre><ul>
 <li>What does <code>-d</code> stand for?</li>
 </ul>
-<pre><code>    mkdir CandyLand
-    touch CandyLand/judge.txt
-    rm -d CandyLand
+<pre><code> mkdir CandyLand
+ touch CandyLand/judge.txt
+ rm -d CandyLand
 </code></pre><ul>
 <li>Why didn&apos;t it work?</li>
 </ul>
-<pre><code>    rm -r CandyLand
+<pre><code> rm -r CandyLand
 </code></pre><ul>
 <li><p>What does <code>-r</code> stand for?</p>
 <ul>
