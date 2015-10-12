@@ -249,13 +249,6 @@ you're not sure, ask an instructor.
 `rm` deletes files with no confirmation, and there's no `trash` to recover them
 from. Use `rm`, and especially `rm -rf` with caution.
 
-
-## Exercise: CLI Gardening
-
-[CLI Gardening](https://github.com/ga-dc/cli_gardening)
-
---------------------------------------------------------------------------------
-
 ## WDI Environment
 
 ### Directory Structure
@@ -271,15 +264,25 @@ folders if they do not exist.
 
 --------------------------------------------------------------------------------
 
-## Exercise: Kitchen Organizer
+## Homework
+### CLI Gardening
+
+[CLI Gardening](https://github.com/ga-dc/cli_gardening)
+
+### Kitchen Organizer
 
 [Kitchen Organizer](https://github.com/ga-dc/kitchen_organizer)
 
---------------------------------------------------------------------------------
+To Submit:
 
-## Homework
+1. Go to the [issues page for the kitchen exercise](https://github.com/ga-dc/kitchen_organizer/issues)
+2. Click 'New Issue’.
+3. For the title, just put “Day 1 HW” or something similar
+4. For the description, copy paste the commands you used to complete the kitchen organizer exercise. (No need to submit anything related to gardener.)
 
-https://github.com/ga-dc/command_line_fu
+### Command Line Fu (Optional)
+
+[Command Line Fu](https://github.com/ga-dc/command_line_fu)
 
 --------------------------------------------------------------------------------
 
