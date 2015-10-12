@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.2" data-basepath="../.." data-revision="Mon Oct 12 2015 20:29:42 GMT+0000 (UTC)">
+    <div class="book" data-level="1.2" data-basepath="../.." data-revision="Mon Oct 12 2015 21:36:12 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1327,23 +1327,13 @@ changes (again for code review). Git doesn&apos;t support this out of the box, b
 Github does provide this feature. For example, you can add comments to a changed
 line or lines in a given commit.</p>
 <p><strong>Fearlessness in making changes</strong></p>
-<p>In developing software, we often want to experiemnt in adding a feature or
+<p>In developing software, we often want to experiment in adding a feature or
 refactoring (rewriting) existing code. Because git makes it easy to go back to a
-known good state, we can experiement without worrying that we&apos;ll be unable to
-undo the experiemental work.</p>
+known good state, we can experiment without worrying that we&apos;ll be unable to
+undo the experimental work.</p>
 <h3 id="core-concepts-of-git-repositories-40-minutes">Core Concepts of Git Repositories (40 minutes)</h3>
 <p>This section aims to introduce the core use of git, as well as the fundamental
 concepts of how git works (and associated terms).</p>
-<h4 id="exercise-1-create-a-repository-and-committing-locally">Exercise 1: Create a Repository and Committing Locally</h4>
-<p>Students should:</p>
-<ol>
-<li>download and install the <a href="https://mac.github.com" target="_blank">Github for Mac client</a>.</li>
-<li>initialize a git repository in their <code>resume</code> folder.</li>
-<li>make an initial commit with the current version of their code (all files)</li>
-<li>modify a file (e.g. index.html) and create a new commit, with an appropriate message</li>
-<li>repeat previous step (committing) but this time, change two files.</li>
-<li>look at the &apos;history&apos; tab to see the log of commits, and what changed</li>
-</ol>
 <h4 id="terms-and-concepts-core-git">Terms and Concepts (Core Git)</h4>
 <ul>
 <li><strong>repository</strong> - collection of commits (save points of the working tree)</li>
@@ -1355,18 +1345,18 @@ concepts of how git works (and associated terms).</p>
 <p>Instructor should diagram the various components of a git repository, and how
 they relate.</p>
 <p><strong> Insert diagram here </strong></p>
+<h4 id="exercise-1-create-a-repository-and-committing-locally">Exercise 1: Create a Repository and Committing Locally</h4>
+<p>Students should:</p>
+<ol>
+<li>create a new <code>resume</code> folder in sandbox directory.</li>
+<li>initialize a git repository in the <code>resume</code> folder.</li>
+<li>make an initial commit with the current version of their code (all files)</li>
+<li>modify a file (e.g. resume.txts) and create a new commit, with an appropriate message</li>
+<li>repeat previous step (committing) but this time, change two files.</li>
+<li>view the &apos;history&apos; by running <code>git log</code> to see the log of commits, and what changed</li>
+</ol>
 <h3 id="break-10-minutes">Break (10 minutes)</h3>
 <h3 id="remote-repositories-and-github-30-minutes">Remote Repositories and Github (30 minutes)</h3>
-<h4 id="exercise-2-publish-to-a-remote-repository-on-github">Exercise 2: Publish to a remote repository on Github</h4>
-<ol>
-<li>open the resume repo in the Github client</li>
-<li>ensure you have at least one commit</li>
-<li>click the &apos;publish&apos; button in the upper right corner</li>
-<li>give the repo a name and description, and ensure it&apos;s public, then push it</li>
-<li>open the repo on github, and explore the code there</li>
-<li>make a change locally, commit it, and sync it</li>
-<li>open the repo on github, and note that the changes have synced</li>
-</ol>
 <h4 id="terms-and-concepts-remotes">Terms and Concepts (Remotes)</h4>
 <ul>
 <li><strong>remote</strong> - another repository that can be syncronized with a remote</li>
@@ -1380,11 +1370,18 @@ they relate.</p>
 </ul>
 <p>Instructor should diagram the clone/push/pull process.</p>
 <p><strong> Insert diagram here </strong></p>
+<h4 id="exercise-2-publish-to-a-remote-repository-on-github">Exercise 2: Publish to a remote repository on Github</h4>
+<ol>
+<li>make sure you are in the resume directory and you have nothing to commit.</li>
+<li>ensure you have at least one commit</li>
+<li>give the repo a name and description, and ensure it&apos;s public</li>
+<li>add repo as a remote and push to remote</li>
+<li>open the repo on github, and explore the code there</li>
+<li>make a change locally, commit it, and sync it</li>
+<li>open the repo on github, and note that the changes have synced</li>
+</ol>
 <h3 id="break-5-minutes">Break (5 minutes)</h3>
 <h3 id="forking-pull-requests-30-minutes">Forking &amp; Pull Requests (30 minutes)</h3>
-<h4 id="exercise-3-fork-clone-and-create-a-pull-request">Exercise 3: Fork, Clone and create a Pull Request</h4>
-<p>Visit the <a href="https://github.com/ga-dc/haiku" target="_blank">haiku</a> repo and follow the instructions
-there.</p>
 <h4 id="terms-and-concepts-forking-and-pull-requests">Terms and Concepts (Forking and Pull Requests)</h4>
 <ul>
 <li><strong>fork</strong> - make a copy of a repo on github under a different account, used for OSS collaboration</li>
@@ -1393,6 +1390,9 @@ there.</p>
 <p>Instructor should diagram the fork/clone/pull request process, and how it relates
 to HW submission.</p>
 <p><strong> insert diagram here </strong></p>
+<h4 id="exercise-3-fork-clone-and-create-a-pull-request">Exercise 3: Fork, Clone and create a Pull Request</h4>
+<p>Visit the <a href="https://github.com/ga-dc/haiku" target="_blank">haiku</a> repo and follow the instructions
+there.</p>
 <h3 id="closing">Closing</h3>
 <p>What problems do we anticipate using git / github?
 Review learning objectives.</p>
@@ -1455,14 +1455,14 @@ OR</li>
 </li>
 </ol>
 <h2 id="homework">Homework</h2>
-<h3 id="1-personal-portfolio-page">1. Personal Portfolio Page</h3>
+<h3 id="1-personal-resume-page">1. Personal Resume Page</h3>
 <p><a href="https://github.com/ga-dc/html_resume" target="_blank">Part 2 of the HTML Resume</a></p>
-<h3 id="2-fork-and-clone-the-pbj-repo">2. Fork and Clone the PBJ Repo</h3>
-<p>Fork the <a href="https://github.com/ga-dc/pbj" target="_blank">PBJ Repo</a> to your personal account. Clone <em>your fork</em> to your
+<h3 id="2-fork-and-clone-the-curriculum-repo">2. Fork and Clone the Curriculum Repo</h3>
+<p>Fork the <a href="https://github.com/ga-dc/curriculum" target="_blank">Curriculum Repo</a> to your personal account. Clone <em>your fork</em> to your
 computer in your <code>~/wdi</code> folder.</p>
 <p>NOTE: If you already have a <code>pbj</code> folder in your <code>~/wdi</code> folder, delete or rename it before you clone.</p>
 <h3 id="submission">Submission</h3>
-<p>File a github issue, on <a href="https://github.com/ga-dc/pbj/issues" target="_blank">https://github.com/ga-dc/pbj/issues</a>, with a link to:</p>
+<p>File a github issue, on <a href="https://github.com/ga-dc/curriculum/issues" target="_blank">https://github.com/ga-dc/curriculum/issues</a>, with a link to:</p>
 <ul>
 <li>your personal github pages repo</li>
 <li>the URL to see your hosted page.</li>
