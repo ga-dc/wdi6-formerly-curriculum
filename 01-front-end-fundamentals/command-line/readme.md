@@ -21,525 +21,268 @@
 - Open files and directories with Atom
 - List unsafe commands
 
-## Framing (before Objectives)
+## Framing
 
-Introduce students to the command line.  Giving them a brief taste before sharing the Learning Objectives.
+Turn & Talk: Given your exposure to the command line so far (prework and
+installfest), discuss the following questions:
 
-_"You just learned that mentors are all around you.  I'd like to introduce you to your closest and best mentor."_ <picks up computer>
+* How is the CLI different from the GUI?
+* What do you like / dislike about using it?
+* It what ways might it be beter or worse for Developers? (Compared to a GUI)
 
-> This is your computer, there are many like it, but this one is yours.  
-> Your computer is your best friend.  You must master it like you master your life.  
-> Your computer without you is useless.
+---------------------------------------------------------------------------
 
-_Think about that..._
+### Why The CLI?
 
-> My computer, without me, is useless.
+The CLI has many benefits over a GUI:
 
-pause
+**Speed**
+While it may not seem so yet, over time, most developers can achieve common
+tasks much faster using the command line. Features such as tab completion,
+history searching / modifying, and piping commands all contribute to this speed.
 
-- Let's start owning it.
-- Let's start playing with it.
-- Let's create something today.
+**Precision**
+Because of it's nature as a text-based interface, the command line provides us
+with a lot more precision. We can look at the commands we're about to enter
+and understand exactly what they will do. This also allows:
 
+**Repeatability / Scriptability**
+The precision of commands and their text-based nature means we can easily save
+them and re-use them, or share them with others when appropriate. If you think
+back to the commands you ran during installfest, those were basically a set of
+scripts that we had you run.
 
-_Let me show you the command center of the computer._
+**Tools**
+There are a very large number of tools available on the command line, to help
+us achieve almost any task. Most of them are built in, but we can download
+almost any others using `brew` on a mac, or `apt-get` on linux.
 
-_Open your computers._
-(say the following while demonstrating)  
-_"Hold down the Command key and press Space.  You will see this written as "cmd+space".  This is Spotlight search.  You can use this to find stuff on your computer.  Right now, we want our "Terminal".  Press Enter.
+Additionally, tools built for the command line usually follow something called
+the 'unix philosophy', which is that each tool should do ~1 thing, and do it
+well. Complex tasks can be achieved by chaining tools together.
 
-_You are now in the terminal.  As a developer, you will spend a lot of time here, telling your computer what to do.  Giving it very precise orders.  It can only do what we tell it to do._
+--------------------------------------------------------------------------------
 
-Type "give me rice"
+## Basics of CLI
 
-You should see:
+You may already be familiar with some of these concepts, but it's worth
+reviewing them now, cementing the concepts and getting some more practice in.
 
-    $ give me rice
-    -bash: give: command not found
+### Everything is a command
 
-_Your computer got lost right from the start. _
+First things first, on the command line, everything we enter into the command
+line is a **command**. When we hit enter, the command is executed.
 
-_Don't worry about memorizing the commands.  We'll cover all this again.  Just observe._
+### Commands have output and side effects
 
-Type `cd`.
-Type `pwd -P`.  _This is YOUR home dir.  We'll spend a lot of time here.  Once again, don't worry about notes, we come back here, more slowly, in a second._
-Now type: `$ ls`
+Some commands have **output**, which is displayed on the screen for us to see.
+Examples of commands that have output might be:
 
-That is a listing of the files in this folder or directory.
+* `pwd`
+* `ls`
 
-_"Let's confirm that." `open .` <split screen w/ Terminal and Finder>
-Compare._
+Other commands primarily exist to have a *side-effect*, or in other words, to
+make some change, usually on our system. An example might be `touch`, which
+creates a new file.
 
-Now type: `$ ls -l`.  The same files.  Different view.
+Note that often times, a command whose main job is a side effect may not provide
+any output if it succeeds. If there is an error it will provide output.
 
+Rarely, some commands may provide both an output and side effects.
 
-## I DO: Share the first 3 lessons of the Command Line
+### Command Syntax (Flags and Arguments)
 
-_We just learned 3 very important lessons._
+**See `haircut` command for demo.**
 
-Type `$ give me rice` again.
-
-STWC: What did the computer know about giving me rice?
-Nada.  Zip.  Zero. Zilch.
-
-### Lesson One. Start with what you know.
-
-You build upon what you know.
-
-You also have to start with something the computer already knows and build on that.
-
-Then I had you type `cd`.  Why?  It's ok to be wrong.  That's how we move forward.
-Leading questions.
-
-
-### Lesson Two: Where?
-
-You have to care about *where* you are.
-
-Type `open .`
-
-STWC: What did that do?
-
-This dot ".", is a shortcut, an abbreviation for the current dir.  This command opens my current dir in finder.  If I was somewhere else, it would open a different dir.
-
-```
-ls # lists the current dir
-```
-
-### Lesson Three:  Be precise.
-
- I control the computer, by telling it **precisely** what I want.
-
-_This will become more obvious as you go through the exercises.  But I want to highlight that **everything** you type in is important._
-
-- Type `ls -l` and press enter
-- Type `ls -w` and press enter
-- Type `ls -a` and press enter
-
-The same files.  Different view.
+Commands generally consist of three parts, the command, followed by flags (aka
+options), and finally arguments.
 
 
-## We do:  The Terminal
+The **command** is the first 'word', e.g. `ls`, `cd`, or `touch`. It is like the
+verb, which says generally, 'what do I want to do'.
 
-> Why would we use it, instead of the pretty GUI?
+Next come the **flags** or **options**. These are optional; you may not use them
+for some commands. As the name implies, they set options to tell the command
+**how** to do what it's about to do. There may be zero or more options. Options
+usually start with one or two dashes. Usually one dash is for a short one letter
+abbreviation, while two dashes is for long name for the option.
 
-Walk through the following steps (without setup/clarification)
-Work with students to write the steps of what we just did on the board.
+Finally come the arguments. These are what you want to do the action to. Usually
+these are file names, but they could be URLs, or other things.
 
-1. Type `ls`
- - What do you see?
+### Commands run in an 'environment'
 
-2. Type `echo 'Hi there!' > hello.txt`, then `ls`
+We won't go deep into environments yet, but everytime a command is run, it may
+choose to look at what are called `environment variables`. These are essentially
+variables that are semi-permanent and can provide information or options to help
+a command do its job.
 
- - What happened?
+--------------------------------------------------------------------------------
 
-3. Type `open hello.txt -e`
+## BREAK (10 minutes)
 
- - What happened?
+--------------------------------------------------------------------------------
 
-Note:
+## Paths
+### What is a 'path'?
 
-1. Get a list of the files in the current dir
+A path is the description that tells us (or a computer) where a file or folder
+is on our computer.
 
-2. Create a new text file called "hello.txt" and populate it.
+Our terminal (shell) is always working out of a single path at a time. Commands
+that are run will take action in the current path (directory) unless we tell
+them to do otherwise.
 
-3. Open that file to view it.
+### Relative vs Absolute Paths
 
----
+All paths point to a single file or folder, but we can write paths to be either
+**relative** or **absolute**.
 
-### Following the steps on the board, do the same stuff WITHOUT the Command Line.
+#### Absolute Paths
 
----
+An absolute path will always tell us excactly where the file or folder is. An
+example in the real world would be a mailing address:
 
-### Which way was easier?
+GA
+8th Floor
+1133 15th St NW
+Washington, DC 20003
+USA
+Earth
+Solar System
+Milky Way
 
----
+Absolute paths start with a `/` and go from top down (least specific to more specific):
 
-## Demo
-
-Now, close your computers for a second and watch this:
-```
-open . # watch in Finder
-ls
-```
-_Take note of the contents_
-```
-COUNTER=0
-while [ $COUNTER -lt 50 ]; do
-    touch sample_file_$COUNTER.txt
-    let COUNTER=COUNTER+1
-done
-```
-```
-ls
-```
-Brief overview of the code.
-```
-ls sample*
-```
-_Are those the files I just added?  And only those?_
-
-> Say bye.  
-
-_Don't try this at home.  The `rm` command can be dangerous.  We'll cover this soon._
-```
-rm sample*
-ls
+```bash
+/Milky_Way/Solar_System/Earth/USA/Washington_DC/1133_15th_St_NW/8th_Floor/GA
+# or a realistic example
+/Users/adambray/code/work/general_assembly/courses/wdi/dc/dc7/curriculum/01-front-end/
 ```
 
-_Now THAT'S power._
+The first slash essentially means "start at the root of the computer's file system".
 
----
-
-### This is called the "command line", also "shell", also "bash".
-
-- The command line / shell / bash is a way of interacting with your computer without using a fancy graphical interface
-
----
-
-CFU: Shout Out, write on board
-### Why do programmers work in the command line?
-
----
-
-### Brief history of Command Line
-
-- The command line is an interface to your computers's services.  To it's operating system.
-
-- Brief history
-  - We started on the command line (ok, really, keypunch cards).
-  - In 1984, [Apple introduced the Macintosh]( https://www.youtube.com/watch?v=axSnW-ygU5g&noredirect=1), the first, mass-marketed computer featuring a GUI.
-
-- What is a **GUI**?
-  - Graphical User Interface.  The typical OSX or Windows interface.
-
-- The Terminal
-  - OSX is BSD (Berkeley Software Distribution ).  Based on Unix.
-
- - A **shell** is a program that interacts with your operating system. The **terminal** runs the shell. Used to be an physical computer. Now just an app.
-
- - Might look familiar to old folks using old computers: no mouse
-
-- Discuss difference between bash, shell, terminal, CLI
-  - bash is a shell.
-  - terminal runs a shell
-  - CLI (command line interface) is the mode.
-
----
-
-## Lesson One: start with what it knows.  The basic command.
-
-### Anatomy of a command
-
-- Example
-
- - Give someone a haircut
-
-  - Haircut style is a flag
-
-  - Person getting haircut is argument
-
-  - `haircut --mohawk Matt`
-    - `haircut --mullet "Billy Ray Cyrus"`
-
-- Command: `haircut`
-
-- Flag: `-t mohawk`
-
- - The command's options
-
-- Argument: `Matt`
-
- - The input that's being processed by the command
-
-- Other examples
-  - `say Hello`
-  - `say -v ?`
-
----
-
-## Sometimes it makes sense.
-
-_When you need someone's assistance, what do you ask for?_
-Help.
-
-`gem --help`
-It's not always that helpful.
-`ls --help`
-`ruby --help`
-
----
-
-## You Do: T&T (1 min)
-
-What version of ruby are we using?
-Who wrote ruby?  When?
-
-You can find this within ruby's help.
-
-Discuss `ruby --help`
-
----
-
-### Namespaces and double-dashes
-
-- Discuss `--` vs `-`
-  - `ruby --version`
-  - `ruby -v`
-
-- What does `ruby` do?
-
-- Keyboard shortcuts, Hot Keys
-  - Stop a process: Ctrl + c
-  - Copy/Paste: Cmd + c, Cmd + v
-  - Clear screen: Ctrl + k
-  - Front/end of line: Ctrl + a, Ctrl + e
-
-- `brew install tree`
-  - What does brew do?
-
----
-
-## You Do: Research `man` (3 min)
-
-Let's do a little research.  The developers of each of these commands has provided a manual.  Let's google it.  If you know the answer, please don't spoil it.
-- Find the manuals for:
-  - ls
-  - cd
-  - ruby
-
-Results on board: html pages, `man`
-
-- Type `man ruby`
-
-- Introduce manuals
- - Things in brackets are optional
- - Structure of the manual
-
----
-
-## Lesson Two: Know where you are.
-
-### Every command is executed in the context of the current folder
-
-- `pwd`
-- `pwd -P`
-
-- `cd ~`
-
-- `ls`
-
-- `cd Desktop`
-
-- Go up with `..`
-
- - `cd ..`
-
-- `cd` Drag and drop
-
-- `cd ~`
-
- - Shortcut to home folder regardless of where you are
-
-- Tab completion
-
-- Other funky punctuation: `$`
-
-### Absolute vs relative
-
-- Your current frame of reference
-
-- Mailing addresses: Domestic vs international vs interplanetary vs universe
-
-- `open` a file using an absolute path, then a relative path
-  - `ls`: lists current dir
-  - `ls ~`:  lists you home directory.
-
----
-
-### We DO: Our working dir
-
-Since it's important to know where we are.  Let's create a place to do our work.  Our working directory.
-
-How do we get back to our home dir?
-`cd` or `cd ~`
-
-Review home dir.
-
-Now, let's create a working dir.  How would I make a dir name "ga"?
-Recommend lower case, separated by underscores, no spaces or special characters.
-
-`mkdir wdi`
-
-now, we want to work in here.  How do we get there?
-
-`cd wdi`
-
-This is the relative path. Starting from where we are, we go down into the `wdi` dir.
-What is the absolute path?
-  `cd ~/wdi`
-
-We have 4 major things that we do in class:
-- exercises
-  - each exercise will be a separate directory in here
-- lessons (pbj)
-  - this is a read-only repository of the WDI lessons.
-- projects
-  - You will work on 4 week-long projects.  They will live here.
-- sandbox
-  - our play area.  For quick exercises.  One-offs.
-  - If it's not an assigned exercise, it goes here.
-
-(3 min) Let's make these now.  
-
-Commands:
-```
-cd ~/wdi
-mkdir exercises
-mkdir pbj
-mkdir projects
-mkdir sandbox
-```
-
-
-When complete, you should see:
-```
-$ tree -C ~/wdi
-wdi
-├── Rakefile
-├── installfest.yml
-├── exercises
-├── pbj
-├── projects
-└── sandbox
-```
-
-Bonus: Feel free to create a readme file to describe each directory.
-
----
-
-## Commands exercise
-
-### 13m) You do: Pair up, assign groups, and figure out what each command does.
-
-Each column is related commands.
-
-Play with the commands and figure out:
-
-- How would you describe what the command does?
-
-- For what (if anything) is the command's name an abbreviation?
-
-- Identify a useful flag for each command
-
-|1|2|3|4|
-|---|---|---|---|
-|`touch` |`cat`  |`pwd`  |`history` |
-|`mkdir` |`head`  |`tree`  |`mv`  |
-|`ls`  |`tail`  |`open`  |`cp`  |
-
-- `ls -a`
-
-- `cp -R`
-
-- `mkdir -p`
-
-- Not worth time to memorize everything; know how to look it up
-
---
-
-### You Do: To OZ! (20 min)
-
-https://github.com/ga-dc/to_oz
-
----
-
-### 10m) We do: The dangerous commands
-
-#### rm
-
-  ```
-  cd ~/wdi/sandbox
-  touch hello.txt
-  rm hello.txt
-  ```
-
-- What does `rm` stand for?
-
-- Why is this "dangerous"?
-```
-  cd ~/wdi/exercises/to_oz/OZ
- mkdir CandyLand
- rm CandyLand
-```
-
-- Why didn't it work?
+Some absolute paths instead start with a `~`. This is a shortcut to the absolute
+path of our home directory. So the above absolute path could also be written as
 
 ```
- rm -d CandyLand
+~/code/work/general_assembly/courses/wdi/dc/dc7/curriculum/01-front-end/
 ```
 
-- What does `-d` stand for?
+#### Relative Paths
 
+Relative paths are interpreted starting from the directory we're in (aka the
+current working directory).
+
+They start with anything but a slash `/` or a tilde `~`.
+
+So if I were in my home directory, the path to my work folder could be written
+
+```bash
+code/work                     # relative
+~/code/work                   # absolute
+/users/adambray/code/work/    # absolute
 ```
- mkdir CandyLand
- touch CandyLand/judge.txt
- rm -d CandyLand
-```
 
-- Why didn't it work?
+If I were in a different folder, then the relative path would point to an
+entirely different folder/file.
 
-```
- rm -r CandyLand
-```
+Periods or dots are special in relative paths:
+* One dot means "relative to the current directory"
+* Two dots means "go up to the parent directory"
 
-- What does `-r` stand for?
+So if I'm in `~/code/work` then the relative path `../personal_projects` means
+"go up one level to the code folder, then down into personal_projects".
 
- - Recursion
+We can use multiple `..` to go up multiple levels:
 
-- Safety check against deleting stuff you don't mean to delete.
+`../../documents/top_secret/lol_cats/favorites/so_many_kittenz.jpg` would go up
+two levels, from `~/code/work` to `~` (my home directory), and then down into
+my favorite lolcat picture.
 
-- Be **super careful** with `rm -r`.
+--------------------------------------------------------------------------------
 
----
+## Common Commands
 
-#### sudo
+### Getting help / info
 
-- Super User DO
-- Acting as Admin.
-- You probably do NOT need to use `sudo`.
-- As Spiderman knows all too well... !["With great power, comes great responsibility"](http://treasure.diylol.com/uploads/post/image/288655/resized_how-i-feel-when-i-introduce-some-one-to-reddit-enhancement-suite-meme-generator-with-great-power-comes-great-responsibility-2e50d9.jpg)
+There are three general ways to get help with a command.
 
----
+* add `--help` or `-h` to the end of the command. e.g. `brew --help`
+* use the `man` tool (manual), e.g. `man brew`
+* search google
 
-### Ding Dong the Witch is Dead.
+### Common Command Teachbacks
 
-https://github.com/ga-dc/to_oz#ding-dong-the-witch-is-dead
+Form groups of ~3 and spend 15 minutes researching and preparing a short demo
+of your command. Focus on:
 
----
+* what it does
+* common uses
+* common flags or arguments
+* any 'gotchas'?
 
-## Closing
+#### Commands
 
-1. What is the absolute path to the default WDI working dir?
-2. Name 2 unsafe commands
-3. How do we found out what flags we can pass to `ls`?
-4. Can we create files with finder?
-5. Where can go for help?
+* tab completion
+* ls
+* cd
+* touch / mkdir
+* cp
+* mv
+* rm
+* atom
 
-Answers (think first!):
-1. `~/wdi`
-2. `rm`, `sudo`
-3. `ls --help`, `man ls`
-4. no
-5. man, --help, google, peers instructors
+## Unsafe Commands
 
----
+### sudo
+
+`sudo` runs the command that follows as the SuperUser, aka 'root' or 'admin'.
+This means the command could potentially have destructive effects.
+
+Generally, you shouldn't need to run commands with sudo in this course. If
+you're not sure, ask an instructor.
+
+
+### rm
+
+`rm` deletes files with no confirmation, and there's no `trash` to recover them
+from. Use `rm`, and especially `rm -rf` with caution.
+
+
+## Exercise: CLI Gardening
+
+[CLI Gardening](https://github.com/ga-dc/cli_gardening)
+
+--------------------------------------------------------------------------------
+
+## WDI Environment
+
+### Directory Structure
+
+Here's the suggested structure for your WDI folder. Please create the following
+folders if they do not exist.
+
+  * ~/wdi
+    * sandbox
+    * exercises
+    * curriculum
+    * projects
+
+--------------------------------------------------------------------------------
+
+## Exercise: Kitchen Organizer
+
+[Kitchen Organizer](https://github.com/ga-dc/kitchen_organizer)
+
+--------------------------------------------------------------------------------
 
 ## Homework
 
 https://github.com/ga-dc/command_line_fu
 
----
+--------------------------------------------------------------------------------
+
 
 ## Sample Quiz Questions
 
