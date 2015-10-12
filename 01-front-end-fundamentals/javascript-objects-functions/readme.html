@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.7" data-basepath="../.." data-revision="Mon Oct 12 2015 17:07:07 GMT+0000 (UTC)">
+    <div class="book" data-level="1.7" data-basepath="../.." data-revision="Mon Oct 12 2015 17:50:34 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1254,7 +1254,7 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="objects-functions-and-dom">Objects, Functions and DOM</h1>
+                        <h1 id="objects-and-functions">Objects and Functions</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
 <li>Discuss datatypes (simple datatypes vs. collections)</li>
@@ -1410,87 +1410,10 @@ eat(<span class="hljs-string">&quot;pizza&quot;</span>)
 }
 car.drive()
 </code></pre>
-<h2 id="dom">DOM</h2>
-<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" target="_blank"><strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel</a>
-is a programming interface for HTML.</p>
-<p>An HTML <em>document</em> is available for us to manipulate as an object, and this object is structured like a tree:</p>
-<p>(Not like this one <a href="http://hakim.se/experiments/css/domtree/" target="_blank">http://hakim.se/experiments/css/domtree/</a>)</p>
-<p><img src="http://www.tuxradar.com/files/LXF118.tut_grease.diagram.png" alt=""></p>
-<p><a href="https://css-tricks.com/dom/" target="_blank">https://css-tricks.com/dom/</a></p>
-<h3 id="document">Document</h3>
-<p><code>document</code></p>
-<ul>
-<li><code>document.head</code></li>
-<li><code>document.body</code></li>
-</ul>
-<p>Each web page loaded in the browser has its own document object. The Document interface serves as an entry point to the web page&apos;s content</p>
-<p><code>document.body</code></p>
-<ul>
-<li>.children</li>
-<li>.childNodes</li>
-<li>.firstChild</li>
-<li>.lastChild</li>
-<li>.nextSibling</li>
-<li>.parentElement</li>
-<li>.parentNode</li>
-</ul>
-<h3 id="selecting-dom-elements">Selecting DOM elements</h3>
-<ul>
-<li>document.getElementById</li>
-<li>document.getElementsByTagName</li>
-<li>document.getElementsByClassName</li>
-<li>document.querySelector</li>
-<li>document.querySelectorAll</li>
-</ul>
-<h3 id="altering-dom-elements">Altering DOM Elements</h3>
-<ul>
-<li>.textContent</li>
-<li>.innerHTML</li>
-<li>.setAttribute(name, value);</li>
-<li>.id</li>
-<li>.classList.toggle (add, remove, contains)</li>
-<li>.style</li>
-</ul>
-<h3 id="creating-removing-dom-elements">Creating/Removing DOM Elements</h3>
-<ul>
-<li>.createElement</li>
-<li>.appendChild</li>
-<li>.removeChild</li>
-</ul>
-<h3 id="you-do-logo-hijack">You do: Logo hijack</h3>
-<ul>
-<li>Open up www.google.com in Chrome or Firefox, and open up the console.</li>
-<li>Find the Google logo and store it in a variable.</li>
-<li>Modify the source of the logo IMG so that it&apos;s a Yahoo logo instead.</li>
-<li>Find the Google search button and store it in a variable.</li>
-<li>Modify the text of the button so that it says &quot;Yahooo!&quot; instead.</li>
-</ul>
-<h2 id="events">Events</h2>
-<ul>
-<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank">https://developer.mozilla.org/en-US/docs/Web/Events</a></p>
-</li>
-<li><p>.onclick</p>
-</li>
-<li>.addEventListener<ul>
-<li>click</li>
-<li>mouseover</li>
-</ul>
-</li>
-<li>.preventDefault()</li>
-</ul>
-<h2 id="color-scheme-switcher">Color Scheme Switcher</h2>
-<ul>
-<li><a href="http://jessicahische.is/" target="_blank">jessica hische</a></li>
-<li><a href="https://github.com/ga-dc/color-scheme-switcher" target="_blank">color scheme switcher</a></li>
-</ul>
-<hr>
-<h2 id="homework">Homework</h2>
-<p><a href="https://github.com/ga-dc/tic_tac_toe" target="_blank">https://github.com/ga-dc/tic_tac_toe</a></p>
 <hr>
 <h2 id="sample-quiz-questions">Sample Quiz Questions:</h2>
 <ol>
 <li>What is the difference between a method and an attribute?</li>
-<li>What is the difference between <code>onclick</code> and <code>addEventListener?</code></li>
 </ol>
 
                     
