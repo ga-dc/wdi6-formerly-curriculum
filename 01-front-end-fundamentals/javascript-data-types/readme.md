@@ -4,7 +4,7 @@
 - Describe uses of mathematical operators in Javascript.
 - Define type coercion.
 - Define and use complex data types.
-- Explain the difference between `promp` and `console.log`
+- Explain the difference between `prompt` and `console.log`
 - Practice proper JS syntax and semantic variable naming.
 - Differentiate between true & false && truthy & falsey
 - Describe why control flow is utilized in computer programming
@@ -12,7 +12,7 @@
 - Write a for loop and while loop in JS and differentiate between them
 - Utilize loops to iterate through complex data types
 
-# HTML, CSS and Javascript (20min)
+# HTML, CSS and Javascript (20/20)
 HTML (content), CSS (style) and Javascript (behavior) as the main components of front-end web development.
 - Q: Sum up the roles HTML and CSS play on a website in a couple of sentences.
   - HTML: Structure
@@ -44,7 +44,7 @@ So, to the main three components of front-end web development up in one word eac
 - CSS: Styling
 - Javascript: Behavior
 
-# JS: The Client-Side Programming Language of the Web (5min)
+# JS: The Client-Side Programming Language of the Web (5/25)
 
 - Brief history: Created in 10 days by Brendan Eyck, of Mozilla. *Not* related to Java in any way but its name.
   - "Java" is to "Javascript" as "ham" is to "hamster"
@@ -66,7 +66,7 @@ So, to the main three components of front-end web development up in one word eac
   - One of the biggest additions to JS was AJAX, which allows use to reload parts of a page without refreshing the entire thing (just like on Facebook). Big implications for User Experience.
 - A lot of frameworks and libraries -- like Backbone and jQuery -- have emerged that enable us to do so much more -- and do it quickly -- with Javascript.
 
-# Setting up our environment (5min)
+# Setting up our environment (5/30)
 
 ## First, create your HTML and JS
 
@@ -99,7 +99,7 @@ So, to the main three components of front-end web development up in one word eac
 
 # Primitive Data Types
 
-## Intro (5min)
+## Intro (5/35)
 Primitive data types are the building blocks of Javascript.
 - Whenever you do anything in Javascript, you are creating and changing these basic pieces of information.
 
@@ -138,7 +138,7 @@ We store data types in variables. A variable is a "bucket" that holds data. You 
   var myFavoriteNumber = "five";
   ```
 
-## Numbers (10min)
+## Numbers (10/45)
 
 In Javascript, numbers are numerical values -- straightforward!
   - All numbers are of type "number," regardless of format (e.g., integer, float/decimal).
@@ -238,7 +238,7 @@ isNaN( myFavoriteNumber );
 => false
 ```
 
-## Undefined & Null (5min)
+## Undefined & Null (5/50)
 Values that indicate the lack of a meaningful value.
 - Anybody else find that weird? How is there more than one data type for nothing?
 - Q: What's the difference?
@@ -304,7 +304,7 @@ parseInt( "burrito" );
 
 There are other examples of type coercion, but the point here isn't to remember them all. Just be aware that sometimes Javascript will fire weird results back at you with no explanation. Sometimes, type coercion might be the culprit.
 
-## Strings (10min)
+## Strings (10/60)
 Strings are words in javascript!
 
 We instantiate strings using the "string literal" form.
@@ -378,18 +378,69 @@ String methods
 - More examples [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
   - Slack to class.
 
-# CODING EXERCISE #1 (30min)
+# Syntax & Semantic Naming
+
+## Syntax (5/65)
+Variable syntax
+- Should be named using camelCase lettering.
+  - First letter of first word lowercase. First letter of remaining words uppercase.
+  - No spaces or punctuation between words.
+
+  ```javascript
+  // camelCase
+  var pizzaTopping = "pepperoni";
+  ```
+
+Semicolons
+- General practice is to end every line with a semi-colon.
+- Usage depends on the developer.
+
+Comments
+- Q: Why would you use comments?
+  - Talked about this in the HTML class. Same reasoning applies.
+- Types of comments
+  ```javascript
+  // Single line
+
+  /*
+    Multiple
+    line
+    comments
+  */
+  ```
+
+- Use to explain the purpose or reasoning behind a piece of code.
+- Help out other developers and future you.
+  - If anything, it will help us out when grading your projects!
+
+# Prompt (5/70)
+
+We've learned alot about basic data types, but it'd be nice if we had a way of getting user input into our browser! We'll learn some ways to use forms and such later in the course, but for now, we'll be getting user input using the `prompt()` function.
+
+At any point in our JS code, if we write `prompt()`, a pop up box will open in our browser for a user to enter in text.
+
+```js
+// prompts user and stores value in the variable
+var valueOfPrompt = prompt()
+// logs value stored
+console.log(valueOfPrompt)
+```
+
+You can also pass in a string as an argument to have the pop up box contain that string as a ... prompt.
+
+```js
+var age = prompt("How old are you?")
+```
+
+# CODING EXERCISE #1 + Break (20/90)
 Temperature conversion (Part I): [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
-- Get started by forking and cloning this exercise repo. Raise your hand if you run into any problems.
-- Spend 10 minutes working on Steps 1-3 under the Instructions.
-- After check-in, spend 10 more minutes on Step 4.
 
 # Composite Data Types
 
 Composite data types are collections that allow us to store multiple data types.
 - There are two kinds in Javascript. What are they?
 
-## Arrays (15min)
+## Arrays (10/100)
 - Ordered collection of related data types.
 - Organized by index.
   - Indexing begins at 0 (e.g., first element in an array has an index of 0, the second has an index of 1, and so on).
@@ -435,7 +486,7 @@ letters[1][2];
 Array methods
 - There are a lot of useful methods that come with Javascript we can use to inspect and modify arrays. To learn what some of them are...
 
-### Pair Exercise (5min)
+### Pair Exercise (5/105)
 
 Given the array `var planeteers = [ "Looting", "Wind", "Fire", "Water", "Heart", "Polluting" ]`, use MDN documentation to find methods that accomplish the following...
 - Returns the length of the array.
@@ -449,7 +500,7 @@ Given the array `var planeteers = [ "Looting", "Wind", "Fire", "Water", "Heart",
   - [MDN Array Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
   - Navigating documentation is a great skill to have. Some sets of documentation are harder to navigate than others, but if you have a sense of how to dig through a massive trove of information like MDN or RubyDocs, you'll become a much more efficient programmer.
 
-## Booleans (5min)
+## Booleans (105/110)
 Two values: `true`, `false`.  
 
 Oftentimes you'll be producing boolean values when comparing two values
@@ -468,7 +519,7 @@ Oftentimes you'll be producing boolean values when comparing two values
 
 > What is the differences between the last two? When using `===`, it checks for both the data type and value. `==` only checks for value. Under the hood, though, `==` converts the data type to the same data type and then executes comparison.
 
-## true vs false (15m)
+## true vs false (5/115)
 So we all know the boolean values of `true` and `false` But there is also a concept of "truthy" and "falsey" In Javascript, the following things are "falsey":
 - false
 - 0 (zero)
@@ -491,7 +542,7 @@ So we all know the boolean values of `true` and `false` But there is also a conc
 - false || false
 - true || true
 
-## Comparison Operators (15m)
+## Comparison Operators (5/120)
 Demonstrate comparison operators in node
 
 - `<`, `<=`
@@ -506,7 +557,7 @@ Demonstrate comparison operators in node
 => false
 ```
 
-## Conditionals (35m /w ex)
+## Conditionals (15/135 /w ex?)
 
 // Have an example somewhere where one of the more unusual "falsey" values (e.g., empty string) triggers a conditional.
 
@@ -527,6 +578,7 @@ else{
 
 Conditionals will always follow this pattern. There is a key word(if, else if, else). Followed by an expression that will evaluate to true or false in parentheses. Then followed by code to execute when condition is met.
 
+## Whitelisting vs Blacklisting
 What's wrong with the following code?:
 
 ```javascript
@@ -542,49 +594,15 @@ else{
 }
 ```
 
-# Syntax & Semantic Naming
-
-## Syntax (5min)
-Variable syntax
-- Should be named using camelCase lettering.
-  - First letter of first word lowercase. First letter of remaining words uppercase.
-  - No spaces or punctuation between words.
-
-  ```javascript
-  // camelCase
-  var pizzaTopping = "pepperoni";
-  ```
-
-Semicolons
-- General practice is to end every line with a semi-colon.
-- Usage depends on the developer.
-
-Comments
-- Q: Why would you use comments?
-  - Talked about this in the HTML class. Same reasoning applies.
-- Types of comments
-  ```javascript
-  // Single line
-
-  /*
-    Multiple
-    line
-    comments
-  */
-  ```
-
-- Use to explain the purpose or reasoning behind a piece of code.
-- Help out other developers and future you.
-  - If anything, it will help us out when grading your projects!
 
 # BREAK (10min)
 
 # CODING EXERCISE #2 (20min)
 
 Temperature conversion (Part II): [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
-## Loops(60m)
+## Loops(15/150)
 
-### For loop(25m)
+### For loop
 There are two ways to write a for loop.
 
 #### The first:
