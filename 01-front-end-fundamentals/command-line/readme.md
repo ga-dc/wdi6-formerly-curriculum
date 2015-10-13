@@ -97,6 +97,8 @@ Rarely, some commands may provide both an output and side effects.
 
 **See `haircut` command for demo.**
 
+    $ ./haircut --mohawk adrian
+
 Commands generally consist of three parts, the command, followed by flags (aka
 options), and finally arguments.
 
