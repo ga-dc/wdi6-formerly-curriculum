@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Tue Oct 13 2015 12:46:18 GMT+0000 (UTC)">
+    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Tue Oct 13 2015 12:57:23 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1283,8 +1283,9 @@ installfest), discuss the following questions:</p>
 <ul>
 <li>How is the CLI different from the GUI?</li>
 <li>What do you like / dislike about using it?</li>
-<li>It what ways might it be beter or worse for Developers? (Compared to a GUI)</li>
+<li>It what ways might it be better or worse for Developers? (Compared to a GUI)</li>
 </ul>
+<p><img src="http://coding-journal.com/wp-content/uploads/2013/10/Screen-Shot-2013-10-30-at-12.02.14.png" alt=""></p>
 <hr>
 <h3 id="why-the-cli">Why The CLI?</h3>
 <p>The CLI has many benefits over a GUI:</p>
@@ -1293,7 +1294,7 @@ While it may not seem so yet, over time, most developers can achieve common
 tasks much faster using the command line. Features such as tab completion,
 history searching / modifying, and piping commands all contribute to this speed.</p>
 <p><strong>Precision</strong>
-Because of it&apos;s nature as a text-based interface, the command line provides us
+Because of its nature as a text-based interface, the command line provides us
 with a lot more precision. We can look at the commands we&apos;re about to enter
 and understand exactly what they will do. This also allows:</p>
 <p><strong>Repeatability / Scriptability</strong>
@@ -1306,7 +1307,7 @@ There are a very large number of tools available on the command line, to help
 us achieve almost any task. Most of them are built in, but we can download
 almost any others using <code>brew</code> on a mac, or <code>apt-get</code> on linux.</p>
 <p>Additionally, tools built for the command line usually follow something called
-the &apos;unix philosophy&apos;, which is that each tool should do ~1 thing, and do it
+the <a href="http://catb.org/esr/writings/taoup/html/#id2807216" target="_blank">&apos;unix philosophy&apos;</a>, which is that each tool should do ~1 thing, and do it
 well. Complex tasks can be achieved by chaining tools together.</p>
 <hr>
 <h2 id="basics-of-cli">Basics of CLI</h2>
@@ -1321,6 +1322,7 @@ Examples of commands that have output might be:</p>
 <ul>
 <li><code>pwd</code></li>
 <li><code>ls</code></li>
+<li><code>telnet towel.blinkenlights.nl</code></li>
 </ul>
 <p>Other commands primarily exist to have a <em>side-effect</em>, or in other words, to
 make some change, usually on our system. An example might be <code>touch</code>, which
@@ -1330,7 +1332,8 @@ any output if it succeeds. If there is an error it will provide output.</p>
 <p>Rarely, some commands may provide both an output and side effects.</p>
 <h3 id="command-syntax-flags-and-arguments">Command Syntax (Flags and Arguments)</h3>
 <p><strong>See <code>haircut</code> command for demo.</strong></p>
-<p>Commands generally consist of three parts, the command, followed by flags (aka
+<pre><code>$ ./haircut --mohawk adrian
+</code></pre><p>Commands generally consist of three parts, the command, followed by flags (aka
 options), and finally arguments.</p>
 <p>The <strong>command</strong> is the first &apos;word&apos;, e.g. <code>ls</code>, <code>cd</code>, or <code>touch</code>. It is like the
 verb, which says generally, &apos;what do I want to do&apos;.</p>
@@ -1339,6 +1342,7 @@ for some commands. As the name implies, they set options to tell the command
 <strong>how</strong> to do what it&apos;s about to do. There may be zero or more options. Options
 usually start with one or two dashes. Usually one dash is for a short one letter
 abbreviation, while two dashes is for long name for the option.</p>
+<p><a href="http://catb.org/esr/writings/taoup/html/ch10s05.html#id2948149" target="_blank">http://catb.org/esr/writings/taoup/html/ch10s05.html#id2948149</a></p>
 <p>Finally come the arguments. These are what you want to do the action to. Usually
 these are file names, but they could be URLs, or other things.</p>
 <h3 id="commands-run-in-an-environment">Commands run in an &apos;environment&apos;</h3>
@@ -1360,7 +1364,7 @@ them to do otherwise.</p>
 <p>All paths point to a single file or folder, but we can write paths to be either
 <strong>relative</strong> or <strong>absolute</strong>.</p>
 <h4 id="absolute-paths">Absolute Paths</h4>
-<p>An absolute path will always tell us excactly where the file or folder is. An
+<p>An absolute path will always tell us exactly where the file or folder is. An
 example in the real world would be a mailing address:</p>
 <p>GA
 8th Floor
@@ -1485,6 +1489,22 @@ folders if they do not exist.</p>
 &#x2514;&#x2500;&#x2500; videos
 </code></pre></li>
 </ul>
+<h2 id="hungry-for-more">Hungry for More?</h2>
+<p>Here are some advanced commands worth checking out that we may not explicitly go over in class:</p>
+<ul>
+<li>grep</li>
+<li>cat</li>
+<li>less</li>
+<li>find</li>
+<li>tmux</li>
+<li>cal</li>
+<li>vim<ul>
+<li>vimtutor</li>
+</ul>
+</li>
+</ul>
+<h2 id="feeling-adventurous">Feeling Adventurous?</h2>
+<p>Bash isn&apos;t the only option. Check out zsh (<a href="http://code.joejag.com/2014/why-zsh.html" target="_blank">http://code.joejag.com/2014/why-zsh.html</a>) or fish (<a href="http://fishshell.com/" target="_blank">http://fishshell.com/</a>)</p>
 
                     
                     </section>
