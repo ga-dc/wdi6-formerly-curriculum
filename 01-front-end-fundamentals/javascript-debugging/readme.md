@@ -2,10 +2,11 @@
 title: JS Debugging
 type: lesson
 duration: 1
-creator:
-    name: Gerry Mathe
-    city: London
+authors:
+    creator: Gerry Mathe (London)
+    editors: John Master (DC), Matt Scilipoti (DC)
 competencies: Programming
+prerequisites: Chrome Dev Tools, Javascript Functions, Text Editor
 ---
 
 # JS Debugging
@@ -31,7 +32,7 @@ At the moment, most of the JavaScript applications we've written have been fairl
 
 We've already been using the **Chrome Developer Tools**, but today we'll dive deeper into some of the features we can use to debug JavaScript.
 
-## Using Chrome dev tools to debug JavaScript (40 mins)
+## Using Chrome dev tools to debug JavaScript (35 mins)
 
 #### The Sources Panel
 
@@ -128,7 +129,7 @@ Debug the code using the Chrome development tools. Uncomment:
 
 You need to get the functions to log out, one after the other.
 
-## Conclusion
+## Conclusion (5 min)
 
 Javascript debugging tools have improved significantly over the last few years. It is especially important to understand the link between the JS V8 Engine in Chrome and the way that error reporting is handled, and how you can interact with your scripts to figure out what's going on.
 
