@@ -449,10 +449,10 @@ There are two ways to instantiate an array...
 
 ```javascript
 // Instantiate with an array literal.
-var mountRushmore = [ "Washington", "Jefferson", "Roosevelt", "Lincoln" ];
+var mountRushmore = [ "Washington", "Jefferson", "Roosevelt" ];
 
 // Can also instantiate using the Array constructor.
-var mountRushmore = new Array( "Washington", "Jefferson", "Roosevelt", "Lincoln" );
+var mountRushmore = new Array( "Washington", "Jefferson", "Roosevelt" );
 
 // Be careful when using the Array constructor. If you feed it a single numerical value, it will create an empty array of that length.
 var numbers = new Array( 5 );
@@ -475,6 +475,11 @@ mountRushmore[1];
 mountRushmore[2];
 => "Roosevelt"
 
+mountRushmore.push("Lincoln");
+
+mountRushmore[3];
+=> "Lincoln"
+
 // You can also place arrays within arrays.
 var letters = [ ["a","b","c"], ["d","e","f"], ["g","h","i"] ];
 
@@ -485,18 +490,14 @@ letters[1][2];
 
 Array methods
 - There are a lot of useful methods that come with Javascript we can use to inspect and modify arrays. To learn what some of them are...
+  - `.length`
+  - `.push`
+  - `.indexOf`
+  - `.reverse`
 
-### Pair Exercise (5/105)
+> There are many more, but these are the most widely-used.
 
-Given the array `var planeteers = [ "Looting", "Wind", "Fire", "Water", "Heart", "Polluting" ]`, use MDN documentation to find methods that accomplish the following...
-- Returns the length of the array.
-- Returns the position of "Water".
-- Removes "Polluting" from the end of the array.
-- Removes "Looting" from the front of the array.
-- Adds `"Earth"` to the front of the array.
-- Reverses the array order.
-
-- This exercise is a good way to familiarize yourselves with the Mozilla Developer Network's javascript documentation, a go-to source when looking up anything Javascript-related.
+- Documentation
   - [MDN Array Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
   - Navigating documentation is a great skill to have. Some sets of documentation are harder to navigate than others, but if you have a sense of how to dig through a massive trove of information like MDN or RubyDocs, you'll become a much more efficient programmer.
 
@@ -530,19 +531,12 @@ So we all know the boolean values of `true` and `false` But there is also a conc
 
 > Everything else is "truthy". Why might we need this programmatic concept of "truthy" and "falsey"?(ST-WG)
 
-### Draw truth tables for ! and && (I do 2m)
-- true && true
-- true && false
-- !true
-- !false
-
-### Have students do truth tables for || (ST-WG 2m)
-- true || false
-- false || true
-- false || false
-- true || true
-
 ## Comparison Operators (5/120)
+
+- `&&`
+- `||`
+- `!`
+
 Demonstrate comparison operators in node
 
 - `<`, `<=`
