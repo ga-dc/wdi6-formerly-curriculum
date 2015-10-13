@@ -106,7 +106,7 @@ concepts of how git works (and associated terms).
 * **the index** - a staging area where we list changes we want to commit
 * **HEAD** - what is currently checked out.
 
-Instructor should diagram the various components of a git repository, and how
+See diagram of the various components of a git repository, and how
 they relate.
 
 ** Insert diagram here **
@@ -142,9 +142,9 @@ and prepared to discuss key takeaways.
 * **push**   - sending changes to a remote repository and merging them into the specified branch
 * **merge conflict** - when two commits conflict, and thus can't be merged automatically.
 
-Instructor should diagram the clone/push/pull process.
+See diagram of the clone/push/pull process.
 
-** Insert diagram here **
+![Git Remote Diagram](./git.gif)
 
 #### Exercise 2: Publish to a remote repository on Github
 
@@ -165,7 +165,7 @@ Instructor should diagram the clone/push/pull process.
 * **fork** - make a copy of a repo on github under a different account, used for OSS collaboration
 * **pull request** - a github feature which allows a user to suggest and discuss changes to a repo they have forked
 
-Instructor should diagram the fork/clone/pull request process, and how it relates
+See diagram of the fork/clone/pull request process, and how it relates
 to HW submission.
 
 ** insert diagram here **
@@ -235,7 +235,7 @@ Once linked, you can just run `git push` to push master branch to master branch
 Fork the [Curriculum Repo](https://github.com/ga-dc/curriculum) to your personal account. Clone *your fork* to your
 computer in your `~/wdi` folder.
 
-NOTE: If you already have a `pbj` folder in your `~/wdi` folder, delete or rename it before you clone.
+NOTE: If you already have a `curriculum` folder in your `~/wdi` folder, delete or rename it before you clone.
 
 ### Submission
 
