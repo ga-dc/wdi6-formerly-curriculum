@@ -165,9 +165,10 @@ and prepared to discuss key takeaways.
 
 See diagram of the clone/push/pull process.
 
-![Git Process Diagram](./git00.jpg)
 ![Git Process Diagram](./git01.jpg)
 ![Git Process Diagram](./git02.jpg)
+![Git Process Diagram](./git03.jpg)
+![Git Process Diagram](./git04.jpg)
 
 
 #### Exercise 2: Publish to a remote repository on Github
