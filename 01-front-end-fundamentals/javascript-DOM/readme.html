@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.8" data-basepath="../.." data-revision="Tue Oct 13 2015 18:30:39 GMT+0000 (UTC)">
+    <div class="book" data-level="1.8" data-basepath="../.." data-revision="Tue Oct 13 2015 18:38:02 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1254,19 +1254,42 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="dom">DOM</h2>
+                        <hr>
+<p>title: Document Object Model
+type: lesson
+duration: 1
+authors:
+    creators: Jesse Shawl (DC)
+    editors: John Master (DC), Matt Scilipoti (DC)</p>
+<h2 id="competencies-programming-javascript">competencies: Programming, Javascript</h2>
+<h1 id="dom">DOM</h1>
+<ul>
+<li>Explain what the DOM is and how it is structured</li>
+<li>Select and target DOM elements using DOM methods</li>
+<li>Select and target DOM elements using a query selector</li>
+<li>Create, read, update, and delete DOM elements</li>
+<li>Change the attributes or content of a DOM element</li>
+</ul>
+<h2 id="document-object-model-5-min">Document Object Model (5 min)</h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" target="_blank"><strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel</a>
 is a programming interface for HTML.</p>
 <p>An HTML <em>document</em> is available for us to manipulate as an object, and this object is structured like a tree:</p>
 <p>(Not like this one <a href="http://hakim.se/experiments/css/domtree/" target="_blank">http://hakim.se/experiments/css/domtree/</a>)</p>
+<p>More like this:</p>
 <p><img src="http://www.tuxradar.com/files/LXF118.tut_grease.diagram.png" alt=""></p>
-<h3 id="document">Document</h3>
+<p>Or this:</p>
+<p>html
+  |- header
+  |- body
+      |- h1</p>
+<h2 id="accessing-the-document-10-min">Accessing the document (10 min)</h2>
 <p><code>document</code></p>
 <ul>
 <li><code>document.head</code></li>
 <li><code>document.body</code></li>
 </ul>
 <p>Each web page loaded in the browser has its own document object. The Document interface serves as an entry point to the web page&apos;s content</p>
+<h3 id="element-attributes">Element attributes</h3>
 <p><code>document.body</code></p>
 <ul>
 <li>.children</li>
@@ -1277,7 +1300,8 @@ is a programming interface for HTML.</p>
 <li>.parentElement</li>
 <li>.parentNode</li>
 </ul>
-<h3 id="selecting-dom-elements">Selecting DOM elements</h3>
+<p>Methods are available on any element.</p>
+<h3 id="methods-for-selecting-elements">Methods for selecting elements</h3>
 <ul>
 <li>document.getElementById</li>
 <li>document.getElementsByTagName</li>
@@ -1285,8 +1309,8 @@ is a programming interface for HTML.</p>
 <li>document.querySelector</li>
 <li>document.querySelectorAll</li>
 </ul>
-<h3 id="you-do-traversing-the-dom">You Do: Traversing the DOM</h3>
-<h3 id="altering-dom-elements">Altering DOM Elements</h3>
+<h2 id="you-do-selecting-dom-elements-10-min">You Do: Selecting DOM elements (10 min)</h2>
+<h2 id="altering-dom-elements-5-min">Altering DOM Elements (5 min)</h2>
 <ul>
 <li>.textContent</li>
 <li>.innerHTML</li>
@@ -1295,13 +1319,7 @@ is a programming interface for HTML.</p>
 <li>.classList.toggle (add, remove, contains)</li>
 <li>.style</li>
 </ul>
-<h3 id="creating-removing-dom-elements">Creating/Removing DOM Elements</h3>
-<ul>
-<li>.createElement</li>
-<li>.appendChild</li>
-<li>.removeChild</li>
-</ul>
-<h3 id="you-do-logo-hijack">You do: Logo hijack</h3>
+<h2 id="you-do-logo-hijack-10-min">You do: Logo hijack (10 min)</h2>
 <ul>
 <li>Open up www.google.com in Chrome or Firefox, and open up the console.</li>
 <li>Find the Google logo and store it in a variable.</li>
@@ -1309,7 +1327,15 @@ is a programming interface for HTML.</p>
 <li>Find the Google search button and store it in a variable.</li>
 <li>Modify the text of the button so that it says &quot;Yahooo!&quot; instead.</li>
 </ul>
-<h2 id="events">Events</h2>
+<p>Bonus: ???</p>
+<h2 id="you-do-creating-removing-dom-elements-15-min">You Do: Creating/Removing DOM Elements (15 min)</h2>
+<ul>
+<li>.createElement</li>
+<li>.appendChild</li>
+<li>.removeChild</li>
+</ul>
+<h2 id="break-5-min">Break (5 min)</h2>
+<h2 id="events-10-min">Events (10 min)</h2>
 <ul>
 <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Event</a></p>
 </li>
@@ -1322,20 +1348,22 @@ is a programming interface for HTML.</p>
 </li>
 <li>.preventDefault()</li>
 </ul>
-<h2 id="color-scheme-switcher">Color Scheme Switcher</h2>
+<h2 id="examples">Examples</h2>
 <ul>
 <li><a href="http://jessicahische.is/" target="_blank">jessica hische</a></li>
 <li><a href="https://github.com/ga-dc/color-scheme-switcher" target="_blank">color scheme switcher</a></li>
 </ul>
-<hr>
-<h2 id="homework">Homework</h2>
-<p><a href="https://github.com/ga-dc/fellowship" target="_blank">https://github.com/ga-dc/fellowship</a></p>
-<hr>
-<h2 id="sample-quiz-questions">Sample Quiz Questions:</h2>
+<h2 id="you-do-events-5-min">You do: Events (5 min)</h2>
+<p>TODO: ???</p>
+<h2 id="conclusion-5-min">Conclusion (5 min)</h2>
 <ol>
 <li>What is the difference between a method and an attribute?</li>
 <li>What is the difference between <code>onclick</code> and <code>addEventListener?</code></li>
 </ol>
+<h2 id="break-10-min">Break (10 min)</h2>
+<hr>
+<h2 id="homework">Homework</h2>
+<p><a href="https://github.com/ga-dc/fellowship" target="_blank">https://github.com/ga-dc/fellowship</a></p>
 
                     
                     </section>
