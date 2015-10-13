@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Tue Oct 13 2015 18:38:02 GMT+0000 (UTC)">
+    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Tue Oct 13 2015 20:17:28 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1261,7 +1261,7 @@
 <li>Describe uses of mathematical operators in Javascript.</li>
 <li>Define type coercion.</li>
 <li>Define and use complex data types.</li>
-<li>Explain the difference between <code>promp</code> and <code>console.log</code></li>
+<li>Explain the difference between <code>prompt</code> and <code>console.log</code></li>
 <li>Practice proper JS syntax and semantic variable naming.</li>
 <li>Differentiate between true &amp; false &amp;&amp; truthy &amp; falsey</li>
 <li>Describe why control flow is utilized in computer programming</li>
@@ -1269,7 +1269,7 @@
 <li>Write a for loop and while loop in JS and differentiate between them</li>
 <li>Utilize loops to iterate through complex data types</li>
 </ul>
-<h1 id="html-css-and-javascript-20min">HTML, CSS and Javascript (20min)</h1>
+<h1 id="html-css-and-javascript-20-20">HTML, CSS and Javascript (20/20)</h1>
 <p>HTML (content), CSS (style) and Javascript (behavior) as the main components of front-end web development.</p>
 <ul>
 <li>Q: Sum up the roles HTML and CSS play on a website in a couple of sentences.<ul>
@@ -1317,7 +1317,7 @@
 <li>CSS: Styling</li>
 <li>Javascript: Behavior</li>
 </ul>
-<h1 id="js-the-client-side-programming-language-of-the-web-5min">JS: The Client-Side Programming Language of the Web (5min)</h1>
+<h1 id="js-the-client-side-programming-language-of-the-web-5-25">JS: The Client-Side Programming Language of the Web (5/25)</h1>
 <ul>
 <li><p>Brief history: Created in 10 days by Brendan Eyck, of Mozilla. <em>Not</em> related to Java in any way but its name.</p>
 <ul>
@@ -1355,7 +1355,7 @@
 </li>
 <li>A lot of frameworks and libraries -- like Backbone and jQuery -- have emerged that enable us to do so much more -- and do it quickly -- with Javascript.</li>
 </ul>
-<h1 id="setting-up-our-environment-5min">Setting up our environment (5min)</h1>
+<h1 id="setting-up-our-environment-5-30">Setting up our environment (5/30)</h1>
 <h2 id="first-create-your-html-and-js">First, create your HTML and JS</h2>
 <ul>
 <li><code>index.html</code> and <code>script.js</code></li>
@@ -1388,7 +1388,7 @@
 </li>
 </ul>
 <h1 id="primitive-data-types">Primitive Data Types</h1>
-<h2 id="intro-5min">Intro (5min)</h2>
+<h2 id="intro-5-35">Intro (5/35)</h2>
 <p>Primitive data types are the building blocks of Javascript.</p>
 <ul>
 <li>Whenever you do anything in Javascript, you are creating and changing these basic pieces of information.</li>
@@ -1424,7 +1424,7 @@ myClass;
 </code></pre>
 </li>
 </ul>
-<h2 id="numbers-10min">Numbers (10min)</h2>
+<h2 id="numbers-10-45">Numbers (10/45)</h2>
 <p>In Javascript, numbers are numerical values -- straightforward!</p>
 <ul>
 <li><p>All numbers are of type &quot;number,&quot; regardless of format (e.g., integer, float/decimal).</p>
@@ -1523,7 +1523,7 @@ myClass;
 <span class="hljs-built_in">isNaN</span>( myFavoriteNumber );
 =&gt; <span class="hljs-literal">false</span>
 </code></pre>
-<h2 id="undefined-null-5min">Undefined &amp; Null (5min)</h2>
+<h2 id="undefined-null-5-50">Undefined &amp; Null (5/50)</h2>
 <p>Values that indicate the lack of a meaningful value.</p>
 <ul>
 <li>Anybody else find that weird? How is there more than one data type for nothing?</li>
@@ -1584,7 +1584,7 @@ myClass;
 =&gt; <span class="hljs-literal">NaN</span>
 </code></pre>
 <p>There are other examples of type coercion, but the point here isn&apos;t to remember them all. Just be aware that sometimes Javascript will fire weird results back at you with no explanation. Sometimes, type coercion might be the culprit.</p>
-<h2 id="strings-10min">Strings (10min)</h2>
+<h2 id="strings-10-60">Strings (10/60)</h2>
 <p>Strings are words in javascript!</p>
 <p>We instantiate strings using the &quot;string literal&quot; form.</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Can use single quotes to instantiate a string...</span>
@@ -1654,19 +1654,67 @@ greetings.search( <span class="hljs-string">&quot;Andy&quot;</span> );
 </ul>
 </li>
 </ul>
-<h1 id="coding-exercise-1-30min">CODING EXERCISE #1 (30min)</h1>
-<p>Temperature conversion (Part I): <a href="https://github.com/ga-dc/temperature_converter" target="_blank">https://github.com/ga-dc/temperature_converter</a>  </p>
+<h1 id="syntax-semantic-naming">Syntax &amp; Semantic Naming</h1>
+<h2 id="syntax-5-65">Syntax (5/65)</h2>
+<p>Variable syntax</p>
 <ul>
-<li>Get started by forking and cloning this exercise repo. Raise your hand if you run into any problems.</li>
-<li>Spend 10 minutes working on Steps 1-3 under the Instructions.</li>
-<li>After check-in, spend 10 more minutes on Step 4.</li>
+<li><p>Should be named using camelCase lettering.</p>
+<ul>
+<li>First letter of first word lowercase. First letter of remaining words uppercase.</li>
+<li>No spaces or punctuation between words.</li>
 </ul>
+<pre><code class="lang-javascript"><span class="hljs-comment">// camelCase</span>
+<span class="hljs-keyword">var</span> pizzaTopping = <span class="hljs-string">&quot;pepperoni&quot;</span>;
+</code></pre>
+</li>
+</ul>
+<p>Semicolons</p>
+<ul>
+<li>General practice is to end every line with a semi-colon.</li>
+<li>Usage depends on the developer.</li>
+</ul>
+<p>Comments</p>
+<ul>
+<li>Q: Why would you use comments?<ul>
+<li>Talked about this in the HTML class. Same reasoning applies.</li>
+</ul>
+</li>
+<li><p>Types of comments</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Single line</span>
+
+<span class="hljs-comment">/*
+  Multiple
+  line
+  comments
+*/</span>
+</code></pre>
+</li>
+<li><p>Use to explain the purpose or reasoning behind a piece of code.</p>
+</li>
+<li>Help out other developers and future you.<ul>
+<li>If anything, it will help us out when grading your projects!</li>
+</ul>
+</li>
+</ul>
+<h1 id="prompt-5-70">Prompt (5/70)</h1>
+<p>We&apos;ve learned alot about basic data types, but it&apos;d be nice if we had a way of getting user input into our browser! We&apos;ll learn some ways to use forms and such later in the course, but for now, we&apos;ll be getting user input using the <code>prompt()</code> function.</p>
+<p>At any point in our JS code, if we write <code>prompt()</code>, a pop up box will open in our browser for a user to enter in text.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// prompts user and stores value in the variable</span>
+<span class="hljs-keyword">var</span> valueOfPrompt = prompt()
+<span class="hljs-comment">// logs value stored</span>
+<span class="hljs-built_in">console</span>.log(valueOfPrompt)
+</code></pre>
+<p>You can also pass in a string as an argument to have the pop up box contain that string as a ... prompt.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> age = prompt(<span class="hljs-string">&quot;How old are you?&quot;</span>)
+</code></pre>
+<h1 id="coding-exercise-1-break-20-90">CODING EXERCISE #1 + Break (20/90)</h1>
+<p>Temperature conversion (Part I): <a href="https://github.com/ga-dc/temperature_converter" target="_blank">https://github.com/ga-dc/temperature_converter</a>  </p>
 <h1 id="composite-data-types">Composite Data Types</h1>
 <p>Composite data types are collections that allow us to store multiple data types.</p>
 <ul>
 <li>There are two kinds in Javascript. What are they?</li>
 </ul>
-<h2 id="arrays-15min">Arrays (15min)</h2>
+<h2 id="arrays-10-100">Arrays (10/100)</h2>
 <ul>
 <li>Ordered collection of related data types.</li>
 <li>Organized by index.<ul>
@@ -1710,7 +1758,7 @@ letters[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>];
 <ul>
 <li>There are a lot of useful methods that come with Javascript we can use to inspect and modify arrays. To learn what some of them are...</li>
 </ul>
-<h3 id="pair-exercise-5min">Pair Exercise (5min)</h3>
+<h3 id="pair-exercise-5-105">Pair Exercise (5/105)</h3>
 <p>Given the array <code>var planeteers = [ &quot;Looting&quot;, &quot;Wind&quot;, &quot;Fire&quot;, &quot;Water&quot;, &quot;Heart&quot;, &quot;Polluting&quot; ]</code>, use MDN documentation to find methods that accomplish the following...</p>
 <ul>
 <li>Returns the length of the array.</li>
@@ -1727,7 +1775,7 @@ letters[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>];
 </ul>
 </li>
 </ul>
-<h2 id="booleans-5min">Booleans (5min)</h2>
+<h2 id="booleans-105-110">Booleans (105/110)</h2>
 <p>Two values: <code>true</code>, <code>false</code>.  </p>
 <p>Oftentimes you&apos;ll be producing boolean values when comparing two values</p>
 <ul>
@@ -1745,7 +1793,7 @@ letters[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>];
 <blockquote>
 <p>What is the differences between the last two? When using <code>===</code>, it checks for both the data type and value. <code>==</code> only checks for value. Under the hood, though, <code>==</code> converts the data type to the same data type and then executes comparison.</p>
 </blockquote>
-<h2 id="true-vs-false-15m">true vs false (15m)</h2>
+<h2 id="true-vs-false-5-115">true vs false (5/115)</h2>
 <p>So we all know the boolean values of <code>true</code> and <code>false</code> But there is also a concept of &quot;truthy&quot; and &quot;falsey&quot; In Javascript, the following things are &quot;falsey&quot;:</p>
 <ul>
 <li>false</li>
@@ -1772,7 +1820,7 @@ letters[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>];
 <li>false || false</li>
 <li>true || true</li>
 </ul>
-<h2 id="comparison-operators-15m">Comparison Operators (15m)</h2>
+<h2 id="comparison-operators-5-120">Comparison Operators (5/120)</h2>
 <p>Demonstrate comparison operators in node</p>
 <ul>
 <li><code>&lt;</code>, <code>&lt;=</code></li>
@@ -1785,7 +1833,7 @@ letters[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>];
 <span class="hljs-number">55</span> === <span class="hljs-string">&quot;55&quot;</span>
 =&gt; <span class="hljs-literal">false</span>
 </code></pre>
-<h2 id="conditionals-35m-w-ex">Conditionals (35m /w ex)</h2>
+<h2 id="conditionals-15-135-w-ex">Conditionals (15/135 /w ex?)</h2>
 <p>// Have an example somewhere where one of the more unusual &quot;falsey&quot; values (e.g., empty string) triggers a conditional.</p>
 <p>write and narrate through the following code (10m)</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> age = <span class="hljs-number">24</span>;
@@ -1800,6 +1848,7 @@ letters[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>];
 }
 </code></pre>
 <p>Conditionals will always follow this pattern. There is a key word(if, else if, else). Followed by an expression that will evaluate to true or false in parentheses. Then followed by code to execute when condition is met.</p>
+<h2 id="whitelisting-vs-blacklisting">Whitelisting vs Blacklisting</h2>
 <p>What&apos;s wrong with the following code?:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> age = <span class="hljs-number">24</span>;
 <span class="hljs-keyword">if</span>(age &gt; <span class="hljs-number">21</span>){
@@ -1812,53 +1861,11 @@ letters[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>];
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;get outta here youngin!&quot;</span>)
 }
 </code></pre>
-<h1 id="syntax-semantic-naming">Syntax &amp; Semantic Naming</h1>
-<h2 id="syntax-5min">Syntax (5min)</h2>
-<p>Variable syntax</p>
-<ul>
-<li><p>Should be named using camelCase lettering.</p>
-<ul>
-<li>First letter of first word lowercase. First letter of remaining words uppercase.</li>
-<li>No spaces or punctuation between words.</li>
-</ul>
-<pre><code class="lang-javascript"><span class="hljs-comment">// camelCase</span>
-<span class="hljs-keyword">var</span> pizzaTopping = <span class="hljs-string">&quot;pepperoni&quot;</span>;
-</code></pre>
-</li>
-</ul>
-<p>Semicolons</p>
-<ul>
-<li>General practice is to end every line with a semi-colon.</li>
-<li>Usage depends on the developer.</li>
-</ul>
-<p>Comments</p>
-<ul>
-<li>Q: Why would you use comments?<ul>
-<li>Talked about this in the HTML class. Same reasoning applies.</li>
-</ul>
-</li>
-<li><p>Types of comments</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Single line</span>
-
-<span class="hljs-comment">/*
-  Multiple
-  line
-  comments
-*/</span>
-</code></pre>
-</li>
-<li><p>Use to explain the purpose or reasoning behind a piece of code.</p>
-</li>
-<li>Help out other developers and future you.<ul>
-<li>If anything, it will help us out when grading your projects!</li>
-</ul>
-</li>
-</ul>
 <h1 id="break-10min">BREAK (10min)</h1>
 <h1 id="coding-exercise-2-20min">CODING EXERCISE #2 (20min)</h1>
 <p>Temperature conversion (Part II): <a href="https://github.com/ga-dc/temperature_converter" target="_blank">https://github.com/ga-dc/temperature_converter</a>  </p>
-<h2 id="loops-60m">Loops(60m)</h2>
-<h3 id="for-loop-25m">For loop(25m)</h3>
+<h2 id="loops-15-150">Loops(15/150)</h2>
+<h3 id="for-loop">For loop</h3>
 <p>There are two ways to write a for loop.</p>
 <h4 id="the-first">The first:</h4>
 <pre><code class="lang-javascript"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++){
