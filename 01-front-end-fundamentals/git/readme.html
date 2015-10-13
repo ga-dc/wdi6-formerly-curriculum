@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.2" data-basepath="../.." data-revision="Tue Oct 13 2015 01:51:10 GMT+0000 (UTC)">
+    <div class="book" data-level="1.2" data-basepath="../.." data-revision="Tue Oct 13 2015 12:46:18 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1282,6 +1282,7 @@ changes.</p>
 <h2 id="resources">Resources</h2>
 <ul>
 <li><a href="http://ndpsoftware.com/git-cheatsheet.html" target="_blank">Interactive Git Cheetsheet</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/syncing/" target="_blank">Syncing with Git</a></li>
 <li><a href="https://guides.github.com" target="_blank">Github Guides</a></li>
 <li><a href="https://training.github.com/kit/" target="_blank">Github Training</a></li>
 <li><a href="http://gitimmersion.com/lab_05.html" target="_blank">Git Immersion - Interactive Course</a></li>
@@ -1292,10 +1293,13 @@ changes.</p>
 <h3 id="the-purpose-of-version-control-10-minutes">The Purpose of Version Control (10 minutes)</h3>
 <p>Think about how you&apos;ve managed tracking changes to a file over time (perhaps
 with other people).</p>
-<p>Questions:</p>
+<h4 id="think-pair-share-5-minutes">THINK PAIR SHARE (5 Minutes)</h4>
+<p>Answer the following questions yourself, then turn to your neighbor and discuss your answers. We will then go around and compare.</p>
 <ul>
-<li><strong>What problems did we face?</strong></li>
-<li><strong>How might a Version control system like solve these?</strong></li>
+<li>What does version control mean to you?</li>
+<li>When have you used a form version control previously?</li>
+<li>What was frustrating about that experience?</li>
+<li>How did it work if you were collaborating with other people?</li>
 </ul>
 <p>Here are some problems we face as developers, and how git solves them:</p>
 <p><strong>Reverting to past versions</strong></p>
@@ -1342,9 +1346,9 @@ concepts of how git works (and associated terms).</p>
 <li><strong>the index</strong> - a staging area where we list changes we want to commit</li>
 <li><strong>HEAD</strong> - what is currently checked out.</li>
 </ul>
-<p>Instructor should diagram the various components of a git repository, and how
+<p>See diagram of the various components of a git repository, and how
 they relate.</p>
-<p><strong> Insert diagram here </strong></p>
+<p><img src="git-local.jpg" alt="Git Local Diagram"></p>
 <h4 id="exercise-1-create-a-repository-and-committing-locally">Exercise 1: Create a Repository and Committing Locally</h4>
 <p>Students should:</p>
 <ol>
@@ -1355,6 +1359,13 @@ they relate.</p>
 <li>repeat previous step (committing) but this time, change two files.</li>
 <li>view the &apos;history&apos; by running <code>git log</code> to see the log of commits, and what changed</li>
 </ol>
+<h4 id="git-local-workflow">Git Local Workflow</h4>
+<p>Developing a project revolves around the basic <strong>edit/stage/commit</strong> pattern.</p>
+<p>First, you edit your files in the working directory. When you&#x2019;re ready to save a copy of the current state of the project, you stage changes with git add. After you&#x2019;re happy with the staged snapshot, you commit it to the project history with git commit.</p>
+<p>This means that git add needs to be called every time you alter a file.</p>
+<p>The staging area is one of Git&apos;s more unique features, and it can take some time to wrap your head around it. It helps to think of it as a buffer between the working directory and the project history.</p>
+<p>Instead of committing all of the changes you&apos;ve made since the last commit, the stage lets you group related changes into highly focused snapshots before actually committing it to the project history. This means you can make all sorts of edits to unrelated files, then go back and split them up into logical commits by adding related changes to the stage and commit them piece-by-piece.</p>
+<p>The git commit command commits the staged snapshot to the project history. Committed snapshots can be thought of as &#x201C;safe&#x201D; versions of a project&#x2014;Git will never change them unless you explicity ask it to. Along with git add, this is one of the most important Git commands.</p>
 <h3 id="break-10-minutes">Break (10 minutes)</h3>
 <h3 id="remote-repositories-and-github-30-minutes">Remote Repositories and Github (30 minutes)</h3>
 <h4 id="docs-dive-5-minutes">Docs Dive (5 minutes)</h4>
@@ -1371,8 +1382,11 @@ and prepared to discuss key takeaways.</p>
 <li><strong>push</strong>   - sending changes to a remote repository and merging them into the specified branch</li>
 <li><strong>merge conflict</strong> - when two commits conflict, and thus can&apos;t be merged automatically.</li>
 </ul>
-<p>Instructor should diagram the clone/push/pull process.</p>
-<p><strong> Insert diagram here </strong></p>
+<p>See diagram of the clone/push/pull process.</p>
+<p><img src="git01.jpg" alt="Git Process Diagram">
+<img src="git02.jpg" alt="Git Process Diagram">
+<img src="git03.jpg" alt="Git Process Diagram">
+<img src="git04.jpg" alt="Git Process Diagram"></p>
 <h4 id="exercise-2-publish-to-a-remote-repository-on-github">Exercise 2: Publish to a remote repository on Github</h4>
 <ol>
 <li>make sure you are in the resume directory and you have nothing to commit.</li>
@@ -1390,12 +1404,13 @@ and prepared to discuss key takeaways.</p>
 <li><strong>fork</strong> - make a copy of a repo on github under a different account, used for OSS collaboration</li>
 <li><strong>pull request</strong> - a github feature which allows a user to suggest and discuss changes to a repo they have forked</li>
 </ul>
-<p>Instructor should diagram the fork/clone/pull request process, and how it relates
+<p>See diagram of the fork/clone/pull request process, and how it relates
 to HW submission.</p>
-<p><strong> insert diagram here </strong></p>
+<p><img src="git06.jpg" alt="Git Process Diagram"></p>
 <h4 id="exercise-3-fork-clone-and-create-a-pull-request">Exercise 3: Fork, Clone and create a Pull Request</h4>
 <p>Visit the <a href="https://github.com/ga-dc/haiku" target="_blank">haiku</a> repo and follow the instructions
 there.</p>
+<p><img src="git.gif" alt="Git Process Diagram"></p>
 <h3 id="closing">Closing</h3>
 <p>What problems do we anticipate using git / github?
 Review learning objectives.</p>
@@ -1463,7 +1478,7 @@ OR</li>
 <h3 id="2-fork-and-clone-the-curriculum-repo">2. Fork and Clone the Curriculum Repo</h3>
 <p>Fork the <a href="https://github.com/ga-dc/curriculum" target="_blank">Curriculum Repo</a> to your personal account. Clone <em>your fork</em> to your
 computer in your <code>~/wdi</code> folder.</p>
-<p>NOTE: If you already have a <code>pbj</code> folder in your <code>~/wdi</code> folder, delete or rename it before you clone.</p>
+<p>NOTE: If you already have a <code>curriculum</code> folder in your <code>~/wdi</code> folder, delete or rename it before you clone.</p>
 <h3 id="submission">Submission</h3>
 <p>File a github issue, on <a href="https://github.com/ga-dc/curriculum/issues" target="_blank">https://github.com/ga-dc/curriculum/issues</a>, with a link to:</p>
 <ul>
