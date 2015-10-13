@@ -28,7 +28,9 @@ installfest), discuss the following questions:
 
 * How is the CLI different from the GUI?
 * What do you like / dislike about using it?
-* It what ways might it be beter or worse for Developers? (Compared to a GUI)
+* It what ways might it be better or worse for Developers? (Compared to a GUI)
+
+![](http://coding-journal.com/wp-content/uploads/2013/10/Screen-Shot-2013-10-30-at-12.02.14.png)
 
 ---------------------------------------------------------------------------
 
@@ -42,7 +44,7 @@ tasks much faster using the command line. Features such as tab completion,
 history searching / modifying, and piping commands all contribute to this speed.
 
 **Precision**
-Because of it's nature as a text-based interface, the command line provides us
+Because of its nature as a text-based interface, the command line provides us
 with a lot more precision. We can look at the commands we're about to enter
 and understand exactly what they will do. This also allows:
 
@@ -58,7 +60,7 @@ us achieve almost any task. Most of them are built in, but we can download
 almost any others using `brew` on a mac, or `apt-get` on linux.
 
 Additionally, tools built for the command line usually follow something called
-the 'unix philosophy', which is that each tool should do ~1 thing, and do it
+the ['unix philosophy'](http://catb.org/esr/writings/taoup/html/#id2807216), which is that each tool should do ~1 thing, and do it
 well. Complex tasks can be achieved by chaining tools together.
 
 --------------------------------------------------------------------------------
@@ -80,6 +82,7 @@ Examples of commands that have output might be:
 
 * `pwd`
 * `ls`
+* `telnet towel.blinkenlights.nl`
 
 Other commands primarily exist to have a *side-effect*, or in other words, to
 make some change, usually on our system. An example might be `touch`, which
@@ -106,6 +109,8 @@ for some commands. As the name implies, they set options to tell the command
 **how** to do what it's about to do. There may be zero or more options. Options
 usually start with one or two dashes. Usually one dash is for a short one letter
 abbreviation, while two dashes is for long name for the option.
+
+http://catb.org/esr/writings/taoup/html/ch10s05.html#id2948149
 
 Finally come the arguments. These are what you want to do the action to. Usually
 these are file names, but they could be URLs, or other things.
@@ -140,7 +145,7 @@ All paths point to a single file or folder, but we can write paths to be either
 
 #### Absolute Paths
 
-An absolute path will always tell us excactly where the file or folder is. An
+An absolute path will always tell us exactly where the file or folder is. An
 example in the real world would be a mailing address:
 
 GA
@@ -305,3 +310,20 @@ home
 │       └── beach.png
 └── videos
 ```
+
+## Hungry for More?
+
+Here are some advanced commands worth checking out that we may not explicitly go over in class:
+
+* grep
+* cat
+* less
+* find
+* tmux
+* cal
+* vim
+  * vimtutor
+
+## Feeling Adventurous?
+
+Bash isn't the only option. Check out zsh (http://code.joejag.com/2014/why-zsh.html) or fish (http://fishshell.com/)
