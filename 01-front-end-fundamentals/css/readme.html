@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.4" data-basepath="../.." data-revision="Tue Oct 13 2015 13:14:54 GMT+0000 (UTC)">
+    <div class="book" data-level="1.4" data-basepath="../.." data-revision="Tue Oct 13 2015 18:30:39 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1266,20 +1266,36 @@
 <li>Identify the components of the box model</li>
 <li>Differentiate between the border-box and content-box values for box-sizing</li>
 <li>Apply knowledge of the box model to adjust spacing between and around elements on a page</li>
-<li>Bookmark 2-3 good resources that developers can use refer to for CSS help
-&lt;!--<h2 id="opening-framing-3-min">Opening Framing (3 min)</h2>
+<li>Bookmark 2-3 good resources that developers can use refer to for CSS help</li>
+</ul>
+<h2 id="opening-framing-3-min">Opening Framing (3 min)</h2>
 <blockquote>
 <p>Although some of this may be review from the prework, repetition is key to becoming a good programmer!</p>
 </blockquote>
+<p>Wouldn&apos;t it be nice to make our webpages look schnazzy? Enter CSS. There is such a wide breadth of things to learn about CSS and honestly, you could probably teach a whole 12 weeks to understand all the capabilities, nuances and subtleties. So we&apos;ll only be scratching the surface with it, but I encourage you to experiment with CSS on your own. As you consistently use CSS you realize, while frustrating, becomes awesome to utilize.</p>
+<h2 id="separation-of-concerns">Separation of Concerns</h2>
+<p>It is possible to style web pages using html alone. We did this in the early 2000s using mostly images and table borders. CSS allows us to separate
+the styles of our website/app from the content and behavior:</p>
+<ul>
+<li>HTML<ul>
+<li>Content </li>
+</ul>
+</li>
+<li>CSS<ul>
+<li>Styles </li>
+</ul>
+</li>
+<li>JS<ul>
+<li>Behavior </li>
+</ul>
 </li>
 </ul>
-<p>Wouldn&apos;t it be nice to make our webpages look schnazzy? Enter CSS. There is such a wide breadth of things to learn about CSS and honestly, you could probably teach a whole 12 weeks to understand all the capabilities, nuances and subtleties. So we&apos;ll only be scratching the surface with it, but I encourage you to experiment with CSS on your own. As you consistently use CSS you realize, while frustrating, becomes awesome to utilize.</p>
 <h2 id="in-line-vs-head-vs-stylesheets-30m">In-line vs head vs stylesheets(30m)</h2>
 <blockquote>
 <p>Not a codealong let class know they&apos;re welcome to but may be better just to pay attention to the first hour instead of typing everything out. All notes available in lesson plan</p>
 </blockquote>
 <p>At the crux of it all, the primary concept of CSS is to select an HTML element and then do something to it. IE. I want to take the body element, and I want to apply a background color to it.</p>
-<p>Let&apos;s get started by creating a new html webpage that we&apos;ll call <code>index.html</code> in some working directory of your choosing:</p>
+<p>Let&apos;s get started by creating a new html webpage that we&apos;ll call <code>index.html</code> in <code>~/wdi/sandbox/css/</code>:</p>
 <pre><code class="lang-bash">$ touch index.html
 </code></pre>
 <p>Let&apos;s throw some dummy content into HTML inside our <code>index.html</code>:</p>
@@ -1291,21 +1307,18 @@
 <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>This is some fake dummy content. It doesn&apos;t matter what it is! Whatever you want! Smelly fish create beautiful works of art in order to achieve world peace.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- http://hipsum.co/ --&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
 </code></pre>
 <p><em>Whiteboard definitions as they come up</em></p>
 <p>So one way we can style elements in HTML is in the tag itself. These are called inline-styles:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background:blue&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background:blue;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
 </code></pre>
-<blockquote>
-<p>note the above is a CSS declaration. A declaration is a property and a value.</p>
-</blockquote>
-<p>Blech even just writing this out feels miserable. Why do you guys think I feel miserable about this?</p>
 <h3 id="t-t-3m">T &amp; T (3m)</h3>
 <p>Knowing not too much about coding. Take a couple minutes and chat with your partner about why this particular way of styling an element might not be the greatest approach?</p>
 <blockquote>
-<p>Don&apos;t use inline styles if you can avoid it</p>
+<p>Don&apos;t use inline styles if you can avoid it. They are very specific! (More on this in a minute)</p>
 </blockquote>
 <p>The next approach to implementing a style is to put the styling in the <code>&lt;head&gt;</code>:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
@@ -1321,6 +1334,9 @@
 <p>You&apos;ve seen this before, but I want to highlight some syntax here. From p until the ending curly brace is a CSS rule. The p in this code is what&apos;s called the selector. The background  in the code is the property. Finally blue is the value.</p>
 </blockquote>
 <p>This is a bit better. I feel less dirty. But feel weird about this one too. Why might that be? (ST-WG)</p>
+<blockquote>
+<p>What if you have both styles in the head <em>and</em> inline styles? Which style will be applied? Why is this?</p>
+</blockquote>
 <p>What&apos;s the best way? External stylesheets! Let&apos;s create a new file called <code>styles.css</code>:</p>
 <pre><code class="lang-bash">$ touch styles.css
 </code></pre>
@@ -1393,6 +1409,7 @@ You can access a CSS specificty calculator <a href="http://specificity.keegan.st
 <blockquote>
 <p>One of the tricky things about CSS at first is the Box Model. But it&apos;s actually really simple. Let&apos;s break it down.</p>
 </blockquote>
+<p><img src="https://dl.dropboxusercontent.com/s/capg35hblhr6o7v/Screenshot%202015-10-13%2014.11.39.png?dl=0" alt=""></p>
 <p>Any HTML element can be considered a box, and so the box model applies to all HTML elements. If you select an element prescribe it a height and width, the content itself will be that height and width.</p>
 <p>What the size doesn&apos;t include:</p>
 <ul>
@@ -1444,45 +1461,8 @@ You can access a CSS specificty calculator <a href="http://specificity.keegan.st
 <h2 id="we-do-wendy-g-bite-code-along-60-m">We do- Wendy G Bite <em>Code Along</em> (60 m)</h2>
 <p>ST-WG. Use notes as a guideline and tool for students later. Don&apos;t necessarily have to stick to it 100%</p>
 </blockquote>
-<p>Cool, Let&apos;s code this one together. I think the first thing we should do is get all our content on the page. So let&apos;s go ahead and create some files to put this content in:</p>
-<pre><code class="lang-bash">$ touch index.html
-$ touch styles.css
-</code></pre>
-<p>Alright, now let&apos;s shove all of our content into <code>index.html</code>:</p>
-<pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Wendy Bite | About Me<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">&apos;stylesheet&apos;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;text/css&apos;</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;styles.css&apos;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;utf8&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">header</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Wendy G. Bite<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">nav</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;#&apos;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&apos;active&apos;</span>&gt;</span>About Me<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span> |
-      <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;#&apos;</span>&gt;</span>R&amp;eacute;sum&amp;eacute;<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">nav</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">header</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;main&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>About Me<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&apos;Betty-White.jpg&apos;</span> <span class="hljs-attribute">align</span>=<span class="hljs-value">right</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>The series revolves around four older, single women (three widows and one divorc&#xE9;e) sharing a house in Miami, Florida. The owner of the house is a widow named Blanche Devereaux (Rue McClanahan), who was joined by fellow widow Rose Nylund (Betty White) and divorc&#xE9;e Dorothy Zbornak (Bea Arthur). They both responded to a room-for-rent ad on the bulletin board of a local grocery store. In the pilot episode, the women had a gay cook named Coco (Charles Levin), who was subsequently removed.[5] The three were soon joined by Dorothy&apos;s mother, Sophia Petrillo (Estelle Getty), after the retirement home where she lived, Shady Pines, burned down.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Thank You for being a friend. Travel down a road and back again. Your heart is true, you&apos;re a pal and a confidante.And if you threw a party, invited everyone you knew, you would see the biggest gift would be from me and the card attached would say, Thank You For Being a Friend!<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">footer</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;#&apos;</span>&gt;</span>Facebook<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span> |
-    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;#&apos;</span>&gt;</span>Twitter<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span> |
-    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;#&apos;</span>&gt;</span>Instagram<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span> |
-    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;#&apos;</span>&gt;</span>LinkedIn<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">footer</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
-</code></pre>
-<p>I think we can knock out an easy one early on. I can see by looking at that page that the background color and text color are mostly similar. Additionally centering everything and giving it a little bit of a buffer with the padding/border/margin on the edges will be nice. Let&apos;s go ahead and change that in <code>styles.css</code>:</p>
+<pre><code>$ git clone https://github.com/ga-dc/wendy_bite
+</code></pre><p>I think we can knock out an easy one early on. I can see by looking at that page that the background color and text color are mostly similar. Additionally centering everything and giving it a little bit of a buffer with the padding/border/margin on the edges will be nice. Let&apos;s go ahead and change that in <code>styles.css</code>:</p>
 <pre><code class="lang-css"><span class="hljs-tag">body</span><span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#444</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#fff</span></span></span>;
@@ -1525,7 +1505,7 @@ $ touch styles.css
 }</span>
 </code></pre>
 <p>I think that&apos;s pretty good. There&apos;s some minor tweaks that can be made. Like font and changing the color for active links.</p>
-<h2 id="you-do-finish-for-hw-dew">You do/ Finish for HW - Dew --&gt;</h2>
+<h2 id="you-do-finish-for-hw-dew">You do/ Finish for HW - Dew</h2>
 
                     
                     </section>
