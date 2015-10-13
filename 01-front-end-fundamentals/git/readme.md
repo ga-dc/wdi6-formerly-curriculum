@@ -27,6 +27,7 @@ changes.
 ## Resources
 
 * [Interactive Git Cheetsheet](http://ndpsoftware.com/git-cheatsheet.html)
+* [Syncing with Git](https://www.atlassian.com/git/tutorials/syncing/)
 * [Github Guides](https://guides.github.com)
 * [Github Training](https://training.github.com/kit/)
 * [Git Immersion - Interactive Course](http://gitimmersion.com/lab_05.html)
@@ -41,9 +42,12 @@ changes.
 Think about how you've managed tracking changes to a file over time (perhaps
 with other people).
 
-Questions:
-* **What problems did we face?**
-* **How might a Version control system like solve these?**
+#### THINK PAIR SHARE (5 Minutes)
+Answer the following questions yourself, then turn to your neighbor and discuss your answers. We will then go around and compare.
+- What does version control mean to you?
+- When have you used a form version control previously?
+- What was frustrating about that experience?
+- How did it work if you were collaborating with other people?
 
 Here are some problems we face as developers, and how git solves them:
 
@@ -109,7 +113,8 @@ concepts of how git works (and associated terms).
 See diagram of the various components of a git repository, and how
 they relate.
 
-** Insert diagram here **
+![Git Local Diagram](./git-local.jpg)
+
 
 #### Exercise 1: Create a Repository and Committing Locally
 
@@ -121,6 +126,22 @@ Students should:
 4. modify a file (e.g. resume.txt) and create a new commit, with an appropriate message
 5. repeat previous step (committing) but this time, change two files.
 6. view the 'history' by running `git log` to see the log of commits, and what changed
+
+
+#### Git Local Workflow
+
+Developing a project revolves around the basic **edit/stage/commit** pattern.
+
+First, you edit your files in the working directory. When you’re ready to save a copy of the current state of the project, you stage changes with git add. After you’re happy with the staged snapshot, you commit it to the project history with git commit.
+
+This means that git add needs to be called every time you alter a file.
+
+The staging area is one of Git's more unique features, and it can take some time to wrap your head around it. It helps to think of it as a buffer between the working directory and the project history.
+
+Instead of committing all of the changes you've made since the last commit, the stage lets you group related changes into highly focused snapshots before actually committing it to the project history. This means you can make all sorts of edits to unrelated files, then go back and split them up into logical commits by adding related changes to the stage and commit them piece-by-piece.
+
+The git commit command commits the staged snapshot to the project history. Committed snapshots can be thought of as “safe” versions of a project—Git will never change them unless you explicity ask it to. Along with git add, this is one of the most important Git commands.
+
 
 ### Break (10 minutes)
 
@@ -144,7 +165,10 @@ and prepared to discuss key takeaways.
 
 See diagram of the clone/push/pull process.
 
-![Git Remote Diagram](./git.gif)
+![Git Process Diagram](./git00.jpg)
+![Git Process Diagram](./git01.jpg)
+![Git Process Diagram](./git02.jpg)
+
 
 #### Exercise 2: Publish to a remote repository on Github
 
@@ -168,12 +192,14 @@ See diagram of the clone/push/pull process.
 See diagram of the fork/clone/pull request process, and how it relates
 to HW submission.
 
-** insert diagram here **
+![Git Process Diagram](./git06.jpg)
 
 #### Exercise 3: Fork, Clone and create a Pull Request
 
 Visit the [haiku](https://github.com/ga-dc/haiku) repo and follow the instructions
 there.
+
+![Git Process Diagram](./git.gif)
 
 
 ### Closing
