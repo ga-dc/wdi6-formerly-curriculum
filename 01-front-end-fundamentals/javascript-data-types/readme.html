@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Tue Oct 13 2015 20:17:28 GMT+0000 (UTC)">
+    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Tue Oct 13 2015 20:28:22 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1724,10 +1724,10 @@ greetings.search( <span class="hljs-string">&quot;Andy&quot;</span> );
 </ul>
 <p>There are two ways to instantiate an array...  </p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Instantiate with an array literal.</span>
-<span class="hljs-keyword">var</span> mountRushmore = [ <span class="hljs-string">&quot;Washington&quot;</span>, <span class="hljs-string">&quot;Jefferson&quot;</span>, <span class="hljs-string">&quot;Roosevelt&quot;</span>, <span class="hljs-string">&quot;Lincoln&quot;</span> ];
+<span class="hljs-keyword">var</span> mountRushmore = [ <span class="hljs-string">&quot;Washington&quot;</span>, <span class="hljs-string">&quot;Jefferson&quot;</span>, <span class="hljs-string">&quot;Roosevelt&quot;</span> ];
 
 <span class="hljs-comment">// Can also instantiate using the Array constructor.</span>
-<span class="hljs-keyword">var</span> mountRushmore = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-string">&quot;Washington&quot;</span>, <span class="hljs-string">&quot;Jefferson&quot;</span>, <span class="hljs-string">&quot;Roosevelt&quot;</span>, <span class="hljs-string">&quot;Lincoln&quot;</span> );
+<span class="hljs-keyword">var</span> mountRushmore = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-string">&quot;Washington&quot;</span>, <span class="hljs-string">&quot;Jefferson&quot;</span>, <span class="hljs-string">&quot;Roosevelt&quot;</span> );
 
 <span class="hljs-comment">// Be careful when using the Array constructor. If you feed it a single numerical value, it will create an empty array of that length.</span>
 <span class="hljs-keyword">var</span> numbers = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">5</span> );
@@ -1747,6 +1747,11 @@ mountRushmore[<span class="hljs-number">1</span>];
 mountRushmore[<span class="hljs-number">2</span>];
 =&gt; <span class="hljs-string">&quot;Roosevelt&quot;</span>
 
+mountRushmore.push(<span class="hljs-string">&quot;Lincoln&quot;</span>);
+
+mountRushmore[<span class="hljs-number">3</span>];
+=&gt; <span class="hljs-string">&quot;Lincoln&quot;</span>
+
 <span class="hljs-comment">// You can also place arrays within arrays.</span>
 <span class="hljs-keyword">var</span> letters = [ [<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;b&quot;</span>,<span class="hljs-string">&quot;c&quot;</span>], [<span class="hljs-string">&quot;d&quot;</span>,<span class="hljs-string">&quot;e&quot;</span>,<span class="hljs-string">&quot;f&quot;</span>], [<span class="hljs-string">&quot;g&quot;</span>,<span class="hljs-string">&quot;h&quot;</span>,<span class="hljs-string">&quot;i&quot;</span>] ];
 
@@ -1756,20 +1761,19 @@ letters[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>];
 </code></pre>
 <p>Array methods</p>
 <ul>
-<li>There are a lot of useful methods that come with Javascript we can use to inspect and modify arrays. To learn what some of them are...</li>
+<li>There are a lot of useful methods that come with Javascript we can use to inspect and modify arrays. To learn what some of them are...<ul>
+<li><code>.length</code></li>
+<li><code>.push</code></li>
+<li><code>.indexOf</code></li>
+<li><code>.reverse</code></li>
 </ul>
-<h3 id="pair-exercise-5-105">Pair Exercise (5/105)</h3>
-<p>Given the array <code>var planeteers = [ &quot;Looting&quot;, &quot;Wind&quot;, &quot;Fire&quot;, &quot;Water&quot;, &quot;Heart&quot;, &quot;Polluting&quot; ]</code>, use MDN documentation to find methods that accomplish the following...</p>
-<ul>
-<li>Returns the length of the array.</li>
-<li>Returns the position of &quot;Water&quot;.</li>
-<li>Removes &quot;Polluting&quot; from the end of the array.</li>
-<li>Removes &quot;Looting&quot; from the front of the array.</li>
-<li>Adds <code>&quot;Earth&quot;</code> to the front of the array.</li>
-<li><p>Reverses the array order.</p>
 </li>
-<li><p>This exercise is a good way to familiarize yourselves with the Mozilla Developer Network&apos;s javascript documentation, a go-to source when looking up anything Javascript-related.</p>
+</ul>
+<blockquote>
+<p>There are many more, but these are the most widely-used.</p>
+</blockquote>
 <ul>
+<li>Documentation<ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">MDN Array Documentation</a></li>
 <li>Navigating documentation is a great skill to have. Some sets of documentation are harder to navigate than others, but if you have a sense of how to dig through a massive trove of information like MDN or RubyDocs, you&apos;ll become a much more efficient programmer.</li>
 </ul>
@@ -1806,21 +1810,12 @@ letters[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>];
 <blockquote>
 <p>Everything else is &quot;truthy&quot;. Why might we need this programmatic concept of &quot;truthy&quot; and &quot;falsey&quot;?(ST-WG)</p>
 </blockquote>
-<h3 id="draw-truth-tables-for-and-i-do-2m">Draw truth tables for ! and &amp;&amp; (I do 2m)</h3>
-<ul>
-<li>true &amp;&amp; true</li>
-<li>true &amp;&amp; false</li>
-<li>!true</li>
-<li>!false</li>
-</ul>
-<h3 id="have-students-do-truth-tables-for-st-wg-2m">Have students do truth tables for || (ST-WG 2m)</h3>
-<ul>
-<li>true || false</li>
-<li>false || true</li>
-<li>false || false</li>
-<li>true || true</li>
-</ul>
 <h2 id="comparison-operators-5-120">Comparison Operators (5/120)</h2>
+<ul>
+<li><code>&amp;&amp;</code></li>
+<li><code>||</code></li>
+<li><code>!</code></li>
+</ul>
 <p>Demonstrate comparison operators in node</p>
 <ul>
 <li><code>&lt;</code>, <code>&lt;=</code></li>
