@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.7" data-basepath="../.." data-revision="Wed Oct 14 2015 13:58:53 GMT+0000 (UTC)">
+    <div class="book" data-level="1.7" data-basepath="../.." data-revision="Wed Oct 14 2015 15:56:45 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1437,14 +1437,11 @@ car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
 </blockquote>
 <h4 id="calling-and-referencing-a-function-5-90">Calling and Referencing a Function (5 / 90)</h4>
 <p>We&apos;ve defined a function. Now we need to call it...</p>
-<pre><code class="lang-js"><span class="hljs-comment">// Call the square function. Why isn&apos;t anything logged to the console?</span>
+<pre><code class="lang-js"><span class="hljs-comment">// Call the square function.</span>
 multiply( <span class="hljs-number">2</span>, <span class="hljs-number">5</span> );
 
-<span class="hljs-comment">// We need to explicitly print out the function&apos;s return value. You could also add a console.log statement to the function body.</span>
-<span class="hljs-built_in">console</span>.log( multiply( <span class="hljs-number">2</span>, <span class="hljs-number">5</span> ) );
-
 <span class="hljs-comment">// What happens if we reference the function without parentheses?</span>
-<span class="hljs-built_in">console</span>.log( multiply );
+multiply;
 </code></pre>
 <h3 id="why-do-we-use-functions-5-95">Why do we use functions? (5 / 95)</h3>
 <p>Say we wanted to square three different numbers without using the above function. How would we do that?</p>
@@ -1479,15 +1476,15 @@ multiply( <span class="hljs-number">2</span>, <span class="hljs-number">5</span>
 </blockquote>
 <h3 id="hoisting-10-110">Hoisting (10 / 110)</h3>
 <p>What do you think will happen when we run the below code...</p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log( square( <span class="hljs-number">5</span> ) );
-<span class="hljs-keyword">var</span> square = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> num </span>)</span>{           <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> This is a function expression</span>
-  <span class="hljs-keyword">return</span> num * num;
+<pre><code class="lang-js">multiply( <span class="hljs-number">3</span>, <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> multiply = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> num1, num2 </span>)</span>{           <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> This is a function expression</span>
+  <span class="hljs-keyword">return</span> num1 * num2;
 }
 </code></pre>
 <p>Surely the same thing will happen when we run the below code...</p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log( square( <span class="hljs-number">5</span> ) );
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params">number</span>) </span>{               <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> This is a function declaration</span>
-  <span class="hljs-keyword">return</span> number * number;
+<pre><code class="lang-js">multiply( <span class="hljs-number">3</span>, <span class="hljs-number">5</span> );
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiply</span>(<span class="hljs-params"> num1, num2 </span>) </span>{               <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> This is a function declaration</span>
+  <span class="hljs-keyword">return</span> num1 * num2;
 }
 </code></pre>
 <blockquote>
@@ -1507,9 +1504,6 @@ declare();        <span class="hljs-comment">// ???</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">declare</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Function declaration called.&apos;</span>);
 }
-
-express();        <span class="hljs-comment">// ???</span>
-declare();        <span class="hljs-comment">// ???</span>
 </code></pre>
 <p>This is a neat feature, but can you think of a potential pitfall of &quot;hoisting&quot; too often?</p>
 <ul>
