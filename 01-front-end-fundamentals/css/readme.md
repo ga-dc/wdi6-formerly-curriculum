@@ -248,13 +248,13 @@ Now when we refresh, all of our 20% widths are the same regardless of padding. I
 ## CSS Properties and Values
 Man, there's alot of them. We've seen many just in this lesson thus far. There are far more than I can cover. Additionally, there's just no way to know them all. Unless you're a CSS savant. Fortunately, there are some great references. Here's just a few!
 
-[CSS Documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
-[CSS Tricks - SO GOOD](https://css-tricks.com)
-[Codrops CSS Reference](http://tympanus.net/codrops/css_reference/)
-[30 CSS Selectors You Must Memorize](http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048)
-[10 CSS3 Properties You Need to be Familiar With](http://code.tutsplus.com/tutorials/10-css3-properties-you-need-to-be-familiar-with--net-16417)
-[A to Z CSS Screencasts](http://www.atozcss.com/)
-[How to Make Your Site Look Half-Decent in Half an Hour](https://24ways.org/2012/how-to-make-your-site-look-half-decent)
+- [CSS Documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
+- [CSS Tricks - SO GOOD](https://css-tricks.com)
+- [Codrops CSS Reference](http://tympanus.net/codrops/css_reference/)
+- [30 CSS Selectors You Must Memorize](http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048)
+- [10 CSS3 Properties You Need to be Familiar With](http://code.tutsplus.com/tutorials/10-css3-properties-you-need-to-be-familiar-with--net-16417)
+- [A to Z CSS Screencasts](http://www.atozcss.com/)
+- [How to Make Your Site Look Half-Decent in Half an Hour](https://24ways.org/2012/how-to-make-your-site-look-half-decent)
 
 ##BREAK (10 min)
 
