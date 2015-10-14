@@ -6,7 +6,7 @@ This lesson aims to teach you both the fundamentals (both conceptual and
 mechanical), of using git, as well as how to use git with Github to share
 changes.
 
-## Learning Objecitves
+## Learning Objectives
 
 ### Conceptual
 
@@ -27,6 +27,7 @@ changes.
 ## Resources
 
 * [Interactive Git Cheetsheet](http://ndpsoftware.com/git-cheatsheet.html)
+* [Syncing with Git](https://www.atlassian.com/git/tutorials/syncing/)
 * [Github Guides](https://guides.github.com)
 * [Github Training](https://training.github.com/kit/)
 * [Git Immersion - Interactive Course](http://gitimmersion.com/lab_05.html)
@@ -41,9 +42,12 @@ changes.
 Think about how you've managed tracking changes to a file over time (perhaps
 with other people).
 
-Questions:
-* **What problems did we face?**
-* **How might a Version control system like solve these?**
+#### THINK PAIR SHARE (5 Minutes)
+Answer the following questions yourself, then turn to your neighbor and discuss your answers. We will then go around and compare.
+- What does version control mean to you?
+- When have you used a form version control previously?
+- What was frustrating about that experience?
+- How did it work if you were collaborating with other people?
 
 Here are some problems we face as developers, and how git solves them:
 
@@ -87,26 +91,16 @@ line or lines in a given commit.
 
 **Fearlessness in making changes**
 
-In developing software, we often want to experiemnt in adding a feature or
+In developing software, we often want to experiment in adding a feature or
 refactoring (rewriting) existing code. Because git makes it easy to go back to a
-known good state, we can experiement without worrying that we'll be unable to
-undo the experiemental work.
+known good state, we can experiment without worrying that we'll be unable to
+undo the experimental work.
 
 ### Core Concepts of Git Repositories (40 minutes)
 
 This section aims to introduce the core use of git, as well as the fundamental
 concepts of how git works (and associated terms).
 
-#### Exercise 1: Create a Repository and Committing Locally
-
-Students should:
-
-1. download and install the [Github for Mac client](https://mac.github.com).
-2. initialize a git repository in their `resume` folder.
-3. make an initial commit with the current version of their code (all files)
-4. modify a file (e.g. index.html) and create a new commit, with an appropriate message
-5. repeat previous step (committing) but this time, change two files.
-6. look at the 'history' tab to see the log of commits, and what changed
 
 #### Terms and Concepts (Core Git)
 
@@ -116,24 +110,47 @@ Students should:
 * **the index** - a staging area where we list changes we want to commit
 * **HEAD** - what is currently checked out.
 
-Instructor should diagram the various components of a git repository, and how
+See diagram of the various components of a git repository, and how
 they relate.
 
-** Insert diagram here **
+![Git Local Diagram](./git-local.jpg)
+
+
+#### Exercise 1: Create a Repository and Committing Locally
+
+Students should:
+
+1. create a new `resume` folder in sandbox directory.
+2. initialize a git repository in the `resume` folder.
+3. make an initial commit with the current version of their code (all files)
+4. modify a file (e.g. resume.txt) and create a new commit, with an appropriate message
+5. repeat previous step (committing) but this time, change two files.
+6. view the 'history' by running `git log` to see the log of commits, and what changed
+
+
+#### Git Local Workflow
+
+Developing a project revolves around the basic **edit/stage/commit** pattern.
+
+First, you edit your files in the working directory. When you’re ready to save a copy of the current state of the project, you stage changes with git add. After you’re happy with the staged snapshot, you commit it to the project history with git commit.
+
+This means that git add needs to be called every time you alter a file.
+
+The staging area is one of Git's more unique features, and it can take some time to wrap your head around it. It helps to think of it as a buffer between the working directory and the project history.
+
+Instead of committing all of the changes you've made since the last commit, the stage lets you group related changes into highly focused snapshots before actually committing it to the project history. This means you can make all sorts of edits to unrelated files, then go back and split them up into logical commits by adding related changes to the stage and commit them piece-by-piece.
+
+The git commit command commits the staged snapshot to the project history. Committed snapshots can be thought of as “safe” versions of a project—Git will never change them unless you explicity ask it to. Along with git add, this is one of the most important Git commands.
+
 
 ### Break (10 minutes)
 
 ### Remote Repositories and Github (30 minutes)
 
-#### Exercise 2: Publish to a remote repository on Github
+#### Docs Dive (5 minutes)
 
-1. open the resume repo in the Github client
-2. ensure you have at least one commit
-3. click the 'publish' button in the upper right corner
-4. give the repo a name and description, and ensure it's public, then push it
-5. open the repo on github, and explore the code there
-6. make a change locally, commit it, and sync it
-7. open the repo on github, and note that the changes have synced
+Students should briefly look over provided reading on [Git Remotes](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes)
+and prepared to discuss key takeaways.
 
 #### Terms and Concepts (Remotes)
 
@@ -146,28 +163,45 @@ they relate.
 * **push**   - sending changes to a remote repository and merging them into the specified branch
 * **merge conflict** - when two commits conflict, and thus can't be merged automatically.
 
-Instructor should diagram the clone/push/pull process.
+See diagram of the clone/push/pull process.
 
-** Insert diagram here **
+![Git Process Diagram](./git01.jpg)
+![Git Process Diagram](./git02.jpg)
+![Git Process Diagram](./git03.jpg)
+![Git Process Diagram](./git04.jpg)
+
+
+#### Exercise 2: Publish to a remote repository on Github
+
+1. make sure you are in the resume directory and you have nothing to commit.
+2. ensure you have at least one commit
+3. give the repo a name and description, and ensure it's public
+4. add repo as a remote and push to remote
+5. open the repo on github, and explore the code there
+6. make a change locally, commit it, and sync it
+7. open the repo on github, and note that the changes have synced
 
 ### Break (5 minutes)
+
 ### Forking & Pull Requests (30 minutes)
-
-#### Exercise 3: Fork, Clone and create a Pull Request
-
-Visit the [haiku](https://github.com/ga-dc/haiku) repo and follow the instructions
-there.
 
 #### Terms and Concepts (Forking and Pull Requests)
 
 * **fork** - make a copy of a repo on github under a different account, used for OSS collaboration
 * **pull request** - a github feature which allows a user to suggest and discuss changes to a repo they have forked
 
-
-Instructor should diagram the fork/clone/pull request process, and how it relates
+See diagram of the fork/clone/pull request process, and how it relates
 to HW submission.
 
-** insert diagram here **
+![Git Process Diagram](./git06.jpg)
+
+#### Exercise 3: Fork, Clone and create a Pull Request
+
+Visit the [haiku](https://github.com/ga-dc/haiku) repo and follow the instructions
+there.
+
+![Git Process Diagram](./git.gif)
+
 
 ### Closing
 
@@ -220,19 +254,19 @@ Once linked, you can just run `git push` to push master branch to master branch
 
 ## Homework
 
-### 1. Personal Portfolio Page
+### 1. Personal Resume Page
 [Part 2 of the HTML Resume](https://github.com/ga-dc/html_resume)
 
-### 2. Fork and Clone the PBJ Repo
+### 2. Fork and Clone the Curriculum Repo
 
-Fork the [PBJ Repo](https://github.com/ga-dc/pbj) to your personal account. Clone *your fork* to your
+Fork the [Curriculum Repo](https://github.com/ga-dc/curriculum) to your personal account. Clone *your fork* to your
 computer in your `~/wdi` folder.
 
-NOTE: If you already have a `pbj` folder in your `~/wdi` folder, delete or rename it before you clone.
+NOTE: If you already have a `curriculum` folder in your `~/wdi` folder, delete or rename it before you clone.
 
 ### Submission
 
-File a github issue, on https://github.com/ga-dc/pbj/issues, with a link to:
+File a github issue, on https://github.com/ga-dc/curriculum/issues, with a link to:
 * your personal github pages repo
 * the URL to see your hosted page.
 * a link to the repo you forked
