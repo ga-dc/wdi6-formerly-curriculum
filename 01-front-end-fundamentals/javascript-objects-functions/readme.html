@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.7" data-basepath="../.." data-revision="Wed Oct 14 2015 13:51:52 GMT+0000 (UTC)">
+    <div class="book" data-level="1.7" data-basepath="../.." data-revision="Wed Oct 14 2015 13:52:42 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1247,166 +1247,309 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="objects-and-functions">Objects and Functions</h1>
-<h2 id="learning-objectives">Learning Objectives</h2>
+<h2 id="learning-objectives-5-5">Learning Objectives (5 / 5)</h2>
+<h3 id="objects">Objects</h3>
 <ul>
-<li>Discuss datatypes (simple datatypes vs. collections)</li>
-<li>Compare objects and key-value stores to arrays as data structures</li>
-<li>Explain the difference between object properties and methods</li>
-<li>Create empty objects and objects with multiple properties and methods using object literal syntax</li>
-<li>Compare adding and retrieving properties to objects using dot and bracket notation</li>
-<li>Use <code>delete</code></li>
-<li>Iterate over the keys of an object to return and manipulate values</li>
-<li>Introduce namespace</li>
-<li>Explain nested data structures</li>
-<li>Write an object method</li>
-<li>Describe what a JavaScript function is</li>
-<li>Recognize the parts of a function</li>
-<li>Write a function in JavaScript using a declaration and an expression</li>
-<li>Define hoisting</li>
-<li>Differentiate between referencing and invoking a function</li>
-<li>State the difference between Output and Side Effects</li>
+<li>Compare objects and key-value stores to arrays as data structures.</li>
+<li>Explain the difference between object properties and methods.</li>
+<li>Create objects using object literal syntax.</li>
+<li>Compare adding and retrieving properties to objects using dot and bracket notation.</li>
+<li>Use <code>delete</code>.</li>
+<li>Iterate over the keys of an object to return and manipulate values.</li>
+<li>Explain nested data structures.</li>
+<li>Write an object method.</li>
 </ul>
-<h2 id="datatype-review">Datatype Review</h2>
-<h3 id="simple-datatypes">Simple datatypes</h3>
+<h3 id="functions">Functions</h3>
 <ul>
-<li>number (e.g. <code>0</code>, <code>1</code>, <code>-1</code>, <code>0.5</code>, <code>1e10</code>)</li>
-<li>string (e.g. <code>&quot;Hello World!&quot;</code>, <code>&quot;A&quot;</code>, <code>&quot;&quot;</code>)</li>
-<li>booleans (i.e. <code>true</code> or <code>false</code>)</li>
+<li>Describe what a JavaScript function is.</li>
+<li>Recognize the parts of a function.</li>
+<li>Write a function in JavaScript using a declaration and an expression.</li>
+<li>Define hoisting.</li>
+<li>Differentiate between referencing and invoking a function.</li>
+<li>State the difference between a function&apos;s output and side effects.</li>
 </ul>
-<h3 id="collections">Collections</h3>
+<h3 id="what-have-you-learned-so-far-in-javascript">What have you learned so far in Javascript?</h3>
 <ul>
-<li>arrays (e.g. <code>[1, 2, 3]</code>, <code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]</code>, <code>[&apos;a&apos;, 1, &apos;cat&apos;]</code>, <code>[]</code>)<ul>
-<li>index</li>
-<li>values</li>
+<li>Data Types</li>
+<li>Data Collections</li>
+<li>Conditionals</li>
 </ul>
-</li>
-<li>objects (e.g. <code>{&apos;name&apos;: &apos;John&apos;, &apos;nationality&apos;: &apos;USA&apos;, &apos;age&apos;: 84}</code>)<ul>
-<li>keys (e.g. <code>&apos;name&apos;</code>)</li>
-<li>values (e.g. <code>&apos;John&apos;</code>)</li>
-</ul>
-</li>
-</ul>
-<h2 id="arrays-review">Arrays Review</h2>
+<h2 id="arrays-review-5-10">Arrays Review (5 / 10)</h2>
 <p>Arrays are a complex data type - usually referred to as an ordered list.</p>
-<p><strong>How do we retrieve certain elements from an array?</strong></p>
+<p><strong>How do we retrieve elements from an array?</strong></p>
 <p>Using an index.</p>
-<h2 id="objects">Objects</h2>
-<p>Objects too are a complex data type - usually referred to as an <em>unordered</em> list (or dictionary, or hash, or map...). They are a collection of key-value pairs called properties. The keys which we explicitly state when defining a property are analogous to our array indexes. They are how we access the associated value (more below).</p>
-<p>What kinds of things in the world fit into an array? What kinds of things fit into key-value pairs?</p>
-<p>Things to consider:</p>
-<ul>
-<li>Books in a Library</li>
-<li>Menu items at a fast food restaurant</li>
-<li>Definitions in a dictionary</li>
-<li>List of students in WDI</li>
-<li>List of all GA courses ordered by city</li>
-</ul>
-<h3 id="create">Create</h3>
+<h2 id="objects-5-15">Objects (5 / 15)</h2>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> car = {
   make: <span class="hljs-string">&quot;Honda&quot;</span>,
   model: <span class="hljs-string">&quot;Civic&quot;</span>,
   year: <span class="hljs-number">1997</span>
 }
 </code></pre>
-<h3 id="read">Read</h3>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(car.make)
-<span class="hljs-built_in">console</span>.log(car[<span class="hljs-string">&quot;make&quot;</span>])
+<p>Objects too are a complex data type - usually referred to as an <em>unordered</em> list (or dictionary/hash/map).</p>
+<ul>
+<li>They are a collection of key-value pairs called properties.</li>
+<li>The keys which we explicitly state when defining a property are analogous to our array indexes. They are how we access the associated value (more below).</li>
+</ul>
+<h3 id="turn-and-talk-real-life-data-collections-10-25">Turn and Talk: Real-Life Data Collections (10 / 25)</h3>
+<p>Would you reorganize the below real-life examples into an array, object or both? Spend <strong>5 minutes</strong> discussing them with a partner.</p>
+<ol>
+<li>Books in a Library</li>
+<li>Menu items at a fast food restaurant</li>
+<li>Definitions in a dictionary</li>
+<li>List of students in WDI</li>
+<li>List of all GA courses ordered by city</li>
+</ol>
+<h3 id="interacting-with-objects-10-35">Interacting with Objects (10 / 35)</h3>
+<h4 id="create">Create</h4>
+<p>We already saved a sample object to a <code>car</code> variable. We did this using <strong>object literal notation</strong>.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> car = {
+  make: <span class="hljs-string">&quot;Honda&quot;</span>,
+  model: <span class="hljs-string">&quot;Civic&quot;</span>,
+  year: <span class="hljs-number">1997</span>
+
+  <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> Keys with a &quot;-&quot; in their name must be surrounded by quotation marks.</span>
+  <span class="hljs-string">&quot;tire-type&quot;</span>: <span class="hljs-string">&quot;Goodyear&quot;</span>
+}
 </code></pre>
-<h3 id="update">Update</h3>
+<h4 id="read">Read</h4>
+<p>To access object properties, we use either dot (<code>.property</code>) or bracket (<code>[&quot;property&quot;]</code>) notation.</p>
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log( car.make );
+<span class="hljs-built_in">console</span>.log( car[<span class="hljs-string">&quot;make&quot;</span>] );
+
+<span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> When accessing properties whose keys have a &quot;-&quot; in them, you must use bracket notation.</span>
+<span class="hljs-built_in">console</span>.log( car[<span class="hljs-string">&quot;tire-type&quot;</span>] );
+</code></pre>
+<h4 id="update">Update</h4>
+<p>To update an object property, we place it on the left side of an assignment statement.</p>
 <pre><code class="lang-js">car.year = <span class="hljs-number">2003</span>
+</code></pre>
+<p>We can also create brand new properties for an object after it&apos;s initialized using this method.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// Now our car has a smell property equal to &quot;Leathery Boot&quot;. We did not initially declare this property.</span>
 car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
 </code></pre>
-<h3 id="delete">Delete</h3>
+<h4 id="delete">Delete</h4>
+<p>If you want to delete an object property entirely, use the <code>delete</code> keyword.</p>
+<ul>
+<li>This deletes the whole key-value pair, not just the value.</li>
+<li>You won&apos;t do this often.</li>
+</ul>
 <pre><code class="lang-js"><span class="hljs-keyword">delete</span> car.smell
 </code></pre>
-<h3 id="iterating">Iterating</h3>
-<pre><code class="lang-js"><span class="hljs-keyword">for</span> (attribute <span class="hljs-keyword">in</span> car) {
-  <span class="hljs-built_in">console</span>.log(attribute);
+<h4 id="iterating">Iterating</h4>
+<p>Like arrays, you can use a loop to iterate through an object. Say we want to print out all of an object&apos;s keys...</p>
+<pre><code class="lang-js"><span class="hljs-comment">// Iterate through object keys</span>
+<span class="hljs-keyword">for</span> (attribute <span class="hljs-keyword">in</span> car) {
+  <span class="hljs-built_in">console</span>.log( attribute );
 }
 </code></pre>
-<p><em>What does this allow us to do?</em></p>
-<h3 id="namespace">Namespace</h3>
-<h3 id="nested-collections">Nested Collections</h3>
-<p>The values in a collection can be any simple datatype or another collection. This means we can have an array of arrays, an array of objects... pretty much whatever you can think of.</p>
-<p>What kinds of things in the world would fit into an array of objects? What about an object containing arrays?</p>
-<p>[Twitter object exercise]</p>
-<h2 id="you-do-model-wdi-student">You Do: Model WDI Student</h2>
-<p>Create a variable named wdiStudent and assign it to an object literal - <code>{}</code></p>
-<p>Add three attributes, with at least one key that has a hyphen in the name, like &quot;first-name&quot;</p>
-<p>Delete one attribute</p>
-<h2 id="functions">Functions</h2>
-<p>Review from the prework - what&#x2019;s a function?</p>
-<p>There are two ways to define or declare a function:</p>
-<h3 id="function-declaration">Function declaration</h3>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params">number</span>) </span>{
-  <span class="hljs-keyword">return</span> number * number;
-}
-</code></pre>
-<h3 id="function-expression">Function expression</h3>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> square = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">number</span>) </span>{
-  <span class="hljs-keyword">return</span> number * number;
-}
-</code></pre>
-<h3 id="recognize-the-parts">Recognize the parts</h3>
-<p>TODO: diagram here</p>
-<p>[Fist to five]</p>
-<h3 id="understand-the-difference">Understand the difference</h3>
-<p>The difference is subtle, but important. The first function declaration is assigning an &quot;anonymous&quot; function to a variable.
-The second function declaration is a named function. The practical difference is:</p>
 <blockquote>
-<p>Named functions are processed before any code is executed, meaning you can call functions before they are declared. This behavior is known as <strong>hoisting</strong>.</p>
+<p>Knowing this, how could we go about getting all the values in an object?</p>
 </blockquote>
-<h4 id="arguments">Arguments</h4>
-<p>JavaScript is flexible (i.e. it let&apos;s you do what you want) and this flexibility while empowering can also make debugging (i.e. tracking down the root of errors in your code) very difficult. A great example of this is in JavaScript&apos;s expectations of arguments.</p>
-<pre><code class="lang-js"><span class="hljs-comment">// define a function which takes two arguments</span>
-<span class="hljs-keyword">var</span> areEqual = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
-  <span class="hljs-keyword">return</span> a === b;
-}
-<span class="hljs-comment">// call function with two equal arguments</span>
-areEqual(<span class="hljs-string">&apos;cat&apos;</span>, <span class="hljs-string">&apos;cat&apos;</span>);
-<span class="hljs-comment">// returns true as expected</span>
-areEqual(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
-<span class="hljs-comment">// returns false as expected</span>
-areEqual(<span class="hljs-number">1</span>);
-<span class="hljs-comment">// returns false... why?</span>
-areEqual();
-<span class="hljs-comment">// returns true... wat?</span>
+<p>Javascript objects also have native methods that take care of this for us...</p>
+<pre><code class="lang-js"><span class="hljs-comment">// .keys()</span>
+<span class="hljs-built_in">Object</span>.keys( car );
+
+<span class="hljs-comment">// .getOwnPropertyNames()</span>
+<span class="hljs-built_in">Object</span>.getOwnPropertyNames( car );
 </code></pre>
-<p>What is going on here?</p>
-<h3 id="input-output-and-side-effects">Input, Output, and Side Effects</h3>
-<p>the input(s) to a function are known as arguments, or parameters:</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eat</span>(<span class="hljs-params">someFood</span>)</span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;nom nom, i &lt;3 &quot;</span>+ someFood)
+<h3 id="nested-collections-5-40">Nested Collections (5 / 40)</h3>
+<p>Object properties aren&apos;t limited to simple data types. We can also nest collections inside of collections.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> car = {
+  make: <span class="hljs-string">&quot;Honda&quot;</span>,
+  model: <span class="hljs-string">&quot;Civic&quot;</span>,
+  year: <span class="hljs-number">1997</span>,
+
+  <span class="hljs-comment">// An array within an object.</span>
+  gears: [<span class="hljs-string">&quot;Reverse&quot;</span>, <span class="hljs-string">&quot;Neutral&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>, <span class="hljs-string">&quot;4&quot;</span>],
+
+  <span class="hljs-comment">// An object within an object.</span>
+  engine: {
+    horsepower: <span class="hljs-string">&quot;6 horses&quot;</span>,
+    pistons: <span class="hljs-number">12</span>,
+    fast?: <span class="hljs-literal">true</span>,
+    furious?: <span class="hljs-literal">false</span>
+  }
+}
+</code></pre>
+<p>In the above examples, how do we access...</p>
+<ul>
+<li>&quot;Neutral&quot; (i.e., array value within an object).</li>
+<li>&quot;6 horses&quot; (i.e., object value within an object).</li>
+</ul>
+<h3 id="you-do-model-wdi-student-5-45">You Do: Model WDI Student (5 / 45)</h3>
+<p>Create a variable named <code>wdiStudent</code> and assign it to an object literal.</p>
+<ul>
+<li>Give your student at least three properties.<ul>
+<li>One must have a key that contains a hyphen.</li>
+<li>One must contain an array or object.</li>
+</ul>
+</li>
+<li>Update two properties, one of which is the hyphenated.</li>
+<li>Give your student a new property using dot or bracket notation.</li>
+<li>Delete one attribute.</li>
+<li>Iterate through and print out all of the student&apos;s key-value pairs.</li>
+</ul>
+<h3 id="break-10-55">Break (10 / 55)</h3>
+<h3 id="you-do-big-ol-twitter-object-15-70">You Do: Big Ol&apos; Twitter Object (15 / 70)</h3>
+<p>As this course continues you will encounter plenty of Javascript objects in the wild. Spend <strong>10 minutes</strong> on the following...</p>
+<ul>
+<li>Follow the link below and answer the questions in bold.</li>
+<li>Along with each answer, write down how we would access the property in question.</li>
+<li>Let&apos;s do the first one together...</li>
+</ul>
+<p><a href="https://github.com/ga-students/wdidc4/tree/d985a67f932708589ae80792bbcba0e1ea15e701/w10/d04/morning-ajax/01-read" target="_blank">Twitter JSON Exercise</a></p>
+<h2 id="functions">Functions</h2>
+<h3 id="intro-5-75">Intro (5 / 75)</h3>
+<p>The content of an object isn&apos;t limited to properties. We can also give objects functionality in the form of <strong>methods</strong>.</p>
+<ul>
+<li>Before we do that, however, we should review functions.</li>
+</ul>
+<p>What&#x2019;s a function?</p>
+<ul>
+<li>A reusable block of Javascript code.</li>
+<li>Simply put, a function is a block of code that takes an input, process that input and then produces an output.</li>
+<li>Fundamental component of Javascript.</li>
+<li>Analogy: Quizno&apos;s Oven</li>
+</ul>
+<h3 id="recognize-the-parts-10-85">Recognize the parts (10 / 85)</h3>
+<h4 id="function-container">Function Container</h4>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiply</span>(<span class="hljs-params"></span>)</span>{
+
+}
+</code></pre>
+<h4 id="input-arguments-or-parameters">Input (&quot;Arguments&quot; or &quot;Parameters&quot;)</h4>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiply</span>(<span class="hljs-params"> num1, num2 </span>)</span>{
+
+}
+</code></pre>
+<h4 id="output-and-side-effects">Output and Side Effects</h4>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiply</span>(<span class="hljs-params"> num1, num2 </span>)</span>{
+  <span class="hljs-built_in">console</span>.log( num1 * num2 );
+  <span class="hljs-keyword">return</span> num1 * num2;
+}
+</code></pre>
+<ul>
+<li>Output: return value.</li>
+<li>Side Effects: e.g., print statements.</li>
+</ul>
+<blockquote>
+<p>Does a function need an input, output and/or side effects to work?</p>
+</blockquote>
+<h4 id="calling-and-referencing-a-function-5-90">Calling and Referencing a Function (5 / 90)</h4>
+<p>We&apos;ve defined a function. Now we need to call it...</p>
+<pre><code class="lang-js"><span class="hljs-comment">// Call the square function. Why isn&apos;t anything logged to the console?</span>
+multiply( <span class="hljs-number">2</span>, <span class="hljs-number">5</span> );
+
+<span class="hljs-comment">// We need to explicitly print out the function&apos;s return value. You could also add a console.log statement to the function body.</span>
+<span class="hljs-built_in">console</span>.log( multiply( <span class="hljs-number">2</span>, <span class="hljs-number">5</span> ) );
+
+<span class="hljs-comment">// What happens if we reference the function without parentheses?</span>
+<span class="hljs-built_in">console</span>.log( multiply );
+</code></pre>
+<h3 id="why-do-we-use-functions-5-95">Why do we use functions? (5 / 95)</h3>
+<p>Say we wanted to square three different numbers without using the above function. How would we do that?</p>
+<p>Benefits of functions</p>
+<ul>
+<li>Reusability.</li>
+<li>DRYness.</li>
+<li>Naming convention.</li>
+</ul>
+<h3 id="function-declarations-and-expressions-5-100">Function Declarations and Expressions (5 / 100)</h3>
+<p>There are two ways to define or declare a function...</p>
+<h4 id="declaration">Declaration</h4>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiply</span>(<span class="hljs-params"> num1, num2 </span>) </span>{
+  <span class="hljs-keyword">return</span> num1 * num2;
+}
+</code></pre>
+<h4 id="expression">Expression</h4>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> multiply = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> num1, num2 </span>) </span>{
+  <span class="hljs-keyword">return</span> num1 * num2;
+}
+</code></pre>
+<h4 id="declarations-vs-expressions">Declarations vs. Expressions</h4>
+<p>Both do the same thing and run the same chunk of code. But they are different.</p>
+<ul>
+<li>What differences do you notice?</li>
+</ul>
+<p><strong>Function declarations</strong> define functions without assigning them to variables.</p>
+<p><strong>Function expressions</strong> save anonymous functions to variables.</p>
+<p>While we call/reference functions defined through declarations and expressions the same way, they do have a subtle but important difference...</p>
+<blockquote>
+<p>Declarations are processed before any code is executed, meaning you can call functions before they are declared. This behavior is known as <strong>hoisting</strong>.</p>
+</blockquote>
+<h3 id="hoisting-10-110">Hoisting (10 / 110)</h3>
+<p>What do you think will happen when we run the below code...</p>
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log( square( <span class="hljs-number">5</span> ) );
+<span class="hljs-keyword">var</span> square = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> num </span>)</span>{           <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> This is a function expression</span>
+  <span class="hljs-keyword">return</span> num * num;
+}
+</code></pre>
+<p>Surely the same thing will happen when we run the below code...</p>
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log( square( <span class="hljs-number">5</span> ) );
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params">number</span>) </span>{               <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> This is a function declaration</span>
+  <span class="hljs-keyword">return</span> number * number;
+}
+</code></pre>
+<blockquote>
+<p>We can successfully call the square function before declaring it. When our script file loads, it essentially processes all function declarations first, and then runs the rest of our Javascript from top to bottom.</p>
+</blockquote>
+<p>Knowing this, what will happen each time we call <code>express</code> and <code>declare</code> in the below example?</p>
+<pre><code class="lang-js">express();        <span class="hljs-comment">// What happens when we run this function at this point in the code?</span>
+declare();        <span class="hljs-comment">// What about now?        </span>
+
+<span class="hljs-keyword">var</span> express = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Function expression called.&apos;</span>);
+};
+
+express();        <span class="hljs-comment">// ???</span>
+declare();        <span class="hljs-comment">// ???</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">declare</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Function declaration called.&apos;</span>);
 }
 
-eat(<span class="hljs-string">&quot;pizza&quot;</span>)
+express();        <span class="hljs-comment">// ???</span>
+declare();        <span class="hljs-comment">// ???</span>
 </code></pre>
-<p>It might feel like the output of this function is the string starting with &quot;nom...&quot;, but it&#x2019;s not! It&#x2019;s a side-effect.</p>
-<p>The output of a function is whatever is <code>return</code>ed from a function:</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eat</span>(<span class="hljs-params">someFood</span>)</span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;nom nom, i &lt;3 &quot;</span>+ someFood
-}
-
-<span class="hljs-keyword">var</span> lunch = eat(<span class="hljs-string">&quot;pizza&quot;</span>)
-<span class="hljs-built_in">console</span>.log(lunch)
-</code></pre>
-<h2 id="methods">Methods</h2>
+<p>This is a neat feature, but can you think of a potential pitfall of &quot;hoisting&quot; too often?</p>
+<ul>
+<li>Code organization and readability.</li>
+</ul>
+<h2 id="methods-15-125">Methods (15 / 125)</h2>
 <p>Methods are functions that are attached to some object.</p>
-<pre><code class="lang-js">
+<pre><code class="lang-js"><span class="hljs-comment">// Our car now has a drive method...</span>
 <span class="hljs-keyword">var</span> car = {
   make: <span class="hljs-string">&quot;Honda&quot;</span>,
   model: <span class="hljs-string">&quot;Civic&quot;</span>,
+  color: <span class="hljs-string">&quot;red&quot;</span>,
   drive: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;vroom vroom&quot;</span>)
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;vroom vroom&quot;</span>);
+  },
+
+  <span class="hljs-comment">// Methods can take arguments</span>
+  gps: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> location </span>)</span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&quot;Beep boop, driving to &quot;</span> + location );
   }
 }
-car.drive()
+
+<span class="hljs-comment">// We can run the car&apos;s two methods like so...</span>
+car.drive();
+car.paint( <span class="hljs-string">&quot;blue&quot;</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">&quot;Car color is: &quot;</span> + car.color );
 </code></pre>
+<p>With methods as part of our Javascript toolbox, we now have a cool interface with which we can interact with our objects.</p>
+<ul>
+<li>Why would custom methods be a preferred way to modify object properties vs. using object literal notation?</li>
+</ul>
+<p>We&apos;ve only scratched the surface for objects. We&apos;re going to dive much deeper into them later on in the course.</p>
+<h2 id="exercise-homework-calculator-15-140">Exercise + Homework: Calculator (15 / 140)</h2>
+<p><a href="https://github.com/ga-dc/js-calculator" target="_blank">Javascript Calculator</a></p>
+<h2 id="closing-q-a-10-150">Closing, Q&amp;A (10 / 150)</h2>
 <hr>
-<h2 id="sample-quiz-questions">Sample Quiz Questions:</h2>
-<ol>
-<li>What is the difference between a method and an attribute?</li>
-</ol>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html" target="_blank">Javascript Scoping and Hoisting</a></li>
+</ul>
 
                     
                     </section>
