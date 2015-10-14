@@ -328,3 +328,9 @@ I think that's pretty good. There's some minor tweaks that can be made. Like fon
 
 ## HW
 [Hippy Portfolio](https://github.com/ga-dc/hippy-portfolio)
+
+## Sample Quiz Questions
+
+- What is the difference between `display`'s `block`, `inline-block`, and `inline` values?
+- What are the components of the box model and what do we use it for?
+- What is specificity? How is it related to class and id selectors? 
