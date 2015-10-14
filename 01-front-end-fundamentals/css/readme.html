@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.4" data-basepath="../.." data-revision="Wed Oct 14 2015 13:33:09 GMT+0000 (UTC)">
+    <div class="book" data-level="1.4" data-basepath="../.." data-revision="Wed Oct 14 2015 13:51:52 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1259,7 +1259,7 @@
 <li>Differentiate between the border-box and content-box values for box-sizing</li>
 <li>Apply knowledge of the box model to adjust spacing between and around elements on a page</li>
 </ul>
-<h2 id="opening-framing-the-power-of-css-3-min">Opening Framing: The Power of CSS (3 min)</h2>
+<h2 id="opening-framing-the-power-of-css-5-min-10-00">Opening Framing: The Power of CSS (5 min / 10:00)</h2>
 <p>To start this lesson, I want to mosey on over to my favorite website, <a href="https://twitter.com/GA_DC" target="_blank">Twitter.com/GA_DC</a>. It&apos;s pretty great. It&apos;s pretty fancy. But what would it be without CSS? Take 1 minute to talk with the people around you about how this wonder of the modern web would look different without CSS, and how that would impact your interactive with the site.</p>
 <blockquote>
 <p>ST-WG: Share some ideas, then mute the stylesheets in Dev Tools and discuss anything surprising.</p>
@@ -1268,23 +1268,7 @@
 <blockquote>
 <p>Fist of Five: How confident are you about CSS? Five is, &quot;Move over, I could teach this class myself&quot;. One is more like, &quot;C-what-what, now?&quot;</p>
 </blockquote>
-<h2 id="separation-of-concerns-2-min">Separation of Concerns (2 min)</h2>
-<p>It is possible to style web pages using HTML alone. We did this in the early 2000s using mostly images and table borders. CSS allows us to separate the styles of our website/app from the content and behavior:</p>
-<ul>
-<li>HTML<ul>
-<li>Content</li>
-</ul>
-</li>
-<li>CSS<ul>
-<li>Styles</li>
-</ul>
-</li>
-<li>JS<ul>
-<li>Behavior</li>
-</ul>
-</li>
-</ul>
-<h2 id="in-line-vs-head-vs-stylesheets-20-min">In-line vs head vs stylesheets (20 min)</h2>
+<h2 id="in-line-vs-head-vs-stylesheets-20-min-10-05">In-line vs head vs stylesheets (20 min / 10:05)</h2>
 <blockquote>
 <p>You&apos;re welcome to code along, but it may be better just to follow along for the first bit. The second half of call will be all hand-ons, and the notes for everything will be available in lesson plan</p>
 </blockquote>
@@ -1308,7 +1292,7 @@
 <p>So one way we can style elements in HTML is in the tag itself. These are called inline-styles:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background:blue;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
 </code></pre>
-<h3 id="t-t-3-min">T &amp; T (3 min)</h3>
+<h3 id="t-t">T &amp; T</h3>
 <p>Take a couple minutes and chat with your partner about why this particular way of styling an element might not be the greatest approach? See if you can think of some specific scenarios when using inline styles would be a disadvantage...</p>
 <blockquote>
 <p>Don&apos;t use inline styles if you can avoid it. They are very specific! (More on this in a minute)</p>
@@ -1345,7 +1329,23 @@
 }</span>
 </code></pre>
 <p>Ahh, much better. You might be asking yourself, &quot;Self? Isn&apos;t this a lot more work?&quot; And you might be right initially. But we&apos;re talking about 1 <code>&lt;p&gt;</code> right now. What if we&apos;re talking about 100 <code>&lt;p&gt;</code>&apos;s and now those elements were spread across multiple web pages. Now all of a sudden this last method is less work.</p>
-<h2 id="css-selectors-10-min">CSS Selectors (10 min)</h2>
+<h3 id="separation-of-concerns">Separation of Concerns</h3>
+<p>The other big advantage of the stylesheet approach is that it preserve Separation of Concerns. It is possible to style web pages using HTML alone. We did this in the early 2000s using mostly images and table borders. CSS allows us to separate the styles of our website/app from the content and behavior:</p>
+<ul>
+<li>HTML<ul>
+<li>Content</li>
+</ul>
+</li>
+<li>CSS<ul>
+<li>Styles</li>
+</ul>
+</li>
+<li>JS<ul>
+<li>Behavior</li>
+</ul>
+</li>
+</ul>
+<h2 id="css-selectors-15-min-10-25">CSS Selectors (15 min / 10:25)</h2>
 <p>As you can see, there&apos;s more than one place to target elements. There&apos;s also multiple WAYS you can target elements. Let&apos;s throw some additional content in <code>index.html</code>:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
@@ -1372,7 +1372,7 @@
 }</span>
 </code></pre>
 <p><em>whiteboard common selectors as well as let them know about references at the bottom of the page</em></p>
-<h2 id="css-specificity-20-min">CSS Specificity (20 min)</h2>
+<h2 id="css-specificity-10-min-10-40">CSS Specificity (10 min / 10:40)</h2>
 <p>If I change the css selector from <code>p.red</code> back to <code>.red</code> you&apos;ll notice that the paragraph element with the id of green is still green. This is because of CSS Specificity. While CSS cascades from top to bottom. The CSS that is applied depends on Specificity as well. Take the following example:</p>
 <pre><code class="lang-css"><span class="hljs-id">#green</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> green</span></span>;
@@ -1398,7 +1398,7 @@
 </ul>
 <p>You can read more about CSS specificity <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity" target="_blank">here</a>
 You can access a CSS specificty calculator <a href="http://specificity.keegan.st" target="_blank">here</a></p>
-<h2 id="the-box-model-15-min">The Box Model! (15 min)</h2>
+<h2 id="the-box-model-15-min-10-50">The Box Model! (15 min / 10:50)</h2>
 <blockquote>
 <p>One of the tricky things about CSS at first is the Box Model. But it&apos;s actually really simple. Let&apos;s break it down.</p>
 </blockquote>
@@ -1443,7 +1443,7 @@ You can access a CSS specificty calculator <a href="http://specificity.keegan.st
 }</span>
 </code></pre>
 <p>Now when we refresh, all of our 20% widths are the same regardless of padding. It also includes border! However, it does not include the margin.</p>
-<h2 id="css-properties-and-values">CSS Properties and Values</h2>
+<h2 id="css-properties-and-values-5-min-11-05">CSS Properties and Values (5 min / 11:05)</h2>
 <p>Man, there&apos;s alot of them. We&apos;ve seen many just in this lesson thus far. There are far more than I can cover. Additionally, there&apos;s just no way to know them all. Unless you&apos;re a CSS savant. Fortunately, there are some great references. Here&apos;s just a few!</p>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference" target="_blank">CSS Documentation</a></li>
@@ -1454,8 +1454,8 @@ You can access a CSS specificty calculator <a href="http://specificity.keegan.st
 <li><a href="http://www.atozcss.com/" target="_blank">A to Z CSS Screencasts</a></li>
 <li><a href="https://24ways.org/2012/how-to-make-your-site-look-half-decent" target="_blank">How to Make Your Site Look Half-Decent in Half an Hour</a></li>
 </ul>
-<h2 id="break-10-min">BREAK (10 min)</h2>
-<h2 id="we-do-wendy-g-bite-code-along-60-min">We do- Wendy G Bite <em>Code Along</em> (60 min)</h2>
+<h2 id="break-10-min-11-10">BREAK (10 min / 11:10)</h2>
+<h2 id="we-do-wendy-g-bite-code-along-60-min-11-20">We do- Wendy G Bite <em>Code Along</em> (60 min / 11:20)</h2>
 <pre><code>$ git clone https://github.com/ga-dc/wendy_bite
 </code></pre><p>I think we can knock out an easy one early on. I can see by looking at that page that the background color and text color are mostly similar. Additionally centering everything and giving it a little bit of a buffer with the padding/border/margin on the edges will be nice. Let&apos;s go ahead and change that in <code>styles.css</code>:</p>
 <pre><code class="lang-css"><span class="hljs-tag">body</span><span class="hljs-rules">{
