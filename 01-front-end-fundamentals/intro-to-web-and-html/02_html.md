@@ -174,7 +174,7 @@ This brings up another way of making your code good and easy-to-read:
 
 The way the code above has been indented, it's really easy to see which elements are inside which other elements. Indentation is a visual cue.
 
-**This is really important.** This is the easiest, simpliest way to make your code look good to everyone else. Indent. It seems silly, but it can make all the difference between someone hiring you and someone tossing your resume in the trash. If they can't read your code, they can't tell whether you're any good at what you do, and won't hire you.
+**This is really important.** This is the easiest, simplest way to make your code look good to everyone else. Indent. It seems silly, but it can make all the difference between someone hiring you and someone tossing your resume in the trash. If they can't read your code, they can't tell whether you're any good at what you do, and won't hire you.
 
 ## Writing `class` all the time gets old
 
@@ -188,9 +188,9 @@ There are over 130 HTML elements that come standard on every web browser. Don't 
 
 A **special character** is a character other than `a` through `z`, `0` through `9`, and the most common punctuation marks, like comma, period, and hyphen.
 
-One example is the trademark "tm" symbol. To include it on a webpage, you'd write `&tradem;`.
+One example is the trademark "tm" symbol. To include it on a webpage, you'd write `&trade;`.
 
-This is because different computers have different ways of translating 0s and 1s into text. On Macs, the "tm" symbol might be a certain sequence of 0s and 1s. On PCs, it might be another. Writing `&tradem;` tells a web browser, "Just show a trademark symbol with whatever sequence of 0s and 1s you want."
+This is because different computers have different ways of translating 0s and 1s into text. On Macs, the "tm" symbol might be a certain sequence of 0s and 1s. On PCs, it might be another. Writing `&trade;` tells a web browser, "Just show a trademark symbol with whatever sequence of 0s and 1s you want."
 
 ##### Have you ever seen a Microsoft Word document where the quotation marks or apostrophes were all replaced with a few characters of gibberish?
 
