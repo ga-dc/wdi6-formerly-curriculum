@@ -151,8 +151,8 @@ var car = {
   engine: {
     horsepower: "6 horses",
     pistons: 12,
-    fast?: true,
-    furious?: false
+    fast: true,
+    furious: false
   }
 }
 ```
@@ -181,7 +181,7 @@ As this course continues you will encounter plenty of Javascript objects in the 
 * Along with each answer, write down how we would access the property in question.
 * Let's do the first one together...
 
-[Twitter JSON Exercise](https://github.com/ga-students/wdidc4/tree/d985a67f932708589ae80792bbcba0e1ea15e701/w10/d04/morning-ajax/01-read)
+[Twitter JSON Exercise](https://github.com/ga-dc/big_ole_twitter_object)
 
 ## Functions
 
@@ -224,14 +224,17 @@ function multiply( num1, num2 ){
 * Output: return value.
 * Side Effects: e.g., print statements.
 
-> Does a function need an input, output and/or side effects to work?
+Q. Does a function need an input, output and/or side effects to work?
+---
+
+> A. Short answer. No.  Note: There is always an output (undefined). Discuss.
 
 #### Calling and Referencing a Function (5 / 90)
 
 We've defined a function. Now we need to call it...
 
 ```js
-// Call the square function.
+// Call the multiply function.
 multiply( 2, 5 );
 
 // What happens if we reference the function without parentheses?
@@ -240,12 +243,13 @@ multiply;
 
 ### Why do we use functions? (5 / 95)
 
-Say we wanted to square three different numbers without using the above function. How would we do that?
+Say we wanted the square of a number without using the above function. How would we do that?
+
 
 Benefits of functions
 * Reusability.
 * DRYness.
-* Naming convention.
+* Naming convention (describes intent).
 
 ### Function Declarations and Expressions (5 / 100)
 
