@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.7" data-basepath="../.." data-revision="Wed Oct 14 2015 17:49:10 GMT+0000 (UTC)">
+    <div class="book" data-level="1.7" data-basepath="../.." data-revision="Wed Oct 14 2015 18:30:49 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1366,8 +1366,8 @@ car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
   engine: {
     horsepower: <span class="hljs-string">&quot;6 horses&quot;</span>,
     pistons: <span class="hljs-number">12</span>,
-    fast?: <span class="hljs-literal">true</span>,
-    furious?: <span class="hljs-literal">false</span>
+    fast: <span class="hljs-literal">true</span>,
+    furious: <span class="hljs-literal">false</span>
   }
 }
 </code></pre>
@@ -1397,7 +1397,7 @@ car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
 <li>Along with each answer, write down how we would access the property in question.</li>
 <li>Let&apos;s do the first one together...</li>
 </ul>
-<p><a href="https://github.com/ga-students/wdidc4/tree/d985a67f932708589ae80792bbcba0e1ea15e701/w10/d04/morning-ajax/01-read" target="_blank">Twitter JSON Exercise</a></p>
+<p><a href="https://github.com/ga-dc/big_ole_twitter_object" target="_blank">Twitter JSON Exercise</a></p>
 <h2 id="functions">Functions</h2>
 <h3 id="intro-5-75">Intro (5 / 75)</h3>
 <p>The content of an object isn&apos;t limited to properties. We can also give objects functionality in the form of <strong>methods</strong>.</p>
@@ -1432,24 +1432,25 @@ car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
 <li>Output: return value.</li>
 <li>Side Effects: e.g., print statements.</li>
 </ul>
+<h2 id="q-does-a-function-need-an-input-output-and-or-side-effects-to-work">Q. Does a function need an input, output and/or side effects to work?</h2>
 <blockquote>
-<p>Does a function need an input, output and/or side effects to work?</p>
+<p>A. Short answer. No.  Note: There is always an output (undefined). Discuss.</p>
 </blockquote>
 <h4 id="calling-and-referencing-a-function-5-90">Calling and Referencing a Function (5 / 90)</h4>
 <p>We&apos;ve defined a function. Now we need to call it...</p>
-<pre><code class="lang-js"><span class="hljs-comment">// Call the square function.</span>
+<pre><code class="lang-js"><span class="hljs-comment">// Call the multiply function.</span>
 multiply( <span class="hljs-number">2</span>, <span class="hljs-number">5</span> );
 
 <span class="hljs-comment">// What happens if we reference the function without parentheses?</span>
 multiply;
 </code></pre>
 <h3 id="why-do-we-use-functions-5-95">Why do we use functions? (5 / 95)</h3>
-<p>Say we wanted to square three different numbers without using the above function. How would we do that?</p>
+<p>Say we wanted the square of a number without using the above function. How would we do that?</p>
 <p>Benefits of functions</p>
 <ul>
 <li>Reusability.</li>
 <li>DRYness.</li>
-<li>Naming convention.</li>
+<li>Naming convention (describes intent).</li>
 </ul>
 <h3 id="function-declarations-and-expressions-5-100">Function Declarations and Expressions (5 / 100)</h3>
 <p>There are two ways to define or declare a function...</p>

@@ -341,7 +341,7 @@ var greeting = "Hi there!";
   ```javascript
   var city = "Washington, ";
   var state = "DC";
-  var location = city + state;
+  var address = city + state;
   => "Washington, DC"
   ```
 
@@ -562,7 +562,7 @@ var age = 24;
 if(age < 18) {
   console.log("You're too young to enter this club! Get outta here")
 }
-else if(age > 18 && age < 21){
+else if(age >= 18 && age < 21){
   console.log("Come on in! But no Drinking!!")
 }
 else{
