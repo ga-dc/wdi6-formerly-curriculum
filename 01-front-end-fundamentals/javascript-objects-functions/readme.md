@@ -231,14 +231,11 @@ function multiply( num1, num2 ){
 We've defined a function. Now we need to call it...
 
 ```js
-// Call the square function. Why isn't anything logged to the console?
+// Call the square function.
 multiply( 2, 5 );
 
-// We need to explicitly print out the function's return value. You could also add a console.log statement to the function body.
-console.log( multiply( 2, 5 ) );
-
 // What happens if we reference the function without parentheses?
-console.log( multiply );
+multiply;
 ```
 
 ### Why do we use functions? (5 / 95)
