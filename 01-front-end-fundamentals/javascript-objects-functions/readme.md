@@ -285,18 +285,18 @@ While we call/reference functions defined through declarations and expressions t
 
 What do you think will happen when we run the below code...
 ```js
-console.log( square( 5 ) );
-var square = function( num ){           // NOTE: This is a function expression
-  return num * num;
+multiply( 3, 5 );
+var multiply = function( num1, num2 ){           // NOTE: This is a function expression
+  return num1 * num2;
 }
 ```
 
 Surely the same thing will happen when we run the below code...
 
 ```js
-console.log( square( 5 ) );
-function square(number) {               // NOTE: This is a function declaration
-  return number * number;
+multiply( 3, 5 );
+function multiply( num1, num2 ) {               // NOTE: This is a function declaration
+  return num1 * num2;
 }
 ```
 > We can successfully call the square function before declaring it. When our script file loads, it essentially processes all function declarations first, and then runs the rest of our Javascript from top to bottom.
@@ -317,9 +317,6 @@ declare();        // ???
 function declare() {
     console.log('Function declaration called.');
 }
-
-express();        // ???
-declare();        // ???
 ```
 
 This is a neat feature, but can you think of a potential pitfall of "hoisting" too often?
