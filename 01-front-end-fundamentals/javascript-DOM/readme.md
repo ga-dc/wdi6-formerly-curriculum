@@ -31,10 +31,28 @@ More like this:
 
 Or this:
 
+```
 html
-  |- header
-  |- body
-      |- h1
+└── head
+│   ├──title
+│   ├──meta
+│   ├──link[rel="stylesheet"]
+|   └──script[type="text/javascript"]
+|
+└── body
+    ├── header
+    │   ├── h1
+    │   └── nav
+    └── section.simplicity
+    |   └── h2
+    │   └── article
+    ├── section.life
+    |   └── h2
+    │   └── article
+    │       └── block_quote
+    │       └── block_quote
+    └── footer
+```
 
 ## Accessing the document (10 min)
 

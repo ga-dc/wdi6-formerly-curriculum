@@ -10,29 +10,21 @@
 - Identify the components of the box model
 - Differentiate between the border-box and content-box values for box-sizing
 - Apply knowledge of the box model to adjust spacing between and around elements on a page
-- Bookmark 2-3 good resources that developers can use refer to for CSS help
 
-## Opening Framing (3 min)
-> Although some of this may be review from the prework, repetition is key to becoming a good programmer!
+## Opening Framing: The Power of CSS (5 min / 10:00)
 
-Wouldn't it be nice to make our webpages look schnazzy? Enter CSS. There is such a wide breadth of things to learn about CSS and honestly, you could probably teach a whole 12 weeks to understand all the capabilities, nuances and subtleties. So we'll only be scratching the surface with it, but I encourage you to experiment with CSS on your own. As you consistently use CSS you realize, while frustrating, becomes awesome to utilize.
+To start this lesson, I want to mosey on over to my favorite website, [Twitter.com/GA_DC](https://twitter.com/GA_DC). It's pretty great. It's pretty fancy. But what would it be without CSS? Take 1 minute to talk with the people around you about how this wonder of the modern web would look different without CSS, and how that would impact your interactive with the site.
 
-## Separation of Concerns
+> ST-WG: Share some ideas, then mute the stylesheets in Dev Tools and discuss anything surprising.
 
-It is possible to style web pages using html alone. We did this in the early 2000s using mostly images and table borders. CSS allows us to separate
-the styles of our website/app from the content and behavior:
+CSS is powerful. There is such a wide breadth of things to learn about CSS and honestly, you could probably teach a whole 12 weeks just its capabilities, nuances, and subtleties. So, the goal of this class isn't to do a rundown of every possible CSS selector, but to have you guys walk away with a solid foundation in how to approach the task of styling your sites. As you use it consistently you realize that, while sometimes [frustrating]( http://gph.is/1heneJM?tc=1), CSS provides a powerful toolkit for making your UI more usuable, marketable, and generally awesome!
 
-- HTML
-  - Content 
-- CSS
-  - Styles 
-- JS
-  - Behavior 
+>Fist of Five: How confident are you about CSS? Five is, "Move over, I could teach this class myself". One is more like, "C-what-what, now?"
 
-## In-line vs head vs stylesheets(30m)
-> Not a codealong let class know they're welcome to but may be better just to pay attention to the first hour instead of typing everything out. All notes available in lesson plan
+## In-line vs head vs stylesheets (20 min / 10:05)
+> You're welcome to code along, but it may be better just to follow along for the first bit. The second half of call will be all hand-ons, and the notes for everything will be available in lesson plan
 
-At the crux of it all, the primary concept of CSS is to select an HTML element and then do something to it. IE. I want to take the body element, and I want to apply a background color to it.
+At the crux of it all, the primary concept of CSS is to select an HTML element and then do something to it. ie. I want to take the body element, and I want to apply a background color to it.
 
 Let's get started by creating a new html webpage that we'll call `index.html` in `~/wdi/sandbox/css/`:
 
@@ -50,8 +42,8 @@ Let's throw some dummy content into HTML inside our `index.html`:
 </head>
 <body>
   <h1>Hello world!</h1>
-  <p>This is some fake dummy content. It doesn't matter what it is! Whatever you want! Smelly fish create beautiful works of art in order to achieve world peace.</p>
-  <!-- http://hipsum.co/ -->
+  <p>Flannel tote bag Shoreditch hashtag. Austin scenester letterpress, gastropub Intelligentsia cardigan bespoke polaroid tofu single-origin coffee listicle stumptown swag distillery. Cred actually beard, master cleanse sartorial four dollar toast typewriter lo-fi tilde Etsy try-hard. Swag plaid mlkshk, twee typewriter ennui blog butcher lumbersexual taxidermy Bushwick 90's sartorial fingerstache. Wes Anderson Thundercats fashion axe ethical, put a bird on it bitters leggings umami American Apparel Helvetica. Paleo PBR Vice kale chips High Life fap. McSweeney's Schlitz vinyl, put a bird on it taxidermy Carles cronut Marfa Etsy kale chips Bushwick selfies.</p>
+  <!-- /*http://hipsum.co -->
 </body>
 </html>
 ```
@@ -64,8 +56,8 @@ So one way we can style elements in HTML is in the tag itself. These are called 
 <p style="background:blue;"></p>
 ```
 
-### T & T (3m)
-Knowing not too much about coding. Take a couple minutes and chat with your partner about why this particular way of styling an element might not be the greatest approach?
+### T & T
+Take a couple minutes and chat with your partner about why this particular way of styling an element might not be the greatest approach? See if you can think of some specific scenarios when using inline styles would be a disadvantage...
 
 > Don't use inline styles if you can avoid it. They are very specific! (More on this in a minute)
 
@@ -83,7 +75,7 @@ The next approach to implementing a style is to put the styling in the `<head>`:
 ```
 > You've seen this before, but I want to highlight some syntax here. From p until the ending curly brace is a CSS rule. The p in this code is what's called the selector. The background  in the code is the property. Finally blue is the value.
 
-This is a bit better. I feel less dirty. But feel weird about this one too. Why might that be? (ST-WG)
+This is a bit better. I feel less gross. But feel kinda weird about this one, too. Why might that be? (ST-WG)
 
 > What if you have both styles in the head *and* inline styles? Which style will be applied? Why is this?
 
@@ -109,9 +101,21 @@ p{
 }
 ```
 
-Ahh, much bettah. You might be asking yourself, but Andy? that seems like a lot more work. And you might be right initially. But we're talking about 1 `<p>` right now. What if we're talking about 100 `<p>`'s and now those elements were spread across multiple web pages. Now all of a sudden this last method is less work.
+Ahh, much better. You might be asking yourself, "Self? Isn't this a lot more work?" And you might be right initially. But we're talking about 1 `<p>` right now. What if we're talking about 100 `<p>`'s and now those elements were spread across multiple web pages. Now all of a sudden this last method is less work.
 
-## CSS Selectors(10m)
+
+### Separation of Concerns
+
+The other big advantage of the stylesheet approach is that it preserve Separation of Concerns. It is possible to style web pages using HTML alone. We did this in the early 2000s using mostly images and table borders. CSS allows us to separate the styles of our website/app from the content and behavior:
+
+- HTML
+  - Content
+- CSS
+  - Styles
+- JS
+  - Behavior
+
+## CSS Selectors (15 min / 10:25)
 As you can see, there's more than one place to target elements. There's also multiple WAYS you can target elements. Let's throw some additional content in `index.html`:
 
 ```html
@@ -152,7 +156,7 @@ Finally to select an element with an id you use `#`. I'm going to change the bac
 
 *whiteboard common selectors as well as let them know about references at the bottom of the page*
 
-## CSS Specificity (20m)
+## CSS Specificity (10 min / 10:40)
 If I change the css selector from `p.red` back to `.red` you'll notice that the paragraph element with the id of green is still green. This is because of CSS Specificity. While CSS cascades from top to bottom. The CSS that is applied depends on Specificity as well. Take the following example:
 
 ```css
@@ -183,7 +187,7 @@ The following list of selector types is by increasing specificity:
 You can read more about CSS specificity [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
 You can access a CSS specificty calculator [here](http://specificity.keegan.st)
 
-## The Box Model!(15m)
+## The Box Model! (15 min / 10:50)
 > One of the tricky things about CSS at first is the Box Model. But it's actually really simple. Let's break it down.
 
 ![](https://dl.dropboxusercontent.com/s/capg35hblhr6o7v/Screenshot%202015-10-13%2014.11.39.png?dl=0)
@@ -242,17 +246,21 @@ At the top of our `styles.css`:
 
 Now when we refresh, all of our 20% widths are the same regardless of padding. It also includes border! However, it does not include the margin.
 
-## CSS Properties and values
+## CSS Properties and Values (5 min / 11:05)
 Man, there's alot of them. We've seen many just in this lesson thus far. There are far more than I can cover. Additionally, there's just no way to know them all. Unless you're a CSS savant. Fortunately, there are some great references. Here's just a few!
 
-[CSS Documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
-[CSS Tricks- An awesome resource for cool CSS schtuff](https://css-tricks.com)
+- [CSS Documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
+- [CSS Tricks - SO GOOD](https://css-tricks.com)
+- [Codrops CSS Reference](http://tympanus.net/codrops/css_reference/)
+- [30 CSS Selectors You Must Memorize](http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048)
+- [10 CSS3 Properties You Need to be Familiar With](http://code.tutsplus.com/tutorials/10-css3-properties-you-need-to-be-familiar-with--net-16417)
+- [A to Z CSS Screencasts](http://www.atozcss.com/)
+- [How to Make Your Site Look Half-Decent in Half an Hour](https://24ways.org/2012/how-to-make-your-site-look-half-decent)
 
-## We do- Wendy G Bite *Code Along*
-Exercise is [here!](https://github.com/ga-dc/wendy_bite)
-> notes will be pushed after lesson
-## We do- Wendy G Bite *Code Along* (60 m)
-> ST-WG. Use notes as a guideline and tool for students later. Don't necessarily have to stick to it 100%
+##BREAK (10 min / 11:10)
+
+## We do- Wendy G Bite *Code Along* (60 min / 11:20)
+
 
     $ git clone https://github.com/ga-dc/wendy_bite
 
@@ -316,7 +324,7 @@ img {
 }
 ```
 
-I think that's pretty good. There's some minor tweaks that can be made. Like font and changing the color for active links.
+I think that's pretty good. There's some minor tweaks that can be made. Like font and changing the color for active links. If there's extra time, let's try a document dive...
 
-
-## You do/ Finish for HW - Dew
+## HW
+[Hippy Portfolio](https://github.com/ga-dc/hippy-portfolio)

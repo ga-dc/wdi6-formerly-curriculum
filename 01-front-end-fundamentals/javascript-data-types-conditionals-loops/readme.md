@@ -119,11 +119,11 @@ We store data types in variables. A variable is a "bucket" that holds data. You 
 
   ```javascript
   // For example...
-  var myClass = "WDI6";
+  var myClass = "WDI7";
 
   // After instantiation you can then reference variables by just their name, without "var".
   myClass;
-  => "WDI6"
+  => "WDI7"
 
   // Variables can not only store single data types but also expressions.
   var multiplication = 5 * 2;
@@ -341,7 +341,7 @@ var greeting = "Hi there!";
   ```javascript
   var city = "Washington, ";
   var state = "DC";
-  var location = city + state;
+  var address = city + state;
   => "Washington, DC"
   ```
 
@@ -571,7 +571,7 @@ var age = 24;
 if(age < 18) {
   console.log("You're too young to enter this club! Get outta here")
 }
-else if(age > 18 && age < 21){
+else if(age >= 18 && age < 21){
   console.log("Come on in! But no Drinking!!")
 }
 else{
