@@ -537,6 +537,15 @@ So we all know the boolean values of `true` and `false` But there is also a conc
 - `||`
 - `!`
 
+What do the following evaluate too? (ST-WG)
+
+```js
+true && false
+true || false
+5 > 12 && 12 >= 12
+17 > 12 || 4 <= 4
+```
+
 Demonstrate comparison operators in node
 
 - `<`, `<=`
