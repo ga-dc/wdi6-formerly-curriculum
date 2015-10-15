@@ -97,6 +97,13 @@ So, to the main three components of front-end web development up in one word eac
     3. (P)rints it to the console.
     4. Then it (L)oops back to the beginning, ready to (R)ead the next line of code we feed it.
 
+In your `script.js` file add the following:
+```js
+console.log("hello world")
+```
+
+> console.log() is just a way to log something, in this case our REPL.  
+
 # Primitive Data Types
 
 ## Intro (5/35)
@@ -560,7 +567,7 @@ Demonstrate comparison operators in node
 => false
 ```
 
-## Conditionals (15/135 /w ex?)
+## Conditionals (15/135)
 
 // Have an example somewhere where one of the more unusual "falsey" values (e.g., empty string) triggers a conditional.
 
@@ -600,9 +607,7 @@ else{
 
 # BREAK (10min)
 
-# CODING EXERCISE #2 (20min)
 
-Temperature conversion (Part II): [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
 ## Loops(15/150)
 
 ### For loop
@@ -650,6 +655,12 @@ What are the differences between `for` and `while`?
 
 // Through example or pose question to students, have them recreate the same odd-number-printing
 // for loop using a while loop.
+
+### Additional Exercises
+
+# CODING EXERCISE #2 (20min)
+
+Temperature conversion (Part II): [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
 
 ### You do - Fizzbuzz(can use conditionals)(20m)
 
