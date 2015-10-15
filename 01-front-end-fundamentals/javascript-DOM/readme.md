@@ -31,6 +31,8 @@ More like this:
 
 Or this:
 
+https://github.com/ga-dc/js-dom-quotes
+
 html
   |- header
   |- body
@@ -111,9 +113,6 @@ Bonus: ???
 
 - [jessica hische](http://jessicahische.is/)
 - [color scheme switcher](https://github.com/ga-dc/color-scheme-switcher)
-
-## You do: Events (5 min)
-TODO: ???
 
 ## Conclusion (5 min)
 
