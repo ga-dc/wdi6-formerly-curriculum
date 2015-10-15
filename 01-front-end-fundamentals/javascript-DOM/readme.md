@@ -23,7 +23,7 @@ is a programming interface for HTML.
 
 An HTML *document* is available for us to manipulate as an object, and this object is structured like a tree:
 
-(Not like this one http://hakim.se/experiments/css/domtree/)
+Not like [this tree](http://hakim.se/experiments/css/domtree/).
 
 More like this:
 
@@ -56,6 +56,8 @@ html
     └── footer
 ```
 
+Let's look at the structure of [a page](https://github.com/ga-dc/js-dom-quotes)
+
 ## Accessing the document (10 min)
 
 `document`
@@ -87,39 +89,40 @@ Methods are available on any element.
 
 ## You Do: Selecting DOM elements (10 min)
 
-
+https://github.com/ga-dc/js-dom-quotes
 
 ## Altering DOM Elements (5 min)
 
-- .textContent
+- [.textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)
 - .innerHTML
 - .setAttribute(name, value);
 - .id
 - .classList.toggle (add, remove, contains)
 - .style
 
-## You do: Logo hijack (10 min)
+## You do: Logo hijack (15 min)
 
-- Open up www.google.com in Chrome or Firefox, and open up the console.
+1. Open up www.google.com in Chrome or Firefox, and open up the console.
+- Store the url to the Yahoo logo in a variable.
 - Find the Google logo and store it in a variable.
 - Modify the source of the logo IMG so that it's a Yahoo logo instead.
 - Find the Google search button and store it in a variable.
 - Modify the text of the button so that it says "Yahooo!" instead.
 
-Bonus: ???
+Bonus: Add a new element between the image and the search textbox, telling the world that "Yahoo is the new Google".
 
+## Creating/Removing DOM Elements (1 min)
 
-## You Do: Creating/Removing DOM Elements (15 min)
-
-- .createElement
-- .appendChild
-- .removeChild
+- [Document.createElement](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+- [Node.appendChild](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
+- Node.removeChild
 
 ## Break (5 min)
 
 ## Events (10 min)
 
-- https://developer.mozilla.org/en-US/docs/Web/API/Event
+What is an event?
+http://eloquentjavascript.net/14_event.html
 
 - .onclick
 - .addEventListener
@@ -143,3 +146,7 @@ Bonus: ???
 ## Homework
 
 <https://github.com/ga-dc/fellowship>
+
+
+## References
+- - https://developer.mozilla.org/en-US/docs/Web/API/Event
