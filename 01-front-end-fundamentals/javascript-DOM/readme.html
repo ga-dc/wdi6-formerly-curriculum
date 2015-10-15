@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.8" data-basepath="../.." data-revision="Wed Oct 14 2015 18:30:49 GMT+0000 (UTC)">
+    <div class="book" data-level="1.8" data-basepath="../.." data-revision="Thu Oct 15 2015 12:01:55 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1270,11 +1270,27 @@ is a programming interface for HTML.</p>
 <p>More like this:</p>
 <p><img src="http://www.tuxradar.com/files/LXF118.tut_grease.diagram.png" alt=""></p>
 <p>Or this:</p>
-<p>html
-  |- header
-  |- body
-      |- h1</p>
-<h2 id="accessing-the-document-10-min">Accessing the document (10 min)</h2>
+<pre><code>html
+&#x2514;&#x2500;&#x2500; head
+&#x2502;   &#x251C;&#x2500;&#x2500;title
+&#x2502;   &#x251C;&#x2500;&#x2500;meta
+&#x2502;   &#x251C;&#x2500;&#x2500;link[rel=&quot;stylesheet&quot;]
+|   &#x2514;&#x2500;&#x2500;script[type=&quot;text/javascript&quot;]
+|
+&#x2514;&#x2500;&#x2500; body
+    &#x251C;&#x2500;&#x2500; header
+    &#x2502;   &#x251C;&#x2500;&#x2500; h1
+    &#x2502;   &#x2514;&#x2500;&#x2500; nav
+    &#x2514;&#x2500;&#x2500; section.simplicity
+    |   &#x2514;&#x2500;&#x2500; h2
+    &#x2502;   &#x2514;&#x2500;&#x2500; article
+    &#x251C;&#x2500;&#x2500; section.life
+    |   &#x2514;&#x2500;&#x2500; h2
+    &#x2502;   &#x2514;&#x2500;&#x2500; article
+    &#x2502;       &#x2514;&#x2500;&#x2500; block_quote
+    &#x2502;       &#x2514;&#x2500;&#x2500; block_quote
+    &#x2514;&#x2500;&#x2500; footer
+</code></pre><h2 id="accessing-the-document-10-min">Accessing the document (10 min)</h2>
 <p><code>document</code></p>
 <ul>
 <li><code>document.head</code></li>
