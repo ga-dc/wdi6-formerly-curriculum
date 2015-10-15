@@ -97,6 +97,8 @@ So, to the main three components of front-end web development up in one word eac
     3. (P)rints it to the console.
     4. Then it (L)oops back to the beginning, ready to (R)ead the next line of code we feed it.
 
+> `⌘ + ⌥ + i` enters you in the the chrome dev tools(if you're using chrome...) Here you can do a bunch of stuff like inspect elements and looks at the html. More importantly for this class though, is it allows you to access the console which interacts with the JS you loaded to your page. In our case we'll see that interaction with the code below
+
 In your `script.js` file add the following:
 ```js
 console.log("hello world")
