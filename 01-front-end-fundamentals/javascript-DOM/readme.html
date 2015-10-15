@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="1.8" data-basepath="../.." data-revision="Thu Oct 15 2015 13:42:19 GMT+0000 (UTC)">
+    <div class="book" data-level="1.8" data-basepath="../.." data-revision="Thu Oct 15 2015 14:00:00 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1266,7 +1266,7 @@ authors:
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" target="_blank"><strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel</a>
 is a programming interface for HTML.</p>
 <p>An HTML <em>document</em> is available for us to manipulate as an object, and this object is structured like a tree:</p>
-<p>(Not like this one <a href="http://hakim.se/experiments/css/domtree/" target="_blank">http://hakim.se/experiments/css/domtree/</a>)</p>
+<p>Not like <a href="http://hakim.se/experiments/css/domtree/" target="_blank">this tree</a>.</p>
 <p>More like this:</p>
 <p><img src="http://www.tuxradar.com/files/LXF118.tut_grease.diagram.png" alt=""></p>
 <p>Or this:</p>
@@ -1290,7 +1290,8 @@ is a programming interface for HTML.</p>
     &#x2502;       &#x2514;&#x2500;&#x2500; block_quote
     &#x2502;       &#x2514;&#x2500;&#x2500; block_quote
     &#x2514;&#x2500;&#x2500; footer
-</code></pre><h2 id="accessing-the-document-10-min">Accessing the document (10 min)</h2>
+</code></pre><p>Let&apos;s look at the structure of <a href="https://github.com/ga-dc/js-dom-quotes" target="_blank">a page</a></p>
+<h2 id="accessing-the-document-10-min">Accessing the document (10 min)</h2>
 <p><code>document</code></p>
 <ul>
 <li><code>document.head</code></li>
@@ -1318,37 +1319,38 @@ is a programming interface for HTML.</p>
 <li>document.querySelectorAll</li>
 </ul>
 <h2 id="you-do-selecting-dom-elements-10-min">You Do: Selecting DOM elements (10 min)</h2>
+<p><a href="https://github.com/ga-dc/js-dom-quotes" target="_blank">https://github.com/ga-dc/js-dom-quotes</a></p>
 <h2 id="altering-dom-elements-5-min">Altering DOM Elements (5 min)</h2>
 <ul>
-<li>.textContent</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent" target="_blank">.textContent</a></li>
 <li>.innerHTML</li>
 <li>.setAttribute(name, value);</li>
 <li>.id</li>
 <li>.classList.toggle (add, remove, contains)</li>
 <li>.style</li>
 </ul>
-<h2 id="you-do-logo-hijack-10-min">You do: Logo hijack (10 min)</h2>
-<ul>
+<h2 id="you-do-logo-hijack-15-min">You do: Logo hijack (15 min)</h2>
+<ol>
 <li>Open up www.google.com in Chrome or Firefox, and open up the console.</li>
+<li>Store the url to the Yahoo logo in a variable.</li>
 <li>Find the Google logo and store it in a variable.</li>
 <li>Modify the source of the logo IMG so that it&apos;s a Yahoo logo instead.</li>
 <li>Find the Google search button and store it in a variable.</li>
 <li>Modify the text of the button so that it says &quot;Yahooo!&quot; instead.</li>
-</ul>
-<p>Bonus: ???</p>
-<h2 id="you-do-creating-removing-dom-elements-15-min">You Do: Creating/Removing DOM Elements (15 min)</h2>
+</ol>
+<p>Bonus: Add a new element between the image and the search textbox, telling the world that &quot;Yahoo is the new Google&quot;.</p>
+<h2 id="creating-removing-dom-elements-1-min">Creating/Removing DOM Elements (1 min)</h2>
 <ul>
-<li>.createElement</li>
-<li>.appendChild</li>
-<li>.removeChild</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement" target="_blank">Document.createElement</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild" target="_blank">Node.appendChild</a></li>
+<li>Node.removeChild</li>
 </ul>
 <h2 id="break-5-min">Break (5 min)</h2>
 <h2 id="events-10-min">Events (10 min)</h2>
+<p>What is an event?
+<a href="http://eloquentjavascript.net/14_event.html" target="_blank">http://eloquentjavascript.net/14_event.html</a></p>
 <ul>
-<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Event</a></p>
-</li>
-<li><p>.onclick</p>
-</li>
+<li>.onclick</li>
 <li>.addEventListener<ul>
 <li>click</li>
 <li>mouseover</li>
@@ -1372,6 +1374,13 @@ is a programming interface for HTML.</p>
 <hr>
 <h2 id="homework">Homework</h2>
 <p><a href="https://github.com/ga-dc/fellowship" target="_blank">https://github.com/ga-dc/fellowship</a></p>
+<h2 id="references">References</h2>
+<ul>
+<li><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Event</a></li>
+</ul>
+</li>
+</ul>
 
                     
                     </section>
