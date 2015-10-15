@@ -133,9 +133,6 @@ http://eloquentjavascript.net/14_event.html
 - [jessica hische](http://jessicahische.is/)
 - [color scheme switcher](https://github.com/ga-dc/color-scheme-switcher)
 
-## You do: Events (5 min)
-TODO: ???
-
 ## Conclusion (5 min)
 
 1. What is the difference between a method and an attribute?
