@@ -80,7 +80,7 @@ As well as generate some neat ASCII art too:
 
 Great now that we have created a new key, we need to add it to the ssh-agent so we can easily access it.
 
-## Step 3: Add Your Key to the SSH-Agent
+## Step 2: Add Your Key to the SSH-Agent
 To configure the ssh-agent program to use your SSH key:
 1. Ensure ssh-agent is enabled:
 
@@ -94,11 +94,12 @@ To configure the ssh-agent program to use your SSH key:
 
   ```
   $ ssh-add ~/.ssh/id_rsa
+  # Identity added: ...
   ```
 
 *Note*: If you didn't generate a new SSH key in Step 1, and used an existing SSH key instead, you will need to replace `id_rsa` in the above command with the name of your existing private key file.
 
-## Step 4: Add Your SSH Key to your Github Account
+## Step 3: Add Your SSH Key to your Github Account
 To configure your GitHub account to use your SSH key:
 
 Copy the SSH key to your clipboard with:
@@ -123,8 +124,8 @@ Then in Github:
 6. Click Add key
 7. Confirm the action by entering your GitHub password
 
-## Step 5: Checking your Connection
-To make sure everything is working, you'll now try to SSH into GitHub. When you do this, you will be asked to authenticate this action using your password, which is the SSH key passphrase you created earlier.
+## Step 4: Checking your Connection
+To make sure everything is working, you'll now try to SSH into GitHub. When you do this, you may be asked to authenticate this action using your password, which is the SSH key passphrase you created earlier.
 
 To do this let's:
 
@@ -147,12 +148,12 @@ Verify the fingerprint in the message you see matches the outputted message, the
 
 3. You should then see output similar to this:
   ```
-  Hi username! You've successfully authenticated, but GitHub does not
+  Hi <username>! You've successfully authenticated, but GitHub does not
   # provide shell access.
   ```
 If the username in the message is yours, you've successfully set up your SSH key!
 
-*Note*: If you If you receive a message about "access denied," please notify an instructor or you can [read these instructions for diagnosing the issue](https://help.github.com/articles/error-permission-denied-publickey/)
+*Note*: If you receive a message about "access denied," please notify an instructor or you can [read these instructions for diagnosing the issue](https://help.github.com/articles/error-permission-denied-publickey/)
 
 *Note*: If you're switching from HTTPS to SSH, you'll now need to update your remote repository URLs. For more information, [see Changing a remote's URL](https://help.github.com/articles/changing-a-remote-s-url/).
 
