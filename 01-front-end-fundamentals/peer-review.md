@@ -9,6 +9,8 @@ Both of you will spend 30 minutes improving the other's code, while they look on
 By the end of this hour, the code for both of you should, at minimum:
 - Be immaculately indented
 - Pass the HTML and CSS validators with flying colors
+  - [HTML Validator](https://validator.w3.org)
+  - [CSS Validator](http://jigsaw.w3.org/css-validator/#validate_by_input)
 - Contain only variables and functions that are semantically-named
 
 In other words, your code should be easy to read -- both by your standards, and those of prospective employers.
