@@ -9,6 +9,18 @@
 Secure Shell (SSH) is a command interface and protocol for securely getting access to a remote computer.
 SSH uses public-key cryptography to authenticate the remote computer and allow it to authenticate the user, if necessary. Both ends of the client/server connection are authenticated using a digital certificate, and passwords are protected by being encrypted.
 
+Today, we will be learning about SSH keys and how we can use them in a way to identify trusted computers, without involving passwords.
+
+As you may recall, we have been using `https://` clone URLs when we first started using Git because this allows us to access all repositories, public and private, and these URLs work everywhere.
+
+However, as you might have noticed, whenever you `git pull`, or `git push` to the remote repository using HTTPS, you'll be asked for your GitHub username and password.
+
+Now, not only is this disruptive in our workflow, especially in the scope of this class where we are just developing in an educational environment, but sometimes we might require an extra layer of security rather just our user name and password.
+
+Enter SSH clone URLs. These allow us to use the SSH protocol and require a two step authentication process via an encrypted keypair, which will not only speed up development but also give us extra control over the computers that can connect to our repositories.
+
+If your are interested in learning more we recommend you checkout [this chapter](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols) of the Pro Git book.
+
 ## Step 0: Checking for existing Keys
 First, we need to check for existing SSH keys on your computer. Open Terminal and enter:
 
@@ -17,7 +29,7 @@ First, we need to check for existing SSH keys on your computer. Open Terminal an
   # Lists the files in your .ssh directory, if they exist
   ```
 
-If you already have a key, skip to step 2. Otherwise proceed to step 1.
+If you see two files: id_rsa and id_rsa.pub, skip to step 2. Otherwise proceed to step 1.
 
 
 ## Step 1: Generate a new SSH Key
@@ -35,7 +47,7 @@ If you already have a key, skip to step 2. Otherwise proceed to step 1.
   Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
   ```
 
-3. You'll be asked to enter a passphrase.
+3. You'll be asked to enter a passphrase. We recommend no passphrase, just press Enter twice to continue.
 
   ```
   Enter passphrase (empty for no passphrase): [Type a passphrase]
@@ -50,6 +62,22 @@ If you already have a key, skip to step 2. Otherwise proceed to step 1.
   # The key fingerprint is:
   # 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com
   ```
+As well as generate some neat ASCII art too:
+  ```
+  The key's randomart image is:
+  +--[ RSA 2048]----+
+  |        .o..o..=+|
+  |       ..  ..o= +|
+  |        + + o+ + |
+  |         X o .o o|
+  |        E =    . |
+  |                 |
+  |                 |
+  |                 |
+  |                 |
+  +-----------------+
+  ```
+
 Great now that we have created a new key, we need to add it to the ssh-agent so we can easily access it.
 
 ## Step 3: Add Your Key to the SSH-Agent
@@ -70,7 +98,7 @@ To configure the ssh-agent program to use your SSH key:
 
 *Note*: If you didn't generate a new SSH key in Step 1, and used an existing SSH key instead, you will need to replace `id_rsa` in the above command with the name of your existing private key file.
 
-## Step 3: Add Your SSH Key to your Github Account
+## Step 4: Add Your SSH Key to your Github Account
 To configure your GitHub account to use your SSH key:
 
 Copy the SSH key to your clipboard with:
@@ -80,16 +108,17 @@ Copy the SSH key to your clipboard with:
   # Copies the contents of the id_rsa.pub file to your clipboard
   ```
 
-*Note*: It's important to copy the key exactly without adding newlines or whitespace.
+*Note*: This is a Mac only command, if you are using a different machine run `cat ~/.ssh/id_rsa.pub` and manually copy the output.
+It's important to copy the key exactly without adding newlines or whitespace.
 
 Keep in mind that your key may also be named id_dsa.pub, id_ecdsa.pub or id_ed25519.pub, in which case you must change the filename in the above command
 
 Then in Github:
 
-1. In the top right corner of any page, click your  profile photo, then click Settings.
+1. In the top right corner of any page, click your profile photo, then click Settings.
 2. In the user settings sidebar, click SSH keys.
 3. Click Add SSH key.
-4. In the Title field, add a descriptive label for the key.
+4. In the Title field, add a descriptive label that uniquely identifies the computer you're currently using, e.g. `Nick's MacBook Air`.
 5. Paste your key into the "Key" field
 6. Click Add key
 7. Confirm the action by entering your GitHub password
@@ -114,7 +143,7 @@ To do this let's:
   # Are you sure you want to continue connecting (yes/no)?
   ```
 
-Verify the fingerprint in the message you see matches the following message, then type yes
+Verify the fingerprint in the message you see matches the outputted message, then type yes
 
 3. You should then see output similar to this:
   ```
@@ -127,7 +156,7 @@ If the username in the message is yours, you've successfully set up your SSH key
 
 *Note*: If you're switching from HTTPS to SSH, you'll now need to update your remote repository URLs. For more information, [see Changing a remote's URL](https://help.github.com/articles/changing-a-remote-s-url/).
 
-## Setup Upstream for Curriculum Repo
+## Upstream on a Cloned Repo
 Since we have all already forked and cloned the GA-DC/Curriculum repository onto our local machine - we need a way to be able to update our local copy with any changes being made to the master repository.
 
 One of the ways we can do this is by establishing a link to this remote repository so that we can get all the changes anytime we want.
@@ -151,6 +180,7 @@ $ cd curriculum
 5. Pull down updates from the upstream remote
 
 When you finish, please go back into Github and make sure your profile has your accurate FULL NAME, and a relevant Photo of you.
+Your presence on github is important! Potential employers will visit your profile!
 
 ## Closing
 Go over learning objectives, and make sure everyone's profiles are up to date.
