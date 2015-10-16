@@ -97,6 +97,15 @@ So, to the main three components of front-end web development up in one word eac
     3. (P)rints it to the console.
     4. Then it (L)oops back to the beginning, ready to (R)ead the next line of code we feed it.
 
+> `⌘ + ⌥ + i` enters you in the the chrome dev tools(if you're using chrome...) Here you can do a bunch of stuff like inspect elements and looks at the html. More importantly for this class though, is it allows you to access the console which interacts with the JS you loaded to your page. In our case we'll see that interaction with the code below
+
+In your `script.js` file add the following:
+```js
+console.log("hello world")
+```
+
+> console.log() is just a way to log something, in this case our REPL.  
+
 # Primitive Data Types
 
 ## Intro (5/35)
@@ -119,11 +128,11 @@ We store data types in variables. A variable is a "bucket" that holds data. You 
 
   ```javascript
   // For example...
-  var myClass = "WDI6";
+  var myClass = "WDI7";
 
   // After instantiation you can then reference variables by just their name, without "var".
   myClass;
-  => "WDI6"
+  => "WDI7"
 
   // Variables can not only store single data types but also expressions.
   var multiplication = 5 * 2;
@@ -341,7 +350,7 @@ var greeting = "Hi there!";
   ```javascript
   var city = "Washington, ";
   var state = "DC";
-  var location = city + state;
+  var address = city + state;
   => "Washington, DC"
   ```
 
@@ -537,6 +546,15 @@ So we all know the boolean values of `true` and `false` But there is also a conc
 - `||`
 - `!`
 
+What do the following evaluate too? (ST-WG)
+
+```js
+true && false
+true || false
+5 > 12 && 12 >= 12
+17 > 12 || 4 <= 4
+```
+
 Demonstrate comparison operators in node
 
 - `<`, `<=`
@@ -551,7 +569,7 @@ Demonstrate comparison operators in node
 => false
 ```
 
-## Conditionals (15/135 /w ex?)
+## Conditionals (15/135)
 
 // Have an example somewhere where one of the more unusual "falsey" values (e.g., empty string) triggers a conditional.
 
@@ -562,7 +580,7 @@ var age = 24;
 if(age < 18) {
   console.log("You're too young to enter this club! Get outta here")
 }
-else if(age > 18 && age < 21){
+else if(age >= 18 && age < 21){
   console.log("Come on in! But no Drinking!!")
 }
 else{
@@ -591,9 +609,7 @@ else{
 
 # BREAK (10min)
 
-# CODING EXERCISE #2 (20min)
 
-Temperature conversion (Part II): [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
 ## Loops(15/150)
 
 ### For loop
@@ -641,6 +657,12 @@ What are the differences between `for` and `while`?
 
 // Through example or pose question to students, have them recreate the same odd-number-printing
 // for loop using a while loop.
+
+### Additional Exercises
+
+# CODING EXERCISE #2 (20min)
+
+Temperature conversion (Part II): [https://github.com/ga-dc/temperature_converter](https://github.com/ga-dc/temperature_converter)  
 
 ### You do - Fizzbuzz(can use conditionals)(20m)
 
