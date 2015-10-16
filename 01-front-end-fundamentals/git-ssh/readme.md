@@ -144,7 +144,12 @@ To do this let's:
   # Are you sure you want to continue connecting (yes/no)?
   ```
 
-Verify the fingerprint in the message you see matches the outputted message, then type yes
+  It is now our responsibility to ensure that we are connecting to GitHub. We do this by verify the fingerprint displayed in the message against [keys provided by github](https://help.github.com/articles/what-are-github-s-ssh-key-fingerprints/):
+
+  - RSA: `16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48`
+  - DSA: `ad:1c:08:a4:40:e3:6f:9c:f5:66:26:5d:4b:33:5d:8c`
+  - RAS SHA256: `SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8`
+  - DSA SHA256: `SHA256:br9IjFspm1vxR3iA35FWE+4VTyz1hYVLIE2t1/CeyWQ`
 
 3. You should then see output similar to this:
   ```
