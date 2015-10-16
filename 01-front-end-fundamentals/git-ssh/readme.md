@@ -157,6 +157,9 @@ If the username in the message is yours, you've successfully set up your SSH key
 *Note*: If you're switching from HTTPS to SSH, you'll now need to update your remote repository URLs. For more information, [see Changing a remote's URL](https://help.github.com/articles/changing-a-remote-s-url/).
 
 ## Upstream on a Cloned Repo
+
+![Git Pull Upstream](git06.jpg)
+
 Since we have all already forked and cloned the GA-DC/Curriculum repository onto our local machine - we need a way to be able to update our local copy with any changes being made to the master repository.
 
 One of the ways we can do this is by establishing a link to this remote repository so that we can get all the changes anytime we want.
@@ -166,6 +169,8 @@ The convention is to add an `upstream` remote.
 This remote is where we can pull from at any time, but do not have permission to push our changes.
 
 So let's go ahead and set up our new remote for our local curriculum repository.
+
+
 
 ## YOU-DO: Setup Upstream for Curriculum Repo
 1. Students should visit the [Curriculum](https://github.com/ga-dc/curriculum)'s page and copy the ssh clone url to the clipboard
