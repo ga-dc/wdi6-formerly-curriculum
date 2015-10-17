@@ -393,6 +393,10 @@ There are several other events that come up with the `input` tag. See if you can
 - `focus`
 - `blur`
 
+There are a bunch of different browser events you can use in Javascript, all [listed at W3Schools](http://www.w3schools.com/jsref/dom_obj_event.asp).
+
+> Yeah, yeah, I know, no-one likes W3Schools, but this list is accurate and easy-to-read.
+
 ### &larr; &larr; &rarr; &rarr; &uarr; &darr; &uarr; &darr; a b &larrhk;
 
 There's a famous cheat code used in old Konami arcade games: you press up, up, down, down, left, right, left, right, 'b', 'a', and then 'start'. This code is so famous that many websites have secret functions for when users enter the Konami Code (with 'Enter' replacing 'start').
@@ -453,6 +457,8 @@ var handleClickEvent = function(e){
 }
 button.addEventListener("click", handleClickEvent);
 ```
+
+// TODO: Timing functions, and callback hell?
 
 ### 2. One Event Handler to Rule them all
 
