@@ -433,7 +433,7 @@ link.addEventListener("click", handleClickEvent);
 
 The problem is we don't know how to stop them from going to Google! They go anyway, whether they hit 'OK' or 'Cancel'.
 
-Some elements, like `<a>`, have a default action they do -- going to a link, in this case. You can prevent that default action with an Event property called `preventDefault`.
+Some elements, like `<a>`, have a default action they do -- going to another webpage, in this case. You can prevent that default action with an Event property called `preventDefault`.
 
 ```js
 var link = document.querySelector("a")
@@ -458,7 +458,108 @@ var handleClickEvent = function(e){
 button.addEventListener("click", handleClickEvent);
 ```
 
-// TODO: Timing functions, and callback hell?
+## Making something draggable and droppable with removeEventListener
+
+Replace your `script.js` with the following code:
+
+```js
+var button = document.querySelector("button")
+var elementStartX, elementStartY;
+var mouseStartX, mouseStartY, mouseCurrentX, mouseCurrentY;
+button.addEventListener("mousedown", startDragging);
+function startDragging(e){
+  elementStartX = button.offsetLeft;
+  elementStartY = button.offsetTop;
+  mouseStartX = e.clientX;
+  mouseStartY = e.clientY;
+  window.addEventListener("mousemove", drag);
+  window.addEventListener("mouseup", stopDragging);
+}
+function stopDragging(){
+  window.removeEventListener("mousemove", drag);
+  window.removeEventListener("mouseup", stopDragging);
+}
+function drag(e){
+  mouseCurrentX = e.clientX;
+  mouseCurrentY = e.clientY;
+  button.style.left = elementStartX + (mouseCurrentX - mouseStartX) + "px";
+  button.style.top = elementStartY + (mouseCurrentY - mouseStartY) + "px";
+}
+```
+
+Then, add in a tiny bit of CSS into your `<head>`:
+
+```css
+button{
+  position:absolute;
+  top:0px;
+  left:0px;
+}
+```
+
+### Turn and talk
+
+- Why are the `mousemove` and `mouseup` event listeners attached to `window` instead of to `button`? (What happens if you change them to being on `button`?)
+- What's the purpose of removing the event listeners?
+- Why do we **have** to use named functions here, instead of anonymous functions?
+- What information do the `offsetLeft`, `offsetTop`, `e.clientX`, and `e.clientY` properties give you?
+- Open the "elements" part of the inspector -- the bit that shows all of the HTML. What's happening to the `<button>` element?
+- What's the difference between `function startDragging(e)` and `var startDragging = function(e)`?
+
+## Timing functions
+
+To wrap up, let's look at timing functions -- that is, Javascript's way of making something happen every `x` seconds.
+
+Replace the contents of your `script.js` with this:
+
+```js
+function sayHello(){
+  console.log("Hi there!")
+}
+setInterval(sayHello, 1000);
+```
+
+### Turn and talk
+
+- What does the number in `setInterval` indicate?
+- Replace `setInterval` with `setTimeout`. What's the difference?
+
+We'll make it more interesting by having the timer start on a click event, and stop on another click event.
+
+Put a "start" and a "stop" button in your HTML:
+
+```html
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+```
+
+Then, replace the contents of your `script.js` with this:
+
+```js
+var start = document.getElementById("start");
+var stop = document.getElementById("stop");
+var singAnnoyingSong = function(){
+  console.log("I know a song that gets on everybody's nerves...")
+}
+var songTimer;
+start.addEventListener("click", function(){
+  songTimer = setInterval(singAnnoyingSong, 100);
+});
+stop.addEventListener("click", function(){
+  clearInterval(songTimer);
+});
+```
+
+### Turn and talk
+
+- What happens when you click the "start" button a bunch of times in a row?
+  - Why?
+  - How is this different from events?
+  - When you do this, why doesn't the "stop" button seem to work?
+- How is `clearInterval` different from `removeEventListener`?
+- Give `singAnnoyingSong` an argument of `e`, like we did for the event listeners. What information does it contain?
+
+-----
 
 ### 2. One Event Handler to Rule them all
 
