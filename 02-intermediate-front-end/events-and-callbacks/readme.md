@@ -8,10 +8,16 @@
 - Pass a named function as a callback to another function
 - Pass an anonymous function as a callback to another function
 
-## Set up
+## Framing (5)
+We learned about objects and the DOM in JS last week. In order to do thing(behaviors) on the client side, we needed programmatic access to the HTML/CSS with JS. Enter the DOM. This powerful tool allows us to interface with our HTML. Now that we have this capability we can create behaviors through JS that can act on HTML elements or be activated by HTML elements.
 
-You should have an `index.html` and a `script.js`:
+Let review. An object in the real world has different states and behavior. Dogs have state (name, color, breed, hungry) and behavior (barking, fetching, wagging tail). Bicycles also have state (current gear, current pedal cadence, current speed) and behavior (changing gear, changing pedal cadence, applying brakes). Software objects are conceptually similar to real-world objects: they too consist of state and related behavior. The DOM seems scary at first, but really we're just mapping HTML elements into JS objects so that we can change their(HTML elements) state, or give them(HTML elements) behavior.
 
+## Set up (5/10)
+
+For this class we'll be working with only 2 files, `index.html` and `script.js`
+
+In `index.html`:
 ```html
 <!DOCTYPE html>
 <html>
@@ -25,12 +31,13 @@ You should have an `index.html` and a `script.js`:
 </html>
 ```
 
+In `script.js`:
 ```js
-// script.js
+// check to see if script file is properly attached to html
 console.log("I'm working!")
 ```
 
-## Events Continued
+## Events Continued (10/20)
 
 Last time we set up click handlers for elements in the DOM.
 
@@ -55,7 +62,7 @@ Because `onclick` is a DOM attribute which references a function, you can only h
 
 `addEventListener` is much more common and allows multiple event handlers for one DOM object.
 
-### Before we go on...
+### Before we go on...(5/25)
 
 Usually when we do anything with functions, we put parentheses after the function name. Here, we have `handleClickEvent` without any parens.
 
@@ -67,7 +74,10 @@ button.addEventListener("click", handleClickEvent())
 
 Refresh your page. What was different? Why?
 
-## Callbacks
+> You'll notice that "I was clicked!" pops up immediately upon reload. Also note that the event while it does fire, isn't doing anything. When we include `()` we invoke the function expression. Without the `()`, we're using the function expression as a reference.
+
+## Callbacks (20/45)
+This might not be your first time hearing it, but it definitely won't be your last. A callback is a piece of executable code that is passed as an argument to other code, which is expected to execute(or... call back) at some convenient time. The invocation may be immediate as in a synchronous callback, or it might happen at later time as in an asynchronous callback. In the example above, `handleClickEvent` is our callback. The invocation happens when the button is clicked.
 
 Last time, I made a mistake by expecting the `handleClickEvent` to fire twice in the below example.
 
@@ -152,39 +162,17 @@ var button = {
 
 Notice that a property was added with the name of the callback we were using. If you add a **second** event listener called `handleClickEvent`, it would just overwrite the old one.
 
-If instead of `handleClickEvent` the callback was called `bananaHammock`, the `button` object would look like this:
-
-```js
-var button = {
-  events: {
-    click: {
-      bananaHammock: function(){
-        console.log("I was clicked!")
-      }
-    },
-    mouseover: {
-
-    },
-    keydown: {
-
-    }
-  }
-}
-```
-
-If I do `button.addEventListener("click", bananaHammock)` **twice**, the second time doesn't **add** a new click listener called "bananaHammock"; it just **overwrites** the old listener called "bananaHammock".
-
 Javascript will **never** let an object look like this:
 
 ```js
 var button = {
   events: {
     click: {
-      bananaHammock: function(){
+      handleClickEvent: function(){
         console.log("This totally won't work!")
       },
-      bananaHammock: function(){
-        console.log("I'm overwriting the last bananahammock!")
+      handleClickEvent: function(){
+        console.log("I'm overwriting the last click event!")
       }
     },
     mouseover: {
@@ -229,11 +217,13 @@ button.addEventListener("click", handleClickEvent)
 button.addEventListener("click", otherClickEventHandler)
 ```
 
-Both fire on one click. That's because they have different names. 
+Both fire on one click. That's because they have different names.
 
-## Anonymous functions
+> TLDR: You are unable to add the same function call to the same event to execute functionality twice in 1 click event. Unless you use an anonymous function ...
 
-Now try using what's called an **anonymous function** -- a nameless function -- to make "I was clicked!" get `console logged` twice: 
+## Anonymous functions (10/55)
+
+Now try using what's called an **anonymous function** -- a nameless function -- to make "I was clicked!" get `console logged` twice:
 
 ```js
 var button = document.querySelector("button")
@@ -298,14 +288,15 @@ button.addEventListener("click", function(){
   handleClickEvent()
 })
 ```
+## Break (10/65)
 
-## You do: Color Scheme Switcher 
+## You do: Color Scheme Switcher (30/95)
 
 Clone this repo. Remember to use the SSH URL now, instead of HTTPS!
 
 [Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher)
 
-## The event object
+## The event object (10/105)
 
 Back in the code we were using in-class:
 
@@ -330,14 +321,14 @@ button.addEventListener("click", handleClickEvent);
 
 The `e` stands for `event`.
 
-#### Turn and talk
+#### Turn and talk (5/110)
 
 With your partner, try clicking the button and exploring what properties the MouseEvent object contains. Look for:
 
 - A way to figure out what element was clicked on
 - A way to tell the position of the mouse when it clicked
 
-### Other events
+### Other events - Key events (15/125)
 
 Let's explore some other events. Add a text input field into the HTML:
 
@@ -423,7 +414,7 @@ This is possible on these websites thanks to Javascript event listeners.
 
 You've seen how to detect one keypress. **How might you make something happen after a specific series of keypresses?**
 
-## Event Defaults
+## Event Defaults (5/130)
 
 Back in the code we were using in-class, replace your button with a link to, say, Google:
 
@@ -470,7 +461,9 @@ var handleClickEvent = function(e){
 button.addEventListener("click", handleClickEvent);
 ```
 
-## Making something draggable and droppable with removeEventListener
+## Making something draggable and droppable with removeEventListener (5/135)
+
+Just like how we can add event listeners to DOM elements, when might me want to remove event listeners? (ST - WG)
 
 Replace your `script.js` with the following code:
 
@@ -518,7 +511,7 @@ button{
 - Open the "elements" part of the inspector -- the bit that shows all of the HTML. What's happening to the `<button>` element?
 - What's the difference between `function startDragging(e)` and `var startDragging = function(e)`?
 
-## Timing functions
+## Timing functions (10/145)
 
 Let's look at timing functions -- that is, Javascript's way of making something happen every `x` seconds.
 
@@ -571,81 +564,22 @@ stop.addEventListener("click", function(){
 - How is `clearInterval` different from `removeEventListener`?
 - Give `singAnnoyingSong` an argument of `e`, like we did for the event listeners. What information does it contain?
 
-## Making your own callbacks
-
-We've done a lot of stuff with callbacks today, passing them as arguments into built-in Javascript functions. But we haven't tried passing them into functions we wrote ourselves.
-
-We're going to create a script that shows your interal monologue over the course of a normal weekday. Create three functions: one that `console.logs` something you think to yourself on waking up, another something you think during your commute, and that last something you think when you get to GA.
-
-Then, create a function called `averageMorning` that takes three arguments, `first`, `then`, and `lastly`.
-
-These three arguments represent three functions. Inside `averageMorning`, call `first`, `then`, and `lastly`, in order.
-
-Then, call the `averageMorning` function itself, passing in as arguments the three functions you wrote.
-
-The result should be something like this:
+## Asynchronicity (5/150)
+Run the next bit of code and you can see asynchronous program execution.
 
 ```js
-function haveBreakfast(){
-  console.log("Gotta have my Pops!")
+function anAsyncFunction(){
+  console.log("hello")
+  setTimeout(function(){
+    console.log("this is happening in the middle")
+  }, 5000)
+  console.log("goodbye")
 }
-function commute(){
-  console.log("What an interesting smell on Metro this morning...")
-}
-function workAtGA(){
-  console.log("At work! Now I can promote RobertAKARobin.com through the disguise of teaching again.")
-}
-function averageMorning(first, then, lastly){
-  console.log("This is my internal monologue on a normal weekday")
-  first();
-  then();
-  setTimeout(lastly, 5000);
-}
-averageMorning(haveBreakfast, commute, workAtGA);
+
+anAsyncFunction();
 ```
 
-## IIFEs
-
-Want to see something really crazy? We can define *and* call the `averageMorning` function all at once, without needing `averageMorning()` on a separate line. Just delete a couple things, and put in two extra parens:
-
-```js
-(function averageMorning(first, then, lastly){
-  console.log("This is my internal monologue on a normal weekday")
-  first();
-  then();
-  setTimeout(lastly, 5000);
-}(haveBreakfast, commute, workAtGA));
-```
-
-This is called an **Immediately-Invoked Function Expression**, which is a fancy way of saying "a function that runs as soon as it gets defined." You can do this with anonymous functions too:
-
-```js
-(function(){
-  var x;
-  for(x = 2; x < 10; x++){
-    console.log(x + " black spiders! Ah ah ahh!")
-  }
-  console.log("I lahv counting! Ah ah ahh!")
-}());
-```
-
-This seems kind of pointless, right? The advantage is that it keeps variables from cluttering up your browser. When Javascript comes to the end of a function, it "forgets" all of the data it generated inside that function to free up memory. Keeping everything inside functions and IIFEs can have a significant impact on the performance of your website since it takes less memory to run.
-
-## Asynchronicity
-
-Give your internal monologue code a "farewell" message that runs at the end:
-
-```js
-(function averageMorning(first, then, lastly){
-  console.log("This is my internal monologue on a normal weekday")
-  first();
-  then();
-  setTimeout(lastly, 5000);
-  console.log("...and that's my day!")
-}(haveBreakfast, commute, workAtGA));
-```
-
-Wait, what? The farewell came before the "at GA" message!
+Wait, what? The goodbye came before the "this is happening in the middle"!
 
 With everything else we've seen, Javascript executes one line of code, then when it's done, executes the next line of code. This is called being **synchronous**.
 
@@ -659,7 +593,7 @@ Because otherwise the webpage would just "hang" until the operation completes. T
 
 This risk is potentially the greatest when Javascript is making requests to other webpages. There's no way of knowing how long the request will take to complete. It could be near-instant, but if the target server is having a bad day, it could take who-knows-how-long. You don't want the operability of your computer to be at the mercy of some random computer somewhere else.
 
-In the internal monologue app we made, anything we want to be sure happens **after** those 5 seconds of commuting should go inside the `lastly` callback. This way, we can be certain that it will run only when the 5 seconds are up.
+In this small app we made, anything we want to be sure happens **after** those 5 seconds of commuting should go inside the callback of the `setTimeout`. This way, we can be certain that it will run only when the 5 seconds are up.
 
 -----
 
@@ -679,7 +613,7 @@ function switchTheme(event){
 var buttons = document.querySelector("ul")
 buttons.addEventListener("click", function(event){
   if(event.target.tagName == "LI"){
-    switchTheme(event) 
+    switchTheme(event)
   }
 })
 ```
