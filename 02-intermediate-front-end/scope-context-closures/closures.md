@@ -28,6 +28,8 @@ Closure is the property of function such that it can access variables in the sam
 
 All functions in JS are closures. Effectively, this means:
 
+> A function is called a "closure" because it "closes around" some variables and functions. It's like an envelope containing variables and functions. When you send that envelope around, it still contains all the same variables and functions.
+
 1. We can pass functions around by putting them in variables or referencing them by name.
 2. Functions can be passed in as arguments to other functions.
 3. Functions can return other functions.
@@ -181,3 +183,5 @@ Note, the interface to the object 'bob' is two functions/methods, getName and ge
 The implementation are the private variables `_name`, `_age` and the code inside the getName and getAge functions.
 
 Client code does **NOT** need to be concerned with implementation details. Only with the interface.
+
+> I don't see IIFEs mentioned anywhere... Were you going to include that?
