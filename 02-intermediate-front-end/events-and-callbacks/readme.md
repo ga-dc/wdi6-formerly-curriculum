@@ -55,7 +55,19 @@ Because `onclick` is a DOM attribute which references a function, you can only h
 
 `addEventListener` is much more common and allows multiple event handlers for one DOM object.
 
-### Callbacks
+### Before we go on...
+
+Usually when we do anything with functions, we put parentheses after the function name. Here, we have `handleClickEvent` without any parens.
+
+Try adding parentheses at the end of this line:
+
+```js
+button.addEventListener("click", handleClickEvent())
+```
+
+Refresh your page. What was different? Why?
+
+## Callbacks
 
 Last time, I made a mistake by expecting the `handleClickEvent` to fire twice in the below example.
 
@@ -508,7 +520,7 @@ button{
 
 ## Timing functions
 
-To wrap up, let's look at timing functions -- that is, Javascript's way of making something happen every `x` seconds.
+Let's look at timing functions -- that is, Javascript's way of making something happen every `x` seconds.
 
 Replace the contents of your `script.js` with this:
 
@@ -558,6 +570,96 @@ stop.addEventListener("click", function(){
   - When you do this, why doesn't the "stop" button seem to work?
 - How is `clearInterval` different from `removeEventListener`?
 - Give `singAnnoyingSong` an argument of `e`, like we did for the event listeners. What information does it contain?
+
+## Making your own callbacks
+
+We've done a lot of stuff with callbacks today, passing them as arguments into built-in Javascript functions. But we haven't tried passing them into functions we wrote ourselves.
+
+We're going to create a script that shows your interal monologue over the course of a normal weekday. Create three functions: one that `console.logs` something you think to yourself on waking up, another something you think during your commute, and that last something you think when you get to GA.
+
+Then, create a function called `averageMorning` that takes three arguments, `first`, `then`, and `lastly`.
+
+These three arguments represent three functions. Inside `averageMorning`, call `first`, `then`, and `lastly`, in order.
+
+Then, call the `averageMorning` function itself, passing in as arguments the three functions you wrote.
+
+The result should be something like this:
+
+```js
+function haveBreakfast(){
+  console.log("Gotta have my Pops!")
+}
+function commute(){
+  console.log("What an interesting smell on Metro this morning...")
+}
+function workAtGA(){
+  console.log("At work! Now I can promote RobertAKARobin.com through the disguise of teaching again.")
+}
+function averageMorning(first, then, lastly){
+  console.log("This is my internal monologue on a normal weekday")
+  first();
+  then();
+  setTimeout(lastly, 5000);
+}
+averageMorning(haveBreakfast, commute, workAtGA);
+```
+
+## IIFEs
+
+Want to see something really crazy? We can define *and* call the `averageMorning` function all at once, without needing `averageMorning()` on a separate line. Just delete a couple things, and put in two extra parens:
+
+```js
+(function averageMorning(first, then, lastly){
+  console.log("This is my internal monologue on a normal weekday")
+  first();
+  then();
+  setTimeout(lastly, 5000);
+}(haveBreakfast, commute, workAtGA));
+```
+
+This is called an **Immediately-Invoked Function Expression**, which is a fancy way of saying "a function that runs as soon as it gets defined." You can do this with anonymous functions too:
+
+```js
+(function(){
+  var x;
+  for(x = 2; x < 10; x++){
+    console.log(x + " black spiders! Ah ah ahh!")
+  }
+  console.log("I lahv counting! Ah ah ahh!")
+}());
+```
+
+This seems kind of pointless, right? The advantage is that it keeps variables from cluttering up your browser. When Javascript comes to the end of a function, it "forgets" all of the data it generated inside that function to free up memory. Keeping everything inside functions and IIFEs can have a significant impact on the performance of your website since it takes less memory to run.
+
+## Asynchronicity
+
+Give your internal monologue code a "farewell" message that runs at the end:
+
+```js
+(function averageMorning(first, then, lastly){
+  console.log("This is my internal monologue on a normal weekday")
+  first();
+  then();
+  setTimeout(lastly, 5000);
+  console.log("...and that's my day!")
+}(haveBreakfast, commute, workAtGA));
+```
+
+Wait, what? The farewell came before the "at GA" message!
+
+With everything else we've seen, Javascript executes one line of code, then when it's done, executes the next line of code. This is called being **synchronous**.
+
+However, some operations in Javascript are **asynchronous**, meaning Javascript goes on to the next line of code without waiting for the previous line to complete.
+
+This is limited mostly to timing functions, and operations where Javascript is loading data from some other website.
+
+### Why doesn't Javascript wait for these operations to complete before going to the next line of code?
+
+Because otherwise the webpage would just "hang" until the operation completes. The browser can't do anything while Javascript is actively running. We've seen this when we've encountered infinite loops. Asyncrhonicity is a way of preventing the computer from freezing.
+
+This risk is potentially the greatest when Javascript is making requests to other webpages. There's no way of knowing how long the request will take to complete. It could be near-instant, but if the target server is having a bad day, it could take who-knows-how-long. You don't want the operability of your computer to be at the mercy of some random computer somewhere else.
+
+In the internal monologue app we made, anything we want to be sure happens **after** those 5 seconds of commuting should go inside the `lastly` callback. This way, we can be certain that it will run only when the 5 seconds are up.
 
 -----
 
