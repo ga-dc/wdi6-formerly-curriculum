@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Sun Oct 18 2015 23:14:58 GMT+0000 (UTC)">
+    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Sun Oct 18 2015 23:48:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1257,8 +1257,13 @@
 <li>Pass an anonymous function as a callback to another function</li>
 </ul>
 <h2 id="framing-5">Framing (5)</h2>
-<p>We learned about objects and the DOM in JS last week. In order to do thing(behaviors) on the client side, we needed programmatic access to the HTML/CSS with JS. Enter the DOM. This powerful tool allows us to interface with our HTML. Now that we have this capability we can create behaviors through JS that can act on HTML elements or be activated by HTML elements.</p>
-<p>Let review. An object in the real world has different states and behavior. Dogs have state (name, color, breed, hungry) and behavior (barking, fetching, wagging tail). Bicycles also have state (current gear, current pedal cadence, current speed) and behavior (changing gear, changing pedal cadence, applying brakes). Software objects are conceptually similar to real-world objects: they too consist of state and related behavior. The DOM seems scary at first, but really we&apos;re just mapping HTML elements into JS objects so that we can change their(HTML elements) state, or give them(HTML elements) behavior.</p>
+<p>We learned about objects and the DOM last week. In order to do things on the client side, we needed programmatic access to the HTML/CSS with JS. Enter the DOM. This powerful tool allows Javascript to interface with our HTML. Now that we have this capability we can create behaviors through JS that can act on HTML elements or be activated by HTML elements.</p>
+<p>Let&apos;s review. An object in the real world has different states and behaviors.</p>
+<ul>
+<li>Dogs have state (name, color, breed, hungry) and behavior (barking, fetching, wagging tail).</li>
+<li>Bicycles also have state (current gear, current pedal cadence, current speed) and behavior (changing gear, changing pedal cadence, applying brakes).</li>
+</ul>
+<p>Software objects are conceptually similar to real-world objects: they too consist of states and related behaviors. The DOM seems scary at first, but really we&apos;re just mapping HTML elements into JS objects so that we can change their state, or give them behavior. </p>
 <h2 id="set-up-5-10">Set up (5/10)</h2>
 <p>For this class we&apos;ll be working with only 2 files, <code>index.html</code> and <code>script.js</code></p>
 <p>In <code>index.html</code>:</p>
@@ -1303,95 +1308,10 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, hand
 <p>You&apos;ll notice that &quot;I was clicked!&quot; pops up immediately upon reload. Also note that the event while it does fire, isn&apos;t doing anything. When we include <code>()</code> we invoke the function expression. Without the <code>()</code>, we&apos;re using the function expression as a reference.</p>
 </blockquote>
 <h2 id="callbacks-20-45">Callbacks (20/45)</h2>
-<p>This might not be your first time hearing it, but it definitely won&apos;t be your last. A callback is a piece of executable code that is passed as an argument to other code, which is expected to execute(or... call back) at some convenient time. The invocation may be immediate as in a synchronous callback, or it might happen at later time as in an asynchronous callback. In the example above, <code>handleClickEvent</code> is our callback. The invocation happens when the button is clicked.</p>
-<p>Last time, I made a mistake by expecting the <code>handleClickEvent</code> to fire twice in the below example.</p>
-<pre><code class="lang-js">button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, handleClickEvent)
-button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, handleClickEvent)
-</code></pre>
-<p>To explain why that only fired once, let&apos;s look at a simpler object, like a car:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> car = {
-  make: <span class="hljs-string">&quot;Toyota&quot;</span>,
-  model: <span class="hljs-string">&quot;Echo&quot;</span>,
-  driver: <span class="hljs-string">&quot;Robin&quot;</span>
-}
-car.driver = <span class="hljs-string">&quot;Andy&quot;</span>
-</code></pre>
-<p>If I say <code>car.driver = &quot;Andy&quot;</code> that doesn&apos;t <strong>add</strong> a new driver; it just <strong>overwrites</strong> the old one.</p>
-<p>The browser basically stores elements and events like this:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> button = {
-  events: {
-    click: {
-
-    },
-    mouseover: {
-
-    },
-    keydown: {
-
-    }
-    <span class="hljs-comment">// all the other event types...</span>
-  }
-}
-</code></pre>
-<p>When you add a <code>click</code> listener called <code>handleClickEvent</code> like this...</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
-<span class="hljs-keyword">var</span> handleClickEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;I was clicked!&quot;</span>)
-}
-button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, handleClickEvent);
-</code></pre>
-<p>...it&apos;s like you&apos;re saying...</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
-button.events.click.handleClickEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;I was clicked!&quot;</span>)
-}
-</code></pre>
-<blockquote>
-<p>Note: This second bit wouldn&apos;t actually work. It&apos;s just for illustration.</p>
-</blockquote>
-<p>So now the browser&apos;s stored version of the element would look like this:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> button = {
-  events: {
-    click: {
-      handleClickEvent: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;I was clicked!&quot;</span>)
-      }
-    },
-    mouseover: {
-
-    },
-    keydown: {
-
-    }
-    <span class="hljs-comment">// all the other event types...</span>
-  }
-}
-</code></pre>
-<p>Notice that a property was added with the name of the callback we were using. If you add a <strong>second</strong> event listener called <code>handleClickEvent</code>, it would just overwrite the old one.</p>
-<p>Javascript will <strong>never</strong> let an object look like this:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> button = {
-  events: {
-    click: {
-      handleClickEvent: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;This totally won&apos;t work!&quot;</span>)
-      },
-      handleClickEvent: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;I&apos;m overwriting the last click event!&quot;</span>)
-      }
-    },
-    mouseover: {
-
-    },
-    keydown: {
-
-    }
-    <span class="hljs-comment">// all the other event types...</span>
-  }
-}
-</code></pre>
-<p>That would completely defeat the purpose of objects having key/value pairs.</p>
+<p>This might not be your first time hearing it, and definitely won&apos;t be your last. A callback is a piece of executable code that is passed as an argument to other code, which is expected to invoke (or &quot;call back&quot;) that executable code at some convenient time.</p>
+<p>The invocation may be immediate or it might happen later. In the example above, <code>handleClickEvent</code> is our callback. The invocation happens when the button is clicked.</p>
 <h3 id="code-along">Code along</h3>
-<p>Make sure your code looks like this:</p>
+<p>Copy and paste this into your <code>script.js</code>:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
 <span class="hljs-keyword">var</span> handleClickEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;I was clicked!&quot;</span>)
@@ -1399,7 +1319,7 @@ button.events.click.handleClickEvent = <span class="hljs-function"><span class="
 button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, handleClickEvent)
 button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, handleClickEvent)
 </code></pre>
-<p>Test it out, just to make sure that click event doesn&apos;t happen twice.</p>
+<p>Test it out. Notice how the callback only happens once, instead of twice? That&apos;s because both callbacks have the same name, <code>handleClickEvent</code>, so Javascript thinks they&apos;re the same thing. </p>
 <p>Now create two different callbacks, one called <code>handleClickEvent</code> and one called <code>otherClickEventHandler</code>:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
 <span class="hljs-keyword">var</span> handleClickEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
@@ -1426,27 +1346,7 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <spa
 })
 </code></pre>
 <p>Those two functions look identical, so how come Javascript fired the event twice?</p>
-<p>When functions don&apos;t have a name, Javascript sort-of &quot;makes up&quot; a name for them to use internally. As a result, that button object probably looks something like this:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> button = {
-  events: {
-    click: {
-      <span class="hljs-number">98</span>x872bsjy37i: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;I was clicked!&quot;</span>)
-      },
-      <span class="hljs-number">2</span>hhj3726ksha7: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;I was clicked!&quot;</span>)
-      }
-    },
-    mouseover: {
-
-    },
-    keydown: {
-
-    }
-    <span class="hljs-comment">// all the other event types...</span>
-  }
-}
-</code></pre>
+<p>When functions don&apos;t have a name, Javascript sort-of &quot;makes up&quot; random names for them. So even though the functions look the same to <em>us</em>, Javascript sees them as being different.</p>
 <p>This gives us a way of &quot;cheating&quot; to make <code>handleClickEvent</code> fire twice:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
 <span class="hljs-keyword">var</span> handleClickEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
@@ -1485,11 +1385,14 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, hand
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
 <span class="hljs-keyword">var</span> handleClickEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;I was clicked!&quot;</span>)
-  <span class="hljs-built_in">console</span>.log(e)
+  <span class="hljs-built_in">console</span>.log(evt)
 }
 button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, handleClickEvent);
 </code></pre>
-<p>The <code>e</code> stands for <code>event</code>.</p>
+<p>The <code>evt</code> stands for <code>event</code>.</p>
+<blockquote>
+<p>The reason we&apos;re not actually using <code>event</code> is that it&apos;s a &quot;reserved word&quot; in Javascript, like &quot;if&quot; and &quot;return&quot;.</p>
+</blockquote>
 <h4 id="turn-and-talk-5-110">Turn and talk (5/110)</h4>
 <p>With your partner, try clicking the button and exploring what properties the MouseEvent object contains. Look for:</p>
 <ul>
@@ -1519,20 +1422,20 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, hand
 <p>Your code should look something like:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
 <span class="hljs-keyword">var</span> input = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;input&quot;</span>)
-<span class="hljs-keyword">var</span> handleClickEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{
+<span class="hljs-keyword">var</span> handleClickEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">evt</span>)</span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;I was clicked!&quot;</span>)
-  <span class="hljs-built_in">console</span>.log(e)
+  <span class="hljs-built_in">console</span>.log(evt)
 }
-<span class="hljs-keyword">var</span> handleKeyboardEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{
+<span class="hljs-keyword">var</span> handleKeyboardEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">evt</span>)</span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;You used the keyboard!&quot;</span>)
-  <span class="hljs-built_in">console</span>.log(e)
+  <span class="hljs-built_in">console</span>.log(evt)
 }
 button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, handleClickEvent);
 input.addEventListener(<span class="hljs-string">&quot;keyup&quot;</span>, handleKeyboardEvent);
 </code></pre>
 <p>There are actually two ways to tell which key is pressed.</p>
-<p>One is the <code>keyIdentifier</code> property. This is largely unique to Chrome. If you type the <code>d</code> character, <code>e.keyIdentifier</code> is <code>U+0044</code>, which represents the Unicode number for the lowercase <code>d</code> character. If you hit the Shift key, <code>e.keyIdentifier</code> is <code>Shift</code>.</p>
-<p>A much more cross-browser way of telling which key is pressed is using the <code>keyCode</code> property. For <code>d</code>, <code>e.keyCode</code> is <code>68</code>. For Shift, it&apos;s <code>16</code>.</p>
+<p>One is the <code>keyIdentifier</code> property. This is largely unique to Chrome. If you type the <code>d</code> character, <code>evt.keyIdentifier</code> is <code>U+0044</code>, which represents the Unicode number for the lowercase <code>d</code> character. If you hit the Shift key, <code>evt.keyIdentifier</code> is <code>Shift</code>.</p>
+<p>A much more cross-browser way of telling which key is pressed is using the <code>keyCode</code> property. For <code>d</code>, <code>evt.keyCode</code> is <code>68</code>. For Shift, it&apos;s <code>16</code>.</p>
 <h4 id="you-do">You do</h4>
 <p>Find the keyCodes for:</p>
 <ul>
@@ -1552,7 +1455,7 @@ input.addEventListener(<span class="hljs-string">&quot;keyup&quot;</span>, handl
 </ul>
 <p>There are a bunch of different browser events you can use in Javascript, all <a href="http://www.w3schools.com/jsref/dom_obj_event.asp" target="_blank">listed at W3Schools</a>.</p>
 <blockquote>
-<p>Yeah, yeah, I know, no-one likes W3Schools, but this list is accurate and easy-to-read.</p>
+<p>Some programmers have qualms with W3Schools since they&apos;re mooching off the name of the W3 without actually being related to them. However, this list is accurate and easy-to-read.</p>
 </blockquote>
 <h3 id="-larr-larr-rarr-rarr-uarr-darr-uarr-darr-a-b-larrhk">&#x2190; &#x2190; &#x2192; &#x2192; &#x2191; &#x2193; &#x2191; &#x2193; a b &#x21A9;</h3>
 <p>There&apos;s a famous cheat code used in old Konami arcade games: you press up, up, down, down, left, right, left, right, &apos;b&apos;, &apos;a&apos;, and then &apos;start&apos;. This code is so famous that many websites have secret functions for when users enter the Konami Code (with &apos;Enter&apos; replacing &apos;start&apos;).</p>
@@ -1691,29 +1594,13 @@ stop.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span 
 anAsyncFunction();
 </code></pre>
 <p>Wait, what? The goodbye came before the &quot;this is happening in the middle&quot;!</p>
-<p>With everything else we&apos;ve seen, Javascript executes one line of code, then when it&apos;s done, executes the next line of code. This is called being <strong>synchronous</strong>.</p>
+<p>With everything else we&apos;ve seen, Javascript executes one line of code, then when that line is done, executes the next line of code. This is called being <strong>synchronous</strong>.</p>
 <p>However, some operations in Javascript are <strong>asynchronous</strong>, meaning Javascript goes on to the next line of code without waiting for the previous line to complete.</p>
 <p>This is limited mostly to timing functions, and operations where Javascript is loading data from some other website.</p>
 <h3 id="why-doesn-t-javascript-wait-for-these-operations-to-complete-before-going-to-the-next-line-of-code">Why doesn&apos;t Javascript wait for these operations to complete before going to the next line of code?</h3>
-<p>Because otherwise the webpage would just &quot;hang&quot; until the operation completes. The browser can&apos;t do anything while Javascript is actively running. We&apos;ve seen this when we&apos;ve encountered infinite loops. Asyncrhonicity is a way of preventing the computer from freezing.</p>
-<p>This risk is potentially the greatest when Javascript is making requests to other webpages. There&apos;s no way of knowing how long the request will take to complete. It could be near-instant, but if the target server is having a bad day, it could take who-knows-how-long. You don&apos;t want the operability of your computer to be at the mercy of some random computer somewhere else.</p>
+<p>Because otherwise the webpage would just &quot;hang&quot; until the operation completes. The browser can&apos;t do anything while Javascript is actively running. We&apos;ve seen this when we&apos;ve encountered infinite <code>while</code> loops. Asyncrhonicity is a way of preventing the computer from freezing.</p>
+<p>This risk is greatest when Javascript is making requests to other webpages. There&apos;s no way of knowing how long the request will take to complete. It could be near-instant, but if the target server is having a bad day, it could take who-knows-how-long. You don&apos;t want the operability of your computer to be at the mercy of some random computer somewhere else.</p>
 <p>In this small app we made, anything we want to be sure happens <strong>after</strong> those 5 seconds of commuting should go inside the callback of the <code>setTimeout</code>. This way, we can be certain that it will run only when the 5 seconds are up.</p>
-<hr>
-<h3 id="2-one-event-handler-to-rule-them-all">2. One Event Handler to Rule them all</h3>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">switchTheme</span>(<span class="hljs-params">event</span>)</span>{
-  <span class="hljs-built_in">console</span>.log(event.target.className)
-  <span class="hljs-comment">//or</span>
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>)
-}
-</code></pre>
-<h3 id="3-one-event-listener">3. One Event Listener</h3>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> buttons = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;ul&quot;</span>)
-buttons.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)</span>{
-  <span class="hljs-keyword">if</span>(event.target.tagName == <span class="hljs-string">&quot;LI&quot;</span>){
-    switchTheme(event)
-  }
-})
-</code></pre>
 <h2 id="you-do-cash-register-exercise">You do: Cash Register Exercise</h2>
 <p><a href="https://github.com/ga-dc/cash-register" target="_blank">https://github.com/ga-dc/cash-register</a></p>
 <p>Let&#x2019;s handle the form submission together</p>
