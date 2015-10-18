@@ -9,9 +9,14 @@
 - Pass an anonymous function as a callback to another function
 
 ## Framing (5)
-We learned about objects and the DOM in JS last week. In order to do thing(behaviors) on the client side, we needed programmatic access to the HTML/CSS with JS. Enter the DOM. This powerful tool allows us to interface with our HTML. Now that we have this capability we can create behaviors through JS that can act on HTML elements or be activated by HTML elements.
+We learned about objects and the DOM last week. In order to do things on the client side, we needed programmatic access to the HTML/CSS with JS. Enter the DOM. This powerful tool allows Javascript to interface with our HTML. Now that we have this capability we can create behaviors through JS that can act on HTML elements or be activated by HTML elements.
 
-Let review. An object in the real world has different states and behavior. Dogs have state (name, color, breed, hungry) and behavior (barking, fetching, wagging tail). Bicycles also have state (current gear, current pedal cadence, current speed) and behavior (changing gear, changing pedal cadence, applying brakes). Software objects are conceptually similar to real-world objects: they too consist of state and related behavior. The DOM seems scary at first, but really we're just mapping HTML elements into JS objects so that we can change their(HTML elements) state, or give them(HTML elements) behavior.
+Let's review. An object in the real world has different states and behaviors.
+
+- Dogs have state (name, color, breed, hungry) and behavior (barking, fetching, wagging tail).
+- Bicycles also have state (current gear, current pedal cadence, current speed) and behavior (changing gear, changing pedal cadence, applying brakes).
+
+Software objects are conceptually similar to real-world objects: they too consist of states and related behaviors. The DOM seems scary at first, but really we're just mapping HTML elements into JS objects so that we can change their state, or give them behavior. 
 
 ## Set up (5/10)
 
@@ -77,120 +82,13 @@ Refresh your page. What was different? Why?
 > You'll notice that "I was clicked!" pops up immediately upon reload. Also note that the event while it does fire, isn't doing anything. When we include `()` we invoke the function expression. Without the `()`, we're using the function expression as a reference.
 
 ## Callbacks (20/45)
-This might not be your first time hearing it, but it definitely won't be your last. A callback is a piece of executable code that is passed as an argument to other code, which is expected to execute(or... call back) at some convenient time. The invocation may be immediate as in a synchronous callback, or it might happen at later time as in an asynchronous callback. In the example above, `handleClickEvent` is our callback. The invocation happens when the button is clicked.
+This might not be your first time hearing it, and definitely won't be your last. A callback is a piece of executable code that is passed as an argument to other code, which is expected to invoke (or "call back") that executable code at some convenient time.
 
-Last time, I made a mistake by expecting the `handleClickEvent` to fire twice in the below example.
-
-```js
-button.addEventListener("click", handleClickEvent)
-button.addEventListener("click", handleClickEvent)
-```
-
-To explain why that only fired once, let's look at a simpler object, like a car:
-
-```js
-var car = {
-  make: "Toyota",
-  model: "Echo",
-  driver: "Robin"
-}
-car.driver = "Andy"
-```
-
-If I say `car.driver = "Andy"` that doesn't **add** a new driver; it just **overwrites** the old one.
-
-The browser basically stores elements and events like this:
-
-```js
-var button = {
-  events: {
-    click: {
-
-    },
-    mouseover: {
-
-    },
-    keydown: {
-
-    }
-    // all the other event types...
-  }
-}
-```
-
-When you add a `click` listener called `handleClickEvent` like this...
-
-```js
-var button = document.querySelector("button")
-var handleClickEvent = function(){
-  console.log("I was clicked!")
-}
-button.addEventListener("click", handleClickEvent);
-```
-
-...it's like you're saying...
-
-```js
-var button = document.querySelector("button")
-button.events.click.handleClickEvent = function(){
-  console.log("I was clicked!")
-}
-```
-
-> Note: This second bit wouldn't actually work. It's just for illustration.
-
-So now the browser's stored version of the element would look like this:
-
-```js
-var button = {
-  events: {
-    click: {
-      handleClickEvent: function(){
-        console.log("I was clicked!")
-      }
-    },
-    mouseover: {
-
-    },
-    keydown: {
-
-    }
-    // all the other event types...
-  }
-}
-```
-
-Notice that a property was added with the name of the callback we were using. If you add a **second** event listener called `handleClickEvent`, it would just overwrite the old one.
-
-Javascript will **never** let an object look like this:
-
-```js
-var button = {
-  events: {
-    click: {
-      handleClickEvent: function(){
-        console.log("This totally won't work!")
-      },
-      handleClickEvent: function(){
-        console.log("I'm overwriting the last click event!")
-      }
-    },
-    mouseover: {
-
-    },
-    keydown: {
-
-    }
-    // all the other event types...
-  }
-}
-```
-
-That would completely defeat the purpose of objects having key/value pairs.
+The invocation may be immediate or it might happen later. In the example above, `handleClickEvent` is our callback. The invocation happens when the button is clicked.
 
 ### Code along
 
-Make sure your code looks like this:
+Copy and paste this into your `script.js`:
 
 ```js
 var button = document.querySelector("button")
@@ -201,7 +99,7 @@ button.addEventListener("click", handleClickEvent)
 button.addEventListener("click", handleClickEvent)
 ```
 
-Test it out, just to make sure that click event doesn't happen twice.
+Test it out. Notice how the callback only happens once, instead of twice? That's because both callbacks have the same name, `handleClickEvent`, so Javascript thinks they're the same thing. 
 
 Now create two different callbacks, one called `handleClickEvent` and one called `otherClickEventHandler`:
 
@@ -237,29 +135,7 @@ button.addEventListener("click", function(){
 
 Those two functions look identical, so how come Javascript fired the event twice?
 
-When functions don't have a name, Javascript sort-of "makes up" a name for them to use internally. As a result, that button object probably looks something like this:
-
-```js
-var button = {
-  events: {
-    click: {
-      98x872bsjy37i: function(){
-        console.log("I was clicked!")
-      },
-      2hhj3726ksha7: function(){
-        console.log("I was clicked!")
-      }
-    },
-    mouseover: {
-
-    },
-    keydown: {
-
-    }
-    // all the other event types...
-  }
-}
-```
+When functions don't have a name, Javascript sort-of "makes up" random names for them. So even though the functions look the same to *us*, Javascript sees them as being different.
 
 This gives us a way of "cheating" to make `handleClickEvent` fire twice:
 
@@ -314,12 +190,14 @@ Now, you're going to make a small change by adding an argument to the anonymous 
 var button = document.querySelector("button")
 var handleClickEvent = function(e){
   console.log("I was clicked!")
-  console.log(e)
+  console.log(evt)
 }
 button.addEventListener("click", handleClickEvent);
 ```
 
-The `e` stands for `event`.
+The `evt` stands for `event`.
+
+> The reason we're not actually using `event` is that it's a "reserved word" in Javascript, like "if" and "return".
 
 #### Turn and talk (5/110)
 
@@ -359,13 +237,13 @@ Your code should look something like:
 ```js
 var button = document.querySelector("button")
 var input = document.querySelector("input")
-var handleClickEvent = function(e){
+var handleClickEvent = function(evt){
   console.log("I was clicked!")
-  console.log(e)
+  console.log(evt)
 }
-var handleKeyboardEvent = function(e){
+var handleKeyboardEvent = function(evt){
   console.log("You used the keyboard!")
-  console.log(e)
+  console.log(evt)
 }
 button.addEventListener("click", handleClickEvent);
 input.addEventListener("keyup", handleKeyboardEvent);
@@ -373,9 +251,9 @@ input.addEventListener("keyup", handleKeyboardEvent);
 
 There are actually two ways to tell which key is pressed.
 
-One is the `keyIdentifier` property. This is largely unique to Chrome. If you type the `d` character, `e.keyIdentifier` is `U+0044`, which represents the Unicode number for the lowercase `d` character. If you hit the Shift key, `e.keyIdentifier` is `Shift`.
+One is the `keyIdentifier` property. This is largely unique to Chrome. If you type the `d` character, `evt.keyIdentifier` is `U+0044`, which represents the Unicode number for the lowercase `d` character. If you hit the Shift key, `evt.keyIdentifier` is `Shift`.
 
-A much more cross-browser way of telling which key is pressed is using the `keyCode` property. For `d`, `e.keyCode` is `68`. For Shift, it's `16`.
+A much more cross-browser way of telling which key is pressed is using the `keyCode` property. For `d`, `evt.keyCode` is `68`. For Shift, it's `16`.
 
 #### You do
 
@@ -398,7 +276,7 @@ There are several other events that come up with the `input` tag. See if you can
 
 There are a bunch of different browser events you can use in Javascript, all [listed at W3Schools](http://www.w3schools.com/jsref/dom_obj_event.asp).
 
-> Yeah, yeah, I know, no-one likes W3Schools, but this list is accurate and easy-to-read.
+> Some programmers have qualms with W3Schools since they're mooching off the name of the W3 without actually being related to them. However, this list is accurate and easy-to-read.
 
 ### &larr; &larr; &rarr; &rarr; &uarr; &darr; &uarr; &darr; a b &larrhk;
 
@@ -581,7 +459,7 @@ anAsyncFunction();
 
 Wait, what? The goodbye came before the "this is happening in the middle"!
 
-With everything else we've seen, Javascript executes one line of code, then when it's done, executes the next line of code. This is called being **synchronous**.
+With everything else we've seen, Javascript executes one line of code, then when that line is done, executes the next line of code. This is called being **synchronous**.
 
 However, some operations in Javascript are **asynchronous**, meaning Javascript goes on to the next line of code without waiting for the previous line to complete.
 
@@ -589,34 +467,11 @@ This is limited mostly to timing functions, and operations where Javascript is l
 
 ### Why doesn't Javascript wait for these operations to complete before going to the next line of code?
 
-Because otherwise the webpage would just "hang" until the operation completes. The browser can't do anything while Javascript is actively running. We've seen this when we've encountered infinite loops. Asyncrhonicity is a way of preventing the computer from freezing.
+Because otherwise the webpage would just "hang" until the operation completes. The browser can't do anything while Javascript is actively running. We've seen this when we've encountered infinite `while` loops. Asyncrhonicity is a way of preventing the computer from freezing.
 
-This risk is potentially the greatest when Javascript is making requests to other webpages. There's no way of knowing how long the request will take to complete. It could be near-instant, but if the target server is having a bad day, it could take who-knows-how-long. You don't want the operability of your computer to be at the mercy of some random computer somewhere else.
+This risk is greatest when Javascript is making requests to other webpages. There's no way of knowing how long the request will take to complete. It could be near-instant, but if the target server is having a bad day, it could take who-knows-how-long. You don't want the operability of your computer to be at the mercy of some random computer somewhere else.
 
 In this small app we made, anything we want to be sure happens **after** those 5 seconds of commuting should go inside the callback of the `setTimeout`. This way, we can be certain that it will run only when the 5 seconds are up.
-
------
-
-### 2. One Event Handler to Rule them all
-
-```js
-function switchTheme(event){
-  console.log(event.target.className)
-  //or
-  console.log(this)
-}
-```
-
-### 3. One Event Listener
-
-```js
-var buttons = document.querySelector("ul")
-buttons.addEventListener("click", function(event){
-  if(event.target.tagName == "LI"){
-    switchTheme(event)
-  }
-})
-```
 
 ## You do: Cash Register Exercise
 
