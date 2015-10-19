@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.1.1" data-basepath="../.." data-revision="Sun Oct 18 2015 23:48:24 GMT+0000 (UTC)">
+    <div class="book" data-level="2.1.1" data-basepath="../.." data-revision="Mon Oct 19 2015 01:34:06 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1303,6 +1303,8 @@ scope in which it is defined.</li>
 
 <span class="hljs-built_in">console</span>.log(pitcherName); <span class="hljs-comment">// works, globals always in scope</span>
 <span class="hljs-built_in">console</span>.log(batterName);  <span class="hljs-comment">// DOES NOT WORK, variable is an inner scope</span>
+
+<span class="hljs-built_in">console</span>.dir(<span class="hljs-built_in">window</span>); <span class="hljs-comment">// note how favoriteAnimal is a property of window.</span>
 </code></pre>
 <h3 id="more-interesting-complex">More Interesting / Complex</h3>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> firstName = <span class="hljs-string">&apos;John&apos;</span>; <span class="hljs-comment">// 1</span>

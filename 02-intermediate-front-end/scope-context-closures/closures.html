@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.1.3" data-basepath="../.." data-revision="Sun Oct 18 2015 23:48:24 GMT+0000 (UTC)">
+    <div class="book" data-level="2.1.3" data-basepath="../.." data-revision="Mon Oct 19 2015 01:34:06 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1263,13 +1263,9 @@
 <li><a href="http://www.bennadel.com/blog/2134-a-random-exploration-of-closure-use-cases-in-javascript.htm" target="_blank">Closure Use Cases</a></li>
 <li><a href="http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/" target="_blank">Everything you wanted to know about JavaScript scope</a></li>
 </ul>
-<h5 id="iife">IIFE</h5>
-<ul>
-<li><a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/" target="_blank">Ben Alman IFFE Pattern</a></li>
-<li><a href="http://adripofjavascript.com/blog/drips/understanding-the-module-pattern-in-javascript.html" target="_blank">IFFE Pattern</a></li>
-</ul>
 <h2 id="what-are-closures">What are Closures</h2>
 <p>Closure is the property of function such that it can access variables in the same scope, i.e. scope chain, it was declared in. Even when that function is operating outside of that scope.</p>
+<p>A function is called a &quot;closure&quot; because it &quot;closes around&quot; some variables and functions. It&apos;s like an envelope containing variables and functions. When you send that envelope around, it still contains all the same variables and functions.</p>
 <p>All functions in JS are closures. Effectively, this means:</p>
 <ol>
 <li>We can pass functions around by putting them in variables or referencing them by name.</li>
@@ -1335,8 +1331,8 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <spa
 <span class="hljs-keyword">var</span> add5 = makeAdder(<span class="hljs-number">5</span>);
 <span class="hljs-keyword">var</span> add10 = makeAdder(<span class="hljs-number">10</span>);
 
-<span class="hljs-built_in">console</span>.log(add5(<span class="hljs-number">2</span>));  <span class="hljs-comment">// 7</span>
-<span class="hljs-built_in">console</span>.log(add10(<span class="hljs-number">2</span>)); <span class="hljs-comment">// 12</span>
+<span class="hljs-built_in">console</span>.log(  add5(<span class="hljs-number">2</span>) );  <span class="hljs-comment">// 7</span>
+<span class="hljs-built_in">console</span>.log(  add10(<span class="hljs-number">2</span>) ); <span class="hljs-comment">// 12</span>
 </code></pre>
 <h2 id="encapsulation">Encapsulation.</h2>
 <p>Encapsulation is a software concept where one seperates the implementation from the interface that is used by clients.</p>
@@ -1346,7 +1342,8 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <spa
 <p>The engine are drive train the car&apos;s implementation.</p>
 <p>The gas pedal, brake pedal and steering wheel are the car&apos;s interface to client, the driver.</p>
 <p><strong>Create a file <code>js/personFactory.js</code></strong></p>
-<p>Below is a people factory. Give it a name and an age and I&apos;ll create a person. That is, it will create objects that represent a specific person.</p>
+<p>Below is a people factory. Give it a name and an age and it&apos;ll create a person.
+That is, it will create objects that represent a specific person.</p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">personFactory</span>(<span class="hljs-params"> fullName, currentAge </span>)</span>{
   <span class="hljs-keyword">var</span> _name = fullName;  <span class="hljs-comment">// 1</span>
   <span class="hljs-keyword">var</span> _age = currentAge;  <span class="hljs-comment">// 1</span>
