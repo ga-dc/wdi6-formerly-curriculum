@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.1.1" data-basepath="../.." data-revision="Mon Oct 19 2015 12:54:11 GMT+0000 (UTC)">
+    <div class="book" data-level="2.1.1" data-basepath="../.." data-revision="Mon Oct 19 2015 13:12:58 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1258,6 +1258,10 @@
 <li><a href="http://ryanmorr.com/understanding-scope-and-context-in-javascript/" target="_blank">Understanding Scope and Context in JavaScript</a></li>
 <li><a href="http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/" target="_blank">Everything you wanted to know about JavaScript scope</a></li>
 </ul>
+<h2 id="why-scope-why-now">Why Scope? Why Now?</h2>
+<blockquote>
+<p>Understanding JavaScript scope is key to writing bulletproof code and being a better developer. You&#x2019;ll understand where variables/functions are accessible, be able to change the scope of your code&#x2019;s context and be able to write faster and more maintainable code, as well as debug much faster.</p>
+</blockquote>
 <h2 id="what-is-scope">What is Scope?</h2>
 <p>In programming, scope is where a variable can be referenced; in other words,
 where it can be used.</p>
@@ -1298,13 +1302,15 @@ scope in which it is defined.</li>
   <span class="hljs-built_in">console</span>.log(pitcherName); <span class="hljs-comment">// works, local variable in scope</span>
 }
 
+playBaseball()
+
 <span class="hljs-built_in">console</span>.log(favoriteAnimal); <span class="hljs-comment">// works, globals always in scope</span>
 <span class="hljs-built_in">console</span>.log(favoriteFood);   <span class="hljs-comment">// works, local variable in current scope</span>
 
 <span class="hljs-built_in">console</span>.log(pitcherName); <span class="hljs-comment">// works, globals always in scope</span>
 <span class="hljs-built_in">console</span>.log(batterName);  <span class="hljs-comment">// DOES NOT WORK, variable is an inner scope</span>
 
-<span class="hljs-built_in">console</span>.dir(<span class="hljs-built_in">window</span>); <span class="hljs-comment">// note how favoriteAnimal is a property of window.</span>
+<span class="hljs-built_in">console</span>.dir(<span class="hljs-built_in">window</span>); <span class="hljs-comment">// note how favoriteAnimal / favoriteFood are properties of window.</span>
 </code></pre>
 <h3 id="more-interesting-complex">More Interesting / Complex</h3>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> firstName = <span class="hljs-string">&apos;John&apos;</span>; <span class="hljs-comment">// 1</span>
@@ -1333,20 +1339,32 @@ scope in which it is defined.</li>
 </code></pre>
 <ul>
 <li><p>Here&apos;s how JS will parse this:</p>
-<p>  1) Found &apos;var firstName&apos; variable declaration.<br>  Put firstName variable in Global Scope.<br>  2) Found &apos;var lastName&apos; variable declaration.<br>  Put lastName in Global Scope.<br>  3) Found &apos;var age&apos; variable declaration.<br>  Put age in Global Scope.<br>  4) Found &apos;var displayPerson&apos; declaration.<br>  Put age in displayPerson in Global Scope.</p>
-<p>  <strong>Notice that displayPerson&apos;s value is a function. So, create a inner scope and process this function.</strong></p>
-<p>  5) Found the fname and lname declarations.
-  <em>Note: functions arguments behave just like local variables.</em>
-  Put them in the displayPerson function scope.<br>  6) Found prefix, fullName variable declarations.<br>  Put them in the displayPerson function scope.<br>  7) Found getFullName declaration.<br>  Put getFullName in the displayPerson function scope.</p>
-<p>  <strong>Notice that getFullName is a function. So, create an inner scope and  process this function.</strong>
-  <strong>All done with getFullName function, no more variable declarations.</strong>
-  <strong>All done with displayPerson function, no more variable declarations.</strong></p>
-<p>  <img src="assets/JS_Scope1.png" alt="Scope"></p>
-<p>  8) Found removeYears variable declaration.
-  Put removeYears in Global scope.  </p>
-<p>  <strong>Notice that removeYears value is a function. So, create a inner scope and process this function.</strong></p>
-<p>  9) Found age and minusYears variable declarations.<br>  Put these in the function&apos;s scope.</p>
-<p>  <img src="assets/JS_Scope2.png" alt="Scope"></p>
+<ol>
+<li>Found &apos;var firstName&apos; variable declaration.<br>Put firstName variable in Global Scope.  </li>
+<li>Found &apos;var lastName&apos; variable declaration.<br>Put lastName in Global Scope.  </li>
+<li>Found &apos;var age&apos; variable declaration.<br>Put age in Global Scope.  </li>
+<li><p>Found &apos;var displayPerson&apos; declaration.<br>Put age in displayPerson in Global Scope.</p>
+<p><strong>Notice that displayPerson&apos;s value is a function. So, create a inner scope and process this function.</strong></p>
+</li>
+<li><p>Found the fname and lname declarations.
+<em>Note: functions arguments behave just like local variables.</em>
+Put them in the displayPerson function scope.  </p>
+</li>
+<li>Found prefix, fullName variable declarations.<br>Put them in the displayPerson function scope.  </li>
+<li><p>Found getFullName declaration.<br>Put getFullName in the displayPerson function scope.</p>
+<p><strong>Notice that getFullName is a function. So, create an inner scope and  process this function.</strong>
+<strong>All done with getFullName function, no more variable declarations.</strong>
+<strong>All done with displayPerson function, no more variable declarations.</strong></p>
+<p><img src="assets/JS_Scope1.png" alt="Scope"></p>
+</li>
+<li><p>Found removeYears variable declaration.
+Put removeYears in Global scope.  </p>
+<p><strong>Notice that removeYears value is a function. So, create a inner scope and process this function.</strong></p>
+</li>
+<li><p>Found age and minusYears variable declarations.<br>Put these in the function&apos;s scope.</p>
+<p><img src="assets/JS_Scope2.png" alt="Scope"></p>
+</li>
+</ol>
 </li>
 </ul>
 <h2 id="lab">Lab.</h2>
