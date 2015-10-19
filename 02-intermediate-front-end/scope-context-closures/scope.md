@@ -68,6 +68,8 @@ console.log(pitcherName); // works, globals always in scope
 console.log(batterName);  // DOES NOT WORK, variable is an inner scope
 ```
 
+> Might be helpful to `console.dir(window)` and show that it now has a `favoriteAnimal` property?
+
 ### More Interesting / Complex
 
 ```javascript

@@ -19,6 +19,8 @@
 Context is feature of the Javascript language related to how and when/where
 functions are invoked (aka called).
 
+> Can you include a definition of what you mean by "context"? Like, "'context' means 'the object to which the function is attached'."
+
 Every time a Javascript function is called, a context is determined / set. That
 context is always an object, and can be referenced in the function definition
 (code) using a special keyword in JS, `this`.
@@ -123,6 +125,8 @@ function, such as:
 ## Fixes for the global `this` gotcha
 
 ### Store `this` in another variable
+
+> I wonder if instead of "self" it may be better to use something like `var context = this;`, which makes more English sense, and then later mention that usually people write "self" simply because it's shorter?
 
 One trick is to store the `this` you want in another variable, commonly named
 `self` or `that`.
