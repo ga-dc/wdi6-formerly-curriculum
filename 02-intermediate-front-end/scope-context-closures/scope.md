@@ -61,8 +61,8 @@ function playBaseball() {
   pitcherName    = "Jesse Shawl";
   var batterName = "Breece Horper";
 
-  console.log(batterName);  // works, globals always in scope
-  console.log(pitcherName); // works, local variable in scope
+  console.log(batterName);  // works, local variable in scope
+  console.log(pitcherName); // works, globals always in scope
 }
 
 playBaseball()
