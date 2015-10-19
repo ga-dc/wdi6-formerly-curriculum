@@ -1,5 +1,7 @@
 # Events and Callbacks
 
+[Screencast](https://youtu.be/S4Xvo_m6P04)
+
 - Explain the concept of a 'callback' and how we can pass functions as arguments to other functions
 - Describe the difference between asynchronous and synchronous program execution
 - Explain why callbacks are important to asynchronous program flow
