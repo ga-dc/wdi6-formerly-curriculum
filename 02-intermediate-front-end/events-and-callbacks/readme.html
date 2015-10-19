@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Mon Oct 19 2015 19:02:45 GMT+0000 (UTC)">
+    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Mon Oct 19 2015 19:14:09 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1373,6 +1373,16 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <spa
 <h2 id="you-do-color-scheme-switcher-30-95">You do: Color Scheme Switcher (30/95)</h2>
 <p>Clone this repo. Remember to use the SSH URL now, instead of HTTPS!</p>
 <p><a href="https://github.com/ga-dc/color-scheme-switcher" target="_blank">Color Scheme Switcher</a></p>
+<h2 id="-this"><code>this</code></h2>
+<p>Here&apos;s the shortest way to do it:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> buttons = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&quot;li&quot;</span>);
+<span class="hljs-keyword">for</span>(i <span class="hljs-keyword">in</span> buttons){
+  buttons[i].addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-built_in">document</span>.body.className = <span class="hljs-keyword">this</span>.className;
+  });
+}
+</code></pre>
+<p>Here we make use of the <code>this</code> keyword. In the context of an event listener callback, <code>this</code> always refers to the object that triggered the event.</p>
 <h2 id="the-event-object-10-105">The event object (10/105)</h2>
 <p>Back in the code we were using in-class:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
