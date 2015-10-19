@@ -48,8 +48,8 @@ setting properties. Consider this example:
 var xwing = {
     pilot: null,
 
-    setPilot: function(pilot) {
-        this.pilot = pilot;
+    setPilot: function(newPilot) {
+        this.pilot = newPilot;
         this.notifyUpdate();
     },
 
