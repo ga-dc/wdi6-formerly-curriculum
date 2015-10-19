@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.1.2" data-basepath="../.." data-revision="Mon Oct 19 2015 13:12:58 GMT+0000 (UTC)">
+    <div class="book" data-level="2.1.2" data-basepath="../.." data-revision="Mon Oct 19 2015 13:35:41 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1413,13 +1413,13 @@ for more.</p>
 <blockquote>
 <ol>
 <li>Is the function called with <code>new</code> (<strong>new binding</strong>)? If so, <code>this</code> is the newly constructed object.
- <code>var bar = new foo()</code></li>
+ <code>var supreme_pizza = new Pizza()</code></li>
 <li>Is the function called with <code>call</code> or <code>apply</code> (<strong>explicit binding</strong>), even hidden inside a <code>bind</code> <em>hard binding</em>? If so, <code>this</code> is the explicitly specified object.
- <code>var bar = foo.call( obj2 )</code></li>
+ <code>var baked_pizza = bake.call( raw_pizza )</code></li>
 <li>Is the function called with a context (<strong>implicit binding</strong>), otherwise known as an owning or containing object? If so, <code>this</code> is <em>that</em> context object.
- <code>var bar = obj1.foo()</code></li>
+ <code>var baked_pizza = raw_pizza.bake()</code></li>
 <li>Otherwise, default the <code>this</code> (<strong>default binding</strong>). If in <code>strict mode</code>, pick <code>undefined</code>, otherwise pick the <code>global</code> object.
- <code>var bar = foo()</code></li>
+ <code>var probably_wont_work = bake()</code></li>
 </ol>
 <p>Source: <a href="https://github.com/getify/You-Dont-Know-JS/blob/58dbf4f867be0d9c51dfc341765e4e4211608aa1/this%20&amp;%20object%20prototypes/ch2.md" target="_blank">You-Dont-Know-JS/ch2.md</a></p>
 </blockquote>

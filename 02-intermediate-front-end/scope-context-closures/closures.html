@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.1.3" data-basepath="../.." data-revision="Mon Oct 19 2015 13:12:58 GMT+0000 (UTC)">
+    <div class="book" data-level="2.1.3" data-basepath="../.." data-revision="Mon Oct 19 2015 13:35:41 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1338,13 +1338,13 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <spa
 <p>Encapsulation is a software concept where one seperates the implementation from the interface that is used by clients.</p>
 <p>It&apos;s often good to <em>hide</em> the details of how something is being done from outside code, that is the client code.</p>
 <p>This will reduce the knowledge needed by the client.</p>
-<p>For example, when we drive our cars we don&apos;t worry about the specifics of the engine or drive train. We interface with the car using the gas pedal, brake and stearing wheel.</p>
-<p>The engine are drive train the car&apos;s implementation.</p>
+<p>For example, when we drive our cars we don&apos;t worry about the specifics of the engine or drivetrain. We interface with the car using the gas pedal, brake and steering wheel.</p>
+<p>The engine and drivetrain are part of the car&apos;s implementation.</p>
 <p>The gas pedal, brake pedal and steering wheel are the car&apos;s interface to client, the driver.</p>
-<p><strong>Create a file <code>js/personFactory.js</code></strong></p>
+<p><strong>Create a file <code>js/makePerson.js</code></strong></p>
 <p>Below is a people factory. Give it a name and an age and it&apos;ll create a person.
 That is, it will create objects that represent a specific person.</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">personFactory</span>(<span class="hljs-params"> fullName, currentAge </span>)</span>{
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makePerson</span>(<span class="hljs-params"> fullName, currentAge </span>)</span>{
   <span class="hljs-keyword">var</span> _name = fullName;  <span class="hljs-comment">// 1</span>
   <span class="hljs-keyword">var</span> _age = currentAge;  <span class="hljs-comment">// 1</span>
 
@@ -1362,20 +1362,19 @@ That is, it will create objects that represent a specific person.</p>
 }
 
 <span class="hljs-comment">// Create a new person instance.</span>
-<span class="hljs-keyword">var</span> bob = <span class="hljs-keyword">new</span> personFactory( <span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-number">45</span> ); <span class="hljs-comment">//5</span>
+<span class="hljs-keyword">var</span> bob = makePerson( <span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-number">45</span> ); <span class="hljs-comment">//5</span>
 
 <span class="hljs-comment">// Check to see if the age property exists in a public</span>
 <span class="hljs-comment">// portion of the person instance.</span>
-<span class="hljs-built_in">console</span>.log(
-  <span class="hljs-string">&quot;Can we access the Bob&apos;s _age?&quot;</span>,
-  (<span class="hljs-string">&quot;_age&quot;</span> <span class="hljs-keyword">in</span> bob)
-);  <span class="hljs-comment">// 7</span>
+<span class="hljs-comment">// 7</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Can we access the Bob&apos;s _age?&quot;</span>)
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;_age&quot;</span> <span class="hljs-keyword">in</span> bob)  
 
 <span class="hljs-comment">// Get the age using the accessors.</span>
-<span class="hljs-built_in">console</span>.log(
-  <span class="hljs-string">&quot;Age is (little lie here):&quot;</span>,
-  bob.getAge()
-); <span class="hljs-comment">// 8</span>
+<span class="hljs-comment">// 8</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Age is (little lie here):&quot;</span>)
+<span class="hljs-built_in">console</span>.log(bob.getAge())
+);
 </code></pre>
 <ol>
 <li>By convention, private variable are prefixed by an underscore.  </li>
