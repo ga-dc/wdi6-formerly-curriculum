@@ -73,7 +73,7 @@ console.log(favoriteFood);   // works, local variable in current scope
 console.log(pitcherName); // works, globals always in scope
 console.log(batterName);  // DOES NOT WORK, variable is an inner scope
 
-console.dir(window); // note how favoriteAnimal is a property of window.
+console.dir(window); // note how favoriteAnimal / favoriteFood are properties of window.
 ```
 
 ### More Interesting / Complex
@@ -108,23 +108,23 @@ console.log(removeYears());
 
 * Here's how JS will parse this:
 
-    1) Found 'var firstName' variable declaration.  
+    1. Found 'var firstName' variable declaration.  
     Put firstName variable in Global Scope.  
-    2) Found 'var lastName' variable declaration.  
+    2. Found 'var lastName' variable declaration.  
     Put lastName in Global Scope.  
-    3) Found 'var age' variable declaration.  
+    3. Found 'var age' variable declaration.  
     Put age in Global Scope.  
-    4) Found 'var displayPerson' declaration.  
+    4. Found 'var displayPerson' declaration.  
     Put age in displayPerson in Global Scope.
 
     **Notice that displayPerson's value is a function. So, create a inner scope and process this function.**
 
-    5) Found the fname and lname declarations.
+    5. Found the fname and lname declarations.
     *Note: functions arguments behave just like local variables.*
     Put them in the displayPerson function scope.  
-    6) Found prefix, fullName variable declarations.  
+    6. Found prefix, fullName variable declarations.  
     Put them in the displayPerson function scope.  
-    7) Found getFullName declaration.  
+    7. Found getFullName declaration.  
     Put getFullName in the displayPerson function scope.
 
     **Notice that getFullName is a function. So, create an inner scope and  process this function.**
@@ -133,12 +133,12 @@ console.log(removeYears());
 
     ![Scope](assets/JS_Scope1.png)
 
-    8) Found removeYears variable declaration.
+    8. Found removeYears variable declaration.
     Put removeYears in Global scope.  
 
     **Notice that removeYears value is a function. So, create a inner scope and process this function.**
 
-    9) Found age and minusYears variable declarations.  
+    9. Found age and minusYears variable declarations.  
     Put these in the function's scope.
 
     ![Scope](assets/JS_Scope2.png)
