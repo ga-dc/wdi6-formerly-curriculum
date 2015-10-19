@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Mon Oct 19 2015 01:34:06 GMT+0000 (UTC)">
+    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Mon Oct 19 2015 12:54:11 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1433,9 +1433,7 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, hand
 button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, handleClickEvent);
 input.addEventListener(<span class="hljs-string">&quot;keyup&quot;</span>, handleKeyboardEvent);
 </code></pre>
-<p>There are actually two ways to tell which key is pressed.</p>
-<p>One is the <code>keyIdentifier</code> property. This is largely unique to Chrome. If you type the <code>d</code> character, <code>evt.keyIdentifier</code> is <code>U+0044</code>, which represents the Unicode number for the lowercase <code>d</code> character. If you hit the Shift key, <code>evt.keyIdentifier</code> is <code>Shift</code>.</p>
-<p>A much more cross-browser way of telling which key is pressed is using the <code>keyCode</code> property. For <code>d</code>, <code>evt.keyCode</code> is <code>68</code>. For Shift, it&apos;s <code>16</code>.</p>
+<p>A cross-browser way of telling which key is pressed is using the <code>keyCode</code> property. For <code>d</code>, <code>evt.keyCode</code> is <code>68</code>. For Shift, it&apos;s <code>16</code>.</p>
 <h4 id="you-do">You do</h4>
 <p>Find the keyCodes for:</p>
 <ul>
