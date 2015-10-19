@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Mon Oct 19 2015 17:41:07 GMT+0000 (UTC)">
+    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Mon Oct 19 2015 19:02:45 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1252,7 +1252,7 @@
 <li>Describe the difference between asynchronous and synchronous program execution</li>
 <li>Explain why callbacks are important to asynchronous program flow</li>
 <li>Identify when to reference a function and when to invoke a function</li>
-<li>Describe what an anonymous function is and when you would use one</li>
+<li>Describe what an anonymous function is and when you would use onest</li>
 <li>Pass a named function as a callback to another function</li>
 <li>Pass an anonymous function as a callback to another function</li>
 </ul>
@@ -1383,7 +1383,7 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, hand
 </code></pre>
 <p>Now, you&apos;re going to make a small change by adding an argument to the anonymous function, and <code>console.logging</code> it:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
-<span class="hljs-keyword">var</span> handleClickEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{
+<span class="hljs-keyword">var</span> handleClickEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">evt</span>)</span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;I was clicked!&quot;</span>)
   <span class="hljs-built_in">console</span>.log(evt)
 }
