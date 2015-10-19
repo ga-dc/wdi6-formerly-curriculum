@@ -18,13 +18,11 @@
 * [Everything you wanted to know about JavaScript scope](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
 
 
-##### IIFE
-* [Ben Alman IFFE Pattern](http://benalman.com/news/2010/11/immediately-invoked-function-expression/)
-* [IFFE Pattern](http://adripofjavascript.com/blog/drips/understanding-the-module-pattern-in-javascript.html)
-
 ## What are Closures
 
 Closure is the property of function such that it can access variables in the same scope, i.e. scope chain, it was declared in. Even when that function is operating outside of that scope.
+
+A function is called a "closure" because it "closes around" some variables and functions. It's like an envelope containing variables and functions. When you send that envelope around, it still contains all the same variables and functions.
 
 All functions in JS are closures. Effectively, this means:
 
@@ -94,7 +92,6 @@ console.log(msg);
 
 ## Another (More Complex) Example
 
-
 The key to understanding closure is to know that a function declared in a scope can **ALWAYS** access other variables in that scope.
 
 **Even when that function is executing outside of the declaring function**
@@ -109,8 +106,8 @@ function makeAdder(x) {
 var add5 = makeAdder(5);
 var add10 = makeAdder(10);
 
-console.log(add5(2));  // 7
-console.log(add10(2)); // 12
+console.log(  add5(2) );  // 7
+console.log(  add10(2) ); // 12
 ```
 
 ## Encapsulation.
@@ -129,7 +126,8 @@ The gas pedal, brake pedal and steering wheel are the car's interface to client,
 
 **Create a file `js/personFactory.js`**
 
-Below is a people factory. Give it a name and an age and I'll create a person. That is, it will create objects that represent a specific person.
+Below is a people factory. Give it a name and an age and it'll create a person.
+That is, it will create objects that represent a specific person.
 
 ```js
 function personFactory( fullName, currentAge ){

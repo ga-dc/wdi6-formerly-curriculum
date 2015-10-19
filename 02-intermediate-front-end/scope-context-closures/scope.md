@@ -66,6 +66,8 @@ console.log(favoriteFood);   // works, local variable in current scope
 
 console.log(pitcherName); // works, globals always in scope
 console.log(batterName);  // DOES NOT WORK, variable is an inner scope
+
+console.dir(window); // note how favoriteAnimal is a property of window.
 ```
 
 ### More Interesting / Complex
