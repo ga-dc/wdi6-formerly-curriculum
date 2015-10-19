@@ -4,7 +4,7 @@
 - Describe the difference between asynchronous and synchronous program execution
 - Explain why callbacks are important to asynchronous program flow
 - Identify when to reference a function and when to invoke a function
-- Describe what an anonymous function is and when you would use one
+- Describe what an anonymous function is and when you would use onest
 - Pass a named function as a callback to another function
 - Pass an anonymous function as a callback to another function
 
@@ -188,7 +188,7 @@ Now, you're going to make a small change by adding an argument to the anonymous 
 
 ```js
 var button = document.querySelector("button")
-var handleClickEvent = function(e){
+var handleClickEvent = function(evt){
   console.log("I was clicked!")
   console.log(evt)
 }
