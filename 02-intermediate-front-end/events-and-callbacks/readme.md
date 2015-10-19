@@ -249,11 +249,7 @@ button.addEventListener("click", handleClickEvent);
 input.addEventListener("keyup", handleKeyboardEvent);
 ```
 
-There are actually two ways to tell which key is pressed.
-
-One is the `keyIdentifier` property. This is largely unique to Chrome. If you type the `d` character, `evt.keyIdentifier` is `U+0044`, which represents the Unicode number for the lowercase `d` character. If you hit the Shift key, `evt.keyIdentifier` is `Shift`.
-
-A much more cross-browser way of telling which key is pressed is using the `keyCode` property. For `d`, `evt.keyCode` is `68`. For Shift, it's `16`.
+A cross-browser way of telling which key is pressed is using the `keyCode` property. For `d`, `evt.keyCode` is `68`. For Shift, it's `16`.
 
 #### You do
 
