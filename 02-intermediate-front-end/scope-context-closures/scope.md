@@ -11,6 +11,10 @@
 * [Understanding Scope and Context in JavaScript](http://ryanmorr.com/understanding-scope-and-context-in-javascript/)
 * [Everything you wanted to know about JavaScript scope](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
 
+## Why Scope? Why Now?
+
+>Understanding JavaScript scope is key to writing bulletproof code and being a better developer. You’ll understand where variables/functions are accessible, be able to change the scope of your code’s context and be able to write faster and more maintainable code, as well as debug much faster.
+
 ## What is Scope?
 
 In programming, scope is where a variable can be referenced; in other words,
@@ -60,6 +64,8 @@ function playBaseball() {
   console.log(batterName);  // works, globals always in scope
   console.log(pitcherName); // works, local variable in scope
 }
+
+playBaseball()
 
 console.log(favoriteAnimal); // works, globals always in scope
 console.log(favoriteFood);   // works, local variable in current scope
