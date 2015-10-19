@@ -214,12 +214,12 @@ for more.
 Note that #1 is included here for correctness, we haven't covered object constructors yet, but will soon.
 
 > 1. Is the function called with `new` (**new binding**)? If so, `this` is the newly constructed object.
->     `var bar = new foo()`
+>     `var supreme_pizza = new Pizza()`
 > 2. Is the function called with `call` or `apply` (**explicit binding**), even hidden inside a `bind` *hard binding*? If so, `this` is the explicitly specified object.
->     `var bar = foo.call( obj2 )`
+>     `var baked_pizza = bake.call( raw_pizza )`
 > 3. Is the function called with a context (**implicit binding**), otherwise known as an owning or containing object? If so, `this` is *that* context object.
->     `var bar = obj1.foo()`
+>     `var baked_pizza = raw_pizza.bake()`
 > 4. Otherwise, default the `this` (**default binding**). If in `strict mode`, pick `undefined`, otherwise pick the `global` object.
->     `var bar = foo()`
+>     `var probably_wont_work = bake()`
 >
 > Source: [You-Dont-Know-JS/ch2.md](https://github.com/getify/You-Dont-Know-JS/blob/58dbf4f867be0d9c51dfc341765e4e4211608aa1/this%20&%20object%20prototypes/ch2.md)

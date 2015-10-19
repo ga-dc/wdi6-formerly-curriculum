@@ -96,7 +96,8 @@ function displayPerson(fname, lname){ //4, 5
 };
 
 function removeYears(){ // 8
-  var minusYears = 10, age = 49;
+  var minusYears = 10
+  var age = 49;
   return age - minusYears;
 };
 
