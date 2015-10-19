@@ -172,6 +172,21 @@ Clone this repo. Remember to use the SSH URL now, instead of HTTPS!
 
 [Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher)
 
+## `this`
+
+Here's the shortest way to do it:
+
+```js
+var buttons = document.querySelectorAll("li");
+for(i in buttons){
+  buttons[i].addEventListener("click", function(){
+    document.body.className = this.className;
+  });
+}
+```
+
+Here we make use of the `this` keyword. In the context of an event listener callback, `this` always refers to the object that triggered the event.
+
 ## The event object (10/105)
 
 Back in the code we were using in-class:
