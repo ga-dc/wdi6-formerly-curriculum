@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.5" data-basepath="../.." data-revision="Tue Oct 20 2015 16:52:18 GMT+0000 (UTC)">
+    <div class="book" data-level="2.5" data-basepath="../.." data-revision="Tue Oct 20 2015 20:43:53 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1270,15 +1270,33 @@
 <blockquote>
 <p>I&apos;m going to throw lots of code at you. It will be available in this lesson plan. So really just try and take it in and not follow along.</p>
 </blockquote>
+<h3 id="setup">Setup</h3>
+<p>in <code>index.html</code>:</p>
 <p>Assume the following html for the following examples:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;awesome&quot;</span>&gt;</span>this is a div<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;awesome&quot;</span>&gt;</span>this is the second awesome div<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">&quot;en&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;UTF-8&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;https://code.jquery.com/jquery-2.1.4.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;script.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;awesome&quot;</span>&gt;</span>this is a div<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;awesome&quot;</span>&gt;</span>this is the second awesome div<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<p>In <code>script.js</code>:</p>
+<pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+})
 </code></pre>
 <h3 id="addition">Addition</h3>
 <ul>
 <li><p><code>.append()</code></p>
 <ul>
-<li>the selector expression preceding the method is the container into which the content(argument) is inserted</li>
+<li>the selector expression preceding the method is the container into which the content(argument) is inserted as the last child</li>
 </ul>
 <pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).append(<span class="hljs-string">&quot;&lt;div&gt;this div is appended&lt;/div&gt;&quot;</span>)
   <span class="hljs-comment">// this would add the div as the last child in it to all elements with class awesome</span>
@@ -1286,7 +1304,7 @@
 </li>
 <li><p><code>.appendTo()</code></p>
 <ul>
-<li>the content precedes the method, either as a selector expression or as markup created on the fly, and it is inserted into the target container(argument)</li>
+<li>the content precedes the method, either as a selector expression or as markup created on the fly, and it is inserted into the target container(argument) as the last element</li>
 </ul>
 <pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;&lt;div&gt;this div is appended&lt;/div&gt;&quot;</span>).appendTo($(<span class="hljs-string">&quot;.awesome&quot;</span>))
   <span class="hljs-comment">// same thing as above</span>
@@ -1307,7 +1325,12 @@
 <pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;&lt;div&gt;this div is prepended&lt;/div&gt;&quot;</span>).prependTo($(<span class="hljs-string">&quot;.awesome&quot;</span>))
   <span class="hljs-comment">// same thing as above</span>
 </code></pre>
+<blockquote>
+<p>Think about how facebook statuses work. When we add a new status, does it go to the bottom of the list? or is it right at the top? Maybe they&apos;re using a prepend here ...</p>
+</blockquote>
 </li>
+</ul>
+<ul>
 <li><p><code>.html()</code></p>
 <ul>
 <li><p>get or set the HTML contents</p>
