@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.5" data-basepath="../.." data-revision="Tue Oct 20 2015 20:43:53 GMT+0000 (UTC)">
+    <div class="book" data-level="2.5" data-basepath="../.." data-revision="Tue Oct 20 2015 21:14:39 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1257,7 +1257,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="opening-framing">Opening Framing</h2>
+<h2 id="opening-framing-5">Opening Framing (5)</h2>
 <h3 id="pki-st-wg">PKI (ST-WG)</h3>
 <p>What are some things you&apos;ve learned about jQuery?</p>
 <ul>
@@ -1266,13 +1266,17 @@
 <li>how to load jQuery</li>
 <li>how to select DOM elements</li>
 </ul>
-<h2 id="jquery-i-do">jQuery (# I do )</h2>
+<p>In the last lesson, you learned how to select elements using jquery and maybe update some of its properties. In this lesson, we want dive a little deeper into some of the more common jQuery functions that exist.</p>
+<h2 id="jquery-i-do-you-do">jQuery (I do/You do)</h2>
 <blockquote>
-<p>I&apos;m going to throw lots of code at you. It will be available in this lesson plan. So really just try and take it in and not follow along.</p>
+<p>I&apos;m going to throw lots of code at you. It will be available in this lesson plan. So really just try and take it in and not follow along. There will also be parts where you will teach yourself some jQuery functions.</p>
 </blockquote>
-<h3 id="setup">Setup</h3>
+<h2 id="setup-5-10">Setup (5/10)</h2>
+<p>Create 2 files we&apos;ll need in this class:</p>
+<pre><code class="lang-bash">$ touch index.html
+$ touch script.js
+</code></pre>
 <p>in <code>index.html</code>:</p>
-<p>Assume the following html for the following examples:</p>
 <pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">&quot;en&quot;</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
@@ -1292,7 +1296,8 @@
 
 })
 </code></pre>
-<h3 id="addition">Addition</h3>
+<h2 id="addition">Addition</h2>
+<h3 id="i-do-append-appendto-10-20">I do - append/appendTo (10/20)</h3>
 <ul>
 <li><p><code>.append()</code></p>
 <ul>
@@ -1309,6 +1314,13 @@
 <pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;&lt;div&gt;this div is appended&lt;/div&gt;&quot;</span>).appendTo($(<span class="hljs-string">&quot;.awesome&quot;</span>))
   <span class="hljs-comment">// same thing as above</span>
 </code></pre>
+</li>
+</ul>
+<h3 id="you-do-prepend-prependto-10-30">You do - prepend/prependTo (10/30)</h3>
+<ul>
+<li>Go into the <a href="https://api.jquery.com/" target="_blank">jquery docs</a> to learn about prepend/prependTo</li>
+<li>Add 2 elements to each div as the first child of that div</li>
+<li><p>make sure to use both <code>.prepend()</code> and <code>.prependTo()</code></p>
 </li>
 <li><p><code>.prepend()</code></p>
 <ul>
@@ -1330,6 +1342,7 @@
 </blockquote>
 </li>
 </ul>
+<h3 id="-html-text-10-40"><code>.html()</code>/<code>.text()</code> (10/40)</h3>
 <ul>
 <li><p><code>.html()</code></p>
 <ul>
@@ -1357,6 +1370,7 @@
 </li>
 </ul>
 <h3 id="removal">Removal</h3>
+<h4 id="i-do-remove-5-45">I do (remove) (5/45)</h4>
 <ul>
 <li><p><code>.remove()</code></p>
 <ul>
@@ -1365,18 +1379,31 @@
 <pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).remove()
 </code></pre>
 </li>
+</ul>
+<h4 id="you-do-empty-5-50">You do (empty) (5/50)</h4>
+<ul>
+<li>In the <code>index.html</code>, create some dummy content that is children of the the second div with class awesome.</li>
+<li><p>Then using jquery, remove all of those child elements.</p>
+</li>
 <li><p><code>.empty()</code></p>
 <ul>
 <li>removes all the child elements of the jquery object it is called on</li>
 </ul>
 <pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).empty()
 </code></pre>
+<blockquote>
+<p>Note: when we call the above code, we&apos;ll actually be emptying all content from any element with the class of &apos;awesome&apos;</p>
+</blockquote>
 </li>
 </ul>
-<h3 id="edition">Edition</h3>
+<h2 id="break-10-60">Break (10/60)</h2>
+<h3 id="edition-20-80">Edition (20/80)</h3>
 <blockquote>
 <p>you guys glossed over this a bit, but here they are again.</p>
 </blockquote>
+<p>Add an input tag to the <code>index.html</code>:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;search&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;some text here ....&quot;</span>&gt;</span>
+</code></pre>
 <ul>
 <li><code>.attr()</code><ul>
 <li>acts as both a getter and setter<ul>
@@ -1400,8 +1427,10 @@
 </ul>
 </li>
 </ul>
-<h2 id="break-10m">BREAK(10m)</h2>
-<h3 id="other">Other</h3>
+<blockquote>
+<p>We need to be able to get information from users. Input tags are a great way to do that. But more importantly we need to be able to access those values so that our JS can act on it. Think about auto complete on search forms. As we type something into google, it starts giving us options. For every key stroke we make, the callback that is fired is probably using some form of <code>.val()</code>. This will also be extremely important moving forward in week 7 with AJAX.</p>
+</blockquote>
+<h3 id="other-30-110">Other (30/110)</h3>
 <ul>
 <li><p><code>.hide()</code></p>
 <ul>
@@ -1479,7 +1508,12 @@
 <blockquote>
 <p>What is <code>$(this)</code> here? Refers to the jquery object you called <code>.on</code> on, as long as you&apos;re in the scope of the <code>.on</code> function</p>
 </blockquote>
-<h3 id="class-ex-timer-js-refactor-30m">Class Ex- TIMER js refactor (30m)</h3>
+<h3 id="you-do-create-a-drop-down-menu-sorta-10-120">You do - Create a drop down menu... sorta (10/120)</h3>
+<ul>
+<li>Create a button in the <code>index.html</code></li>
+<li>Your JS should have the button hide and show the awesome divs when clicked</li>
+</ul>
+<h3 id="class-ex-timer-js-refactor-30-150">Class Ex- TIMER js refactor (30/150)</h3>
 <h3 id="homework-atm">Homework- ATM</h3>
 <p><a href="https://github.com/ga-dc/atm" target="_blank">ATM</a></p>
 
