@@ -103,7 +103,7 @@ Many OSS projects request that you create pull requests from a non-master branch
 
 ## Merge Conflicts
 
-When we try to merge to branches (or commits from the same branch from a remote), changes may conflict. In this case, git will stop and ask us to fix the issues manually.
+When we try to merge two branches (or commits from the same branch from a remote), changes may conflict. In this case, git will stop and ask us to fix the issues manually.
 
 To do so:
 
@@ -112,15 +112,15 @@ To do so:
 3. Commit the fixes.
 
 
-## Exercise - Merge Conflicts
+## Exercise - Merge Conflicts (25 min)
 
 1. Pair up with someone.
 2. Pick somone as the 'primary', and the 'secondary'.
 3. The primary should create a repo and add the secondary as a collaborator (search github for how to do this)
 4. Both members should clone the repo, and make changes on master branch.
 5. Practice making commits and push/pull them.
-6. Purposefully both make changes and commit them, such that they are on the same line.
-7. Practice resolving the commit. Repeat and let the other partner resolve the new conflict.
+6. Purposefully both make, commit, and push changes, on your respective working dirs, to the same line, of the same file.
+7. One collaborator will be forced to solve the merge conflicts.  Practice resolving the commit. Repeat, ensuring the other partner pushes second, forcing them to resolve the new conflict.
 
 ## Homework
 
