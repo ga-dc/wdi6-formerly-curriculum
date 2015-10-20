@@ -33,3 +33,45 @@ Hungry for more, or looking for a place to start practicing? We recommend you ch
 0. [ATM](https://github.com/ga-dc/atm)
 1. [Project Euler](https://projecteuler.net/archives)
 2. [Vignere Cipher](https://github.com/ga-dc/vignere_cipher)
+
+## Timer JS Problems?
+
+Run into something like this?
+
+![Crazy timer](http://i.imgur.com/oyQkuxm.gif)
+
+The problem is every time you do `setInterval` it creates a whole new timer. So if you have something like this:
+
+```js
+var startButton = document.getElementById("start");
+var display = document.getElementById("display");
+var time;
+var timingFunction;
+
+var startTiming = function(){
+  timingFunction = setInterval(updateTime, 1000);
+  console.log("Timer started");
+}
+
+var updateTime = function(){
+  time = time + 1;
+  display.value = time;
+}
+
+var stopTiming = function(){
+  clearInterval(timingFunction);
+  console.log("Timer stopped");
+}
+
+startButton.addEventListener("click", startTiming);
+```
+
+...every time you click that "Start" button, it's going to create a new timer. It's as if you had one stopwatch running, and then started running a second stopwatch. Click "Start" 100 times, and you'll have 100 timers running and updating the timer display concurrently.
+
+`stopTiming` doesn't appear to be working because every time `startTiming` runs it takes the `timingFunction` variable, empties it out, and replaces it with the most recent `setInterval`. `timingFunction` is only ever going to hold one `setInterval`.
+
+Thus, when you `clearInterval(timingFunction)` it just stops whichever `setInterval` is in `timingFunction` at the moment. Which is to say, it *is* working, but it's only working on the `setInterval` that was created most recently.
+
+### One solution
+
+When the user clicks the "start" button, *remove* the event listener for the "start" button -- and add it back in whenever they "pause" or "restart". That way, a new `setInterval` won't be created by clicking on the "start" button when the timer is already running.
