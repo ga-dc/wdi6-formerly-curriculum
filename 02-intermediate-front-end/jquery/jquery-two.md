@@ -18,16 +18,39 @@ What are some things you've learned about jQuery?
 ## jQuery (# I do )
 > I'm going to throw lots of code at you. It will be available in this lesson plan. So really just try and take it in and not follow along.
 
+### Setup
+
+in `index.html`:
+
 Assume the following html for the following examples:
 
 ```html
-<div class="awesome">this is a div</div>
-<div class="awesome">this is the second awesome div</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+  <div class="awesome">this is a div</div>
+  <div class="awesome">this is the second awesome div</div>
+</body>
+</html>
+```
+
+In `script.js`:
+
+```js
+$(document).ready(function(){
+
+})
 ```
 
 ### Addition
 - `.append()`
-  - the selector expression preceding the method is the container into which the content(argument) is inserted
+  - the selector expression preceding the method is the container into which the content(argument) is inserted as the last child
 
   ```javascript
     $(".awesome").append("<div>this div is appended</div>")
@@ -35,7 +58,7 @@ Assume the following html for the following examples:
   ```
 
 - `.appendTo()`
-  - the content precedes the method, either as a selector expression or as markup created on the fly, and it is inserted into the target container(argument)
+  - the content precedes the method, either as a selector expression or as markup created on the fly, and it is inserted into the target container(argument) as the last element
 
   ```javascript
     $("<div>this div is appended</div>").appendTo($(".awesome"))
@@ -57,6 +80,9 @@ Assume the following html for the following examples:
     $("<div>this div is prepended</div>").prependTo($(".awesome"))
     // same thing as above
   ```
+
+  > Think about how facebook statuses work. When we add a new status, does it go to the bottom of the list? or is it right at the top? Maybe they're using a prepend here ...
+
 
 - `.html()`
   - get or set the HTML contents
