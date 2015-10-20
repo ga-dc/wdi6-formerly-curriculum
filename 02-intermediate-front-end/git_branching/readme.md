@@ -115,19 +115,29 @@ To do so:
 ## Exercise - Merge Conflicts (25 min)
 
 1. Pair up with someone.
-2. Pick somone as the 'primary', and the 'secondary'.
-3. The primary should create a repo and add the secondary as a collaborator (search github for how to do this)
-4. Both members should clone the repo, and make changes on master branch.
-5. Practice making commits and push/pull them.
-6. Purposefully both make, commit, and push changes, on your respective working dirs, to the same line, of the same file.
-7. One collaborator will be forced to solve the merge conflicts.  Practice resolving the commit. Repeat, ensuring the other partner pushes second, forcing them to resolve the new conflict.
+- Pick someone as the 'primary', and the 'secondary'.
+- The primary should create a repo and add the secondary as a collaborator (search github for how to do this)
+- Both members should clone the repo, and make changes on the "master" branch.
+
+Merging commits:
+
+1. Make commits on one computer and push them.
+- Pull them to the other computer.
+- Repeat the other way.
+
+Merge conflicts:
+
+1. Both students make changes on your respective working dirs, to the same line, of the same file.  Commit and push the changes.
+- One collaborator will be forced to solve the merge conflicts, when they pull the changes to the same line.
+- Practice resolving the commit.
+- Repeat, ensuring the other partner pushes second, forcing them to resolve the new conflict.
 
 ## Homework
 
 From this point on, all homework submissions should be a pull request from a feature (or 'topic') branch, named "<your_name>_solution".
 
 
-## git mergetool (An exercise for the reader)
+## `git mergetool` (An exercise for the reader)
 
 Some merge conflicts can be quite confusing.  Git provides a way to use a visual tool to assist in resolving the merge conflicts.
 
