@@ -7,13 +7,8 @@
 - Describe how branching and merging allows for collaboration during development
 - Resolve a merge conflict
 
-## References
 
-* [Git Book - Git Branching - Basic Branching and Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
-* [Atlassian - Git Branching Tutorial](https://www.atlassian.com/git/tutorials/using-branches)
-* [Interactive Git Branching Tutorial](http://pcottle.github.io/learnGitBranching/)
-
-## Review Git Basics
+## Review Git Basics (5 min)
 
 Quickly review the basics of git:
 
@@ -21,6 +16,24 @@ Quickly review the basics of git:
 locally?
 2. What commands are used to share changes (commits) between repos?
 3. Describe the fork/clone model, and how it is used for HW submission.
+
+## You Do: Branching Overview (10 min)
+
+We are going to start with a brief tutorial.  This is an introduction to branching.
+
+- Do Levels 1-3.  Stop at 4: "Rebase Introduction".
+- Take your time:
+  - Read all the dialogs.  They are part of the tutorial.
+  - Think about what you want to achieve
+  - Think about the results you expect *before* you press enter.
+- Whenever you see/type `git commit`, it may help to assume changes have been made and staged.  Why else would you "commit"?
+
+## You Do: Research Git Branching (10 min)
+
+- Read the "Using Branches" of
+* [Atlassian - Git Branching Tutorial](https://www.atlassian.com/git/tutorials/using-branches)
+  - Let me know when you have reached the "git merge" section
+  - You will see references to Subversion(SVN).  SVN is an older version control system.  I don't believe you need to know more than that to understand the comparisons.
 
 ## What are Branches?
 
@@ -37,12 +50,12 @@ tip of the branch.
 
 > From [Atlassian - Git Branching Tutorial](https://www.atlassian.com/git/tutorials/using-branches/git-branch)
 
-## Why Branches
+## Think/Pair/Share-2/3/5: Why Branches?  (15 min)
 
 Branches are useful for many reasons, but some of the most common ones:
 
 1. To allow experimentation. By switching to a new branch, we can experiment,
-and if the experiemnt fails, we can delete it and easily switch back to master
+and if the experiment fails, we can delete it and easily switch back to master
 (or another branch of our choice). If it succeeds, we can merge those changes
 into master.
 2. To allow work to proceed on multiple features (or by multiple people) without
@@ -119,3 +132,10 @@ describing at least one thing you learned.
 
 3. For the rest of the week, submit all your HW pull requests on a 'topic' branch.
 Name your branch something like "bobs_solution".
+
+## References
+
+* [Git Book - Git Branching - Basic Branching and Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+* [Atlassian - Git Branching Tutorial](https://www.atlassian.com/git/tutorials/using-branches)
+* [Interactive Git Branching Tutorial](http://pcottle.github.io/learnGitBranching/)
+* [Git Sandbox](http://pcottle.github.io/learnGitBranching/?NODEMO)
