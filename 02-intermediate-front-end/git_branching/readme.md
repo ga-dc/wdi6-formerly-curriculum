@@ -19,7 +19,7 @@ locally?
 
 ## You Do: Branching Overview (10 min)
 
-We are going to start with a brief tutorial.  This is an introduction to branching.
+We are going to start with a [brief tutorial](http://pcottle.github.io/learnGitBranching/).  This is an introduction to branching.
 
 - Do Levels 1-3.  Stop at 4: "Rebase Introduction".
 - Take your time:
@@ -35,7 +35,7 @@ We are going to start with a brief tutorial.  This is an introduction to branchi
   - Let me know when you have reached the "git merge" section
   - You will see references to Subversion(SVN).  SVN is an older version control system.  I don't believe you need to know more than that to understand the comparisons.
 
-## What are Branches?
+## What are Branches? (10 min)
 
 A branch in git is just a label on a  particular commit in a repository, along
 with all of it's history (parent commits).
@@ -63,7 +63,7 @@ interfering. When a feature is complete, it can be merged back into master.
 3. To allow easy bug fixes on a stable version while features are being developed.
 
 
-## Example
+## Example (10 min)
 
 (Use GitUp to demo visually what's happening).
 
@@ -156,15 +156,18 @@ interfering. When a feature is complete, it can be merged back into master.
 
 ### FtF and Questions
 
-### You Do:
+### You Do: A new project (15 min)
 
-1. Create a repository
-- Create an index.html and commit
-- Fill out html boilerplate and put some elements on the page then commit
-- Checkout a branch called style
-- Create a stylesheet link it to your html and add some styling to your page then commit
-- Create a new branch from master called script
-- Create a script to alert when an element on your page is pressed and commit
+1. Create the structure
+ - In ~/wdi/sandbox.  Create a directory and initialize a new repository
+ - Create an index.html and commit
+ - Fill out html boilerplate and put some elements on the page then commit
+- Add some styling
+  - Create a branch called "style"
+  - Create a stylesheet link it to your html and add some styling to your page then commit
+- Add some functionality
+  - Create a new branch from master called "alert"
+  - Create a script to alert when an element on your page is pressed and commit
 
 
 ## Common Commands for Managing Branches
@@ -179,17 +182,17 @@ interfering. When a feature is complete, it can be merged back into master.
 * `git merge <branch_name>` - merges `<branch_name>` into the current branch, creating a new merge commit in the process
 
 
-## Exercise - Pushing and PRs from Branches
+## Exercise - Pushing and PRs from Branches (10 min)
 
 Many OSS projects request that you create pull requests from a non-master branch.
 
-1. Go to your Curriculum repo.
-2. Create and switch to a branch called 'suggestion'
-3. Make a small improvement to this repo (perhaps add something to the `git-tricks.md` file in this folder).
+1. Fork and Clone https://github.com/ga-dc/git-tricks.
+2. Create and switch to a branch called `<your_name>_suggestion`.
+3. Add your own "trick".
 4. Commit, and push that change to your remote called 'origin' (your fork)
 5. Create a pull request from that branch to the upstream (ga-dc) master branch
 
-## Merge Conflicts
+## Merge Conflicts (5 min)
 
 When we try to merge two branches (or commits from the same branch from a remote), changes may conflict. In this case, git will stop and ask us to fix the issues manually.
 
@@ -200,7 +203,7 @@ To do so:
 3. Commit the fixes.
 
 
-## Exercise - Merge Conflicts (25 min)
+## Exercise - Merge Conflicts (20 min)
 
 1. Pair up with someone.
 - Pick someone as the 'primary', and the 'secondary'.
@@ -222,7 +225,7 @@ Merge conflicts:
 
 ## Homework
 
-From this point on, all homework submissions should be a pull request from a feature (or 'topic') branch, named "<your_name>_solution".
+From this point on, all homework submissions should be a pull request from a feature (or 'topic') branch, named `<your_name>_solution`.
 
 
 ## `git mergetool` (An exercise for the reader)
