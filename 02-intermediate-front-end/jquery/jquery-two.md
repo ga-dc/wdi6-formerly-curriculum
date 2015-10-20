@@ -50,7 +50,7 @@ In `script.js`:
 
 ```js
 $(document).ready(function(){
-
+  alert("jq working")
 })
 ```
 
@@ -207,7 +207,6 @@ Add an input tag to the `index.html`:
 
 - `.each()`
   - loops through collections of jquery objects
-  - `$(".somejQueryClass").each(function(index){//code goes here})`
 
   ```javascript
     $(".awesome").each(function(index){
@@ -216,6 +215,8 @@ Add an input tag to the `index.html`:
   ```
 
 > note what the context of `$(this)` is. This refers to each of the elements being looped through.
+
+> This also is actually the second time in this lesson a jquery function requires a callback, can you think of the other?
 
 
 - `.on()`
@@ -236,8 +237,6 @@ Add an input tag to the `index.html`:
 - Create a button in the `index.html`
 - Your JS should have the button hide and show the awesome divs when clicked
 
-### Class Ex- TIMER js refactor (30/150)
+### Class Ex- [TIMER js](https://github.com/ga-dc/timer_js) refactor (30/150)
 
-### Homework- ATM
-
-[ATM](https://github.com/ga-dc/atm)
+### Additional Exercise - [ATM](https://github.com/ga-dc/atm)
