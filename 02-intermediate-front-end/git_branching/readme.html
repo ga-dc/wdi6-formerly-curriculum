@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.3" data-basepath="../.." data-revision="Tue Oct 20 2015 14:40:25 GMT+0000 (UTC)">
+    <div class="book" data-level="2.3" data-basepath="../.." data-revision="Tue Oct 20 2015 16:16:54 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1254,13 +1254,7 @@
 <li>Describe how branching and merging allows for collaboration during development</li>
 <li>Resolve a merge conflict</li>
 </ul>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging" target="_blank">Git Book - Git Branching - Basic Branching and Merging</a></li>
-<li><a href="https://www.atlassian.com/git/tutorials/using-branches" target="_blank">Atlassian - Git Branching Tutorial</a></li>
-<li><a href="http://pcottle.github.io/learnGitBranching/" target="_blank">Interactive Git Branching Tutorial</a></li>
-</ul>
-<h2 id="review-git-basics">Review Git Basics</h2>
+<h2 id="review-git-basics-5-min">Review Git Basics (5 min)</h2>
 <p>Quickly review the basics of git:</p>
 <ol>
 <li>What is the most common workflow for creating save points while working
@@ -1268,7 +1262,28 @@ locally?</li>
 <li>What commands are used to share changes (commits) between repos?</li>
 <li>Describe the fork/clone model, and how it is used for HW submission.</li>
 </ol>
-<h2 id="what-are-branches">What are Branches?</h2>
+<h2 id="you-do-branching-overview-10-min">You Do: Branching Overview (10 min)</h2>
+<p>We are going to start with a <a href="http://pcottle.github.io/learnGitBranching/" target="_blank">brief tutorial</a>.  This is an introduction to branching.</p>
+<ul>
+<li>Do Levels 1-3.  Stop at 4: &quot;Rebase Introduction&quot;.</li>
+<li>Take your time:<ul>
+<li>Read all the dialogs.  They are part of the tutorial.</li>
+<li>Think about what you want to achieve</li>
+<li>Think about the results you expect <em>before</em> you press enter.</li>
+</ul>
+</li>
+<li>Whenever you see/type <code>git commit</code>, it may help to assume changes have been made and staged.  Why else would you &quot;commit&quot;?</li>
+</ul>
+<h2 id="you-do-research-git-branching-10-min">You Do: Research Git Branching (10 min)</h2>
+<ul>
+<li>Read the &quot;Using Branches&quot; of</li>
+<li><a href="https://www.atlassian.com/git/tutorials/using-branches" target="_blank">Atlassian - Git Branching Tutorial</a><ul>
+<li>Let me know when you have reached the &quot;git merge&quot; section</li>
+<li>You will see references to Subversion(SVN).  SVN is an older version control system.  I don&apos;t believe you need to know more than that to understand the comparisons.</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-are-branches-10-min">What are Branches? (10 min)</h2>
 <p>A branch in git is just a label on a  particular commit in a repository, along
 with all of it&apos;s history (parent commits).</p>
 <p>What makes a branch special in git (vs a tag), is that we&apos;re always <em>on</em> a
@@ -1280,30 +1295,94 @@ tip of the branch.</p>
 <p>The diagram above visualizes a repository with two isolated lines of development, one for a little feature, and one for a longer-running feature. By developing them in branches, it&#x2019;s not only possible to work on both of them in parallel, but it also keeps the main master branch free from questionable code.</p>
 <p>From <a href="https://www.atlassian.com/git/tutorials/using-branches/git-branch" target="_blank">Atlassian - Git Branching Tutorial</a></p>
 </blockquote>
-<h2 id="why-branches">Why Branches</h2>
+<h2 id="think-pair-share-2-3-5-why-branches-15-min">Think/Pair/Share-2/3/5: Why Branches?  (15 min)</h2>
 <p>Branches are useful for many reasons, but some of the most common ones:</p>
 <ol>
 <li>To allow experimentation. By switching to a new branch, we can experiment,
-and if the experiemnt fails, we can delete it and easily switch back to master
+and if the experiment fails, we can delete it and easily switch back to master
 (or another branch of our choice). If it succeeds, we can merge those changes
 into master.</li>
 <li>To allow work to proceed on multiple features (or by multiple people) without
 interfering. When a feature is complete, it can be merged back into master.</li>
 <li>To allow easy bug fixes on a stable version while features are being developed.</li>
 </ol>
-<h2 id="example">Example</h2>
+<h2 id="example-10-min">Example (10 min)</h2>
 <p>(Use GitUp to demo visually what&apos;s happening).</p>
+<ul>
+<li><p>Make directory which will contain repo:</p>
+<p><code>mkdir git-branching</code></p>
+<p><code>cd git-branching</code></p>
+<p><code>git status</code></p>
+<p><code>&gt;fatal: Not a git repository (or any of the parent directories): .git</code></p>
+<p><code>git init</code></p>
+<p><code>&gt;Initialized empty Git repository in /Users/jsm/development/wdi-7/sandbox/git-branching/.git/</code></p>
+<p><strong>Note the change in the CL prompt here</strong></p>
+<p><code>git status</code></p>
+<pre><code>&gt;On branch master
+
+&gt;Initial commit
+
+&gt;nothing to commit (create/copy files and use &quot;git add&quot; to track)
+</code></pre></li>
+<li><p>Create our sample file</p>
+<p><code>touch branching.txt</code></p>
+<p><strong>Note the change in the CL prompt here</strong></p>
+</li>
+<li><p>Make initial commt</p>
+<p><code>git add branching.txt</code></p>
+<p><code>git commit -m &quot;initial commit: ...&quot;</code></p>
+<p><strong>Note the change in the CL prompt here</strong></p>
+</li>
+<li><p>Add a line to branching.txt and commit</p>
+<p>[add line branching.txt]</p>
+<p><code>git add branching.txt</code></p>
+<p><code>git commit -m &quot;add line to branching.txt&quot;</code></p>
+<p><strong>Note the change in the CL prompt here</strong></p>
+</li>
+<li><p>Make and checkout a feature branch. Make a change to branching.txt and commit
+<code>git branch feature</code></p>
+<p><code>git checkout feature</code></p>
+<p><strong>going forward we will always use <code>git checkout -b &lt;branch-name&gt;</code> to the above two commands in one</strong></p>
+<p><strong>Note the change in the CL prompt here</strong></p>
+<p>Add a line to branching.txt</p>
+<p><code>git add branching.txt</code></p>
+<p><code>git commit -m &quot;add line to branching.txt&quot;</code></p>
+<p><code>git checkout master</code></p>
+<p>Switch back and forth between the two with atom open.</p>
+</li>
+<li><p>Switch back to master and make a change to branching.txt
+On master, change the first line</p>
+<p><code>git add branching.txt</code></p>
+<p><code>git commit -m &quot;change first line in branching.txt&quot;</code></p>
+</li>
+<li><p>Checkout the feature branch, merge in changes to master then merge feature into master</p>
+<p><code>git checkout feature</code></p>
+<p><code>git merge master</code></p>
+<p><code>git checkout master</code></p>
+<p><code>git merge feature</code></p>
+<p><code>git branch -d feature</code></p>
+</li>
+</ul>
+<h3 id="ftf-and-questions">FtF and Questions</h3>
+<h3 id="you-do-a-new-project-15-min">You Do: A new project (15 min)</h3>
 <ol>
-<li>Start with last night&apos;s HW repo (e.g. timer_js)</li>
-<li>Create a new branch (<code>git branch experimental</code>, <code>git checkout experimental</code>)</li>
-<li>Create 2 commits doing something a bit crazy.</li>
-<li>Switch back to master branch (<code>git checkout master</code>) and make a reasonable change / commit.</li>
-<li>Switch back to &apos;experiment&apos; branch (<code>git checkout experiment</code> ).</li>
-<li>Make one more commit. Decide it&apos;s ready to go.</li>
-<li>Checkout master, and merge in experimental (<code>git checkout master</code>, <code>git merge experimental</code>).</li>
+<li>Create the structure<ul>
+<li>In ~/wdi/sandbox.  Create a directory and initialize a new repository</li>
+<li>Create an index.html and commit</li>
+<li>Fill out html boilerplate and put some elements on the page then commit</li>
+</ul>
+</li>
+<li>Add some styling<ul>
+<li>Create a branch called &quot;style&quot;</li>
+<li>Create a stylesheet link it to your html and add some styling to your page then commit</li>
+</ul>
+</li>
+<li>Add some functionality<ul>
+<li>Create a new branch from master called &quot;alert&quot;</li>
+<li>Create a script to alert when an element on your page is pressed and commit</li>
+</ul>
+</li>
 </ol>
-<h3 id="playtime">Playtime</h3>
-<p>Spend a few minutes creating branches, commiting to them, switching and deleting.</p>
 <h2 id="common-commands-for-managing-branches">Common Commands for Managing Branches</h2>
 <ul>
 <li><code>git branch &lt;new_branch_name&gt;</code> - create a new branch</li>
@@ -1317,45 +1396,64 @@ interfering. When a feature is complete, it can be merged back into master.</li>
 </li>
 <li><code>git merge &lt;branch_name&gt;</code> - merges <code>&lt;branch_name&gt;</code> into the current branch, creating a new merge commit in the process</li>
 </ul>
-<h2 id="exercise-pushing-and-prs-from-branches">Exercise - Pushing and PRs from Branches</h2>
+<h2 id="exercise-pushing-and-prs-from-branches-10-min">Exercise - Pushing and PRs from Branches (10 min)</h2>
 <p>Many OSS projects request that you create pull requests from a non-master branch.</p>
 <ol>
-<li>Go to your PBJ repo.</li>
-<li>Create and switch to a branch called &apos;suggestion&apos;</li>
-<li>Make a small improvement to this repo (perhaps add something to the <code>git-tricks.md</code> file in this folder).</li>
+<li>Fork and Clone <a href="https://github.com/ga-dc/git-tricks" target="_blank">https://github.com/ga-dc/git-tricks</a>.</li>
+<li>Create and switch to a branch called <code>&lt;your_name&gt;_suggestion</code>.</li>
+<li>Add your own &quot;trick&quot;.</li>
 <li>Commit, and push that change to your remote called &apos;origin&apos; (your fork)</li>
 <li>Create a pull request from that branch to the upstream (ga-dc) master branch</li>
 </ol>
-<h2 id="merge-conflicts">Merge Conflicts</h2>
-<p>When we try to merge to branches (or commits from the same branch from a remote), changes may conflict. In this case, git will stop and ask us to fix the issues manually.</p>
+<h2 id="merge-conflicts-5-min">Merge Conflicts (5 min)</h2>
+<p>When we try to merge two branches (or commits from the same branch from a remote), changes may conflict. In this case, git will stop and ask us to fix the issues manually.</p>
 <p>To do so:</p>
 <ol>
 <li>Locate which files contain conflicts using <code>git status</code></li>
 <li>Open those files and fix the conflicts. (Look for the &apos;&lt;&lt;&lt;&lt;&apos;, &apos;====&apos;, and &apos;&gt;&gt;&gt;&gt;&apos; which will guide you to the conflict)</li>
 <li>Commit the fixes.</li>
 </ol>
-<h2 id="exercise-merge-conflicts">Exercise - Merge Conflicts</h2>
+<h2 id="exercise-merge-conflicts-20-min">Exercise - Merge Conflicts (20 min)</h2>
 <ol>
 <li>Pair up with someone.</li>
-<li>Pick somone as the &apos;primary&apos;, and the &apos;secondary&apos;.</li>
+<li>Pick someone as the &apos;primary&apos;, and the &apos;secondary&apos;.</li>
 <li>The primary should create a repo and add the secondary as a collaborator (search github for how to do this)</li>
-<li>Both members should clone the repo, and make changes on master branch.</li>
-<li>Practice making commits and push/pull them.</li>
-<li>Purposefully both make changes and commit them, such that they are on the same line.</li>
-<li>Practice resolving the commit. Repeat and let the other partner resolve the new conflict.</li>
+<li>Both members should clone the repo, and make changes on the &quot;master&quot; branch.</li>
+</ol>
+<p>Merging commits:</p>
+<ol>
+<li>Make commits on one computer and push them.</li>
+<li>Pull them to the other computer.</li>
+<li>Repeat the other way.</li>
+</ol>
+<p>Merge conflicts:</p>
+<ol>
+<li>Both students make changes on your respective working dirs, to the same line, of the same file.  Commit and push the changes.</li>
+<li>One collaborator will be forced to solve the merge conflicts, when they pull the changes to the same line.</li>
+<li>Practice resolving the commit.</li>
+<li>Repeat, ensuring the other partner pushes second, forcing them to resolve the new conflict.</li>
 </ol>
 <h2 id="homework">Homework</h2>
-<ol>
-<li><p>Read one or more of the references above. Perhaps follow the last interactive
-tutorial (it&apos;s really good).</p>
+<p>From this point on, all homework submissions should be a pull request from a feature (or &apos;topic&apos;) branch, named <code>&lt;your_name&gt;_solution</code>.</p>
+<h2 id="-git-mergetool-an-exercise-for-the-reader"><code>git mergetool</code> (An exercise for the reader)</h2>
+<p>Some merge conflicts can be quite confusing.  Git provides a way to use a visual tool to assist in resolving the merge conflicts.</p>
+<p>If you have installed XCode, an decent tool (opendiff) is used.  For this class, we will use <a href="http://kdiff3.sourceforge.net/" target="_blank">KDiff3</a>.  Here&apos;s an <a href="http://www.gitguys.com/topics/merging-with-a-gui#Merging_with_kdiff3" target="_blank">example, with images</a>, including a way to try it first.</p>
+<ul>
+<li>Install via homebrew: <code>brew install kdiff3</code></li>
+<li>Setup KDiff3 as your merge too using <a href="http://naleid.com/blog/2012/01/12/how-to-use-kdiff3-as-a-3-way-merge-tool-with-mercurial-git-and-tower-app" target="_blank">these instructions</a>.  <ul>
+<li>Be sure to skip the &quot;Installation&quot; steps.</li>
+<li>Stop at &quot;Git Tower Integration&quot;</li>
+</ul>
 </li>
-<li><p>Create a github issue on the PBJ repo (not a pull request like usual)
-describing at least one thing you learned.</p>
-</li>
-<li><p>For the rest of the week, submit all your HW pull requests on a &apos;topic&apos; branch.
-Name your branch something like &quot;bobs_solution&quot;.</p>
-</li>
-</ol>
+<li>When you have a merge conflict, you can type <code>git mergetool</code> to see a 3-way merge and the merge results.  Like this: <img src="http://naleid.com/images/2012/01/kdiff3_merge_window_fixed.png" alt=""></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging" target="_blank">Git Book - Git Branching - Basic Branching and Merging</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/using-branches" target="_blank">Atlassian - Git Branching Tutorial</a></li>
+<li><a href="http://pcottle.github.io/learnGitBranching/" target="_blank">Interactive Git Branching Tutorial</a></li>
+<li><a href="http://pcottle.github.io/learnGitBranching/?NODEMO" target="_blank">Git Sandbox</a></li>
+</ul>
 
                     
                     </section>
