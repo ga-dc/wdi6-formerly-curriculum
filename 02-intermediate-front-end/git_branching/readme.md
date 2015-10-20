@@ -97,6 +97,7 @@ interfering. When a feature is complete, it can be merged back into master.
   `touch branching.txt`
 
   **Note the change in the CL prompt here**
+  
 - Make initial commt
 
   `git add branching.txt`
