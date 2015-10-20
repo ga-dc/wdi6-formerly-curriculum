@@ -67,17 +67,104 @@ interfering. When a feature is complete, it can be merged back into master.
 
 (Use GitUp to demo visually what's happening).
 
-1. Start with last night's HW repo (e.g. timer_js)
-2. Create a new branch (`git branch experimental`, `git checkout experimental`)
-3. Create 2 commits doing something a bit crazy.
-4. Switch back to master branch (`git checkout master`) and make a reasonable change / commit.
-5. Switch back to 'experiment' branch (`git checkout experiment` ).
-6. Make one more commit. Decide it's ready to go.
-7. Checkout master, and merge in experimental (`git checkout master`, `git merge experimental`).
+1. Make directory which will contain repo:
 
-### Playtime
+  `mkdir git-branching`
 
-Spend a few minutes creating branches, commiting to them, switching and deleting.
+  `cd git-branching`
+
+  `git status`
+
+  `>fatal: Not a git repository (or any of the parent directories): .git`
+
+  `git init`
+
+  `>Initialized empty Git repository in /Users/jsm/development/wdi-7/sandbox/git-branching/.git/`
+
+  **Note the change in the CL prompt here**
+
+  `git status`
+
+  ```
+  >On branch master
+
+  >Initial commit
+
+  >nothing to commit (create/copy files and use "git add" to track)
+  ```
+- Create our sample file
+
+  `touch branching.txt`
+
+  **Note the change in the CL prompt here**
+- Make initial commt
+
+  `git add branching.txt`
+
+  `git commit -m "initial commit: ..."`
+
+  **Note the change in the CL prompt here**
+
+- Add a line to branching.txt and commit
+
+  [add line branching.txt]
+
+  `git add branching.txt`
+
+  `git commit -m "add line to branching.txt"`
+
+  **Note the change in the CL prompt here**
+
+- Make and checkout a feature branch. Make a change to branching.txt and commit
+  `git branch feature`
+
+  `git checkout feature`
+
+  **going forward we will always use `git checkout -b <branch-name>` to the above two commands in one**
+
+  **Note the change in the CL prompt here**
+
+  Add a line to branching.txt
+
+  `git add branching.txt`
+
+  `git commit -m "add line to branching.txt"`
+
+  `git checkout master`
+
+  Switch back and forth between the two with atom open.
+
+- Switch back to master and make a change to branching.txt
+  On master, change the first line
+
+  `git add branching.txt`
+
+  `git commit -m "change first line in branching.txt"`
+
+- Checkout the feature branch, merge in changes to master then merge feature into master
+
+  `git checkout feature`
+
+  `git merge master`
+
+  `git checkout master`
+
+  `git merge feature`
+
+  `git branch -d feature`
+
+### FtF and Questions
+
+### You Do:
+
+1. Create a repository
+- Create an index.html and commit
+- Fill out html boilerplate and put some elements on the page then commit
+- Checkout a branch called style
+- Create a stylesheet link it to your html and add some styling to your page then commit
+- Create a new branch from master called script
+- Create a script to alert when an element on your page is pressed and commit
+
 
 ## Common Commands for Managing Branches
 
@@ -95,7 +182,7 @@ Spend a few minutes creating branches, commiting to them, switching and deleting
 
 Many OSS projects request that you create pull requests from a non-master branch.
 
-1. Go to your PBJ repo.
+1. Go to your Curriculum repo.
 2. Create and switch to a branch called 'suggestion'
 3. Make a small improvement to this repo (perhaps add something to the `git-tricks.md` file in this folder).
 4. Commit, and push that change to your remote called 'origin' (your fork)
