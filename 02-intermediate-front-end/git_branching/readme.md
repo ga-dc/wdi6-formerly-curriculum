@@ -67,7 +67,7 @@ interfering. When a feature is complete, it can be merged back into master.
 
 (Use GitUp to demo visually what's happening).
 
-1. Make directory which will contain repo:
+- Make directory which will contain repo:
 
   `mkdir git-branching`
 
@@ -97,7 +97,7 @@ interfering. When a feature is complete, it can be merged back into master.
   `touch branching.txt`
 
   **Note the change in the CL prompt here**
-  
+
 - Make initial commt
 
   `git add branching.txt`
