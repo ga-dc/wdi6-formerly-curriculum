@@ -127,6 +127,18 @@ To do so:
 From this point on, all homework submissions should be a pull request from a feature (or 'topic') branch, named "<your_name>_solution".
 
 
+## git mergetool (An exercise for the reader)
+
+Some merge conflicts can be quite confusing.  Git provides a way to use a visual tool to assist in resolving the merge conflicts.
+
+If you have installed XCode, an decent tool (opendiff) is used.  For this class, we will use [KDiff3](http://kdiff3.sourceforge.net/).  Here's an [example, with images](http://www.gitguys.com/topics/merging-with-a-gui#Merging_with_kdiff3), including a way to try it first.
+
+- Install via homebrew: `brew install kdiff3`
+- Setup KDiff3 as your merge too using [these instructions](http://naleid.com/blog/2012/01/12/how-to-use-kdiff3-as-a-3-way-merge-tool-with-mercurial-git-and-tower-app).  
+  - Be sure to skip the "Installation" steps.
+  - Stop at "Git Tower Integration"
+- When you have a merge conflict, you can type `git mergetool` to see a 3-way merge and the merge results.  Like this: ![](http://naleid.com/images/2012/01/kdiff3_merge_window_fixed.png)
+
 
 ## References
 
