@@ -124,14 +124,9 @@ To do so:
 
 ## Homework
 
-1. Read one or more of the references above. Perhaps follow the last interactive
-tutorial (it's really good).
+From this point on, all homework submissions should be a pull request from a feature (or 'topic') branch, named "<your_name>_solution".
 
-2. Create a github issue on the PBJ repo (not a pull request like usual)
-describing at least one thing you learned.
 
-3. For the rest of the week, submit all your HW pull requests on a 'topic' branch.
-Name your branch something like "bobs_solution".
 
 ## References
 
