@@ -15,7 +15,7 @@ What are some things you've learned about jQuery?
 - how to load jQuery
 - how to select DOM elements
 
-In the last lesson, you learned how to select elements using jquery and maybe update some of its properties. In this lesson, we want to dive a little deeper into some of the more common jQuery functions that exist.
+In the last lesson, you learned how to select elements using jquery and maybe update some of its properties. In this lesson, we want to dive a little deeper into some of the more common jQuery functions that exist. The basic premise of jQuery is pretty easy though. We want to select something, and then do something to it.
 
 ## jQuery (I do/You do)
 > I'm going to throw lots of code at you. It will be available in this lesson plan. So really just try and take it in and not follow along. There will also be parts where you will teach yourself some jQuery functions.
