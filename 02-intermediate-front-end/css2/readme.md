@@ -56,13 +56,12 @@ When we change the `left` `right` `top` `bottom` of a relatively-positioned elem
 ### Absolute
 Absolutely-positioned elements are offset based on the position of their parent container.
 * They are extracted from the document flow.
-* **Q: Why would we ever want to use absolute?**
+* **Q: Why would we want to use absolute?**
 
-#### Combining Absolute and Relative
+#### Combining Different Position Values
 
 When working with parent-child elements, pay attention to their `position` properties.
 * [This CSS Tricks post](https://css-tricks.com/absolute-positioning-inside-relative-positioning/) does a good job of demonstrating what happens when you place absolutely-positioned elements inside a relatively-positioned container.
-* Absolute inside absolute is relative to parent-parent container?
 
 ### Exercise: Positioning Operation (15 / 45)
 
