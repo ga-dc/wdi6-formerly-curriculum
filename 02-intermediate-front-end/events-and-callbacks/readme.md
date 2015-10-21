@@ -1,9 +1,11 @@
 # Events and Callbacks
 
-[Robin's Screencast](https://youtu.be/S4Xvo_m6P04)
-[Andy's Screencast - p1](https://www.youtube.com/watch?v=xogI6prB-PI)
-[Andy's Screencast - p2](https://www.youtube.com/watch?v=Srd2Tx1Z7v8)
+## Screencasts
+- [Robin's Screencast](https://youtu.be/S4Xvo_m6P04)
+- [Andy's Screencast - p1](https://www.youtube.com/watch?v=xogI6prB-PI)
+- [Andy's Screencast - p2](https://www.youtube.com/watch?v=Srd2Tx1Z7v8)
 
+## Learning Objectives
 - Explain the concept of a 'callback' and how we can pass functions as arguments to other functions
 - Describe the difference between asynchronous and synchronous program execution
 - Explain why callbacks are important to asynchronous program flow
