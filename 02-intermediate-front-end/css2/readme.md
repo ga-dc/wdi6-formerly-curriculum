@@ -26,11 +26,9 @@ We've used combinations of `margin` `border` and `padding` to modify the layout 
 * Sometimes we need to move the box itself! That's where **position** comes in.
 * **Position** has 5 properties we can use to control layout...
 
-### git clone
-
-I'll be using this repo to demonstrate **position**. [Feel free to clone and follow along](http://google.com).
-
 ### How do we offset the position of an element?
+
+I'll be using this [Codepen](http://codepen.io/amaseda/pen/BoJbMM) as an example.
 
 `left` `right` `top` `bottom`
 * If `left: 100px;`, then the element is offset (or pushed away) 100px left from ______.
@@ -65,6 +63,9 @@ Absolutely-positioned elements are offset based on the position of their parent 
 
 #### Combining Absolute and Relative
 
+When working with parent-child elements, pay attention to their `position` properties.
+* [This CSS Tricks post](https://css-tricks.com/absolute-positioning-inside-relative-positioning/) does a good job of demonstrating what happens when you place absolutely-position elements inside a relatively-positioned container.
+
 ### Exercise: Positioning Operation (15 / 45)
 
 Spend 10 minutes playing Operation using what you've learned so far: [Positioning Operation](https://github.com/ga-dc/positioning_operation)
@@ -73,9 +74,24 @@ Spend 10 minutes playing Operation using what you've learned so far: [Positionin
 
 ## Floats (15 / 70)
 
+Sometimes our layout goals are simpler. Rather than pinpointing the position of an element, we may just want to move it to the left or right side of a page.  
 
+A basic example you'll encounter in most tutorials is surrounding an image with text.
+* You'll see this a lot with newspaper articles...
+* Let's try that out ourselves [[Codepen](http://codepen.io/amaseda/pen/ZbvwMV)].
+
+We can also use floats to set up the entire layout of a webpage...
+* Real-life example.
+* Let's try that out ourselves [[Codepen](http://codepen.io/amaseda/pen/JYMxwj)].
+  * Is there a better way to illustrate this (and lead into clear)?
+* Stack floats.
 
 ### Clear
+
+While floating an element is just a matter of setting a CSS property (or two), we need to account for the effects that has on the rest of our page.
+* What happens when we _________?
+* We can remedy this using the `clear` property.
+* Chances are you won't use `float` without `clear`.
 
 ### Clearfix
 
@@ -94,19 +110,53 @@ We'll encounter the following in future lessons, but feel free to get a headstar
 * Responsive Design
 * Flexbox
 * CSS Frameworks (e.g., Bootstrap, Foundation, Material Design)
-  > They're no replacement for knowing how CSS works.
 
 
 ## Advanced CSS Selectors
 
 Sometimes we want to be very particular about which elements on a page we're styling, whether that's for layout or otherwise. CSS comes with a number of **advanced selectors** that allow us to be very specific in which elements we target, for example...
-* Each even-numbered `<li>` inside of a `<ul>`.
+* Each `<li>` inside of a `<ul>`.
 * Every radio button on the page.
-* Insert a weird super-specific example.
+* Every even-numbered checkbox inside of a `<div>` with `class="what-a-mess"`.
+
+### Relationships
+
+#### Child Selectors
+
+```css
+/* This will target any <p> inside of a <div> */
+div p {
+
+}
+
+/* This will target any element with an id "thing" inside a <div> */
+div #thing {
+
+}
+
+/* This will target any <p> that is a DIRECT child of a <div> */
+div > p {
+
+}
+```
+
+The space (or `>`) is important! What does the below selector target?
+
+```css
+div#thing {
+
+}
+```
+
+You can go crazy and combine them all...
+
+```css
+div#thing div > p {
+
+}
+```
 
 ### Attributes
-
-#### Styling Forms
 
 We can target any HTML element based on it's attributes. Say we had the below code...
 
@@ -131,6 +181,8 @@ div[class="job"]{
 }
 ```
 
+### Styling Forms
+
 Attributes come in handy when styling forms, in particular `<input>` elements.
 * Forms make use of different types of `<input>` -- like text fields, checkboxes and radio buttons -- each of which is defined by its `type` attribute.
 * In forms that use a variety of inputs, it's rare that we would apply the same styling to all of them using a single `input { ... }` selector.
@@ -154,8 +206,7 @@ input[type=radio]{
   /* Insert styling */
 }
 ```
-
-You'll get the chance to do some serious form styling in today's [closing exercise](https://github.com/ga-dc/moonrise_kingdom).
+> If you want to go crazy with your checkbox and radio styling, there are plenty of "hacks" out there you should check out. [For example](http://www.paulund.co.uk/style-checkboxes-with-css).
 
 
 
@@ -231,6 +282,14 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
 
 ## Break (10)
 
+## Exercise: Moonrise Kingdom (30)
+
+[Spend 30 minutes recreating this card from Moonrise Kingdom.](http://github.com/ga-dc/moonrise_kingdom)
+
+## Closing Q&A (15)
+
+## If there's time...
+
 ## Miscellaneous
 
 ### [percent width](http://learnlayout.com/percent.html)
@@ -255,9 +314,3 @@ Grab the code we prepare and you’re ready to add the Collection to your websit
 ### Bonus: Font-Awesome
 
 [http://fontawesome.io/get-started/](http://fontawesome.io/get-started/)
-
-## Exercise: Moonrise Kingdom (30)
-
-[Spend 30 minutes recreating this card from Moonrise Kingdom.](http://github.com/ga-dc/moonrise_kingdom)
-
-## Closing Q&A (15)
