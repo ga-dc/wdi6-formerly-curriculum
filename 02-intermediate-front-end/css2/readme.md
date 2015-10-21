@@ -1,20 +1,17 @@
-# CSS2 - Layout, Selectors, and Fonts
+# CSS2 - Layout, Advanced Selectors, Etc.
 
-- Label elements on a webpage as being blocks, inline, or inline-blocks
-- List use cases for using relative, static, absolute, and fixed positioning, and floats
-- Contrast the display options: inline, inline-block, and block
-- Embed a font in a website using either a CDN or uploaded fonts
-- Describe a use case for the `:before` and `:after` selectors
-- Select any element without relying on classes and IDs
-    - `:nth-child(1)`, `:nth-of-type(odd)`, `input:checked + label`, `section:target > element`, `input[type=checkbox]`
+* List use cases for `relative` `static` `absolute` and `fixed` positioning.
+* Use the `float` and `clear` properties to position elements on a webpage.
+* Use advanced CSS selectors -- attributes, pseudo-selector, relationships -- to target elements on a webpage.
+* Use a Google CDN to include webfonts on a webpage.
 
-## Framing (5)
+## Note
 
-The internet was designed to share documents.  A WEB of connected documents.  Granted, they were enabling a new world of hyperlinked documents, but it was just text.  All the underlying technologies -- the servers, the protocols, the markup language, everything -- was engineered to support sharing pages of text.  This whole thing, this "cloud", was not _designed_ to provide this rich media, real-time web that we enjoy today, and yet it does.  Quite well.  That's like designing a  bridge for pedestrians and then having it repurposed for carrying freight trains.  It is amazing that it has held up for so long.  
+Links for all the Codepen examples I'll be using in class are in their respective sections in the lesson plan. If you want to play around with them yourselves, make sure to follow along!  
 
-Let's **own** our portion of this World Wide Web.  Let's make sure it is a pleasure to interact with.  We need to control the layout.  To select specific elements and position as we see fit.  And, it must be maintainable so our _team_ can make changes, quickly.
+## Framing (5 / 5)
 
-### Layout: Turn & Talk (5 / 10)
+## Layout: Turn & Talk (5 / 10)
 
 Spend 2 minutes talking with a partner about the CSS selectors we have already learned this course that allow us to control layout.
 * What can we do with these properties?
@@ -24,30 +21,31 @@ Spend 2 minutes talking with a partner about the CSS selectors we have already l
 
 We've used combinations of `margin` `border` and `padding` to modify the layout of DOM elements. But changing the box model isn't always enough...
 * Sometimes we need to move the box itself! That's where **position** comes in.
+* We could do that with `margin`, but our CSS would get pretty messy and unpredictable.
 * **Position** has 5 properties we can use to control layout...
 
 ### How do we offset the position of an element?
 
-I'll be using this [Codepen](http://codepen.io/amaseda/pen/BoJbMM) as an example.
+**I'll be using this [Codepen](http://codepen.io/amaseda/pen/BoJbMM) as an example.**
 
 `left` `right` `top` `bottom`
-* If `left: 100px;`, then the element is offset (or pushed away) 100px left from ______.
-* These changes only go into effect depending on the value of the **position** property...
+* If `left: 100px;`, then the element is offset (or pushed away) 100px left from its default position.
+* How and whether elements can be offset depends on the value of their **position** property.
 
 ### Static
-All elements are static by default.
-* When `position: static;` you cannot offset the position of an element. **Try it.**
-* Rarely will you explicitly type this out.
+All elements are `static` by default.
+* When `position: static;` you cannot offset the position of an element.
+* You will only need to type this out if you need to override an existing `property` value.
 
 ### Fixed
 A fixed element is pinned to a designated place on the browser window.
 * Use `left` `right` `top` `bottom` to designate where on the page the fixed element should be displayed.
-* When you scroll, a fixed element will remain the same place in the browser window. **Try it.**
-* This could be useful when creating a header or footer menu that stays with the user as he/she explores a website.
+* When you scroll, a fixed element will remain the same place in the browser window.
+* This can be useful when creating a header or footer menu that stays with the user as he/she explores a website.
 
 ### Relative and Absolute Positioning
 
-Relative and Absolute position can be a bit confusing at first. Let's begin, however, by diving in head-first...
+`relative` and `absolute` positioning can be a bit confusing at first. Let's begin with some exploration...
 
 **YOU DO:** Take two minutes to apply `relative` and `absolute` positioning to the in-class example.
 * What do you notice when you apply `left` `right` `top` `bottom`? **Where are the blocks offset from?**
@@ -64,7 +62,8 @@ Absolutely-positioned elements are offset based on the position of their parent 
 #### Combining Absolute and Relative
 
 When working with parent-child elements, pay attention to their `position` properties.
-* [This CSS Tricks post](https://css-tricks.com/absolute-positioning-inside-relative-positioning/) does a good job of demonstrating what happens when you place absolutely-position elements inside a relatively-positioned container.
+* [This CSS Tricks post](https://css-tricks.com/absolute-positioning-inside-relative-positioning/) does a good job of demonstrating what happens when you place absolutely-positioned elements inside a relatively-positioned container.
+* Absolute inside absolute is relative to parent-parent container?
 
 ### Exercise: Positioning Operation (15 / 45)
 
@@ -74,42 +73,49 @@ Spend 10 minutes playing Operation using what you've learned so far: [Positionin
 
 ## Floats (20 / 75)
 
-Sometimes our layout goals are simpler. Rather than pinpointing the position of an element, we may just want to move it to the left or right side of a page.  
+Sometimes our layout goals are simpler. Rather than pinpointing the position of an element, we may just want to move it to the left or right side of a page.
+* We accomplish that using another CSS property: `float`.
 
-A basic example you'll encounter in most tutorials is surrounding an image with text.
-* You'll see this a lot with newspaper articles...
-* Let's try that out ourselves [[Codepen](http://codepen.io/amaseda/pen/ZbvwMV)].
+A basic example you'll encounter in most tutorials is surrounding an image with text [[Codepen](http://codepen.io/amaseda/pen/ZbvwMV)].
+* Images are, by default, `inline` elements.
+* To remove them from that flow and re-position them, we set `float` to either `left` or `right`.
+* We can do this with multiple images with similar or varying `float` values.
 
 We can also use floats to set up the entire layout of a webpage...
-* Real-life example.
+* [Insert link for real-life example of this](https://css-tricks.com/wp-content/csstricks-uploads/web-layout.png).
 * Let's try that out ourselves [[Codepen](http://codepen.io/amaseda/pen/JYMxwj)].
-  * Is there a better way to illustrate this (and lead into clear)?
-* Stack floats.
 
 ### Clear
 
-While floating an element is just a matter of setting a CSS property (or two), we need to account for the effects that has on the rest of our page.
-* What happens when we _________?
-* We can remedy this using the `clear` property.
-* Chances are you won't use `float` without `clear`.
+That all sounds pretty straightforward. But floating, if untamed, can cause some layout issues...
+
+Let's use the first example, but this time without any text [Codepen](http://codepen.io/amaseda/pen/NGXQKZ).
+* What happens to the container when we set our image to `float: left;`?
+* What about if we substitute our image with a block element (e.g., `<div>`)?
+* When all the elements inside a container are floated, it shrinks to the smallest size possible.
+  * Inline element dimensions are ignored.
+  * Block elements are condensed to the smallest size possible.
+* [Best way to illustrate this is a bad thing?]
+
+We can fix this using the `clear` property.
+* Watch what happens when we add an empty `<div>` with a property of `clear: both;`...
+* The container is re-sized to fit its children elements.
+* This empty `<div>` is kind of ugly though...
 
 ### Clearfix
 
-> Q. How does `.clearfix` differ from other css rules we have applied?
-
----
-
-A. It's not for a specific page or component.  It's reused in many places.
-
-Ensure you organize these "reusable" css rules together.  You can group them together in styles.css, but I recommend using a separate file (shared.css, constraints.css, )
+Enter clearfix.
+* [Nicolas Gallagher](http://nicolasgallagher.com/micro-clearfix-hack/) created a technique that accomplishes the same thing by adding a class to the container.
+* Makes use of the `:before` and `:after` pseudo-classes.
+* Very reusable!
 
 ### Further Layout Reading
 
 We'll encounter the following in future lessons, but feel free to get a headstart...
 
-* Responsive Design
-* Flexbox
-* CSS Frameworks (e.g., Bootstrap, Foundation, Material Design)
+* [Responsive Web Design](http://alistapart.com/article/responsive-web-design)
+* [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+* CSS Frameworks (e.g., [Bootstrap](http://getbootstrap.com/), [Foundation](http://foundation.zurb.com/))
 
 
 ## Advanced CSS Selectors
@@ -127,6 +133,7 @@ Break off into teams and spend 15 minutes researching the following...
 * **Teams 3, 6:** Attributes  
 
 Each team should spend 15 minutes creating a [Codepen(s)](http://codepen.io) that answers the below questions for their assigned topic.
+* Make sure to include examples. Don't just write out definitions.
 * When you're done, Slack the link to your [Codepen(s)](http://codepen.io) in the classroom channel.
 
 #### Teams 1, 4, 7: Pseudo-Selectors
@@ -163,6 +170,10 @@ What are some other attributes you anticipate selecting often?
 ## Break (10 / 115)
 
 ## Exercise: Moonrise Kingdom (30 / 145)
+
+You probably don't have all the CSS knowledge required to do this exercise perfectly. That's okay!
+* Use what you've learned so far and when in doubt: ask a classmate, Google it or ask an instructor.
+* As always, you're encourage to work with each other on this!
 
 [http://github.com/ga-dc/moonrise_kingdom](http://github.com/ga-dc/moonrise_kingdom)
 
