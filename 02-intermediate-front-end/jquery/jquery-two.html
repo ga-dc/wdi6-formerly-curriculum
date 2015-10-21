@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.5" data-basepath="../.." data-revision="Wed Oct 21 2015 13:02:19 GMT+0000 (UTC)">
+    <div class="book" data-level="2.5" data-basepath="../.." data-revision="Wed Oct 21 2015 13:23:59 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1293,7 +1293,7 @@ $ touch script.js
 </code></pre>
 <p>In <code>script.js</code>:</p>
 <pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-
+  alert(<span class="hljs-string">&quot;jq working&quot;</span>)
 })
 </code></pre>
 <h2 id="addition">Addition</h2>
@@ -1477,7 +1477,6 @@ $ touch script.js
 <li><p><code>.each()</code></p>
 <ul>
 <li>loops through collections of jquery objects</li>
-<li><code>$(&quot;.somejQueryClass&quot;).each(function(index){//code goes here})</code></li>
 </ul>
 <pre><code class="lang-javascript">  $(<span class="hljs-string">&quot;.awesome&quot;</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">index</span>)</span>{
     $(<span class="hljs-keyword">this</span>).html(<span class="hljs-string">&quot;this html element has the index of ()&quot;</span> + index + <span class="hljs-string">&quot;) in the each function&quot;</span>)
@@ -1487,6 +1486,7 @@ $ touch script.js
 </ul>
 <blockquote>
 <p>note what the context of <code>$(this)</code> is. This refers to each of the elements being looped through.</p>
+<p>This also is actually the second time in this lesson a jquery function requires a callback, can you think of the other?</p>
 </blockquote>
 <ul>
 <li><p><code>.on()</code></p>
@@ -1513,9 +1513,8 @@ $ touch script.js
 <li>Create a button in the <code>index.html</code></li>
 <li>Your JS should have the button hide and show the awesome divs when clicked</li>
 </ul>
-<h3 id="class-ex-timer-js-refactor-30-150">Class Ex- TIMER js refactor (30/150)</h3>
-<h3 id="homework-atm">Homework- ATM</h3>
-<p><a href="https://github.com/ga-dc/atm" target="_blank">ATM</a></p>
+<h3 id="class-ex-timer-js-https-github-com-ga-dc-timer-js-refactor-30-150">Class Ex- <a href="https://github.com/ga-dc/timer_js" target="_blank">TIMER js</a> refactor (30/150)</h3>
+<h3 id="additional-exercise-atm-https-github-com-ga-dc-atm">Additional Exercise - <a href="https://github.com/ga-dc/atm" target="_blank">ATM</a></h3>
 
                     
                     </section>
