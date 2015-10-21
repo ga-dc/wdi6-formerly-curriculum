@@ -14,53 +14,51 @@ The internet was designed to share documents.  A WEB of connected documents.  Gr
 
 Let's **own** our portion of this World Wide Web.  Let's make sure it is a pleasure to interact with.  We need to control the layout.  To select specific elements and position as we see fit.  And, it must be maintainable so our _team_ can make changes, quickly.
 
-## The Layout
-
-### Turn & Talk (5 / 10)
+### Layout: Turn & Talk (5 / 10)
 
 Spend 2 minutes talking with a partner about the CSS selectors we have already learned this course that allow us to control layout.
 * What can we do with these properties?
 * What tools do we still lack?
 
-### Position (20 / 30)
+## Position (20 / 30)
 
 We've used combinations of `margin` `border` and `padding` to modify the layout of DOM elements. But changing the box model isn't always enough...
 * Sometimes we need to move the box itself! That's where **position** comes in.
 * **Position** has 5 properties we can use to control layout...
 
-#### git clone
+### git clone
 
 I'll be using this repo to demonstrate **position**. [Feel free to clone and follow along](http://google.com).
 
-#### How do we offset the position of an element?
+### How do we offset the position of an element?
 
 `left` `right` `top` `bottom`
 * If `left: 100px;`, then the element is offset (or pushed away) 100px left from ______.
 * These changes only go into effect depending on the value of the **position** property...
 
-#### Static
+### Static
 All elements are static by default.
 * When `position: static;` you cannot offset the position of an element. **Try it.**
 * Rarely will you explicitly type this out.
 
-#### Fixed
+### Fixed
 A fixed element is pinned to a designated place on the browser window.
 * Use `left` `right` `top` `bottom` to designate where on the page the fixed element should be displayed.
 * When you scroll, a fixed element will remain the same place in the browser window. **Try it.**
 * This could be useful when creating a header or footer menu that stays with the user as he/she explores a website.
 
-#### Relative and Absolute Positioning
+### Relative and Absolute Positioning
 
 Relative and Absolute position can be a bit confusing at first. Let's begin, however, by diving in head-first...
 
 **YOU DO:** Take two minutes to apply `relative` and `absolute` positioning to the in-class example.
 * What do you notice when you apply `left` `right` `top` `bottom`? **Where are the blocks offset from?**
 
-#### Relative
+### Relative
 When we change the `left` `right` `top` `bottom` of a relatively-positioned element, it is displaced from its position in the document flow.
 * Really, it's a statically-positioned element that can be offset.
 
-#### Absolute
+### Absolute
 Absolutely-positioned elements are offset based on the position of their parent container.
 * They are extracted from the document flow.
 * **Q: Why would we ever want to use absolute?**
@@ -71,15 +69,15 @@ Absolutely-positioned elements are offset based on the position of their parent 
 
 Spend 10 minutes playing Operation using what you've learned so far: [Positioning Operation](https://github.com/ga-dc/positioning_operation)
 
-### Break (10 / 55)
+## Break (10 / 55)
 
-### Floats (15 / 70)
+## Floats (15 / 70)
 
 
 
-#### Clear
+### Clear
 
-#### Clearfix
+### Clearfix
 
 > Q. How does `.clearfix` differ from other css rules we have applied?
 
@@ -89,14 +87,7 @@ A. It's not for a specific page or component.  It's reused in many places.
 
 Ensure you organize these "reusable" css rules together.  You can group them together in styles.css, but I recommend using a separate file (shared.css, constraints.css, )
 
-## [percent width](http://learnlayout.com/percent.html)
-
-As the name implies.
-
-- You will see this a lot in layouts.
-- Sometimes combined with min/max-width.
-
-#### Further Layout Reading
+### Further Layout Reading
 
 We'll encounter the following in future lessons, but feel free to get a headstart...
 
@@ -241,6 +232,13 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
 ## Break (10)
 
 ## Miscellaneous
+
+### [percent width](http://learnlayout.com/percent.html)
+
+As the name implies.
+
+- You will see this a lot in layouts.
+- Sometimes combined with min/max-width.
 
 ### Google fonts
 https://www.google.com/fonts
