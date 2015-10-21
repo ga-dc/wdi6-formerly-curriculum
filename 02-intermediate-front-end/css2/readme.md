@@ -8,7 +8,7 @@
 - Select any element without relying on classes and IDs
     - `:nth-child(1)`, `:nth-of-type(odd)`, `input:checked + label`, `section:target > element`, `input[type=checkbox]`
 
-## Framing
+## Framing (5)
 
 The internet was designed to share documents.  A WEB of connected documents.  Granted, they were enabling a new world of hyperlinked documents, but it was just text.  All the underlying technologies -- the servers, the protocols, the markup language, everything -- was engineered to support sharing pages of text.  This whole thing, this "cloud", was not _designed_ to provide this rich media, real-time web that we enjoy today, and yet it does.  Quite well.  That's like designing a  bridge for pedestrians and then having it repurposed for carrying freight trains.  It is amazing that it has held up for so long.  
 
@@ -16,89 +16,70 @@ Let's **own** our portion of this World Wide Web.  Let's make sure it is a pleas
 
 ## The Layout
 
-We are always on the lookout for a trusted source.  Something we can use as a reference; a textbook.  A resource you can refer back to during your career.  Today we will be using [LearnLayout.com](http://learnlayout.com/).
+### Turn & Talk (5 / 10)
 
-## [No Layout](http://learnlayout.com/no-layout.html)
+Spend 2 minutes talking with a partner about the CSS selectors we have already learned this course that allow us to control layout.
+* What can we do with these properties?
+* What tools do we still lack?
 
-Because you have to start somewhere.
+### Position (20 / 30)
 
-Resize.  Resize.  Resize.
+We've used combinations of `margin` `border` and `padding` to modify the layout of DOM elements. But changing the box model isn't always enough...
+* Sometimes we need to move the box itself! That's where **position** comes in.
+* **Position** has 5 properties we can use to control layout...
 
-## [display](http://learnlayout.com/display.html)
+#### git clone
 
-`display` is CSS's most important property for controlling layout.
+I'll be using this repo to demonstrate **position**. [Feel free to clone and follow along](http://google.com).
 
-Stomp. Stomp.  Stomp.
+#### How do we offset the position of an element?
 
-I repeat... `display` is CSS's **most important property** for controlling layout.
+`left` `right` `top` `bottom`
+* If `left: 100px;`, then the element is offset (or pushed away) 100px left from ______.
+* These changes only go into effect depending on the value of the **position** property...
 
-[The Usual Suspects](https://en.wikipedia.org/wiki/The_Usual_Suspects):
-- block
-- inline
-- none
+#### Static
+All elements are static by default.
+* When `position: static;` you cannot offset the position of an element. **Try it.**
+* Rarely will you explicitly type this out.
 
-Demo (compare visibility/display): http://codepen.io/mattscilipoti/pen/JdpdoJ
+#### Fixed
+A fixed element is pinned to a designated place on the browser window.
+* Use `left` `right` `top` `bottom` to designate where on the page the fixed element should be displayed.
+* When you scroll, a fixed element will remain the same place in the browser window. **Try it.**
+* This could be useful when creating a header or footer menu that stays with the user as he/she explores a website.
 
-To give you an idea of just how big the world is that you are entering, check out this list of [display values](https://developer.mozilla.org/en-US/docs/CSS/display).  
+#### Relative and Absolute Positioning
 
-Don't worry about learning it all.  Focus on learning how to identify your specific problem and research the tools to answer it.
+Relative and Absolute position can be a bit confusing at first. Let's begin, however, by diving in head-first...
 
-## [margin: auto;](http://learnlayout.com/margin-auto.html)
+**YOU DO:** Take two minutes to apply `relative` and `absolute` positioning to the in-class example.
+* What do you notice when you apply `left` `right` `top` `bottom`? **Where are the blocks offset from?**
 
-Useful for... centering.  Kinda.
-   - use `text-align:center` for `inline` and `inline-block`
-   - `margin:0 auto` for `block`
+#### Relative
+When we change the `left` `right` `top` `bottom` of a relatively-positioned element, it is displaced from its position in the document flow.
+* Really, it's a statically-positioned element that can be offset.
 
-## [max-width](http://learnlayout.com/max-width.html)
+#### Absolute
+Absolutely-positioned elements are offset based on the position of their parent container.
+* They are extracted from the document flow.
+* **Q: Why would we ever want to use absolute?**
 
-And its twin: `min-width`
+#### Combining Absolute and Relative
 
-## [The Box Model](http://learnlayout.com/box-model.html)
+### Exercise: Positioning Operation (15 / 45)
 
-You Do: One of these things is not like the other...
-> Compare the top & bottom box.  
-> 1. Are they the same width?
-> 2. What is different?
-> 3. What settings would you use to make them equal?
+Spend 10 minutes playing Operation using what you've learned so far: [Positioning Operation](https://github.com/ga-dc/positioning_operation)
 
----
+### Break (10 / 55)
 
-Answers:
-1. Yes.  `width: 500px;`
-2. `padding` and `border`
-3. `.fancy { width: 386 }`
-
-## [box-sizing](http://learnlayout.com/box-sizing.html)
-
-`box-sizing: border-box;` - just one solution to this problem.
-
-## [position](http://learnlayout.com/position.html)
-
-- static: not positioned
-- relative: relative to normal position
-- fixed: relative to viewport
-- absolute: relative to the nearest **positioned** ancestor
-
-## [Position Example 8/19](http://learnlayout.com/position-example.html)
-
-Let's start by reviewing the page.  Container div, nav, 3 sections, and a footer.
-
-## Exercise: Positioning Operation
-
-https://github.com/ga-dc/positioning_operation
-
-## [float](http://learnlayout.com/float.html)
-
-Often used for layouts.  Coming soon...
-
-## [clear](http://learnlayout.com/clear.html)
-
-- left
-- right
-- **both**: usually, this is the right tool for the job
+### Floats (15 / 70)
 
 
-## [the clearfix hack](http://learnlayout.com/clearfix.html)
+
+#### Clear
+
+#### Clearfix
 
 > Q. How does `.clearfix` differ from other css rules we have applied?
 
@@ -108,8 +89,6 @@ A. It's not for a specific page or component.  It's reused in many places.
 
 Ensure you organize these "reusable" css rules together.  You can group them together in styles.css, but I recommend using a separate file (shared.css, constraints.css, )
 
-Don't miss the links.
-
 ## [percent width](http://learnlayout.com/percent.html)
 
 As the name implies.
@@ -117,38 +96,77 @@ As the name implies.
 - You will see this a lot in layouts.
 - Sometimes combined with min/max-width.
 
-##[media queries](http://learnlayout.com/media-queries.html)
+#### Further Layout Reading
 
-Responsive Design is a topic for another lesson.
+We'll encounter the following in future lessons, but feel free to get a headstart...
 
-## Misc
-
-- Ever wanted to make a grid of boxes?  Check out [`inline-block`](http://learnlayout.com/inline-block.html)
-- Want text in [columns?](http://learnlayout.com/column.html)
-  - `column-count`
-  - `column-gap`
-- flexbox: interesting stuff.  Covered in Responsive Design lesson.
-- css frameworks: we have a lesson about these too.  
+* Responsive Design
+* Flexbox
+* CSS Frameworks (e.g., Bootstrap, Foundation, Material Design)
   > They're no replacement for knowing how CSS works.
-
-## Google fonts
-https://www.google.com/fonts#
-
-1. Choose:
-Search or browse hundreds of font families, then add the ones you like to your Collection.
-
-2. Review:
-Compare and refine your Collection, even see the styles in a dynamic sample layout.
-
-3. Use:
-Grab the code we prepare and you’re ready to add the Collection to your website!
-
-## Bonus: Font-Awesome
-
-http://fontawesome.io/get-started/
 
 
 ## Advanced CSS Selectors
+
+Sometimes we want to be very particular about which elements on a page we're styling, whether that's for layout or otherwise. CSS comes with a number of **advanced selectors** that allow us to be very specific in which elements we target, for example...
+* Each even-numbered `<li>` inside of a `<ul>`.
+* Every radio button on the page.
+* Insert a weird super-specific example.
+
+### Attributes
+
+#### Styling Forms
+
+We can target any HTML element based on it's attributes. Say we had the below code...
+
+```html
+<h1>Resume</h1>
+<h2>Experience</h2>
+<div class="job" field="sanitation">Garbage Man</div>
+<div class="job" field="politics">President</div>
+<div class="job" field="sports">Quarterback</div>
+```
+
+...and we wanted to apply particular styling to the `div` detailing our time as a quarterback, we could select is using its attributes...
+
+```css
+div[field=quarterback]{
+  border: 1px red solid;
+}
+
+/* We could even target classes this way if we want */
+div[class="job"]{
+  border: 2px purple solid;
+}
+```
+
+Attributes come in handy when styling forms, in particular `<input>` elements.
+* Forms make use of different types of `<input>` -- like text fields, checkboxes and radio buttons -- each of which is defined by its `type` attribute.
+* In forms that use a variety of inputs, it's rare that we would apply the same styling to all of them using a single `input { ... }` selector.
+* That's where attributes come in...
+
+```css
+/* Text fields */
+input[type=text] {
+  font-family: "Comic Sans MS", sans-serif;
+  box-shadow: none;
+  border-radius: 5px;
+}
+
+/* Checkboxes */
+input[type=checkbox]{
+  /* Insert styling */
+}
+
+/* Radio buttons */
+input[type=radio]{
+  /* Insert styling */
+}
+```
+
+You'll get the chance to do some serious form styling in today's [closing exercise](https://github.com/ga-dc/moonrise_kingdom).
+
+
 
 ### pseudo-element `:after`, `:before`
 
@@ -220,13 +238,28 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
 - `:nth-child(1)`
 - `:nth-of-type(odd)`
 
+## Break (10)
 
-## Homework:
+## Miscellaneous
 
-https://github.com/ga-dc/ecardly
+### Google fonts
+https://www.google.com/fonts
 
-## Sample questions
+1. Choose:
+Search or browse hundreds of font families, then add the ones you like to your Collection.
 
-- "What is the difference between 'relative' and 'absolute' positioning?"
-- "What is a reliable source for 3rd party fonts?"
-- "Name 2 pseudo-classes that allow css to add content to a page."
+2. Review:
+Compare and refine your Collection, even see the styles in a dynamic sample layout.
+
+3. Use:
+Grab the code we prepare and you’re ready to add the Collection to your website!
+
+### Bonus: Font-Awesome
+
+[http://fontawesome.io/get-started/](http://fontawesome.io/get-started/)
+
+## Exercise: Moonrise Kingdom (30)
+
+[Spend 30 minutes recreating this card from Moonrise Kingdom.](http://github.com/ga-dc/moonrise_kingdom)
+
+## Closing Q&A (15)
