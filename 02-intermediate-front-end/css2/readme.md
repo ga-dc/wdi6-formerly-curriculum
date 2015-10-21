@@ -81,7 +81,7 @@ A basic example you'll encounter in most tutorials is surrounding an image with 
 * We can do this with multiple images with similar or varying `float` values.
 
 We can also use floats to set up the entire layout of a webpage...
-* [Insert link for real-life example of this](https://css-tricks.com/wp-content/csstricks-uploads/web-layout.png).
+* [We can use floats to replicate the basic structure of GitHub's homepage.](https://github.com/).
 * Let's try that out ourselves **[[Codepen](http://codepen.io/amaseda/pen/JYMxwj)]**.
 
 ### Clear
