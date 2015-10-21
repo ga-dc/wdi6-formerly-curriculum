@@ -22,6 +22,8 @@ Choose and install a theme - https://github.com/mbadolato/iTerm2-Color-Schemes
 
 ## The PS1 Prompt
 
+The PS1 environment variable allows us to customize our prompt.
+
 ```
 bash-3.2$ PS1="jesse: "
 jesse: PS1="\u: "
@@ -37,4 +39,23 @@ echo 'export PS1="\u@\h:\w $ "'  >> ~/.bash_profile
 
 ## Aliases
 
+Aliases allow us to configure shortcuts
+
 `alias gl="git log --all --oneline --graph --decorate"`
+
+## Dotfiles
+
+A popular thing that developers do is share their dotfiles.
+
+The idea is:
+
+- create a `dotfiles` repo in your home directory.
+- create symbolic links in your homw directory that link to the files in dotfiles.
+- share on github!
+
+Here are some popular dotfiles repos:
+
+- https://github.com/jshawl/dotfiles
+- https://github.com/adambray/dotfiles
+- https://github.com/mathiasbynens/dotfiles
+- https://github.com/holman/dotfiles
