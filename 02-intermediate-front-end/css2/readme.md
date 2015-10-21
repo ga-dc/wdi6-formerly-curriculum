@@ -3,7 +3,6 @@
 * List use cases for `relative` `static` `absolute` and `fixed` positioning.
 * Use the `float` and `clear` properties to position elements on a webpage.
 * Use advanced CSS selectors -- attributes, pseudo-selector, relationships -- to target elements on a webpage.
-* Use a Google CDN to include webfonts on a webpage.
 
 ## Note
 
@@ -76,20 +75,20 @@ Spend 10 minutes playing Operation using what you've learned so far: [Positionin
 Sometimes our layout goals are simpler. Rather than pinpointing the position of an element, we may just want to move it to the left or right side of a page.
 * We accomplish that using another CSS property: `float`.
 
-A basic example you'll encounter in most tutorials is surrounding an image with text [[Codepen](http://codepen.io/amaseda/pen/ZbvwMV)].
+A basic example you'll encounter in most tutorials is surrounding an image with text **[[Codepen](http://codepen.io/amaseda/pen/ZbvwMV)]**.
 * Images are, by default, `inline` elements.
 * To remove them from that flow and re-position them, we set `float` to either `left` or `right`.
 * We can do this with multiple images with similar or varying `float` values.
 
 We can also use floats to set up the entire layout of a webpage...
 * [Insert link for real-life example of this](https://css-tricks.com/wp-content/csstricks-uploads/web-layout.png).
-* Let's try that out ourselves [[Codepen](http://codepen.io/amaseda/pen/JYMxwj)].
+* Let's try that out ourselves **[[Codepen](http://codepen.io/amaseda/pen/JYMxwj)]**.
 
 ### Clear
 
 That all sounds pretty straightforward. But floating, if untamed, can cause some layout issues...
 
-Let's use the first example, but this time without any text [Codepen](http://codepen.io/amaseda/pen/NGXQKZ).
+Let's use the first example, but this time without any text **[[Codepen](http://codepen.io/amaseda/pen/NGXQKZ)]**.
 * What happens to the container when we set our image to `float: left;`?
 * What about if we substitute our image with a block element (e.g., `<div>`)?
 * When all the elements inside a container are floated, it shrinks to the smallest size possible.
@@ -174,6 +173,7 @@ What are some other attributes you anticipate selecting often?
 You probably don't have all the CSS knowledge required to do this exercise perfectly. That's okay!
 * Use what you've learned so far and when in doubt: ask a classmate, Google it or ask an instructor.
 * As always, you're encourage to work with each other on this!
+* Some things to look up: Google web fonts, percent widths.
 
 [http://github.com/ga-dc/moonrise_kingdom](http://github.com/ga-dc/moonrise_kingdom)
 
