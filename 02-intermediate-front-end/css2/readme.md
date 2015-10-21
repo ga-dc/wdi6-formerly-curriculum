@@ -178,3 +178,8 @@ You probably don't have all the CSS knowledge required to do this exercise perfe
 [http://github.com/ga-dc/moonrise_kingdom](http://github.com/ga-dc/moonrise_kingdom)
 
 ## Closing Q&A (5 / 150)
+
+## Suggested Exercises
+
+* Continue working on Moonrise Kingdom.
+* [eCardly](https://github.com/ga-dc/ecardly)
