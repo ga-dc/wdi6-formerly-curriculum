@@ -65,7 +65,7 @@ interfering. When a feature is complete, it can be merged back into master.
 
 ## Example (10 min)
 
-(Use GitUp to demo visually what's happening).
+(Use [GitUp](http://gitup.co) to demo visually what's happening).
 
 - Make directory which will contain repo:
 
