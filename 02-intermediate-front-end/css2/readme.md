@@ -72,7 +72,7 @@ Spend 10 minutes playing Operation using what you've learned so far: [Positionin
 
 ## Break (10 / 55)
 
-## Floats (15 / 70)
+## Floats (20 / 75)
 
 Sometimes our layout goals are simpler. Rather than pinpointing the position of an element, we may just want to move it to the left or right side of a page.  
 
@@ -119,198 +119,51 @@ Sometimes we want to be very particular about which elements on a page we're sty
 * Every radio button on the page.
 * Every even-numbered checkbox inside of a `<div>` with `class="what-a-mess"`.
 
-### Relationships
+### Selector Scavenger Hunt (30 / 105)
 
-#### Child Selectors
+Break off into teams and spend 15 minutes researching the following...
+* **Teams 1, 4, 7:** Pseudo-Selectors  
+* **Teams 2, 5, 8:** Relationships  
+* **Teams 3, 6:** Attributes  
 
-```css
-/* This will target any <p> inside of a <div> */
-div p {
+Each team should spend 15 minutes creating a [Codepen(s)](http://codepen.io) that answers the below questions for their assigned topic.
+* When you're done, Slack the link to your [Codepen(s)](http://codepen.io) in the classroom channel.
 
-}
+#### Teams 1, 4, 7: Pseudo-Selectors
 
-/* This will target any element with an id "thing" inside a <div> */
-div #thing {
+What are pseudo-selectors?  
 
-}
+How do the following groups of pseudo-selectors work...
+* `:hover`, `:visited`, `:active`
+* `:first-of-type`, `:nth-of-type`
+* `:first-child`, `:nth-child`
+* Another one of your choice!
 
-/* This will target any <p> that is a DIRECT child of a <div> */
-div > p {
+#### Teams 2, 5, 8: Relationships
 
-}
-```
+With a single selector, how do we select...
+* Child elements
+* Direct child elements
+* Elements of a certain type and class (e.g., `<div class="pizza"></div>`)
+* Multiple elements (e.g., `<div class="pizza"></div>` AND `<p id="hamburger"></p>`)
 
-The space (or `>`) is important! What does the below selector target?
+#### Teams 3, 6: Attributes
 
-```css
-div#thing {
+How do we select DOM elements in CSS using their attributes?  
 
-}
-```
+How do we select and style the following form elements...
+* Text field
+* Checkbox
+* Radio Button
+* Submit button
 
-You can go crazy and combine them all...
-
-```css
-div#thing div > p {
-
-}
-```
-
-### Attributes
-
-We can target any HTML element based on it's attributes. Say we had the below code...
-
-```html
-<h1>Resume</h1>
-<h2>Experience</h2>
-<div class="job" field="sanitation">Garbage Man</div>
-<div class="job" field="politics">President</div>
-<div class="job" field="sports">Quarterback</div>
-```
-
-...and we wanted to apply particular styling to the `div` detailing our time as a quarterback, we could select is using its attributes...
-
-```css
-div[field=quarterback]{
-  border: 1px red solid;
-}
-
-/* We could even target classes this way if we want */
-div[class="job"]{
-  border: 2px purple solid;
-}
-```
-
-### Styling Forms
-
-Attributes come in handy when styling forms, in particular `<input>` elements.
-* Forms make use of different types of `<input>` -- like text fields, checkboxes and radio buttons -- each of which is defined by its `type` attribute.
-* In forms that use a variety of inputs, it's rare that we would apply the same styling to all of them using a single `input { ... }` selector.
-* That's where attributes come in...
-
-```css
-/* Text fields */
-input[type=text] {
-  font-family: "Comic Sans MS", sans-serif;
-  box-shadow: none;
-  border-radius: 5px;
-}
-
-/* Checkboxes */
-input[type=checkbox]{
-  /* Insert styling */
-}
-
-/* Radio buttons */
-input[type=radio]{
-  /* Insert styling */
-}
-```
-> If you want to go crazy with your checkbox and radio styling, there are plenty of "hacks" out there you should check out. [For example](http://www.paulund.co.uk/style-checkboxes-with-css).
+What are some other attributes you anticipate selecting often?  
 
 
+## Break (10 / 115)
 
-### pseudo-element `:after`, `:before`
+## Exercise: Moonrise Kingdom (30 / 145)
 
-These allow you to insert content via CSS.  The content is not actually in the DOM, but it appears on the page as if it is.
+[http://github.com/ga-dc/moonrise_kingdom](http://github.com/ga-dc/moonrise_kingdom)
 
-This css:
-``` css
-div::after {
-  content: "hi";
-}
-```
-
-Causes 'hi' to appear at the end of every div, essentially:
-``` html
-<div>
-  <!-- Rest of stuff inside the div -->
-  hi
-</div>
-```
-
-What content?
-
-- string: `content: "a string";`
-- image: `content: url(/path/to/image.jpg);` - The image is inserted at it's exact dimensions and cannot be resized. Since things like gradients are actually images, a pseudo element can be a gradient.
-- nothing: `content: "";` - Useful for clearfix and inserting images as background-images (set width and height, and can even resize with background-size).
-- counter: `content: counter(li);` - css-tricks says this is "Really useful for styling lists until :marker comes along."  (This is above my paygrade.)
-
-- https://css-tricks.com/pseudo-element-roundup/
-
-https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_Started/Selectors
-
-### You Do (Write/Pair/Share): Students will create html and css to illustrate each selector.
-
-Let's get more comfortable with the tools we'll be using as developers.
-
-Break classroom into 3 groups.  Each group gets a category to research.  This will be individual/pair work, but your group number indicates which category you should focus on.
-
-You will:
-- research a selector
-- create a few examples in CodePen (or similar) to share with class.  Try to illustrate different scenarios.
-
-1. By Relationship
-2. By Attribute
-3. By pseudo-class
-
-## By relationship: `section:target > element`
-
-- A E
-  > Any E element that is a descendant of an A element (that is: a child, or a child of a child, etc.)
-- A > E
-  > Any E element that is a child (i.e. direct descendant) of an A element
-- E:first-child
-  > Any E element that is the first child of its parent
-- B + E
-  > Any E element that is the next sibling of a B element (that is: the next child of the same parent)
-
-### By attribute: `input[type=checkbox]`
-
-- `selector[attribute=value]`
-
-### By pseudo-class: `:nth-of-type(odd)`
-
-Also known as "pseudo-classes", in CSS, are used to indicate elements in a special state or position.
-
-Remember `:hover`, `:visited`?  We're adding a few more.
-
-https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
-
-- `:nth-child(1)`
-- `:nth-of-type(odd)`
-
-## Break (10)
-
-## Exercise: Moonrise Kingdom (30)
-
-[Spend 30 minutes recreating this card from Moonrise Kingdom.](http://github.com/ga-dc/moonrise_kingdom)
-
-## Closing Q&A (15)
-
-## If there's time...
-
-## Miscellaneous
-
-### [percent width](http://learnlayout.com/percent.html)
-
-As the name implies.
-
-- You will see this a lot in layouts.
-- Sometimes combined with min/max-width.
-
-### Google fonts
-https://www.google.com/fonts
-
-1. Choose:
-Search or browse hundreds of font families, then add the ones you like to your Collection.
-
-2. Review:
-Compare and refine your Collection, even see the styles in a dynamic sample layout.
-
-3. Use:
-Grab the code we prepare and you’re ready to add the Collection to your website!
-
-### Bonus: Font-Awesome
-
-[http://fontawesome.io/get-started/](http://fontawesome.io/get-started/)
+## Closing Q&A (5 / 150)
