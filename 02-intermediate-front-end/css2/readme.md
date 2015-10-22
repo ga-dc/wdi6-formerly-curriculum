@@ -171,7 +171,7 @@ http://www.w3.org/TR/selectors/#selectors
 
 ## Break (10 / 115)
 
-## Stlying HTML Forms
+## Styling HTML Forms
 
 http://codepen.io/jshawl/pen/OyQJpZ?editors=110
 
