@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="2.7" data-basepath="../.." data-revision="Thu Oct 22 2015 11:48:06 GMT+0000 (UTC)">
+    <div class="book" data-level="2.7" data-basepath="../.." data-revision="Thu Oct 22 2015 13:08:27 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1238,206 +1238,193 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="css2-layout-selectors-and-fonts">CSS2 - Layout, Selectors, and Fonts</h1>
+                        <h1 id="css2-layout-advanced-selectors-etc">CSS2 - Layout, Advanced Selectors, Etc.</h1>
 <ul>
-<li>Label elements on a webpage as being blocks, inline, or inline-blocks</li>
-<li>List use cases for using relative, static, absolute, and fixed positioning, and floats</li>
-<li>Contrast the display options: inline, inline-block, and block</li>
-<li>Embed a font in a website using either a CDN or uploaded fonts</li>
-<li>Describe a use case for the <code>:before</code> and <code>:after</code> selectors</li>
-<li>Select any element without relying on classes and IDs<ul>
-<li><code>:nth-child(1)</code>, <code>:nth-of-type(odd)</code>, <code>input:checked + label</code>, <code>section:target &gt; element</code>, <code>input[type=checkbox]</code></li>
+<li>Position elements using <code>position: [relative | static | fixed | absolute]</code></li>
+<li>Use the <code>float</code> and <code>clear</code> properties to position elements on a webpage.</li>
+<li>Explain what a clearfix is and when you would use one.</li>
+<li>Use advanced CSS selectors -- attributes, pseudo-selector, relationships -- to target elements on a webpage.</li>
+<li>Use pseudo elements to style forms.</li>
 </ul>
-</li>
-</ul>
-<h2 id="framing">Framing</h2>
-<p>The internet was designed to share documents.  A WEB of connected documents.  Granted, they were enabling a new world of hyperlinked documents, but it was just text.  All the underlying technologies -- the servers, the protocols, the markup language, everything -- was engineered to support sharing pages of text.  This whole thing, this &quot;cloud&quot;, was not <em>designed</em> to provide this rich media, real-time web that we enjoy today, and yet it does.  Quite well.  That&apos;s like designing a  bridge for pedestrians and then having it repurposed for carrying freight trains.  It is amazing that it has held up for so long.  </p>
-<p>Let&apos;s <strong>own</strong> our portion of this World Wide Web.  Let&apos;s make sure it is a pleasure to interact with.  We need to control the layout.  To select specific elements and position as we see fit.  And, it must be maintainable so our <em>team</em> can make changes, quickly.</p>
-<h2 id="the-layout">The Layout</h2>
-<p>We are always on the lookout for a trusted source.  Something we can use as a reference; a textbook.  A resource you can refer back to during your career.  Today we will be using <a href="http://learnlayout.com/" target="_blank">LearnLayout.com</a>.</p>
-<h2 id="-no-layout-http-learnlayout-com-no-layout-html"><a href="http://learnlayout.com/no-layout.html" target="_blank">No Layout</a></h2>
-<p>Because you have to start somewhere.</p>
-<p>Resize.  Resize.  Resize.</p>
-<h2 id="-display-http-learnlayout-com-display-html"><a href="http://learnlayout.com/display.html" target="_blank">display</a></h2>
-<p><code>display</code> is CSS&apos;s most important property for controlling layout.</p>
-<p>Stomp. Stomp.  Stomp.</p>
-<p>I repeat... <code>display</code> is CSS&apos;s <strong>most important property</strong> for controlling layout.</p>
-<p><a href="https://en.wikipedia.org/wiki/The_Usual_Suspects" target="_blank">The Usual Suspects</a>:</p>
-<ul>
-<li>block</li>
-<li>inline</li>
-<li>none</li>
-</ul>
-<p>Demo (compare visibility/display): <a href="http://codepen.io/mattscilipoti/pen/JdpdoJ" target="_blank">http://codepen.io/mattscilipoti/pen/JdpdoJ</a></p>
-<p>To give you an idea of just how big the world is that you are entering, check out this list of <a href="https://developer.mozilla.org/en-US/docs/CSS/display" target="_blank">display values</a>.  </p>
-<p>Don&apos;t worry about learning it all.  Focus on learning how to identify your specific problem and research the tools to answer it.</p>
-<h2 id="-margin-auto-http-learnlayout-com-margin-auto-html"><a href="http://learnlayout.com/margin-auto.html" target="_blank">margin: auto;</a></h2>
-<p>Useful for... centering.  Kinda.</p>
-<ul>
-<li>use <code>text-align:center</code> for <code>inline</code> and <code>inline-block</code></li>
-<li><code>margin:0 auto</code> for <code>block</code></li>
-</ul>
-<h2 id="-max-width-http-learnlayout-com-max-width-html"><a href="http://learnlayout.com/max-width.html" target="_blank">max-width</a></h2>
-<p>And its twin: <code>min-width</code></p>
-<h2 id="-the-box-model-http-learnlayout-com-box-model-html"><a href="http://learnlayout.com/box-model.html" target="_blank">The Box Model</a></h2>
-<p>You Do: One of these things is not like the other...</p>
+<h2 id="note">Note</h2>
+<p>Links for all the Codepen examples I&apos;ll be using in class are in their respective sections in the lesson plan. If you want to play around with them yourselves, make sure to follow along!  </p>
+<h2 id="framing-5-5">Framing (5 / 5)</h2>
 <blockquote>
-<p>Compare the top &amp; bottom box.  </p>
-<ol>
-<li>Are they the same width?</li>
-<li>What is different?</li>
-<li>What settings would you use to make them equal?</li>
-</ol>
+<p>Where are we? How did we get here? Where are we going?</p>
 </blockquote>
-<hr>
-<p>Answers:</p>
-<ol>
-<li>Yes.  <code>width: 500px;</code></li>
-<li><code>padding</code> and <code>border</code></li>
-<li><code>.fancy { width: 386 }</code></li>
-</ol>
-<h2 id="-box-sizing-http-learnlayout-com-box-sizing-html"><a href="http://learnlayout.com/box-sizing.html" target="_blank">box-sizing</a></h2>
-<p><code>box-sizing: border-box;</code> - just one solution to this problem.</p>
-<h2 id="-position-http-learnlayout-com-position-html"><a href="http://learnlayout.com/position.html" target="_blank">position</a></h2>
+<p>Over the last two weeks, we have covered the basics of front-end web development. Today&apos;s CSS lesson is about preparing
+you for Project 1, your first portfolio piece! More on Project 1 Friday.</p>
+<p>Today we&apos;ll focus on layout, common (but more advanced CSS selectors), and styling forms to enhance the user experience.</p>
+<h2 id="layout-turn-talk-5-10">Layout: Turn &amp; Talk (5 / 10)</h2>
+<p>Spend 2 minutes talking with a partner about the CSS properties we have learned this course that allow us to control layout.</p>
 <ul>
-<li>static: not positioned</li>
-<li>relative: relative to normal position</li>
-<li>fixed: relative to viewport</li>
-<li>absolute: relative to the nearest <strong>positioned</strong> ancestor</li>
+<li>What can we do with these properties?</li>
+<li>What tools do we still lack?</li>
 </ul>
-<h2 id="-position-example-8-19-http-learnlayout-com-position-example-html"><a href="http://learnlayout.com/position-example.html" target="_blank">Position Example 8/19</a></h2>
-<p>Let&apos;s start by reviewing the page.  Container div, nav, 3 sections, and a footer.</p>
-<h2 id="exercise-positioning-operation">Exercise: Positioning Operation</h2>
-<p><a href="https://github.com/ga-dc/positioning_operation" target="_blank">https://github.com/ga-dc/positioning_operation</a></p>
-<h2 id="-float-http-learnlayout-com-float-html"><a href="http://learnlayout.com/float.html" target="_blank">float</a></h2>
-<p>Often used for layouts.  Coming soon...</p>
-<h2 id="-clear-http-learnlayout-com-clear-html"><a href="http://learnlayout.com/clear.html" target="_blank">clear</a></h2>
+<h2 id="position-20-30">Position (20 / 30)</h2>
+<p>We&apos;ve used combinations of <code>margin</code> <code>border</code> and <code>padding</code> to modify the layout of DOM elements. But changing the box model isn&apos;t always enough...</p>
 <ul>
-<li>left</li>
-<li>right</li>
-<li><strong>both</strong>: usually, this is the right tool for the job</li>
+<li>Sometimes we need to move the box itself! That&apos;s where <strong>position</strong> comes in.</li>
+<li>We could do that with <code>margin</code>, but our CSS would get pretty messy and unpredictable.</li>
+<li><strong>Position</strong> has 5 properties we can use to control layout...</li>
 </ul>
-<h2 id="-the-clearfix-hack-http-learnlayout-com-clearfix-html"><a href="http://learnlayout.com/clearfix.html" target="_blank">the clearfix hack</a></h2>
-<blockquote>
-<p>Q. How does <code>.clearfix</code> differ from other css rules we have applied?</p>
-</blockquote>
-<hr>
-<p>A. It&apos;s not for a specific page or component.  It&apos;s reused in many places.</p>
-<p>Ensure you organize these &quot;reusable&quot; css rules together.  You can group them together in styles.css, but I recommend using a separate file (shared.css, constraints.css, )</p>
-<p>Don&apos;t miss the links.</p>
-<h2 id="-percent-width-http-learnlayout-com-percent-html"><a href="http://learnlayout.com/percent.html" target="_blank">percent width</a></h2>
-<p>As the name implies.</p>
+<h3 id="how-do-we-offset-the-position-of-an-element">How do we offset the position of an element?</h3>
+<p><code>left</code> <code>right</code> <code>top</code> <code>bottom</code></p>
 <ul>
-<li>You will see this a lot in layouts.</li>
-<li>Sometimes combined with min/max-width.</li>
+<li>If <code>left: 100px;</code>, then the element is offset (or pushed away) 100px left from its default position.</li>
+<li>How and whether elements can be offset depends on the value of their <strong>position</strong> property.</li>
+<li>Demo <strong>[<a href="http://codepen.io/amaseda/pen/yYvBEq" target="_blank">Codepen</a>]</strong>.</li>
 </ul>
-<h2 id="-media-queries-http-learnlayout-com-media-queries-html"><a href="http://learnlayout.com/media-queries.html" target="_blank">media queries</a></h2>
-<p>Responsive Design is a topic for another lesson.</p>
-<h2 id="misc">Misc</h2>
+<p><strong>I&apos;ll be using this <a href="http://codepen.io/amaseda/pen/LpQNZv" target="_blank">Codepen</a> to illustrate <code>position</code>.</strong></p>
+<h3 id="static">Static</h3>
+<p>All elements are <code>static</code> by default.</p>
 <ul>
-<li>Ever wanted to make a grid of boxes?  Check out <a href="http://learnlayout.com/inline-block.html" target="_blank"><code>inline-block</code></a></li>
-<li>Want text in <a href="http://learnlayout.com/column.html" target="_blank">columns?</a><ul>
-<li><code>column-count</code></li>
-<li><code>column-gap</code></li>
+<li>When <code>position: static;</code> you cannot offset the position of an element.</li>
+<li>You will only need to type this out if you need to override an existing <code>property</code> value.</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<p>A fixed element is pinned to a designated place on the browser window.</p>
+<ul>
+<li>Use <code>left</code> <code>right</code> <code>top</code> <code>bottom</code> to designate where on the page the fixed element should be displayed.</li>
+<li>When you scroll, a fixed element will remain the same place in the browser window.</li>
+<li>This can be useful when creating a header or footer menu that stays with the user as he/she explores a website.</li>
+</ul>
+<h3 id="relative-and-absolute-positioning">Relative and Absolute Positioning</h3>
+<p><code>relative</code> and <code>absolute</code> positioning can be a bit confusing at first. Let&apos;s begin with some exploration...</p>
+<p><strong>YOU DO:</strong> Take two minutes to apply <code>relative</code> and <code>absolute</code> positioning to the in-class example.</p>
+<ul>
+<li>What do you notice when you apply <code>left</code> <code>right</code> <code>top</code> <code>bottom</code>? <strong>Where are the blocks offset from?</strong></li>
+</ul>
+<h3 id="relative">Relative</h3>
+<p>When we change the <code>left</code> <code>right</code> <code>top</code> <code>bottom</code> of a relatively-positioned element, it is moved from its position in the document.</p>
+<ul>
+<li>Really, it&apos;s a statically-positioned element that can be offset.</li>
+<li>When a relatively-positioned element is moved, it does not affect the position of other elements.</li>
+</ul>
+<h3 id="absolute">Absolute</h3>
+<p>Absolutely-positioned elements are offset based on the position of their parent container.</p>
+<ul>
+<li>So an element with <code>top: 0</code> and <code>left: 0</code> will be moved to the upper left corner of that element&apos;s parent container.</li>
+<li>They are extracted from the document flow.</li>
+</ul>
+<h4 id="combining-different-position-values">Combining Different Position Values</h4>
+<p>Absolute position is particularly useful when we want to pinpoint the position of an element inside a given container.</p>
+<ul>
+<li>We can do this by setting the container to <code>position: relative</code> and the elements inside of it to <code>position: absolute</code>.<ul>
+<li><a href="https://css-tricks.com/absolute-positioning-inside-relative-positioning/" target="_blank">This CSS Tricks post</a> does a good job of demonstrating this.</li>
 </ul>
 </li>
-<li>flexbox: interesting stuff.  Covered in Responsive Design lesson.</li>
-<li>css frameworks: we have a lesson about these too.  <blockquote>
-<p>They&apos;re no replacement for knowing how CSS works.</p>
-</blockquote>
+<li><a href="http://a.singlediv.com/" target="_blank">radical</a></li>
+</ul>
+<h3 id="exercise-positioning-operation-15-45">Exercise: Positioning Operation (15 / 45)</h3>
+<p>Spend 10 minutes playing Operation using what you&apos;ve learned so far: <a href="https://github.com/ga-dc/positioning_operation" target="_blank">Positioning Operation</a></p>
+<h2 id="break-10-55">Break (10 / 55)</h2>
+<h2 id="floats-20-75">Floats (20 / 75)</h2>
+<p>Sometimes our layout goals are simpler. Rather than pinpointing the position of an element, we may just want to move it to the left or right side of a page.</p>
+<ul>
+<li>We accomplish that using another CSS property: <code>float</code>.</li>
+</ul>
+<p>A basic example you&apos;ll encounter in most tutorials is the &quot;text wrap&quot;, or surrounding an image with text <strong>[<a href="http://codepen.io/amaseda/pen/ZbvwMV" target="_blank">Codepen</a>]</strong>.</p>
+<ul>
+<li>Images are, by default, <code>inline</code> elements.</li>
+<li>To remove them from that flow and re-position them, we set <code>float</code> to either <code>left</code> or <code>right</code>.</li>
+<li>We can also do this with multiple images with similar or varying <code>float</code> values.</li>
+</ul>
+<p>We can also use floats to set up the entire layout of a webpage...</p>
+<ul>
+<li><a href="https://github.com/" target="_blank">We can use floats to replicate the basic structure of GitHub&apos;s homepage.</a>.</li>
+<li>Let&apos;s try that out ourselves <strong>[<a href="http://codepen.io/amaseda/pen/JYMxwj" target="_blank">Codepen</a>]</strong>.</li>
+</ul>
+<h3 id="clear">Clear</h3>
+<p>That all sounds pretty straightforward. But floating, if untamed, can cause some layout issues...</p>
+<p>Let&apos;s use the first example, but this time without any text <strong>[<a href="http://codepen.io/amaseda/pen/NGXQKZ" target="_blank">Codepen</a>]</strong>.</p>
+<ul>
+<li>What happens to the container when we set our image to <code>float: left;</code>?</li>
+<li>What about if we substitute our image with a block element (e.g., <code>&lt;div&gt;</code>)?</li>
+<li>When all the elements inside a container are floated, it shrinks to the smallest size possible.<ul>
+<li>Inline element dimensions are ignored.</li>
+<li>Block elements are condensed to the smallest size possible.</li>
+</ul>
 </li>
 </ul>
-<h2 id="google-fonts">Google fonts</h2>
-<p><a href="https://www.google.com/fonts#" target="_blank">https://www.google.com/fonts#</a></p>
-<ol>
-<li><p>Choose:
-Search or browse hundreds of font families, then add the ones you like to your Collection.</p>
-</li>
-<li><p>Review:
-Compare and refine your Collection, even see the styles in a dynamic sample layout.</p>
-</li>
-<li><p>Use:
-Grab the code we prepare and you&#x2019;re ready to add the Collection to your website!</p>
-</li>
-</ol>
-<h2 id="bonus-font-awesome">Bonus: Font-Awesome</h2>
-<p><a href="http://fontawesome.io/get-started/" target="_blank">http://fontawesome.io/get-started/</a></p>
+<p>We can fix this using the <code>clear</code> property.</p>
+<ul>
+<li>Watch what happens when we add an empty <code>&lt;div&gt;</code> with a property of <code>clear: both;</code>...</li>
+<li>The container is re-sized to fit its children elements.</li>
+<li>This empty <code>&lt;div&gt;</code> is kind of ugly though...</li>
+</ul>
+<h3 id="clearfix">Clearfix</h3>
+<p>Enter clearfix.</p>
+<ul>
+<li><a href="http://nicolasgallagher.com/micro-clearfix-hack/" target="_blank">Nicolas Gallagher</a> created a technique that accomplishes the same thing by adding a class to the container.</li>
+<li>Makes use of the <code>:before</code> and <code>:after</code> pseudo-classes.</li>
+<li>Very reusable!</li>
+</ul>
+<h3 id="further-layout-reading">Further Layout Reading</h3>
+<p>We&apos;ll encounter the following in future lessons, but feel free to get a headstart...</p>
+<ul>
+<li><a href="http://alistapart.com/article/responsive-web-design" target="_blank">Responsive Web Design</a></li>
+<li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">Flexbox</a></li>
+<li>CSS Frameworks (e.g., <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>, <a href="http://foundation.zurb.com/" target="_blank">Foundation</a>)</li>
+</ul>
 <h2 id="advanced-css-selectors">Advanced CSS Selectors</h2>
-<h3 id="pseudo-element-after-before">pseudo-element <code>:after</code>, <code>:before</code></h3>
-<p>These allow you to insert content via CSS.  The content is not actually in the DOM, but it appears on the page as if it is.</p>
-<p>This css:</p>
-<pre><code class="lang-css"><span class="hljs-rule"><span class="hljs-attribute">div</span>:<span class="hljs-value">:after {
-  content: <span class="hljs-string">&quot;hi&quot;</span></span></span>;
-}
-</code></pre>
-<p>Causes &apos;hi&apos; to appear at the end of every div, essentially:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-comment">&lt;!-- Rest of stuff inside the div --&gt;</span>
-  hi
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<p>What content?</p>
+<p>Sometimes we want to be very particular about which elements on a page we&apos;re styling, whether that&apos;s for layout or otherwise. CSS comes with a number of <strong>advanced selectors</strong> that allow us to be very specific in which elements we target, for example...</p>
 <ul>
-<li>string: <code>content: &quot;a string&quot;;</code></li>
-<li>image: <code>content: url(/path/to/image.jpg);</code> - The image is inserted at it&apos;s exact dimensions and cannot be resized. Since things like gradients are actually images, a pseudo element can be a gradient.</li>
-<li>nothing: <code>content: &quot;&quot;;</code> - Useful for clearfix and inserting images as background-images (set width and height, and can even resize with background-size).</li>
-<li><p>counter: <code>content: counter(li);</code> - css-tricks says this is &quot;Really useful for styling lists until :marker comes along.&quot;  (This is above my paygrade.)</p>
-</li>
-<li><p><a href="https://css-tricks.com/pseudo-element-roundup/" target="_blank">https://css-tricks.com/pseudo-element-roundup/</a></p>
+<li>Each <code>&lt;li&gt;</code> inside of a <code>&lt;ul&gt;</code>.</li>
+<li>Every radio button on the page.</li>
+<li>Every even-numbered checkbox inside of a <code>&lt;div&gt;</code> with <code>class=&quot;what-a-mess&quot;</code>.</li>
+</ul>
+<h3 id="selector-scavenger-hunt-30-105">Selector Scavenger Hunt (30 / 105)</h3>
+<p>Break off into teams and spend 15 minutes researching the following...</p>
+<ul>
+<li><strong>Teams 1, 3, 4, 7:</strong> Pseudo-Selectors  </li>
+<li><strong>Teams 2, 5, 6, 8:</strong> Relationships  </li>
+</ul>
+<p>Each team should spend 15 minutes creating a <a href="http://codepen.io" target="_blank">Codepen(s)</a> that answers the below questions for their assigned topic.</p>
+<ul>
+<li>Make sure to include examples. Don&apos;t just write out definitions.</li>
+<li>When you&apos;re done, Slack the link to your <a href="http://codepen.io" target="_blank">Codepen(s)</a> in the classroom channel.</li>
+</ul>
+<h4 id="teams-1-3-5-7-pseudo-classes">Teams 1, 3, 5, 7: Pseudo-Classes</h4>
+<p>What are pseudo-classes? How do they differ from pseudo-elements?</p>
+<p>How do the following groups of pseudo-selectors work...</p>
+<ul>
+<li><code>:hover</code>, <code>:visited</code>, <code>:active</code></li>
+<li><code>:first-of-type</code>, <code>:nth-of-type</code></li>
+<li><code>:first-child</code>, <code>:nth-child</code></li>
+<li>Another one of your choice!<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes</a></li>
+</ul>
 </li>
 </ul>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_Started/Selectors" target="_blank">https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_Started/Selectors</a></p>
-<h3 id="you-do-write-pair-share-students-will-create-html-and-css-to-illustrate-each-selector">You Do (Write/Pair/Share): Students will create html and css to illustrate each selector.</h3>
-<p>Let&apos;s get more comfortable with the tools we&apos;ll be using as developers.</p>
-<p>Break classroom into 3 groups.  Each group gets a category to research.  This will be individual/pair work, but your group number indicates which category you should focus on.</p>
-<p>You will:</p>
+<h4 id="teams-2-4-6-8-relationships">Teams 2, 4, 6, 8: Relationships</h4>
+<p>With a single selector, how do we select...</p>
 <ul>
-<li>research a selector</li>
-<li><p>create a few examples in CodePen (or similar) to share with class.  Try to illustrate different scenarios.</p>
-</li>
-<li><p>By Relationship</p>
-</li>
-<li>By Attribute</li>
-<li>By pseudo-class</li>
+<li>Child elements</li>
+<li>Direct child elements</li>
+<li>Elements of a certain type and class (e.g., <code>&lt;div class=&quot;pizza&quot;&gt;&lt;/div&gt;</code>)</li>
+<li>Multiple elements (e.g., <code>&lt;div class=&quot;pizza&quot;&gt;&lt;/div&gt;</code> AND <code>&lt;p id=&quot;hamburger&quot;&gt;&lt;/p&gt;</code>)</li>
+<li>Direct and Indirect Siblings</li>
+<li>Parent Elements</li>
 </ul>
-<h2 id="by-relationship-section-target-element">By relationship: <code>section:target &gt; element</code></h2>
+<p><a href="http://www.w3.org/TR/selectors/#selectors" target="_blank">http://www.w3.org/TR/selectors/#selectors</a></p>
+<h2 id="break-10-115">Break (10 / 115)</h2>
+<h2 id="stlying-html-forms">Stlying HTML Forms</h2>
+<p><a href="http://codepen.io/jshawl/pen/OyQJpZ?editors=110" target="_blank">http://codepen.io/jshawl/pen/OyQJpZ?editors=110</a></p>
+<h2 id="exercise-moonrise-kingdom-30-145">Exercise: Moonrise Kingdom (30 / 145)</h2>
+<p>You probably don&apos;t have all the CSS knowledge required to do this exercise perfectly. That&apos;s okay!</p>
 <ul>
-<li>A E<blockquote>
-<p>Any E element that is a descendant of an A element (that is: a child, or a child of a child, etc.)</p>
-</blockquote>
-</li>
-<li>A &gt; E<blockquote>
-<p>Any E element that is a child (i.e. direct descendant) of an A element</p>
-</blockquote>
-</li>
-<li>E:first-child<blockquote>
-<p>Any E element that is the first child of its parent</p>
-</blockquote>
-</li>
-<li>B + E<blockquote>
-<p>Any E element that is the next sibling of a B element (that is: the next child of the same parent)</p>
-</blockquote>
-</li>
+<li>Use what you&apos;ve learned so far and when in doubt: ask a classmate, Google it or ask an instructor.</li>
+<li>As always, you&apos;re encourage to work with each other on this!</li>
+<li>Some things to look up: Google web fonts, percent widths.</li>
 </ul>
-<h3 id="by-attribute-input-type-checkbox">By attribute: <code>input[type=checkbox]</code></h3>
+<p><a href="http://github.com/ga-dc/moonrise_kingdom" target="_blank">http://github.com/ga-dc/moonrise_kingdom</a></p>
+<h2 id="closing-q-a-5-150">Closing Q&amp;A (5 / 150)</h2>
+<h3 id="turn-and-talk-1">Turn-and-Talk (1)</h3>
+<h2 id="suggested-exercises">Suggested Exercises</h2>
 <ul>
-<li><code>selector[attribute=value]</code></li>
-</ul>
-<h3 id="by-pseudo-class-nth-of-type-odd">By pseudo-class: <code>:nth-of-type(odd)</code></h3>
-<p>Also known as &quot;pseudo-classes&quot;, in CSS, are used to indicate elements in a special state or position.</p>
-<p>Remember <code>:hover</code>, <code>:visited</code>?  We&apos;re adding a few more.</p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes</a></p>
-<ul>
-<li><code>:nth-child(1)</code></li>
-<li><code>:nth-of-type(odd)</code></li>
-</ul>
-<h2 id="homework">Homework:</h2>
-<p><a href="https://github.com/ga-dc/ecardly" target="_blank">https://github.com/ga-dc/ecardly</a></p>
-<h2 id="sample-questions">Sample questions</h2>
-<ul>
-<li>&quot;What is the difference between &apos;relative&apos; and &apos;absolute&apos; positioning?&quot;</li>
-<li>&quot;What is a reliable source for 3rd party fonts?&quot;</li>
-<li>&quot;Name 2 pseudo-classes that allow css to add content to a page.&quot;</li>
+<li>Continue working on Moonrise Kingdom.</li>
+<li><a href="https://github.com/ga-dc/ecardly" target="_blank">eCardly</a></li>
 </ul>
 
                     
