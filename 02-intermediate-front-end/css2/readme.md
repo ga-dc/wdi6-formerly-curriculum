@@ -1,14 +1,23 @@
 # CSS2 - Layout, Advanced Selectors, Etc.
 
-* List use cases for `relative` `static` `absolute` and `fixed` positioning.
+* Position elements using `position: [relative | static | fixed | absolute]`
 * Use the `float` and `clear` properties to position elements on a webpage.
+* Explain what a clearfix is and when you would use one.
 * Use advanced CSS selectors -- attributes, pseudo-selector, relationships -- to target elements on a webpage.
+* Use pseudo elements to style forms.
 
 ## Note
 
 Links for all the Codepen examples I'll be using in class are in their respective sections in the lesson plan. If you want to play around with them yourselves, make sure to follow along!  
 
 ## Framing (5 / 5)
+
+>Where are we? How did we get here? Where are we going?
+
+Over the last two weeks, we have covered the basics of front-end web development. Today's CSS lesson is about preparing
+you for Project 1, your first portfolio piece! More on Project 1 Friday.
+
+Today we'll focus on layout, common (but more advanced CSS selectors), and styling forms to enhance the user experience.
 
 ## Layout: Turn & Talk (5 / 10)
 
@@ -62,6 +71,7 @@ Absolutely-positioned elements are offset based on the position of their parent 
 
 When working with parent-child elements, pay attention to their `position` properties.
 * [This CSS Tricks post](https://css-tricks.com/absolute-positioning-inside-relative-positioning/) does a good job of demonstrating what happens when you place absolutely-positioned elements inside a relatively-positioned container.
+* [radical](http://a.singlediv.com/)
 
 ### Exercise: Positioning Operation (15 / 45)
 
@@ -133,38 +143,34 @@ Each team should spend 15 minutes creating a [Codepen(s)](http://codepen.io) tha
 * Make sure to include examples. Don't just write out definitions.
 * When you're done, Slack the link to your [Codepen(s)](http://codepen.io) in the classroom channel.
 
-#### Teams 1, 4, 7: Pseudo-Selectors
+#### Teams 1, 3, 4, 7: Pseudo-Selectors
 
-What are pseudo-selectors?  
+What are pseudo-classes? How do they differ from pseudo-elements?
 
 How do the following groups of pseudo-selectors work...
 * `:hover`, `:visited`, `:active`
 * `:first-of-type`, `:nth-of-type`
 * `:first-child`, `:nth-child`
-* Another one of your choice!
+* Another one of your choice! 
+  * https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
 
-#### Teams 2, 5, 8: Relationships
+#### Teams 2, 5, 6, 8: Relationships
 
 With a single selector, how do we select...
 * Child elements
 * Direct child elements
 * Elements of a certain type and class (e.g., `<div class="pizza"></div>`)
 * Multiple elements (e.g., `<div class="pizza"></div>` AND `<p id="hamburger"></p>`)
+* Direct and Indirect Siblings
+* Parent Elements
 
-#### Teams 3, 6: Attributes
-
-How do we select DOM elements in CSS using their attributes?  
-
-How do we select and style the following form elements...
-* Text field
-* Checkbox
-* Radio Button
-* Submit button
-
-What are some other attributes you anticipate selecting often?  
-
+http://www.w3.org/TR/selectors/#selectors
 
 ## Break (10 / 115)
+
+## Stlying HTML Forms
+
+http://codepen.io/jshawl/pen/OyQJpZ?editors=110
 
 ## Exercise: Moonrise Kingdom (30 / 145)
 
