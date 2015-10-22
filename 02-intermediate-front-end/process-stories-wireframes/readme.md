@@ -57,7 +57,14 @@ This also provides the additional benefit of allowing for steering. Changing the
 ### What does that mean for you?
 For your projects you can structure your own sprints in even smaller increments. Maybe even 1 or 2 days. Perhaps shorter! Get something done in the sprint and iterate on it
 
-### Paper Plane Exercise Waterfall vs Agile
+### Think, Pair, Share: Waterfall vs Agile (10 minutes)
+
+Take a moment to read through each of the following questions, then discuss with a partner:
+1. When does it make sense to use the waterfall SDLC?
+2. When would you favor using the agile SDLC?
+3. Can you think of any companies that adhere to waterfall principles?
+4. Which companies come to mind when thinking of the agile methodology?
+5. Can you list ways conventional companies are adjusting to the agile movement?
 
 ### Scheduling
 When planning these sprints, set concrete goals for yourself. I'm going to achieve X by 12:30 so that I can get started on Y after lunch. I will finish Y by close of business so that I can start on Z. You could scale even further than that.
