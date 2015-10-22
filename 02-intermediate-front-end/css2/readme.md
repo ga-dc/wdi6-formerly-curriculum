@@ -9,6 +9,7 @@
 ## Note
 
 Links for all the Codepen examples I'll be using in class are in their respective sections in the lesson plan. If you want to play around with them yourselves, make sure to follow along!  
+* Make sure to fork the repo so you can make/save changes to the examples.
 
 ## Framing (5 / 5)
 
