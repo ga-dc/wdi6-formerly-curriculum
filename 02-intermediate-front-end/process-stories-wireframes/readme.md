@@ -1,12 +1,12 @@
 # User Stories/MVP/Agile Software Development
 
 ## Learning Objectives
-- Define SDLC and why we use it as developers.
-- Provide a general overview of what "Agile" means and contrast it to Waterfall
-- Identify the components of a good user story
+- Define Software Development Life Cycle and why we use it as developers.
+- Provide a general overview of what "Agile" means and contrast it to Waterfall.
+- Identify the components of a good user story.
 - Explain what Trello is, and why we use it.
-- define what a backlog is and how they are implemented in developer workflow
-- Create user stories for existing web applications
+- Define what a backlog is and how they are implemented in developer workflow.
+- Create user stories for existing web applications.
 - Differentiate MVP from application.
 - Generate user stories in order to create proof of concept for MVP(minimum viable product)
 
@@ -15,7 +15,7 @@
 What does mean to be a developer? Do we, as developers, just sit in our mom's basement, drinking mountain dew absent minded from the outside world and just code all day? Maybe. Hopefully not. Development is not just about coding. Planning, preparing, discussion and iteration is our lifeblood. It's integral to how effective development happens. Let's look at [facebook from 10 years ago](http://editorial.designtaxi.com/news-facebook050214/2.jpg). Now, let's look at facebook [now](http://rack.0.mshcdn.com/media/ZgkyMDE0LzA1LzI5LzIxLzIwMTB6dWNrLmQ0NGNiLmpwZwpwCXRodW1iCTg1MHg4NTA-CmUJanBn/461e20d3/dcf/2010zuck.jpg). Clearly these changes didn't happen overnight. Some serious planning and development methodologies went into this.
 
 ## SDLC
-THE SDLC is the systems development life cycle, also referred to as the application development life-cycle. It is a term used to describe a process for planning, creating, testing, and deploying an information system.
+THE SDLC is the software development life cycle, also referred to as the application development life-cycle. It is a term used to describe a process for planning, creating, testing, and deploying an information system.
 
 One form of SDLC is the waterfall methodology.
 
@@ -54,7 +54,7 @@ The Basic Implementation of Agile workflow is rapid development based on quick i
 This also provides the additional benefit of allowing for steering. Changing the direction of the project on a per iteration basis if need be.
 
 
-### What does that mean for you guys?
+### What does that mean for you?
 For your projects you can structure your own sprints in even smaller increments. Maybe even 1 or 2 days. Perhaps shorter! Get something done in the sprint and iterate on it
 
 ### Paper Plane Exercise Waterfall vs Agile
@@ -63,8 +63,6 @@ For your projects you can structure your own sprints in even smaller increments.
 When planning these sprints, set concrete goals for yourself. I'm going to achieve X by 12:30 so that I can get started on Y after lunch. I will finish Y by close of business so that I can start on Z. You could scale even further than that.
 
 Traditionally during the project weeks you'll have time to work from home. It is VITAL that you guys schedule yourselves well.
-
-> But the idea behind it, short get stuff done periods of time, and constantly iterating. Getting something to work MVP
 
 ## MVP Minimum Viable Product
 
@@ -102,6 +100,8 @@ This app should have a really good social networking engine.
 
 ### In - Class Ex( 20 m )
 Individually, assign numbers 1-5 for all students. For whichever number a student receives individually write as many user stories as they can for the next 5 minutes. In the next 10 minutes, students will group in their respective applications, and whiteboard at least 10 user stories. 5 minutes to review user stories.
+
+What is the most essential feature for this product? What's the MVP?
 
 1. Facebook
 2. Ebay
