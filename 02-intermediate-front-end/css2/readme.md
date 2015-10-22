@@ -167,7 +167,6 @@ With a single selector, how do we select...
 * Elements of a certain type and class (e.g., `<div class="pizza"></div>`)
 * Multiple elements (e.g., `<div class="pizza"></div>` AND `<p id="hamburger"></p>`)
 * Direct and Indirect Siblings
-* Parent Elements
 
 http://www.w3.org/TR/selectors/#selectors
 
