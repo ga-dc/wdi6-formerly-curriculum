@@ -30,7 +30,7 @@ Spend 2 minutes talking with a partner about the CSS properties we have learned 
 We've used combinations of `margin` `border` and `padding` to modify the layout of DOM elements. But changing the box model isn't always enough...
 * Sometimes we need to move the box itself! That's where **position** comes in.
 * We could do that with `margin`, but our CSS would get pretty messy and unpredictable.
-* **Position** has 5 properties we can use to control layout...
+* **Position** has 4 properties we can use to control layout...
 
 ### How do we offset the position of an element?
 
@@ -39,9 +39,10 @@ We've used combinations of `margin` `border` and `padding` to modify the layout 
 * How and whether elements can be offset depends on the value of their **position** property.
 * Demo **[[Codepen](http://codepen.io/amaseda/pen/yYvBEq)]**.
 
-**I'll be using this [Codepen](http://codepen.io/amaseda/pen/LpQNZv) to illustrate `position`.**
-
 ### Static
+
+**I'll be using this [Codepen](http://codepen.io/amaseda/pen/LpQNZv) to illustrate the different `position` properties.**  
+
 All elements are `static` by default.
 * When `position: static;` you cannot offset the position of an element.
 * You will only need to type this out if you need to override an existing `property` value.
