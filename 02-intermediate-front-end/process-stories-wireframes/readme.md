@@ -150,3 +150,9 @@ The important thing for this course is how we use these tools, principles and me
 
 ## Homework
 The only homework from this lesson is to use what we've learned today and apply it for our first project.
+
+## Resources
+- [Write Better User Stories](http://codesqueeze.com/the-easy-way-to-writing-good-user-stories/)
+- [Balsamiq Mockups](https://balsamiq.com/)
+- [Prototyping with Marvel](https://marvelapp.com/)
+- [Agile Manifesto Principles](http://agilemanifesto.org/principles.html)
