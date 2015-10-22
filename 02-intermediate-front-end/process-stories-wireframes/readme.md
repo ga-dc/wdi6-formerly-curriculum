@@ -124,7 +124,7 @@ Have students sign up and do quick demo of making a board and cards/moving cards
 - Have students create empty Trello Board for Project 1.
 - Have students create a card to... create user stories for Project 1
 
-## Backlog
+### Backlog
 
 A backlog is a list of features or technical tasks which the team maintains and which, at a given moment, are known to be necessary and sufficient to complete a project or a release
 
@@ -137,3 +137,22 @@ Its a set of work that is targeted to achieve successful delivery of a project o
 The icebox is literally where all your ideas go that you don’t currently plan to build. It doesn’t mean you can’t thaw them out later, but to you it represents what you should be investigating further. The backlog, however, is things you definitely plan to build
 
 TLDR would be nice to get too, but its not happening any time soon.
+
+## Wireframes, what will our MVP look like?
+A wireframe is a simple blueprint/template/sketch/visual outline of the components of your website. Though there are some great digital wireframing tools out there, all you really need to make a wireframe for your personal use is a piece of paper and something to write with.  
+- READ ME: [Wireframe Basics](https://www.gliffy.com/uses/wireframe-software/)
+- Curious to learn more about wireframes? Ask a UXDI student!
+
+## Closing
+We have just had a crash course in the some of the basics involved in the development process, project management, and idea development.
+
+The important thing for this course is how we use these tools, principles and methodologies to help us plan for, and work efficiently on our projects.
+
+## Homework
+The only homework from this lesson is to use what we've learned today and apply it for our first project.
+
+## Resources
+- [Write Better User Stories](http://codesqueeze.com/the-easy-way-to-writing-good-user-stories/)
+- [Balsamiq Mockups](https://balsamiq.com/)
+- [Prototyping with Marvel](https://marvelapp.com/)
+- [Agile Manifesto Principles](http://agilemanifesto.org/principles.html)
