@@ -124,6 +124,7 @@ Enter clearfix.
 
 We'll encounter the following in future lessons, but feel free to get a headstart...
 
+* [Learn Layout](http://learnlayout.com/): A great review of everything we've gone over so far (and more).
 * [Responsive Web Design](http://alistapart.com/article/responsive-web-design)
 * [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 * CSS Frameworks (e.g., [Bootstrap](http://getbootstrap.com/), [Foundation](http://foundation.zurb.com/))
