@@ -12,7 +12,7 @@
 
 ## Opening Framing
 
-What does mean to be a developer? Do we, as developers, just sit in our mom's basement, drinking mountain dew absent minded from the outside world and just code all day? Maybe. Hopefully not. Development is not just about coding. Planning, preparing, discussion and iteration is our lifeblood. It's integral to how effective development happens. Let's look at [facebook from 10 years ago](http://editorial.designtaxi.com/news-facebook050214/2.jpg). Now, let's look at facebook [now](http://rack.0.mshcdn.com/media/ZgkyMDE0LzA1LzI5LzIxLzIwMTB6dWNrLmQ0NGNiLmpwZwpwCXRodW1iCTg1MHg4NTA-CmUJanBn/461e20d3/dcf/2010zuck.jpg). Clearly these changes didn't happen overnight. Some serious planning and development methodologies went into this.
+What does mean to be a developer? Do we, as developers, just sit in our mom's basement, drinking mountain dew absent minded from the outside world and just code all day? Maybe. Hopefully not. Development is not just about coding. Planning, preparing, discussion and iteration is in our lifeblood. It's integral to how effective development happens. Let's look at [facebook from 10 years ago](http://editorial.designtaxi.com/news-facebook050214/2.jpg). Now, let's look at facebook [now](http://rack.0.mshcdn.com/media/ZgkyMDE0LzA1LzI5LzIxLzIwMTB6dWNrLmQ0NGNiLmpwZwpwCXRodW1iCTg1MHg4NTA-CmUJanBn/461e20d3/dcf/2010zuck.jpg). Clearly these changes didn't happen overnight. Some serious planning and development methodologies went into this.
 
 ## SDLC
 THE SDLC is the software development life cycle, also referred to as the application development life-cycle. It is a term used to describe a process for planning, creating, testing, and deploying an information system.
@@ -60,6 +60,7 @@ For your projects you can structure your own sprints in even smaller increments.
 ### Think, Pair, Share: Waterfall vs Agile (10 minutes)
 
 Take a moment to read through each of the following questions, then discuss with a partner:
+
 1. When does it make sense to use the waterfall SDLC?
 2. When would you favor using the agile SDLC?
 3. Can you think of any companies that adhere to waterfall principles?
