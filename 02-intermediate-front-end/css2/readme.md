@@ -58,7 +58,7 @@ A fixed element is pinned to a designated place on the browser window.
 `relative` and `absolute` positioning can be a bit confusing at first. Let's begin with some exploration...
 
 **YOU DO:** Take two minutes to apply `relative` and `absolute` positioning to the in-class example.
-* What do you notice when you apply `left` `right` `top` `bottom`? **Where are the blocks offset from?**
+* What do you notice when you apply `left` `right` `top` `bottom`? **Where are elements blocks offset from?**
 
 ### Relative
 When we change the `left` `right` `top` `bottom` of a relatively-positioned element, it is moved from its position in the document.
