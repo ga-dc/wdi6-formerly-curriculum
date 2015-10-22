@@ -72,7 +72,7 @@ Absolutely-positioned elements are offset based on the position of their parent 
 
 #### Combining Different Position Values
 
-Absolute position is particularly useful when we want to pinpoint the position of an element inside a given container.
+Absolute position is particularly useful when we want to pinpoint the position of an element inside a container.
 * We can do this by setting the container to `position: relative` and the elements inside of it to `position: absolute`.
   * [This CSS Tricks post](https://css-tricks.com/absolute-positioning-inside-relative-positioning/) does a good job of demonstrating this.
 * [radical](http://a.singlediv.com/)
