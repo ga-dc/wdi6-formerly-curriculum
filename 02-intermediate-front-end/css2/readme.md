@@ -77,7 +77,7 @@ Sometimes our layout goals are simpler. Rather than pinpointing the position of 
 A basic example you'll encounter in most tutorials is surrounding an image with text **[[Codepen](http://codepen.io/amaseda/pen/ZbvwMV)]**.
 * Images are, by default, `inline` elements.
 * To remove them from that flow and re-position them, we set `float` to either `left` or `right`.
-* We can do this with multiple images with similar or varying `float` values.
+* We can also do this with multiple images with similar or varying `float` values.
 
 We can also use floats to set up the entire layout of a webpage...
 * [We can use floats to replicate the basic structure of GitHub's homepage.](https://github.com/).
@@ -93,7 +93,6 @@ Let's use the first example, but this time without any text **[[Codepen](http://
 * When all the elements inside a container are floated, it shrinks to the smallest size possible.
   * Inline element dimensions are ignored.
   * Block elements are condensed to the smallest size possible.
-* [Best way to illustrate this is a bad thing?]
 
 We can fix this using the `clear` property.
 * Watch what happens when we add an empty `<div>` with a property of `clear: both;`...
