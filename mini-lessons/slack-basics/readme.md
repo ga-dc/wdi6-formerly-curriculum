@@ -9,6 +9,10 @@
 
 ## Outline
 
+### Get everyone added to all classrooms
+
+- Suggestion: Instructor invites a few students, then asks them to invite all the students around them.
+
 ### Notifications
 
 As you join more rooms, it's important to know how to control the flow of
