@@ -56,3 +56,15 @@ starred messages. Useful for remembering things.
 ### anonbot
 
 Demo messaging `Help:` to anonbot.
+
+## Solution Branches
+
+### When should you use them?
+
+When you're really stuck, it may be helpful to refer to the solution branch for next steps.
+
+However, please don't copy code and try to pass it off as your own. There's no benefit to you -- there aren't any grades here -- and it will just make the instructors frustrated with you!
+
+### How do you use them?
+
+`git checkout origin/solution`, usually. Then, to get *out* of the solution, `git checkout master`. (Substitute `master` with the name of whatever local branch you want to go into.)
