@@ -193,3 +193,9 @@ You probably don't have all the CSS knowledge required to do this exercise perfe
 
 * Continue working on Moonrise Kingdom.
 * [eCardly](https://github.com/ga-dc/ecardly)
+
+## Sample Quiz Questions
+
+* Where are elements with `position: relative` offset from when moved using `left` `right` `top` `bottom`?
+* What problem to floated elements present when not cleared using `clear`?
+* What pseudo-class would you use to select all the even-numbered instances of `<li>` on a page?
