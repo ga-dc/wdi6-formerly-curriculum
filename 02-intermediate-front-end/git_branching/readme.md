@@ -17,7 +17,7 @@ locally?
 2. What commands are used to share changes (commits) between repos?
 3. Describe the fork/clone model, and how it is used for HW submission.
 
-## You Do: Branching Overview (10 min)
+## You Do: Branching Overview (15 min)
 
 We are going to start with a [brief tutorial](http://pcottle.github.io/learnGitBranching/).  This is an introduction to branching.
 
@@ -28,14 +28,32 @@ We are going to start with a [brief tutorial](http://pcottle.github.io/learnGitB
   - Think about the results you expect *before* you press enter.
 - Whenever you see/type `git commit`, it may help to assume changes have been made and staged.  Why else would you "commit"?
 
-## You Do: Research Git Branching (10 min)
+## Think/Pair/Share-1/3/6: Why Branches?  (10 min)
+
+You've had a brief overview.  Let's take a minute to think about why they are important, then share with your neighbor, and we'll share what we feel is important.
+
+Q. Why is branching an important part of git?
+---
+
+> A. Branches are useful for many reasons, but some of the most common ones:
+
+> 1. To allow experimentation. By switching to a new branch, we can experiment,
+and if the experiment fails, we can delete it and easily switch back to master
+(or another branch of our choice). If it succeeds, we can merge those changes
+into master.
+2. To allow work to proceed on multiple features (or by multiple people) without
+interfering. When a feature is complete, it can be merged back into master.
+3. To allow easy bug fixes on a stable version while features are being developed.
+
+
+## You Do: Research Git Branching (15 min)
 
 - Read the "Using Branches" of
 * [Atlassian - Git Branching Tutorial](https://www.atlassian.com/git/tutorials/using-branches)
   - Let me know when you have reached the "git merge" section
   - You will see references to Subversion(SVN).  SVN is an older version control system.  I don't believe you need to know more than that to understand the comparisons.
 
-## What are Branches? (10 min)
+## What are Branches? (5 min)
 
 A branch in git is just a label on a  particular commit in a repository, along
 with all of it's history (parent commits).
@@ -50,20 +68,10 @@ tip of the branch.
 
 > From [Atlassian - Git Branching Tutorial](https://www.atlassian.com/git/tutorials/using-branches/git-branch)
 
-## Think/Pair/Share-2/3/5: Why Branches?  (15 min)
 
-Branches are useful for many reasons, but some of the most common ones:
+## Break? (10 min)
 
-1. To allow experimentation. By switching to a new branch, we can experiment,
-and if the experiment fails, we can delete it and easily switch back to master
-(or another branch of our choice). If it succeeds, we can merge those changes
-into master.
-2. To allow work to proceed on multiple features (or by multiple people) without
-interfering. When a feature is complete, it can be merged back into master.
-3. To allow easy bug fixes on a stable version while features are being developed.
-
-
-## Example (10 min)
+## Example (15 min)
 
 (Use [GitUp](http://gitup.co) to demo visually what's happening).
 
