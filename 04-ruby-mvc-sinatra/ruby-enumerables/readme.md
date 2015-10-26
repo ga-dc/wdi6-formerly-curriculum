@@ -217,7 +217,7 @@ Use `each` to do the following...
 - Print out the Celsius values for an array containing Fahrenheit values.
 
   ```ruby
-  fahrenheit_temps = [ -128.6, 0, 32, 100, 134 ]
+  fahrenheit_temps = [ -128.6, 0, 32, 140, 212 ]
   ```
 
 - Insert all the values in the `artists` array into the `ninja_turtles` array.
@@ -284,9 +284,9 @@ Use `map` to do the following...
 - Create an array with the Celsius values for these Fahrenheit values.
 
   ```ruby
-  fahrenheit_temps = [ -128.6, 0, 32, 100, 134 ]
+  fahrenheit_temps = [ -128.6, 0, 32, 140, 212 ]
 
-  #=> [-199, 32, 89, 212, 273]
+  #=> [-89.2, -17.8, 0, 60, 100]
   ```
 
 
