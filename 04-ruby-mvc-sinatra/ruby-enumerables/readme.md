@@ -12,19 +12,31 @@ Enumerables are Ruby methods that use loops to interact with data collections in
 - You will use these!
 
 Q: What loops did we use in Javascript?
-- Q: Write out in JS, convert to Ruby.
-- In Ruby, we have a few more at our disposal...
+---
 
-#### While
+> A: while, do-while, for, for-in, forEach
+
+- Ruby's loops are similar...
+
+### While loop
 
 Like Javascript, runs the loop while a condition is true.
+
+```javascript
+// Prints out numbers from 1 to 10
+var counter = 1;
+do {
+  console.log("counter:", counter);
+  counter++;
+} while(counter < 10);
+```
 
 ```ruby
 # Prints out numbers from 1 to 10
 counter = 1
-while( counter <= 10 ) do
-  puts counter
-  counter = counter + 1
+while (counter <= 10) do
+  puts "counter:#{counter}"
+  counter += 1 # increments counter by 1
 end
 ```
 
@@ -50,14 +62,14 @@ Similar to Javascript's for-in loop
 - The `i`'s in the below examples can be replaced with any variable (e.g., `age`)
 
 ```ruby
-# Prints out numbers from 1-10
-numbers = [1,2,3,4,5,6,7,8,9,10]
+# Prints out numbers from 5-10
+numbers = [5,6,7,8,9,10]
 for i in numbers
   puts i
 end
 
 # Can also do this using a range
-for i in (1..10)
+for i in (5..10)
   puts i
 end
 ```
@@ -76,11 +88,12 @@ end
 5.times do |i|
   puts i
 end
-# => 1
-# => 2
-# => 3
-# => 4
-# => 5
+0
+1
+2
+3
+4
+=> 5
 ```
 
 ### Break
@@ -189,11 +202,11 @@ Single-line
 
 Use `each` to do the following...  
 
-* Say hello to everybody in the below array of names (sample output: `Hello [person's name]!`).
+- Say hello to everybody in the below array of names (sample output: `Hello Donald!`).
 
-```ruby
-names = [ "Brian", "Chad", "Yakko", "Wacko", "Dot" ]
-```
+  ```ruby
+  names = [ "Donald", "Daisy", "Huey", "Duey", "Luey" ]
+  ```
 
 - Print out the squared values of every number in this numbers array.
 
@@ -222,13 +235,13 @@ names = [ "Brian", "Chad", "Yakko", "Wacko", "Dot" ]
   ```
 
 Can I get a quick fist-of-five on how you feel about `each` and enumerables so far?
-* If you feel good about this then you'll have no problem taking on other enumerables. Even the crazy ones.
+- There are many enumerable methods.  All of them look and feel similar to `each`.
 
 ## BREAK (10min)
 
 #### Map (5min)
 
-Map does the same thing as `each`, but it also generates a new collection with new values based on the code block. Say we want to double our `numbers` array and store it in a new variable...
+Map is similar to `each`.  It iterates through each element in the collection,  but `map` generates a new collection with values based on the code block. Say we want to double our `numbers` array and store it in a new array...
 
 ```ruby
 numbers = [ 1, 2, 3, 4, 5 ]
@@ -248,7 +261,36 @@ doubled
 
 **DIAGRAM:** MAP
 
-### Group Exercise: Documentation Dive (25min)
+### Exercise: Practice Map (5min)
+
+Use `map` to do the following...  
+
+- Create an array that appends "Duck" to everybody in this array of first names
+
+  ```ruby
+  first_names = [ "Donald", "Daisy" ]
+
+  #=> ["Donald Duck", "Daisy Duck"]
+  ```
+
+- Create an array containing the squared values of every number in this array.
+
+  ```ruby
+  numbers = [ 1, 3, 9, 11, 100 ]
+
+  # => [1, 9, 81, 121, 10000]
+  ```
+
+- Create an array with the Celsius values for these Fahrenheit values.
+
+  ```ruby
+  fahrenheit_temps = [ -128.6, 0, 32, 100, 134 ]
+
+  #=> [-199, 32, 89, 212, 273]
+  ```
+
+
+## Group Exercise: Documentation Dive (25min)
 
 Instructions: Each group will spend **10 minutes** using Ruby documentation to look up an assigned enumerable. Prepare your own definition of what it does and whiteboard an example.
 - You can test your example in IRB/Pry.
