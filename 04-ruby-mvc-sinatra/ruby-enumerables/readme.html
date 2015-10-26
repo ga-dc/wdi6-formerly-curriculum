@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="3.2" data-basepath="../.." data-revision="Mon Oct 26 2015 13:41:26 GMT+0000 (UTC)">
+    <div class="book" data-level="3.2" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1238,37 +1238,47 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h3 id="learning-objectives">Learning Objectives</h3>
+                        <h1 id="ruby-enumerables-learning-objectives">Ruby Enumerables: Learning Objectives</h1>
 <ul>
 <li>Use Ruby loops to iterate over code blocks.</li>
 <li>Define what a Ruby enumerable method is.</li>
 <li>Identify useful Ruby enumerables, including <code>.each</code>, <code>.map</code> and <code>.select</code>.</li>
 <li>Use enumerables to traverse, sort and modify collections.</li>
 </ul>
-<h3 id="loops-30min">Loops (30min)</h3>
+<h2 id="loops-30min">Loops (30min)</h2>
 <p>Enumerables are Ruby methods that use loops to interact with data collections in special ways.</p>
 <ul>
 <li>But before we talk about enumerables, let&apos;s see how traditional loops work in Ruby...</li>
 <li>You will use these!</li>
 </ul>
-<p>Q: What loops did we use in Javascript?</p>
+<h2 id="q-what-loops-did-we-use-in-javascript">Q: What loops did we use in Javascript?</h2>
+<blockquote>
+<p>A: while, do-while, for, for-in, forEach</p>
+</blockquote>
 <ul>
-<li>Q: Write out in JS, convert to Ruby.</li>
-<li>In Ruby, we have a few more at our disposal...</li>
+<li>Ruby&apos;s loops are similar...</li>
 </ul>
-<h4 id="while">While</h4>
+<h3 id="while-loop">While loop</h3>
 <p>Like Javascript, runs the loop while a condition is true.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Prints out numbers from 1 to 10</span>
+<span class="hljs-keyword">var</span> counter = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">do</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;counter:&quot;</span>, counter);
+  counter++;
+} <span class="hljs-keyword">while</span>(counter &lt; <span class="hljs-number">10</span>);
+</code></pre>
 <pre><code class="lang-ruby"><span class="hljs-comment"># Prints out numbers from 1 to 10</span>
 counter = <span class="hljs-number">1</span>
-<span class="hljs-keyword">while</span>( counter &lt;= <span class="hljs-number">10</span> ) <span class="hljs-keyword">do</span>
-  puts counter
-  counter = counter + <span class="hljs-number">1</span>
+<span class="hljs-keyword">while</span> (counter &lt;= <span class="hljs-number">10</span>) <span class="hljs-keyword">do</span>
+  puts <span class="hljs-string">&quot;counter:<span class="hljs-subst">#{counter}</span>&quot;</span>
+  counter += <span class="hljs-number">1</span> <span class="hljs-comment"># increments counter by 1</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h4 id="until">Until</h4>
+<h3 id="until-loop">Until loop</h3>
 <p>Runs the loop until a condition is true (or while that condition is false).</p>
 <ul>
 <li>Essentially the opposite of <code>while</code></li>
+<li>No equivalent in javascript</li>
 </ul>
 <pre><code class="lang-ruby"><span class="hljs-comment"># Prints out numbers from 1 to 10</span>
 counter = <span class="hljs-number">1</span>
@@ -1277,24 +1287,24 @@ counter = <span class="hljs-number">1</span>
   counter += <span class="hljs-number">1</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h4 id="for">For</h4>
+<h3 id="for-in-loop">For-in loop</h3>
 <p>Similar to Javascript&apos;s for-in loop</p>
 <ul>
 <li>Don&apos;t need to end loop-opener with <code>do</code>.</li>
-<li>The <code>i</code>&apos;s in the below examples can be replaced with any variable (e.g., <code>number</code>)</li>
+<li>The <code>i</code>&apos;s in the below examples can be replaced with any variable (e.g., <code>age</code>)</li>
 </ul>
-<pre><code class="lang-ruby"><span class="hljs-comment"># Prints out numbers from 1-10</span>
-numbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>]
+<pre><code class="lang-ruby"><span class="hljs-comment"># Prints out numbers from 5-10</span>
+numbers = [<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>]
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> numbers
   puts i
 <span class="hljs-keyword">end</span>
 
 <span class="hljs-comment"># Can also do this using a range</span>
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> (<span class="hljs-number">1</span>..<span class="hljs-number">10</span>)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> (<span class="hljs-number">5</span>..<span class="hljs-number">10</span>)
   puts i
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h4 id="times">Times</h4>
+<h3 id="times">Times</h3>
 <p>Runs a loop a set number of times</p>
 <pre><code class="lang-ruby"><span class="hljs-comment"># Says &quot;Hello!&quot; five times</span>
 <span class="hljs-number">5</span>.times <span class="hljs-keyword">do</span>
@@ -1305,17 +1315,16 @@ numbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 <span class="hljs-number">5</span>.times <span class="hljs-keyword">do</span> |i|
   puts i
 <span class="hljs-keyword">end</span>
-<span class="hljs-comment"># =&gt; 1</span>
-<span class="hljs-comment"># =&gt; 2</span>
-<span class="hljs-comment"># =&gt; 3</span>
-<span class="hljs-comment"># =&gt; 4</span>
-<span class="hljs-comment"># =&gt; 5</span>
+<span class="hljs-number">0</span>
+<span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+<span class="hljs-number">3</span>
+<span class="hljs-number">4</span>
+<span class="hljs-status">=&gt;</span> <span class="hljs-number">5</span>
 </code></pre>
-<h4 id="break">Break</h4>
+<h3 id="break">Break</h3>
 <p><code>break</code> lets us end -- or &quot;break&quot; out of -- a loop.</p>
-<ul>
-<li>Q: What numbers do you expect to see on the screen when we run this <code>for</code> loop?</li>
-</ul>
+<h2 id="q-what-numbers-do-you-expect-to-see-on-the-screen-when-we-run-this-for-loop">Q: What numbers do you expect to see on the screen when we run this <code>for</code> loop?</h2>
 <pre><code class="lang-ruby">numbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>]
 <span class="hljs-keyword">for</span> number <span class="hljs-keyword">in</span> numbers
   puts number
@@ -1324,21 +1333,19 @@ numbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h4 id="next">Next</h4>
+<h3 id="next">Next</h3>
 <p><code>next</code> lets us skip to the next iteration of a loop.</p>
-<ul>
-<li>Q: What numbers do you expect to see on the screen when we run this <code>for</code> loop?</li>
-</ul>
-<pre><code class="lang-ruby">numbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>]
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> numbers
-  <span class="hljs-keyword">if</span> i%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>
-    <span class="hljs-keyword">next</span>
-  <span class="hljs-keyword">else</span>
-    puts i
+<h2 id="q-what-numbers-do-you-expect-to-see-on-the-screen-when-we-run-this-for-loop">Q: What numbers do you expect to see on the screen when we run this <code>for</code> loop?</h2>
+<pre><code class="lang-ruby">  numbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>]
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> numbers
+    <span class="hljs-keyword">if</span> i%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>
+      <span class="hljs-keyword">next</span>
+    <span class="hljs-keyword">else</span>
+      puts i
+    <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
 </code></pre>
-<h3 id="loops-exercise-99-bottles-of-beer-10min">Loops Exercise: 99 Bottles of Beer (10min)</h3>
+<h2 id="loops-exercise-99-bottles-of-beer-10min">Loops Exercise: 99 Bottles of Beer (10min)</h2>
 <p>You know how the song goes...</p>
 <ul>
 <li>&quot;99 bottles of beer on the wall. 99 bottles of beer. Take one down. Pass it around. 98 bottles of beer on the wall.&quot;</li>
@@ -1346,14 +1353,14 @@ numbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 </ul>
 <p>...and so on. Your job is to replicate the song in its entirety 4 times, each time using one of the loops we just went over: <code>while</code>, <code>until</code>, <code>for</code> and <code>times</code>.</p>
 <p><strong>BONUS:</strong> Use <code>next</code> so that the song only covers odd numbers.</p>
-<h3 id="enumerables">Enumerables</h3>
-<h4 id="what-are-enumerables">What Are Enumerables?</h4>
+<h2 id="enumerables">Enumerables</h2>
+<h3 id="what-are-enumerables">What Are Enumerables?</h3>
 <p>Ruby&apos;s Enumerable methods allow us to traverse, search and sort data collections (i.e., arrays and hashes).</p>
 <ul>
-<li><a href="http://ruby-doc.org/core-2.2.2/Enumerable.html" target="_blank">Documentation</a></li>
+<li><a href="http://ruby-doc.org/core-2.2.3/Enumerable.html" target="_blank">Documentation</a></li>
 </ul>
-<h4 id="useful-enumerables">Useful Enumerables</h4>
-<h5 id="each-20min">Each (20min)</h5>
+<h3 id="useful-enumerables">Useful Enumerables</h3>
+<h4 id="each-20min">Each (20min)</h4>
 <p>The king of enumerables, and the one you will most likely be using the most.</p>
 <ul>
 <li>Iterates through and performs an action(s) on a collection.</li>
@@ -1377,7 +1384,7 @@ numbers = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</spa
 numbers.each { |number| puts number * <span class="hljs-number">2</span> }
 </code></pre>
 <p><strong>DIAGRAM:</strong> EACH</p>
-<h6 id="code-block-format">Code Block Format</h6>
+<h5 id="code-block-format">Code Block Format</h5>
 <p><strong>WHITEBOARD:</strong> You&apos;ll notice we wrote out the <code>.each</code> example in two ways: multi-line and single-line.</p>
 <p>Multi-line</p>
 <ul>
@@ -1396,42 +1403,39 @@ numbers.each { |number| puts number * <span class="hljs-number">2</span> }
 <li>{ } - replaces <code>do</code> and <code>end</code>; contains the iteration variable and code block</li>
 <li><code>|number|</code> - iteration variable</li>
 </ul>
-<h4 id="exercise-practice-each-10min">Exercise: Practice Each (10min)</h4>
+<h3 id="exercise-practice-each-10min">Exercise: Practice Each (10min)</h3>
 <p>Use <code>each</code> to do the following...  </p>
 <ul>
-<li>Say hello to everybody in the below array of names (sample output: <code>Hello [person&apos;s name]!</code>).</li>
-</ul>
-<pre><code class="lang-ruby">names = [ <span class="hljs-string">&quot;Brian&quot;</span>, <span class="hljs-string">&quot;Chad&quot;</span>, <span class="hljs-string">&quot;Yakko&quot;</span>, <span class="hljs-string">&quot;Wacko&quot;</span>, <span class="hljs-string">&quot;Dot&quot;</span> ]
+<li><p>Say hello to everybody in the below array of names (sample output: <code>Hello Donald!</code>).</p>
+<pre><code class="lang-ruby">names = [ <span class="hljs-string">&quot;Donald&quot;</span>, <span class="hljs-string">&quot;Daisy&quot;</span>, <span class="hljs-string">&quot;Huey&quot;</span>, <span class="hljs-string">&quot;Duey&quot;</span>, <span class="hljs-string">&quot;Luey&quot;</span> ]
 </code></pre>
-<ul>
-<li>Print out the squared values of every number in this numbers array.</li>
-</ul>
+</li>
+<li><p>Print out the squared values of every number in this numbers array.</p>
 <pre><code class="lang-ruby">numbers = [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">9</span>, <span class="hljs-number">11</span>, <span class="hljs-number">100</span> ]
 </code></pre>
-<ul>
-<li>Print out the Celsius values for an array containing Fahrenheit values.</li>
-</ul>
-<pre><code class="lang-ruby">fahrenheit_temps = [ -<span class="hljs-number">128.6</span>, <span class="hljs-number">0</span>, <span class="hljs-number">32</span>, <span class="hljs-number">100</span>, <span class="hljs-number">134</span> ]
+</li>
+<li><p>Print out the Celsius values for an array containing Fahrenheit values.</p>
+<pre><code class="lang-ruby">fahrenheit_temps = [ -<span class="hljs-number">128.6</span>, <span class="hljs-number">0</span>, <span class="hljs-number">32</span>, <span class="hljs-number">140</span>, <span class="hljs-number">212</span> ]
 </code></pre>
-<ul>
-<li>Insert all the values in the <code>artists</code> array into the <code>ninja_turtles</code> array.</li>
-</ul>
+</li>
+<li><p>Insert all the values in the <code>artists</code> array into the <code>ninja_turtles</code> array.</p>
 <pre><code class="lang-ruby">artists = [ <span class="hljs-string">&quot;Leonardo&quot;</span>, <span class="hljs-string">&quot;Donatello&quot;</span>, <span class="hljs-string">&quot;Raphael&quot;</span>, <span class="hljs-string">&quot;Michelangelo&quot;</span> ]
 ninja_turtles = []
 </code></pre>
-<ul>
-<li><strong>Bonus:</strong> Print out every possible combination of the below ice cream flavors and toppings.</li>
-</ul>
+</li>
+<li><p><strong>Bonus:</strong> Print out every possible combination of the below ice cream flavors and toppings.</p>
 <pre><code class="lang-ruby">flavors = [ <span class="hljs-string">&quot;vanilla&quot;</span>, <span class="hljs-string">&quot;chocolate&quot;</span>, <span class="hljs-string">&quot;strawberry&quot;</span>, <span class="hljs-string">&quot;butter pecan&quot;</span>, <span class="hljs-string">&quot;cookies and cream&quot;</span>, <span class="hljs-string">&quot;rainbow&quot;</span> ]
 toppings = [ <span class="hljs-string">&quot;gummi bears&quot;</span>, <span class="hljs-string">&quot;hot fudge&quot;</span>, <span class="hljs-string">&quot;butterscotch&quot;</span>, <span class="hljs-string">&quot;rainbow sprinkles&quot;</span>, <span class="hljs-string">&quot;chocolate sprinkles&quot;</span> ]
 </code></pre>
+</li>
+</ul>
 <p>Can I get a quick fist-of-five on how you feel about <code>each</code> and enumerables so far?</p>
 <ul>
-<li>If you feel good about this then you&apos;ll have no problem taking on other enumerables. Even the crazy ones.</li>
+<li>There are many enumerable methods.  All of them look and feel similar to <code>each</code>.</li>
 </ul>
-<h3 id="break-10min">BREAK (10min)</h3>
-<h5 id="map-5min">Map (5min)</h5>
-<p>Map does the same thing as <code>each</code>, but it also generates a new collection with new values based on the code block. Say we want to double our <code>numbers</code> array and store it in a new variable...</p>
+<h2 id="break-10min">BREAK (10min)</h2>
+<h4 id="map-5min">Map (5min)</h4>
+<p>Map is similar to <code>each</code>.  It iterates through each element in the collection,  but <code>map</code> generates a new collection with values based on the code block. Say we want to double our <code>numbers</code> array and store it in a new array...</p>
 <pre><code class="lang-ruby">numbers = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ]
 doubled = numbers.map <span class="hljs-keyword">do</span> |number|
   number * <span class="hljs-number">2</span>
@@ -1446,11 +1450,33 @@ doubled
 </code></pre>
 <p><strong>NOTE:</strong> We did not have to type out any variable assignment in the code block!</p>
 <p><strong>DIAGRAM:</strong> MAP</p>
-<h3 id="group-exercise-documentation-dive-25min">Group Exercise: Documentation Dive (25min)</h3>
+<h3 id="exercise-practice-map-5min">Exercise: Practice Map (5min)</h3>
+<p>Use <code>map</code> to do the following...  </p>
+<ul>
+<li><p>Create an array that appends &quot;Duck&quot; to everybody in this array of first names</p>
+<pre><code class="lang-ruby">first_names = [ <span class="hljs-string">&quot;Donald&quot;</span>, <span class="hljs-string">&quot;Daisy&quot;</span> ]
+
+<span class="hljs-comment">#=&gt; [&quot;Donald Duck&quot;, &quot;Daisy Duck&quot;]</span>
+</code></pre>
+</li>
+<li><p>Create an array containing the squared values of every number in this array.</p>
+<pre><code class="lang-ruby">numbers = [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">9</span>, <span class="hljs-number">11</span>, <span class="hljs-number">100</span> ]
+
+<span class="hljs-comment"># =&gt; [1, 9, 81, 121, 10000]</span>
+</code></pre>
+</li>
+<li><p>Create an array with the Celsius values for these Fahrenheit values.</p>
+<pre><code class="lang-ruby">fahrenheit_temps = [ -<span class="hljs-number">128.6</span>, <span class="hljs-number">0</span>, <span class="hljs-number">32</span>, <span class="hljs-number">140</span>, <span class="hljs-number">212</span> ]
+
+<span class="hljs-comment">#=&gt; [-89.2, -17.8, 0, 60, 100]</span>
+</code></pre>
+</li>
+</ul>
+<h2 id="group-exercise-documentation-dive-25min">Group Exercise: Documentation Dive (25min)</h2>
 <p>Instructions: Each group will spend <strong>10 minutes</strong> using Ruby documentation to look up an assigned enumerable. Prepare your own definition of what it does and whiteboard an example.</p>
 <ul>
-<li>You can test your example in Ruby/Pry.</li>
-<li><a href="http://ruby-doc.org/core-2.2.2/Enumerable.html" target="_blank">Documentation</a></li>
+<li>You can test your example in IRB/Pry.</li>
+<li><a href="http://ruby-doc.org/core-2.2.3/Enumerable.html" target="_blank">Documentation</a></li>
 </ul>
 <p>Groups</p>
 <ul>
@@ -1466,8 +1492,8 @@ doubled
 <li>Pick out another enumerable that wasn&apos;t assigned to a group.</li>
 <li>...and/or think of another example for your assigned enumerable.</li>
 </ul>
-<h3 id="break-10min">BREAK (10min)</h3>
-<h3 id="coding-exercise-homework-high-card-rest-of-class">Coding Exercise + Homework: High Card (Rest of Class)</h3>
+<h2 id="break-10min">BREAK (10min)</h2>
+<h2 id="coding-exercise-homework-high-card-30min">Coding Exercise + Homework: High Card (30min)</h2>
 <p>Combines your knowledge of Ruby basics and enumerables...  </p>
 <p><a href="https://github.com/ga-dc/high_card" target="_blank">High Card</a></p>
 
