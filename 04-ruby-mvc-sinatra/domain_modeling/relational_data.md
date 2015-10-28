@@ -15,12 +15,12 @@ Within a relational database, all database records (rows) are assigned an ID, or
 
 **students**
 
-| id | first_name | last_name | house |
-|:-- |:---------- |:--------- |:----- |
-| 1  | Harry      | Potter    | 1     |
-| 2  | Ron        | Weasly    | 1     |
-| 3  | Hermionie  | Granger   | 1     |
-| 4  | Draco      | Malfoy    | 4     |
+| id | first_name | last_name | house_id |
+|:-- |:---------- |:--------- |:---------|
+| 1  | Harry      | Potter    | 1        |
+| 2  | Ron        | Weasly    | 1        |
+| 3  | Hermionie  | Granger   | 1        |
+| 4  | Draco      | Malfoy    | 4        |
 
 *(each student has a foreign-key relationship to a house)*
 
