@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.2" data-chapter-title="Ruby Enumerables" data-filepath="04-ruby-mvc-sinatra/ruby-enumerables/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 14:31:24 GMT+0000 (UTC)">
+    <div class="book" data-level="3.2" data-chapter-title="Ruby Enumerables" data-filepath="04-ruby-mvc-sinatra/ruby-enumerables/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 15:16:40 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1177,19 +1177,66 @@
 <li>Identify useful Ruby enumerables, including <code>.each</code>, <code>.map</code> and <code>.select</code>.</li>
 <li>Use enumerables to traverse, sort and modify collections.</li>
 </ul>
+<h2 id="review-ruby-collections-15-minutes">Review: Ruby Collections (15 minutes)</h2>
+<p>What are the types of collections we have in ruby?</p>
+<h3 id="arrays">Arrays</h3>
+<pre><code class="lang-rb">fruits = [<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-string">&quot;cherry&quot;</span>]
+
+fruits.length <span class="hljs-comment"># 3</span>
+fruits.push(<span class="hljs-string">&quot;dates&quot;</span>)
+fruits.length <span class="hljs-comment"># 4</span>
+
+fruits[<span class="hljs-number">0</span>] <span class="hljs-comment"># apple</span>
+fruits[<span class="hljs-number">3</span>] <span class="hljs-comment"># dates</span>
+
+fruits[<span class="hljs-number">3</span>] = <span class="hljs-string">&quot;durian&quot;</span>
+fruits[<span class="hljs-number">3</span>] <span class="hljs-comment"># durian</span>
+
+fruits.join(<span class="hljs-string">&quot; &quot;</span>) <span class="hljs-comment"># &quot;apple banana cherry&quot;</span>
+fruits.join(<span class="hljs-string">&quot;, &quot;</span>) <span class="hljs-comment"># &quot;apple, banana, cherry&quot;</span>
+fruits.join(<span class="hljs-string">&quot; and &quot;</span>) <span class="hljs-comment"># &quot;apple and banana and cherry&quot;</span>
+</code></pre>
+<h3 id="hashes">Hashes</h3>
+<p>Hashes are like javascript objects, but they are a bit more limited:</p>
+<pre><code class="lang-rb">instructor = {
+  <span class="hljs-symbol">name:</span> <span class="hljs-string">&quot;Bob&quot;</span>,
+  <span class="hljs-symbol">age:</span> <span class="hljs-number">30</span>,
+  <span class="hljs-symbol">favorite_foods:</span> [<span class="hljs-string">&quot;Cheese Tots&quot;</span>, <span class="hljs-string">&quot;Cheese Steaks&quot;</span>, <span class="hljs-string">&quot;Kale Salad&quot;</span>]
+}
+
+instructor[<span class="hljs-symbol">:name</span>] <span class="hljs-comment"># Bob</span>
+instructor[<span class="hljs-symbol">:age</span>]  <span class="hljs-comment"># 30</span>
+instructor[<span class="hljs-symbol">:favorite_foods</span>] <span class="hljs-comment"># [&quot;Cheese Tots&quot;, &quot;Cheese Steaks&quot;, &quot;Kale Salad&quot;]</span>
+
+instructor[<span class="hljs-symbol">:name</span>] = <span class="hljs-string">&quot;Robert&quot;</span>
+instructor[<span class="hljs-symbol">:name</span>] <span class="hljs-comment"># Robert</span>
+
+instructor[<span class="hljs-symbol">:favorite_color</span>] = <span class="hljs-string">&quot;red&quot;</span>
+instructor[<span class="hljs-symbol">:favorite_color</span>] <span class="hljs-comment"># red</span>
+</code></pre>
 <h2 id="loops-30min">Loops (30min)</h2>
-<p>Enumerables are Ruby methods that use loops to interact with data collections in special ways.</p>
-<ul>
-<li>But before we talk about enumerables, let&apos;s see how traditional loops work in Ruby...</li>
-<li>You will use these!</li>
-</ul>
+<h3 id="review-js-loops-5-minutes">Review JS Loops (5 minutes)</h3>
 <h2 id="q-what-loops-did-we-use-in-javascript">Q: What loops did we use in Javascript?</h2>
 <blockquote>
 <p>A: while, do-while, for, for-in, forEach</p>
 </blockquote>
+<p>Start by reviewing JS <code>for</code> loops.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> fruits = [<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-string">&quot;cherry&quot;</span>];
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; fruits.length; i++) {
+  <span class="hljs-built_in">console</span>.log(fruits[i]);
+}
+</code></pre>
+<h3 id="exercise-ruby-loops-scavenger-hunt-25-minutes">Exercise: Ruby Loops Scavenger Hunt (25 minutes)</h3>
+<p>Take 15 minutes to research and come up with examples of how to use the
+following loops in ruby:</p>
 <ul>
-<li>Ruby&apos;s loops are similar...</li>
+<li><code>loop</code></li>
+<li><code>while</code></li>
+<li><code>until</code></li>
+<li><code>.times</code> (called on a number)</li>
 </ul>
+<p>For a final exercise, create an array (like in the JS example above) and use
+one of the above loops to print out each item in the array.</p>
 <h3 id="while-loop">While loop</h3>
 <p>Like Javascript, runs the loop while a condition is true.</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Prints out numbers from 1 to 10</span>
@@ -1219,23 +1266,6 @@ counter = <span class="hljs-number">1</span>
   counter += <span class="hljs-number">1</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h3 id="forin-loop">For-in loop</h3>
-<p>Similar to Javascript&apos;s for-in loop</p>
-<ul>
-<li>Don&apos;t need to end loop-opener with <code>do</code>.</li>
-<li>The <code>i</code>&apos;s in the below examples can be replaced with any variable (e.g., <code>age</code>)</li>
-</ul>
-<pre><code class="lang-ruby"><span class="hljs-comment"># Prints out numbers from 5-10</span>
-numbers = [<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>]
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> numbers
-  puts i
-<span class="hljs-keyword">end</span>
-
-<span class="hljs-comment"># Can also do this using a range</span>
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> (<span class="hljs-number">5</span>..<span class="hljs-number">10</span>)
-  puts i
-<span class="hljs-keyword">end</span>
-</code></pre>
 <h3 id="times">Times</h3>
 <p>Runs a loop a set number of times</p>
 <pre><code class="lang-ruby"><span class="hljs-comment"># Says &quot;Hello!&quot; five times</span>
@@ -1254,37 +1284,36 @@ numbers = [<span class="hljs-number">5</span>,<span class="hljs-number">6</span>
 <span class="hljs-number">4</span>
 <span class="hljs-status">=&gt;</span> <span class="hljs-number">5</span>
 </code></pre>
-<h3 id="break">Break</h3>
+<h2 id="break-10-minutes">Break (10 minutes)</h2>
+<h3 id="break"><code>break</code></h3>
 <p><code>break</code> lets us end -- or &quot;break&quot; out of -- a loop.</p>
-<h2 id="q-what-numbers-do-you-expect-to-see-on-the-screen-when-we-run-this-for-loop">Q: What numbers do you expect to see on the screen when we run this <code>for</code> loop?</h2>
+<h2 id="q-what-numbers-do-you-expect-to-see-on-the-screen-when-we-run-this--loop">Q: What numbers do you expect to see on the screen when we run this  loop?</h2>
 <pre><code class="lang-ruby">numbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>]
-<span class="hljs-keyword">for</span> number <span class="hljs-keyword">in</span> numbers
-  puts number
-  <span class="hljs-keyword">if</span> number == <span class="hljs-number">5</span>
+i = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword">while</span> i &lt;= numbers.length <span class="hljs-keyword">do</span>
+  puts numbers[i]
+  <span class="hljs-keyword">if</span> numbers[i] == <span class="hljs-number">5</span>
     <span class="hljs-keyword">break</span>
   <span class="hljs-keyword">end</span>
+  i = i + <span class="hljs-number">1</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h3 id="next">Next</h3>
+<h3 id="next"><code>next</code></h3>
 <p><code>next</code> lets us skip to the next iteration of a loop.</p>
-<h2 id="q-what-numbers-do-you-expect-to-see-on-the-screen-when-we-run-this-for-loop">Q: What numbers do you expect to see on the screen when we run this <code>for</code> loop?</h2>
+<h2 id="q-what-numbers-do-you-expect-to-see-on-the-screen-when-we-run-this--loop">Q: What numbers do you expect to see on the screen when we run this  loop?</h2>
 <pre><code class="lang-ruby">  numbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>]
-  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> numbers
-    <span class="hljs-keyword">if</span> i%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>
+  i = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">while</span> i &lt;= numbers.length <span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">if</span> numbers[i]%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>
+      i = i + <span class="hljs-number">1</span>
       <span class="hljs-keyword">next</span>
     <span class="hljs-keyword">else</span>
-      puts i
+      puts numbers[i]
     <span class="hljs-keyword">end</span>
+    i = i + <span class="hljs-number">1</span>
   <span class="hljs-keyword">end</span>
 </code></pre>
-<h2 id="loops-exercise-99-bottles-of-beer-10min">Loops Exercise: 99 Bottles of Beer (10min)</h2>
-<p>You know how the song goes...</p>
-<ul>
-<li>&quot;99 bottles of beer on the wall. 99 bottles of beer. Take one down. Pass it around. 98 bottles of beer on the wall.&quot;</li>
-<li>&quot;98 bottles of beer on the wall. 98 bottles of beer...&quot;</li>
-</ul>
-<p>...and so on. Your job is to replicate the song in its entirety 4 times, each time using one of the loops we just went over: <code>while</code>, <code>until</code>, <code>for</code> and <code>times</code>.</p>
-<p><strong>BONUS:</strong> Use <code>next</code> so that the song only covers odd numbers.</p>
 <h2 id="enumerables">Enumerables</h2>
 <h3 id="what-are-enumerables">What Are Enumerables?</h3>
 <p>Ruby&apos;s Enumerable methods allow us to traverse, search and sort data collections (i.e., arrays and hashes).</p>
@@ -1301,8 +1330,11 @@ numbers = [<span class="hljs-number">5</span>,<span class="hljs-number">6</span>
 <p>If we were to emulate <code>.each</code> using plain ol&apos; Ruby, it would look something like this...</p>
 <pre><code class="lang-ruby"><span class="hljs-comment"># A loop that prints out the doubled value of each item in an array</span>
 numbers = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ]
-<span class="hljs-keyword">for</span> number <span class="hljs-keyword">in</span> numbers
-  puts number * <span class="hljs-number">2</span>
+i = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword">while</span> i &lt;= numbers.length
+  puts numbers[i] * <span class="hljs-number">2</span>
+  i = i + <span class="hljs-number">1</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
 <p>But <code>.each</code> looks like this, using the code block format...</p>
