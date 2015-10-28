@@ -1,5 +1,6 @@
 # Ruby Enumerables: Learning Objectives
 
+- Review Ruby arrays and hashes
 - Use Ruby loops to iterate over code blocks.
 - Define what a Ruby enumerable method is.
 - Identify useful Ruby enumerables, including `.each`, `.map` and `.select`.
@@ -81,24 +82,35 @@ following loops in ruby:
 For a final exercise, create an array (like in the JS example above) and use
 one of the above loops to print out each item in the array.
 
+### Loop do
+
+Loop runs uninterrupted until told to stop.
+
+```ruby
+loop do
+  puts "I will loop forever."
+end
+```
+> We'll talk more about how to "break" this loop later.
+
 ### While loop
 
 Like Javascript, runs the loop while a condition is true.
 
 ```javascript
-// Prints out numbers from 1 to 10
+// Javascript: Prints out numbers from 1 to 10
 var counter = 1;
-do {
+while(counter < 10) {
   console.log("counter:", counter);
   counter++;
-} while(counter < 10);
+}
 ```
 
 ```ruby
-# Prints out numbers from 1 to 10
+# Ruby: Prints out numbers from 1 to 10
 counter = 1
-while (counter <= 10) do
-  puts "counter:#{counter}"
+while(counter <= 10) do
+  puts "counter: #{counter}"
   counter += 1 # increments counter by 1
 end
 ```
@@ -112,7 +124,7 @@ Runs the loop until a condition is true (or while that condition is false).
 ```ruby
 # Prints out numbers from 1 to 10
 counter = 1
-until( counter > 10 ) do
+until(counter > 10) do
   puts counter
   counter += 1
 end
@@ -153,9 +165,9 @@ Q: What numbers do you expect to see on the screen when we run this  loop?
 numbers = [1,2,3,4,5,6,7,8,9,10]
 i = 0
 
-while i <= numbers.length do
+while(i <= numbers.length) do
   puts numbers[i]
-  if numbers[i] == 5
+  if(numbers[i] == 5)
     break
   end
   i = i + 1
@@ -172,8 +184,8 @@ Q: What numbers do you expect to see on the screen when we run this  loop?
   ```ruby
   numbers = [1,2,3,4,5,6,7,8,9,10]
   i = 0
-  while i <= numbers.length do
-    if numbers[i]%2 == 0
+  while(i < numbers.length) do
+    if( numbers[i]%2 == 0 )
       i = i + 1
       next
     else
@@ -205,7 +217,7 @@ If we were to emulate `.each` using plain ol' Ruby, it would look something like
 numbers = [ 1, 2, 3, 4, 5 ]
 i = 0
 
-while i <= numbers.length
+while(i <= numbers.length) do
   puts numbers[i] * 2
   i = i + 1
 end
@@ -313,7 +325,7 @@ Use `map` to do the following...
 - Create an array that appends "Duck" to everybody in this array of first names
 
   ```ruby
-  first_names = [ "Donald", "Daisy" ]
+  first_names = [ "Donald", "Daisy", "Daffy" ]
 
   #=> ["Donald Duck", "Daisy Duck"]
   ```
