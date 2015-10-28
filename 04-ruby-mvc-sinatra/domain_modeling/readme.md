@@ -1,4 +1,5 @@
 # Domain Modeling & ERD
+
 ## Learning Objectives
 
 - Draw an Entity Relationship Diagram (ERD) using proper notation
@@ -7,22 +8,23 @@
 - Distinguish between entities & attributes (and when you should use one over the other)
 - Discuss data normalization needs and techniques
 
-### Framing
+## Framing
+
 User stories clarify the features we need for a good user experience.  We use
 them to prioritize order and scope.  Today, we will identify the information
 required to support those user stories.  We refer to this as the Domain, or
 Domain Model.  The Domain Model specifies the data and the relationships between
 this data.  We use it to decide what needs to be persisted.
 
-### Talking Points
-* When problem modeling, we often think of things in terms of nouns and verbs
-* The verbs can be completely captured in code, and since code is saved, they are saved
-* The nouns are represented with placeholders in code (objects, variables, etc)
-* The actual data attached to nouns needs to be persisted! Eg. Game scores, the To-Do list, student list
+### Data vs Behavior
 
-#**I do**
+- When problem modeling, we often think of things in terms of nouns and verbs
+- The verbs can be completely captured in code, and since code is saved, they are saved
+- The nouns are represented with placeholders in code (objects, variables, etc)
+- The actual data attached to nouns needs to be persisted! Eg. Game scores, the To-Do list, student list
 
 #### Domain Modeling
+
 - Attributes only, not behavior.
 - A domain model in problem solving and software engineering is a conceptual
   model of all the items/topics related to a specific problem.
@@ -30,7 +32,8 @@ this data.  We use it to decide what needs to be persisted.
   plus the constraints that govern the problem domain.
 - __It does not describe solutions to the problem.__
 
-#### ERD?
+#### ERDs
+
 - An ERD is a tool we use to visualize and describe the data relating to the
   major entities that will exist in out programs.
 - Ultimately lends itself to planning out and creating our database table
@@ -51,32 +54,14 @@ this data.  We use it to decide what needs to be persisted.
       - Usually denotes that one entity should be an attribute of the other
       - Usually separated for physical space considerations
 
-- What would iTunes look like?
-![](https://cdzdfw2009.files.wordpress.com/2009/06/mc_erd2.jpg)
+#### We Do: Library ERD Example
 
-### Library
+As a class, let's come up with an example ERD for an application that manages
+a library.
 
-**You do in pairs**
+### Exercise: Tunr ERD
 
-* Draw an ERD for a library
-* **Make sure to walk among tables and provide guidance with syntax of ERD, validity of attributes**
-* Settle on a common library schema
+In groups of 3, create your own ERD for Tunr. You can keep it as simple or
+complex as you like.
 
-* Books
-	* title
-	* author
-	* year
-	* genre
-	* pages
-
-## Modeling Notes
-### Why?
-
-1. Allows you to name your purpose
-2. List possible:
-	* Entities (Nouns)
-	* Attributes (Adjectives)
-	* Relationships
-	* Reduce unnecessary entities
-	* Behaviors (verbs)
-3. Implement
+At a minimum though, you should have Songs and Artists as entities.
