@@ -96,6 +96,30 @@ If we `require 'pry'` in our program, we can add `binding.pry` to any line to
 pause and get a pry REPL at that point in our code. We can then play with our
 code, see what the value of in-scope variables are, etc.
 
+Ex:
+`scratch.rb`:
+```ruby
+require 'pry'
+a = 5
+binding.pry
+b = 10
+```
+
+in the `terminal`:
+```bash
+$ ruby scratch.rb
+    1: require 'pry'
+    2: a = 5
+    3: binding.pry
+ => 4: b = 10
+
+[1] pry(main)> a
+=> 5
+[2] pry(main)> b
+=> nil
+[3] pry(main)>
+```
+
 ## Writing Classes (10 minutes)
 
 Classes are define with the `class` keyword:
