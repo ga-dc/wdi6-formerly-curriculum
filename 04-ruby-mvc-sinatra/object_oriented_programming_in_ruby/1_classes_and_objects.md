@@ -16,6 +16,10 @@
 Object-oriented programming is the idea that our programs consist mainly of
 objects, which have attributes (aka properties), and methods (aka behavior).
 
+Why do we need objects? Let's take a look at [amazon](http://www.amazon.com/).
+
+Let's search for speakers. When we hit enter we can see a whole bunch of different speakers. Did the people that coded amazon hard code all of these speakers? Think of each different speaker as an object. These objects have properties like a title, url, price, or rating. We need to be able to store and consolidate information into objects so that we can access/display them on a webpage.
+
 We often think of these objects modeling things in the real world. Examples
 might include:
 
@@ -31,8 +35,7 @@ might include:
 
 Often in OOP, these objects interact with each other. For example, we might
 create a *person* object and then add them to a *squad* object. If we call a
-*dance* method on a squad, it might ask make all the people in the squad *dance*
-as well.
+*dance* method on a squad, it might make all the people in the squad *dance* as well.
 
 ### Exercise (10 mintues)
 
@@ -295,7 +298,7 @@ Clone this exercise and follow the instructions in the readme.
 
 ## Sample Questions
 
-- Create a Ruby class for a student, initialized with a name and an age. 
+- Create a Ruby class for a student, initialized with a name and an age.
   - Write a getter for name and age, and a setter for name only
   - Create a new student and demonstrate using all the methods
 - Explain the difference between local and instance variables
