@@ -5,18 +5,81 @@
 - Identify useful Ruby enumerables, including `.each`, `.map` and `.select`.
 - Use enumerables to traverse, sort and modify collections.
 
+## Review: Ruby Collections (15 minutes)
+
+What are the types of collections we have in ruby?
+
+### Arrays
+
+```rb
+fruits = ["apple", "banana", "cherry"]
+
+fruits.length # 3
+fruits.push("dates")
+fruits.length # 4
+
+fruits[0] # apple
+fruits[3] # dates
+
+fruits[3] = "durian"
+fruits[3] # durian
+
+fruits.join(" ") # "apple banana cherry"
+fruits.join(", ") # "apple, banana, cherry"
+fruits.join(" and ") # "apple and banana and cherry"
+```
+
+### Hashes
+
+Hashes are like javascript objects, but they are a bit more limited:
+
+```rb
+instructor = {
+  name: "Bob",
+  age: 30,
+  favorite_foods: ["Cheese Tots", "Cheese Steaks", "Kale Salad"]
+}
+
+instructor[:name] # Bob
+instructor[:age]  # 30
+instructor[:favorite_foods] # ["Cheese Tots", "Cheese Steaks", "Kale Salad"]
+
+instructor[:name] = "Robert"
+instructor[:name] # Robert
+
+instructor[:favorite_color] = "red"
+instructor[:favorite_color] # red
+```
+
 ## Loops (30min)
 
-Enumerables are Ruby methods that use loops to interact with data collections in special ways.
-- But before we talk about enumerables, let's see how traditional loops work in Ruby...
-- You will use these!
+### Review JS Loops (5 minutes)
 
 Q: What loops did we use in Javascript?
 ---
-
 > A: while, do-while, for, for-in, forEach
 
-- Ruby's loops are similar...
+Start by reviewing JS `for` loops.
+
+```js
+var fruits = ["apple", "banana", "cherry"];
+for(var i = 0; i < fruits.length; i++) {
+  console.log(fruits[i]);
+}
+```
+
+### Exercise: Ruby Loops Scavenger Hunt (25 minutes)
+
+Take 15 minutes to research and come up with examples of how to use the
+following loops in ruby:
+
+* `loop`
+* `while`
+* `until`
+* `.times` (called on a number)
+
+For a final exercise, create an array (like in the JS example above) and use
+one of the above loops to print out each item in the array.
 
 ### While loop
 
@@ -55,25 +118,6 @@ until( counter > 10 ) do
 end
 ```
 
-### For-in loop
-
-Similar to Javascript's for-in loop
-- Don't need to end loop-opener with `do`.
-- The `i`'s in the below examples can be replaced with any variable (e.g., `age`)
-
-```ruby
-# Prints out numbers from 5-10
-numbers = [5,6,7,8,9,10]
-for i in numbers
-  puts i
-end
-
-# Can also do this using a range
-for i in (5..10)
-  puts i
-end
-```
-
 ### Times
 
 Runs a loop a set number of times
@@ -96,50 +140,48 @@ end
 => 5
 ```
 
-### Break
+## Break (10 minutes)
+
+### `break`
 
 `break` lets us end -- or "break" out of -- a loop.
 
-Q: What numbers do you expect to see on the screen when we run this `for` loop?
+Q: What numbers do you expect to see on the screen when we run this  loop?
 ---
 
 ```ruby
 numbers = [1,2,3,4,5,6,7,8,9,10]
-for number in numbers
-  puts number
-  if number == 5
+i = 0
+
+while i <= numbers.length do
+  puts numbers[i]
+  if numbers[i] == 5
     break
   end
+  i = i + 1
 end
 ```
 
-### Next
+### `next`
 
 `next` lets us skip to the next iteration of a loop.
 
-Q: What numbers do you expect to see on the screen when we run this `for` loop?
+Q: What numbers do you expect to see on the screen when we run this  loop?
 ---
 
   ```ruby
   numbers = [1,2,3,4,5,6,7,8,9,10]
-  for i in numbers
-    if i%2 == 0
+  i = 0
+  while i <= numbers.length do
+    if numbers[i]%2 == 0
+      i = i + 1
       next
     else
-      puts i
+      puts numbers[i]
     end
+    i = i + 1
   end
   ```
-
-## Loops Exercise: 99 Bottles of Beer (10min)
-
-You know how the song goes...
-- "99 bottles of beer on the wall. 99 bottles of beer. Take one down. Pass it around. 98 bottles of beer on the wall."
-- "98 bottles of beer on the wall. 98 bottles of beer..."
-
-...and so on. Your job is to replicate the song in its entirety 4 times, each time using one of the loops we just went over: `while`, `until`, `for` and `times`.
-
-**BONUS:** Use `next` so that the song only covers odd numbers.
 
 ## Enumerables
 
@@ -161,8 +203,11 @@ If we were to emulate `.each` using plain ol' Ruby, it would look something like
 ```ruby
 # A loop that prints out the doubled value of each item in an array
 numbers = [ 1, 2, 3, 4, 5 ]
-for number in numbers
-  puts number * 2
+i = 0
+
+while i <= numbers.length
+  puts numbers[i] * 2
+  i = i + 1
 end
 ```
 
