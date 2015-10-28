@@ -1,5 +1,6 @@
 # Ruby Enumerables: Learning Objectives
 
+- Review Ruby arrays and hashes
 - Use Ruby loops to iterate over code blocks.
 - Define what a Ruby enumerable method is.
 - Identify useful Ruby enumerables, including `.each`, `.map` and `.select`.
