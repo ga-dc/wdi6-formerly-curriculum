@@ -8,7 +8,7 @@
         <title>Active Record | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="3.6" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="3.6" data-chapter-title="Active Record" data-filepath="04-ruby-mvc-sinatra/active-record-intro/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1239,7 +1171,7 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="active-record">Active Record</h1>
-<h2 id="lo-s">LO&apos;s</h2>
+<h2 id="los">LO&apos;s</h2>
 <ul>
 <li>Define ORM and why we use it over a database language.</li>
 <li>Explain what Active record is and what problems it solves.</li>
@@ -1272,7 +1204,7 @@ Now, turn &amp; talk to your neighbor and discuss:</p>
 <li>at a high level, what ORM&apos;s are and how they might be useful</li>
 <li>what&apos;s the importance of interfacing the server with the database</li>
 </ul>
-<h2 id="orm-s-active-record-15m">ORM&apos;s &amp; Active Record (15m)</h2>
+<h2 id="orms--active-record-15m">ORM&apos;s &amp; Active Record (15m)</h2>
 <ul>
 <li><em>Official</em> wikipedia definition. A programming technique for converting data between incompatible type systems in object-oriented programming languages.<blockquote>
 <p>Thats sounds like a lot of 5 dollar words, but what does it really mean?</p>
@@ -1295,12 +1227,12 @@ Now, turn &amp; talk to your neighbor and discuss:</p>
 <p>Active Record is the M in MVC - the model - which is the layer of the system responsible for representing business data and logic. Active Record facilitates the creation and use of business objects whose data requires persistent storage to a database. It is an implementation of the Active Record pattern which itself is a description of an Object Relational Mapping system. - Taken from AR docs</p>
 </blockquote>
 <h2 id="active-record">Active Record</h2>
-<h3 id="convention-over-configuration-st-wg-5m">Convention Over configuration (ST - WG 5m)</h3>
+<h3 id="convention-over-configuration-st--wg-5m">Convention Over configuration (ST - WG 5m)</h3>
 <p>Before we get started with the code, I want to highlight a reoccurring theme of Active Record and Rails in general. That is Convention over Configuration. I&apos;m going write on the board <code>conventions</code> throughout todays lesson so we can list them as we go. But what do you guys think we mean by convention over configuration?</p>
 <p>Basically Active Record and Rails has a whole bunch of conventions that it follows so that you won&apos;t have to mess with different configuration details later. Some of the common ones are plural vs single, capital or lower, camel or snake.</p>
 <p>In a nutshell, if you don&apos;t follow the conventions, you&apos;re going to have a bad time.</p>
 <p>Alright! Let&apos;s get started with some code!</p>
-<h3 id="setup-sql-wdi-i-do-10m">Setup SQL - WDI(I do - 10m)</h3>
+<h3 id="setup-sql--wdii-do--10m">Setup SQL - WDI(I do - 10m)</h3>
 <blockquote>
 <p>Throughout the day, I&apos;ll be doing some code simulating a &quot;wdi application&quot; then you guys will code a &quot;hospital application&quot;</p>
 </blockquote>
@@ -1332,7 +1264,7 @@ $ createdb wdi_db
 </code></pre>
 <p>Why did we do this? Why not just go into psql and create the tables in postgres? (ST-WG)</p>
 <p>It&apos;ll be nice going forward with your application that we package the schema up so that its modular. We can have others quickly pick up our code and have our exact database setup.</p>
-<h3 id="setup-sql-hospital-you-do-10m">Setup SQL - Hospital( You do - 10m )</h3>
+<h3 id="setup-sql--hospital-you-do--10m-">Setup SQL - Hospital( You do - 10m )</h3>
 <p>Now it&apos;s your turn!</p>
 <p>First create a directory for your hospital app.</p>
 <p>Make a config folder in that directory.</p>
@@ -1346,7 +1278,7 @@ $ createdb wdi_db
 </ul>
 <p>Now create a hospital database and load the schema</p>
 <h3 id="suggested-break-10m">Suggested Break (10m)</h3>
-<h3 id="setup-ruby-wdi-i-do-10m">Setup ruby - WDI (I do - 10m)</h3>
+<h3 id="setup-ruby--wdi-i-do--10m">Setup ruby - WDI (I do - 10m)</h3>
 <p>Great, now we have a table loaded into our database we&apos;re now ready to get started on the ruby side.
 Let&apos;s first create all the directories/files we&apos;re going to need in the terminal:</p>
 <pre><code class="lang-bash">$ touch app.rb
@@ -1368,7 +1300,7 @@ gem <span class="hljs-string">&quot;activerecord&quot;</span>  <span class="hljs
 gem <span class="hljs-string">&quot;pry&quot;</span>  <span class="hljs-comment"># this gem allows access to REPL</span>
 </code></pre>
 <p>Then I&apos;m going to run <code>$ bundle install</code> in the terminal.</p>
-<h3 id="setup-ruby-hospital-you-do-10m">Setup Ruby - Hospital (You do - 10m)</h3>
+<h3 id="setup-ruby--hospital-you-do--10m">Setup Ruby - Hospital (You do - 10m)</h3>
 <ul>
 <li>Create an <code>app.rb</code> file for this application</li>
 <li>Create a Gemfile</li>
@@ -1376,7 +1308,7 @@ gem <span class="hljs-string">&quot;pry&quot;</span>  <span class="hljs-comment"
 <li>Create a file that will contain your AR class definition for doctors</li>
 <li>Load dependencies into Gemfile and then bundle install</li>
 </ul>
-<h3 id="functionality-wdi-i-do-20m">Functionality - WDI (I do- 20m)</h3>
+<h3 id="functionality--wdi-i-do-20m">Functionality - WDI (I do- 20m)</h3>
 <p>In the <code>models/student.rb</code> file:</p>
 <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
   <span class="hljs-comment"># AR classes are singular and capitalized by convention</span>
@@ -1412,14 +1344,14 @@ binding.pry
 <blockquote>
 <p>note the difference between <code>require</code> and <code>require_relative</code>. With <code>require</code> we are getting gems and <code>require_relative</code> we are getting files relative to the location of the file we wrote <code>require_relative</code> in</p>
 </blockquote>
-<h3 id="functionality-hopsital-you-do-10m">Functionality - Hopsital (You do - 10m)</h3>
+<h3 id="functionality--hopsital-you-do--10m">Functionality - Hopsital (You do - 10m)</h3>
 <ul>
 <li>Define your model in <code>models/patient.rb</code></li>
 <li>require dependencies in <code>app.rb</code></li>
 <li>Establish connection to database using AR</li>
 <li>load pry at the end of <code>app.rb</code></li>
 </ul>
-<h3 id="methods-wdi-60m-until-lunch-finish-after-lunch">Methods - WDI(~60m until lunch finish after lunch)</h3>
+<h3 id="methods--wdi60m-until-lunch-finish-after-lunch">Methods - WDI(~60m until lunch finish after lunch)</h3>
 <p>Great! We&apos;ve got everything done that we need to get setup with single model CRUD in our application. Let&apos;s run it in the terminal:</p>
 <pre><code class="lang-bash">$ ruby app.rb
 </code></pre>
@@ -1472,7 +1404,7 @@ george.destroy
 <blockquote>
 <p>This is exciting stuff by the way, imagine, while we do these things, that our students model is instead a post on facebook, or a comment on facebook. So the next time you comment on someone&apos;s facebook page you have an idea now of whats happening on the database layer. Maybe not the whole picture, but you have an idea. We&apos;re going to build on that idea in the coming week and half, and thats really exciting.</p>
 </blockquote>
-<h3 id="methods-hospital-you-do-in-pry">Methods - Hospital (you do- in pry!)</h3>
+<h3 id="methods--hospital-you-do-in-pry">Methods - Hospital (you do- in pry!)</h3>
 <ul>
 <li>create 5 patients in your database 3 should have the ailment: &quot;chicken pox&quot;</li>
 <li>create a patient without saving it and store it in a variable</li>
@@ -1501,7 +1433,7 @@ And every Post belongs to a certain user.</p>
 <p>note that this is just speaking at a high level and not neccessarily actual code, though some of it actually is!</p>
 </blockquote>
 <p>Let&apos;s see what some of this stuff looks like in code. We&apos;re going to be adding an instructor model to our program.</p>
-<h3 id="updating-schema-wdi-i-do-10m">Updating Schema - WDI (I do - 10m)</h3>
+<h3 id="updating-schema--wdi-i-do--10m">Updating Schema - WDI (I do - 10m)</h3>
 <p>The first thing I want to do is update my schema to add another table and reflect the association.</p>
 <p>In <code>wdi_schema.sql</code>:</p>
 <pre><code class="lang-sql"><span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> students;</span>
@@ -1526,7 +1458,7 @@ And every Post belongs to a certain user.</p>
 <p>Lets go ahead and update the database to reflect our current schema in the terminal:</p>
 <pre><code class="lang-bash">$ psql <span class="hljs-operator">-d</span> wdi &lt; wdi_schema.sql
 </code></pre>
-<h3 id="updating-schema-hopsital-you-do-10m">Updating Schema - Hopsital (You do - 10m)</h3>
+<h3 id="updating-schema--hopsital-you-do--10m">Updating Schema - Hopsital (You do - 10m)</h3>
 <ul>
 <li>For the Hospital application we&apos;ll be adding a Doctor model</li>
 <li>Create a new table for doctors in postgres it should have the following attributes<ul>
@@ -1538,7 +1470,7 @@ And every Post belongs to a certain user.</p>
 <li>make sure to add an attribute to patients so that they belong to a doctor</li>
 <li>load the schema to the database</li>
 </ul>
-<h3 id="updating-class-definitions-wdi-i-do-10m">Updating Class Definitions - WDI (I do 10m)</h3>
+<h3 id="updating-class-definitions--wdi-i-do-10m">Updating Class Definitions - WDI (I do 10m)</h3>
 <p>Next I want to create a new file for my Instructor AR Class definition <code>$ touch models/instructor.rb</code>. In it i&apos;ll put:</p>
 <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Instructor</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
   has_many <span class="hljs-symbol">:students</span>
@@ -1555,13 +1487,13 @@ And every Post belongs to a certain user.</p>
 <p>we also need to include the <code>models/instructor.rb</code> file into our <code>app.rb</code> so in <code>app.rb</code> we need to add</p>
 <pre><code class="lang-ruby">require_relative <span class="hljs-string">&quot;models/instructor&quot;</span>
 </code></pre>
-<h3 id="updating-class-defintions-hospital-you-do-5m">Updating Class Defintions - Hospital (You do 5m)</h3>
+<h3 id="updating-class-defintions--hospital-you-do-5m">Updating Class Defintions - Hospital (You do 5m)</h3>
 <ul>
 <li>Create a file that will contain your AR class definition for Doctor</li>
 <li>make sure to link that file in your main application file</li>
 <li>add corresponding associations</li>
 </ul>
-<h3 id="association-helper-methods-wdi-i-do-30-m">Association helper methods - WDI (I do 30 m)</h3>
+<h3 id="association-helper-methods--wdi-i-do-30-m">Association helper methods - WDI (I do 30 m)</h3>
 <p>So we added some code, but we&apos;re not entirely sure what that did.</p>
 <p>Basically when we added those two lines of code <code>has_many :students</code> <code>belongs_to :instructor</code> we created some helper methods that allow us to query the database more effectively.</p>
 <p>Lets create some objects so we can see what were talking about:</p>
@@ -1601,7 +1533,7 @@ bob.instructor = adrian
 <blockquote>
 <p>note that we did not pass in an instructor id above. Active Record is smart and does that for us.</p>
 </blockquote>
-<h3 id="association-helper-methods-hospital-you-do-15m">Association helper methods - Hospital (you do 15m)</h3>
+<h3 id="association-helper-methods--hospital-you-do-15m">Association helper methods - Hospital (you do 15m)</h3>
 <ul>
 <li>Create at least 2 doctors in your database</li>
 <li>Create at least 4 patients in your database that belong to one of the two doctors</li>
@@ -1609,7 +1541,7 @@ bob.instructor = adrian
 <li>Query the database for the doctor of the last patient you created</li>
 <li>Create a new patient without a doctor id, and use the setter method to associate a doctor to that patient</li>
 </ul>
-<h3 id="seeding-a-database-wdi-15m">Seeding a database - WDI (15m)</h3>
+<h3 id="seeding-a-database--wdi-15m">Seeding a database - WDI (15m)</h3>
 <p>Seeding a database is not all that different from the things we&apos;ve been doing today. What&apos;s the purpose of seed data? (ST-WG)</p>
 <p>We want some sort of data in our database so that we can test our applications. Let&apos;s create our seed file in the terminal: <code>$ touch config/seeds.rb</code></p>
 <p>In our <code>config/seeds.rb</code> file let&apos;s put the following:</p>
@@ -1634,7 +1566,7 @@ robin.students.create(<span class="hljs-symbol">first_name:</span> <span class="
 adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Dee&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Reynolds&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">32</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Bartender&quot;</span>)
 adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;George&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Costanza&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">45</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;toner seller&quot;</span>)
 </code></pre>
-<h3 id="seeding-a-database-hopsital-you-do-10m">Seeding a database - Hopsital ( you do- 10m)</h3>
+<h3 id="seeding-a-database--hopsital--you-do-10m">Seeding a database - Hopsital ( you do- 10m)</h3>
 <ul>
 <li>create a seed file that contains all dependencies and establish connection to database /w Active Record</li>
 <li>in the seed file create at least 2 doctors and 4 patients</li>
@@ -1764,9 +1696,25 @@ adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="h
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

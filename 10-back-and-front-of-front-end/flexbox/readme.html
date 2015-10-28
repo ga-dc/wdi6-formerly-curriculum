@@ -8,7 +8,7 @@
         <title>Flex Box | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="7.2.2" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="7.2.2" data-chapter-title="Flex Box" data-filepath="10-back-and-front-of-front-end/flexbox/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1276,7 +1208,7 @@
 }</span>
 </code></pre>
 <p>This problem has been the laughingstock of CSS for years: how can something so obvious be so difficult to accomplish?</p>
-<h3 id="flex-box-to-the-rescue">Flex-box to the rescue</h3>
+<h3 id="flexbox-to-the-rescue">Flex-box to the rescue</h3>
 <pre><code class="lang-CSS"><span class="hljs-tag">html</span><span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"><span class="hljs-number">100%</span></span></span>;
 }</span>
@@ -1327,7 +1259,7 @@
 }</span>
 </code></pre>
 <p>Making the footer lie against the bottom of my <em>screen</em> is pretty easy: I can just use absolute or fixed positioning. However, using absolute or fixed positioning means everything else on the page ignores my footer. The text of my <code>main</code> could easily run under my footer. I want the text of my <code>main</code> to &quot;push&quot; my footer to the end of the page.</p>
-<h3 id="flex-box-to-the-rescue">Flex-box to the rescue</h3>
+<h3 id="flexbox-to-the-rescue">Flex-box to the rescue</h3>
 <pre><code class="lang-CSS"><span class="hljs-tag">html</span><span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"><span class="hljs-number">100%</span></span></span>;
 }</span>
@@ -1344,8 +1276,8 @@
   <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"><span class="hljs-hexcolor">#888</span></span></span>;
 }</span>
 </code></pre>
-<h4 id="what-s-the-main-axis-on-here">What&apos;s the main axis on here?</h4>
-<h4 id="what-s-the-cross-axis">What&apos;s the cross axis?</h4>
+<h4 id="whats-the-main-axis-on-here">What&apos;s the main axis on here?</h4>
+<h4 id="whats-the-cross-axis">What&apos;s the cross axis?</h4>
 <p>Four more terms: the <strong>main start</strong> (<code>flex-start</code>), where the start of the main axis is, the <strong>main end</strong> (<code>flex-end</code>), and the cross starts and ends.</p>
 <h3 id="to-recap">To recap</h3>
 <ul>
@@ -1390,7 +1322,7 @@
 }
 </code></pre><h2 id="exorcize">Exorcize</h2>
 <p><a href="https://github.com/ga-dc/hyrule_potion_shop" target="_blank">https://github.com/ga-dc/hyrule_potion_shop</a></p>
-<h3 id="-and-that-s-it">...and that&apos;s it.</h3>
+<h3 id="and-thats-it">...and that&apos;s it.</h3>
 <p>For the rest of class, please continue to work on your portfolio pages, or the pseudo-selector homework if you haven&apos;t done it yet. If you have questions about design, please make use of the instructors!</p>
 
                     
@@ -1413,9 +1345,25 @@
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

@@ -8,7 +8,7 @@
         <title>Git Branching | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="2.3" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="2.3" data-chapter-title="Git Branching" data-filepath="02-intermediate-front-end/git_branching/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1266,7 +1198,7 @@ locally?</li>
 </li>
 <li>Whenever you see/type <code>git commit</code>, it may help to assume changes have been made and staged.  Why else would you &quot;commit&quot;?</li>
 </ul>
-<h2 id="think-pair-share-1-3-6-why-branches-10-min">Think/Pair/Share-1/3/6: Why Branches?  (10 min)</h2>
+<h2 id="thinkpairshare136-why-branches--10-min">Think/Pair/Share-1/3/6: Why Branches?  (10 min)</h2>
 <p>You&apos;ve had a brief overview.  Let&apos;s take a minute to think about why they are important, then share with your neighbor, and we&apos;ll share what we feel is important.</p>
 <h2 id="q-why-is-branching-an-important-part-of-git">Q. Why is branching an important part of git?</h2>
 <blockquote>
@@ -1393,7 +1325,7 @@ On master, change the first line</p>
 </li>
 <li><code>git merge &lt;branch_name&gt;</code> - merges <code>&lt;branch_name&gt;</code> into the current branch, creating a new merge commit in the process</li>
 </ul>
-<h2 id="exercise-pushing-and-prs-from-branches-10-min">Exercise - Pushing and PRs from Branches (10 min)</h2>
+<h2 id="exercise--pushing-and-prs-from-branches-10-min">Exercise - Pushing and PRs from Branches (10 min)</h2>
 <p>Many OSS projects request that you create pull requests from a non-master branch.</p>
 <ol>
 <li>Fork and Clone <a href="https://github.com/ga-dc/git-tricks" target="_blank">https://github.com/ga-dc/git-tricks</a>.</li>
@@ -1410,7 +1342,7 @@ On master, change the first line</p>
 <li>Open those files and fix the conflicts. (Look for the &apos;&lt;&lt;&lt;&lt;&apos;, &apos;====&apos;, and &apos;&gt;&gt;&gt;&gt;&apos; which will guide you to the conflict)</li>
 <li>Commit the fixes.</li>
 </ol>
-<h2 id="exercise-merge-conflicts-20-min">Exercise - Merge Conflicts (20 min)</h2>
+<h2 id="exercise--merge-conflicts-20-min">Exercise - Merge Conflicts (20 min)</h2>
 <ol>
 <li>Pair up with someone.</li>
 <li>Pick someone as the &apos;primary&apos;, and the &apos;secondary&apos;.</li>
@@ -1432,7 +1364,7 @@ On master, change the first line</p>
 </ol>
 <h2 id="homework">Homework</h2>
 <p>From this point on, all homework submissions should be a pull request from a feature (or &apos;topic&apos;) branch, named <code>&lt;your_name&gt;_solution</code>.</p>
-<h2 id="-git-mergetool-an-exercise-for-the-reader"><code>git mergetool</code> (An exercise for the reader)</h2>
+<h2 id="git-mergetool-an-exercise-for-the-reader"><code>git mergetool</code> (An exercise for the reader)</h2>
 <p>Some merge conflicts can be quite confusing.  Git provides a way to use a visual tool to assist in resolving the merge conflicts.</p>
 <p>If you have installed XCode, an decent tool (opendiff) is used.  For this class, we will use <a href="http://kdiff3.sourceforge.net/" target="_blank">KDiff3</a>.  Here&apos;s an <a href="http://www.gitguys.com/topics/merging-with-a-gui#Merging_with_kdiff3" target="_blank">example, with images</a>, including a way to try it first.</p>
 <ul>
@@ -1472,9 +1404,25 @@ On master, change the first line</p>
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

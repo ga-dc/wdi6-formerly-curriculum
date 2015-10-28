@@ -8,7 +8,7 @@
         <title>Express Routing | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="6.2" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="6.2" data-chapter-title="Express Routing" data-filepath="08-single-page-web-apps/express_routing/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1266,28 +1198,28 @@ Read Routing, Route Methods, and Route Paths.  Stop at Route Handlers.</li>
 <p><a href="https://github.com/ga-dc/song_routes_express" target="_blank">https://github.com/ga-dc/song_routes_express</a></p>
 <p>Note: earlier reading did not discuss :id placeholders</p>
 <h2 id="other-request-methods-15-min">Other Request methods (15 min)</h2>
-<h3 id="app-head">app.head()</h3>
+<h3 id="apphead">app.head()</h3>
 <p>The <a href="http://expressjs.com/guide/routing.html#route-methods" target="_blank">docs</a> list 26 request methods.  So far, we&apos;ve used 5 (GET, POST, PUT, PATCH, DELETE).</p>
 <p>The only other one that I&apos;ve used is <code>HEAD</code>.  Sometimes, we just want a little information.  According to <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html" target="_blank">RFC2616</a></p>
 <blockquote>
 <p>This method (HEAD) can be used for obtaining metainformation about the entity implied by the request without transferring the entity-body itself.</p>
 </blockquote>
 <p>Meta-information about the entity.</p>
-<h2 id="-q-why-might-we-want-that">&gt; Q. Why might we want that?</h2>
+<h2 id="q-why-might-we-want-that">&gt; Q. Why might we want that?</h2>
 <p>A. The RFC goes on to say, &quot;This method is often used for testing hypertext links for validity, accessibility, and recent modification.&quot;</p>
 <p>Speed, small payload, find out if something has changed.</p>
 <p><a href="http://stackoverflow.com/a/1461973/232247" target="_blank">Thx StackOverflow</a></p>
 <p>&quot;The reason why HEAD is preferred to GET is due to the absence of the message body in the response making it using in scenarios where you want to determine if the content has changed at all - a change in the last modified time or content length usually signifies this.</p>
 <p>Also, a HEAD request will provide some information about the server setup (whether it is IIS/Apache etc.), unless the server was masked; of course, this is available in all responses, but HEAD is preferred especially when you don&apos;t know the size of the response. HEAD is also the easiest way to determine if a site is up or down; again the irrelevance of the message body makes HEAD the ideal candidate.&quot;</p>
-<h3 id="app-all">app.all()</h3>
+<h3 id="appall">app.all()</h3>
 <p>If you need to process something no matter what the request method is (BET, POST, PUT, etc), then <code>all</code> is a good choice.</p>
-<h2 id="-q-when-would-we-use-this">&gt; Q. When would we use this?</h2>
+<h2 id="q-when-would-we-use-this">&gt; Q. When would we use this?</h2>
 <p>Cross cutting concerns.  Like authentication, authorization, and loading the parent of a nested route.</p>
 <pre><code class="lang-js">app.all(<span class="hljs-string">&apos;*&apos;</span>, requireAuthentication, loadUser);
 </code></pre>
 <h2 id="route-paths-10-min">Route Paths (10 min)</h2>
 <p>Research: Back to the docs for <a href="http://expressjs.com/guide/routing.html#route-paths" target="_blank">Routing Paths</a>(5 min).</p>
-<h2 id="-q-what-are-the-3-ways-to-indicate-a-route">&gt; Q. What are the 3 ways to indicate a route?</h2>
+<h2 id="q-what-are-the-3-ways-to-indicate-a-route">&gt; Q. What are the 3 ways to indicate a route?</h2>
 <ul>
 <li>Straight, exact string match.</li>
 <li>String pattern</li>
@@ -1306,31 +1238,31 @@ Read Routing, Route Methods, and Route Paths.  Stop at Route Handlers.</li>
 </ul>
 <p>That covers the request end of routing.  On to the response.</p>
 <h2 id="response-methods-20-min">Response Methods (20 min)</h2>
-<h2 id="-q-what-kind-of-responses-have-we-given-so-far">&gt; Q. What kind of responses have we given so far?</h2>
+<h2 id="q-what-kind-of-responses-have-we-given-so-far">&gt; Q. What kind of responses have we given so far?</h2>
 <p>A. html and json.</p>
 <p>The <a href="http://expressjs.com/guide/routing.html#response-methods" target="_blank">docs</a> share many more.</p>
-<h3 id="res-json">res.json</h3>
+<h3 id="resjson">res.json</h3>
 <p>That <code>res.json</code> looks handy.  THe link takes us to <a href="http://expressjs.com/4x/api.html" target="_blank">http://expressjs.com/4x/api.html</a>.  If you search for
 <code>res.json([body])</code>, we&apos;ll find what we are looking for.</p>
 <p>&quot;This method is identical to res.send() with an object or array as the parameter. However, you can use it to convert other values to JSON, such as null, and undefined. (although these are technically not valid JSON).&quot;</p>
 <p>Did we miss one or two?</p>
-<h3 id="res-redirect">res.redirect</h3>
+<h3 id="resredirect">res.redirect</h3>
 <p>We used this in the first exercise.</p>
 <pre><code class="lang-js"><span class="hljs-comment">// root route</span>
 app.get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>)</span>{
   res.redirect(<span class="hljs-string">&apos;/songs&apos;</span>);
 });
 </code></pre>
-<h3 id="res-render">res.render</h3>
+<h3 id="resrender">res.render</h3>
 <p>Andy covered this.  It&apos;s used to render a view template with your chosen templating language.</p>
-<h3 id="res-jsonp">res.jsonp</h3>
+<h3 id="resjsonp">res.jsonp</h3>
 <p>You will hear more about this in the Single Page Application lesson.  ???</p>
 <h2 id="exercise-the-bowling-game-45-min">Exercise: The Bowling Game (45 min)</h2>
 <p><a href="https://github.com/ga-dc/bowling_game_express" target="_blank">https://github.com/ga-dc/bowling_game_express</a></p>
 <ul>
 <li>4 min:  Read through the docs.  If you aren&apos;t familiar with how to score a bowling game, just skim the rules for now.  You don&apos;t need the scoring details... yet.</li>
 </ul>
-<h2 id="-q-what-do-we-know-about-this-application">&gt; Q. What do we know about this application?</h2>
+<h2 id="q-what-do-we-know-about-this-application">&gt; Q. What do we know about this application?</h2>
 <p>Discuss:</p>
 <ul>
 <li>a bowling game<ul>
@@ -1356,7 +1288,7 @@ app.get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-functi
 </li>
 </ul>
 <p>It&apos;s been about 10 minutes. We have reviewed the project.  We have a handle on dependencies and routes.  You&apos;ve run &quot;mocha -w&quot; and you&apos;ve seen that your app doesn&apos;t fare too well. :)  </p>
-<h2 id="-q-what-are-our-first-steps">&gt; Q. What are our first steps?</h2>
+<h2 id="q-what-are-our-first-steps">&gt; Q. What are our first steps?</h2>
 <ul>
 <li>avoid strike/spare</li>
 <li>score (GET)<ul>
@@ -1371,7 +1303,7 @@ app.get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-functi
 </li>
 <li>reset sore</li>
 </ul>
-<h2 id="-q-examples">&gt; Q: Examples?</h2>
+<h2 id="q-examples">&gt; Q: Examples?</h2>
 <p>On whiteboard:</p>
 <ul>
 <li>Start: {score: 0}</li>
@@ -1394,7 +1326,7 @@ app.get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-functi
 </ul>
 <h2 id="exports-20-min">exports (20 min)</h2>
 <p>In order to simplify your index.js, you will find it helpful to extract your routes to separate files.</p>
-<h3 id="i-do-extract-example-song-s-routes-to-a-separate-file">I Do: Extract example Song&apos;s routes to a separate file</h3>
+<h3 id="i-do-extract-example-songs-routes-to-a-separate-file">I Do: Extract example Song&apos;s routes to a separate file</h3>
 <p><a href="https://github.com/ga-dc/song_routes_express" target="_blank">https://github.com/ga-dc/song_routes_express</a></p>
 <p>Steps:</p>
 <ul>
@@ -1433,15 +1365,15 @@ song_routes.setup(app);
 <li>Really like the organization I see in <a href="https://thewayofcode.wordpress.com/2013/04/21/how-to-build-and-test-rest-api-with-nodejs-express-mocha/" target="_blank">this tutorial</a></li>
 <li>Looking for more?  We recommend NodeSchool&apos;s <a href="https://github.com/azat-co/expressworks" target="_blank">ExpressWorks</a></li>
 </ul>
-<h3 id="-optional-regular-expression-light-20-min">[Optional] Regular Expression, light (20 min)</h3>
+<h3 id="optional-regular-expression-light-20-min">[Optional] Regular Expression, light (20 min)</h3>
 <p>We are throwing these regular expressions at you again.  It&apos;s high time we shared a little about them.  Regular expressions are a specialized syntax for matching portions of text. In js and ruby, a RegEx is wrapped in forward slashes (<code>/expression/</code>).</p>
 <p>I am going to show you a few example in <a href="http://rubular.com" target="_blank">Rubular</a>, a Ruby regular expression editor.</p>
 <p>Enter &quot;a&quot; as the regular expression and add some fruits to &quot;Your test string&quot;.</p>
-<h2 id="-q-what-is-it-doing">&gt; Q. What is it doing?</h2>
+<h2 id="q-what-is-it-doing">&gt; Q. What is it doing?</h2>
 <p>Correct.  It&apos;s indicating everywhere the letter &quot;a&quot; appears.  In most applications, we would use this to indicate if the string had an &quot;a&quot; contained somewhere in it.  </p>
 <p>F0r instance, if we wanted to match routes that had the word &quot;song&quot; in then, we would use <code>/song/</code>.</p>
 <p>Take a minute to review the the Regex Quick Reference at the bottom of Rubular.  Try the other example from the docs: <code>/.*fly$/</code></p>
-<h2 id="-q-what-are-the-and-used-for">&gt; Q. What are the <code>.</code>, <code>*</code>, and <code>$</code> used for?</h2>
+<h2 id="q-what-are-the---and--used-for">&gt; Q. What are the <code>.</code>, <code>*</code>, and <code>$</code> used for?</h2>
 <p>From the docs, that regex &quot;will match butterfly, dragonfly; but not butterflyman, dragonfly man, and so on&quot;.  Let me break it down... this RegEx matches all strings that:</p>
 <ul>
 <li>start with anything <code>.*</code> and</li>
@@ -1478,9 +1410,25 @@ song_routes.setup(app);
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

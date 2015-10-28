@@ -8,7 +8,7 @@
         <title>Intro to Express | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="6.1" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="6.1" data-chapter-title="Intro to Express" data-filepath="08-single-page-web-apps/express_intro/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1249,13 +1181,13 @@
 <li>Use and configure middleware like body-parser to handle form submissions</li>
 <li>Link to static assets in an Express application</li>
 </ul>
-<h2 id="opening-framing-15-15">Opening Framing (15/15)</h2>
+<h2 id="opening-framing-1515">Opening Framing (15/15)</h2>
 <p>PKI(5 m) List out the things we&apos;ve covered in class. It is SO much stuff. We&apos;ve pretty much covered the entire stack. Everything we cover from here on out is an extension of what we&apos;ve already learned or a different language than we&apos;re used to. Today we&apos;ll be talking about expressJS the &quot;e&quot; in the MEAN stack. Which incidentally is super buzz wordy right now. You&apos;ve already used express, only the language was ruby and the framework was Sinatra. So you haven&apos;t actually used express, but you&apos;ll see many similarities. Express is a framework built on top of node.</p>
 <blockquote>
 <p>Node.js is not a framework. It is an application runtime environment that allows you to write server-side applications in javascript. Javascript that does not depend on a browser.</p>
 </blockquote>
 <p>Frameworks like rails, are very opinionated frameworks. (st-wg) Express is much less so. There are holy wars over which frameworks are better for reason x or y, but they all pretty much do the same thing just with a different syntax. Today we&apos;ll be learning about express. Express by itself, is much more like Sinatra, it feels very manual.</p>
-<h2 id="hello-world-express-we-do-30-45">Hello World - Express (we do 30/45)</h2>
+<h2 id="hello-world--express-we-do-3045">Hello World - Express (we do 30/45)</h2>
 <p>To start, Lets create a simple hello world express application.</p>
 <p>In the terminal:</p>
 <pre><code class="lang-bash">$ mkdir hello-express
@@ -1323,16 +1255,16 @@ app.listen(<span class="hljs-number">4000</span>, <span class="hljs-function"><s
 <p>Then we start up our application a bit differently now. In the terminal:</p>
 <pre><code class="lang-bash">$ nodemon application.js
 </code></pre>
-<h2 id="params-in-url-in-express-5-50">Params in URL in Express (5/50)</h2>
+<h2 id="params-in-url-in-express-550">Params in URL in Express (5/50)</h2>
 <p>Remember parameters in our ruby frameworks? It&apos;s very similar in JS. Let&apos;s update <code>application.js</code> to include:</p>
 <pre><code class="lang-javascript">app.get(<span class="hljs-string">&quot;/:name&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>)</span>{
   res.send(<span class="hljs-string">&quot;hello &quot;</span> + req.params.name)
 })
 </code></pre>
-<h2 id="break-10-60">Break(10/60)</h2>
-<h2 id="you-do-99-bottle-of-beer-20-80">You do: 99 Bottle of Beer(20/80)</h2>
+<h2 id="break1060">Break(10/60)</h2>
+<h2 id="you-do-99-bottle-of-beer2080">You do: 99 Bottle of Beer(20/80)</h2>
 <p>The readme can be found <a href="https://github.com/ga-dc/99_bottles_express" target="_blank">here</a></p>
-<h2 id="views-20-100">Views (20/100)</h2>
+<h2 id="views-20100">Views (20/100)</h2>
 <blockquote>
 <p>One thing to note about views for today. We want to give you an initial introduction into how views can be generated through templating to achieve the same effects that erb did for us in Sinatra/Rails. However, during the course of this week, we won&apos;t be using to much server-side rendered views. Instead we&apos;ll be focusing more of this week on how we render views on the client side.</p>
 </blockquote>
@@ -1396,7 +1328,7 @@ app.get(<span class="hljs-string">&quot;/:numberOfBottles?&quot;</span>, <span c
 <blockquote>
 <p>Like in ERB, we&apos;re able to use objects in our view. Additionally we can utilize control flow in our view as well!</p>
 </blockquote>
-<h2 id="module-exports-20-120">module.exports (20/120)</h2>
+<h2 id="moduleexports-20120">module.exports (20/120)</h2>
 <p><code>module.exports</code> allows us to separate our js files by exposing their contents as one global variable. The global variable isn&apos;t assigned until we require the file.</p>
 <p>For example:</p>
 <pre><code class="lang-js"><span class="hljs-comment">// aCustomModule.js</span>
@@ -1432,8 +1364,8 @@ customModule.sayHello()
 <p>You can see that almost nothing has changed, really we just namespaced the functionality into a different file. What advantages does that bring to us with regard to separation of concerns in MVC? (st-wg)</p>
 </blockquote>
 <p>You can start to see the neccessity of <code>module.export</code> when we start to add models to our application. If we had the 7 RESTful routes that rails have for each model, you can start to see how keeping everything in the <code>application.js</code> can begin to become unwieldy.</p>
-<h2 id="break-10-130">Break (10/130)</h2>
-<h2 id="bodyparser-post-requests-20-150">Bodyparser &amp; Post requests (20/150)</h2>
+<h2 id="break-10130">Break (10/130)</h2>
+<h2 id="bodyparser--post-requests-20150">Bodyparser &amp; Post requests (20/150)</h2>
 <p>We&apos;re going to leverage code from the <a href="https://github.com/ga-dc/hello-express" target="_blank">hello-express app</a> we built earlier. I&apos;ve added some hbs views so go ahead and clone this code if you want to follow along.</p>
 <p>The first thing that I want to do is add a form to our <code>hello.hbs</code>:</p>
 <pre><code class="lang-html">Hello {{name}}
@@ -1475,7 +1407,7 @@ app.use(bodyParser.urlencoded({ extended: <span class="hljs-literal">true</span>
   res.render(<span class="hljs-string">&quot;hello&quot;</span>, {name: req.body.name})
 })
 </code></pre>
-<h2 id="you-do-ultimate-complimate-if-time-allows">You do - Ultimate Complimate(if time allows)</h2>
+<h2 id="you-do--ultimate-complimateif-time-allows">You do - Ultimate Complimate(if time allows)</h2>
 <h2 id="hw">HW</h2>
 <p>You can find hw for tonight <a href="https://github.com/ga-dc/do_something_express_part1" target="_blank">here</a></p>
 <h2 id="sample-quiz-questions">Sample Quiz Questions</h2>
@@ -1508,9 +1440,25 @@ app.use(bodyParser.urlencoded({ extended: <span class="hljs-literal">true</span>
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

@@ -8,7 +8,7 @@
         <title>jQuery 2 | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="2.5" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="2.5" data-chapter-title="jQuery 2" data-filepath="02-intermediate-front-end/jquery/jquery-two.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1250,7 +1182,7 @@
 </li>
 </ul>
 <h2 id="opening-framing-5">Opening Framing (5)</h2>
-<h3 id="pki-st-wg">PKI (ST-WG)</h3>
+<h3 id="pki-stwg">PKI (ST-WG)</h3>
 <p>What are some things you&apos;ve learned about jQuery?</p>
 <ul>
 <li>when to use which</li>
@@ -1259,11 +1191,11 @@
 <li>how to select DOM elements</li>
 </ul>
 <p>In the last lesson, you learned how to select elements using jquery and maybe update some of its properties. In this lesson, we want to dive a little deeper into some of the more common jQuery functions that exist. The basic premise of jQuery is pretty easy though. We want to select something, and then do something to it.</p>
-<h2 id="jquery-i-do-you-do">jQuery (I do/You do)</h2>
+<h2 id="jquery-i-doyou-do">jQuery (I do/You do)</h2>
 <blockquote>
 <p>I&apos;m going to throw lots of code at you. It will be available in this lesson plan. So really just try and take it in and not follow along. There will also be parts where you will teach yourself some jQuery functions.</p>
 </blockquote>
-<h2 id="setup-5-10">Setup (5/10)</h2>
+<h2 id="setup-510">Setup (5/10)</h2>
 <p>Create 2 files we&apos;ll need in this class:</p>
 <pre><code class="lang-bash">$ touch index.html
 $ touch script.js
@@ -1289,7 +1221,7 @@ $ touch script.js
 })
 </code></pre>
 <h2 id="addition">Addition</h2>
-<h3 id="i-do-append-appendto-10-20">I do - append/appendTo (10/20)</h3>
+<h3 id="i-do--appendappendto-1020">I do - append/appendTo (10/20)</h3>
 <ul>
 <li><p><code>.append()</code></p>
 <ul>
@@ -1308,7 +1240,7 @@ $ touch script.js
 </code></pre>
 </li>
 </ul>
-<h3 id="you-do-prepend-prependto-10-30">You do - prepend/prependTo (10/30)</h3>
+<h3 id="you-do--prependprependto-1030">You do - prepend/prependTo (10/30)</h3>
 <ul>
 <li>Go into the <a href="https://api.jquery.com/" target="_blank">jquery docs</a> to learn about prepend/prependTo</li>
 <li>Add 2 elements to each div as the first child of that div</li>
@@ -1334,7 +1266,7 @@ $ touch script.js
 </blockquote>
 </li>
 </ul>
-<h3 id="-html-text-10-40"><code>.html()</code>/<code>.text()</code> (10/40)</h3>
+<h3 id="htmltext-1040"><code>.html()</code>/<code>.text()</code> (10/40)</h3>
 <ul>
 <li><p><code>.html()</code></p>
 <ul>
@@ -1362,7 +1294,7 @@ $ touch script.js
 </li>
 </ul>
 <h3 id="removal">Removal</h3>
-<h4 id="i-do-remove-5-45">I do (remove) (5/45)</h4>
+<h4 id="i-do-remove-545">I do (remove) (5/45)</h4>
 <ul>
 <li><p><code>.remove()</code></p>
 <ul>
@@ -1372,7 +1304,7 @@ $ touch script.js
 </code></pre>
 </li>
 </ul>
-<h4 id="you-do-empty-5-50">You do (empty) (5/50)</h4>
+<h4 id="you-do-empty-550">You do (empty) (5/50)</h4>
 <ul>
 <li>In the <code>index.html</code>, create some dummy content that is children of the the second div with class awesome.</li>
 <li><p>Then using jquery, remove all of those child elements.</p>
@@ -1388,8 +1320,8 @@ $ touch script.js
 </blockquote>
 </li>
 </ul>
-<h2 id="break-10-60">Break (10/60)</h2>
-<h3 id="edition-20-80">Edition (20/80)</h3>
+<h2 id="break-1060">Break (10/60)</h2>
+<h3 id="edition-2080">Edition (20/80)</h3>
 <blockquote>
 <p>you guys glossed over this a bit, but here they are again.</p>
 </blockquote>
@@ -1422,7 +1354,7 @@ $ touch script.js
 <blockquote>
 <p>We need to be able to get information from users. Input tags are a great way to do that. But more importantly we need to be able to access those values so that our JS can act on it. Think about auto complete on search forms. As we type something into google, it starts giving us options. For every key stroke we make, the callback that is fired is probably using some form of <code>.val()</code>. This will also be extremely important moving forward in week 7 with AJAX.</p>
 </blockquote>
-<h3 id="other-30-110">Other (30/110)</h3>
+<h3 id="other-30110">Other (30/110)</h3>
 <ul>
 <li><p><code>.hide()</code></p>
 <ul>
@@ -1500,13 +1432,13 @@ $ touch script.js
 <blockquote>
 <p>What is <code>$(this)</code> here? Refers to the jquery object you called <code>.on</code> on, as long as you&apos;re in the scope of the <code>.on</code> function</p>
 </blockquote>
-<h3 id="you-do-create-a-drop-down-menu-sorta-10-120">You do - Create a drop down menu... sorta (10/120)</h3>
+<h3 id="you-do--create-a-drop-down-menu-sorta-10120">You do - Create a drop down menu... sorta (10/120)</h3>
 <ul>
 <li>Create a button in the <code>index.html</code></li>
 <li>Your JS should have the button hide and show the awesome divs when clicked</li>
 </ul>
-<h3 id="class-ex-timer-js-https-github-com-ga-dc-timer-js-refactor-30-150">Class Ex- <a href="https://github.com/ga-dc/timer_js" target="_blank">TIMER js</a> refactor (30/150)</h3>
-<h3 id="additional-exercise-atm-https-github-com-ga-dc-atm">Additional Exercise - <a href="https://github.com/ga-dc/atm" target="_blank">ATM</a></h3>
+<h3 id="class-ex-timer-js-refactor-30150">Class Ex- <a href="https://github.com/ga-dc/timer_js" target="_blank">TIMER js</a> refactor (30/150)</h3>
+<h3 id="additional-exercise--atm">Additional Exercise - <a href="https://github.com/ga-dc/atm" target="_blank">ATM</a></h3>
 
                     
                     </section>
@@ -1528,9 +1460,25 @@ $ touch script.js
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

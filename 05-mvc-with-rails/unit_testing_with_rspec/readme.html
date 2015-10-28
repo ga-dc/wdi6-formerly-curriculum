@@ -8,7 +8,7 @@
         <title>Unit Testing with RSpec | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="4.1" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="4.1" data-chapter-title="Unit Testing with RSpec" data-filepath="05-mvc-with-rails/unit_testing_with_rspec/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1275,7 +1207,7 @@
 <p>The reading discussed TDD/BDD.  Indicating that testing is as much about design, helping you to architect a maintainable application, as it is about creating a body of regression tests.  In this lesson, we are focusing on the safety net.  Design is hard, BDD makes it easier, but need the basic skills first.</p>
 <p>Today, don&apos;t worry about <em>when</em> you write your tests.  <strong>Just focus on writing tests.</strong>  Later, when you are more comfortable writing tests, you can begin to use them to drive your design.</p>
 <hr>
-<h2 id="let-s-look-at-an-example-30m">Let&apos;s look at an example (30m)</h2>
+<h2 id="lets-look-at-an-example-30m">Let&apos;s look at an example (30m)</h2>
 <p>I don&apos;t expect you to type this with me, but this code is available at <a href="https://github.com/ga-dc/rspec_person_example" target="_blank">rspec_person_example</a></p>
 <p>When I run <code>rspec</code> in the <code>rspec_person_example</code> dir, what do we see?</p>
 <pre><code>Person
@@ -1438,7 +1370,7 @@ end
 <pre><code>when /spanish/i
   &quot;Hola me llamo #{name}.&quot;
 </code></pre><hr>
-<h3 id="think-pair-share-what-aren-t-we-testing-5m">Think, pair, share.  What aren&apos;t we testing? (5m)</h3>
+<h3 id="think-pair-share--what-arent-we-testing-5m">Think, pair, share.  What aren&apos;t we testing? (5m)</h3>
 <p>Let&apos;s take a few minutes to think about what we aren&apos;t testing.</p>
 <p>Sit quietly for 1 minutes.  Think like a tester.  What code exists that aren&apos;t testing.  What examples would be good to clarify what our code can do?</p>
 <p>Next, we&apos;ll discuss with our pair for 2 minutes.
@@ -1454,7 +1386,7 @@ Then, we&apos;ll share a few examples with the class.</p>
 </ul>
 <h2 id="break-10m">Break (10m)</h2>
 <h2 id="what-are-we-expecting-25m">What are we expecting? (25m)</h2>
-<h3 id="specify-state-or-side-effects">Specify State or Side-effects</h3>
+<h3 id="specify-state-or-sideeffects">Specify State or Side-effects</h3>
 <p>Sandi breaks Unit tests in two groups: Queries and Commands.  So far, we&apos;ve been specifying the expected return value of methods.  That covers the Queries.  We can also specify the expected side-effects.  A Command performs some action and we can assert that commands do what they are supposed to.  Does this method do what it should do to our system?</p>
 <p>Think back to <a href="https://github.com/ga-dc/oop_monkey" target="_blank">oop_monkey</a>.  Remember that our app kept track of the foods that our monkey ate?</p>
 <p>In  <a href="https://github.com/ga-dc/oop_monkey/blob/master/spec/monkey_spec.rb" target="_blank">monkey_spec.rb</a>, we saw an example of specifying the side-effect.</p>
@@ -1518,13 +1450,13 @@ end
 <h2 id="it-depends-10m">It depends (10m)</h2>
 <p>All of these &quot;rules&quot;come with the caveat, &quot;If it makes more sense to break the rules.  Break them.&quot;</p>
 <p>For instance, if ItalianTranslator utilized a 3rd party, external service, I probably just want to check that I am calling it correctly.  And that&apos;s where mocks and stubs come in.</p>
-<h2 id="mocks-stubs">Mocks &amp; Stubs</h2>
+<h2 id="mocks--stubs">Mocks &amp; Stubs</h2>
 <p>Sometimes our Unit Under Test must interact with other object.  If these objects are difficult to setup or their response may be slow or non-deterministic -- like an external service that we contact via te internet.  It can make sense to mock out the other object, to create a &quot;fake&quot; object that supports the interface you need but returns a fixed, expected value.  This makes your component examples independent of other components.</p>
 <ul>
 <li>You can use mock objects the replace the entire object, just supporting the interface you need (the methods and attribute that your Unit Under Test actually interacts with).</li>
 <li>You can stub specific methods on &quot;real&quot; objects to let them return whatever you like.</li>
 </ul>
-<h2 id="earlier-i-passed-in-translatoritalian-and-i-called-the-convert-from-method-on-it-if-that-was-a-service-somewhere-else-on-the-web-then-my-unit-tests-probably-do-not-wan-tot-call-it">Earlier, I passed in <code>TranslatorItalian</code> and I called the <code>convert_from</code> method on it.  If that was a service somewhere else on the web, then my unit tests probably do not wan tot call it.</h2>
+<h2 id="earlier-i-passed-in-translatoritalian-and-i-called-the-convertfrom-method-on-it--if-that-was-a-service-somewhere-else-on-the-web-then-my-unit-tests-probably-do-not-wan-tot-call-it">Earlier, I passed in <code>TranslatorItalian</code> and I called the <code>convert_from</code> method on it.  If that was a service somewhere else on the web, then my unit tests probably do not wan tot call it.</h2>
 <h3 id="mock-example">Mock Example</h3>
 <pre><code class="lang-ruby"><span class="hljs-comment"># create mock object that will act like my 3rd party translator</span>
 translator = instance_double(<span class="hljs-string">&quot;ItalianTranslator&quot;</span>)
@@ -1608,9 +1540,25 @@ Break it into small pieces and have pairs iterate, then switch pairs and repeat.
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

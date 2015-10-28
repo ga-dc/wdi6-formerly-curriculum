@@ -8,7 +8,7 @@
         <title>Events and Callbacks | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="2.2" data-chapter-title="Events and Callbacks" data-filepath="02-intermediate-front-end/events-and-callbacks/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1263,7 +1195,7 @@
 <li>Bicycles also have state (current gear, current pedal cadence, current speed) and behavior (changing gear, changing pedal cadence, applying brakes).</li>
 </ul>
 <p>Software objects are conceptually similar to real-world objects: they too consist of states and related behaviors. The DOM seems scary at first, but really we&apos;re just mapping HTML elements into JS objects so that we can change their state, or give them behavior. </p>
-<h2 id="set-up-5-10">Set up (5/10)</h2>
+<h2 id="set-up-510">Set up (5/10)</h2>
 <p>For this class we&apos;ll be working with only 2 files, <code>index.html</code> and <code>script.js</code></p>
 <p>In <code>index.html</code>:</p>
 <pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
@@ -1281,7 +1213,7 @@
 <pre><code class="lang-js"><span class="hljs-comment">// check to see if script file is properly attached to html</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;I&apos;m working!&quot;</span>)
 </code></pre>
-<h2 id="events-continued-10-20">Events Continued (10/20)</h2>
+<h2 id="events-continued-1020">Events Continued (10/20)</h2>
 <p>Last time we set up click handlers for elements in the DOM.</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
 <span class="hljs-keyword">var</span> handleClickEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
@@ -1297,7 +1229,7 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, hand
 </code></pre>
 <p>Because <code>onclick</code> is a DOM attribute which references a function, you can only have one click handler per DOM element.</p>
 <p><code>addEventListener</code> is much more common and allows multiple event handlers for one DOM object.</p>
-<h3 id="before-we-go-on-5-25">Before we go on...(5/25)</h3>
+<h3 id="before-we-go-on525">Before we go on...(5/25)</h3>
 <p>Usually when we do anything with functions, we put parentheses after the function name. Here, we have <code>handleClickEvent</code> without any parens.</p>
 <p>Try adding parentheses at the end of this line:</p>
 <pre><code class="lang-js">button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, handleClickEvent())
@@ -1306,7 +1238,7 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, hand
 <blockquote>
 <p>You&apos;ll notice that &quot;I was clicked!&quot; pops up immediately upon reload. Also note that the event while it does fire, isn&apos;t doing anything. When we include <code>()</code> we invoke the function expression. Without the <code>()</code>, we&apos;re using the function expression as a reference.</p>
 </blockquote>
-<h2 id="callbacks-20-45">Callbacks (20/45)</h2>
+<h2 id="callbacks-2045">Callbacks (20/45)</h2>
 <p>This might not be your first time hearing it, and definitely won&apos;t be your last. A callback is a piece of executable code that is passed as an argument to other code, which is expected to invoke (or &quot;call back&quot;) that executable code at some convenient time.</p>
 <p>The invocation may be immediate or it might happen later. In the example above, <code>handleClickEvent</code> is our callback. The invocation happens when the button is clicked.</p>
 <h3 id="code-along">Code along</h3>
@@ -1334,7 +1266,7 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, othe
 <blockquote>
 <p>TLDR: You are unable to add the same function call to the same event to execute functionality twice in 1 click event. Unless you use an anonymous function ...</p>
 </blockquote>
-<h2 id="anonymous-functions-10-55">Anonymous functions (10/55)</h2>
+<h2 id="anonymous-functions-1055">Anonymous functions (10/55)</h2>
 <p>Now try using what&apos;s called an <strong>anonymous function</strong> -- a nameless function -- to make &quot;I was clicked!&quot; get <code>console logged</code> twice:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
 button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
@@ -1368,11 +1300,11 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <spa
   handleClickEvent()
 })
 </code></pre>
-<h2 id="break-10-65">Break (10/65)</h2>
-<h2 id="you-do-color-scheme-switcher-30-95">You do: Color Scheme Switcher (30/95)</h2>
+<h2 id="break-1065">Break (10/65)</h2>
+<h2 id="you-do-color-scheme-switcher-3095">You do: Color Scheme Switcher (30/95)</h2>
 <p>Clone this repo. Remember to use the SSH URL now, instead of HTTPS!</p>
 <p><a href="https://github.com/ga-dc/color-scheme-switcher" target="_blank">Color Scheme Switcher</a></p>
-<h2 id="-this"><code>this</code></h2>
+<h2 id="this"><code>this</code></h2>
 <p>Here&apos;s the shortest way to do it:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> buttons = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&quot;li&quot;</span>);
 <span class="hljs-keyword">for</span>(i <span class="hljs-keyword">in</span> buttons){
@@ -1382,7 +1314,7 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <spa
 }
 </code></pre>
 <p>Here we make use of the <code>this</code> keyword. In the context of an event listener callback, <code>this</code> always refers to the object that triggered the event.</p>
-<h2 id="the-event-object-10-105">The event object (10/105)</h2>
+<h2 id="the-event-object-10105">The event object (10/105)</h2>
 <p>Back in the code we were using in-class:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
 <span class="hljs-keyword">var</span> handleClickEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
@@ -1402,13 +1334,13 @@ button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, hand
 <blockquote>
 <p>The reason we&apos;re not actually using <code>event</code> is that it&apos;s a &quot;reserved word&quot; in Javascript, like &quot;if&quot; and &quot;return&quot;.</p>
 </blockquote>
-<h4 id="turn-and-talk-5-110">Turn and talk (5/110)</h4>
+<h4 id="turn-and-talk-5110">Turn and talk (5/110)</h4>
 <p>With your partner, try clicking the button and exploring what properties the MouseEvent object contains. Look for:</p>
 <ul>
 <li>A way to figure out what element was clicked on</li>
 <li>A way to tell the position of the mouse when it clicked</li>
 </ul>
-<h3 id="other-events-key-events-15-125">Other events - Key events (15/125)</h3>
+<h3 id="other-events--key-events-15125">Other events - Key events (15/125)</h3>
 <p>Let&apos;s explore some other events. Add a text input field into the HTML:</p>
 <pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
@@ -1464,14 +1396,14 @@ input.addEventListener(<span class="hljs-string">&quot;keyup&quot;</span>, handl
 <blockquote>
 <p>Some programmers have qualms with W3Schools since they&apos;re mooching off the name of the W3 without actually being related to them. However, this list is accurate and easy-to-read.</p>
 </blockquote>
-<h3 id="-larr-larr-rarr-rarr-uarr-darr-uarr-darr-a-b-larrhk">&#x2190; &#x2190; &#x2192; &#x2192; &#x2191; &#x2193; &#x2191; &#x2193; a b &#x21A9;</h3>
+<h3 id="&#x2190;-&#x2190;-&#x2192;-&#x2192;-&#x2191;-&#x2193;-&#x2191;-&#x2193;-a-b-&#x21A9;">&#x2190; &#x2190; &#x2192; &#x2192; &#x2191; &#x2193; &#x2191; &#x2193; a b &#x21A9;</h3>
 <p>There&apos;s a famous cheat code used in old Konami arcade games: you press up, up, down, down, left, right, left, right, &apos;b&apos;, &apos;a&apos;, and then &apos;start&apos;. This code is so famous that many websites have secret functions for when users enter the Konami Code (with &apos;Enter&apos; replacing &apos;start&apos;).</p>
 <p>Try it out at <a href="http://konamicodesites.com/" target="_blank">Konami Code Sites</a>.</p>
 <p>Some of those are now defunct. But my personal favorite is <a href="http://www.vogue.co.uk/" target="_blank">Vogue.co.uk</a></p>
 <p>This is possible on these websites thanks to Javascript event listeners.</p>
 <h4 id="turn-and-talk">Turn and talk</h4>
 <p>You&apos;ve seen how to detect one keypress. <strong>How might you make something happen after a specific series of keypresses?</strong></p>
-<h2 id="event-defaults-5-130">Event Defaults (5/130)</h2>
+<h2 id="event-defaults-5130">Event Defaults (5/130)</h2>
 <p>Back in the code we were using in-class, replace your button with a link to, say, Google:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;http://google.com&quot;</span>&gt;</span>Click me!<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
@@ -1503,7 +1435,7 @@ link.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, handle
 }
 button.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, handleClickEvent);
 </code></pre>
-<h2 id="making-something-draggable-and-droppable-with-removeeventlistener-5-135">Making something draggable and droppable with removeEventListener (5/135)</h2>
+<h2 id="making-something-draggable-and-droppable-with-removeeventlistener-5135">Making something draggable and droppable with removeEventListener (5/135)</h2>
 <p>Just like how we can add event listeners to DOM elements, when might me want to remove event listeners? (ST - WG)</p>
 <p>Replace your <code>script.js</code> with the following code:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;button&quot;</span>)
@@ -1545,7 +1477,7 @@ button.addEventListener(<span class="hljs-string">&quot;mousedown&quot;</span>, 
 <li>Open the &quot;elements&quot; part of the inspector -- the bit that shows all of the HTML. What&apos;s happening to the <code>&lt;button&gt;</code> element?</li>
 <li>What&apos;s the difference between <code>function startDragging(e)</code> and <code>var startDragging = function(e)</code>?</li>
 </ul>
-<h2 id="timing-functions-10-145">Timing functions (10/145)</h2>
+<h2 id="timing-functions-10145">Timing functions (10/145)</h2>
 <p>Let&apos;s look at timing functions -- that is, Javascript&apos;s way of making something happen every <code>x</code> seconds.</p>
 <p>Replace the contents of your <code>script.js</code> with this:</p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHello</span>(<span class="hljs-params"></span>)</span>{
@@ -1588,7 +1520,7 @@ stop.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span 
 <li>How is <code>clearInterval</code> different from <code>removeEventListener</code>?</li>
 <li>Give <code>singAnnoyingSong</code> an argument of <code>e</code>, like we did for the event listeners. What information does it contain?</li>
 </ul>
-<h2 id="asynchronicity-5-150">Asynchronicity (5/150)</h2>
+<h2 id="asynchronicity-5150">Asynchronicity (5/150)</h2>
 <p>Run the next bit of code and you can see asynchronous program execution.</p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">anAsyncFunction</span>(<span class="hljs-params"></span>)</span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;hello&quot;</span>)
@@ -1604,7 +1536,7 @@ anAsyncFunction();
 <p>With everything else we&apos;ve seen, Javascript executes one line of code, then when that line is done, executes the next line of code. This is called being <strong>synchronous</strong>.</p>
 <p>However, some operations in Javascript are <strong>asynchronous</strong>, meaning Javascript goes on to the next line of code without waiting for the previous line to complete.</p>
 <p>This is limited mostly to timing functions, and operations where Javascript is loading data from some other website.</p>
-<h3 id="why-doesn-t-javascript-wait-for-these-operations-to-complete-before-going-to-the-next-line-of-code">Why doesn&apos;t Javascript wait for these operations to complete before going to the next line of code?</h3>
+<h3 id="why-doesnt-javascript-wait-for-these-operations-to-complete-before-going-to-the-next-line-of-code">Why doesn&apos;t Javascript wait for these operations to complete before going to the next line of code?</h3>
 <p>Because otherwise the webpage would just &quot;hang&quot; until the operation completes. The browser can&apos;t do anything while Javascript is actively running. We&apos;ve seen this when we&apos;ve encountered infinite <code>while</code> loops. Asyncrhonicity is a way of preventing the computer from freezing.</p>
 <p>This risk is greatest when Javascript is making requests to other webpages. There&apos;s no way of knowing how long the request will take to complete. It could be near-instant, but if the target server is having a bad day, it could take who-knows-how-long. You don&apos;t want the operability of your computer to be at the mercy of some random computer somewhere else.</p>
 <p>In this small app we made, anything we want to be sure happens <strong>after</strong> those 5 seconds of commuting should go inside the callback of the <code>setTimeout</code>. This way, we can be certain that it will run only when the 5 seconds are up.</p>
@@ -1646,9 +1578,25 @@ form.addEventListener(<span class="hljs-string">&quot;submit&quot;</span>, <span
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

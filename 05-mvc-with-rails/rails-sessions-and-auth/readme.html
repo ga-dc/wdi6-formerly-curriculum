@@ -8,7 +8,7 @@
         <title>Sessions and Auth | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="4.7" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="4.7" data-chapter-title="Sessions and Auth" data-filepath="05-mvc-with-rails/rails-sessions-and-auth/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1454,7 +1386,7 @@ rake db:migrate
 <pre><code>33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601
 </code></pre><p>This is my password, encrypted with an algorithm. I&apos;ll give you some hints: my password is a 7-digit number, and the algorithm is taking that number to the 40th power. So to find my password, all you need to do is find a calculator and enter:</p>
 <pre><code>33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601 ^ (1/40)
-</code></pre><h5 id="why-am-i-still-confident-that-you-won-t-figure-out-my-password">Why am I still confident that you won&apos;t figure out my password?</h5>
+</code></pre><h5 id="why-am-i-still-confident-that-you-wont-figure-out-my-password">Why am I still confident that you won&apos;t figure out my password?</h5>
 <ul>
 <li>Because that&apos;s a really, really difficult calculation for any computer to make!</li>
 </ul>
@@ -1533,7 +1465,7 @@ gem &apos;bcrypt&apos;
 
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h2 id="has-secure-password">has_secure_password</h2>
+<h2 id="hassecurepassword">has_secure_password</h2>
 <p>Rails provides a method called <code>has_secure_password</code> does... about what you would expect from the name. This includes:</p>
 <ul>
 <li>Making sure a User isn&apos;t created without a password</li>
@@ -1554,10 +1486,10 @@ gem &apos;bcrypt&apos;
 rake db:create
 rake db:migrate
 </code></pre><h2 id="user-persistence">User persistence</h2>
-<h5 id="what-s-missing-from-our-user-sign-in-process">What&apos;s missing from our user sign-in process?</h5>
+<h5 id="whats-missing-from-our-user-signin-process">What&apos;s missing from our user sign-in process?</h5>
 <h5 id="if-i-refresh-the-page-am-i-still-signed-in">If I refresh the page, am I still signed in?</h5>
 <p>We need to figure out a way to have Rails remember I&apos;m signed in.</p>
-<h5 id="why-not-just-created-an-is-signed-in-column-in-my-user-table">Why not just created an &quot;is_signed_in&quot; column in my User table?</h5>
+<h5 id="why-not-just-created-an-issignedin-column-in-my-user-table">Why not just created an &quot;is_signed_in&quot; column in my User table?</h5>
 <ul>
 <li>How would Rails now how to sign out? More importantly, if multiple users are accessing the app, how would Rails know which signed_in user is on which computer?</li>
 </ul>
@@ -1593,8 +1525,8 @@ Accessible to script: No (HttpOnly)
 Created: Saturday, July 25, 2015 at 6:07:09 PM
 Expires: When the browsing session ends
 </code></pre><h5 id="what-might-be-the-purpose-of-these-cookies">What might be the purpose of these cookies?</h5>
-<h5 id="why-is-github-s-expiration-date-so-far-in-the-future-while-wells-fargo-s-is-when-the-browsing-session-ends">Why is Github&apos;s expiration date so far in the future, while Wells Fargo&apos;s is when the browsing session ends?</h5>
-<h5 id="what-s-the-significance-of-send-for-secure-connections-only">What&apos;s the significance of &apos;Send for: Secure connections only&apos;?</h5>
+<h5 id="why-is-githubs-expiration-date-so-far-in-the-future-while-wells-fargos-is-when-the-browsing-session-ends">Why is Github&apos;s expiration date so far in the future, while Wells Fargo&apos;s is when the browsing session ends?</h5>
+<h5 id="whats-the-significance-of-send-for-secure-connections-only">What&apos;s the significance of &apos;Send for: Secure connections only&apos;?</h5>
 <p>Notice the &quot;Accessible to script&quot;. Cookies can be accessed via Javascript.</p>
 <p>If you go to <code>github.com</code>, open the console, and type <code>document.cookies</code>, you&apos;ll get something like this:</p>
 <pre><code>tz=America%2FNew_York; _ga=GA1.2.3456.7890; _gat=1&quot;
@@ -1649,7 +1581,7 @@ Expires: When the browsing session ends
 <h3 id="same-old-problem">Same old problem</h3>
 <p>Now we can remember the user&apos;s username. But we&apos;re not actually remembering the user is signed in.</p>
 <p>We could just create a cookie called <code>is_signed_in</code> and set that to true.</p>
-<h5 id="what-could-go-wrong-with-using-an-is-signed-in-cookie">What could go wrong with using an <code>is_signed_in</code> cookie?</h5>
+<h5 id="what-could-go-wrong-with-using-an-issignedin-cookie">What could go wrong with using an <code>is_signed_in</code> cookie?</h5>
 <ul>
 <li>Cookies are stored on the user&apos;s computer. This means we&apos;re basically relying on a user to tell us whether or not they&apos;re signed in. That&apos;s not very secure. There are Chrome extensions that let you add and edit the cookies on your computer. <strong>We</strong> want to tell the <strong>user</strong> whether or not they&apos;re signed in, not have them tell us.</li>
 </ul>
@@ -1734,7 +1666,7 @@ Expires:  When the browsing session ends
 <p>We&apos;ll tighten up this app even more by making it so you can&apos;t see <strong>anything</strong> unless you&apos;ve logged in.</p>
 <p>We&apos;re going to use a method called <code>before_action</code>. This lets us do something before <em>every single action</em> happens.</p>
 <p>In this case, we&apos;re going to use it to authenticate the user before every action.</p>
-<h5 id="what-s-the-difference-between-authenticate-and-authorize">What&apos;s the difference between &quot;authenticate&quot; and &quot;authorize&quot;?</h5>
+<h5 id="whats-the-difference-between-authenticate-and-authorize">What&apos;s the difference between &quot;authenticate&quot; and &quot;authorize&quot;?</h5>
 <ul>
 <li>Authenticating is checking whether someone is who they say they are</li>
 <li>Authorizing is giving someone special privileges<ul>
@@ -1851,8 +1783,8 @@ rake db:migrate
 <li>(a) the database, (b) the server</li>
 <li>(a) the browser, (b) the server</li>
 </ul>
-<h5 id="what-s-the-difference-between-encryption-and-hashing">What&apos;s the difference between encryption and hashing?</h5>
-<h5 id="what-s-the-difference-between-authenticating-and-authorizing">What&apos;s the difference between authenticating and authorizing?</h5>
+<h5 id="whats-the-difference-between-encryption-and-hashing">What&apos;s the difference between encryption and hashing?</h5>
+<h5 id="whats-the-difference-between-authenticating-and-authorizing">What&apos;s the difference between authenticating and authorizing?</h5>
 
                     
                     </section>
@@ -1874,9 +1806,25 @@ rake db:migrate
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

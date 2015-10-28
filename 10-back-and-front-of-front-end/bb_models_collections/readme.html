@@ -8,7 +8,7 @@
         <title>Models and Collections | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="7.1.1" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="7.1.1" data-chapter-title="Models and Collections" data-filepath="10-back-and-front-of-front-end/bb_models_collections/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1259,7 +1191,7 @@
 <li>Perform CRUD actions using backbone&apos;s RESTful API</li>
 <li>Compare BB models with AR models</li>
 </ul>
-<h2 id="opening-framing-5-5">Opening Framing (5/5)</h2>
+<h2 id="opening-framing-55">Opening Framing (5/5)</h2>
 <p>How we got here:</p>
 <ol>
 <li><p>vanilla js</p>
@@ -1285,20 +1217,20 @@
 </li>
 </ol>
 <p>What&apos;s the purpose of a front end framework? JS and all of it&apos;s many libraries are great, but you can start building and building your application and all of a sudden there&apos;s no structure and everything&apos;s soup.</p>
-<h3 id="libraries-2-5-7-5">libraries (2.5/7.5)</h3>
+<h3 id="libraries-2575">libraries (2.5/7.5)</h3>
 <ul>
 <li>libraries gives us tools to utilize.</li>
 <li>abstracts code and allows us to write our code more succinctly</li>
 <li>allows us to write applications faster and easier</li>
 <li>lots of options, very few rules (jQuery)</li>
 </ul>
-<h3 id="frameworks-2-5-10">frameworks (2.5/10)</h3>
+<h3 id="frameworks-2510">frameworks (2.5/10)</h3>
 <ul>
 <li>like libraries in that it gives us tools to utilize</li>
 <li>additionally they provide structure and conventions users have to follow in order for them to work.</li>
 <li>Lots of rules (convention), few options (Ruby on Rails)</li>
 </ul>
-<h2 id="what-is-a-front-end-framework-5-15">What is a front end framework? (5/15)</h2>
+<h2 id="what-is-a-front-end-framework-515">What is a front end framework? (5/15)</h2>
 <ul>
 <li>a library that attempts to move some or all application logic to the browser, while providing a simple interface for keeping the front-end in sync with the back-end</li>
 <li>applications can run completely in the browser, minimizing server load since the server is only accessed when the front end needs to synchronize data with the backend</li>
@@ -1306,7 +1238,7 @@
 <li>provides more fluid user experience</li>
 <li>loads everything from the database on page load (data and templates) then renders/updates the page content based on user interaction.</li>
 </ul>
-<h3 id="what-is-backbone-25-40">What is backbone? (25/40)</h3>
+<h3 id="what-is-backbone-2540">What is backbone? (25/40)</h3>
 <p>Individual reading(10/25)</p>
 <ul>
 <li>Go to <a href="http://backbonejs.org/" target="_blank">backbonejs documentation</a><ul>
@@ -1314,12 +1246,12 @@
 </ul>
 </li>
 </ul>
-<h3 id="t-t-5-30">T&amp;T(5/30)</h3>
+<h3 id="tt530">T&amp;T(5/30)</h3>
 <ul>
 <li>With what you know about OOJS, jot down some ideas about what you think Backbone is and why you would use it.</li>
 </ul>
 <hr>
-<h2 id="backbone-js-10-40">Backbone JS (10/40)</h2>
+<h2 id="backbone-js-1040">Backbone JS (10/40)</h2>
 <ul>
 <li>a js library that was built to mimic the rMVC structure of Rails</li>
 <li>router, views, models/collections<ul>
@@ -1331,7 +1263,7 @@
 <li>provides objects that help separate concerns on the front end</li>
 <li>provides an interface, API, for communicating with a server back end</li>
 </ul>
-<h2 id="setup-20-60">Setup 20/60</h2>
+<h2 id="setup-2060">Setup 20/60</h2>
 <p>Before we implement backbone for the application we&apos;re building this week, let&apos;s set up our file structure and our dependencies for a new static site!</p>
 <p>We&apos;re going to create a static html application. Go ahead and create a new directory we&apos;re going to work in, let&apos;s call it <code>grumblr</code>. We&apos;re calling it grumblr but know that it&apos;s really just a single model CRUD application. I heard you guys like todo apps.</p>
 <pre><code class="lang-bash">mkdir grumblr
@@ -1379,8 +1311,8 @@ bower install backbone
 <p>Order is very important here. Note that underscore is a dependency of backbone and that jquery is a dependency of underscore. As a result we load jquery first, then underscore, then backbone. Additionally we want our model definition to follow the backbone dependency because we will be using backbone abstractions inside of the model file. And finally we also include the main <code>app.js</code> which will require our model definitions.</p>
 <p>We could have also installed dependencies using CDN&apos;s or downloading the source code for the dependencies as well. Additionally we have install the handlebars dependency. We won&apos;t be using this one today, but we&apos;ll be needing it for views tomorrow.</p>
 </blockquote>
-<h2 id="break-10-70">Break 10/70</h2>
-<h2 id="backbone-models-50-120">Backbone Models(50/120)</h2>
+<h2 id="break-1070">Break 10/70</h2>
+<h2 id="backbone-models50120">Backbone Models(50/120)</h2>
 <p>What&apos;s a model? What was it in rails?
 To rehash:
 An object that represents data attributes and behavioral logic related to an entity. It provides CRUD functionality for that data</p>
@@ -1403,7 +1335,7 @@ An object that represents data attributes and behavioral logic related to an ent
 <p>TLDR version: cid is short for client id, cid is assigned by backbone.js client side and is useful if you don&apos;t have an actual id.</p>
 <p>There&apos;s alot of other stuff happening here that backbone&apos;s doing but the important part of it is the attributes object nested within our backbone object.</p>
 <h3 id="getting-and-setting-attributes">Getting and setting attributes</h3>
-<h3 id="setting-attributes-also-updates">Setting attributes(also updates)</h3>
+<h3 id="setting-attributesalso-updates">Setting attributes(also updates)</h3>
 <p>Attributes can be set in a number of ways.</p>
 <ul>
 <li>We can set them on instantiation of the object ie<pre><code class="lang-js"><span class="hljs-keyword">var</span> grumble = <span class="hljs-keyword">new</span> Grumble({author: <span class="hljs-string">&quot;bob&quot;</span>, content: <span class="hljs-string">&quot;learned backbone today!!&quot;</span>})
@@ -1465,7 +1397,7 @@ defaults:{
   }
 })
 </code></pre>
-<h2 id="backbone-collections-30-150">Backbone Collections (30/150)</h2>
+<h2 id="backbone-collections-30150">Backbone Collections (30/150)</h2>
 <p>What is a backbone collection? A collection acts as an intelligent wrapper for like models. It provides a set of methods for performing the CRUD operations on models of the collection. Create and edit the file <code>js/collections/grumbles.js</code>:</p>
 <h3 id="creating-a-collection">Creating a collection</h3>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Grumbles = Backbone.Collection.extend({
@@ -1519,9 +1451,9 @@ grumbles.reset()
 <li>length</li>
 </ul>
 <h2 id="lunch">Lunch</h2>
-<h2 id="class-ex-reminders-part-1-30-30">Class Ex - Reminders Part 1(30/30)</h2>
+<h2 id="class-ex--reminders-part-13030">Class Ex - Reminders Part 1(30/30)</h2>
 <p>Look at the repo <a href="https://github.com/ga-dc/reminder#part-1" target="_blank">here</a></p>
-<h2 id="ajax-w-bb-60-90">AJAX /w BB (60/90)</h2>
+<h2 id="ajax-w-bb-6090">AJAX /w BB (60/90)</h2>
 <p>So we&apos;ve learned how to create backbone models and collections, but it&apos;d be really nice if we could define our models/collections through an existing backend. Enter rails. But it doesn&apos;t have to be! But for the purposes of this class we&apos;ll use a nice and simple rails application that we&apos;ve created for you.</p>
 <p>You can pull the code for our backend <a href="https://github.com/ga-dc/grumblr_rails_api" target="_blank">here</a></p>
 <p>After you fork/clone this repo, go ahead and run standard setup for a rails app:</p>
@@ -1572,7 +1504,7 @@ Similarly to ActiveRecord there is a create method that can be called on a colle
 <pre><code class="lang-javascript">collection.create({authorName: <span class="hljs-string">&quot;bob&quot;</span>, content: <span class="hljs-string">&quot;smith&quot;</span>, title: <span class="hljs-string">&quot;the title&quot;</span>, photoUrl: <span class="hljs-string">&quot;http://placebear.com/400/400&quot;</span>})
 </code></pre>
 <p>will actually save an instance of that model to the database, so long as you meet the strong params requirements.</p>
-<h2 id="class-ex-reminders-part-2-60-150">Class Ex - Reminders Part 2 (60/150)</h2>
+<h2 id="class-ex--reminders-part-2-60150">Class Ex - Reminders Part 2 (60/150)</h2>
 <p>Look at the repo <a href="https://github.com/ga-dc/reminder#part-2" target="_blank">here</a></p>
 
                     
@@ -1595,9 +1527,25 @@ Similarly to ActiveRecord there is a create method that can be called on a colle
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

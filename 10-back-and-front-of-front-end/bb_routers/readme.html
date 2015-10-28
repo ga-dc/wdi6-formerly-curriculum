@@ -8,7 +8,7 @@
         <title>Routers | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="7.1.4" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="7.1.4" data-chapter-title="Routers" data-filepath="10-back-and-front-of-front-end/bb_routers/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1249,13 +1181,13 @@
 <li>Recall the order in which routes are matched.</li>
 <li>Describe {trigger: true} as it applies to actions and routes.</li>
 </ul>
-<h2 id="opening-framing-5-5">Opening Framing (5/5)</h2>
+<h2 id="opening-framing-55">Opening Framing (5/5)</h2>
 <p>We have the makings of a pretty sick single page application now. We&apos;ve got mostly full CRUD functionality for both grumbles and comments and things are even looking alot better thanks to Robin&apos;s bootstrap styles. As it stands we&apos;ve got all the functionality we wanted in our MVP, but there&apos;s just one thing that&apos;s missing.</p>
-<h2 id="state-10-15">State (10/15)</h2>
+<h2 id="state-1015">State (10/15)</h2>
 <p>Let&apos;s look at <a href="https://mail.google.com/" target="_blank">gmail</a></p>
 <p>As I click through this page, notice the url bar at the top of our browser. When I click on the inbox the last part of the url changes to <code>/#inbox</code> and as i click through various options it continues to update the URL. There are no page refreshes happening though.</p>
 <p>Additionally, if I enter that url into another window, assuming i&apos;m in the same session I&apos;ll be routed to that exact place. That&apos;s pretty neat. I think it would be really nice if that same sort of behavior existed within our grumblr application. It just so happens we can extend functionality out of backbone to execute this kind of behavior for us. Backbone Routers.</p>
-<h2 id="backbone-routers-15-25">Backbone Routers (15/25)</h2>
+<h2 id="backbone-routers-1525">Backbone Routers (15/25)</h2>
 <h3 id="doc-dive-8">Doc Dive (8~)</h3>
 <p><a href="http://backbonejs.org/#Router" target="_blank">Read from Backbone.Router to the <code>route</code> subsection </a></p>
 <ul>
@@ -1265,7 +1197,7 @@
 </ul>
 <p>In the backbone stack, it&apos;s kind of this omnipresent entity of your application. It can instantiate collections and views. It&apos;s aware of the URL and its current state by updating the URL in conjunction with functionality of the View objects as events occur. Additionally it knows which functions to execute depending on the URL.</p>
 <p>This all sounds great...but let&apos;s actually build out some routing functionality for our application</p>
-<h2 id="setup-10-35">Setup (10/35)</h2>
+<h2 id="setup-1035">Setup (10/35)</h2>
 <p>If you don&apos;t already have it, make sure you have the <a href="https://github.com/ga-dc/grumblr_rails_api" target="_blank">grumblr_rails_api</a></p>
 <blockquote>
 <p>re: see <code>bb_models_collection</code> lesson plan for installation instructions</p>
@@ -1304,12 +1236,12 @@ $(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"
 <p>In <code>index.html</code>:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;js/backbone/routers/grumble.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 </code></pre>
-<h2 id="deeplinking-and-fragmented-urls-10-45">DeepLinking and Fragmented urls (10/45)</h2>
+<h2 id="deeplinking-and-fragmented-urls-1045">DeepLinking and Fragmented urls (10/45)</h2>
 <p>One purpose of the backbone router is for deep linking. We want to be able to bookmark our webpage such that when a certain url is entered the state of the application reflects the url. Additionally we use fragmented urls to do this. Fragmented urls are at the end of a url and are preceded by a <code>#</code>. We use fragmented urls because they can fire off backbone events when they get updated.</p>
 <blockquote>
 <p>Another thing to note is that when we set up a deep link. The purpose is not neccessarily to completely preserve state. The idea is to get the most important things perserved in state. An example of this that we&apos;ll see later is the editing capability. We can open up multiple edit forms for each view. But it would extremely difficult and unweildy to perserve 4 different editform to be open in a certain state. We&apos;re able to do it, but sometimes it&apos;s just not worth the time.</p>
 </blockquote>
-<h2 id="define-backbone-router-index-route-i-do-10-55">Define Backbone Router <code>index</code> route(I do - 10/55)</h2>
+<h2 id="define-backbone-router-index-routei-do--1055">Define Backbone Router <code>index</code> route(I do - 10/55)</h2>
 <p>Let&apos;s define our router in <code>js/backbone/routers/grumble.js</code>:</p>
 <pre><code class="lang-js">App.Routers.Grumble = Backbone.Router.extend({
   routes: {
@@ -1331,15 +1263,15 @@ $(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"
 <p>We instantiated a new Grumble Router and we started the Backbone history. When we start the history the application begins to monitor hashchange events and routes.</p>
 </blockquote>
 <p>If we open the <code>index.html</code> file, we can see <code>Index route was called</code>.</p>
-<h2 id="break-10-65">Break (10/65)</h2>
-<h2 id="define-a-grumbles-new-route-you-do-10-75">Define a <code>grumbles/new</code> route (You do - 10/75)</h2>
+<h2 id="break-1065">Break (10/65)</h2>
+<h2 id="define-a-grumblesnew-route-you-do--1075">Define a <code>grumbles/new</code> route (You do - 10/75)</h2>
 <ul>
 <li>add another key-value pair to the routes object in the router</li>
 <li>define a call back function <code>newGrumble</code> to append the string &quot;New route was called&quot; to the body</li>
 <li>make sure the call back fires off based on the fragment url <code>#new</code></li>
 <li>test the route by opening the <code>index.html</code> in your browser and adding <code>#new</code> to the URL.</li>
 </ul>
-<h2 id="initialize-15-90">Initialize (15/90)</h2>
+<h2 id="initialize-1590">Initialize (15/90)</h2>
 <p>So this is all really great, but really it&apos;s not doing anything but appending a hard coded string into the DOM. Really what we want to be doing is creating views that reflect the state the DOM based off of the URL.</p>
 <p>It just so happens we have some views already defined! That makes life much easier. Although we can&apos;t really have a view until we have a collection. In order to get the collection we need to make an ajax <code>.fetch()</code> call. The question is, where can we do this?</p>
 <p>Just like in all other Backbone object constructors, <code>Backbone.Router</code> comes with an <code>initialize</code> function we can define as a callback for when we instantiate a backbone router.</p>
@@ -1361,7 +1293,7 @@ $(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"
 </blockquote>
 <p>One thing to note here is that we haven&apos;t made any calls to the database yet. As soon as we call <code>fetch()</code>, it will trigger an event to render the view. Which is not something we want to do on the routers instantiation.</p>
 <p>(ST-WG) Where should we call <code>.fetch()</code> instead?</p>
-<h2 id="the-real-index-5-95">The <em>REAL</em> <code>index</code> (5/95)</h2>
+<h2 id="the-real-index-595">The <em>REAL</em> <code>index</code> (5/95)</h2>
 <p>If you said in our <code>index</code> function, you are correct! Let&apos;s get rid of the one line of jquery that we hardcoded and replace it with a <code>fetch()</code> on our collection.</p>
 <p>In the <code>index</code> function of <code>js/backbone/routers/grumble.js</code>:</p>
 <pre><code class="lang-js">index: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
@@ -1369,13 +1301,13 @@ $(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"
 }
 </code></pre>
 <p>If we look in our browser and refresh the page we can now see our listView at the index route.</p>
-<h2 id="the-real-new-you-do-20-115">The <em>REAL</em> <code>new</code> - you do (20/115)</h2>
+<h2 id="the-real-new--you-do-20115">The <em>REAL</em> <code>new</code> - you do (20/115)</h2>
 <ul>
 <li>change the function definition of <code>newGrumble</code> to render the listView as well as the form for a new grumble.</li>
 <li>test your route by adding <code>#new</code> to the end of the url.</li>
 </ul>
-<h2 id="break-10-125">Break (10/125)</h2>
-<h2 id="url-updating-20-145">URL updating (20/145)</h2>
+<h2 id="break-10125">Break (10/125)</h2>
+<h2 id="url-updating-20145">URL updating (20/145)</h2>
 <p>Awesome, we&apos;ve done some deep linking by setting up some routes. Everything works like it used too, we can even just go directly to the fragmented url <code>#new</code> and can see our form automatically renders without hitting the button.</p>
 <blockquote>
 <p>fragmented url is just the part of the url with the <code>#</code>. The optional last part of a URL for a document. Typically used to identify a portion of a document but additionally can trigger events in backbone.</p>
@@ -1419,19 +1351,19 @@ toggleUrlState: <span class="hljs-function"><span class="hljs-keyword">function<
   }
 }
 </code></pre>
-<h2 id="using-an-anchor-tag-5-150">Using an anchor tag. (5/150)</h2>
+<h2 id="using-an-anchor-tag-5150">Using an anchor tag. (5/150)</h2>
 <p>We can actually have an anchor tag that links directly to one of the deep links that we&apos;ve created. Clicking on this link will actually fire off the call back that the router maps to that url.</p>
 <blockquote>
 <p>When we use the <code>.navigate()</code> function we can also pass in a second argument, an object with the key-value pair of <code>{trigger: true}</code>. That is when we navigate to that url it will in addition fire the call back associated with the route. Though this is generally bad practice as this is not the default behavior.</p>
 </blockquote>
 <h2 id="lunch">Lunch</h2>
-<h2 id="routing-for-editing-a-grumble-overview-5-5">Routing for editing a grumble - Overview (5/5)</h2>
+<h2 id="routing-for-editing-a-grumble--overview-55">Routing for editing a grumble - Overview (5/5)</h2>
 <p>So before we left off, we managed state in our application by updating urls and providing deep links for the index and new grumble route. The last state that we haven&apos;t encapsulated is the editing capability of our application.</p>
 <p>It would be really nice if we could deep link to an edit form for a particular model. IE if I click on update Grumble it should update the url such that I can visit that url later and the edit form for that specific grumble is open.</p>
 <p>In order for us to be able to identify a specific grumble we&apos;re going to need some sort of unique identifier. What might that be? (ST-WG)</p>
 <p>An ID!!!</p>
 <p>So an id will be somewhere in the url. Additionally that id will dynamically change depending on which grumble has the edit form open. We need to be able to pass in a params value from the url, and backbone allows us to do just that.</p>
-<h2 id="backbone-params-in-the-url-15-20">Backbone params in the url (15/20)</h2>
+<h2 id="backbone-params-in-the-url-1520">Backbone params in the url (15/20)</h2>
 <p>Let&apos;s update our <code>routes</code> property in our router.</p>
 <p>In <code>js/backbone/routers/grumble.js</code>:</p>
 <pre><code class="lang-js">routes: {
@@ -1450,7 +1382,7 @@ toggleUrlState: <span class="hljs-function"><span class="hljs-keyword">function<
 }
 </code></pre>
 <p>Let&apos;s go ahead and test this by refreshing the browser and appending <code>#grumbles/15/edit</code> to the browser. We can see that <code>this is the params value in the edit route: 15</code> gets rendered on to the page.</p>
-<h2 id="finding-a-way-to-get-the-view-20-40">Finding a way to get the view (20/40)</h2>
+<h2 id="finding-a-way-to-get-the-view-2040">Finding a way to get the view (20/40)</h2>
 <p>So we have a way to put an id in the URL, but that&apos;s really not enough. We need to get the model or view thats associated with that id.</p>
 <p>Currently we have no way of doing that. (ST-WG) How might we go about finding a particular model or view associated by id?</p>
 <p>We could look the collection that we instantiated. Fetch the collection from our database loop through each of the models to find the one we want by id, and then create a view and render the edit form of that view.</p>
@@ -1469,7 +1401,7 @@ toggleUrlState: <span class="hljs-function"><span class="hljs-keyword">function<
   <span class="hljs-keyword">return</span> view
 }
 </code></pre>
-<h2 id="rendering-the-edit-form-15-55">Rendering the edit form (15/55)</h2>
+<h2 id="rendering-the-edit-form-1555">Rendering the edit form (15/55)</h2>
 <p>Now that we have the ability to target a specific view based on id. The rest is pretty simple! We want to call <code>fetch()</code> which triggers an event to render all of the grumbles. Inside of a promise afterward, we can run our <code>findView</code> function to get the view we need to call <code>renderEditForm()</code> on.</p>
 <pre><code class="lang-js">editGrumble: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">id</span>)</span>{
   App.Collections.grumbles.fetch().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
@@ -1478,8 +1410,8 @@ toggleUrlState: <span class="hljs-function"><span class="hljs-keyword">function<
   });
 }
 </code></pre>
-<h2 id="break-10-65">Break (10/65)</h2>
-<h2 id="updating-urls-for-editing-you-do-20-85">Updating Urls for editing - you do (20/85)</h2>
+<h2 id="break-1065">Break (10/65)</h2>
+<h2 id="updating-urls-for-editing--you-do-2085">Updating Urls for editing - you do (20/85)</h2>
 <p>Sick! Now we have deep linking for our edit routes. What&apos;s missing?</p>
 <ul>
 <li>In your JS, update the urls to reflect the state change in the DOM</li>
@@ -1517,9 +1449,25 @@ toggleUrlState: <span class="hljs-function"><span class="hljs-keyword">function<
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

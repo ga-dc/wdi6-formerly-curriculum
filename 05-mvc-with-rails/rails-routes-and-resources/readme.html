@@ -8,7 +8,7 @@
         <title>Routes and Resources | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="4.5" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="4.5" data-chapter-title="Routes and Resources" data-filepath="05-mvc-with-rails/rails-routes-and-resources/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1238,7 +1170,7 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="learning-objectives-5-5">Learning Objectives (5 / 5)</h2>
+                        <h2 id="learning-objectives-5--5">Learning Objectives (5 / 5)</h2>
 <ul>
 <li>Review the relationship between HTTP requests and controller actions.</li>
 <li>Identify the role a router (<code>routes.rb</code>) plays in the Rails MVC model.</li>
@@ -1251,7 +1183,7 @@
 <li>Implement form_for to build a form for a nested resource.
 <br><br></li>
 </ul>
-<h2 id="the-router-5-10">The Router (5 / 10)</h2>
+<h2 id="the-router-5--10">The Router (5 / 10)</h2>
 <p>It&apos;s our good ol&apos; friend the Rails rMVC diagram!</p>
 <ul>
 <li><strong>Q:</strong> Who can walk me through the rMVC pattern, highlighting where the router is and what it does?</li>
@@ -1264,7 +1196,7 @@
 <li>Returns an error if the HTTP request is unrecognizable and/or does not match a controller action.
 <br><br></li>
 </ul>
-<h2 id="routes-10-20">Routes (10 / 20)</h2>
+<h2 id="routes-10--20">Routes (10 / 20)</h2>
 <p>You guys dove into Rails&apos; <code>routes.rb</code> file in Andy&apos;s MVC class and create individual routes for pages using Sinatra-like syntax.</p>
 <ul>
 <li><strong>NOTE:</strong> The <code>routes.rb</code> file is located in the <code>config</code> folder of your Rails application.</li>
@@ -1285,7 +1217,7 @@ get <span class="hljs-string">&quot;/artists/&quot;</span>, to <span class="hljs
 root <span class="hljs-symbol">:to</span> =&gt; <span class="hljs-string">&quot;artists#index&quot;</span>
 </code></pre>
 <p><br><br></p>
-<h2 id="resourceful-routes-5-25">Resourceful Routes (5 / 25)</h2>
+<h2 id="resourceful-routes-5--25">Resourceful Routes (5 / 25)</h2>
 <p>During Adam&apos;s class you learned a bit of Rails wizardry that allowed you to generate all of your application&apos;s RESTful routes using one word: <strong>resources</strong>!</p>
 <ul>
 <li>Explicitly tells Rails that we will be using RESTful routes.</li>
@@ -1303,7 +1235,7 @@ resources <span class="hljs-symbol">:artists</span>, <span class="hljs-symbol">:
 <li><code>resources</code> assumes by Rails convention that you are using properly named controllers -- in this case, <code>artists_controller.rb</code> and <code>songs_controller.rb</code> -- and connects our routes -- also properly-named -- to them.
 <br><br></li>
 </ul>
-<h2 id="rake-routes-10-35">Rake Routes (10 / 35)</h2>
+<h2 id="rake-routes-10--35">Rake Routes (10 / 35)</h2>
 <p>If you&apos;re ever confused as to what routes are available to you based on how you have set up your <code>routes.rb</code> file, Ruby has a handy tool that tells you.</p>
 <ul>
 <li>Open up your terminal and, in the same folder as your application, type in <code>rake routes</code>.</li>
@@ -1355,7 +1287,7 @@ song        <span class="hljs-constant">GET</span>    /songs/<span class="hljs-s
 <li><strong>Q:</strong> Their purpose depends on context. How does HTML know which version of a route to run?
 <br><br></li>
 </ul>
-<h2 id="routes-and-helpers-5-40">Routes and Helpers (5 / 40)</h2>
+<h2 id="routes-and-helpers-5--40">Routes and Helpers (5 / 40)</h2>
 <p>With path helpers, we can tidy up the other helpers you guys have alrady implemented in Tunr.</p>
 <ul>
 <li>Q: What sort of helpers have we already encountered this week?
@@ -1405,7 +1337,7 @@ song        <span class="hljs-constant">GET</span>    /songs/<span class="hljs-s
 <span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
 </code></pre>
 <p><br><br></p>
-<h2 id="nested-resources-15-55">Nested Resources (15 / 55)</h2>
+<h2 id="nested-resources-15--55">Nested Resources (15 / 55)</h2>
 <p>The way our app is currently routed isn&apos;t too helpful, right?</p>
 <ul>
 <li>Currently we can visit an artist show page, which includes a link of all that artist&apos;s songs.</li>
@@ -1453,9 +1385,9 @@ resources <span class="hljs-symbol">:artists</span> <span class="hljs-keyword">d
 <span class="hljs-keyword">end</span>
 </code></pre>
 <p><br><br></p>
-<h2 id="break-10-65">BREAK (10 / 65)</h2>
+<h2 id="break-10--65">BREAK (10 / 65)</h2>
 <p><br><br></p>
-<h2 id="let-s-implement-nested-routes-in-tunr-60-125">Let&apos;s implement nested routes in Tunr! (60 / 125)</h2>
+<h2 id="lets-implement-nested-routes-in-tunr-60--125">Let&apos;s implement nested routes in Tunr! (60 / 125)</h2>
 <p>Okay, so our <code>routes.rb</code> file is updated with nested resources. Let&apos;s see them in action and fire up our Tunr app!</p>
 <h3 id="uh-oh-it-broke">Uh oh. It broke...</h3>
 <p><img src="images/first-error.png" alt="First error"></p>
@@ -1471,7 +1403,7 @@ resources <span class="hljs-symbol">:artists</span> <span class="hljs-keyword">d
 <li>There are also some advanced topics included in &quot;Additional Reading&quot; at the bottom of the lesson plan.
 <br><br></li>
 </ul>
-<h3 id="let-s-look-at-rake-routes-again">Let&apos;s look at <code>rake routes</code> again...</h3>
+<h3 id="lets-look-at-rake-routes-again">Let&apos;s look at <code>rake routes</code> again...</h3>
 <p>Has anything changed?</p>
 <ul>
 <li>Our HTTP requests (URI Pattern) match the individual nested routes we just talked about (e.g., <code>:artist_id</code>).</li>
@@ -1507,7 +1439,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <li>Form Helpers  </li>
 <li>Songs Controller<br><br><br></li>
 </ol>
-<h3 id="let-s-take-another-look-at-that-error">Let&apos;s take another look at that error...</h3>
+<h3 id="lets-take-another-look-at-that-error">Let&apos;s take another look at that error...</h3>
 <p><img src="images/first-error.png" alt="First error"></p>
 <p>How do we fix this? <strong>DELETE IT</strong>.</p>
 <ul>
@@ -1515,7 +1447,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <li>While getting rid of it may be a bad move from a usability standpoint, by implementing nested resources we made the decision that songs will never exist independent from an artist.
 <br><br></li>
 </ul>
-<h3 id="let-s-click-on-an-artist">Let&apos;s click on an artist...</h3>
+<h3 id="lets-click-on-an-artist">Let&apos;s click on an artist...</h3>
 <p>Another error! What went wrong this time?</p>
 <p><img src="images/second-error.png" alt="Second error"></p>
 <p>Our app does not like the <code>new_song_path</code> we used in a link helper in our <code>artists/show.html.erb</code> file.</p>
@@ -1679,7 +1611,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <li>Me and the support instructor are also here to help.
 <br><br></li>
 </ul>
-<h2 id="break-10-135">BREAK (10 / 135)</h2>
+<h2 id="break-10--135">BREAK (10 / 135)</h2>
 <p><br><br></p>
 <h2 id="additional-optional-reading">Additional (Optional) Reading</h2>
 <ul>
@@ -1688,7 +1620,7 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <li><a href="http://notahat.com/2014/02/05/scoping-rails-routes.html" target="_blank">Scoping Rails Routes</a>
 <br><br></li>
 </ul>
-<h2 id="homework-15-150">Homework (15 / 150)</h2>
+<h2 id="homework-15--150">Homework (15 / 150)</h2>
 <p><a href="https://github.com/ga-dc/scribble#routes" target="_blank">Add nested resources to your Blog!</a></p>
 <p>Spend the remaining class-time either working on your homework or you can ask me questions on anything you&apos;ve learned this week.
 <br><br></p>
@@ -1714,9 +1646,25 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

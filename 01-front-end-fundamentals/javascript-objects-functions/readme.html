@@ -8,7 +8,7 @@
         <title>JavaScript Objects and Functions | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="1.7" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="1.7" data-chapter-title="JavaScript Objects and Functions" data-filepath="01-front-end-fundamentals/javascript-objects-functions/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1239,7 +1171,7 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="objects-and-functions">Objects and Functions</h1>
-<h2 id="learning-objectives-5-5">Learning Objectives (5 / 5)</h2>
+<h2 id="learning-objectives-5--5">Learning Objectives (5 / 5)</h2>
 <h3 id="objects">Objects</h3>
 <ul>
 <li>Compare objects and key-value stores to arrays as data structures.</li>
@@ -1266,11 +1198,11 @@
 <li>Data Collections</li>
 <li>Conditionals</li>
 </ul>
-<h2 id="arrays-review-5-10">Arrays Review (5 / 10)</h2>
+<h2 id="arrays-review-5--10">Arrays Review (5 / 10)</h2>
 <p>Arrays are a complex data type - usually referred to as an ordered list.</p>
 <p><strong>How do we retrieve elements from an array?</strong></p>
 <p>Using an index.</p>
-<h2 id="objects-5-15">Objects (5 / 15)</h2>
+<h2 id="objects-5--15">Objects (5 / 15)</h2>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> car = {
   make: <span class="hljs-string">&quot;Honda&quot;</span>,
   model: <span class="hljs-string">&quot;Civic&quot;</span>,
@@ -1282,7 +1214,7 @@
 <li>They are a collection of key-value pairs called properties.</li>
 <li>The keys which we explicitly state when defining a property are analogous to our array indexes. They are how we access the associated value (more below).</li>
 </ul>
-<h3 id="turn-and-talk-real-life-data-collections-10-25">Turn and Talk: Real-Life Data Collections (10 / 25)</h3>
+<h3 id="turn-and-talk-reallife-data-collections-10--25">Turn and Talk: Real-Life Data Collections (10 / 25)</h3>
 <p>Would you reorganize the below real-life examples into an array, object or both? Spend <strong>5 minutes</strong> discussing them with a partner.</p>
 <ol>
 <li>Books in a Library</li>
@@ -1291,7 +1223,7 @@
 <li>List of students in WDI</li>
 <li>List of all GA courses ordered by city</li>
 </ol>
-<h3 id="interacting-with-objects-10-35">Interacting with Objects (10 / 35)</h3>
+<h3 id="interacting-with-objects-10--35">Interacting with Objects (10 / 35)</h3>
 <h4 id="create">Create</h4>
 <p>We already saved a sample object to a <code>car</code> variable. We did this using <strong>object literal notation</strong>.</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> car = {
@@ -1344,7 +1276,7 @@ car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
 <span class="hljs-comment">// .getOwnPropertyNames()</span>
 <span class="hljs-built_in">Object</span>.getOwnPropertyNames( car );
 </code></pre>
-<h3 id="nested-collections-5-40">Nested Collections (5 / 40)</h3>
+<h3 id="nested-collections-5--40">Nested Collections (5 / 40)</h3>
 <p>Object properties aren&apos;t limited to simple data types. We can also nest collections inside of collections.</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> car = {
   make: <span class="hljs-string">&quot;Honda&quot;</span>,
@@ -1368,7 +1300,7 @@ car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
 <li>&quot;Neutral&quot; (i.e., array value within an object).</li>
 <li>&quot;6 horses&quot; (i.e., object value within an object).</li>
 </ul>
-<h3 id="you-do-model-wdi-student-5-45">You Do: Model WDI Student (5 / 45)</h3>
+<h3 id="you-do-model-wdi-student-5--45">You Do: Model WDI Student (5 / 45)</h3>
 <p>Create a variable named <code>wdiStudent</code> and assign it to an object literal.</p>
 <ul>
 <li>Give your student at least three properties.<ul>
@@ -1381,8 +1313,8 @@ car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
 <li>Delete one attribute.</li>
 <li>Iterate through and print out all of the student&apos;s key-value pairs.</li>
 </ul>
-<h3 id="break-10-55">Break (10 / 55)</h3>
-<h3 id="you-do-big-ol-twitter-object-15-70">You Do: Big Ol&apos; Twitter Object (15 / 70)</h3>
+<h3 id="break-10--55">Break (10 / 55)</h3>
+<h3 id="you-do-big-ol-twitter-object-15--70">You Do: Big Ol&apos; Twitter Object (15 / 70)</h3>
 <p>As this course continues you will encounter plenty of Javascript objects in the wild. Spend <strong>10 minutes</strong> on the following...</p>
 <ul>
 <li>Follow the link below and answer the questions in bold.</li>
@@ -1391,7 +1323,7 @@ car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
 </ul>
 <p><a href="https://github.com/ga-dc/big_ole_twitter_object" target="_blank">Twitter JSON Exercise</a></p>
 <h2 id="functions">Functions</h2>
-<h3 id="intro-5-75">Intro (5 / 75)</h3>
+<h3 id="intro-5--75">Intro (5 / 75)</h3>
 <p>The content of an object isn&apos;t limited to properties. We can also give objects functionality in the form of <strong>methods</strong>.</p>
 <ul>
 <li>Before we do that, however, we should review functions.</li>
@@ -1403,7 +1335,7 @@ car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
 <li>Fundamental component of Javascript.</li>
 <li>Analogy: Quizno&apos;s Oven</li>
 </ul>
-<h3 id="recognize-the-parts-10-85">Recognize the parts (10 / 85)</h3>
+<h3 id="recognize-the-parts-10--85">Recognize the parts (10 / 85)</h3>
 <h4 id="function-container">Function Container</h4>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiply</span>(<span class="hljs-params"></span>)</span>{
 
@@ -1424,11 +1356,11 @@ car.smell = <span class="hljs-string">&quot;Leathery Boot&quot;</span>
 <li>Output: return value.</li>
 <li>Side Effects: e.g., print statements.</li>
 </ul>
-<h2 id="q-does-a-function-need-an-input-output-and-or-side-effects-to-work">Q. Does a function need an input, output and/or side effects to work?</h2>
+<h2 id="q-does-a-function-need-an-input-output-andor-side-effects-to-work">Q. Does a function need an input, output and/or side effects to work?</h2>
 <blockquote>
 <p>A. Short answer. No.  Note: There is always an output (undefined). Discuss.</p>
 </blockquote>
-<h4 id="calling-and-referencing-a-function-5-90">Calling and Referencing a Function (5 / 90)</h4>
+<h4 id="calling-and-referencing-a-function-5--90">Calling and Referencing a Function (5 / 90)</h4>
 <p>We&apos;ve defined a function. Now we need to call it...</p>
 <pre><code class="lang-js"><span class="hljs-comment">// Call the multiply function.</span>
 multiply( <span class="hljs-number">2</span>, <span class="hljs-number">5</span> );
@@ -1436,7 +1368,7 @@ multiply( <span class="hljs-number">2</span>, <span class="hljs-number">5</span>
 <span class="hljs-comment">// What happens if we reference the function without parentheses?</span>
 multiply;
 </code></pre>
-<h3 id="why-do-we-use-functions-5-95">Why do we use functions? (5 / 95)</h3>
+<h3 id="why-do-we-use-functions-5--95">Why do we use functions? (5 / 95)</h3>
 <p>Say we wanted the square of a number without using the above function. How would we do that?</p>
 <p>Benefits of functions</p>
 <ul>
@@ -1444,7 +1376,7 @@ multiply;
 <li>DRYness.</li>
 <li>Naming convention (describes intent).</li>
 </ul>
-<h3 id="function-declarations-and-expressions-5-100">Function Declarations and Expressions (5 / 100)</h3>
+<h3 id="function-declarations-and-expressions-5--100">Function Declarations and Expressions (5 / 100)</h3>
 <p>There are two ways to define or declare a function...</p>
 <h4 id="declaration">Declaration</h4>
 <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiply</span>(<span class="hljs-params"> num1, num2 </span>) </span>{
@@ -1467,7 +1399,7 @@ multiply;
 <blockquote>
 <p>Declarations are processed before any code is executed, meaning you can call functions before they are declared. This behavior is known as <strong>hoisting</strong>.</p>
 </blockquote>
-<h3 id="hoisting-10-110">Hoisting (10 / 110)</h3>
+<h3 id="hoisting-10--110">Hoisting (10 / 110)</h3>
 <p>What do you think will happen when we run the below code...</p>
 <pre><code class="lang-js">multiply( <span class="hljs-number">3</span>, <span class="hljs-number">5</span> );
 <span class="hljs-keyword">var</span> multiply = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> num1, num2 </span>)</span>{           <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> This is a function expression</span>
@@ -1502,7 +1434,7 @@ declare();        <span class="hljs-comment">// ???</span>
 <ul>
 <li>Code organization and readability.</li>
 </ul>
-<h2 id="methods-15-125">Methods (15 / 125)</h2>
+<h2 id="methods-15--125">Methods (15 / 125)</h2>
 <p>Methods are functions that are attached to some object.</p>
 <pre><code class="lang-js"><span class="hljs-comment">// Our car now has a drive method...</span>
 <span class="hljs-keyword">var</span> car = {
@@ -1529,9 +1461,9 @@ car.paint( <span class="hljs-string">&quot;blue&quot;</span> );
 <li>Why would custom methods be a preferred way to modify object properties vs. using object literal notation?</li>
 </ul>
 <p>We&apos;ve only scratched the surface for objects. We&apos;re going to dive much deeper into them later on in the course.</p>
-<h2 id="exercise-homework-calculator-15-140">Exercise + Homework: Calculator (15 / 140)</h2>
+<h2 id="exercise--homework-calculator-15--140">Exercise + Homework: Calculator (15 / 140)</h2>
 <p><a href="https://github.com/ga-dc/js-calculator" target="_blank">Javascript Calculator</a></p>
-<h2 id="closing-q-a-10-150">Closing, Q&amp;A (10 / 150)</h2>
+<h2 id="closing-qa-10--150">Closing, Q&amp;A (10 / 150)</h2>
 <hr>
 <h2 id="further-reading">Further Reading</h2>
 <ul>
@@ -1558,9 +1490,25 @@ car.paint( <span class="hljs-string">&quot;blue&quot;</span> );
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

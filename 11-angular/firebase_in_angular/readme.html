@@ -8,7 +8,7 @@
         <title>AngularFire: Firebase &amp; Angular | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="8.4" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="8.4" data-chapter-title="AngularFire: Firebase &amp; Angular" data-filepath="11-angular/firebase_in_angular/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1263,7 +1195,7 @@
 <p>Picture HTTP as the our postal system, you send out some letters to a friend overseas.  The system delivers these letters through various paths and arrive safely.  Your friend reads them and sends a letter back.  In http, the server can not send you a message unless you request one: the request/response cycle.</p>
 <p>Whereas Websockets is more like a phone call.  You have the ability to hold a conversation, talking at the same time.  Once you have initiated a connection with the server, both an you can send messages, as needed.</p>
 <p><img src="http://www.pubnub.com/blog/wp-content/uploads/2014/09/WebSockets-Diagram.png" alt="Web Sockets lifetime"></p>
-<h2 id="-angularfire-https-www-firebase-com-docs-web-libraries-angular"><a href="https://www.firebase.com/docs/web/libraries/angular/" target="_blank">AngularFire</a></h2>
+<h2 id="angularfire"><a href="https://www.firebase.com/docs/web/libraries/angular/" target="_blank">AngularFire</a></h2>
 <p>AngularFire is a library for connecting Angular to Firebase.  Similar to ActiveRecord and Sequelize.  We will be using the AngularFire library to access Firebase from Angular.  They provide a <a href="https://www.firebase.com/docs/web/libraries/angular/" target="_blank">few tutorials</a> and <a href="https://www.firebase.com/docs/web/libraries/angular/examples.html" target="_blank">many examples</a>.  Like the Tetris game we saw earlier.</p>
 <h3 id="grumbler-and-firebase">Grumbler and Firebase</h3>
 <p>Let&apos;s use our new found knowledge to update Grumbler.  The goal is to have Grumbler persist to Firebase, using AngularFire.  The functionality will be exactly the same, just the persistence has changed.   </p>
@@ -1275,7 +1207,7 @@
 <li>install &amp; require dependencies</li>
 <li>replace the existing persistence service</li>
 </ul>
-<h4 id="install-require-dependencies-5-min">install &amp; require dependencies (5 min)</h4>
+<h4 id="install--require-dependencies-5-min">install &amp; require dependencies (5 min)</h4>
 <pre><code>$ bower install angularfire --save
 </code></pre><h2 id="q-what-just-happened">Q. What just happened?</h2>
 <blockquote>
@@ -1298,7 +1230,7 @@
 firebaseRef.set({<span class="hljs-string">&quot;MattS&quot;</span>: <span class="hljs-string">&quot;Has a connection!&quot;</span>});
 </code></pre>
 <h4 id="a-firebase-resource-10-min">A Firebase Resource (10 min)</h4>
-<h2 id="q-we-want-to-use-this-firebase-database-instead-of-our-calls-to-our-restful-api-what-do-we-replace">Q.  We want to use this firebase database instead of our calls to our RESTful API.  What do we replace?</h2>
+<h2 id="q--we-want-to-use-this-firebase-database-instead-of-our-calls-to-our-restful-api--what-do-we-replace">Q.  We want to use this firebase database instead of our calls to our RESTful API.  What do we replace?</h2>
 <blockquote>
 <p>A. The Grumbler Resource service.</p>
 </blockquote>
@@ -1343,14 +1275,14 @@ firebaseRef.set({<span class="hljs-string">&quot;MattS&quot;</span>: <span class
 <pre><code class="lang-js"><span class="hljs-comment">// in js/services/grumble.js</span>
 <span class="hljs-keyword">var</span> grumbleServices = angular.module(<span class="hljs-string">&apos;grumbleServices&apos;</span>, [<span class="hljs-string">&apos;ngResource&apos;</span>, <span class="hljs-string">&apos;firebase&apos;</span>]);
 </code></pre>
-<h3 id="first-stop-index">First stop?  Index.</h3>
+<h3 id="first-stop--index">First stop?  Index.</h3>
 <h2 id="q-what-does-our-index-controller-expect">Q. What does our index controller expect?</h2>
 <blockquote>
 <p>A. <code>Grumble.query();</code></p>
 </blockquote>
 <p>To manage a list of grumblers, we&apos;ll need an Array.</p>
-<h4 id="research-synchronized-arrays-https-www-firebase-com-docs-web-libraries-angular-guide-synchronized-arrays-html-5-min">Research: <a href="https://www.firebase.com/docs/web/libraries/angular/guide/synchronized-arrays.html" target="_blank">Synchronized Arrays</a> (5 min)</h4>
-<h4 id="get-the-grumbles-15-min">Get the grumbles  (15 min)</h4>
+<h4 id="research-synchronized-arrays-5-min">Research: <a href="https://www.firebase.com/docs/web/libraries/angular/guide/synchronized-arrays.html" target="_blank">Synchronized Arrays</a> (5 min)</h4>
+<h4 id="get-the-grumbles--15-min">Get the grumbles  (15 min)</h4>
 <p>In js/services/grumble.js:</p>
 <pre><code class="lang-js"><span class="hljs-comment">// in js/services/grumble.js</span>
 grumbleServices.factory(<span class="hljs-string">&apos;Grumble&apos;</span>, [<span class="hljs-string">&apos;$firebaseObject&apos;</span>,<span class="hljs-string">&apos;$firebaseArray&apos;</span>, grumbleFirebase]);
@@ -1379,7 +1311,7 @@ grumbleServices.factory(<span class="hljs-string">&apos;Grumble&apos;</span>, [<
 <li>return our Grumble</li>
 </ul>
 <p>Let&apos;s refresh our list of grumbles: <a href="http://localhost:3000/#/grumbles" target="_blank">http://localhost:3000/#/grumbles</a>.  </p>
-<h2 id="q-what-do-you-see-nothing-why">Q. What do you see?  Nothing? Why?</h2>
+<h2 id="q-what-do-you-see--nothing-why">Q. What do you see?  Nothing? Why?</h2>
 <blockquote>
 <p>A. (sing it with me) Weeeee ain&apos;t got no grumbles. Nobody.  Cares for them.  Nobody. I-i-i-i-i-i&apos;m so...</p>
 </blockquote>
@@ -1405,7 +1337,7 @@ grumbleServices.factory(<span class="hljs-string">&apos;Grumble&apos;</span>, [<
 <pre><code>Argument &apos;grumbleController&apos; is not a
 </code></pre><p>Not much to go on.  What&apos;s the url?</p>
 <p><code>http://localhost:3000/#/grumbles/undefined</code></p>
-<h2 id="q-what-s-missing">Q. What&apos;s missing?</h2>
+<h2 id="q-whats-missing">Q. What&apos;s missing?</h2>
 <blockquote>
 <p>A. What happened to our grumble&apos;s <code>id</code>?</p>
 </blockquote>
@@ -1443,7 +1375,7 @@ callback(grumble);
 </blockquote>
 <pre><code class="lang-js">{{ grumbleCtrl.grumble.title }}
 </code></pre>
-<h2 id="q-what-s-wrong">Q. What&apos;s wrong?</h2>
+<h2 id="q-whats-wrong">Q. What&apos;s wrong?</h2>
 <blockquote>
 <p>A. We are on the &quot;show&quot; route.  Our new Resource only supports <code>query</code> &amp; <code>save</code>.</p>
 </blockquote>
@@ -1488,7 +1420,7 @@ callback(grumble);
 <pre><code>$ firebase deploy
 </code></pre><p>Check it out!</p>
 <pre><code>$ firebase open
-</code></pre><h2 id="-optional-zoom-zoom">[optional] Zoom zoom</h2>
+</code></pre><h2 id="optional-zoom-zoom">[optional] Zoom zoom</h2>
 <p>Let&apos;s &quot;study&quot; Websockets just a bit more.</p>
 <p><a href="https://www.chrome.com/racer" target="_blank">https://www.chrome.com/racer</a></p>
 <h2 id="conclusion-5-min">Conclusion (5 min)</h2>
@@ -1531,9 +1463,25 @@ callback(grumble);
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

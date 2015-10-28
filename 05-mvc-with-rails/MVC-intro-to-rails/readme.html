@@ -8,7 +8,7 @@
         <title>MVC Intro to Rails | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="4.2" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="4.2" data-chapter-title="MVC Intro to Rails" data-filepath="05-mvc-with-rails/MVC-intro-to-rails/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1238,7 +1170,7 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="mvc-intro-to-rails">MVC - Intro to Rails</h1>
+                        <h1 id="mvc--intro-to-rails">MVC - Intro to Rails</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
 <li>Explain what Ruby on Rails is and it&apos;s architectural components (rMVC)</li>
@@ -1251,14 +1183,14 @@
 <li>Follow Rails naming conventions when creating models, views and controllers</li>
 <li>Use error driven development in Rails to identify common errors and implement solutions for them.</li>
 </ul>
-<h2 id="opening-framing-5-5">Opening Framing (5/5)</h2>
+<h2 id="opening-framing-55">Opening Framing (5/5)</h2>
 <p>So we&apos;ve learned about Sinatra, your very first web framework! It&apos;s great. It&apos;s an awesome tool to get a quick page up and running. So why would we ever want to learn Rails? So Sinatra is kind of like a shovel for web development. Rails is kind of like a nuclear powered back hoe for web development. We need to know how to work a shovel before we get the keys to the back hoe. Many of the same conventions you used in Sinatra will transition into rails, but more importantly, there&apos;s alot more. Rails is a heavy duty web framework that follows relatively strict conventions in order to streamline web development.</p>
 <blockquote>
 <p>It is designed to make programming web applications easier by making assumptions about what every developer needs to get started. It makes the assumption that there is the &quot;best&quot; way to do things, and it&apos;s designed to encourage that way - and in some cases to discourage alternatives. - Ruby on Rails guide</p>
 <p>Rails is a framework with lots of rules/conventions. Pay attention to the conventions you&apos;ll need to follow for rails throughout the week.</p>
 </blockquote>
 <p><img src="http://i.stack.imgur.com/Sf2OQ.png" alt="rMVC"></p>
-<h2 id="rmvc-10-15">rMVC (10/15)</h2>
+<h2 id="rmvc-1015">rMVC (10/15)</h2>
 <p>The design pattern that rails is built around is rMVC - router, model, view and controller.</p>
 <p>Life Cycle of the request/response in Rails:</p>
 <ol>
@@ -1276,7 +1208,7 @@
 </li>
 </ol>
 <p>Let&apos;s take a look at some rails code.</p>
-<h2 id="rails-folder-file-structure-15-30">Rails folder/file structure (15/30)</h2>
+<h2 id="rails-folderfile-structure-1530">Rails folder/file structure (15/30)</h2>
 <p>The first thing that I want to do, is just create a new rails applications. But I think first what we should do is ensure we have rails. <code>$ gem install rails</code>. Next I want to actually create my rails application:</p>
 <pre><code class="lang-bash">$ rails new tunr <span class="hljs-operator">-d</span> postgresql
 </code></pre>
@@ -1304,7 +1236,7 @@
 <h2 id="tunr-port-to-rails">Tunr Port to Rails</h2>
 <p>The sinatra app we&apos;ll be working with is located <a href="https://github.com/ga-dc/sinatra_tunr_to_rails" target="_blank">here</a></p>
 <p>Please make sure you create the database, upload the schema and seed your database.</p>
-<h3 id="configuring-models-and-db-10-40">Configuring models and DB (10/40)</h3>
+<h3 id="configuring-models-and-db-1040">Configuring models and DB (10/40)</h3>
 <p>If you want to work from the same Sinatra app that I will be working with, it can found <a href="https://github.com/ga-dc/sinatra_tunr_to_rails" target="_blank">here</a>
 The first thing that I want to do is connect our rails app to the tunr db that we made in our Sinatra version. We want to go into the <code>config/database.yml</code> file:</p>
 <pre><code class="lang-yml">development:
@@ -1321,7 +1253,7 @@ The first thing that I want to do is connect our rails app to the tunr db that w
 <span class="hljs-keyword">end</span>
 </code></pre>
 <p>Let&apos;s run rails console and play with our models to test for a good connection to the database(5m to make sure everyone has a connection to the database):</p>
-<h3 id="routes-the-non-rails-way-15-55">Routes(the non rails way)(15/55)</h3>
+<h3 id="routesthe-non-rails-way1555">Routes(the non rails way)(15/55)</h3>
 <p>Great, now that we&apos;ve established a connection to our database let move on to building out our routes.</p>
 <p>Basically what were doing here is mapping out what the different routes of our application will be just like our controllers in sinatra did for us. Let&apos;s pull from the artists controller first. Here&apos;s an example before/after for the first one:</p>
 <pre><code class="lang-ruby"><span class="hljs-comment"># in sinatra</span>
@@ -1342,9 +1274,9 @@ post <span class="hljs-string">&quot;artists&quot;</span> =&gt; <span class="hlj
 <blockquote>
 <p>the actions for put/delete requests are update/destroy</p>
 </blockquote>
-<h3 id="break-you-do-create-the-rest-of-the-routes-including-all-the-song-routes-20-75">BREAK + You do - create the rest of the routes including all the song routes (20/75)</h3>
+<h3 id="break--you-do--create-the-rest-of-the-routes-including-all-the-song-routes-2075">BREAK + You do - create the rest of the routes including all the song routes (20/75)</h3>
 <p>For the next part of the class</p>
-<h2 id="error-driven-development-30-105">Error Driven Development (30/105)</h2>
+<h2 id="error-driven-development-30105">Error Driven Development (30/105)</h2>
 <p>I&apos;m going to be using error driven development to show some common errors and their solutions.</p>
 <p>Alright, I want to go ahead and test one of these routes out. In the terminal start up your rails server <code>$ rails s</code> And open a new terminal tab <code>cmd + &quot;t&quot;</code> and type <code>rake routes</code>. This shows you every route that is defined in <code>config/routes.rb</code></p>
 <p>Lets go into our browser and go to <code>http://localhost:3000/artists</code> and we&apos;ll see:</p>
@@ -1403,7 +1335,7 @@ Just put <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code></p>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h3 id="you-do-the-rest-of-it-45-145">You do - THE REST OF IT. (45/145)</h3>
+<h3 id="you-do--the-rest-of-it-45145">You do - THE REST OF IT. (45/145)</h3>
 <p>We&apos;ve already done all of the code in Sinatra. All you&apos;re doing is changing the code from a sinatra app to a rails app.</p>
 <h4 id="port-controller-file">Port Controller File</h4>
 <ul>
@@ -1430,7 +1362,7 @@ following line in <code>application_controller.rb</code>:</p>
 </code></pre>
 <h3 id="run-rails-server">Run rails server</h3>
 <p>Run rails server and test out your site. It&apos;s not all too much different from Sinatra. Except it splits the conerns of routing from controllers, and makes assumptions about what your files are called.</p>
-<h2 id="closing-5-150">Closing(5/150)</h2>
+<h2 id="closing5150">Closing(5/150)</h2>
 <p>Review LO&apos;s
 Homework will be to port WDInstagram to a rails app. <a href="https://github.com/ga-dc/WDInstgram_rails" target="_blank">here</a></p>
 
@@ -1454,9 +1386,25 @@ Homework will be to port WDInstagram to a rails app. <a href="https://github.com
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

@@ -8,7 +8,7 @@
         <title>Helpers | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.5.1">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,10 @@
     <body>
         
         
-    <div class="book" data-level="4.6" data-basepath="../.." data-revision="Mon Oct 26 2015 21:30:02 GMT+0000 (UTC)">
+    <div class="book" data-level="4.6" data-chapter-title="Helpers" data-filepath="05-mvc-with-rails/rails-helpers/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -1150,80 +1155,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -1268,7 +1200,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="what-are-helpers-5-minutes-00-05">What are Helpers? (5 minutes - 00:05)</h2>
+<h2 id="what-are-helpers-5-minutes--0005">What are Helpers? (5 minutes - 00:05)</h2>
 <p>If we look at our app, there are a lot of places where we&apos;re writing a lot of
 text, and where that text follows a common pattern. Think about the similarities
 in structure of every link tag, and of every form. Every time we need a path
@@ -1279,7 +1211,7 @@ here.</p>
 so we don&apos;t have to type it out, and so that our code is more readable. (A side
 benefit here is that if our routes change, we don&apos;t have to go fix all of our
 links, forms, etc.)</p>
-<h2 id="path-helpers-10-minutes-00-15">Path Helpers (10 minutes - 00:15)</h2>
+<h2 id="path-helpers-10-minutes--0015">Path Helpers (10 minutes - 00:15)</h2>
 <p>Path helpers are methods that generate paths. These helpers can be used anywhere
 you would have manually typed out a path as a string, e.g. &quot;/artists&quot;,
 &quot;/artists/#{@artist.id}&quot;, etc.</p>
@@ -1308,7 +1240,7 @@ include a <strong>verb</strong>. The verb (and thus the route) comes from contex
 <li>A <em>form</em> to <code>artist_path(some_artist)</code> is a PUT &quot;/artists/22&quot;, and is thus the update route.</li>
 </ul>
 <p>Path helpers can be used in controllers &amp; views.</p>
-<h3 id="exercise-10-minutes-00-25">Exercise (10 minutes - 00:25)</h3>
+<h3 id="exercise-10-minutes--0025">Exercise (10 minutes - 00:25)</h3>
 <ol>
 <li>Clone our starter code for <a href="https://github.com/ga-dc/tunr-rails-helpers" target="_blank">tunr-rails-helpers</a></li>
 <li>Replace the routes with <code>resources</code>.</li>
@@ -1317,7 +1249,7 @@ include a <strong>verb</strong>. The verb (and thus the route) comes from contex
 <h4 id="bonus">Bonus:</h4>
 <p>Replace all hard-coded paths in link / form tags in the views. We&apos;ll be replacing
 them soon using link/form helpers.</p>
-<h2 id="link-helpers-10-minutes-00-35">Link Helpers (10 minutes - 00:35)</h2>
+<h2 id="link-helpers-10-minutes--0035">Link Helpers (10 minutes - 00:35)</h2>
 <p>The link helper <code>link_to</code> generates link (<code>&lt;a&gt;</code>) tags. In general, <code>link_to</code>
 takes two arguments:</p>
 <ol>
@@ -1336,16 +1268,16 @@ the second object is an instance of an ActiveRecord Model:</p>
 <pre><code>&lt;% @pandas.each do |panda| %&gt;
   &lt;%= link_to panda.name, panda %&gt;
 &lt;% end %&gt;
-</code></pre><h3 id="exercise-15-minutes-00-50">Exercise (15 minutes - 00:50)</h3>
+</code></pre><h3 id="exercise-15-minutes--0050">Exercise (15 minutes - 00:50)</h3>
 <p>Replace all links (<a> tags) in tunr-rails-helpers with <code>link_to</code>.</a></p>
-<h2 id="html-options-10-minutes-01-00">HTML Options (10 minutes - 01:00)</h2>
+<h2 id="html-options-10-minutes--0100">HTML Options (10 minutes - 01:00)</h2>
 <p>Almost any helper method that generates HTML tags, can take a set of HTML
 options. This is commonly used to set the <code>class</code> and/or <code>id</code> attributes, but
 can be used to set any attributes.</p>
 <p>Example:</p>
 <pre><code>&lt;%= link_to @panda.name, @panda, class: &quot;fancy-panda&quot; %&gt;
 </code></pre><p>For more examples, see the <a href="http://apidock.com/rails/ActionView/Helpers/UrlHelper/link_to" target="_blank">API Docs for Rails link_to</a></p>
-<h2 id="image-helpers-5-minutes-01-05">Image Helpers (5 minutes - 01:05)</h2>
+<h2 id="image-helpers-5-minutes--0105">Image Helpers (5 minutes - 01:05)</h2>
 <p>The <code>image_tag</code> helper generates an <code>&lt;img&gt;</code> tag.</p>
 <p>Here&apos;s a simple example:</p>
 <pre><code>&lt;%= image_tag @artist.photo_url %&gt;
@@ -1364,12 +1296,12 @@ in the assets folder &quot;app/assets/images&quot;, and link to that appropriate
 <p>The <code>image_tag</code> helper takes all the normal HTML Options, plus ones related to
 size and alt.</p>
 <pre><code>&lt;%= image_tag @artist.photo_url, alt: &quot;Photo of #{@artist.name}&quot;, size: &quot;400x400&quot; %&gt;
-</code></pre><h3 id="exercise-5-minutes-01-10">Exercise (5 minutes - 01:10)</h3>
+</code></pre><h3 id="exercise-5-minutes--0110">Exercise (5 minutes - 01:10)</h3>
 <p>Replace the <img> tag with the image_tag helper in tunr-rails-helpers.</p>
 <p>Bonus:
 Add some icon images to <code>app/assets/images</code> and use image_tag to add icons where
 appropriate (e.g. replace the <code>(+)</code> link)</p>
-<h2 id="form-helpers-20-minutes-01-30">Form Helpers (20 minutes - 01:30)</h2>
+<h2 id="form-helpers-20-minutes--0130">Form Helpers (20 minutes - 01:30)</h2>
 <p>Rails includes two helper methods to build forms: <code>form_for</code> and <code>form_tag</code>.</p>
 <p>Today, we&apos;ll only be looking at <code>form_for</code>, which builds forms specifically
 for creating / updating our models (e.g. songs / artists etc).</p>
@@ -1406,9 +1338,9 @@ search form.</p>
 </ul>
 </li>
 </ul>
-<h3 id="exercise-20-minutes-01-50">Exercise (20 minutes - 01:50)</h3>
+<h3 id="exercise-20-minutes--0150">Exercise (20 minutes - 01:50)</h3>
 <p>Replace all forms in tunr-rails-helpers with <code>form_for</code> tags.</p>
-<h2 id="why-use-form-for-15-minutes-02-05">Why use form_for? (15 minutes - 02:05)</h2>
+<h2 id="why-use-formfor-15-minutes--0205">Why use form_for? (15 minutes - 02:05)</h2>
 <p>The form helpers are useful for a few reasons:</p>
 <h3 id="cleaner-code">Cleaner Code</h3>
 <p>Our new form code is much more consise, easier-to-read and update, and less
@@ -1431,7 +1363,7 @@ includes a token it recently gave out to that user (they eventually expire).</p>
 <p>If the token isn&apos;t present (or doesn&apos;t match), then the request is rejected.</p>
 <p>We can manually include that token in our forms, but <code>form_for</code> and <code>form_tag</code>
 do it for us.</p>
-<h2 id="partials-10-minutes-02-15">Partials (10 minutes - 02:15)</h2>
+<h2 id="partials-10-minutes--0215">Partials (10 minutes - 02:15)</h2>
 <p>Partial templates - usually just called &quot;partials&quot; - are another technique to
 break down a view into more manageable chunks. With a partial, you can move the
 code for rendering a particular piece of a view into a separate file, and
@@ -1470,12 +1402,12 @@ be used by the partial, but most of the time, we don&apos;t need such functional
 <p>In cases where we don&apos;t need to set any options when we render the partial, we
 can use the shorter syntax and omit the word <code>partial:</code></p>
 <pre><code>&lt;%= render &quot;form&quot; %&gt;
-</code></pre><h2 id="exercise-10-minutes-02-25">Exercise (10 minutes - 02:25)</h2>
+</code></pre><h2 id="exercise-10-minutes--0225">Exercise (10 minutes - 02:25)</h2>
 <p>Replace any remaining duplication of forms in Tunr using partials.</p>
 <p>Bonus:
 There are other areas of Tunr that have minor code duplication. Find them and
 replace those areas with partials as well.</p>
-<h2 id="summary-5-minutes-02-30">Summary (5 minutes - 02:30)</h2>
+<h2 id="summary-5-minutes--0230">Summary (5 minutes - 02:30)</h2>
 <p>Rails&apos; helper methods are great at keeping our code readable, flexible and DRY,
 so use em!</p>
 
@@ -1499,9 +1431,25 @@ so use em!</p>
         
 <script src="../../gitbook/app.js"></script>
 
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>
