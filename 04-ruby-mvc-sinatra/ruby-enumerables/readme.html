@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.2" data-chapter-title="Ruby Enumerables" data-filepath="04-ruby-mvc-sinatra/ruby-enumerables/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 16:13:11 GMT+0000 (UTC)">
+    <div class="book" data-level="3.2" data-chapter-title="Ruby Enumerables" data-filepath="04-ruby-mvc-sinatra/ruby-enumerables/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 23:14:04 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1172,6 +1172,7 @@
                     
                         <h1 id="ruby-enumerables-learning-objectives">Ruby Enumerables: Learning Objectives</h1>
 <ul>
+<li>Review Ruby arrays and hashes</li>
 <li>Use Ruby loops to iterate over code blocks.</li>
 <li>Define what a Ruby enumerable method is.</li>
 <li>Identify useful Ruby enumerables, including <code>.each</code>, <code>.map</code> and <code>.select</code>.</li>
@@ -1237,19 +1238,28 @@ following loops in ruby:</p>
 </ul>
 <p>For a final exercise, create an array (like in the JS example above) and use
 one of the above loops to print out each item in the array.</p>
+<h3 id="loop-do">Loop do</h3>
+<p>Loop runs uninterrupted until told to stop.</p>
+<pre><code class="lang-ruby">loop <span class="hljs-keyword">do</span>
+  puts <span class="hljs-string">&quot;I will loop forever.&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<blockquote>
+<p>We&apos;ll talk more about how to &quot;break&quot; this loop later.</p>
+</blockquote>
 <h3 id="while-loop">While loop</h3>
 <p>Like Javascript, runs the loop while a condition is true.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Prints out numbers from 1 to 10</span>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Javascript: Prints out numbers from 1 to 10</span>
 <span class="hljs-keyword">var</span> counter = <span class="hljs-number">1</span>;
-<span class="hljs-keyword">do</span> {
+<span class="hljs-keyword">while</span>(counter &lt; <span class="hljs-number">10</span>) {
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;counter:&quot;</span>, counter);
   counter++;
-} <span class="hljs-keyword">while</span>(counter &lt; <span class="hljs-number">10</span>);
+}
 </code></pre>
-<pre><code class="lang-ruby"><span class="hljs-comment"># Prints out numbers from 1 to 10</span>
+<pre><code class="lang-ruby"><span class="hljs-comment"># Ruby: Prints out numbers from 1 to 10</span>
 counter = <span class="hljs-number">1</span>
-<span class="hljs-keyword">while</span> (counter &lt;= <span class="hljs-number">10</span>) <span class="hljs-keyword">do</span>
-  puts <span class="hljs-string">&quot;counter:<span class="hljs-subst">#{counter}</span>&quot;</span>
+<span class="hljs-keyword">while</span>(counter &lt;= <span class="hljs-number">10</span>) <span class="hljs-keyword">do</span>
+  puts <span class="hljs-string">&quot;counter: <span class="hljs-subst">#{counter}</span>&quot;</span>
   counter += <span class="hljs-number">1</span> <span class="hljs-comment"># increments counter by 1</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
@@ -1261,7 +1271,7 @@ counter = <span class="hljs-number">1</span>
 </ul>
 <pre><code class="lang-ruby"><span class="hljs-comment"># Prints out numbers from 1 to 10</span>
 counter = <span class="hljs-number">1</span>
-<span class="hljs-keyword">until</span>( counter &gt; <span class="hljs-number">10</span> ) <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">until</span>(counter &gt; <span class="hljs-number">10</span>) <span class="hljs-keyword">do</span>
   puts counter
   counter += <span class="hljs-number">1</span>
 <span class="hljs-keyword">end</span>
@@ -1291,9 +1301,9 @@ counter = <span class="hljs-number">1</span>
 <pre><code class="lang-ruby">numbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>]
 i = <span class="hljs-number">0</span>
 
-<span class="hljs-keyword">while</span> i &lt;= numbers.length <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">while</span>(i &lt;= numbers.length) <span class="hljs-keyword">do</span>
   puts numbers[i]
-  <span class="hljs-keyword">if</span> numbers[i] == <span class="hljs-number">5</span>
+  <span class="hljs-keyword">if</span>(numbers[i] == <span class="hljs-number">5</span>)
     <span class="hljs-keyword">break</span>
   <span class="hljs-keyword">end</span>
   i = i + <span class="hljs-number">1</span>
@@ -1304,8 +1314,8 @@ i = <span class="hljs-number">0</span>
 <h2 id="q-what-numbers-do-you-expect-to-see-on-the-screen-when-we-run-this--loop">Q: What numbers do you expect to see on the screen when we run this  loop?</h2>
 <pre><code class="lang-ruby">  numbers = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>]
   i = <span class="hljs-number">0</span>
-  <span class="hljs-keyword">while</span> i &lt;= numbers.length <span class="hljs-keyword">do</span>
-    <span class="hljs-keyword">if</span> numbers[i]%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>
+  <span class="hljs-keyword">while</span>(i &lt; numbers.length) <span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">if</span>( numbers[i]%<span class="hljs-number">2</span> == <span class="hljs-number">0</span> )
       i = i + <span class="hljs-number">1</span>
       <span class="hljs-keyword">next</span>
     <span class="hljs-keyword">else</span>
@@ -1332,7 +1342,7 @@ i = <span class="hljs-number">0</span>
 numbers = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ]
 i = <span class="hljs-number">0</span>
 
-<span class="hljs-keyword">while</span> i &lt;= numbers.length
+<span class="hljs-keyword">while</span>(i &lt;= numbers.length) <span class="hljs-keyword">do</span>
   puts numbers[i] * <span class="hljs-number">2</span>
   i = i + <span class="hljs-number">1</span>
 <span class="hljs-keyword">end</span>
@@ -1418,7 +1428,7 @@ doubled
 <p>Use <code>map</code> to do the following...  </p>
 <ul>
 <li><p>Create an array that appends &quot;Duck&quot; to everybody in this array of first names</p>
-<pre><code class="lang-ruby">first_names = [ <span class="hljs-string">&quot;Donald&quot;</span>, <span class="hljs-string">&quot;Daisy&quot;</span> ]
+<pre><code class="lang-ruby">first_names = [ <span class="hljs-string">&quot;Donald&quot;</span>, <span class="hljs-string">&quot;Daisy&quot;</span>, <span class="hljs-string">&quot;Daffy&quot;</span> ]
 
 <span class="hljs-comment">#=&gt; [&quot;Donald Duck&quot;, &quot;Daisy Duck&quot;]</span>
 </code></pre>
