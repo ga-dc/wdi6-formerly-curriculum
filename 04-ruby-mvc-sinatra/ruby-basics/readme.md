@@ -474,7 +474,7 @@ numbers.shuffle
 # => [ 4, 2, 1, 5, 3 ]
 ```
 
-#### Ranges (5min)
+#### Ranges (2min)
 
 Use ranges to quickly generate arrays of data types.
 * Parentheses.
@@ -491,33 +491,13 @@ Use ranges to quickly generate arrays of data types.
 ```
 
 
-#### Hashes (10min)
+#### Hashes (3min)
 
-A unordered, "dictionary-like" collection organized by key-value pairs. Very similar to Javascript objects, but with some differences.
-* Curly brackets
-* Can use colons or "hash rockets" ( `=>` )
-
-Keys
-* Can be strings or symbols
-  * Symbols look a little different here. Reverse notation of symbol_name followed by `:`
-  * Latest convention is to use symbols over strings. Both are OK though.
-
+A unordered, "dictionary-like" collection organized by key-value pairs. Very similar to Javascript objects...
 
 ```ruby
-# Keys as strings
 # We can store any data type in hashes, including nested arrays and hashes.
-wdi_class = {
-  "teacher" => "John",
-  "students" => [ "Yacko", "Wacko", "Dot" ],
-  "classroom" => 2,
-  "in_session" => true,
-  "schedule" => {
-                    "morning" => "Ruby Basics",
-                    "afternoon" => "Enumeration"
-                }
-}
 
-# Keys as symbols
 wdi_class = {
   teacher: "John",
   students: [ "Yacko", "Wacko", "Dot" ],
@@ -530,26 +510,14 @@ wdi_class = {
 }
 ```
 
-The way you access values in a hash depends on what type of key you use.
-
 ```ruby
-# If your keys are strings...
-wdi_classroom["teacher"]
-# => "John"
-
-# If your keys are symbols...
+# We can access hash values like this...
 wdi_classroom[:teacher]
 # => "John"
 ```
 
-The same goes for modifying hash values.
-
 ```ruby
-# String keys
-wdi_classroom["teacher"] = "John"
-# => "John"
-
-# Symbol keys
+# And modify them like this...
 wdi_classroom[:teacher] = "John"
 # => "John"
 ```
