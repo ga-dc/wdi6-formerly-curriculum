@@ -95,20 +95,20 @@ We'll use `psql` as our primary means of interacting with our databases.
 Here's a quick demo... (probably don't need to follow along).
 
 ```sql
-help # general help
-\?   # help with psql commands
-\h   # help with SQL commands
-\l   # Lists all databases
+help -- general help
+\?   -- help with psql commands
+\h   -- help with SQL commands
+\l   -- Lists all databases
 
 CREATE DATABASE wdi7;
 # What changed?
 \l
 
-# What happens if we don't use a semicolon?
+-- What happens if we don't use a semicolon?
 
-\c wdi7 # Connect to pbj database
+\c wdi7 -- Connect to pbj database
 
-\d # Lists all tables
+\d -- Lists all tables
 
 CREATE TABLE students (
   id SERIAL PRIMARY KEY,
@@ -123,7 +123,7 @@ CREATE TABLE students (
 SELECT * FROM students;
 
 INSERT INTO students (first_name, last_name) VALUES ('Robin', 'Thomas');
-# This won't work!
+-- This won't work!
 
 INSERT INTO students (first_name, last_name, quote, birthday, ssn) VALUES ('Robin', 'Thomas', 'Two goldfish are in a tank. One says, "Know how to drive this thing?"', 'April 1', 8675309);
 SELECT * FROM students;
@@ -140,7 +140,7 @@ DROP TABLE students;
 
 DROP DATABASE wdi7;
 
-\q #quits
+\q --quits
 ```
 
 In short:
@@ -223,7 +223,17 @@ $ createdb library
 
 #### Writing our Schema
 
-See
+See the [schema file](https://github.com/ga-dc/library_sql/blob/master/schema.sql)
+for a final version.
+
+
+- `id SERIAL PRIMARY KEY`
+  - `id`: column name, how we will refer to this column
+  - `SERIAL` is the data type (similar to integer or string).  It's a special datatype for unique identifier columns, which the db auto-increments.
+  - `PRIMARY KEY`: a special constraint which indicates a unique identifier for each row.
+
+Take a few minutes to research the other rows.
+
 
 #### Loading our Schema
 
@@ -236,77 +246,80 @@ $ psql -d library < schema.sql
 This means: "run the psql program, connect to the database called 'library',
 then run the 'schema.sql' file in that database".
 
+#### Loading a Seed File
 
-### Defining a column
+I've provided a sql file that adds sample data into our `library` database.
 
-- `id SERIAL PRIMARY KEY`
-  - `id`: column name, how we will refer to this column
-  - `SERIAL` is the data type (similar to integer or string).  It's a special datatype for unique identifier columns, which the db auto-increments.
-  - `PRIMARY KEY`: a special constraint which indicates a unique identifier for each row.
+Load that in so we can practice interacting with our data:
 
-Take a few minutes to research the other rows.
+```bash
+$ psql -d library < seed.sql
+```
 
-## CRUD
+## Performing 'CRUD' actions with SQL
 
-- CRUD stands for the most basic interactions we want to have with any database
-  - What might CRUD stand for?
+CRUD stands for the most basic interactions we want to have with any database:
 
-## Where's all this data stored, anyway?
+* Create
+* Read
+* Update
+* Destroy (aka Delete)
 
-- Look in PostgresApp preferences.  You should see `~/Library/Application\ Support/Postgres/var-9.4`.  Let's take a look in there.
-- We see `postgres-server.log`
-- Check out a file within `global/`. What is THAT?
-  - This is binary (not text) data, spread out across multiple files
-- [More info](http://www.postgresql.org/docs/9.0/static/storage-file-layout.html)
+The most common SQL commands correspond to these 4 actions:
 
+* INSERT -> Create
+* SELECT -> Read
+* UPDATE -> Update
+* DELETE -> Destroy
+
+### INSERT
+
+`INSERT` adds a row to a table:
+
+```sql
+INSERT INTO authors(name, nationality, birth_year) VALUES ('Adam Bray', 'United States of America', 1985);
+```
+
+### SELECT
+
+`SELECT` returns rows from a table:
+
+```sql
+-- select all columns from all rows
+SELECT * FROM authors;
+
+-- select only some columns, from all rows
+SELECT name, birth_year FROM authors;
+
+-- select rows that meet certain criteria
+SELECT * FROM authors WHERE name = 'James Baldwin';
+```
+
+### UPDATE
+
+`UPDATE` updates values for one or more rows:
+
+```sql
+UPDATE authors SET name = 'Adam B.', birth_year = 1986 WHERE name = 'Adam Bray';
+```
+
+### DELETE
+
+`DELETE` removes rows from a table:
+
+```sql
+DELETE FROM authors WHERE name = 'Adam B.';
+```
 
 ## Exercise!
 
-- Create authors
-author:
-  first_name (required),
-  last_name (required),
-  pen_name (optional),
-  birthdate (optional)
-
-First, let's nail down the data types.
-Then, insert some data.
-
-
-## And then...
-
-
-Control the results:
-
-```
-SELECT * from authors;
-
-SELECT * FROM authors ORDER BY first_name ASC;
-
-SELECT last_name, first_name FROM authors ORDER BY last_name DESC;
-
-# by length of last_name
-SELECT * FROM books WHERE CHAR_LENGTH(last_name) < 8;
-
-# Limit what is returned
-SELECT last_name FROM authors WHERE CHAR_LENGTH(last_name) > 8;
-
-# Select an author by first letter
-SELECT * FROM authors WHERE first_name LIKE  'R%';
-# % is a wildcard (like "*")
-
-# old enough to drive?
-# birthday > ???
-
-```
-
-It's important to note that you haven't changed anything.  These are read-only views into the data.
+Complete the queries in `basic_queries.sql` in the library_sql repo.
 
 ## Putting it with Ruby
 
 ```
 require "pg"
-connection = PG.connect(:hostaddr => "127.0.0.1", :port => 5432, :dbname => "pbj")
+connection = PG.connect(:hostaddr => "127.0.0.1", :port => 5432, :dbname => "library")
 results = connection.exec("SELECT * FROM authors")
 
 #Does NOT return a hash!
@@ -316,7 +329,8 @@ results.each do |item|
 end
 ```
 
-## Sekurrity!
+## Security!
+
 - What security holes do you see here?
   - Let's say I want to update the database with something a user writes into their computer...
   - They could pretty easily make my code execute a DROP TABLE or something.
@@ -324,62 +338,7 @@ end
   - [Obligatory visual aid](images/xkcd.png)
   - [Other obligatory visual aid](images/car.jpg)
 
+```ruby
+connection.prepare('insert_student_statement', 'INSERT INTO authors (name, nationality, birth_year) VALUES ($1, $2, $3)')
+connection.exec_prepared('insert_student_statement', [ 'Jesse Shawl', 'Mars', 2001])
 ```
-connection.prepare('insert_student_statement', 'INSERT INTO authors (first_name, last_name, pen_name) values ($1, $2, $3, $4, $5)')
-connection.exec_prepared('insert_student_statement', [ 'J.K.', 'Rowling', 'Robert Gailbraith', "1965/07/31"])
-```
-
-## Joins
-
-Add books!
-books: title, published_at
-
-Then fill it in.  Don't forget the relationship to author.
-
-Bonus: Try it with Ruby.
-
-
-## Joins
-
-- Inner Join
-  - Combines records that match both sides
-- Left/Right Join
-  - Combines records of one side with matching record from other side, and fills in null for remaining
-- Outer join
-  - Combines all records of both sides with matching record from other side, and fills in null for remaining.
-
-- Huh?
-  - Try it yourself
-
-```
-SELECT * FROM books INNER JOIN books ON (books.author_id = author.id);
-
-SELECT * FROM authors INNER JOIN books ON (books.author_id = author.id);
-
-SELECT authors.*, book.title FROM authors INNER JOIN books ON (books.author_id = author.id);
-
-SELECT authors.*, books.*
-FROM authors
-LEFT OUTER JOIN books
-ON (books.author_id = author.id);
-
-SELECT authors.*, books.*
-FROM authors
-LEFT JOIN books
-ON (books.author_id = author.id);
-```
-
-http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
-
-### Non-relational database (No SQL)
-- A non-relational databse is like a hash
-  - A collection of key / value pairs
-  - Don't need follow the same schema
-    - i.e. There aren't column headers defining what everything in the 3rd column is
-- Different ways of naming things
-  - Table = Relation
-    - Confusing, because it SHOWS relations, isn't a relation itself
-
-## Homework
-
-none

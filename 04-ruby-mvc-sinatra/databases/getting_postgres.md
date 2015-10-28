@@ -33,3 +33,11 @@ psql: could not connect to server: No such file or directory
 	Is the server running locally and accepting
 	connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
 ```
+
+## Where's all this data stored, anyway?
+
+- Look in PostgresApp preferences.  You should see `~/Library/Application\ Support/Postgres/var-9.4`.  Let's take a look in there.
+- We see `postgres-server.log`
+- Check out a file within `global/`. What is THAT?
+  - This is binary (not text) data, spread out across multiple files
+- [More info](http://www.postgresql.org/docs/9.0/static/storage-file-layout.html)
