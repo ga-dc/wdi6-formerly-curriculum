@@ -285,7 +285,7 @@ Why is that so funny? Because variables are pointers to values in memory.
 
 ![Variables in memory diagram](https://camo.githubusercontent.com/62b04af497f124fc9b11ec3802d73497f5c9e305/687474703a2f2f64326177357865326a6c647175652e636c6f756466726f6e742e6e65742f626f6f6b732f727562792f696d616765732f7661726961626c65735f706f696e74657273312e6a7067)
 
-[GIF #1]
+<a href="https://imgflip.com/gif/t9736"><img src="https://i.imgflip.com/t9736.gif" title="made at imgflip.com"/></a>
 
 #### .object_id
 
@@ -327,7 +327,10 @@ b.upcase!
 a
 # => "CHEESEBURGER"
 ```
-[GIF #2 & #3]
+#### Reassignment...  
+<a href="https://imgflip.com/gif/t984f"><img src="https://i.imgflip.com/t984f.gif" title="made at imgflip.com"/></a>
+#### ...vs Replacement
+<a href="https://imgflip.com/gif/t98b3"><img src="https://i.imgflip.com/t98b3.gif" title="made at imgflip.com"/></a>
 
 #### Exercise: Variable Assignment (15min)
 
