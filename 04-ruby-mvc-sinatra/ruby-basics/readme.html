@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.1" data-chapter-title="Ruby Basics" data-filepath="04-ruby-mvc-sinatra/ruby-basics/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 13:40:24 GMT+0000 (UTC)">
+    <div class="book" data-level="3.1" data-chapter-title="Ruby Basics" data-filepath="04-ruby-mvc-sinatra/ruby-basics/readme.md" data-basepath="../.." data-revision="Wed Oct 28 2015 14:31:24 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1436,7 +1436,7 @@ something.<span class="hljs-keyword">nil</span>?
 <p><img src="https://camo.githubusercontent.com/e015a8e243f53ffecd9b18fc5c8d770dde1948cc/687474703a2f2f626c6f672e70726f7465637465647374617469632e636f6d2f77702d636f6e74656e742f75706c6f6164732f323030372f30352f706f696e746572732e706e67" alt="XKCD pointers comic"></p>
 <p>Why is that so funny? Because variables are pointers to values in memory.</p>
 <p><img src="https://camo.githubusercontent.com/62b04af497f124fc9b11ec3802d73497f5c9e305/687474703a2f2f64326177357865326a6c647175652e636c6f756466726f6e742e6e65742f626f6f6b732f727562792f696d616765732f7661726961626c65735f706f696e74657273312e6a7067" alt="Variables in memory diagram"></p>
-<p>[GIF #1]</p>
+<p><a href="https://imgflip.com/gif/t9736" target="_blank"><img src="https://i.imgflip.com/t9736.gif" title="made at imgflip.com"></a></p>
 <h4 id="objectid">.object_id</h4>
 <p>We can use the <code>.object_id</code> method to demonstrate that two variables are pointing to the same object.</p>
 <ul>
@@ -1475,7 +1475,10 @@ b.upcase!
 a
 <span class="hljs-comment"># =&gt; &quot;CHEESEBURGER&quot;</span>
 </code></pre>
-<p>[GIF #2 &amp; #3]</p>
+<h4 id="reassignment">Reassignment...</h4>
+<p><a href="https://imgflip.com/gif/t984f" target="_blank"><img src="https://i.imgflip.com/t984f.gif" title="made at imgflip.com"></a></p>
+<h4 id="vs-replacement">...vs Replacement</h4>
+<p><a href="https://imgflip.com/gif/t98b3" target="_blank"><img src="https://i.imgflip.com/t98b3.gif" title="made at imgflip.com"></a></p>
 <h4 id="exercise-variable-assignment-15min">Exercise: Variable Assignment (15min)</h4>
 <p><a href="https://gist.github.com/amaseda/35a62128d8795e045d49" target="_blank">Exercise: Variable Assignment</a></p>
 <ul>
@@ -1602,7 +1605,7 @@ numbers.delete( <span class="hljs-number">2</span> )
 numbers.shuffle
 <span class="hljs-comment"># =&gt; [ 4, 2, 1, 5, 3 ]</span>
 </code></pre>
-<h4 id="ranges-5min">Ranges (5min)</h4>
+<h4 id="ranges-2min">Ranges (2min)</h4>
 <p>Use ranges to quickly generate arrays of data types.</p>
 <ul>
 <li>Parentheses.</li>
@@ -1616,34 +1619,10 @@ numbers.shuffle
 <span class="hljs-comment"># Does it work on strings?</span>
 (<span class="hljs-string">&quot;a&quot;</span>..<span class="hljs-string">&quot;z&quot;</span>).to_a
 </code></pre>
-<h4 id="hashes-10min">Hashes (10min)</h4>
-<p>A unordered, &quot;dictionary-like&quot; collection organized by key-value pairs. Very similar to Javascript objects, but with some differences.</p>
-<ul>
-<li>Curly brackets</li>
-<li>Can use colons or &quot;hash rockets&quot; ( <code>=&gt;</code> )</li>
-</ul>
-<p>Keys</p>
-<ul>
-<li>Can be strings or symbols<ul>
-<li>Symbols look a little different here. Reverse notation of symbol_name followed by <code>:</code></li>
-<li>Latest convention is to use symbols over strings. Both are OK though.</li>
-</ul>
-</li>
-</ul>
-<pre><code class="lang-ruby"><span class="hljs-comment"># Keys as strings</span>
-<span class="hljs-comment"># We can store any data type in hashes, including nested arrays and hashes.</span>
-wdi_class = {
-  <span class="hljs-string">&quot;teacher&quot;</span> =&gt; <span class="hljs-string">&quot;John&quot;</span>,
-  <span class="hljs-string">&quot;students&quot;</span> =&gt; [ <span class="hljs-string">&quot;Yacko&quot;</span>, <span class="hljs-string">&quot;Wacko&quot;</span>, <span class="hljs-string">&quot;Dot&quot;</span> ],
-  <span class="hljs-string">&quot;classroom&quot;</span> =&gt; <span class="hljs-number">2</span>,
-  <span class="hljs-string">&quot;in_session&quot;</span> =&gt; <span class="hljs-keyword">true</span>,
-  <span class="hljs-string">&quot;schedule&quot;</span> =&gt; {
-                    <span class="hljs-string">&quot;morning&quot;</span> =&gt; <span class="hljs-string">&quot;Ruby Basics&quot;</span>,
-                    <span class="hljs-string">&quot;afternoon&quot;</span> =&gt; <span class="hljs-string">&quot;Enumeration&quot;</span>
-                }
-}
+<h4 id="hashes-3min">Hashes (3min)</h4>
+<p>A unordered, &quot;dictionary-like&quot; collection organized by key-value pairs. Very similar to Javascript objects...</p>
+<pre><code class="lang-ruby"><span class="hljs-comment"># We can store any data type in hashes, including nested arrays and hashes.</span>
 
-<span class="hljs-comment"># Keys as symbols</span>
 wdi_class = {
   <span class="hljs-symbol">teacher:</span> <span class="hljs-string">&quot;John&quot;</span>,
   <span class="hljs-symbol">students:</span> [ <span class="hljs-string">&quot;Yacko&quot;</span>, <span class="hljs-string">&quot;Wacko&quot;</span>, <span class="hljs-string">&quot;Dot&quot;</span> ],
@@ -1655,21 +1634,11 @@ wdi_class = {
             }
 }
 </code></pre>
-<p>The way you access values in a hash depends on what type of key you use.</p>
-<pre><code class="lang-ruby"><span class="hljs-comment"># If your keys are strings...</span>
-wdi_classroom[<span class="hljs-string">&quot;teacher&quot;</span>]
-<span class="hljs-comment"># =&gt; &quot;John&quot;</span>
-
-<span class="hljs-comment"># If your keys are symbols...</span>
+<pre><code class="lang-ruby"><span class="hljs-comment"># We can access hash values like this...</span>
 wdi_classroom[<span class="hljs-symbol">:teacher</span>]
 <span class="hljs-comment"># =&gt; &quot;John&quot;</span>
 </code></pre>
-<p>The same goes for modifying hash values.</p>
-<pre><code class="lang-ruby"><span class="hljs-comment"># String keys</span>
-wdi_classroom[<span class="hljs-string">&quot;teacher&quot;</span>] = <span class="hljs-string">&quot;John&quot;</span>
-<span class="hljs-comment"># =&gt; &quot;John&quot;</span>
-
-<span class="hljs-comment"># Symbol keys</span>
+<pre><code class="lang-ruby"><span class="hljs-comment"># And modify them like this...</span>
 wdi_classroom[<span class="hljs-symbol">:teacher</span>] = <span class="hljs-string">&quot;John&quot;</span>
 <span class="hljs-comment"># =&gt; &quot;John&quot;</span>
 </code></pre>
