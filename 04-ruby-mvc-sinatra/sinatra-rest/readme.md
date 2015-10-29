@@ -17,8 +17,7 @@ We've learned about databases using SQL. We've also learned about objects in rub
 
 ## REST
 
-or, REpresentational State Transfer is a software architectural style(convention) for making HTTP requests. We use REST to remove
-redundancy in network requests and agree on routes and what they do to create a more maintainable architecture.
+or, REpresentational State Transfer is a software architectural style(convention) for making HTTP requests. We use REST to remove redundancy in network requests and agree on routes and what they do to create a more maintainable architecture.
 
 Every HTTP request consists of a request **method** and **path**
 
@@ -112,7 +111,9 @@ end
 
 In the terminal run the following:
 
+```bash
 $ bundle exec ruby myapp.rb
+```
 
 This will start the Sinatra server on your local machine. You can visit your page at `http://localhost:4567/`. To make sure our reloader is working lets add some content to our app. In `myapp.rb`:
 
@@ -122,7 +123,7 @@ get '/:name' do
 end
 ```
 
-`:name` what the heck is that. This is a parameter value. Let's look at espn.com again. As we change from player to player you can see that the id's are changing. We need a way to display the same types of content for each player but we need to change the specifics of that content depending on which player your viewing. We can figure out which player's content to use through its id. We need a way to programatically access the values in the url in order to do that. We do this through parameters. If we go to `http://localhost:4567/bob` We will see that `Hello, bob` appears on the web page.
+`:name`! What the heck is that. This is a parameter value. Let's look at espn.com again. As we change from player to player you can see that the id's are changing. We need a way to display the same types of content for each player but we need to change the specifics of that content depending on which player your viewing. We can figure out which player's content to use through its id. We need a way to programatically access the values in the url in order to do that. We do this through parameters. If we go to `http://localhost:4567/bob` We will see that `Hello, bob` appears on the web page.
 
 ## You do: 99 Bottles of Beer
 
