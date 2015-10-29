@@ -21,7 +21,10 @@ or, REpresentational State Transfer is a software architectural style(convention
 
 Every HTTP request consists of a request **method** and **path**
 
-### Examples of RESTful Routes
+This is basically your browsers way of communicating with a server. It says to the server, "HEY! I'm about to do create read, update, or delete something on you(method) and I want you to create, read, update or delete HERE(path)"
+
+We make requests all the time. Everytime you go to your browser, enter a url and hit enter, that's what you're doing. Whenever you create/signup for a website you make a request. If you edit a comment or delete a photo, you are making a request.
+
 
 Method - The Method basically describes the type of request it will be. They will map to the 4 different CRUD functionalities
 
@@ -33,8 +36,11 @@ Method - The Method basically describes the type of request it will be. They wil
 |PATCH| update |
 |DELETE| delete |
 
+> Though put and patch both update, put replaces all new content whereas patch only partially updates the object replacing only some of its properties.
+
 Path - The path is essentially where the request is sent(the url)
 
+### Examples of RESTful Routes
 **Route = Method + Path**
 
 | Method | Path | Usage |
@@ -65,7 +71,7 @@ Create routes for the following requests. The first one is done for you.
 
 ## Sinatra
 
->Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort
+>  DSL is short for domain specific language. It's a special library built on top of ruby. In this case, Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort.
 
 ### Useful Links
 
@@ -80,7 +86,7 @@ Let's create a folder to work in and a couple of files.
 ```bash
 $ mkdir sinatra_intro
 $ cd sinatra_intro
-$ touch myapp.rb
+$ touch app.rb
 $ touch Gemfile
 ```
 
@@ -95,12 +101,12 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 ```
 
-> sinatra-contrib is a gem that packages alot of functionality. Most notably for us, is that it updates the server to have the latest changes we make to our code. That is to say, as we save a file it should update the server with the newest version of that file.
+> sinatra-contrib is a gem that packages alot of functionality. Most notably for us, is that it updates the server to have the latest changes we make to our code. That is to say, as we save a file it should update/restart the server with the newest version of that file.
 
 bundle install, and require sinatra's reloader:
 
 ```ruby
-# myapp.rb
+# app.rb
 require 'sinatra'
 require 'sinatra/reloader'
 
@@ -112,10 +118,12 @@ end
 In the terminal run the following:
 
 ```bash
-$ bundle exec ruby myapp.rb
+$ bundle exec ruby app.rb
 ```
 
-This will start the Sinatra server on your local machine. You can visit your page at `http://localhost:4567/`. To make sure our reloader is working lets add some content to our app. In `myapp.rb`:
+This will start the Sinatra server on your local machine. You can visit your page at `http://localhost:4567/`. To make sure our reloader is working lets add some content to our app. In `app.rb`:
+
+> Normally we run our ruby files by just saying `ruby <filename>` we use `bundle exec` here so that the computer knows to run the ruby program with the gems specified in your `Gemfile`
 
 ```ruby
 get '/:name' do
@@ -180,7 +188,7 @@ end
 
 > We can write erb tags in two ways. `<% %>` or `<%= %>`. Without the equal sign, the view (`.erb` file) will execute the code only. With an equal sign, the view will execute the code and also place a string that is the return value of the code that was executed.
 
-To see this in action let's update our `myapp.rb`:
+To see this in action let's update our `app.rb`:
 
 ```ruby
 get '/' do
@@ -198,12 +206,14 @@ In `index.erb`
 
 ```
 
+> One thing to note about instance variables (`@some_variable`). If we instantiate an instance variable in one of our routes, we can only use it in that route and cooresponding view. Other routes won't be able to utilize it.
+
 ### More complex ruby with erb
 
 If you have a collection to loop through, like an array or a hash, you use
 a slightly different syntax:
 
-Let's add the following content to `myapp.rb`:
+Let's add the following content to `app.rb`:
 
 ```ruby
 names = ["bobert", "tom", "missy", "kristy"]
@@ -282,7 +292,7 @@ Let's try submitting this form. OH NOES. Sinatra doesn't know this diddy.
 
 > Note that when we change whats in the action in the form. The diddy sinatra doesn't know changes to whatever is in that action form.
 
-Add this to `myapp.rb`:
+Add this to `app.rb`:
 
 ```ruby
 post '/names' do
@@ -292,16 +302,18 @@ end
 
 Let's try submitting again. What happened? Hmm, seems like whatever we type in gets rendered. Instead of that, I think it'd be really helpful if we just redirected to our names route after we push the name to the array.
 
-Update `myapp.rb`:
+Update `app.rb`:
 
 ```ruby
 post '/names' do
-  names.push(params[:student_name])
+  names << params[:student_name]
   redirect "names"
 end
 ```
 
 > This is traditionally how post requests work. Where some creation functionality happens and then it redirects to a page.
+
+> Another thing you may have figured out by now, is that we could have `names << params[:student_name]` in a get request, why might this be a bad idea? (ST- WG) It goes against REST! `GET` requests should only be to access information.
 
 Any input with a `name` attribute will show up as an element of `params`
 
@@ -315,6 +327,8 @@ Forms with a GET action are useful for search forms.
 ```
 
 > Keep an eye out on the URL when you submit this last form, you'll notice that the url changes to whatever the action is as well as contains all of the parameter values from the input tags.
+
+> We can only do `get` and `post` with forms. This is not a limitation on REST, but a limitation on HTML. We will see tomorrow during the lab theres a way to kind of hack around these HTML limitations.
 
 **Question**: What's the benefit of using GET requests with search forms?
 
