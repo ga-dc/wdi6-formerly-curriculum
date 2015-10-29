@@ -47,6 +47,10 @@ Ruby as a "natural" language
 * While it isn't exactly simple, a lot of its features are going to feel intuitive.  
 * Matz: "Ruby is simple in appearance, but is very complex inside, just like our human body."
 
+Ethos:
+
+> "Programmers often feel joy when they can concentrate on the creative side of programming, so Ruby is designed to make programmers happy." — Yukihiro "Matz" Matsumoto
+
 #### Tools We'll Be Using (5min)
 
 We'll be running Ruby the same way we used Node to run Javascript during out first class.
@@ -685,3 +689,16 @@ Your doubled number is 10
 ### Exercise: Temperature Converter (Part II) (30min)
 
 [Temperature Converter (Ruby)](https://github.com/ga-dc/temperature_converter_ruby)
+
+
+## Closing
+
+What makes Ruby so awesome, what do you like about it? How would you compare it to Javascript at this point?
+
+Review Learning Objectives
+
+## Resources
+* [Chris Pine's Learn to Program](https://pine.fm/LearnToProgram/chap_00.html)
+* [Ruby Monk](https://rubymonk.com/)
+* [Why's Poignant Guide to Ruby](http://poignant.guide/book/chapter-2.html)
+* [Ruby Koans](http://rubykoans.com/)
