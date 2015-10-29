@@ -1,3 +1,4 @@
+# Relationships in SQL / SQL JOINs
 
 - Define what a foreign key is
 - Distinguish between keys, foreign keys, and indexes

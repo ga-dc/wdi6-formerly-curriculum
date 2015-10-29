@@ -9,7 +9,7 @@
 - Explain how a DBMS, a database, and SQL relate to one another
 - Describe a database schema and how it relates to tables, rows and columns
 - List common data types used in SQL and the related field constraints
-- Protect the database from common security vulnerabilities
+- Describe what a SQL injection attack is
 
 ### Mechanics
 
@@ -17,13 +17,6 @@
 - Set up a PostgreSQL database schema with a saved SQL file
 - Seed a PostgreSQL database with a saved SQL file
 - Execute basic SQL commands to execute CRUD actions in a database
-  - CREATE/DROP DATABASE
-  - CREATE/DROP TABLE
-  - INSERT - Create
-  - SELECT - Read
-  - UPDATE - Update
-  - DELETE - Destroy
-
 
 ## What is a database?
 
@@ -258,19 +251,15 @@ $ psql -d library < seed.sql
 
 ## Performing 'CRUD' actions with SQL
 
-CRUD stands for the most basic interactions we want to have with any database:
-
-* Create
-* Read
-* Update
-* Destroy (aka Delete)
+CRUD stands for the most basic interactions we want to have with any database,
+create, read, update, destroy (aka delete).
 
 The most common SQL commands correspond to these 4 actions:
 
-* INSERT -> Create
-* SELECT -> Read
-* UPDATE -> Update
-* DELETE -> Destroy
+* INSERT -> Create a row
+* SELECT -> Read / get information for rows
+* UPDATE -> Update a row
+* DELETE -> Destroy a row
 
 ### INSERT
 
@@ -317,15 +306,15 @@ Complete the queries in `basic_queries.sql` in the library_sql repo.
 
 ## Putting it with Ruby
 
-```
+```ruby
 require "pg"
 connection = PG.connect(:hostaddr => "127.0.0.1", :port => 5432, :dbname => "library")
-results = connection.exec("SELECT * FROM authors")
+author_results = connection.exec("SELECT * FROM authors")
 
-#Does NOT return a hash!
+# results is an array of rows, each row is effectively a hash
 
-results.each do |item|
-  puts item
+author_results.each do |author|
+  puts author["name"] + " " + author["birth_year"]
 end
 ```
 
