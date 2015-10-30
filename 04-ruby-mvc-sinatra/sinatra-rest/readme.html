@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.7" data-chapter-title="Sinatra &amp; REST" data-filepath="04-ruby-mvc-sinatra/sinatra-rest/readme.md" data-basepath="../.." data-revision="Fri Oct 30 2015 18:47:59 GMT+0000 (UTC)">
+    <div class="book" data-level="3.7" data-chapter-title="Sinatra &amp; REST" data-filepath="04-ruby-mvc-sinatra/sinatra-rest/readme.md" data-basepath="../.." data-revision="Fri Oct 30 2015 21:11:03 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1176,11 +1176,49 @@
 <li>Use a global template - layout.erb</li>
 <li>Use forms to submit POST and GET requests</li>
 </ul>
+<h2 id="opening-framing">Opening Framing</h2>
+<p>We&apos;ve learned about databases using SQL. We&apos;ve also learned about objects in ruby. But we haven&apos;t seen any HTML since Unit 1! What gives? How are we going to display all of the things in our database? How can we create a UI to execute CRUD functionality on our different ruby objects? Sinatra. Today you&apos;ll be learning about how to create routes and views. In order to talk about how Sinatra functions, we need to talk about how HTTP requests work. Let&apos;s talk about REST.</p>
 <h2 id="rest">REST</h2>
-<p>or, REpresentational State Transfer is a convention for making HTTP requests. We use REST to remove
-redundancy in network requests and agree on routes and what they do.</p>
-<p>Every HTTP request consists of a request <strong>method</strong> and <strong>path</strong> </p>
-<h3 id="restful-routes">Restful Routes</h3>
+<p>or, REpresentational State Transfer is a software architectural style(convention) for making HTTP requests. We use REST to remove redundancy in network requests and agree on routes and what they do to create a more maintainable architecture.</p>
+<p>Every HTTP request consists of a request <strong>method</strong> and <strong>path</strong></p>
+<p>This is basically your browsers way of communicating with a server. It says to the server, &quot;HEY! I&apos;m about to do create read, update, or delete something on you(method) and I want you to create, read, update or delete HERE(path)&quot;</p>
+<p>We make requests all the time. Everytime you go to your browser, enter a url and hit enter, that&apos;s what you&apos;re doing. Whenever you create/signup for a website you make a request. If you edit a comment or delete a photo, you are making a request.</p>
+<p>Method - The Method basically describes the type of request it will be. They will map to the 4 different CRUD functionalities</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Crud functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>read</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>create</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>update</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>update</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>delete</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Though put and patch both update, put replaces all new content whereas patch only partially updates the object replacing only some of its properties.</p>
+</blockquote>
+<p>Path - The path is essentially where the request is sent(the url)</p>
+<h3 id="examples-of-restful-routes">Examples of RESTful Routes</h3>
 <p><strong>Route = Method + Path</strong></p>
 <table>
 <thead>
@@ -1193,8 +1231,13 @@ redundancy in network requests and agree on routes and what they do.</p>
 <tbody>
 <tr>
 <td>GET</td>
-<td><code>/students/:id?</code></td>
-<td>Read information about a student or students</td>
+<td><code>/students</code></td>
+<td>Read information about all students</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/students/1</code></td>
+<td>Read information about a student whose id is 1</td>
 </tr>
 <tr>
 <td>POST</td>
@@ -1203,21 +1246,25 @@ redundancy in network requests and agree on routes and what they do.</p>
 </tr>
 <tr>
 <td>PUT</td>
-<td><code>/students/:id</code></td>
-<td>Updates existing student with all new content</td>
+<td><code>/students/1</code></td>
+<td>Updates existing student with an id of 1 with all new content</td>
 </tr>
 <tr>
 <td>PATCH</td>
-<td><code>/students/:id</code></td>
-<td>Updates existing student with partially new content</td>
+<td><code>/students/1</code></td>
+<td>Updates existing student with an id of 1 with partially new content</td>
 </tr>
 <tr>
 <td>DELETE</td>
-<td><code>/students/:id</code></td>
-<td>Deletes a student</td>
+<td><code>/students/1</code></td>
+<td>Deletes the student with the id of 1</td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>note the path(url) doesn&apos;t contain any of the words describing the CRUD functionality that needs to execute, thats the methods job. This is that removal of redundancy we were talking about before.</p>
+</blockquote>
+<p>Let&apos;s checkout the <a href="http://espn.go.com/" target="_blank">espn website</a>. If we go to a specific players webpage, we can this same sort of structure in the URL. It&apos;s a written a little differently but the concept is the same .</p>
 <h3 id="you-do">You do:</h3>
 <p>Create routes for the following requests. The first one is done for you.</p>
 <ol>
@@ -1234,7 +1281,7 @@ redundancy in network requests and agree on routes and what they do.</p>
 </ol>
 <h2 id="sinatra">Sinatra</h2>
 <blockquote>
-<p>Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort</p>
+<p> DSL is short for domain specific language. It&apos;s a special library built on top of ruby. In this case, Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort.</p>
 </blockquote>
 <h3 id="useful-links">Useful Links</h3>
 <ul>
@@ -1243,14 +1290,13 @@ redundancy in network requests and agree on routes and what they do.</p>
 <li><a href="http://www.sinatrarb.com/documentation.html" target="_blank">Sinatra Documentation</a></li>
 <li><a href="http://recipes.sinatrarb.com/" target="_blank">Sinatra Recipes</a></li>
 </ul>
-<pre><code class="lang-ruby"><span class="hljs-comment"># myapp.rb</span>
-<span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
-
-get <span class="hljs-string">&apos;/&apos;</span> <span class="hljs-keyword">do</span>
-  <span class="hljs-string">&apos;Hello world!&apos;</span>
-<span class="hljs-keyword">end</span>
+<p>Let&apos;s create a folder to work in and a couple of files.</p>
+<pre><code class="lang-bash">$ mkdir sinatra_intro
+$ <span class="hljs-built_in">cd</span> sinatra_intro
+$ touch app.rb
+$ touch Gemfile
 </code></pre>
-<p>But since we might want to share this code, let&apos;s create a Gemfile and add sinatra-contrib</p>
+<p>Since we might want to share this code, let&apos;s create a Gemfile and add sinatra-contrib</p>
 <pre><code class="lang-ruby"><span class="hljs-comment"># Gemfile</span>
 
 source <span class="hljs-string">&apos;https://rubygems.org/&apos;</span>
@@ -1258,19 +1304,30 @@ source <span class="hljs-string">&apos;https://rubygems.org/&apos;</span>
 gem <span class="hljs-string">&apos;sinatra&apos;</span>
 gem <span class="hljs-string">&apos;sinatra-contrib&apos;</span>
 </code></pre>
+<blockquote>
+<p>sinatra-contrib is a gem that packages alot of functionality. Most notably for us, is that it updates the server to have the latest changes we make to our code. That is to say, as we save a file it should update/restart the server with the newest version of that file.</p>
+</blockquote>
 <p>bundle install, and require sinatra&apos;s reloader:</p>
-<pre><code class="lang-ruby"><span class="hljs-comment"># myapp.rb</span>
+<pre><code class="lang-ruby"><span class="hljs-comment"># app.rb</span>
 <span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
 <span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra/reloader&apos;</span>
 
 get <span class="hljs-string">&apos;/&apos;</span> <span class="hljs-keyword">do</span>
   <span class="hljs-string">&apos;Hello Jesse!&apos;</span>
 <span class="hljs-keyword">end</span>
-
-get <span class="hljs-string">&apos;/:name&apos;</span> <span class="hljs-keyword">do</span>
+</code></pre>
+<p>In the terminal run the following:</p>
+<pre><code class="lang-bash">$ bundle <span class="hljs-built_in">exec</span> ruby app.rb
+</code></pre>
+<p>This will start the Sinatra server on your local machine. You can visit your page at <code>http://localhost:4567/</code>. To make sure our reloader is working lets add some content to our app. In <code>app.rb</code>:</p>
+<blockquote>
+<p>Normally we run our ruby files by just saying <code>ruby &lt;filename&gt;</code> we use <code>bundle exec</code> here so that the computer knows to run the ruby program with the gems specified in your <code>Gemfile</code></p>
+</blockquote>
+<pre><code class="lang-ruby">get <span class="hljs-string">&apos;/:name&apos;</span> <span class="hljs-keyword">do</span>
   <span class="hljs-string">&quot;Hello, <span class="hljs-subst">#{params[<span class="hljs-symbol">:name</span>]}</span>&quot;</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
+<p><code>:name</code>! What the heck is that. This is a parameter value. Let&apos;s look at espn.com again. As we change from player to player you can see that the id&apos;s are changing. We need a way to display the same types of content for each player but we need to change the specifics of that content depending on which player your viewing. We can figure out which player&apos;s content to use through its id. We need a way to programatically access the values in the url in order to do that. We do this through parameters. If we go to <code>http://localhost:4567/bob</code> We will see that <code>Hello, bob</code> appears on the web page.</p>
 <h2 id="you-do-99-bottles-of-beer">You do: 99 Bottles of Beer</h2>
 <p><a href="https://github.com/ga-dc/99_bottles_of_beer" target="_blank">https://github.com/ga-dc/99_bottles_of_beer</a></p>
 <h2 id="sinatra-views">Sinatra Views</h2>
@@ -1297,19 +1354,51 @@ get <span class="hljs-string">&apos;/:num_bottles&apos;</span> <span class="hljs
   erb <span class="hljs-symbol">:index</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
+<blockquote>
+<p>Variables that we want to use in the view <code>.erb</code> files need to be instantiated with <code>@</code>.</p>
+</blockquote>
 <pre><code class="lang-html"><span class="hljs-comment">&lt;!-- /views/index.erb --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> @<span class="hljs-attribute">num_bottles</span> %&gt;</span> of beer on the wall.
 <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;/&lt;%= @next %&gt;&apos;</span>&gt;</span>Take one down.<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
 </code></pre>
+<blockquote>
+<p>We can write erb tags in two ways. <code>&lt;% %&gt;</code> or <code>&lt;%= %&gt;</code>. Without the equal sign, the view (<code>.erb</code> file) will execute the code only. With an equal sign, the view will execute the code and also place a string that is the return value of the code that was executed.</p>
+</blockquote>
+<p>To see this in action let&apos;s update our <code>app.rb</code>:</p>
+<pre><code class="lang-ruby">get <span class="hljs-string">&apos;/&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-variable">@bob</span> = <span class="hljs-string">&quot;bobert&quot;</span>
+  erb <span class="hljs-symbol">:index</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In <code>index.erb</code></p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>This is the instance variable @bob in the initial state: <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> @<span class="hljs-attribute">bob</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>This is executing and returning using erb tags with equal sign: <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> @<span class="hljs-attribute">bob</span> += &quot;(<span class="hljs-attribute">using</span> <span class="hljs-attribute">equals</span> <span class="hljs-attribute">in</span> <span class="hljs-attribute">erb</span>)&quot; %&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>This is only executing using erb tags without equal sign: <span class="hljs-tag">&lt;<span class="hljs-title">%</span> @<span class="hljs-attribute">bob</span> += &quot;(<span class="hljs-attribute">not</span> <span class="hljs-attribute">using</span> <span class="hljs-attribute">equals</span> <span class="hljs-attribute">in</span> <span class="hljs-attribute">erb</span>)&quot; %&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Final state of @bob : <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> @<span class="hljs-attribute">bob</span> %&gt;</span>
+</code></pre>
+<blockquote>
+<p>One thing to note about instance variables (<code>@some_variable</code>). If we instantiate an instance variable in one of our routes, we can only use it in that route and cooresponding view. Other routes won&apos;t be able to utilize it.</p>
+</blockquote>
 <h3 id="more-complex-ruby-with-erb">More complex ruby with erb</h3>
 <p>If you have a collection to loop through, like an array or a hash, you use
 a slightly different syntax:</p>
-<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- /views/index.erb --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">%</span> @<span class="hljs-attribute">num_bottles.times</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">i</span>| %&gt;</span>  <span class="hljs-comment">&lt;!-- note the missing `=` --&gt;</span>
-  bottle #<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">i</span> %&gt;</span> is on the wall. 
-<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;/&lt;%= @next %&gt;&apos;</span>&gt;</span>Take one down.<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<p>Let&apos;s add the following content to <code>app.rb</code>:</p>
+<pre><code class="lang-ruby">names = [<span class="hljs-string">&quot;bobert&quot;</span>, <span class="hljs-string">&quot;tom&quot;</span>, <span class="hljs-string">&quot;missy&quot;</span>, <span class="hljs-string">&quot;kristy&quot;</span>]
+
+get <span class="hljs-string">&apos;/&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-variable">@names</span> = names
+  erb <span class="hljs-symbol">:index</span>
+<span class="hljs-keyword">end</span>
 </code></pre>
+<p>If we wanted to have all of the names in <code>&lt;p&gt;&lt;/p&gt;</code> tags we could do something like this in our <code>index.erb</code></p>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- /views/index.erb --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> @<span class="hljs-attribute">names.each</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">name</span>| %&gt;</span>  <span class="hljs-comment">&lt;!-- note the missing `=` --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">name</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
+</code></pre>
+<blockquote>
+<p>As we delve deeper into back end development. The neccessity to iterate through data sets like in the above code snippet becomes extremely important. Instead of names, we might loop through nfl players. And instead of <code>name</code> it might look like <code>player.name</code>. Depending on the object representing players, it might have multiple different properties like <code>total_yards</code>, our <code>touchdowns_this_season</code></p>
+</blockquote>
 <h2 id="sinatra-assets">Sinatra Assets</h2>
 <p>any files in the <code>public</code> folder will be served as static assets</p>
 <p>For example, you would create a file <code>public/css/styles.css</code></p>
@@ -1336,17 +1425,44 @@ initiates a GET request to the provided path (the URL you entered.)</p>
 <p>Postman allows us to easily test different types of requests.</p>
 <p>Let&apos;s compare the output of GET requests initiated in Postman and in the browser.</p>
 <h2 id="we-do-forms">We do: Forms</h2>
-<p>Forms with a POST action are useful for creating new things.</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">&apos;post&apos;</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&apos;/&apos;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;text&apos;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&apos;student-name&apos;</span>&gt;</span>
+<p>Forms with a POST action are used for creating new things.</p>
+<p>Add this to <code>index.erb</code>:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">&apos;post&apos;</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&apos;/names&apos;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;text&apos;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&apos;student_name&apos;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;submit&apos;</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
 </code></pre>
-<p>Any input with a <code>name</code> attribute will show up an element of <code>params</code></p>
+<p>Let&apos;s try submitting this form. OH NOES. Sinatra doesn&apos;t know this diddy.</p>
+<blockquote>
+<p>Note that when we change whats in the action in the form. The diddy sinatra doesn&apos;t know changes to whatever is in that action form.</p>
+</blockquote>
+<p>Add this to <code>app.rb</code>:</p>
+<pre><code class="lang-ruby">post <span class="hljs-string">&apos;/names&apos;</span> <span class="hljs-keyword">do</span>
+  names.push(params[<span class="hljs-symbol">:student_name</span>])
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Let&apos;s try submitting again. What happened? Hmm, seems like whatever we type in gets rendered. Instead of that, I think it&apos;d be really helpful if we just redirected to our names route after we push the name to the array.</p>
+<p>Update <code>app.rb</code>:</p>
+<pre><code class="lang-ruby">post <span class="hljs-string">&apos;/names&apos;</span> <span class="hljs-keyword">do</span>
+  names &lt;&lt; params[<span class="hljs-symbol">:student_name</span>]
+  redirect <span class="hljs-string">&quot;names&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<blockquote>
+<p>This is traditionally how post requests work. Where some creation functionality happens and then it redirects to a page.</p>
+<p>Another thing you may have figured out by now, is that we could have <code>names &lt;&lt; params[:student_name]</code> in a get request, why might this be a bad idea? (ST- WG) It goes against REST! <code>GET</code> requests should only be to access information.</p>
+</blockquote>
+<p>Any input with a <code>name</code> attribute will show up as an element of <code>params</code></p>
 <p>Forms with a GET action are useful for search forms.</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">&apos;get&apos;</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&apos;/&apos;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;search&apos;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&apos;student-name&apos;</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">&apos;get&apos;</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&apos;/names&apos;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;search&apos;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&apos;student_name&apos;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;submit&apos;</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
 </code></pre>
+<blockquote>
+<p>Keep an eye out on the URL when you submit this last form, you&apos;ll notice that the url changes to whatever the action is as well as contains all of the parameter values from the input tags.</p>
+<p>We can only do <code>get</code> and <code>post</code> with forms. This is not a limitation on REST, but a limitation on HTML. We will see tomorrow during the lab theres a way to kind of hack around these HTML limitations.</p>
+</blockquote>
 <p><strong>Question</strong>: What&apos;s the benefit of using GET requests with search forms?</p>
 <h2 id="you-do-emergency-complement">You do: Emergency Complement</h2>
 <p><a href="https://github.com/ga-dc/emergency_compliment" target="_blank">https://github.com/ga-dc/emergency_compliment</a></p>
