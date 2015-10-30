@@ -142,7 +142,7 @@ class Person
 end
 ```
 
-### Exercise (10 minutes)
+### Code Walkthrough(10 minutes)
 
 **[Application Config Class in Ruby](https://github.com/ga-dc/ruby_application_configuration)**
 
@@ -220,7 +220,7 @@ puts bob.hunger_level
 
 # Homework
 
-[Gladiator!](https://github.com/ga-dc/gladiator)
+[Landlord! Ruby Classes Part](https://github.com/ga-dc/landlord/blob/andy/readme.md#ruby-classes)
 
 
 ## Sample Questions
