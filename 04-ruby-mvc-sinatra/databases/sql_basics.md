@@ -1,6 +1,6 @@
 # Databases
 
-## Objectives
+## Learning Objectives
 
 ### Concepts
 
@@ -18,7 +18,16 @@
 - Seed a PostgreSQL database with a saved SQL file
 - Execute basic SQL commands to execute CRUD actions in a database
 
-## What is a database?
+## Introduction
+
+What's the main problem with our programs right now, in terms of user
+experience?
+
+When we quit them, any data / progress is lost! Right now, we can only store
+information in memory, which is wiped when a program is quit. We definitely
+need a way to fix this...
+
+## Enter Databases
 
 A database is a tool for storing data. There are many ways to store data on a
 computer, such as writing to a text file, a binary file, etc. But databases
@@ -31,7 +40,7 @@ won't be lost (unless the server catches on fire)
 updating information (literally, DBs can be 100,000s of times faster than
 reading from a file)
 
-**Consistency** - Databases can enforce rules regarding consitency of data,
+**Consistency** - Databases can enforce rules regarding consistency of data,
 especially when handling simultaneous requests to update information
 
 **Scalability** - Databases can handle a lot more request per second, and many
@@ -40,6 +49,11 @@ across multiple DBs
 
 **Querying** - DBs make it easy to search, sort, filter, and combine related
 data using a Query Language.
+
+Note: There's an acronym in computer science [ACID](https://en.wikipedia.org/wiki/ACID),
+which is a set of properties that ensure data is reliably stored. You can read
+the wiki article for more info, but in short, a lot of the properties mentioned
+above make a database ACID complient.
 
 ## What's a relational database?
 
@@ -61,7 +75,13 @@ Relational databases:
 There are lots of relational databases, such as PostgreSQL, MySQL, SQLite, etc.
 They are all pretty similar (use SQL), but do have different features.
 
-PostgreSQL is the most popular open-source database for web development.
+MySQL claims to be "the most popular open-source database", while PostgreSQL
+claims in response to be "the most advanced open-source database". It's true
+that in most tests, Postgres comes out ahead in terms of speed, and has many
+features MySQL lacks, such as true full-text search, handling geo-data, etc.
+
+If you're interested in pros and cons, check out this [article comparing MySQL,
+Postgres, and SQLite](https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems).
 
 ### Terminology
 
@@ -69,7 +89,7 @@ While this is a bit technical, it's worth clarifying some terminology:
 
 * Database - The actual set of data being stored. We may create multiple
   databases on our computer, usually one for each application.
-* Database Management System - The software that lets a user interact (query) the
+* Database Management System - The software that lets a user interact (query)
   the data in a database. Examples are PostgreSQL, MySQL, MongoDB, etc.
 * Database CLI - A tool offered by most DBMSs that allows us to query the
   database from the command line. For PostgreSQL, we'll use `psql`.
@@ -83,7 +103,8 @@ Launch `Postgres.app` if you don't see the elephant in your menu bar.
 
 ### psql commands
 
-We'll use `psql` as our primary means of interacting with our databases.
+We'll use `psql` as our primary means of interacting with our databases. Later
+on we'll use ruby or server-side JS programs to do so in our programs.
 
 Here's a quick demo... (probably don't need to follow along).
 
@@ -208,11 +229,16 @@ We'll be using this as an example today:
 
 [Library SQL Exercise](https://github.com/ga-dc/library_sql)
 
+Note that we're *NOT* writing a ruby (`.rb`) file, but a SQL `.sql` file.
+
 #### Creating our database
 
 ```bash
 $ createdb library
 ```
+
+Note that this is a command-line utility that ships with Postgres, as an
+alternate to using the SQL command `CREATE DATABASE library;` inside `psql`.
 
 #### Writing our Schema
 
@@ -331,3 +357,12 @@ end
 connection.prepare('insert_student_statement', 'INSERT INTO authors (name, nationality, birth_year) VALUES ($1, $2, $3)')
 connection.exec_prepared('insert_student_statement', [ 'Jesse Shawl', 'Mars', 2001])
 ```
+
+When we get to Rails, we'll see it helps protect us from these attacks, but we
+still need to be mindful.
+
+For more info here are some article on SQL injection:
+
+* [SQLi in Rails](http://rails-sqli.org)
+* [SQL Injection (SQLi)](https://www.acunetix.com/websitesecurity/sql-injection/)
+* [SQL Injection Cheat Sheet](http://www.veracode.com/security/sql-injection)
