@@ -28,7 +28,7 @@ class Person
 
   def intitialize(initial_name, initial_hunger_level)
     @name = initial_name
-    @hunger_level = initial_hunger_
+    @hunger_level = initial_hunger_level
   end
 
   def hunger_level=(new_hunger_level)
