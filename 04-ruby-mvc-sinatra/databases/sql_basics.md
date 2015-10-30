@@ -128,7 +128,8 @@ CREATE TABLE students (
   id SERIAL PRIMARY KEY,
   first_name VARCHAR NOT NULL,
   last_name VARCHAR NOT NULL,
-  quote TEXT, birthday VARCHAR,
+  quote TEXT,
+  birthday VARCHAR,
   ssn INT NOT NULL UNIQUE
 );
 
