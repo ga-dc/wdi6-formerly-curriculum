@@ -69,90 +69,30 @@ for(var i = 0; i < fruits.length; i++) {
 }
 ```
 
-### Exercise: Ruby Loops Scavenger Hunt (25 minutes)
+## Looping with Ruby
+The closest equivelant to Javascripts for loop is Ruby's each enumerable
 
-Take 15 minutes to research and come up with examples of how to use the
-following loops in ruby:
+```rb
+fruits = ["apples", "bananas", "cherries"]
+fruits.each do |fruit|
+    puts fruit
+end
+
+```
+
+Here are some alternate ways of looping
 
 * `loop`
+  * loop runs uninterupted until stopped
 * `while`
+  * runs the loop while the condition is true
 * `until`
+  * runs the loop while the condition is false
 * `.times` (called on a number)
+  * runs the loop a specific of times
 
-For a final exercise, create an array (like in the JS example above) and use
-one of the above loops to print out each item in the array.
 
-### Loop do
 
-Loop runs uninterrupted until told to stop.
-
-```ruby
-loop do
-  puts "I will loop forever."
-end
-```
-> We'll talk more about how to "break" this loop later.
-
-### While loop
-
-Like Javascript, runs the loop while a condition is true.
-
-```javascript
-// Javascript: Prints out numbers from 1 to 10
-var counter = 1;
-while(counter < 10) {
-  console.log("counter:", counter);
-  counter++;
-}
-```
-
-```ruby
-# Ruby: Prints out numbers from 1 to 10
-counter = 1
-while(counter <= 10) do
-  puts "counter: #{counter}"
-  counter += 1 # increments counter by 1
-end
-```
-
-### Until loop
-
-Runs the loop until a condition is true (or while that condition is false).
-- Essentially the opposite of `while`
-- No equivalent in javascript
-
-```ruby
-# Prints out numbers from 1 to 10
-counter = 1
-until(counter > 10) do
-  puts counter
-  counter += 1
-end
-```
-
-### Times
-
-Runs a loop a set number of times
-
-```ruby
-# Says "Hello!" five times
-5.times do
-  puts "Hello!"
-end
-
-# If you use an iteration variable, automatically increments it for each loop.
-5.times do |i|
-  puts i
-end
-0
-1
-2
-3
-4
-=> 5
-```
-
-## Break (10 minutes)
 
 ### `break`
 
@@ -162,16 +102,13 @@ Q: What numbers do you expect to see on the screen when we run this  loop?
 ---
 
 ```ruby
-numbers = [1,2,3,4,5,6,7,8,9,10]
-i = 0
-
-while(i <= numbers.length) do
-  puts numbers[i]
-  if(numbers[i] == 5)
+10.times do |i|
+  if i == 5
     break
   end
-  i = i + 1
+  puts i
 end
+
 ```
 
 ### `next`
@@ -182,18 +119,15 @@ Q: What numbers do you expect to see on the screen when we run this  loop?
 ---
 
   ```ruby
-  numbers = [1,2,3,4,5,6,7,8,9,10]
-  i = 0
-  while(i < numbers.length) do
-    if( numbers[i]%2 == 0 )
-      i = i + 1
+  10.times do |i|
+    if i == 5
       next
-    else
-      puts numbers[i]
     end
-    i = i + 1
+    puts i
   end
   ```
+## Break (10 minutes)
+
 
 ## Enumerables
 
@@ -206,7 +140,7 @@ Ruby's Enumerable methods allow us to traverse, search and sort data collections
 
 #### Each (20min)
 
-The king of enumerables, and the one you will most likely be using the most.
+The king (or queen) of enumerables, and the one you will most likely be using the most.
 - Iterates through and performs an action(s) on a collection.
 - Does not permanently modify the collection.
 
