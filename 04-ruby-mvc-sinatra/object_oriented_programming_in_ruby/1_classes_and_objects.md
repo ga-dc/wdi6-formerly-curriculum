@@ -154,7 +154,7 @@ at-sign, like so `@first_name`.
 ```ruby
 # person3.rb
 class Person
-  def intitialize(initial_name)
+  def initialize(initial_name)
     @name = initial_name
   end
 
@@ -179,7 +179,7 @@ we need to create methods to do so, often called *getters* and *setters*.
 ```ruby
 # person4.rb
 class Person
-  def intitialize(initial_name, initial_hunger_level)
+  def initialize(initial_name, initial_hunger_level)
     @name = initial_name
     @hunger_level = initial_hunger_level
   end
@@ -252,7 +252,7 @@ class Person
   attr_accessor :name
   attr_reader :hunger_level
 
-  def intitialize(initial_name, initial_hunger_level)
+  def initialize(initial_name, initial_hunger_level)
     @name = initial_name
     @hunger_level = initial_hunger_
   end
