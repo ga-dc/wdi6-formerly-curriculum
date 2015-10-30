@@ -2,6 +2,13 @@
 
 [screencast](https://vimeo.com/133149838)
 
+## Learning Objectives
+
+- CRUD the DOM with d3
+- Bind data to DOM elements
+- Scale data to fit the viewport
+- Use d3 helper methods like `min` and `max`
+
 http://d3js.org/
 
 ## The Possibilities are Endless
