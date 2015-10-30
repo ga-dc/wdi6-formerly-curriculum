@@ -136,7 +136,7 @@ create `new` instances of that class.
 ```ruby
 # person2.rb
 class Person
-  def intitialize()
+  def initialize()
     puts("new person created")
   end
 end
