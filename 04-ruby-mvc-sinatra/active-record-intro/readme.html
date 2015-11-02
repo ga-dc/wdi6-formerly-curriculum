@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.6" data-chapter-title="Active Record" data-filepath="04-ruby-mvc-sinatra/active-record-intro/readme.md" data-basepath="../.." data-revision="Mon Nov 02 2015 20:25:53 GMT+0000 (UTC)">
+    <div class="book" data-level="3.6" data-chapter-title="Active Record" data-filepath="04-ruby-mvc-sinatra/active-record-intro/readme.md" data-basepath="../.." data-revision="Mon Nov 02 2015 20:38:31 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1184,19 +1184,19 @@
 <li>Utilize <code>has_many</code>, <code>belongs_to</code> to establish associations/relationships with AR</li>
 <li>Seed a database using AR</li>
 </ul>
-<h2 id="opening-framing-15m">Opening Framing (15m)</h2>
+<h2 id="opening-framing-5--5">Opening Framing (5 / 5)</h2>
 <p>Think about what we have learned so far in this unit. We now have a way to persist data in a database. We&apos;ve also learned about how OOP allows us to programmatically represent real things as objects in ruby. Which is AWESOME! But really databases just seems like data in this kind of cryptic place on our local computer.  We have to make super long SQL statements to do CRUD. It&apos;d be really nice if we had some kind of way to interface between the database and our servers/applications in order to streamline this process. Enter ORM&apos;s.</p>
-<h3 id="information-dive5m">Information Dive(5m)</h3>
+<h3 id="information-dive-5--10">Information Dive (5 / 10)</h3>
 <p>For the next 5 minutes, research what ORM&apos;s are.</p>
 <p><a href="https://en.wikipedia.org/wiki/Object-relational_mapping" target="_blank">ORM - wikipedia</a></p>
 <p><a href="http://guides.rubyonrails.org/active_record_basics.html" target="_blank">AR Read 1.1 - 1.3</a></p>
-<h3 id="tt-5m">T&amp;T (5m)</h3>
+<h3 id="tt-5--15">T&amp;T (5 / 15)</h3>
 <p>Now, turn &amp; talk to your neighbor and discuss:</p>
 <ol>
 <li>At a high level, what are ORM&apos;s and how might they be useful?</li>
 <li>What is the importance of interfacing the server with the database?</li>
 </ol>
-<h2 id="orms--active-record-15m">ORM&apos;s &amp; Active Record (15m)</h2>
+<h2 id="orms--active-record-15--30">ORM&apos;s &amp; Active Record (15 / 30)</h2>
 <ul>
 <li><em>Official</em> wikipedia definition. A programming technique for converting data between incompatible type systems in object-oriented programming languages.</li>
 </ul>
@@ -1220,14 +1220,14 @@
 <p>Active Record is the M in MVC - the model - which is the layer of the system responsible for representing business data and logic. Active Record facilitates the creation and use of business objects whose data requires persistent storage to a database. It is an implementation of the Active Record pattern which itself is a description of an Object Relational Mapping system. - Taken from AR docs</p>
 </blockquote>
 <h2 id="active-record">Active Record</h2>
-<h3 id="convention-over-configuration-st--wg-5m">Convention Over configuration (ST - WG 5m)</h3>
+<h3 id="convention-over-configuration-stwg--5--35">Convention Over configuration (ST-WG - 5 / 35)</h3>
 <p>Before we get started with code, I want to highlight a reoccurring theme with Active Record and Rails in general. You&apos;ll often here us say Convention over Configuration.</p>
 <p><strong>BOARD:</strong> Throughout this lesson, I will write on the board Active Record&apos;s conventions so we can list them as we go.</p>
 <p><strong>Question:</strong>  Without getting into the specifics of AR, what do you think we mean by convention over configuration?</p>
 <p>Basically Active Record and Rails, and other frameworks have a whole bunch of conventions that they follow so that you do not have to mess with different configuration details later. These conventions exist because developers agree on best practices, and therefore allows us to spend less time trying to configure, when there all ready is an accepted way to do things. Some of the common ones we will encounter are naming conventions such as: plural vs single, capital or lower, camel or snake.</p>
 <p>In a nutshell, if you don&apos;t follow the conventions, you&apos;re going to have a bad time.</p>
 <p>Alright! Let&apos;s get started with some code!</p>
-<h3 id="setup-sql--wdii-do--10m">Setup SQL - WDI(I do - 10m)</h3>
+<h3 id="setup-sql--wdi-i-do--5--40">Setup SQL - WDI (I Do - 5 / 40)</h3>
 <blockquote>
 <p>Throughout the day, I&apos;ll be doing some code simulating a &quot;wdi application&quot; then you will code a &quot;hospital application&quot;</p>
 </blockquote>
@@ -1260,7 +1260,7 @@ $ createdb wdi_db
 </code></pre>
 <p><strong>Question (ST-WG):</strong> Why did we do this? Why not just go into psql and create the tables in postgres?</p>
 <p>It&apos;ll be nice going forward with your application that we package the schema up so that its modular. We can have others quickly pick up our code and have our exact database setup.</p>
-<h3 id="setup-sql--hospital-you-do--10m-">Setup SQL - Hospital( You do - 10m )</h3>
+<h3 id="setup-sql--hospitalyou-do--10--50">Setup SQL - Hospital(You do - 10 / 50)</h3>
 <p>Now it&apos;s your turn!</p>
 <ol>
 <li>create a directory for your hospital app.</li>
@@ -1275,8 +1275,7 @@ $ createdb wdi_db
 </li>
 <li>Now create a hospital database and load the schema</li>
 </ol>
-<h3 id="suggested-break-10m">Suggested Break (10m)</h3>
-<h3 id="setup-ruby--wdi-i-do--10m">Setup ruby - WDI (I do - 10m)</h3>
+<h3 id="setup-ruby--wdi-i-do--10--60">Setup ruby - WDI (I Do - 10 / 60)</h3>
 <p>Great, now we have a table loaded into our database we&apos;re now ready to get started on the ruby side.
 Let&apos;s first create all the directories/files we&apos;re going to need in the terminal:</p>
 <pre><code class="lang-bash">$ touch app.rb
@@ -1298,7 +1297,7 @@ gem <span class="hljs-string">&quot;activerecord&quot;</span>  <span class="hljs
 gem <span class="hljs-string">&quot;pry&quot;</span>  <span class="hljs-comment"># this gem allows access to REPL</span>
 </code></pre>
 <p>Then I&apos;m going to run <code>$ bundle install</code> in the terminal.</p>
-<h3 id="setup-ruby--hospital-you-do--10m">Setup Ruby - Hospital (You do - 10m)</h3>
+<h3 id="setup-ruby--hospital-you-do--10--70">Setup Ruby - Hospital (You Do - 10 / 70)</h3>
 <ol>
 <li>Create an <code>app.rb</code> file for this application</li>
 <li>Create a Gemfile</li>
@@ -1306,7 +1305,8 @@ gem <span class="hljs-string">&quot;pry&quot;</span>  <span class="hljs-comment"
 <li>Create a file that will contain your AR class definition for doctors</li>
 <li>Load dependencies into Gemfile and then bundle install</li>
 </ol>
-<h3 id="functionality--wdi-i-do-20m">Functionality - WDI (I do- 20m)</h3>
+<h3 id="lunchtime">LUNCHTIME!</h3>
+<h3 id="functionality--wdi-i-do--20--90">Functionality - WDI (I Do - 20 / 90)</h3>
 <p>In the <code>models/student.rb</code> file, let&apos;s define our student model:</p>
 <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
   <span class="hljs-comment"># AR classes are singular and capitalized by convention</span>
@@ -1342,14 +1342,14 @@ binding.pry
 <blockquote>
 <p>note the difference between <code>require</code> and <code>require_relative</code>. With <code>require</code> we are getting gems and <code>require_relative</code> we are getting files relative to the location of the file we wrote <code>require_relative</code> in</p>
 </blockquote>
-<h3 id="functionality--hopsital-you-do--10m">Functionality - Hopsital (You do - 10m)</h3>
+<h3 id="functionality--hopsital-you-do--10--100">Functionality - Hopsital (You Do - 10 / 100)</h3>
 <ol>
 <li>Define your model in <code>models/patient.rb</code></li>
 <li>Require dependencies in <code>app.rb</code></li>
 <li>Establish connection to database using AR</li>
 <li>Load pry at the end of <code>app.rb</code></li>
 </ol>
-<h3 id="methods--wdi60m-until-lunch-finish-after-lunch">Methods - WDI(~60m until lunch finish after lunch)</h3>
+<h3 id="methods--wdi-i-do--30--130">Methods - WDI (I Do - 30 / 130)</h3>
 <p>Great! We&apos;ve got everything done that we need to get setup with single model CRUD in our application. Let&apos;s run it in the terminal:</p>
 <pre><code class="lang-bash">$ ruby app.rb
 </code></pre>
@@ -1406,7 +1406,7 @@ george.destroy
 <blockquote>
 <p>This is exciting stuff by the way, imagine, while we do these things, that our students model is instead a post on facebook, or a comment on facebook. So the next time you comment on someone&apos;s facebook page you have an idea now of whats happening on the database layer. Maybe not the whole picture, but you have an idea. We&apos;re going to build on that idea in the coming week and half, and thats really exciting.</p>
 </blockquote>
-<h3 id="methods--hospital-you-do-in-pry-15m">Methods - Hospital (you do- in pry!) (15m)</h3>
+<h3 id="methods--hospital-you-do-in-pry--15--145">Methods - Hospital (You Do (In Pry!) - 15 / 145)</h3>
 <p>In the console:</p>
 <ol>
 <li>Create 5 patients in your database, 3 should have the ailment: &quot;chicken pox&quot;</li>
@@ -1419,8 +1419,9 @@ george.destroy
 <li>Update a patient in the database of your choosing to have watermelon be its favorite food</li>
 <li>Delete a patient from the database</li>
 </ol>
+<h3 id="break-10--155">Break (10 / 155)</h3>
 <h2 id="associations">Associations</h2>
-<h3 id="reframing-10m">Reframing (10m)</h3>
+<h3 id="reframing-10--165">Reframing (10 / 165)</h3>
 <p><strong>Question:</strong> We have a lot of choice when it comes to databases, why did we choose to use SQL?</p>
 <p>We use SQL because it is a relational database. But what does that really mean? Basically we want the ability to associate models in our domain. That can come in a variety of ways in a relational database, but at the heart of it is essentially this:</p>
 <p>One model has many other instances of another model. And that other model belongs to the original. Not really clear, eh?</p>
@@ -1437,7 +1438,7 @@ And every Post belongs to a certain user.</p>
 <p>Note that this is just speaking at a high level and not modeling the exact syntax, however it&apos;s incredibly close to how the code actually would look if it were modeled in AR.</p>
 </blockquote>
 <p>Let&apos;s see what some of this stuff looks like in code. We&apos;re going to be adding an instructor model to our program.</p>
-<h3 id="updating-schema--wdi-i-do--10m">Updating Schema - WDI (I do - 10m)</h3>
+<h3 id="updating-schema--wdi-i-do--10--175">Updating Schema - WDI (I Do - 10 / 175)</h3>
 <p>The first thing I want to do is update my schema to add another table and reflect the association, make note of the foreign key.</p>
 <p>In <code>wdi_schema.sql</code>:</p>
 <pre><code class="lang-sql"><span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> instructors;</span>
@@ -1462,7 +1463,7 @@ And every Post belongs to a certain user.</p>
 <p>Lets go ahead run our schema file so that we can update the database to reflect our current schema in the terminal:</p>
 <pre><code class="lang-bash">$ psql <span class="hljs-operator">-d</span> wdi &lt; wdi_schema.sql
 </code></pre>
-<h3 id="updating-schema--hopsital-you-do--10m">Updating Schema - Hopsital (You do - 10m)</h3>
+<h3 id="updating-schema--hopsital-you-do--10--185">Updating Schema - Hopsital (You Do - 10 / 185)</h3>
 <ol>
 <li>For the Hospital application we&apos;ll be adding a Doctor model</li>
 <li>Create a new table for doctors in postgres it should have the following attributes<ul>
@@ -1474,7 +1475,7 @@ And every Post belongs to a certain user.</p>
 <li>Make sure to add an attribute to patients so that they belong to a doctor</li>
 <li>Load the schema to the database</li>
 </ol>
-<h3 id="updating-class-definitions--wdi-i-do-10m">Updating Class Definitions - WDI (I do 10m)</h3>
+<h3 id="updating-class-definitions--wdi-i-do--10--195">Updating Class Definitions - WDI (I Do - 10 / 195)</h3>
 <p>Next I want to create a new file for my Instructor AR Class definition <code>$ touch models/instructor.rb</code>. In it i&apos;ll put:</p>
 <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Instructor</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
   has_many <span class="hljs-symbol">:students</span>
@@ -1491,14 +1492,14 @@ And every Post belongs to a certain user.</p>
 <p>We also need to include the <code>models/instructor.rb</code> file into our <code>app.rb</code> so in <code>app.rb</code> we need to add</p>
 <pre><code class="lang-ruby">require_relative <span class="hljs-string">&quot;models/instructor&quot;</span>
 </code></pre>
-<h3 id="updating-class-defintions--hospital-you-do-5m">Updating Class Defintions - Hospital (You do 5m)</h3>
+<h3 id="updating-class-defintions--hospital-you-do--5--200">Updating Class Defintions - Hospital (You Do - 5 / 200)</h3>
 <ol>
 <li>Create a file that will contain your AR class definition for Doctor</li>
 <li>Make sure to link that file in your main application file</li>
 <li>Add corresponding associations to your models</li>
 </ol>
 <h3 id="break-10-minutes">Break (10 minutes)</h3>
-<h3 id="association-helper-methods--wdi-i-do-30-m">Association helper methods - WDI (I do 30 m)</h3>
+<h3 id="association-helper-methods--wdi-i-do--30--230">Association helper methods - WDI (I Do - 30 / 230)</h3>
 <p>So we added some code, but we can&apos;t yet see the functionality it gives us.</p>
 <p>Basically when we added those two lines of code <code>has_many :students</code> <code>belongs_to :instructor</code> we created some helper methods that allow us to query the database more effectively.</p>
 <p>Lets create some objects so we can see what were talking about:</p>
@@ -1538,7 +1539,7 @@ tom.instructor = adrian
 <blockquote>
 <p><strong>Note</strong> that we did not pass in an instructor id above. Active Record is smart and does that for us.</p>
 </blockquote>
-<h3 id="association-helper-methods--hospital-you-do-15m">Association helper methods - Hospital (you do 15m)</h3>
+<h3 id="association-helper-methods--hospital-you-do--15--245">Association helper methods - Hospital (You Do - 15 / 245)</h3>
 <p>In the console:</p>
 <ol>
 <li>Create at least 2 doctors in your database</li>
@@ -1547,7 +1548,7 @@ tom.instructor = adrian
 <li>Query the database for the doctor of the last patient you created</li>
 <li>Create a new patient without a doctor id, and use the setter method to associate a doctor to that patient</li>
 </ol>
-<h3 id="seeding-a-database--wdi-15m">Seeding a database - WDI (15m)</h3>
+<h3 id="seeding-a-database--wdi-15--260">Seeding a database - WDI (15 / 260)</h3>
 <p>Seeding a database is not all that different from the things we&apos;ve been doing today. What&apos;s the purpose of seed data? <strong>(ST-WG)</strong></p>
 <p>We want some sort of data in our database so that we can test our applications. Let&apos;s create a seed file in the terminal: <code>$ touch config/seeds.rb</code></p>
 <p>In our <code>config/seeds.rb</code> file let&apos;s put the following:</p>
@@ -1572,7 +1573,7 @@ robin.students.create(<span class="hljs-symbol">first_name:</span> <span class="
 adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Dee&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Reynolds&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">32</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Bartender&quot;</span>)
 adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Charlie&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Kelly&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">31</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Owner of Paddy&apos;s&quot;</span>)
 </code></pre>
-<h3 id="seeding-a-database--hopsital--you-do-10m">Seeding a database - Hopsital ( you do- 10m)</h3>
+<h3 id="seeding-a-database--hopsital--you-do--10--270">Seeding a database - Hopsital ( You Do - 10 / 270)</h3>
 <ol>
 <li>Create a seed file that contains all dependencies and establish connection to database /w Active Record</li>
 <li>In the seed file, create at least 2 doctors and 4 patients</li>
