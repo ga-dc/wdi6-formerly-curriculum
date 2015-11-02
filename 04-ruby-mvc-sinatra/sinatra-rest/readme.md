@@ -13,20 +13,321 @@
 - Use forms to submit POST and GET requests
 
 ## Opening Framing
-We've learned about databases using SQL. We've also learned about objects in ruby. But we haven't seen any HTML since Unit 1! What gives? How are we going to display all of the things in our database? How can we create a UI to execute CRUD functionality on our different ruby objects? Sinatra. Today you'll be learning about how to create routes and views. In order to talk about how Sinatra functions, we need to talk about how HTTP requests work. Let's talk about REST.
+We've learned about databases using SQL. We've also learned about objects in ruby. But we haven't seen any HTML since Unit 1! What gives? How are we going to display all of the things in our database? How can we create a UI to execute CRUD functionality on our different ruby objects?
 
-## REST
+Sinatra is a **DSL** for quickly creating web applications in Ruby with minimal effort.
 
-or, REpresentational State Transfer is a software architectural style(convention) for making HTTP requests. We use REST to remove redundancy in network requests and agree on routes and what they do to create a more maintainable architecture.
+A Domain-Specific Language is something defined by the makers of an application to standardize how others interact with their application.
 
-Every HTTP request consists of a request **method** and **path**
+This is similar to how in jQuery you begin everything with `$` -- you're still writing Javascript, but you're writing it in a specific way in order to interact with this thing someone else built.
 
-This is basically your browsers way of communicating with a server. It says to the server, "HEY! I'm about to do create read, update, or delete something on you(method) and I want you to create, read, update or delete HERE(path)"
+Following from that, Sinatra is to web apps what jQuery is to webpages. We have this idea of REST methods send to paths making things happen -- Sinatra is one way of turning that concept into reality. Other ways include Rails, Node.js, Django, PHP, etc.
 
-We make requests all the time. Everytime you go to your browser, enter a url and hit enter, that's what you're doing. Whenever you create/signup for a website you make a request. If you edit a comment or delete a photo, you are making a request.
+### Useful Links
+
+- [Intro to Sinatra](http://www.sinatrarb.com/intro.html)
+- [Sinatra in the wild](http://www.sinatrarb.com/wild.html)
+- [Sinatra Documentation](http://www.sinatrarb.com/documentation.html)
+- [Sinatra Recipes](http://recipes.sinatrarb.com/)
+
+# Your very first Sinatra app!
+
+Let's create a folder to work in. Create a file called `app.rb`. The file name doesn't matter, but it's easier if we all use the same one.
+
+```bash
+$ mkdir sinatra_intro
+$ cd sinatra_intro
+$ touch app.rb
+```
+
+Inside `app.rb`, write:
+
+```ruby
+require 'sinatra'
+
+get '/' do
+  return 'Hello world!'
+end
+```
+
+We'll talk about what `get` means later on.
+
+Now, in your console, run the file the way you'd run any Ruby file:
+
+```sh
+$ ruby app.rb
+```
+
+You should see something like:
+
+```
+[2015-10-30 13:57:04] INFO  WEBrick 1.3.1
+[2015-10-30 13:57:04] INFO  ruby 2.2.1 (2015-02-26) [x86_64-darwin14]
+== Sinatra (v1.4.6) has taken the stage on 4567 for development with backup from WEBrick
+```
+
+> See the "has taken the stage" thing? There'll be lots of little Sinatra puns here and there.
+
+Believe it or not, that's it! You now have a server running on your computer. It can respond to requests, just like any other server. To test that out, go to `localhost:4567` in your browser. You should see "Hello world!"
+
+> Note that this isn't a server anyone else can see, but it's still a server.
+
+### Where does that `4567` come from?
+
+This is the **port number** of the server we're using. Don't worry about it too much -- just know that to access a Sinatra app on your computer you'll always use `localhost:4567`, unless someone changes it.
+
+### The URL
+
+The `/` in `get '/'` is the URL to which someone needs to go to make this bit of Ruby run.
+
+Change it to `get '/hi'`:
+
+```ruby
+require 'sinatra'
+
+get '/hi' do
+  return 'Hello world!'
+end
+```
+
+Now refresh your browser, which should be at `localhost:4567/`. You should get a page saying "Sinatra doesn't know this ditty." That's Sinatra's 404 page. It's saying, "I don't know what to do when someone goes to `/`".
+
+So instead, try going to `localhost:4567/hi`. Now you should get your "Hello world!". You've told Sinatra, "When someone goes to this URL, run this bit of Ruby."
+
+Change your code back to `get '/'` for now -- it's less to type.
+
+## The Console
+
+### Refresh that "hello world" page in your browser
+
+Watch your terminal as you do so. See how the tab with Sinatra in it updates every time? This is your **server log**. Sinatra automatically tells Ruby to `puts` some information it thinks you might find useful every time you get an HTTP request.
+
+The server log is super-useful! Right underneath `get '/' do`, write `puts "Hi there"`.
+
+```ruby
+require 'sinatra'
+
+get '/' do
+  puts 'Hi there'
+  return 'Hello world!'
+end
+```
+
+Now quit Sinatra with **Control + C** and restart it with `ruby app.rb`. Refresh your webpage a couple times. See how it prints "Hi there" each time?
+
+#### `puts "Hi there"` has to come before `return 'Hello world!'`. Why?
+
+#### What happens if you remove the `return` and just have `'Hello world!'`? Why?
+
+## Getting user input
+
+Let's make this app dynamic and have it say your name. So far, the way we'd do that is by adding `gets.chomp`. Let's try that here:
+
+```rb
+require 'sinatra'
+
+get '/' do
+  name = gets.chomp
+  return 'Hi there, #{name}!'
+end
+```
+
+Quit and restart Sinatra, and refresh `localhost:4567`.
+
+Notice how the webpage is still loading? The spinner is still going round and round. It's doing that because the server is all hung up: Ruby won't let it do anything until we've entered some input for `gets`.
+
+So try writing your name in the Terminal console, then hitting return.
+
+#### We have a way of getting user input... But we'd never use `gets` on an actual web app. Why not?
+
+Because (hopefully) no-one else will be able to access your server log!
+
+**You will never have any reason to use `gets` again.** So don't!
+
+## Path Parameters
+
+Change `get '/'` to `get '/:name'`:
+
+```rb
+require 'sinatra'
+
+get '/:name' do
+  return "Hi there, #{params[:name]}!"
+end
+```
+
+### Experiment 1
+
+Now go to `localhost:4567/yourname`. See your name show up?
+
+#### Now go to what you may have expected, `localhost:4567/:name`. What shows up?
+
+### Experiment 2
+
+Now change it to `get '/test:name'`. 
+
+```rb
+require 'sinatra'
+
+get '/say_hi:name' do
+  return "Hi there, #{params[:name]}!"
+end
+```
+
+Go to `localhost:4567/say_hirobin`. You should see "robin" show up!
+
+### Experiment 3
+
+One last experiment: change it to `get '/say_hi:name/hello`.
+
+```rb
+require 'sinatra'
+
+get '/say_hi:name/hello' do
+  return "Hi there, #{params[:name]}!"
+end
+```
+
+Go to `localhost:4567/say_hirobin/hello`. It still shows "robin"!
+
+### Experiment 4
+
+Now change it to `get '/say_hi/:name'`. 
+
+```rb
+require 'sinatra'
+
+get '/say_hi:name/hello' do
+  return "Hi there, #{params[:name]}!"
+end
+```
+
+Go to `localhost:4567/say_hi/robin`. Still works?
+
+### The params hash
+
+Putting a colon `:` in front of `name` turned it into a variable called a path parameter.
+
+This works similarly to Ruby methods and Javascript functions. For example:
+
+```ruby
+def say_hi name
+  puts "Hi there, #{name}!"
+end
+```
+
+```js
+function say_hi(name){
+  console.log("Hi there, " + name + "!");
+}
+```
+
+This is a `say_hi` method that has an argument called `name`. An argument lets us pass some data into the method so the method can manipulate the data somehow.
+
+`params` is a hash that is generated with every request made to your server. It contains any path parameters -- and some other stuff, as we'll see later.
+
+Now try going to `localhost:4567/say_hi` without your name at the end. We get a 404 page. This is because we're telling Sinatra, "Hey, this path will always have this parameter in it." Sinatra doesn't have a path defined *without* a path parameter,so it throws an error.
+
+The same thing happens if you go to `localhost:4567/yourname/lastname`: Sinatra doesn't have a path defined that has two path parameters.
+
+### Moar Paths 
+
+Let's make two more paths: one with no path params, and one with two path params.
+
+```rb
+require 'sinatra'
+
+get '/' do
+  "Hi there!"
+end
+
+get '/:name' do
+  "Good to see you, #{params[:name]}."
+end
+
+get '/:firstname/:lastname' do
+  "Your name is #{params[:lastname]}. #{params[:firstname]} #{params[:lastname]}"
+end
+```
+
+Try putting some HTML in one of those strings, like `"<h1>Hi there!</h1>"`. It works! 
+
+We already have an app that generates different HTML based on user input. This is your first back-end app!
+
+Obviously writing `DOCTYPE` and everything else in here would get really annoying, so later we'll learn how to use Sinatra templates.
+
+### I'm getting tired of quitting and restarting.
+
+Fortunately, there's a gem that will automatically restart Sinatra every time a change is made to your `app.rb`.
+
+Let's create a Gemfile:
+
+```ruby
+source 'https://rubygems.org/'
+
+gem 'sinatra'
+gem 'sinatra-contrib'
+```
+
+> Sinatra-contrib is a gem that packages a lot of functionality. One of those functionalities is `sinatra/reloader`, which detects every time you save your `app.rb` file and restarts the server so that it uses the newest version of the file.
+
+`bundle install`, and require sinatra's reloader in your `app.rb`:
+
+This should create a `Gemfile.lock`, which you don't need to touch.
 
 
-Method - The Method basically describes the type of request it will be. They will map to the 4 different CRUD functionalities
+```ruby
+require 'sinatra'
+require 'sinatra/reloader'
+
+get '/' do
+  "<h1>Hi there!</h1>"
+end
+
+get '/:name' do
+  "Good to see you, #{params[:name]}."
+end
+
+get '/:firstname/:lastname' do
+  "Your name is #{params[:lastname]}. #{params[:firstname]} #{params[:lastname]}"
+end
+```
+
+## You do: 99 Bottles of Beer
+
+https://github.com/ga-dc/99_bottles_of_beer
+
+# BREAK
+
+# REST
+
+Now that we've had a break, we'll take a REST! (*Pause for effect.*)
+
+We've been seeing that `get` word a lot. It has to do with HTTP requests. Remember: a server's job is to respond to HTTP requests. In order to talk about how Sinatra functions, we need to talk about how HTTP requests work.
+
+Every HTTP request consists of a request **method** and **path**. The **path** is the URL to which the request is being sent. That's pretty familiar. However, your browser always sends that request in a particular *way* that gives the server a hint as to the "point" of the request. This "particular way" is the **method**.
+
+### For example
+
+You could consider me speaking to the class to be an HTTP request. I'm the browser. You all are the server. The path is the classroom. The method is how I'm talking.
+
+If my method is "talking in a normal voice", you can infer that the point of my request is for you all to just absorb some information.
+
+If my method is "YELLING IN A LOUD VOICE", you can infer that the point of my request is for you all to start behaving yourselves right this second.
+
+### REST
+
+Browsers have different "ways of talking" to servers. These are called **methods**. REST, or REpresentational State Transfer, is a convention for what these methods should be to standardize all the communication between browsers and servers.
+
+Knowing REST is important because the vast majority of web developers have agreed to follow this same convention.
+
+"GET" is one of these methods. It means the browser just wants to read (or "get") some information. When you write `get '/say_hi' do`, you're telling your Sinatra server how to respond when a browser says, "Hey, I'd like to get some information from the `say_hi` path."
+
+We make requests all the time -- especially GET requests. Everytime you go to your browser, enter a URL, and hit enter, you're actually making a GET request. 
+
+### REST Methods
+
+REST defines five main methods, each of which corresponds to one of the CRUD functionalities.
 
 | Method | Crud functionality |
 |---|---|
@@ -36,25 +337,40 @@ Method - The Method basically describes the type of request it will be. They wil
 |PATCH| update |
 |DELETE| delete |
 
-> Though put and patch both update, put replaces all new content whereas patch only partially updates the object replacing only some of its properties.
+So, wait -- there are 5 REST methods, but only 4 CRUD methods?
 
-Path - The path is essentially where the request is sent(the url)
+PUT and PATCH are both used for updating. Whenever you update your Facebook profile you're probably making a PUT or PATCH request. The difference is PUT would be intended to completely replace your profile, whereas PATCH would be intended to just change a few fields of your profile.
 
-### Examples of RESTful Routes
+PUT rewrites data; PATCH just changes parts of data.
+
+### What's the difference at a technical level between a GET and a POST request?
+
+There really isn't a whole lot of difference. The browser sends the request more-or-less the same way. The difference is in how the data comprising the request is "packaged".
+
+We'll see this in greater detail later. For now, just think that, say, a GET request is sent in a plain old white envelope, while a POST request is sent in a red envelope with "ACTION REQUIRED" written on it.
+
+### RESTful Routes
+
+A **route** is a **method** plus a **path**:
+
 **Route = Method + Path**
 
-| Method | Path | Usage |
+Each route results in an **action**.
+
+REST provides a template for the way different paths should look:
+
+| Method | Path | Action |
 | --- | --- | --- |
 | GET | `/students` | Read information about all students |
-| GET | `/students/1` | Read information about a student whose id is 1 |
-| POST | `/students` | Creates a new student |
-| PUT | `/students/1` | Updates existing student with an id of 1 with all new content |
-| PATCH | `/students/1` | Updates existing student with an id of 1 with partially new content |
-| DELETE | `/students/1` | Deletes the student with the id of 1
+| POST | `/students` | Create a new student |
+| GET | `/students/1` | Read information about the student whose ID is 1 |
+| PUT | `/students/1` | Update the existing student whose ID is 1 with all new content |
+| PATCH | `/students/1` | Update the existing student whose ID is 1 with partially new content |
+| DELETE | `/students/1` | Delete the existing student whose ID is 1 |
 
-> note the path(url) doesn't contain any of the words describing the CRUD functionality that needs to execute, thats the methods job. This is that removal of redundancy we were talking about before.
+Note that the path doesn't contain any of the words describing the CRUD functionality that will be executed. That's the method's job.
 
-Let's checkout the [espn website](http://espn.go.com/). If we go to a specific players webpage, we can this same sort of structure in the URL. It's a written a little differently but the concept is the same .
+Let's check out the [ESPN website](http://espn.go.com/). If we go to a specific player's webpage, we can see this same sort of structure in the URL. 
 
 ### You do:
 
@@ -69,78 +385,11 @@ Create routes for the following requests. The first one is done for you.
 6. Update the info for an animal with 3 as its id.
 7. Update homework submission #32 for assignment #3
 
-## Sinatra
+# BREAK
 
->  DSL is short for domain specific language. It's a special library built on top of ruby. In this case, Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort.
+# Sinatra Views
 
-### Useful Links
-
-- [Intro to Sinatra](http://www.sinatrarb.com/intro.html)
-- [Sinatra in the wild](http://www.sinatrarb.com/wild.html)
-- [Sinatra Documentation](http://www.sinatrarb.com/documentation.html)
-- [Sinatra Recipes](http://recipes.sinatrarb.com/)
-
-
-Let's create a folder to work in and a couple of files.
-
-```bash
-$ mkdir sinatra_intro
-$ cd sinatra_intro
-$ touch app.rb
-$ touch Gemfile
-```
-
-Since we might want to share this code, let's create a Gemfile and add sinatra-contrib
-
-```ruby
-# Gemfile
-
-source 'https://rubygems.org/'
-
-gem 'sinatra'
-gem 'sinatra-contrib'
-```
-
-> sinatra-contrib is a gem that packages alot of functionality. Most notably for us, is that it updates the server to have the latest changes we make to our code. That is to say, as we save a file it should update/restart the server with the newest version of that file.
-
-bundle install, and require sinatra's reloader:
-
-```ruby
-# app.rb
-require 'sinatra'
-require 'sinatra/reloader'
-
-get '/' do
-  'Hello Jesse!'
-end
-```
-
-In the terminal run the following:
-
-```bash
-$ bundle exec ruby app.rb
-```
-
-This will start the Sinatra server on your local machine. You can visit your page at `http://localhost:4567/`. To make sure our reloader is working lets add some content to our app. In `app.rb`:
-
-> Normally we run our ruby files by just saying `ruby <filename>` we use `bundle exec` here so that the computer knows to run the ruby program with the gems specified in your `Gemfile`
-
-```ruby
-get '/:name' do
-  "Hello, #{params[:name]}"
-end
-```
-
-`:name`! What the heck is that. This is a parameter value. Let's look at espn.com again. As we change from player to player you can see that the id's are changing. We need a way to display the same types of content for each player but we need to change the specifics of that content depending on which player your viewing. We can figure out which player's content to use through its id. We need a way to programatically access the values in the url in order to do that. We do this through parameters. If we go to `http://localhost:4567/bob` We will see that `Hello, bob` appears on the web page.
-
-## You do: 99 Bottles of Beer
-
-https://github.com/ga-dc/99_bottles_of_beer
-
-## Sinatra Views
-
-
-### We do: Sinatra Views
+## We do: Sinatra Views
 
 Convert 99 bottles ex. to use views.
 
@@ -164,7 +413,7 @@ end
 This is the home page.
 ```
 
-### Passing Variables to Views
+## Passing Variables to Views
 
 To share variables from the application with the view, define instance variables:
 
