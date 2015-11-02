@@ -4,7 +4,6 @@
 
 - Draw an Entity Relationship Diagram (ERD) using proper notation
 - Identify and diagram a one-to-one, one-to-many, many-to-many relationship between data entities (physical/virtual)
-- Create a domain model by listing its parts (entities, relationships, attributes aad behavior)
 - Distinguish between entities & attributes (and when you should use one over the other)
 - Discuss data normalization needs and techniques
 
