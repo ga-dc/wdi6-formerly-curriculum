@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.6" data-chapter-title="Active Record" data-filepath="04-ruby-mvc-sinatra/active-record-intro/readme.md" data-basepath="../.." data-revision="Mon Nov 02 2015 22:13:32 GMT+0000 (UTC)">
+    <div class="book" data-level="3.6" data-chapter-title="Active Record" data-filepath="04-ruby-mvc-sinatra/active-record-intro/readme.md" data-basepath="../.." data-revision="Mon Nov 02 2015 23:31:09 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1245,14 +1245,23 @@ $ createdb wdi_db
 </blockquote>
 <p>Next, I want to update the schema file and then load a table for our model into the database:</p>
 <p>in <code>config/wdi_schema.sql</code> file:</p>
-<pre><code class="lang-sql"><span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> students;</span>
+<pre><code class="lang-sql"><span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> instructors;</span>
+<span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> students;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> instructors (
+  <span class="hljs-keyword">id</span> <span class="hljs-built_in">SERIAL</span> PRIMARY <span class="hljs-keyword">KEY</span>,
+  first_name <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  last_name <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  age <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
+);</span>
 
 <span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> students (
   <span class="hljs-keyword">id</span> <span class="hljs-built_in">SERIAL</span> PRIMARY <span class="hljs-keyword">KEY</span>,
   first_name <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
   last_name <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
   age <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-  job <span class="hljs-built_in">TEXT</span>
+  job <span class="hljs-built_in">TEXT</span>,
+  instructor_id <span class="hljs-built_in">INT</span>
 );</span>
 </code></pre>
 <p>now lets run our <code>wdi_schema.sql</code> file in the terminal:</p>
@@ -1260,22 +1269,10 @@ $ createdb wdi_db
 </code></pre>
 <p><strong>Question (ST-WG):</strong> Why did we do this? Why not just go into psql and create the tables in postgres?</p>
 <p>It&apos;ll be nice going forward with your application that we package the schema up so that its modular. We can have others quickly pick up our code and have our exact database setup.</p>
-<h3 id="setup-sql--hospitalyou-do--10--50">Setup SQL - Hospital(You do - 10 / 50)</h3>
-<p>Now it&apos;s your turn!</p>
-<ol>
-<li>create a directory for your hospital app.</li>
-<li>Make a config folder in that directory.</li>
-<li>Create a <code>hospital_schema.sql</code> file in the config folder</li>
-<li>In the schema, create a patients table, patients should have:<ul>
-<li><code>first_name</code></li>
-<li><code>last_name</code></li>
-<li><code>ailment</code></li>
-<li><code>favorite_food</code></li>
-</ul>
-</li>
-<li>Now create a hospital database and load the schema</li>
-</ol>
-<h3 id="setup-ruby--wdi-i-do--10--60">Setup ruby - WDI (I Do - 10 / 60)</h3>
+<h3 id="setup-sql--tunr-you-do--10--50">Setup SQL - Tunr (You Do - 10 / 50)</h3>
+<p><strong>NOTE:</strong> If you already ran your Tunr schema in the Domain Modeling / SQL class, you do not need to complete this portion.  </p>
+<p><a href="https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-1---database--schema" target="_blank">Part 1 - Database/Schema</a></p>
+<h3 id="setup-ruby--wdi-i-do--10--60">Setup Ruby - WDI (I Do - 10 / 60)</h3>
 <p>Great, now we have a table loaded into our database we&apos;re now ready to get started on the ruby side.
 Let&apos;s first create all the directories/files we&apos;re going to need in the terminal:</p>
 <pre><code class="lang-bash">$ touch app.rb
@@ -1297,14 +1294,8 @@ gem <span class="hljs-string">&quot;activerecord&quot;</span>  <span class="hljs
 gem <span class="hljs-string">&quot;pry&quot;</span>  <span class="hljs-comment"># this gem allows access to REPL</span>
 </code></pre>
 <p>Then I&apos;m going to run <code>$ bundle install</code> in the terminal.</p>
-<h3 id="setup-ruby--hospital-you-do--10--70">Setup Ruby - Hospital (You Do - 10 / 70)</h3>
-<ol>
-<li>Create an <code>app.rb</code> file for this application</li>
-<li>Create a Gemfile</li>
-<li>Create a folder for your models</li>
-<li>Create a file that will contain your AR class definition for doctors</li>
-<li>Load dependencies into Gemfile and then bundle install</li>
-</ol>
+<h3 id="setup-ruby--tunr-you-do--10--70">Setup Ruby - Tunr (You Do - 10 / 70)</h3>
+<p><a href="https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-21---create-the-artist-model-using-active-record" target="_blank">Part 2.1 - Create the Artist Model Using Active Record</a></p>
 <h3 id="lunchtime">LUNCHTIME!</h3>
 <h3 id="functionality--wdi-i-do--20--90">Functionality - WDI (I Do - 20 / 90)</h3>
 <p>In the <code>models/student.rb</code> file, let&apos;s define our student model:</p>
@@ -1342,13 +1333,8 @@ binding.pry
 <blockquote>
 <p>note the difference between <code>require</code> and <code>require_relative</code>. With <code>require</code> we are getting gems and <code>require_relative</code> we are getting files relative to the location of the file we wrote <code>require_relative</code> in</p>
 </blockquote>
-<h3 id="functionality--hopsital-you-do--10--100">Functionality - Hopsital (You Do - 10 / 100)</h3>
-<ol>
-<li>Define your model in <code>models/patient.rb</code></li>
-<li>Require dependencies in <code>app.rb</code></li>
-<li>Establish connection to database using AR</li>
-<li>Load pry at the end of <code>app.rb</code></li>
-</ol>
+<h3 id="functionality--tunr-you-do--10--100">Functionality - Tunr (You Do - 10 / 100)</h3>
+<p><a href="https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-22---define-artists--setup-your-apprb-to-connect-to-the-database" target="_blank">Part 2.2 - Define Artist &amp; Setup Your <code>app.rb</code> to Connect The Database</a></p>
 <h3 id="methods--wdi-i-do--30--130">Methods - WDI (I Do - 30 / 130)</h3>
 <p>Great! We&apos;ve got everything done that we need to get setup with single model CRUD in our application. Let&apos;s run it in the terminal:</p>
 <pre><code class="lang-bash">$ ruby app.rb
@@ -1406,19 +1392,8 @@ george.destroy
 <blockquote>
 <p>This is exciting stuff by the way, imagine, while we do these things, that our students model is instead a post on facebook, or a comment on facebook. So the next time you comment on someone&apos;s facebook page you have an idea now of whats happening on the database layer. Maybe not the whole picture, but you have an idea. We&apos;re going to build on that idea in the coming week and half, and thats really exciting.</p>
 </blockquote>
-<h3 id="methods--hospital-you-do-in-pry--15--145">Methods - Hospital (You Do (In Pry!) - 15 / 145)</h3>
-<p>In the console:</p>
-<ol>
-<li>Create 5 patients in your database, 3 should have the ailment: &quot;chicken pox&quot;</li>
-<li>Create a patient without saving it and store it in a variable</li>
-<li>Save that patient you stored in a variable to the database</li>
-<li>Query for all patients in the database</li>
-<li>Query for the patient that has an id of 1</li>
-<li>Query for a patient by his/her name</li>
-<li>Query for all patients that have the ailment &quot;chicken pox&quot;</li>
-<li>Update a patient in the database of your choosing to have watermelon be its favorite food</li>
-<li>Delete a patient from the database</li>
-</ol>
+<h3 id="methods--tunr-you-do-in-pry--15--145">Methods - Tunr (You Do (In Pry!) - 15 / 145)</h3>
+<p><a href="https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-23---use-your-artist-model" target="_blank">Part 2.3 - Use Your Artist Model</a></p>
 <h3 id="break-10--155">Break (10 / 155)</h3>
 <h2 id="associations">Associations</h2>
 <h3 id="reframing-10--165">Reframing (10 / 165)</h3>
@@ -1438,7 +1413,8 @@ And every Post belongs to a certain user.</p>
 <p>Note that this is just speaking at a high level and not modeling the exact syntax, however it&apos;s incredibly close to how the code actually would look if it were modeled in AR.</p>
 </blockquote>
 <p>Let&apos;s see what some of this stuff looks like in code. We&apos;re going to be adding an instructor model to our program.</p>
-<h3 id="updating-schema--wdi-i-do--10--175">Updating Schema - WDI (I Do - 10 / 175)</h3>
+<h3 id="associations-in-schema--wdi-i-do--10--175">Associations in Schema - WDI (I Do - 10 / 175)</h3>
+<p><strong>NOTE:</strong> Reframe this section so that we are talking about how our schema reflects associations for our domain. We are NOT updating the schema file.</p>
 <p>The first thing I want to do is update my schema to add another table and reflect the association, make note of the foreign key.</p>
 <p>In <code>wdi_schema.sql</code>:</p>
 <pre><code class="lang-sql"><span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> instructors;</span>
@@ -1460,21 +1436,6 @@ And every Post belongs to a certain user.</p>
   instructor_id <span class="hljs-built_in">INT</span>
 );</span>
 </code></pre>
-<p>Lets go ahead run our schema file so that we can update the database to reflect our current schema in the terminal:</p>
-<pre><code class="lang-bash">$ psql <span class="hljs-operator">-d</span> wdi &lt; wdi_schema.sql
-</code></pre>
-<h3 id="updating-schema--hopsital-you-do--10--185">Updating Schema - Hopsital (You Do - 10 / 185)</h3>
-<ol>
-<li>For the Hospital application we&apos;ll be adding a Doctor model</li>
-<li>Create a new table for doctors in postgres it should have the following attributes<ul>
-<li><code>first_name</code></li>
-<li><code>last_name</code></li>
-<li><code>specialty</code></li>
-</ul>
-</li>
-<li>Make sure to add an attribute to patients so that they belong to a doctor</li>
-<li>Load the schema to the database</li>
-</ol>
 <h3 id="updating-class-definitions--wdi-i-do--10--195">Updating Class Definitions - WDI (I Do - 10 / 195)</h3>
 <p>Next I want to create a new file for my Instructor AR Class definition <code>$ touch models/instructor.rb</code>. In it i&apos;ll put:</p>
 <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Instructor</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
@@ -1492,14 +1453,10 @@ And every Post belongs to a certain user.</p>
 <p>We also need to include the <code>models/instructor.rb</code> file into our <code>app.rb</code> so in <code>app.rb</code> we need to add</p>
 <pre><code class="lang-ruby">require_relative <span class="hljs-string">&quot;models/instructor&quot;</span>
 </code></pre>
-<h3 id="updating-class-defintions--hospital-you-do--5--200">Updating Class Defintions - Hospital (You Do - 5 / 200)</h3>
-<ol>
-<li>Create a file that will contain your AR class definition for Doctor</li>
-<li>Make sure to link that file in your main application file</li>
-<li>Add corresponding associations to your models</li>
-</ol>
+<h3 id="updating-class-defintions--tunr-you-do--5--200">Updating Class Defintions - Tunr (You Do - 5 / 200)</h3>
+<p><a href="https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-24---create-your-song-model--setup-associations" target="_blank">Part 2.4 - Create Your Song Model / Setup Associations</a></p>
 <h3 id="break-10--210">Break (10 / 210)</h3>
-<h3 id="association-helper-methods--wdi-i-do--30--240">Association helper methods - WDI (I Do - 30 / 240)</h3>
+<h3 id="association-helper-methods--wdi-i-do--30--240">Association Helper Methods - WDI (I Do - 30 / 240)</h3>
 <p>So we added some code, but we can&apos;t yet see the functionality it gives us.</p>
 <p>Basically when we added those two lines of code <code>has_many :students</code> <code>belongs_to :instructor</code> we created some helper methods that allow us to query the database more effectively.</p>
 <p>Lets create some objects so we can see what were talking about:</p>
@@ -1539,15 +1496,8 @@ tom.instructor = adrian
 <blockquote>
 <p><strong>Note</strong> that we did not pass in an instructor id above. Active Record is smart and does that for us.</p>
 </blockquote>
-<h3 id="association-helper-methods--hospital-you-do--15--255">Association helper methods - Hospital (You Do - 15 / 255)</h3>
-<p>In the console:</p>
-<ol>
-<li>Create at least 2 doctors in your database</li>
-<li>Create at least 4 patients in your database that belong to one of the two doctors</li>
-<li>Query the data base for all of patients belonging to one of the doctors</li>
-<li>Query the database for the doctor of the last patient you created</li>
-<li>Create a new patient without a doctor id, and use the setter method to associate a doctor to that patient</li>
-</ol>
+<h3 id="association-helper-methods--tunr-you-do--15--255">Association Helper Methods - Tunr (You Do - 15 / 255)</h3>
+<p><a href="https://github.com/ga-dc/tunr_sinatra/blob/2_active_record_starter/readme.md#part-25---use-your-model-associations" target="_blank">Part 2.5 - Use Your Model Assocations</a></p>
 <h3 id="seeding-a-database--wdi-15--270">Seeding a database - WDI (15 / 270)</h3>
 <p>Seeding a database is not all that different from the things we&apos;ve been doing today. What&apos;s the purpose of seed data? <strong>(ST-WG)</strong></p>
 <p>We want some sort of data in our database so that we can test our applications. Let&apos;s create a seed file in the terminal: <code>$ touch config/seeds.rb</code></p>
@@ -1573,12 +1523,6 @@ robin.students.create(<span class="hljs-symbol">first_name:</span> <span class="
 adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Dee&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Reynolds&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">32</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Bartender&quot;</span>)
 adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Charlie&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Kelly&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">31</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Owner of Paddy&apos;s&quot;</span>)
 </code></pre>
-<h3 id="seeding-a-database--hopsital--you-do--10--280">Seeding a database - Hopsital ( You Do - 10 / 280)</h3>
-<ol>
-<li>Create a seed file that contains all dependencies and establish connection to database /w Active Record</li>
-<li>In the seed file, create at least 2 doctors and 4 patients</li>
-<li>Make sure you destroy all objects before creating new ones</li>
-</ol>
 <h2 id="closing">Closing</h2>
 <p>Who misses writing SQL queries by hand? Exactly. Active Record is extremely powerful and helpful to more easily interface with the business models for our applications.</p>
 <p>Review Learning Objectives</p>
