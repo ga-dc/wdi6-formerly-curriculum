@@ -421,9 +421,9 @@ require_relative "models/instructor"
 2. Make sure to link that file in your main application file
 3. Add corresponding associations to your models
 
-### Break (10 minutes)
+### Break (10 / 210)
 
-### Association helper methods - WDI (I Do - 30 / 230)
+### Association helper methods - WDI (I Do - 30 / 240)
 So we added some code, but we can't yet see the functionality it gives us.
 
 Basically when we added those two lines of code `has_many :students` `belongs_to :instructor` we created some helper methods that allow us to query the database more effectively.
@@ -473,7 +473,7 @@ jesse.students.create(first_name: "baskin", last_name: "robbins", age: 34, job: 
 ```
 > **Note** that we did not pass in an instructor id above. Active Record is smart and does that for us.
 
-### Association helper methods - Hospital (You Do - 15 / 245)
+### Association helper methods - Hospital (You Do - 15 / 255)
 In the console:
 1. Create at least 2 doctors in your database
 2. Create at least 4 patients in your database that belong to one of the two doctors
@@ -481,7 +481,7 @@ In the console:
 4. Query the database for the doctor of the last patient you created
 5. Create a new patient without a doctor id, and use the setter method to associate a doctor to that patient
 
-### Seeding a database - WDI (15 / 260)
+### Seeding a database - WDI (15 / 270)
 Seeding a database is not all that different from the things we've been doing today. What's the purpose of seed data? **(ST-WG)**
 
 We want some sort of data in our database so that we can test our applications. Let's create a seed file in the terminal: `$ touch config/seeds.rb`
@@ -512,7 +512,7 @@ adam.students.create(first_name: "Charlie", last_name: "Kelly", age: 31, job: "O
 
 ```
 
-### Seeding a database - Hopsital ( You Do - 10 / 270)
+### Seeding a database - Hopsital ( You Do - 10 / 280)
 1. Create a seed file that contains all dependencies and establish connection to database /w Active Record
 2. In the seed file, create at least 2 doctors and 4 patients
 3. Make sure you destroy all objects before creating new ones
