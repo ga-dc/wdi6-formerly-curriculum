@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.7" data-chapter-title="Sinatra &amp; REST" data-filepath="04-ruby-mvc-sinatra/sinatra-rest/readme.md" data-basepath="../.." data-revision="Sat Oct 31 2015 14:05:02 GMT+0000 (UTC)">
+    <div class="book" data-level="3.7" data-chapter-title="Sinatra &amp; REST" data-filepath="04-ruby-mvc-sinatra/sinatra-rest/readme.md" data-basepath="../.." data-revision="Mon Nov 02 2015 13:51:55 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1177,13 +1177,207 @@
 <li>Use forms to submit POST and GET requests</li>
 </ul>
 <h2 id="opening-framing">Opening Framing</h2>
-<p>We&apos;ve learned about databases using SQL. We&apos;ve also learned about objects in ruby. But we haven&apos;t seen any HTML since Unit 1! What gives? How are we going to display all of the things in our database? How can we create a UI to execute CRUD functionality on our different ruby objects? Sinatra. Today you&apos;ll be learning about how to create routes and views. In order to talk about how Sinatra functions, we need to talk about how HTTP requests work. Let&apos;s talk about REST.</p>
-<h2 id="rest">REST</h2>
-<p>or, REpresentational State Transfer is a software architectural style(convention) for making HTTP requests. We use REST to remove redundancy in network requests and agree on routes and what they do to create a more maintainable architecture.</p>
-<p>Every HTTP request consists of a request <strong>method</strong> and <strong>path</strong></p>
-<p>This is basically your browsers way of communicating with a server. It says to the server, &quot;HEY! I&apos;m about to do create read, update, or delete something on you(method) and I want you to create, read, update or delete HERE(path)&quot;</p>
-<p>We make requests all the time. Everytime you go to your browser, enter a url and hit enter, that&apos;s what you&apos;re doing. Whenever you create/signup for a website you make a request. If you edit a comment or delete a photo, you are making a request.</p>
-<p>Method - The Method basically describes the type of request it will be. They will map to the 4 different CRUD functionalities</p>
+<p>We&apos;ve learned about databases using SQL. We&apos;ve also learned about objects in ruby. But we haven&apos;t seen any HTML since Unit 1! What gives? How are we going to display all of the things in our database? How can we create a UI to execute CRUD functionality on our different ruby objects?</p>
+<p>Sinatra is a <strong>DSL</strong> for quickly creating web applications in Ruby with minimal effort.</p>
+<p>A Domain-Specific Language is something defined by the makers of an application to standardize how others interact with their application.</p>
+<p>This is similar to how in jQuery you begin everything with <code>$</code> -- you&apos;re still writing Javascript, but you&apos;re writing it in a specific way in order to interact with this thing someone else built.</p>
+<p>Following from that, Sinatra is to web apps what jQuery is to webpages. We have this idea of REST methods send to paths making things happen -- Sinatra is one way of turning that concept into reality. Other ways include Rails, Node.js, Django, PHP, etc.</p>
+<h3 id="useful-links">Useful Links</h3>
+<ul>
+<li><a href="http://www.sinatrarb.com/intro.html" target="_blank">Intro to Sinatra</a></li>
+<li><a href="http://www.sinatrarb.com/wild.html" target="_blank">Sinatra in the wild</a></li>
+<li><a href="http://www.sinatrarb.com/documentation.html" target="_blank">Sinatra Documentation</a></li>
+<li><a href="http://recipes.sinatrarb.com/" target="_blank">Sinatra Recipes</a></li>
+</ul>
+<h1 id="your-very-first-sinatra-app">Your very first Sinatra app!</h1>
+<p>Let&apos;s create a folder to work in. Create a file called <code>app.rb</code>. The file name doesn&apos;t matter, but it&apos;s easier if we all use the same one.</p>
+<pre><code class="lang-bash">$ mkdir sinatra_intro
+$ <span class="hljs-built_in">cd</span> sinatra_intro
+$ touch app.rb
+</code></pre>
+<p>Inside <code>app.rb</code>, write:</p>
+<pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+
+get <span class="hljs-string">&apos;/&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;Hello world!&apos;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>We&apos;ll talk about what <code>get</code> means later on.</p>
+<p>Now, in your console, run the file the way you&apos;d run any Ruby file:</p>
+<pre><code class="lang-sh">$ ruby app.rb
+</code></pre>
+<p>You should see something like:</p>
+<pre><code>[2015-10-30 13:57:04] INFO  WEBrick 1.3.1
+[2015-10-30 13:57:04] INFO  ruby 2.2.1 (2015-02-26) [x86_64-darwin14]
+== Sinatra (v1.4.6) has taken the stage on 4567 for development with backup from WEBrick
+</code></pre><blockquote>
+<p>See the &quot;has taken the stage&quot; thing? There&apos;ll be lots of little Sinatra puns here and there.</p>
+</blockquote>
+<p>Believe it or not, that&apos;s it! You now have a server running on your computer. It can respond to requests, just like any other server. To test that out, go to <code>localhost:4567</code> in your browser. You should see &quot;Hello world!&quot;</p>
+<blockquote>
+<p>Note that this isn&apos;t a server anyone else can see, but it&apos;s still a server.</p>
+</blockquote>
+<h3 id="where-does-that-4567-come-from">Where does that <code>4567</code> come from?</h3>
+<p>This is the <strong>port number</strong> of the server we&apos;re using. Don&apos;t worry about it too much -- just know that to access a Sinatra app on your computer you&apos;ll always use <code>localhost:4567</code>, unless someone changes it.</p>
+<h3 id="the-url">The URL</h3>
+<p>The <code>/</code> in <code>get &apos;/&apos;</code> is the URL to which someone needs to go to make this bit of Ruby run.</p>
+<p>Change it to <code>get &apos;/hi&apos;</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+
+get <span class="hljs-string">&apos;/hi&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;Hello world!&apos;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now refresh your browser, which should be at <code>localhost:4567/</code>. You should get a page saying &quot;Sinatra doesn&apos;t know this ditty.&quot; That&apos;s Sinatra&apos;s 404 page. It&apos;s saying, &quot;I don&apos;t know what to do when someone goes to <code>/</code>&quot;.</p>
+<p>So instead, try going to <code>localhost:4567/hi</code>. Now you should get your &quot;Hello world!&quot;. You&apos;ve told Sinatra, &quot;When someone goes to this URL, run this bit of Ruby.&quot;</p>
+<p>Change your code back to <code>get &apos;/&apos;</code> for now -- it&apos;s less to type.</p>
+<h2 id="the-console">The Console</h2>
+<h3 id="refresh-that-hello-world-page-in-your-browser">Refresh that &quot;hello world&quot; page in your browser</h3>
+<p>Watch your terminal as you do so. See how the tab with Sinatra in it updates every time? This is your <strong>server log</strong>. Sinatra automatically tells Ruby to <code>puts</code> some information it thinks you might find useful every time you get an HTTP request.</p>
+<p>The server log is super-useful! Right underneath <code>get &apos;/&apos; do</code>, write <code>puts &quot;Hi there&quot;</code>.</p>
+<pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+
+get <span class="hljs-string">&apos;/&apos;</span> <span class="hljs-keyword">do</span>
+  puts <span class="hljs-string">&apos;Hi there&apos;</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;Hello world!&apos;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now quit Sinatra with <strong>Control + C</strong> and restart it with <code>ruby app.rb</code>. Refresh your webpage a couple times. See how it prints &quot;Hi there&quot; each time?</p>
+<h4 id="puts-hi-there-has-to-come-before-return-hello-world-why"><code>puts &quot;Hi there&quot;</code> has to come before <code>return &apos;Hello world!&apos;</code>. Why?</h4>
+<h4 id="what-happens-if-you-remove-the-return-and-just-have-hello-world-why">What happens if you remove the <code>return</code> and just have <code>&apos;Hello world!&apos;</code>? Why?</h4>
+<h2 id="getting-user-input">Getting user input</h2>
+<p>Let&apos;s make this app dynamic and have it say your name. So far, the way we&apos;d do that is by adding <code>gets.chomp</code>. Let&apos;s try that here:</p>
+<pre><code class="lang-rb"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+
+get <span class="hljs-string">&apos;/&apos;</span> <span class="hljs-keyword">do</span>
+  name = gets.chomp
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;Hi there, <span class="hljs-subst">#{name}</span>!&apos;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Quit and restart Sinatra, and refresh <code>localhost:4567</code>.</p>
+<p>Notice how the webpage is still loading? The spinner is still going round and round. It&apos;s doing that because the server is all hung up: Ruby won&apos;t let it do anything until we&apos;ve entered some input for <code>gets</code>.</p>
+<p>So try writing your name in the Terminal console, then hitting return.</p>
+<h4 id="we-have-a-way-of-getting-user-input-but-wed-never-use-gets-on-an-actual-web-app-why-not">We have a way of getting user input... But we&apos;d never use <code>gets</code> on an actual web app. Why not?</h4>
+<p>Because (hopefully) no-one else will be able to access your server log!</p>
+<p><strong>You will never have any reason to use <code>gets</code> again.</strong> So don&apos;t!</p>
+<h2 id="path-parameters">Path Parameters</h2>
+<p>Change <code>get &apos;/&apos;</code> to <code>get &apos;/:name&apos;</code>:</p>
+<pre><code class="lang-rb"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+
+get <span class="hljs-string">&apos;/:name&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hi there, <span class="hljs-subst">#{params[<span class="hljs-symbol">:name</span>]}</span>!&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3 id="experiment-1">Experiment 1</h3>
+<p>Now go to <code>localhost:4567/yourname</code>. See your name show up?</p>
+<h4 id="now-go-to-what-you-may-have-expected-localhost4567name-what-shows-up">Now go to what you may have expected, <code>localhost:4567/:name</code>. What shows up?</h4>
+<h3 id="experiment-2">Experiment 2</h3>
+<p>Now change it to <code>get &apos;/test:name&apos;</code>. </p>
+<pre><code class="lang-rb"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+
+get <span class="hljs-string">&apos;/say_hi:name&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hi there, <span class="hljs-subst">#{params[<span class="hljs-symbol">:name</span>]}</span>!&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Go to <code>localhost:4567/say_hirobin</code>. You should see &quot;robin&quot; show up!</p>
+<h3 id="experiment-3">Experiment 3</h3>
+<p>One last experiment: change it to <code>get &apos;/say_hi:name/hello</code>.</p>
+<pre><code class="lang-rb"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+
+get <span class="hljs-string">&apos;/say_hi:name/hello&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hi there, <span class="hljs-subst">#{params[<span class="hljs-symbol">:name</span>]}</span>!&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Go to <code>localhost:4567/say_hirobin/hello</code>. It still shows &quot;robin&quot;!</p>
+<h3 id="experiment-4">Experiment 4</h3>
+<p>Now change it to <code>get &apos;/say_hi/:name&apos;</code>. </p>
+<pre><code class="lang-rb"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+
+get <span class="hljs-string">&apos;/say_hi:name/hello&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hi there, <span class="hljs-subst">#{params[<span class="hljs-symbol">:name</span>]}</span>!&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Go to <code>localhost:4567/say_hi/robin</code>. Still works?</p>
+<h3 id="the-params-hash">The params hash</h3>
+<p>Putting a colon <code>:</code> in front of <code>name</code> turned it into a variable called a path parameter.</p>
+<p>This works similarly to Ruby methods and Javascript functions. For example:</p>
+<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">say_hi</span> <span class="hljs-title">name</span></span>
+  puts <span class="hljs-string">&quot;Hi there, <span class="hljs-subst">#{name}</span>!&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">say_hi</span>(<span class="hljs-params">name</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Hi there, &quot;</span> + name + <span class="hljs-string">&quot;!&quot;</span>);
+}
+</code></pre>
+<p>This is a <code>say_hi</code> method that has an argument called <code>name</code>. An argument lets us pass some data into the method so the method can manipulate the data somehow.</p>
+<p><code>params</code> is a hash that is generated with every request made to your server. It contains any path parameters -- and some other stuff, as we&apos;ll see later.</p>
+<p>Now try going to <code>localhost:4567/say_hi</code> without your name at the end. We get a 404 page. This is because we&apos;re telling Sinatra, &quot;Hey, this path will always have this parameter in it.&quot; Sinatra doesn&apos;t have a path defined <em>without</em> a path parameter,so it throws an error.</p>
+<p>The same thing happens if you go to <code>localhost:4567/yourname/lastname</code>: Sinatra doesn&apos;t have a path defined that has two path parameters.</p>
+<h3 id="moar-paths">Moar Paths</h3>
+<p>Let&apos;s make two more paths: one with no path params, and one with two path params.</p>
+<pre><code class="lang-rb"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+
+get <span class="hljs-string">&apos;/&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-string">&quot;Hi there!&quot;</span>
+<span class="hljs-keyword">end</span>
+
+get <span class="hljs-string">&apos;/:name&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-string">&quot;Good to see you, <span class="hljs-subst">#{params[<span class="hljs-symbol">:name</span>]}</span>.&quot;</span>
+<span class="hljs-keyword">end</span>
+
+get <span class="hljs-string">&apos;/:firstname/:lastname&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-string">&quot;Your name is <span class="hljs-subst">#{params[<span class="hljs-symbol">:lastname</span>]}</span>. <span class="hljs-subst">#{params[<span class="hljs-symbol">:firstname</span>]}</span> <span class="hljs-subst">#{params[<span class="hljs-symbol">:lastname</span>]}</span>&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Try putting some HTML in one of those strings, like <code>&quot;&lt;h1&gt;Hi there!&lt;/h1&gt;&quot;</code>. It works! </p>
+<p>We already have an app that generates different HTML based on user input. This is your first back-end app!</p>
+<p>Obviously writing <code>DOCTYPE</code> and everything else in here would get really annoying, so later we&apos;ll learn how to use Sinatra templates.</p>
+<h3 id="im-getting-tired-of-quitting-and-restarting">I&apos;m getting tired of quitting and restarting.</h3>
+<p>Fortunately, there&apos;s a gem that will automatically restart Sinatra every time a change is made to your <code>app.rb</code>.</p>
+<p>Let&apos;s create a Gemfile:</p>
+<pre><code class="lang-ruby">source <span class="hljs-string">&apos;https://rubygems.org/&apos;</span>
+
+gem <span class="hljs-string">&apos;sinatra&apos;</span>
+gem <span class="hljs-string">&apos;sinatra-contrib&apos;</span>
+</code></pre>
+<blockquote>
+<p>Sinatra-contrib is a gem that packages a lot of functionality. One of those functionalities is <code>sinatra/reloader</code>, which detects every time you save your <code>app.rb</code> file and restarts the server so that it uses the newest version of the file.</p>
+</blockquote>
+<p><code>bundle install</code>, and require sinatra&apos;s reloader in your <code>app.rb</code>:</p>
+<p>This should create a <code>Gemfile.lock</code>, which you don&apos;t need to touch.</p>
+<pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra/reloader&apos;</span>
+
+get <span class="hljs-string">&apos;/&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-string">&quot;&lt;h1&gt;Hi there!&lt;/h1&gt;&quot;</span>
+<span class="hljs-keyword">end</span>
+
+get <span class="hljs-string">&apos;/:name&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-string">&quot;Good to see you, <span class="hljs-subst">#{params[<span class="hljs-symbol">:name</span>]}</span>.&quot;</span>
+<span class="hljs-keyword">end</span>
+
+get <span class="hljs-string">&apos;/:firstname/:lastname&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-string">&quot;Your name is <span class="hljs-subst">#{params[<span class="hljs-symbol">:lastname</span>]}</span>. <span class="hljs-subst">#{params[<span class="hljs-symbol">:firstname</span>]}</span> <span class="hljs-subst">#{params[<span class="hljs-symbol">:lastname</span>]}</span>&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2 id="you-do-99-bottles-of-beer">You do: 99 Bottles of Beer</h2>
+<p><a href="https://github.com/ga-dc/99_bottles_of_beer" target="_blank">https://github.com/ga-dc/99_bottles_of_beer</a></p>
+<h1 id="break">BREAK</h1>
+<h1 id="rest">REST</h1>
+<p>Now that we&apos;ve had a break, we&apos;ll take a REST! (<em>Pause for effect.</em>)</p>
+<p>We&apos;ve been seeing that <code>get</code> word a lot. It has to do with HTTP requests. Remember: a server&apos;s job is to respond to HTTP requests. In order to talk about how Sinatra functions, we need to talk about how HTTP requests work.</p>
+<p>Every HTTP request consists of a request <strong>method</strong> and <strong>path</strong>. The <strong>path</strong> is the URL to which the request is being sent. That&apos;s pretty familiar. However, your browser always sends that request in a particular <em>way</em> that gives the server a hint as to the &quot;point&quot; of the request. This &quot;particular way&quot; is the <strong>method</strong>.</p>
+<h3 id="for-example">For example</h3>
+<p>You could consider me speaking to the class to be an HTTP request. I&apos;m the browser. You all are the server. The path is the classroom. The method is how I&apos;m talking.</p>
+<p>If my method is &quot;talking in a normal voice&quot;, you can infer that the point of my request is for you all to just absorb some information.</p>
+<p>If my method is &quot;YELLING IN A LOUD VOICE&quot;, you can infer that the point of my request is for you all to start behaving yourselves right this second.</p>
+<h3 id="rest">REST</h3>
+<p>Browsers have different &quot;ways of talking&quot; to servers. These are called <strong>methods</strong>. REST, or REpresentational State Transfer, is a convention for what these methods should be to standardize all the communication between browsers and servers.</p>
+<p>Knowing REST is important because the vast majority of web developers have agreed to follow this same convention.</p>
+<p>&quot;GET&quot; is one of these methods. It means the browser just wants to read (or &quot;get&quot;) some information. When you write <code>get &apos;/say_hi&apos; do</code>, you&apos;re telling your Sinatra server how to respond when a browser says, &quot;Hey, I&apos;d like to get some information from the <code>say_hi</code> path.&quot;</p>
+<p>We make requests all the time -- especially GET requests. Everytime you go to your browser, enter a URL, and hit enter, you&apos;re actually making a GET request. </p>
+<h3 id="rest-methods">REST Methods</h3>
+<p>REST defines five main methods, each of which corresponds to one of the CRUD functionalities.</p>
 <table>
 <thead>
 <tr>
@@ -1214,18 +1408,23 @@
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>Though put and patch both update, put replaces all new content whereas patch only partially updates the object replacing only some of its properties.</p>
-</blockquote>
-<p>Path - The path is essentially where the request is sent(the url)</p>
-<h3 id="examples-of-restful-routes">Examples of RESTful Routes</h3>
+<p>So, wait -- there are 5 REST methods, but only 4 CRUD methods?</p>
+<p>PUT and PATCH are both used for updating. Whenever you update your Facebook profile you&apos;re probably making a PUT or PATCH request. The difference is PUT would be intended to completely replace your profile, whereas PATCH would be intended to just change a few fields of your profile.</p>
+<p>PUT rewrites data; PATCH just changes parts of data.</p>
+<h3 id="whats-the-difference-at-a-technical-level-between-a-get-and-a-post-request">What&apos;s the difference at a technical level between a GET and a POST request?</h3>
+<p>There really isn&apos;t a whole lot of difference. The browser sends the request more-or-less the same way. The difference is in how the data comprising the request is &quot;packaged&quot;.</p>
+<p>We&apos;ll see this in greater detail later. For now, just think that, say, a GET request is sent in a plain old white envelope, while a POST request is sent in a red envelope with &quot;ACTION REQUIRED&quot; written on it.</p>
+<h3 id="restful-routes">RESTful Routes</h3>
+<p>A <strong>route</strong> is a <strong>method</strong> plus a <strong>path</strong>:</p>
 <p><strong>Route = Method + Path</strong></p>
+<p>Each route results in an <strong>action</strong>.</p>
+<p>REST provides a template for the way different paths should look:</p>
 <table>
 <thead>
 <tr>
 <th>Method</th>
 <th>Path</th>
-<th>Usage</th>
+<th>Action</th>
 </tr>
 </thead>
 <tbody>
@@ -1235,36 +1434,34 @@
 <td>Read information about all students</td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/students/1</code></td>
-<td>Read information about a student whose id is 1</td>
-</tr>
-<tr>
 <td>POST</td>
 <td><code>/students</code></td>
-<td>Creates a new student</td>
+<td>Create a new student</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/students/1</code></td>
+<td>Read information about the student whose ID is 1</td>
 </tr>
 <tr>
 <td>PUT</td>
 <td><code>/students/1</code></td>
-<td>Updates existing student with an id of 1 with all new content</td>
+<td>Update the existing student whose ID is 1 with all new content</td>
 </tr>
 <tr>
 <td>PATCH</td>
 <td><code>/students/1</code></td>
-<td>Updates existing student with an id of 1 with partially new content</td>
+<td>Update the existing student whose ID is 1 with partially new content</td>
 </tr>
 <tr>
 <td>DELETE</td>
 <td><code>/students/1</code></td>
-<td>Deletes the student with the id of 1</td>
+<td>Delete the existing student whose ID is 1</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>note the path(url) doesn&apos;t contain any of the words describing the CRUD functionality that needs to execute, thats the methods job. This is that removal of redundancy we were talking about before.</p>
-</blockquote>
-<p>Let&apos;s checkout the <a href="http://espn.go.com/" target="_blank">espn website</a>. If we go to a specific players webpage, we can this same sort of structure in the URL. It&apos;s a written a little differently but the concept is the same .</p>
+<p>Note that the path doesn&apos;t contain any of the words describing the CRUD functionality that will be executed. That&apos;s the method&apos;s job.</p>
+<p>Let&apos;s check out the <a href="http://espn.go.com/" target="_blank">ESPN website</a>. If we go to a specific player&apos;s webpage, we can see this same sort of structure in the URL. </p>
 <h3 id="you-do">You do:</h3>
 <p>Create routes for the following requests. The first one is done for you.</p>
 <ol>
@@ -1279,59 +1476,9 @@
 <li>Update the info for an animal with 3 as its id.</li>
 <li>Update homework submission #32 for assignment #3</li>
 </ol>
-<h2 id="sinatra">Sinatra</h2>
-<blockquote>
-<p> DSL is short for domain specific language. It&apos;s a special library built on top of ruby. In this case, Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort.</p>
-</blockquote>
-<h3 id="useful-links">Useful Links</h3>
-<ul>
-<li><a href="http://www.sinatrarb.com/intro.html" target="_blank">Intro to Sinatra</a></li>
-<li><a href="http://www.sinatrarb.com/wild.html" target="_blank">Sinatra in the wild</a></li>
-<li><a href="http://www.sinatrarb.com/documentation.html" target="_blank">Sinatra Documentation</a></li>
-<li><a href="http://recipes.sinatrarb.com/" target="_blank">Sinatra Recipes</a></li>
-</ul>
-<p>Let&apos;s create a folder to work in and a couple of files.</p>
-<pre><code class="lang-bash">$ mkdir sinatra_intro
-$ <span class="hljs-built_in">cd</span> sinatra_intro
-$ touch app.rb
-$ touch Gemfile
-</code></pre>
-<p>Since we might want to share this code, let&apos;s create a Gemfile and add sinatra-contrib</p>
-<pre><code class="lang-ruby"><span class="hljs-comment"># Gemfile</span>
-
-source <span class="hljs-string">&apos;https://rubygems.org/&apos;</span>
-
-gem <span class="hljs-string">&apos;sinatra&apos;</span>
-gem <span class="hljs-string">&apos;sinatra-contrib&apos;</span>
-</code></pre>
-<blockquote>
-<p>sinatra-contrib is a gem that packages alot of functionality. Most notably for us, is that it updates the server to have the latest changes we make to our code. That is to say, as we save a file it should update/restart the server with the newest version of that file.</p>
-</blockquote>
-<p>bundle install, and require sinatra&apos;s reloader:</p>
-<pre><code class="lang-ruby"><span class="hljs-comment"># app.rb</span>
-<span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
-<span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra/reloader&apos;</span>
-
-get <span class="hljs-string">&apos;/&apos;</span> <span class="hljs-keyword">do</span>
-  <span class="hljs-string">&apos;Hello Jesse!&apos;</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>In the terminal run the following:</p>
-<pre><code class="lang-bash">$ bundle <span class="hljs-built_in">exec</span> ruby app.rb
-</code></pre>
-<p>This will start the Sinatra server on your local machine. You can visit your page at <code>http://localhost:4567/</code>. To make sure our reloader is working lets add some content to our app. In <code>app.rb</code>:</p>
-<blockquote>
-<p>Normally we run our ruby files by just saying <code>ruby &lt;filename&gt;</code> we use <code>bundle exec</code> here so that the computer knows to run the ruby program with the gems specified in your <code>Gemfile</code></p>
-</blockquote>
-<pre><code class="lang-ruby">get <span class="hljs-string">&apos;/:name&apos;</span> <span class="hljs-keyword">do</span>
-  <span class="hljs-string">&quot;Hello, <span class="hljs-subst">#{params[<span class="hljs-symbol">:name</span>]}</span>&quot;</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p><code>:name</code>! What the heck is that. This is a parameter value. Let&apos;s look at espn.com again. As we change from player to player you can see that the id&apos;s are changing. We need a way to display the same types of content for each player but we need to change the specifics of that content depending on which player your viewing. We can figure out which player&apos;s content to use through its id. We need a way to programatically access the values in the url in order to do that. We do this through parameters. If we go to <code>http://localhost:4567/bob</code> We will see that <code>Hello, bob</code> appears on the web page.</p>
-<h2 id="you-do-99-bottles-of-beer">You do: 99 Bottles of Beer</h2>
-<p><a href="https://github.com/ga-dc/99_bottles_of_beer" target="_blank">https://github.com/ga-dc/99_bottles_of_beer</a></p>
-<h2 id="sinatra-views">Sinatra Views</h2>
-<h3 id="we-do-sinatra-views">We do: Sinatra Views</h3>
+<h1 id="break">BREAK</h1>
+<h1 id="sinatra-views">Sinatra Views</h1>
+<h2 id="we-do-sinatra-views">We do: Sinatra Views</h2>
 <p>Convert 99 bottles ex. to use views.</p>
 <p>Let&apos;s convert the hardcoded strings in our application to take advantage of Sinatra&apos;s built-in templating engine: erb.</p>
 <p>Create a directory called <code>views</code> and a file in that folder called <code>index.erb</code></p>
@@ -1345,7 +1492,7 @@ get <span class="hljs-string">&apos;/&apos;</span> <span class="hljs-keyword">do
 <pre><code class="lang-html"><span class="hljs-comment">&lt;!-- /views/index.erb --&gt;</span>
 This is the home page.
 </code></pre>
-<h3 id="passing-variables-to-views">Passing Variables to Views</h3>
+<h2 id="passing-variables-to-views">Passing Variables to Views</h2>
 <p>To share variables from the application with the view, define instance variables:</p>
 <pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
 get <span class="hljs-string">&apos;/:num_bottles&apos;</span> <span class="hljs-keyword">do</span>
