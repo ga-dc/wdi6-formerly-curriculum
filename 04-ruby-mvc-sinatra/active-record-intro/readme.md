@@ -90,14 +90,23 @@ Next, I want to update the schema file and then load a table for our model into 
 in `config/wdi_schema.sql` file:
 
 ```sql
+DROP TABLE IF EXISTS instructors;
 DROP TABLE IF EXISTS students;
+
+CREATE TABLE instructors (
+  id SERIAL PRIMARY KEY,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  age INT NOT NULL
+);
 
 CREATE TABLE students (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
   age INT NOT NULL,
-  job TEXT
+  job TEXT,
+  instructor_id INT
 );
 ```
 
@@ -111,20 +120,13 @@ $ psql -d wdi_db < config/wdi_schema.sql
 
 It'll be nice going forward with your application that we package the schema up so that its modular. We can have others quickly pick up our code and have our exact database setup.
 
-### Setup SQL - Hospital(You do - 10 / 50)
-Now it's your turn!
+### Setup SQL - Tunr (You Do - 10 / 50)
 
-1. create a directory for your hospital app.
-2. Make a config folder in that directory.
-3. Create a `hospital_schema.sql` file in the config folder
-4. In the schema, create a patients table, patients should have:
-  - `first_name`
-  - `last_name`
-  - `ailment`
-  - `favorite_food`
-5. Now create a hospital database and load the schema
+**NOTE:** If you already ran your Tunr schema in the Domain Modeling / SQL class, you do not need to complete this portion.  
 
-### Setup ruby - WDI (I Do - 10 / 60)
+[Part 1 - Database/Schema](https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-1---database--schema)
+
+### Setup Ruby - WDI (I Do - 10 / 60)
 Great, now we have a table loaded into our database we're now ready to get started on the ruby side.
 Let's first create all the directories/files we're going to need in the terminal:
 
@@ -155,13 +157,9 @@ gem "pry"  # this gem allows access to REPL
 
 Then I'm going to run `$ bundle install` in the terminal.
 
-### Setup Ruby - Hospital (You Do - 10 / 70)
+### Setup Ruby - Tunr (You Do - 10 / 70)
 
- 1. Create an `app.rb` file for this application
- 2. Create a Gemfile
- 3. Create a folder for your models
- 4. Create a file that will contain your AR class definition for doctors
- 5. Load dependencies into Gemfile and then bundle install
+[Part 2.1 - Create the Artist Model Using Active Record](https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-21---create-the-artist-model-using-active-record)
 
 ### LUNCHTIME!
 
@@ -212,11 +210,9 @@ binding.pry
 
 > note the difference between `require` and `require_relative`. With `require` we are getting gems and `require_relative` we are getting files relative to the location of the file we wrote `require_relative` in
 
-### Functionality - Hopsital (You Do - 10 / 100)
-1. Define your model in `models/patient.rb`
-2. Require dependencies in `app.rb`
-3. Establish connection to database using AR
-4. Load pry at the end of `app.rb`
+### Functionality - Tunr (You Do - 10 / 100)
+
+[Part 2.2 - Define Artist & Setup Your `app.rb` to Connect The Database](https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-22---define-artists--setup-your-apprb-to-connect-to-the-database)
 
 
 ### Methods - WDI (I Do - 30 / 130)
@@ -309,17 +305,9 @@ george.destroy
 
 > This is exciting stuff by the way, imagine, while we do these things, that our students model is instead a post on facebook, or a comment on facebook. So the next time you comment on someone's facebook page you have an idea now of whats happening on the database layer. Maybe not the whole picture, but you have an idea. We're going to build on that idea in the coming week and half, and thats really exciting.
 
-### Methods - Hospital (You Do (In Pry!) - 15 / 145)
-In the console:
-1. Create 5 patients in your database, 3 should have the ailment: "chicken pox"
-2. Create a patient without saving it and store it in a variable
-3. Save that patient you stored in a variable to the database
-4. Query for all patients in the database
-5. Query for the patient that has an id of 1
-6. Query for a patient by his/her name
-7. Query for all patients that have the ailment "chicken pox"
-8. Update a patient in the database of your choosing to have watermelon be its favorite food
-9. Delete a patient from the database
+### Methods - Tunr (You Do (In Pry!) - 15 / 145)
+
+[Part 2.3 - Use Your Artist Model](https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-23---use-your-artist-model)
 
 ### Break (10 / 155)
 
@@ -349,7 +337,9 @@ When we start organizing our objects in this manner and program these associatio
 
 Let's see what some of this stuff looks like in code. We're going to be adding an instructor model to our program.
 
-### Updating Schema - WDI (I Do - 10 / 175)
+### Associations in Schema - WDI (I Do - 10 / 175)
+
+**NOTE:** Reframe this section so that we are talking about how our schema reflects associations for our domain. We are NOT updating the schema file.
 
 The first thing I want to do is update my schema to add another table and reflect the association, make note of the foreign key.
 
@@ -376,24 +366,9 @@ CREATE TABLE students (
 );
 ```
 
-Lets go ahead run our schema file so that we can update the database to reflect our current schema in the terminal:
-
-```bash
-$ psql -d wdi < wdi_schema.sql
-```
-
-### Updating Schema - Hopsital (You Do - 10 / 185)
-1. For the Hospital application we'll be adding a Doctor model
-2. Create a new table for doctors in postgres it should have the following attributes
-  - `first_name`
-  - `last_name`
-  - `specialty`
-3. Make sure to add an attribute to patients so that they belong to a doctor
-4. Load the schema to the database
-
 ### Updating Class Definitions - WDI (I Do - 10 / 195)
-Next I want to create a new file for my Instructor AR Class definition `$ touch models/instructor.rb`. In it i'll put:
 
+Next I want to create a new file for my Instructor AR Class definition `$ touch models/instructor.rb`. In it i'll put:
 
 ```ruby
 class Instructor < ActiveRecord::Base
@@ -416,14 +391,14 @@ We also need to include the `models/instructor.rb` file into our `app.rb` so in 
 require_relative "models/instructor"
 ```
 
-### Updating Class Defintions - Hospital (You Do - 5 / 200)
-1. Create a file that will contain your AR class definition for Doctor
-2. Make sure to link that file in your main application file
-3. Add corresponding associations to your models
+### Updating Class Defintions - Tunr (You Do - 5 / 200)
+
+[Part 2.4 - Create Your Song Model / Setup Associations](https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-24---create-your-song-model--setup-associations)
 
 ### Break (10 / 210)
 
-### Association helper methods - WDI (I Do - 30 / 240)
+### Association Helper Methods - WDI (I Do - 30 / 240)
+
 So we added some code, but we can't yet see the functionality it gives us.
 
 Basically when we added those two lines of code `has_many :students` `belongs_to :instructor` we created some helper methods that allow us to query the database more effectively.
@@ -473,13 +448,9 @@ jesse.students.create(first_name: "baskin", last_name: "robbins", age: 34, job: 
 ```
 > **Note** that we did not pass in an instructor id above. Active Record is smart and does that for us.
 
-### Association helper methods - Hospital (You Do - 15 / 255)
-In the console:
-1. Create at least 2 doctors in your database
-2. Create at least 4 patients in your database that belong to one of the two doctors
-3. Query the data base for all of patients belonging to one of the doctors
-4. Query the database for the doctor of the last patient you created
-5. Create a new patient without a doctor id, and use the setter method to associate a doctor to that patient
+### Association Helper Methods - Tunr (You Do - 15 / 255)
+
+[Part 2.5 - Use Your Model Assocations](https://github.com/ga-dc/tunr_sinatra/blob/2_active_record_starter/readme.md#part-25---use-your-model-associations)
 
 ### Seeding a database - WDI (15 / 270)
 Seeding a database is not all that different from the things we've been doing today. What's the purpose of seed data? **(ST-WG)**
@@ -509,13 +480,7 @@ robin.students.create(first_name: "michael", last_name: "scott", age: 45, job: "
 robin.students.create(first_name: "Dwight", last_name: "Schrute", age: 34, job: "Assistant to the Regional Manager")
 adam.students.create(first_name: "Dee", last_name: "Reynolds", age: 32, job: "Bartender")
 adam.students.create(first_name: "Charlie", last_name: "Kelly", age: 31, job: "Owner of Paddy's")
-
 ```
-
-### Seeding a database - Hopsital ( You Do - 10 / 280)
-1. Create a seed file that contains all dependencies and establish connection to database /w Active Record
-2. In the seed file, create at least 2 doctors and 4 patients
-3. Make sure you destroy all objects before creating new ones
 
 ## Closing
 Who misses writing SQL queries by hand? Exactly. Active Record is extremely powerful and helpful to more easily interface with the business models for our applications.
