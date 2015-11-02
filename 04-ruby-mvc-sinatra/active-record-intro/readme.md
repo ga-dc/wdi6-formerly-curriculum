@@ -19,22 +19,22 @@
 - Seed a database using AR
 
 
-## Opening Framing (15m)
+## Opening Framing (5 / 5)
 Think about what we have learned so far in this unit. We now have a way to persist data in a database. We've also learned about how OOP allows us to programmatically represent real things as objects in ruby. Which is AWESOME! But really databases just seems like data in this kind of cryptic place on our local computer.  We have to make super long SQL statements to do CRUD. It'd be really nice if we had some kind of way to interface between the database and our servers/applications in order to streamline this process. Enter ORM's.
 
-### Information Dive(5m)
+### Information Dive (5 / 10)
 For the next 5 minutes, research what ORM's are.
 
 [ORM - wikipedia](https://en.wikipedia.org/wiki/Object-relational_mapping)
 
 [AR Read 1.1 - 1.3](http://guides.rubyonrails.org/active_record_basics.html)
 
-### T&T (5m)
+### T&T (5 / 15)
 Now, turn & talk to your neighbor and discuss:
 1. At a high level, what are ORM's and how might they be useful?
 2. What is the importance of interfacing the server with the database?
 
-## ORM's & Active Record (15m)
+## ORM's & Active Record (15 / 30)
 - *Official* wikipedia definition. A programming technique for converting data between incompatible type systems in object-oriented programming languages.
 
 > Thats sounds like a lot of 5 dollar words, but what does it really mean?
@@ -54,7 +54,7 @@ It just so happens you will be learning one of the best ORM's on the market. It 
 > Active Record is the M in MVC - the model - which is the layer of the system responsible for representing business data and logic. Active Record facilitates the creation and use of business objects whose data requires persistent storage to a database. It is an implementation of the Active Record pattern which itself is a description of an Object Relational Mapping system. - Taken from AR docs
 
 ## Active Record
-### Convention Over configuration (ST - WG 5m)
+### Convention Over configuration (ST-WG - 5 / 35)
 Before we get started with code, I want to highlight a reoccurring theme with Active Record and Rails in general. You'll often here us say Convention over Configuration.
 
 **BOARD:** Throughout this lesson, I will write on the board Active Record's conventions so we can list them as we go.
@@ -67,7 +67,7 @@ In a nutshell, if you don't follow the conventions, you're going to have a bad t
 
 Alright! Let's get started with some code!
 
-### Setup SQL - WDI(I do - 10m)
+### Setup SQL - WDI (I Do - 5 / 40)
 > Throughout the day, I'll be doing some code simulating a "wdi application" then you will code a "hospital application"
 
 For the morning, I want to be able to do CRUD to a model with Active Record. We'll be going into greater detail about how we are going to use active record as an interface between our server and our database, but to start, the first thing that I want to do is create/setup a database.
@@ -111,7 +111,7 @@ $ psql -d wdi_db < config/wdi_schema.sql
 
 It'll be nice going forward with your application that we package the schema up so that its modular. We can have others quickly pick up our code and have our exact database setup.
 
-### Setup SQL - Hospital( You do - 10m )
+### Setup SQL - Hospital(You do - 10 / 50)
 Now it's your turn!
 
 1. create a directory for your hospital app.
@@ -124,9 +124,7 @@ Now it's your turn!
   - `favorite_food`
 5. Now create a hospital database and load the schema
 
-### Suggested Break (10m)
-
-### Setup ruby - WDI (I do - 10m)
+### Setup ruby - WDI (I Do - 10 / 60)
 Great, now we have a table loaded into our database we're now ready to get started on the ruby side.
 Let's first create all the directories/files we're going to need in the terminal:
 
@@ -157,7 +155,7 @@ gem "pry"  # this gem allows access to REPL
 
 Then I'm going to run `$ bundle install` in the terminal.
 
-### Setup Ruby - Hospital (You do - 10m)
+### Setup Ruby - Hospital (You Do - 10 / 70)
 
  1. Create an `app.rb` file for this application
  2. Create a Gemfile
@@ -165,7 +163,9 @@ Then I'm going to run `$ bundle install` in the terminal.
  4. Create a file that will contain your AR class definition for doctors
  5. Load dependencies into Gemfile and then bundle install
 
-### Functionality - WDI (I do- 20m)
+### LUNCHTIME!
+
+### Functionality - WDI (I Do - 20 / 90)
 
 In the `models/student.rb` file, let's define our student model:
 
@@ -212,14 +212,14 @@ binding.pry
 
 > note the difference between `require` and `require_relative`. With `require` we are getting gems and `require_relative` we are getting files relative to the location of the file we wrote `require_relative` in
 
-### Functionality - Hopsital (You do - 10m)
+### Functionality - Hopsital (You Do - 10 / 100)
 1. Define your model in `models/patient.rb`
 2. Require dependencies in `app.rb`
 3. Establish connection to database using AR
 4. Load pry at the end of `app.rb`
 
 
-### Methods - WDI(~60m until lunch finish after lunch)
+### Methods - WDI (I Do - 30 / 130)
 
 Great! We've got everything done that we need to get setup with single model CRUD in our application. Let's run it in the terminal:
 
@@ -309,7 +309,7 @@ george.destroy
 
 > This is exciting stuff by the way, imagine, while we do these things, that our students model is instead a post on facebook, or a comment on facebook. So the next time you comment on someone's facebook page you have an idea now of whats happening on the database layer. Maybe not the whole picture, but you have an idea. We're going to build on that idea in the coming week and half, and thats really exciting.
 
-### Methods - Hospital (you do- in pry!) (15m)
+### Methods - Hospital (You Do (In Pry!) - 15 / 145)
 In the console:
 1. Create 5 patients in your database, 3 should have the ailment: "chicken pox"
 2. Create a patient without saving it and store it in a variable
@@ -321,9 +321,11 @@ In the console:
 8. Update a patient in the database of your choosing to have watermelon be its favorite food
 9. Delete a patient from the database
 
+### Break (10 / 155)
+
 ## Associations
 
-### Reframing (10m)
+### Reframing (10 / 165)
 **Question:** We have a lot of choice when it comes to databases, why did we choose to use SQL?
 
 We use SQL because it is a relational database. But what does that really mean? Basically we want the ability to associate models in our domain. That can come in a variety of ways in a relational database, but at the heart of it is essentially this:
@@ -346,7 +348,8 @@ When we start organizing our objects in this manner and program these associatio
 > Note that this is just speaking at a high level and not modeling the exact syntax, however it's incredibly close to how the code actually would look if it were modeled in AR.
 
 Let's see what some of this stuff looks like in code. We're going to be adding an instructor model to our program.
-### Updating Schema - WDI (I do - 10m)
+
+### Updating Schema - WDI (I Do - 10 / 175)
 
 The first thing I want to do is update my schema to add another table and reflect the association, make note of the foreign key.
 
@@ -379,7 +382,7 @@ Lets go ahead run our schema file so that we can update the database to reflect 
 $ psql -d wdi < wdi_schema.sql
 ```
 
-### Updating Schema - Hopsital (You do - 10m)
+### Updating Schema - Hopsital (You Do - 10 / 185)
 1. For the Hospital application we'll be adding a Doctor model
 2. Create a new table for doctors in postgres it should have the following attributes
   - `first_name`
@@ -388,7 +391,7 @@ $ psql -d wdi < wdi_schema.sql
 3. Make sure to add an attribute to patients so that they belong to a doctor
 4. Load the schema to the database
 
-### Updating Class Definitions - WDI (I do 10m)
+### Updating Class Definitions - WDI (I Do - 10 / 195)
 Next I want to create a new file for my Instructor AR Class definition `$ touch models/instructor.rb`. In it i'll put:
 
 
@@ -413,14 +416,14 @@ We also need to include the `models/instructor.rb` file into our `app.rb` so in 
 require_relative "models/instructor"
 ```
 
-### Updating Class Defintions - Hospital (You do 5m)
+### Updating Class Defintions - Hospital (You Do - 5 / 200)
 1. Create a file that will contain your AR class definition for Doctor
 2. Make sure to link that file in your main application file
 3. Add corresponding associations to your models
 
 ### Break (10 minutes)
 
-### Association helper methods - WDI (I do 30 m)
+### Association helper methods - WDI (I Do - 30 / 230)
 So we added some code, but we can't yet see the functionality it gives us.
 
 Basically when we added those two lines of code `has_many :students` `belongs_to :instructor` we created some helper methods that allow us to query the database more effectively.
@@ -470,7 +473,7 @@ jesse.students.create(first_name: "baskin", last_name: "robbins", age: 34, job: 
 ```
 > **Note** that we did not pass in an instructor id above. Active Record is smart and does that for us.
 
-### Association helper methods - Hospital (you do 15m)
+### Association helper methods - Hospital (You Do - 15 / 245)
 In the console:
 1. Create at least 2 doctors in your database
 2. Create at least 4 patients in your database that belong to one of the two doctors
@@ -478,7 +481,7 @@ In the console:
 4. Query the database for the doctor of the last patient you created
 5. Create a new patient without a doctor id, and use the setter method to associate a doctor to that patient
 
-### Seeding a database - WDI (15m)
+### Seeding a database - WDI (15 / 260)
 Seeding a database is not all that different from the things we've been doing today. What's the purpose of seed data? **(ST-WG)**
 
 We want some sort of data in our database so that we can test our applications. Let's create a seed file in the terminal: `$ touch config/seeds.rb`
@@ -509,7 +512,7 @@ adam.students.create(first_name: "Charlie", last_name: "Kelly", age: 31, job: "O
 
 ```
 
-### Seeding a database - Hopsital ( you do- 10m)
+### Seeding a database - Hopsital ( You Do - 10 / 270)
 1. Create a seed file that contains all dependencies and establish connection to database /w Active Record
 2. In the seed file, create at least 2 doctors and 4 patients
 3. Make sure you destroy all objects before creating new ones
