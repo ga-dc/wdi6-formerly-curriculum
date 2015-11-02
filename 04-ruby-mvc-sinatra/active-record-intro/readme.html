@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.6" data-chapter-title="Active Record" data-filepath="04-ruby-mvc-sinatra/active-record-intro/readme.md" data-basepath="../.." data-revision="Mon Nov 02 2015 20:38:31 GMT+0000 (UTC)">
+    <div class="book" data-level="3.6" data-chapter-title="Active Record" data-filepath="04-ruby-mvc-sinatra/active-record-intro/readme.md" data-basepath="../.." data-revision="Mon Nov 02 2015 20:41:15 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1498,8 +1498,8 @@ And every Post belongs to a certain user.</p>
 <li>Make sure to link that file in your main application file</li>
 <li>Add corresponding associations to your models</li>
 </ol>
-<h3 id="break-10-minutes">Break (10 minutes)</h3>
-<h3 id="association-helper-methods--wdi-i-do--30--230">Association helper methods - WDI (I Do - 30 / 230)</h3>
+<h3 id="break-10--210">Break (10 / 210)</h3>
+<h3 id="association-helper-methods--wdi-i-do--30--240">Association helper methods - WDI (I Do - 30 / 240)</h3>
 <p>So we added some code, but we can&apos;t yet see the functionality it gives us.</p>
 <p>Basically when we added those two lines of code <code>has_many :students</code> <code>belongs_to :instructor</code> we created some helper methods that allow us to query the database more effectively.</p>
 <p>Lets create some objects so we can see what were talking about:</p>
@@ -1539,7 +1539,7 @@ tom.instructor = adrian
 <blockquote>
 <p><strong>Note</strong> that we did not pass in an instructor id above. Active Record is smart and does that for us.</p>
 </blockquote>
-<h3 id="association-helper-methods--hospital-you-do--15--245">Association helper methods - Hospital (You Do - 15 / 245)</h3>
+<h3 id="association-helper-methods--hospital-you-do--15--255">Association helper methods - Hospital (You Do - 15 / 255)</h3>
 <p>In the console:</p>
 <ol>
 <li>Create at least 2 doctors in your database</li>
@@ -1548,7 +1548,7 @@ tom.instructor = adrian
 <li>Query the database for the doctor of the last patient you created</li>
 <li>Create a new patient without a doctor id, and use the setter method to associate a doctor to that patient</li>
 </ol>
-<h3 id="seeding-a-database--wdi-15--260">Seeding a database - WDI (15 / 260)</h3>
+<h3 id="seeding-a-database--wdi-15--270">Seeding a database - WDI (15 / 270)</h3>
 <p>Seeding a database is not all that different from the things we&apos;ve been doing today. What&apos;s the purpose of seed data? <strong>(ST-WG)</strong></p>
 <p>We want some sort of data in our database so that we can test our applications. Let&apos;s create a seed file in the terminal: <code>$ touch config/seeds.rb</code></p>
 <p>In our <code>config/seeds.rb</code> file let&apos;s put the following:</p>
@@ -1573,7 +1573,7 @@ robin.students.create(<span class="hljs-symbol">first_name:</span> <span class="
 adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Dee&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Reynolds&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">32</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Bartender&quot;</span>)
 adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Charlie&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Kelly&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">31</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Owner of Paddy&apos;s&quot;</span>)
 </code></pre>
-<h3 id="seeding-a-database--hopsital--you-do--10--270">Seeding a database - Hopsital ( You Do - 10 / 270)</h3>
+<h3 id="seeding-a-database--hopsital--you-do--10--280">Seeding a database - Hopsital ( You Do - 10 / 280)</h3>
 <ol>
 <li>Create a seed file that contains all dependencies and establish connection to database /w Active Record</li>
 <li>In the seed file, create at least 2 doctors and 4 patients</li>
