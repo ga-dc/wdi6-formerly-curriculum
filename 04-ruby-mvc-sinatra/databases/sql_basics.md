@@ -120,7 +120,7 @@ CREATE DATABASE wdi7;
 
 -- What happens if we don't use a semicolon?
 
-\c wdi7 -- Connect to pbj database
+\c wdi7 -- Connect to wdi7 database
 
 \d -- Lists all tables
 
