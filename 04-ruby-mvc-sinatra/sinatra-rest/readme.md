@@ -52,6 +52,11 @@ end
 
 We'll talk about what `get` means later on.
 
+
+(ST-WG) Do you think that the developers of facebook created/updated the facebook application right on [https://www.facebook.com](https://www.facebook.com)? We're all the changes/updates tested on that server? I hope not!
+
+We need a way to develop in our own environment before we just put it on the web. As such, we're going to use our computers as local servers to host our applications until we move it to a production domain. In this way we can test/write code freely in our development environment.
+
 Now, in your console, run the file the way you'd run any Ruby file:
 
 ```sh
@@ -144,12 +149,32 @@ Because (hopefully) no-one else will be able to access your server log!
 
 **You will never have any reason to use `gets` again.** So don't!
 
+### I'm getting tired of quitting and restarting.
+
+Fortunately, there's a gem that will automatically restart Sinatra every time a change is made to your `app.rb`.
+
+Let's create a Gemfile:
+
+```ruby
+source 'https://rubygems.org/'
+
+gem 'sinatra'
+gem 'sinatra-contrib'
+```
+
+> Sinatra-contrib is a gem that packages a lot of functionality. One of those functionalities is `sinatra/reloader`, which detects every time you save your `app.rb` file and restarts the server so that it uses the newest version of the file.
+
+`bundle install`, and require sinatra's reloader in your `app.rb`:
+
+This should create a `Gemfile.lock`, which you don't need to touch.
+
 ## Path Parameters
 
 Change `get '/'` to `get '/:name'`:
 
 ```rb
 require 'sinatra'
+require 'sinatra/reloader'
 
 get '/:name' do
   return "Hi there, #{params[:name]}!"
@@ -164,10 +189,11 @@ Now go to `localhost:4567/yourname`. See your name show up?
 
 ### Experiment 2
 
-Now change it to `get '/test:name'`. 
+Now change it to `get '/test:name'`.
 
 ```rb
 require 'sinatra'
+require 'sinatra/reloader'
 
 get '/say_hi:name' do
   return "Hi there, #{params[:name]}!"
@@ -182,6 +208,7 @@ One last experiment: change it to `get '/say_hi:name/hello`.
 
 ```rb
 require 'sinatra'
+require 'sinatra/reloader'
 
 get '/say_hi:name/hello' do
   return "Hi there, #{params[:name]}!"
@@ -192,10 +219,11 @@ Go to `localhost:4567/say_hirobin/hello`. It still shows "robin"!
 
 ### Experiment 4
 
-Now change it to `get '/say_hi/:name'`. 
+Now change it to `get '/say_hi/:name'`.
 
 ```rb
 require 'sinatra'
+require 'sinatra/reloader'
 
 get '/say_hi:name/hello' do
   return "Hi there, #{params[:name]}!"
@@ -230,12 +258,13 @@ Now try going to `localhost:4567/say_hi` without your name at the end. We get a 
 
 The same thing happens if you go to `localhost:4567/yourname/lastname`: Sinatra doesn't have a path defined that has two path parameters.
 
-### Moar Paths 
+### Moar Paths
 
 Let's make two more paths: one with no path params, and one with two path params.
 
 ```rb
 require 'sinatra'
+require 'sinatra/reloader'
 
 get '/' do
   "Hi there!"
@@ -250,31 +279,11 @@ get '/:firstname/:lastname' do
 end
 ```
 
-Try putting some HTML in one of those strings, like `"<h1>Hi there!</h1>"`. It works! 
+Try putting some HTML in one of those strings, like `"<h1>Hi there!</h1>"`. It works!
 
 We already have an app that generates different HTML based on user input. This is your first back-end app!
 
-Obviously writing `DOCTYPE` and everything else in here would get really annoying, so later we'll learn how to use Sinatra templates.
-
-### I'm getting tired of quitting and restarting.
-
-Fortunately, there's a gem that will automatically restart Sinatra every time a change is made to your `app.rb`.
-
-Let's create a Gemfile:
-
-```ruby
-source 'https://rubygems.org/'
-
-gem 'sinatra'
-gem 'sinatra-contrib'
-```
-
-> Sinatra-contrib is a gem that packages a lot of functionality. One of those functionalities is `sinatra/reloader`, which detects every time you save your `app.rb` file and restarts the server so that it uses the newest version of the file.
-
-`bundle install`, and require sinatra's reloader in your `app.rb`:
-
-This should create a `Gemfile.lock`, which you don't need to touch.
-
+Obviously writing `DOCTYPE` and everything else in here would get really annoying, so later we'll learn how to use Sinatra templates. I imagine writing all of your HTML in one string ... ugh
 
 ```ruby
 require 'sinatra'
@@ -309,7 +318,7 @@ Every HTTP request consists of a request **method** and **path**. The **path** i
 
 ### For example
 
-You could consider me speaking to the class to be an HTTP request. I'm the browser. You all are the server. The path is the classroom. The method is how I'm talking.
+You could consider me speaking to the class to be an HTTP request. I'm the browser. You all are the server. The path is the classroom(who/what i'm saying it to). The method is how I'm talking(what kind of things/actions i want).
 
 If my method is "talking in a normal voice", you can infer that the point of my request is for you all to just absorb some information.
 
@@ -323,7 +332,7 @@ Knowing REST is important because the vast majority of web developers have agree
 
 "GET" is one of these methods. It means the browser just wants to read (or "get") some information. When you write `get '/say_hi' do`, you're telling your Sinatra server how to respond when a browser says, "Hey, I'd like to get some information from the `say_hi` path."
 
-We make requests all the time -- especially GET requests. Everytime you go to your browser, enter a URL, and hit enter, you're actually making a GET request. 
+We make requests all the time -- especially GET requests. Everytime you go to your browser, enter a URL, and hit enter, you're actually making a GET request.
 
 ### REST Methods
 
@@ -370,7 +379,7 @@ REST provides a template for the way different paths should look:
 
 Note that the path doesn't contain any of the words describing the CRUD functionality that will be executed. That's the method's job.
 
-Let's check out the [ESPN website](http://espn.go.com/). If we go to a specific player's webpage, we can see this same sort of structure in the URL. 
+Let's check out the [ESPN website](http://espn.go.com/). If we go to a specific player's webpage, we can see this same sort of structure in the URL.
 
 ### You do:
 
