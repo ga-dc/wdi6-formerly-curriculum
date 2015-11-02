@@ -107,7 +107,7 @@ now lets run our `wdi_schema.sql` file in the terminal:
 $ psql -d wdi_db < config/wdi_schema.sql
 ```
 
-Why did we do this? Why not just go into psql and create the tables in postgres? **(ST-WG)**
+**Question (ST-WG):** Why did we do this? Why not just go into psql and create the tables in postgres?
 
 It'll be nice going forward with your application that we package the schema up so that its modular. We can have others quickly pick up our code and have our exact database setup.
 
@@ -218,6 +218,7 @@ binding.pry
 3. Establish connection to database using AR
 4. Load pry at the end of `app.rb`
 
+
 ### Methods - WDI(~60m until lunch finish after lunch)
 
 Great! We've got everything done that we need to get setup with single model CRUD in our application. Let's run it in the terminal:
@@ -234,6 +235,8 @@ When we run this app, we can see that it drops us into pry. Let's write some cod
 
 Let's create an instance of the Student object on the ruby side, but that does not save originally:
 
+> **Note** the syntax for creating a new instance.
+
 ```ruby
 george = Student.new(first_name: "George", last_name: "Washington", age: 270, job: "Prez")
 ```
@@ -247,7 +250,7 @@ george.save
 If we want to initialize an instance of an object AND save it to the database we use `.create`:
 
 ```ruby
-george = Student.create(first_name: "George", last_name: "Washington", age: 270, job: "Prez")
+george = Student.create(first_name: "Abe", last_name: "Lincoln", age: 150, job: "Prez")
 ```
 
 One really handy feature we get from an Active Record inherited class is that all of the attribute columns of our model are now `attr_accessor`'s as well. So we can do things like:
@@ -306,7 +309,7 @@ george.destroy
 
 > This is exciting stuff by the way, imagine, while we do these things, that our students model is instead a post on facebook, or a comment on facebook. So the next time you comment on someone's facebook page you have an idea now of whats happening on the database layer. Maybe not the whole picture, but you have an idea. We're going to build on that idea in the coming week and half, and thats really exciting.
 
-### Methods - Hospital (you do- in pry!)
+### Methods - Hospital (you do- in pry!) (15m)
 In the console:
 1. Create 5 patients in your database, 3 should have the ailment: "chicken pox"
 2. Create a patient without saving it and store it in a variable
@@ -415,6 +418,8 @@ require_relative "models/instructor"
 2. Make sure to link that file in your main application file
 3. Add corresponding associations to your models
 
+### Break (10 minutes)
+
 ### Association helper methods - WDI (I do 30 m)
 So we added some code, but we can't yet see the functionality it gives us.
 
@@ -434,7 +439,7 @@ Student.create(first_name: "Ted", last_name: "Roosevelt", age: 55, job: "Hunter"
 
 Now that we have this association, we can now easily query the database for the relevant records.
 
-If i want to get all of Jesse's students or set Jesse's students I can now write this code:
+If I want to get all of Jesse's students or set Jesse's students I can now write this code:
 ```ruby
 jesse = Instructor.find_by(first_name: "Jesse")
 jesse.students
@@ -466,7 +471,7 @@ jesse.students.create(first_name: "baskin", last_name: "robbins", age: 34, job: 
 > **Note** that we did not pass in an instructor id above. Active Record is smart and does that for us.
 
 ### Association helper methods - Hospital (you do 15m)
-
+In the console:
 1. Create at least 2 doctors in your database
 2. Create at least 4 patients in your database that belong to one of the two doctors
 3. Query the data base for all of patients belonging to one of the doctors
@@ -474,7 +479,7 @@ jesse.students.create(first_name: "baskin", last_name: "robbins", age: 34, job: 
 5. Create a new patient without a doctor id, and use the setter method to associate a doctor to that patient
 
 ### Seeding a database - WDI (15m)
-Seeding a database is not all that different from the things we've been doing today. What's the purpose of seed data? (ST-WG)
+Seeding a database is not all that different from the things we've been doing today. What's the purpose of seed data? **(ST-WG)**
 
 We want some sort of data in our database so that we can test our applications. Let's create a seed file in the terminal: `$ touch config/seeds.rb`
 
