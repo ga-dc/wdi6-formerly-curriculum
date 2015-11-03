@@ -47,6 +47,8 @@ The first thing that I want to do, is just create a new rails applications. But 
 $ rails new tunr -d postgresql
 ```
 
+> the reason we pass in the `-d` flag with and argument of `postgresql`. Is we want to specify that the database layer of our application to be postgresql instead of the default sqlite3. Postgres is just a bit more robust and is the DBMS we've been using.
+
 You can see already there are many folders and files generated from just that one command.
 
 ![Rails folder structure](images/rails_folders.png)
