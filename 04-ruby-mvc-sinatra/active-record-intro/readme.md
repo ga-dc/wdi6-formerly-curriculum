@@ -73,7 +73,7 @@ applications.
 
 Let's go over our domain model for both applications.
 
-![ERDs](active-record.svg)
+![ERDs](./active-record.png)
 
 I want to be able to do CRUD for these models with Active Record. We'll be going into greater detail about how we are going to use Active Record as an interface between our server and our database, but to start, the first thing that I want to do is create/setup a database.
 
