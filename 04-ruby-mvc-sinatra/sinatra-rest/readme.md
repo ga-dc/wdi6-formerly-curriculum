@@ -308,6 +308,52 @@ end
 
 https://github.com/ga-dc/99_bottles_of_beer
 
+## We do: Sinatra Views
+
+Convert 99 bottles ex. to use views.
+
+Let's convert the hardcoded strings in our application to take advantage of Sinatra's built-in templating engine: erb.
+
+Create a directory called `views` and a file in that folder called `index.erb`
+
+In your main application file, render the view with the keyword `erb`
+
+Our entire application looks like:
+
+```ruby
+require 'sinatra'
+get '/' do
+  erb :index
+end
+```
+
+```html
+<!-- /views/index.erb -->
+This is the home page.
+```
+
+## Passing Variables to Views
+
+To share variables from the application with the view, define instance variables:
+
+
+```ruby
+require 'sinatra'
+get '/:num_bottles' do
+  @num_bottles = params[:num_bottles]
+  @next = @num_bottles -= 1
+  erb :index
+end
+```
+
+> Variables that we want to use in the view `.erb` files need to be instantiated with `@`.
+
+```html
+<!-- /views/index.erb -->
+<%= @num_bottles %> of beer on the wall.
+<a href='/<%= @next %>'>Take one down.</a>
+```
+
 #[Next: REST](rest.md)
 
 ### Sample Quiz Questions

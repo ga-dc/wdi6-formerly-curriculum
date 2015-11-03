@@ -180,6 +180,77 @@ end
 
 ...and go to `localhost:4567/?first_name=James&last_name=Bond`.
 
+### You Do:
+
+Make the above statement show up in an ERB view!
+
+# Forms
+
+So how do we get all this data into the URL's querystring to begin with? Javascript? Nah, too much work. HTML actually has a built-in way of sending user input. It's with the `<form>` element.
+
+Copy and paste this code into your ERB:
+
+```html
+<form method="get" action="#">
+  <input type="text" name="first_name" placeholder="First name" />
+  <input type="text" name="last_name" placeholder="Last name" />
+  <input type="submit" value="Submit" />
+</form>
+```
+
+#### Type something in and "submit". What happens?
+
+We can access this data in the `app.rb` file in the same way we got the path parameters: with `params`.
+
+```rb
+require 'sinatra'
+require 'sinatra/reloader'
+
+get '/' do
+  @first_name = params[:first_name]
+  @last_name = params[:last_name]
+  erb :index
+end
+```
+
+```html
+<h1>Hi there, <%= @first_name %> <%= @last_name %></h1>
+<form method="get" action=".">
+  <input type="text" name="first_name" placeholder="First name" />
+  <input type="text" name="last_name" placeholder="Last name" />
+  <input type="submit" value="Submit" />
+</form>
+```
+
+### You do: [Play with HTML forms](https://github.com/ga-dc/html-forms-practice)
+
+```html
+<h1>Hi there, <%= @first_name %> <%= @last_name %></h1>
+<% if @posted %>
+  <p>You POSTed!</p>
+<% end %>
+<form method="post" action=".">
+  <input type="text" name="first_name" placeholder="First name" />
+  <input type="text" name="last_name" placeholder="Last name" />
+  <input type="submit" value="Submit" />
+</form>
+```
+
+```rb
+get '/' do
+  @first_name = params[:first_name]
+  @last_name = params[:last_name]
+  erb :index
+end
+
+post '/' do
+  @posted = true
+  @first_name = params[:first_name]
+  @last_name = params[:last_name]
+  erb :index
+end
+```
+
 ## Postman
 
 So far, we know how to make GET requests only. We do this by visiting a URL in a browser. The browser then initiates a GET request to the provided path (the URL you entered.)
