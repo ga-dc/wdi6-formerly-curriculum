@@ -180,9 +180,7 @@ end
 
 ...and go to `localhost:4567/?first_name=James&last_name=Bond`.
 
-### You Do:
-
-Make the above statement show up in an ERB view!
+### You Do: Make the above statement show up in an ERB view!
 
 # Forms
 
@@ -191,7 +189,7 @@ So how do we get all this data into the URL's querystring to begin with? Javascr
 Copy and paste this code into your ERB:
 
 ```html
-<form method="get" action="#">
+<form method="get" action=".">
   <input type="text" name="first_name" placeholder="First name" />
   <input type="text" name="last_name" placeholder="Last name" />
   <input type="submit" value="Submit" />
@@ -201,6 +199,17 @@ Copy and paste this code into your ERB:
 #### Type something in and "submit". What happens?
 
 We can access this data in the `app.rb` file in the same way we got the path parameters: with `params`.
+
+```html
+<h1>Hi there, <%= params[:first_name] %> <%= params[:last_name] %></h1>
+<form method="get" action=".">
+  <input type="text" name="first_name" placeholder="First name" />
+  <input type="text" name="last_name" placeholder="Last name" />
+  <input type="submit" value="Submit" />
+</form>
+```
+
+### You do: Make the first and last names show up in the form using `@variables` instead.
 
 ```rb
 require 'sinatra'
@@ -222,7 +231,47 @@ end
 </form>
 ```
 
-### You do: [Play with HTML forms](https://github.com/ga-dc/html-forms-practice)
+### POST
+
+Try changing the `method="get"` to `method="post"`. Then submit the form again. What happens?
+
+Nothing should happen! You should get a "Sinatra doesn't know this ditty." That's because we've told Sinatra what to do when someone tries to "get" from `/`, but not "post" to `/`.
+
+Copy and paste your `get` route, just replacing "get" with "post":
+
+```rb
+require 'sinatra'
+require 'sinatra/reloader'
+
+get '/' do
+  @first_name = params[:first_name]
+  @last_name = params[:last_name]
+  erb :index
+end
+
+post '/' do
+  @first_name = params[:first_name]
+  @last_name = params[:last_name]
+  erb :index
+end
+```
+
+Now try submitting the form again. It should still work, but the data isn't in the URL anymore. Where did it go?
+
+The difference between GET and POST is that GET sends data as URL parameters, while POST sends data in the "body" of the request. This is the difference between sending a postcard -- all the data is visible to anyone who happens to be passing -- and a letter in an envelope -- the data is *not* visible to anyone who happens to be passing.
+
+#### Why have both?
+
+- For what sorts of things is doing stuff by GET especially nice?
+- For what other sorts of things is doing stuff by POST especially nice?
+
+We've mentioned that POST is usually used to create stuff. Obviously, we're not actually creating anything yet, but soon we'll be hooking up PSQL and ActiveRecord to actually do so.
+
+This all seems like a lot of trouble for a few routes. Why not just use GET requests, which are nice and simple, and just have paths like `/read`, `/update`, `/delete`, and so on?
+
+#### What would be the problem with having a GET route delete stuff?
+
+#### You do: Update your app so that when someone POSTs it displays, "You POSTed!"
 
 ```html
 <h1>Hi there, <%= @first_name %> <%= @last_name %></h1>
@@ -251,12 +300,24 @@ post '/' do
 end
 ```
 
-## Postman
+### You do: [Play with HTML forms](https://github.com/ga-dc/html-forms-practice)
 
-So far, we know how to make GET requests only. We do this by visiting a URL in a browser. The browser then initiates a GET request to the provided path (the URL you entered.)
+## PUT, PATCH, and DELETE
 
-Postman allows us to easily test different types of requests.
+So what about the other REST methods?
 
-Let's compare the output of GET requests initiated in Postman and in the browser.
+HTML forms **can't actually put, patch, or delete**. They can only GET and POST.
+
+We can do those in Ruby and in Javascript. But for now, we're going to use Terminal.
+
+```
+$ curl -X GET "localhost:4567" -d "first_name=Steve&last_name=Jobs"
+$ curl -X POST "localhost:4567" -d "first_name=Steve&last_name=Jobs"
+$ curl -X PUT "localhost:4567" -d "first_name=Steve&last_name=Jobs"
+$ curl -X PATCH "localhost:4567" -d "first_name=Steve&last_name=Jobs"
+$ curl -X DELETE "localhost:4567" -d "first_name=Steve&last_name=Jobs"
+```
+
+#### You do: Make a route for each of the 5 REST methods that tells the user simply, "You did a GET" or "You did a PATCH".
 
 #[Next: Sinatra Views](views.md)
