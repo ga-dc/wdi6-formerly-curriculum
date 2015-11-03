@@ -57,11 +57,11 @@ It just so happens you will be learning one of the best ORM's on the market. It 
 ### Convention Over configuration (ST-WG - 10 / 35)
 Before we get started with code, I want to highlight a reoccurring theme with Active Record and Rails in general. You'll often here us say Convention over Configuration.
 
-**BOARD:** Throughout this lesson, I will write on the board Active Record's conventions so we can list them as we go.
-
 **Question:**  Without getting into the specifics of AR, what do you think we mean by convention over configuration?
 
 Basically Active Record and Rails, and other frameworks have a whole bunch of conventions that they follow so that you do not have to mess with different configuration details later. These conventions exist because developers agree on best practices, and therefore allows us to spend less time trying to configure, when there all ready is an accepted way to do things. Some of the common ones we will encounter are naming conventions such as: plural vs single, capital or lower, camel or snake.
+
+**BOARD:** Throughout this lesson, I will write on the board Active Record's conventions so we can list them as we go.
 
 In a nutshell, if you don't follow the conventions, you're going to have a bad time.
 
@@ -73,7 +73,7 @@ applications.
 
 Let's go over our domain model for both applications.
 
-![ERDs](active-record.svg?raw=true)
+![ERDs](active-record.svg)
 
 I want to be able to do CRUD for these models with Active Record. We'll be going into greater detail about how we are going to use Active Record as an interface between our server and our database, but to start, the first thing that I want to do is create/setup a database.
 
@@ -164,14 +164,18 @@ Then I'm going to run `$ bundle install` in the terminal.
 
 ### Setup Ruby - Tunr (You Do - 10 / 70)
 If you did not complete the initial SQL setup for Tunr above:
- - please `git checkout` to the `2_active_record_starter` branch
- - Follow the steps from `Part 2.1` forward located in the readme
+ - In your cloned copy, run `git fetch https://github.com/ga-dc/tunr_sinatra` to get the most recent branches
+ - Please `git checkout` to the `2_active_record_starter` branch
+ - Then you will need to create the db with `createdb tunr_db`
+ - Then load the schema file with `psql -d tunr_db < db/schema.sql`
+ - Next run the seed file with `psql -d tunr_db < db/seed.sql`
+ - Follow the steps from `Part 2.1` in the link below
 
 [Part 2.1 - Create the Artist Model Using Active Record](https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-21---create-the-artist-model-using-active-record)
 
 ### LUNCHTIME!
 
-### Functionality - WDI (I Do - 20 / 90)
+### Functionality - WDI (I Do - 20 / 90)  
 
 In the `models/student.rb` file, let's define our student model:
 
@@ -320,7 +324,7 @@ george.destroy
 ## Associations
 
 ### Reframing (10 / 165)
-**Question:** We have a lot of choice when it comes to databases, are we using a SQL db in PostgreSQL?
+**Question:** We have a lot of choice when it comes to databases, why are we using SQL?
 
 We use SQL because it is a relational database. But what does that really mean? Basically we want the ability to associate models in our domain. That can come in a variety of ways in a relational database, but at the heart of it is essentially this:
 
