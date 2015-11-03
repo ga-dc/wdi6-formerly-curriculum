@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.7" data-chapter-title="Sinatra &amp; REST" data-filepath="04-ruby-mvc-sinatra/sinatra-rest/readme.md" data-basepath="../.." data-revision="Tue Nov 03 2015 16:32:26 GMT+0000 (UTC)">
+    <div class="book" data-level="3.7" data-chapter-title="Sinatra &amp; REST" data-filepath="04-ruby-mvc-sinatra/sinatra-rest/readme.md" data-basepath="../.." data-revision="Tue Nov 03 2015 19:24:10 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1370,6 +1370,36 @@ get <span class="hljs-string">&apos;/:firstname/:lastname&apos;</span> <span cla
 </code></pre>
 <h2 id="you-do-99-bottles-of-beer">You do: 99 Bottles of Beer</h2>
 <p><a href="https://github.com/ga-dc/99_bottles_of_beer" target="_blank">https://github.com/ga-dc/99_bottles_of_beer</a></p>
+<h2 id="we-do-sinatra-views">We do: Sinatra Views</h2>
+<p>Convert 99 bottles ex. to use views.</p>
+<p>Let&apos;s convert the hardcoded strings in our application to take advantage of Sinatra&apos;s built-in templating engine: erb.</p>
+<p>Create a directory called <code>views</code> and a file in that folder called <code>index.erb</code></p>
+<p>In your main application file, render the view with the keyword <code>erb</code></p>
+<p>Our entire application looks like:</p>
+<pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+get <span class="hljs-string">&apos;/&apos;</span> <span class="hljs-keyword">do</span>
+  erb <span class="hljs-symbol">:index</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- /views/index.erb --&gt;</span>
+This is the home page.
+</code></pre>
+<h2 id="passing-variables-to-views">Passing Variables to Views</h2>
+<p>To share variables from the application with the view, define instance variables:</p>
+<pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
+get <span class="hljs-string">&apos;/:num_bottles&apos;</span> <span class="hljs-keyword">do</span>
+  <span class="hljs-variable">@num_bottles</span> = params[<span class="hljs-symbol">:num_bottles</span>]
+  <span class="hljs-variable">@next</span> = <span class="hljs-variable">@num_bottles</span> -= <span class="hljs-number">1</span>
+  erb <span class="hljs-symbol">:index</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<blockquote>
+<p>Variables that we want to use in the view <code>.erb</code> files need to be instantiated with <code>@</code>.</p>
+</blockquote>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- /views/index.erb --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%=</span> @<span class="hljs-attribute">num_bottles</span> %&gt;</span> of beer on the wall.
+<span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&apos;/&lt;%= @next %&gt;&apos;</span>&gt;</span>Take one down.<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+</code></pre>
 <h1 id="next-rest"><a href="rest.md">Next: REST</a></h1>
 <h3 id="sample-quiz-questions">Sample Quiz Questions</h3>
 <ul>
