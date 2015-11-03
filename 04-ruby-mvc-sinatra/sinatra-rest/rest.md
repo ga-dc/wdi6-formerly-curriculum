@@ -233,32 +233,53 @@ end
 
 ### POST
 
-Try changing the `method="get"` to `method="post"`. Then submit the form again. What happens?
+Forms with a POST action are used for creating new things.
 
-Nothing should happen! You should get a "Sinatra doesn't know this ditty." That's because we've told Sinatra what to do when someone tries to "get" from `/`, but not "post" to `/`.
+Add this to `index.erb`:
 
-Copy and paste your `get` route, just replacing "get" with "post":
+```html
+<form method='post' action='/names'>
+  <input type='text' name='student_name'>
+  <input type='submit'>
+</form>
+```
 
-```rb
-require 'sinatra'
-require 'sinatra/reloader'
+Let's try submitting this form. OH NOES. Sinatra doesn't know this diddy.
 
-get '/' do
-  @first_name = params[:first_name]
-  @last_name = params[:last_name]
-  erb :index
-end
+> Note that when we change whats in the action in the form. The diddy sinatra doesn't know changes to whatever is in that action form.
 
-post '/' do
-  @first_name = params[:first_name]
-  @last_name = params[:last_name]
-  erb :index
+Add this to `app.rb`:
+
+```ruby
+post '/names' do
+  "this is a post request!"
 end
 ```
 
-Now try submitting the form again. It should still work, but the data isn't in the URL anymore. Where did it go?
+Well this isn't very useful, instead i'd like to actually add to our names.
 
-The difference between GET and POST is that GET sends data as URL parameters, while POST sends data in the "body" of the request. This is the difference between sending a postcard -- all the data is visible to anyone who happens to be passing -- and a letter in an envelope -- the data is *not* visible to anyone who happens to be passing.
+```ruby
+post '/names' do
+  names.push(params[:student_name])
+end
+```
+
+Let's try submitting again. What happened? Hmm, seems like whatever we type in gets rendered. Instead of that, I think it'd be really helpful if we just redirected to our names route after we push the name to the array.
+
+Update `app.rb`:
+
+```ruby
+post '/names' do
+  names << params[:student_name]
+  redirect "names"
+end
+```
+
+> In this situation we are actually redirecting to the get request to names. This is traditionally how post requests work. Where some creation functionality happens and then it redirects to a page.
+
+> Another thing you may have figured out by now, is that we could have `names << params[:student_name]` in a get request, why might this be a bad idea? (ST- WG) It goes against REST! `GET` requests should only be to access information.
+
+> The difference between GET and POST is that GET sends data as URL parameters, while POST sends data in the "body" of the request. This is the difference between sending a postcard -- all the data is visible to anyone who happens to be passing -- and a letter in an envelope -- the data is *not* visible to anyone who happens to be passing.
 
 #### Why have both?
 
@@ -270,35 +291,6 @@ We've mentioned that POST is usually used to create stuff. Obviously, we're not 
 This all seems like a lot of trouble for a few routes. Why not just use GET requests, which are nice and simple, and just have paths like `/read`, `/update`, `/delete`, and so on?
 
 #### What would be the problem with having a GET route delete stuff?
-
-#### You do: Update your app so that when someone POSTs it displays, "You POSTed!"
-
-```html
-<h1>Hi there, <%= @first_name %> <%= @last_name %></h1>
-<% if @posted %>
-  <p>You POSTed!</p>
-<% end %>
-<form method="post" action=".">
-  <input type="text" name="first_name" placeholder="First name" />
-  <input type="text" name="last_name" placeholder="Last name" />
-  <input type="submit" value="Submit" />
-</form>
-```
-
-```rb
-get '/' do
-  @first_name = params[:first_name]
-  @last_name = params[:last_name]
-  erb :index
-end
-
-post '/' do
-  @posted = true
-  @first_name = params[:first_name]
-  @last_name = params[:last_name]
-  erb :index
-end
-```
 
 ### You do: [Play with HTML forms](https://github.com/ga-dc/html-forms-practice)
 
@@ -319,5 +311,3 @@ $ curl -X DELETE "localhost:4567" -d "first_name=Steve&last_name=Jobs"
 ```
 
 #### You do: Make a route for each of the 5 REST methods that tells the user simply, "You did a GET" or "You did a PATCH".
-
-#[Next: Sinatra Views](views.md)

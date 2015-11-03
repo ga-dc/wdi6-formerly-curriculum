@@ -1,5 +1,52 @@
 # Sinatra Views
 
+## We do: Sinatra Views
+
+Convert 99 bottles ex. to use views.
+
+Let's convert the hardcoded strings in our application to take advantage of Sinatra's built-in templating engine: erb.
+
+Create a directory called `views` and a file in that folder called `index.erb`
+
+In your main application file, render the view with the keyword `erb`
+
+Our entire application looks like:
+
+```ruby
+require 'sinatra'
+get '/' do
+  erb :index
+end
+```
+
+```html
+<!-- /views/index.erb -->
+This is the home page.
+```
+
+## Passing Variables to Views
+
+To share variables from the application with the view, define instance variables:
+
+
+```ruby
+require 'sinatra'
+get '/:num_bottles' do
+  @num_bottles = params[:num_bottles]
+  @next = @num_bottles -= 1
+  erb :index
+end
+```
+
+> Variables that we want to use in the view `.erb` files need to be instantiated with `@`.
+
+```html
+<!-- /views/index.erb -->
+<%= @num_bottles %> of beer on the wall.
+<a href='/<%= @next %>'>Take one down.</a>
+```
+
+
 We can write erb tags in two ways. `<% %>` or `<%= %>`. Without the equal sign, the view (`.erb` file) will execute the code only. With an equal sign, the view will execute the code and also place a string that is the return value of the code that was executed.
 
 To see this in action let's update our `app.rb`:
@@ -48,9 +95,9 @@ If we wanted to have all of the names in `<p></p>` tags we could do something li
 
 > As we delve deeper into back end development. The neccessity to iterate through data sets like in the above code snippet becomes extremely important. Instead of names, we might loop through nfl players. And instead of `name` it might look like `player.name`. Depending on the object representing players, it might have multiple different properties like `total_yards`, our `touchdowns_this_season`
 
-## Sinatra Assets
+## Assets & Sinatra Layouts
 
-any files in the `public` folder will be served as static assets
+Any files in the `public` folder will be served as static assets
 
 For example, you would create a file `public/css/styles.css`
 
@@ -67,7 +114,9 @@ which will be loaded "around" every other view.
 <!-- views/layout.erb -->
 <!doctype html>
 <html>
-  <head></head>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  </head>
   <body>
     <%= yield %> <!-- load whatever template was called here -->
   </body>
@@ -76,43 +125,6 @@ which will be loaded "around" every other view.
 
 ## We do: Forms
 
-Forms with a POST action are used for creating new things.
-
-Add this to `index.erb`:
-
-```html
-<form method='post' action='/names'>
-  <input type='text' name='student_name'>
-  <input type='submit'>
-</form>
-```
-
-Let's try submitting this form. OH NOES. Sinatra doesn't know this diddy.
-
-> Note that when we change whats in the action in the form. The diddy sinatra doesn't know changes to whatever is in that action form.
-
-Add this to `app.rb`:
-
-```ruby
-post '/names' do
-  names.push(params[:student_name])
-end
-```
-
-Let's try submitting again. What happened? Hmm, seems like whatever we type in gets rendered. Instead of that, I think it'd be really helpful if we just redirected to our names route after we push the name to the array.
-
-Update `app.rb`:
-
-```ruby
-post '/names' do
-  names << params[:student_name]
-  redirect "names"
-end
-```
-
-> This is traditionally how post requests work. Where some creation functionality happens and then it redirects to a page.
-
-> Another thing you may have figured out by now, is that we could have `names << params[:student_name]` in a get request, why might this be a bad idea? (ST- WG) It goes against REST! `GET` requests should only be to access information.
 
 Any input with a `name` attribute will show up as an element of `params`
 
@@ -130,6 +142,8 @@ Forms with a GET action are useful for search forms.
 > We can only do `get` and `post` with forms. This is not a limitation on REST, but a limitation on HTML. We will see tomorrow during the lab theres a way to kind of hack around these HTML limitations.
 
 **Question**: What's the benefit of using GET requests with search forms?
+
+#[Next: Sinatra REST](rest.md)
 
 ## You do: Pair Programming Bot
 
