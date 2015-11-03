@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.6" data-chapter-title="Active Record" data-filepath="04-ruby-mvc-sinatra/active-record-intro/readme.md" data-basepath="../.." data-revision="Tue Nov 03 2015 14:30:14 GMT+0000 (UTC)">
+    <div class="book" data-level="3.6" data-chapter-title="Active Record" data-filepath="04-ruby-mvc-sinatra/active-record-intro/readme.md" data-basepath="../.." data-revision="Tue Nov 03 2015 15:04:43 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1196,7 +1196,7 @@
 <li>At a high level, what are ORM&apos;s and how might they be useful?</li>
 <li>What is the importance of interfacing the server with the database?</li>
 </ol>
-<h2 id="orms--active-record-15--30">ORM&apos;s &amp; Active Record (15 / 30)</h2>
+<h2 id="orms--active-record-10--25">ORM&apos;s &amp; Active Record (10 / 25)</h2>
 <ul>
 <li><em>Official</em> wikipedia definition. A programming technique for converting data between incompatible type systems in object-oriented programming languages.</li>
 </ul>
@@ -1220,31 +1220,34 @@
 <p>Active Record is the M in MVC - the model - which is the layer of the system responsible for representing business data and logic. Active Record facilitates the creation and use of business objects whose data requires persistent storage to a database. It is an implementation of the Active Record pattern which itself is a description of an Object Relational Mapping system. - Taken from AR docs</p>
 </blockquote>
 <h2 id="active-record">Active Record</h2>
-<h3 id="convention-over-configuration-stwg--5--35">Convention Over configuration (ST-WG - 5 / 35)</h3>
+<h3 id="convention-over-configuration-stwg--10--35">Convention Over configuration (ST-WG - 10 / 35)</h3>
 <p>Before we get started with code, I want to highlight a reoccurring theme with Active Record and Rails in general. You&apos;ll often here us say Convention over Configuration.</p>
-<p><strong>BOARD:</strong> Throughout this lesson, I will write on the board Active Record&apos;s conventions so we can list them as we go.</p>
 <p><strong>Question:</strong>  Without getting into the specifics of AR, what do you think we mean by convention over configuration?</p>
 <p>Basically Active Record and Rails, and other frameworks have a whole bunch of conventions that they follow so that you do not have to mess with different configuration details later. These conventions exist because developers agree on best practices, and therefore allows us to spend less time trying to configure, when there all ready is an accepted way to do things. Some of the common ones we will encounter are naming conventions such as: plural vs single, capital or lower, camel or snake.</p>
+<p><strong>BOARD:</strong> Throughout this lesson, I will write on the board Active Record&apos;s conventions so we can list them as we go.</p>
 <p>In a nutshell, if you don&apos;t follow the conventions, you&apos;re going to have a bad time.</p>
 <p>Alright! Let&apos;s get started with some code!</p>
 <h3 id="setup-sql--wdi-i-do--5--40">Setup SQL - WDI (I Do - 5 / 40)</h3>
 <blockquote>
-<p>Throughout the day, I&apos;ll be doing some code simulating a &quot;wdi application&quot; then you will code a &quot;hospital application&quot;</p>
+<p>Throughout the day, I&apos;ll be doing some code simulating a &quot;wdi application&quot; then you will code along with our Tunr
+applications.</p>
 </blockquote>
-<p>For the morning, I want to be able to do CRUD to a model with Active Record. We&apos;ll be going into greater detail about how we are going to use active record as an interface between our server and our database, but to start, the first thing that I want to do is create/setup a database.</p>
+<p>Let&apos;s go over our domain model for both applications.</p>
+<p><img src="active-record.svg" alt="ERDs"></p>
+<p>I want to be able to do CRUD for these models with Active Record. We&apos;ll be going into greater detail about how we are going to use Active Record as an interface between our server and our database, but to start, the first thing that I want to do is create/setup a database.</p>
 <p>First let&apos;s create our database and create our schema file in the terminal:</p>
 <pre><code class="lang-bash"><span class="hljs-comment"># in ~/wdi/sandbox</span>
 $ mkdir ar_wdi
 $ <span class="hljs-built_in">cd</span> ar_wdi
-$ mkdir config
-$ touch config/wdi_schema.sql
+$ mkdir db
+$ touch db/wdi_schema.sql
 $ createdb wdi_db
 </code></pre>
 <blockquote>
 <p>All we did here was create a database in PSQL. If you ever want to drop a database the command is <code>$ dropdb &lt;database_name&gt;</code> (VERY DANGEROUS)</p>
 </blockquote>
 <p>Next, I want to update the schema file and then load a table for our model into the database:</p>
-<p>in <code>config/wdi_schema.sql</code> file:</p>
+<p>in <code>db/wdi_schema.sql</code> file:</p>
 <pre><code class="lang-sql"><span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> instructors;</span>
 <span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> students;</span>
 
@@ -1265,7 +1268,7 @@ $ createdb wdi_db
 );</span>
 </code></pre>
 <p>now lets run our <code>wdi_schema.sql</code> file in the terminal:</p>
-<pre><code class="lang-bash">$ psql <span class="hljs-operator">-d</span> wdi_db &lt; config/wdi_schema.sql
+<pre><code class="lang-bash">$ psql <span class="hljs-operator">-d</span> wdi_db &lt; db/wdi_schema.sql
 </code></pre>
 <p><strong>Question (ST-WG):</strong> Why did we do this? Why not just go into psql and create the tables in postgres?</p>
 <p>It&apos;ll be nice going forward with your application that we package the schema up so that its modular. We can have others quickly pick up our code and have our exact database setup.</p>
@@ -1295,6 +1298,15 @@ gem <span class="hljs-string">&quot;pry&quot;</span>  <span class="hljs-comment"
 </code></pre>
 <p>Then I&apos;m going to run <code>$ bundle install</code> in the terminal.</p>
 <h3 id="setup-ruby--tunr-you-do--10--70">Setup Ruby - Tunr (You Do - 10 / 70)</h3>
+<p>If you did not complete the initial SQL setup for Tunr above:</p>
+<ul>
+<li>In your cloned copy, run <code>git fetch https://github.com/ga-dc/tunr_sinatra</code> to get the most recent branches</li>
+<li>Please <code>git checkout</code> to the <code>2_active_record_starter</code> branch</li>
+<li>Then you will need to create the db with <code>createdb tunr_db</code></li>
+<li>Then load the schema file with <code>psql -d tunr_db &lt; db/schema.sql</code></li>
+<li>Next run the seed file with <code>psql -d tunr_db &lt; db/seed.sql</code></li>
+<li>Follow the steps from <code>Part 2.1</code> in the link below</li>
+</ul>
 <p><a href="https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-21---create-the-artist-model-using-active-record" target="_blank">Part 2.1 - Create the Artist Model Using Active Record</a></p>
 <h3 id="lunchtime">LUNCHTIME!</h3>
 <h3 id="functionality--wdi-i-do--20--90">Functionality - WDI (I Do - 20 / 90)</h3>
@@ -1307,10 +1319,10 @@ gem <span class="hljs-string">&quot;pry&quot;</span>  <span class="hljs-comment"
 <p>In this ruby file, we create a class of Student that inherits from <code>ActiveRecord::Base</code>. Essentially, when we inherit from <code>ActiveRecord::Base</code>, it gives this class a whole bunch of functionality that maps the ruby <code>Student</code> class to the <code>students</code> table in postgres.</p>
 </blockquote>
 <p>Now, lets create a file that handles the connection between our application and our database:</p>
-<pre><code class="lang-bash">$ mkdir config
-$ touch config/db.rb
+<pre><code class="lang-bash"><span class="hljs-comment"># Add a connection.rb file to our db directory</span>
+$ touch db/connection.rb
 </code></pre>
-<p>In <code>config/db.rb</code>:</p>
+<p>In <code>db/connection.rb</code>:</p>
 <pre><code class="lang-ruby"><span class="hljs-constant">ActiveRecord::Base</span>.establish_connection(
   <span class="hljs-symbol">:adapter</span> =&gt; <span class="hljs-string">&quot;postgresql&quot;</span>,
   <span class="hljs-symbol">:database</span> =&gt; <span class="hljs-string">&quot;wdi_db&quot;</span>
@@ -1322,7 +1334,7 @@ $ touch config/db.rb
 <span class="hljs-keyword">require</span> <span class="hljs-string">&quot;active_record&quot;</span> <span class="hljs-comment"># the ORM</span>
 <span class="hljs-keyword">require</span> <span class="hljs-string">&quot;pry&quot;</span> <span class="hljs-comment"># for debugging</span>
 
-require_relative <span class="hljs-string">&quot;config/db&quot;</span> <span class="hljs-comment"># require the db connection file that connects us to PSQL, prior to loading models</span>
+require_relative <span class="hljs-string">&quot;db/connection&quot;</span> <span class="hljs-comment"># require the db connection file that connects us to PSQL, prior to loading models</span>
 require_relative <span class="hljs-string">&quot;models/student&quot;</span> <span class="hljs-comment"># require the Student class definition that we defined in the models/student.rb file</span>
 
 <span class="hljs-comment"># This will put us into a state of the pry REPL, in which we&apos;ve established a connection</span>
@@ -1341,7 +1353,6 @@ binding.pry
 </code></pre>
 <p>When we run this app, we can see that it drops us into pry. Let&apos;s write some code in pry to update our database... <strong>IN REALTIME!!!</strong></p>
 <p><strong>Board:</strong> I want to come up with an ongoing list of class and instance methods that we can add to as we use them</p>
-<p><strong>Question</strong> What do we mean by CRUD?</p>
 <p>Let&apos;s create an instance of the Student object on the ruby side, but that does not save originally:</p>
 <blockquote>
 <p><strong>Note</strong> the syntax for creating a new instance.</p>
@@ -1352,7 +1363,7 @@ binding.pry
 <pre><code class="lang-ruby">george.save
 </code></pre>
 <p>If we want to initialize an instance of an object AND save it to the database we use <code>.create</code>:</p>
-<pre><code class="lang-ruby">george = <span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Abe&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Lincoln&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">150</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Prez&quot;</span>)
+<pre><code class="lang-ruby">abe = <span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Abe&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Lincoln&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">150</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Prez&quot;</span>)
 </code></pre>
 <p>One really handy feature we get from an Active Record inherited class is that all of the attribute columns of our model are now <code>attr_accessor</code>&apos;s as well. So we can do things like:</p>
 <pre><code class="lang-ruby">george.first_name
@@ -1369,7 +1380,7 @@ george.save
 <pre><code class="lang-ruby"><span class="hljs-constant">Student</span>.all
 </code></pre>
 <p>We can also find a student by its ID using <code>.find</code>:</p>
-<pre><code class="lang-ruby"><span class="hljs-constant">Student</span>.find(<span class="hljs-number">0</span>)
+<pre><code class="lang-ruby"><span class="hljs-constant">Student</span>.find(<span class="hljs-number">1</span>)
 </code></pre>
 <p>Additionally we can also find a student by an attribute using <code>.find_by</code>:</p>
 <pre><code class="lang-ruby"><span class="hljs-constant">Student</span>.find_by(<span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Washington&quot;</span>)
@@ -1397,7 +1408,7 @@ george.destroy
 <h3 id="break-10--155">Break (10 / 155)</h3>
 <h2 id="associations">Associations</h2>
 <h3 id="reframing-10--165">Reframing (10 / 165)</h3>
-<p><strong>Question:</strong> We have a lot of choice when it comes to databases, why did we choose to use SQL?</p>
+<p><strong>Question:</strong> We have a lot of choice when it comes to databases, why are we using SQL?</p>
 <p>We use SQL because it is a relational database. But what does that really mean? Basically we want the ability to associate models in our domain. That can come in a variety of ways in a relational database, but at the heart of it is essentially this:</p>
 <p>One model has many other instances of another model. And that other model belongs to the original. Not really clear, eh?</p>
 <p>Let&apos;s take a look at an example in the wild.</p>
@@ -1414,8 +1425,7 @@ And every Post belongs to a certain user.</p>
 </blockquote>
 <p>Let&apos;s see what some of this stuff looks like in code. We&apos;re going to be adding an instructor model to our program.</p>
 <h3 id="associations-in-schema--wdi-i-do--10--175">Associations in Schema - WDI (I Do - 10 / 175)</h3>
-<p><strong>NOTE:</strong> Reframe this section so that we are talking about how our schema reflects associations for our domain. We are NOT updating the schema file.</p>
-<p>The first thing I want to do is update my schema to add another table and reflect the association, make note of the foreign key.</p>
+<p><strong>NOTE:</strong> In this section, we are reviewing we our schema and how it reflects associations for our domain. We are NOT updating the schema file.</p>
 <p>In <code>wdi_schema.sql</code>:</p>
 <pre><code class="lang-sql"><span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> instructors;</span>
 <span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> students;</span>
@@ -1436,8 +1446,9 @@ And every Post belongs to a certain user.</p>
   instructor_id <span class="hljs-built_in">INT</span>
 );</span>
 </code></pre>
+<p>Make note of the foreign key in <code>students</code></p>
 <h3 id="updating-class-definitions--wdi-i-do--10--195">Updating Class Definitions - WDI (I Do - 10 / 195)</h3>
-<p>Next I want to create a new file for my Instructor AR Class definition <code>$ touch models/instructor.rb</code>. In it i&apos;ll put:</p>
+<p>Next I want to create a new file for my Instructor AR Class definition <code>$ touch models/instructor.rb</code>. In it I&apos;ll put:</p>
 <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Instructor</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
   has_many <span class="hljs-symbol">:students</span>
 <span class="hljs-keyword">end</span>
@@ -1463,9 +1474,9 @@ And every Post belongs to a certain user.</p>
 <pre><code class="lang-ruby">jesse = <span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Jesse&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Shawl&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">26</span>)
 adrian = <span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Adrian&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Maseda&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">28</span>)
 
-<span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Tom&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Jefferson&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">67</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Doctor&quot;</span>, <span class="hljs-symbol">instructor:</span> jesse)
+<span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Tom&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Jefferson&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">67</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Doctor&quot;</span>, <span class="hljs-symbol">instructor:</span> adrian)
 <span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Adams&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">67</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Lawyer&quot;</span>, <span class="hljs-symbol">instructor:</span> jesse)
-<span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Andy&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Jackson&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">55</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Banker&quot;</span>, <span class="hljs-symbol">instructor:</span> adrian)
+<span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Andy&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Jackson&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">55</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Banker&quot;</span>, <span class="hljs-symbol">instructor:</span> jesse)
 <span class="hljs-constant">Student</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Ted&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Roosevelt&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">55</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Hunter&quot;</span>, <span class="hljs-symbol">instructor:</span> adrian)
 </code></pre>
 <p>Now that we have this association, we can now easily query the database for the relevant records.</p>
@@ -1481,13 +1492,14 @@ jesse.students = [<span class="hljs-constant">Student</span>.first, <span class=
 <p>note that when students is being used as a setter method above, it actually changes the instructor_id column for those students to match Jesse&apos;s primary ID. Any student that previously was assigned to Jesse and not reassigned in the setter will now have an instructor_id of nil</p>
 </blockquote>
 <p>Alternatively if I wanted to get a student&apos;s instructor I could write this code:</p>
-<pre><code class="lang-ruby">tom = <span class="hljs-constant">Student</span>.find_by(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Tom&quot;</span>)
-tom.instructor
-<span class="hljs-comment"># will return tom&apos;s instructor, this is .instructor being used as a getter method</span>
+<pre><code class="lang-ruby">jack = <span class="hljs-constant">Student</span>.find_by(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Jack&quot;</span>)
+jack.instructor
+<span class="hljs-comment"># will return Jack&apos;s instructor, this is .instructor being used as a getter method</span>
 
 adrian = <span class="hljs-constant">Instructor</span>.last
-tom.instructor = adrian
-<span class="hljs-comment"># this .instructor being used as a setter method, and now bob&apos;s instructor is adrian</span>
+jack.instructor = adrian
+jack.save
+<span class="hljs-comment"># this .instructor being used as a setter method, and now Jack&apos;s instructor is Adrian</span>
 </code></pre>
 <p>We can also create new students under a certain instructor by doing the following:</p>
 <pre><code class="lang-ruby">jesse.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;baskin&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;robbins&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">34</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;icecream&quot;</span>)
@@ -1500,37 +1512,42 @@ tom.instructor = adrian
 <p><a href="https://github.com/ga-dc/tunr_sinatra/blob/2_active_record_starter/readme.md#part-25---use-your-model-associations" target="_blank">Part 2.5 - Use Your Model Assocations</a></p>
 <h3 id="seeding-a-database--wdi-15--270">Seeding a database - WDI (15 / 270)</h3>
 <p>Seeding a database is not all that different from the things we&apos;ve been doing today. What&apos;s the purpose of seed data? <strong>(ST-WG)</strong></p>
-<p>We want some sort of data in our database so that we can test our applications. Let&apos;s create a seed file in the terminal: <code>$ touch config/seeds.rb</code></p>
-<p>In our <code>config/seeds.rb</code> file let&apos;s put the following:</p>
-<pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&quot;pg&quot;</span>
+<p>We want some sort of data in our database so that we can test our applications. Let&apos;s create a seed file in the terminal: <code>$ touch db/seeds.rb</code></p>
+<p>In our <code>db/seeds.rb</code> file let&apos;s put the following:</p>
+<pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&quot;bundler/setup&quot;</span> <span class="hljs-comment"># require all the gems we&apos;ll be using for this app from the Gemfile. Obviates the need for `bundle exec`</span>
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">&quot;pg&quot;</span>
 <span class="hljs-keyword">require</span> <span class="hljs-string">&quot;active_record&quot;</span>
 <span class="hljs-keyword">require</span> <span class="hljs-string">&quot;pry&quot;</span>
 
 require_relative <span class="hljs-string">&quot;../models/student&quot;</span>
 require_relative <span class="hljs-string">&quot;../models/instructor&quot;</span>
 
-require_relative <span class="hljs-string">&quot;../config/db.rb&quot;</span>
+require_relative <span class="hljs-string">&quot;../db/connection.rb&quot;</span>
 
 
 <span class="hljs-constant">Instructor</span>.destroy_all
 <span class="hljs-constant">Student</span>.destroy_all
 <span class="hljs-comment"># destroys existing data in database</span>
 
-robin = <span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;robin&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;thomas&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">26</span>)
-adam = <span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;adam&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;bray&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">30</span>)
-robin.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;michael&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;scott&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">45</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;office manager&quot;</span>)
+robin = <span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Robin&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Thomas&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">26</span>)
+adam = <span class="hljs-constant">Instructor</span>.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Adam&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Bray&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">30</span>)
+robin.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Michael&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Scott&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">45</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Office Manager&quot;</span>)
 robin.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Dwight&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Schrute&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">34</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Assistant to the Regional Manager&quot;</span>)
 adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Dee&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Reynolds&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">32</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Bartender&quot;</span>)
 adam.students.create(<span class="hljs-symbol">first_name:</span> <span class="hljs-string">&quot;Charlie&quot;</span>, <span class="hljs-symbol">last_name:</span> <span class="hljs-string">&quot;Kelly&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">31</span>, <span class="hljs-symbol">job:</span> <span class="hljs-string">&quot;Owner of Paddy&apos;s&quot;</span>)
 </code></pre>
+<p>Now when we run our application with <code>ruby app.rb</code>, we enter into Pry with all our data loaded.</p>
 <h2 id="closing">Closing</h2>
-<p>Who misses writing SQL queries by hand? Exactly. Active Record is extremely powerful and helpful to more easily interface with the business models for our applications.</p>
+<p>Who misses writing SQL queries by hand? Exactly. Active Record is extremely powerful and helpful, and allows us to easily interface with the business models for our applications.</p>
 <p>Review Learning Objectives</p>
 <h3 id="homework">Homework</h3>
 <p><a href="https://github.com/ga-dc/landlord#active-record" target="_blank">Landlord (Active Record)</a></p>
 <h3 id="resources">Resources</h3>
-<p><a href="http://guides.rubyonrails.org/active_record_basics.html" target="_blank">Active Record Basics</a>
-<a href="http://guides.rubyonrails.org/active_record_querying.html" target="_blank">Active Record Query Interface</a></p>
+<ul>
+<li><a href="http://guides.rubyonrails.org/active_record_basics.html" target="_blank">Active Record Basics</a></li>
+<li><a href="http://guides.rubyonrails.org/active_record_querying.html" target="_blank">Active Record Query Interface</a></li>
+</ul>
 <h3 id="appendix">Appendix</h3>
 <h4 id="instance-vs-class-methods">Instance vs Class Methods</h4>
 <table>
