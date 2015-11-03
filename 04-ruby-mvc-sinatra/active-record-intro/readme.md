@@ -31,6 +31,7 @@ For the next 5 minutes, research what ORM's are.
 
 ### T&T (5 / 15)
 Now, turn & talk to your neighbor and discuss:
+
 1. At a high level, what are ORM's and how might they be useful?
 2. What is the importance of interfacing the server with the database?
 
@@ -74,6 +75,9 @@ applications.
 Let's go over our domain model for both applications.
 
 ![ERDs](./active-record.png)
+
+
+[Tunr Deployed link](https://wdi-dc6-tunr-demo.herokuapp.com/artists)
 
 I want to be able to do CRUD for these models with Active Record. We'll be going into greater detail about how we are going to use Active Record as an interface between our server and our database, but to start, the first thing that I want to do is create/setup a database.
 
@@ -463,7 +467,7 @@ jesse.students.create(first_name: "baskin", last_name: "robbins", age: 34, job: 
 
 [Part 2.5 - Use Your Model Assocations](https://github.com/ga-dc/tunr_sinatra/blob/2_active_record_starter/readme.md#part-25---use-your-model-associations)
 
-### Seeding a database - WDI (15 / 270)
+### Seeding a Database - WDI (15 / 270)
 Seeding a database is not all that different from the things we've been doing today. What's the purpose of seed data? **(ST-WG)**
 
 We want some sort of data in our database so that we can test our applications. Let's create a seed file in the terminal: `$ touch db/seeds.rb`
