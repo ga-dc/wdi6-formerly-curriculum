@@ -34,7 +34,7 @@ Now, turn & talk to your neighbor and discuss:
 1. At a high level, what are ORM's and how might they be useful?
 2. What is the importance of interfacing the server with the database?
 
-## ORM's & Active Record (15 / 30)
+## ORM's & Active Record (10 / 25)
 - *Official* wikipedia definition. A programming technique for converting data between incompatible type systems in object-oriented programming languages.
 
 > Thats sounds like a lot of 5 dollar words, but what does it really mean?
@@ -54,7 +54,7 @@ It just so happens you will be learning one of the best ORM's on the market. It 
 > Active Record is the M in MVC - the model - which is the layer of the system responsible for representing business data and logic. Active Record facilitates the creation and use of business objects whose data requires persistent storage to a database. It is an implementation of the Active Record pattern which itself is a description of an Object Relational Mapping system. - Taken from AR docs
 
 ## Active Record
-### Convention Over configuration (ST-WG - 5 / 35)
+### Convention Over configuration (ST-WG - 10 / 35)
 Before we get started with code, I want to highlight a reoccurring theme with Active Record and Rails in general. You'll often here us say Convention over Configuration.
 
 **BOARD:** Throughout this lesson, I will write on the board Active Record's conventions so we can list them as we go.
@@ -68,9 +68,14 @@ In a nutshell, if you don't follow the conventions, you're going to have a bad t
 Alright! Let's get started with some code!
 
 ### Setup SQL - WDI (I Do - 5 / 40)
-> Throughout the day, I'll be doing some code simulating a "wdi application" then you will code a "hospital application"
+> Throughout the day, I'll be doing some code simulating a "wdi application" then you will code along with our Tunr
+applications.
 
-For the morning, I want to be able to do CRUD to a model with Active Record. We'll be going into greater detail about how we are going to use active record as an interface between our server and our database, but to start, the first thing that I want to do is create/setup a database.
+Let's go over our domain model for both applications.
+
+![ERDs](active-record.svg?raw=true)
+
+I want to be able to do CRUD for these models with Active Record. We'll be going into greater detail about how we are going to use Active Record as an interface between our server and our database, but to start, the first thing that I want to do is create/setup a database.
 
 First let's create our database and create our schema file in the terminal:
 
@@ -78,8 +83,8 @@ First let's create our database and create our schema file in the terminal:
 # in ~/wdi/sandbox
 $ mkdir ar_wdi
 $ cd ar_wdi
-$ mkdir config
-$ touch config/wdi_schema.sql
+$ mkdir db
+$ touch db/wdi_schema.sql
 $ createdb wdi_db
 ```
 
@@ -87,7 +92,7 @@ $ createdb wdi_db
 
 Next, I want to update the schema file and then load a table for our model into the database:
 
-in `config/wdi_schema.sql` file:
+in `db/wdi_schema.sql` file:
 
 ```sql
 DROP TABLE IF EXISTS instructors;
@@ -113,7 +118,7 @@ CREATE TABLE students (
 now lets run our `wdi_schema.sql` file in the terminal:
 
 ```bash
-$ psql -d wdi_db < config/wdi_schema.sql
+$ psql -d wdi_db < db/wdi_schema.sql
 ```
 
 **Question (ST-WG):** Why did we do this? Why not just go into psql and create the tables in postgres?
@@ -158,6 +163,9 @@ gem "pry"  # this gem allows access to REPL
 Then I'm going to run `$ bundle install` in the terminal.
 
 ### Setup Ruby - Tunr (You Do - 10 / 70)
+If you did not complete the initial SQL setup for Tunr above:
+ - please `git checkout` to the `2_active_record_starter` branch
+ - Follow the steps from `Part 2.1` forward located in the readme
 
 [Part 2.1 - Create the Artist Model Using Active Record](https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-21---create-the-artist-model-using-active-record)
 
@@ -178,11 +186,11 @@ end
 Now, lets create a file that handles the connection between our application and our database:
 
 ```bash
-$ mkdir config
-$ touch config/db.rb
+# Add a connection.rb file to our db directory
+$ touch db/connection.rb
 ```
 
-In `config/db.rb`:
+In `db/connection.rb`:
 ```ruby
 ActiveRecord::Base.establish_connection(
   :adapter => "postgresql",
@@ -198,7 +206,7 @@ require "pg" # postrgres db library
 require "active_record" # the ORM
 require "pry" # for debugging
 
-require_relative "config/db" # require the db connection file that connects us to PSQL, prior to loading models
+require_relative "db/connection" # require the db connection file that connects us to PSQL, prior to loading models
 require_relative "models/student" # require the Student class definition that we defined in the models/student.rb file
 
 # This will put us into a state of the pry REPL, in which we've established a connection
@@ -227,8 +235,6 @@ When we run this app, we can see that it drops us into pry. Let's write some cod
 
 **Board:** I want to come up with an ongoing list of class and instance methods that we can add to as we use them
 
-**Question** What do we mean by CRUD?
-
 Let's create an instance of the Student object on the ruby side, but that does not save originally:
 
 > **Note** the syntax for creating a new instance.
@@ -246,7 +252,7 @@ george.save
 If we want to initialize an instance of an object AND save it to the database we use `.create`:
 
 ```ruby
-george = Student.create(first_name: "Abe", last_name: "Lincoln", age: 150, job: "Prez")
+abe = Student.create(first_name: "Abe", last_name: "Lincoln", age: 150, job: "Prez")
 ```
 
 One really handy feature we get from an Active Record inherited class is that all of the attribute columns of our model are now `attr_accessor`'s as well. So we can do things like:
@@ -271,7 +277,7 @@ Student.all
 We can also find a student by its ID using `.find`:
 
 ```ruby
-Student.find(0)
+Student.find(1)
 ```
 
 Additionally we can also find a student by an attribute using `.find_by`:
@@ -314,7 +320,7 @@ george.destroy
 ## Associations
 
 ### Reframing (10 / 165)
-**Question:** We have a lot of choice when it comes to databases, why did we choose to use SQL?
+**Question:** We have a lot of choice when it comes to databases, are we using a SQL db in PostgreSQL?
 
 We use SQL because it is a relational database. But what does that really mean? Basically we want the ability to associate models in our domain. That can come in a variety of ways in a relational database, but at the heart of it is essentially this:
 
@@ -339,9 +345,7 @@ Let's see what some of this stuff looks like in code. We're going to be adding a
 
 ### Associations in Schema - WDI (I Do - 10 / 175)
 
-**NOTE:** Reframe this section so that we are talking about how our schema reflects associations for our domain. We are NOT updating the schema file.
-
-The first thing I want to do is update my schema to add another table and reflect the association, make note of the foreign key.
+**NOTE:** In this section, we are reviewing we our schema and how it reflects associations for our domain. We are NOT updating the schema file.
 
 In `wdi_schema.sql`:
 
@@ -366,9 +370,11 @@ CREATE TABLE students (
 );
 ```
 
+Make note of the foreign key in `students`
+
 ### Updating Class Definitions - WDI (I Do - 10 / 195)
 
-Next I want to create a new file for my Instructor AR Class definition `$ touch models/instructor.rb`. In it i'll put:
+Next I want to create a new file for my Instructor AR Class definition `$ touch models/instructor.rb`. In it I'll put:
 
 ```ruby
 class Instructor < ActiveRecord::Base
@@ -409,9 +415,9 @@ Lets create some objects so we can see what were talking about:
 jesse = Instructor.create(first_name: "Jesse", last_name: "Shawl", age: 26)
 adrian = Instructor.create(first_name: "Adrian", last_name: "Maseda", age: 28)
 
-Student.create(first_name: "Tom", last_name: "Jefferson", age: 67, job: "Doctor", instructor: jesse)
+Student.create(first_name: "Tom", last_name: "Jefferson", age: 67, job: "Doctor", instructor: adrian)
 Student.create(first_name: "Jack", last_name: "Adams", age: 67, job: "Lawyer", instructor: jesse)
-Student.create(first_name: "Andy", last_name: "Jackson", age: 55, job: "Banker", instructor: adrian)
+Student.create(first_name: "Andy", last_name: "Jackson", age: 55, job: "Banker", instructor: jesse)
 Student.create(first_name: "Ted", last_name: "Roosevelt", age: 55, job: "Hunter", instructor: adrian)
 ```
 
@@ -431,13 +437,14 @@ jesse.students = [Student.first, Student.last]
 Alternatively if I wanted to get a student's instructor I could write this code:
 
 ```ruby
-tom = Student.find_by(first_name: "Tom")
-tom.instructor
-# will return tom's instructor, this is .instructor being used as a getter method
+jack = Student.find_by(first_name: "Jack")
+jack.instructor
+# will return Jack's instructor, this is .instructor being used as a getter method
 
 adrian = Instructor.last
-tom.instructor = adrian
-# this .instructor being used as a setter method, and now bob's instructor is adrian
+jack.instructor = adrian
+jack.save
+# this .instructor being used as a setter method, and now Jack's instructor is Adrian
 ```
 
 We can also create new students under a certain instructor by doing the following:
@@ -455,11 +462,13 @@ jesse.students.create(first_name: "baskin", last_name: "robbins", age: 34, job: 
 ### Seeding a database - WDI (15 / 270)
 Seeding a database is not all that different from the things we've been doing today. What's the purpose of seed data? **(ST-WG)**
 
-We want some sort of data in our database so that we can test our applications. Let's create a seed file in the terminal: `$ touch config/seeds.rb`
+We want some sort of data in our database so that we can test our applications. Let's create a seed file in the terminal: `$ touch db/seeds.rb`
 
-In our `config/seeds.rb` file let's put the following:
+In our `db/seeds.rb` file let's put the following:
 
 ```ruby
+require "bundler/setup" # require all the gems we'll be using for this app from the Gemfile. Obviates the need for `bundle exec`
+
 require "pg"
 require "active_record"
 require "pry"
@@ -467,23 +476,25 @@ require "pry"
 require_relative "../models/student"
 require_relative "../models/instructor"
 
-require_relative "../config/db.rb"
+require_relative "../db/connection.rb"
 
 
 Instructor.destroy_all
 Student.destroy_all
 # destroys existing data in database
 
-robin = Instructor.create(first_name: "robin", last_name: "thomas", age: 26)
-adam = Instructor.create(first_name: "adam", last_name: "bray", age: 30)
-robin.students.create(first_name: "michael", last_name: "scott", age: 45, job: "office manager")
+robin = Instructor.create(first_name: "Robin", last_name: "Thomas", age: 26)
+adam = Instructor.create(first_name: "Adam", last_name: "Bray", age: 30)
+robin.students.create(first_name: "Michael", last_name: "Scott", age: 45, job: "Office Manager")
 robin.students.create(first_name: "Dwight", last_name: "Schrute", age: 34, job: "Assistant to the Regional Manager")
 adam.students.create(first_name: "Dee", last_name: "Reynolds", age: 32, job: "Bartender")
 adam.students.create(first_name: "Charlie", last_name: "Kelly", age: 31, job: "Owner of Paddy's")
 ```
 
+Now when we run our application with `ruby app.rb`, we enter into Pry with all our data loaded.
+
 ## Closing
-Who misses writing SQL queries by hand? Exactly. Active Record is extremely powerful and helpful to more easily interface with the business models for our applications.
+Who misses writing SQL queries by hand? Exactly. Active Record is extremely powerful and helpful, and allows us to easily interface with the business models for our applications.
 
 Review Learning Objectives
 
@@ -491,8 +502,8 @@ Review Learning Objectives
 [Landlord (Active Record)](https://github.com/ga-dc/landlord#active-record)
 
 ### Resources
-[Active Record Basics](http://guides.rubyonrails.org/active_record_basics.html)
-[Active Record Query Interface](http://guides.rubyonrails.org/active_record_querying.html)
+- [Active Record Basics](http://guides.rubyonrails.org/active_record_basics.html)
+- [Active Record Query Interface](http://guides.rubyonrails.org/active_record_querying.html)
 
 ### Appendix
 
