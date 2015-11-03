@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.6" data-chapter-title="Active Record" data-filepath="04-ruby-mvc-sinatra/active-record-intro/readme.md" data-basepath="../.." data-revision="Tue Nov 03 2015 15:26:59 GMT+0000 (UTC)">
+    <div class="book" data-level="3.6" data-chapter-title="Active Record" data-filepath="04-ruby-mvc-sinatra/active-record-intro/readme.md" data-basepath="../.." data-revision="Tue Nov 03 2015 16:32:26 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1234,6 +1234,7 @@ applications.</p>
 </blockquote>
 <p>Let&apos;s go over our domain model for both applications.</p>
 <p><img src="active-record.png" alt="ERDs"></p>
+<p><a href="https://wdi-dc6-tunr-demo.herokuapp.com/artists" target="_blank">Tunr Deployed link</a></p>
 <p>I want to be able to do CRUD for these models with Active Record. We&apos;ll be going into greater detail about how we are going to use Active Record as an interface between our server and our database, but to start, the first thing that I want to do is create/setup a database.</p>
 <p>First let&apos;s create our database and create our schema file in the terminal:</p>
 <pre><code class="lang-bash"><span class="hljs-comment"># in ~/wdi/sandbox</span>
@@ -1510,7 +1511,7 @@ jack.save
 </blockquote>
 <h3 id="association-helper-methods--tunr-you-do--15--255">Association Helper Methods - Tunr (You Do - 15 / 255)</h3>
 <p><a href="https://github.com/ga-dc/tunr_sinatra/blob/2_active_record_starter/readme.md#part-25---use-your-model-associations" target="_blank">Part 2.5 - Use Your Model Assocations</a></p>
-<h3 id="seeding-a-database--wdi-15--270">Seeding a database - WDI (15 / 270)</h3>
+<h3 id="seeding-a-database--wdi-15--270">Seeding a Database - WDI (15 / 270)</h3>
 <p>Seeding a database is not all that different from the things we&apos;ve been doing today. What&apos;s the purpose of seed data? <strong>(ST-WG)</strong></p>
 <p>We want some sort of data in our database so that we can test our applications. Let&apos;s create a seed file in the terminal: <code>$ touch db/seeds.rb</code></p>
 <p>In our <code>db/seeds.rb</code> file let&apos;s put the following:</p>
