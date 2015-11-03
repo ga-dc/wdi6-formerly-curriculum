@@ -66,7 +66,8 @@ Rails uses rake to:
 - Create / Edit database tables
 - Drop the database
 - Seed the database
-- [source code](https://github.com/rails/rails/blob/3e36db4406beea32772b1db1e9a16cc1e8aea14c/railties/lib/rails/tasks/engine.rake#L30-L31)
+
+[Learn more about rake here](https://github.com/ruby/rake#description)
 
 ## You do: Models
 
@@ -87,6 +88,8 @@ http://edgeguides.rubyonrails.org/active_record_migrations.html
 `rails g` is short for `rails generate`.
 
 This creates a migration file `db/migrate/20150726145027_create_artists.rb`
+
+>The numbers at the beginning of a migration file are a timestamp. Rails uses this timestamp to determine which migration should be run and in what order, so if you're copying a migration from another application or generate a file yourself, be aware of its position in the order. [source](http://edgeguides.rubyonrails.org/active_record_migrations.html#creating-a-standalone-migration)
 
 ```rb
 class CreateArtists < ActiveRecord::Migration
@@ -171,6 +174,8 @@ First, let's add in the missing data for seeds:
 
     $ curl http://www.wdidc.org/seeds/get.sh | sh
     $ rake db:seed
+
+TODO: replace above url with new seeds / script.
 
 ## We do: How to deal with mistakes
 
