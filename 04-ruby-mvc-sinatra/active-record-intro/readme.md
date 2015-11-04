@@ -177,9 +177,9 @@ If you did not complete the initial SQL setup for Tunr above:
 
 [Part 2.1 - Create the Artist Model Using Active Record](https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-21---create-the-artist-model-using-active-record)
 
-### LUNCHTIME!
+### Break (10 / 80)
 
-### Functionality - WDI (I Do - 20 / 90)  
+### Functionality - WDI (I Do - 20 / 100)  
 
 In the `models/student.rb` file, let's define our student model:
 
@@ -226,12 +226,12 @@ binding.pry
 
 > note the difference between `require` and `require_relative`. With `require` we are getting gems and `require_relative` we are getting files relative to the location of the file we wrote `require_relative` in
 
-### Functionality - Tunr (You Do - 10 / 100)
+### Functionality - Tunr (You Do - 10 / 110)
 
 [Part 2.2 - Define Artist & Setup Your `app.rb` to Connect The Database](https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-22---define-artists--setup-your-apprb-to-connect-to-the-database)
 
 
-### Methods - WDI (I Do - 30 / 130)
+### Methods - WDI (I Do - 30 / 140)
 
 Great! We've got everything done that we need to get setup with single model CRUD in our application. Let's run it in the terminal:
 
@@ -319,11 +319,12 @@ george.destroy
 
 > This is exciting stuff by the way, imagine, while we do these things, that our students model is instead a post on facebook, or a comment on facebook. So the next time you comment on someone's facebook page you have an idea now of whats happening on the database layer. Maybe not the whole picture, but you have an idea. We're going to build on that idea in the coming week and half, and thats really exciting.
 
-### Methods - Tunr (You Do (In Pry!) - 15 / 145)
+
+### LUNCHTIME
+
+### Methods - Tunr (You Do (In Pry!) - 15 / 155)
 
 [Part 2.3 - Use Your Artist Model](https://github.com/ga-dc/tunr_sinatra/tree/2_active_record_starter#part-23---use-your-artist-model)
-
-### Break (10 / 155)
 
 ## Associations
 
