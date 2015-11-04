@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.7" data-chapter-title="Sinatra &amp; REST" data-filepath="04-ruby-mvc-sinatra/sinatra-rest/readme.md" data-basepath="../.." data-revision="Wed Nov 04 2015 13:45:51 GMT+0000 (UTC)">
+    <div class="book" data-level="3.7" data-chapter-title="Sinatra &amp; REST" data-filepath="04-ruby-mvc-sinatra/sinatra-rest/readme.md" data-basepath="../.." data-revision="Wed Nov 04 2015 14:19:19 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1191,11 +1191,18 @@
 <li><a href="http://recipes.sinatrarb.com/" target="_blank">Sinatra Recipes</a></li>
 </ul>
 <h1 id="your-very-first-sinatra-app">Your very first Sinatra app!</h1>
-<p>Let&apos;s create a folder to work in. Create a file called <code>app.rb</code>. The file name doesn&apos;t matter, but it&apos;s easier if we all use the same one.</p>
+<p>Let&apos;s create a folder to work in. Create a file called <code>app.rb</code> and <code>Gemfile</code>. The file name doesn&apos;t matter, but it&apos;s easier if we all use the same one.</p>
 <pre><code class="lang-bash">$ mkdir sinatra_intro
 $ <span class="hljs-built_in">cd</span> sinatra_intro
 $ touch app.rb
+$ touch Gemfile
 </code></pre>
+<p>Let&apos;s make sure we include our sinatra dependency in the <code>Gemfile</code></p>
+<pre><code class="lang-ruby">source <span class="hljs-string">&apos;https://rubygems.org&apos;</span>
+
+gem <span class="hljs-string">&apos;sinatra&apos;</span>
+</code></pre>
+<p>Then run a <code>bundle install</code> in the terminal.</p>
 <p>Inside <code>app.rb</code>, write:</p>
 <pre><code class="lang-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">&apos;sinatra&apos;</span>
 
