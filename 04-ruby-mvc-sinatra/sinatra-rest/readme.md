@@ -34,13 +34,24 @@ When I say "web app", I mean something that involves users sending data to me, a
 
 # Your very first Sinatra app!
 
-Let's create a folder to work in. Create a file called `app.rb`. The file name doesn't matter, but it's easier if we all use the same one.
+Let's create a folder to work in. Create a file called `app.rb` and `Gemfile`. The file name doesn't matter, but it's easier if we all use the same one.
 
 ```bash
 $ mkdir sinatra_intro
 $ cd sinatra_intro
 $ touch app.rb
+$ touch Gemfile
 ```
+
+Let's make sure we include our sinatra dependency in the `Gemfile`
+
+```ruby
+source 'https://rubygems.org'
+
+gem 'sinatra'
+```
+
+Then run a `bundle install` in the terminal.
 
 Inside `app.rb`, write:
 
