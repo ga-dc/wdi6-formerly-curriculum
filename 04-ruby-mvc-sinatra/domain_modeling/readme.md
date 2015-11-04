@@ -64,3 +64,7 @@ In groups of 3, create your own ERD for Tunr. You can keep it as simple or
 complex as you like.
 
 At a minimum though, you should have Songs and Artists as entities.
+
+## Screencasts:
+
+- WDI7 (Matt Scilipoti): https://youtu.be/IDnOMi9jHgo
