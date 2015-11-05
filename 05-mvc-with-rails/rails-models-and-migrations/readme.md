@@ -54,6 +54,8 @@ Use `rails c` to view the output of
 ENV["RAILS_ENV"]
 ```
 
+> You can see that the output is `developement`. ENV["RAILS_ENV"] is a way we get/set our environment and allows for different types of configurations. The other two types of environment are `test` and `production`
+
 ## What is Rake?
 
 Rake is known as "Ruby Make". Make is a popular tool that allows developers to put
@@ -62,10 +64,10 @@ with a single command.
 
 Rails uses rake to:
 
-- Create the database
-- Create / Edit database tables
-- Drop the database
-- Seed the database
+- Create the database (`rake db:create`)
+- Create / Edit database tables (`rake db:migrate`)
+- Drop the database (`rake db:drop`)
+- Seed the database (`rake db:seed`)
 
 [Learn more about rake here](https://github.com/ruby/rake#description)
 
@@ -77,11 +79,24 @@ If you’re feeling adventurous, consider adding a third model like Favorites, o
 
 How do you know it worked?
 
+If we hop into the rails console and type in Artist:
+
+```
+$ rails c
+Loading development environment (Rails 4.2.4)
+2.2.3 :001> Artist
+ => Artist(Table doesn't exist)
+```
+
+> If we type in any other capitalized word it will throw an error `uninitialized Constant`
+
 ## We do: Migrations
 
 >You can think of each migration as being a new 'version' of the database. A schema starts off with nothing in it, and each migration modifies it to add or remove tables, columns, or entries. Active Record knows how to update your schema along this timeline, bringing it from whatever point it is in the history to the latest version. Active Record will also update your db/schema.rb file to match the up-to-date structure of your database.
 
 http://edgeguides.rubyonrails.org/active_record_migrations.html
+
+In the terminal:
 
     $ rails g migration create_artists
 
@@ -106,8 +121,8 @@ This file defines the structure of a new table called "artists".
 class CreateArtists < ActiveRecord::Migration
   def change
     create_table :artists do |t|
-      t.string :name 
-      t.string :photo_url 
+      t.string :name
+      t.string :photo_url
       t.string :nationality
     end
   end
@@ -123,11 +138,12 @@ You can create the artists table and run this migration with `rake db:migrate`
 
 ## You do: view db/schema.rb
 
-The above command created this file. Take a minute to read through it. 
+The above command created this file. Take a minute to read through it.
 
 ## You do: Use Rails console
 
-to create at least two artists.
+- to create at least two artists.
+- save the commands you run in your text editor so you can leverage it later.
 
 ```
 $ rails console
@@ -137,9 +153,13 @@ $ rails console
 
 ## You do: Create the migration for Songs
 
+## I do: passing arguments into `rails g migration`
+
 ```
 $ rails g migration create_songs title:string album:string preview_url:string artist:references
 ```
+
+> There are lots of little short cuts that `g` or `generate` can give you. [Model Generators] (http://edgeguides.rubyonrails.org/active_record_migrations.html#model-generators) is just one example.
 
 The above command creates the following file:
 
@@ -164,26 +184,40 @@ wherever `belongs_to` appears in the model definition.
 
 ## You do: Use rails console
 
-to create at least three songs that are associated with the previous two artists.
+- to create at least three songs that are associated with the previous two artists.
+- save the commands you run in your text editor so you can leverage it later.
 
 ## Break
 
 ## We do: Seeds
+Seeds? Why do we need to create dummy data for our application. In order to test out the interfaces and functionalities we build out, we need some content/data to manipulate to see how it looks and feels on our application.
 
-First, let's add in the missing data for seeds:
+Let's update our seeds (`db/seeds.rb`) file now.
 
-    $ curl http://www.wdidc.org/seeds/get.sh | sh
-    $ rake db:seed
+Remember those commands we had you write down during the rails console exercises?
 
-TODO: replace above url with new seeds / script.
+Instead of the console, leverage the code from those exercises to create 3 artists that have 3 songs each.
+
+Make sure to include the following two lines of code at the top of your `db/seeds.rb`:
+
+```rb
+Artist.destroy_all
+Song.destroy_all
+```
+
+To run this seeds file all we need to do is run `$ rake db:seed` in the terminal.
+
+After running the seeds, go into the `rails console` and play with the objects you created.
 
 ## We do: How to deal with mistakes
 
-I forgot to tell you all about timestamps. Rails can automatically timestamp when 
+I forgot to tell you all about timestamps. Rails can automatically timestamp when
 objects are created and updated. Let’s create a new migration to add timestamp columns
 to the artists table.
 
     $ rails g migration add_timestamps_to_artists
+
+In that migration place the following content:
 
 ```rb
 # 20150726150946_add_timestamps_to_artists.rb
@@ -213,7 +247,7 @@ What is the difference between creating migrations that fix previous mistakes, v
 3. fix wrong migration file
 4. rake db:migrate:reset || rake db:drop:all && rake db:create && rake db:migrate
 
-Users will be very upset if you destroy their data. 
+Users will be very upset if you destroy their data.
 
 ## You do: Create a migration and roll it back
 
@@ -225,4 +259,3 @@ Users will be very upset if you destroy their data.
 
 - Why are migrations timestamped, and how does this affect our development workflow?
 - What is the difference between creating a migration to add a column, vs editing an existing migration and `rake db:migrate:reset`ting?
-
