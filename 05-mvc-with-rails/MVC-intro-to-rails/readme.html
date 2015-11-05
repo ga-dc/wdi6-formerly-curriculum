@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.2" data-chapter-title="MVC Intro to Rails" data-filepath="05-mvc-with-rails/MVC-intro-to-rails/readme.md" data-basepath="../.." data-revision="Wed Nov 04 2015 22:34:02 GMT+0000 (UTC)">
+    <div class="book" data-level="4.2" data-chapter-title="MVC Intro to Rails" data-filepath="05-mvc-with-rails/MVC-intro-to-rails/readme.md" data-basepath="../.." data-revision="Thu Nov 05 2015 14:31:03 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1190,7 +1190,7 @@
 </li>
 <li><p>The request hits the router of the application.</p>
 </li>
-<li><p>The application than either doesn&apos;t recognize the route (error) or it does recognize it and sends it to a controller.</p>
+<li><p>The application than either doesn&apos;t recognize the route (error) or it does recognize it(route) and sends it to a controller.</p>
 </li>
 <li><p>Once the request hits the controller, its then going to query the database through Active Record(the model) for the information specified in the controller.</p>
 </li>
@@ -1204,9 +1204,12 @@
 <p>The first thing that I want to do, is just create a new rails applications. But I think first what we should do is ensure we have rails. <code>$ gem install rails</code>. Next I want to actually create my rails application:</p>
 <pre><code class="lang-bash">$ rails new tunr <span class="hljs-operator">-d</span> postgresql
 </code></pre>
+<blockquote>
+<p>the reason we pass in the <code>-d</code> flag with and argument of <code>postgresql</code>. Is we want to specify that the database layer of our application to be postgresql instead of the default sqlite3. Postgres is just a bit more robust and is the DBMS we&apos;ve been using.</p>
+</blockquote>
 <p>You can see already there are many folders and files generated from just that one command.</p>
 <p><img src="images/rails_folders.png" alt="Rails folder structure"></p>
-<p>It can be quite daunting at first. It&apos;ll take some getting used to, but more importantly, you&apos;re already familiar with alot of the stuff in rails we&apos;ll be using. Additionally, you can ignore alot of the other stuff until you need to incorporate some weird gem/dependency. So we started learning about &quot;convention over configuration&quot; during the class for Active Record. As we scale to a rails size application, We can quickly see the need for conventions in such a massive framework.</p>
+<p>It can be quite daunting at first. It&apos;ll take some getting used to, but more importantly, you&apos;re already familiar with a lot of the stuff in rails we&apos;ll be using. Additionally, you can ignore a lot of the other stuff until you need to incorporate some weird gem/dependency. So we started learning about &quot;convention over configuration&quot; during the class for Active Record. As we scale to a rails size application, We can quickly see the need for conventions in such a massive framework. Specifically for folder and file structure, rails can be quite particular about how we name things. Throughout this week we&apos;ll be going through a bunch of different conventions we need to follow.</p>
 <p>The first folder we&apos;ll talk about is the <code>app</code> folder:</p>
 <p><img src="images/rails_app.png" alt="Rails app folder"></p>
 <p>This folder is the the most important folder in your entire application. It&apos;ll have pretty much most of the programs functionality resting in it.</p>
@@ -1246,6 +1249,13 @@ The first thing that I want to do is connect our rails app to the tunr db that w
 </code></pre>
 <p>Let&apos;s run rails console and play with our models to test for a good connection to the database(5m to make sure everyone has a connection to the database):</p>
 <h3 id="routesthe-non-rails-way1555">Routes(the non rails way)(15/55)</h3>
+<blockquote>
+<p>One thing to note here, is that we will be defining routes very explicitly in this section. This isn&apos;t really the rails way to do this. We&apos;ll be learning later this week how to do this better, but for now, the way were doing is for 2 reasons.</p>
+<ul>
+<li>its a way for us to transition our Sinatra tunr app into rails</li>
+<li>its a way to learn how to explicitly define a route, because we&apos;ll learn about some helper methods later and we need to know what they do for us.</li>
+</ul>
+</blockquote>
 <p>Great, now that we&apos;ve established a connection to our database let move on to building out our routes.</p>
 <p>Basically what were doing here is mapping out what the different routes of our application will be just like our controllers in sinatra did for us. Let&apos;s pull from the artists controller first. Here&apos;s an example before/after for the first one:</p>
 <pre><code class="lang-ruby"><span class="hljs-comment"># in sinatra</span>
@@ -1271,16 +1281,32 @@ post <span class="hljs-string">&quot;artists&quot;</span> =&gt; <span class="hlj
 <h2 id="error-driven-development-30105">Error Driven Development (30/105)</h2>
 <p>I&apos;m going to be using error driven development to show some common errors and their solutions.</p>
 <p>Alright, I want to go ahead and test one of these routes out. In the terminal start up your rails server <code>$ rails s</code> And open a new terminal tab <code>cmd + &quot;t&quot;</code> and type <code>rake routes</code>. This shows you every route that is defined in <code>config/routes.rb</code></p>
-<p>Lets go into our browser and go to <code>http://localhost:3000/artists</code> and we&apos;ll see:</p>
+<p>Lets go into our browser and go to <code>http://localhost:3000/mispelledartists</code> and we&apos;ll see:</p>
+<p><img src="images/no_route.png" alt="no route error"></p>
+<p>Basically, this error is saying, you made a request, but i don&apos;t know what to do with it because it hasn&apos;t been defined.</p>
+<p>Now lets try this url <code>http://localhost:3000/artists</code> and we&apos;ll see:</p>
 <p><img src="images/routing_error.png" alt="routing error"></p>
-<p>So the application receives the request and says, <code>/artists</code> I know what to do here. I need to send this to the artists controller.</p>
-<p>Then finally we hit this error above. <code>unintialized constant ArtistsController</code> that means we have to create that controller. So let&apos;s go ahead and do that. <code>$ touch app/controllers/artists_controller.rb</code></p>
+<p>So the application receives the request and says, <code>/artists</code> I know what to do here.</p>
+<p>Specifically, it&apos;s seeing this line of code in <code>config/routes.rb</code>:</p>
+<pre><code class="lang-ruby">get <span class="hljs-string">&quot;artists&quot;</span> =&gt; <span class="hljs-string">&quot;artists#index&quot;</span>
+</code></pre>
+<blockquote>
+<p>Because this line of code exists, the router knows how to respond request at the <code>artists</code> path. On the right side of the hash rocket <code>&quot;artists#index&quot;</code> its specifying the controller and an action within that controller. In this case, when a user of our site accesses the <code>artists</code> path(<code>http://localhost:3000/artists</code>), that request will be sent to the artists controller and execute the index action inside that controller.</p>
+</blockquote>
+<p>After getting the request, the router sort of sends this request to the artists controller. But really whats happening is the router is telling the controller to perform some action.</p>
+<p>Since we don&apos;t have a controller, we finally hit this error above. <code>unintialized constant ArtistsController</code> that means we have to create that controller. All controllers we create will go in the <code>app/controllers/</code> directory. So let&apos;s go ahead and create out <code>ArtistsController</code> now.</p>
+<p>In the terminal:</p>
+<pre><code class="lang-bash">$ touch app/controllers/artists_controller.rb
+</code></pre>
 <p>In <code>app/controllers/artists_controller.rb</code>:</p>
 <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArtistsController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
 
 <span class="hljs-keyword">end</span>
 </code></pre>
-<p>Let&apos;s refresh:
+<blockquote>
+<p>Note the syntax in the file as well as the class definition. These are conventions of controllers in rails.</p>
+</blockquote>
+<p>Let&apos;s refresh our page:
 <br>
 <img src="images/unknown_action.png" alt="unknown_action"></p>
 <p>Oh noes another error. When we go to <code>http://localhost:3000/artists</code> our router says it knows where to send it. It&apos;s sending it to the artists controller and expects it to do the index action. Unfortunately we haven&apos;t defined it yet, so it&apos;s unknown. Lets go ahead and define one now</p>
@@ -1292,12 +1318,18 @@ post <span class="hljs-string">&quot;artists&quot;</span> =&gt; <span class="hlj
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
+<blockquote>
+<p>in rails methods defined in our controllers are known as <code>actions</code></p>
+</blockquote>
 <p>Great let&apos;s reload:
 <img src="images/template_missing.png" alt="template_missing"></p>
-<p>Another one .... We&apos;ll get more into this later. But this one is yelling at us for not having a view ready yet. Specifically in this case, the index view. So let&apos;s create that. Let&apos;s first make a directory and file in the terminal:</p>
+<p>Another one .... We&apos;ll get more into this later. But this one is yelling at us for not having a view(template) yet. Specifically in this case, the index view. So let&apos;s create that. Let&apos;s first make a directory and file in the terminal:</p>
 <pre><code class="lang-bash">$ mkdir app/views/artists
 $ touch app/views/artists/index.html.erb
 </code></pre>
+<blockquote>
+<p>Note the conventions here. We needed to make an <code>artists</code> folder to put the <code>index.html.erb</code> in it. When we define an <code>action</code> in our controller, rails knows to render the view corresponding to the controller and action. In this example, because were calling the <code>index</code> action in the <code>artists_controller</code>, it&apos;ll look for the <code>index</code> view in the <code>artists</code> folder.</p>
+</blockquote>
 <p>Inside <code>app/views/artist/index.html.erb</code>:
 Just put <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code></p>
 <p>And finally:</p>
@@ -1319,7 +1351,7 @@ Just put <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code></p>
 <p>Let&apos;s refresh the page:</p>
 <p><img src="images/no_method_error.png" alt="no_method_error"></p>
 <p>When we look at this error it says <code>undefined method &apos;each&apos; for nil:NilClass</code></p>
-<p>That&apos;s because <code>@artists</code> isn&apos;t defined. Let&apos;s define that now in the index action of our artists controller. In <code>app/controllers/artists_controller.rb</code>:</p>
+<p>That&apos;s because <code>@artists</code> isn&apos;t defined yet and we can&apos;t call <code>.each</code> on nil. Let&apos;s define that now in the index action of our artists controller. In <code>app/controllers/artists_controller.rb</code>:</p>
 <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArtistsController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
 
   <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
