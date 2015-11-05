@@ -4,23 +4,23 @@
 - Explain what Ruby on Rails is and it's architectural components (rMVC)
 - Explain the lifecycle of an HTTP request in Ruby on Rails
 - Explain how Convention over Configuration relates to Ruby on Rails
-- Explain the structure of a rails application (folders & files)
-- Compare and contrast the structure Sinatra and Rails appps
+- List the most common folders in a rails application and describe their purpose
+- Compare and contrast the structure Sinatra and Rails apps
 - Create a new Ruby on Rails application
-- Create a Rails App with a RESTful interface
+- Build a Rails App with a RESTful interface
 - Follow Rails naming conventions when creating models, views and controllers
 - Use error driven development in Rails to identify common errors and implement solutions for them.
 
 ## Opening Framing (5/5)
-So we've learned about Sinatra, your very first web framework! It's great. It's an awesome tool to get a quick page up and running. So why would we ever want to learn Rails? So Sinatra is kind of like a shovel for web development. Rails is kind of like a nuclear powered back hoe for web development. We need to know how to work a shovel before we get the keys to the back hoe. Many of the same conventions you used in Sinatra will transition into rails, but more importantly, there's alot more. Rails is a heavy duty web framework that follows relatively strict conventions in order to streamline web development.
+So we've learned about Sinatra, your very first web framework! It's great. It's an awesome tool to get a simple web app up and running quickly. So why would we ever want to learn Rails? So Sinatra is kind of like a shovel for web development. Rails is kind of like a nuclear powered back hoe for web development. We need to know how to work a shovel before we get the keys to the back hoe. Many of the same conventions you used in Sinatra will transition into rails, but more importantly, there's a lot more. Rails is a heavy duty web framework that follows relatively strict conventions in order to streamline our web development process.
 
 > It is designed to make programming web applications easier by making assumptions about what every developer needs to get started. It makes the assumption that there is the "best" way to do things, and it's designed to encourage that way - and in some cases to discourage alternatives. - Ruby on Rails guide
 
 > Rails is a framework with lots of rules/conventions. Pay attention to the conventions you'll need to follow for rails throughout the week.
 
-![rMVC](http://i.stack.imgur.com/Sf2OQ.png)
-
 ## rMVC (10/15)
+
+![rMVC](http://i.stack.imgur.com/Sf2OQ.png)
 
 The design pattern that rails is built around is rMVC - router, model, view and controller.
 
@@ -111,9 +111,9 @@ class Song < ActiveRecord::Base
 end
 ```
 
-Let's run rails console and play with our models to test for a good connection to the database(5m to make sure everyone has a connection to the database):
+Let's run `$ rails console` and play with our models to test for a good connection to the database(5m to make sure everyone has a connection to the database):
 
-### Routes(the non rails way)(15/55)
+### Routes (the non rails way) (15/55)
 > One thing to note here, is that we will be defining routes very explicitly in this section. This isn't really the rails way to do this. We'll be learning later this week how to do this better, but for now, the way were doing is for 2 reasons.
 - its a way for us to transition our Sinatra tunr app into rails
 - its a way to learn how to explicitly define a route, because we'll learn about some helper methods later and we need to know what they do for us.
@@ -153,7 +153,7 @@ Lets go into our browser and go to `http://localhost:3000/mispelledartists` and 
 
 ![no route error](images/no_route.png)
 
-Basically, this error is saying, you made a request, but i don't know what to do with it because it hasn't been defined.
+Basically, this error is saying, you made a request, but i don't know what to do with it because the request's route hasn't been defined.
 
 Now lets try this url `http://localhost:3000/artists` and we'll see:
 
