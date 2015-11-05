@@ -1,5 +1,14 @@
 # Sinatra & REST
 
+## Screen Casts
+[Sinatra 1](https://www.youtube.com/watch?v=ddLEgAjsyP0)
+[Sinatra 2](https://www.youtube.com/watch?v=4gilpAcCHpI)
+[Sinatra 3](https://www.youtube.com/watch?v=8HYqwTGbrIY)
+[Sinatra 4](https://www.youtube.com/watch?v=p8ZhfoMsqaM)
+[Sinatra 5](https://www.youtube.com/watch?v=K1DtJCOsrpU)
+
+
+## LO's
 - Explain what REST is and why we use it
 - List the HTTP request verbs
 - Describe what Sinatra is and what it is used for
