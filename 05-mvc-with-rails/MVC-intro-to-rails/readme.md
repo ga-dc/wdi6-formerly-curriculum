@@ -30,7 +30,7 @@ Life Cycle of the request/response in Rails:
 
 2. The request hits the router of the application.
 
-3. The application than either doesn't recognize the route (error) or it does recognize it and sends it to a controller.
+3. The application than either doesn't recognize the route (error) or it does recognize it(route) and sends it to a controller.
 
 4. Once the request hits the controller, its then going to query the database through Active Record(the model) for the information specified in the controller.
 
@@ -47,11 +47,13 @@ The first thing that I want to do, is just create a new rails applications. But 
 $ rails new tunr -d postgresql
 ```
 
+> the reason we pass in the `-d` flag with and argument of `postgresql`. Is we want to specify that the database layer of our application to be postgresql instead of the default sqlite3. Postgres is just a bit more robust and is the DBMS we've been using.
+
 You can see already there are many folders and files generated from just that one command.
 
 ![Rails folder structure](images/rails_folders.png)
 
-It can be quite daunting at first. It'll take some getting used to, but more importantly, you're already familiar with alot of the stuff in rails we'll be using. Additionally, you can ignore alot of the other stuff until you need to incorporate some weird gem/dependency. So we started learning about "convention over configuration" during the class for Active Record. As we scale to a rails size application, We can quickly see the need for conventions in such a massive framework.
+It can be quite daunting at first. It'll take some getting used to, but more importantly, you're already familiar with a lot of the stuff in rails we'll be using. Additionally, you can ignore a lot of the other stuff until you need to incorporate some weird gem/dependency. So we started learning about "convention over configuration" during the class for Active Record. As we scale to a rails size application, We can quickly see the need for conventions in such a massive framework. Specifically for folder and file structure, rails can be quite particular about how we name things. Throughout this week we'll be going through a bunch of different conventions we need to follow.
 
 The first folder we'll talk about is the `app` folder:
 
@@ -112,6 +114,10 @@ end
 Let's run rails console and play with our models to test for a good connection to the database(5m to make sure everyone has a connection to the database):
 
 ### Routes(the non rails way)(15/55)
+> One thing to note here, is that we will be defining routes very explicitly in this section. This isn't really the rails way to do this. We'll be learning later this week how to do this better, but for now, the way were doing is for 2 reasons.
+- its a way for us to transition our Sinatra tunr app into rails
+- its a way to learn how to explicitly define a route, because we'll learn about some helper methods later and we need to know what they do for us.
+
 Great, now that we've established a connection to our database let move on to building out our routes.
 
 Basically what were doing here is mapping out what the different routes of our application will be just like our controllers in sinatra did for us. Let's pull from the artists controller first. Here's an example before/after for the first one:
@@ -143,13 +149,35 @@ I'm going to be using error driven development to show some common errors and th
 
 Alright, I want to go ahead and test one of these routes out. In the terminal start up your rails server `$ rails s` And open a new terminal tab `cmd + "t"` and type `rake routes`. This shows you every route that is defined in `config/routes.rb`
 
-Lets go into our browser and go to `http://localhost:3000/artists` and we'll see:
+Lets go into our browser and go to `http://localhost:3000/mispelledartists` and we'll see:
+
+![no route error](images/no_route.png)
+
+Basically, this error is saying, you made a request, but i don't know what to do with it because it hasn't been defined.
+
+Now lets try this url `http://localhost:3000/artists` and we'll see:
 
 ![routing error](images/routing_error.png)
 
-So the application receives the request and says, `/artists` I know what to do here. I need to send this to the artists controller.
+So the application receives the request and says, `/artists` I know what to do here.
 
-Then finally we hit this error above. `unintialized constant ArtistsController` that means we have to create that controller. So let's go ahead and do that. `$ touch app/controllers/artists_controller.rb`
+Specifically, it's seeing this line of code in `config/routes.rb`:
+
+```ruby
+get "artists" => "artists#index"
+```
+
+> Because this line of code exists, the router knows how to respond request at the `artists` path. On the right side of the hash rocket `"artists#index"` its specifying the controller and an action within that controller. In this case, when a user of our site accesses the `artists` path(`http://localhost:3000/artists`), that request will be sent to the artists controller and execute the index action inside that controller.
+
+After getting the request, the router sort of sends this request to the artists controller. But really whats happening is the router is telling the controller to perform some action.
+
+Since we don't have a controller, we finally hit this error above. `unintialized constant ArtistsController` that means we have to create that controller. All controllers we create will go in the `app/controllers/` directory. So let's go ahead and create out `ArtistsController` now.
+
+In the terminal:
+
+```bash
+$ touch app/controllers/artists_controller.rb
+```
 
 In `app/controllers/artists_controller.rb`:
 
@@ -159,7 +187,9 @@ class ArtistsController < ApplicationController
 end
 ```
 
-Let's refresh:
+> Note the syntax in the file as well as the class definition. These are conventions of controllers in rails.
+
+Let's refresh our page:
 <br>
 ![unknown_action](images/unknown_action.png)
 
@@ -176,15 +206,19 @@ class ArtistsController < ApplicationController
 end
 ```
 
+> in rails methods defined in our controllers are known as `actions`
+
 Great let's reload:
 ![template_missing](images/template_missing.png)
 
-Another one .... We'll get more into this later. But this one is yelling at us for not having a view ready yet. Specifically in this case, the index view. So let's create that. Let's first make a directory and file in the terminal:
+Another one .... We'll get more into this later. But this one is yelling at us for not having a view(template) yet. Specifically in this case, the index view. So let's create that. Let's first make a directory and file in the terminal:
 
 ```bash
 $ mkdir app/views/artists
 $ touch app/views/artists/index.html.erb
 ```
+
+> Note the conventions here. We needed to make an `artists` folder to put the `index.html.erb` in it. When we define an `action` in our controller, rails knows to render the view corresponding to the controller and action. In this example, because were calling the `index` action in the `artists_controller`, it'll look for the `index` view in the `artists` folder.
 
 Inside `app/views/artist/index.html.erb`:
 Just put `<h1>Hello World</h1>`
@@ -217,7 +251,7 @@ Let's refresh the page:
 
 When we look at this error it says `undefined method 'each' for nil:NilClass`
 
-That's because `@artists` isn't defined. Let's define that now in the index action of our artists controller. In `app/controllers/artists_controller.rb`:
+That's because `@artists` isn't defined yet and we can't call `.each` on nil. Let's define that now in the index action of our artists controller. In `app/controllers/artists_controller.rb`:
 
 ```ruby
 class ArtistsController < ApplicationController
