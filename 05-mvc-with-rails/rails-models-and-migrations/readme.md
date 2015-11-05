@@ -239,7 +239,7 @@ end
 
 ## The Wrong Way(but sometimes the way I do it...)
 
-> I do it often, but only in development and if i'm not sharing code with other developers.
+> I do it often, but only in development and if I haven't yet shared code with other developers.
 
 Lets assume you have this migration:
 
@@ -304,7 +304,7 @@ end
 
 > rename_column is another method we can use inside the `change` method of migrations. It takes 3 arguments as well. First argument is the table you'd like to rename a column on. The second argument is which column you'd like to change. The third argument is what you'd like to change the column name to.
 
-Now if we run our migrations, we can see that the artists table in `db/schema.rb` has the proper `:photo_url` column.
+Now if we run our migrations, we can see that the artists table in `db/schema.rb` has the proper `:photo_url` column. Although it's a bit more leg work, we're not having to destroy any databases or undo any migrations which can potentially be really dangerous.
 
 ## Resources
 
