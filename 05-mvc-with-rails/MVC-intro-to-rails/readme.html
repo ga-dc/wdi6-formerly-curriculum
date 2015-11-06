@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.2" data-chapter-title="MVC Intro to Rails" data-filepath="05-mvc-with-rails/MVC-intro-to-rails/readme.md" data-basepath="../.." data-revision="Thu Nov 05 2015 23:38:10 GMT+0000 (UTC)">
+    <div class="book" data-level="4.2" data-chapter-title="MVC Intro to Rails" data-filepath="05-mvc-with-rails/MVC-intro-to-rails/readme.md" data-basepath="../.." data-revision="Fri Nov 06 2015 13:39:02 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1168,21 +1168,21 @@
 <li>Explain what Ruby on Rails is and it&apos;s architectural components (rMVC)</li>
 <li>Explain the lifecycle of an HTTP request in Ruby on Rails</li>
 <li>Explain how Convention over Configuration relates to Ruby on Rails</li>
-<li>Explain the structure of a rails application (folders &amp; files)</li>
-<li>Compare and contrast the structure Sinatra and Rails appps</li>
+<li>List the most common folders in a rails application and describe their purpose</li>
+<li>Compare and contrast the structure Sinatra and Rails apps</li>
 <li>Create a new Ruby on Rails application</li>
-<li>Create a Rails App with a RESTful interface</li>
+<li>Build a Rails App with a RESTful interface</li>
 <li>Follow Rails naming conventions when creating models, views and controllers</li>
 <li>Use error driven development in Rails to identify common errors and implement solutions for them.</li>
 </ul>
 <h2 id="opening-framing-55">Opening Framing (5/5)</h2>
-<p>So we&apos;ve learned about Sinatra, your very first web framework! It&apos;s great. It&apos;s an awesome tool to get a quick page up and running. So why would we ever want to learn Rails? So Sinatra is kind of like a shovel for web development. Rails is kind of like a nuclear powered back hoe for web development. We need to know how to work a shovel before we get the keys to the back hoe. Many of the same conventions you used in Sinatra will transition into rails, but more importantly, there&apos;s alot more. Rails is a heavy duty web framework that follows relatively strict conventions in order to streamline web development.</p>
+<p>So we&apos;ve learned about Sinatra, your very first web framework! It&apos;s great. It&apos;s an awesome tool to get a simple web app up and running quickly. So why would we ever want to learn Rails? So Sinatra is kind of like a shovel for web development. Rails is kind of like a nuclear powered back hoe for web development. We need to know how to work a shovel before we get the keys to the back hoe. Many of the same conventions you used in Sinatra will transition into rails, but more importantly, there&apos;s a lot more. Rails is a heavy duty web framework that follows relatively strict conventions in order to streamline our web development process.</p>
 <blockquote>
 <p>It is designed to make programming web applications easier by making assumptions about what every developer needs to get started. It makes the assumption that there is the &quot;best&quot; way to do things, and it&apos;s designed to encourage that way - and in some cases to discourage alternatives. - Ruby on Rails guide</p>
 <p>Rails is a framework with lots of rules/conventions. Pay attention to the conventions you&apos;ll need to follow for rails throughout the week.</p>
 </blockquote>
-<p><img src="http://i.stack.imgur.com/Sf2OQ.png" alt="rMVC"></p>
 <h2 id="rmvc-1015">rMVC (10/15)</h2>
+<p><img src="http://i.stack.imgur.com/Sf2OQ.png" alt="rMVC"></p>
 <p>The design pattern that rails is built around is rMVC - router, model, view and controller.</p>
 <p>Life Cycle of the request/response in Rails:</p>
 <ol>
@@ -1247,8 +1247,8 @@ The first thing that I want to do is connect our rails app to the tunr db that w
   belongs_to <span class="hljs-symbol">:artist</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<p>Let&apos;s run rails console and play with our models to test for a good connection to the database(5m to make sure everyone has a connection to the database):</p>
-<h3 id="routesthe-non-rails-way1555">Routes(the non rails way)(15/55)</h3>
+<p>Let&apos;s run <code>$ rails console</code> and play with our models to test for a good connection to the database(5m to make sure everyone has a connection to the database):</p>
+<h3 id="routes-the-non-rails-way-1555">Routes (the non rails way) (15/55)</h3>
 <blockquote>
 <p>One thing to note here, is that we will be defining routes very explicitly in this section. This isn&apos;t really the rails way to do this. We&apos;ll be learning later this week how to do this better, but for now, the way were doing is for 2 reasons.</p>
 <ul>
@@ -1283,7 +1283,7 @@ post <span class="hljs-string">&quot;artists&quot;</span> =&gt; <span class="hlj
 <p>Alright, I want to go ahead and test one of these routes out. In the terminal start up your rails server <code>$ rails s</code> And open a new terminal tab <code>cmd + &quot;t&quot;</code> and type <code>rake routes</code>. This shows you every route that is defined in <code>config/routes.rb</code></p>
 <p>Lets go into our browser and go to <code>http://localhost:3000/mispelledartists</code> and we&apos;ll see:</p>
 <p><img src="images/no_route.png" alt="no route error"></p>
-<p>Basically, this error is saying, you made a request, but i don&apos;t know what to do with it because it hasn&apos;t been defined.</p>
+<p>Basically, this error is saying, you made a request, but i don&apos;t know what to do with it because the request&apos;s route hasn&apos;t been defined.</p>
 <p>Now lets try this url <code>http://localhost:3000/artists</code> and we&apos;ll see:</p>
 <p><img src="images/routing_error.png" alt="routing error"></p>
 <p>So the application receives the request and says, <code>/artists</code> I know what to do here.</p>
