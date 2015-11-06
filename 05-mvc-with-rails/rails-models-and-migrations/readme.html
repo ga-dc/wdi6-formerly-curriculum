@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.3" data-chapter-title="Models and Migrations" data-filepath="05-mvc-with-rails/rails-models-and-migrations/readme.md" data-basepath="../.." data-revision="Fri Nov 06 2015 13:58:40 GMT+0000 (UTC)">
+    <div class="book" data-level="4.3" data-chapter-title="Models and Migrations" data-filepath="05-mvc-with-rails/rails-models-and-migrations/readme.md" data-basepath="../.." data-revision="Fri Nov 06 2015 14:33:37 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1356,6 +1356,14 @@ $ rake db:migrate
 <p>It&apos;s sometimes not obvious what actions you take may or may not destroy user data. But bother <code>rake db:rollback</code> and <code>rake db:drop</code> have the potential of doing it.</p>
 </blockquote>
 <h2 id="you-do-create-a-migration-and-roll-it-back">You do: Create a migration and roll it back</h2>
+<ul>
+<li>Create a migration that adds a column to artist called <code>genre</code> that has a string as the data type</li>
+<li>Run the migrations by running <code>$ rake db:migrate</code></li>
+<li>Inspect <code>db/schema.rb</code>. Look at its contents.</li>
+<li>Now run rake db:rollback</li>
+<li>Inspect <code>db/schema.rb</code> again and note that <code>genre</code> is not longer a column in the table.</li>
+<li>Spend two minutes experimenting for yourself how <code>$ rake db:rollback</code> works</li>
+</ul>
 <h2 id="i-do-the-right-way">I do: The Right Way</h2>
 <p>Let&apos;s assume we did mess up our initial migration like the code above with the misspelled <code>poto_url</code>. Instead of the methods listed above, the right way is to create an additional migration that changes the name of the column in our table.</p>
 <p>In the terminal:</p>
