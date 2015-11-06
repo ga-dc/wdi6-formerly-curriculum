@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.3" data-chapter-title="Models and Migrations" data-filepath="05-mvc-with-rails/rails-models-and-migrations/readme.md" data-basepath="../.." data-revision="Fri Nov 06 2015 13:47:20 GMT+0000 (UTC)">
+    <div class="book" data-level="4.3" data-chapter-title="Models and Migrations" data-filepath="05-mvc-with-rails/rails-models-and-migrations/readme.md" data-basepath="../.." data-revision="Fri Nov 06 2015 13:50:06 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1193,30 +1193,45 @@ $ git commit -m &quot;initial commit&quot;
 <p>Use <code>rails c</code> to view the output of</p>
 <pre><code class="lang-rb"><span class="hljs-constant">ENV</span>[<span class="hljs-string">&quot;RAILS_ENV&quot;</span>]
 </code></pre>
+<blockquote>
+<p>You can see that the output is <code>development</code>. ENV[&quot;RAILS_ENV&quot;] is a way we get/set our environment and allows for different types of configurations. The other two types of environment are <code>test</code> and <code>production</code></p>
+</blockquote>
 <h2 id="what-is-rake">What is Rake?</h2>
 <p>Rake is known as &quot;Ruby Make&quot;. Make is a popular tool that allows developers to put
 repetitive command line tasks into a single file and run several tasks at the same time
 with a single command.</p>
 <p>Rails uses rake to:</p>
 <ul>
-<li>Create the database</li>
-<li>Create / Edit database tables</li>
-<li>Drop the database</li>
-<li>Seed the database</li>
-<li><a href="https://github.com/rails/rails/blob/3e36db4406beea32772b1db1e9a16cc1e8aea14c/railties/lib/rails/tasks/engine.rake#L30-L31" target="_blank">source code</a></li>
+<li>Create the database (<code>rake db:create</code>)</li>
+<li>Create / Edit database tables (<code>rake db:migrate</code>)</li>
+<li>Drop the database (<code>rake db:drop</code>)</li>
+<li>Seed the database (<code>rake db:seed</code>)</li>
 </ul>
+<p><a href="https://github.com/ruby/rake#description" target="_blank">Learn more about rake here</a></p>
 <h2 id="you-do-models">You do: Models</h2>
 <p>Create the models for both Artists and Songs</p>
 <p>If you&#x2019;re feeling adventurous, consider adding a third model like Favorites, or Genres.</p>
 <p>How do you know it worked?</p>
+<p>If we hop into the rails console and type in Artist:</p>
+<pre><code>$ rails c
+Loading development environment (Rails 4.2.4)
+2.2.3 :001&gt; Artist
+ =&gt; Artist(Table doesn&apos;t exist)
+</code></pre><blockquote>
+<p>If we type in any other capitalized word it will throw an error <code>uninitialized Constant</code></p>
+</blockquote>
 <h2 id="we-do-migrations">We do: Migrations</h2>
 <blockquote>
 <p>You can think of each migration as being a new &apos;version&apos; of the database. A schema starts off with nothing in it, and each migration modifies it to add or remove tables, columns, or entries. Active Record knows how to update your schema along this timeline, bringing it from whatever point it is in the history to the latest version. Active Record will also update your db/schema.rb file to match the up-to-date structure of your database.</p>
 </blockquote>
 <p><a href="http://edgeguides.rubyonrails.org/active_record_migrations.html" target="_blank">http://edgeguides.rubyonrails.org/active_record_migrations.html</a></p>
+<p>In the terminal:</p>
 <pre><code>$ rails g migration create_artists
 </code></pre><p><code>rails g</code> is short for <code>rails generate</code>.</p>
 <p>This creates a migration file <code>db/migrate/20150726145027_create_artists.rb</code></p>
+<blockquote>
+<p>The numbers at the beginning of a migration file are a timestamp. Rails uses this timestamp to determine which migration should be run and in what order, so if you&apos;re copying a migration from another application or generate a file yourself, be aware of its position in the order. <a href="http://edgeguides.rubyonrails.org/active_record_migrations.html#creating-a-standalone-migration" target="_blank">source</a></p>
+</blockquote>
 <pre><code class="lang-rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateArtists</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
   <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
     create_table <span class="hljs-symbol">:artists</span> <span class="hljs-keyword">do</span> |t|
@@ -1228,8 +1243,8 @@ with a single command.</p>
 <pre><code class="lang-rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateArtists</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
   <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
     create_table <span class="hljs-symbol">:artists</span> <span class="hljs-keyword">do</span> |t|
-      t.string <span class="hljs-symbol">:name</span> 
-      t.string <span class="hljs-symbol">:photo_url</span> 
+      t.string <span class="hljs-symbol">:name</span>
+      t.string <span class="hljs-symbol">:photo_url</span>
       t.string <span class="hljs-symbol">:nationality</span>
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
@@ -1239,15 +1254,26 @@ with a single command.</p>
 data types to create columns of that type, passing in the name of the column as a symbol.</p>
 <p>You can create the artists table and run this migration with <code>rake db:migrate</code></p>
 <p><a href="http://edgeguides.rubyonrails.org/active_record_migrations.html#using-the-change-method" target="_blank">Using the Change method</a></p>
+<p>When you run <code>rake db:migrate</code> I file called <code>db/schema.rb</code> gets generated. What are it&apos;s contents?</p>
+<blockquote>
+<p>You should NEVER have to update the <code>schema.rb</code>. Running <code>rake db:migrate</code> will update the schema for you as per your migrations.</p>
+</blockquote>
 <h2 id="you-do-view-dbschemarb">You do: view db/schema.rb</h2>
-<p>The above command created this file. Take a minute to read through it. </p>
+<p>The above command created this file. Take a minute to read through it.</p>
 <h2 id="you-do-use-rails-console">You do: Use Rails console</h2>
-<p>to create at least two artists.</p>
+<ul>
+<li>to create at least two artists.</li>
+<li>save the commands you run in your text editor so you can leverage it later.</li>
+</ul>
 <pre><code>$ rails console
 </code></pre><p><code>rails c</code> is short for <code>rails console</code></p>
 <h2 id="you-do-create-the-migration-for-songs">You do: Create the migration for Songs</h2>
+<h2 id="i-do-passing-arguments-into-rails-g-migration">I do: passing arguments into <code>rails g migration</code></h2>
 <pre><code>$ rails g migration create_songs title:string album:string preview_url:string artist:references
-</code></pre><p>The above command creates the following file:</p>
+</code></pre><blockquote>
+<p>There are lots of little short cuts that <code>g</code> or <code>generate</code> can give you. <a href="http://edgeguides.rubyonrails.org/active_record_migrations.html#model-generators" target="_blank">Model Generators</a> is just one example.</p>
+</blockquote>
+<p>The above command creates the following file:</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># db/migrate/20150726150324_create_songs.rb</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateSongs</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
   <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
@@ -1264,18 +1290,27 @@ data types to create columns of that type, passing in the name of the column as 
 wherever <code>belongs_to</code> appears in the model definition.</p>
 <p><code>t.references :artist</code> is equivilant to <code>t.integer :artist_id</code></p>
 <h2 id="you-do-use-rails-console">You do: Use rails console</h2>
-<p>to create at least three songs that are associated with the previous two artists.</p>
+<ul>
+<li>to create at least three songs that are associated with the previous two artists.</li>
+<li>save the commands you run in your text editor so you can leverage it later.</li>
+</ul>
 <h2 id="break">Break</h2>
 <h2 id="we-do-seeds">We do: Seeds</h2>
-<p>First, let&apos;s add in the missing data for seeds:</p>
-<pre><code>$ curl http://www.wdidc.org/seeds/get.sh | sh
-$ rake db:seed
-</code></pre><h2 id="we-do-how-to-deal-with-mistakes">We do: How to deal with mistakes</h2>
-<p>I forgot to tell you all about timestamps. Rails can automatically timestamp when 
-objects are created and updated. Let&#x2019;s create a new migration to add timestamp columns
-to the artists table.</p>
+<p>Seeds? Why do we need to create dummy data for our application. In order to test out the interfaces and functionalities we build out, we need some content/data to manipulate in order to see how it looks and feels on our application.</p>
+<p>Let&apos;s update our seeds (<code>db/seeds.rb</code>) file now.</p>
+<p>Remember those commands we had you write down during the rails console exercises?</p>
+<p>Instead of the console, leverage the code from those exercises to create 3 artists that have 3 songs each.</p>
+<p>Make sure to include the following two lines of code at the top of your <code>db/seeds.rb</code>:</p>
+<pre><code class="lang-rb"><span class="hljs-constant">Artist</span>.destroy_all
+<span class="hljs-constant">Song</span>.destroy_all
+</code></pre>
+<p>To run this seeds file all we need to do is run <code>$ rake db:seed</code> in the terminal.</p>
+<p>After running the seeds, go into the <code>rails console</code> and play with the objects you created.</p>
+<h2 id="we-do-how-to-deal-with-mistakes">We do: How to deal with mistakes</h2>
+<p>I forgot to tell you all about timestamps. Rails can automatically timestamp when objects are created and updated. Let&#x2019;s create a new migration to add timestamp columns to the artists table.</p>
 <pre><code>$ rails g migration add_timestamps_to_artists
-</code></pre><pre><code class="lang-rb"><span class="hljs-comment"># 20150726150946_add_timestamps_to_artists.rb</span>
+</code></pre><p>In that migration place the following content:</p>
+<pre><code class="lang-rb"><span class="hljs-comment"># 20150726150946_add_timestamps_to_artists.rb</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddTimestampsToArtists</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
   <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
     add_column <span class="hljs-symbol">:artists</span>, <span class="hljs-symbol">:created_at</span>, <span class="hljs-symbol">:datetime</span>
@@ -1283,22 +1318,60 @@ to the artists table.</p>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
+<blockquote>
+<p>add_column is one of many custom methods that can be used in the <code>change</code> method in migrations. It takes 3 arguments. The first argument is the table you want to add the column to.  The second argument is what column you&apos;d like to add to that table(1st argument). The third argument is the datatype for the column.</p>
+</blockquote>
 <h2 id="you-do-add-timestamps-to-songs-table">You do: add timestamps to Songs table</h2>
-<h2 id="we-do-undoing-things-possibly-dangerous">We do: Undoing things (possibly dangerous)</h2>
-<p>To undo a migration, <code>rake db:rollback</code>. This might destroy data - be careful!</p>
-<p>It is considered OK to rollback migrations, edit them, and re-migrate in a development
-environment, but NOT in a production environment. If you are working on an application
-with other developers, avoid using <code>rake db:rollback</code> after code has been pushed, and
-create new migrations that can be migrated forward on other machines.</p>
-<p>What is the difference between creating migrations that fix previous mistakes, vs this workflow:</p>
-<ol>
-<li>make mistake</li>
-<li>rake db:migrate</li>
-<li>fix wrong migration file</li>
-<li>rake db:migrate:reset || rake db:drop:all &amp;&amp; rake db:create &amp;&amp; rake db:migrate</li>
-</ol>
-<p>Users will be very upset if you destroy their data. </p>
+<h2 id="i-do-undoing-things-possibly-dangerous">I do: Undoing things (possibly dangerous)</h2>
+<h2 id="the-wrong-waybut-sometimes-the-way-i-do-it">The Wrong Way(but sometimes the way I do it...)</h2>
+<blockquote>
+<p>I do it often, but only in development and if I haven&apos;t yet shared code with other developers.</p>
+</blockquote>
+<p>Lets assume you have this migration:</p>
+<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateArtists</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    create_table <span class="hljs-symbol">:artists</span> <span class="hljs-keyword">do</span> |t|
+      t.string <span class="hljs-symbol">:name</span>
+      t.string <span class="hljs-symbol">:poto_url</span>
+      t.string <span class="hljs-symbol">:nationality</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Oh man! I really messed my migration up by misspelling photo but I&apos;ve already run my migrations. If I fix it directly here in this migration file and run <code>rake db:migrate</code>, I can look at my <code>db/schema.rb</code> file and see that nothings changed, it still says <code>poto_url</code>. It didn&apos;t take.</p>
+<p>We can reset the entire database in the terminal:</p>
+<pre><code class="lang-bash">$ rake db:drop
+$ rake db:create
+$ rake db:migrate
+</code></pre>
+<p>If we run these commands, we&apos;re dropping our entire database and creating a brand new one. Why is this potentially super dangerous?</p>
+<p>Another (wrong) way we can do this is by using <code>rake db:rollback</code>.</p>
+<p>To undo a single migration, <code>rake db:rollback</code>. This might destroy data - be careful! Whatever columns or tables that were created by that migration will now be gone.</p>
+<blockquote>
+<p>Something to note. When we run <code>rake db:migrate</code> on a new application it will run every migration. When we run <code>rake db:rollback</code> it will only undo the migration with the most recent timestamp. Every subsequent rollback will undo the most recent timestamped migration that hasn&apos;t been undone yet.</p>
+</blockquote>
+<p>It is considered OK to rollback migrations, edit them, and re-migrate in a development environment, but NOT in a production environment. If you are working on an application with other developers, avoid using <code>rake db:rollback</code> after code has been pushed, and create new migrations that can be migrated forward on other machines.</p>
+<p>Important Note if you&apos;re a developer - Users will be very upset if you destroy their data.</p>
+<blockquote>
+<p>It&apos;s sometimes not obvious what actions you take may or may not destroy user data. But bother <code>rake db:rollback</code> and <code>rake db:drop</code> have the potential of doing it.</p>
+</blockquote>
 <h2 id="you-do-create-a-migration-and-roll-it-back">You do: Create a migration and roll it back</h2>
+<h2 id="i-do-the-right-way">I do: The Right Way</h2>
+<p>Let&apos;s assume we did mess up our initial migration like the code above with the misspelled <code>poto_url</code>. Instead of the methods listed above, the right way is to create an additional migration that changes the name of the column in our table.</p>
+<p>In the terminal:</p>
+<pre><code class="lang-bash">$ rails g migration change_column_<span class="hljs-keyword">in</span>_artists
+</code></pre>
+<p>This will generate a new migration. Lets fill its contents now in <code>db/migrate/20151105201357_change_column_in_artists.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChangeColumnInArtists</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    rename_column <span class="hljs-symbol">:artists</span>, <span class="hljs-symbol">:poto_url</span>, <span class="hljs-symbol">:photo_url</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<blockquote>
+<p>rename_column is another method we can use inside the <code>change</code> method of migrations. It takes 3 arguments as well. First argument is the table you&apos;d like to rename a column on. The second argument is which column you&apos;d like to change. The third argument is what you&apos;d like to change the column name to.</p>
+</blockquote>
+<p>Now if we run our migrations, we can see that the artists table in <code>db/schema.rb</code> has the proper <code>:photo_url</code> column. Although it&apos;s a bit more leg work, we&apos;re not having to destroy any databases or undo any migrations which can potentially be really dangerous.</p>
 <h2 id="resources">Resources</h2>
 <ul>
 <li>list of rails commands - <a href="https://gist.github.com/jshawl/ce1de309ef993ec808d9" target="_blank">https://gist.github.com/jshawl/ce1de309ef993ec808d9</a></li>
