@@ -1,45 +1,62 @@
 # Views and Controllers
 
 ## Learning Objectives
-- Describe the role of controllers and views in a Rails app
+- Describe the roles of controllers and views in a Rails app
 - Explain how the router directs requests to a specific controller and action
 - Explain how controller actions map to specific views
-- Describe the Rails convention for implicity rendering a view from an action
+- Describe the Rails convention for implicitly rendering a view from an action
 - Use `strong_params` to limit what attributes can be modified
 - Describe the role of instance variables in sharing information between an action and its view
 - Describe the difference between a `redirect` and a `render`
 
 ## Opening Framing (5/5)
-So we've gone over how to port an existing Sinatra app into a rails app. We've also talked about models and migrations. The next layer we want to discuss more in depth is Views and Controllers. What's really happening when someone goes to a route that belongs to our site?
+Last week, you got a quick overview of the full MVC structure of a Rails app by porting Tunr from Sinatra into Rails. Today, we're going to continue the deeper dive into the why and how of "The Rails Way" for each of the major components of that structure. Models & Migrations gave us a systematic, iterable way to organize, store, retrieve, and modify a database, using ActiveRecord as an interface to map our database tables into objects in Ruby. Views & Controllers will build on that, allowing us to do more with that structured data. But what..?
 
-## Route/Controller/action relationship (15/20)
-Let's start by typing rake routes in our current code base:
+### Doc Dive
+Read Parts 1-3: http://guides.rubyonrails.org/action_controller_overview.html
 
+### Turn & Talk
+What is the role of a controller in a Rails application?
+What are the conventions for naming Rails controllers, and what are the benefits using those conventions?
+
+### Diagram: Revisited
+<!-- TODO: MVC Diagram & Why -->
+Based on previous classes and the references to the view in context of the controller, who can remind us what the role of a view is in a Rails application?
+
+## Seup
+This lesson will build directly off of the work you did with Models and Migrations. If you would prefer to work with a clean starter rather than building on your existing copy:
 ```bash
-Prefix Verb   URI Pattern                 Controller#Action
-   artists GET    /artists(.:format)          artists#index
-artists_new GET    /artists/new(.:format)      artists#new
-           POST   /artists(.:format)          artists#create
-           GET    /artists/:id(.:format)      artists#show
-           GET    /artists/:id/edit(.:format) artists#edit
-           PUT    /artists/:id(.:format)      artists#update
-           DELETE /artists/:id(.:format)      artists#destroy
-     songs GET    /songs(.:format)            songs#index
- songs_new GET    /songs/new(.:format)        songs#new
-           POST   /songs(.:format)            songs#create
-           GET    /songs/:id(.:format)        songs#show
-           GET    /songs/:id/edit(.:format)   songs#edit
-           PUT    /songs/:id(.:format)        songs#update
-           DELETE /songs/:id(.:format)        songs#destroy
+git clone git@github.com:ga-dc/tunr_rails_models_and_migrations.git
+git checkout solution
 ```
 
-Lets take the index action for example.
+## Route-Controller-Action Relationship (15/20)
+<!-- TODO: Setup instructions -->
+Let's start by navigating to our `tunr_rails_views_controller` repo and typing `rake routes` in our terminal:
 
-- The user types in a url that matches our server. The router will say, "I recognize this route! I know exactly what to do".
+```bash
+Prefix      Verb   URI Pattern                 Controller#Action
+    artists GET    /artists(.:format)          artists#index
+artists_new GET    /artists/new(.:format)      artists#new
+            POST   /artists(.:format)          artists#create
+            GET    /artists/:id(.:format)      artists#show
+            GET    /artists/:id/edit(.:format) artists#edit
+            PUT    /artists/:id(.:format)      artists#update
+            DELETE /artists/:id(.:format)      artists#destroy
+     songs  GET    /songs(.:format)            songs#index
+ songs_new  GET    /songs/new(.:format)        songs#new
+            POST   /songs(.:format)            songs#create
+            GET    /songs/:id(.:format)        songs#show
+            GET    /songs/:id/edit(.:format)   songs#edit
+            PUT    /songs/:id(.:format)        songs#update
+            DELETE /songs/:id(.:format)        songs#destroy
+```
 
-- The router says, "a GET request to the '/artists'? No problem, hey artists controller you need to perform the index action"
+Lets take the artists index action for example.
 
-- The artists controller says, "An index action? I got one of those." Let see, it says here I need to ask the model(Active Record) for some information, hey model, i need all of the artists.
+- The user types in a url, which triggers a request to the server. It hits the router. The router says, "a GET request to the '/artists' path? No problem! Hey, artists controller, you need to perform the index action"
+
+- The artists controller says, "An index action? I've got one of those. Lets see, it says here I need to ask the model for information about all of the artists. Hey, ActiveRecord Model, gimme that data!"
 
 - Thanks for all the artists, Now I'm going to send all this information to the view. The view than generates a response to the client.
 
@@ -57,7 +74,7 @@ If we remember back to Sinatra, you'll notice that we're not explicitly telling 
 
 That's because rails has implicit rendering. Basically rails is smart enough to know if the artists controller action is called index, then it will look for the index view in the artist folder.
 
-You can explicity change the implicit render by calling the `render` method in the action of a controller. Something like this:
+You can explicitly change the implicit render by calling the `render` method in the action of a controller. Something like this:
 
 ```ruby
 def index
@@ -132,7 +149,7 @@ As well as uncomment `protect_from_forgery with: :exception` in our `app/control
 
 What's ultimately going to happen when we update our forms?
 
-Any time a userviews a form to create, update or destroy a resource, the rails app create a random `authenticity_token` and stores it in a session. When the user than submits the form, rails will look for the authenticity_token compares it to the one stored in the session, and if they match allow the request to continue.
+Any time a user views a form to create, update or destroy a resource, the rails app create a random `authenticity_token` and stores it in a session. When the user than submits the form, rails will look for the authenticity_token compares it to the one stored in the session, and if they match allow the request to continue.
 
 If someone was trying to update our database in some way other than our application, it would be denied.
 
@@ -158,7 +175,7 @@ def artist_params
 end
 ```
 
-> the require method ensurezs that a specific parameter is present. Throws an error otherwise. The permit method returns a copy of the parameters object, returning only the permitted keys and values.
+> the require method ensures that a specific parameter is present. Throws an error otherwise. The permit method returns a copy of the parameters object, returning only the permitted keys and values.
 
 > note that we encapsulate the artist_params in a private method because we only want this available to this particular class and it shouldn't work outside the scope of the controller
 
