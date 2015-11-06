@@ -1,491 +1,659 @@
-# Unit Testing with RSpec (5m)
-- Explain the purpose Unit testing
-- Explain what role RSpec plays in testing
-- Explain the TDD/BDD Mantra
-- Describe RSpec's basic syntax
-- Define the role of expectations and matchers
-- Explain why isolating tests is a best practice
-- List common expectations and the scenarios they support
-- Differentiate between testing return values and side effects
-- Describe why we avoid testing internal implementation
+# RSpec
 
+## Learning Objectives
+- List benefits of unit testing, both to the creation process and to the collaboration process
+- Describe the difference between `context`, `describe`, and `it`
+- Describe the difference between `let`, `before(:each)`, and `before(:all)`
+- Plan the creation of a project by reducing it to a series of unit tests
+- Contrast unit tests and functional tests
+- Add specs to an existing Sinatra app
+- Define Test-Driven Development and give an example of why it's useful
 
-## Unit Testing (10m)
+## Why learn this?
 
-As our applications increase in complexity, we need a saftey net.  We need something to ensure that we "Do no harm".  We need a battery of automated tests.  These are specifications about YOUR code that you can run to ensure your code is doing what it should.  
+We've been using the "Sinatra Reloader" gem pretty much since we first touched Sinatra.
 
-Think back to the way you code.  You create a part of a web page, then you browse to that page to test it.  To ensure that it is doing as you expect.  Then you add another feature.  And test both features.  Then you add a third feature and test... just the third feature.  Imagine if you had a battery of automated specs, which run against your code, so you can see if your new changes fit your new requirements and EVERY requirement that came before this.
+#### Why?
 
-There a few levels of testing. Acceptance tests verify our apps at the lvel of user interaction.  They visit web pages, click on links, validate the DOM.  Integration tests check the interaction between objects.  Unit tests check the smallest level.  The functionality of a specific method.
+Pretty obviously: it's super-annoying to have to quit and restart Sinatra all the time!
 
-Sandi Metz (author of POODiR), has a talk titled "The Magic Tricks of Testing".  
+You know what else is super-annoying? Every time you change the "POST" route of Tunr or Sinatra, even just a little bit, you have to go back to `localhost:4567/artists/10/edit` *again*, fill in the form *again*, click "submit" *again*, read the error message *again*, restart Pry *again*... 
 
-She discuses that:
-- Unit tests stand in contrast to integration tests
-- Unit tests focus on small pieces of code, like single objects
-- The intent is to ensure the correct functioning of your app at the atomic level
-- These tests are conducted in isolation, without reference to external objects, as much as possible (using mocks and stubs as placeholders when necessary)
+Whether or not you noticed, you're spending a **lot** of time just checking to see if your app works. That's time that could be spent adding new features, or even sleeping, Heaven forbid.
 
-She propounds that our Unit Tests should be:
-- Thorough
-- Stable
-- Fast
-- Few
+*Life doesn't have to be this way.*
 
-They need to be thorough enough to identify an issue at the moment when it occurs.  They need to be stable so that we can trust them.  No [flickering tests](http://sk176h.blogspot.com/2013/05/flickering-scenario.html).  They need to be fast so that we can run all our tests every time we make a change - or we will stop running them.  They need to be few so...  They need to be few so that... awww, go watch the talk already.
+Wouldn't it be nice if there was something that would do all that testing for you? Maybe you could just type on command into your Terminal and it would show you everything that works and everything that doesn't?
 
+## Code along
 
-### What is RSpec?
+### Let's start at the end
 
-RSpec is a testing framework for the Ruby programming language.  RSpec makes it easier to write tests.  It's a Domain Specific Language for writing live specifications about your code.  It was released on May 18, 2007, so it's benn around for a while.  It is the defacto testing framework.
+We're going to end up with something like this:
 
-The reading discussed TDD/BDD.  Indicating that testing is as much about design, helping you to architect a maintainable application, as it is about creating a body of regression tests.  In this lesson, we are focusing on the safety net.  Design is hard, BDD makes it easier, but need the basic skills first.
-
-Today, don't worry about *when* you write your tests.  **Just focus on writing tests.**  Later, when you are more comfortable writing tests, you can begin to use them to drive your design.
-
----
-
-## Let's look at an example (30m)
-
-I don't expect you to type this with me, but this code is available at [rspec_person_example](https://github.com/ga-dc/rspec_person_example)
-
-
-When I run `rspec` in the `rspec_person_example` dir, what do we see?
-
-```
-Person
-  Constructor
-    should create a new instance of class Person
-    should have a name
-    should default #language to 'English'
-  #greeting
-    for default language (English)
-      should offer a greeting in English
-    when language is 'Italian'
-      should offer a greeting in Italian
-
-Finished in 0.00565 seconds (files took 0.14281 seconds to load)
-5 examples, 0 failures
-```
-
-This tells me quite a bit about a Person.  I see that Person should have a Constructor that accepts name and (possibly) language.  From the constructor, I see the Person might support many languages, starting with English.  Then, I see that a Person can greet in English or Italian.
-
-
-Let's review `spec/person_spec.rb`.  This is the specification for a Person.  It indicates how we can expect a Person to function.  We can trust it to act in this manner.  Here, we see what some examples of how to initialize a Person.
-
-
-
-```
-rspec_person_example/
-├── models
-│   └── person.rb
-└── spec
-    ├── person_spec.rb
-    └── spec_helper.rb
-
-2 directories, 3 files
-```
-
-We have a Person model and a Person spec (a specification or test). This is the typical RSpec convention.  Specs live under the spec directory and echo the models in our system with the `_spec` suffix.
-
----
-
-### What does an RSpec specification (or "test") look like?
-
-``` ruby
-require_relative '../models/person'  # a reference to our code
-
-describe Person do
-  describe "Constructor" do
-    before(:each) do
-      @matt = Person.new("Matt")
-    end
-
-    it "should create a new instance of class Person" do
-      expect(@matt).to be_an_instance_of(Person)
-    end
-
-    it "should have a name" do
-      expect(@matt.name).to_not be_nil
-    end
-
-    it "should default #language to 'English'" do
-      expect(@matt.language).to eq("English")
-    end
+```rb
+describe Apartment do
+  it "has the class Apartment" do
+    apartment = Apartment.new
+    expect(apartment).to be_a("Apartment")
   end
-
-  describe "#greeting" do
-    context "for default language (English)" do
-      subject(:bob) { Person.new("Bob") }
-
-      it "should offer a greeting in English" do
-        expect(bob.greeting).to eql("Hello, my name is Bob.")
+  it "has a String for an address" do
+    white_house = Apartment.new(address: "1600 Penn Ave")
+    expect(white_house.address).to be_a(String)
+  end
+  describe "#add_tenant" do
+    context "when the number of tenants" do
+      context "is less than the number of beds" do
+        it "adds a tenant" do
+          apartment = Apartment.create(num_beds: 3)
+          apartment.add_tenant("alice")
+          apartment.add_tenant("bob")
+          expect(apartment.tenants.count).to eq(2)
+        end
       end
-    end
-
-    context "when language is 'Italian'" do
-      subject(:tony) { Person.new("Tony", "Italian") }
-
-      it "should offer a greeting in Italian" do
-        # legacy syntax - the old DSL
-        tony.greeting.should eql("Ciao, mi chiamo Tony.")
-        # equivalent to:
-        # expect(tony.greeting).to eql("Ciao, mi chiamo Tony.")
+      context "is equal to the number of beds" do
+        it "does not add a tenant" do
+          apartment = Apartment.create(num_beds: 3)
+          apartment.add_tenant("alice")
+          apartment.add_tenant("bob")
+          apartment.add_tenant("carol")
+          apartment.add_tenant("don")
+          expect(apartment.tenants.count).to eq(3)
+        end
       end
     end
   end
 end
 ```
 
-### The Spec
-The first line is a reference to our library code.  We need to access to the classes we have written.
+#### What in there looks familiar?
 
-Well skim through the code, gaining a high level knowledge of what is expected, then we'll return to hash out the details.
+#### What does `expect(apartment.tenants.count).to eq(3)` mean in regular English?
 
-`describe` is a keyword provided by RSpec (part of its DSL).  Here it indicates that a `Person` is the "Unit Under Test".  First we show examples of what we can expect as we construct new people.  Then, we describe the functionality of the `greeting` method, specifically within the specific context of each language.  This is ruby code, indicating how our library (or model) code should behave.
+### Set-up
 
-## Test Isolation
-Returning to the top, we see `@matt` being instantiated.
+In your `wdi/sandbox` directory:
 
+```sh
+$ git clone git@github.com:ga-dc/landlord.git
+$ cd landlord
+$ git checkout rspec
 ```
-before(:each) do
-  @matt = Person.new("Matt")
+
+This is a non-Sinatra version of Landlord -- just the ActiveRecord models. 
+
+Now let's get the database set up:
+
+```sh
+$ bundle install
+$ createdb landlord_rspec
+$ psql -f db/landlord_schema.sql -d landlord_rspec
+```
+
+Now we're ready to rock. Check out this bit from the `readme.md`:
+
+> Define an instance method `add_tenant` on the Apartment class that allows you to add tenants to an existing apartment. Do not add the tenant to the apartment if the number of tenants would exceed the number of beds
+
+If you take a look at `models/apartment.rb`, you can see that this has been defined for us. It's a pretty simple method, so it makes a great candidate for the first test we're going to write.
+
+### Install RSpec
+
+We're going to do some stuff now that you haven't seen before. I want to walk through it first, and then explain what everything is afterward.
+
+The first thing we'll do is install a gem called RSpec. To do this, just add `gem 'rspec'` to the `Gemfile`:
+
+```rb
+source "https://rubygems.org"
+
+gem "activerecord"
+gem "pg"
+gem "rspec"
+```
+
+Then, in your Terminal:
+
+```sh
+$ bundle install
+$ rspec
+```
+
+After running `rspec`, you should get a message saying "No examples found." When it says "examples", it means "tests". It's saying, "You haven't written any tests for me to run!"
+
+### Set up the directory
+
+Now, create a folder called `spec`, and a file called `apartment_spec.rb`:
+
+```sh
+$ mkdir spec
+$ touch spec/apartment_spec.rb
+```
+
+"Spec", like "examples", basically means "tests". We're going to put some tests inside this file.
+
+This file requires both the `rspec` gems and the `active_record` gems.
+
+#### How would you include those two gems in this file?
+
+To the beginning of this file, add:
+
+```rb
+require "rspec"
+require "active_record
+```
+
+This file also needs to know how to connect with the database, and it needs to know about the apartment and tenant models.
+
+#### How would you connect the file to the database and models?
+
+```rb
+require_relative "../config/connection"
+require_relative "../models/apartment"
+require_relative "../models/tenant"
+```
+
+To make sure everything's set up properly, run `rspec` again. You should still get "No examples found." If you get anything else, something was set up incorrectly.
+
+### Writing the first tests
+
+We're writing tests that describe the Apartment class. So, after all your `require` lines, write:
+
+```rb
+describe Apartment do
+```
+
+...and remember, every `do` needs an `end`. Add it.
+
+We're going to write a simple test just to make sure a new Apartment has the class of Apartment... which, of course, it will, but that's OK!
+
+```rb
+require "rspec"
+require "active_record"
+require_relative "../config/connection"
+require_relative "../models/apartment"
+require_relative "../models/tenant"
+
+describe Apartment do
+  it "has the class Apartment"
 end
 ```
 
-When running unit tests, we expect each test to run "in isolation".  To be separate for every other test.  These tests manipulate our system.  They add rows to the Database. They change existing information.  They configure and tests the results.  We don't want the configuration and/or changes in one test to affect other tests.
+Save the file, and run `rspec` again.
 
-RSpec uses this convention:
-1. Setup
-2. Test
-3. Teardown
+Now you should get a message in your Terminal like:
 
-The setup is run prior to each test and a teardown is run following each test, which resets our system.
+```plain
+landlord (rspec *+)$ rspec
+*
 
-## Expectation and Matcher
-After the setup (`before`), we see our first spec or "expectation".
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) Apartment has the class Apartment
+       # Not yet implemented
+            # ./spec/apartment_spec.rb:8
+
+Finished in 0.00088 seconds (files took 0.61795 seconds to load)
+1 example, 0 failures, 1 pending
 ```
-expect(@matt).to be_an_instance_of(Person)
-```
 
-RSpec assertions have two components: expectation and matcher.
+Wow! That's different! This is a list of all the tests we've written. Right now, that's a grand total of one.
 
-We expect `@matt` to be something.  We identify that "something" with a Matcher:
+There are a couple things to point out here.
 
-> Expectation: `expect(@matt).to `
+- "Not yet implemented"
+  - That means that this test doesn't actually test anything yet. Clearly it doesn't -- we just wrote some English, we didn't write any actual code.
+- The file and line number
+  - This shows the line on which that particular test is found.
+- `1 example... 1 pending`
+  - "Pending" is another way of saying "not yet implemented", and "example" is another way of saying "test".
 
-> Matcher: `be_an_instance_of(Person)`
+Let's add another pending test:
 
-Everything else exists to support Expectations and Matchers.
-
-### Legacy syntax (should)
-
-In addition to `expect(iut).to matcher`, RSpec supports another syntax: `should`.   That expectation is slightly different.  It uses the older `should` syntax.  
-
-You may see this:
-```
-it "should default #language to 'English'" do
-  expect(@matt.language).to eq("English")
-end
-```
-Written as:
-```
-it "should default #language to 'English'" do
-  @matt.language.should eq("English")
+```rb
+describe Apartment do
+  it "has the class Apartment"
+  it "has a String for an address"
 end
 ```
 
-The underlying implementation of "should" was "messy". You can see that they had to dynamically adjust our library code `@matt.language` to support the `should` method.
+#### Run `rspec` again. Anything crazy going on?
 
-The new syntax works like jQuery's `$()` syntax.  We use `expect(IUT)` to "wrap" the Item Under Test, so that it supports the `to` method.  The `to` method accepts a matcher.
+You might have noticed when we ran `rspec` before that there was a little asterisk `*` at the top of the message, and now there are two `**`. This indicates two pending tests. 
 
-While we adjust the use of parenthesis for readability, we are really passing the "matcher" to the "expectation".
+### It...do
 
+Now add `do` at the end of the first `it` line. Remember, each `do` needs an `end`!
 
-### Exercise: Getting familiar (15m)
+```rb
+describe Apartment do
+  it "has the class Apartment" do
 
-We are going to use a website called LearnRuby to practice reading specifications.
-
-Follow these instructions carefully, if you think you are lost, re-read the instructions, I expect you missed a step.  Due to Learn Ruby's setup, you will use `rake` instead of `rspec`.  The rake task is configuring and running rspec.
-
-These exercises increase in complexity.  They will exercise your ruby knowledge and your RSpec knowledge at the same time.  If you ever find yourself getting ahead, feel free to do any of these exercises.    Conversely, if you feel a little lost, back up.  Do some of the exercises we skipped.
-
-Let's start at the very beginning.  What a very fine place to start.
-
-http://testfirst.org/learn_ruby#install
-
-1. Start from `wdi/exercises`.
-2. `git clone git://github.com/alexch/learn_ruby.git`
-3. Learn Ruby expects a particular version of RSpec.
-```
-gem install rspec --version '< 3.0'
-```
-4. LearnRuby uses the legacy "should " syntax. To avoid deprecation warnings, let's configure rspec to allow this syntax. Make sure your "learn_ruby/rspec_config.rb" file has this last line:
-``` ruby
-# learn_ruby/rspec_config.rb
-RSpec.configure do |c|
-  c.fail_fast = true
-  c.color = true
-  c.expect_with(:rspec) { |with| with.syntax = :should }
+  end
+  it "has a String for an address"
 end
 ```
-5. Once you get the materials, open learn_ruby/index.html in your favorite web browser. Further instructions await therein.
 
-We'll continue together through the first few steps.
+#### Run `rspec` again. What's different?
 
-Continue with 00_hello.  We'll do this for 8 minutes.
+Now there's only one pending test. Instead of two asterisks `**`, you should see a dot and an asterisk `.*`, and something saying `2 examples, 0 failures, 1 pending`. Adding `do...end` makes RSpec think this test is an actual test -- not pending anymore. There's no malfunctioning code inside this test, so RSpec is saying it passes. Asterisk `*` indicates a pending test, and dot `.` indicates a passing test.
 
-## Break (10m)
+This "it...do" syntax reads a little funny. Just imagine whoever wrote this has bad grammar, and think of Oscar Gamble:
 
-## Wrapping up the example review (20m)
+![Oscar Gamble](it_do.jpg)
 
-### Context
+### Actually testing something
 
-As we move into the the description of the `greeting` method, we see our first "context": `"for default language (English)"`.  Within this block, we expect the language of our person to be "English" and we will write specs accordingly.  You can see this as we move down through each supported language.
+Let's make these tests actually test something. Inside the first test, make (but don't save) a new Apartment and save it to a variable.
 
-Where did `@matt` come from? `before(:each)`  How about `bob` and `tony`?
-
-`subject` is another part of the RSpec DSL.  We found that the subject of each test was an important componenet, so we made it a first class citizen.  While we still setup some things in `before` blocks, you will usually see the item "under test" defined in a `subject` block.
-
-The following subject block indicates that there will be a variable named `bob` available within this block of specs.  You can expect it to be assigned a person, named "Bob".
-```
-subject(:bob) { Person.new("Bob") }
+```rb
+it "has the class Apartment" do
+  apartment = Apartment.new
+end
 ```
 
-The code within the block is assigned to the dynamically created variable.  This variable is named after the symbol.  So, during these specs, the variable `bob` will hold a reference to the person under test.
+Now, let's tell the test that we expect that new apartment to be an apartment:
 
-### Review and play
+```rb
+it "has the class Apartment" do
+  apartment = Apartment.new
+  expect(apartment).to be_a(Apartment)
+end
+```
 
-Let's review those results again (`$ rspec`).  See where they come from?  Now, let's review `describe`, `context`, `it`, "expectations", and "matchers", by changing our code and see the specs fail.  Take a few minutes to adjust the code and run the specs a few times.  Play with it.  See how your actions in the code AND in the specs affect the output.
+Run `rspec`. The test should still pass. 
 
-Ok, let's change everything back.  Are we back to Green?  Good.
+Read that new line to yourself. We literally wrote "expect apartment to be a apartment". This is totally proper English, except for us using "a" instead of "an"!
 
----
+...but it's code! The methods that come built-in with RSpec were created in such a way that tests look as English-y as possible.
 
-### Exercise: Support another language (15m)
-Let's take a few minutes to specify that a Person can greet in Spanish too. We'll stick to the specification for now, then add the implementation in a minute.
+Now let's make the test **fail**. Let's say we "expect apartment to be a Integer":
 
-In Spanish, we should greet with "Hola me llamo Maria."  
+```rb
+it "has the class Apartment" do
+  apartment = Apartment.new
+  expect(apartment).to be_a(Integer)
+end
+```
 
----
+Run `rspec` and... You got an F! See how it says `F.` with a dot after it? That indicates you have one failing test, and one passing test.
+
+Whenever a test fails, RSpec will put an error message after that test which should give you an idea of why it failed. This message is a little complicated, so let's create a simpler one.
+
+Change the line to:
+
+```rb
+expect(apartment.class.to_s).to eq("Integer")
+```
+
+Now we're saying, "the name of the apartment's class should equal 'Integer'".
+
+Run `rspec`. This new message is easier to read:
 
 ```
-context "when language is 'Spanish'" do
-  subject(:maria) { Person.new("Maria", "Spanish") }
+expected: "Integer"
+  got: "Apartment"
+```
 
-  it "should offer a greeting in Spanish" do
-    expect(maria.greeting).to eql("Hola me llamo Maria.")
+On top is what we expected the apartment's class to be; on the bottom is what RSpec actually got when it ran the code.
+
+### The second test
+
+Now we'll change the first test so it passes again, and make the second test pass:
+
+```rb
+require "rspec"
+require "active_record"
+require_relative "../config/connection"
+require_relative "../models/apartment"
+require_relative "../models/tenant"
+
+describe Apartment do
+  it "has the class Apartment" do
+    apartment = Apartment.new
+    expect(apartment).to be_a("Apartment")
+  end
+  it "has a String for an address" do
+    white_house = Apartment.new(address: "1600 Penn Ave")
+    expect(white_house.address).to be_a(String)
   end
 end
 ```
 
----
+### Moar tests
 
-```
-when /spanish/i
-  "Hola me llamo #{name}."
-```
+Finally, we'll test what we originally came here to test, which was the `add_tenant` method.
 
----
+Replace your tests with this:
 
-### Think, pair, share.  What aren't we testing? (5m)
-Let's take a few minutes to think about what we aren't testing.
-
-Sit quietly for 1 minutes.  Think like a tester.  What code exists that aren't testing.  What examples would be good to clarify what our code can do?
-
-Next, we'll discuss with our pair for 2 minutes.
-Then, we'll share a few examples with the class.
-
-
-### Exercise: Implement your suggestions. (15m)
-
-- Specify the setters for :name, :language
-- Specify that we utilize the passed name
-- Specify the response to an Unsupported language
-  - What expectation would we use for this?
-
-## Break (10m)
-
-## What are we expecting? (25m)
-
-### Specify State or Side-effects
-
-Sandi breaks Unit tests in two groups: Queries and Commands.  So far, we've been specifying the expected return value of methods.  That covers the Queries.  We can also specify the expected side-effects.  A Command performs some action and we can assert that commands do what they are supposed to.  Does this method do what it should do to our system?
-
-Think back to [oop_monkey](https://github.com/ga-dc/oop_monkey).  Remember that our app kept track of the foods that our monkey ate?
-
-In  [monkey_spec.rb](https://github.com/ga-dc/oop_monkey/blob/master/spec/monkey_spec.rb), we saw an example of specifying the side-effect.
-
-> Q. What changes when `matt.eat("banana")`?  How can we verify this?
-
----
-
-A. "banana" is added to `matt.foods_eaten`.
-
-```
-it "can eat a food (a string)" do
-  matt = Monkey.new("Matt", "Mandrill")
-  matt.eat("banana")
-  matt.eat("PB&J")
-
-  # we can make more general expectations, like expect(this_array) to include something
-  expect(matt.foods_eaten).to include("banana")
-  expect(matt.foods_eaten).to include("PB&J")
-end
-```
-
-This is specifying what side-effect `#eat` has on our system.
-
-### Demo: "Change" Matcher
-
-> Q. How could we test this using the ["change" matcher](http://www.relishapp.com/rspec/rspec-expectations/v/3-3/docs/built-in-matchers/change-matcher)?
-
-```
-expect { do_something }.to change(object, :attribute)
-```
-
----
-
-```
-describe '#eat(food)' do
-  it "adds the passed food to #foods_eaten" do
-    matt = Monkey.new("Matt", "Mandrill")
-    # specify via side-effect
-    expect { matt.eat("banana") }.to change{matt.foods_eaten.size}.by(1)
+```rb
+describe Apartment do
+  describe "#add_tenant" do
+    context "when the number of tenants" do
+      context "is less than the number of beds" do
+        it "adds a tenant"
+      end
+      context "is equal to the number of beds" do
+        it "does not add a tenant"
+      end
+    end
   end
 end
 ```
 
-Notice how a block is used to delay execution.  `#expect` controls when to run `matt.eat("banana")`.  
+Crazy, right? Breathe, and let's go through it a bit at a time.
 
-> Q. Why does it need to do this?
+You can **nest** as many `describe` blocks as you want. What's the purpose? Just to lump together some tests. **It doesn't affect the code at all.** It's purely to keep things organized visually.
 
----
+Also, **`context` does literally the exact same thing as `describe`**. They're identical. RSpec makes no difference between them. So why have both? To make your tests more readable from an English standpoint. You can see here I'm using `describe` for when I'm talking about specific objects or methods, and `context` when I'm talking about, well, different contexts. If I replace `describe` with `context`, and vice-versa, the tests will run the exact same way.
 
-A. Because it needs to record the count before and after that code is run.
+**RSpec is all about making tests easy to read from an English standpoint.**
 
-While checking for side-effects is perfectly reasonable, this particular check is pretty weak.  Just checking that the count increases, does not verify that foods_eaten contains the "banana".  Our `#eat` method could have added anything to `#foods_eaten`.
+The hash `#` in front of `add_tenant` also doesn't do anything -- it's just what programmers usually use to indicate that something is a method, in the same way they use `$` to indicate a command you should enter in the terminal.
 
-### How many Matchers are there?
-Let's review the available Matchers in the [RSpec documentation](https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers).  The RSpec docs are great!  They are a mix of specifications and documentation as live documents.  Written using the "relish" app to ensure they keep pace with the code.  Make sure you are on the version that corresponds to your installed library (v3.3).
+The only things on here that are actual tests are the `it` lines.
 
-Don't miss "Predicate matchers"!
+**`describe` and `context` are not tests; they just help organize them. Only `it` is a test.**
 
-### We avoid testing implementation
-Here's something else we aren't testing.  We aren't testing that `greeting` uses a `select/case` statement.  That would be testing the internal implementation. Let's be clear, I should be free to write whatever code I want, inside of the `greeter` method, in order to achieve the results the specs indicate. Let's say our team creates a new translation library.  I should be able to swap out my naive implementation and replace it with that.  To do that we test against the interface of the class -- the public methods -- not the internal implementation.  The following code tells the ItalianTranslator to translate this phrase from English.
+`it` also is **childless**. `it` cannot have any `describe`, `context`, or `it` blocks inside it.
+
+Now run `rspec`. You should get:
 
 ```
-tony = Person.new("tony", ItalianTranslator)
+  1) Apartment#add_tenant when the number of tenants is less than the number of beds adds a tenant
+     # Not yet implemented
+     # ./spec/apartment_spec.rb:11
+
+  2) Apartment#add_tenant when the number of tenants is equal to the number of beds does not add a tenant
+     # Not yet implemented
+     # ./spec/apartment_spec.rb:14
 ```
-I would replace the code in `greeting` with:
-```
-def greeting
-  phrase = "Hello, my name is #{name}"
-  language.convert_from(phrase, :en)
+
+Going along with the theme of readability, RSpec takes what we wrote and condenses it into sentences. 
+
+### Making the `#add_tenant` tests pass
+
+```rb
+require "rspec"
+require "active_record"
+require_relative "../config/connection"
+require_relative "../models/apartment"
+require_relative "../models/tenant"
+
+
+describe Apartment do
+  describe "#add_tenant" do
+    context "when the number of tenants" do
+      context "is less than the number of beds" do
+        it "adds a tenant" do
+          apartment = Apartment.create(num_beds: 3)
+          apartment.add_tenant("alice")
+          apartment.add_tenant("bob")
+          expect(apartment.tenants.count).to eq(2)
+        end
+      end
+      context "is equal to the number of beds" do
+        it "does not add a tenant" do
+          apartment = Apartment.create(num_beds: 3)
+          apartment.add_tenant("alice")
+          apartment.add_tenant("bob")
+          apartment.add_tenant("carol")
+          apartment.add_tenant("don")
+          expect(apartment.tenants.count).to eq(3)
+        end
+      end
+    end
+  end
 end
 ```
 
-My test does not change.  The new code still returns a phrase in Italian.  `tony.greeting.should eql("Ciao, mi chiamo Tony.")` still passes.  The internal implementation is free to change.
+### DRYing it up
 
-While I can say that `tony.greeting` should call `ItalianTranslator.convert_from`, I *probably* don't want to.  That binds me to the *current* implementation.
+#### Which lines on here repeat?
 
----
+Usually, you're going to have a whole bunch of tests that all do very similar things. Writing `apartment = Apartment.create` a bunch of times would get tiresome. 
 
-### Exercise (optional): Add farewell. (15m)
+Swap out your code with this:
 
-Add support for farewell, for each language.  
-- Decide on the functionality you want.
-- Specify the requirements
-- Avoid testing the implementation
-
----
-
-## It depends (10m)
-
-All of these "rules"come with the caveat, "If it makes more sense to break the rules.  Break them."
-
-For instance, if ItalianTranslator utilized a 3rd party, external service, I probably just want to check that I am calling it correctly.  And that's where mocks and stubs come in.
-
-## Mocks & Stubs
-Sometimes our Unit Under Test must interact with other object.  If these objects are difficult to setup or their response may be slow or non-deterministic -- like an external service that we contact via te internet.  It can make sense to mock out the other object, to create a "fake" object that supports the interface you need but returns a fixed, expected value.  This makes your component examples independent of other components.
-- You can use mock objects the replace the entire object, just supporting the interface you need (the methods and attribute that your Unit Under Test actually interacts with).
-- You can stub specific methods on "real" objects to let them return whatever you like.
-
-Earlier, I passed in `TranslatorItalian` and I called the `convert_from` method on it.  If that was a service somewhere else on the web, then my unit tests probably do not wan tot call it.
----
-
-### Mock Example
-
-``` ruby
-# create mock object that will act like my 3rd party translator
-translator = instance_double("ItalianTranslator")
-# make this double *support* the method I need AND return the value I want.
-allow(translator).to receive(:convert_from).and_return("Ciao, mi chiamo Tony.")
-# is the same as...
-allow(translator).to receive(:convert_from) { "Ciao, mi chiamo Tony." }
+```rb
+describe Apartment do
+  describe "#add_tenant" do
+    context "when the number of tenants" do
+      before(:each) do
+        @apartment = Apartment.create(num_beds: 3)
+        @apartment.add_tenant("alice")
+        @apartment.add_tenant("bob")
+      end
+      context "is less than the number of beds" do
+        it "adds a tenant" do
+          expect(@apartment.tenants.count).to eq(2)
+        end
+      end
+      context "is equal to the number of beds" do
+        it "does not add a tenant" do
+          @apartment.add_tenant("carol")
+          @apartment.add_tenant("don")
+          expect(@apartment.tenants.count).to eq(3)
+        end
+      end
+    end
+  end
+end
 ```
 
-So then when I use this *mock* in my tests, `tony` returns the phrase I expect and I can test that I process that result correctly.
+What changed is we took the `Apartment.create`, `alice`, and `bob` lines and put them in a `before:each` block. We also made `apartment` an instance variable with `@`. Aside from that, everything's the same.
 
----
+Run `rspec`. It should still work.
 
-## Conclusion (10m)
+#### Change the `:each` to `:all`. Run `rspec`. What's different?
 
-### Review
+**before:each** is a block of code that runs *before each* test inside it. Try adding a `puts "*" * 50` inside `before:each`, then running `rspec`. You should see two lines of asterisks pop up.
 
-1. The practice of TDD provides a safety net of regression tests and tends to improve `______________`.
-2. What is the TDD Mantra?  Explain each step.
-3. What 2 commands are used to indicate what we are testing now?
-4. Why is isolating tests a good practice?
-5. What are the two main categories of things we test for?  And how do they differ?
-6. What is the downside of testing internal implementation?
+**before:all** is the same concept, except it only runs **once**, *before all* the tests inside it have started.
 
+### `before` vs `let`
 
-### TATFT
+Now replace the code with this:
 
-The ruby community drank the testing koolaid.  We've felt the benefits.  Rails was the first web framework that supported testing out of the box.  The generators create a skeleton test, encouraging you to get in there and fill it out.
+```rb
+describe Apartment do
+  describe "#add_tenant" do
+    context "when the number of tenants" do
+      let(:apartment) do Apartment.create(num_beds: 3) end
+      before(:each) do
+        apartment.add_tenant("alice")
+        apartment.add_tenant("bob")
+      end
+      context "is less than the number of beds" do
+        it "adds a tenant" do
+          expect(apartment.tenants.count).to eq(2)
+        end
+      end
+      context "is equal to the number of beds" do
+        it "does not add a tenant" do
+          apartment.add_tenant("carol")
+          apartment.add_tenant("don")
+          expect(apartment.tenants.count).to eq(3)
+        end
+      end
+    end
+  end
+end
+```
 
-Every single person that comes in here to talk to you - from alumni to seasoned veteran - espouses the importance of testing.  It's a learning curve.  It will be slow... at first.  Stick with it.  Keep at it.  Climb that curve.  Impress your interviewers.
+What changed is we deleted all of the `@` symbols, and moved the `Apartment.create` bit into a weird `let..do` line.
 
----
+This is a way of making a variable available in every test, just like `before:each` and `before:all`. What's the difference? `let` is a bit faster and more efficient. That's it!
 
-## Homework:
+As you can see, you can have `let` and `before:each` right next to each other. However, you're *not* supposed to use `let` with `before:all` for reasons of scope.
 
-Scoring a Scrabble game.
-Break it into small pieces and have pairs iterate, then switch pairs and repeat.
+### The Database
 
-https://github.com/ga-dc/scrabbler
+Let's check out something in PSQL:
 
----
+```sh
+$ psql
+$ \c landlord_rspec
+$ SELECT * FROM tenants;
+```
 
-## Want more? Need clarification?
+Wow! That's a boatload of tenants! When you use `Apartment.create` or `apartment.tenants.create` in RSpec, it *actually creates data in your database*. For this reason, it's almost always a good idea to have a separate database for your RSpec stuff. (That's why we created a `landlord_rspec` database for this instead of just using your existing `landlord` database.)
 
-There are plenty of exercises in TestFirst.org.  We recommend a path in [Learn Ruby via RSpec]( https://github.com/ga-dc/learn_ruby_via_rspec)
+# Unit testing
 
----
+RSpec is intended for unit testing. The other type of testing is functional testing. We may visit that later on in the course.
 
-## References:
-- ["The RSpec Book", David Chelimsky](https://pragprog.com/book/achbd/the-rspec-book).  It's a little dated (as most tech. book are), but full of wisdom.
-- [Magic Tricks of Testing - Sandi Metz](https://www.google.com/search?client=safari&rls=en&q=sandi+metz+magic+trick+of+testing&ie=UTF-8&oe=UTF-8)
+The difference is that "unit tests tell a developer that code is doing things right; functional tests tell a developer that code is doing the right things."
 
----
+The "units" in unit tests are individual methods. Unit tests are intended to test small, little blocks of code, and make sure a specific input results in a specific output. A good unit test should **not be more than 5 lines long**.
 
-## Additional Resources
+Functional tests have a much wider focus. You'd use functional testing to make sure a sign-in form works, or that a user who doesn't have admin privileges can see this page, while a user who does have admin privlieges can see that page.
 
-- [Code School RSpec](https://www.codeschool.com/courses/testing-with-rspec)
-- [RSpec for Newbies](http://code.tutsplus.com/tutorials/ruby-for-newbies-testing-with-rspec--net-21297)
-- Mocks & Stubs]
-  - https://www.relishapp.com/rspec/rspec-mocks/docs
-  - http://www.martinfowler.com/bliki/TestDouble.html
-- RSpec Cheatsheets:
-  - https://www.anchor.com.au/wp-content/uploads/rspec_cheatsheet_attributed.pdf
+Unit testing always should come before functional testing. Functional testing is much less crucial. Unit testing is so important, that...
 
-## Review Answers
----
+## Employers give you major bonus points for it
 
-1. design/architecture/maintainability.
-2. Red, Green, Refactor.  We write a test that fails, indicating that the freature is not supported.  Then, we adjust code until it passes (turns Green).  Lastly, we refactor our app using the knowledge we gained from supporting the spec.
-3. `describe` and `context`
-4. It ensures our tests are stable, eliminates confusing dependencies, and minimizes "flickering" tests.
-5. Queries and Commands.  For Queries we verify return values, while we check side-effects for Commands.
-6. Testing internal implementation makes it really hard to refactor away from that implementation.
+You'll see the term **test coverage** pop up pretty often. People are always aiming for "100% test coverage". If your app has 100% test coverage, that means every single method in your app has a unit test verifying that it works.
+
+For instance, while it's easy and free to write Salesforce apps, Salesforce will only add your app to its "app store" if you've obtained 100% test coverage, and Salesforce's developer team can run your tests and have them all pass. 
+
+#### What are the reasons testing is so important? Why would employers love it so much?
+
+# Writing tests
+
+We've asked you to write user stories. Writing unit tests is a very similar process.
+
+When we think of "testing" we tend to think of something you do *after* you've created something. With unit tests, you're encouraged to write the tests *first* before you even start writing actual code.
+
+#### Turn and talk
+
+> Why would you write tests beforehand? Come up with as many reasons as you can. To get started, imagine if instead of a `readme.md` for Landlord you'd been given just the following in a `spec.rb` file:
+
+```
+describe Apartment do
+  it "has the class Apartment"
+  it "has a String for an address"
+  describe "#add_tenant" do
+    context "when the number of tenants" do
+      context "is less than the number of beds" do
+        it "adds a tenant"
+      end
+      context "is equal to the number of beds" do
+        it "does not add a tenant"
+      end
+    end
+  end
+end
+```
+
+### TDD
+
+You've probably already run into the situation of not knowing when an app is "done". You've also probably started an assignment or project only to find there are an overwhelming number of things to do. Then, on top of that, you have all that by-hand, manual testing to do as you make your app.
+
+When you write tests first, you're creating a tidy little checklist for yourself of things to complete. The **goal of unit tests** is that **when all of the tests pass, your app is complete**.
+
+You're used to thinking the other way around: when the app is complete, all the tests should pass. Writing the tests first forces you to think about what an app really *needs* to do to be complete. It forces you to scope things down to your MVP. It forces you to think of your app as a bunch of little pieces, rather than one big behoemeth.
+
+This process of writing the tests **first** is called **Test-Driven Development**, or TDD.
+
+In short: writing out unit tests, even if you just leave them pending, will make this class much easier, and make you look super-marketable.
+
+#### When you were planning Project 1, how did you do it?
+
+Next time you find yourself writing a list of things your app should do, or writing out user stories, or *any* sort of list, try writing that list using the `describe`, `context`, `it` syntax. Even if you never actually write the code that makes these tests pass, this is an extremely effective way of planning that looks really impressive.
+
+### You do
+
+[Watch this video.](https://www.youtube.com/watch?v=E2evC2xTNWg)
+
+Split up into groups of 4. For 15 minutes, on a whiteboard, work with your group to draft the unit tests for this cereal-delivering robot.
+
+Your goal: When all the tests pass, that mean the robot works. However, you're only writing **pending** tests -- don't actually write the code that would make the tests pass.
+
+Constraints: Try to write everything as `describe`, `context`, and `it` blocks. Method names should start with `#`. 
+
+## RSpec tricks
+
+### rspec --init
+
+When you look at repos with RSpec inside them, you're likely to see two files we don't have right now: `.rspec` and `spec_helper.rb`. These files are generated by running RSpec's built-in file generator.
+
+Go back to your `wdi` folder, and create a new directory. It doesn't matter what it's called. `cd` into that directory.
+
+Then, run `$ rspec --init`. This should make those two files. Take a look at `.rspec`. It should have very little in it. Now, take a look at `spec_helper.rb`. It has much more inside. Both of these files are configuration files. Neither of them are necessary unless you want to configure RSpec a certain way.
+
+### rspec -f d
+
+Go back to the `landlord` folder we've been working in today. We're going to run `rspec` again, but this time we're going to give it some additional parameters. Run:
+
+```sh
+$ rspec --color -f d
+```
+
+This prints out all of your tests in a nicer format with colors. The `-f d` prints out your tests in a nice outline format. Before, The only sentences printed out were pending or failed tests.
+
+Green tests have passed, red have failed, and yellow tests are pending. You may hear us say "Red, Green, Refactor". This is sort-of the mantra of TDD: write tests before you write code ("red" because the tests won't pass without any code), then write the code to make them pass (and turn green), then refactor that code.
+
+You can also print out your tests as HTML. Try running:
+
+```sh
+$ rspec -f h -o tests.html
+```
+
+The `-f h` says "print this out has HTML", and the `-o` says into which file you want it to be printed. Try opening up that file in Chrome!
+
+### You do: GArnet users
+
+We use RSpec to test GArnet, the attendance/homework tracking app. Before any changes get pushed up to our live server, they have to pass all the tests -- an automated system rejects the changes if they don't pass.
+
+[Here's what that looks like. Seem familiar?](https://travis-ci.org/ga-dc/garnet/builds/89503768#L241) Clearly there are a lot of tests that are just pending and don't do anything yet -- almost 60! These dramatically help us plan.
+
+We're going to use a repo pulls some of the User tests and methods from Garnet:
+
+[rspec-user-practice](https://github.com/ga-dc/rspec-user-practice)
+
+You can check out Garnet [here](https://github.com/ga-dc/garnet/tree/master/spec).
+
+Fill in the blanks on the `user_spec.rb` file to make the tests pass!
+
+### You do: Purrspec
+
+[Purrspec](https://github.com/ga-dc/purrspec)
+
+# For example
+
+```rb
+describe Model do
+  let(:variable) do value end
+  before(:all) do
+    @variable = value
+  end
+  before(:each) do
+    puts "Hello!"
+    @variable = value
+  end
+
+  describe "#method" do
+    context "some condition" do
+      it "should return this" do
+        expect(@variable).to eq(value)
+      end
+    end
+    it "should have this class" do
+      expect(#method).to be_a(Class)
+    end
+  end
+
+  it "should not be in this array" do
+    expect([array]).to_not include(value)
+  end
+
+  describe "#attributes" do
+    it "should all be this class" do
+      expect([#attributes]).to all(be(Class))
+    end
+    it "should have the same values as this array" do
+      expect([#attributes]).to match_array([array])
+    end
+  end
+end
+```
+
