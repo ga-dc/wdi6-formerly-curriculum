@@ -186,6 +186,8 @@ wherever `belongs_to` appears in the model definition.
 
 `t.references :artist` is equivilant to `t.integer :artist_id`
 
+[what is `index: true`?](http://rny.io/rails/postgresql/2013/08/20/postgresql-indexing-in-rails.html)
+
 ## You do: Use rails console
 
 - to create at least three songs that are associated with the previous two artists.
