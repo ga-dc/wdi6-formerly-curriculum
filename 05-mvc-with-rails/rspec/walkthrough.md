@@ -604,7 +604,9 @@ The `-f h` says "print this out has HTML", and the `-o` says into which file you
 
 We use RSpec to test GArnet, the attendance/homework tracking app. Before any changes get pushed up to our live server, they have to pass all the tests -- an automated system rejects the changes if they don't pass.
 
-This repo pulls some of the User tests and methods from Garnet:
+[Here's what that looks like. Seem familiar?](https://travis-ci.org/ga-dc/garnet/builds/89503768#L241) Clearly there are a lot of tests that are just pending and don't do anything yet -- almost 60! These dramatically help us plan.
+
+We're going to use a repo pulls some of the User tests and methods from Garnet:
 
 [rspec-user-practice](https://github.com/ga-dc/rspec-user-practice)
 
