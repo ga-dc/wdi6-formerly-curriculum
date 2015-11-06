@@ -282,6 +282,14 @@ Important Note if you're a developer - Users will be very upset if you destroy t
 
 ## You do: Create a migration and roll it back
 
+- Create a migration that adds a column to artist called `genre` that has a string as the data type
+- Run the migrations by running `$ rake db:migrate`
+- Inspect `db/schema.rb`. Look at its contents.
+- Now run rake db:rollback
+- Inspect `db/schema.rb` again and note that `genre` is not longer a column in the table.
+- Spend two minutes experimenting for yourself how `$ rake db:rollback` works
+
+
 ## I do: The Right Way
 
 Let's assume we did mess up our initial migration like the code above with the misspelled `poto_url`. Instead of the methods listed above, the right way is to create an additional migration that changes the name of the column in our table.
