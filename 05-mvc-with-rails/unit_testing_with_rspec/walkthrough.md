@@ -1,25 +1,12 @@
 # RSpec
 
-before(:all) do
-before(:each) do
-let(:varname) do 3 * 3 end
-
-describe
-context
-it
-
-expect
-.to
-.to_not
-
-eq != be
-match_array
-all(be())
-be_a
-include
-
-rspec --init
-rspec -f d
+## Learning Objectives
+- List benefits of unit testing, both to the creation process and to the collaboration process
+- Describe the difference between `context`, `describe`, and `it`
+- Describe the difference between `let`, `before(:each)`, and `before(:all)`
+- Plan the creation of a project by reducing it to a series of unit tests
+- Contrast unit tests and functional tests
+- Add specs to an existing Sinatra app
 
 ## Why learn this?
 
@@ -286,3 +273,303 @@ describe Apartment do
   end
 end
 ```
+
+### Moar tests
+
+Finally, we'll test what we originally came here to test, which was the `add_tenant` method.
+
+Replace your tests with this:
+
+```rb
+describe Apartment do
+  describe "#add_tenant" do
+    context "when the number of tenants" do
+      context "is less than the number of beds" do
+        it "adds a tenant"
+      end
+      context "is equal to the number of beds" do
+        it "does not add a tenant"
+      end
+    end
+  end
+end
+```
+
+Crazy, right? Breathe, and let's go through it a bit at a time.
+
+You can **nest** as many `describe` blocks as you want. What's the purpose? Just to lump together some tests. **It doesn't affect the code at all.** It's purely to keep things organized visually.
+
+Also, **`context` does literally the exact same thing as `describe`**. They're identical. RSpec makes no difference between them. So why have both? To make your tests more readable from an English standpoint. You can see here I'm using `describe` for when I'm talking about specific objects or methods, and `context` when I'm talking about, well, different contexts. If I replace `describe` with `context`, and vice-versa, the tests will run the exact same way.
+
+**RSpec is all about making tests easy to read from an English standpoint.**
+
+The hash `#` in front of `add_tenant` also doesn't do anything -- it's just what programmers usually use to indicate that something is a method, in the same way they use `$` to indicate a command you should enter in the terminal.
+
+The only things on here that are actual tests are the `it` lines.
+
+**`describe` and `context` are not tests; they just help organize them. Only `it` is a test.**
+
+`it` also is **childless**. `it` cannot have any `describe`, `context`, or `it` blocks inside it.
+
+Now run `rspec`. You should get:
+
+```
+  1) Apartment#add_tenant when the number of tenants is less than the number of beds adds a tenant
+     # Not yet implemented
+     # ./spec/apartment_spec.rb:11
+
+  2) Apartment#add_tenant when the number of tenants is equal to the number of beds does not add a tenant
+     # Not yet implemented
+     # ./spec/apartment_spec.rb:14
+```
+
+Going along with the theme of readability, RSpec takes what we wrote and condenses it into sentences. 
+
+### Making the `#add_tenant` tests pass
+
+```rb
+require "rspec"
+require "active_record"
+require_relative "../config/connection"
+require_relative "../models/apartment"
+require_relative "../models/tenant"
+
+
+describe Apartment do
+  describe "#add_tenant" do
+    context "when the number of tenants" do
+      context "is less than the number of beds" do
+        it "adds a tenant" do
+          apartment = Apartment.create(num_beds: 3)
+          apartment.add_tenant("alice")
+          apartment.add_tenant("bob")
+          expect(apartment.tenants.count).to eq(2)
+        end
+      end
+      context "is equal to the number of beds" do
+        it "does not add a tenant" do
+          apartment = Apartment.create(num_beds: 3)
+          apartment.add_tenant("alice")
+          apartment.add_tenant("bob")
+          apartment.add_tenant("carol")
+          apartment.add_tenant("don")
+          expect(apartment.tenants.count).to eq(3)
+        end
+      end
+    end
+  end
+end
+```
+
+### DRYing it up
+
+#### Which lines on here repeat?
+
+Usually, you're going to have a whole bunch of tests that all do very similar things. Writing `apartment = Apartment.create` a bunch of times would get tiresome. 
+
+Swap out your code with this:
+
+```rb
+describe Apartment do
+  describe "#add_tenant" do
+    context "when the number of tenants" do
+      before(:each) do
+        @apartment = Apartment.create(num_beds: 3)
+        @apartment.add_tenant("alice")
+        @apartment.add_tenant("bob")
+      end
+      context "is less than the number of beds" do
+        it "adds a tenant" do
+          expect(@apartment.tenants.count).to eq(2)
+        end
+      end
+      context "is equal to the number of beds" do
+        it "does not add a tenant" do
+          @apartment.add_tenant("carol")
+          @apartment.add_tenant("don")
+          expect(@apartment.tenants.count).to eq(3)
+        end
+      end
+    end
+  end
+end
+```
+
+What changed is we took the `Apartment.create`, `alice`, and `bob` lines and put them in a `before:each` block. We also made `apartment` an instance variable with `@`. Aside from that, everything's the same.
+
+Run `rspec`. It should still work.
+
+#### Change the `:each` to `:all`. Run `rspec`. What's different?
+
+**before:each** is a block of code that runs *before each* test inside it. Try adding a `puts "*" * 50` inside `before:each`, then running `rspec`. You should see two lines of asterisks pop up.
+
+**before:all** is the same concept, except it only runs **once**, *before all* the tests inside it have started.
+
+### `before` vs `let`
+
+Now replace the code with this:
+
+```rb
+describe Apartment do
+  describe "#add_tenant" do
+    context "when the number of tenants" do
+      let(:apartment) do Apartment.create(num_beds: 3) end
+      before(:each) do
+        apartment.add_tenant("alice")
+        apartment.add_tenant("bob")
+      end
+      context "is less than the number of beds" do
+        it "adds a tenant" do
+          expect(apartment.tenants.count).to eq(2)
+        end
+      end
+      context "is equal to the number of beds" do
+        it "does not add a tenant" do
+          apartment.add_tenant("carol")
+          apartment.add_tenant("don")
+          expect(apartment.tenants.count).to eq(3)
+        end
+      end
+    end
+  end
+end
+```
+
+What changed is we deleted all of the `@` symbols, and moved the `Apartment.create` bit into a weird `let..do` line.
+
+This is a way of making a variable available in every test, just like `before:each` and `before:all`. What's the difference? `let` is a bit faster and more efficient. That's it!
+
+As you can see, you can have `let` and `before:each` right next to each other. However, you're *not* supposed to use `let` with `before:all` for reasons of scope.
+
+### The Database
+
+Let's check out something in PSQL:
+
+```sh
+$ psql
+$ \c landlord_rspec
+$ SELECT * FROM tenants;
+```
+
+Wow! That's a boatload of tenants! When you use `Apartment.create` or `apartment.tenants.create` in RSpec, it *actually creates data in your database*. For this reason, it's almost always a good idea to have a separate database for your RSpec stuff. (That's why we created a `landlord_rspec` database for this instead of just using your existing `landlord` database.)
+
+# Unit testing
+
+RSpec is intended for unit testing. The other type of testing is functional testing. We may visit that later on in the course.
+
+The difference is that "unit tests tell a developer that code is doing things right; functional tests tell a developer that code is doing the right things."
+
+The "units" in unit tests are individual methods. Unit tests are intended to test small, little blocks of code, and make sure a specific input results in a specific output. A good unit test should **not be more than 5 lines long**.
+
+Functional tests have a much wider focus. You'd use functional testing to make sure a sign-in form works, or that a user who doesn't have admin privileges can see this page, while a user who does have admin privlieges can see that page.
+
+Unit testing always should come before functional testing. Functional testing is much less crucial. Unit testing is so important, that...
+
+## Employers give you major bonus points for it
+
+You'll see the term **test coverage** pop up pretty often. People are always aiming for "100% test coverage". If your app has 100% test coverage, that means every single method in your app has a unit test verifying that it works.
+
+For instance, while it's easy and free to write Salesforce apps, Salesforce will only add your app to its "app store" if you've obtained 100% test coverage, and Salesforce's developer team can run your tests and have them all pass. 
+
+#### What are the reasons testing is so important? Why would employers love it so much?
+
+# Writing tests
+
+We've asked you to write user stories. Writing unit tests is a very similar process.
+
+When we think of "testing" we tend to think of something you do *after* you've created something. With unit tests, you're encouraged to write the tests *first* before you even start writing actual code.
+
+#### Turn and talk
+
+> Why would you write tests beforehand? Come up with as many reasons as you can. To get started, imagine if instead of a `readme.md` for Landlord you'd been given just the following in a `spec.rb` file:
+
+```
+describe Apartment do
+  it "has the class Apartment"
+  it "has a String for an address"
+  describe "#add_tenant" do
+    context "when the number of tenants" do
+      context "is less than the number of beds" do
+        it "adds a tenant"
+      end
+      context "is equal to the number of beds" do
+        it "does not add a tenant"
+      end
+    end
+  end
+end
+```
+
+You've probably already run into the situation of not knowing when an app is "done". You've also probably started an assignment or project only to find there are an overwhelming number of things to do. Then, on top of that, you have all that by-hand, manual testing to do as you make your app.
+
+When you write tests first, you're creating a tidy little checklist for yourself of things to complete. The **goal of unit tests** is that **when all of the tests pass, your app is complete**.
+
+You're used to thinking the other way around: when the app is complete, all the tests should pass. Writing the tests first forces you to think about what an app really *needs* to do to be complete. It forces you to scope things down to your MVP. It forces you to think of your app as a bunch of little pieces, rather than one big behoemeth.
+
+In short: writing out unit tests, even if you just leave them pending, will make this class much easier, and make you look super-marketable.
+
+### You do
+
+[Watch this video.](https://www.youtube.com/watch?v=E2evC2xTNWg)
+
+Split up into groups of 4. For 15 minutes, on a whiteboard, work with your group to draft the unit tests for this cereal-delivering robot.
+
+Your goal: When all the tests pass, that mean the robot works. However, you're only writing **pending** tests -- don't actually write the code that would make the tests pass.
+
+Constraints: Try to write everything as `describe`, `context`, and `it` blocks. Method names should start with `#`. 
+
+### You do: GArnet users
+
+We use RSpec to test GArnet, the attendance/homework tracking app. Before any changes get pushed up to our live server, they have to pass all the tests -- an automated system rejects the changes if they don't pass.
+
+This repo pulls some of the User tests and methods from Garnet:
+
+[rspec-user-practice](https://github.com/ga-dc/rspec-user-practice)
+
+You can check out Garnet [here](https://github.com/ga-dc/garnet/tree/master/spec).
+
+Fill in the blanks on the `user_spec.rb` file to make the tests pass!
+
+### You do: Purrspec
+
+[Purrspec](https://github.com/ga-dc/purrspec)
+
+# For example
+
+```rb
+describe Model do
+  let(:variable) do value end
+  before(:all) do
+    @variable = value
+  end
+  before(:each) do
+    puts "Hello!"
+    @variable = value
+  end
+
+  describe "#method" do
+    context "some condition" do
+      it "should return this" do
+        expect(@variable).to eq(value)
+      end
+    end
+    it "should have this class" do
+      expect(#method).to be_a(Class)
+    end
+  end
+
+  it "should not be in this array" do
+    expect([array]).to_not include(value)
+  end
+
+  describe "#attributes" do
+    it "should all be this class" do
+      expect([#attributes]).to all(be(Class))
+    end
+    it "should have the same values as this array" do
+      expect([#attributes]).to match_array([array])
+    end
+  end
+end
+```
+
