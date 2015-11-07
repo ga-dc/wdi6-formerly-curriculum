@@ -35,7 +35,7 @@ We're going to end up with something like this:
 describe Apartment do
   it "has the class Apartment" do
     apartment = Apartment.new
-    expect(apartment).to be_a("Apartment")
+    expect(apartment).to be_a(Apartment)
   end
   it "has a String for an address" do
     white_house = Apartment.new(address: "1600 Penn Ave")
@@ -309,7 +309,7 @@ require_relative "../models/tenant"
 describe Apartment do
   it "has the class Apartment" do
     apartment = Apartment.new
-    expect(apartment).to be_a("Apartment")
+    expect(apartment).to be_a(Apartment)
   end
   it "has a String for an address" do
     white_house = Apartment.new(address: "1600 Penn Ave")
@@ -556,9 +556,15 @@ This process of writing the tests **first** is called **Test-Driven Development*
 
 In short: writing out unit tests, even if you just leave them pending, will make this class much easier, and make you look super-marketable.
 
+### Planning with TDD
+
 #### When you were planning Project 1, how did you do it?
 
 Next time you find yourself writing a list of things your app should do, or writing out user stories, or *any* sort of list, try writing that list using the `describe`, `context`, `it` syntax. Even if you never actually write the code that makes these tests pass, this is an extremely effective way of planning that looks really impressive.
+
+We use RSpec to test GArnet, the attendance/homework tracking app. Before any changes get pushed up to our live server, they have to pass all the tests -- an automated system rejects the changes if they don't pass.
+
+[Here's what that looks like. Seem familiar?](https://travis-ci.org/ga-dc/garnet/builds/89503768#L241) Clearly there are a lot of tests that are just pending and don't do anything yet -- almost 60! These dramatically help us plan.
 
 ### You do
 
@@ -601,10 +607,6 @@ $ rspec -f h -o tests.html
 The `-f h` says "print this out has HTML", and the `-o` says into which file you want it to be printed. Try opening up that file in Chrome!
 
 ### You do: GArnet users
-
-We use RSpec to test GArnet, the attendance/homework tracking app. Before any changes get pushed up to our live server, they have to pass all the tests -- an automated system rejects the changes if they don't pass.
-
-[Here's what that looks like. Seem familiar?](https://travis-ci.org/ga-dc/garnet/builds/89503768#L241) Clearly there are a lot of tests that are just pending and don't do anything yet -- almost 60! These dramatically help us plan.
 
 We're going to use a repo pulls some of the User tests and methods from Garnet:
 
