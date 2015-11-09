@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.4" data-chapter-title="Views and Controllers" data-filepath="05-mvc-with-rails/rails-views-and-controllers/readme.md" data-basepath="../.." data-revision="Mon Nov 09 2015 19:15:05 GMT+0000 (UTC)">
+    <div class="book" data-level="4.4" data-chapter-title="Views and Controllers" data-filepath="05-mvc-with-rails/rails-views-and-controllers/readme.md" data-basepath="../.." data-revision="Mon Nov 09 2015 19:16:18 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1331,6 +1331,19 @@ Just put: <code>&lt;h2&gt;All Artists&lt;/h2&gt;</code></p>
 <h2 id="break-1080">BREAK (10/80)</h2>
 <h2 id="wedo-artists-create-action-20100">WE-DO: Artists Create Action (20/100)</h2>
 <p>So at this point we have a way to see all artists, view info about a specific artist, as well as see a form to add a new artist.</p>
+<pre><code class="lang-rb">&lt;form action=&quot;/artists&quot; method=&quot;post&quot; &gt;
+  &lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;
+  &lt;input name=&quot;name&quot;&gt;
+
+  &lt;label for=&quot;photo_url&quot;&gt;Photo URL:&lt;/label&gt;
+  &lt;input name=&quot;photo_url&quot;&gt;
+
+  &lt;label for=&quot;nationality&quot;&gt;Nationality:&lt;/label&gt;
+  &lt;input name=&quot;nationality&quot;&gt;
+
+  &lt;input type=&quot;submit&quot; value=&quot;Create&quot;&gt;
+&lt;/form&gt;
+</code></pre>
 <p>But what happens when we try to submit this form?</p>
 <p>If we were looking in our browser, we would get our old friend <code>unkown action</code> error, saying:
 <code>The action &apos;create&apos; could not be found for ArtistsController</code></p>
@@ -1338,16 +1351,28 @@ Just put: <code>&lt;h2&gt;All Artists&lt;/h2&gt;</code></p>
 <p>In <code>app/controllers/artists_controller.rb</code>:</p>
 <pre><code class="lang-ruby"><span class="hljs-comment"># Artists#Create</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
-  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.new(params[<span class="hljs-symbol">:artist</span>])
-  <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>.save
-    redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
-  <span class="hljs-keyword">else</span>
-    redirect_to <span class="hljs-string">&quot;/artists/new&quot;</span>
-  <span class="hljs-keyword">end</span>
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.create!(<span class="hljs-symbol">name:</span> params[<span class="hljs-symbol">:name</span>], <span class="hljs-symbol">nationality:</span> params[<span class="hljs-symbol">:nationality</span>], <span class="hljs-symbol">photo_url:</span> params[<span class="hljs-symbol">:photo_url</span>])
 <span class="hljs-keyword">end</span>
 </code></pre>
 <p>With this action, we want to create an instance using the params the user entered into the form, and we also set up a check  to see whether or not the model was stored in our database.</p>
 <p>When the request completes, we now need to worry about where to direct the user after adding a new artist.</p>
+<h3 id="authenticity-tokens">Authenticity Tokens</h3>
+<p>Let&apos;s go to our form in our browser at <code>http:localhost:3000/artists/new</code> and try to add an artist.</p>
+<p>What happens?</p>
+<pre><code># ERROR!
+# ActionController::InvalidAuthenticityToken in ArtistsController#create
+</code></pre><p>What&apos;s going on here?</p>
+<p>Rails is setup such that it doesn&apos;t allow just any parameters to be accompanied by a request. This is why we had to do some additional configuration changes to get our Sinatra forms to work.</p>
+<p>How to do we solve this?</p>
+<p>Any time a user views a form to create, update or destroy a resource, the rails app creates a random <code>authenticity_token</code> and stores it in a session. When the user than submits the form, rails will look for the <code>authenticity_token</code> compares it to the one stored in the session, and if they match, allow the request to continue.</p>
+<p>If someone was trying to update our database in some way other than our application, it would be denied.</p>
+<p>The first thing that I want do is add the authenticity_token in our <code>new</code> form.</p>
+<p>Add the hidden input field that contains the auth token in `app/views/artists/new.html.erb&apos;:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&quot;/artists&quot;</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">&quot;post&quot;</span> &gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;hidden&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;authenticity_token&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;&lt;%= form_authenticity_token %&gt;&quot;</span>&gt;</span>
+  ... more form code
+</code></pre>
+<p>Great, so now that we added an random authenticity_token to each request as an extra layer of security, we should be good to go right?!</p>
 <h3 id="render-vs-redirect-5105">Render vs Redirect (5/105)</h3>
 <p>Like Sinatra, Rails has many ways to map our app&apos;s logic navigating a user&apos;s request to a response they care about.</p>
 <p>For example, taking a closer look at index action of our Artists Controller:</p>
@@ -1366,11 +1391,24 @@ Just put: <code>&lt;h2&gt;All Artists&lt;/h2&gt;</code></p>
 </code></pre>
 <p>You could also redirect rather than render. <strong>(ST-WG):</strong> What are the differences between redirecting and rendering?</p>
 <h2 id="ido-sanitizationstrong-params-10115">(I-DO) Sanitization/Strong Params (10/115)</h2>
-<p>On to the task at hand, writing code to handle the <code>create</code> action to handle the request from the <code>new</code> form.</p>
-<p>If we look at the <code>html</code> of our form to add new artist in <code>app/views/artists/new.html.erb</code>:</p>
-<pre><code class="lang-html">
-<span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&quot;/artists&quot;</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">&quot;post&quot;</span> &gt;</span>
-
+<p>Looking at the code for the <code>artists#create</code> method, we find this line:</p>
+<pre><code class="lang-rb">  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.create!(<span class="hljs-symbol">name:</span> params[<span class="hljs-symbol">:name</span>], <span class="hljs-symbol">nationality:</span> params[<span class="hljs-symbol">:nationality</span>], <span class="hljs-symbol">photo_url:</span> params[<span class="hljs-symbol">:photo_url</span>])
+</code></pre>
+<p>We&apos;re only submitting 3 fields so that&apos;s not so bad, but if we were submitting 50 fields that would mean we have to write a HUGE line.</p>
+<p>If only there was some way to not have to do that!</p>
+<p>Instead of one argument for each field in a record, <code>.create</code> can actually take one argument in total that is a hash of all the fields that should be updated. For instance:</p>
+<pre><code class="lang-rb"><span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.create!({
+  <span class="hljs-symbol">name:</span> <span class="hljs-string">&quot;John&quot;</span>,
+  <span class="hljs-symbol">nationality:</span> <span class="hljs-string">&quot;German&quot;</span>,
+  <span class="hljs-symbol">photo_url:</span> <span class="hljs-string">&quot;http://image.com/john.jpg&quot;</span>
+})
+</code></pre>
+<p>That by itself doesn&apos;t do us any good. But what if we could have our HTML form package up all the artist data into one <code>params</code> field? Then, we could just use something like:</p>
+<pre><code class="lang-rb">  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.create!(params[<span class="hljs-symbol">:artist</span>])
+</code></pre>
+<p>Change the HTML of your form <code>app/views/artists/new.html.erb</code> to this:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&quot;/artists&quot;</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">&quot;post&quot;</span> &gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;hidden&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;authenticity_token&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;&lt;%= form_authenticity_token %&gt;&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;name&quot;</span>&gt;</span>Name:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;artist[name]&quot;</span>&gt;</span>
 
@@ -1385,25 +1423,26 @@ Just put: <code>&lt;h2&gt;All Artists&lt;/h2&gt;</code></p>
 </code></pre>
 <p>It important to notice the input&apos;s name space following <code>artist[attribute]</code> patterns. This is important for how we can access the arguments passed by the user in the global <code>params</code> object.</p>
 <p><a href="http://stackoverflow.com/questions/6885990/rails-params-explained" target="_blank">More about Rails&apos; Params</a></p>
-<p>Let&apos;s go to our form in our browser at <code>http:localhost:3000/artists/new</code> and try to add an artist.</p>
-<p>What happens?</p>
-<pre><code># ERROR!
-# ActionController::InvalidAuthenticityToken in ArtistsController#create
-</code></pre><p>What&apos;s going on here?</p>
-<p>Rails is setup such that it doesn&apos;t allow just any parameters to be accompanied by a request. This is why we had to do some additional configuration changes to get our Sinatra forms to work.</p>
-<p>How to do we solve this?</p>
-<p>Any time a user views a form to create, update or destroy a resource, the rails app creates a random <code>authenticity_token</code> and stores it in a session. When the user than submits the form, rails will look for the <code>authenticity_token</code> compares it to the one stored in the session, and if they match, allow the request to continue.</p>
-<p>If someone was trying to update our database in some way other than our application, it would be denied.</p>
-<p>The first thing that I want do is add the authenticity_token in our <code>new</code> form.</p>
-<p>Add the hidden input field that contains the auth token in `app/views/artists/new.html.erb&apos;:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&quot;/artists&quot;</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">&quot;post&quot;</span> &gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;hidden&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;authenticity_token&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;&lt;%= form_authenticity_token %&gt;&quot;</span>&gt;</span>
-  ... more form code
+<p>If you submit the form now, and check the console, you should see something like:</p>
+<pre><code>{
+    &quot;authenticity_token&quot;=&gt;&quot;I04y1td+X5CIiVdZ50ABEGAy6f0LCJReSDa5eq5/GvXICDkUpeu2peCt/BlPHmU1VSadWvzXUy/9uyNixjrP+A==&quot;,
+    &quot;artist&quot;=&gt;{
+        &quot;name&quot;=&gt;&quot;John&quot;,
+        &quot;photo_url&quot;=&gt;&quot;http://images.google.com/john.jpg&quot;,
+        &quot;nationality&quot;=&gt;&quot;German&quot;
+    }
+}
+</code></pre><p>That&apos;s all the data that was submitted with the form. Notice all of the artist&apos;s data is now inside its own hash <strong>inside</strong> the params hash.</p>
+<p>Update the controller to receive that param:</p>
+<pre><code class="lang-rb"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.create!(params[<span class="hljs-symbol">:artist</span>])
+<span class="hljs-keyword">end</span>
 </code></pre>
-<p>Great, so now that we added an random authenticity_token to each request as an extra layer of security, we should be good to go right?!</p>
+<p>However, in the browser, you get:</p>
 <pre><code># ERROR!!!
 # ActiveModel::ForbiddenAttributesError in ArtistsController#create
 </code></pre><p>Wat?! Why can&apos;t we create an <code>artist</code> using the hash available in params? This is a security feature of Rails: <code>params</code> could include extra fields that have been maliciously added to the form. This extra data could be harmful, therefore Rails requires us to whitelist fields that are allowed through form submissions.</p>
+<h3 id="strong-params">Strong Params</h3>
 <p>Whitelisting is done using <strong>strong parameters</strong> configuration!</p>
 <p>This is a security feature of Rails: params could include extra fields that have been maliciously added to the form. This extra data could be harmful, therefore Rails requires us to whitelist fields that are allowed through form submissions.</p>
 <p>Now we should update our Artists controller a bit.</p>
@@ -1422,22 +1461,14 @@ Just put: <code>&lt;h2&gt;All Artists&lt;/h2&gt;</code></p>
 <p>in <code>app/controllers/artists_controller.rb</code>:</p>
 <pre><code class="lang-ruby"><span class="hljs-comment">#### before</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
-  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.new(params[<span class="hljs-symbol">:artist</span>])
-  <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>.save
-    redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
-  <span class="hljs-keyword">else</span>
-    redirect_to <span class="hljs-string">&quot;/artists/new&quot;</span>
-  <span class="hljs-keyword">end</span>
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.create!(params[<span class="hljs-symbol">:artist</span>])
+  redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
 <span class="hljs-keyword">end</span>
 
 <span class="hljs-comment">#### after  </span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
-  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.new(artist_params)
-  <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>.save
-    redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
-  <span class="hljs-keyword">else</span>
-    redirect_to <span class="hljs-string">&quot;/artists/new&quot;</span>
-  <span class="hljs-keyword">end</span>
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.create!(artist_params)
+  redirect_to <span class="hljs-string">&quot;/artists/<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.id}</span>&quot;</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
 <p>Great, now we&apos;re protected!</p>
