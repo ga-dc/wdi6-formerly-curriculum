@@ -180,13 +180,20 @@ With path helpers, we can tidy up the other helpers you guys have alrady impleme
 ## Nested Resources (15 / 55)
 [N.B. the Rails docs are awesome!](http://guides.rubyonrails.org/routing.html#nested-resources)
 
-The way our app is currently routed isn't too helpful, right?
+The way our app is currently routed is fine. Songs and artists have their very own resources and doesn't depend on the other. We can, however, change our domain a bit. We can actually nest our resources. We want to be able to visit urls like this:
+
+`http://www.tu.nr/artists/3/songs/12`
+
 * Currently we can visit an artist show page, which includes a link of all that artist's songs.
-* But we want to be able to visit a URL like this: `http://www.tu.nr/artists/3/songs/12`
+
 * What would it mean to have a URL like that? Why do we do it this way?
   * It concisely reflects our data structure: all songs are dependent on an artist.
   * Also allows users to access specific information using the URL.
 * Ultimately, we want to structure our routes so that all Songs exist in the context of a parent Artist.
+
+> The reasons might not be so apparent for routes like show, edit, update and destroy because we have access to a song ID in the url anyway. But by using nested resources, it's easier to create a song because we have the artists id in the url. Or maybe we want the songs index route to be namespaced under an artist.
+
+> This brings us to another side note. Ultimately your domain model is just that, yours. It's up to you to decide whats the right fit. Which tables make the most sense for the problems that I face in my application. Which associations should I use to best facilitate querying my database. Which resources should I have and under which namespaces? These are the questions developers ask themselves each and every time a new application is being created. We're just here to teach you some tools to answer these questions for yourself.
 
 So our ideal Song index will look something like this...
 
