@@ -25,7 +25,7 @@ The router matches an HTTP request to the corresponding controller action.
 
 ## Routes (10 / 20)
 
-You guys dove into Rails' `routes.rb` file in Adam's MVC class and created individual routes for pages using Sinatra-like syntax.
+You guys dove into Rails' `routes.rb` file in the MVC class and created individual routes for pages using Sinatra-like syntax.
 * **NOTE:** The `routes.rb` file is located in the `config` folder of your Rails application.
 
 A route to our index page would look like this:
@@ -48,7 +48,7 @@ root :to => "artists#index"
 
 ## Resourceful Routes (5 / 25)
 
-During Adam and Jesse's helpers class you learned a bit of Rails wizardry that allowed you to generate all of your application's RESTful routes using one word: **resources**!
+During the helpers class you learned a bit of Rails wizardry that allowed you to generate all of your application's RESTful routes using one word: **resources**!
 * Explicitly tells Rails that we will be using RESTful routes.
 * Generates path helpers, which we'll look at shortly.
 
