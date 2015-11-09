@@ -155,7 +155,11 @@ Take the next 5 minutes to:
 
 ### Break 10m
 ## Reframing
-Devise is a gem in rails that we use in order to streamline user authentication. We're going to talk about how to get devise up and running and a couple of helper methods.
+Devise is a gem in rails that we use in order to streamline user authentication. Rails developers saw that they we're incorporating user authentication in many of their applications. They built the devise gem assuming best practices(rails way) for User Auth. The devise gem uses sessions in a big way.
+
+At a high level, devise uses sessions to store user information from one request to the next. It sets that session by verifying with passwords(password_digest) on a user model. Once you set that session than you can refer to that user object until either the session is cleared(user logs out or session clears manually through browser) or the session is set to a new value(not common-- if ever?)
+
+We're going to talk about how to get devise up and running and a couple of helper methods.
 
 If you'd like to learn about hand rolled user authentication reference [this lesson plan](https://github.com/ga-dc/curriculum/tree/master/05-mvc-with-rails/rails-sessions-and-auth)
 
@@ -193,6 +197,18 @@ This is some of the stuff that it's given us:
 Its alot but of stuff to look at, but let's break it down. Going from top to bottom excluding some of the files we won't be using for this class.
 
 The first thing that was created was a migration for this model. In `db/migrate/<somedate>_devise_create_users.rb` there's alot of information here, but I think most pertinent to us in the scope of user auth is the email and password attributes.
+
+### Hashing and Salting(aside)
+
+`:encrypted_password` is interesting. Why wouldn't they just use `:password` as a column? So obviously we don't want to just store someone's password in a database. That would not be so great. Really what we want to do, is put an encrypted_password into our database. The way a password gets encrypted is that some random string gets generated and added to the password(salting). Then that new string goes through a hashing algorithm that outputs a "random" string. That's what gets stored in the database.
+
+So when a user tries to log in, the password gets added the same salt and then goes through the same algorithm and it looks against the database for the result.
+
+At the database level actual passwords `password1234` and `password1235` are very disparate.
+
+If you want to know more about how to code your own(handroll) user models and not have to use devise. Look at [this lesson plan](https://github.com/ga-dc/curriculum/tree/rails_devise/05-mvc-with-rails/rails-sessions-and-auth).
+
+### Back to what devise gives us...
 
 The next thing that I see is a model defintion was created for us in `app/model/user.rb`:
 
