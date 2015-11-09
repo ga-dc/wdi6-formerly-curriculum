@@ -18,7 +18,7 @@
 * [Tunr Playlists Starter](https://github.com/ga-dc/tunr_rails/tree/playlists-starter)
 * [Tunr Playlists Solution](https://github.com/ga-dc/tunr_rails/tree/playlists-solution)
 
-## Many-to-Many Relationships
+## Many-to-Many Relationships (10 minutes / 0:10)
 
 Many-to-many relationships are fairly common in apps. Examples might include:
 
@@ -33,11 +33,13 @@ one id in a one-to-many relationship.
 
 Instead, we must create a new table, a *join table* to store these associations.
 
-## Join Tables
+## Join Tables (10 minutes / 0:20)
 
-A join table is a separate table in our DB whose job is to store information
+A join table is a separate intermediate table in our DB whose job is to store information
 about the relationship between our two models of the many-to-many. For each
 many-to-many relationship, we'll need one join table.
+
+> Why are they called "join tables"? On a database level, join tables are created using SQL methods like `INNER JOIN` and `OUTER JOIN`. Learn more about them [here](http://www.sql-join.com/).
 
 At a minimum, each join table should have two foreign_key columns, for the tables
 it's joining. e.g. for PlaylistEntries, we should have a `song_id` column and
@@ -52,35 +54,74 @@ would be stored on the join table.)
 ## Join Models & Tables
 
 In rails, we should always create a model to represent our join table. The name
-can technically be anythign we want, but really the model name should be as
+can technically be anything we want, but really the model name should be as
 descriptive as possible, and indicate that it represents an *association*.
 
-Some examples:
+### EXERCISE: Naming Join Tables (10 minutes / 0:30)
+
+In pairs, spend **5 minutes** answering the following questions for the below list of models...
+1. Do the two models exhibit a many-to-many relationship?
+2. If so, what would be a descriptive name for their resulting join table?
+
 * To join users and events, we might create an `Attendance` model
 * To join users and courses, we might create an `Registration` model
 * To join photos to groups, we might have a `GroupMembership` model
 * To join posts to categories, we might have a `CategoryEntry` or `Categorization` model
 * To join songs to playlists, we might have a `PlaylistEntry` model
 
-### Generating the Model / Migration
+### Generating the Model / Migration (10 minutes / 0:40)
+
+> We will be using Attendances as the in-class example. I encourage you not to code along -- just watch. You will have the chance to implement this during in-class exercises with Tunr.  
 
 We generate the model just like any other. If we specify the attributes (i.e.
 columns on the command line, Rails will automatically generate the correct
 migration for us.
 
-```bash
-$ rails g model Attendance user:references event:references num_guests:integer
+
+First the model file...  
+
+```rb
+# models/attendance.rb
+
+class Attendance < ActiveRecord::Base
+  # Associations to come later...
+end
 ```
+
+Now the migration...  
+
+```bash
+$ rails g migration create_attendance
+```
+
+```rb
+# db/migrate/*****_create_attendances.rb
+
+class CreateAttendances < ActiveRecord::Migration
+  def change
+    create_table :attendances do |t|
+      t.references :user, index: true, foreign_key: true
+      t.references :event, index: true, foreign_key: true
+
+      t.timestamps null: false
+    end
+  end
+end
+```
+
+> What is `t.references`?
 
 This will generate an Attendance model, with `user_id`, `event_id` and
 `num_guest` columns.
 
-### EXERCISE: Create the PlaylistEntry Model
+### EXERCISE: Create the PlaylistEntry Model (20 minutes / 1:00)
 
-Create a model / migration for the `PlaylistEntry` model. It should have `song_id`,
+Take **15 minutes** to create a model / migration for the `PlaylistEntry` model. It should have `song_id`,
 `playlist_id`, and `order` columns.
 
-### Adding the AR Relationships
+### BREAK (10 minutes / 1:10)
+
+### Adding the AR Relationships (10 minutes / 1:20)
 
 Once we create our join model, we need to update our other models to indicate
 the associations between them.
@@ -107,12 +148,12 @@ class User < ActiveRecord::Base
 end
 ```
 
-### EXERCISE: Update our Models
+### EXERCISE: Update our Models (10 minutes / 1:30)
 
-Update the Song, Playlist, and Playlist Entry models to ensure we have the
+Take **5 minutes** to update the Song, Playlist, and Playlist Entry models to ensure we have the
 correct associations.
 
-### Testing our Association
+### Testing our Association (10 minutes / 1:40)
 
 It's a good idea to use the `rails console` to test creating our associations.
 
@@ -153,8 +194,10 @@ Attendance.where(user: bob, event: prom).destroy_all # will destroy all that mat
 prom.attendances.where(user: bob).destry_all
 ```
 
-### EXERCISE: Update Playlists Controller
+### EXERCISE: Update Playlists Controller (20 minutes / 2:00)
 
-Update the `add_song` and `remove_song` actions in the playlists controller to
+Take **15 minutes** to update the `add_song` and `remove_song` actions in the playlists controller to
 add and remove songs from the playlist. Look at the `playlists/show.html.erb`
 view to see how we route to these actions.
+
+### BREAK (10 minutes / 2:10)
