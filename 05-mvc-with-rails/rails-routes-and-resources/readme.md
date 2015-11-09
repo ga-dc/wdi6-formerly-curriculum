@@ -48,6 +48,8 @@ root :to => "artists#index"
 
 ## Resourceful Routes (5 / 25)
 
+[Tunr: rails routes and resources starter](https://github.com/ga-dc/tunr_rails_routes_resources)
+
 During the helpers class you learned a bit of Rails wizardry that allowed you to generate all of your application's RESTful routes using one word: **resources**!
 * Explicitly tells Rails that we will be using RESTful routes.
 * Generates path helpers, which we'll look at shortly.
