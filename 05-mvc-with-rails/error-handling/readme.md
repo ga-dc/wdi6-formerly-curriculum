@@ -79,6 +79,24 @@ class User < ActiveRecord::Base
 end
 ```
 
+## Custom validations
+
+You can also easily create your own custom validations. For instance, this will make Tunr reject any artist named Billy Ray Cyrus:
+
+```rb
+class Artist < ActiveRecord::Base
+  validate :break_billy_rays_achy_breaky_heart
+
+  def break_billy_rays_achy_breaky_heart
+    if self.name == "Billy Ray Cyrus"
+      errors.add(:name, "cannot be Billy Ray Cyrus, because he doesn't qualify as an artist.")
+    end
+  end
+end
+```
+
+#### Play around with this validation. What does `errors.add` do?
+
 # Error Handling
 
 ## Framing
@@ -223,12 +241,35 @@ What we really want is for the controller to do one thing when it works, and ano
     begin
       @artist = Artist.create!(artist_params)
     rescue StandardError => sad_panda
-      redirect_to "http://google.com/?q=#{sad_panda.message}"
+      redirect_to "http://google.com/search?q=#{sad_panda.message}"
     else
       redirect_to "/artists/#{@artist.id}"
     end
   end
 ```
+
+### Raising your own errors
+
+Underneath the surface, errors all rely on the `raise` keyword. You don't "throw" an error in Ruby, you "raise" it.
+
+For example:
+
+```rb
+  def create
+    begin
+      @artist = Artist.create!(artist_params)
+      raise "conway's game of life"
+    rescue StandardError => sad_panda
+      redirect_to "http://google.com/search?q=#{sad_panda.message}"
+    else
+      redirect_to "/artists/#{@artist.id}"
+    end
+  end
+```
+
+Whenever Ruby encounters a `raise`, it stops whatever it's doing and looks to see whether the `raise` occurred inside a `begin/rescue` block. If it did, then it lets the `rescue` handle the error. If it did **not**, then it "breaks" the app with a fatal error.
+
+You can raise an error anywhere you want. It will always work the same way.
 
 # Flash
 
