@@ -251,7 +251,7 @@ Forgery**. This occurs when a user visits a malcious site, and that site tricks
 the user's browser into making a request to your site. This request could be a
 POST request that modifies data under the target user's account.
 
-[Video explaining how CSRF works](https://www.youtube.com/watch?v=uycmHQM_h64)
+[Video explaining how CSRF works](https://www.youtube.com/watch?v=vRBihr41JTo)
 
 Rails prevents this by embedding a special token each time it generates a form.
 
