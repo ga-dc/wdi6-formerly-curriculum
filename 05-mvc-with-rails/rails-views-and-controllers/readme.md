@@ -34,7 +34,7 @@ With a partner, discuss:
 ### rMVC: Revisited (10/25)
 The design pattern that rails is built around is rMVC - Router, Model, View and Controller.
 
-![rMVC](http://i.stack.imgur.com/Sf2OQ.png)
+![rMVC](images/mvc_diagram.png)
 
 **Question:** Who can remind us what the role of a view is in a Rails application?
 
