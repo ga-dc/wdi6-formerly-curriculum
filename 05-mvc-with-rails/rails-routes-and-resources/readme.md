@@ -17,13 +17,15 @@ It's our good ol' friend the Rails rMVC diagram!
 
 ![https://camo.githubusercontent.com/b17f7f6527eb7d35474e24ed3ff299b8689615a0/687474703a2f2f692e737461636b2e696d6775722e636f6d2f5366324f512e706e67](https://camo.githubusercontent.com/b17f7f6527eb7d35474e24ed3ff299b8689615a0/687474703a2f2f692e737461636b2e696d6775722e636f6d2f5366324f512e706e67)
 
-The router matches an HTTP request to the corresponding controller action.
+The router matches an HTTP request to a controller and action.
 * The gateway to the rMVC (router / model / view / controller).
-* So something like this `get "/students/2"` is directed to the students controller show route.
+* So something like this `get "/artists/2"` is directed to the artists controller show action.
 * Returns an error if the HTTP request is unrecognizable and/or does not match a controller action.
 <br><br>
 
 ## Routes (10 / 20)
+
+Fork/clone [this repo](https://github.com/ga-dc/tunr_rails_routes_resources) for the starter code of this lesson. This repo also contains a solution branch containing all the code we'll be executing today.
 
 You guys dove into Rails' `routes.rb` file in the MVC class and created individual routes for pages using Sinatra-like syntax.
 * **NOTE:** The `routes.rb` file is located in the `config` folder of your Rails application.
@@ -38,18 +40,22 @@ This would look the exact same for our Song model
 * Just replace the model reference in the HTTP request and controller method.
 
 You already took care of this in an earlier class, but we can also define the default route that is triggered when a user visits the home page of our application using the `root` method.
-* In the below example we direct the user to our artists index page.
+
+* In the below example we direct the user to our artists index page when the root route is requested.
 
 ```rb
-# When we visit http://localhost:3030/, we trigger the index action in our Artists controller
+# When we visit http://localhost:3000/, we trigger the index action in our Artists controller
 root :to => "artists#index"
 ```
 <br><br>
 
 ## Resourceful Routes (5 / 25)
 
+<<<<<<< Updated upstream
 [Tunr: rails routes and resources starter](https://github.com/ga-dc/tunr_rails_routes_resources)
 
+=======
+>>>>>>> Stashed changes
 During the helpers class you learned a bit of Rails wizardry that allowed you to generate all of your application's RESTful routes using one word: **resources**!
 * Explicitly tells Rails that we will be using RESTful routes.
 * Generates path helpers, which we'll look at shortly.
@@ -103,6 +109,7 @@ You've seen most of this information before: HTTP request verbs, routes and cont
 * **Helpers** make our lives easier and save us the trouble of writing out long, repetitive code.
 * **Path helpers** are references to routes and controller actions.
 * Build them using the prefixes from `rake routes`.
+* often times they'll be placed in views, but are also utilized elsewhere.
 
 Path helpers vary between routes
 * `index`: `artists_path`
