@@ -3,6 +3,7 @@
 ## Learning Objectives
 - explain how sessions give state to a web application
 - explain how user authentication utilizes sessions
+- Define and then access a session variable in a Rails application.
 - set session hash key value pairs inside of a rails application
 - implement user authentication into a web application utilizing the devise gem
 - implement useful helper methods devise provides
