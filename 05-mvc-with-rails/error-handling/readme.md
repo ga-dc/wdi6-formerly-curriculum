@@ -5,7 +5,7 @@
 - Explain the benefits of explicitly handling errors
 - Produce and handle an error in Ruby using the keywords `begin`, `rescue`, `raise`, and `ensure`
 - Explain the purpose of `flash` in Rails
-- Compare and contrast `flash[:notice]`, `flash[:alert]`, and `flash[:error]`
+- Compare and contrast `flash[:notice]` and `flash[:alert]`
 - List three ActiveRecord methods that trigger validations
 - Compare and contrast the validation helpers `confirmation`, `inclusion`, `exclusion`, `length`, `presence`, `uniqueness`, and `numericality`
 - Compare and contrast the validation options `allow_nil`, `allow_blank`, and `on`
@@ -230,6 +230,120 @@ What we really want is for the controller to do one thing when it works, and ano
   end
 ```
 
-## Flash
+# Flash
+
+## Framing
+
+...but we don't *want* to redirect the user to Google. We just want to show the error message. So let's do that the way we did before:
+
+```rb
+  def create
+    begin
+      @artist = Artist.create!(artist_params)
+    rescue StandardError => sad_panda
+      @error = sad_panda.message
+    else
+      redirect_to "/artists/#{@artist.id}"
+    end
+  end
+```
+
+We'll get a "missing template" error if we don't give the controller something to render when it has errors, so let's have it show the `new` view again:
+
+```rb
+  def create
+    begin
+      @artist = Artist.create!(artist_params)
+    rescue StandardError => sad_panda
+      @error = sad_panda.message
+      render :new
+    else
+      redirect_to "/artists/#{@artist.id}"
+    end
+  end
+```
+
+That's pretty good. But I'm not a huge fan of the "Confirm Form Submission" box that pops up when a page is rendered via POST.
+
+Instead, we can have Rails just redirect the user to whichever page they were on before:
+
+```rb
+  def create
+    begin
+      @artist = Artist.create!(artist_params)
+    rescue StandardError => sad_panda
+      @error = sad_panda.message
+      redirect_to :back
+    else
+      redirect_to "/artists/#{@artist.id}"
+    end
+  end
+```
+
+...but now we've lost the error message, all over again!
+
+#### Why does the error message no longer show up?
+
+## Quit jerking us around. What's the answer?
+
+#### We've seen two main ways of storing use data so it's available from page to page. What are they?
+
+We could store errors in the database, but that's hugely inefficient. A better idea would be to use **session variables**, about which you learned in your last class.
+
+Rails has a built-in way of doing this, called `flash`.
+
+`flash` is a hash of messages that's created on one request and available through the next, then destroyed.
+
+Replace the `error` instance variable with `flash[:alert]` in your Artist controller:
+
+```rb
+  def create
+    begin
+      @artist = Artist.create!(artist_params)
+    rescue StandardError => sad_panda
+      flash[:alert] = sad_panda.message
+      redirect_to :back
+    else
+      redirect_to "/artists/#{@artist.id}"
+    end
+  end
+```
+
+In the `application/layout`, replace the `@error` line with this:
+
+```rb
+  <% flash.each do |type, message| %>
+    <p><%= type %>: <%= message %></p>
+  <% end %>
+```
+
+...and there you go!
+
+### Flash convention
+
+We used `flash[:alert]`, but as with any hash, we can use `flash[:notice]`, `flash[:wombat]`, `flash[:error]`, whatever.
+
+It's convention to stick to two main ones: `:alert` and `:notice`.
+
+#### Why should you stick to this convention?
+
+Having one or two flash types makes it really easy to style your Flashes with CSS. Consider:
+
+```rb
+  <% flash.each do |type, message| %>
+    <p class="<%= type %>"><%= message %></p>
+  <% end %>
+```
+
+```css
+.alert{
+  color:red;
+}
+.notice{
+  color:blue;
+}
+```
+
+> It *used* to be that Rails had some helper methods that worked only with `alert` and `notice`. However, that's no longer the case.
 
 
