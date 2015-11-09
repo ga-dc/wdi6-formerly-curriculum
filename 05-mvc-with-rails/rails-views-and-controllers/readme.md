@@ -62,14 +62,14 @@ If you would prefer to work with a clean starter rather than building on your ex
 ```bash
 git clone git@github.com:ga-dc/tunr_rails_models_and_migrations.git
 cd tunr_rails_models_and_migrations
-git checkout solution
+git checkout views-controllers-starter
 git checkout -b inclass
 ```
 Make sure to remember to run:
 ```
 bundle install
 rake db:create
-# ^Only if you do not have a tunr_development db
+# ^Only if you do not have a tunr_db database
 rake db:migrate
 ```
 Make sure to seed the db if you haven not already.
@@ -394,7 +394,7 @@ Great, now we're protected!
 ## Break (10/125)
 
 ## You-Do: (20/145)
-- Define `edit`, 'update' and `destroy` controller actions.
+- Define `edit`, `update` and `destroy` controller actions.
 - Create an `edit` view file.
 - When you visit the `edit` page, the relevant form should be displayed
 - Upon submitting the form, artist info updates accordingly.
