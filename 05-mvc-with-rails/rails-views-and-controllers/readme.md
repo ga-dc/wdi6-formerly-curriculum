@@ -252,7 +252,7 @@ In `app/controllers/artists_controller.rb`:
 ```ruby
 # Artists#Create
 def create
-  @artist = Artist.create(name: params[:name], nationality: params[:nationality], photo_url: params[:photo_url])
+  @artist = Artist.create!(name: params[:name], nationality: params[:nationality], photo_url: params[:photo_url])
 end
  ```
 
@@ -325,7 +325,7 @@ You could also redirect rather than render. **(ST-WG):** What are the difference
 Looking at the code for the `artists#create` method, we find this line:
 
 ```rb
-  @artist = Artist.create(name: params[:name], nationality: params[:nationality], photo_url: params[:photo_url])
+  @artist = Artist.create!(name: params[:name], nationality: params[:nationality], photo_url: params[:photo_url])
 ```
 
 We're only submitting 3 fields so that's not so bad, but if we were submitting 50 fields that would mean we have to write a HUGE line.
@@ -335,7 +335,7 @@ If only there was some way to not have to do that!
 Instead of one argument for each field in a record, `.create` can actually take one argument in total that is a hash of all the fields that should be updated. For instance:
 
 ```rb
-@artist = Artist.create({
+@artist = Artist.create!({
   name: "John",
   nationality: "German",
   photo_url: "http://image.com/john.jpg"
@@ -345,7 +345,7 @@ Instead of one argument for each field in a record, `.create` can actually take 
 That by itself doesn't do us any good. But what if we could have our HTML form package up all the artist data into one `params` field? Then, we could just use something like:
 
 ```rb
-  @artist = Artist.create(params[:artist])
+  @artist = Artist.create!(params[:artist])
 ```
 
 Change the HTML of your form `app/views/artists/new.html.erb` to this:
@@ -389,7 +389,7 @@ Update the controller to receive that param:
 
 ```rb
 def create
-  @artist = Artist.create(params[:artist])
+  @artist = Artist.create!(params[:artist])
 end
 ```
 
