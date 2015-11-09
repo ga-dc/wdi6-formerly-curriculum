@@ -225,6 +225,21 @@ Now when we visit `/artists` in the browser, we see a list (index) of all artist
 ## WE-DO: Artists Create Action (20/100)
 So at this point we have a way to see all artists, view info about a specific artist, as well as see a form to add a new artist.
 
+```rb
+<form action="/artists" method="post" >
+  <label for="name">Name:</label>
+  <input name="name">
+
+  <label for="photo_url">Photo URL:</label>
+  <input name="photo_url">
+
+  <label for="nationality">Nationality:</label>
+  <input name="nationality">
+
+  <input type="submit" value="Create">
+</form>
+```
+
 But what happens when we try to submit this form?
 
 If we were looking in our browser, we would get our old friend `unkown action` error, saying:
@@ -237,12 +252,7 @@ In `app/controllers/artists_controller.rb`:
 ```ruby
 # Artists#Create
 def create
-  @artist = Artist.new(params[:artist])
-  if @artist.save
-    redirect_to "/artists/#{@artist.id}"
-  else
-    redirect_to "/artists/new"
-  end
+  @artist = Artist.create(name: params[:name], nationality: params[:nationality], photo_url: params[:photo_url])
 end
  ```
 
@@ -250,59 +260,7 @@ With this action, we want to create an instance using the params the user entere
 
 When the request completes, we now need to worry about where to direct the user after adding a new artist.
 
-### Render vs Redirect (5/105)
-Like Sinatra, Rails has many ways to map our app's logic navigating a user's request to a response they care about.
-
-For example, taking a closer look at index action of our Artists Controller:
-
-```ruby
-def index
-  @artists = Artist.all
-end
-```
-
-**Question:** How did we see the artists index view page, when we went to our index route?
-
-If we remember back to Sinatra, you'll notice that we're not explicitly telling the application which view file to render.
-
-That's because rails has implicit rendering. Basically rails is smart enough to know if the artists controller action is called index, then it will look for the index view in the artist folder.
-
-You can explicitly change the implicit render by calling the `render` method in the action of a controller. Something like this:
-
-```ruby
-def index
-  @artists = Artist.all
-  render :index
-end
-```
-
-You could also redirect rather than render. **(ST-WG):** What are the differences between redirecting and rendering?
-
-## (I-DO) Sanitization/Strong Params (10/115)
-On to the task at hand, writing code to handle the `create` action to handle the request from the `new` form.
-
-If we look at the `html` of our form to add new artist in `app/views/artists/new.html.erb`:
-
-```html
-
-<form action="/artists" method="post" >
-
-  <label for="name">Name:</label>
-  <input name="artist[name]">
-
-  <label for="photo_url">Photo URL:</label>
-  <input name="artist[photo_url]">
-
-  <label for="nationality">Nationality:</label>
-  <input name="artist[nationality]">
-
-  <input type="submit" value="Create">
-</form>
-```
-
-It important to notice the input's name space following `artist[attribute]` patterns. This is important for how we can access the arguments passed by the user in the global `params` object.
-
-[More about Rails' Params](http://stackoverflow.com/questions/6885990/rails-params-explained)
+### Authenticity Tokens
 
 Let's go to our form in our browser at `http:localhost:3000/artists/new` and try to add an artist.
 
@@ -335,6 +293,108 @@ Add the hidden input field that contains the auth token in `app/views/artists/ne
 
 Great, so now that we added an random authenticity_token to each request as an extra layer of security, we should be good to go right?!
 
+### Render vs Redirect (5/105)
+Like Sinatra, Rails has many ways to map our app's logic navigating a user's request to a response they care about.
+
+For example, taking a closer look at index action of our Artists Controller:
+
+```ruby
+def index
+  @artists = Artist.all
+end
+```
+
+**Question:** How did we see the artists index view page, when we went to our index route?
+
+If we remember back to Sinatra, you'll notice that we're not explicitly telling the application which view file to render.
+
+That's because rails has implicit rendering. Basically rails is smart enough to know if the artists controller action is called index, then it will look for the index view in the artist folder.
+
+You can explicitly change the implicit render by calling the `render` method in the action of a controller. Something like this:
+
+```ruby
+def index
+  @artists = Artist.all
+  render :index
+end
+```
+
+You could also redirect rather than render. **(ST-WG):** What are the differences between redirecting and rendering?
+
+## (I-DO) Sanitization/Strong Params (10/115)
+Looking at the code for the `artists#create` method, we find this line:
+
+```rb
+  @artist = Artist.create(name: params[:name], nationality: params[:nationality], photo_url: params[:photo_url])
+```
+
+We're only submitting 3 fields so that's not so bad, but if we were submitting 50 fields that would mean we have to write a HUGE line.
+
+If only there was some way to not have to do that!
+
+Instead of one argument for each field in a record, `.create` can actually take one argument in total that is a hash of all the fields that should be updated. For instance:
+
+```rb
+@artist = Artist.create({
+  name: "John",
+  nationality: "German",
+  photo_url: "http://image.com/john.jpg"
+})
+```
+
+That by itself doesn't do us any good. But what if we could have our HTML form package up all the artist data into one `params` field? Then, we could just use something like:
+
+```rb
+  @artist = Artist.create(params[:artist])
+```
+
+Change the HTML of your form `app/views/artists/new.html.erb` to this:
+
+```html
+<form action="/artists" method="post" >
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="name">Name:</label>
+  <input name="artist[name]">
+
+  <label for="photo_url">Photo URL:</label>
+  <input name="artist[photo_url]">
+
+  <label for="nationality">Nationality:</label>
+  <input name="artist[nationality]">
+
+  <input type="submit" value="Create">
+</form>
+```
+
+It important to notice the input's name space following `artist[attribute]` patterns. This is important for how we can access the arguments passed by the user in the global `params` object.
+
+[More about Rails' Params](http://stackoverflow.com/questions/6885990/rails-params-explained)
+
+If you submit the form now, and check the console, you should see something like:
+
+```
+{
+    "authenticity_token"=>"I04y1td+X5CIiVdZ50ABEGAy6f0LCJReSDa5eq5/GvXICDkUpeu2peCt/BlPHmU1VSadWvzXUy/9uyNixjrP+A==",
+    "artist"=>{
+        "name"=>"John",
+        "photo_url"=>"http://images.google.com/john.jpg",
+        "nationality"=>"German"
+    }
+}
+```
+
+That's all the data that was submitted with the form. Notice all of the artist's data is now inside its own hash **inside** the params hash.
+
+Update the controller to receive that param:
+
+```rb
+def create
+  @artist = Artist.create(params[:artist])
+end
+```
+
+However, in the browser, you get:
+
 ```
 # ERROR!!!
 # ActiveModel::ForbiddenAttributesError in ArtistsController#create
@@ -342,10 +402,11 @@ Great, so now that we added an random authenticity_token to each request as an e
 
 Wat?! Why can't we create an `artist` using the hash available in params? This is a security feature of Rails: `params` could include extra fields that have been maliciously added to the form. This extra data could be harmful, therefore Rails requires us to whitelist fields that are allowed through form submissions.
 
+### Strong Params
+
 Whitelisting is done using **strong parameters** configuration!
 
 This is a security feature of Rails: params could include extra fields that have been maliciously added to the form. This extra data could be harmful, therefore Rails requires us to whitelist fields that are allowed through form submissions.
-
 
 Now we should update our Artists controller a bit.
 
@@ -370,22 +431,14 @@ in `app/controllers/artists_controller.rb`:
 ```ruby
 #### before
 def create
-  @artist = Artist.new(params[:artist])
-  if @artist.save
-    redirect_to "/artists/#{@artist.id}"
-  else
-    redirect_to "/artists/new"
-  end
+  @artist = Artist.create!(params[:artist])
+  redirect_to "/artists/#{@artist.id}"
 end
 
 #### after  
 def create
-  @artist = Artist.new(artist_params)
-  if @artist.save
-    redirect_to "/artists/#{@artist.id}"
-  else
-    redirect_to "/artists/new"
-  end
+  @artist = Artist.create!(artist_params)
+  redirect_to "/artists/#{@artist.id}"
 end
 ```
 
