@@ -1,6 +1,7 @@
 # Devise! and sessions
 
 ## Learning Objectives
+- explain what state is in a web application
 - explain how sessions give state to a web application
 - explain how user authentication utilizes sessions
 - Define and then access a session variable in a Rails application.
@@ -12,7 +13,7 @@
 - So we've figured out how to execute CRUD functionality into our apps. This is great, but should anyone using our application be able to do whatever they want? It would really suck if your buddies could post for you on facebook or if someone withdrew money from your banking site.
 
 ### T & T
-Well, that shouldn't be the case. For the next 5 minutes turn to your partner in class and discuss how we might be able to prevent people from doing whatever they want on your website.
+Well, that shouldn't be the case. We need to be able to perserve a "state" of the application. If a user is logged in, that user should be logged in until he logs out, persisting the state of that user being logged in. For the next 5 minutes turn to your partner in class and discuss how we might be able to prevent people from doing whatever they want on your website.
 
 Here's some talking points:
 - What does it mean for a user to be signed in?
@@ -21,6 +22,34 @@ Here's some talking points:
 
 > We need to start thinking about how to capture information into a User model. That has information about username, email, or password. We also need a way to transfer or perserve state in our applications from request to request.
 
+## Cookies
+
+### We do:
+1. In Chrome, go to Preferences
+- Show advanced settings
+- Click "Content settings"
+- Click "All cookies and site data"
+- Scroll to `github.com`
+
+Click around on the different "buttons" or "tabs". In particular, look at `dotcom_user`, `signed_in`, and `tz`.
+
+##### Turn and talk: What do you see? What do these do?
+
+A *cookie* is a piece of data stored on your computer by your web browser and associated with a particular website.
+
+### Example cookies:
+
+From Github:
+```
+Name: dotcom_user
+Content: RobertAKARobin
+Domain: .github.com
+Path: /
+Send for: Secure connections only
+Accessible to script: No (HttpOnly)
+Created: Wednesday, July 22, 2015 at 7:04:22 PM
+Expires: Sunday, July 22, 2035 at 7:04:22 PM
+```
 
 ## Enter Sessions(i do, talk + setup)15m
 - HTTP is stateless, so it's up to either the browser or application that needs to "remember" what's happening
