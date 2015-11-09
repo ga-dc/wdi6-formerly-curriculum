@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.4" data-chapter-title="Views and Controllers" data-filepath="05-mvc-with-rails/rails-views-and-controllers/readme.md" data-basepath="../.." data-revision="Mon Nov 09 2015 19:36:06 GMT+0000 (UTC)">
+    <div class="book" data-level="4.4" data-chapter-title="Views and Controllers" data-filepath="05-mvc-with-rails/rails-views-and-controllers/readme.md" data-basepath="../.." data-revision="Mon Nov 09 2015 20:48:08 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1287,7 +1287,7 @@ $ touch app/views/artists/index.html.erb
 <p>Note the conventions here. We needed to make an <code>artists</code> folder to put the <code>index.html.erb</code> in it. This is important because when we define an <code>action</code> in our controller, rails knows to render the view corresponding to the controller and action. In this example, because were calling the <code>index</code> action in the <code>artists_controller</code>, it&apos;ll look for the <code>index</code> view in the <code>artists</code> folder.</p>
 </blockquote>
 <p>Inside <code>app/views/artist/index.html.erb</code>:
-Just put: <code>&lt;h2&gt;All Artists&lt;/h2&gt;</code></p>
+Just put: <code>&lt;h1&gt;All Artists&lt;/h1&gt;</code></p>
 <p>Great, now let&apos;s refresh the page and there should be no more errors so we know everything has been wired up correctly!</p>
 <p>However, let&apos;s think about what we really want to see when we visit this page. When we visit <code>/artists</code>, we expect to see information about all artists!</p>
 <p>So now the question is how can we dynamically generate a view for all of our data about artists?</p>
@@ -1307,7 +1307,7 @@ Just put: <code>&lt;h2&gt;All Artists&lt;/h2&gt;</code></p>
 </blockquote>
 <p>Let&apos;s write some code in our view to display this data.</p>
 <p>In our <code>app/views/artists/index.html.erb</code></p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>Artists <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/artists/new&quot;</span>&gt;</span>(+)<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Artists <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/artists/new&quot;</span>&gt;</span>(+)<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">%</span> @<span class="hljs-attribute">artists.each</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">artist</span>| %&gt;</span>
