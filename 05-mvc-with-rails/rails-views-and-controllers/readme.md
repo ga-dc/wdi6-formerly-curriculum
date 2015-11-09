@@ -166,7 +166,7 @@ $ touch app/views/artists/index.html.erb
 > Note the conventions here. We needed to make an `artists` folder to put the `index.html.erb` in it. This is important because when we define an `action` in our controller, rails knows to render the view corresponding to the controller and action. In this example, because were calling the `index` action in the `artists_controller`, it'll look for the `index` view in the `artists` folder.
 
 Inside `app/views/artist/index.html.erb`:
-Just put: `<h2>All Artists</h2>`
+Just put: `<h1>All Artists</h1>`
 
 Great, now let's refresh the page and there should be no more errors so we know everything has been wired up correctly!
 
@@ -198,7 +198,7 @@ Let's write some code in our view to display this data.
 
 In our `app/views/artists/index.html.erb`
 ```html
-<h2>Artists <a href="/artists/new">(+)</a></h2>
+<h1>Artists <a href="/artists/new">(+)</a></h1>
 
 <ul>
   <% @artists.each do |artist| %>
