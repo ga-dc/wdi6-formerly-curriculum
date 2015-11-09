@@ -14,7 +14,7 @@
 ### References
 
 * **Rails Guides**
-  * [path heleprs](http://guides.rubyonrails.org/routing.html#path-and-url-helpers)
+  * [path helpers](http://guides.rubyonrails.org/routing.html#path-and-url-helpers)
   * [image_tag](http://guides.rubyonrails.org/layouts_and_rendering.html#asset-tag-helpers)
   * [link_to](http://guides.rubyonrails.org/getting_started.html#adding-links)
   * [form_for](http://guides.rubyonrails.org/getting_started.html#the-first-form)
