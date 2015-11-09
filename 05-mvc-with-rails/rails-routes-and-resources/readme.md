@@ -25,19 +25,19 @@ The router matches an HTTP request to the corresponding controller action.
 
 ## Routes (10 / 20)
 
-You guys dove into Rails' `routes.rb` file in Andy's MVC class and create individual routes for pages using Sinatra-like syntax.
+You guys dove into Rails' `routes.rb` file in Adam's MVC class and created individual routes for pages using Sinatra-like syntax.
 * **NOTE:** The `routes.rb` file is located in the `config` folder of your Rails application.
 
 A route to our index page would look like this:
 ```rb
 # index
-get "/artists/", to "artists#index"
+get "/artists", to "artists#index"
 ```
 
 This would look the exact same for our Song model
 * Just replace the model reference in the HTTP request and controller method.
 
-You already took care of this in an earlier class, but we can also define the default route that is triggered when a user visits the home page of our application using the `root` keyword.
+You already took care of this in an earlier class, but we can also define the default route that is triggered when a user visits the home page of our application using the `root` method.
 * In the below example we direct the user to our artists index page.
 
 ```rb
@@ -48,7 +48,7 @@ root :to => "artists#index"
 
 ## Resourceful Routes (5 / 25)
 
-During Adam's class you learned a bit of Rails wizardry that allowed you to generate all of your application's RESTful routes using one word: **resources**!
+During Adam and Jesse's helpers class you learned a bit of Rails wizardry that allowed you to generate all of your application's RESTful routes using one word: **resources**!
 * Explicitly tells Rails that we will be using RESTful routes.
 * Generates path helpers, which we'll look at shortly.
 
@@ -70,7 +70,7 @@ resources :artists, :songs
 If you're ever confused as to what routes are available to you based on how you have set up your `routes.rb` file, Ruby has a handy tool that tells you.
 * Open up your terminal and, in the same folder as your application, type in `rake routes`.
 
-```rb
+```bash
 Prefix      Verb   URI Pattern                 Controller#Action
 root        GET    /                           artists#index
 songs       GET    /songs(.:format)            songs#index
@@ -93,10 +93,10 @@ song        GET    /songs/:id(.:format)        songs#show
 ```
 
 You've seen most of this information before: HTTP request verbs, routes and controller actions.
-* Path helpers are new, at least from what we learned in Sinatra. You started to learn about them during Adam's helpers class.
+* Path helpers are new, at least from what we learned in Sinatra. You started to learn about them during the helpers class.
 <br><br>
 
-### Path Helpers  
+### [Path Helpers](https://github.com/ga-dc/curriculum/tree/master/05-mvc-with-rails/rails-helpers)  
 **Q:** Can somebody remind me what helpers are and how path helpers fit into that category?
 * **Helpers** make our lives easier and save us the trouble of writing out long, repetitive code.
 * **Path helpers** are references to routes and controller actions.
@@ -119,7 +119,7 @@ With path helpers, we can tidy up the other helpers you guys have alrady impleme
 * Q: What sort of helpers have we already encountered this week?
 <br><br>
 
-### Link Helpers
+### [Link Helpers](http://mixandgo.com/blog/how-to-use-link_to-in-rails)
 
 ```rb
 # views/artists/index.html.erb
@@ -134,7 +134,7 @@ With path helpers, we can tidy up the other helpers you guys have alrady impleme
 ```
 <br><br>
 
-### Form Helpers
+### [Form Helpers](http://guides.rubyonrails.org/form_helpers.html#binding-a-form-to-an-object)
 
 ```rb
 # views/artists/new.html.erb
@@ -174,6 +174,8 @@ With path helpers, we can tidy up the other helpers you guys have alrady impleme
 <br><br>
 
 ## Nested Resources (15 / 55)
+[N.B. the Rails docs are awesome!](http://guides.rubyonrails.org/routing.html#nested-resources)
+
 The way our app is currently routed isn't too helpful, right?
 * Currently we can visit an artist show page, which includes a link of all that artist's songs.
 * But we want to be able to visit a URL like this: `http://www.tu.nr/artists/3/songs/12`
@@ -487,3 +489,5 @@ Spend the remaining class-time either working on your homework or you can ask me
 <br><br>
 
 ## Sample Quiz Questions
+
+- List the routes provided using the resources method and the associated action for each
