@@ -59,9 +59,9 @@ descriptive as possible, and indicate that it represents an *association*.
 
 ### EXERCISE: Naming Join Tables (10 minutes / 0:30)
 
-In pairs, spend **5 minutes** answering the following questions for the below list of models...
-1. Do the two models exhibit a many-to-many relationship?
-2. If so, what would be a descriptive name for their resulting join table?
+In pairs, spend **5 minutes** answering the following questions for the below list of models...  
+1. Do the two models exhibit a many-to-many relationship?  
+2. If so, what would be a descriptive name for their resulting join table?  
 
 * To join users and events, we might create an `Attendance` model
 * To join users and courses, we might create an `Registration` model
@@ -109,7 +109,7 @@ class CreateAttendances < ActiveRecord::Migration
 end
 ```
 
-> What is `t.references`?
+> **What is `t.references`?** It does the same thing as writing out `belongs_to :model`.
 
 This will generate an Attendance model, with `user_id`, `event_id` and
 `num_guest` columns.
