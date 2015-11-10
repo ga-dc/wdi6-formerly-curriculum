@@ -335,6 +335,16 @@ Whenever Ruby encounters a `raise`, it stops whatever it's doing and looks to se
 
 You can raise an error anywhere you want. It will always work the same way.
 
+#### Why use `raise` at all? Why not just use `@error` and `if/else` statements?
+
+`raise` is like a `return` statement in that it stops the app from continuing. You *could* just use a bunch of `if/else` statements, but using `raise` to halt the app is much more convenient. Additionally, you're probably going to want to handle most of your errors the same way. Using `begin/rescue` makes this much simpler.
+
+#### Theoretically, you could wrap your entire Rails app in one big `begin/rescue` block to prevent it from ever breaking. This is considered bad practice. Why?
+
+In fact, this is what we do with GArnet. It means every error is handled the exact same way. With more complicated apps, you want this to be the case: you'll want different errors to be handled in different ways.
+
+For now, just showing an error message is sufficient, but in most cases it isn't. For instance, imagine you're creating a secure app where attempting to log in with an incorrect password three times "locks" the user out of the app. The best way to do that would be to define a special error type for that particular situation and handle it explicitly.
+
 # Flash
 
 ## Framing
@@ -459,5 +469,4 @@ Having one or two flash types makes it really easy to style your Flashes with CS
 - You see `ROLLBACK` in your Rails server log. What does that mean?
 - What does it mean to let something "fail silently", and why is it considered bad?
 - What's the difference between `begin` and `rescue`?
-- How many `rescue` statements can a `begin/rescue` block have?
 - What does an `else` statement in a `begin/rescue` do?
