@@ -320,7 +320,7 @@ This sort of thing is common with alot of actions or all actions of a controller
 ```ruby
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
      # ... more code follows
 ```
@@ -352,9 +352,7 @@ end
 
 ```
 
-- in the create action , change `@post = Post.new(post_params)` to `@post = current_user.posts.build(post_params)`
-
-> So we aren't able use new on the posts helper method. `.build` is the equivalent of `.new`. `.create` is the the same when using has_many helper getters. Additionally when we `.build` or `.create` we don't have to pass in the foreign_key or object in as an argument because we're "building" or "creating" off of that object.
+- in the create action , change `@post = Post.new(post_params)` to `@post = current_user.posts.create(post_params)`
 
 ## Class Ex
 - Add devise to tunr!
