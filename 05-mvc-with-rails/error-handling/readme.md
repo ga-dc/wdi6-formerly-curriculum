@@ -442,17 +442,17 @@ Now try going to `localhost:3000/artists/8675309`.
 
 ### What happened?
 
-We've told Rails to "rescue us from" a specific kind of error -- in this case, ActiveRecord's "Not Found" error. We've told it to rescue us by running a method called `couldnt_find_record` that we've defined. What that method does is nothing new: it redirects us to some URL, and flashes a notice.
+We told Rails to "rescue us from" a specific kind of error -- in this case, ActiveRecord's "Not Found" error. We told it to rescue us by running a method called `couldnt_find_record` that we've defined. What that method does is nothing new: it redirects us to some URL, and flashes a notice.
 
 ## Exception types
 
-Every error in Ruby belongs to a class. In this case, `RecordNotFound` is the class. When a validation fails, you get:
+Every error -- or "exception" -- in Ruby belongs to a class. In this case, `RecordNotFound` is the class. When a validation fails, you get:
 
 ```
 ActiveRecord::RecordInvalid
 ```
 
-`RecordInvalid` is the class of record.
+The exception's class is `RecordInvalid`.
 
 Most classes of exceptions inherit from `StandardError`.
 
@@ -461,16 +461,16 @@ Most classes of exceptions inherit from `StandardError`.
 In your rails console, type:
 
 ```
-$ ActiveRecord::RecordNotFound.new.class
+$ ActiveRecord::RecordInvalid.new.class
 ```
 
 Then, try:
 
 ```
-$ ActiveRecord::RecordNotFound.new.class.superclass
+$ ActiveRecord::RecordInvalid.new.class.superclass
 ```
 
-Next, add another `.superclass` onto the end of that. Keep on going until you get `nil`.
+Next, add another `.superclass` onto the end of that. Then another `.superclass`. Keep on going until you get `nil`.
 
 Now, try it with:
 - `ActiveRecord::RecordNotFound`
@@ -489,10 +489,15 @@ Using `rescue_from`, you can make different things happen based on the type of e
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   rescue_from ActiveRecord::RecordNotFound, with: :couldnt_find_record
+  rescue_from NoMethodError, with: :no_method_error
 
   private
   def couldnt_find_record
     redirect_to "/", notice: "That record doesn't exist!"
+  end
+
+  def no_method_error
+    redirect_to "/", notice: "The developer working on this didn't cover their butt appropriately. Our bad."
   end
 end
 ```
@@ -511,7 +516,7 @@ In it, paste the following:
 puts "done"
 ```
 
-Run that with `ruby exceptions.rb`. It should throw an error at you.
+Run that with `ruby exceptions.rb`. It should throw a "ZeroDivisionError" at you.
 
 Now, replace the file with this:
 
@@ -529,11 +534,13 @@ puts "done"
 
 When Pry starts, type `my_error.message`.
 
-`begin` tells Ruby, "Start listening for an error." Whenever Ruby runs into an error, it stops whatever it's doing and looks for a `rescue` statement. If it finds one, it does whatever the `rescue` says to do, and then continues.
+`begin` tells Ruby, "Start listening for an exception." Whenever Ruby runs into an error, it stops whatever it's doing and looks for a `rescue` statement. If it finds one, it does whatever the `rescue` says to do, and then continues.
+
+Inside `rescue`, using the hashrocket `=>` syntax, we can do something with the exception that was generated.
 
 This gives us a way of handling errors. It's where `rescue_from` gets its name.
 
-We will use this very little, but it happens all the time underneath the surface of the gems we use, and is something you'll see occasionally.
+We will use `begin/rescue` very little, but it happens all the time underneath the surface of the gems we use, and is something you'll see occasionally.
 
 # Quiz questions
 
@@ -541,3 +548,4 @@ We will use this very little, but it happens all the time underneath the surface
 - You see `ROLLBACK` in your Rails server log. What does that mean?
 - What does it mean to let something "fail silently", and why is it considered bad?
 - What's the difference between `begin` and `rescue`?
+- What's the difference between an error and an exception?
