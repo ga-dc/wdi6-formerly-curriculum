@@ -60,14 +60,15 @@ descriptive as possible, and indicate that it represents an *association*.
 ### EXERCISE: Naming Join Tables (10 minutes / 0:30)
 
 In pairs, spend **5 minutes** answering the following questions for the below list of models...  
-  1. Do the two models exhibit a many-to-many relationship?  
-  2. If so, what would be a descriptive name for their resulting join table?  
+  1. What would a many-to-many relationship look like between these two models?
+  2. What would be a descriptive name for their resulting join table?
 
-* To join users and events, we might create an `Attendance` model
-* To join users and courses, we might create an `Registration` model
-* To join photos to groups, we might have a `GroupMembership` model
-* To join posts to categories, we might have a `CategoryEntry` or `Categorization` model
-* To join songs to playlists, we might have a `PlaylistEntry` model
+Models  
+  1. Users and Events  
+  2. Students and Courses  
+  3. Doctors and Patients  
+  4. Posts and Categories  
+  5. Songs and Playlists  
 
 ### Generating the Model / Migration (10 minutes / 0:40)
 
@@ -115,6 +116,8 @@ This will generate an Attendance model, with `user_id`, `event_id` and
 `num_guest` columns.
 
 ### EXERCISE: Create the PlaylistEntry Model (20 minutes / 1:00)
+
+**INSERT LINK TO STARTER CODE.**
 
 Take **15 minutes** to create a model / migration for the `PlaylistEntry` model. It should have `song_id`,
 `playlist_id`, and `order` columns.
@@ -191,13 +194,129 @@ carly.events
 Attendance.find_by(user: bob, event: prom).destroy # will only destroy the first one that matches
 
 Attendance.where(user: bob, event: prom).destroy_all # will destroy all that match
-prom.attendances.where(user: bob).destry_all
+prom.attendances.where(user: bob).destroy_all
+```
+### BREAK (10 minutes / 1:50)
+
+### Updating The Controller (15 minutes / 2:05)
+
+So we've been able to generate associations between our models via Pry. But what about our end users? How would somebody go about adding/removing a song to/from a playlist on Tunr?
+* We need to add that functionality by modifying our controller, views and `routes.rb`.
+
+Let's take a look at `playlists_controller.rb`...
+* What do we currently have in here?
+* Can we use any of these actions to handle adding/removing songs? Or do we need to add something new?
+
+```rb
+class PlaylistsController < ApplicationController
+  def index
+    @playlists = Playlist.all
+  end
+
+  def show
+    @playlist = Playlist.find(params[:id])
+  end
+
+  def new
+    @playlist = Playlist.new
+  end
+
+  def create
+    @playlist = Playlist.new(playlist_params)
+    if @playlist.save
+      redirect_to @playlist
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @playlist = Playlist.find(params[:id])
+    @playlist.destroy
+    redirect_to playlists_url
+  end
+
+  private
+  def playlist_params
+    params.require(:playlist).permit(:name)
+  end
+end
 ```
 
-### EXERCISE: Update Playlists Controller (20 minutes / 2:00)
+We have CRUD functionality for the playlists themselves, but that's about it.
+* We need to add some actions to our controller that handle this additional functionality. You'll do that for Tunr in the next exercise.
+* These will not correspond to RESTful routes.
+
+There's more to this than just updating the Playlist controller, but we've done some of the work for you...
+
+```rb
+# config/routes.rb
+
+Rails.application.routes.draw do
+  root to: 'artists#index'
+
+  resources :playlists, except: [:edit, :update] do
+    member do
+      post 'add_song'
+      post 'remove_song'
+    end
+  end
+
+  get '/songs', to: 'songs#index'
+  resources :artists do
+    resources :songs
+    resources :genres
+  end
+end
+```
+
+```rb
+# app/views/playlists/show.html.erb
+
+<h2><%= @playlist.name %></h2>
+
+<h3>Songs</h3>
+<ul>
+  <% @playlist.songs.each do |song| %>
+    <li>
+      <%= link_to "#{song.title} - #{song.artist.name}" ,artist_song_path(song.artist, song) %>
+      <%= link_to "(x)", remove_song_playlist_path(@playlist, song_id: song.id), method: :post %>
+    </li>
+  <% end %>
+</ul>
+
+<fieldset>
+  <h3>Add Song</h3>
+  <%= form_tag(add_song_playlist_path(@playlist)) do %>
+    <%= label_tag "Song" %>
+    <%= select_tag(:song_id, options_for_select(Song.all.map{|s| ["#{s.artist.name} - #{s.title}", s.id]})) %>
+    <%= submit_tag "Add Song" %>
+  <% end %>
+</fieldset>
+```
+
+
+### EXERCISE: Update Playlists Controller (20 minutes / 2:25)
 
 Take **15 minutes** to update the `add_song` and `remove_song` actions in the playlists controller to
 add and remove songs from the playlist. Look at the `playlists/show.html.erb`
 view to see how we route to these actions.
 
-### BREAK (10 minutes / 2:10)
+Below are some line-by-line instructions on how to implement `add_song` and `remove_song`. I encourage you not to look unless you are stuck!  
+
+`add_song` should...  
+  1. Select the playlist to which you will be adding a song.  
+  2. Create a new PlaylistEntry instance that...  
+    a. Belongs to the playlist.  
+    b. Belongs to the song that is being added to the playlist.  
+  3. Redirect to the show page for the playlist once the song is added.
+
+`remove_song` should...  
+  1. Select the playlist from which you will be removing a song.  
+  2. Delete the playlist's PlaylistEntry that references the song you are removing.  
+  3. Redirect to the show page for the playlist once the song is removed.  
+
+If you'd like to take a peek now, [here's the Tunr Playlist solution](https://github.com/ga-dc/tunr_rails/tree/playlists-solution).
+
+
+## Closing Q&A
