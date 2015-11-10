@@ -397,17 +397,143 @@ Pretty cool, huh?
 
 ## Framing
 
-We've put a lot of checks in here, but there are always going to be some errors we don't catch. How can we handle those?
+Let's force the app to break by looking up an artist that doesn't exist. Try going to `localhost:3000/artists/8675309`.
+
+Notice that across the top it says `ActiveRecord::RecordNotFound`.
+
+This is something that is very likely to happen: your users will look up an artist that has been deleted, or get bored and type in random IDs.
+
+Q. How could you control for users looking up records that don't exist?
+---
+
+> A. You could just check to see if an artist with that ID exists, and if it doesn't, then redirect somewhere else.
+
+```rb
+def show
+  @artist = Artist.find(params[:id])
+  if @artist
+    render :show
+  else
+    redirect_to "artists"
+  end
+end
+```
+
+This is fine, but it's not very DRY: if we wanted to protect songs from this error we'd need to copy and paste almost the exact same code.
+
+## rescue_from
+
+Replace the contents of your application controller with this:
+
+```rb
+# app/controllers/application_controller.rb
+class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+  rescue_from ActiveRecord::RecordNotFound, with: :couldnt_find_record
+
+  private
+  def couldnt_find_record
+    redirect_to "/", notice: "That record doesn't exist!"
+  end
+end
+```
+
+Now try going to `localhost:3000/artists/8675309`.
+
+### What happened?
+
+We've told Rails to "rescue us from" a specific kind of error -- in this case, ActiveRecord's "Not Found" error. We've told it to rescue us by running a method called `couldnt_find_record` that we've defined. What that method does is nothing new: it redirects us to some URL, and flashes a notice.
 
 ## Exception types
 
-Let's force the app to break by looking up an artist that doesn't exist. Try going to `localhost:3000/artists/8675309`. Across the top you see:
+Every error in Ruby belongs to a class. In this case, `RecordNotFound` is the class. When a validation fails, you get:
 
 ```
-ActiveRecord::RecordNotFound
+ActiveRecord::RecordInvalid
 ```
 
+`RecordInvalid` is the class of record.
 
+Most classes of exceptions inherit from `StandardError`.
+
+### We do
+
+In your rails console, type:
+
+```
+$ ActiveRecord::RecordNotFound.new.class
+```
+
+Then, try:
+
+```
+$ ActiveRecord::RecordNotFound.new.class.superclass
+```
+
+Next, add another `.superclass` onto the end of that. Keep on going until you get `nil`.
+
+Now, try it with:
+- `ActiveRecord::RecordNotFound`
+- `ZeroDivisionError` (What happens when you divide by zero)
+- `NoMethodError` (What happens when you try `"batman" - 42`, or `@artist.favorite_food`)
+
+### Rescuing from types
+
+So errors have different classes, and all those classes inherit from `StandardError` and `Exception`. Who cares?
+
+You'd probably want to handle an error where someone divided by zero differently from an error where they looked up a record that doesn't exist.
+
+Using `rescue_from`, you can make different things happen based on the type of error.
+
+```rb
+class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+  rescue_from ActiveRecord::RecordNotFound, with: :couldnt_find_record
+
+  private
+  def couldnt_find_record
+    redirect_to "/", notice: "That record doesn't exist!"
+  end
+end
+```
+
+## begin/rescue
+
+What's going on underneath the hood is Rails using Ruby's built-in `begin/rescue` syntax.
+
+Let's step away from Rails for a second. In your `wdi/sandbox` folder, create a new file called `exceptions.rb`.
+
+In it, paste the following:
+
+```rb
+3 / 0
+
+puts "done"
+```
+
+Run that with `ruby exceptions.rb`. It should throw an error at you.
+
+Now, replace the file with this:
+
+```rb
+require "pry"
+
+begin
+  3 / 0
+rescue => my_error
+  binding.pry
+end
+
+puts "done"
+```
+
+When Pry starts, type `my_error.message`.
+
+`begin` tells Ruby, "Start listening for an error." Whenever Ruby runs into an error, it stops whatever it's doing and looks for a `rescue` statement. If it finds one, it does whatever the `rescue` says to do, and then continues.
+
+This gives us a way of handling errors. It's where `rescue_from` gets its name.
+
+We will use this very little, but it happens all the time underneath the surface of the gems we use, and is something you'll see occasionally.
 
 # Quiz questions
 
@@ -415,4 +541,3 @@ ActiveRecord::RecordNotFound
 - You see `ROLLBACK` in your Rails server log. What does that mean?
 - What does it mean to let something "fail silently", and why is it considered bad?
 - What's the difference between `begin` and `rescue`?
-- What does an `else` statement in a `begin/rescue` do?
