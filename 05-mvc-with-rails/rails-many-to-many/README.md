@@ -117,7 +117,7 @@ This will generate an Attendance model, with `user_id`, `event_id` and
 
 ### EXERCISE: Create the PlaylistEntry Model (20 minutes / 1:00)
 
-**INSERT LINK TO STARTER CODE.**
+[Here's some starter code](https://github.com/ga-dc/tunr_rails/tree/playlists-starter). Make sure to work off the `playlists-starter` branch.
 
 Take **15 minutes** to create a model / migration for the `PlaylistEntry` model. It should have `song_id`,
 `playlist_id`, and `order` columns.
