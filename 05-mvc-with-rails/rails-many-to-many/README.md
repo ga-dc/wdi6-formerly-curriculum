@@ -57,7 +57,7 @@ In rails, we should always create a model to represent our join table. The name
 can technically be anything we want, but really the model name should be as
 descriptive as possible, and indicate that it represents an *association*.
 
-### EXERCISE: Naming Join Tables (10 minutes / 0:30)
+### YOU DO: Naming Join Tables (10 minutes / 0:30)
 
 In pairs, spend **5 minutes** answering the following questions for the below list of models...  
   1. What would a many-to-many relationship look like between these two models?
@@ -72,12 +72,18 @@ Models
 
 ### Generating the Model / Migration (10 minutes / 0:40)
 
-> We will be using Attendances as the in-class example. I encourage you not to code along -- just watch. You will have the chance to implement this during in-class exercises with Tunr.  
+> We will be using Attendances as the in-class example. I encourage you NOT to code along -- just watch. You will have the chance to implement this during in-class exercises with Tunr.  
 
-We generate the model just like any other. If we specify the attributes (i.e.
-columns on the command line, Rails will automatically generate the correct
+Attendances represent the many-to-many relationship between Users and Events. Let's quickly set up those two models...
+
+```bash
+$ rails g model User username:string age:integer
+$ rails g model Event title:string location:string
+```
+
+We generate the model just like any other. If we specify the attributes (i.e.,
+columns on the command line) Rails will automatically generate the correct
 migration for us.
-
 
 First the model file...  
 
@@ -116,9 +122,9 @@ end
 This will generate an Attendance model, with `user_id`, `event_id` and
 `num_guest` columns.
 
-### EXERCISE: Create the Favorite Model (20 minutes / 1:00)
+### YOU DO: Create the Favorite Model in Tunr (20 minutes / 1:00)
 
-[Here's some starter code](https://github.com/ga-dc/tunr_rails/tree/playlists-starter). Make sure to work off the `favorites-starter` branch.
+[Here's some starter code](https://github.com/ga-dc/tunr_rails_many_to_many/tree/favorites-starter). Make sure to work off the `favorites-starter` branch.
 
 Take **15 minutes** to create a model / migration for the `Favorite` model. It should have `song_id`
 and `user_id` columns.
@@ -152,7 +158,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-### EXERCISE: Update our Models (10 minutes / 1:30)
+### YOU DO: Update our Models (10 minutes / 1:30)
 
 Take **5 minutes** to update the Song, User and Favorite models to ensure we have the
 correct associations.
@@ -202,7 +208,7 @@ prom.attendances.where(user: bob).destroy_all
 ### Updating The Controller (15 minutes / 2:05)
 
 So we've been able to generate associations between our models via Pry. But what about our end users? How would somebody go about creating/removing a favorite on Tunr?
-* We need to add that functionality by modifying our controller, views and `routes.rb`.
+* We need to add that functionality by modifying our controller, view and routes.
 
 Let's take a look at `songs_controller.rb`...
 * What do we currently have in here?
@@ -270,23 +276,19 @@ There's more to this than just updating the Songs controller, but we've done som
 # config/routes.rb
 
 Rails.application.routes.draw do
+  devise_for :users
   root to: 'artists#index'
-
-  resources :playlists, except: [:edit, :update] do
-    member do
-      post 'add_song'
-      post 'remove_song'
-    end
-  end
-
   get '/songs', to: 'songs#index'
   resources :artists do
     resources :songs
-      member do
-        post 'add_favorite'
-        post 'remove_favorite'
-      end
     resources :genres
+  end
+
+  resources :songs do
+    member do
+      post 'add_favorite'
+      post 'remove_favorite'
+    end
   end
 end
 ```
@@ -294,30 +296,28 @@ end
 ```rb
 # app/views/playlists/show.html.erb
 
-<h2><%= @playlist.name %></h2>
+<h2><%= @artist.name %> <a href="/artists/<%= @artist.id %>/edit">(edit)</a></h2>
+<h4><%= @artist.nationality %></h4>
 
-<h3>Songs</h3>
+<img class='artist-photo' src="<%= @artist.photo_url %>">
+
+<h3>Songs <%= link_to "(+)", new_artist_song_path(@artist) %></h3>
 <ul>
-  <% @playlist.songs.each do |song| %>
+  <% @artist.songs.each do |song| %>
     <li>
-      <%= link_to "#{song.title} - #{song.artist.name}" ,artist_song_path(song.artist, song) %>
-      <%= link_to "(x)", remove_song_playlist_path(@playlist, song_id: song.id), method: :post %>
+      <%= link_to "#{song.title} (#{song.album})", artist_song_path(@artist, song) %>
+      <% if song.favorites.length > 0 %>
+        <%= link_to "&hearts;".html_safe, remove_favorite_song_path(song), method: :post, class: "fav" %>
+      <% else %>
+        <%= link_to "&hearts;".html_safe, add_favorite_song_path(song), method: :post, class: "no-fav" %>
+      <% end %>
     </li>
   <% end %>
 </ul>
-
-<fieldset>
-  <h3>Add Song</h3>
-  <%= form_tag(add_song_playlist_path(@playlist)) do %>
-    <%= label_tag "Song" %>
-    <%= select_tag(:song_id, options_for_select(Song.all.map{|s| ["#{s.artist.name} - #{s.title}", s.id]})) %>
-    <%= submit_tag "Add Song" %>
-  <% end %>
-</fieldset>
 ```
 
 
-### EXERCISE: Update Songs Controller (20 minutes / 2:25)
+### YOU DO: Update Songs Controller (20 minutes / 2:25)
 
 Take **15 minutes** to update the `add_favorite` and `remove_favorite` actions in the playlists controller to
 add and remove songs from the playlist. Look at the `artists/show.html.erb`
@@ -326,18 +326,18 @@ view to see how we route to these actions.
 Below are some line-by-line instructions on how to implement `add_favorite` and `remove_favorite`. I encourage you not to look unless you are stuck!  
 
 `add_favorite` should...  
-  1. Select the song which you will be favoriting.  
+  1. Save the song which you will be favoriting in an instance variable.  
   2. Create a new Favorite instance that...  
     a. Belongs to the song.  
     b. Belongs to the user who is creating the favorite.  
   3. Redirect to the show page for the artist once the song is added.
 
 `remove_favorite` should...  
-  1. Select the song you will be un-favoriting.  
+  1. Save the song you will be un-favoriting in an instance variable.  
   2. Delete the Favorite instance that references the song that is being un-favorited.  
   3. Redirect to the show page for the artist once the song is added.  
 
-If you'd like to take a peek now, [here's the Tunr Favorite solution](https://github.com/ga-dc/tunr_rails/tree/playlists-solution).
+If you'd like to take a peek now, [here's the Tunr Favorite solution](https://github.com/ga-dc/tunr_rails_many_to_many/tree/favorites-solution).
 
 
 ## Closing Q&A
