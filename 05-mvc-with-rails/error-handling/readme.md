@@ -11,9 +11,102 @@
 - Compare and contrast the validation options `allow_nil`, `allow_blank`, and `on`
 - Create a custom validation on an ActiveRecord model
 
-# Validations
+# Messages to the User
 
 ## Framing
+
+It would be nice if we could let the user know that their artist was successfully created.  
+
+#### How could we show a message?
+
+```rb
+  def create
+    @artist = Artist.create!(artist_params)
+    @message = "#{@artist.name} was created."
+    redirect_to "/artists"
+  end
+```
+
+In `app/views/artists/index.html.erb`:
+
+```erb
+Message: <%= @message %>
+```
+
+Let's try it.
+
+
+#### Why doesn't this work?
+
+> A. Context.  This is a stateless system.  The instance variables do not persist across requests.
+
+
+#### We've seen two main ways of storing user data so it's available from page to page. What are they?
+
+We could store errors in the database, but that's hugely inefficient. A better idea would be to use **session variables**, about which you learned in your last class.
+
+Rails has a built-in way of doing this, called `flash`.
+
+`flash` is a hash of messages that's created on one request and available through the next, then destroyed.
+
+Replace the `error` instance variable with `flash[:alert]` in your Artist controller:
+
+```rb
+  def create
+    @artist = Artist.create!(artist_params)
+    flash[:notice] = "#{@artist.name} was successfully saved."
+    redirect_to "/artists"
+  end
+```
+
+In the `views/artists/index`, replace the `@message` line with this:
+
+```erb
+  <% flash.each do |type, message| %>
+    <p><%= type %>: <%= message %></p>
+  <% end %>
+```
+
+...and there you go!
+
+### Flash convention
+
+We used `flash[:alert]`, but as with any hash, we can use `flash[:notice]`, `flash[:wombat]`, `flash[:error]`, whatever.
+
+It's convention to stick to two main ones: `:alert` and `:notice`.
+
+#### Why should you stick to this convention?
+
+Having one or two flash types makes it really easy to style your Flashes with CSS. Consider:
+
+```erb
+  <% flash.each do |type, message| %>
+    <p class="<%= type %>"><%= message %></p>
+  <% end %>
+```
+
+```css
+.alert{
+  color:red;
+}
+.notice{
+  color:blue;
+}
+```
+
+> It *used* to be that Rails had some helper methods that worked only with `alert` and `notice`. However, that's no longer the case.
+
+#### Presumably, we'd want to show error messages on any page. What problem do we run into now?
+
+> We only show flash messages on the Artist index page!
+
+#### Where would be the best place to put the flash messages so we don't have to repeat anything?
+
+> In `views/layouts/application.html.erb`
+
+# Validations
+
+## Framing (5 min)
 
 In our Rails apps, we've been entering a lot of bogus data -- artists with blank names, for instance. That's fine while we're in development, but we don't want the users of our live app to be able to get away with that.
 
@@ -39,7 +132,7 @@ It's difficult and dangerous. For one thing, Rails doesn't give us a direct way 
 
 Wouldn't it be nice if, before an Artist record was saved, we could validate that the data entered into its fields were correct?
 
-## You do
+## You do (15 min)
 
 [The docs, for reference.](http://guides.rubyonrails.org/active_record_validations.html)
 
@@ -50,7 +143,7 @@ class Artist < ActiveRecord::Base
   validates :name, uniqueness: true
   validates :name, presence: true
   validates :name, length: {in: 1..20}
-  validates :nationality, inclusion: ["USA", "Canada", "UK]
+  validates :nationality, inclusion: ["USA", "Canada", "UK"]
 end
 ```
 
@@ -77,7 +170,7 @@ end
 
 ```rb
 class User < ActiveRecord::Base
-  validates :password, confirmation: true 
+  validates :password, confirmation: true
   validates :ssn, uniqueness: true, allow_blank: true
 end
 
@@ -87,7 +180,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-## Custom validations
+## Custom validations (10 min)
 
 You can also easily create your own custom validations. For instance, this will make Tunr reject any artist named Billy Ray Cyrus:
 
@@ -107,7 +200,7 @@ end
 
 #### This validation won't be triggered if the user writes "billy ray cyrus" in all-lowercase. How could you fix that?
 
-## Validation in the console
+## Validation in the console (10 min)
 
 Let's test it out in the Rails console.
 
@@ -116,7 +209,7 @@ You can leave `rails s` running in one tab; it doesn't matter. In a *different* 
 Your "prompt" in the Rails console should look something like this:
 
 ```
-2.2.1 :001> 
+2.2.1 :001>
 ```
 
 Now, type in:
@@ -138,7 +231,7 @@ These are the methods Rails uses underneath the surface to trigger validation er
 <%= @artist.errors.full_messages.first if @artist.errors.any? %>
 ```
 
-## Bangin' methods
+## Bangin' methods (10 min)
 
 Let's try using `.create` instead of `.new`:
 
@@ -154,7 +247,7 @@ You should see something like:
 2.2.1 :024 > billy = Artist.create(name: "Billy Ray Cyrus")
    (0.2ms)  BEGIN
    (0.6ms)  ROLLBACK
- => #<Artist id: nil, name: "Billy Ray Cyrus", photo_url: nil, nationality: nil, created_at: nil, updated_at: nil> 
+ => #<Artist id: nil, name: "Billy Ray Cyrus", photo_url: nil, nationality: nil, created_at: nil, updated_at: nil>
 ```
 
 That `ROLLBACK` indicates that ActiveRecord tried running a SQL command, but it was unsuccessful, so it's undoing -- or "rolling-back" -- any changes that it made.
@@ -171,23 +264,91 @@ $ billy = Artist.create!(name: "Billy Ray Cyrus")
 
 Adding in a bang makes the app throw a fatal error -- that is, "break" -- if a validation fails. Without the bang, it fails "silently".
 
-You can add a bang to both `.create` and `.save`. 
+You can add a bang to both `.create` and `.save`.
 
 #### It's considered good practice to always use bangs on these methods. Why?
 
+> A. ???
+
+## Using a boolean instead of the exception
+
+The discussion on validations has so far shown you about 18 different ways a user can "break" your app. It's useful for *us* when the app breaks because we can see where all the errors are... but we don't want our users to know.
+
+Truth be told, however, we don't usually use `.create` or `.create!` in Rails apps.
+
+Instead, we use `.new` and `.save`, like this:
+
+```rb
+def create
+  @artist = Artist.new(artist_params)
+  if @artist.save
+    flash[:notice] = "#{@artist.name} was successfully created."
+    redirect_to artists_path
+  else
+    flash[:alert] = @artist.error.full_messages
+    render :new
+  end
+end
+```
+
+This gives us a way of letting one thing happen when the user is successful -- and when they're *not* successful, doing something else and letting them know what went wrong.
+
+You can actually save two lines of code by putting `notice` and `alert` right into `redirect_to` and `render`:
+
+```rb
+def create
+  @artist = Artist.new(artist_params)
+  if @artist.save
+    redirect_to artists_path, notice: "#{@artist.name} was successfully created."
+  else
+    render :new, alert: @artist.error.full_messages
+  end
+end
+```
+
+### You do: (10 min) Apply this to the artists#update action.
+
+
+## SimpleForm
+
+Ensure your Gemfile contains:
+```
+gem 'simple_form'
+```
+
+Don't forget to restart the server.
+
+Change your `artists/new.html.erb` form to use `simple_form_for`:
+
+```erb
+<%= simple_form_for @artist do |f| %>
+  <%= f.input :title %>
+  <%= f.input :photo_url %>
+  <%= f.input :nationality %>
+  <%= f.submit %>
+<% end %>
+```
+
+Try creating a new Artist, making sure you fail a validation.
+
+Pretty cool, huh?
+
+
 # Error Handling
+
+What we just went over is the **"right"**, Rails-y way to handle validations. However, you may also see people using something called `begin` and `rescue`.
 
 ## Framing
 
-The discussion on validations has so far shown you about 18 different ways a user can "break" your app. It's useful for *us* when the app breaks because we can see where all the errors are... but we don't want our users to know!
+Imagine, if you will, that we for some reason didn't want to use `.new` and `.save` -- we just want to use `.create!`. When something goes wrong with `.create!`, it "breaks" your app.
 
 If only there was something that could *rescue* our app whenever it's about to break!
 
-## Begin and Rescue
+## Begin and Rescue (10 min)
 
-Let's intentionally break something the app.
+Let's intentionally break the app.
 
-Go to the Artist model, and replace it with the following:
+Go to the Artist model, and make sure it validates the presence of the `name` field:
 
 ```rb
 class Artist < ActiveRecord::Base
@@ -196,12 +357,14 @@ class Artist < ActiveRecord::Base
 end
 ```
 
-Now go to the Artists controller. Change the `create` action so that it renders the Artists#new view.
+Now go to the Artists controller. The `create` action should look like this:
 
 ```rb
+# app/controllers/artists_controller.rb
   def create
     @artist = Artist.create!(artist_params)
-    render :new
+    flash[:notice] = "#{@artist.name} was successfully saved."
+    redirect_to "/artists"
   end
 ```
 
@@ -215,7 +378,8 @@ Now change the `create` action to look like the following:
       @artist = Artist.create!(artist_params)
     rescue
     end
-    render :new
+    flash[:notice] = "#{@artist.name} was successfully saved."
+    redirect_to "/artists"
   end
 ```
 
@@ -225,7 +389,7 @@ The `begin` tells Ruby, "Start listening for errors." The `rescue` tells Ruby to
 
 **Every `begin` must have a `rescue`, and vice-versa. It must also have an `end`.**
 
-### Error messages
+## Error messages (10 min)
 
 That's all very well, but it's not very useful.
 
@@ -239,24 +403,53 @@ Let's make an error message that actually shows up somewhere:
   def create
     begin
       @artist = Artist.create!(artist_params)
+      flash[:notice] = "#{@artist.name} was successfully saved."
     rescue
-      @error = "You done broke it."
+      flash[:alert] = "#{@artist.name} couldn't be saved."
     end
-    render :new
+    redirect_to "/artists"
   end
 ```
 
-We can make errors show up in the application layout, `views/layouts/application.html.erb`:
+#### Why didn't the "successfully saved" message show up?
 
-```erb
-<body>
-  <h1>Tun.r</h1>
-  <p><%= @error %></p>
+> Because when an error is raised, it stops whatever the script is doing and jumps to a `rescue`, if available.
+
+This at least tells us something went wrong, but doesn't tell us *what*.
+
+### Let the Developers know what happened
+
+That's what we have logs for.
+
+```rb
+  def create
+    begin
+      @artist = Artist.create!(artist_params)
+      flash[:notice] = "#{@artist.name} was successfully saved."
+    rescue => sad_panda
+      Rails.logger.error sad_panda
+      flash[:alert] = "#{@artist.name} couldn't be saved."
+    end
+    redirect_to "/artists"
+  end
 ```
 
-That at least tells us something went wrong, but doesn't tell us *what*.
 
-### StandardError
+Check out the logs.  The log is displayed in the terminal where you started `rails server`.
+
+#### Why not use `puts`?
+
+`puts` is generally only used to make sure something is working while you're developing it. `Rails.logger` is more formal. Using it is saying "I expressly want this to be saved for posterity."
+
+#### You do: (5 min) [Read section 2, about the Logger](http://guides.rubyonrails.org/debugging_rails_applications.html#the-logger)
+
+#### Why do we care about these log files? We have the console open right here!
+
+When you deploy your app, you're not going to have someone hovering over the console all the time. So, if something goes wrong, you're going to rely on your server keeping written records of what hit the fan.
+
+## StandardError
+
+So now the *developers* know what went wrong, but the *user* still has no idea -- they just know that **something** went wrong.
 
 We can tell Ruby to listen for a specific error type, and then when an error of that type happens, to save the information about the error to a variable:
 
@@ -264,10 +457,12 @@ We can tell Ruby to listen for a specific error type, and then when an error of 
   def create
     begin
       @artist = Artist.create!(artist_params)
-    rescue StandardError => sad_panda
-      @error = sad_panda.message
+      flash[:notice] = "#{@artist.name} was successfully saved."
+    rescue => sad_panda
+      Rails.logger.error sad_panda
+      flash[:alert] = "#{@artist.name} couldn't be saved due to #{sad_panda.message}"
     end
-    render :new
+    redirect_to "/artists"
   end
 ```
 
@@ -275,7 +470,7 @@ Ruby has many different types of errors, and each one has a class. You can even 
 
 We're saving the `StandardError` into a variable called `sad_panda` with the hashrocket `=>` notation. This variable can be called anything.
 
-### Adding in validations
+## Control Flow ()
 
 Let's have the `create` action do what it originally did when the user successfully creates an artist, which is to redirect to that artist's page:
 
@@ -286,6 +481,7 @@ Let's have the `create` action do what it originally did when the user successfu
     rescue StandardError => sad_panda
       @error = sad_panda.message
     end
+    # render :new
     redirect_to "/artists/#{@artist.id}"
   end
 ```
@@ -303,6 +499,7 @@ What we really want is for the controller to do one thing when it works, and ano
     begin
       @artist = Artist.create!(artist_params)
     rescue StandardError => sad_panda
+      render :new
       redirect_to "http://google.com/search?q=#{sad_panda.message}"
     else
       redirect_to "/artists/#{@artist.id}"
@@ -310,7 +507,7 @@ What we really want is for the controller to do one thing when it works, and ano
   end
 ```
 
-### Raising your own errors
+## Raising your own errors
 
 Underneath the surface, errors all rely on the `raise` keyword. You don't "throw" an error in Ruby, you "raise" it.
 
@@ -345,121 +542,6 @@ In fact, this is what we do with GArnet. It means every error is handled the exa
 
 For now, just showing an error message is sufficient, but in most cases it isn't. For instance, imagine you're creating a secure app where attempting to log in with an incorrect password three times "locks" the user out of the app. The best way to do that would be to define a special error type for that particular situation and handle it explicitly.
 
-# Flash
-
-## Framing
-
-...but we don't *want* to redirect the user to Google. We just want to show the error message. So let's do that the way we did before:
-
-```rb
-  def create
-    begin
-      @artist = Artist.create!(artist_params)
-    rescue StandardError => sad_panda
-      @error = sad_panda.message
-    else
-      redirect_to "/artists/#{@artist.id}"
-    end
-  end
-```
-
-We'll get a "missing template" error if we don't give the controller something to render when it has errors, so let's have it show the `new` view again:
-
-```rb
-  def create
-    begin
-      @artist = Artist.create!(artist_params)
-    rescue StandardError => sad_panda
-      @error = sad_panda.message
-      render :new
-    else
-      redirect_to "/artists/#{@artist.id}"
-    end
-  end
-```
-
-That's pretty good. But I'm not a huge fan of the "Confirm Form Submission" box that pops up when you try to refresh a page that was rendered via POST.
-
-Instead, we can have Rails just redirect the user to whichever page they were on before:
-
-```rb
-  def create
-    begin
-      @artist = Artist.create!(artist_params)
-    rescue StandardError => sad_panda
-      @error = sad_panda.message
-      redirect_to :back
-    else
-      redirect_to "/artists/#{@artist.id}"
-    end
-  end
-```
-
-...but now we've lost the error message, all over again!
-
-#### Why does the error message no longer show up?
-
-## Quit jerking us around. What's the answer?
-
-#### We've seen two main ways of storing user data so it's available from page to page. What are they?
-
-We could store errors in the database, but that's hugely inefficient. A better idea would be to use **session variables**, about which you learned in your last class.
-
-Rails has a built-in way of doing this, called `flash`.
-
-`flash` is a hash of messages that's created on one request and available through the next, then destroyed.
-
-Replace the `error` instance variable with `flash[:alert]` in your Artist controller:
-
-```rb
-  def create
-    begin
-      @artist = Artist.create!(artist_params)
-    rescue StandardError => sad_panda
-      flash[:alert] = sad_panda.message
-      redirect_to :back
-    else
-      redirect_to "/artists/#{@artist.id}"
-    end
-  end
-```
-
-In the `application/layout`, replace the `@error` line with this:
-
-```rb
-  <% flash.each do |type, message| %>
-    <p><%= type %>: <%= message %></p>
-  <% end %>
-```
-
-...and there you go!
-
-### Flash convention
-
-We used `flash[:alert]`, but as with any hash, we can use `flash[:notice]`, `flash[:wombat]`, `flash[:error]`, whatever.
-
-It's convention to stick to two main ones: `:alert` and `:notice`.
-
-#### Why should you stick to this convention?
-
-Having one or two flash types makes it really easy to style your Flashes with CSS. Consider:
-
-```rb
-  <% flash.each do |type, message| %>
-    <p class="<%= type %>"><%= message %></p>
-  <% end %>
-```
-
-```css
-.alert{
-  color:red;
-}
-.notice{
-  color:blue;
-}
-```
-
-> It *used* to be that Rails had some helper methods that worked only with `alert` and `notice`. However, that's no longer the case.
 
 ### For the rest of class: Continue to work on Scribble, adding in validations for common user errors and handling them so they don't "break" your app.
 
