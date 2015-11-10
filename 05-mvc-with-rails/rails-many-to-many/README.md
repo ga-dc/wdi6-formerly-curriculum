@@ -320,3 +320,5 @@ If you'd like to take a peek now, [here's the Tunr Playlist solution](https://gi
 
 
 ## Closing Q&A
+
+## Bonus Homework: Scribble Tags
