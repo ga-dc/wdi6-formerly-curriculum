@@ -3,7 +3,7 @@
 ## Learning Objectives
 
 - Explain the benefits of explicitly handling errors
-- Produce and handle an error in Ruby using the keywords `begin`, `rescue`, `raise`, and `ensure`
+- Produce and handle an error in Ruby using the keywords `begin`, `rescue`, and `raise`.
 - Explain the purpose of `flash` in Rails
 - Compare and contrast `flash[:notice]` and `flash[:alert]`
 - List three ActiveRecord methods that trigger validations
@@ -31,9 +31,17 @@ end
 
 ...but that's going to lead to some pretty unwieldy controller methods. Besides, we may want there to be several routes that create or update an artist, and we'd need to copy and paste that bit of code for each one. That's hardly DRY!
 
+We could put in database constraints, like `NOT NULL` and `UNIQUE`, by going and playing around in SQL.
+
+#### Why would I want to avoid writing database constraints?
+
+It's difficult and dangerous. For one thing, Rails doesn't give us a direct way of writing SQL schema. For another thing, I wouldn't want to write SQL anyway! I'll avoid SQL pretty much every time I possibly can because otherwise it's really easy for me to mess up my database, and because SQL isn't a programming language and so is more difficult for me to understand.
+
 Wouldn't it be nice if, before an Artist record was saved, we could validate that the data entered into its fields were correct?
 
 ## You do
+
+[The docs, for reference.](http://guides.rubyonrails.org/active_record_validations.html)
 
 - Add the following code to your Artist model. What does each line do?
 
@@ -95,7 +103,77 @@ class Artist < ActiveRecord::Base
 end
 ```
 
-#### Play around with this validation. What does `errors.add` do?
+#### Test it out by using the form to create a new artist named "Billy Ray Cyrus". What does `errors.add` do?
+
+#### This validation won't be triggered if the user writes "billy ray cyrus" in all-lowercase. How could you fix that?
+
+## Validation in the console
+
+Let's test it out in the Rails console.
+
+You can leave `rails s` running in one tab; it doesn't matter. In a *different* tab, run `rails c`.
+
+Your "prompt" in the Rails console should look something like this:
+
+```
+2.2.1 :001> 
+```
+
+Now, type in:
+
+```
+$ billy = Artist.new(name: "Billy Ray Cyrus")
+$ miley = Artist.new(name: "Miley Cyrus")
+```
+
+#### What does `billy.valid?` do? What about `miley.valid?`
+
+#### After typing `billy.valid?`, type `billy.errors`. What does it do? What about `billy.errors.full_messages`?
+
+These are the methods Rails uses underneath the surface to trigger validation errors.
+
+#### You see the below line of code has been added to the `views/artists/new.html.erb` page. What does it do?
+
+```
+<%= @artist.errors.full_messages.first if @artist.errors.any? %>
+```
+
+## Bangin' methods
+
+Let's try using `.create` instead of `.new`:
+
+```
+$ billy = Artist.create(name: "Billy Ray Cyrus")
+```
+
+### Rollback
+
+You should see something like:
+
+```
+2.2.1 :024 > billy = Artist.create(name: "Billy Ray Cyrus")
+   (0.2ms)  BEGIN
+   (0.6ms)  ROLLBACK
+ => #<Artist id: nil, name: "Billy Ray Cyrus", photo_url: nil, nationality: nil, created_at: nil, updated_at: nil> 
+```
+
+That `ROLLBACK` indicates that ActiveRecord tried running a SQL command, but it was unsuccessful, so it's undoing -- or "rolling-back" -- any changes that it made.
+
+### With a bang
+
+Now try the same command, but put a bang `!` at the end of `.create`:
+
+```
+$ billy = Artist.create!(name: "Billy Ray Cyrus")
+```
+
+#### What's the difference between `.create` and `.create!`?
+
+Adding in a bang makes the app throw a fatal error -- that is, "break" -- if a validation fails. Without the bang, it fails "silently".
+
+You can add a bang to both `.create` and `.save`. 
+
+#### It's considered good practice to always use bangs on these methods. Why?
 
 # Error Handling
 
@@ -107,34 +185,41 @@ If only there was something that could *rescue* our app whenever it's about to b
 
 ## Begin and Rescue
 
-Let's intentionally break something the app. Go to the Artists controller, and add `"batman" - 42` to the `index` action:
+Let's intentionally break something the app.
+
+Go to the Artist model, and replace it with the following:
 
 ```rb
-class ArtistsController < ApplicationController
+class Artist < ActiveRecord::Base
+  has_many :songs
+  validates :name, presence: true
+end
+```
 
-  def index
-    "batman" - 42
-    @artists = Artist.all
+Now go to the Artists controller. Change the `create` action so that it renders the Artists#new view.
+
+```rb
+  def create
+    @artist = Artist.create!(artist_params)
+    render :new
   end
 ```
 
-Go to `localhost:3000/artists` and you should get an "undefined method" error.
+Finally, go to `localhost:3000/artists/new`, leave the form blank, and submit it. You should get an error saying "Validation failed: Name can't be blank".
 
-Now put it inside a `begin/rescue` block:
+Now change the `create` action to look like the following:
 
 ```rb
-class ArtistsController < ApplicationController
-
-  def index
+  def create
     begin
-      "batman" - 42
+      @artist = Artist.create!(artist_params)
     rescue
     end
-    @artists = Artist.all
+    render :new
   end
 ```
 
-What happens when you refresh the page? It loads!
+Submit the form again. It should render the Artists#new page no problem.
 
 The `begin` tells Ruby, "Start listening for errors." The `rescue` tells Ruby to "rescue" the app from breaking when any errors come up.
 
@@ -151,19 +236,17 @@ If someone's interacting with your app and does something wrong, they want to kn
 Let's make an error message that actually shows up somewhere:
 
 ```rb
-class ArtistsController < ApplicationController
-
-  def index
+  def create
     begin
-      "batman" - 42
+      @artist = Artist.create!(artist_params)
     rescue
       @error = "You done broke it."
     end
-    @artists = Artist.all
+    render :new
   end
 ```
 
-We can make errors show up in the application layout:
+We can make errors show up in the application layout, `views/layouts/application.html.erb`:
 
 ```erb
 <body>
@@ -178,15 +261,13 @@ That at least tells us something went wrong, but doesn't tell us *what*.
 We can tell Ruby to listen for a specific error type, and then when an error of that type happens, to save the information about the error to a variable:
 
 ```rb
-class ArtistsController < ApplicationController
-
-  def index
+  def create
     begin
-      "batman" - 42
+      @artist = Artist.create!(artist_params)
     rescue StandardError => sad_panda
       @error = sad_panda.message
     end
-    @artists = Artist.all
+    render :new
   end
 ```
 
@@ -196,15 +277,7 @@ We're saving the `StandardError` into a variable called `sad_panda` with the has
 
 ### Adding in validations
 
-Lets make an actually useful error. Change the `index` action back to what it was before:
-
-```rb
-  def index
-    @artists = Artist.all
-  end
-```
-
-Let's add a `begin/rescue` to the `create` action:
+Let's have the `create` action do what it originally did when the user successfully creates an artist, which is to redirect to that artist's page:
 
 ```rb
   def create
@@ -217,18 +290,7 @@ Let's add a `begin/rescue` to the `create` action:
   end
 ```
 
-Now, let's add a simple validation to the Artist model:
-
-```rb
-class Artist < ActiveRecord::Base
-  has_many :songs
-  validates :name, presence: true
-end
-```
-
-...and to trigger it, submit the form with nothing in the `name` field.
-
-You should get an `undefined method 'id'` error. The `rescue` hasn't prevented the controller from still trying to redirect us to "/artists/#{@artist.id}". The artist wasn't created, so it doesn't have an ID -- so the app's still breaking!
+Submit the blank form. You should get an `undefined method 'id'` error. The `rescue` hasn't prevented the controller from still trying to redirect us to "/artists/#{@artist.id}". The artist wasn't created, so it doesn't have an ID -- so the app's still breaking!
 
 ### Else
 
@@ -258,7 +320,9 @@ For example:
   def create
     begin
       @artist = Artist.create!(artist_params)
-      raise "conway's game of life"
+      if @artist.name == "Billy Ray Cyrus"
+        raise "An Artist who isn't Billy Ray Cyrus, please"
+      end
     rescue StandardError => sad_panda
       redirect_to "http://google.com/search?q=#{sad_panda.message}"
     else
@@ -304,7 +368,7 @@ We'll get a "missing template" error if we don't give the controller something t
   end
 ```
 
-That's pretty good. But I'm not a huge fan of the "Confirm Form Submission" box that pops up when a page is rendered via POST.
+That's pretty good. But I'm not a huge fan of the "Confirm Form Submission" box that pops up when you try to refresh a page that was rendered via POST.
 
 Instead, we can have Rails just redirect the user to whichever page they were on before:
 
@@ -327,7 +391,7 @@ Instead, we can have Rails just redirect the user to whichever page they were on
 
 ## Quit jerking us around. What's the answer?
 
-#### We've seen two main ways of storing use data so it's available from page to page. What are they?
+#### We've seen two main ways of storing user data so it's available from page to page. What are they?
 
 We could store errors in the database, but that's hugely inefficient. A better idea would be to use **session variables**, about which you learned in your last class.
 
@@ -387,4 +451,13 @@ Having one or two flash types makes it really easy to style your Flashes with CS
 
 > It *used* to be that Rails had some helper methods that worked only with `alert` and `notice`. However, that's no longer the case.
 
+### For the rest of class: Continue to work on Scribble, adding in validations for common user errors and handling them so they don't "break" your app.
 
+# Quiz questions
+
+- What's the difference between `.create` and `.create!`?
+- You see `ROLLBACK` in your Rails server log. What does that mean?
+- What does it mean to let something "fail silently", and why is it considered bad?
+- What's the difference between `begin` and `rescue`?
+- How many `rescue` statements can a `begin/rescue` block have?
+- What does an `else` statement in a `begin/rescue` do?
