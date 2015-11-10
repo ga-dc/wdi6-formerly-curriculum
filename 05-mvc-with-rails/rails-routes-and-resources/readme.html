@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.5" data-chapter-title="Routes and Resources" data-filepath="05-mvc-with-rails/rails-routes-and-resources/readme.md" data-basepath="../.." data-revision="Tue Nov 10 2015 13:42:44 GMT+0000 (UTC)">
+    <div class="book" data-level="4.5" data-chapter-title="Routes and Resources" data-filepath="05-mvc-with-rails/rails-routes-and-resources/readme.md" data-basepath="../.." data-revision="Tue Nov 10 2015 16:55:30 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1263,7 +1263,7 @@ song        GET    /songs/:id(.:format)        songs<span class="hljs-comment">#
 <li><code>index</code>: <code>artists_path</code></li>
 <li>Why do we add <code>_path</code>? Generates a relative path (vs. <code>_url</code>).</li>
 <li><strong>Q:</strong> What about the path helper <code>edit</code>? How is it different from <code>index</code>. Takes an object as an argument.<ul>
-<li><code>artists_path( some_artist )    # &quot;/artists/:id/edit&quot;</code></li>
+<li><code>edit_artist_path( some_artist )    # &quot;/artists/:id/edit&quot;</code></li>
 </ul>
 </li>
 </ul>
@@ -1274,7 +1274,7 @@ song        GET    /songs/:id(.:format)        songs<span class="hljs-comment">#
 <br><br></li>
 </ul>
 <h2 id="routes-and-helpers-5--40">Routes and Helpers (5 / 40)</h2>
-<p>With path helpers, we can tidy up the other helpers you guys have alrady implemented in Tunr.</p>
+<p>With path helpers, we can tidy up the other helpers you guys have already implemented in Tunr.</p>
 <ul>
 <li>Q: What sort of helpers have we already encountered this week?
 <br><br></li>
@@ -1408,7 +1408,6 @@ resources <span class="hljs-symbol">:artists</span> <span class="hljs-keyword">d
 </ul>
 <pre><code class="lang-rb"><span class="hljs-constant">Prefix</span>            <span class="hljs-constant">Verb</span>   <span class="hljs-constant">URI</span> <span class="hljs-constant">Pattern</span>                                  <span class="hljs-constant">Controller</span><span class="hljs-comment">#Action</span>
 root              <span class="hljs-constant">GET</span>    /                                            artists<span class="hljs-comment">#index</span>
-songs             <span class="hljs-constant">GET</span>    /songs(.<span class="hljs-symbol">:format</span>)                             songs<span class="hljs-comment">#index</span>
 artist_songs      <span class="hljs-constant">GET</span>    /artists/<span class="hljs-symbol">:artist_id/songs</span>(.<span class="hljs-symbol">:format</span>)          songs<span class="hljs-comment">#index</span>
                   <span class="hljs-constant">POST</span>   /artists/<span class="hljs-symbol">:artist_id/songs</span>(.<span class="hljs-symbol">:format</span>)          songs<span class="hljs-comment">#create</span>
 new_artist_song   <span class="hljs-constant">GET</span>    /artists/<span class="hljs-symbol">:artist_id/songs/new</span>(.<span class="hljs-symbol">:format</span>)      songs<span class="hljs-comment">#new</span>
