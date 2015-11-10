@@ -8,6 +8,7 @@
 - Set session hash key value pairs inside of a rails application
 - Implement user authentication into a web application utilizing the devise gem
 - Implement useful helper methods devise provides
+- Differentiate between authentication and authorization
 
 ### Opening Framing (10m)
 
