@@ -2,8 +2,8 @@
 
 ## Learning Objectives
 - Explain what state is in a web application
-- Eexplain how sessions give state to a web application
-- Eexplain how user authentication utilizes sessions
+- Explain how sessions give state to a web application
+- Explain how user authentication utilizes sessions
 - Define and then access a session variable in a Rails application.
 - Set session hash key value pairs inside of a rails application
 - Implement user authentication into a web application utilizing the devise gem
@@ -13,11 +13,11 @@
 
 So we've figured out how to implement CRUD functionality into our apps. This is
 great, but should anyone using our application be able to do whatever they want?
-It would really suck if your buddies could post for you on facebook or if
+It would really suck if your buddies could post for you on Facebook or if
 someone withdrew money from your banking site.
 
 ### T & T
-Well, that shouldn't be the case. We need to be able to perserve a "state" of
+Well, that shouldn't be the case. We need to be able to preserve the "state" of
 the application. If a user is logged in, that user should be logged in until he
 logs out, persisting the state of that user being logged in.
 
@@ -26,17 +26,26 @@ able to prevent people from doing whatever they want on your website.
 
 Here's some talking points:
 - What does it mean for a user to be signed in?
-- For that matter, what does it mean to be a user? How are we encapsulating that data.
-- We've used our backend to store data about apartments and tenants.
+- For that matter, what does it mean to be a user? How are we representing that data.
+- We've used our backend to store data about artists and songs.
   - Can we use it to store data about a user itself?
 
 > We need to start thinking about how to capture information into a User model.
 That has information about username, email, or password. We also need a way to
-transfer or perserve state in our applications from request to request.
+transfer or preserve state in our applications from request to request.
 
-## Cookies
+## "State" and Cookies
 
-### We do:
+HTTP is stateless, which means that each HTTP request comes in with no history,
+by default. This means that the server can't associate one request with a
+previous one.
+
+So, if we want to remember bits of information related to a specific person (i.e.
+browser), we need a way to store that info and associate it with the browser.
+
+This is done through cookies...
+
+### Looking at Cookies
 
 1. In Chrome, go to Preferences
 - Show advanced settings
@@ -66,8 +75,17 @@ Created: Wednesday, July 22, 2015 at 7:04:22 PM
 Expires: Sunday, July 22, 2035 at 7:04:22 PM
 ```
 
-## Enter Sessions(i do, talk + setup)15m
-- HTTP is stateless, so it's up to either the browser or application that needs to "remember" what's happening
+Is it secure to store this info in cookies? Not really... the user can edit
+cookies. The common fix is to store a long token in a cookie, and use that to
+identify the user. The relevant data is then stored on the server, where it's
+secure, and matched up with the token.
+
+## Sessions
+
+In Rails, we can read and set cookies manually, but that can be a bit of a pain.
+
+Instead, we almost always use an abstraction of cookies, called the session:
+
 - A session is just a place to store data during one request that you can read during later requests.
 - A session is a hash containing key value pairs that provide state in your application
 
@@ -85,70 +103,47 @@ to just watch and use the following code to practice it yourself later.
 ## Set and Use session key-value pairs
 
 In order to understand sessions, we're going to add some code to our existing
-artists controller. In `app/controllers/artists_controller.rb`:
+artists controller to allow users to sort artists.
+In `app/controllers/artists_controller.rb`:
 
 ```ruby
-# this action will set `test: "this string was set on the testing_session action"`
-# as a key value pair in the session
-def testing_session
-  session[:test] = "this string was set on the testing_session action"
+# this action will set the `sort_by` property
+def sort
+  session[:sort_by] = params[:sort_by]
+  redirect_to artists_path
 end
 
-# also add @test = session[:test] to index action
+# in our index, sort by the session value
 def index
-  @test = session[:test]
-  @artists = Artist.all
+  @artists = Artist.all.order(session[:sort_by])
 end
 ```
 
-Let's update our `app/views/artists/index.html.erb` to include the use of our
-new instance variable `@test`. Place the following code somewhere in that file:
+Let's update our `app/views/artists/index.html.erb` to include a form that
+allows us to change the sort value:
 
 ```html
-<E>The value of @test is: <%= @test %></h1>
+<form action="/artists/sort" method="get">
+  <label>Sort By</label>
+  <input type="text" name="sort_by">
+  <input type="submit" value="sort">
+</form>
+Sorting by: <%= session[:sort_by] %>
 ```
 
-Now because we created this action, let's update our `config/routes.rb` to
-listen for a request to that action:
+Now because we created this action, let's update our `config/routes.rb` to route
+submissions of the form to the sort action:
 
 ```ruby
-get '/artists/testing_session', to: 'artists#testing_session'
+get '/artists/sort', to: 'artists#sort'
 ```
-
-Finally we need to create a view for this action. Lets create that now `$ touch views/artists/testing_session.html.erb`. Let's make this view simple and just
-put in the following content.
-
-```html
-<h1>A session key value pair is being set</h1>
-```
-
-Let's first navigate to our artists index route at `http://localhost:3000/artists`.
-
-We can see that there is nothing after `The value of @test is: `
-
-Now let's navigate to `http://localhost:3000/artists/testing_session`
-
-Great that's nice, our view was generated, but more importantly we had a
-key-value pair get set in this request because of the `testing_session` action
-in our artists controller:
-
-```ruby
-def testing_session
-  session[:test] = "this was set on the testing_session action"
-end
-```
-
-How do we verify this session key-value pair was set? Let's navigate back to
-artists index path.
-
-Now we can see `The value of @test is: this was set on the testing_session action`
 
 If we open a new incognito window (`⌘ + ⇧ + n`) and navigate to
 `http://localhost:3000/artists`, we'll see the session isn't set in that browser
-because it's a brand new session.
+because it's a brand new session, and thus our sorting is lost.
 
 When we clear our cookies/session in our browser we can see in our index route
-that `@test` becomes nil again.
+that the sorting is lost too.
 
 > Now that we have the ability to transfer information from request to request.
 We can preserve state in our application.
@@ -176,7 +171,9 @@ end
 In your `app/views/artists/index.html.erb place the following:
 
 ```html
-<h3>Last viewed artist: <%= @last_viewed_artist.name %></h3>
+<% if @last_viewed_artist %>
+  <h3>Last viewed artist: <%= @last_viewed_artist.name %></h3>
+<% end %>
 ```
 
 Now every time We click on an artists show page it will update the session to
@@ -193,32 +190,23 @@ Lets add a new action/route/view for deleting session.
 In `app/controllers/artists_controller.rb`:
 
 ```ruby
-def deleting_session
+def delete_session
   session.delete(:last_viewed_artist)
   # or reset_session
   # which resets the entire session hash
+  redirect_to artists_path
 end
 ```
 
 In `config/routes.rb`:
 
 ```ruby
-get '/artists/deleting_session', to: 'artists#deleting_session'
+get '/artists/delete_session', to: 'artists#delete_session'
 ```
-
-Lets create `app/views/artists/deleting_session.html.erb` and add the following
-content:
-
-```html
-<h1>deleting the last viewed artist session key value pair</h1>
-```
-
-When we navigate from the `deleting_session` route back to the artist we can see
-an error of undefined method.
 
 > This is the sort of thing thats happening when a user "logs out"
 
-Checkout the [testing_sessions branch](https://github.com/ga-dc/tunr_rails_sessions_devise/tree/testing_sessions)
+Checkout the [testing_sessions branch](https://github.com/ga-dc/tunr_rails_sessions_devise/tree/sessions_demo)
 for all the code thus far.
 
 ### You do
@@ -269,7 +257,7 @@ rails generate devise User
 ```
 You may have to restart your server at this point.
 
-Alot of code just got generated for us.
+A lot of code just got generated for us.
 
 > this would be a good place to `git commit`
 
@@ -279,11 +267,11 @@ This is some of the stuff that it's given us:
 
 > Take a look at the devise source code! and you can see all of the different controllers
 
-Its alot but of stuff to look at, but let's break it down. Going from top to
+Its a lot but of stuff to look at, but let's break it down. Going from top to
 bottom excluding some of the files we won't be using for this class.
 
 The first thing that was created was a migration for this model. In
-`db/migrate/<somedate>_devise_create_users.rb` there's alot of information here,
+`db/migrate/<somedate>_devise_create_users.rb` there's a lot of information here,
 but I think most pertinent to us in the scope of user auth is the email and
 password attributes.
 
@@ -309,7 +297,7 @@ not have to use devise. Look at [this lesson plan](https://github.com/ga-dc/curr
 
 ### Back to what devise gives us...
 
-The next thing that I see is a model defintion was created for us in
+The next thing that I see is a model definition was created for us in
 `app/model/user.rb`:
 
 ```ruby
@@ -327,7 +315,7 @@ as far as their utilities go.
 
 The next thing that was added was `devise_for :users` in our `config/routes.rb`
 
-That one line of code opens routes to alot of devise user authentication
+That one line of code opens routes to a lot of devise user authentication
 controller actions
 
 ## Devise -configuration(15/45)
@@ -394,7 +382,7 @@ and it redirects me to the signup page if i try to access this action. This is
 really cool. I now have a way to restrict controller actions unless people are
 logged in.
 
-This sort of thing is common with alot of actions or all actions of a controller.
+This sort of thing is common with a lot of actions or all actions of a controller.
 So we can use a `before_action` callback to handle this. Let's get rid of the
 `authenticate_user!` in the index action and put the following code at the top
 of `app/controllers/posts_controller.rb`:
@@ -447,7 +435,18 @@ end
 - in the create action , change `@post = Post.new(post_params)` to `@post = current_user.posts.create(post_params)`
 
 ## Class Ex
-- Add devise to tunr!
+
+Add devise to tunr!
+
+Specifically:
+- include the gem
+- perform the steps to initialize devise in the app and add a user
+- add view code to let users sign in and out
+- ensure that users can't create / delete / update artists or songs if they
+  aren't signed in
+
+We will take advantage of our user authentication later this week when we allow
+users to 'favorite' songs.
 
 ## What you can look forward to with devise!
 
@@ -456,7 +455,7 @@ about devise views a little bit.
 
 [Devise Documentation](https://github.com/plataformatec/devise)
 
-This documentation contains alot of great information.
+This documentation contains a lot of great information.
 
 - Customize devise views
 - Customize devise model attributes [Direct Link to Docs](https://github.com/plataformatec/devise#strong-parameters)
