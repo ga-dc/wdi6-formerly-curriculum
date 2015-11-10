@@ -15,8 +15,8 @@
 ### References
 
 * [Rails Guides - Has Many Through](http://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
-* [Tunr Playlists Starter](https://github.com/ga-dc/tunr_rails/tree/playlists-starter)
-* [Tunr Playlists Solution](https://github.com/ga-dc/tunr_rails/tree/playlists-solution)
+* [Tunr Favorites Starter](https://github.com/ga-dc/tunr_rails/tree/playlists-starter)
+* [Tunr Favorites Solution](https://github.com/ga-dc/tunr_rails/tree/playlists-solution)
 
 ## Many-to-Many Relationships (10 minutes / 0:10)
 
@@ -42,8 +42,8 @@ many-to-many relationship, we'll need one join table.
 > Why are they called "join tables"? On a database level, join tables are created using SQL methods like `INNER JOIN` and `OUTER JOIN`. Learn more about them [here](http://www.sql-join.com/).
 
 At a minimum, each join table should have two foreign_key columns, for the tables
-it's joining. e.g. for PlaylistEntries, we should have a `song_id` column and
-a `playlist_id` column.
+it's joining. e.g., for Favorites, we should have a `song_id` column and
+a `user_id` column.
 
 We can add additional columns as needed to store additional information about
 the relationship. For example, we may choose to add an `order` column which
@@ -116,12 +116,12 @@ end
 This will generate an Attendance model, with `user_id`, `event_id` and
 `num_guest` columns.
 
-### EXERCISE: Create the PlaylistEntry Model (20 minutes / 1:00)
+### EXERCISE: Create the Favorite Model (20 minutes / 1:00)
 
-[Here's some starter code](https://github.com/ga-dc/tunr_rails/tree/playlists-starter). Make sure to work off the `playlists-starter` branch.
+[Here's some starter code](https://github.com/ga-dc/tunr_rails/tree/playlists-starter). Make sure to work off the `favorites-starter` branch.
 
-Take **15 minutes** to create a model / migration for the `PlaylistEntry` model. It should have `song_id`,
-`playlist_id`, and `order` columns.
+Take **15 minutes** to create a model / migration for the `Favorite` model. It should have `song_id`
+and `user_id` columns.
 
 ### BREAK (10 minutes / 1:10)
 
@@ -152,12 +152,9 @@ class User < ActiveRecord::Base
 end
 ```
 
-Although an Event has many Users (and vice-versa), Events and Users are not directly linked.
-*
-
 ### EXERCISE: Update our Models (10 minutes / 1:30)
 
-Take **5 minutes** to update the Song, Playlist, and Playlist Entry models to ensure we have the
+Take **5 minutes** to update the Song, User and Favorite models to ensure we have the
 correct associations.
 
 ### Testing our Association (10 minutes / 1:40)
@@ -204,54 +201,70 @@ prom.attendances.where(user: bob).destroy_all
 
 ### Updating The Controller (15 minutes / 2:05)
 
-So we've been able to generate associations between our models via Pry. But what about our end users? How would somebody go about adding/removing a song to/from a playlist on Tunr?
+So we've been able to generate associations between our models via Pry. But what about our end users? How would somebody go about creating/removing a favorite on Tunr?
 * We need to add that functionality by modifying our controller, views and `routes.rb`.
 
-Let's take a look at `playlists_controller.rb`...
+Let's take a look at `songs_controller.rb`...
 * What do we currently have in here?
 * Can we use any of these actions to handle adding/removing songs? Or do we need to add something new?
 
 ```rb
-class PlaylistsController < ApplicationController
+class SongsController < ApplicationController
+  # index
   def index
-    @playlists = Playlist.all
+    @songs = Song.all
   end
 
-  def show
-    @playlist = Playlist.find(params[:id])
-  end
-
+  # new
   def new
-    @playlist = Playlist.new
+    @artist = Artist.find(params[:artist_id])
+    @song = Song.new
   end
 
+  # create
   def create
-    @playlist = Playlist.new(playlist_params)
-    if @playlist.save
-      redirect_to @playlist
-    else
-      render :new
-    end
+    @artist = Artist.find(params[:artist_id])
+    @song = Song.create!(song_params.merge(artist: @artist))
+    redirect_to artist_song_path(@artist, @song)
   end
 
+  #show
+  def show
+    @song = Song.find(params[:id])
+  end
+
+  # edit
+  def edit
+    @song = Song.find(params[:id])
+  end
+
+  # update
+  def update
+    @song = Song.find(params[:id])
+    @artist = Artist.find(params[:artist_id])
+    @song.update(song_params.merge(artist: @artist))
+    redirect_to artist_song_path(@song.artist, @song)
+  end
+
+  # destroy
   def destroy
-    @playlist = Playlist.find(params[:id])
-    @playlist.destroy
-    redirect_to playlists_url
+    @song = Song.find(params[:id])
+    @song.destroy
+    redirect_to songs_path
   end
 
   private
-  def playlist_params
-    params.require(:playlist).permit(:name)
+  def song_params
+    params.require(:song).permit(:title, :album, :preview_url, :artist_id)
   end
 end
 ```
 
-We have CRUD functionality for the playlists themselves, but that's about it.
+We have CRUD functionality for the songs themselves, but that's about it.
 * We need to add some actions to our controller that handle this additional functionality. You'll do that for Tunr in the next exercise.
 * These will not correspond to RESTful routes.
 
-There's more to this than just updating the Playlist controller, but we've done some of the work for you...
+There's more to this than just updating the Songs controller, but we've done some of the work for you...
 
 ```rb
 # config/routes.rb
@@ -300,27 +313,27 @@ end
 ```
 
 
-### EXERCISE: Update Playlists Controller (20 minutes / 2:25)
+### EXERCISE: Update Songs Controller (20 minutes / 2:25)
 
-Take **15 minutes** to update the `add_song` and `remove_song` actions in the playlists controller to
-add and remove songs from the playlist. Look at the `playlists/show.html.erb`
+Take **15 minutes** to update the `add_favorite` and `remove_favorite` actions in the playlists controller to
+add and remove songs from the playlist. Look at the `artists/show.html.erb`
 view to see how we route to these actions.
 
-Below are some line-by-line instructions on how to implement `add_song` and `remove_song`. I encourage you not to look unless you are stuck!  
+Below are some line-by-line instructions on how to implement `add_favorite` and `remove_favorite`. I encourage you not to look unless you are stuck!  
 
-`add_song` should...  
-  1. Select the playlist to which you will be adding a song.  
-  2. Create a new PlaylistEntry instance that...  
-    a. Belongs to the playlist.  
-    b. Belongs to the song that is being added to the playlist.  
-  3. Redirect to the show page for the playlist once the song is added.
+`add_favorite` should...  
+  1. Select the song which you will be favoriting.  
+  2. Create a new Favorite instance that...  
+    a. Belongs to the song.  
+    b. Belongs to the user who is creating the favorite.  
+  3. Redirect to the show page for the artist once the song is added.
 
-`remove_song` should...  
-  1. Select the playlist from which you will be removing a song.  
-  2. Delete the playlist's PlaylistEntry that references the song you are removing.  
-  3. Redirect to the show page for the playlist once the song is removed.  
+`remove_favorite` should...  
+  1. Select the song you will be un-favoriting.  
+  2. Delete the Favorite instance that references the song that is being un-favorited.  
+  3. Redirect to the show page for the artist once the song is added.  
 
-If you'd like to take a peek now, [here's the Tunr Playlist solution](https://github.com/ga-dc/tunr_rails/tree/playlists-solution).
+If you'd like to take a peek now, [here's the Tunr Favorite solution](https://github.com/ga-dc/tunr_rails/tree/playlists-solution).
 
 
 ## Closing Q&A
