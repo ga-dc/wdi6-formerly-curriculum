@@ -115,33 +115,34 @@ How do we verify this session key-value pair was set? Let's navigate back to art
 
 Now we can see `The value of @test is: this was set on the testing_session action`
 
-If we open a new incognito window and navigate to `http://localhost:3000/artists`, we'll see the session isn't set in that browser because it's a brand new session.
+If we open a new incognito window (`⌘ + ⇧ + n`) and navigate to `http://localhost:3000/artists`, we'll see the session isn't set in that browser because it's a brand new session.
 
 When we clear our cookies/session in our browser we can see in our index route that `@test` becomes nil again.
 
 > Now that we have the ability to transfer information from request to request. We can preserve state in our application.
 
 ## Setting objects in sessions
-Instead of hardcoding strings into our sessions hash, lets see if we can store objects themselves in the session.
+Instead of hardcoding strings into our sessions hash, lets see if we can store object ids.
 
 Let's update our show action to set a session. In `app/controllers/artists_controller.rb`:
 
 ```ruby
 def index
-  @last_viewed_artist = session[:last_viewed_artist]
+  @last_viewed_artist = Artist.find(session[:last_viewed_artist_id])
+
   @artists = Artist.all
 end
 
 def show
   @artist = Artist.find(params[:id])
-  session[:last_viewed_artist] = @artist
+  session[:last_viewed_artist_id] = @artist.id
 end
 ```
 
 In your `app/views/artists/index.html.erb place the following:
 
 ```html
-<h3>Last viewed artist: <%= @artist["name"] %></h3>
+<h3>Last viewed artist: <%= @last_viewed_artist.name %></h3>
 ```
 
 Now every time We click on an artists show page it will update the session to contain the most recently viewed artist. Then any time we make a request to the artists index path we can see the most recently viewed artist's name.
@@ -156,6 +157,8 @@ In `app/controllers/artists_controller.rb`:
 ```ruby
 def deleting_session
   session.delete(:last_viewed_artist)
+  # or reset_session
+  # which resets the entire session hash
 end
 ```
 
@@ -198,7 +201,7 @@ If you'd like to learn about hand rolled user authentication reference [this les
 - the first thing we should do is add `devise` to the Gemfile and run a bundle install
 
 ```ruby
-gem devise
+gem 'devise'
 ```
 
 Next install devise then generate the devise User
@@ -217,6 +220,8 @@ You may have to restart your server at this point.
 
 Alot of code just got generated for us.
 
+> this would be a good place to `git commit`
+
 This is some of the stuff that it's given us:
 
 ![railsgdeviseuser](images/railsgdeviseuser.png)
@@ -227,13 +232,14 @@ Its alot but of stuff to look at, but let's break it down. Going from top to bot
 
 The first thing that was created was a migration for this model. In `db/migrate/<somedate>_devise_create_users.rb` there's alot of information here, but I think most pertinent to us in the scope of user auth is the email and password attributes.
 
-### Hashing and Salting(aside)
+### Hashing and Salting (aside)
+[plain text offender](plaintextoffenders.com)
 
 `:encrypted_password` is interesting. Why wouldn't they just use `:password` as a column? So obviously we don't want to just store someone's password in a database. That would not be so great. Really what we want to do, is put an encrypted_password into our database. The way a password gets encrypted is that some random string gets generated and added to the password(salting). Then that new string goes through a hashing algorithm that outputs a "random" string. That's what gets stored in the database.
 
 So when a user tries to log in, the password gets added the same salt and then goes through the same algorithm and it looks against the database for the result.
 
-At the database level actual passwords `password1234` and `password1235` are very disparate.
+As stored in the database, the passwords `password1234` and `password1235` would look very different.
 
 If you want to know more about how to code your own(handroll) user models and not have to use devise. Look at [this lesson plan](https://github.com/ga-dc/curriculum/tree/rails_devise/05-mvc-with-rails/rails-sessions-and-auth).
 
@@ -288,7 +294,7 @@ root 'posts#index'
 
 ## Devise Helpers (15/60)
 
-Let's go ahead and fire up our server `$rails s` and sign up for our site!
+Let's go ahead and fire up our server `$ rails s` and sign up for our site!
 
 Welcome aboard! You're an authenticated rider on rails! What does that really mean though?
 
