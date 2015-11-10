@@ -92,7 +92,7 @@ end
 Now the migration...  
 
 ```bash
-$ rails g migration create_attendance
+$ rails g migration create_attendances
 ```
 
 ```rb
@@ -101,6 +101,7 @@ $ rails g migration create_attendance
 class CreateAttendances < ActiveRecord::Migration
   def change
     create_table :attendances do |t|
+      t.integer :num_guests, null: false
       t.references :user, index: true, foreign_key: true
       t.references :event, index: true, foreign_key: true
 
@@ -150,6 +151,9 @@ class User < ActiveRecord::Base
   has_many :events, through: :attendances
 end
 ```
+
+Although an Event has many Users (and vice-versa), Events and Users are not directly linked.
+*
 
 ### EXERCISE: Update our Models (10 minutes / 1:30)
 
