@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.5" data-chapter-title="Routes and Resources" data-filepath="05-mvc-with-rails/rails-routes-and-resources/readme.md" data-basepath="../.." data-revision="Mon Nov 09 2015 20:48:08 GMT+0000 (UTC)">
+    <div class="book" data-level="4.5" data-chapter-title="Routes and Resources" data-filepath="05-mvc-with-rails/rails-routes-and-resources/readme.md" data-basepath="../.." data-revision="Tue Nov 10 2015 13:42:44 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1173,36 +1173,37 @@
 <li><strong>Q:</strong> Who can walk me through the rMVC pattern, highlighting where the router is and what it does?</li>
 </ul>
 <p><img src="https://camo.githubusercontent.com/b17f7f6527eb7d35474e24ed3ff299b8689615a0/687474703a2f2f692e737461636b2e696d6775722e636f6d2f5366324f512e706e67" alt="https://camo.githubusercontent.com/b17f7f6527eb7d35474e24ed3ff299b8689615a0/687474703a2f2f692e737461636b2e696d6775722e636f6d2f5366324f512e706e67"></p>
-<p>The router matches an HTTP request to the corresponding controller action.</p>
+<p>The router matches an HTTP request to a controller and action.</p>
 <ul>
 <li>The gateway to the rMVC (router / model / view / controller).</li>
-<li>So something like this <code>get &quot;/students/2&quot;</code> is directed to the students controller show route.</li>
+<li>So something like this <code>get &quot;/artists/2&quot;</code> is directed to the artists controller show action.</li>
 <li>Returns an error if the HTTP request is unrecognizable and/or does not match a controller action.
 <br><br></li>
 </ul>
 <h2 id="routes-10--20">Routes (10 / 20)</h2>
-<p>You guys dove into Rails&apos; <code>routes.rb</code> file in Andy&apos;s MVC class and create individual routes for pages using Sinatra-like syntax.</p>
+<p>Fork/clone <a href="https://github.com/ga-dc/tunr_rails_routes_resources" target="_blank">this repo</a> for the starter code of this lesson. This repo also contains a solution branch containing all the code we&apos;ll be executing today.</p>
+<p>You guys dove into Rails&apos; <code>routes.rb</code> file in the MVC class and created individual routes for pages using Sinatra-like syntax.</p>
 <ul>
 <li><strong>NOTE:</strong> The <code>routes.rb</code> file is located in the <code>config</code> folder of your Rails application.</li>
 </ul>
 <p>A route to our index page would look like this:</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># index</span>
-get <span class="hljs-string">&quot;/artists/&quot;</span>, to <span class="hljs-string">&quot;artists#index&quot;</span>
+get <span class="hljs-string">&quot;/artists&quot;</span>, to <span class="hljs-string">&quot;artists#index&quot;</span>
 </code></pre>
 <p>This would look the exact same for our Song model</p>
 <ul>
 <li>Just replace the model reference in the HTTP request and controller method.</li>
 </ul>
-<p>You already took care of this in an earlier class, but we can also define the default route that is triggered when a user visits the home page of our application using the <code>root</code> keyword.</p>
+<p>You already took care of this in an earlier class, but we can also define the default route that is triggered when a user visits the home page of our application using the <code>root</code> method.</p>
 <ul>
-<li>In the below example we direct the user to our artists index page.</li>
+<li>In the below example we direct the user to our artists index page when the root route is requested.</li>
 </ul>
-<pre><code class="lang-rb"><span class="hljs-comment"># When we visit http://localhost:3030/, we trigger the index action in our Artists controller</span>
+<pre><code class="lang-rb"><span class="hljs-comment"># When we visit http://localhost:3000/, we trigger the index action in our Artists controller</span>
 root <span class="hljs-symbol">:to</span> =&gt; <span class="hljs-string">&quot;artists#index&quot;</span>
 </code></pre>
 <p><br><br></p>
 <h2 id="resourceful-routes-5--25">Resourceful Routes (5 / 25)</h2>
-<p>During Adam&apos;s class you learned a bit of Rails wizardry that allowed you to generate all of your application&apos;s RESTful routes using one word: <strong>resources</strong>!</p>
+<p>During the helpers class you learned a bit of Rails wizardry that allowed you to generate all of your application&apos;s RESTful routes using one word: <strong>resources</strong>!</p>
 <ul>
 <li>Explicitly tells Rails that we will be using RESTful routes.</li>
 <li>Generates path helpers, which we&apos;ll look at shortly.</li>
@@ -1224,37 +1225,38 @@ resources <span class="hljs-symbol">:artists</span>, <span class="hljs-symbol">:
 <ul>
 <li>Open up your terminal and, in the same folder as your application, type in <code>rake routes</code>.</li>
 </ul>
-<pre><code class="lang-rb"><span class="hljs-constant">Prefix</span>      <span class="hljs-constant">Verb</span>   <span class="hljs-constant">URI</span> <span class="hljs-constant">Pattern</span>                 <span class="hljs-constant">Controller</span><span class="hljs-comment">#Action</span>
-root        <span class="hljs-constant">GET</span>    /                           artists<span class="hljs-comment">#index</span>
-songs       <span class="hljs-constant">GET</span>    /songs(.<span class="hljs-symbol">:format</span>)            songs<span class="hljs-comment">#index</span>
-artists     <span class="hljs-constant">GET</span>    /artists(.<span class="hljs-symbol">:format</span>)          artists<span class="hljs-comment">#index</span>
-            <span class="hljs-constant">POST</span>   /artists(.<span class="hljs-symbol">:format</span>)          artists<span class="hljs-comment">#create</span>
-new_artist  <span class="hljs-constant">GET</span>    /artists/new(.<span class="hljs-symbol">:format</span>)      artists<span class="hljs-comment">#new</span>
-edit_artist <span class="hljs-constant">GET</span>    /artists/<span class="hljs-symbol">:id/edit</span>(.<span class="hljs-symbol">:format</span>) artists<span class="hljs-comment">#edit</span>
-artist      <span class="hljs-constant">GET</span>    /artists/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)      artists<span class="hljs-comment">#show</span>
-            <span class="hljs-constant">PATCH</span>  /artists/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)      artists<span class="hljs-comment">#update</span>
-            <span class="hljs-constant">PUT</span>    /artists/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)      artists<span class="hljs-comment">#update</span>
-            <span class="hljs-constant">DELETE</span> /artists/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)      artists<span class="hljs-comment">#destroy</span>
-            <span class="hljs-constant">GET</span>    /songs(.<span class="hljs-symbol">:format</span>)            songs<span class="hljs-comment">#index</span>
-            <span class="hljs-constant">POST</span>   /songs(.<span class="hljs-symbol">:format</span>)            songs<span class="hljs-comment">#create</span>
-new_song    <span class="hljs-constant">GET</span>    /songs/new(.<span class="hljs-symbol">:format</span>)        songs<span class="hljs-comment">#new</span>
-edit_song   <span class="hljs-constant">GET</span>    /songs/<span class="hljs-symbol">:id/edit</span>(.<span class="hljs-symbol">:format</span>)   songs<span class="hljs-comment">#edit</span>
-song        <span class="hljs-constant">GET</span>    /songs/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)        songs<span class="hljs-comment">#show</span>
-            <span class="hljs-constant">PATCH</span>  /songs/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)        songs<span class="hljs-comment">#update</span>
-            <span class="hljs-constant">PUT</span>    /songs/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)        songs<span class="hljs-comment">#update</span>
-            <span class="hljs-constant">DELETE</span> /songs/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)        songs<span class="hljs-comment">#destroy</span>
+<pre><code class="lang-bash">Prefix      Verb   URI Pattern                 Controller<span class="hljs-comment">#Action</span>
+root        GET    /                           artists<span class="hljs-comment">#index</span>
+songs       GET    /songs(.:format)            songs<span class="hljs-comment">#index</span>
+artists     GET    /artists(.:format)          artists<span class="hljs-comment">#index</span>
+            POST   /artists(.:format)          artists<span class="hljs-comment">#create</span>
+new_artist  GET    /artists/new(.:format)      artists<span class="hljs-comment">#new</span>
+edit_artist GET    /artists/:id/edit(.:format) artists<span class="hljs-comment">#edit</span>
+artist      GET    /artists/:id(.:format)      artists<span class="hljs-comment">#show</span>
+            PATCH  /artists/:id(.:format)      artists<span class="hljs-comment">#update</span>
+            PUT    /artists/:id(.:format)      artists<span class="hljs-comment">#update</span>
+            DELETE /artists/:id(.:format)      artists<span class="hljs-comment">#destroy</span>
+            GET    /songs(.:format)            songs<span class="hljs-comment">#index</span>
+            POST   /songs(.:format)            songs<span class="hljs-comment">#create</span>
+new_song    GET    /songs/new(.:format)        songs<span class="hljs-comment">#new</span>
+edit_song   GET    /songs/:id/edit(.:format)   songs<span class="hljs-comment">#edit</span>
+song        GET    /songs/:id(.:format)        songs<span class="hljs-comment">#show</span>
+            PATCH  /songs/:id(.:format)        songs<span class="hljs-comment">#update</span>
+            PUT    /songs/:id(.:format)        songs<span class="hljs-comment">#update</span>
+            DELETE /songs/:id(.:format)        songs<span class="hljs-comment">#destroy</span>
 </code></pre>
 <p>You&apos;ve seen most of this information before: HTTP request verbs, routes and controller actions.</p>
 <ul>
-<li>Path helpers are new, at least from what we learned in Sinatra. You started to learn about them during Adam&apos;s helpers class.
+<li>Path helpers are new, at least from what we learned in Sinatra. You started to learn about them during the helpers class.
 <br><br></li>
 </ul>
-<h3 id="path-helpers">Path Helpers</h3>
+<h3 id="path-helpers"><a href="https://github.com/ga-dc/curriculum/tree/master/05-mvc-with-rails/rails-helpers" target="_blank">Path Helpers</a></h3>
 <p><strong>Q:</strong> Can somebody remind me what helpers are and how path helpers fit into that category?</p>
 <ul>
 <li><strong>Helpers</strong> make our lives easier and save us the trouble of writing out long, repetitive code.</li>
 <li><strong>Path helpers</strong> are references to routes and controller actions.</li>
 <li>Build them using the prefixes from <code>rake routes</code>.</li>
+<li>often times they&apos;ll be placed in views, but are also utilized elsewhere.</li>
 </ul>
 <p>Path helpers vary between routes</p>
 <ul>
@@ -1277,7 +1279,7 @@ song        <span class="hljs-constant">GET</span>    /songs/<span class="hljs-s
 <li>Q: What sort of helpers have we already encountered this week?
 <br><br></li>
 </ul>
-<h3 id="link-helpers">Link Helpers</h3>
+<h3 id="link-helpers"><a href="http://mixandgo.com/blog/how-to-use-link_to-in-rails" target="_blank">Link Helpers</a></h3>
 <pre><code class="lang-rb"><span class="hljs-comment"># views/artists/index.html.erb</span>
 
 <span class="hljs-comment"># From this...</span>
@@ -1287,7 +1289,7 @@ song        <span class="hljs-constant">GET</span>    /songs/<span class="hljs-s
 &lt;h2&gt;Artists &lt;%= link_to &quot;(+)&quot;, new_artist_path %&gt;&lt;/h2&gt;
 </code></pre>
 <p><br><br></p>
-<h3 id="form-helpers">Form Helpers</h3>
+<h3 id="form-helpers"><a href="http://guides.rubyonrails.org/form_helpers.html#binding-a-form-to-an-object" target="_blank">Form Helpers</a></h3>
 <pre><code class="lang-rb"># views/artists/new.html.erb
 
 # From this...
@@ -1322,17 +1324,24 @@ song        <span class="hljs-constant">GET</span>    /songs/<span class="hljs-s
 </code></pre>
 <p><br><br></p>
 <h2 id="nested-resources-15--55">Nested Resources (15 / 55)</h2>
-<p>The way our app is currently routed isn&apos;t too helpful, right?</p>
+<p><a href="http://guides.rubyonrails.org/routing.html#nested-resources" target="_blank">N.B. the Rails docs are awesome!</a></p>
+<p>The way our app is currently routed is fine. Songs and artists have their very own resources and doesn&apos;t depend on the other. We can, however, change our domain a bit. We can actually nest our resources. We want to be able to visit urls like this:</p>
+<p><code>http://www.tu.nr/artists/3/songs/12</code></p>
 <ul>
-<li>Currently we can visit an artist show page, which includes a link of all that artist&apos;s songs.</li>
-<li>But we want to be able to visit a URL like this: <code>http://www.tu.nr/artists/3/songs/12</code></li>
-<li>What would it mean to have a URL like that? Why do we do it this way?<ul>
+<li><p>Currently we can visit an artist show page, which includes a link of all that artist&apos;s songs.</p>
+</li>
+<li><p>What would it mean to have a URL like that? Why do we do it this way?</p>
+<ul>
 <li>It concisely reflects our data structure: all songs are dependent on an artist.</li>
 <li>Also allows users to access specific information using the URL.</li>
 </ul>
 </li>
 <li>Ultimately, we want to structure our routes so that all Songs exist in the context of a parent Artist.</li>
 </ul>
+<blockquote>
+<p>The reasons might not be so apparent for routes like show, edit, update and destroy because we have access to a song ID in the url anyway. But by using nested resources, it&apos;s easier to create a song because we have the artists id in the url. Or maybe we want the songs index route to be namespaced under an artist.</p>
+<p>This brings us to another side note. Ultimately your domain model is just that, yours. It&apos;s up to you to decide whats the right fit. Which tables make the most sense for the problems that I face in my application. Which associations should I use to best facilitate querying my database. Which resources should I have and under which namespaces? These are the questions developers ask themselves each and every time a new application is being created. We&apos;re just here to teach you some tools to answer these questions for yourself.</p>
+</blockquote>
 <p>So our ideal Song index will look something like this...</p>
 <pre><code class="lang-rb"><span class="hljs-comment"># songs#index</span>
 get <span class="hljs-string">&quot;/artists/:id/songs&quot;</span> to <span class="hljs-string">&quot;songs#index&quot;</span>
@@ -1609,6 +1618,9 @@ artist            <span class="hljs-constant">GET</span>    /artists/<span class
 <p>Spend the remaining class-time either working on your homework or you can ask me questions on anything you&apos;ve learned this week.
 <br><br></p>
 <h2 id="sample-quiz-questions">Sample Quiz Questions</h2>
+<ul>
+<li>List the routes provided using the resources method and the associated action for each</li>
+</ul>
 
                     
                     </section>
