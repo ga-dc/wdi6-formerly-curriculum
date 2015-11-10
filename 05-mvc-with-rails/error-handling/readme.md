@@ -380,15 +380,32 @@ gem 'simple_form'
 Change your `artists/new.html.erb` form to use `simple_form_for`:
 
 ```erb
-<%= simple_form_for @artist do |f| %>
-  <%= f.input :title %>
+<h2>New Artist</h2>
+
+<%= simple_form_for Artist.new do |f| %>
+  <%= f.input :name %>
   <%= f.input :photo_url %>
   <%= f.input :nationality %>
   <%= f.submit %>
 <% end %>
 ```
 
-Try creating a new Artist, making sure you fail a validation.
+Ensure the `artists#create` action looks like this:
+
+```erb
+def create
+  @artist = Artist.new(artist_params)
+  if @artist.save
+    redirect_to "/artists/#{@artist.id}"
+  else
+    render :new
+  end
+end
+```
+
+Finally, make sure your Artist model has a validation in it.
+
+Try creating a new Artist, making sure you fail that validation.
 
 Pretty cool, huh?
 ---
