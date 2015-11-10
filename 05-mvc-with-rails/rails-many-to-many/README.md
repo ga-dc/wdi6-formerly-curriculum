@@ -1,4 +1,4 @@
-# Many-to-many Relationships (using has_many :through) in Rails
+# Many-to-Many Relationships (using has_many :through) in Rails
 
 ## Learning Objectives
 
