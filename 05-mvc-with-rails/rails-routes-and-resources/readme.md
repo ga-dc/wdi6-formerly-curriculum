@@ -110,7 +110,7 @@ Path helpers vary between routes
 * `index`: `artists_path`
 * Why do we add `_path`? Generates a relative path (vs. `_url`).
 * **Q:** What about the path helper `edit`? How is it different from `index`. Takes an object as an argument.
-  * `artists_path( some_artist )    # "/artists/:id/edit"`
+  * `edit_artist_path( some_artist )    # "/artists/:id/edit"`
 
 Only four path helpers for each model.
 * Some paths can be used for multiple routes (e.g., `artist_path` covers `artists#show` `#update` and `#destroy`).
@@ -119,7 +119,7 @@ Only four path helpers for each model.
 
 ## Routes and Helpers (5 / 40)
 
-With path helpers, we can tidy up the other helpers you guys have alrady implemented in Tunr.
+With path helpers, we can tidy up the other helpers you guys have already implemented in Tunr.
 * Q: What sort of helpers have we already encountered this week?
 <br><br>
 
@@ -272,7 +272,6 @@ Has anything changed?
 ```rb
 Prefix            Verb   URI Pattern                                  Controller#Action
 root              GET    /                                            artists#index
-songs             GET    /songs(.:format)                             songs#index
 artist_songs      GET    /artists/:artist_id/songs(.:format)          songs#index
                   POST   /artists/:artist_id/songs(.:format)          songs#create
 new_artist_song   GET    /artists/:artist_id/songs/new(.:format)      songs#new
