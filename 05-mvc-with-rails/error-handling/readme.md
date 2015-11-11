@@ -11,6 +11,10 @@
 - Explain the benefits of explicitly handling errors
 - Produce and handle an error in Ruby using the keywords `begin`, `rescue`, and `raise`.
 
+## Setup
+
+Clone down the [errors and validations Tunr repo](https://github.com/ga-dc/tunr_rails_errors_validations).
+
 # Messages to the User
 
 Our app works, but it also breaks quite easily. It's useful for *us* when the app breaks because we can see where all the errors are... but those big red error pages don't make for a very good user experience.
