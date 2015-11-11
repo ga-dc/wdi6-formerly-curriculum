@@ -29,16 +29,18 @@ Q. Based on what we've learned so far, how could you show the user a message tha
 > A. The easiest way would be to just create an instance variable `@message`.
 
 ```rb
+# app/controllsers/artists_controller.rb
 def create
   @artist = Artist.create!(artist_params)
   @message = "#{@artist.name} was created."
-  redirect_to artists_url
+  redirect_to @artist
 end
 ```
 
 Then, in `app/views/artists/index.html.erb`:
 
 ```erb
+<!-- app/views/artists/index.html.erb -->
 Message: <%= @message %>
 ```
 
@@ -59,16 +61,18 @@ Rails has a built-in way of storing messages in sessions, called `flash`.
 Replace the `error` instance variable with `flash[:alert]` in your Artist controller to see it in action:
 
 ```rb
+# app/controllers/artists_controller.rb
 def create
   @artist = Artist.create!(artist_params)
-  flash[:notice] = "#{@artist.name} was successfully saved."
-  redirect_to artists_url
+  flash[:notice] = "#{@artist.name} was created."
+  redirect_to @artist
 end
 ```
 
 Then, in `views/artists/index.html.erb`, replace the `@message` line with this:
 
 ```erb
+<!-- views/artists/index.html.erb -->
 <% flash.each do |type, message| %>
   <p><%= type %>: <%= message %></p>
 <% end %>
@@ -89,6 +93,7 @@ Q. Why should you stick to this convention?
 Consider:
 
 ```erb
+<!-- views/artists/index.html.erb -->
 <% flash.each do |type, message| %>
   <p class="<%= type %>"><%= message %></p>
 <% end %>
@@ -96,6 +101,7 @@ Consider:
 
 And this css:
 ```css
+/* app/assets/stylesheets/application.css */
 .alert{
   color:red;
 }
@@ -115,14 +121,27 @@ Q. Where would be the best place to put the flash messages so we don't have to r
 
 > A. In `views/layouts/application.html.erb`
 
+```erb
+<!-- app/views/layouts/application.html.erb -->
+<h1>Tun.r</h1>
+<nav>
+  <a href="/songs">Songs</a>
+  <a href="/artists">Artists</a>
+</nav>
+<% flash.each do |type, message| %>
+  <p class="<%= type %>"><%= message %></p>
+<% end %>
+```
+
 ## Shorthand Flash (5 min)
 
 You can DRY up your code a bit by putting the flash message right in the `redirect_to`:
 
 ```rb
+# app/controllers/artists_controller.rb
 def create
   @artist = Artist.create!(artist_params)
-  redirect_to artists_url, notice: "#{@artist.name} was successfully saved."
+  redirect_to @artist, notice: "#{@artist.name} was successfully saved."
 end
 ```
 
@@ -138,7 +157,7 @@ Flash is especially helpful for correcting the user when they use your app in th
 
 In our Rails apps, we've been entering a lot of bogus data -- artists with blank names, for instance. That's fine while we're in development, but we don't want the users of our live app to be able to get away with that.
 
-Q. Based on what we know, how could we prevent users from entering blank data into a field?
+Q. Based on what we know, how could we prevent users from entering **blank data** into a field?
 ---
 
 > A. Javascript.
@@ -147,14 +166,21 @@ Q. Based on what we know, how could we prevent users from entering blank data in
 
 
 > A. We could put that in the controller, like so:
-  ```rb
+
+```rb
+# app/controllers/artists_controller.rb
+def create
   if params[:name] == ""
-    redirect_to artists_url
+    flash[:alert] = "Can't be blank!"
+    redirect_to @artist
+  else
+    @artist = Artist.create(artist_params)
+    redirect_to @artist
   end
+end
   ```
 
 ...but putting it in the controller is going to lead to some pretty unwieldy controller methods. Besides, we may want there to be several routes that create or update an artist, and we'd need to copy and paste that bit of code for each one. That's hardly DRY!
-
 
 > A. We could put in database constraints, like `NOT NULL` and `UNIQUE`, by going and playing around in SQL.
 
@@ -215,6 +241,7 @@ end
 You can also easily create your own custom validations. For instance, this will make Tunr reject any artist named Billy Ray Cyrus:
 
 ```rb
+# app/models/artist.rb
 class Artist < ActiveRecord::Base
   validate :break_billy_rays_achy_breaky_heart
 
@@ -276,6 +303,28 @@ Q. Imagine you see the below line of code has been added to the `views/artists/n
 
 > A. It prints out the first error message that was generated.
 
+### Validation triggers
+
+If you only write these:
+
+```
+$ billy = Artist.new(name: "Billy Ray Cyrus")
+$ billy.errors.full_messages
+```
+...you'll get a blank array. That's because `.new` doesn't actually make the validations happen. The only methods that *do* are:
+
+```
+.valid?
+.save
+.save!
+.create
+.create!
+.update
+.update!
+```
+
+...so `.errors.full_messages` must be run after these.
+
 ## Break (10 min)
 
 ## Bangin' methods (10 min)
@@ -314,11 +363,6 @@ Q. What's the difference between `.create` and `.create!`?
 
 You can add a bang to both `.create` and `.save`.
 
-Q. It's considered good practice to always use bangs on these methods. Why?
----
-
-> A. It forces us to cover all our bases. Without the bang, the user may be able to submit data that doesn't work. We want them to KNOW when the data doesn't work.
-
 ## Using a boolean instead of the exception (10 min)
 
 The discussion on validations has so far shown you about 18 different ways a user can "break" your app.
@@ -333,19 +377,29 @@ Q. What's the difference between `.create` and `.new / .save`?
 This gives us a way of making sure the user doesn't see a broken app:
 
 ```rb
+# app/controllers/artists_controller.rb
 def create
   @artist = Artist.new(artist_params)
   if @artist.save
     flash[:notice] = "#{@artist.name} was successfully created."
-    redirect_to artists_url
+    redirect_to @artist
   else
-    flash[:alert] = @artist.errors.full_messages
     render :new
   end
 end
 ```
 
+...and in the form view:
+
+```erb
+<!-- app/views/artists/_form.html.erb -->
+<%= @artist.errors.full_messages.first if @artist.errors.any? %>
+<%= form_for @artist do |f| %>
+```
+
 This way, one thing happens when the user is successful -- and when they're *not* successful, something else happens and they're told what they did wrong.
+
+### This ^ is the "right way" to write a Rails controller.
 
 ### Pro (debugging) tip
 
@@ -353,6 +407,19 @@ Add `<%= debug(@artist) %>` to "app/views/artists/new.html.erb" to see informati
 
 
 ## You do: Apply this to the artists#update action (10 min)
+
+```rb
+# app/controllers/artists_controller.rb
+def update
+  @artist = Artist.find(params[:id])
+  if @artist.update(artist_params)
+    flash[:notice] = "#{@artist.name} was created."
+    redirect_to @artist
+  else
+    render :new
+  end
+end
+```
 ---
 
 ## SimpleForm (10 min)
@@ -364,11 +431,10 @@ gem 'simple_form'
 
 `bundle install`, and restart the server.
 
-Change your `artists/new.html.erb` form to use `simple_form_for`:
+Change your `artists/_form.html.erb` form to use `simple_form_for`:
 
 ```erb
-<h2>New Artist</h2>
-
+<!-- app/views/artists/_form.html.erb -->
 <%= simple_form_for @artist do |f| %>
   <%= f.input :name %>
   <%= f.input :photo_url %>
@@ -380,10 +446,11 @@ Change your `artists/new.html.erb` form to use `simple_form_for`:
 Ensure the `artists#create` action looks like this:
 
 ```rb
+# app/controllers/artists_controller.rb
 def create
   @artist = Artist.new(artist_params)
   if @artist.save
-    redirect_to artist_url(@artist)
+    redirect_to @artist
   else
     render :new
   end
@@ -417,6 +484,7 @@ Q. How could you control for users looking up records that don't exist?
 > A. You could just check to see if an artist with that ID exists, and if it doesn't, then redirect somewhere else.
 
 ```rb
+# app/controllers/artists_controller.rb
 def show
   @artist = Artist.find(params[:id])
   if @artist
@@ -494,6 +562,7 @@ You'd probably want to handle an error where someone divided by zero differently
 Using `rescue_from`, you can make different things happen based on the type of error.
 
 ```rb
+# app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   rescue_from ActiveRecord::RecordNotFound, with: :couldnt_find_record
@@ -510,7 +579,7 @@ class ApplicationController < ActionController::Base
 end
 ```
 
-## begin/rescue [time permitting] (15 min)
+## begin/rescue (time permitting) (15 min)
 
 What's going on underneath the hood is Rails using Ruby's built-in `begin/rescue` syntax.
 
