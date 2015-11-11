@@ -39,7 +39,7 @@ rails g uploader Image
 
 ```rb
 # app/models/post.rb
-class post < ActiveRecord::Base
+class Post < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 end
 ```
