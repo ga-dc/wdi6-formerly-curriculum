@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.3" data-chapter-title="Models and Migrations" data-filepath="05-mvc-with-rails/rails-models-and-migrations/readme.md" data-basepath="../.." data-revision="Wed Nov 11 2015 20:18:18 GMT+0000 (UTC)">
+    <div class="book" data-level="4.3" data-chapter-title="Models and Migrations" data-filepath="05-mvc-with-rails/rails-models-and-migrations/readme.md" data-basepath="../.." data-revision="Wed Nov 11 2015 21:47:44 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1268,6 +1268,7 @@ data types to create columns of that type, passing in the name of the column as 
 <pre><code>$ rails console
 </code></pre><p><code>rails c</code> is short for <code>rails console</code></p>
 <h2 id="you-do-create-the-migration-for-songs">You do: Create the migration for Songs</h2>
+<p>To associate one model with another you can use either <code>t.belongs_to :artist</code> or <code>t.references :artist</code> or <code>t.integer :artist_id</code></p>
 <h2 id="i-do-passing-arguments-into-rails-g-migration">I do: passing arguments into <code>rails g migration</code></h2>
 <pre><code>$ rails g migration create_songs title:string album:string preview_url:string artist:references
 </code></pre><blockquote>
