@@ -1,5 +1,12 @@
 # Error Handling
 
+## Screencasts
+- [Part 1/5](https://youtu.be/sHSsc7EGI0g)
+- [Part 2/5](https://youtu.be/wKMuNDLDKFA)
+- [Part 3/5](https://youtu.be/HZPTIpZUAnQ)
+- [Part 4/5](https://youtu.be/yvNO_yoWcqE)
+- [Part 5/5](https://youtu.be/hEKDLhZQOSA)
+
 ## Learning Objectives
 
 - Explain the purpose of `flash` in Rails
