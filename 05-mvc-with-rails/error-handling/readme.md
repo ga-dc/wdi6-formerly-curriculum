@@ -401,6 +401,15 @@ This way, one thing happens when the user is successful -- and when they're *not
 
 ### This ^ is the "right way" to write a Rails controller.
 
+You could also do:
+
+```erb
+<!-- app/views/artists/_form.html.erb -->
+<% @artist.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
+<% end %>
+```
+
 ### Pro (debugging) tip
 
 Add `<%= debug(@artist) %>` to "app/views/artists/new.html.erb" to see information contained in `@artist`.  Try submitting invalid information for a new Artist.
@@ -429,7 +438,7 @@ Ensure your Gemfile contains:
 gem 'simple_form'
 ```
 
-`bundle install`, and restart the server.
+`bundle install`, and **restart the server**.
 
 Change your `artists/_form.html.erb` form to use `simple_form_for`:
 
@@ -441,20 +450,6 @@ Change your `artists/_form.html.erb` form to use `simple_form_for`:
   <%= f.input :nationality %>
   <%= f.submit %>
 <% end %>
-```
-
-Ensure the `artists#create` action looks like this:
-
-```rb
-# app/controllers/artists_controller.rb
-def create
-  @artist = Artist.new(artist_params)
-  if @artist.save
-    redirect_to @artist
-  else
-    render :new
-  end
-end
 ```
 
 Finally, make sure your Artist model has a validation in it.
@@ -490,7 +485,7 @@ def show
   if @artist
     render :show
   else
-    redirect_to "artists"
+    redirect_to @artist
   end
 end
 ```
@@ -525,10 +520,10 @@ We told Rails to "rescue us from" a specific kind of error -- in this case, Acti
 Every error -- or "exception" -- in Ruby belongs to a class. In this case, `RecordNotFound` is the class. When a validation fails, you get:
 
 ```
-ActiveRecord::RecordInvalid
+ActiveRecord::RecordNotFound
 ```
 
-The exception's class is `RecordInvalid`.
+The exception's class is `RecordNotFound`.
 
 Most classes of exceptions inherit from `StandardError`.
 
@@ -537,19 +532,18 @@ Most classes of exceptions inherit from `StandardError`.
 In your rails console, type:
 
 ```
-$ ActiveRecord::RecordInvalid.new.class
+$ ActiveRecord::RecordNotFound.new.class
 ```
 
 Then, try:
 
 ```
-$ ActiveRecord::RecordInvalid.new.class.superclass
+$ ActiveRecord::RecordNotFound.new.class.superclass
 ```
 
 Next, add another `.superclass` onto the end of that. Then another `.superclass`. Keep on going until you get `nil`.
 
 Now, try it with:
-- `ActiveRecord::RecordNotFound`
 - `ZeroDivisionError` (What happens when you divide by zero)
 - `NoMethodError` (What happens when you try `"batman" - 42`, or `@artist.favorite_food`)
 
@@ -598,18 +592,14 @@ Run that with `ruby exceptions.rb`. It should throw a "ZeroDivisionError" at you
 Now, replace the file with this:
 
 ```rb
-require "pry"
-
 begin
   3 / 0
 rescue => my_error
-  binding.pry
+  puts my_error
 end
 
 puts "done"
 ```
-
-When Pry starts, type `my_error.message`.
 
 `begin` tells Ruby, "Start listening for an exception." Whenever Ruby runs into an error, it stops whatever it's doing and looks for a `rescue` statement. If it finds one, it does whatever the `rescue` says to do, and then continues.
 
