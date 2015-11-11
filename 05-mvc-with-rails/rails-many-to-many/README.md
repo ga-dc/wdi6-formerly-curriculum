@@ -46,10 +46,8 @@ it's joining. e.g., for Favorites, we should have a `song_id` column and
 a `user_id` column.
 
 We can add additional columns as needed to store additional information about
-the relationship. For example, we may choose to add an `order` column which
-stores an integer representing what order that song appears on the playlist.
-(e.g. a song may be first on one playlist, but 10th on another... that info
-would be stored on the join table.)
+the relationship. For example, we may choose to add a `num_guests` column which
+stores an integer indicating how many guests a particular user will be bringing to an event.
 
 ## Join Models & Tables
 
@@ -62,13 +60,14 @@ descriptive as possible, and indicate that it represents an *association*.
 In pairs, spend **5 minutes** answering the following questions for the below list of models...  
   1. What would a many-to-many relationship look like between these two models?
   2. What would be a descriptive name for their resulting join table?
+  3. Are there any additional columns you could add to the join table (e.g., `num_guests`)?
 
-Models  
-  1. Users and Events  
-  2. Students and Courses  
-  3. Doctors and Patients  
-  4. Posts and Categories  
-  5. Songs and Playlists  
+Models    
+  1. Students and Courses  
+  2. Doctors and Patients  
+  3. Posts and Categories  
+  4. Songs and Playlists  
+  5. Authors and Books
 
 ### Generating the Model / Migration (10 minutes / 0:40)
 
@@ -122,7 +121,7 @@ end
 This will generate an Attendance model, with `user_id`, `event_id` and
 `num_guest` columns.
 
-### YOU DO: Create the Favorite Model in Tunr (20 minutes / 1:00)
+### YOU DO: Create the Favorite Model and Migration in Tunr (20 minutes / 1:00)
 
 [Here's some starter code](https://github.com/ga-dc/tunr_rails_many_to_many/tree/favorites-starter). Make sure to work off the `favorites-starter` branch.
 
@@ -158,6 +157,8 @@ class User < ActiveRecord::Base
 end
 ```
 
+> Users and Events are only associated with each other through Attendance. They are not directly connected with each other.
+
 ### YOU DO: Update our Models (10 minutes / 1:30)
 
 Take **5 minutes** to update the Song, User and Favorite models to ensure we have the
@@ -176,6 +177,9 @@ carly = User.create({username: "Carly", age: 28})
 prom = Event.create({title: "Under the Sea: 2015 Prom", location: "Greenville High School"})
 after_party = Event.create({title: "Eve's Awesome After-party", location: "Super Secret!" })
 brunch = Event.create({title: "BRUNCH!", location: "IHOP" })
+
+# What does this return right now?
+bob.events
 
 # We can create the association directly
 bob_going_to_the_prom = Attendance.create(user: bob, event: prom, num_guests: 1)
@@ -269,6 +273,7 @@ end
 We have CRUD functionality for the songs themselves, but that's about it.
 * We need to add some actions to our controller that handle this additional functionality. You'll do that for Tunr in the next exercise.
 * These will not correspond to RESTful routes.
+* In actuality, we could make a `favorites_controller` that handles all our favoriting behavior. In this case, however, we're going to accomplish that via our `songs_controller`.
 
 There's more to this than just updating the Songs controller, but we've done some of the work for you...
 
@@ -287,14 +292,14 @@ Rails.application.routes.draw do
   resources :songs do
     member do
       post 'add_favorite'
-      post 'remove_favorite'
+      delete 'remove_favorite'
     end
   end
 end
 ```
 
 ```rb
-# app/views/playlists/show.html.erb
+# app/views/artists/show.html.erb
 
 <h2><%= @artist.name %> <a href="/artists/<%= @artist.id %>/edit">(edit)</a></h2>
 <h4><%= @artist.nationality %></h4>
@@ -307,7 +312,7 @@ end
     <li>
       <%= link_to "#{song.title} (#{song.album})", artist_song_path(@artist, song) %>
       <% if song.favorites.length > 0 %>
-        <%= link_to "&hearts;".html_safe, remove_favorite_song_path(song), method: :post, class: "fav" %>
+        <%= link_to "&hearts;".html_safe, remove_favorite_song_path(song), method: :delete, class: "fav" %>
       <% else %>
         <%= link_to "&hearts;".html_safe, add_favorite_song_path(song), method: :post, class: "no-fav" %>
       <% end %>
@@ -319,8 +324,8 @@ end
 
 ### YOU DO: Update Songs Controller (20 minutes / 2:25)
 
-Take **15 minutes** to update the `add_favorite` and `remove_favorite` actions in the playlists controller to
-add and remove songs from the playlist. Look at the `artists/show.html.erb`
+Take **15 minutes** to update the `add_favorite` and `remove_favorite` actions in the Songs controller to
+favorite and un-favorite a song. Look at the `artists/show.html.erb`
 view to see how we route to these actions.
 
 Below are some line-by-line instructions on how to implement `add_favorite` and `remove_favorite`. I encourage you not to look unless you are stuck!  
