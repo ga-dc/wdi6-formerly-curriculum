@@ -283,6 +283,8 @@ Q. Imagine you see the below line of code has been added to the `views/artists/n
 
 > A. It prints out the first error message that was generated.
 
+## Break (10 min)
+
 ## Bangin' methods (10 min)
 
 Let's try using `.create` instead of `.new`:
@@ -324,7 +326,7 @@ Q. It's considered good practice to always use bangs on these methods. Why?
 
 > A. It forces us to cover all our bases. Without the bang, the user may be able to submit data that doesn't work. We want them to KNOW when the data doesn't work.
 
-## Using a boolean instead of the exception
+## Using a boolean instead of the exception (10 min)
 
 The discussion on validations has so far shown you about 18 different ways a user can "break" your app.
 
@@ -365,10 +367,10 @@ def create
 end
 ```
 
-## You do: (10 min) Apply this to the artists#update action.
+## You do: Apply this to the artists#update action (10 min)
 ---
 
-## SimpleForm
+## SimpleForm (10 min)
 
 Ensure your Gemfile contains:
 ```
@@ -410,9 +412,13 @@ Try creating a new Artist, making sure you fail that validation.
 Pretty cool, huh?
 ---
 
+## Break (10 min)
+
 # Error Handling
 
-## Framing
+We recommend you start a new branch for this portion.  We're sharing concepts, not, necessarily, best practices.
+
+## Framing (5 min)
 
 Let's force the app to break by looking up an artist that doesn't exist. Try going to `localhost:3000/artists/8675309`.
 
@@ -438,7 +444,7 @@ end
 
 This is fine, but it's not very DRY: if we wanted to protect songs from this error we'd need to copy and paste almost the exact same code.
 
-## rescue_from
+## rescue_from (5 min)
 
 Replace the contents of your application controller with this:
 
@@ -461,7 +467,7 @@ Now try going to `localhost:3000/artists/8675309`.
 
 We told Rails to "rescue us from" a specific kind of error -- in this case, ActiveRecord's "Not Found" error. We told it to rescue us by running a method called `couldnt_find_record` that we've defined. What that method does is nothing new: it redirects us to some URL, and flashes a notice.
 
-## Exception types
+## Exception types (15 min)
 
 Every error -- or "exception" -- in Ruby belongs to a class. In this case, `RecordNotFound` is the class. When a validation fails, you get:
 
@@ -519,7 +525,7 @@ class ApplicationController < ActionController::Base
 end
 ```
 
-## begin/rescue
+## begin/rescue [time permitting] (15 min)
 
 What's going on underneath the hood is Rails using Ruby's built-in `begin/rescue` syntax.
 
@@ -559,7 +565,7 @@ This gives us a way of handling errors. It's where `rescue_from` gets its name.
 
 We will use `begin/rescue` very little, but it happens all the time underneath the surface of the gems we use, and is something you'll see occasionally.
 
-# Quiz questions
+# Questions (5 min)
 
 - What's the difference between `.create` and `.create!`?
 - You see `ROLLBACK` in your Rails server log. What does that mean?
