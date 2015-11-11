@@ -369,7 +369,7 @@ Change your `artists/new.html.erb` form to use `simple_form_for`:
 ```erb
 <h2>New Artist</h2>
 
-<%= simple_form_for Artist.new do |f| %>
+<%= simple_form_for @artist do |f| %>
   <%= f.input :name %>
   <%= f.input :photo_url %>
   <%= f.input :nationality %>
