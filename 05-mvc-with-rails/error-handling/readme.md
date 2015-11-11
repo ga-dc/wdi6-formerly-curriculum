@@ -2,18 +2,18 @@
 
 ## Learning Objectives
 
-- Explain the benefits of explicitly handling errors
-- Produce and handle an error in Ruby using the keywords `begin`, `rescue`, and `raise`.
 - Explain the purpose of `flash` in Rails
 - Compare and contrast `flash[:notice]` and `flash[:alert]`
 - List three ActiveRecord methods that trigger validations
 - Compare and contrast the validation helpers `confirmation`, `inclusion`, `exclusion`, `length`, `presence`, `uniqueness`, and `numericality`
 - Compare and contrast the validation options `allow_nil`, `allow_blank`, and `on`
 - Create a custom validation on an ActiveRecord model
+- Explain the benefits of explicitly handling errors
+- Produce and handle an error in Ruby using the keywords `begin`, `rescue`, and `raise`.
 
 # Messages to the User
 
-Our app works, but it also breaks really easily. It's useful for *us* when the app breaks because we can see where all the errors are... but those big red error pages don't make for a very good user experience.
+Our app works, but it also breaks quite easily. It's useful for *us* when the app breaks because we can see where all the errors are... but those big red error pages don't make for a very good user experience.
 
 ## Framing
 
@@ -46,11 +46,11 @@ Q. Try it! Why doesn't this work?
 Q. We've seen two main ways of storing user data so it's available from page to page, and request to request. What are they?
 ---
 
-> A. We could store errors in the database, but that's hugely inefficient. A better idea would be to use **session variables**, about which you learned in your last class.
+> A. We could store errors in the database, but that's hugely inefficient. A better idea would be to use temporary **session variables**, which you just learned about.
 
 Rails has a built-in way of storing messages in sessions, called `flash`.
 
-`flash` is a hash that's created on one request, available through the next, then destroyed.
+`flash` is a hash that's created on one request, available through the next, then destroyed.  It was created to "flash" a message to the user and then go away.
 
 Replace the `error` instance variable with `flash[:alert]` in your Artist controller to see it in action:
 
@@ -80,7 +80,7 @@ It's convention to stick to two main ones: `:alert` and `:notice`.
 
 Q. Why should you stick to this convention?
 ---
-> Having one or two flash types makes it really easy to style your Flashes with CSS.
+> Having one or two flash types makes it really easy to style your Flashes with CSS.  Also, rails provides special helpers for alert and notice.  In the [controllers](http://guides.rubyonrails.org/action_controller_overview.html#the-flash) and [views](http://api.rubyonrails.org/classes/ActionDispatch/Flash.html).
 
 Consider:
 
@@ -90,6 +90,7 @@ Consider:
   <% end %>
 ```
 
+And this css:
 ```css
 .alert{
   color:red;
@@ -99,7 +100,6 @@ Consider:
 }
 ```
 
-> It *used* to be that Rails had some helper methods that worked only with `alert` and `notice`. However, that's no longer the case.
 
 Q. Presumably, we'd want to show error messages on any page. What problem do we run into now?
 ---
@@ -154,7 +154,7 @@ Q. Based on what we know, how could we prevent users from entering blank data in
 > A. We could put that in the controller, like so:
   ```rb
   if params[:name] == ""
-    redirect_to "/artists"
+    redirect_to artists_url
   end
   ```
 
@@ -163,9 +163,7 @@ Q. Based on what we know, how could we prevent users from entering blank data in
 
 > A. We could put in database constraints, like `NOT NULL` and `UNIQUE`, by going and playing around in SQL.
 
-...but that's difficult and dangerous.
-
-For one thing, Rails doesn't give us a direct way of writing SQL schema. For another thing, I wouldn't want to write SQL anyway! I'll avoid SQL pretty much every time I possibly can because otherwise it's really easy for me to mess up my database, and because SQL isn't a programming language and so is more difficult for me to understand.
+But...it's SQL.  Rails provides [some helpers](http://edgeguides.rubyonrails.org/active_record_migrations.html#column-modifiers) for managing database constraints.  Beyond those, it can be difficult.
 
 Wouldn't it be nice if, before an Artist record was saved, we could validate that the data entered into its fields were correct?
 
@@ -177,8 +175,7 @@ Wouldn't it be nice if, before an Artist record was saved, we could validate tha
 
 ```rb
 class Artist < ActiveRecord::Base
-  validates :name, uniqueness: true
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :name, length: {in: 1..20}
   validates :nationality, inclusion: ["USA", "Canada", "UK"]
 end
@@ -252,7 +249,7 @@ You can leave `rails s` running in one tab; it doesn't matter. In a *different* 
 Your "prompt" in the Rails console should look something like this:
 
 ```
-2.2.1 :001>
+2.2.3 :001>
 ```
 
 Now, type in:
@@ -344,7 +341,7 @@ def create
   @artist = Artist.new(artist_params)
   if @artist.save
     flash[:notice] = "#{@artist.name} was successfully created."
-    redirect_to artists_path
+    redirect_to artists_url
   else
     flash[:alert] = @artist.error.full_messages
     render :new
@@ -360,7 +357,7 @@ Remember that we can save two lines of code by putting `notice` and `alert` righ
 def create
   @artist = Artist.new(artist_params)
   if @artist.save
-    redirect_to artists_path, notice: "#{@artist.name} was successfully created."
+    redirect_to artists_url, notice: "#{@artist.name} was successfully created."
   else
     render :new, alert: @artist.error.full_messages
   end
@@ -398,7 +395,7 @@ Ensure the `artists#create` action looks like this:
 def create
   @artist = Artist.new(artist_params)
   if @artist.save
-    redirect_to "/artists/#{@artist.id}"
+    redirect_to artist_url(@artist)
   else
     render :new
   end
@@ -456,7 +453,7 @@ class ApplicationController < ActionController::Base
 
   private
   def couldnt_find_record
-    redirect_to "/", notice: "That record doesn't exist!"
+    redirect_to root_path, notice: "That record doesn't exist!"
   end
 end
 ```
