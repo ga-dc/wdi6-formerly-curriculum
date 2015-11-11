@@ -157,6 +157,8 @@ $ rails console
 
 ## You do: Create the migration for Songs
 
+To associate one model with another you can use either `t.belongs_to :artist` or `t.references :artist` or `t.integer :artist_id`
+
 ## I do: passing arguments into `rails g migration`
 
 ```
