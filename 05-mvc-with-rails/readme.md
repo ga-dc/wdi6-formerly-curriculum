@@ -71,6 +71,17 @@ Build a scalable, maintainable, and secure web application that manipulates data
 - Describe how path helpers work for nested routes.
 - Implement `form_for` to build a form for a nested resource.
 
+### Error Handling
+- Explain the benefits of explicitly handling errors
+- Produce and handle an error in Ruby using the keywords `begin`, `rescue`, `raise`, and `ensure`
+- Explain the purpose of `flash` in Rails
+- Compare and contrast `flash[:notice]` and `flash[:alert]`
+- List three ActiveRecord methods that trigger validations
+- Compare and contrast the validation helpers `confirmation`, `inclusion`, `exclusion`, `length`, `presence`, `uniqueness`, and `numericality`
+- Compare and contrast the validation options `allow_nil`, `allow_blank`, and `on`
+- Create a custom validation on an ActiveRecord model
+
+
 ### Sessions & Auth
 
 - Explain what state is in a web application
