@@ -287,7 +287,7 @@ Rails.application.routes.draw do
   resources :songs do
     member do
       post 'add_favorite'
-      post 'remove_favorite'
+      delete 'remove_favorite'
     end
   end
 end
@@ -307,7 +307,7 @@ end
     <li>
       <%= link_to "#{song.title} (#{song.album})", artist_song_path(@artist, song) %>
       <% if song.favorites.length > 0 %>
-        <%= link_to "&hearts;".html_safe, remove_favorite_song_path(song), method: :post, class: "fav" %>
+        <%= link_to "&hearts;".html_safe, remove_favorite_song_path(song), method: :delete, class: "fav" %>
       <% else %>
         <%= link_to "&hearts;".html_safe, add_favorite_song_path(song), method: :post, class: "no-fav" %>
       <% end %>
