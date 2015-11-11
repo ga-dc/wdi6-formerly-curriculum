@@ -33,7 +33,7 @@ Q. Based on what we've learned so far, how could you show the user a message tha
 def create
   @artist = Artist.create!(artist_params)
   @message = "#{@artist.name} was created."
-  redirect_to artists_url
+  redirect_to @artist
 end
 ```
 
@@ -64,8 +64,8 @@ Replace the `error` instance variable with `flash[:alert]` in your Artist contro
 # app/controllers/artists_controller.rb
 def create
   @artist = Artist.create!(artist_params)
-  flash[:notice] = "#{@artist.name} was successfully saved."
-  redirect_to artists_url
+  flash[:notice] = "#{@artist.name} was created."
+  redirect_to @artist
 end
 ```
 
@@ -141,7 +141,7 @@ You can DRY up your code a bit by putting the flash message right in the `redire
 # app/controllers/artists_controller.rb
 def create
   @artist = Artist.create!(artist_params)
-  redirect_to artists_url, notice: "#{@artist.name} was successfully saved."
+  redirect_to @artist, notice: "#{@artist.name} was successfully saved."
 end
 ```
 
@@ -172,7 +172,7 @@ Q. Based on what we know, how could we prevent users from entering **blank data*
 def create
   if params[:name] == ""
     flash[:alert] = "Can't be blank!"
-    redirect_to artists_url
+    redirect_to @artist
   else
     @artist = Artist.create(artist_params)
     redirect_to @artist
@@ -181,7 +181,6 @@ end
   ```
 
 ...but putting it in the controller is going to lead to some pretty unwieldy controller methods. Besides, we may want there to be several routes that create or update an artist, and we'd need to copy and paste that bit of code for each one. That's hardly DRY!
-
 
 > A. We could put in database constraints, like `NOT NULL` and `UNIQUE`, by going and playing around in SQL.
 
@@ -304,6 +303,28 @@ Q. Imagine you see the below line of code has been added to the `views/artists/n
 
 > A. It prints out the first error message that was generated.
 
+### Validation triggers
+
+If you only write these:
+
+```
+$ billy = Artist.new(name: "Billy Ray Cyrus")
+$ billy.errors.full_messages
+```
+...you'll get a blank array. That's because `.new` doesn't actually make the validations happen. The only methods that *do* are:
+
+```
+.valid?
+.save
+.save!
+.create
+.create!
+.update
+.update!
+```
+
+...so `.errors.full_messages` must be run after these.
+
 ## Break (10 min)
 
 ## Bangin' methods (10 min)
@@ -342,11 +363,6 @@ Q. What's the difference between `.create` and `.create!`?
 
 You can add a bang to both `.create` and `.save`.
 
-Q. It's considered good practice to always use bangs on these methods. Why?
----
-
-> A. It forces us to cover all our bases. Without the bang, the user may be able to submit data that doesn't work. We want them to KNOW when the data doesn't work.
-
 ## Using a boolean instead of the exception (10 min)
 
 The discussion on validations has so far shown you about 18 different ways a user can "break" your app.
@@ -366,7 +382,7 @@ def create
   @artist = Artist.new(artist_params)
   if @artist.save
     flash[:notice] = "#{@artist.name} was successfully created."
-    redirect_to artists_url
+    redirect_to @artist
   else
     render :new
   end
@@ -383,12 +399,27 @@ end
 
 This way, one thing happens when the user is successful -- and when they're *not* successful, something else happens and they're told what they did wrong.
 
+### This ^ is the "right way" to write a Rails controller.
+
 ### Pro (debugging) tip
 
 Add `<%= debug(@artist) %>` to "app/views/artists/new.html.erb" to see information contained in `@artist`.  Try submitting invalid information for a new Artist.
 
 
 ## You do: Apply this to the artists#update action (10 min)
+
+```rb
+# app/controllers/artists_controller.rb
+def update
+  @artist = Artist.find(params[:id])
+  if @artist.update(artist_params)
+    flash[:notice] = "#{@artist.name} was created."
+    redirect_to @artist
+  else
+    render :new
+  end
+end
+```
 ---
 
 ## SimpleForm (10 min)
@@ -415,11 +446,11 @@ Change your `artists/_form.html.erb` form to use `simple_form_for`:
 Ensure the `artists#create` action looks like this:
 
 ```rb
-# app/controllers/artists_controllerb.
+# app/controllers/artists_controller.rb
 def create
   @artist = Artist.new(artist_params)
   if @artist.save
-    redirect_to artist_url(@artist)
+    redirect_to @artist
   else
     render :new
   end
@@ -548,7 +579,7 @@ class ApplicationController < ActionController::Base
 end
 ```
 
-## begin/rescue [time permitting] (15 min)
+## begin/rescue (time permitting) (15 min)
 
 What's going on underneath the hood is Rails using Ruby's built-in `begin/rescue` syntax.
 
