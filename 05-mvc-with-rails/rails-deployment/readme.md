@@ -1,5 +1,9 @@
 # Deployment
 
+## Set up
+
+[tunr_rails_deployment](https://github.com/ga-dc/tunr_rails_deployment)
+
 ## Learning Objectives
 
 - Define 'deployment', and contrast different methods of deploying an application
