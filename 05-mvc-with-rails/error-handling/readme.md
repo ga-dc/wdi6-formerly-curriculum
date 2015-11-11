@@ -25,11 +25,11 @@ Q. Based on what we've learned so far, how could you show the user a message tha
 > A. The easiest way would be to just create an instance variable `@message`.
 
 ```rb
-  def create
-    @artist = Artist.create!(artist_params)
-    @message = "#{@artist.name} was created."
-    redirect_to "/artists"
-  end
+def create
+  @artist = Artist.create!(artist_params)
+  @message = "#{@artist.name} was created."
+  redirect_to artists_url
+end
 ```
 
 Then, in `app/views/artists/index.html.erb`:
@@ -55,19 +55,19 @@ Rails has a built-in way of storing messages in sessions, called `flash`.
 Replace the `error` instance variable with `flash[:alert]` in your Artist controller to see it in action:
 
 ```rb
-  def create
-    @artist = Artist.create!(artist_params)
-    flash[:notice] = "#{@artist.name} was successfully saved."
-    redirect_to "/artists"
-  end
+def create
+  @artist = Artist.create!(artist_params)
+  flash[:notice] = "#{@artist.name} was successfully saved."
+  redirect_to artists_url
+end
 ```
 
 Then, in `views/artists/index.html.erb`, replace the `@message` line with this:
 
 ```erb
-  <% flash.each do |type, message| %>
-    <p><%= type %>: <%= message %></p>
-  <% end %>
+<% flash.each do |type, message| %>
+  <p><%= type %>: <%= message %></p>
+<% end %>
 ```
 
 #### Try it!
@@ -85,9 +85,9 @@ Q. Why should you stick to this convention?
 Consider:
 
 ```erb
-  <% flash.each do |type, message| %>
-    <p class="<%= type %>"><%= message %></p>
-  <% end %>
+<% flash.each do |type, message| %>
+  <p class="<%= type %>"><%= message %></p>
+<% end %>
 ```
 
 And this css:
@@ -116,10 +116,10 @@ Q. Where would be the best place to put the flash messages so we don't have to r
 You can DRY up your code a bit by putting the flash message right in the `redirect_to`:
 
 ```rb
-  def create
-    @artist = Artist.create!(artist_params)
-    redirect_to "/artists", notice: "#{@artist.name} was successfully saved."
-  end
+def create
+  @artist = Artist.create!(artist_params)
+  redirect_to artists_url, notice: "#{@artist.name} was successfully saved."
+end
 ```
 
 Note that this only works with flashes named `notice:` or `alert:`.
@@ -127,10 +127,10 @@ Note that this only works with flashes named `notice:` or `alert:`.
 It also works with `render`:
 
 ```rb
-  def index
-    @artists = Artist.all
-    render :index, notice: "Successfully retrieved all the artists."
-  end
+def index
+  @artists = Artist.all
+  render :index, notice: "Successfully retrieved all the artists."
+end
 ```
 
 -----
