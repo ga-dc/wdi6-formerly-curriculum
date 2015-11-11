@@ -5,6 +5,7 @@
 - Explain what AWS S3 is and why we use it
 - Identify the benefits of uploading files vs specifying a the URL for a file
 - Obscure secret tokens using `figaro`
+- Explain what an environment variable is
 
 ## The Easy Way to Add Media to your Application
 
@@ -38,7 +39,7 @@ rails g uploader Image
 
 ```rb
 # app/models/post.rb
-class post < ActiveRecord::Base
+class Post < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 end
 ```
