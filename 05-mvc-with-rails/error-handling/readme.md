@@ -126,16 +126,7 @@ def create
 end
 ```
 
-Note that this only works with flashes named `notice:` or `alert:`.
-
-It also works with `render`:
-
-```rb
-def index
-  @artists = Artist.all
-  render :index, notice: "Successfully retrieved all the artists."
-end
-```
+Note that this only works with flashes named `notice:` or `alert:`. It does not work with `render`.
 
 -----
 
@@ -356,19 +347,6 @@ end
 
 This way, one thing happens when the user is successful -- and when they're *not* successful, something else happens and they're told what they did wrong.
 
-Remember that we can save two lines of code by putting `notice` and `alert` right into `redirect_to` and `render`:
-
-```rb
-def create
-  @artist = Artist.new(artist_params)
-  if @artist.save
-    redirect_to artists_url, notice: "#{@artist.name} was successfully created."
-  else
-    render :new, alert: @artist.error.full_messages
-  end
-end
-```
-
 ### Pro (debugging) tip
 
 Add `<%= debug(@artist) %>` to "app/views/artists/new.html.erb" to see information contained in `@artist`.  Try submitting invalid information for a new Artist.
@@ -401,7 +379,7 @@ Change your `artists/new.html.erb` form to use `simple_form_for`:
 
 Ensure the `artists#create` action looks like this:
 
-```erb
+```rb
 def create
   @artist = Artist.new(artist_params)
   if @artist.save
