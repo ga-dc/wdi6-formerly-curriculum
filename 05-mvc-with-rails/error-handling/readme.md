@@ -175,7 +175,8 @@ Wouldn't it be nice if, before an Artist record was saved, we could validate tha
 
 ```rb
 class Artist < ActiveRecord::Base
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates :name, uniqueness: true
   validates :name, length: {in: 1..20}
   validates :nationality, inclusion: ["USA", "Canada", "UK"]
 end
@@ -364,6 +365,11 @@ def create
 end
 ```
 
+### Pro (debugging) tip
+
+Add `<%= debug(@artist) %>` to "app/views/artists/new.html.erb" to see information contained in `@artist`.  Try submitting invalid information for a new Artist.
+
+
 ## You do: Apply this to the artists#update action (10 min)
 ---
 
@@ -453,7 +459,7 @@ class ApplicationController < ActionController::Base
 
   private
   def couldnt_find_record
-    redirect_to root_path, notice: "That record doesn't exist!"
+    redirect_to root_url, notice: "That record doesn't exist!"
   end
 end
 ```
@@ -513,11 +519,11 @@ class ApplicationController < ActionController::Base
 
   private
   def couldnt_find_record
-    redirect_to "/", notice: "That record doesn't exist!"
+    redirect_to root_url, notice: "That record doesn't exist!"
   end
 
   def no_method_error
-    redirect_to "/", notice: "The developer working on this didn't cover their butt appropriately. Our bad."
+    redirect_to root_url, notice: "The developer working on this didn't cover their butt appropriately. Our bad."
   end
 end
 ```
