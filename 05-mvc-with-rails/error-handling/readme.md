@@ -218,7 +218,7 @@ end
 class User < ActiveRecord::Base
   validates :password, confirmation: true
   validates :age, numericality: {only_integer: true, greater_than_or_equal_to: 13}
-  validates :country, exclusion: {in: ["North Korea"]}
+  validates :country, exclusion: ["North Korea"]
 end
 ```
 
