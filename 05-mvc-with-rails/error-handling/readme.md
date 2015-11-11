@@ -37,10 +37,10 @@ def create
 end
 ```
 
-Then, in `app/views/artists/index.html.erb`:
+Then, in `app/views/artists/show.html.erb`:
 
 ```erb
-<!-- app/views/artists/index.html.erb -->
+<!-- app/views/artists/show.html.erb -->
 Message: <%= @message %>
 ```
 
@@ -69,10 +69,10 @@ def create
 end
 ```
 
-Then, in `views/artists/index.html.erb`, replace the `@message` line with this:
+Then, in `views/artists/show.html.erb`, replace the `@message` line with this:
 
 ```erb
-<!-- views/artists/index.html.erb -->
+<!-- views/artists/show.html.erb -->
 <% flash.each do |type, message| %>
   <p><%= type %>: <%= message %></p>
 <% end %>
@@ -93,7 +93,7 @@ Q. Why should you stick to this convention?
 Consider:
 
 ```erb
-<!-- views/artists/index.html.erb -->
+<!-- views/artists/show.html.erb -->
 <% flash.each do |type, message| %>
   <p class="<%= type %>"><%= message %></p>
 <% end %>
@@ -114,7 +114,7 @@ And this css:
 Q. Presumably, we'd want to show error messages on any page. What problem do we run into now?
 ---
 
-> A. We only show flash messages on the Artist index page.
+> A. We only show flash messages on the Artist show page.
 
 Q. Where would be the best place to put the flash messages so we don't have to repeat anything?
 ---
