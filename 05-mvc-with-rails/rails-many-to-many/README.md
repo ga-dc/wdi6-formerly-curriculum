@@ -295,7 +295,7 @@ end
 ```
 
 ```rb
-# app/views/playlists/show.html.erb
+# app/views/artists/show.html.erb
 
 <h2><%= @artist.name %> <a href="/artists/<%= @artist.id %>/edit">(edit)</a></h2>
 <h4><%= @artist.nationality %></h4>
