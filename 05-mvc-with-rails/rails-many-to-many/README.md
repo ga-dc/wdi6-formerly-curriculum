@@ -64,7 +64,7 @@ In pairs, spend **5 minutes** answering the following questions for the below li
   2. What would be a descriptive name for their resulting join table?
 
 Models  
-  1. Users and Events  
+  1. Authors and Books
   2. Students and Courses  
   3. Doctors and Patients  
   4. Posts and Categories  
