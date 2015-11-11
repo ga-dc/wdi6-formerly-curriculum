@@ -339,7 +339,7 @@ def create
     flash[:notice] = "#{@artist.name} was successfully created."
     redirect_to artists_url
   else
-    flash[:alert] = @artist.error.full_messages
+    flash[:alert] = @artist.errors.full_messages
     render :new
   end
 end
