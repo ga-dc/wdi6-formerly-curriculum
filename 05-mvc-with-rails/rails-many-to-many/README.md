@@ -62,6 +62,7 @@ descriptive as possible, and indicate that it represents an *association*.
 In pairs, spend **5 minutes** answering the following questions for the below list of models...  
   1. What would a many-to-many relationship look like between these two models?
   2. What would be a descriptive name for their resulting join table?
+  3. What would be a useful additional column to include in the join table (e.g., `num_guests`)?
 
 Models  
   1. Authors and Books
