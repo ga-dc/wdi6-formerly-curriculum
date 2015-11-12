@@ -15,9 +15,9 @@ We've been using the "Sinatra Reloader" gem pretty much since we first touched S
 
 #### Why?
 
-Pretty obviously: it's super-annoying to have to quit and restart Sinatra all the time!
+> Pretty obviously: it's super-annoying to have to quit and restart Sinatra all the time!
 
-You know what else is super-annoying? Every time you change the "POST" route of Tunr or Sinatra, even just a little bit, you have to go back to `localhost:4567/artists/10/edit` *again*, fill in the form *again*, click "submit" *again*, read the error message *again*, restart Pry *again*... 
+You know what else is super-annoying? Every time you change the "POST" route of Tunr or Sinatra, even just a little bit, you have to go back to `localhost:4567/artists/10/edit` *again*, fill in the form *again*, click "submit" *again*, read the error message *again*, restart Pry *again*...
 
 Whether or not you noticed, you're spending a **lot** of time just checking to see if your app works. That's time that could be spent adding new features, or even sleeping, Heaven forbid.
 
@@ -25,9 +25,7 @@ Whether or not you noticed, you're spending a **lot** of time just checking to s
 
 Wouldn't it be nice if there was something that would do all that testing for you? Maybe you could just type on command into your Terminal and it would show you everything that works and everything that doesn't?
 
-## Code along
-
-### Let's start at the end
+## Where are we headed?
 
 We're going to end up with something like this:
 
@@ -66,11 +64,14 @@ describe Apartment do
 end
 ```
 
-#### What in there looks familiar?
+Q. What in there looks familiar?
+---
 
-#### What does `expect(apartment.tenants.count).to eq(3)` mean in regular English?
 
-### Set-up
+Q. What does `expect(apartment.tenants.count).to eq(3)` mean in regular English?
+---
+
+## Set-up
 
 In your `wdi/sandbox` directory:
 
@@ -80,7 +81,7 @@ $ cd landlord
 $ git checkout rspec
 ```
 
-This is a non-Sinatra version of Landlord -- just the ActiveRecord models. 
+This is a non-Sinatra version of Landlord -- just the ActiveRecord models.
 
 Now let's get the database set up:
 
@@ -138,12 +139,13 @@ To the beginning of this file, add:
 
 ```rb
 require "rspec"
-require "active_record
+require "active_record"
 ```
 
 This file also needs to know how to connect with the database, and it needs to know about the apartment and tenant models.
 
-#### How would you connect the file to the database and models?
+Q. How would you connect the file to the database and models?
+---
 
 ```rb
 require_relative "../config/connection"
@@ -182,7 +184,7 @@ Save the file, and run `rspec` again.
 Now you should get a message in your Terminal like:
 
 ```plain
-landlord (rspec *+)$ rspec
+$ rspec
 *
 
 Pending: (Failures listed here are expected and do not affect your suite's status)
@@ -215,9 +217,10 @@ describe Apartment do
 end
 ```
 
-#### Run `rspec` again. Anything crazy going on?
+Q. Run `rspec` again. Anything crazy going on?
+---
 
-You might have noticed when we ran `rspec` before that there was a little asterisk `*` at the top of the message, and now there are two `**`. This indicates two pending tests. 
+You might have noticed when we ran `rspec` before that there was a little asterisk `*` at the top of the message, and now there are two `**`. This indicates two pending tests.
 
 ### It...do
 
@@ -232,15 +235,16 @@ describe Apartment do
 end
 ```
 
-#### Run `rspec` again. What's different?
+Q. Run `rspec` again. What's different?
+---
 
-Now there's only one pending test. Instead of two asterisks `**`, you should see a dot and an asterisk `.*`, and something saying `2 examples, 0 failures, 1 pending`. Adding `do...end` makes RSpec think this test is an actual test -- not pending anymore. There's no malfunctioning code inside this test, so RSpec is saying it passes. Asterisk `*` indicates a pending test, and dot `.` indicates a passing test.
+> Now there's only one pending test.
 
-This "it...do" syntax reads a little funny. Just imagine whoever wrote this has bad grammar, and think of Oscar Gamble:
+Instead of two asterisks `**`, you should see a dot and an asterisk `.*`, and something saying `2 examples, 0 failures, 1 pending`.
 
-![Oscar Gamble](it_do.jpg)
+Adding `do...end` makes RSpec think this test is an actual test -- not pending anymore. There's no malfunctioning code inside this test, so RSpec is saying it passes. Asterisk `*` indicates a pending test, and dot `.` indicates a passing test.
 
-### Actually testing something
+## Actually testing something
 
 Let's make these tests actually test something. Inside the first test, make (but don't save) a new Apartment and save it to a variable.
 
@@ -259,7 +263,7 @@ it "has the class Apartment" do
 end
 ```
 
-Run `rspec`. The test should still pass. 
+Run `rspec`. The test should still pass.
 
 Read that new line to yourself. We literally wrote "expect apartment to be a apartment". This is totally proper English, except for us using "a" instead of "an"!
 
@@ -367,7 +371,7 @@ Now run `rspec`. You should get:
      # ./spec/apartment_spec.rb:14
 ```
 
-Going along with the theme of readability, RSpec takes what we wrote and condenses it into sentences. 
+Going along with the theme of readability, RSpec takes what we wrote and condenses it into sentences.
 
 ### Making the `#add_tenant` tests pass
 
@@ -409,7 +413,7 @@ end
 
 #### Which lines on here repeat?
 
-Usually, you're going to have a whole bunch of tests that all do very similar things. Writing `apartment = Apartment.create` a bunch of times would get tiresome. 
+Usually, you're going to have a whole bunch of tests that all do very similar things. Writing `apartment = Apartment.create` a bunch of times would get tiresome.
 
 Swap out your code with this:
 
@@ -513,7 +517,7 @@ Unit testing always should come before functional testing. Functional testing is
 
 You'll see the term **test coverage** pop up pretty often. People are always aiming for "100% test coverage". If your app has 100% test coverage, that means every single method in your app has a unit test verifying that it works.
 
-For instance, while it's easy and free to write Salesforce apps, Salesforce will only add your app to its "app store" if you've obtained 100% test coverage, and Salesforce's developer team can run your tests and have them all pass. 
+For instance, while it's easy and free to write Salesforce apps, Salesforce will only add your app to its "app store" if you've obtained 100% test coverage, and Salesforce's developer team can run your tests and have them all pass.
 
 #### What are the reasons testing is so important? Why would employers love it so much?
 
@@ -574,7 +578,7 @@ Split up into groups of 4. For 15 minutes, on a whiteboard, work with your group
 
 Your goal: When all the tests pass, that mean the robot works. However, you're only writing **pending** tests -- don't actually write the code that would make the tests pass.
 
-Constraints: Try to write everything as `describe`, `context`, and `it` blocks. Method names should start with `#`. 
+Constraints: Try to write everything as `describe`, `context`, and `it` blocks. Method names should start with `#`.
 
 ## RSpec tricks
 
@@ -658,4 +662,3 @@ describe Model do
   end
 end
 ```
-
