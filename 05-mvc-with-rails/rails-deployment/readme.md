@@ -390,6 +390,16 @@ Then, to view your app's server log:
 $ heroku logs -t
 ```
 
+## To change your app
+
+```bash
+$ git add .
+$ git commit -m "your message"
+$ git push heroku master
+```
+
+Note that this will *not* update Github. If you want to push your changes to Github as well, you need to run `git push origin master` as usual.
+
 ## Deleting apps
 
 You're likely to end up with a bunch of Heroku apps. To delete all of them at once, you can add this function to your `.bash_profile`:
