@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 16:29:17 GMT+0000 (UTC)">
+    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 16:30:17 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1450,6 +1450,22 @@ $ heroku open
 <pre><code class="lang-bash">$ git add .
 $ git commit -m <span class="hljs-string">&quot;your message&quot;</span>
 $ git push heroku master
+</code></pre>
+<h2 id="to-change-your-migrations">To change your migrations</h2>
+<p>Do <em>not</em> edit an existing migration file. Instead:</p>
+<pre><code class="lang-bash">$ rails g migration yourMigrationName
+<span class="hljs-comment"># Edit the new migration file</span>
+$ rake db:migrate
+$ git add .
+$ git commit -m <span class="hljs-string">&quot;added migration&quot;</span>
+$ git push heroku master
+$ heroku run rake db:migrate
+</code></pre>
+<h2 id="to-switch-your-heroku-app-over-to-development">To switch your Heroku app over to development</h2>
+<pre><code class="lang-bash">$ heroku config:<span class="hljs-built_in">set</span> RAILS_ENV=development
+</code></pre>
+<p>...and to change it back:</p>
+<pre><code class="lang-bash">$ heroku config:<span class="hljs-built_in">set</span> RAILS_ENV=production
 </code></pre>
 <p>Note that this will <em>not</em> update Github. If you want to push your changes to Github as well, you need to run <code>git push origin master</code> as usual.</p>
 <h2 id="deleting-apps">Deleting apps</h2>
