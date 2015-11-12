@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 14:58:16 GMT+0000 (UTC)">
+    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 15:51:29 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1446,6 +1446,12 @@ $ heroku open
 <p>Then, to view your app&apos;s server log:</p>
 <pre><code class="lang-bash">$ heroku logs -t
 </code></pre>
+<h2 id="to-change-your-app">To change your app</h2>
+<pre><code class="lang-bash">$ git add .
+$ git commit -m <span class="hljs-string">&quot;your message&quot;</span>
+$ git push heroku master
+</code></pre>
+<p>Note that this will <em>not</em> update Github. If you want to push your changes to Github as well, you need to run <code>git push origin master</code> as usual.</p>
 <h2 id="deleting-apps">Deleting apps</h2>
 <p>You&apos;re likely to end up with a bunch of Heroku apps. To delete all of them at once, you can add this function to your <code>.bash_profile</code>:</p>
 <pre><code class="lang-sh"><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">happ</span></span>(){
