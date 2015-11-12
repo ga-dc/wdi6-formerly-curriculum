@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 19:09:04 GMT+0000 (UTC)">
+    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 20:16:56 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1394,10 +1394,10 @@ suggest <a href="https://github.com/laserlemon/figaro" target="_blank">figaro</a
 <h3 id="having-your-rails-app-in-the-wrong-folder">Having your Rails app in the wrong folder</h3>
 <p>If, on trying to push to Heroku, you get an error saying &quot;No Cedar app detected&quot; or something similar, double-check whether your directory looks like this:</p>
 <pre><code>wdi/
-  my-rails-app/
+  my-rails-app-folder/
     .git
     readme.md
-    rails-app/
+    actual-rails-app/
       .gitignore
       app/
       bin/
@@ -1406,7 +1406,7 @@ suggest <a href="https://github.com/laserlemon/figaro" target="_blank">figaro</a
 </code></pre><p>If it does, the problem is that <strong>your <code>.git</code> folder needs to be in the same folder as your Gemfile and the rest of your Rails app</strong>.</p>
 <p>That is, your directory should look like this:</p>
 <pre><code>wdi/
-  my-rails-app/
+  my-rails-app-folder/
     .git
     .gitignore
     app/
@@ -1415,11 +1415,10 @@ suggest <a href="https://github.com/laserlemon/figaro" target="_blank">figaro</a
     Gemfile.lock
     readme.md (and so on)
 </code></pre><p>To fix this, you&apos;ll just move everything in your rails app up one folder, like so:</p>
-<pre><code class="lang-bash">$ <span class="hljs-built_in">cd</span> my-rails-app
-$ git mv rails-app/* .
+<pre><code class="lang-bash">$ <span class="hljs-built_in">cd</span> wdi/my-rails-app-folder
+$ git mv actual-rails-app/* .
 $ git add .
-$ git commit
-<span class="hljs-comment"># ...and so on.</span>
+$ git commit -m <span class="hljs-string">&quot;moved everything to root directory&quot;</span>
 </code></pre>
 <p><strong>Note</strong> that dotfiles (files beginning with <code>.</code>) aren&apos;t moved with this command. You&apos;ll need to move those individually.</p>
 <p>When you <code>git add</code>, there may be a TON of changes. This is because Git thinks you deleted a bunch of files, and then created a bunch of files. One way to mitigate this is to use the <code>git mv</code> command instead of just the <code>mv</code> command.</p>
