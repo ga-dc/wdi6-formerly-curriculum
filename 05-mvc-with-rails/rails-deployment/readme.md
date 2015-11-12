@@ -1,5 +1,11 @@
 # Deployment
 
+## Screencasts
+
+- [Part 1](https://youtu.be/8NZsSxFSFLM)
+- [Part 2](https://youtu.be/EFDy2sAHFCw)
+- [Part 3](https://youtu.be/nx1gAA9tyog)
+
 ## Set up
 
 [tunr_rails_deployment](https://github.com/ga-dc/tunr_rails_deployment)
