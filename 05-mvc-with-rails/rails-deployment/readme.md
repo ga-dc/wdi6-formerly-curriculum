@@ -143,11 +143,11 @@ new server:
 
 ```bash
 $ cd path/to/your/rails-app
-$ heroku create <your_app_name>
+$ heroku create <your-app-name>
 ```
 
-Make sure to choose something unique but meaningful for `your_app_name`, e.g.
-`wdi-dc6-adam-tunr`. The app will be hosted at `your_app_name.herokuapp.com`.
+Make sure to choose something unique but meaningful for `your-app-name`, e.g.
+`wdi-dc6-adam-tunr`. The app will be hosted at `your-app-name.herokuapp.com`.
 
 
 ### Deploying the App
