@@ -325,10 +325,10 @@ If, on trying to push to Heroku, you get an error saying "No Cedar app detected"
 
 ```
 wdi/
-  my-rails-app/
+  my-rails-app-folder/
     .git
     readme.md
-    rails-app/
+    actual-rails-app/
       .gitignore
       app/
       bin/
@@ -342,7 +342,7 @@ That is, your directory should look like this:
 
 ```
 wdi/
-  my-rails-app/
+  my-rails-app-folder/
     .git
     .gitignore
     app/
@@ -355,11 +355,10 @@ wdi/
 To fix this, you'll just move everything in your rails app up one folder, like so:
 
 ```bash
-$ cd my-rails-app
-$ git mv rails-app/* .
+$ cd wdi/my-rails-app-folder
+$ git mv actual-rails-app/* .
 $ git add .
-$ git commit
-# ...and so on.
+$ git commit -m "moved everything to root directory"
 ```
 
 **Note** that dotfiles (files beginning with `.`) aren't moved with this command. You'll need to move those individually.
