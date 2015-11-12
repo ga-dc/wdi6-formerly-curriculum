@@ -6,6 +6,10 @@
 - [Part 2](https://youtu.be/EFDy2sAHFCw)
 - [Part 3](https://youtu.be/nx1gAA9tyog)
 
+#### Jump to...
+# [Walk through fixing common errors](#common-pitfalls-20-minutes-1140-1200)
+# [Heroku cheat sheet](#recap)
+
 ## Set up
 
 [tunr_rails_deployment](https://github.com/ga-dc/tunr_rails_deployment)
@@ -263,7 +267,7 @@ follow so that they can be deployed on any provider, and can scale up easily
 We don't have time to go in-depth today, but you can find more info about this
 idea on the [Twelve-Factor Site](http://12factor.net).
 
-## Common Pitfalls (20 minutes; 11:40-12:00)
+# Common Pitfalls (20 minutes; 11:40-12:00)
 
 The most common pitfalls when deploying to Heroku are:
 
