@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 21:52:31 GMT+0000 (UTC)">
+    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 22:16:21 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1365,6 +1365,11 @@ idea on the <a href="http://12factor.net" target="_blank">Twelve-Factor Site</a>
 <h3 id="not-using-the-right-gems">Not Using the Right Gems</h3>
 <p>Your app must include both the <code>rails_12factor</code> and <code>pg</code> gems if you are
 deploying to production.</p>
+<h4 id="make-sure-you-create-your-app-with-rails-new-myappname-d-postgresql">Make sure you create your app with <code>rails new my-app-name -d postgresql</code>.</h4>
+<p>This includes the <code>pg</code> gem for you. If you forget the <code>-d postgresql</code>, Rails will default to using SQLite3 for your database. This saves data in a file called <code>development.sqlite3</code> in your app&apos;s <code>db</code> folder.</p>
+<p>Heroku rejects apps that use SQLite3: you can&apos;t upload them to Heroku. This is because Heroku erases your server whenever it goes to sleep. The only stuff that will survive the erasing is whatever is tracked with Git.</p>
+<p>Presumably, your users are going to be saving lots of data to your database which is <em>not</em> going to be tracked by Git. Therefore, if you&apos;re using SQLite3, all of your data will periodically get erased -- which would make for a very poor app!</p>
+<p>If you did forget <code>-d postgresql</code>, it&apos;s totally fixable -- just Google for the solution -- but a little annoying.</p>
 <h3 id="not-running-migrations-on-heroku">Not Running Migrations on Heroku</h3>
 <p>Don&apos;t forget to run <code>heroku run rake db:migrate</code> after you include new
 migrations, or your app won&apos;t work correctly.</p>
@@ -1430,6 +1435,9 @@ $ git commit -m <span class="hljs-string">&quot;moved everything to root directo
 <p>When you <code>git add</code>, there may be a TON of changes. This is because Git thinks you deleted a bunch of files, and then created a bunch of files. One way to mitigate this is to use the <code>git mv</code> command instead of just the <code>mv</code> command.</p>
 <p><strong>If <code>git mv</code> doesn&apos;t work, however, just try <code>mv</code>.</strong></p>
 <p>Once you&apos;ve added and committed, if you push back up to <code>heroku master</code>, all should be well.</p>
+<h4 id="to-avoid-getting-into-this-situation">To avoid getting into this situation</h4>
+<p>Whenever you type <code>rails new myapp -d postgresql</code>, it creates a new folder called <code>myapp</code> <em>inside</em> your current folder. This results in the situation above.</p>
+<p>To prevent this, instead type <code>rails new . -d postgresql</code>. This will create the Rails app inside the current folder, <em>instead</em> of inside a new folder.</p>
 <h2 id="rails-asset-pipeline-30-minutes-12001230">Rails Asset Pipeline (30 minutes; 12:00-12:30)</h2>
 <h3 id="what-is-the-asset-pipeline">What is the asset pipeline?</h3>
 <p>The asset pipeline is a feature in rails to manage our assets:</p>
