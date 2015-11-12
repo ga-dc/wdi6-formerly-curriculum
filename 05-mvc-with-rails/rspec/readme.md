@@ -385,24 +385,23 @@ require_relative "../models/tenant"
 
 describe Apartment do
   describe "#add_tenant" do
-    context "when the number of tenants" do
-      context "is less than the number of beds" do
-        it "adds a tenant" do
-          apartment = Apartment.create(num_beds: 3)
-          apartment.add_tenant("alice")
-          apartment.add_tenant("bob")
-          expect(apartment.tenants.count).to eq(2)
-        end
+    context "when there is room (<= the number of beds)" do
+      it "adds a tenant" do
+        apartment = Apartment.create(num_beds: 3)
+        apartment.add_tenant("alice")
+        apartment.add_tenant("bob")
+        expect(apartment.tenants.count).to eq(2)
       end
-      context "is equal to the number of beds" do
-        it "does not add a tenant" do
-          apartment = Apartment.create(num_beds: 3)
-          apartment.add_tenant("alice")
-          apartment.add_tenant("bob")
-          apartment.add_tenant("carol")
-          apartment.add_tenant("don")
-          expect(apartment.tenants.count).to eq(3)
-        end
+    end
+
+    context "when it is full (tenants == number of beds)" do
+      it "does not add a tenant" do
+        apartment = Apartment.create(num_beds: 3)
+        apartment.add_tenant("alice")
+        apartment.add_tenant("bob")
+        apartment.add_tenant("carol")
+        apartment.add_tenant("don")
+        expect(apartment.tenants.count).to eq(3)
       end
     end
   end
@@ -420,30 +419,32 @@ Swap out your code with this:
 ```rb
 describe Apartment do
   describe "#add_tenant" do
-    context "when the number of tenants" do
-      before(:each) do
-        @apartment = Apartment.create(num_beds: 3)
-        @apartment.add_tenant("alice")
-        @apartment.add_tenant("bob")
+    before(:each) do
+      @apartment = Apartment.create(num_beds: 3)
+      # we start with 2 tenants (3 bedrooms)
+      @apartment.add_tenant("alice")
+      @apartment.add_tenant("bob")
+    end
+
+    context "when there is room (<= the number of beds)" do
+      it "adds a tenant" do
+        @apartment.add_tenant("Third tenant")
+        expect(@apartment.tenants.count).to eq(3)
       end
-      context "is less than the number of beds" do
-        it "adds a tenant" do
-          expect(@apartment.tenants.count).to eq(2)
-        end
-      end
-      context "is equal to the number of beds" do
-        it "does not add a tenant" do
-          @apartment.add_tenant("carol")
-          @apartment.add_tenant("don")
-          expect(@apartment.tenants.count).to eq(3)
-        end
+    end
+
+    context "when it is full (tenants == number of beds)" do
+      it "does not add a tenant" do
+        @apartment.add_tenant("Third tenant")
+        @apartment.add_tenant("One too many")
+        expect(@apartment.tenants.count).to eq(3)
       end
     end
   end
 end
 ```
 
-What changed is we took the `Apartment.create`, `alice`, and `bob` lines and put them in a `before:each` block. We also made `apartment` an instance variable with `@`. Aside from that, everything's the same.
+What changed? We moved the `Apartment.create`, `alice`, and `bob` into a `before:each` block.  Since the local variable is not available across methods, we converted `apartment` to an instance variable (with `@`). This change also encouraged us to clarify the "third" and "extra" tenant.
 
 Run `rspec`. It should still work.
 
@@ -460,36 +461,47 @@ Now replace the code with this:
 ```rb
 describe Apartment do
   describe "#add_tenant" do
-    context "when the number of tenants" do
-      let(:apartment) do Apartment.create(num_beds: 3) end
-      before(:each) do
-        apartment.add_tenant("alice")
-        apartment.add_tenant("bob")
+    subject(:apartment) do
+      apartment = Apartment.create(num_beds: 3)
+      # we start with 2 tenants (3 bedrooms)
+      apartment.add_tenant("alice")
+      apartment.add_tenant("bob")
+      apartment # return the apartment
+    end
+
+    context "when there is room (<= the number of beds)" do
+      it "adds a tenant" do
+        apartment.add_tenant("Third tenant")
+        expect(apartment.tenants.count).to eq(3)
       end
-      context "is less than the number of beds" do
-        it "adds a tenant" do
-          expect(apartment.tenants.count).to eq(2)
-        end
-      end
-      context "is equal to the number of beds" do
-        it "does not add a tenant" do
-          apartment.add_tenant("carol")
-          apartment.add_tenant("don")
-          expect(apartment.tenants.count).to eq(3)
-        end
+    end
+
+    context "when it is full (tenants == number of beds)" do
+      it "does not add a tenant" do
+        apartment.add_tenant("Third tenant")
+        apartment.add_tenant("One too many")
+        expect(apartment.tenants.count).to eq(3)
       end
     end
   end
 end
 ```
 
-What changed is we deleted all of the `@` symbols, and moved the `Apartment.create` bit into a weird `let..do` line.
+What changed?  We've identified that "apartment" is the "subject under test", converting the instance variable (@apartment) into the "subject" helper.  This method takes a name (:apartment) and block of code that returns the subject (a new Apartment with tenants).  It provides a method, named "apartment", that we now use throughout our spec.  
 
-This is a way of making a variable available in every test, just like `before:each` and `before:all`. What's the difference? `let` is a bit faster and more efficient. That's it!
+This is a way of ensuring the subject is available in every test, just like `before:each` and `before:all`. What's the difference? `subject` is semantic.
 
-As you can see, you can have `let` and `before:each` right next to each other. However, you're *not* supposed to use `let` with `before:all` for reasons of scope.
+Interestingly, we could also replace each use of "apartment" with "subject".
 
-### The Database
+### `let`
+
+RSpec also provides a "let" helper, which works the same way.  You can use it to identify other important components of the specification.
+
+### One big happy family
+
+As you can see, you can have `subject`, `let`, and `before:each` right next to each other.
+
+## The Database
 
 Let's check out something in PSQL:
 
