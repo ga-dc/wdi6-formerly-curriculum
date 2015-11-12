@@ -11,6 +11,8 @@
 ### Screencast of this lesson
 
 [Screencast on Youtube](https://www.youtube.com/watch?v=JxW8lJzLhxI)
+[Andy 1](https://youtu.be/PXNrk6m4WRg)
+[Andy 2](https://youtu.be/Gr3GV8dUkDE)
 
 ### References
 
