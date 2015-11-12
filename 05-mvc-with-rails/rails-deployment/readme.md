@@ -266,6 +266,7 @@ The most common pitfalls when deploying to Heroku are:
 * can't drop / reset your database
 * saving user-uploaded data to the filesystem (instead of a service like AWS S3)
 * checking in sensitive information into your public repository
+* having your Rails app in the wrong folder
 
 ### Not Using the Right Gems
 
@@ -311,6 +312,40 @@ environment variables on the server when you deploy.
 
 The easiest way to do this is using one of the gems available to help you. We
 suggest [figaro](https://github.com/laserlemon/figaro).
+
+### Having your Rails app in the wrong folder
+
+If, on trying to push to Heroku, you get an error saying "No Cedar app detected" or something similar, double-check whether your directory looks like this:
+
+```
+wdi/
+  my-rails-app/
+    .git
+    readme.md
+    rails-app/
+      app/
+      bin/
+      Gemfile
+      Gemfile.lock
+```
+
+If it does, the problem is that **your `.git` file needs to be in the same folder as your Gemfile**.
+
+To fix this, you'll just move everything in your rails app up one folder, like so:
+
+```bash
+$ cd my-rails-app
+$ git mv rails-app/* .
+$ git add .
+$ git commit
+# ...and so on.
+```
+
+**Note** that dotfiles (files beginning with `.`) aren't moved with this command. You'll need to move those individually.
+
+When you `git add`, there may be a TON of changes. This is because Git thinks you deleted a bunch of files, and then created a bunch of files. One way to mitigate this is to use the `git mv` command instead of just the `mv` command.
+
+Once you've added and committed, if you push back up to `heroku master`, all should be well.
 
 ## Rails Asset Pipeline (30 minutes; 12:00-12:30)
 
