@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 16:31:28 GMT+0000 (UTC)">
+    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 17:35:31 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1353,6 +1353,7 @@ idea on the <a href="http://12factor.net" target="_blank">Twelve-Factor Site</a>
 <li>can&apos;t drop / reset your database</li>
 <li>saving user-uploaded data to the filesystem (instead of a service like AWS S3)</li>
 <li>checking in sensitive information into your public repository</li>
+<li>having your Rails app in the wrong folder</li>
 </ul>
 <h3 id="not-using-the-right-gems">Not Using the Right Gems</h3>
 <p>Your app must include both the <code>rails_12factor</code> and <code>pg</code> gems if you are
@@ -1384,6 +1385,28 @@ them in your code).</p>
 environment variables on the server when you deploy.</p>
 <p>The easiest way to do this is using one of the gems available to help you. We
 suggest <a href="https://github.com/laserlemon/figaro" target="_blank">figaro</a>.</p>
+<h3 id="having-your-rails-app-in-the-wrong-folder">Having your Rails app in the wrong folder</h3>
+<p>If, on trying to push to Heroku, you get an error saying &quot;No Cedar app detected&quot; or something similar, double-check whether your directory looks like this:</p>
+<pre><code>wdi/
+  my-rails-app/
+    .git
+    readme.md
+    rails-app/
+      app/
+      bin/
+      Gemfile
+      Gemfile.lock
+</code></pre><p>If it does, the problem is that <strong>your <code>.git</code> file needs to be in the same folder as your Gemfile</strong>.</p>
+<p>To fix this, you&apos;ll just move everything in your rails app up one folder, like so:</p>
+<pre><code class="lang-bash">$ <span class="hljs-built_in">cd</span> my-rails-app
+$ git mv rails-app/* .
+$ git add .
+$ git commit
+<span class="hljs-comment"># ...and so on.</span>
+</code></pre>
+<p><strong>Note</strong> that dotfiles (files beginning with <code>.</code>) aren&apos;t moved with this command. You&apos;ll need to move those individually.</p>
+<p>When you <code>git add</code>, there may be a TON of changes. This is because Git thinks you deleted a bunch of files, and then created a bunch of files. One way to mitigate this is to use the <code>git mv</code> command instead of just the <code>mv</code> command.</p>
+<p>Once you&apos;ve added and committed, if you push back up to <code>heroku master</code>, all should be well.</p>
 <h2 id="rails-asset-pipeline-30-minutes-12001230">Rails Asset Pipeline (30 minutes; 12:00-12:30)</h2>
 <h3 id="what-is-the-asset-pipeline">What is the asset pipeline?</h3>
 <p>The asset pipeline is a feature in rails to manage our assets:</p>
