@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 13:16:41 GMT+0000 (UTC)">
+    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 13:51:51 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1174,7 +1174,7 @@
 <li><a href="https://devcenter.heroku.com/articles/getting-started-with-rails4" target="_blank">Getting Started Deploying Rails on Heroku</a></li>
 <li><a href="http://12factor.net" target="_blank">The Twelve-Factor App</a></li>
 </ul>
-<h2 id="what-is-deployment-15-minutes">What is Deployment? (15 minutes)</h2>
+<h2 id="what-is-deployment-15-minutes-10001015">What is Deployment? (15 minutes; 10:00-10:15)</h2>
 <p>Deployment is the act of putting our app up on one or more servers connected to
 the internet, such that people can use our app.</p>
 <h3 id="requirements-for-deploying">Requirements for Deploying</h3>
@@ -1208,7 +1208,7 @@ makes all the above steps easy. For example, Heroku automatically:</p>
 </ul>
 <p>And if we need to change configuration information, we can set configuration
 variables using <code>heroku config</code>, e.g.</p>
-<h2 id="rails-environments-15-minutes">Rails &apos;Environments&apos; (15 minutes)</h2>
+<h2 id="rails-environments-15-minutes-10151030">Rails &apos;Environments&apos; (15 minutes; 10:15-10:30)</h2>
 <p>By default, a Rails app can be run in any of three different environments. The
 three default environments are:</p>
 <ul>
@@ -1256,12 +1256,12 @@ app locally.</p>
 <p>We usually think of deploying our app to mean &apos;deploying into production&apos;. By
 production, we mean the &apos;public&apos; version of our site. The one with the important
 data that all of our users are using.</p>
-<h2 id="exercise-reading-the-heroku-rails-guide-15-minutes">Exercise: Reading the Heroku Rails Guide (15 minutes)</h2>
+<h2 id="exercise-reading-the-heroku-rails-guide-15-minutes-10301045">Exercise: Reading the Heroku Rails Guide (15 minutes; 10:30-10:45)</h2>
 <p>Take 10 minutes to pair up with a partner and skim the <a href="https://devcenter.heroku.com/articles/getting-started-with-rails4" target="_blank">Getting Started with
 Rails 4 on Heroku</a>.</p>
 <p>We&apos;ll take 5 minutes for discussion, and for much of the rest of this lesson,
 we&apos;ll be walking through many of these steps.</p>
-<h2 id="deploying-to-heroku-30-minutes">Deploying to Heroku (30 minutes)</h2>
+<h2 id="deploying-to-heroku-30-minutes-10451115">Deploying to Heroku (30 minutes; 10:45-11:15)</h2>
 <p>We&apos;re going to use Heroku to deploy our app, because it has a free tier, and is
 incredibly easy to get started with.</p>
 <h3 id="installing-the-heroku-toolbelt">Installing the Heroku Toolbelt</h3>
@@ -1301,8 +1301,12 @@ command:</p>
 </code></pre>
 <p>In general, the <code>heroku run</code> command will take the command immediately after it
 and run it on your Heroku server, instead of locally.</p>
-<h2 id="break-10-minutes">BREAK (10 minutes)</h2>
-<h2 id="debugging-errors-in-production-15-minutes">Debugging Errors in Production (15 minutes)</h2>
+<h3 id="renaming-the-app">Renaming the app</h3>
+<p>Should you decide you want to change your app&apos;s name, just run:</p>
+<pre><code class="lang-bash">heroku apps:rename new-app-name
+</code></pre>
+<h2 id="break-10-minutes-11151125">BREAK (10 minutes; 11:15-11:25)</h2>
+<h2 id="debugging-errors-in-production-15-minutes-11251140">Debugging Errors in Production (15 minutes; 11:25-11:40)</h2>
 <p>To debug errors in production, we need to look at the logs. With heroku, we can
 run <code>heroku logs</code> to see the most recent log entries.</p>
 <p>Here are some common ways to run this command:</p>
@@ -1341,7 +1345,7 @@ follow so that they can be deployed on any provider, and can scale up easily
 (i.e. can grow as the userbase grows).</p>
 <p>We don&apos;t have time to go in-depth today, but you can find more info about this
 idea on the <a href="http://12factor.net" target="_blank">Twelve-Factor Site</a>.</p>
-<h2 id="common-pitfalls-20-minutes">Common Pitfalls (20 minutes)</h2>
+<h2 id="common-pitfalls-20-minutes-11401200">Common Pitfalls (20 minutes; 11:40-12:00)</h2>
 <p>The most common pitfalls when deploying to Heroku are:</p>
 <ul>
 <li>not including the <code>rails_12factor</code> and <code>pg</code> gems</li>
@@ -1380,7 +1384,7 @@ them in your code).</p>
 environment variables on the server when you deploy.</p>
 <p>The easiest way to do this is using one of the gems available to help you. We
 suggest <a href="https://github.com/laserlemon/figaro" target="_blank">figaro</a>.</p>
-<h2 id="rails-asset-pipeline-30-minutes">Rails Asset Pipeline (30 minutes)</h2>
+<h2 id="rails-asset-pipeline-30-minutes-12001230">Rails Asset Pipeline (30 minutes; 12:00-12:30)</h2>
 <h3 id="what-is-the-asset-pipeline">What is the asset pipeline?</h3>
 <p>The asset pipeline is a feature in rails to manage our assets:</p>
 <ul>
@@ -1442,6 +1446,15 @@ $ heroku open
 <p>Then, to view your app&apos;s server log:</p>
 <pre><code class="lang-bash">$ heroku logs -t
 </code></pre>
+<h2 id="deleting-apps">Deleting apps</h2>
+<p>You&apos;re likely to end up with a bunch of Heroku apps. To delete all of them at once, you can add this function to your <code>.bash_profile</code>:</p>
+<pre><code class="lang-sh"><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">happ</span></span>(){
+  <span class="hljs-keyword">for</span> app <span class="hljs-keyword">in</span> $(heroku apps)
+    <span class="hljs-keyword">do</span> heroku apps:destroy --app <span class="hljs-variable">$app</span> --confirm <span class="hljs-variable">$app</span>
+  <span class="hljs-keyword">done</span>
+}
+</code></pre>
+<p>...and then run <code>happ</code> from anywhere on your computer.</p>
 
                     
                     </section>
