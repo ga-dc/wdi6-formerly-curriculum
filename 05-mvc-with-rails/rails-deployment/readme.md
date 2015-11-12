@@ -398,6 +398,8 @@ $ git commit -m "your message"
 $ git push heroku master
 ```
 
+Note that this will *not* update Github. If you want to push your changes to Github as well, you need to run `git push origin master` as usual.
+
 ## To change your migrations
 
 Do *not* edit an existing migration file. Instead:
@@ -423,8 +425,6 @@ $ heroku config:set RAILS_ENV=development
 ```bash
 $ heroku config:set RAILS_ENV=production
 ```
-
-Note that this will *not* update Github. If you want to push your changes to Github as well, you need to run `git push origin master` as usual.
 
 ## Deleting apps
 
