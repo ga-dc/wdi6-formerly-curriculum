@@ -280,6 +280,16 @@ The most common pitfalls when deploying to Heroku are:
 Your app must include both the `rails_12factor` and `pg` gems if you are
 deploying to production.
 
+#### Make sure you create your app with `rails new my-app-name -d postgresql`.
+
+This includes the `pg` gem for you. If you forget the `-d postgresql`, Rails will default to using SQLite3 for your database. This saves data in a file called `development.sqlite3` in your app's `db` folder.
+
+Heroku rejects apps that use SQLite3: you can't upload them to Heroku. This is because Heroku erases your server whenever it goes to sleep. The only stuff that will survive the erasing is whatever is tracked with Git.
+
+Presumably, your users are going to be saving lots of data to your database which is *not* going to be tracked by Git. Therefore, if you're using SQLite3, all of your data will periodically get erased -- which would make for a very poor app!
+
+If you did forget `-d postgresql`, it's totally fixable -- just Google for the solution -- but a little annoying.
+
 ### Not Running Migrations on Heroku
 
 Don't forget to run `heroku run rake db:migrate` after you include new
@@ -381,6 +391,12 @@ When you `git add`, there may be a TON of changes. This is because Git thinks yo
 **If `git mv` doesn't work, however, just try `mv`.**
 
 Once you've added and committed, if you push back up to `heroku master`, all should be well.
+
+#### To avoid getting into this situation
+
+Whenever you type `rails new myapp -d postgresql`, it creates a new folder called `myapp` *inside* your current folder. This results in the situation above.
+
+To prevent this, instead type `rails new . -d postgresql`. This will create the Rails app inside the current folder, *instead* of inside a new folder.
 
 ## Rails Asset Pipeline (30 minutes; 12:00-12:30)
 
