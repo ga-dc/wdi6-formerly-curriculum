@@ -15,9 +15,9 @@ We've been using the "Sinatra Reloader" gem pretty much since we first touched S
 
 #### Why?
 
-Pretty obviously: it's super-annoying to have to quit and restart Sinatra all the time!
+> Pretty obviously: it's super-annoying to have to quit and restart Sinatra all the time!
 
-You know what else is super-annoying? Every time you change the "POST" route of Tunr or Sinatra, even just a little bit, you have to go back to `localhost:4567/artists/10/edit` *again*, fill in the form *again*, click "submit" *again*, read the error message *again*, restart Pry *again*... 
+You know what else is super-annoying? Every time you change the "POST" route of Tunr or Sinatra, even just a little bit, you have to go back to `localhost:4567/artists/10/edit` *again*, fill in the form *again*, click "submit" *again*, read the error message *again*, restart Pry *again*...
 
 Whether or not you noticed, you're spending a **lot** of time just checking to see if your app works. That's time that could be spent adding new features, or even sleeping, Heaven forbid.
 
@@ -25,9 +25,7 @@ Whether or not you noticed, you're spending a **lot** of time just checking to s
 
 Wouldn't it be nice if there was something that would do all that testing for you? Maybe you could just type on command into your Terminal and it would show you everything that works and everything that doesn't?
 
-## Code along
-
-### Let's start at the end
+## Where are we headed?
 
 We're going to end up with something like this:
 
@@ -66,11 +64,14 @@ describe Apartment do
 end
 ```
 
-#### What in there looks familiar?
+Q. What in there looks familiar?
+---
 
-#### What does `expect(apartment.tenants.count).to eq(3)` mean in regular English?
 
-### Set-up
+Q. What does `expect(apartment.tenants.count).to eq(3)` mean in regular English?
+---
+
+## Set-up
 
 In your `wdi/sandbox` directory:
 
@@ -80,7 +81,7 @@ $ cd landlord
 $ git checkout rspec
 ```
 
-This is a non-Sinatra version of Landlord -- just the ActiveRecord models. 
+This is a non-Sinatra version of Landlord -- just the ActiveRecord models.
 
 Now let's get the database set up:
 
@@ -132,18 +133,20 @@ $ touch spec/apartment_spec.rb
 
 This file requires both the `rspec` gems and the `active_record` gems.
 
-#### How would you include those two gems in this file?
+Q. How would you include those two gems in this file?
+---
 
-To the beginning of this file, add:
+> Require the files that contain the code:
 
 ```rb
 require "rspec"
-require "active_record
+require "active_record"
 ```
 
 This file also needs to know how to connect with the database, and it needs to know about the apartment and tenant models.
 
-#### How would you connect the file to the database and models?
+Q. How would you connect the file to the database and models?
+---
 
 ```rb
 require_relative "../config/connection"
@@ -182,7 +185,7 @@ Save the file, and run `rspec` again.
 Now you should get a message in your Terminal like:
 
 ```plain
-landlord (rspec *+)$ rspec
+$ rspec
 *
 
 Pending: (Failures listed here are expected and do not affect your suite's status)
@@ -215,9 +218,10 @@ describe Apartment do
 end
 ```
 
-#### Run `rspec` again. Anything crazy going on?
+Q. Run `rspec` again. Anything crazy going on?
+---
 
-You might have noticed when we ran `rspec` before that there was a little asterisk `*` at the top of the message, and now there are two `**`. This indicates two pending tests. 
+You might have noticed when we ran `rspec` before that there was a little asterisk `*` at the top of the message, and now there are two `**`. This indicates two pending tests.
 
 ### It...do
 
@@ -232,15 +236,34 @@ describe Apartment do
 end
 ```
 
-#### Run `rspec` again. What's different?
+Q. Run `rspec` again. What's different?
+---
 
-Now there's only one pending test. Instead of two asterisks `**`, you should see a dot and an asterisk `.*`, and something saying `2 examples, 0 failures, 1 pending`. Adding `do...end` makes RSpec think this test is an actual test -- not pending anymore. There's no malfunctioning code inside this test, so RSpec is saying it passes. Asterisk `*` indicates a pending test, and dot `.` indicates a passing test.
+> Now there's only one pending test.
 
-This "it...do" syntax reads a little funny. Just imagine whoever wrote this has bad grammar, and think of Oscar Gamble:
+Instead of two asterisks `**`, you should see a dot and an asterisk `.*`, and something saying `2 examples, 0 failures, 1 pending`.
 
-![Oscar Gamble](it_do.jpg)
+Adding `do...end` makes RSpec think this test is an actual test -- not pending anymore. There's no malfunctioning code inside this test, so RSpec is saying it passes. Asterisk `*` indicates a pending test, and dot `.` indicates a passing test.
 
-### Actually testing something
+## Formatting the output
+
+Pass the "format" flag to the rspec command:
+
+```
+rspec --color --format documentation
+```  
+
+The default format is "progress", it's designed to show the result of many tests, concisely.  Until we have a bunch of tests, I prefer the "documentation" format.  It helps me to ask the right questions.  You can run it with the shorthand, `rspec -c -fd`.
+
+If you prefer this as your default, you can add it to RSpec's configuration file, `~\.rspec`.  Here's mine:
+
+```
+--color
+--format documentation
+```
+
+
+## Actually testing something
 
 Let's make these tests actually test something. Inside the first test, make (but don't save) a new Apartment and save it to a variable.
 
@@ -259,7 +282,7 @@ it "has the class Apartment" do
 end
 ```
 
-Run `rspec`. The test should still pass. 
+Run `rspec`. The test should still pass.
 
 Read that new line to yourself. We literally wrote "expect apartment to be a apartment". This is totally proper English, except for us using "a" instead of "an"!
 
@@ -367,7 +390,7 @@ Now run `rspec`. You should get:
      # ./spec/apartment_spec.rb:14
 ```
 
-Going along with the theme of readability, RSpec takes what we wrote and condenses it into sentences. 
+Going along with the theme of readability, RSpec takes what we wrote and condenses it into sentences.
 
 ### Making the `#add_tenant` tests pass
 
@@ -381,24 +404,23 @@ require_relative "../models/tenant"
 
 describe Apartment do
   describe "#add_tenant" do
-    context "when the number of tenants" do
-      context "is less than the number of beds" do
-        it "adds a tenant" do
-          apartment = Apartment.create(num_beds: 3)
-          apartment.add_tenant("alice")
-          apartment.add_tenant("bob")
-          expect(apartment.tenants.count).to eq(2)
-        end
+    context "when there is room (<= the number of beds)" do
+      it "adds a tenant" do
+        apartment = Apartment.create(num_beds: 3)
+        apartment.add_tenant("alice")
+        apartment.add_tenant("bob")
+        expect(apartment.tenants.count).to eq(2)
       end
-      context "is equal to the number of beds" do
-        it "does not add a tenant" do
-          apartment = Apartment.create(num_beds: 3)
-          apartment.add_tenant("alice")
-          apartment.add_tenant("bob")
-          apartment.add_tenant("carol")
-          apartment.add_tenant("don")
-          expect(apartment.tenants.count).to eq(3)
-        end
+    end
+
+    context "when it is full (tenants == number of beds)" do
+      it "does not add a tenant" do
+        apartment = Apartment.create(num_beds: 3)
+        apartment.add_tenant("alice")
+        apartment.add_tenant("bob")
+        apartment.add_tenant("carol")
+        apartment.add_tenant("don")
+        expect(apartment.tenants.count).to eq(3)
       end
     end
   end
@@ -409,37 +431,39 @@ end
 
 #### Which lines on here repeat?
 
-Usually, you're going to have a whole bunch of tests that all do very similar things. Writing `apartment = Apartment.create` a bunch of times would get tiresome. 
+Usually, you're going to have a whole bunch of tests that all do very similar things. Writing `apartment = Apartment.create` a bunch of times would get tiresome.
 
 Swap out your code with this:
 
 ```rb
 describe Apartment do
   describe "#add_tenant" do
-    context "when the number of tenants" do
-      before(:each) do
-        @apartment = Apartment.create(num_beds: 3)
-        @apartment.add_tenant("alice")
-        @apartment.add_tenant("bob")
+    before(:each) do
+      @apartment = Apartment.create(num_beds: 3)
+      # we start with 2 tenants (3 bedrooms)
+      @apartment.add_tenant("alice")
+      @apartment.add_tenant("bob")
+    end
+
+    context "when there is room (<= the number of beds)" do
+      it "adds a tenant" do
+        @apartment.add_tenant("Third tenant")
+        expect(@apartment.tenants.count).to eq(3)
       end
-      context "is less than the number of beds" do
-        it "adds a tenant" do
-          expect(@apartment.tenants.count).to eq(2)
-        end
-      end
-      context "is equal to the number of beds" do
-        it "does not add a tenant" do
-          @apartment.add_tenant("carol")
-          @apartment.add_tenant("don")
-          expect(@apartment.tenants.count).to eq(3)
-        end
+    end
+
+    context "when it is full (tenants == number of beds)" do
+      it "does not add a tenant" do
+        @apartment.add_tenant("Third tenant")
+        @apartment.add_tenant("One too many")
+        expect(@apartment.tenants.count).to eq(3)
       end
     end
   end
 end
 ```
 
-What changed is we took the `Apartment.create`, `alice`, and `bob` lines and put them in a `before:each` block. We also made `apartment` an instance variable with `@`. Aside from that, everything's the same.
+What changed? We moved the `Apartment.create`, `alice`, and `bob` into a `before:each` block.  Since the local variable is not available across methods, we converted `apartment` to an instance variable (with `@`). This change also encouraged us to clarify the "third" and "extra" tenant.
 
 Run `rspec`. It should still work.
 
@@ -456,36 +480,47 @@ Now replace the code with this:
 ```rb
 describe Apartment do
   describe "#add_tenant" do
-    context "when the number of tenants" do
-      let(:apartment) do Apartment.create(num_beds: 3) end
-      before(:each) do
-        apartment.add_tenant("alice")
-        apartment.add_tenant("bob")
+    subject(:apartment) do
+      apartment = Apartment.create(num_beds: 3)
+      # we start with 2 tenants (3 bedrooms)
+      apartment.add_tenant("alice")
+      apartment.add_tenant("bob")
+      apartment # return the apartment
+    end
+
+    context "when there is room (<= the number of beds)" do
+      it "adds a tenant" do
+        apartment.add_tenant("Third tenant")
+        expect(apartment.tenants.count).to eq(3)
       end
-      context "is less than the number of beds" do
-        it "adds a tenant" do
-          expect(apartment.tenants.count).to eq(2)
-        end
-      end
-      context "is equal to the number of beds" do
-        it "does not add a tenant" do
-          apartment.add_tenant("carol")
-          apartment.add_tenant("don")
-          expect(apartment.tenants.count).to eq(3)
-        end
+    end
+
+    context "when it is full (tenants == number of beds)" do
+      it "does not add a tenant" do
+        apartment.add_tenant("Third tenant")
+        apartment.add_tenant("One too many")
+        expect(apartment.tenants.count).to eq(3)
       end
     end
   end
 end
 ```
 
-What changed is we deleted all of the `@` symbols, and moved the `Apartment.create` bit into a weird `let..do` line.
+What changed?  We've identified that "apartment" is the "subject under test", converting the instance variable (@apartment) into the "subject" helper.  This method takes a name (:apartment) and block of code that returns the subject (a new Apartment with tenants).  It provides a method, named "apartment", that we now use throughout our spec.  
 
-This is a way of making a variable available in every test, just like `before:each` and `before:all`. What's the difference? `let` is a bit faster and more efficient. That's it!
+This is a way of ensuring the subject is available in every test, just like `before:each` and `before:all`. What's the difference? `subject` is semantic.
 
-As you can see, you can have `let` and `before:each` right next to each other. However, you're *not* supposed to use `let` with `before:all` for reasons of scope.
+Interestingly, we could also replace each use of "apartment" with "subject".
 
-### The Database
+### `let`
+
+RSpec also provides a "let" helper, which works the same way.  You can use it to identify other important components of the specification.
+
+### One big happy family
+
+As you can see, you can have `subject`, `let`, and `before:each` right next to each other.
+
+## The Database
 
 Let's check out something in PSQL:
 
@@ -496,6 +531,20 @@ $ SELECT * FROM tenants;
 ```
 
 Wow! That's a boatload of tenants! When you use `Apartment.create` or `apartment.tenants.create` in RSpec, it *actually creates data in your database*. For this reason, it's almost always a good idea to have a separate database for your RSpec stuff. (That's why we created a `landlord_rspec` database for this instead of just using your existing `landlord` database.)
+
+## The Flow
+
+Most testing frameworks, including RSpec, follow this flow:
+
+- Setup
+- Run
+- Teardown
+
+Each spec should run in isolation.  
+
+Notice, these tenant specs are very particular about how many tenants are in the apartment. If they didn't run in isolation, the "full" apartment would end up with multiple "Third tenant".
+
+We setup this spec, using "subject".  It is recreated for each spec (`it/do`).  And, if there is a teardown, it would be run next.  Our teardown here, is that all variables go out scope.  Everything starts fresh.
 
 # Unit testing
 
@@ -513,7 +562,7 @@ Unit testing always should come before functional testing. Functional testing is
 
 You'll see the term **test coverage** pop up pretty often. People are always aiming for "100% test coverage". If your app has 100% test coverage, that means every single method in your app has a unit test verifying that it works.
 
-For instance, while it's easy and free to write Salesforce apps, Salesforce will only add your app to its "app store" if you've obtained 100% test coverage, and Salesforce's developer team can run your tests and have them all pass. 
+For instance, while it's easy and free to write Salesforce apps, Salesforce will only add your app to its "app store" if you've obtained 100% test coverage, and Salesforce's developer team can run your tests and have them all pass.
 
 #### What are the reasons testing is so important? Why would employers love it so much?
 
@@ -574,7 +623,7 @@ Split up into groups of 4. For 15 minutes, on a whiteboard, work with your group
 
 Your goal: When all the tests pass, that mean the robot works. However, you're only writing **pending** tests -- don't actually write the code that would make the tests pass.
 
-Constraints: Try to write everything as `describe`, `context`, and `it` blocks. Method names should start with `#`. 
+Constraints: Try to write everything as `describe`, `context`, and `it` blocks. Method names should start with `#`.
 
 ## RSpec tricks
 
@@ -658,4 +707,3 @@ describe Model do
   end
 end
 ```
-
