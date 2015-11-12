@@ -323,13 +323,28 @@ wdi/
     .git
     readme.md
     rails-app/
+      .gitignore
       app/
       bin/
       Gemfile
-      Gemfile.lock
+      Gemfile.lock (and so on)
 ```
 
-If it does, the problem is that **your `.git` file needs to be in the same folder as your Gemfile**.
+If it does, the problem is that **your `.git` folder needs to be in the same folder as your Gemfile and the rest of your Rails app**.
+
+That is, your directory should look like this:
+
+```
+wdi/
+  my-rails-app/
+    .git
+    .gitignore
+    app/
+    bin/
+    Gemfile
+    Gemfile.lock
+    readme.md (and so on)
+```
 
 To fix this, you'll just move everything in your rails app up one folder, like so:
 
