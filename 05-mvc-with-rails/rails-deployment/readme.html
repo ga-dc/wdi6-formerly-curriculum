@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 17:35:31 GMT+0000 (UTC)">
+    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 17:37:35 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1392,12 +1392,23 @@ suggest <a href="https://github.com/laserlemon/figaro" target="_blank">figaro</a
     .git
     readme.md
     rails-app/
+      .gitignore
       app/
       bin/
       Gemfile
-      Gemfile.lock
-</code></pre><p>If it does, the problem is that <strong>your <code>.git</code> file needs to be in the same folder as your Gemfile</strong>.</p>
-<p>To fix this, you&apos;ll just move everything in your rails app up one folder, like so:</p>
+      Gemfile.lock (and so on)
+</code></pre><p>If it does, the problem is that <strong>your <code>.git</code> folder needs to be in the same folder as your Gemfile and the rest of your Rails app</strong>.</p>
+<p>That is, your directory should look like this:</p>
+<pre><code>wdi/
+  my-rails-app/
+    .git
+    .gitignore
+    app/
+    bin/
+    Gemfile
+    Gemfile.lock
+    readme.md (and so on)
+</code></pre><p>To fix this, you&apos;ll just move everything in your rails app up one folder, like so:</p>
 <pre><code class="lang-bash">$ <span class="hljs-built_in">cd</span> my-rails-app
 $ git mv rails-app/* .
 $ git add .
