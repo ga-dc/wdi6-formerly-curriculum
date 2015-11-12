@@ -398,6 +398,32 @@ $ git commit -m "your message"
 $ git push heroku master
 ```
 
+## To change your migrations
+
+Do *not* edit an existing migration file. Instead:
+
+```bash
+$ rails g migration yourMigrationName
+# Edit the new migration file
+$ rake db:migrate
+$ git add .
+$ git commit -m "added migration"
+$ git push heroku master
+$ heroku run rake db:migrate
+```
+
+## To switch your Heroku app over to development
+
+```bash
+$ heroku config:set RAILS_ENV=development
+```
+
+...and to change it back:
+
+```bash
+$ heroku config:set RAILS_ENV=production
+```
+
 Note that this will *not* update Github. If you want to push your changes to Github as well, you need to run `git push origin master` as usual.
 
 ## Deleting apps
