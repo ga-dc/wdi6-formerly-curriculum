@@ -350,3 +350,34 @@ The asset pipeline can do any of the following (configurable):
 * **Fingerprinting** file-names allows browsers to cache (avoid downloading the same file twice)
 * **SASS** can clean up and improve our CSS
 * **Helpers** make it easy to reference our assets in ruby, even when fingerprinting means we don't know the exact file name
+
+# Recap
+
+The whole series of commands for deploying to Heroku is:
+
+Add to the bottom of your Gemfile:
+
+```rb
+group :production do
+  gem 'rails_12factor'
+end
+```
+
+```bash
+$ bundle install
+$ git add .
+$ git commit -m "added 12factor"
+$ heroku create my-sweet-app
+# wait...
+$ git push heroku master
+# wait...
+$ heroku run rake db:migrate
+$ heroku run rake db:seed
+$ heroku open
+```
+
+Then, to view your app's server log:
+
+```bash
+$ heroku logs -t
+```
