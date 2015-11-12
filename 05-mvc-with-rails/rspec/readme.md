@@ -133,9 +133,10 @@ $ touch spec/apartment_spec.rb
 
 This file requires both the `rspec` gems and the `active_record` gems.
 
-#### How would you include those two gems in this file?
+Q. How would you include those two gems in this file?
+---
 
-To the beginning of this file, add:
+> Require the files that contain the code:
 
 ```rb
 require "rspec"
@@ -243,6 +244,24 @@ Q. Run `rspec` again. What's different?
 Instead of two asterisks `**`, you should see a dot and an asterisk `.*`, and something saying `2 examples, 0 failures, 1 pending`.
 
 Adding `do...end` makes RSpec think this test is an actual test -- not pending anymore. There's no malfunctioning code inside this test, so RSpec is saying it passes. Asterisk `*` indicates a pending test, and dot `.` indicates a passing test.
+
+## Formatting the output
+
+Pass the "format" flag to the rspec command:
+
+```
+rspec --color --format documentation
+```  
+
+The default format is "progress", it's designed to show the result of many tests, concisely.  Until we have a bunch of tests, I prefer the "documentation" format.  It helps me to ask the right questions.  You can run it with the shorthand, `rspec -c -fd`.
+
+If you prefer this as your default, you can add it to RSpec's configuration file, `~\.rspec`.  Here's mine:
+
+```
+--color
+--format documentation
+```
+
 
 ## Actually testing something
 
@@ -512,6 +531,20 @@ $ SELECT * FROM tenants;
 ```
 
 Wow! That's a boatload of tenants! When you use `Apartment.create` or `apartment.tenants.create` in RSpec, it *actually creates data in your database*. For this reason, it's almost always a good idea to have a separate database for your RSpec stuff. (That's why we created a `landlord_rspec` database for this instead of just using your existing `landlord` database.)
+
+## The Flow
+
+Most testing frameworks, including RSpec, follow this flow:
+
+- Setup
+- Run
+- Teardown
+
+Each spec should run in isolation.  
+
+Notice, these tenant specs are very particular about how many tenants are in the apartment. If they didn't run in isolation, the "full" apartment would end up with multiple "Third tenant".
+
+We setup this spec, using "subject".  It is recreated for each spec (`it/do`).  And, if there is a teardown, it would be run next.  Our teardown here, is that all variables go out scope.  Everything starts fresh.
 
 # Unit testing
 
