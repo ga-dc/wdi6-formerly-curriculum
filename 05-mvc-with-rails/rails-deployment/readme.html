@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 02:25:38 GMT+0000 (UTC)">
+    <div class="book" data-level="4.8" data-chapter-title="Deployment" data-filepath="05-mvc-with-rails/rails-deployment/readme.md" data-basepath="../.." data-revision="Thu Nov 12 2015 13:16:41 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1421,6 +1421,27 @@ one obvious style. Verify that it works in dev and prod.</p>
 <li><strong>SASS</strong> can clean up and improve our CSS</li>
 <li><strong>Helpers</strong> make it easy to reference our assets in ruby, even when fingerprinting means we don&apos;t know the exact file name</li>
 </ul>
+<h1 id="recap">Recap</h1>
+<p>The whole series of commands for deploying to Heroku is:</p>
+<p>Add to the bottom of your Gemfile:</p>
+<pre><code class="lang-rb">group <span class="hljs-symbol">:production</span> <span class="hljs-keyword">do</span>
+  gem <span class="hljs-string">&apos;rails_12factor&apos;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<pre><code class="lang-bash">$ bundle install
+$ git add .
+$ git commit -m <span class="hljs-string">&quot;added 12factor&quot;</span>
+$ heroku create my-sweet-app
+<span class="hljs-comment"># wait...</span>
+$ git push heroku master
+<span class="hljs-comment"># wait...</span>
+$ heroku run rake db:migrate
+$ heroku run rake db:seed
+$ heroku open
+</code></pre>
+<p>Then, to view your app&apos;s server log:</p>
+<pre><code class="lang-bash">$ heroku logs -t
+</code></pre>
 
                     
                     </section>
