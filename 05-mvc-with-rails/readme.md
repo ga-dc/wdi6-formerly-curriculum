@@ -71,15 +71,27 @@ Build a scalable, maintainable, and secure web application that manipulates data
 - Describe how path helpers work for nested routes.
 - Implement `form_for` to build a form for a nested resource.
 
+### Error Handling
+- Explain the benefits of explicitly handling errors
+- Produce and handle an error in Ruby using the keywords `begin`, `rescue`, `raise`, and `ensure`
+- Explain the purpose of `flash` in Rails
+- Compare and contrast `flash[:notice]` and `flash[:alert]`
+- List three ActiveRecord methods that trigger validations
+- Compare and contrast the validation helpers `confirmation`, `inclusion`, `exclusion`, `length`, `presence`, `uniqueness`, and `numericality`
+- Compare and contrast the validation options `allow_nil`, `allow_blank`, and `on`
+- Create a custom validation on an ActiveRecord model
+
+
 ### Sessions & Auth
-- Contrast the use cases for cookies, sessions, and permanent storage.
+
+- Explain what state is in a web application
+- Explain how sessions give state to a web application
+- Explain how user authentication utilizes sessions
 - Define and then access a session variable in a Rails application.
-- Create a (very) simple hashing algorithm.
-- Describe the differences between hashing and encoding.
-- Add sign up, sign in, and sign out functionality to a Rails application.
-- Securely store and access passwords.
-- Describe the functionality added by `has_secure_password`.
-- Differentiate between authentication and authorization.
+- Set session hash key value pairs inside of a rails application
+- Implement user authentication into a web application utilizing the devise gem
+- Implement useful helper methods devise provides
+- Differentiate between authentication and authorization
 
 ### Deployment
 
