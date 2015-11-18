@@ -11,6 +11,8 @@
 ### Screencast of this lesson
 
 [Screencast on Youtube](https://www.youtube.com/watch?v=JxW8lJzLhxI)
+[Andy 1](https://youtu.be/PXNrk6m4WRg)
+[Andy 2](https://youtu.be/Gr3GV8dUkDE)
 
 ### References
 
@@ -60,14 +62,14 @@ descriptive as possible, and indicate that it represents an *association*.
 In pairs, spend **5 minutes** answering the following questions for the below list of models...  
   1. What would a many-to-many relationship look like between these two models?
   2. What would be a descriptive name for their resulting join table?
-  3. Are there any additional columns you could add to the join table (e.g., `num_guests`)?
+  3. What would be a useful additional column to include in the join table (e.g., `num_guests`)?
 
-Models    
-  1. Students and Courses  
-  2. Doctors and Patients  
-  3. Posts and Categories  
-  4. Songs and Playlists  
-  5. Authors and Books
+Models  
+  1. Authors and Books
+  2. Students and Courses  
+  3. Doctors and Patients  
+  4. Posts and Categories  
+  5. Songs and Playlists  
 
 ### Generating the Model / Migration (10 minutes / 0:40)
 
@@ -347,4 +349,6 @@ If you'd like to take a peek now, [here's the Tunr Favorite solution](https://gi
 
 ## Closing Q&A
 
-## Bonus Homework: [Scribble Categories](https://github.com/ga-dc/scribble)
+## Bonus Homework: [Scribble Categories and Tags](https://github.com/ga-dc/scribble/blob/master/readme.md#many-to-many-bonus)
+
+Example: [Deployed Scribble](https://wdi-scribble.herokuapp.com/)
