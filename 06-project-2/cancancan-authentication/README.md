@@ -12,13 +12,9 @@
 
 > **[Starter Code](https://github.com/ga-dc/cancancan_blog/tree/blog-starter)**
 
-We'll be using a simple blog for today's example.
-* It has two models: `Article` and `User`.
-* We have seeded it with four users: `user1`, `user2`, `user3` and `admin`.
-* As it stands, our application has zero authorization.
-  * `user1` is able to update and delete any other user's posts.
-
-**Q:** Which files do you think we should change to prevent this from happening? In other words, where should authorization happen?
+We'll be using a simple blog for today's example. As it stands, our application has zero authorization.
+* `user1` could update or delete a post that `user2` created.
+* **Q:** Which files do you think we should change to prevent this from happening? In other words, where should authorization happen?
 
 At some point a decision needs to be made. If a user clicks on something they either need to be allowed through or rejected.
 * If we were to implement this using an if-statement, where would it go?
