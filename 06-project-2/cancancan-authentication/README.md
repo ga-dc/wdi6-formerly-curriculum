@@ -19,24 +19,22 @@ We'll be using a simple blog for today's example.
   * `user1` is able to update and delete any other user's posts.
 
 **Q:** Which files do you think we should change to prevent this from happening? In other words, where should authorization happen?
-* Which of these files should we start in?
 
-At some point a decision needs to be made: if a user clicks on something they either needs to be allowed through or rejected.
-* If we were to create an if-statement that took care of this, were would it go?
-* Let's try implementing that with `destroy` in `ArticlesController`...
+At some point a decision needs to be made. If a user clicks on something they either need to be allowed through or rejected.
+* If we were to implement this using an if-statement, where would it go?
 
 ```rb
-if current_user.id == @article.user_id
-  @article.destroy
-else
-  redirect_to :permission_denied
+# articles_controller.rb
+
+def destroy
+  if current_user.id == @article.user_id
+    @article.destroy
+  else
+    redirect_to :permission_denied
+  end
 end
 ```
 > This is the main idea behind authorization - the controller is the gatekeeper. We won't be implementing exactly this today. Instead, we'll do it in a much more concise way using a Ruby gem.
-
-We're going to need to do the above sort of thing repeatedly for different actions.
-* For some actions, the checks are going to be a bit more complex than this example.
-* Solution: move all of our authorization rules into a single place and use it to make checks throughout our application.
 
 ## Enter CanCanCan
 
@@ -46,18 +44,12 @@ A gem that allows us to implement that sort of authorization in a cleaner, more 
 * He disappeared from the public eye for a while, so the developer community took it upon themselves to main the gem. Thus, CanCanCan was born!
 
 ### Installation
-1. Include CanCanCan in your `Gemfile`  
-  ```rb
-  gem 'cancancan', '~> 1.10'
-  ```
+1. Include CanCanCan in your Gemfile: `gem 'cancancan', '~> 1.10'`
 2. Run `bundle install`  
 
 ### How Does It Work?
 All the rules about what a user can do exist in one file: `ability.rb`
-* Create it via the command line by running...
-  ```bash
-  rails g cancan:ability
-  ```
+* Create it via the command line by running: `rails g cancan:ability`
 
 ### authorize!
 We'll be linking controller actions to `ability.rb` using the `authorize!` helper
@@ -99,47 +91,20 @@ class Ability
   end
 ```
 
-Ability has an initialize method that takes a user as an argument.
-* This user is always the `current_user`
+Ability has an initialize method that takes a user as an argument. This user is always the `current_user`.  
 > Your application must have a `current_user` method defined, whether that's via Devise or a hand-rolled solution.
 
 We create our authorization rules inside of `initialize` using the `can` helper.
-* Takes two arguments: (1) Ability, (2) Class
+* `can` takes two arguments: (1) Ability, (2) Class
   * The Ability is matched to the controller action it is mentioned in. In this case, that's `:read`.
-  * The Class is compared to the object passed into `authorize!`. In this case, we check to see if `@article` is of class type `Article`.
+  * The Class is compared to the object passed into `authorize!`. In this case, we check to see if `@article` is of type `Article`.
 
 **Q:** What's the difference between `authorize!` and `can`?
 
 ### YOU DO: Authorize Users to Create Articles
 
+Update `articles_controller.rb` and `ability.rb` so that the following user story is true...
 > As a user, I should be able to create an Article.
-
-```rb
-# articles_controller.rb
-
-# We don't want guests to be able to access the new Article form.
-def new
-  @article = Article.new
-  authorize! :create, @article
-end
-
-# We definitely don't want guests to somehow have access to our controller's `create` action
-def create
-  @article = Article.new( article_params )
-  authorize! :create, @article
-end
-```
-```rb
-# ability.rb
-
-# Q: How can we go about checking to see if the initialize method's user argument contains a guest or an actual user?
-def initialize( user )
-  can :read, Article
-  if user
-    can :create, Article
-  end
-end
-```
 
 ### WE DO: Update Authorization
 
@@ -169,8 +134,7 @@ def update
 end
 ```
 
-Moving onto `ability.rb`...
-* We need to be able to access a specific article and check its `user_id`.
+Moving onto `ability.rb`, we need to be able to access a specific article and check its `user_id`.
 
 ```rb
 # ability.rb
@@ -199,31 +163,8 @@ Let's test this...
 
 ### YOU DO: Destroy Authorization
 
+Update `articles_controller.rb` and `ability.rb` so that the following user story is true...
 > As a user, I should be able to destroy my own posts.
-
-```rb
-# articles_controller.rb
-
-def destroy
-  @article = Article.find( params[:id] )
-  authorize! :destroy, @article
-  @article.destroy
-  redirect_to articles_path
-end
-```
-
-```rb
-# ability.rb
-
-# Rather can create separate rules for `update` and `destroy`, we can consolidate them into a single one.
-can [:update, :destroy], Article do |article|
-  user.id == article.user_id
-end
-```
-
-Let's test...
-* As `user1`, I should be able to destroy my own post.
-* As `user1`, I should **NOT** be able to destroy `user2`'s posts.
 
 ### ability.rb Shortcuts
 
@@ -260,21 +201,18 @@ end
 ### DRYing up our ArticlesController
 
 **Q:** What repetitive code do you see in `articles_controller.rb`?
-  1. We call `authorize!` in every controller action that requires authorization.  
-  2. We create some instance of an article(s) -- whether that's `@article` or `@articles` -- in all of our controller actions.  
 
 The `load_and_authorize_resource` helper let's us kill two birds with one stone.
 
 ```rb
 class ArticlesController < ApplicationController
   load_and_authorize_resource
-  # auto creates @articles / @article for each restful route. make code A LOT shorter! remove boilerplate lines.
-  # authorize_resource alone auto adds the authorize statement
+  # Now, for restful actions, we no longer need to (1) write out `authorize!` or (2) create Article instance variables.
 end
 ```
 
 ## Updating Our Views
-So we've prevented unauthorized users from updating or destroying posts that do not belong to them. But on top of that, we wouldn't like them to see the "Edit" and "Delete" links for other users' posts.
+So we've prevented unauthorized users from updating or destroying posts that do not belong to them. But on top of that, we want to hide the "Edit" and "Delete" links for other users' posts.
 
 ```html
 <!-- show.html.erb -->
