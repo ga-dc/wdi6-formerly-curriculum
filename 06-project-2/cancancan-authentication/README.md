@@ -30,7 +30,7 @@ def destroy
   end
 end
 ```
-> This is the main idea behind authorization - the controller is the gatekeeper. We won't be implementing exactly this today. Instead, we'll do it in a much more concise way using a Ruby gem.
+> This is the main idea behind authorization - the controller is the gatekeeper. We'll be doing this in a more concise way using a Ruby gem: CanCanCan.
 
 ## Enter CanCanCan
 
