@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="4.7" data-chapter-title="Sessions and Auth" data-filepath="05-mvc-with-rails/rails-sessions-and-auth/readme.md" data-basepath="../.." data-revision="Tue Nov 17 2015 15:16:14 GMT+0000 (UTC)">
+    <div class="book" data-level="4.7" data-chapter-title="Sessions and Auth" data-filepath="05-mvc-with-rails/rails-sessions-and-auth/readme.md" data-basepath="../.." data-revision="Wed Nov 18 2015 00:31:36 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1154,331 +1154,51 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="sessions-and-auth">Sessions and Auth</h1>
+                        <h1 id="devise-and-sessions">Devise! and sessions</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Contrast the use cases for cookies, sessions, and permanent storage.</li>
+<li>Explain what state is in a web application</li>
+<li>Explain how sessions give state to a web application</li>
+<li>Explain how user authentication utilizes sessions</li>
 <li>Define and then access a session variable in a Rails application.</li>
-<li>Create a (very) simple hashing algorithm.</li>
-<li>Describe the differences between hashing and encoding.</li>
-<li>Add sign-in, sign-up, and sign-out functionality to a Rails application.</li>
-<li>Securely store and access passwords.</li>
-<li>Describe the functionality of <code>has_secure_password</code>.</li>
-<li>Differentiate between authentication and authorization.</li>
+<li>Set session hash key value pairs inside of a rails application</li>
+<li>Implement user authentication into a web application utilizing the devise gem</li>
+<li>Implement useful helper methods devise provides</li>
+<li>Differentiate between authentication and authorization</li>
 </ul>
-<p><strong>Please follow along with the lesson plan.</strong></p>
-<h2 id="adding-users">Adding users</h2>
-<p>Currently, Tunr just supports one single user. It would be nice if it could have multiple users. Whenever a user logs in, they&apos;d see only <em>their</em> artists and songs.</p>
-<p>To start, let&apos;s <strong>create a User model</strong>. It&apos;s going to be really simple, with just a username and password:</p>
-<pre><code>rails generate migration create_users
-</code></pre><pre><code class="lang-rb"><span class="hljs-comment"># db/migrate/[timestamp]_users.db</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateUsers</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
-    create_table <span class="hljs-symbol">:users</span> <span class="hljs-keyword">do</span> |t|
-      t.string <span class="hljs-symbol">:username</span>
-      t.string <span class="hljs-symbol">:password_digest</span>
-    <span class="hljs-keyword">end</span>
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>We&apos;ll talk about why this is <code>password_digest</code> instead of just <code>password</code> later.</p>
-<pre><code>rake db:drop
-rake db:create
-rake db:migrate
-</code></pre><p>We&apos;ll need to <strong>create the user model</strong>. We could add in fancy validations to make sure passwords are at least 8 characters or what-have-you, but that&apos;s a &quot;nice-to-have&quot; we can come back to later.</p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/models/user.rb</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
-  validates <span class="hljs-symbol">:username</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-keyword">true</span>
-  validates <span class="hljs-symbol">:password_digest</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>Next, we&apos;ll create <strong>a sign-up form</strong>. The form will POST to a <code>/sign_up</code> route that we have yet to create.</p>
-<pre><code class="lang-erb"><span class="xml"># app/views/users/sign_up.html.erb
-
-<span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>Sign up<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
-</span>&lt;%=<span class="ruby"> form_tag(<span class="hljs-string">&quot;/sign_up&quot;</span>, <span class="hljs-symbol">method:</span> <span class="hljs-string">&quot;post&quot;</span>) <span class="hljs-keyword">do</span> </span>%&gt;<span class="xml">
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;username&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;username&quot;</span> /&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;password&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;password&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;password&quot;</span> /&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;password&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;password_confirmation&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;password again&quot;</span> /&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;submit&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Sign up&quot;</span> /&gt;</span>
-</span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
-</span></code></pre>
-<p>Then, we&apos;ll create <strong>a sign-in form</strong>. The form will POST to a <code>/sign_in</code> route, which again we have yet to create.</p>
-<pre><code class="lang-erb"><span class="xml"># app/views/users/sign_in.html.erb
-
-<span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>Sign in<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
-</span>&lt;%=<span class="ruby"> form_tag(<span class="hljs-string">&quot;/sign_in&quot;</span>, <span class="hljs-symbol">method:</span> <span class="hljs-string">&quot;post&quot;</span>) <span class="hljs-keyword">do</span> </span>%&gt;<span class="xml">
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;username&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;username&quot;</span> /&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;password&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;password&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;password&quot;</span> /&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;submit&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Sign in&quot;</span> /&gt;</span>
-</span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
-</span></code></pre>
-<p>Next, we&apos;ll make links to sign-in, sign-up, and sign-out on the <strong>main application layout</strong>. <em>(We don&apos;t actually have a page for sign-out yet... But we will... sort of!)</em></p>
-<pre><code class="lang-erb"><span class="xml"># app/views/layout/application.html.erb
-
-# ...
-<span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Tun.r<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">nav</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/sign_in&quot;</span>&gt;</span>Sign in<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/sign_up&quot;</span>&gt;</span>Sign up<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/sign_out&quot;</span>&gt;</span>Sign out<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/songs&quot;</span>&gt;</span>Songs<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/artists&quot;</span>&gt;</span>Artists<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">nav</span>&gt;</span>
-# ...
-</span></code></pre>
-<p>Now we&apos;ll set up the <strong>routes</strong> to direct requests to the proper controller actions:</p>
-<h5 id="what-actions-should-a-user-have">What actions should a user have?</h5>
+<h3 id="opening-framing-10m">Opening Framing (10m)</h3>
+<p>So we&apos;ve figured out how to implement CRUD functionality into our apps. This is
+great, but should anyone using our application be able to do whatever they want?
+It would really suck if your buddies could post for you on Facebook or if
+someone withdrew money from your banking site.</p>
+<h3 id="t--t">T &amp; T</h3>
+<p>Well, that shouldn&apos;t be the case. We need to be able to preserve the &quot;state&quot; of
+the application. If a user is logged in, that user should be logged in until he
+logs out, persisting the state of that user being logged in.</p>
+<p>For the next 5 minutes turn to your partner in class and discuss how we might be
+able to prevent people from doing whatever they want on your website.</p>
+<p>Here&apos;s some talking points:</p>
 <ul>
-<li>We won&apos;t add in an &quot;edit password&quot; functionality yet.<h5 id="what-kind-of-http-request-should-go-to-each-action">What kind of HTTP request should go to each action?</h5>
-</li>
-</ul>
-<pre><code class="lang-rb"><span class="hljs-comment"># config/routes.rb</span>
-
-<span class="hljs-constant">Rails</span>.application.routes.draw <span class="hljs-keyword">do</span>
-  root <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;artists#index&apos;</span>
-  get <span class="hljs-string">&apos;/songs&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;songs#index&apos;</span>
-  resources <span class="hljs-symbol">:artists</span> <span class="hljs-keyword">do</span>
-    resources <span class="hljs-symbol">:songs</span>
-    resources <span class="hljs-symbol">:genres</span>
-  <span class="hljs-keyword">end</span>
-  get <span class="hljs-string">&apos;/sign_in&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;users#sign_in&apos;</span>
-  post <span class="hljs-string">&apos;/sign_in&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;users#sign_in!&apos;</span>
-  get <span class="hljs-string">&apos;/sign_up&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;users#sign_up&apos;</span>
-  post <span class="hljs-string">&apos;/sign_up&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;users#sign_up!&apos;</span>
-  get <span class="hljs-string">&apos;/sign_out&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;users#sign_out&apos;</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>Now we&apos;ll need a controller to actually receive and respond to these requests.</p>
-<p>Let&apos;s make the <strong>users controller</strong>:</p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_up</span></span>
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_up!</span></span>
-    user = <span class="hljs-constant">User</span>.new(
-      <span class="hljs-symbol">username:</span> params[<span class="hljs-symbol">:username</span>],
-      <span class="hljs-symbol">password_digest:</span> params[<span class="hljs-symbol">:password</span>]
-    )
-    <span class="hljs-keyword">if</span> params[<span class="hljs-symbol">:password_confirmation</span>] != params[<span class="hljs-symbol">:password</span>]
-      message = <span class="hljs-string">&quot;Your passwords don&apos;t match!&quot;</span>
-    <span class="hljs-keyword">elsif</span> user.save
-      message = <span class="hljs-string">&quot;Your account has been created!&quot;</span>
-    <span class="hljs-keyword">else</span>
-      message = <span class="hljs-string">&quot;Your account couldn&apos;t be created. Did you enter a unique username and password?&quot;</span>
-    <span class="hljs-keyword">end</span>
-    puts message
-    redirect_to <span class="hljs-symbol">action:</span> <span class="hljs-symbol">:sign_up</span>
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in</span></span>
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in!</span></span>
-    <span class="hljs-variable">@user</span> = <span class="hljs-constant">User</span>.find_by(<span class="hljs-symbol">username:</span> params[<span class="hljs-symbol">:username</span>])
-    <span class="hljs-keyword">if</span> !<span class="hljs-variable">@user</span>
-      message = <span class="hljs-string">&quot;This user doesn&apos;t exist!&quot;</span>
-    <span class="hljs-keyword">elsif</span> <span class="hljs-variable">@user</span>.password_digest != params[<span class="hljs-symbol">:password</span>]
-      message = <span class="hljs-string">&quot;Your password&apos;s wrong!&quot;</span>
-    <span class="hljs-keyword">else</span>
-      message = <span class="hljs-string">&quot;You&apos;re signed in, <span class="hljs-subst">#{<span class="hljs-variable">@user</span>.username}</span>!&quot;</span>
-    <span class="hljs-keyword">end</span>
-    puts message
-    redirect_to <span class="hljs-symbol">action:</span> <span class="hljs-symbol">:sign_in</span>
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_out</span></span>
-    puts <span class="hljs-string">&quot;You&apos;re signed out!&quot;</span>
-    redirect_to root_url
-  <span class="hljs-keyword">end</span>
-
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>...and now if we <strong>run</strong> our application, we can see that it&apos;s working successfully!</p>
-<h2 id="the-flash">The Flash</h2>
-<p><code>puts</code>ing out error messages isn&apos;t very helpful, since the user is never going to be able to see them.</p>
-<p>Rails gives us a handy method for showing users error messages, called <code>flash</code>. It&apos;s a hash that is generated in one controller action, and is accessible only in the <em>next</em> controller action. That is: a flash message is single-use.</p>
-<p>Let&apos;s <strong>add flash messages to the Users controller</strong>:</p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in!</span></span>
-<span class="hljs-comment"># ...</span>
-    flash[<span class="hljs-symbol">:notice</span>] = message
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_up!</span></span>
-<span class="hljs-comment"># ...</span>
-    flash[<span class="hljs-symbol">:notice</span>] = message
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_out</span></span>
-<span class="hljs-comment"># ...</span>
-    flash[<span class="hljs-symbol">:notice</span>] = message
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-keyword">end</span>
-</code></pre>
-<p>...and make the flash messages <strong>show up in the view</strong>:</p>
-<pre><code class="lang-erb"><span class="xml"># app/users/application.html.erb
-
-<span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Tun.r<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">nav</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/sign_in&quot;</span>&gt;</span>Sign in<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/sign_up&quot;</span>&gt;</span>Sign up<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/sign_out&quot;</span>&gt;</span>Sign out<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/songs&quot;</span>&gt;</span>Songs<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/artists&quot;</span>&gt;</span>Artists<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">nav</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span></span>&lt;%=<span class="ruby"> flash[<span class="hljs-symbol">:notice</span>] </span>%&gt;<span class="xml">
-</span></code></pre>
-<h2 id="password-security">Password security</h2>
-<h5 id="all-the-passwords-are-stored-in-the-database-as-plain-text-why-is-that-a-problem">All the passwords are stored in the database as plain text. Why is that a problem?</h5>
-<p>Most people use the same password for many sites. Anyone with access to the database could see people&apos;s passwords and easily try them out on other sites.</p>
-<h3 id="two-truths-and-a-lie">Two truths and a lie:</h3>
-<ul>
-<li>Washington is an expensive city in which to live.</li>
-<li>Jesse has nice hair.</li>
-<li>It is possible to make something 100% secure.</li>
-</ul>
-<p>There is no such thing as a completely secure system. With enough time and effort, anything can be hacked.</p>
-<p>Your best bet is to make it <strong>annoying</strong> to hack your system.</p>
-<h5 id="given-two-systems-what-would-make-a-hacker-choose-to-hack-one-over-the-other">Given two systems, what would make a hacker choose to hack one over the other?</h5>
-<ul>
-<li>Effort required</li>
-<li>Potential payout</li>
-<li>Severity of consequences</li>
-</ul>
-<p>All hackers choose their targets with a simple formula:</p>
-<pre><code>desire to hack = (perceived payout relative other targets) - (perceived effort relative other targets)
-</code></pre><p>That means you can protect yourself either by making it look like the data your app stores is worthless, <em>or</em> by making your app more annoying to hack than other apps.</p>
-<p>If all you&apos;re protecting is a handful of e-mail addresses or comments on a minor blog, a box asking &quot;What is 3 + 7?&quot; is probably sufficient protection. Even though it&apos;s easy to hack, there are so many other sites with even less protection, and those are the ones hackers will target.</p>
-<h3 id="hashing">Hashing</h3>
-<h5 id="so-how-can-we-make-it-annoying-to-try-to-hack-the-passwords-in-our-database">So how can we make it annoying to try to hack the passwords in our database?</h5>
-<ul>
-<li>Encrypt<ul>
-<li>But what if someone figures out your encryption algorithm?</li>
+<li>What does it mean for a user to be signed in?</li>
+<li>For that matter, what does it mean to be a user? How are we representing that data.</li>
+<li>We&apos;ve used our backend to store data about artists and songs.<ul>
+<li>Can we use it to store data about a user itself?</li>
 </ul>
 </li>
 </ul>
-<p>Instead, we use <strong>hashing</strong>, which is like encryption but without the need to decrypt.</p>
-<p>For example, take this number:</p>
-<pre><code>33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601
-</code></pre><p>This is my password, encrypted with an algorithm. I&apos;ll give you some hints: my password is a 7-digit number, and the algorithm is taking that number to the 40th power. So to find my password, all you need to do is find a calculator and enter:</p>
-<pre><code>33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601 ^ (1/40)
-</code></pre><h5 id="why-am-i-still-confident-that-you-wont-figure-out-my-password">Why am I still confident that you won&apos;t figure out my password?</h5>
-<ul>
-<li>Because that&apos;s a really, really difficult calculation for any computer to make!</li>
-</ul>
-<p>So let&apos;s say instead of my password, the database stores this number, which is only about 260 bytes as a string. When I enter my password, my app takes whatever I entered to the 40th power. If it matches, even though it doesn&apos;t know my actual password, it knows I entered my password correctly. If what I entered is just one number off, the calculation&apos;s result will be completely different, and it won&apos;t match.</p>
-<p>This way, the only place my actual password is stored is in my own human memory.</p>
-<p>Could someone hack my password? Yes, but it would take a tremendous amount of computer power.</p>
-<p>Hashing is used very, very widely in <strong>authentication</strong> -- that is, making sure someone is who they say they are.</p>
-<h2 id="hashing-tunr">Hashing Tunr</h2>
-<p>We&apos;re going to use a gem called &quot;bcrypt&quot; that uses a really secure hashing algorithm.</p>
-<p>Add it to your <strong>Gemfile</strong>...</p>
-<pre><code># Gemfile
-
-# ...
-gem &apos;bcrypt&apos;
-# ...
-</code></pre><p>...and <strong>install the Gem</strong>:</p>
-<pre><code>bundle install
-</code></pre><p>Let&apos;s play around with it in the <strong>rails console</strong>:</p>
-<pre><code>rails c
-</code></pre><p>BCrypt&apos;s hashing method is <code>BCrypt::Password.create</code>. If we run this multiple times, we get a different result each time:</p>
-<pre><code>&gt; BCrypt::Password.create(&quot;hello&quot;)
-</code></pre><p>That&apos;s because to keep things <em>really</em> secure, BCrypt adds some random extra letters onto the end of the hash. These extra letters are called a <strong>salt</strong>. This process is <strong>salting a hash</strong>.</p>
-<p>To check whether a string matches the hash, we first have to let BCrypt decode its hash:</p>
-<pre><code>&gt; BCrypt::Password.create(&quot;hello&quot;)
- =&gt; &quot;$2a$10$yADYNXdzkZC6bLElijmYxuT2bLjG09Oe7i/7asficgWqgHqbj73Ge&quot;
-&gt; hash = &quot;$2a$10$yADYNXdzkZC6bLElijmYxuT2bLjG09Oe7i/7asficgWqgHqbj73Ge&quot;
-&gt; decoded_hash = BCrypt::Password.new(hash)
-&gt; decoded_hash.is_password?(&quot;hello&quot;)
- =&gt; false
-&gt; decoded_hash.is_password?(&quot;Hello&quot;)
- =&gt; true
-</code></pre><p>Putting this all together in Tunr, we&apos;ll <strong>hash passwords in the Users controller</strong>:</p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_up</span></span>
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_up!</span></span>
-    user = <span class="hljs-constant">User</span>.new(
-      <span class="hljs-symbol">username:</span> params[<span class="hljs-symbol">:username</span>],
-      <span class="hljs-symbol">password_digest:</span> <span class="hljs-constant">BCrypt::Password</span>.create(params[<span class="hljs-symbol">:password</span>])
-    )
-    <span class="hljs-keyword">if</span> params[<span class="hljs-symbol">:password_confirmation</span>] != params[<span class="hljs-symbol">:password</span>]
-      message = <span class="hljs-string">&quot;Your passwords don&apos;t match!&quot;</span>
-    <span class="hljs-keyword">elsif</span> user.save
-      message = <span class="hljs-string">&quot;Your account has been created!&quot;</span>
-    <span class="hljs-keyword">else</span>
-      message = <span class="hljs-string">&quot;Your account couldn&apos;t be created. Did you enter a unique username and password?&quot;</span>
-    <span class="hljs-keyword">end</span>
-    flash[<span class="hljs-symbol">:notice</span>] = message
-    redirect_to <span class="hljs-symbol">action:</span> <span class="hljs-symbol">:sign_up</span>
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in</span></span>
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in!</span></span>
-    <span class="hljs-variable">@user</span> = <span class="hljs-constant">User</span>.find_by(<span class="hljs-symbol">username:</span> params[<span class="hljs-symbol">:username</span>])
-    <span class="hljs-keyword">if</span> !<span class="hljs-variable">@user</span>
-      message = <span class="hljs-string">&quot;This user doesn&apos;t exist!&quot;</span>
-    <span class="hljs-keyword">elsif</span> !<span class="hljs-constant">BCrypt::Password</span>.new(<span class="hljs-variable">@user</span>.password_digest).is_password?(params[<span class="hljs-symbol">:password</span>])
-      message = <span class="hljs-string">&quot;Your password&apos;s wrong!&quot;</span>
-    <span class="hljs-keyword">else</span>
-      message = <span class="hljs-string">&quot;You&apos;re signed in, <span class="hljs-subst">#{<span class="hljs-variable">@user</span>.username}</span>!&quot;</span>
-    <span class="hljs-keyword">end</span>
-    flash[<span class="hljs-symbol">:notice</span>] = message
-    redirect_to <span class="hljs-symbol">action:</span> <span class="hljs-symbol">:sign_in</span>
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_out</span></span>
-    flash[<span class="hljs-symbol">:notice</span>] = <span class="hljs-string">&quot;You&apos;re signed out!&quot;</span>
-    redirect_to root_url
-  <span class="hljs-keyword">end</span>
-
-<span class="hljs-keyword">end</span>
-</code></pre>
-<h2 id="hassecurepassword">has_secure_password</h2>
-<p>Rails provides a method called <code>has_secure_password</code> does... about what you would expect from the name. This includes:</p>
-<ul>
-<li>Making sure a User isn&apos;t created without a password</li>
-<li>Makes sure your User model has a <code>password_digest</code> column. A digest is the hashed value of something -- that is, the big long random string. (The way your password would look after you&apos;ve digested it, if you will.)</li>
-<li>Making sure the password is less than or equal to 72 characters</li>
-<li>If you have a &quot;type your password again to confirm it&quot; field, it makes sure they match</li>
-</ul>
-<p>To use it, just <strong>add has_secure_password to your User model</strong>:</p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/models/user.rb</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
-  validates <span class="hljs-symbol">:username</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-keyword">true</span>
-  has_secure_password
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>Let&apos;s re-create the database so now it contains only secure passwords:</p>
-<pre><code>rake db:drop
-rake db:create
-rake db:migrate
-</code></pre><h2 id="user-persistence">User persistence</h2>
-<h5 id="whats-missing-from-our-user-signin-process">What&apos;s missing from our user sign-in process?</h5>
-<h5 id="if-i-refresh-the-page-am-i-still-signed-in">If I refresh the page, am I still signed in?</h5>
-<p>We need to figure out a way to have Rails remember I&apos;m signed in.</p>
-<h5 id="why-not-just-created-an-issignedin-column-in-my-user-table">Why not just created an &quot;is_signed_in&quot; column in my User table?</h5>
-<ul>
-<li>How would Rails now how to sign out? More importantly, if multiple users are accessing the app, how would Rails know which signed_in user is on which computer?</li>
-</ul>
-<h2 id="cookie-monster">Cookie Monster</h2>
-<h3 id="we-do">We do:</h3>
+<blockquote>
+<p>We need to start thinking about how to capture information into a User model.
+That has information about username, email, or password. We also need a way to
+transfer or preserve state in our applications from request to request.</p>
+</blockquote>
+<h2 id="state-and-cookies">&quot;State&quot; and Cookies</h2>
+<p>HTTP is stateless, which means that each HTTP request comes in with no history,
+by default. This means that the server can&apos;t associate one request with a
+previous one.</p>
+<p>So, if we want to remember bits of information related to a specific person (i.e.
+browser), we need a way to store that info and associate it with the browser.</p>
+<p>This is done through cookies...</p>
+<h3 id="looking-at-cookies">Looking at Cookies</h3>
 <ol>
 <li>In Chrome, go to Preferences</li>
 <li>Show advanced settings</li>
@@ -1486,9 +1206,11 @@ rake db:migrate
 <li>Click &quot;All cookies and site data&quot;</li>
 <li>Scroll to <code>github.com</code></li>
 </ol>
-<p>Click around on the different &quot;buttons&quot; or &quot;tabs&quot;. In particular, look at <code>dotcom_user</code>, <code>signed_in</code>, and <code>tz</code>.</p>
+<p>Click around on the different &quot;buttons&quot; or &quot;tabs&quot;. In particular, look at
+<code>dotcom_user</code>, <code>signed_in</code>, and <code>tz</code>.</p>
 <h5 id="turn-and-talk-what-do-you-see-what-do-these-do">Turn and talk: What do you see? What do these do?</h5>
-<p>A <em>cookie</em> is a piece of data stored on your computer by your web browser and associated with a particular website.</p>
+<p>A <em>cookie</em> is a piece of data stored on your computer by your web browser and
+associated with a particular website.</p>
 <h3 id="example-cookies">Example cookies:</h3>
 <p>From Github:</p>
 <pre><code>Name: dotcom_user
@@ -1499,276 +1221,313 @@ Send for: Secure connections only
 Accessible to script: No (HttpOnly)
 Created: Wednesday, July 22, 2015 at 7:04:22 PM
 Expires: Sunday, July 22, 2035 at 7:04:22 PM
-</code></pre><p>Normally my online banking account only has 5 cookies, but as soon as I log in it gets an additional 15 or so, including this one:</p>
-<pre><code>Name: FORTUNE_COOKIE
-Content: abcd-efgh-ijkl-mnop-qrst-uvwx-yz12-3456
-Domain: .online.wellsfargo.com
-Path: /
-Send for: Secure connections only
-Accessible to script: No (HttpOnly)
-Created: Saturday, July 25, 2015 at 6:07:09 PM
-Expires: When the browsing session ends
-</code></pre><h5 id="what-might-be-the-purpose-of-these-cookies">What might be the purpose of these cookies?</h5>
-<h5 id="why-is-githubs-expiration-date-so-far-in-the-future-while-wells-fargos-is-when-the-browsing-session-ends">Why is Github&apos;s expiration date so far in the future, while Wells Fargo&apos;s is when the browsing session ends?</h5>
-<h5 id="whats-the-significance-of-send-for-secure-connections-only">What&apos;s the significance of &apos;Send for: Secure connections only&apos;?</h5>
-<p>Notice the &quot;Accessible to script&quot;. Cookies can be accessed via Javascript.</p>
-<p>If you go to <code>github.com</code>, open the console, and type <code>document.cookies</code>, you&apos;ll get something like this:</p>
-<pre><code>tz=America%2FNew_York; _ga=GA1.2.3456.7890; _gat=1&quot;
-</code></pre><p>Hiding from scripts, expiration dates, secure connections only...</p>
-<h5 id="turn-and-talk-why-does-security-with-cookies-seem-to-be-such-a-big-deal">Turn and talk: Why does security with cookies seem to be such a big deal?</h5>
-<h3 id="writing">Writing</h3>
-<p>Modifying cookies is super easy. Let&apos;s have Tunr &quot;remember&quot; the username <strong>when users run the sign_in controller action</strong> by saving it as a cookie:</p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in!</span></span>
-<span class="hljs-comment"># ...</span>
-  <span class="hljs-keyword">else</span>
-    message = <span class="hljs-string">&quot;You&apos;re signed in, <span class="hljs-subst">#{<span class="hljs-variable">@user</span>.username}</span>! &quot;</span>
-    cookies[<span class="hljs-symbol">:username</span>] = <span class="hljs-variable">@user</span>.username
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-
-<span class="hljs-comment"># ...</span>
-</code></pre>
-<p>If I check the cookies for <code>localhost</code> in Chrome, there&apos;s now a cookie called <code>username</code>!</p>
-<p>I can change the expiration time of my cookie like this:</p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in!</span></span>
-<span class="hljs-comment"># ...</span>
-  <span class="hljs-keyword">else</span>
-    message = <span class="hljs-string">&quot;You&apos;re signed in, <span class="hljs-subst">#{<span class="hljs-variable">@user</span>.username}</span>! &quot;</span>
-    cookies[<span class="hljs-symbol">:username</span>] = {
-      <span class="hljs-symbol">value:</span> <span class="hljs-variable">@user</span>.username,
-      <span class="hljs-symbol">expires:</span> <span class="hljs-number">100</span>.years.from_now
-    }
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-<span class="hljs-comment"># ...</span>
-</code></pre>
-<p>If I make this <code>10.seconds.from_now</code>, sign in again, and immediately look at the cookies for <code>localhost</code> I can see this cookie. If I close the window, wait a few seconds, and look again, it&apos;s vanished!</p>
-<p>By default, the expiration time is &quot;when the current session ends&quot; -- that is, when the browser is closed.</p>
-<h3 id="reading">Reading</h3>
-<p><code>cookies</code> is a <strong>hash</strong>, just like any other hash. If I put <code>&lt;%= cookies.to_json %&gt;</code> in my <code>.html.erb</code>, it&apos;ll show me all the cookies for this domain (<code>localhost</code>, in this case).</p>
-<p>To <strong>read</strong> my cookie, I just use <code>cookies[:username]</code>. I&apos;ll put this in the <code>sign_in_prompt</code> page to <strong>have the username filled in automatically</strong>:</p>
-<pre><code class="lang-erb"><span class="xml"># app/views/users/sign_in_prompt.html.erb
-
-<span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>Sign in<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
-</span>&lt;%=<span class="ruby"> form_tag(<span class="hljs-string">&quot;/sign_in&quot;</span>, <span class="hljs-symbol">method:</span> <span class="hljs-string">&quot;post&quot;</span>) <span class="hljs-keyword">do</span> </span>%&gt;<span class="xml">
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;username&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;username&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;</span></span></span>&lt;%=<span class="ruby"> cookies[<span class="hljs-symbol">:username</span>] </span>%&gt;<span class="xml"><span class="hljs-tag"><span class="hljs-value">&quot;</span>/&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;password&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;password&quot;</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;password&quot;</span> /&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;submit&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Sign in&quot;</span> /&gt;</span>
-</span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
-</span></code></pre>
-<p>Now, when I type in a username and &quot;Sign in&quot;, my username is filled in! I can close the browser, and when I go back to the page it&apos;ll still be there.</p>
-<p>Hopefully you can start to see the utility of cookies. They were originally invented for e-commerce, to let you store the items in your shopping cart on, say, Amazon. Now they&apos;re used for all kinds of things.</p>
-<h3 id="same-old-problem">Same old problem</h3>
-<p>Now we can remember the user&apos;s username. But we&apos;re not actually remembering the user is signed in.</p>
-<p>We could just create a cookie called <code>is_signed_in</code> and set that to true.</p>
-<h5 id="what-could-go-wrong-with-using-an-issignedin-cookie">What could go wrong with using an <code>is_signed_in</code> cookie?</h5>
-<ul>
-<li>Cookies are stored on the user&apos;s computer. This means we&apos;re basically relying on a user to tell us whether or not they&apos;re signed in. That&apos;s not very secure. There are Chrome extensions that let you add and edit the cookies on your computer. <strong>We</strong> want to tell the <strong>user</strong> whether or not they&apos;re signed in, not have them tell us.</li>
-</ul>
+</code></pre><p>Is it secure to store this info in cookies? Not really... the user can edit
+cookies. The common fix is to store a long token in a cookie, and use that to
+identify the user. The relevant data is then stored on the server, where it&apos;s
+secure, and matched up with the token.</p>
 <h2 id="sessions">Sessions</h2>
-<p>Remember <code>flash</code> messages? Those are a lot like cookies, except instead of being stored on the user&apos;s browser, they&apos;re stored on <strong>your server</strong>.</p>
-<p>This is an example of a <strong>session variable</strong>. It&apos;s like a cookie in reverse. A cookie is stored on the user&apos;s browser and associated with a particular domain. A session variable is stored on the server and associated with a particular user&apos;s browser.</p>
-<p>Because session variables are stored on your server, the user can&apos;t manipulate them.</p>
-<h3 id="how-sessions-work">How sessions work</h3>
-<p>When your browser starts interacting with a server -- that is, when you go to a website -- the server gives you a unique ID and stores it as a cookie on your computer.</p>
-<p>Then, the server can save data and store it, associated with that ID.</p>
-<p>Like this:</p>
-<pre><code># USER&apos;S BROWSER
-
-cookies = {
-  &quot;google.com&quot;: {...},
-  &quot;tunr.com&quot;: {
-    &quot;username&quot;: &quot;robin&quot;,
-    &quot;session_id&quot;: &quot;8675309&quot;
-  }
-}
-</code></pre><pre><code># YOUR SERVER
-
-session_vars = {
-  &quot;1234567&quot;: {...},
-  &quot;8675309&quot;: {
-    &quot;is_signed_in&quot;: true
-  }
-}
-</code></pre><p>Whenever you use a session variable in your code, your server just checks the user&apos;s browser for that cookie, gets the ID, and then looks up all the session variables for that ID.</p>
-<p>Rails automatically generates that ID for you. We can see it in our cookies:</p>
-<pre><code>Name: _tunr_session
-Content:  abcdefghijklmnopqrstuvwxyz
-Domain: localhost
-Path: /
-Send for: Any kind of connection
-Accessible to script: No (HttpOnly)
-Created:  Tuesday, July 28, 2015 at 10:54:08 AM
-Expires:  When the browsing session ends
-</code></pre><h5 id="looking-at-this-cookie-why-would-you-say-session-variables-are-called-ession-variables">Looking at this cookie, why would you say session variables are called &quot;ession variables&quot;?</h5>
+<p>In Rails, we can read and set cookies manually, but that can be a bit of a pain.</p>
+<p>Instead, we almost always use an abstraction of cookies, called the session:</p>
 <ul>
-<li>The session ID is destroyed when your browsing session ends, making those session variables inaccessible.</li>
+<li>A session is just a place to store data during one request that you can read during later requests.</li>
+<li>A session is a hash containing key value pairs that provide state in your application</li>
 </ul>
-<h3 id="applying-to-tunr">Applying to Tunr</h3>
-<p>Let&apos;s add an <code>is_signed_in</code> session variable to Tunr. We&apos;ll create it in the Users controller. </p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_in!</span></span>
-<span class="hljs-comment"># ...</span>
-  <span class="hljs-keyword">else</span>
-    message = <span class="hljs-string">&quot;You&apos;re signed in, <span class="hljs-subst">#{<span class="hljs-variable">@user</span>.username}</span>! &quot;</span>
-    cookies[<span class="hljs-symbol">:username</span>] = {
-      <span class="hljs-symbol">value:</span> <span class="hljs-variable">@user</span>.username,
-      <span class="hljs-symbol">expires:</span> <span class="hljs-number">100</span>.years.from_now
-    }
-    session[<span class="hljs-symbol">:user</span>] = <span class="hljs-variable">@user</span>
-  <span class="hljs-keyword">end</span>
-<span class="hljs-comment"># ...</span>
+<p>Let&apos;s hop into some code so we can see sessions in action.</p>
+<p>The code we&apos;ll be working with today can be found
+<a href="https://github.com/ga-dc/tunr_rails_sessions_devise" target="_blank">here</a> This is a version of
+the tunr rails application we&apos;ve been building on this week. It contains
+everything that we&apos;ve learned up until now.</p>
+<p>Make sure you fork/clone this repo if you would like to follow along. It is not
+too important to follow along for this portion of this lesson. I encourage you
+to just watch and use the following code to practice it yourself later.</p>
+<h2 id="set-and-use-session-keyvalue-pairs">Set and Use session key-value pairs</h2>
+<p>In order to understand sessions, we&apos;re going to add some code to our existing
+artists controller to allow users to sort artists.
+In <code>app/controllers/artists_controller.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-comment"># this action will set the `sort_by` property</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sort</span></span>
+  session[<span class="hljs-symbol">:sort_by</span>] = params[<span class="hljs-symbol">:sort_by</span>]
+  redirect_to artists_path
 <span class="hljs-keyword">end</span>
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sign_out!</span></span>
-  reset_session
-  redirect_to root_url
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>Now let&apos;s <strong>modify the application layout accordingly</strong>. If the user isn&apos;t signed in, we&apos;ll show &quot;sign in&quot; and &quot;sign up&quot; links. If they <strong>are</strong> signed in, we&apos;ll show a &quot;sign out&quot; link.</p>
-<pre><code class="lang-erb"><span class="xml"># app/views/layouts/application.html.erb
-
-# ...
-<span class="hljs-tag">&lt;<span class="hljs-title">nav</span>&gt;</span>
-  </span>&lt;%<span class="ruby"> <span class="hljs-keyword">if</span> session[<span class="hljs-symbol">:user</span>] </span>%&gt;<span class="xml">
-    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/sign_out&quot;</span>&gt;</span></span>&lt;%=<span class="ruby"> session[<span class="hljs-symbol">:user</span>][<span class="hljs-string">&quot;username&quot;</span>] </span>%&gt;<span class="xml">: sign out<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
-  </span>&lt;%<span class="ruby"> <span class="hljs-keyword">else</span> </span>%&gt;<span class="xml">
-    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/sign_up&quot;</span>&gt;</span>Sign up<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/sign_in&quot;</span>&gt;</span>Sign in<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  </span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/songs&quot;</span>&gt;</span>Songs<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/artists&quot;</span>&gt;</span>Artists<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">nav</span>&gt;</span>
-# ...
-</span></code></pre>
-<h3 id="before-actions">Before actions</h3>
-<p>We&apos;ll tighten up this app even more by making it so you can&apos;t see <strong>anything</strong> unless you&apos;ve logged in.</p>
-<p>We&apos;re going to use a method called <code>before_action</code>. This lets us do something before <em>every single action</em> happens.</p>
-<p>In this case, we&apos;re going to use it to authenticate the user before every action.</p>
-<h5 id="whats-the-difference-between-authenticate-and-authorize">What&apos;s the difference between &quot;authenticate&quot; and &quot;authorize&quot;?</h5>
-<ul>
-<li>Authenticating is checking whether someone is who they say they are</li>
-<li>Authorizing is giving someone special privileges<ul>
-<li>So when you&apos;ve <em>authenticated</em> a user, they are <em>authorized</em> to use your app</li>
-</ul>
-</li>
-</ul>
-<p>Let&apos;s <strong>update the application controller to authenticate before every action</strong>:</p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/application_controller.rb</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActionController::Base</span></span></span>
-  <span class="hljs-comment"># Prevent CSRF attacks by raising an exception.</span>
-  <span class="hljs-comment"># For APIs, you may want to use :null_session instead.</span>
-  protect_from_forgery <span class="hljs-symbol">with:</span> <span class="hljs-symbol">:exception</span>
-  before_action <span class="hljs-symbol">:authenticate</span>
-
-  private
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">authenticate</span></span>
-    <span class="hljs-keyword">if</span> !session[<span class="hljs-symbol">:user</span>]
-      redirect_to <span class="hljs-string">&quot;/sign_in&quot;</span>
-    <span class="hljs-keyword">end</span>
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p><em>(<strong>Note</strong> that <code>protect_from_forgery</code> thing: that works via sessions. It inserts a hidden random string on every form in your app. When that form is submitted, Rails compares that string against a session variable it set for you.)</em></p>
-<p>If we run the app now... we&apos;ll get a &quot;too many redirects&quot; error. That&apos;s because we&apos;re telling the app to redirect to the sign_in page before every action... including just trying to go to the sign_in page. So when someone is directed to the sign_in page, they&apos;re redirected to the sign_in page, and redirected, and redirected...</p>
-<p>We want this authentication to happen on every action <strong>except</strong> the user actions. So we can use another special method called <code>skip_before_action</code>.</p>
-<p>Let&apos;s update the <strong>User controller</strong> to prevent authentication, and therefore an infinite loop:</p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/users_controller.rb</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsersController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
-  skip_before_action <span class="hljs-symbol">:authenticate</span>
-<span class="hljs-comment"># ...</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<h2 id="putting-it-all-together">Putting it all together</h2>
-<p>The goal for this app is for it to serve as your personal playlist. Each user will see only the songs and artists they created.</p>
-<p>Now that we&apos;re letting the app have multiple users, we need to associate each song and artist with a particular user.</p>
-<p><strong>Important note:</strong> The way the app&apos;s set up, if 30 users all add &quot;Bohemian Rhapsody&quot; to their playlist, there will be 30 copies of &quot;Bohemian Rhapsody&quot; and in the &quot;Songs&quot; table, and at least 30 copies of &quot;Queen&quot; in the &quot;Artists&quot; table. This isn&apos;t very efficient, but it&apos;s useful for demonstrating the concepts we&apos;re covering here.</p>
-<h5 id="how-do-we-associate-songs-and-artists-with-a-user">How do we associate songs and artists with a user?</h5>
-<ul>
-<li>Give the <code>songs</code> and <code>artists</code> tables a <code>user_id</code> column?<ul>
-<li>We can actually do it with less work. Each song already belongs to an artist, so we&apos;ll just make each artist belong to a user and leave the songs alone -- that is, we&apos;ll <strong>add a <code>user_id</code> column to the <code>artists</code> table</strong>. <em>(This means you can&apos;t have a song without an artist, but I&apos;m OK with that.)</em></li>
-</ul>
-</li>
-</ul>
-<pre><code>rails generate migration add_users_to_artists
-</code></pre><pre><code class="lang-rb"><span class="hljs-comment"># db/migrate/[timestamp]_add_users_to_artists.rb</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddUserToArtists</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Migration</span></span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
-    add_column <span class="hljs-symbol">:artists</span>, <span class="hljs-symbol">:user_id</span>, <span class="hljs-symbol">:integer</span>
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<pre><code>rake db:drop
-rake db:create
-rake db:migrate
-</code></pre><p>Now let&apos;s make sure we can do <code>@user.artists</code> and <code>@artist.user</code> and so forth by <strong>updating the Artist model and creating a User model</strong>:</p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/models/artist.rb</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Artist</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
-  has_many <span class="hljs-symbol">:songs</span>, <span class="hljs-symbol">dependent:</span> <span class="hljs-symbol">:destroy</span>
-  belongs_to <span class="hljs-symbol">:user</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/models/user.rb</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
-  has_secure_password
-  has_many <span class="hljs-symbol">:artists</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>Let&apos;s <strong>change the <code>artists</code> controller so that whenever you add an artist, it saves the username</strong>.</p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/artists_controller.rb</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
-  <span class="hljs-variable">@user</span> = <span class="hljs-constant">User</span>.find(session[<span class="hljs-symbol">:user</span>][<span class="hljs-string">&quot;id&quot;</span>])
-  <span class="hljs-variable">@artist</span> = <span class="hljs-variable">@user</span>.artists.create!(artist_params)
-  redirect_to (artist_path(<span class="hljs-variable">@artist</span>))
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p>With this done, we can <strong>modify the controller to show the songs and artists for this user only</strong>.</p>
-<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/artists_controller.rb</span>
-
+<span class="hljs-comment"># in our index, sort by the session value</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
-  <span class="hljs-variable">@artists</span> = <span class="hljs-constant">User</span>.find(session[<span class="hljs-symbol">:user</span>][<span class="hljs-string">&quot;id&quot;</span>]).artists
+  <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all.order(session[<span class="hljs-symbol">:sort_by</span>])
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h2 id="review">Review</h2>
-<h5 id="what-are-the-steps-for-adding-user-authentication">What are the steps for adding user authentication?</h5>
-<ol>
-<li>User migration</li>
-<li>User model</li>
-<li>Install BCrypt gem</li>
-<li>User controller<ul>
-<li>Sign up</li>
-<li>Sign in</li>
-<li>Sign out</li>
-</ul>
-</li>
-<li>Routes</li>
-</ol>
-<h5 id="what-are-the-three-bcrypt-methods-we-used">What are the three BCrypt methods we used?</h5>
+<p>Let&apos;s update our <code>app/views/artists/index.html.erb</code> to include a form that
+allows us to change the sort value:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&quot;/artists/sort&quot;</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">&quot;get&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Sort By<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;sort_by&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;submit&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;sort&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+Sorting by: <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">session</span>[<span class="hljs-attribute">:sort_by</span>] %&gt;</span>
+</code></pre>
+<p>Now because we created this action, let&apos;s update our <code>config/routes.rb</code> to route
+submissions of the form to the sort action:</p>
+<pre><code class="lang-ruby">get <span class="hljs-string">&apos;/artists/sort&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;artists#sort&apos;</span>
+</code></pre>
+<p>If we open a new incognito window (<code>&#x2318; + &#x21E7; + n</code>) and navigate to
+<code>http://localhost:3000/artists</code>, we&apos;ll see the session isn&apos;t set in that browser
+because it&apos;s a brand new session, and thus our sorting is lost.</p>
+<p>When we clear our cookies/session in our browser we can see in our index route
+that the sorting is lost too.</p>
+<blockquote>
+<p>Now that we have the ability to transfer information from request to request.
+We can preserve state in our application.</p>
+</blockquote>
+<h2 id="setting-objects-in-sessions">Setting objects in sessions</h2>
+<p>Instead of hardcoding strings into our sessions hash, lets see if we can store
+object ids.</p>
+<p>Let&apos;s update our show action to set a session. In
+<code>app/controllers/artists_controller.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+  <span class="hljs-variable">@last_viewed_artist</span> = <span class="hljs-constant">Artist</span>.find(session[<span class="hljs-symbol">:last_viewed_artist_id</span>])
+
+  <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:id</span>])
+  session[<span class="hljs-symbol">:last_viewed_artist_id</span>] = <span class="hljs-variable">@artist</span>.id
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In your `app/views/artists/index.html.erb place the following:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">if</span> @<span class="hljs-attribute">last_viewed_artist</span> %&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span>Last viewed artist: <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> @<span class="hljs-attribute">last_viewed_artist.name</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
+</code></pre>
+<p>Now every time We click on an artists show page it will update the session to
+contain the most recently viewed artist. Then any time we make a request to the
+artists index path we can see the most recently viewed artist&apos;s name.</p>
+<blockquote>
+<p>So now we can store objects or attributes of objects in our sessions as well.
+This may include id&apos;s of a user model, which is basically what devise is going
+to do for us when a user &quot;signs in&quot;</p>
+</blockquote>
+<h2 id="deleting-parts-of-the-session">Deleting parts of the session</h2>
+<p>Lets add a new action/route/view for deleting session.</p>
+<p>In <code>app/controllers/artists_controller.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">delete_session</span></span>
+  session.delete(<span class="hljs-symbol">:last_viewed_artist</span>)
+  <span class="hljs-comment"># or reset_session</span>
+  <span class="hljs-comment"># which resets the entire session hash</span>
+  redirect_to artists_path
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>In <code>config/routes.rb</code>:</p>
+<pre><code class="lang-ruby">get <span class="hljs-string">&apos;/artists/delete_session&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;artists#delete_session&apos;</span>
+</code></pre>
+<blockquote>
+<p>This is the sort of thing thats happening when a user &quot;logs out&quot;</p>
+</blockquote>
+<p>Checkout the <a href="https://github.com/ga-dc/tunr_rails_sessions_devise/tree/sessions_demo" target="_blank">testing_sessions branch</a>
+for all the code thus far.</p>
+<h3 id="you-do">You do</h3>
+<p>Take the next 5 minutes to:</p>
 <ul>
-<li><code>hash = BCrypt::Password.create(&quot;hello&quot;)</code></li>
-<li><code>decoded_hash = BCrypt::Password.new(hash)</code></li>
-<li><code>decoded_hash.is_password?(&quot;hello&quot;)</code></li>
+<li>create a new action in the posts controller that instantiates a session key-value pair</li>
+<li>save it to an instance variable in the index, and have it display in the index view</li>
 </ul>
-<h5 id="where-are-a-cookies-and-b-session-variables-stored">Where are (a) cookies and (b) session variables stored?</h5>
+<h3 id="break-10m">Break 10m</h3>
+<h2 id="reframing">Reframing</h2>
+<p>Devise is a gem in rails that we use in order to streamline user authentication.
+Rails developers saw that they we&apos;re incorporating user authentication in many
+of their applications. They built the devise gem assuming best practices (rails
+way) for User Auth. The devise gem uses sessions in a big way.</p>
+<p>At a high level, devise uses sessions to store user information from one request
+to the next. It sets that session by verifying with passwords(password_digest)
+on a user model. Once you set that session than you can refer to that user
+object until either the session is cleared(user logs out or session clears
+manually through browser) or the session is set to a new value (not common--
+if ever?)</p>
+<p>We&apos;re going to talk about how to get devise up and running and a couple of
+helper methods.</p>
+<p>If you&apos;d like to learn about hand rolled user authentication reference <a href="https://github.com/ga-dc/curriculum/tree/master/05-mvc-with-rails/rails-sessions-and-auth" target="_blank">this lesson plan</a></p>
+<h2 id="devise-we-do-codealong-50m">Devise We do codealong (50m)</h2>
 <ul>
-<li>(a) the server, (b) the browser</li>
-<li>(a) the browser, (b) the database</li>
-<li>(a) the database, (b) the server</li>
-<li>(a) the browser, (b) the server</li>
+<li>Fork and clone <a href="https://github.com/ga-dc/devise_blog/tree/starter" target="_blank">this repo</a></li>
+<li>This repo contains a rails application that is a single model crud application for posts.</li>
+<li>the first thing we should do is add <code>devise</code> to the Gemfile and run a bundle install</li>
 </ul>
-<h5 id="whats-the-difference-between-encryption-and-hashing">What&apos;s the difference between encryption and hashing?</h5>
-<h5 id="whats-the-difference-between-authenticating-and-authorizing">What&apos;s the difference between authenticating and authorizing?</h5>
+<pre><code class="lang-ruby">gem <span class="hljs-string">&apos;devise&apos;</span>
+</code></pre>
+<p>Next install devise then generate the devise User</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># normal bundle install</span>
+bundle install
+
+<span class="hljs-comment"># installs devise</span>
+rails generate devise:install
+
+<span class="hljs-comment"># generator used to create devise user model</span>
+rails generate devise User
+</code></pre>
+<p>You may have to restart your server at this point.</p>
+<p>A lot of code just got generated for us.</p>
+<blockquote>
+<p>this would be a good place to <code>git commit</code></p>
+</blockquote>
+<p>This is some of the stuff that it&apos;s given us:</p>
+<p><img src="images/railsgdeviseuser.png" alt="railsgdeviseuser"></p>
+<blockquote>
+<p>Take a look at the devise source code! and you can see all of the different controllers</p>
+</blockquote>
+<p>Its a lot but of stuff to look at, but let&apos;s break it down. Going from top to
+bottom excluding some of the files we won&apos;t be using for this class.</p>
+<p>The first thing that was created was a migration for this model. In
+<code>db/migrate/&lt;somedate&gt;_devise_create_users.rb</code> there&apos;s a lot of information here,
+but I think most pertinent to us in the scope of user auth is the email and
+password attributes.</p>
+<h3 id="hashing-and-salting-aside">Hashing and Salting (aside)</h3>
+<p><a href="plaintextoffenders.com">plain text offender</a></p>
+<p><code>:encrypted_password</code> is interesting. Why wouldn&apos;t they just use <code>:password</code> as
+a column? So obviously we don&apos;t want to just store someone&apos;s password in a
+database. That would not be so great. Really what we want to do, is put an
+encrypted_password into our database. The way a password gets encrypted is that
+some random string gets generated and added to the password(salting). Then that
+new string goes through a hashing algorithm that outputs a &quot;random&quot; string.
+That&apos;s what gets stored in the database.</p>
+<p>So when a user tries to log in, the password gets added the same salt and then
+goes through the same algorithm and it looks against the database for the result.</p>
+<p>As stored in the database, the passwords <code>password1234</code> and <code>password1235</code> would
+look very different.</p>
+<p>If you want to know more about how to code your own(handroll) user models and
+not have to use devise. Look at <a href="https://github.com/ga-dc/curriculum/tree/rails_devise/05-mvc-with-rails/rails-sessions-and-auth" target="_blank">this lesson plan</a>.</p>
+<h3 id="back-to-what-devise-gives-us">Back to what devise gives us...</h3>
+<p>The next thing that I see is a model definition was created for us in
+<code>app/model/user.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  <span class="hljs-comment"># Include default devise modules. Others available are:</span>
+  <span class="hljs-comment"># :confirmable, :lockable, :timeoutable and :omniauthable</span>
+  devise <span class="hljs-symbol">:database_authenticatable</span>, <span class="hljs-symbol">:registerable</span>,
+         <span class="hljs-symbol">:recoverable</span>, <span class="hljs-symbol">:rememberable</span>, <span class="hljs-symbol">:trackable</span>, <span class="hljs-symbol">:validatable</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<blockquote>
+<p>the different arguments being passed in to devise are very semantically named
+as far as their utilities go.</p>
+</blockquote>
+<p>The next thing that was added was <code>devise_for :users</code> in our <code>config/routes.rb</code></p>
+<p>That one line of code opens routes to a lot of devise user authentication
+controller actions</p>
+<h2 id="devise-configuration1545">Devise -configuration(15/45)</h2>
+<p>add this to <code>config/environments/development.rb</code>:</p>
+<pre><code class="lang-ruby"> config.action_mailer.default_url_options = { <span class="hljs-symbol">host:</span> <span class="hljs-string">&apos;localhost&apos;</span>, <span class="hljs-symbol">port:</span> <span class="hljs-number">3000</span> }
+</code></pre>
+<blockquote>
+<p>In an email there is no context for host and port where as other urls are
+relative and don&apos;t need explicit host and port</p>
+</blockquote>
+<p>I think it&apos;d be nice we just went ahead and added a logout button to the layout
+so that we can easily log in and log out as a user. So in our
+<code>app/views/layouts/application.html.erb</code> add the following code:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">if</span> <span class="hljs-attribute">current_user</span> %&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">link_to</span> &apos;<span class="hljs-attribute">Signout</span>&apos;, <span class="hljs-attribute">destroy_user_session_path</span>, <span class="hljs-attribute">:method</span> =&gt;</span> :delete %&gt;<span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">else</span> %&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">link_to</span> &apos;<span class="hljs-attribute">Signup</span>&apos;, <span class="hljs-attribute">new_user_registration_path</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">link_to</span> &apos;<span class="hljs-attribute">Login</span>&apos;, <span class="hljs-attribute">new_user_session_path</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
+</code></pre>
+<blockquote>
+<p>current_user is a helper method that allows us to access the user if one is
+logged in. If they are logged in, the signout link will appear, if not both the
+signup and login link will appear.</p>
+</blockquote>
+<p>Let&apos;s also add a root path to our <code>config/routes.rb</code>:</p>
+<pre><code class="lang-ruby">root <span class="hljs-string">&apos;posts#index&apos;</span>
+</code></pre>
+<h2 id="devise-helpers-1560">Devise Helpers (15/60)</h2>
+<p>Let&apos;s go ahead and fire up our server <code>$ rails s</code> and sign up for our site!</p>
+<p>Welcome aboard! You&apos;re an authenticated rider on rails! What does that really
+mean though?</p>
+<p>(ST-WG) What&apos;s fundamentally different about our application than before? ..</p>
+<p>So we&apos;ve signed up and can see that nothing really has changed, we can still
+access our posts like normal.</p>
+<p>Let&apos;s add a bit of code too see if we can garner some more functionality.</p>
+<p>The first thing that I want to do is add the helper method <code>authenticate_user!</code>
+in the index action of the posts controller. So inside
+<code>app/controllers/posts_controller.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+  authenticate_user!
+  <span class="hljs-variable">@posts</span> = <span class="hljs-constant">Post</span>.all
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>You&apos;ll notice now, if i&apos;m not logged in, i can no longer access the index action
+and it redirects me to the signup page if i try to access this action. This is
+really cool. I now have a way to restrict controller actions unless people are
+logged in.</p>
+<p>This sort of thing is common with a lot of actions or all actions of a controller.
+So we can use a <code>before_action</code> callback to handle this. Let&apos;s get rid of the
+<code>authenticate_user!</code> in the index action and put the following code at the top
+of <code>app/controllers/posts_controller.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostsController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ApplicationController</span></span></span>
+  before_action <span class="hljs-symbol">:set_post</span>, <span class="hljs-symbol">only:</span> [<span class="hljs-symbol">:show</span>, <span class="hljs-symbol">:edit</span>, <span class="hljs-symbol">:update</span>, <span class="hljs-symbol">:destroy</span>]
+  before_action <span class="hljs-symbol">:authenticate_user!</span>, <span class="hljs-symbol">only:</span> [<span class="hljs-symbol">:new</span>, <span class="hljs-symbol">:create</span>, <span class="hljs-symbol">:edit</span>, <span class="hljs-symbol">:update</span>, <span class="hljs-symbol">:destroy</span>]
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+     <span class="hljs-comment"># ... more code follows</span>
+</code></pre>
+<blockquote>
+<p>note I only want to authenticate the user for the create edit update and
+destroy actions, it doesn&apos;t matter to me who is able to view posts. Though this
+is totally dependent upon the domain model.</p>
+</blockquote>
+<p>We saw <code>current_user</code> above earlier. But we only took advantage of its
+truthiness/falsiness to generate some links for us. I think more importantly
+though, <code>current_user</code> is a helper method that returns a ruby object in our
+database that represents the user that is logged in.</p>
+<p>To illustrate this more effectively. Let&apos;s add a bit of functionality. What we
+want to achieve is for users to be able to have many posts and for posts to
+belong to a user.</p>
+<p>Let&apos;s do the following:</p>
+<ul>
+<li>add <code>has_many</code> and <code>belongs_to</code> associations in our model definitions</li>
+<li>add a foreign key to our posts table /w migration (<code>rails g migration add_foreign_key_to_posts user_id:integer</code>)</li>
+<li><code>$ rake db:migrate</code></li>
+<li>in the index action, change <code>@posts = Post.all</code> to <code>@posts = current_user.posts</code></li>
+</ul>
+<blockquote>
+<p>note that since we don&apos;t have the <code>authenticate_user!</code> helper on the index
+action, if we were to access posts directly without authenticating it would
+error out. So to fix that we should enter some if/else conditional to handle
+this.</p>
+</blockquote>
+<p>Something like this:</p>
+<pre><code class="lang-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+  <span class="hljs-keyword">if</span> current_user
+    <span class="hljs-variable">@posts</span> = current_user.posts
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-variable">@posts</span> = <span class="hljs-constant">Post</span>.all
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<ul>
+<li>in the create action , change <code>@post = Post.new(post_params)</code> to <code>@post = current_user.posts.create(post_params)</code></li>
+</ul>
+<h2 id="class-ex">Class Ex</h2>
+<p>Add devise to tunr!</p>
+<p>Specifically:</p>
+<ul>
+<li>include the gem</li>
+<li>perform the steps to initialize devise in the app and add a user</li>
+<li>add view code to let users sign in and out</li>
+<li>ensure that users can&apos;t create / delete / update artists or songs if they
+aren&apos;t signed in</li>
+</ul>
+<p>We will take advantage of our user authentication later this week when we allow
+users to &apos;favorite&apos; songs.</p>
+<h2 id="what-you-can-look-forward-to-with-devise">What you can look forward to with devise!</h2>
+<blockquote>
+<p>Should you want to learn more on your own, or if we have extra time I can talk
+about devise views a little bit.</p>
+</blockquote>
+<p><a href="https://github.com/plataformatec/devise" target="_blank">Devise Documentation</a></p>
+<p>This documentation contains a lot of great information.</p>
+<ul>
+<li>Customize devise views</li>
+<li>Customize devise model attributes <a href="https://github.com/plataformatec/devise#strong-parameters" target="_blank">Direct Link to Docs</a></li>
+</ul>
+<p>If you want to add devise to a brand new rails application check out this <a href="http://andrewsunglaekim.github.io/Getting-a-handle-on-devise/" target="_blank">blog post</a></p>
 
                     
                     </section>
