@@ -1,5 +1,5 @@
 # User Authorization with CanCanCan
-
+  [Adam's screencast](https://www.youtube.com/watch?v=7sdBDNsR0WQ&index=17&list=PLyLfZkguidRPxknJm2oBjQ0HE_rxVK22r)
 ## Learning Objectives
 * Differentiate between Authorization and Authentication
 * Utilize the gem CanCanCan to implement User Authorization
@@ -218,7 +218,7 @@ So we've prevented unauthorized users from updating or destroying posts that do 
 <!-- show.html.erb -->
 
 <!-- If the user is not authorized, CanCanCan will hide the contents of the below if-statement. -->
-<%= if can? :edit, article %>
+<% if can? :edit, article %>
   <%= link_to 'Edit', edit_article_path(@article) %>
 <% end %>
 <% if can? :destroy, @article %>
