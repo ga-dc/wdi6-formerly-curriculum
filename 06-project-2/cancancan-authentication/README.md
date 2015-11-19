@@ -1,5 +1,9 @@
 # User Authorization with CanCanCan
 
+## Learning Objectives
+* Differentiate between Authorization and Authentication
+* Utilize the gem CanCanCan to implement User Authorization
+
 ## Authorization vs. Authentication
 
 **Authentication** verifies who the user is.
@@ -223,3 +227,9 @@ So we've prevented unauthorized users from updating or destroying posts that do 
 ```
 
 ## Closing
+- Review Learning Objectives
+- What's the difference between Authentication and Authorization?
+- How does CanCanCan allow use to easily implement user authorization?
+
+## Resources
+ - [CanCanCan docs](https://github.com/CanCanCommunity/cancancan)
