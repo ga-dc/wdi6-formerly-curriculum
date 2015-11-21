@@ -181,7 +181,7 @@ artist  GET   /artists/:id(.:format)  artists#show
 See `(.:format)`?  That means our routes support passing a format at the end of the path, using dot-notation (like a file extension).
 
 
-Requesting "GET" from CocoaRestCLient: `http://localhost:3000/artists/3.json`, we see a lot of something.  Not very helpful.  What is that?
+Requesting "GET" from Postman: `http://localhost:3000/artists/3.json`, we see a lot of something.  Not very helpful.  What is that?
 
 HTML?  Let's look at that in a browser.
 `Missing template artists/show, application/show with {:locale=>[:en], **:formats=>[:json]**`.
@@ -208,7 +208,7 @@ jBuilder has simple, succint declaration for generating json.
 json.extract! @artist, :id, :name, :photo_url, :nationality, :created_at, :updated_at
 ```
 
-Demonstrate via browser and cocoa-rest-client.
+Demonstrate via browser and Postman.
 
 ### You do: Tunr songs#show (15 min)
 
@@ -316,7 +316,7 @@ I read this as:
 
 Usually via a form.
 
-Today, we'll use CocoaRestClient.  It makes POSTing requests easy.
+Today, we'll use Postman.  It makes POSTing requests easy.
 
 - Enter url: localhost:3000/artists
 - Method: POST
@@ -337,7 +337,7 @@ This is an error page, rendered as html.  Sometimes you just have to wade throug
 </h1>
 ```
 
-Ah yes.  Rails uses an Authenticity token for security.  It will provide it for any request made within a form it renders.   CocoaRestClient is decidedly not that.  Let's temporarily adjust that setting for testing pruposes.  When we go back to using html forms, we can set it back.
+Ah yes. Rails uses an Authenticity token for security. It will provide it for any request made within a form it renders.   Postman is decidedly not that. Let's temporarily adjust that setting for testing pruposes.  When we go back to using html forms, we can set it back.
 
 ``` ruby
 class ApplicationController < ActionController::Base
@@ -356,7 +356,7 @@ Checking the server logs, we see:
 Can't verify CSRF token authenticity
 ```
 
-Did we configure CocoaRstClient to say the ContentType was "application/json"?  Nope.  Try again.
+Did we configure Postman to say the ContentType was "application/json"? Nope. Try again.
 
 Success!
 
@@ -421,4 +421,4 @@ stack_exchange.users
 Review Learning Objectives
 
 ## Resources:
-- https://github.com/mmattozzi/cocoa-rest-client
+* [Postman](https://www.getpostman.com/)
