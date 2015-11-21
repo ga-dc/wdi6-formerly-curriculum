@@ -78,7 +78,7 @@ While the majority of APIs are free to use, many of them require an API "key" th
 
 ## Good Starter APIs
 
-There is an immense number of APIs out there from which you can pull data. Note the variety in the URLs used to access them.
+There is an immense number of APIs out there from which you can pull data.
 
 | API | Sample URL |
 |-----|------------|
@@ -88,6 +88,7 @@ There is an immense number of APIs out there from which you can pull data. Note 
 | **[OMDB API](http://www.omdbapi.com/)** | http://www.omdbapi.com/?t=Game%20of%20Thrones&Season=1 |
 | **[StarWars](http://swapi.co/)** | http://swapi.co/api/people/3 |
 | **[Stocks](http://dev.markitondemand.com/MODApis/)** | http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL |
+> Note the variety in the URLs used to access them. Do any of them look similar to what you've made in class?
 
 ## A Closer Look at an API Request
 
