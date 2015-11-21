@@ -176,7 +176,7 @@ Requesting "GET" from Postman: `http://localhost:3000/artists/3.json`, we see a 
 HTML? Let's look at that in a browser.
 * What error do we see? What does that mean?
 
-![http://i.imgur.com/4cWDzVU.png](Missing template)
+![Missing template](http://i.imgur.com/4cWDzVU.png)
 
 The important bits are:
 - Missing template artists/show
