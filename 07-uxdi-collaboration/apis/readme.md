@@ -105,8 +105,8 @@ Let's demonstrate that using Tunr: **[STARTER CODE](https://github.com/ga-dc/tun
 
 ```bash
 Prefix            Verb   URI Pattern                                   Controller#Action
-  root            GET    /                                             artists#index
- songs            GET    /songs(.:format)                              songs#index
+root              GET    /                                             artists#index
+songs             GET    /songs(.:format)                              songs#index
 artist_songs      GET    /artists/:artist_id/songs(.:format)           songs#index
                   POST   /artists/:artist_id/songs(.:format)           songs#create
 new_artist_song   GET    /artists/:artist_id/songs/new(.:format)       songs#new
