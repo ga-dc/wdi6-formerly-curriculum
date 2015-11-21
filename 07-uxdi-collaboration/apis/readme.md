@@ -85,23 +85,53 @@ There is an immense number of APIs out there from which you can pull data. Note 
 | **[StarWars](http://swapi.co/)** | http://swapi.co/api/people/3 |
 | **[Stocks](http://dev.markitondemand.com/MODApis/)** | http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL |
 
-#### Demo: Multiple users using http requests (cocoa-rest-client).
+## A Closer Look at an API Request
 
-Let's send requests like the mobile apps do. A basic HTTP request.
-Postman is a Chrome plug-in for making HTTP requests: [Download Postman](https://www.getpostman.com/).
+Let's simulate a basic HTTP request to an API. We're going to use Postman, a Chrome plug-in for making HTTP requests: [Download Postman](https://www.getpostman.com/).
 
-- Type in the "url"
-- Ensure the "method" is "GET"
-- Press "Submit".  
-Voila, the request count increases.  No waiting for that pesky refresh.
-
-Compare `?requestCount=Human` to '?requestCount=computer'
+* Type in the "url"
+* Ensure the "method" is "GET"
+* Press "Submit".  
 
 ### Why just data?
 
 Thats's all we need. All this information, from all these browsers and all these servers, has to travel through the network.  That's almost certainly the slowest part of the request cycle.  We want to minimize the bits.  There are times when we just need the data.  For those times, we want a concise format.  
 
 ## RESTful Review (10 min)
+
+Today, we're going to use a framework we're quite familiar with -- **RAILS** -- to create our own API from which we can pull information. How do we go about doing that?
+
+Let's demonstrate that using Tunr: **[STARTER CODE](https://github.com/ga-dc/tunr_rails_json)**.
+
+```bash
+Prefix Verb   URI Pattern                                   Controller#Action
+  root GET    /                                             artists#index
+ songs GET    /songs(.:format)                              songs#index
+artist_songs GET    /artists/:artist_id/songs(.:format)           songs#index
+       POST   /artists/:artist_id/songs(.:format)           songs#create
+new_artist_song GET    /artists/:artist_id/songs/new(.:format)       songs#new
+edit_artist_song GET    /artists/:artist_id/songs/:id/edit(.:format)  songs#edit
+artist_song GET    /artists/:artist_id/songs/:id(.:format)       songs#show
+       PATCH  /artists/:artist_id/songs/:id(.:format)       songs#update
+       PUT    /artists/:artist_id/songs/:id(.:format)       songs#update
+       DELETE /artists/:artist_id/songs/:id(.:format)       songs#destroy
+artist_genres GET    /artists/:artist_id/genres(.:format)          genres#index
+       POST   /artists/:artist_id/genres(.:format)          genres#create
+new_artist_genre GET    /artists/:artist_id/genres/new(.:format)      genres#new
+edit_artist_genre GET    /artists/:artist_id/genres/:id/edit(.:format) genres#edit
+artist_genre GET    /artists/:artist_id/genres/:id(.:format)      genres#show
+       PATCH  /artists/:artist_id/genres/:id(.:format)      genres#update
+       PUT    /artists/:artist_id/genres/:id(.:format)      genres#update
+       DELETE /artists/:artist_id/genres/:id(.:format)      genres#destroy
+artists GET    /artists(.:format)                            artists#index
+       POST   /artists(.:format)                            artists#create
+new_artist GET    /artists/new(.:format)                        artists#new
+edit_artist GET    /artists/:id/edit(.:format)                   artists#edit
+artist GET    /artists/:id(.:format)                        artists#show
+       PATCH  /artists/:id(.:format)                        artists#update
+       PUT    /artists/:id(.:format)                        artists#update
+       DELETE /artists/:id(.:format)                        artists#destroy
+```
 
 - Everything is a Resource
 - Let's create the http verbs + action table
