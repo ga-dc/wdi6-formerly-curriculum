@@ -8,82 +8,84 @@
 - Make a Rails app that provides a JSON API.
 - Use an external API (via HTTParty) to gather data and utilize it in a Rails application
 
-## Overview
+## What is an API?
 
-> “APIs are going to be **the driver for the digital economy** and unless they [companies] are talking about APIs already, they will be left behind.” -- James Parton of Twilio
+**Basically, an API is a service that provides raw data for public use.**
 
-And...
+API stands for "Application Program Interface", and technically applies to all of software design. However, since the explosion of information technology, the term now commonly refers to web URLs that can be accessed for raw data.
 
-> Twitter no longer wants to be a web app. Twitter wants to be **a set of APIs that power mobile clients worldwide**, acting as one of the largest real-time event busses on the planet.
+APIs publish data for public use. As third-party software developers, we can access an organization's API and use their data within our own applications.
 
-So... whatever it is, this API thing sounds kind of important.
+**Have a look at some stock quotes...**
 
-## What is an API? (30 min)
+* [http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL](http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL)
+* [http://dev.markitondemand.com/Api/Quote/json?symbol=GOOGL](http://dev.markitondemand.com/Api/Quote/json?symbol=GOOGL)
 
-Up to this point, we have built applications for humans.  We created views that render html, so that a user can view and interact.
+## What is serialized data?
 
-I want to perform an experiment.  The results are rather predictable, but I feel it's important for us to see this again.
+All data sent via HTTP are strings. Unfortunately, what we really want to pass between web applications is *structured data*, as in: native arrays and hashes. Thus, native data structures can be *serialized* into a string representation of the data. This string can be transmitted, and then parsed back into data by another web agent. There are two major serialized data formats:
 
-### Demo: Single user presses button
+* **JSON** stands for "JavaScript Object Notation", and has become a universal standard for serializing native data structures for transmission. It is light-weight, easy to read, and quick to parse.
 
-THis is a very basic app.  It simply logs requests.  When I press this link, that number increments.  That's it.
+```json
+{
+  "users": [
+    {"name": "Bob", "id": 23},
+    {"name": "Tim", "id": 72}
+  ]
+}
+```
 
-### Demo: Multiple users sending requests
+* **XML** stands for "eXtensible Markup Language", and is the granddaddy of serialized data formats (itself based on HTML). XML is fat, ugly, and cumbersome to parse. However, it remains a major format due to its legacy usage across the web. You'll probably always favor using a JSON API, if available.
 
-Same server.  Now, I want all of you to press the link.  Pretty fast, huh?
+```
+<users>
+  <user id="23">
+    <name><![CDATA[Bob]]></name>
+  </user>
+  <user id="72">
+    <name><![CDATA[Tim]]></name>
+  </user>
+</users>
+```
 
-> Q. Are there other ways to interact with our web servers?
----
+**Many APIs publish data in multiple formats, for example...**
 
-[How do we browse?](http://www.smartinsights.com/mobile-marketing/mobile-marketing-analytics/mobile-marketing-statistics/)
+* [http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL](http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL)
+* [http://dev.markitondemand.com/Api/Quote/xml?symbol=AAPL](http://dev.markitondemand.com/Api/Quote/xml?symbol=AAPL)
 
-It's not just **us** anymore.  [The Internet of Things](https://en.wikipedia.org/wiki/Internet_of_Things)
+## Where do I find APIs?
 
+APIs are published everywhere. Chances are good that most major content sources you follow online publish their data in some type of serialized format. Heck, [even Marvel publishes an API](http://developer.marvel.com/documentation/getting_started). Look around for a "Developers" section on major websites, or ask the Google Answer-Bot.
 
-### Native Mobile Apps
+**That sounds hard. Can't you just give me a freebie?**
 
-Discuss examples.
+Okay... try the [Programmable Web API Directory](http://www.programmableweb.com/apis/directory) or the [Public APIs Directory](http://www.publicapis.com/).
 
-Check out these stats;
-- http://www.smartinsights.com/wp-content/uploads/2014/03/Mobile-stats-vs-desktop-users-global-550x405.png
+## What is an API key?
 
-Native Mobile Apps are mostly just pretty faces on API calls.  Behind the scenes, the mobile app may be making calls to multiple APIs to gather and update information.  
+While the majority of APIs are free to use, many of them require an API "key" that identifies the developer requesting data access. This is done to regulate usage and prevent abuse. Some APIs also rate-limit developers, meaning they have caps on the free data allowed during a given time period.
 
-> Q. What is the role of html & css?
----
+**Try hitting Games Radar...**
 
-It provides a structure and style for visual presentation.
+* No key: [http://api.gamesradar.com/search/gameName/pc/civ](http://api.gamesradar.com/search/gameName/pc/civ)
 
-The mobile app wants a native experience.  On a Mac, we want it to look and feel like a Mac.  On Windows, it should look and feel like Windows.
+* With key: [http://api.gamesradar.com/search/gameName/pc/civ?api_key=579bd0ebcda04f60b4eceffafea3f915](http://api.gamesradar.com/search/gameName/pc/civ?api_key=579bd0ebcda04f60b4eceffafea3f915)
 
-> Q. Do we need the structure and style anymore?
----
-
-No.  We don't want the structure and style anymore.  In fact, it just extra baggage.  We would ignore it.  We just want the data.  We'll use iOS tools to make it look "native".  We want a concise format for sharing data.
-
-### JSON (Javascript Object Notation)
-
-[Basic definition of JSON](https://simple.wikipedia.org/wiki/JSON)
-
-> Q.  From the reading last night.  What are some benefits of JSON?
----
-
-[JSON](http://json.org) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate.
-
-> Q. What two data structures does JSON represent?
----
-
-- a collection of key/value pairs (JS object, Ruby Hash).
-  - `{ key: value }`
-- an ordered list of values (Array)
-  - `[ value0, value1, ... ]`
-
-Even with mobile, we're still talking about humans interacting with textfields and buttons - there's just another layer in between.  
+## Good Starter APIs
+| API | Sample URL |
+|-----|------------|
+| **[This for That](http://itsthisforthat.com/)** | http://itsthisforthat.com/api.php?json |
+| **[iTunes](https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html)** | http://itunes.apple.com/search?term=adele |
+| **[Giphy](https://api.giphy.com/)** | https://github.com/Giphy/GiphyAPI |
+| **[OMDB API](http://www.omdbapi.com/)** | http://www.omdbapi.com/ |
+| **[StarWars](http://swapi.co/)** | http://swapi.co/ |
+| **[Stocks](http://dev.markitondemand.com/MODApis/)** | http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL |
 
 #### Demo: Multiple users using http requests (cocoa-rest-client).
 
-Let's send requests like the mobile apps do.  A basic http request.
-CocoaRestClient is a native OSX app for making requests: [Download CocoaRestClient (v 1.3.9)](https://github.com/mmattozzi/cocoa-rest-client/releases/download/1.3.9/CocoaRestClient-1.3.9.dmg).
+Let's send requests like the mobile apps do. A basic HTTP request.
+Postman is a Chrome plug-in for making HTTP requests: [Download Postman](https://www.getpostman.com/).
 
 - Type in the "url"
 - Ensure the "method" is "GET"
