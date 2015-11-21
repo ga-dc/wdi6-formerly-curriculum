@@ -99,9 +99,11 @@ Thats's all we need. All this information, from all these browsers and all these
 
 ## RESTful Review (10 min)
 
-Today, we're going to use a framework we're quite familiar with -- **RAILS** -- to create our own API from which we can pull information. How do we go about doing that?
+Today, we're going to use a framework we're quite familiar with -- **RAILS** -- to create our own API from which we can pull information. How do we go about doing that? Let's demonstrate that using Tunr.  
+* **[STARTER CODE](https://github.com/ga-dc/tunr_rails_json)**
 
-Let's demonstrate that using Tunr [**[STARTER CODE](https://github.com/ga-dc/tunr_rails_json)**]
+You'll recall earlier when we used an HTTP request to retrieve information from a 3rd party API. That API received a GET request in the exact same way that the Rails application we have build in class thus far have received GET requests.
+* All the requests -- GET included -- that our Rails application can accept are listed when we run `rake routes` in the Terminal.  
 
 ```bash
 Prefix            Verb   URI Pattern                                   Controller#Action
