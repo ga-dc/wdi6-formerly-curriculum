@@ -21,6 +21,10 @@ APIs publish data for public use. As third-party software developers, we can acc
 * [http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL](http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL)
 * [http://dev.markitondemand.com/Api/Quote/json?symbol=GOOGL](http://dev.markitondemand.com/Api/Quote/json?symbol=GOOGL)
 
+### Why Just Data?
+
+Sometimes thats's all we need. All this information, from all these browsers and all these servers, has to travel through the network. That's almost certainly the slowest part of the request cycle. We want to minimize the bits. There are times when we just need the data. For those times, we want a concise format.   
+
 ## What is serialized data?
 
 All data sent via HTTP are strings. Unfortunately, what we really want to pass between web applications is *structured data*, as in: native arrays and hashes. Thus, native data structures can be *serialized* into a string representation of the data. This string can be transmitted, and then parsed back into data by another web agent. There are two major serialized data formats:
@@ -54,7 +58,7 @@ All data sent via HTTP are strings. Unfortunately, what we really want to pass b
 * [http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL](http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL)
 * [http://dev.markitondemand.com/Api/Quote/xml?symbol=AAPL](http://dev.markitondemand.com/Api/Quote/xml?symbol=AAPL)
 
-## Where do I find APIs?
+## Where Do We Find APIs?
 
 APIs are published everywhere. Chances are good that most major content sources you follow online publish their data in some type of serialized format. Heck, [even Marvel publishes an API](http://developer.marvel.com/documentation/getting_started). Look around for a "Developers" section on major websites, or ask the Google Answer-Bot.
 
@@ -62,7 +66,7 @@ APIs are published everywhere. Chances are good that most major content sources 
 
 Okay... try the [Programmable Web API Directory](http://www.programmableweb.com/apis/directory) or the [Public APIs Directory](http://www.publicapis.com/).
 
-## What is an API key?
+## What Is An API Key?
 
 While the majority of APIs are free to use, many of them require an API "key" that identifies the developer requesting data access. This is done to regulate usage and prevent abuse. Some APIs also rate-limit developers, meaning they have caps on the free data allowed during a given time period.
 
@@ -93,17 +97,13 @@ Let's simulate a basic HTTP request to an API. We're going to use Postman, a Chr
 * Ensure the "method" is "GET"
 * Press "Submit".  
 
-### Why just data?
-
-Thats's all we need. All this information, from all these browsers and all these servers, has to travel through the network.  That's almost certainly the slowest part of the request cycle.  We want to minimize the bits.  There are times when we just need the data.  For those times, we want a concise format.  
-
 ## RESTful Review (10 min)
 
 Today, we're going to use Rails to create our own API from which we can pull information. How do we go about doing that? Let's demonstrate that using Tunr.  
 * **[STARTER CODE](https://github.com/ga-dc/tunr_rails_json)**
 
 You'll recall earlier when we used an HTTP request to retrieve information from a 3rd party API. That API received a GET request in the exact same way that the Rails application we have build in class thus far have received GET requests.
-* All the requests that our Rails application can accept are listed when we run `rake routes` in the Terminal.  
+* All the requests that our Rails application can accept are listed when we run `rake routes` in the Terminal. We create RESTful routes and corresponding controller actions that respond to `GET` `POST` `PATCH` `PUT` and `DELETE` requests.
 
 ```bash
 Prefix            Verb   URI Pattern                                   Controller#Action
@@ -135,12 +135,8 @@ artist            GET    /artists/:id(.:format)                        artists#s
                   DELETE /artists/:id(.:format)                        artists#destroy
 ```
 
-- Everything is a Resource
-- Let's create the http verbs + action table
-  - show
-  - index
-  - new -> create
-  - edit -> update
+There's something under the `URI Pattern` column we haven't talked about much yet: **`.:format`**
+* Which `.:format` have we dealt with primarily so far? Which `.:format` do we need our application to render in order to have a functional API?
 
 ## Rails and json (30 min)
 
