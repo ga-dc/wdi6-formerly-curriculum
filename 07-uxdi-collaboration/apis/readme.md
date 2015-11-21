@@ -101,7 +101,7 @@ Thats's all we need. All this information, from all these browsers and all these
 
 Today, we're going to use a framework we're quite familiar with -- **RAILS** -- to create our own API from which we can pull information. How do we go about doing that?
 
-Let's demonstrate that using Tunr: **[STARTER CODE](https://github.com/ga-dc/tunr_rails_json)**.
+Let's demonstrate that using Tunr [**[STARTER CODE](https://github.com/ga-dc/tunr_rails_json)**]
 
 ```bash
 Prefix            Verb   URI Pattern                                   Controller#Action
