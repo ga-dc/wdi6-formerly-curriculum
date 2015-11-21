@@ -73,6 +73,9 @@ While the majority of APIs are free to use, many of them require an API "key" th
 * With key: [http://api.gamesradar.com/search/gameName/pc/civ?api_key=579bd0ebcda04f60b4eceffafea3f915](http://api.gamesradar.com/search/gameName/pc/civ?api_key=579bd0ebcda04f60b4eceffafea3f915)
 
 ## Good Starter APIs
+
+There is an immense number of APIs out there from which you can pull data. Note the variety in the URLs used to access them.
+
 | API | Sample URL |
 |-----|------------|
 | **[This for That](http://itsthisforthat.com/)** | http://itsthisforthat.com/api.php?json |
