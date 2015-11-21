@@ -39,6 +39,7 @@ All data sent via HTTP are strings. Unfortunately, what we really want to pass b
   ]
 }
 ```
+> Remember, JSON is a serialized format. While it may look like an object, it needs to be parsed so we can interact with it as a true Javascript object.
 
 * **XML** stands for "eXtensible Markup Language", and is the granddaddy of serialized data formats (itself based on HTML). XML is fat, ugly, and cumbersome to parse. However, it remains a major format due to its legacy usage across the web. You'll probably always favor using a JSON API, if available.
 
@@ -100,7 +101,7 @@ Let's simulate a basic HTTP request to an API. We're going to use Postman, a Chr
 * Ensure the "method" is "GET"
 * Press "Submit".  
 
-## RESTful Review (10 min)
+## Rails and JSON (40 min)
 
 Today, we're going to use Rails to create our own API from which we can pull information. How do we go about doing that? Let's demonstrate that using Tunr.  
 * **[STARTER CODE](https://github.com/ga-dc/tunr_rails_json)**
@@ -139,34 +140,24 @@ artist            GET    /artists/:id(.:format)                        artists#s
 ```
 
 There's something under the `URI Pattern` column we haven't talked about much yet: **`.:format`**
-* Which `.:format` have we dealt with primarily so far? Which `.:format` do we need our application to render in order to have a functional API?
+* Resources can be represented by many formats. Rails defaults to `:html`. But it can easily respond with `:json`, `:csv`, `:xml` and others.
+* Which format have we dealt with primarily so far? Which format do we need our application to render in order to have a functional API?
 
-## Rails and json (30 min)
-
-Resources can be represented by many formats.  Rails defaults to :html.  But it can easily respond with json, csv, xml, and others.
-
-It's time to get Rails to act like an API, in addition to it's html responsibilities.  A few decisions have been made for us:
-- following RESTful routes
-- requests are formatted as JSON
-
-We are already supporting RESTful routes in Rails.  We can see that in our `rake routes`.  Let's work on JSON.  
-
-The two main JSON renderers (in use today) are [jBuilder](https://github.com/rails/jbuilder) and [Active Model Serializers](https://github.com/rails-api/active_model_serializers).  Rails uses jBuilder by default, so use that.
-
-### I do: Tunr artists#show
+### I DO: Tunr artists#show
 
 Artists#show is a pretty small, well-defined step, let's start there.
 
-If I ask for html, Rails renders html.
-If I ask for JSON, Rails renders json.
+What do we want to happen?
+> If I ask for html, Rails renders html.
+> If I ask for JSON, Rails renders json.
 
-I want `/artists/4.json` to return this:
-``` json
+I want `/artists/4.json` to return this...
+```json
 {
   id: 4,
   name: "Lykke Li",
   photo_url: "http://www.chartattack.com/wp-content/uploads/2012/07/lykke-li-newmain1-photo-by-daniel-jackson.jpg",
-  nationality: "Sweeden",
+  nationality: "Sweden",
   created_at: "2015-08-11T02:44:24.173Z",
   updated_at: "2015-08-11T02:44:24.173Z"
 }
@@ -178,13 +169,14 @@ Prefix  Verb  URI Pattern             Controller#Action
 artist  GET   /artists/:id(.:format)  artists#show
 ```
 
-See `(.:format)`?  That means our routes support passing a format at the end of the path, using dot-notation (like a file extension).
+See `(.:format)`? That means our routes support passing a format at the end of the path, using dot-notation (like a file extension).  
 
+Requesting "GET" from Postman: `http://localhost:3000/artists/3.json`, we see a lot of something.  Not very helpful.  What is that?  
 
-Requesting "GET" from Postman: `http://localhost:3000/artists/3.json`, we see a lot of something.  Not very helpful.  What is that?
+HTML? Let's look at that in a browser.
+* What error do we see? What does that mean?
 
-HTML?  Let's look at that in a browser.
-`Missing template artists/show, application/show with {:locale=>[:en], **:formats=>[:json]**`.
+![http://i.imgur.com/4cWDzVU.png](Missing template)
 
 The important bits are:
 - Missing template artists/show
