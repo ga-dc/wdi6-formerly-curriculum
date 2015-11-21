@@ -77,9 +77,9 @@ While the majority of APIs are free to use, many of them require an API "key" th
 |-----|------------|
 | **[This for That](http://itsthisforthat.com/)** | http://itsthisforthat.com/api.php?json |
 | **[iTunes](https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html)** | http://itunes.apple.com/search?term=adele |
-| **[Giphy](https://api.giphy.com/)** | https://github.com/Giphy/GiphyAPI |
-| **[OMDB API](http://www.omdbapi.com/)** | http://www.omdbapi.com/ |
-| **[StarWars](http://swapi.co/)** | http://swapi.co/ |
+| **[Giphy](https://github.com/Giphy/GiphyAPI)** | http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC |
+| **[OMDB API](http://www.omdbapi.com/)** | http://www.omdbapi.com/?t=Game%20of%20Thrones&Season=1 |
+| **[StarWars](http://swapi.co/)** | http://swapi.co/api/people/3 |
 | **[Stocks](http://dev.markitondemand.com/MODApis/)** | http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL |
 
 #### Demo: Multiple users using http requests (cocoa-rest-client).
