@@ -70,11 +70,11 @@ Okay... try the [Programmable Web API Directory](http://www.programmableweb.com/
 
 While the majority of APIs are free to use, many of them require an API "key" that identifies the developer requesting data access. This is done to regulate usage and prevent abuse. Some APIs also rate-limit developers, meaning they have caps on the free data allowed during a given time period.
 
-**Try hitting Games Radar...**
+**Try hitting the Giphy API...**
 
-* No key: [http://api.gamesradar.com/search/gameName/pc/civ](http://api.gamesradar.com/search/gameName/pc/civ)
+* No key: [http://api.giphy.com/v1/gifs/search?q=funny+cat](http://api.giphy.com/v1/gifs/search?q=funny+cat)
 
-* With key: [http://api.gamesradar.com/search/gameName/pc/civ?api_key=579bd0ebcda04f60b4eceffafea3f915](http://api.gamesradar.com/search/gameName/pc/civ?api_key=579bd0ebcda04f60b4eceffafea3f915)
+* With key: [http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC](http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC)
 
 > It is very important that you not push your API keys to a public Github repo. [Figaro](https://github.com/laserlemon/figaro) is a useful gem for hiding API keys.
 
