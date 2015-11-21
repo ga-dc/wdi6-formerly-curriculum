@@ -97,24 +97,6 @@ Voila, the request count increases.  No waiting for that pesky refresh.
 
 Compare `?requestCount=Human` to '?requestCount=computer'
 
-### Machine to machine
-
-> "It [json] is easy for humans to read and write. It is easy for machines to parse and generate."
-
-What happens when these machines get together?  Speed happens.
-
-#### Demo: computer places requests.
-
-Same app.  Called from script.  
-
-zoom zoom.
-
-Discuss magnitude of differences:
-- speed
-- quantity
-- ramp up
-- 24/7, never gets tired, hungry
-
 ### Why just data?
 
 Thats's all we need. All this information, from all these browsers and all these servers, has to travel through the network.  That's almost certainly the slowest part of the request cycle.  We want to minimize the bits.  There are times when we just need the data.  For those times, we want a concise format.  
