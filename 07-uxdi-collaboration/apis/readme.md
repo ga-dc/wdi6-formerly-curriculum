@@ -27,7 +27,9 @@ Sometimes thats's all we need. All this information, from all these browsers and
 
 ## What is serialized data?
 
-All data sent via HTTP are strings. Unfortunately, what we really want to pass between web applications is *structured data*, as in: native arrays and hashes. Thus, native data structures can be *serialized* into a string representation of the data. This string can be transmitted, and then parsed back into data by another web agent. There are two major serialized data formats:
+All data sent via HTTP are strings. Unfortunately, what we really want to pass between web applications is *structured data*, as in: native arrays and hashes. Thus, native data structures can be *serialized* into a string representation of the data. This string can be transmitted, and then parsed back into data by another web agent.  
+
+There are **two** major serialized data formats:  
 
 * **JSON** stands for "JavaScript Object Notation", and has become a universal standard for serializing native data structures for transmission. It is light-weight, easy to read, and quick to parse.
 
@@ -77,7 +79,7 @@ While the majority of APIs are free to use, many of them require an API "key" th
 
 * With key: [http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC](http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC)
 
-> It is very important that you not push your API keys to a public Github repo. [Figaro](https://github.com/laserlemon/figaro) is a useful gem for hiding API keys.
+> It is very important that you not push your API keys to a public Github repo. [Figaro](https://github.com/laserlemon/figaro) is a useful gem to utilize environment variables for hiding API keys.
 
 ## Good Starter APIs
 
@@ -114,10 +116,12 @@ And here's an example of an unsuccessful `403 Forbidden` API call. Why did it fa
 
 ## Rails and JSON (40 min)
 
-Today, we're going to use Rails to create our own API from which we can pull information. How do we go about doing that? Let's demonstrate that using Tunr.  
+Today, we're going to use Rails to create our own API from which we can pull information. We will be using a familiar codebase, and modify it so that it can serve up data.  
+
+Let's demonstrate using Tunr.
 * **[STARTER CODE](https://github.com/ga-dc/tunr_rails_json)**
 
-Earlier we used an HTTP request to retrieve information from a 3rd party API. That API received a GET request in the exact same way that the Rails application we have built in class thus far have received GET requests.
+Earlier we used an HTTP request to retrieve information from a 3rd party API. Under the hood, that API received a GET request in the exact same way that the Rails application we have build in class thus far have received GET requests.
 * All the requests that our Rails application can receive are listed when we run `rake routes` in the Terminal. We create RESTful routes and corresponding controller actions that respond to `GET` `POST` `PATCH` `PUT` and `DELETE` requests.
 
 ```bash
@@ -152,7 +156,8 @@ artist            GET    /artists/:id(.:format)                        artists#s
 
 There's something under the `URI Pattern` column we haven't talked about much yet: **`.:format`**
 * Resources can be represented by many formats. Rails defaults to `:html`. But it can easily respond with `:json`, `:csv`, `:xml` and others.
-* Which format have we dealt with primarily so far? Which format do we need our application to render in order to have a functional API?
+* Which format have we dealt with primarily so far?
+* Which format do we need our application to render in order to have a functional API?
 
 ### I DO: Tunr artists#show
 
@@ -185,7 +190,7 @@ See `(.:format)`? That means our routes support passing a format at the end of t
 
 Requesting "GET" from Postman: `http://localhost:3000/artists/3.json`, we see a lot of something.  Not very helpful.  What is that?  
 
-HTML? Let's look at that in a browser. What error do we see?
+HTML? Let's test that url in our browser. What error do we see?
 
 ![Missing template](http://i.imgur.com/4cWDzVU.png)
 
@@ -193,12 +198,20 @@ The important bits are:
 * Missing template artists/show
 * `:formats=>[:json]`
 
-Rails is expecting a JSON view.
+Rails is expecting a JSON formatted response. Let's fix this by adding some lines to our show action in our controller.
 
 ### respond_to
 
 Rails provides an incredibly useful helper - `respond_to` - that we can use in our controller to render data in a given format depending on the incoming HTTP request.
 
+Our current code...
+```rb
+def show
+  @artist = Artist.find(params[:id])
+end
+```
+
+And after...
 ```rb
 def show
   @artist = Artist.find( params[:id] )
