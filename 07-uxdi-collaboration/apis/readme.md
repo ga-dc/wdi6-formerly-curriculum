@@ -8,7 +8,7 @@
 - Make a Rails app that provides a JSON API.
 - Use an external API (via HTTParty) to gather data and utilize it in a Rails application
 
-## What is an API?
+## What is an API? (30 minutes / 0:30)
 
 **Basically, an API is a service that provides raw data for public use.**
 
@@ -114,7 +114,9 @@ And here's an example of an unsuccessful `403 Forbidden` API call. Why did it fa
 
 > We'll use Postman more when we test out our own API later in today's class.
 
-## Rails and JSON (40 min)
+## Rails and JSON
+
+### Intro (10 minutes / 0:40)
 
 Today, we're going to use Rails to create our own API from which we can pull information. We will be using a familiar codebase, and modify it so that it can serve up data.  
 
@@ -159,7 +161,7 @@ There's something under the `URI Pattern` column we haven't talked about much ye
 * Which format have we dealt with primarily so far?
 * Which format do we need our application to render in order to have a functional API?
 
-### I DO: Tunr artists#show
+### I DO: Tunr artists#show (10 minutes / 0:50)
 
 Let's set up Tunr so that it returns JSON. `Artists#show` is a small, well-defined step. Let's start there.
 
@@ -226,7 +228,7 @@ end
 
 Let's demo this in the browser and Postman.
 
-### WE DO: Tunr Artists#index
+### WE DO: Tunr Artists#index (10 minutes / 1:00)
 
 Let's walk through the same process for `Artists#index`. Where do we start?
 
@@ -244,7 +246,7 @@ end
 Demonstrate in browser and Postman.
 > Does JSON formatting look messy in your browser? Install [JSONview](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en), a Chrome plug-in that displays JSON in a more readable format.
 
-### YOU DO: Tunr Songs#index and Songs#show (10 min)
+### YOU DO: Tunr Songs#index and Songs#show (15 minutes / 1:15)
 
 It's your turn to do the same for Songs. You should be working in `songs_controller.rb` for this.
 
@@ -252,7 +254,9 @@ It's your turn to do the same for Songs. You should be working in `songs_control
 * Make it so that the JSON requests only return `name`, `photo_url` and `nationality`. No `created_at` or `updated_at`.
 * Make it so that the JSON request to Songs#show also includes the artist.
 
-### I DO: Tunr Artists#create (30 min)
+## Break (10 minutes / 1:25)
+
+### I DO: Tunr Artists#create (30 minutes / 1:55)
 
 It's high time we created an Artist. What do we have to change to support this functionality?
 * What HTTP request will we be sending? What route and controller action does that correspond to?
@@ -329,7 +333,7 @@ This is an error page, rendered as html.  Sometimes you just have to wade throug
 
 Ah yes. Rails uses an Authenticity token for security. It will provide it for any request made within a form it renders.   Postman is decidedly not that. Let's temporarily adjust that setting for testing purposes. When we go back to using html forms, we can set it back.
 
-``` ruby
+```rb
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -343,11 +347,13 @@ Success should look like this...
 
 ![Create Artist 200 OK in Postman](http://i.imgur.com/ZZP0IOI.png)
 
-### You do: Tunr songs#create, songs#update
+## Break (10 minutes / 2:05)
+
+### You do: Tunr songs#create, songs#update (15 minutes / 2:20)
 
 Your turn. Make sure we can create and update Songs via requests that expect JSON.
 
-## 3rd Party APIs (15 min)
+## 3rd Party APIs (15 minutes / 2:35)
 
 Other companies have created something similar. Some follow the REST guidelines, some don't (remember those [Starter APIs](https://github.com/amaseda/curriculum/tree/master/07-uxdi-collaboration/apis#good-starter-apis)?). When we want to retrieve information from them we need to make an http request from within our application. There are a few libraries that help with this. We'll review [HTTParty](https://github.com/jnunemaker/httparty).
 
@@ -399,7 +405,7 @@ stack_exchange.users
 
 You'll be doing this same sort of thing in much greater detail from the client-side during this afternoon's [AJAX lesson](https://github.com/ga-dc/curriculum/tree/master/07-uxdi-collaboration/ajax)!  
 
-## Conclusion
+## Conclusion (5 minutes / 2:40)
 
 Review Learning Objectives
 
