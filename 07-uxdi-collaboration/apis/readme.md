@@ -102,7 +102,13 @@ Steps
   3. Ensure the "method" is "GET".  
   4. Press "Send".  
 
-![Postman screenshot](http://i.imgur.com/2TADr4J.png)
+Here's an example of a successful `200 OK` API call...
+
+![Postman screenshot success](http://i.imgur.com/2TADr4J.png)
+
+And here's an example of an unsuccessful `403 Forbidden` API call. Why did it fail?
+
+![Postman screenshot fail](http://i.imgur.com/r3nIhGH.png)
 
 ## Rails and JSON (40 min)
 
