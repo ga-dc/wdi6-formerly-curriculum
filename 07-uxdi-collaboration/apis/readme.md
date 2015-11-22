@@ -173,8 +173,7 @@ See `(.:format)`? That means our routes support passing a format at the end of t
 
 Requesting "GET" from Postman: `http://localhost:3000/artists/3.json`, we see a lot of something.  Not very helpful.  What is that?  
 
-HTML? Let's look at that in a browser.
-* What error do we see? What does that mean?
+HTML? Let's look at that in a browser. What error do we see?
 
 ![Missing template](http://i.imgur.com/4cWDzVU.png)
 
