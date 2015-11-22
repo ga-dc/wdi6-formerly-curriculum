@@ -310,6 +310,7 @@ How do we usually test this functionality in the browser? A form!
 Today, we'll use Postman. It makes POSTing requests easy.
   1. Enter url: `localhost:3000/artists`  
   2. Method: POST  
+  3. Add a `Content-Type` header set to `application/json`
   3. Add your Artist data to "Request Body".  
     ```json
     { "artist": { "name" : "Sting" }}
@@ -338,16 +339,9 @@ class ApplicationController < ActionController::Base
 end
 ```
 
-Testing again, we see what we expect... success (201 Created), **BUT** see none of the passed data in the new Artist. :(
+Success should look like this...
 
-Checking the server logs, we see:
-```
-Can't verify CSRF token authenticity
-```
-
-Did we configure Postman to say the ContentType was "application/json"? Nope. Try again.
-
-Success!
+![Create Artist 200 OK in Postman](http://i.imgur.com/ZZP0IOI.png)
 
 ### You do: Tunr songs#create, songs#update
 
