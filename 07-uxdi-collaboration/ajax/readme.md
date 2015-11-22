@@ -133,7 +133,7 @@ $ bundle install
 $ rake db:create db:migrate db:seed
 ```
 
-We can now use `$.ajax()` to CRUD the models of our Tunr app! Let's go ahead and create a new Artists controller action and corresponding view: `test_ajax`
+We can now use `$.ajax()` to make asynchronous HTTP requests to our Tunr app! Let's go ahead and create a new Artists controller action and corresponding view: `test_ajax`
 
 ## Setting up a view to test AJAX with (10/85)
 Let's update our routes in `config/routes.rb` for a new route to test all of our AJAX calls in:
@@ -260,13 +260,14 @@ $(".test_ajax_put").on("click", function(){
   $.ajax({
     type: 'PUT',
     data: {
-      artist: {photo_url: "http://media.giphy.com/media/u5yMOKjUpASwU/giphy.gif",
+      artist: {
         name: "Robert Goulet",
-        nationality: "American"
+        nationality: "American",
+        photo_url: "http://media.giphy.com/media/u5yMOKjUpASwU/giphy.gif"
       }
     },
     dataType: 'json',
-    url: "http://localhost:3000/artists/6"
+    url: "/artists/6"
   }).done(function(response){
     console.log(response);
   }).fail(function(){
