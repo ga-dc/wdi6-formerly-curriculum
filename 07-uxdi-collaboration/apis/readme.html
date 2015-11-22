@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="5.1" data-chapter-title="APIs" data-filepath="07-uxdi-collaboration/apis/readme.md" data-basepath="../.." data-revision="Sun Nov 22 2015 21:05:32 GMT+0000 (UTC)">
+    <div class="book" data-level="5.1" data-chapter-title="APIs" data-filepath="07-uxdi-collaboration/apis/readme.md" data-basepath="../.." data-revision="Sun Nov 22 2015 22:01:30 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1163,7 +1163,7 @@
 <li>Make a Rails app that provides a JSON API.</li>
 <li>Use an external API (via HTTParty) to gather data and utilize it in a Rails application</li>
 </ul>
-<h2 id="what-is-an-api">What is an API?</h2>
+<h2 id="what-is-an-api-30-minutes--030">What is an API? (30 minutes / 0:30)</h2>
 <p><strong>Basically, an API is a service that provides raw data for public use.</strong></p>
 <p>API stands for &quot;Application Program Interface&quot;, and technically applies to all of software design. However, since the explosion of information technology, the term now commonly refers to web URLs that can be accessed for raw data.</p>
 <p>APIs publish data for public use. As third-party software developers, we can access an organization&apos;s API and use their data within our own applications.</p>
@@ -1276,7 +1276,8 @@
 <blockquote>
 <p>We&apos;ll use Postman more when we test out our own API later in today&apos;s class.</p>
 </blockquote>
-<h2 id="rails-and-json-40-min">Rails and JSON (40 min)</h2>
+<h2 id="rails-and-json">Rails and JSON</h2>
+<h3 id="intro-10-minutes--040">Intro (10 minutes / 0:40)</h3>
 <p>Today, we&apos;re going to use Rails to create our own API from which we can pull information. We will be using a familiar codebase, and modify it so that it can serve up data.  </p>
 <p>Let&apos;s demonstrate using Tunr.</p>
 <ul>
@@ -1320,7 +1321,7 @@ artist            GET    /artists/:id(.:format)                        artists<s
 <li>Which format have we dealt with primarily so far?</li>
 <li>Which format do we need our application to render in order to have a functional API?</li>
 </ul>
-<h3 id="i-do-tunr-artistsshow">I DO: Tunr artists#show</h3>
+<h3 id="i-do-tunr-artistsshow-10-minutes--050">I DO: Tunr artists#show (10 minutes / 0:50)</h3>
 <p>Let&apos;s set up Tunr so that it returns JSON. <code>Artists#show</code> is a small, well-defined step. Let&apos;s start there.</p>
 <p>What do we want to happen?</p>
 <blockquote>
@@ -1372,7 +1373,7 @@ artist  <span class="hljs-constant">GET</span>   /artists/<span class="hljs-symb
 <p>If the request format is html, render the show view (show.html.erb). If the request format is JSON, render the data stored in <code>@artist</code> as JSON.</p>
 </blockquote>
 <p>Let&apos;s demo this in the browser and Postman.</p>
-<h3 id="we-do-tunr-artistsindex">WE DO: Tunr Artists#index</h3>
+<h3 id="we-do-tunr-artistsindex-10-minutes--100">WE DO: Tunr Artists#index (10 minutes / 1:00)</h3>
 <p>Let&apos;s walk through the same process for <code>Artists#index</code>. Where do we start?</p>
 <pre><code class="lang-rb"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
   <span class="hljs-variable">@artists</span> = <span class="hljs-constant">Artist</span>.all
@@ -1387,14 +1388,15 @@ artist  <span class="hljs-constant">GET</span>   /artists/<span class="hljs-symb
 <blockquote>
 <p>Does JSON formatting look messy in your browser? Install <a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en" target="_blank">JSONview</a>, a Chrome plug-in that displays JSON in a more readable format.</p>
 </blockquote>
-<h3 id="you-do-tunr-songsindex-and-songsshow-10-min">YOU DO: Tunr Songs#index and Songs#show (10 min)</h3>
+<h3 id="you-do-tunr-songsindex-and-songsshow-15-minutes--115">YOU DO: Tunr Songs#index and Songs#show (15 minutes / 1:15)</h3>
 <p>It&apos;s your turn to do the same for Songs. You should be working in <code>songs_controller.rb</code> for this.</p>
 <p><strong>Bonus</strong></p>
 <ul>
 <li>Make it so that the JSON requests only return <code>name</code>, <code>photo_url</code> and <code>nationality</code>. No <code>created_at</code> or <code>updated_at</code>.</li>
 <li>Make it so that the JSON request to Songs#show also includes the artist.</li>
 </ul>
-<h3 id="i-do-tunr-artistscreate-30-min">I DO: Tunr Artists#create (30 min)</h3>
+<h2 id="break-10-minutes--125">Break (10 minutes / 1:25)</h2>
+<h3 id="i-do-tunr-artistscreate-30-minutes--155">I DO: Tunr Artists#create (30 minutes / 1:55)</h3>
 <p>It&apos;s high time we created an Artist. What do we have to change to support this functionality?</p>
 <ul>
 <li>What HTTP request will we be sending? What route and controller action does that correspond to?</li>
@@ -1465,7 +1467,7 @@ artist  <span class="hljs-constant">GET</span>   /artists/<span class="hljs-symb
 <span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
 </code></pre>
 <p>Ah yes. Rails uses an Authenticity token for security. It will provide it for any request made within a form it renders.   Postman is decidedly not that. Let&apos;s temporarily adjust that setting for testing purposes. When we go back to using html forms, we can set it back.</p>
-<pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActionController::Base</span></span></span>
+<pre><code class="lang-rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActionController::Base</span></span></span>
   <span class="hljs-comment"># Prevent CSRF attacks by raising an exception.</span>
   <span class="hljs-comment"># For APIs, you may want to use :null_session instead.</span>
   <span class="hljs-comment"># protect_from_forgery with: :exception</span>
@@ -1475,9 +1477,10 @@ artist  <span class="hljs-constant">GET</span>   /artists/<span class="hljs-symb
 </code></pre>
 <p>Success should look like this...</p>
 <p><img src="http://i.imgur.com/ZZP0IOI.png" alt="Create Artist 200 OK in Postman"></p>
-<h3 id="you-do-tunr-songscreate-songsupdate">You do: Tunr songs#create, songs#update</h3>
+<h2 id="break-10-minutes--205">Break (10 minutes / 2:05)</h2>
+<h3 id="you-do-tunr-songscreate-songsupdate-15-minutes--220">You do: Tunr songs#create, songs#update (15 minutes / 2:20)</h3>
 <p>Your turn. Make sure we can create and update Songs via requests that expect JSON.</p>
-<h2 id="3rd-party-apis-15-min">3rd Party APIs (15 min)</h2>
+<h2 id="3rd-party-apis-15-minutes--235">3rd Party APIs (15 minutes / 2:35)</h2>
 <p>Other companies have created something similar. Some follow the REST guidelines, some don&apos;t (remember those <a href="https://github.com/amaseda/curriculum/tree/master/07-uxdi-collaboration/apis#good-starter-apis" target="_blank">Starter APIs</a>?). When we want to retrieve information from them we need to make an http request from within our application. There are a few libraries that help with this. We&apos;ll review <a href="https://github.com/jnunemaker/httparty" target="_blank">HTTParty</a>.</p>
 <h3 id="demo-httparty">Demo: HTTParty</h3>
 <p>After adding it to our Gemfile. We can start using it right away,</p>
@@ -1515,7 +1518,7 @@ stack_exchange.users
 <p>If you&apos;d like to learn more about APIs and POROs, Andy has a <a href="http://andrewsunglaekim.github.io/Server-side-api-calls-wrapped-in-ruby-classes/" target="_blank">great blog post</a> on the subject.</p>
 </blockquote>
 <p>You&apos;ll be doing this same sort of thing in much greater detail from the client-side during this afternoon&apos;s <a href="https://github.com/ga-dc/curriculum/tree/master/07-uxdi-collaboration/ajax" target="_blank">AJAX lesson</a>!  </p>
-<h2 id="conclusion">Conclusion</h2>
+<h2 id="conclusion-5-minutes--240">Conclusion (5 minutes / 2:40)</h2>
 <p>Review Learning Objectives</p>
 <h2 id="resources">Resources:</h2>
 <ul>
