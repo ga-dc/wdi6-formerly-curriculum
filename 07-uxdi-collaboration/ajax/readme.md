@@ -155,7 +155,7 @@ def test_ajax
 end
 ```
 
-in `app/views/artists/test_ajax.html.erb`:
+Create `app/views/artists/test_ajax.html.erb` and place the following content:
 
 ```html
 <div class="test_ajax_get">AJAX GET!</div>
