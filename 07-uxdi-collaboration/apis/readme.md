@@ -110,13 +110,15 @@ And here's an example of an unsuccessful `403 Forbidden` API call. Why did it fa
 
 ![Postman screenshot fail](http://i.imgur.com/r3nIhGH.png)
 
+> We'll use Postman more when we test out our own API later in today's class.
+
 ## Rails and JSON (40 min)
 
 Today, we're going to use Rails to create our own API from which we can pull information. How do we go about doing that? Let's demonstrate that using Tunr.  
 * **[STARTER CODE](https://github.com/ga-dc/tunr_rails_json)**
 
-You'll recall earlier when we used an HTTP request to retrieve information from a 3rd party API. That API received a GET request in the exact same way that the Rails application we have build in class thus far have received GET requests.
-* All the requests that our Rails application can accept are listed when we run `rake routes` in the Terminal. We create RESTful routes and corresponding controller actions that respond to `GET` `POST` `PATCH` `PUT` and `DELETE` requests.
+Earlier we used an HTTP request to retrieve information from a 3rd party API. That API received a GET request in the exact same way that the Rails application we have built in class thus far have received GET requests.
+* All the requests that our Rails application can receive are listed when we run `rake routes` in the Terminal. We create RESTful routes and corresponding controller actions that respond to `GET` `POST` `PATCH` `PUT` and `DELETE` requests.
 
 ```bash
 Prefix            Verb   URI Pattern                                   Controller#Action
@@ -154,13 +156,13 @@ There's something under the `URI Pattern` column we haven't talked about much ye
 
 ### I DO: Tunr artists#show
 
-Artists#show is a pretty small, well-defined step, let's start there.
+Let's set up Tunr so that it returns JSON. `Artists#show` is a small, well-defined step. Let's start there.
 
 What do we want to happen?
 > If I ask for html, Rails renders html.
 > If I ask for JSON, Rails renders json.
 
-I want `/artists/4.json` to return this...
+In particular, we want `/artists/4.json` to return this...
 ```json
 {
   id: 4,
@@ -172,7 +174,8 @@ I want `/artists/4.json` to return this...
 }
 ```
 
-Why `.json`? Check out `rake routes`:
+Why `.json`? Check out `rake routes`...
+
 ``` ruby
 Prefix  Verb  URI Pattern             Controller#Action
 artist  GET   /artists/:id(.:format)  artists#show
@@ -187,90 +190,65 @@ HTML? Let's look at that in a browser. What error do we see?
 ![Missing template](http://i.imgur.com/4cWDzVU.png)
 
 The important bits are:
-- Missing template artists/show
-- **:formats=>[:json]**
+* Missing template artists/show
+* `:formats=>[:json]`
 
 Rails is expecting a JSON view.
 
-Adding `app/views/artists/show.json.jbuilder`
+### respond_to
 
-> Q. What do these suffixes mean?
----
+Rails provides an incredibly useful helper - `respond_to` - that we can use in our controller to render data in a given format depending on the incoming HTTP request.
 
-A. Use the "jbuilder" renderer to generate "json".
+```rb
+def show
+  @artist = Artist.find( params[:id] )
 
-jBuilder has simple, succint declaration for generating json.
-
-`json.extract! model, array of methods`
-
-``` ruby
-# app/views/artists/show.json.jbuilder
-json.extract! @artist, :id, :name, :photo_url, :nationality, :created_at, :updated_at
+  respond_to do |format|
+    format.html { render :show }
+    format.json { render json: @artist }
+  end
+end
 ```
+> If the request format is html, render the show view (show.html.erb). If the request format is JSON, render the data stored in `@artist` as JSON.
 
-Demonstrate via browser and Postman.
+Let's demo this in the browser and Postman.
 
-### You do: Tunr songs#show (15 min)
+### WE DO: Tunr Artists#index
 
-It's your turn to do the same for Songs.  Songs#show should return:
+Let's walk through the same process for `Artists#index`. Where do we start?
 
-`:id, :title, :artist_name`
+```rb
+def index
+  @artists = Artist.all
 
-Tip: `json.extract!` only works with methods on the passed model.
-
-``` ruby
-json.extract! @song, :id, :title, :artist_name
-```
-
-### I do: Tunr artists#index
-
-Let's move on to artists#index.  We want a list of Artists.  JSON supports Objects and... Arrays.  How handy.
-
-``` ruby
-json.array!(@artists) do |artist|
-  json.extract! artist, :id, :name
-  json.url artist_url(artist, format: :json)
+  respond_to do |format|
+    format.html { render :index }
+    format.json { render json: @artists }
+  end
 end
 ```
 
-This loops through all the @artists, rendering a json object (with id and name) and also returns the url for said artist.
+Demonstrate in browser and Postman.
+> Does JSON formatting look messy in your browser? Install [JSONview](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en), a Chrome plug-in that displays JSON in a more readable format.
 
-Demonstrate in browser.
+### YOU DO: Tunr Songs#index and Songs#show (10 min)
 
-### You do: Tunr songs#index (10 min)
+It's your turn to do the same for Songs. You should be working in `songs_controller.rb` for this.
 
-Your turn to do the same with Songs.  We want a list of songs and the url for each Song resource.
+**Bonus**
+* Make it so that the JSON requests only return `name`, `photo_url` and `nationality`. No `created_at` or `updated_at`.
 
-### I do Tunr artists#create (30 min)
+### I DO: Tunr Artists#create (30 min)
 
-It's high time we created an Artist.
+It's high time we created an Artist. What do we have to change to support this functionality?
+* What HTTP request will we be sending? What route and controller action does that correspond to?
+* What is the purpose of `Artists#new`?
+* What do we have to change in `Artists#create`?
 
-> Q. What do we have to change to support create?
----
+Here's our current code.
+* What's different about `create` vs. `index` and `show`? What do we need to account for in our `respond_to` block?
 
-- Discuss new -> create, edit->update.
-  - what is the purpose of "new"
-  - what is the correlation in an API?
-    -  no view needed for "new", just pass in request.
-
-> Q. Knowing that, what do we have to update to support create?
----
-
-Just the Controller!
-
-### respond_to
-
-As expected, since we hane to support, or respond to, multiple formats, Rails provides a helper.
-
-``` ruby
-respond_to
-```
-
-`respond_to` provides the requested format to a block of ruby code.
-
-We are starting with:
-
-``` ruby
+```rb
 # POST /artists
 def create
   @artist = Artist.new(artist_params)
@@ -283,8 +261,9 @@ end
 ```
 
 We need to update the response to respond to the format.
+* What do we want to happen after a successful save? How about an unsuccessful one?
 
-``` ruby
+```rb
 # POST /artists
 # POST /artists.json
 def create
@@ -302,32 +281,28 @@ def create
 end
 ```
 
-I read this as:
-- If we successfully save the @artist...
-  - When the requested format is "html", we redirect to the show page for the @artist.  
-  - When the requested format is "json", we return the @artist as JSON, with an HTTP status of "201 Created".
+If we successfully save the @artist...  
+* When the requested format is "html", we redirect to the show page for the @artist.  
+* When the requested format is "json", we return the @artist as JSON, with an HTTP status of "201 Created".
 
-- If save fails...
-  - When the requested format is "html", we render the :new page - to show the human the error of their ways.
-  - When the requested format is "json", we return the error as JSON and inform the requesting computer that we have an "unprocessable_entity".  Trust me, they'll understand.
+If save fails...  
+* When the requested format is "html", we render the :new page to show the human the error of their ways.
+* When the requested format is "json", we return the error as JSON and inform the requesting computer that we have an "unprocessable_entity". Trust me, they'll understand.
 
-> Q. Let's test it.  How do we send a POST request in the browser?
----
+### Testing Artists#create
 
-Usually via a form.
+How do we usually test this functionality in the browser? A form!  
 
-Today, we'll use Postman.  It makes POSTing requests easy.
+Today, we'll use Postman. It makes POSTing requests easy.
+  1. Enter url: `localhost:3000/artists`  
+  2. Method: POST  
+  3. Add your Artist data to "Request Body".  
+    ```json
+    { "artist": { "name" : "Sting" }}
+    ```
+  4. Press "Submit".  
 
-- Enter url: localhost:3000/artists
-- Method: POST
-
-Add your Artist data to "Request Body".  Sometimes, I prefer the "Raw Input".
-```
-{ "artist": { "name" : "Sting" }}
-```
-Press "Submit".
-
-More html.  Drat.
+![Postman create error](http://i.imgur.com/EMKjI9R.png)
 
 This is an error page, rendered as html.  Sometimes you just have to wade through the html.  Scroll down until you get to the "body".
 ``` html
