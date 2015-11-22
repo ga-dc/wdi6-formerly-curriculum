@@ -95,11 +95,14 @@ There is an immense number of APIs out there from which you can pull data.
 
 ## A Closer Look at an API Request
 
-Let's simulate a basic HTTP request to an API. We're going to use Postman, a Chrome plug-in for making HTTP requests: [Download Postman](https://www.getpostman.com/).
+Let's make a basic HTTP request to an API. While we can technically just do this in the browser, we're going to use Postman - a Chrome plug-in for making HTTP requests - so we can look at it in more detail.  
+Steps  
+  1. [Download Postman](https://www.getpostman.com/).  
+  2. Type in the "url" of an API call.  
+  3. Ensure the "method" is "GET".  
+  4. Press "Send".  
 
-* Type in the "url"
-* Ensure the "method" is "GET"
-* Press "Submit".  
+![Postman screenshot](http://i.imgur.com/2TADr4J.png)
 
 ## Rails and JSON (40 min)
 
