@@ -22,9 +22,7 @@ Let's look at google maps. How would this site work with things not happening as
 
 ## `$.ajax`- JSON (10/25)
 
-## YOU DO: Sign Up and Register For a Key
-
-For the first part of this lesson we'll be using the [Weather Underground API](http://www.wunderground.com/weather/api/d/docs). Follow the link and sign up for a key.
+For the first part of this lesson we'll be using the [Weather Underground API](http://www.wunderground.com/weather/api/d/docs). **Follow the link and sign up for a key.**
 
 Once you're ready, follow this link. Check out the example in the middle of the page. You'll see a URL   that looks something like: `http://api.wunderground.com/api/your_key/conditions/q/CA/San_Francisco.json`
 > Replace `your_key` with your actual key and visit that URL.
