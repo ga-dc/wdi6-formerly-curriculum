@@ -9,7 +9,7 @@
 - Perform POST, PUT, and DELETE requests to an API to modify data.
 
 ## Opening Framing (5/5)
-In the past couple weeks or so, we've been learning ALOT about server side requests and responses. Currently we know how to create applications with full CRUD on models in our database, and that's great. When we do that CRUD, however, it requires a page reload of some kind. It would be really nice if we could execute some kind of functionality on the client side of our application but still communicate with the backend without a page refresh. If only we had a client side language that was non blocking and asynchronous.
+In the past couple weeks or so, we've been learning a lot about server-side requests and responses. Currently we know how to create applications with full CRUD on models in our database, and that's great. When we do that CRUD, however, it requires a page reload of some kind. It would be really nice if had some functionality on the client side of our application but still communicate with the backend without a page refresh. If only we had a client side language that was non blocking and asynchronous...
 
 (ST-WG) Think back to the first couple weeks of class, whats the difference between synchronous and asynchronous program execution?
 
@@ -18,7 +18,7 @@ Turn and talk to you neighbor, why might synchronous programming not be effectiv
 
 We don't want to sit around and wait for code to execute before we load the rest of our script. It would be really nice if we could just describe what we want to happen when the code finally does execute, in a callback.
 
-Let's look at google maps. How would this site work with things not happening asynchronously?
+Let's look at Google Maps. How would this site work with things not happening asynchronously?
 
 ## `$.ajax`- JSON (10/25)
 
@@ -34,11 +34,11 @@ Turns out, we can actually access this JSON object using Javascript!
 > JSON stands for Javascript Object Notation. JSON can come in a bunch of different ways. But at the end of the day, it's just an object/hash.
 
 ## `$.ajax` (25/50)
-The jQuery library gives us access to this awesome thing called asynchronous javascript and xml(AJAX). With the help of AJAX we can do server side requests asynchronously on the client without having to send an actual browser request that reloads the page.
+The jQuery library gives us access to this awesome thing called "Asynchronous Javascript and XML" (AJAX). With the help of AJAX we can do server side requests asynchronously on the client without having to send an actual browser request that reloads the page.
 
 With AJAX we can make the usual HTTP requests: 'GET' 'POST' 'PUT' 'PATCH' 'DELETE'. Let's give that s hot.  
 
-The first thing we'll do is create the files we need for this application...
+The first thing we'll do is create the files we need for this application...  
 
 ```bash
 $ mkdir wunderground_ajax
@@ -65,7 +65,7 @@ Let's give `index.html` a `<head>` that links to both jQuery and our script file
 ```
 > AJAX is given to us through the jQuery library.
 
-Let's go ahead and make our first `$.ajax` get request in our `script.js`...
+Let's go ahead and make our first AJAX `GET` request in our `script.js`...
 
 ```js
 $(document).ready(function(){
@@ -89,7 +89,7 @@ $(document).ready(function(){
   })
 })
 ```
-> This is kind of similar to when we used HTTParty on the back-end!
+> This is kind of similar to when we used HTTParty synchronously on the back-end!
 
 > You'll notice there are 3 functions that are tacked onto the AJAX call. These are known as promises. Promises are just callbacks that may or may not happen. A promise represents the future result of an asynchronous operation. In the `.done()` promise if that ajax is executed successfully, the block of code inside it will execute. In the `.fail()` promise, if that ajax is not executed successfully, the block of code inside it will execute. In the `.always()` promise, code block inside will always occur regardless of the ajax's success.
 
@@ -115,9 +115,9 @@ We can drill through this response just like any other JS object.
 
 Take our existing code for the the weather underground app. Instead of logging the temperature, the `.done()` promise should create a div with the current wind speed in mph.  
 
-### BONUS!
-  1. Create an input text field for City and State in the HTML.
-  2. Have the endpoint url change dynamically based on user input to generate a div about current weather in that area.
+### Bonus
+  1. Create an input text field for City and State in the HTML.  
+  2. Have the endpoint url change dynamically based on user input to generate a div about current weather in that area.  
 
 ## Break (10/70)
 
@@ -129,11 +129,11 @@ It just so happens we've built a new Rails API where we can do full CRUD with AJ
 Once you've cloned the repo, `cd` into it and run the usual commands...
 
 ```bash
-`$bundle install`
-`$rake db:create db:migrate db:seed`
+$ bundle install
+$ rake db:create db:migrate db:seed
 ```
 
-We can now use `$.ajax()` to CRUD the models of our Tunr app! Let's go ahead and create a new artists controller action and corresponding view: `test_ajax`
+We can now use `$.ajax()` to CRUD the models of our Tunr app! Let's go ahead and create a new Artists controller action and corresponding view: `test_ajax`
 
 ## Setting up a view to test AJAX with (10/85)
 Let's update our routes in `config/routes.rb` for a new route to test all of our AJAX calls in:
@@ -145,6 +145,7 @@ get '/test_ajax', to: 'artists#test_ajax'
 in `app/controllers/artists_controller.rb`:
 
 ```ruby
+# We're just creating this so we can test AJAX on a separate view, test_ajax.html.erb.
 def test_ajax
 end
 ```
@@ -168,7 +169,7 @@ $(document).ready(function(){
 })
 ```
 
-## AJAX Get (5/90)
+## AJAX GET (5/90)
 Great, everything's working. Let's try doing a `GET` request to our API like we did with the Weather underground API. In `app/assets/javascripts/application.js`:
 
 ```javascript
@@ -187,9 +188,9 @@ $(document).ready(function(){
 })
 ```
 
-> If access the objects in this response, we can see all of the artists that were seeded in the database. Here in the done response I could display whatever i want from the response.
+> If we access the response object, we can see all of the artists that were seeded in the database. Inside the done promise, we can interact with and display all the contents of the response.
 
-## Setup for AJAX Post (10/100)
+## Setup for AJAX POST (10/100)
 Lets update our view to include some input fields and all of our existing articles in `app/views/artists/test_ajax.html.erb`:
 
 ```html
@@ -221,8 +222,7 @@ Lets update our view to include some input fields and all of our existing articl
 </ul>
 
 ```
-
-> We can see now that artists are in this view, as well as some input fields to help us generate some artists.
+> Now we're listing all the artists in this view. We've also included an HTML form we'll use soon to generate new artists.
 
 ## AJAX Post (10/110)
 Let's try and create an artist using AJAX. Let's update our `app/assets/javascripts/application.js`...
@@ -248,8 +248,8 @@ As you can see, every time we click on this button another artist is generated. 
 
 ## YOU DO: Work in Pairs (20/130)
 
-Use the input fields to dynamically generate artists on the client side.
-* **BONUS** Not only does it create on the client side, but it also changes in the view layer to reflect the update in the database. (Hint: look at the response)
+Use the form to dynamically generate artists from the client side.
+* **BONUS**: Once you create a new artist in the database, asynchronously update the view so that it includes the new artist. (Hint: look at the response)
 
 ## AJAX PUT (10/140)
 
@@ -306,7 +306,6 @@ $(".test_ajax_delete").on("click", function(){
 * Create an AJAX request in another app you've created (e.g., projects, Scribble). Be sure to make sure your controller actions respond to JSON.
 
 ## Sample Quiz Questions
-
-  1. Write an AJAX GET request to a known end point.
-  2. How does a promise differ from a callback?
-  3. Write an AJAX POST to create an object in a rails application.
+  1. Write an AJAX GET request to a known end point.  
+  2. How does a promise differ from a callback?  
+  3. Write an AJAX POST to create an object in a rails application.  
