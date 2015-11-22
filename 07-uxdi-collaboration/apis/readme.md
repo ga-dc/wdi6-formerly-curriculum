@@ -237,6 +237,7 @@ It's your turn to do the same for Songs. You should be working in `songs_control
 
 **Bonus**
 * Make it so that the JSON requests only return `name`, `photo_url` and `nationality`. No `created_at` or `updated_at`.
+* Make it so that the JSON request to Songs#show also includes the artist.
 
 ### I DO: Tunr Artists#create (30 min)
 
@@ -305,14 +306,14 @@ Today, we'll use Postman. It makes POSTing requests easy.
 ![Postman create error](http://i.imgur.com/EMKjI9R.png)
 
 This is an error page, rendered as html.  Sometimes you just have to wade through the html.  Scroll down until you get to the "body".
-``` html
+```html
  <h1>
   ActionController::InvalidAuthenticityToken
     in ArtistsController#create
 </h1>
 ```
 
-Ah yes. Rails uses an Authenticity token for security. It will provide it for any request made within a form it renders.   Postman is decidedly not that. Let's temporarily adjust that setting for testing pruposes.  When we go back to using html forms, we can set it back.
+Ah yes. Rails uses an Authenticity token for security. It will provide it for any request made within a form it renders.   Postman is decidedly not that. Let's temporarily adjust that setting for testing purposes. When we go back to using html forms, we can set it back.
 
 ``` ruby
 class ApplicationController < ActionController::Base
@@ -337,18 +338,15 @@ Success!
 
 ### You do: Tunr songs#create, songs#update
 
-Your turn.  Make sure we can create and update Songs via requests that expect JSON.
-
-### [optional] Active Model Serializers
-- brief overview/comparison
+Your turn. Make sure we can create and update Songs via requests that expect JSON.
 
 ## 3rd Party APIs (15 min)
 
-Other companies have created something similar.  Some follow the REST guidelines, some don't.  When we want ot retruve information from them we nedd to make an http request from within our application.  There are a few libraries that help with this.  We'll review [HTTParty](https://github.com/jnunemaker/httparty).
+Other companies have created something similar. Some follow the REST guidelines, some don't (remember those [Starter APIs](https://github.com/amaseda/curriculum/tree/master/07-uxdi-collaboration/apis#good-starter-apis)?). When we want to retrieve information from them we need to make an http request from within our application. There are a few libraries that help with this. We'll review [HTTParty](https://github.com/jnunemaker/httparty).
 
-### Short demo of HTTParty
+### Demo: HTTParty
 
-- After adding it to our Gemfile.  We can start using it right away,
+After adding it to our Gemfile. We can start using it right away,
 
 ``` ruby
 response = HTTParty.get('https://api.stackexchange.com/2.2/questions?site=stackoverflow')
@@ -390,6 +388,9 @@ stack_exchange = StackExchange.new("stackoverflow", 1)
 stack_exchange.questions
 stack_exchange.users
 ```
+> If you'd like to learn more about APIs and POROs, Andy has a [great blog post](http://andrewsunglaekim.github.io/Server-side-api-calls-wrapped-in-ruby-classes/) on the subject.
+
+You'll be doing this same sort of thing in much greater detail from the client-side during this afternoon's [AJAX lesson](https://github.com/ga-dc/curriculum/tree/master/07-uxdi-collaboration/ajax)!  
 
 ## Conclusion
 
