@@ -114,10 +114,6 @@ And here's an example of an unsuccessful `403 Forbidden` API call. Why did it fa
 
 > We'll use Postman more when we test out our own API later in today's class.
 
-[Example Giphy URL](http://api.giphy.com/v1/gifs/search?q=angry+panda&api_key=dc6zaTOxFJmzC)
-
-**Bonus**
--  Write a program that automates your request
 
 ## Rails and JSON
 
@@ -424,3 +420,5 @@ Review Learning Objectives
 
 ## Resources:
 * [Postman](https://www.getpostman.com/)
+* [Intro to APIs](https://zapier.com/learn/apis/chapter-1-introduction-to-apis/)
+* [Practice with APIs](https://github.com/ga-dc/weather_teller)
