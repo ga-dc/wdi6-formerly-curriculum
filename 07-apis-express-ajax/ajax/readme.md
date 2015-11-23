@@ -311,6 +311,9 @@ $(".test_ajax_delete").on("click", function(){
 * Do everything we've done in class today for Songs.
 * Create an AJAX request in another app you've created (e.g., projects, Scribble). Be sure to make sure your controller actions respond to JSON.
 
+## Homework over Thanksgiving:
+You can find the homework over thanksgiving [here](https://github.com/ga-dc/thanksgiving-homework)
+
 ## Sample Quiz Questions
   1. Write an AJAX GET request to a known end point.  
   2. How does a promise differ from a callback?  
