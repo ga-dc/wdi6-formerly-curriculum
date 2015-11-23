@@ -114,6 +114,68 @@ And here's an example of an unsuccessful `403 Forbidden` API call. Why did it fa
 
 > We'll use Postman more when we test out our own API later in today's class.
 
+## 3rd Party APIs (15 minutes / 2:35)
+
+Other companies have created something similar. Some follow the REST guidelines, some don't (remember those [Starter APIs](https://github.com/amaseda/curriculum/tree/master/07-uxdi-collaboration/apis#good-starter-apis)?). When we want to retrieve information from them we need to make an http request from within our application. There are a few libraries that help with this. We'll review [HTTParty](https://github.com/jnunemaker/httparty).
+
+### Demo: HTTParty
+
+After adding it to our Gemfile. We can start using it right away,
+
+``` ruby
+response = HTTParty.get('https://api.stackexchange.com/2.2/questions?site=stackoverflow')
+```
+
+Checkout the response:
+```
+response.code
+response.message
+response.body
+response.headers
+```
+
+Or better yet, you can make a PORO (Plain Old Ruby Object) class and use that.
+```
+class StackExchange
+  include HTTParty
+  base_uri 'api.stackexchange.com'
+
+  def initialize(service, page)
+    @options = { query: {site: service, page: page} }
+  end
+
+  def questions
+    self.class.get("/2.2/questions", @options)
+  end
+
+  def users
+    self.class.get("/2.2/users", @options)
+  end
+end
+```
+
+Using it from `rails console`:
+``` ruby
+stack_exchange = StackExchange.new("stackoverflow", 1)
+```
+``` ruby
+stack_exchange.questions
+stack_exchange.users
+```
+> If you'd like to learn more about APIs and POROs, Andy has a [great blog post](http://andrewsunglaekim.github.io/Server-side-api-calls-wrapped-in-ruby-classes/) on the subject.
+
+You'll be doing this same sort of thing in much greater detail from the client-side during this afternoon's [AJAX lesson](https://github.com/ga-dc/curriculum/tree/master/07-uxdi-collaboration/ajax)!  
+
+### You-Do: API Playground (10 minutes)
+With a partner, choose an an api from the starter list above and utilize HTTparty to:
+- Store a JSON object in a variable called `response` from various API endpoints
+- Parse through that response to grab the relevant info and store it as semantic variables
+
+[Example Giphy URL](http://api.giphy.com/v1/gifs/search?q=angry+panda&api_key=dc6zaTOxFJmzC)
+
+**Bonus**
+-  Write a program that automates your request
+
 ## Rails and JSON
 
 ### Intro (10 minutes / 0:40)
@@ -121,6 +183,7 @@ And here's an example of an unsuccessful `403 Forbidden` API call. Why did it fa
 Today, we're going to use Rails to create our own API from which we can pull information. We will be using a familiar codebase, and modify it so that it can serve up data.  
 
 Let's demonstrate using Tunr.
+
 * **[STARTER CODE](https://github.com/ga-dc/tunr_rails_json)**
 
 Earlier we used an HTTP request to retrieve information from a 3rd party API. Under the hood, that API received a GET request in the exact same way that the Rails application we have build in class thus far have received GET requests.
@@ -216,15 +279,16 @@ end
 And after...
 ```rb
 def show
-  @artist = Artist.find( params[:id] )
-
-  respond_to do |format|
-    format.html { render :show }
-    format.json { render json: @artist }
-  end
-end
++    @artist = Artist.find( params[:id] )
++
++    respond_to do |format|
++      format.html { render :show }
++      format.json { render json: @artist, include: :songs }
++    end
+   end
 ```
 > If the request format is html, render the show view (show.html.erb). If the request format is JSON, render the data stored in `@artist` as JSON.
+> Note the nested JSON objects.
 
 Let's demo this in the browser and Postman.
 
@@ -258,7 +322,7 @@ It's your turn to do the same for Songs. You should be working in `songs_control
 
 ### I DO: Tunr Artists#create (30 minutes / 1:55)
 
-It's high time we created an Artist. What do we have to change to support this functionality?
+It's high time we created an Artist. What do we have to change to support this functionality
 * What HTTP request will we be sending? What route and controller action does that correspond to?
 * What is the purpose of `Artists#new`?
 * What do we have to change in `Artists#create`?
@@ -279,7 +343,7 @@ end
 ```
 
 We need to update the response to respond to the format.
-* What do we want to happen after a successful save? How about an unsuccessful one?
+* **Q:** What do we want to happen after a successful save? How about an unsuccessful one?
 
 ```rb
 # POST /artists
@@ -290,7 +354,7 @@ def create
   respond_to do |format|
     if @artist.save
       format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
-      format.json { render :show, status: :created, location: @artist }
+      format.json { render json: @artist, status: :created, location: @artist }
     else
       format.html { render :new }
       format.json { render json: @artist.errors, status: :unprocessable_entity }
@@ -321,9 +385,9 @@ Today, we'll use Postman. It makes POSTing requests easy.
     ```
   4. Press "Submit".  
 
-![Postman create error](http://i.imgur.com/EMKjI9R.png)
+![Postman create error](http://imgur.com/YFJIShn.png)
 
-This is an error page, rendered as html.  Sometimes you just have to wade through the html.  Scroll down until you get to the "body".
+The raw response from this request is an error page, rendered as html.  Sometimes you just have to wade through the html.  Scroll down until you get to the "body".
 ```html
  <h1>
   ActionController::InvalidAuthenticityToken
@@ -331,7 +395,11 @@ This is an error page, rendered as html.  Sometimes you just have to wade throug
 </h1>
 ```
 
-Ah yes. Rails uses an Authenticity token for security. It will provide it for any request made within a form it renders.   Postman is decidedly not that. Let's temporarily adjust that setting for testing purposes. When we go back to using html forms, we can set it back.
+Additionally we can preview the html, and see a familiar rails error page.
+
+Ah yes. Rails uses an Authenticity token for security. It will provide it for any request made within a form it renders.  Postman is decidedly not that. Let's temporarily adjust that setting for testing purposes. When we go back to using html forms, we can set it back.
+
+In our `application_controller.rb` we must adjust the way Rails protects us by default:
 
 ```rb
 class ApplicationController < ActionController::Base
@@ -345,65 +413,15 @@ end
 
 Success should look like this...
 
-![Create Artist 200 OK in Postman](http://i.imgur.com/ZZP0IOI.png)
+![Create Artist 200 OK in Postman](http://i.imgur.com/7bncv7w.png)
+
+We should now get a `200` response code signifying a successful `post` request and we can preview the html page sent back as the response (our newly created artist's show page)
 
 ## Break (10 minutes / 2:05)
 
 ### You do: Tunr songs#create, songs#update (15 minutes / 2:20)
 
 Your turn. Make sure we can create and update Songs via requests that expect JSON.
-
-## 3rd Party APIs (15 minutes / 2:35)
-
-Other companies have created something similar. Some follow the REST guidelines, some don't (remember those [Starter APIs](https://github.com/amaseda/curriculum/tree/master/07-uxdi-collaboration/apis#good-starter-apis)?). When we want to retrieve information from them we need to make an http request from within our application. There are a few libraries that help with this. We'll review [HTTParty](https://github.com/jnunemaker/httparty).
-
-### Demo: HTTParty
-
-After adding it to our Gemfile. We can start using it right away,
-
-``` ruby
-response = HTTParty.get('https://api.stackexchange.com/2.2/questions?site=stackoverflow')
-```
-
-Checkout the response:
-```
-response.code
-response.message
-response.body
-response.headers
-```
-
-Or better yet, you can make a PORO (Plain Old Ruby Object) class and use that.
-```
-class StackExchange
-  include HTTParty
-  base_uri 'api.stackexchange.com'
-
-  def initialize(service, page)
-    @options = { query: {site: service, page: page} }
-  end
-
-  def questions
-    self.class.get("/2.2/questions", @options)
-  end
-
-  def users
-    self.class.get("/2.2/users", @options)
-  end
-end
-```
-
-Using it from `rails console`:
-``` ruby
-stack_exchange = StackExchange.new("stackoverflow", 1)
-```
-``` ruby
-stack_exchange.questions
-stack_exchange.users
-```
-> If you'd like to learn more about APIs and POROs, Andy has a [great blog post](http://andrewsunglaekim.github.io/Server-side-api-calls-wrapped-in-ruby-classes/) on the subject.
-
-You'll be doing this same sort of thing in much greater detail from the client-side during this afternoon's [AJAX lesson](https://github.com/ga-dc/curriculum/tree/master/07-uxdi-collaboration/ajax)!  
 
 ## Conclusion (5 minutes / 2:40)
 
