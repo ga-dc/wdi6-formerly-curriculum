@@ -1,24 +1,6 @@
-# UXDI Collaboration: The Interactive Web
-
-APIs: Build programmatically accessible web applications using internet architecture standards.
-Interactivity: AJAX, Grids, and Animations
+# APIs, AJAX and Express
 
 ## Learning Objectives
-
-### Development for Designers (for UXDI)
-- What's a web developer?
-  - What problems do they solve?
-  - What tools do they use?
-  - What is their role in the product development life cycle?
-- Agile Workflows
-  - Scrum & Sprints
-  - vs. Waterfall
-- Contributing to Code
-  - Git && GitHub
-  - Features & User Stories
-- Developers and Designers
-  - Semantic HTML
-  - How code is related to design
 
 ### APIs
 - Describe what an API is, and why we might use one.
@@ -26,14 +8,6 @@ Interactivity: AJAX, Grids, and Animations
 - Describe the purpose and syntax of `respond_to`
 - Make a Rails app that provides a JSON API.
 - Use an external API (via HTTParty) to gather data and utilize it in a Rails application
-
-### Grid Systems
-- Explain the benefits of using CSS grids in web design.
-- Identify the basic components of a grid.
-- Review float, clearfix and other CSS properties.
-- Build a grid from scratch.
-- Use nested columns in a grid.
-- Examine how grids are utilized in a front-end framework (e.g., Bootstrap).
 
 ### Ajax
 - Explain the difference between synchronous and asynchronous program execution
@@ -44,23 +18,24 @@ Interactivity: AJAX, Grids, and Animations
 - Render new HTML content using data loaded from an Ajax request.
 - Perform POST, PUT, and DELETE requests to an API to modify data.
 
-### Responsive Web Design
+### Javascript Prototypes and Constructors
 
-- Use media queries to adjust styles for different viewport sizes.
-- Explain the difference between a responsive website and a mobile-specific website.
-- Identify and use relative units like `em`, `rem`, `vh`, `vw`, etc..
-- List the different media query values and their conditions.
-- Use the iOS simulator, Safari console, and Chrome Dev tools to debug responsive CSS.
-- Compare mobile-first to desktop-first responsive design
+- Explain the importance of OOJS in front-end code
+- Describe the role of constructor functions, and how they work
+- Use constructor functions and the `new` keyword to create objects with shared properties (like classes)
+- Describe what a prototype object is, and how they are used in JS
+- Differentiate between `__proto__` and Animal.prototype
+- Diagram the relationship between an object, its constructor, and prototype
+- Compare `Object.create` vs constructors
+- Compare / contrast classical and prototypal inheritance
+- Use the Chrome element inspector to traverse through the prototypal tree.
 
-### CSS Transitions & Animations
+### Express
 
-- Describe what it means to transition or animate in CSS
-- List the types of properties that can / can't be animated
-- Use the `transition` declaration to change element properties on events
-- Describe the purpose and syntax of css `keyframes`
-- List and describe the purpose of the `animation` properties
-- Describe the importance of prefixing CSS properties
-- Compare & contrast CSS Transitions and Animations
-- Create complex animations using CSS animation properties
-- Compare & contrast using CSS and JS for animations
+- Compare and contrast Javascript in the browser vs JS on the server
+- Compare and contrast express JS to Rails && Sinatra.
+- Use npm to manage project dependencies
+- Use module.exports and require to organize code
+- Use Handlebars templates to simplify rendering on the back-end
+- Use and configure middleware like body-parser to handle form submissions
+- Link to static assets in an Express application
