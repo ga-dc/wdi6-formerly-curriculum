@@ -9,16 +9,21 @@
 - Perform POST, PUT, and DELETE requests to an API to modify data.
 
 ## Opening Framing (5/5)
-In the past couple weeks or so, we've been learning a lot about server-side requests and responses. Currently we know how to create applications with full CRUD on models in our database, and that's great. When we do that CRUD, however, it requires a page reload of some kind. It would be really nice if had some functionality on the client side of our application but still communicate with the backend without a page refresh. If only we had a client side language that was non blocking and asynchronous...
 
-(ST-WG) Think back to the first couple weeks of class, whats the difference between synchronous and asynchronous program execution?
+### PKI -
+Let's list out some technologies we've learned in this class thus far.
+
+That is a tremendous amount of stuff. In the first couple of weeks we learned how to style a semantically structured HTML site with the ability to manipulate the DOM. In the past couple weeks or so, we've been learning a lot about server-side requests and responses. Today we'll be tying these concepts together. Currently we know how to create applications with full CRUD on models in our database, and that's great. When we do that CRUD, however, it requires a page reload of some kind. It would be really nice if had some functionality on the client side of our application but still communicate with the backend without a page refresh. If only we had a client side language that was non blocking and asynchronous...
+
+(ST-WG) Think back to the first couple weeks of class, whats the difference between synchronous and asynchronous program execution? More importantly, what kind of things can we do with non blocking asynchronous program execution?
 
 ### T & T (10/15)
+Let's look at Google Maps. How would this site work with things not happening asynchronously?
+
 Turn and talk to you neighbor, why might synchronous programming not be effective for the front end? Consider how http requests work within your rails application.
 
 We don't want to sit around and wait for code to execute before we load the rest of our script. It would be really nice if we could just describe what we want to happen when the code finally does execute, in a callback.
 
-Let's look at Google Maps. How would this site work with things not happening asynchronously?
 
 ## `$.ajax`- JSON (10/25)
 
@@ -122,7 +127,7 @@ Take our existing code for the the weather underground app. Instead of logging t
 ## Break (10/70)
 
 ## Intro: AJAX and CRUD (5/75)
-So we've used AJAX to do an asynchronous `GET` request to a 3rd party API. But it wouldn't make sense for us to be able to do CRUD functionality to that same site. They probably don't want anyone that's not a developer there to be able to update the weather however we want. That is not to say that kind of functionality doesn't exist, we just don't have access to it.
+So we've used AJAX to do an asynchronous `GET` request to a 3rd party API. More often than not, 3rd party API's are usually read only. They probably don't want just anyone to be able to update the weather however they want. That is not to say that kind of functionality doesn't exist, we just don't have access to it.
 
 It just so happens we've built a new Rails API where we can do full CRUD with AJAX. Go ahead and fork and clone [this repo](https://github.com/ga-dc/tunr_ajax).
 
@@ -150,7 +155,7 @@ def test_ajax
 end
 ```
 
-in `app/views/artists/test_ajax.html.erb`:
+Create `app/views/artists/test_ajax.html.erb` and place the following content:
 
 ```html
 <div class="test_ajax_get">AJAX GET!</div>
@@ -310,3 +315,90 @@ $(".test_ajax_delete").on("click", function(){
   1. Write an AJAX GET request to a known end point.  
   2. How does a promise differ from a callback?  
   3. Write an AJAX POST to create an object in a rails application.  
+
+## Cliff Notes
+
+In order to do an AJAX `get` request to a 3rd party API:
+
+```javascript
+$.ajax({
+  url: url,
+  type: "get",
+  dataType: "json"
+  // $.ajax takes an object as an argument with at least three key-value pairs...
+  // (1) The URL endpoint for the JSON object.
+  // (2) Type of HTTP request.
+  // (3) Datatype. Usually JSON.
+}).done(function(response){
+  console.log(response)
+  // Here is where you place code for DOM manipulation or anything else you'd like to do with the response
+}).fail(function(){
+  console.log("Ajax request fails!")
+}).always(function(){
+  console.log("This always happens regardless of successful ajax request or not.")
+})
+```
+
+In order to do an AJAX `get` request to your own rails API:
+
+```javascript
+$.ajax({
+  type: 'GET',
+  dataType: 'json',
+  url: "http://localhost:3000/artists"
+}).done(function(response) {
+  console.log(response);
+}).fail(function(response){
+  console.log("Ajax get request failed.");
+})
+```
+
+In order to do an AJAX `post` request to your own rails API:
+```javascript
+$.ajax({
+  type: 'POST',
+  data: {artist: {photo_url: "www.google.com", name: "bob", nationality: "bob"}},
+  dataType: 'json',
+  url: "http://localhost:3000/artists"
+}).done(function(response) {
+  console.log(response);
+}).fail(function(response){
+  console.log("Ajax get request failed");
+})
+```
+
+In order to do an AJAX `put` request to your own rails API:
+
+```javascript
+$.ajax({
+  type: 'PUT',
+  data: {
+    artist: {
+      name: "Robert Goulet",
+      nationality: "American",
+      photo_url: "http://media.giphy.com/media/u5yMOKjUpASwU/giphy.gif"
+    }
+  },
+  dataType: 'json',
+  url: "/artists/6"
+}).done(function(response){
+  console.log(response);
+}).fail(function(){
+  console.log("Failed to update.");
+})
+```
+
+In order to do an AJAX `delete` request to your own rails API:
+
+```javascript
+$.ajax({
+  type: 'DELETE',
+  dataType: 'json',
+  url: "http://localhost:3000/artists/9"
+}).done(function(response){
+  console.log("DELETED");
+  console.log(response);
+}).fail(function(){
+  console.log("Failed to delete.");
+})
+```
