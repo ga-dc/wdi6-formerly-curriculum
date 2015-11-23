@@ -267,7 +267,7 @@ Demonstrate in browser and Postman.
 It's your turn to do the same for Songs. You should be working in `songs_controller.rb` for this.
 
 **Bonus**
-* Make it so that the JSON requests only return `name`, `photo_url` and `nationality`. No `created_at` or `updated_at`.
+* Make it so that the JSON requests only return `title`, `album` and `preview_url`. No `created_at` or `updated_at`.
 * Make it so that the JSON request to Songs#show also includes the artist.
 
 ## Break (10 minutes / 1:25)
