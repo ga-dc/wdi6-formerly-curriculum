@@ -45,7 +45,9 @@ $ npm init
 $ npm install --save express
 ```
 
-What do you think npm is? (ST-WG)
+Q. What do you think npm is? (ST-WG)
+---
+
 > npm, short for node package manager. Allows us to install dependencies for our nodeJS application. Much like how gems did this for us in Rails.
 
 `$ npm init` will initialize a new NodeJS application. Upon initialization it will prompt you for some user input to update the package.json.
@@ -111,6 +113,8 @@ app.get("/", function(req, res){
 });
 ```
 
+We refresh and...
+
 ```
 CANNOT GET /
 ```
@@ -119,17 +123,22 @@ What gives? We added a route and specified the `"hello world"` string to send as
 
 `Hello World`
 
-Cool. Man, that's really unfortunate that we have to restart the server every time we make an update to our files. What was the fix for that in Sinatra?
+Cool. Man, that's really unfortunate that we have to restart the server every time we make an update to our files.
+
+Q. What was the fix for that in Sinatra?
+---
+
+> sinatra/reloader from the sinatra-contrib repo.
 
 Turns out express has something similar, nodemon.
 
 In the terminal:
 
 ```bash
-$ npm install -g nodemon
+$ npm install --global nodemon
 ```
 
-> When using the -g flag, we're specifying that nodemon will now be a global dependency because we want to be able to utilize nodemon across all of our node applications.
+> When using the `--global` flag (-g for short), we're specifying that nodemon will be installed "globally" (not per project) so we can utilize nodemon across all of our node applications.
 
 Then we start up our application a bit differently now. In the terminal:
 
@@ -277,13 +286,14 @@ module.exports = {
 }
 ```
 
-> You can see that almost nothing has changed, really we just namespaced the functionality into a different file. What advantages does that bring to us with regard to separation of concerns in MVC? (st-wg)
+> You can see that almost nothing has changed, really we just moved the functionality into a different file. What advantages does that bring to us with regard to separation of concerns in MVC? (st-wg)
 
-You can start to see the neccessity of `module.export` when we start to add models to our application. If we had the 7 RESTful routes that rails have for each model, you can start to see how keeping everything in the `index.js` can begin to become unwieldy.
+You can start to see the necessity of `module.export` when we start to add models to our application. If we had the 7 RESTful routes that rails have for each model, you can start to see how keeping everything in the `index.js` can begin to become unwieldy.
 
 ## Break (10/130)
 
 ## Bodyparser & Post requests (20/150)
+
 We're going to leverage code from the [hello-express app](https://github.com/ga-dc/hello-express) we built earlier. I've added some hbs views so go ahead and clone this code if you want to follow along.
 
 The first thing that I want to do is add a form to our `hello.hbs`:
@@ -300,7 +310,10 @@ Let's go ahead and try entering a name and hitting enter:
 
 ```get CANNOT POST/```
 
-How can we fix this?(st-wg) In `app.js`:
+Q. How can we fix this?
+---
+
+> In `app.js`...
 
 ```js
 app.post("/", function(req, res){
@@ -316,7 +329,7 @@ app.post("/", function(req, res){
 })
 ```
 
-hello undefined... oh man.. and just to be sure let's `console.log(req.params)` . It's an empty object!
+hello undefined... oh man.. and just to be sure let's `console.log(req.params)`. It's an empty object!
 
 So we're not getting anything from params, turns out we need to install middleware in order to get form data and JSON data in a POST request for express applications. Rails and Sinatra already include the middleware to handle this(RACK). By default express does not, so we need to install it manually.
 
@@ -348,10 +361,7 @@ app.post("/", function(req, res){
 })
 ```
 
-## You do - Ultimate Complimate(if time allows)
-
-## HW
-You can find hw for tonight [here](https://github.com/ga-dc/do_something_express_part1)
+## You do - Ultimate Compliment(if time allows)
 
 ## Sample Quiz Questions
 - What is `npm`?
