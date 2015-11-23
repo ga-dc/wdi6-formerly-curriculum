@@ -28,7 +28,7 @@ with opportunities to clean up our procedural code and model it more-closely to
 the external world.
 
 This becomes **very** important as our front-end code grows in complexity. Even
-a simple app like DoSomething will have lots of code on the front end to do
+a simple app will have lots of code on the front end to do
 things like:
 
 * render data from the back end
@@ -88,7 +88,7 @@ the card object itself, as well as each card's numerical value. Additionally,
 each card has a well-defined interface (the data and methods that can be
 accessed / called)
 
-## Making Objects (10 minutes)
+## Making Objects (10 minutes - 10/150)
 
 So far, we've had to make our objects 'by hand', i.e. using object literals:
 
@@ -129,7 +129,7 @@ and color), and others stay the same, for example, `fuel` starts at 100, and
 
 Why don't we build a function that makes these objects for us!
 
-### Exercise (10 minutes)
+### Exercise (10 minutes - 20/150)
 
 Define a function: `makeCar()` that takes two parameters (model, color) and
 makes a new object literal for a car using those params, and returns that object.
@@ -142,7 +142,7 @@ var celica = makeCar("Toy-Yoda Celica", "limegreen");
 
 See solution in `car.js`
 
-## Constructor Functions (20 minutes)
+## Constructor Functions (20 minutes - 30/150)
 
 It's so common that we need to make objects with similar properties / methods
 that programming languages usually have some features to help with this. In
@@ -188,15 +188,15 @@ When we run a constructor function with `new`, Javascript will automatically:
 2. Call the constructor function on that object (this -> the new object)
 3. Return the object
 
-### Exercise: Car Constructor Function (10 minutes)
+### Exercise: Car Constructor Function (10 minutes - 50/150)
 
 Write a constructor function to replace our `makeCar` function earlier.
 
 See car.js for a solution.
 
-## Lunch
+## Break (10 minutes 60/150)
 
-## Prototypes (20 minutes)
+## Prototypes (20 minutes 70/150)
 
 There's one problem with our constructor function... every time we create a new
 car, it's creating new copies of the `refuel` and `drive` functions. This isn't
@@ -252,14 +252,14 @@ generally not a good idea to change the prototype directly by assigning to the
 **Note**: `.prototype` is a property on constructor functions, while `.__proto__` is the
 property on objects, and is used in the lookup chain.
 
-### Exercise: Car Constructor with Prototypes (10 minutes)
+### Exercise: Car Constructor with Prototypes (10 minutes - 90/150)
 
 Update the constructor function for our car to define the methods on prototypes
 rather than on the individual instances themselves.
 
 See `car.js` for a solution.
 
-## Exercise: Monkey (20 minutes)
+## Exercise: Monkey (20 minutes - 100/150)
 
 Work on the [OOP Monkey Exercise](https://github.com/ga-dc/oop_monkey/tree/js) (same as in Ruby, now in JS!).
 
@@ -267,7 +267,7 @@ Make sure you check out the `js` branch before beginning!
 
 `$ git checkout js`
 
-## Inheritance (15 minutes)
+## Inheritance (15 minutes - 120/150)
 
 In general, we're not going to be using inheritance with javascript, but it's
 worth just mentioning how it can be accomplished.
@@ -319,7 +319,7 @@ spot.breed;
 
 ![Prototypal Inheritance Chain](images/prototype_chain_inheritance.jpg)
 
-## Object.create (20 minutes)
+## Object.create (15 minutes - 135/150)
 
 So we won't use this often (if ever in this class), but you may see examples
 of using `Object.create`. This method creates a new object, and sets the
