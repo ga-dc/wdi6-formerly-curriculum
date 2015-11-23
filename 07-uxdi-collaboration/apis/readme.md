@@ -114,63 +114,6 @@ And here's an example of an unsuccessful `403 Forbidden` API call. Why did it fa
 
 > We'll use Postman more when we test out our own API later in today's class.
 
-## 3rd Party APIs (15 minutes / 2:35)
-
-Other companies have created something similar. Some follow the REST guidelines, some don't (remember those [Starter APIs](https://github.com/amaseda/curriculum/tree/master/07-uxdi-collaboration/apis#good-starter-apis)?). When we want to retrieve information from them we need to make an http request from within our application. There are a few libraries that help with this. We'll review [HTTParty](https://github.com/jnunemaker/httparty).
-
-### Demo: HTTParty
-
-After adding it to our Gemfile. We can start using it right away,
-
-``` ruby
-response = HTTParty.get('https://api.stackexchange.com/2.2/questions?site=stackoverflow')
-```
-
-Checkout the response:
-```
-response.code
-response.message
-response.body
-response.headers
-```
-
-Or better yet, you can make a PORO (Plain Old Ruby Object) class and use that.
-```
-class StackExchange
-  include HTTParty
-  base_uri 'api.stackexchange.com'
-
-  def initialize(service, page)
-    @options = { query: {site: service, page: page} }
-  end
-
-  def questions
-    self.class.get("/2.2/questions", @options)
-  end
-
-  def users
-    self.class.get("/2.2/users", @options)
-  end
-end
-```
-
-Using it from `rails console`:
-``` ruby
-stack_exchange = StackExchange.new("stackoverflow", 1)
-```
-``` ruby
-stack_exchange.questions
-stack_exchange.users
-```
-> If you'd like to learn more about APIs and POROs, Andy has a [great blog post](http://andrewsunglaekim.github.io/Server-side-api-calls-wrapped-in-ruby-classes/) on the subject.
-
-You'll be doing this same sort of thing in much greater detail from the client-side during this afternoon's [AJAX lesson](https://github.com/ga-dc/curriculum/tree/master/07-uxdi-collaboration/ajax)!  
-
-### You-Do: API Playground (10 minutes)
-With a partner, choose an an api from the starter list above and utilize HTTparty to:
-- Store a JSON object in a variable called `response` from various API endpoints
-- Parse through that response to grab the relevant info and store it as semantic variables
-
 [Example Giphy URL](http://api.giphy.com/v1/gifs/search?q=angry+panda&api_key=dc6zaTOxFJmzC)
 
 **Bonus**
@@ -422,6 +365,58 @@ We should now get a `200` response code signifying a successful `post` request a
 ### You do: Tunr songs#create, songs#update (15 minutes / 2:20)
 
 Your turn. Make sure we can create and update Songs via requests that expect JSON.
+
+## 3rd Party APIs (15 minutes / 2:35)
+
+Other companies have created something similar. Some follow the REST guidelines, some don't (remember those [Starter APIs](https://github.com/amaseda/curriculum/tree/master/07-uxdi-collaboration/apis#good-starter-apis)?). When we want to retrieve information from them we need to make an http request from within our application. There are a few libraries that help with this. We'll review [HTTParty](https://github.com/jnunemaker/httparty).
+
+### Demo: HTTParty
+
+After adding it to our Gemfile. We can start using it right away,
+
+``` ruby
+response = HTTParty.get('https://api.stackexchange.com/2.2/questions?site=stackoverflow')
+```
+
+Checkout the response:
+```
+response.code
+response.message
+response.body
+response.headers
+```
+
+Or better yet, you can make a PORO (Plain Old Ruby Object) class and use that.
+```
+class StackExchange
+  include HTTParty
+  base_uri 'api.stackexchange.com'
+
+  def initialize(service, page)
+    @options = { query: {site: service, page: page} }
+  end
+
+  def questions
+    self.class.get("/2.2/questions", @options)
+  end
+
+  def users
+    self.class.get("/2.2/users", @options)
+  end
+end
+```
+
+Using it from `rails console`:
+``` ruby
+stack_exchange = StackExchange.new("stackoverflow", 1)
+```
+``` ruby
+stack_exchange.questions
+stack_exchange.users
+```
+> If you'd like to learn more about APIs and POROs, Andy has a [great blog post](http://andrewsunglaekim.github.io/Server-side-api-calls-wrapped-in-ruby-classes/) on the subject.
+
+You'll be doing this same sort of thing in much greater detail from the client-side during this afternoon's [AJAX lesson](https://github.com/ga-dc/curriculum/tree/master/07-uxdi-collaboration/ajax)!  
 
 ## Conclusion (5 minutes / 2:40)
 
