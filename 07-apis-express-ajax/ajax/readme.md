@@ -196,7 +196,7 @@ $(document).ready(function(){
 > If we access the response object, we can see all of the artists that were seeded in the database. Inside the done promise, we can interact with and display all the contents of the response.
 
 ## Setup for AJAX POST (10/100)
-Lets update our view to include some input fields and all of our existing articles in `app/views/artists/test_ajax.html.erb`:
+Lets update our view to include some input fields and all of our existing artists in `app/views/artists/test_ajax.html.erb`:
 
 ```html
 <!-- div attached to event handler -->
@@ -215,8 +215,8 @@ Lets update our view to include some input fields and all of our existing articl
 <div class="test_ajax_put">AJAX PUT!!</div>
 <div class="test_ajax_delete">AJAX DELETE!!</div>
 
-<h1>Articles</h1>
-<ul class="articles">
+<h1>Artists</h1>
+<ul class="artists">
   <% @artists.each do |artist| %>
     <li>
       <a href="/artists/<%= artist.id %>">
@@ -251,12 +251,14 @@ As you can see, every time we click on this button another artist is generated. 
 
 **Question for you:** how might we be able to dynamically acquire data on the client side instead of hardcoding values?
 
+## BREAK
+
 ## YOU DO: Work in Pairs (20/130)
 
 Use the form to dynamically generate artists from the client side.
 * **BONUS**: Once you create a new artist in the database, asynchronously update the view so that it includes the new artist. (Hint: look at the response)
 
-## AJAX PUT (10/140)
+## AJAX PUT (10/140) - We do
 
 Let's now update an existing artist by adding another AJAX call to our next event listener:
 
@@ -283,7 +285,7 @@ $(".test_ajax_put").on("click", function(){
 
 > NOTE: This is just to show you how put requests work. Normally we would not hardcode the URL. We'll get more into this during OOJS/Front-end Frameworks. But think about how we could modify the DOM in order to effectively use AJAX PUT requests.
 
-## AJAX DELETE (10/150)
+## AJAX DELETE (10/150) - You do
 
 Let's update our Javascript for our final event listener to delete a record in our database through AJAX in `app/assets/javascripts/application.js`...
 
