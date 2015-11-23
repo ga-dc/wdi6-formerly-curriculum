@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="5.2" data-chapter-title="Ajax" data-filepath="07-uxdi-collaboration/ajax/readme.md" data-basepath="../.." data-revision="Mon Nov 23 2015 00:50:07 GMT+0000 (UTC)">
+    <div class="book" data-level="5.2" data-chapter-title="Ajax" data-filepath="07-uxdi-collaboration/ajax/readme.md" data-basepath="../.." data-revision="Mon Nov 23 2015 02:01:43 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1157,12 +1157,14 @@
 <li>Perform POST, PUT, and DELETE requests to an API to modify data.</li>
 </ul>
 <h2 id="opening-framing-55">Opening Framing (5/5)</h2>
-<p>In the past couple weeks or so, we&apos;ve been learning a lot about server-side requests and responses. Currently we know how to create applications with full CRUD on models in our database, and that&apos;s great. When we do that CRUD, however, it requires a page reload of some kind. It would be really nice if had some functionality on the client side of our application but still communicate with the backend without a page refresh. If only we had a client side language that was non blocking and asynchronous...</p>
-<p>(ST-WG) Think back to the first couple weeks of class, whats the difference between synchronous and asynchronous program execution?</p>
+<h3 id="pki-">PKI -</h3>
+<p>Let&apos;s list out some technologies we&apos;ve learned in this class thus far.</p>
+<p>That is a tremendous amount of stuff. In the first couple of weeks we learned how to style a semantically structured HTML site with the ability to manipulate the DOM. In the past couple weeks or so, we&apos;ve been learning a lot about server-side requests and responses. Today we&apos;ll be tying these concepts together. Currently we know how to create applications with full CRUD on models in our database, and that&apos;s great. When we do that CRUD, however, it requires a page reload of some kind. It would be really nice if had some functionality on the client side of our application but still communicate with the backend without a page refresh. If only we had a client side language that was non blocking and asynchronous...</p>
+<p>(ST-WG) Think back to the first couple weeks of class, whats the difference between synchronous and asynchronous program execution? More importantly, what kind of things can we do with non blocking asynchronous program execution?</p>
 <h3 id="t--t-1015">T &amp; T (10/15)</h3>
+<p>Let&apos;s look at Google Maps. How would this site work with things not happening asynchronously?</p>
 <p>Turn and talk to you neighbor, why might synchronous programming not be effective for the front end? Consider how http requests work within your rails application.</p>
 <p>We don&apos;t want to sit around and wait for code to execute before we load the rest of our script. It would be really nice if we could just describe what we want to happen when the code finally does execute, in a callback.</p>
-<p>Let&apos;s look at Google Maps. How would this site work with things not happening asynchronously?</p>
 <h2 id="ajax-json-1025"><code>$.ajax</code>- JSON (10/25)</h2>
 <p>For the first part of this lesson we&apos;ll be using the <a href="http://www.wunderground.com/weather/api/d/docs" target="_blank">Weather Underground API</a>. <strong>Follow the link and sign up for a key.</strong></p>
 <p>Once you&apos;re ready, follow this link. Check out the example in the middle of the page. You&apos;ll see a URL   that looks something like: <code>http://api.wunderground.com/api/your_key/conditions/q/CA/San_Francisco.json</code></p>
@@ -1248,7 +1250,7 @@ $ touch script.js
 </ol>
 <h2 id="break-1070">Break (10/70)</h2>
 <h2 id="intro-ajax-and-crud-575">Intro: AJAX and CRUD (5/75)</h2>
-<p>So we&apos;ve used AJAX to do an asynchronous <code>GET</code> request to a 3rd party API. But it wouldn&apos;t make sense for us to be able to do CRUD functionality to that same site. They probably don&apos;t want anyone that&apos;s not a developer there to be able to update the weather however we want. That is not to say that kind of functionality doesn&apos;t exist, we just don&apos;t have access to it.</p>
+<p>So we&apos;ve used AJAX to do an asynchronous <code>GET</code> request to a 3rd party API. More often than not, 3rd party API&apos;s are usually read only. They probably don&apos;t want just anyone to be able to update the weather however they want. That is not to say that kind of functionality doesn&apos;t exist, we just don&apos;t have access to it.</p>
 <p>It just so happens we&apos;ve built a new Rails API where we can do full CRUD with AJAX. Go ahead and fork and clone <a href="https://github.com/ga-dc/tunr_ajax" target="_blank">this repo</a>.</p>
 <p>Once you&apos;ve cloned the repo, <code>cd</code> into it and run the usual commands...</p>
 <pre><code class="lang-bash">$ bundle install
@@ -1264,7 +1266,7 @@ $ rake db:create db:migrate db:seed
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_ajax</span></span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<p>in <code>app/views/artists/test_ajax.html.erb</code>:</p>
+<p>Create <code>app/views/artists/test_ajax.html.erb</code> and place the following content:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;test_ajax_get&quot;</span>&gt;</span>AJAX GET!<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;test_ajax_post&quot;</span>&gt;</span>AJAX POST!<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;test_ajax_put&quot;</span>&gt;</span>AJAX PUT!<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
@@ -1406,6 +1408,78 @@ $ rake db:create db:migrate db:seed
 <li>How does a promise differ from a callback?  </li>
 <li>Write an AJAX POST to create an object in a rails application.  </li>
 </ol>
+<h2 id="cliff-notes">Cliff Notes</h2>
+<p>In order to do an AJAX <code>get</code> request to a 3rd party API:</p>
+<pre><code class="lang-javascript">$.ajax({
+  url: url,
+  type: <span class="hljs-string">&quot;get&quot;</span>,
+  dataType: <span class="hljs-string">&quot;json&quot;</span>
+  <span class="hljs-comment">// $.ajax takes an object as an argument with at least three key-value pairs...</span>
+  <span class="hljs-comment">// (1) The URL endpoint for the JSON object.</span>
+  <span class="hljs-comment">// (2) Type of HTTP request.</span>
+  <span class="hljs-comment">// (3) Datatype. Usually JSON.</span>
+}).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(response)
+  <span class="hljs-comment">// Here is where you place code for DOM manipulation or anything else you&apos;d like to do with the response</span>
+}).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Ajax request fails!&quot;</span>)
+}).always(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;This always happens regardless of successful ajax request or not.&quot;</span>)
+})
+</code></pre>
+<p>In order to do an AJAX <code>get</code> request to your own rails API:</p>
+<pre><code class="lang-javascript">$.ajax({
+  type: <span class="hljs-string">&apos;GET&apos;</span>,
+  dataType: <span class="hljs-string">&apos;json&apos;</span>,
+  url: <span class="hljs-string">&quot;http://localhost:3000/artists&quot;</span>
+}).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(response);
+}).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Ajax get request failed.&quot;</span>);
+})
+</code></pre>
+<p>In order to do an AJAX <code>post</code> request to your own rails API:</p>
+<pre><code class="lang-javascript">$.ajax({
+  type: <span class="hljs-string">&apos;POST&apos;</span>,
+  data: {artist: {photo_url: <span class="hljs-string">&quot;www.google.com&quot;</span>, name: <span class="hljs-string">&quot;bob&quot;</span>, nationality: <span class="hljs-string">&quot;bob&quot;</span>}},
+  dataType: <span class="hljs-string">&apos;json&apos;</span>,
+  url: <span class="hljs-string">&quot;http://localhost:3000/artists&quot;</span>
+}).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(response);
+}).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Ajax get request failed&quot;</span>);
+})
+</code></pre>
+<p>In order to do an AJAX <code>put</code> request to your own rails API:</p>
+<pre><code class="lang-javascript">$.ajax({
+  type: <span class="hljs-string">&apos;PUT&apos;</span>,
+  data: {
+    artist: {
+      name: <span class="hljs-string">&quot;Robert Goulet&quot;</span>,
+      nationality: <span class="hljs-string">&quot;American&quot;</span>,
+      photo_url: <span class="hljs-string">&quot;http://media.giphy.com/media/u5yMOKjUpASwU/giphy.gif&quot;</span>
+    }
+  },
+  dataType: <span class="hljs-string">&apos;json&apos;</span>,
+  url: <span class="hljs-string">&quot;/artists/6&quot;</span>
+}).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(response);
+}).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Failed to update.&quot;</span>);
+})
+</code></pre>
+<p>In order to do an AJAX <code>delete</code> request to your own rails API:</p>
+<pre><code class="lang-javascript">$.ajax({
+  type: <span class="hljs-string">&apos;DELETE&apos;</span>,
+  dataType: <span class="hljs-string">&apos;json&apos;</span>,
+  url: <span class="hljs-string">&quot;http://localhost:3000/artists/9&quot;</span>
+}).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;DELETED&quot;</span>);
+  <span class="hljs-built_in">console</span>.log(response);
+}).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Failed to delete.&quot;</span>);
+})
+</code></pre>
 
                     
                     </section>
