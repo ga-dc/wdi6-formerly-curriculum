@@ -114,6 +114,7 @@ And here's an example of an unsuccessful `403 Forbidden` API call. Why did it fa
 
 > We'll use Postman more when we test out our own API later in today's class.
 
+
 ## Rails and JSON
 
 ### Intro (10 minutes / 0:40)
@@ -121,6 +122,7 @@ And here's an example of an unsuccessful `403 Forbidden` API call. Why did it fa
 Today, we're going to use Rails to create our own API from which we can pull information. We will be using a familiar codebase, and modify it so that it can serve up data.  
 
 Let's demonstrate using Tunr.
+
 * **[STARTER CODE](https://github.com/ga-dc/tunr_rails_json)**
 
 Earlier we used an HTTP request to retrieve information from a 3rd party API. Under the hood, that API received a GET request in the exact same way that the Rails application we have build in class thus far have received GET requests.
@@ -216,15 +218,16 @@ end
 And after...
 ```rb
 def show
-  @artist = Artist.find( params[:id] )
-
-  respond_to do |format|
-    format.html { render :show }
-    format.json { render json: @artist }
-  end
-end
++    @artist = Artist.find( params[:id] )
++
++    respond_to do |format|
++      format.html { render :show }
++      format.json { render json: @artist, include: :songs }
++    end
+   end
 ```
 > If the request format is html, render the show view (show.html.erb). If the request format is JSON, render the data stored in `@artist` as JSON.
+> Note the nested JSON objects.
 
 Let's demo this in the browser and Postman.
 
@@ -258,7 +261,7 @@ It's your turn to do the same for Songs. You should be working in `songs_control
 
 ### I DO: Tunr Artists#create (30 minutes / 1:55)
 
-It's high time we created an Artist. What do we have to change to support this functionality?
+It's high time we created an Artist. What do we have to change to support this functionality
 * What HTTP request will we be sending? What route and controller action does that correspond to?
 * What is the purpose of `Artists#new`?
 * What do we have to change in `Artists#create`?
@@ -279,7 +282,7 @@ end
 ```
 
 We need to update the response to respond to the format.
-* What do we want to happen after a successful save? How about an unsuccessful one?
+* **Q:** What do we want to happen after a successful save? How about an unsuccessful one?
 
 ```rb
 # POST /artists
@@ -290,7 +293,7 @@ def create
   respond_to do |format|
     if @artist.save
       format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
-      format.json { render :show, status: :created, location: @artist }
+      format.json { render json: @artist, status: :created, location: @artist }
     else
       format.html { render :new }
       format.json { render json: @artist.errors, status: :unprocessable_entity }
@@ -321,9 +324,9 @@ Today, we'll use Postman. It makes POSTing requests easy.
     ```
   4. Press "Submit".  
 
-![Postman create error](http://i.imgur.com/EMKjI9R.png)
+![Postman create error](http://imgur.com/YFJIShn.png)
 
-This is an error page, rendered as html.  Sometimes you just have to wade through the html.  Scroll down until you get to the "body".
+The raw response from this request is an error page, rendered as html.  Sometimes you just have to wade through the html.  Scroll down until you get to the "body".
 ```html
  <h1>
   ActionController::InvalidAuthenticityToken
@@ -331,7 +334,11 @@ This is an error page, rendered as html.  Sometimes you just have to wade throug
 </h1>
 ```
 
-Ah yes. Rails uses an Authenticity token for security. It will provide it for any request made within a form it renders.   Postman is decidedly not that. Let's temporarily adjust that setting for testing purposes. When we go back to using html forms, we can set it back.
+Additionally we can preview the html, and see a familiar rails error page.
+
+Ah yes. Rails uses an Authenticity token for security. It will provide it for any request made within a form it renders.  Postman is decidedly not that. Let's temporarily adjust that setting for testing purposes. When we go back to using html forms, we can set it back.
+
+In our `application_controller.rb` we must adjust the way Rails protects us by default:
 
 ```rb
 class ApplicationController < ActionController::Base
@@ -345,7 +352,9 @@ end
 
 Success should look like this...
 
-![Create Artist 200 OK in Postman](http://i.imgur.com/ZZP0IOI.png)
+![Create Artist 200 OK in Postman](http://i.imgur.com/7bncv7w.png)
+
+We should now get a `200` response code signifying a successful `post` request and we can preview the html page sent back as the response (our newly created artist's show page)
 
 ## Break (10 minutes / 2:05)
 
@@ -411,3 +420,5 @@ Review Learning Objectives
 
 ## Resources:
 * [Postman](https://www.getpostman.com/)
+* [Intro to APIs](https://zapier.com/learn/apis/chapter-1-introduction-to-apis/)
+* [Practice with APIs](https://github.com/ga-dc/weather_teller)
