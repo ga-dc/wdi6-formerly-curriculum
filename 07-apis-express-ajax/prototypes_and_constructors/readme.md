@@ -227,7 +227,7 @@ Dog.prototype.bark = function() { return "Woof! I'm " + this.name; }
 // The disadvantage here is that we're overwriting any existing properties on
 // the prototype
 Dog.prototype = {
-  species = "Canis Canis",
+  species: "Canis Canis",
   speak: function() { return "Woof! I'm " + this.name; }
 }
 
