@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="5.1" data-chapter-title="APIs" data-filepath="07-uxdi-collaboration/apis/readme.md" data-basepath="../.." data-revision="Mon Nov 23 2015 13:57:07 GMT+0000 (UTC)">
+    <div class="book" data-level="5.1" data-chapter-title="APIs" data-filepath="07-uxdi-collaboration/apis/readme.md" data-basepath="../.." data-revision="Mon Nov 23 2015 14:32:46 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -1353,16 +1353,17 @@ artist  <span class="hljs-constant">GET</span>   /artists/<span class="hljs-symb
 </code></pre>
 <p>And after...</p>
 <pre><code class="lang-rb"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
-  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find( params[<span class="hljs-symbol">:id</span>] )
-
-  respond_to <span class="hljs-keyword">do</span> |format|
-    format.html { render <span class="hljs-symbol">:show</span> }
-    format.json { render <span class="hljs-symbol">json:</span> <span class="hljs-variable">@artist</span> }
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
++    <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find( params[<span class="hljs-symbol">:id</span>] )
++
++    respond_to <span class="hljs-keyword">do</span> |format|
++      format.html { render <span class="hljs-symbol">:show</span> }
++      format.json { render <span class="hljs-symbol">json:</span> <span class="hljs-variable">@artist</span>, <span class="hljs-symbol">include:</span> <span class="hljs-symbol">:songs</span> }
++    <span class="hljs-keyword">end</span>
+   <span class="hljs-keyword">end</span>
 </code></pre>
 <blockquote>
-<p>If the request format is html, render the show view (show.html.erb). If the request format is JSON, render the data stored in <code>@artist</code> as JSON.</p>
+<p>If the request format is html, render the show view (show.html.erb). If the request format is JSON, render the data stored in <code>@artist</code> as JSON.
+Note the nested JSON objects.</p>
 </blockquote>
 <p>Let&apos;s demo this in the browser and Postman.</p>
 <h3 id="we-do-tunr-artistsindex-10-minutes--100">WE DO: Tunr Artists#index (10 minutes / 1:00)</h3>
@@ -1389,7 +1390,7 @@ artist  <span class="hljs-constant">GET</span>   /artists/<span class="hljs-symb
 </ul>
 <h2 id="break-10-minutes--125">Break (10 minutes / 1:25)</h2>
 <h3 id="i-do-tunr-artistscreate-30-minutes--155">I DO: Tunr Artists#create (30 minutes / 1:55)</h3>
-<p>It&apos;s high time we created an Artist. What do we have to change to support this functionality?</p>
+<p>It&apos;s high time we created an Artist. What do we have to change to support this functionality</p>
 <ul>
 <li>What HTTP request will we be sending? What route and controller action does that correspond to?</li>
 <li>What is the purpose of <code>Artists#new</code>?</li>
@@ -1411,7 +1412,7 @@ artist  <span class="hljs-constant">GET</span>   /artists/<span class="hljs-symb
 </code></pre>
 <p>We need to update the response to respond to the format.</p>
 <ul>
-<li>What do we want to happen after a successful save? How about an unsuccessful one?</li>
+<li><strong>Q:</strong> What do we want to happen after a successful save? How about an unsuccessful one?</li>
 </ul>
 <pre><code class="lang-rb"><span class="hljs-comment"># POST /artists</span>
 <span class="hljs-comment"># POST /artists.json</span>
@@ -1421,7 +1422,7 @@ artist  <span class="hljs-constant">GET</span>   /artists/<span class="hljs-symb
   respond_to <span class="hljs-keyword">do</span> |format|
     <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>.save
       format.html { redirect_to <span class="hljs-variable">@artist</span>, <span class="hljs-symbol">notice:</span> <span class="hljs-string">&apos;Artist was successfully created.&apos;</span> }
-      format.json { render <span class="hljs-symbol">:show</span>, <span class="hljs-symbol">status:</span> <span class="hljs-symbol">:created</span>, <span class="hljs-symbol">location:</span> <span class="hljs-variable">@artist</span> }
+      format.json { render <span class="hljs-symbol">json:</span> <span class="hljs-variable">@artist</span>, <span class="hljs-symbol">status:</span> <span class="hljs-symbol">:created</span>, <span class="hljs-symbol">location:</span> <span class="hljs-variable">@artist</span> }
     <span class="hljs-keyword">else</span>
       format.html { render <span class="hljs-symbol">:new</span> }
       format.json { render <span class="hljs-symbol">json:</span> <span class="hljs-variable">@artist</span>.errors, <span class="hljs-symbol">status:</span> <span class="hljs-symbol">:unprocessable_entity</span> }
@@ -1451,14 +1452,16 @@ artist  <span class="hljs-constant">GET</span>   /artists/<span class="hljs-symb
 </li>
 <li>Press &quot;Submit&quot;.  </li>
 </ol>
-<p><img src="http://i.imgur.com/EMKjI9R.png" alt="Postman create error"></p>
-<p>This is an error page, rendered as html.  Sometimes you just have to wade through the html.  Scroll down until you get to the &quot;body&quot;.</p>
+<p><img src="http://imgur.com/YFJIShn.png" alt="Postman create error"></p>
+<p>The raw response from this request is an error page, rendered as html.  Sometimes you just have to wade through the html.  Scroll down until you get to the &quot;body&quot;.</p>
 <pre><code class="lang-html"> <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>
   ActionController::InvalidAuthenticityToken
     in ArtistsController#create
 <span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
 </code></pre>
-<p>Ah yes. Rails uses an Authenticity token for security. It will provide it for any request made within a form it renders.   Postman is decidedly not that. Let&apos;s temporarily adjust that setting for testing purposes. When we go back to using html forms, we can set it back.</p>
+<p>Additionally we can preview the html, and see a familiar rails error page.</p>
+<p>Ah yes. Rails uses an Authenticity token for security. It will provide it for any request made within a form it renders.  Postman is decidedly not that. Let&apos;s temporarily adjust that setting for testing purposes. When we go back to using html forms, we can set it back.</p>
+<p>In our <code>application_controller.rb</code> we must adjust the way Rails protects us by default:</p>
 <pre><code class="lang-rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActionController::Base</span></span></span>
   <span class="hljs-comment"># Prevent CSRF attacks by raising an exception.</span>
   <span class="hljs-comment"># For APIs, you may want to use :null_session instead.</span>
@@ -1468,7 +1471,8 @@ artist  <span class="hljs-constant">GET</span>   /artists/<span class="hljs-symb
 <span class="hljs-keyword">end</span>
 </code></pre>
 <p>Success should look like this...</p>
-<p><img src="http://i.imgur.com/ZZP0IOI.png" alt="Create Artist 200 OK in Postman"></p>
+<p><img src="http://i.imgur.com/7bncv7w.png" alt="Create Artist 200 OK in Postman"></p>
+<p>We should now get a <code>200</code> response code signifying a successful <code>post</code> request and we can preview the html page sent back as the response (our newly created artist&apos;s show page)</p>
 <h2 id="break-10-minutes--205">Break (10 minutes / 2:05)</h2>
 <h3 id="you-do-tunr-songscreate-songsupdate-15-minutes--220">You do: Tunr songs#create, songs#update (15 minutes / 2:20)</h3>
 <p>Your turn. Make sure we can create and update Songs via requests that expect JSON.</p>
@@ -1515,6 +1519,8 @@ stack_exchange.users
 <h2 id="resources">Resources:</h2>
 <ul>
 <li><a href="https://www.getpostman.com/" target="_blank">Postman</a></li>
+<li><a href="https://zapier.com/learn/apis/chapter-1-introduction-to-apis/" target="_blank">Intro to APIs</a></li>
+<li><a href="https://github.com/ga-dc/weather_teller" target="_blank">Practice with APIs</a></li>
 </ul>
 
                     
