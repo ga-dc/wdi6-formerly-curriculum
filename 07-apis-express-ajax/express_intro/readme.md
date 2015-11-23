@@ -1,8 +1,10 @@
 # Express
 
 ## Learning Objectives
+
+- List common reasons Javascript is used for server applications
 - Compare and contrast Javascript in the browser vs JS on the server
-- Compare and contrast express JS to Rails && Sinatra.
+- Compare and contrast express.js to Rails / Sinatra.
 - Use npm to manage project dependencies
 - Use module.exports and require to organize code
 - Use Handlebars templates to simplify rendering on the back-end
@@ -10,11 +12,26 @@
 - Link to static assets in an Express application
 
 ## Opening Framing (15/15)
-PKI(5 m) List out the things we've covered in class. It is SO much stuff. We've pretty much covered the entire stack. Everything we cover from here on out is an extension of what we've already learned or a different language than we're used to. Today we'll be talking about expressJS the "e" in the MEAN stack. Which incidentally is super buzz wordy right now. You've already used express, only the language was ruby and the framework was Sinatra. So you haven't actually used express, but you'll see many similarities. Express is a framework built on top of node.
+
+Let's list out the things we've covered in class.
+
+
+This is SO much stuff. We've pretty much covered the entire stack. Everything
+we cover from here on out is an extension of what we've already learned or a
+different language than we're used to. Today we'll be talking about expressJS
+the "e" in the MEAN stack. Which incidentally is super buzz wordy right now.
+
+You've already used express, only the language was ruby and the framework was
+Sinatra. So you haven't actually used express, but you'll see many similarities.
+Express is a framework built on top of node.
 
 > Node.js is not a framework. It is an application runtime environment that allows you to write server-side applications in javascript. Javascript that does not depend on a browser.
 
-Frameworks like rails, are very opinionated frameworks. (st-wg) Express is much less so. There are holy wars over which frameworks are better for reason x or y, but they all pretty much do the same thing just with a different syntax. Today we'll be learning about express. Express by itself, is much more like Sinatra, it feels very manual.
+Some frameworks, like Rails, are very opinionated frameworks.
+
+Today, we'll be learning about Express, which is much less opinionated. Just
+like Sinatra, we have a lot of freedom in how we structure our application
+(folders/files, how to load different files, managing dependancies, etc)
 
 ## Hello World - Express (we do 30/45)
 
