@@ -17,7 +17,8 @@ PKI(5 m) List out the things we've covered in class. It is SO much stuff. We've 
 Frameworks like rails, are very opinionated frameworks. (st-wg) Express is much less so. There are holy wars over which frameworks are better for reason x or y, but they all pretty much do the same thing just with a different syntax. Today we'll be learning about express. Express by itself, is much more like Sinatra, it feels very manual.
 
 ## Hello World - Express (we do 30/45)
-To start, Lets create a simple hello world express application.
+
+Creating a simple hello world express application.
 
 In the terminal:
 ```bash
@@ -60,20 +61,22 @@ $ npm install --save express
 
 > the `--save` flag allows us to update the package.json to include the dependency you just installed.
 
-Let's make a new file `$ touch application.js` and place the following contents. In `application.js`:
+As we saw during `npm init`, the default file for a node app is "index.js".  We can certainly change this, but we'll use the default for now.
+
+Let's make a new file `$ touch index.js` and place the following contents. In `index.js`:
 
 ```javascript
-var express = require("express")
-var app = express()
+var express = require("express");
+var app = express();
 
 app.listen(4000, function(){
-  console.log("app listening on port 4000")
-})
+  console.log("app listening on port 4000");
+});
 ```
 
 We've required the express module. We then create another variable that invokes the module. The app variable is where we can set up which port to listen to and the different requests the server should listen for.
 
-If we run the application(`$ node application.js`) we can see in the terminal `app listening on port 4000` You'll notice that it doesn't allow us to exit this application until we hit `cntrl + c`. This means our server is running. Let's try going to the local host of that port number. In the browser enter `http://localhost:4000`.
+If we run the application(`$ node index.js`) we can see in the terminal `app listening on port 4000` You'll notice that it doesn't allow us to exit this application until we hit `cntrl + c`. This means our server is running. Let's try going to the local host of that port number. In the browser enter `http://localhost:4000`.
 
 In the browser we'll see something like :
 
@@ -83,19 +86,19 @@ CANNOT GET /
 
 OH NOES, what's going on here?
 
-Basically we've told the server what port to listen on, but we didn't specify what to do if a user goes to the `"/"` route. Let's update `application.js`:
+Basically we've told the server what port to listen on, but we didn't specify what to do if a user goes to the `"/"` route. Let's update `index.js`:
 
 ```javascript
 app.get("/", function(req, res){
-  res.send("hello world")
-})
+  res.send("Hello World");
+});
 ```
 
 ```
 CANNOT GET /
 ```
 
-What gives? we added a route and specified the `"hello world"` string to send as the response. Let's try restarting the server.
+What gives? We added a route and specified the `"hello world"` string to send as the response. Let's try restarting the server.
 
 `Hello World`
 
@@ -114,16 +117,16 @@ $ npm install -g nodemon
 Then we start up our application a bit differently now. In the terminal:
 
 ```bash
-$ nodemon application.js
+$ nodemon index.js
 ```
 
 ## Params in URL in Express (5/50)
-Remember parameters in our ruby frameworks? It's very similar in JS. Let's update `application.js` to include:
+Remember parameters in our ruby frameworks? It's very similar in JS. Let's update `index.js` to include:
 
 ```javascript
 app.get("/:name", function(req, res){
-  res.send("hello " + req.params.name)
-})
+  res.send("hello " + req.params.name);
+});
 ```
 
 ## Break(10/60)
@@ -142,10 +145,10 @@ Remember how we utilized erb in Sinatra and rails?  We need to be able to do the
 $ npm install --save hbs
 ```
 
-Then we need to set the view engine to be handle bars inside of the `application.js`:
+Then we need to set the view engine to be handle bars inside of the `index.js`:
 
 ```javascript
-app.set("view engine", "hbs")
+app.set("view engine", "hbs");
 ```
 
 Let's go ahead and create a directory and some views. In the root directory of the express 99 bottles application. In the terminal:
@@ -156,9 +159,9 @@ $ touch views/index.hbs
 $ touch views/layout.hbs
 ```
 
-Let's change up our existing `application.js` to utilize a template rather than sending in a string directly.
+Let's change up our existing `index.js` to utilize a template rather than sending in a string directly.
 
-In `application.js`:
+In `index.js`:
 
 ```javascript
 // instead of
@@ -175,9 +178,9 @@ In `application.js`:
 
 // we want this
 app.get("/:numberOfBottles?", function( req, res ){
-  var bottles = req.params.numberOfBottles || 99
-  var next = bottles - 1
-  res.render("index", {bottles: bottles, next: next})
+  var bottles = req.params.numberOfBottles || 99;
+  var next = bottles - 1;
+  res.render("index", {bottles: bottles, next: next});
 })
 ```
 
@@ -197,7 +200,7 @@ The only problem is our view is empty! Let's go ahead and change that now. In `v
 </html>
 ```
 
-This is also a great time to note how we serve static assets. Notice we linked a stylesheet in our layout file. We are able to do this, because in our `application.js` we use `app.use(express.static(__dirname + '/public'))` in our code base. This allows us to utilize files in that folder in the layout.
+This is also a great time to note how we serve static assets. Notice we linked a stylesheet in our layout file. We are able to do this, because in our `index.js` we use `app.use(express.static(__dirname + '/public'))` in our code base. This allows us to utilize files in that folder in the layout.
 
 Notice the `{{{body}}}` syntax. This is because Handlebars by default escapes HTML and you need the additional set of brackets to indicate that you want to render the tags in the body as HTML.
 
@@ -222,7 +225,7 @@ For example:
 // aCustomModule.js
 module.exports = {
   sayHello: function(){
-    console.log("hello world")
+    console.log("hello world");
   }
 }
 ```
@@ -230,16 +233,16 @@ module.exports = {
 ```js
 // in app.js
 // instantiate global variable to grant access to module we've created
-var customModule = require("./aCustomModule.js")
+var customModule = require("./aCustomModule.js");
 
 // use variable to call the .sayHello(function) defined in aCustomModule.js
 customModule.sayHello()
 ```
 
-Well, we can actually separate our concerns using `module.exports` If we change our get request in `application.js`:
+Well, we can actually separate our concerns using `module.exports` If we change our get request in `index.js`:
 
 ```js
-app.get("/:numBottles?", routes.index )
+app.get("/:numBottles?", routes.index );
 ```
 
 to this instead. We could create a routes module that defines our index route. Lets create a `routes.js` file `$ touch routes.js` and place the following contents:
@@ -247,19 +250,19 @@ to this instead. We could create a routes module that defines our index route. L
 ```js
 module.exports = {
   index: function( req, res ){
-    var numBottles = req.params.numBottles || 99
-    var next = numBottles - 1
+    var numBottles = req.params.numBottles || 99;
+    var next = numBottles - 1;
     res.render('index',{
       numBottles: parseInt(numBottles),
       next: next
-    })
+    });
   }
 }
 ```
 
 > You can see that almost nothing has changed, really we just namespaced the functionality into a different file. What advantages does that bring to us with regard to separation of concerns in MVC? (st-wg)
 
-You can start to see the neccessity of `module.export` when we start to add models to our application. If we had the 7 RESTful routes that rails have for each model, you can start to see how keeping everything in the `application.js` can begin to become unwieldy.
+You can start to see the neccessity of `module.export` when we start to add models to our application. If we had the 7 RESTful routes that rails have for each model, you can start to see how keeping everything in the `index.js` can begin to become unwieldy.
 
 ## Break (10/130)
 
