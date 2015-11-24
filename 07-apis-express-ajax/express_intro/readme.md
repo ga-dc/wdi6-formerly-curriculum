@@ -229,10 +229,10 @@ In `index.js`:
 ```javascript
 // instead of
 // app.get("/:numberOfBottles?", function( req, res ){
-//   var bottles = req.params.numberOfBottles || 99
-//   var next = bottles - 1
-//   if (bottles > 1){
-//     res.send(bottles + " bottles of beer on the wall <a href='/" + next + "'>Take one down pass it around")
+//   var numberOfBottles = req.params.numberOfBottles || 99
+//   var next = numberOfBottles - 1
+//   if (numberOfBottles > 1){
+//     res.send(numberOfBottles + " bottles of beer on the wall <a href='/" + next + "'>Take one down pass it around")
 //   }
 //   else{
 //     res.send("1 bottle of beer on the wall <a href='/'>Start Over</a>")
@@ -241,9 +241,9 @@ In `index.js`:
 
 // we want this
 app.get("/:numberOfBottles?", function( req, res ){
-  var bottles = req.params.numberOfBottles || 99;
-  var next = bottles - 1;
-  res.render("index", {bottles: bottles, next: next});
+  var numberOfBottles = req.params.numberOfBottles || 99;
+  var next = numberOfBottles - 1;
+  res.render("index", {bottles: numberOfBottles, next: next});
 })
 ```
 
@@ -321,24 +321,22 @@ Well, we can actually separate our concerns using `module.exports` If we change
 our get request in `index.js`:
 
 ```js
-app.get("/:numBottles?", routes.index );
+app.get("/:numberOfBottles?", bottles.index );
 ```
 
-to this instead. We could create a routes module that defines our index route.
-Lets create a `routes.js` file `$ touch routes.js` and place the following
-contents:
+to this instead. We could create a routes module that defines our index route. Let's create a `controllers/bottles.js` file with the following contents:
 
 ```js
 module.exports = {
   index: function( req, res ){
-    var numBottles = req.params.numBottles || 99;
-    var next = numBottles - 1;
+    var numberOfBottles = parseInt(req.params.numberOfBottles) || 99;
+    var next = numberOfBottles - 1;
     res.render('index',{
-      numBottles: parseInt(numBottles),
+      numberOfBottles: numberOfBottles,
       next: next
     });
   }
-}
+};
 ```
 
 > You can see that almost nothing has changed, really we just moved the
@@ -352,23 +350,31 @@ begin to become unwieldy.
 
 ## Break (10/130)
 
-## Bodyparser & Post requests (20/150)
+## HTML Forms: Bodyparser & Post requests (20/150)
 
-We're going to leverage code from the [hello-express
-app](https://github.com/ga-dc/hello-express) we built earlier. I've added some
-hbs views so go ahead and clone this code if you want to follow along.
+Let's incorporate the player a bit more.  Let's create a welcome page that asks for their name.
 
-The first thing that I want to do is add a form to our `hello.hbs`:
+We need a route and a view (with a form)
 
-```html
-Hello {{name}}
 
-<form action="/" method="post">
-  <input type="text" name="name">
-</form>
+```js
+app.get("/", function(req, res){
+  res.render("welcome");
+});
 ```
 
-Let's go ahead and try entering a name and hitting enter:
+```html
+<!-- views/welcome.hbs -->
+<h1>Welcome to 99 Bottles</h1>
+<form action="/" method="post">
+  <label for="player_name">Please enter your name</label>
+  <input id="player_name" type="text" name="player_name">
+  <input type="submit">
+</form>
+
+```
+
+Submit a name:
 
 ```get CANNOT POST/```
 
@@ -395,14 +401,9 @@ app.post("/", function(req, res){
 hello undefined... oh man.. and just to be sure let's `console.log(req.params)`.
 It's an empty object!
 
-So we're not getting anything from params, turns out we need to install
-middleware in order to get form data and JSON data in a POST request for express
-applications. Rails and Sinatra already include the middleware to handle
-this(RACK). By default express does not, so we need to install it manually.
+Our html form information is not in `req.params`. Express is not handling information posted from an html form.  We need to install middleware in order to get form data and JSON data in a POST request for express applications. Rails and Sinatra already include the middleware to handle this(RACK). By default express does not, so we need to install it manually.
 
-> middleware is code that runs in between receiving the request and responding.
-Body-parser used to be included to express, but they took it out. Why might they
-do that?
+> middleware is code that runs in between receiving the request and responding. Body-parser used to be included to express, but they took it out. Why might they do that?
 
 In the terminal:
 
@@ -414,10 +415,10 @@ In `app.js`:
 
 ```js
 // configure app to use body parser
-var bodyParser = require("body-parser")
+var bodyParser = require("body-parser");
 
-app.use(bodyParser.json()) //handles json post requests
-app.use(bodyParser.urlencoded({ extended: true })) // handles form submissions
+app.use(bodyParser.json()); //handles json post requests
+app.use(bodyParser.urlencoded({ extended: true })); // handles form submissions
 ```
 
 Another thing to note is that, in express, `params` is always for parameters in
@@ -427,9 +428,32 @@ So we change the final post request in app.js to:
 
 ```js
 app.post("/", function(req, res){
-  res.render("hello", {name: req.body.name})
+  res.send("hello " + req.body.name)
 })
 ```
+
+And finally, use it in our app:
+
+Update index.js:
+
+```js
+app.post("/", function(req, res){
+  res.render("index", {
+    player_name: req.body.player_name,
+    bottles: 99,
+    next: 98
+  });
+});
+```
+
+And to our view:
+```html
+{{#if player_name}}
+  Hey {{player_name}}, there are
+{{/if}}
+```
+
+:tada:
 
 ## You do - Ultimate Compliment (if time allows)
 
