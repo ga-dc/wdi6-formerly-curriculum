@@ -16,7 +16,7 @@ API stands for "Application Program Interface", and technically applies to all o
 
 APIs publish data for public use. As third-party software developers, we can access an organization's API and use their data within our own applications.
 
-**Have a look at some stock quotes...**
+**Check out these stock quotes...**
 
 * [http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL](http://dev.markitondemand.com/Api/Quote/json?symbol=AAPL)
 * [http://dev.markitondemand.com/Api/Quote/json?symbol=GOOGL](http://dev.markitondemand.com/Api/Quote/json?symbol=GOOGL)
@@ -377,18 +377,23 @@ Your turn. Make sure we can create and update Songs via requests that expect JSO
 
 ## 3rd Party APIs (15 minutes / 2:35)
 
-Other companies have created something similar. Some follow the REST guidelines, some don't (remember those [Starter APIs](https://github.com/amaseda/curriculum/tree/master/07-uxdi-collaboration/apis#good-starter-apis)?). When we want to retrieve information from them we need to make an http request from within our application. There are a few libraries that help with this. We'll review [HTTParty](https://github.com/jnunemaker/httparty).
+Other companies have created something similar. Some follow the REST guidelines, some don't (remember those [Starter APIs](https://github.com/ga-dc/curriculum/tree/master/07-apis-express-ajax/apis#good-starter-apis)?). When we want to retrieve information from them we need to make an http request from within our application. There are a few libraries that help with this. We'll review [HTTParty](https://github.com/jnunemaker/httparty).
 
 ### Demo: HTTParty
 
 After adding it to our Gemfile. We can start using it right away,
 
+We are going to be using [weather underground's api](http://www.wunderground.com/weather/api/) to utilize `httparty` to make requests and to parse JSON responses.
+
+>Make sure to register for an account, and to generate a free api key.
+
 ``` ruby
-response = HTTParty.get('https://api.stackexchange.com/2.2/questions?site=stackoverflow')
+response = HTTParty.get('http://api.wunderground.com/api/<your key here>/conditions/q/CA/San_Francisco.json')
 ```
 
 Checkout the response:
-```
+
+``` ruby
 response.code
 response.message
 response.body
@@ -396,33 +401,49 @@ response.headers
 ```
 
 Or better yet, you can make a PORO (Plain Old Ruby Object) class and use that.
-```
-class StackExchange
-  include HTTParty
-  base_uri 'api.stackexchange.com'
+``` ruby
+class Forecast
+  # creates getter methods for temp_f, weather, city and state.
+  attr_reader :temp_f, :weather, :city, :state
 
-  def initialize(service, page)
-    @options = { query: {site: service, page: page} }
-  end
+  # initialize method takes 2 arguments city and state
+  def initialize(city, state)
 
-  def questions
-    self.class.get("/2.2/questions", @options)
-  end
+    # create the url using the city and state arguments. Also utilizing ENV
+    # variable provided by figaro. Key value should be in 'config/application.yml'
 
-  def users
-    self.class.get("/2.2/users", @options)
+    url = "http://api.wunderground.com/api/#{ENV["wunderground_api_key"]}/conditions/q/#{state.gsub(/\s/, "_")}/#{city.gsub(/\s/, "_")}.json"
+
+    # utilizing httparty gem to make get request to the url prescribed in the
+    # line above and storing the response into the variable below.
+    response = HTTParty.get(url)
+
+    # instantiating temp_f and weather by parsing through the JSON response
+    @temp_f = response["current_observation"]["temp_f"]
+    @weather = response["current_observation"]["weather"]
+
+    # storing arguments as instance varibles in the model
+    @city = city
+    @state = state
   end
 end
 ```
 
-Using it from `rails console`:
+Currently our model won’t work because we haven’t defined ENV["wunderground_api_key"]. We need to make sure we update our `config/application.yml` file with this information:
+
+`wunderground_api_key: your_key_info_goes_here`
+
+Assuming you have a working key, we can now hop into the `rails console` and test our model out. We can see something like this if we instantiate a new forecast and pass in washington and dc as arguments:
+
 ``` ruby
-stack_exchange = StackExchange.new("stackoverflow", 1)
+washington = Forecast.new("washington", "dc")
 ```
+
 ``` ruby
-stack_exchange.questions
-stack_exchange.users
+washington.temp_f
+washington.weather
 ```
+
 > If you'd like to learn more about APIs and POROs, Andy has a [great blog post](http://andrewsunglaekim.github.io/Server-side-api-calls-wrapped-in-ruby-classes/) on the subject.
 
 You'll be doing this same sort of thing in much greater detail from the client-side during this afternoon's [AJAX lesson](https://github.com/ga-dc/curriculum/tree/master/07-uxdi-collaboration/ajax)!  
