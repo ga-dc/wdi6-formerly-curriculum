@@ -455,7 +455,16 @@ And to our view:
 
 :tada:
 
-## You do - Ultimate Compliment (if time allows)
+## You do - Build Something Fun!
+
+Just build a simple express app, that does something fun or interesting. Some
+ideas:
+
+* [Ultimate Compliment](https://github.com/ga-dc/compliment-express)
+  * You might want to look at the [Sinatra Version Solution](https://github.com/ga-dc/emergency_compliment/tree/solution)
+* A simple calculator, e.g. GET '/1/plus/4', GET '/4/minus/2'
+* A simple version of tunr (LOL!)
+
 
 ## Sample Quiz Questions
 - What is `npm`?
