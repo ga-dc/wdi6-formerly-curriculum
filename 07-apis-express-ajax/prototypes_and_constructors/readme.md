@@ -185,7 +185,7 @@ we write constructor functions this way:
 When we run a constructor function with `new`, Javascript will automatically:
 
 1. Create an new, empty object for us.
-2. Call the constructor function on that object (this -> the new object)
+2. Call the constructor function on that object (`this` -> the new object)
 3. Return the object
 
 ### Exercise: Car Constructor Function (10 minutes - 50/150)
