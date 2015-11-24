@@ -237,7 +237,7 @@ var rufus =  new Dog("Rufus", "Poodle");
 
 spot.name // "Spot"
 spot.breed // "Beagle"
-adam.bark() // "Hello! I'm Adam"
+spot.bark() // "Hello! I'm Spot"
 
 rufus.name // "Rufus"
 rufus.bark() // "Hello! I'm Rufus"
