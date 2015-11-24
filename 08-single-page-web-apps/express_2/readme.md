@@ -1,11 +1,12 @@
 # Express Routing
 
-- Define the parts of a route
 - Extract routes to separate files
-- Explain the `all` routing method
 - Support multiple functions for a single route
 - Describe the role of response methods
-
+- Use module.exports and MVC to organize Express app
+- Explain what `bodyParser` is used for
+- Create an application that responds to JSON requests
+- Explain what JSONP is and why we (sometimes) need it.
 
 ## Intro
 
@@ -33,43 +34,6 @@ https://github.com/ga-dc/song_routes_express
 
 Note: earlier reading did not discuss :id placeholders
 
-
-## Other Request methods (15 min)
-
-### app.head()
-
-The [docs](http://expressjs.com/guide/routing.html#route-methods) list 26 request methods.  So far, we've used 5 (GET, POST, PUT, PATCH, DELETE).
-
-The only other one that I've used is `HEAD`.  Sometimes, we just want a little information.  According to [RFC2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html)
-> This method (HEAD) can be used for obtaining metainformation about the entity implied by the request without transferring the entity-body itself.
-
-Meta-information about the entity.
-
-> Q. Why might we want that?
----
-
-A. The RFC goes on to say, "This method is often used for testing hypertext links for validity, accessibility, and recent modification."
-
-Speed, small payload, find out if something has changed.
-
-[Thx StackOverflow](http://stackoverflow.com/a/1461973/232247)
-
-"The reason why HEAD is preferred to GET is due to the absence of the message body in the response making it using in scenarios where you want to determine if the content has changed at all - a change in the last modified time or content length usually signifies this.
-
-Also, a HEAD request will provide some information about the server setup (whether it is IIS/Apache etc.), unless the server was masked; of course, this is available in all responses, but HEAD is preferred especially when you don't know the size of the response. HEAD is also the easiest way to determine if a site is up or down; again the irrelevance of the message body makes HEAD the ideal candidate."
-
-### app.all()
-
-If you need to process something no matter what the request method is (BET, POST, PUT, etc), then `all` is a good choice.
-
-> Q. When would we use this?
----
-
-Cross cutting concerns.  Like authentication, authorization, and loading the parent of a nested route.
-
-``` js
-app.all('*', requireAuthentication, loadUser);
-```
 
 ## Route Paths (10 min)
 
@@ -239,41 +203,11 @@ Your index.js should shorten considerably.  Hopefully, letting you see more of t
 - Name a request method other than GET, POST, PATCH, PUT, or DELETE.
 - In node, how do we reference code in other files?
 
-
 ## Resources
 - http://expressjs.com/guide/routing.html
 - Really like the organization I see in [this tutorial](https://thewayofcode.wordpress.com/2013/04/21/how-to-build-and-test-rest-api-with-nodejs-express-mocha/)
 - Looking for more?  We recommend NodeSchool's [ExpressWorks](https://github.com/azat-co/expressworks)
 
-
-### [Optional] Regular Expression, light (20 min)
-
-We are throwing these regular expressions at you again.  It's high time we shared a little about them.  Regular expressions are a specialized syntax for matching portions of text. In js and ruby, a RegEx is wrapped in forward slashes (`/expression/`).
-
-I am going to show you a few example in [Rubular](http://rubular.com), a Ruby regular expression editor.
-
-Enter "a" as the regular expression and add some fruits to "Your test string".
-
-> Q. What is it doing?
----
-
-Correct.  It's indicating everywhere the letter "a" appears.  In most applications, we would use this to indicate if the string had an "a" contained somewhere in it.  
-
-F0r instance, if we wanted to match routes that had the word "song" in then, we would use `/song/`.
-
-Take a minute to review the the Regex Quick Reference at the bottom of Rubular.  Try the other example from the docs: `/.*fly$/`
-
-> Q. What are the `.`, `*`, and `$` used for?
----
-
-From the docs, that regex "will match butterfly, dragonfly; but not butterflyman, dragonfly man, and so on".  Let me break it down... this RegEx matches all strings that:
-- start with anything `.*` and
-- end in `fly$`.  
-
-The dollar sign indicates "End of line".  To be honest, I think that is the same as `/fly$/`.  Let's try it.
-
-
-This is by no means a thorough overview of RegExes, but it should be enough to get you started.  One of the most powerful features of RegEx's is "capture groups". You indicate portions of the string should be captured for later use - but that, is for another lesson.
 
 ### Express Route Tester
 
