@@ -268,7 +268,7 @@ This is some of the stuff that it's given us:
 
 > Take a look at the devise source code! and you can see all of the different controllers
 
-It's a lot but of stuff to look at, but let's break it down. Going from top to
+It's a lot of stuff to look at, but let's break it down. Going from top to
 bottom excluding some of the files we won't be using for this class.
 
 The first thing that was created was a migration for this model. In
