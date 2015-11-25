@@ -46,7 +46,7 @@ Turns out, we can actually access this JSON object using Javascript!
 ## `$.ajax` (25/50)
 The jQuery library gives us access to this awesome thing called "Asynchronous Javascript and XML" (AJAX). With the help of AJAX we can do server side requests asynchronously on the client without having to send an actual browser request that reloads the page.
 
-With AJAX we can make the usual HTTP requests: 'GET' 'POST' 'PUT' 'PATCH' 'DELETE'. Let's give that s hot.  
+With AJAX we can make the usual HTTP requests: 'GET' 'POST' 'PUT' 'PATCH' 'DELETE'. Let's give that a shot.  
 
 The first thing we'll do is create the files we need for this application...  
 
