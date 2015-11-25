@@ -53,7 +53,7 @@ Ethos:
 
 #### Tools We'll Be Using (5min)
 
-We'll be running Ruby the same way we used Node to run Javascript during out first class.
+We'll be running Ruby the same way we used Node to run Javascript during our first class.
 
 Ruby
 * Check to make sure you have Ruby installed: `$ ruby -v`
