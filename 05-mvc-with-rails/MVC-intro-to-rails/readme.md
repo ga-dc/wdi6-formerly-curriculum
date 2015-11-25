@@ -30,9 +30,9 @@ Life Cycle of the request/response in Rails:
 
 2. The request hits the router of the application.
 
-3. The application than either doesn't recognize the route (error) or it does recognize it(route) and sends it to a controller.
+3. The application then either doesn't recognize the route (error) or it does recognize it(route) and sends it to a controller.
 
-4. Once the request hits the controller, its then going to query the database through Active Record(the model) for the information specified in the controller.
+4. Once the request hits the controller, it's then going to query the database through Active Record(the model) for the information specified in the controller.
 
 5. Once the controller has the information from the model that it needs it sends it to the view
 
@@ -302,4 +302,3 @@ Run rails server and test out your site. It's not all too much different from Si
 
 ## Closing(5/150)
 Review LO's
-
