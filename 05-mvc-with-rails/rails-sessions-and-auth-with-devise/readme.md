@@ -225,7 +225,7 @@ way) for User Auth. The devise gem uses sessions in a big way.
 
 At a high level, devise uses sessions to store user information from one request
 to the next. It sets that session by verifying with passwords(password_digest)
-on a user model. Once you set that session than you can refer to that user
+on a user model. Once you set that session then you can refer to that user
 object until either the session is cleared(user logs out or session clears
 manually through browser) or the session is set to a new value (not common--
 if ever?)
@@ -268,7 +268,7 @@ This is some of the stuff that it's given us:
 
 > Take a look at the devise source code! and you can see all of the different controllers
 
-Its a lot but of stuff to look at, but let's break it down. Going from top to
+Its a lot of stuff to look at, but let's break it down. Going from top to
 bottom excluding some of the files we won't be using for this class.
 
 The first thing that was created was a migration for this model. In
