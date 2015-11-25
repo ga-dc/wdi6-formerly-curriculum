@@ -1,10 +1,10 @@
-# Self Referential Associations / Friending on Rails!
+# Self-Referential Associations / Friending on Rails!
 
 ## Learning Objectives
-- explain how self referential associations are used to create relationships in a single model
-- utilize `:class_name` in order to alias a model
-- use a join table to associate instances of a single model
-- add validations on the join model
+- Explain how self-referential associations are used to create relationships within a single model
+- Use `:class_name` to alias a model
+- Create a join table to that associates instances of a single model
+- Add validations to a join model
 
 
 ## Opening Framing
