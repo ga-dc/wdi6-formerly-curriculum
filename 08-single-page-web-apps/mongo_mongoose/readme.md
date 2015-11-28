@@ -12,8 +12,6 @@
 - Use an ORM to persist data (Mongoose)
 - Connect ORM to an Express app, to persist data
 
-
-
 ## Opening
 
 > MongoDB is an open-source **document database** that provides:
@@ -106,7 +104,7 @@ brew install mongo
 
 You should see:
 ```
-mongodb: stable 3.0.3 (bottled), devel 3.1.2
+mongodb: stable 3.0.7 (bottled), devel 3.1.2
 ```
 
 ### Start mongo:
