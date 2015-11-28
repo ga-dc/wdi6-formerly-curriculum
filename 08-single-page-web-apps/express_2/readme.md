@@ -1,7 +1,6 @@
 # Express Routing
 
 - Extract routes to separate files
-- Support multiple functions for a single route
 - Describe the role of response methods
 - Use module.exports and MVC to organize Express app
 - Explain what `bodyParser` is used for
@@ -28,37 +27,101 @@ app.METHOD(path, [callback...], callback)
 - `path` is a path on the server, and
 - `callback` is the function executed when the route is matched.
 
-### Exercise: Pair and Share: Write basic CRUD routes for a Song. (15 min)
+### Exercise: Pair and Share: Write CRUD routes for a Compliment. (15 min)
 
-https://github.com/ga-dc/song_routes_express
+## We do: Create module and index route
 
-Note: earlier reading did not discuss :id placeholders
+https://github.com/ga-dc/emergency_compliment
 
+```js
+// controllers/complimentsController.js
 
-## Route Paths (10 min)
-
-Research: Back to the docs for [Routing Paths](http://expressjs.com/guide/routing.html#route-paths)(5 min).
-
-> Q. What are the 3 ways to indicate a route?
----
-
-- Straight, exact string match.
-- String pattern
-- Regular Expression
-
-What are you likely to use?  You've already seen them.  The exact match of a string and the specific string pattern (colon) that captures a value.  If we have time, I've included an optional, light intro to Regular Expressions.
-
-- String
-``` js
-app.get("/songs" ...
+var complimentsController = {
+  index: function(req,res){
+    res.render("compliments/index.hbs", {compliments:[]});
+  }
+}
 ```
 
-- String pattern
-``` js
-app.get('/songs/:id' ...
+```js
+// index.js
+
+var app = require("express")();
+var complimentsController = require("./controllers/complimentsController");
+
+app.get("/compliments", complimentsController.index);
+
+app.listen(3000, function(){
+  console.log("app listening at http://localhost:3000/");
+})
 ```
 
-That covers the request end of routing.  On to the response.
+## You do: Create show, edit, and update routes (15 min)
+
+## I do: Create model
+
+```js
+// index.js
+var compliment = require('./models/compliment')
+```
+
+```js
+// models/compliment
+
+var compliments = [
+  "Your instructors love you",
+  "High five = ^5",
+  "Is it Ruby Tuesday yet?",
+  "It's almost beer o'clock",
+  "The Force is strong with you"
+]
+
+module.exports = {
+  all: function(){
+    return compliments;
+  }
+}
+```
+
+```js
+// controllers/complimentsController.js
+// compliment model is required in ../index.js
+
+module.exports = {
+  index: function(req, res){
+    res.render('index', {compliments: compliment.all()}) 
+  }
+}
+
+```
+
+```html
+<!-- views/compliments/index.hbs -->
+<ul>
+  {{#each compliments}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
+```
+
+> Bonus: show a random color when the page loads
+
+## I Do: Forms, bodyParser, and creating compliments
+
+### res.redirect
+
+We used this in the first exercise.
+
+``` js
+// root route
+app.get('/', function (req, res){
+  res.redirect('/songs');
+});
+```
+
+## You do: edit compliments
+
+## Break
 
 ## Response Methods (20 min)
 
@@ -77,124 +140,50 @@ That `res.json` looks handy.  THe link takes us to http://expressjs.com/4x/api.h
 
 "This method is identical to res.send() with an object or array as the parameter. However, you can use it to convert other values to JSON, such as null, and undefined. (although these are technically not valid JSON)."
 
-Did we miss one or two?
+## Let's build a compliment api
 
-### res.redirect
+>People would actually use this. Ask Robin about his million click moment.
 
-We used this in the first exercise.
+## I do: api
 
-``` js
-// root route
-app.get('/', function (req, res){
-  res.redirect('/songs');
-});
+http://stackoverflow.com/a/12984730/850825
+
+```js
+// index.js
+
+app.use(function(req,res,next){
+  var format = req.param('format');
+  if(format){
+    req.header.accept = 'application/' + format;
+  }
+  next();
+})
+
+app.get("/compliments/?:format?", complimentsController.index)
 ```
 
-### res.render
+```js
+// controllers/complimentsController.js
 
-Andy covered this.  It's used to render a view template with your chosen templating language.
+module.exports = {
+  all: function(req, res){
+    res.format({
+      html: function(){
+        res.render("views/compliments/index.hbs",{compliments: compliment.all()});
+      },
+      json: function(){
+	res.json(compliment.all());
+      }
+    }) 
+  }
+}
+```
+
+### You do: Create, update delete routes
 
 ### res.jsonp
 
-You will hear more about this in the Single Page Application lesson.  ???
-
-## Exercise: The Bowling Game (45 min)
-
-https://github.com/ga-dc/bowling_game_express
-
-- 4 min:  Read through the docs.  If you aren't familiar with how to score a bowling game, just skim the rules for now.  You don't need the scoring details... yet.
-
-> Q. What do we know about this application?
----
-
-Discuss:
-- a bowling game
-  - bowl, knock down pins, add to score
-- routes
-  - bowl (POST): What does this return?  What are side-effects?
-  - score (GET): What does this return?  What are side-effects?
-  - hint: At some point, you are going to want to reset your game, reset/start route
-- basic scoring - open frames only
-- dependencies
-- tests are totally optional (mocha -w)
-  - Require
-    - start(GET)
-    - bowl/:pins (POST)
-    - score (GET), returns `{score: value}`
-
-
-It's been about 10 minutes. We have reviewed the project.  We have a handle on dependencies and routes.  You've run "mocha -w" and you've seen that your app doesn't fare too well. :)  
-
-> Q. What are our first steps?
----
-
-- avoid strike/spare
-- score (GET)
-  - route work?
-  - { score: 0 }
-- bowl/:pins (POST)
-  - avoid strike/spare
-  - change score?
-- reset sore
-
-> Q: Examples?
----
-
-On whiteboard:
-- Start: {score: 0}
-- Roll/0: {score: 0}
-- Roll/1: {score: 1}
-- Roll/5: {score: 5}
-- Multiple frames: easy scoring
-- Whole game: all gutter balls
-  - It's right about here you are wishing you had automated tests.
-- Whole game: all 1 pin
-
-Go to it.  We'll check in in 10 minutes.
-
-- (10/25 min) CFU: Fist to 5, Who wants to me to share returning a score?  bowl/:pins updates score?
-
-- (20/45 min): Expect "gutter game", "single pin game", and "partial game, no closed frames" work.
-
-## exports (20 min)
-
-In order to simplify your index.js, you will find it helpful to extract your routes to separate files.
-
-### I Do: Extract example Song's routes to a separate file
-
-https://github.com/ga-dc/song_routes_express
-
-Steps:
-- Create song_routes.js
-- extract song related routes to song_routes.js
-  - make available via `exports`;
-- `require` extracted routes
-
-There are many ways to handle the exports. I really like the organization I'm seeing in [this tutorial](https://thewayofcode.wordpress.com/2013/04/21/how-to-build-and-test-rest-api-with-nodejs-express-mocha/).  So, I wrapped my routes in a `setup` function, make that available via `exports`, and call that from "index.js".
-
-song_routes.js:
-```
-function setup(app) {
-  // songs#index
-  app.get(...
-}
-
-exports.setup = setup;
-```
-
-index.js:
-```
-...
-var song_routes = require('./song_routes');
-song_routes.setup(app);
-```
-
-This makes "index.js" smaller and easier for me to "parse".  To be honest, I prefer to put my route files in a "controllers/" dir.  But, since there is only one here, I fought that urge.  Even now, I kind of regret it.  For the full solution, see branch "solution_extract_routes".
-
-## Exercise: Extract your Bowling Game routes to a separate file (15 min)
-
-Your index.js should shorten considerably.  Hopefully, letting you see more of the big picture.
-
+Link to a file:// index.html and show AJAX cross-domain failure.
 
 ## Conclusion
 
