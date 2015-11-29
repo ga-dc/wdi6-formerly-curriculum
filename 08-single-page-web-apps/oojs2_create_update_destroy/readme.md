@@ -82,25 +82,25 @@ Before we begin, make sure your repo is set up:
 
 
 Our first feature, editing, will be the most intense, so don't worry, it gets
-better after this!
+better after this!  
 
-Overall, we want our feature to work like this:
+Overall, we want our feature to work like this:  
 
-1. Click the edit button
-2. The view changes such that the various bits of text become editable fields
+1. Click the edit button.
+2. The view changes such that the various bits of text become editable fields.
 3. We edit the text in the fields and click submit.
-4. The app updates the database
+4. The app updates the database.
 5. The app re-renders the artist to look like before, but with updated
-   information
+   information.
 
-Let's take it step by step!
+Let's take it step by step!  
 
 ### Adding the Edit Button
 
 The edit button needs to be in our existing `artistTemplate`, since it
-needs to be visible on each artist's "show" view.
+needs to be visible on each artist's "show" view.  
 
-Let's add the button to the template:
+Let's add the button to the template:  
 
 ```js
 // html.append("<button class='showSongs'>Show Songs</button>");
@@ -109,7 +109,7 @@ html.append("<button class='editArtist'>Edit Artist</button>");
 ```
 
 Now we need to update our `render` method to add the appropriate event listener
-on the button:
+on the button:  
 
 ```js
 var editButton = self.$el.find(".editArtist");
@@ -119,22 +119,19 @@ editButton.on("click", function() {
 });
 ```
 
-Note that we're saying "when I click on the edit button", call the
-`renderEditForm` method, so we should probably write that next!
+Note that we're saying "when I click on the edit button", call the `renderEditForm` method, so we should probably write that next!  
 
 ### Rendering the Edit Form
 
 Just like our rendering for the "show view", we'll need a method that:
 
-1. Uses a template to build the HTML
-2. Updates the `$el` to contain the new HTML
-3. Adds any event listeners as needed
+1. Uses a template to build the HTML.  
+2. Updates the `$el` to contain the new HTML.  
+3. Adds any event listeners as needed.  
 
 #### Making the Edit Form Template
 
-Our template for the edit form is pretty similar to the one we wrote for "show".
-The main difference is that here we're using `<input>` tags for `name` and
-`photoUrl`, that are pre-populated with the artist's current values.
+Our template for the edit form is pretty similar to the one we wrote for "show". The main difference is that here we're using `<input>` tags for `name` and `photoUrl`, that are pre-populated with the artist's current values.  
 
 ```js
 artistEditTemplate: function(artist) {
@@ -150,10 +147,10 @@ artistEditTemplate: function(artist) {
 
 #### Updating The El
 
-Now that we have the template, let's write our `renderEditForm` method:
+Now that we have the template, let's write our `renderEditForm` method:  
 
 Right now, we've tackled using the template to generate HTML, and using that
-HTML to update our view's `$el`.
+HTML to update our view's `$el`.  
 
 ```js
 renderEditForm: function() {
@@ -162,12 +159,12 @@ renderEditForm: function() {
 },
 ```
 
-But notice our submit button doesn't do anything!
+But notice our submit button doesn't do anything!  
 
 #### Adding the Button Event Listener
 
 Let's add an event listener. When the user clicks the **Update Artist** button,
-we want to run a function that updates the artist:
+we want to run a function that updates the artist.  
 
 ```js
 renderEditForm: function() {
@@ -180,57 +177,59 @@ renderEditForm: function() {
 },
 ```
 
-Note the use of `$el.find(some_selector)` to ensure we only add an event
-listener the the button that this view is responsible for (and not any other
+> NOTE: The use of `$el.find(some_selector)` to ensure we only add an event
+listener to the button that this view is responsible for (and not any other
 views, like for a different artist).
 
-At this point, we've added the funtionality to show the edit form... next we
-need to actually take the data from the form and update the artist accordingly.
+At this point, we've added the functionality to show the edit form. Next, we
+need to actually take the data from the form and update the artist accordingly.  
 
 ## Updating Artist on Submission
 
-Once the user has submitted the form, we need to:
+Once the user has submitted the form, we need to:  
 
-1. Gather the data from the form.
-2. Ask the front-end `Artist` model to update using the gathered data
+1. Gather the data from the form.  
+2. Ask the front-end `Artist` model to update using the gathered data.  
 3. Have the `Artist` model make an AJAX `patch` (similar to a `put`) request to
-   our back-end
-4. Update the view to show the artist with the updated information.
+   our back-end.  
+4. Update the view to show the artist with the updated information.  
 
 ### The `updateArtist` method
 
 The `updateArtist` method in our view is what will orchestrate this
-functionality.
+functionality.  
 
 ### Gathering Data from the Form
 
 First, we need to gather the data the user entered, then, we call the `update`
 method on our artist, passing in the new data. (We'll make the `update` method)
-next.
+next.  
 
 ```js
 updateArtist: function() {
   var self = this;
-  var data = {  name:     $('input[name=name]').val(),
-                photoUrl: $('input[name=photoUrl]').val() };
+  var data = {  
+    name: $('input[name=name]').val(),
+    photoUrl: $('input[name=photoUrl]').val()
+  };
   self.artist.update(data);
-},
+}
 ```
 
-### Adding `update` and `reload` methods to our Artist model
+### Adding `update` and `reload` Methods to our Artist Model
 
-Since our view has asked the artist to update, we need to write that method!
+Since our view has asked the artist to update, we need to write that method!  
 
 This method takes the data passed in, and uses it to make an AJAX **patch**
-request to our backend. The backend then responds with the updated artist info.
+request to our backend. The backend then responds with the updated artist info.  
 
 Note that we have to specify in our AJAX call that the method is patch. This
-is the appropriate verb to specify that we may only update some attributes.
+is the appropriate verb to specify that we may only update some attributes.  
 
 We also have to specify that we're sending JSON (the `contentType`), and we have
 to pass in the data to use for the update as JSON. We do that using
 `JSON.stringify()`. The data we're converting to JSON is the data that came from
-the form:
+the form.  
 
 ```js
 update: function(artistData) {
@@ -252,7 +251,7 @@ update: function(artistData) {
 Note that this method only updates the backend! We also need to `reload` our
 copy of the artist that in our front-end app. To do that, we call the
 `reload` method (which we're about to write) after the backend has updated the
-artist successfully.
+artist successfully.  
 
 #### Reloading
 
