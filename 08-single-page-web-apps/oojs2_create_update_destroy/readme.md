@@ -45,26 +45,20 @@ It's worth noting that today, our front end code is served by the backend, but
 really, it could live as a totally separate web app, or even native mobile /
 desktop app! (That's the beauty of having an API, it can be used by any app).
 
-* `script.js` - this is the main file that waits for the page to finish loading,
-  and then starts up our app. In this case, it fetches all artists, and then
-  displays them.
-  * `models` - these classes are responsible for representing our data in a
-  structured way, and for providing an interface to sync that data with the
-  server. This keeps the rest of our code (i.e. views) clean of ajax requests.
-  * `views` - these classes are responsible for:
-    * rendering models into HTML
-    * responding to events (clicking on buttons, etc) appropriately
-
-## Overview of Today's Front-end
+* `script.js` - This is the main file that waits for the page to finish loading, and then starts up our app. In this case, it fetches all artists, and then displays them.  
+  * `models` - These classes are responsible for representing our data in a structured way, and for providing an interface to sync that data with the server. This keeps the rest of our code (i.e. views) clean of ajax requests.  
+  * `views` - These classes are responsible for...  
+    * Rendering models into HTML  
+    * Responding to events (e.g., clicking on buttons) appropriately.  
 
 ### Turn & Talk (10 minutes)
 
-Look at the following two pictures... they show a summary of the methods we're
+Look at the following two pictures. They show a summary of the methods we're
 going to have at the end of today in our views. The highlighted ones are the
-ones we'll be working on in this lesson.
+ones we'll be working on in this lesson.  
 
 Take 5 minutes to talk with your partner about what you think each method is
-supposed to do and how it might work.
+supposed to do and how it might work.  
 
 #### Artist Model Methods
 ![artist model methods](images/artist_model_methods.png)
