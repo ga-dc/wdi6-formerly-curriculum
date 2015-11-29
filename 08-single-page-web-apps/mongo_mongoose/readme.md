@@ -16,14 +16,19 @@
 
 ## Opening
 
-> MongoDB is an open-source **document database** that provides:
+We've learned a considerable amount of information about relational databases. We join on foreign keys in relational databases in order to query our database. Sometimes these joins can get really expensive to query the database. When dealing with less complex associations, non relational databases can be more effective. We've also seen that schema's in SQL(relational DB's) are fairly rigid. Adding columns can be taxing(migrations). Also if we delete a row in a table that is being used as a foreign key in another table, we must delete all the rows associated with that foreign key before we can delete the parent object. Mongo provides a more flexible, scalable solution for less complex domain models.
+
+> This is not to say that mongo is a better solution than postgres or other SQL libraries, but an alternative solution.
+
+
+MongoDB is an open-source **document database** that provides:
 - High Performance
 - High Availability
 - Automatic Scaling
 
 ## Document Database?
 
-### A basic sample:
+### A basic example of a `Person` document:
 
 ``` json
 {
@@ -42,7 +47,7 @@ TPS: What do you see?
 - different data types
 - even arrays
 
-### More complicated sample:
+### More complicated example of a `Restaurant` document:
 
 ``` json
 {
@@ -86,6 +91,7 @@ https://www.mongodb.org
   - similar to JSON objects.
   - stored as BJSON
 - fields may include other documents, arrays, and arrays of documents.
+- analogous to rows in a table
 
 ## Collections
 
@@ -155,48 +161,33 @@ ThinkShare (2min):
 - Try it
 
 ## What jumped out to me
-- `show x``: show database names
+- `show dbs`: show database names
 - `show collections`:  show collections in current database
 - `use <db_name>`: set current database
 - `db.foo.find()`: list objects in collection foo
-
-
-- `it`: result of the last line evaluated; use to further iterate
-  - ??? Not sure, but sounds like a helpful shortcut for future
 
 Also:
 
 - `<tab>` key completion
 - `<up-arrow>` and the `<down-arrow>` for history.
 
+In the mongo REPL we want to connect to create/connect to a database.
 
-
-## Milk-n-Cookies.  Yum!
-
-Let's keep track of where we can get some yummy Milk and Cookies.
-
-# Where are we?
-
-Remember back to that first day?
-
-- Start from what we know
-- Where you are **really** matters
-- Small steps
-
-We *want* to work with the `milk-n-cookies` database:
+We *want* to work with the `restaurants` database:
 
 ```
-use milk-n-cookies
+use restaurant_db
 ```
 
 Verify:
 ```
 > db
-milk-n-cookies
+restaurant_db
 ```
 
 Common Mistake:
 `show dbs`
+> note we don't see restaurants listed. It isn't until we add a document to our database does it list the DB in `show dbs`
 
 ## CLI: Create a record
 
@@ -218,6 +209,8 @@ db.restaurants.insert(
 });
 ```
 
+> The db is the database we're connected to. In this case, `restaurant_db`. `.restaurants` is then referring to a collection in our `restaurant_db`. We use the `.insert()` to add the document inside the parentheses.
+
 ### Verify the insert
 ```
 > show collections
@@ -238,8 +231,7 @@ What is surprising/unexpected?
 
 - where did restaurants come from?
 - `_id`?
-- ObjectId
-
+- [ObjectId](https://docs.mongodb.org/manual/reference/object-id/)
 
 ## Review `insert`
 ```
@@ -249,11 +241,11 @@ db.your_collection_name.insert({ data as json })
 db.your_collection_name.find()
 ```
 
-New record:
-> If the document passed to the insert() method does not contain the _id field, the mongo shell automatically adds the field to the document and sets the field’s value to a generated ObjectId.
+New Record:
+- If the document passed to the insert() method does not contain the _id field, the mongo shell automatically adds the field to the document and sets the field’s value to a generated ObjectId.
 
 New collection:
-> If you attempt to add documents to a collection that does not exist, MongoDB will create the collection for you.
+- If you attempt to add documents to a collection that does not exist, MongoDB will create the collection for you.
 
 ## Dropping a Database
 
@@ -264,7 +256,7 @@ db.dropDatabase()
 
 Drops the **current** database.
 
-### Exercise (10 minutes): Add a few more restaurants.
+### Exercise (5 minutes): Add a few more restaurants.
 
 ProTip: I recommend you construct your statements in your editor and copy/paste.  It will help you now & later.
 
@@ -389,6 +381,8 @@ http://docs.mongodb.org/manual/core/write-operations-introduction/
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 ```
 
+> the first key value pair find the document you'd like to update, the second is what values you'd like to set and third is any additional options
+
 Verify:
 ```
 > db.restaurants.find()
@@ -469,7 +463,7 @@ That's why we wrote Mongoose.
 
 Review example on [mongoosejs.com](http://mongoosejs.com)
 
-``` js
+```js
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 
@@ -482,129 +476,55 @@ kitty.save(function (err) {
 });
 ```
 
-## Exercise: YUM!  
+Ok well thats nice. Let's see how mongoose plays with express by building an app called [reminders](https://github.com/ga-dc/reminders_mongo)
 
-It's time to play with our restaurants.
+Lets create a brand new express application and grab up all the dependencies we'll need
 
-Refer to [Getting Started](http://mongoosejs.com/docs/index.html)
-
-### Create a new js "app"
-
-```
-mkdir
-npm init
-npm install --save mongoose
-```
-
-### Create a Connection.  Verify it.
-
-```
-nodemon index.js
+```bash
+$ mkdir reminders_mongo
+$ cd reminders_mongo
+$ npm init
+$ npm install express --save
+$ npm install hbs --save
+$ npm install body-parser --save
+$ npm install mongoose --save
+$ touch app.js
 ```
 
-``` js
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/milk-n-cookies');
+Let's first start by defining our schema, models and creating some seed data.
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
-  console.log("Connection established to: ", db.name)
-});
+Folders/files:
+
+```bash
+$ mkdir db
+$ touch db/schema.js
+$ touch db/seeds.js
 ```
 
-### Find restaurants by zip code:
+In `db/schema.js`:
 
-1. Define the Schema
-2. Instantiate a model.
-3. Find restaurants.
-4. Just list names.
-5. List names & zip codes (w/o _id)
+```js
+// requiring mongoose dependency
+var mongoose = require('mongoose')
 
-### Define the Schema
+// instantiate a name space for our Schema constructor defined by mongoose.
+var Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId
 
-```
-var restaurantSchema = mongoose.Schema({
-    name: String
+// defining schema for reminders
+var ReminderSchema = new Schema({
+  body: String
 })
-```
 
----
-
-**You Do**: Update to match the restaurants in our Db.
-- yelp: the url to this restaurant on yelp.com
-- address: All we need is street and zipcode.
-
-http://mongoosejs.com/docs/guide.html
-
-```
-var restaurantSchema = mongoose.Schema({
-    name: String,
-    yelp: String,
-    address: {
-      street: String,
-      zipcode: Number
-    }
+// defining schema for authors.
+var AuthorSchema = new Schema({
+  name: String,
+  reminders: [ReminderSchema]
 })
+
+// setting models utilizing schemas defined above
+var AuthorModel = mongoose.model("Author", AuthorSchema)
+var ReminderModel = mongoose.model("Reminder", ReminderSchema)
 ```
 
-## Find restaurants by zip code
-
-[X] 1. Define the Schema
-[ ] 2. Instantiate a model.
-[ ] 3. Find restaurants.
-[ ] 4. Just list names.
-[ ] 5. List names & zipcodes (w/o _id)
-
-### Define a model
-
-```
-var Restaurant = mongoose.model('Restaurant', restaurantSchema);
-```
-
-## Find restaurants by zip code
-
-[X] 1. Define the Schema
-[X] 2. Instantiate a model.
-[ ] 3. Find restaurants.
-[ ] 4. Just list names.
-[ ] 5. List names & zipcodes (w/o _id)
-
-### List restaurants in a zip code
-
-**[Research](http://mongoosejs.com/docs/models.html):** How do I find or count restaurants with mongoose?
-
-
-- `Restaurant.find({ conditions })`
-- `Restaurant.count({ conditions })`
-
-``` js
-// List restaurants in zipcode 20001
-  var searchZipcode = 20001
-  Restaurant.count({"address.zipcode": searchZipcode}, function (err, restaurantCount) {
-    if (err) return handleError(err);
-    console.log("We have", restaurantCount, "in", searchZipcode)
-  })
-```
-
-## Exercise: Find restaurants by zip code
-
-[X] 1. Define the Schema
-[X] 2. Instantiate a model.
-[ ] 3. Find restaurants.
-[ ] 4. Just list names.
-[ ] 5. List names & zipcodes (w/o _id)
-
-## Exercise: complete CRUD via Mongoose
-
-- Create
-- Update
-- Delete
-
-## ORM in Express
-
-See: `w10/d03_back_end_homework`
-
-## Exercises:
-
-- MOMA (WDI4)  Artists have_many Paintings
+> Note the syntax for reminders  in the `AuthorSchema`. This signifies it will be an array of reminder documents
