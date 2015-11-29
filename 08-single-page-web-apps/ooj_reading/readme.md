@@ -1,11 +1,11 @@
 # OOJS - Reading
 
 ## Learning Objectives
-- use `$.ajax` to populate objects in the front end(client-side)
-- differentiate between "class methods" and "instance (prototyped) methods" in JS.
-- use OOJS to build model and view objects
-- Utilize promises to access the response from an `$.ajax` request
-- render views on the client-side utilizing JS objects in your application.
+* Use `$.ajax` to populate objects client-side.
+* Differentiate between "class methods" and "instance (prototyped) methods" in JS.
+* Use OOJS to build model and view objects.
+* Utilize promises to access the response from an `$.ajax` request.
+* Render views client-side utilizing JS objects.
 
 ## Opening Framing (10/10)
 We've learned how to make web applications with RESTful routing. We've even learned how to create them as API's that respond with JSON. Additionally, we've also learned how to make requests to API in order to access data. But really all we did with that data was maybe create a single div in the promise of the ajax request. This isn't really ideal.
