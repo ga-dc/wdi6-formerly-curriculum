@@ -12,34 +12,29 @@
 ## Framing
 
 Our goal for today is to complete our app so that we have basic CRUD
-functionality for artists. This means we'll be able to Create, Edit/Update,
-and Destroy artists. Additions to songs functionality will be a bonus.
+functionality for Artists. This means we'll be able to Create, Edit/Update,
+and Destroy artists. Additions to Songs functionality will be a bonus.
 
 Overall, our app has a couple of parts that work together to create that lovely
-Single Page App Experience (SPA® Experience) ;)
+Single Page App - or SPA® - Experience.
 
 ### The Database
 
-Postgres stores our data in a structured manner, so that we can find/update/destroy
+Postgres stores our data in a structured manner, so that we can Read/Update/Destroy
 quickly.
 
 ### The Backend
 
+## UPDATE THIS SECTION SO IT REFLECTS ACTUAL BACK-END USED.
+
 The backend exposes our app's data and functionality to the web (via HTTP). The
 backend has a few parts:
 
-* `app.js` - Loads express and other libraries, as well as the other parts of our app
-  * `models` (Sequelize) -  these serve as the interface to the database, so our express app
-    can easily interact with our data
-  * `controllers` - define what routes our app responds to, and how to respond...
-    this is usually by either finding data and returning it as JSON, or accepting
-    JSON data to edit/update our DB
-  * `views` - define how our app sends back HTML (when needed). In our case, our
-    app only really sends back the `layout.hbs`, which is used to send the initial
-    page to the user. This page provides the skeleton of our SPA, and also tells
-    the user's browser to load the appropriate front-end JS.
-  * `public` - where our front-end JS lives. This is in public so it can be sent
-    to the user's browser.
+* `app.js` - Loads express and other libraries, as well as the other parts of our app.  
+  * `models` (Rails) -  Serve as the interface to the database, so our app can easily interact with our data.  
+  * `controllers` - Define what routes our app responds to, and how to respond. This is usually by either finding data and returning it as JSON, or accepting JSON data to edit/update our DB
+  * `views` - Define how our app sends back HTML (when needed). In our case, our app only really sends back the `layout.hbs`, which is used to send the initial page to the user. This page provides the skeleton of our SPA, and also tells the user's browser to load the appropriate front-end JS.  
+  * `public` - Where our front-end JS lives. This is in public so it can be sent to the user's browser.
 
 ### The Front-End
 
