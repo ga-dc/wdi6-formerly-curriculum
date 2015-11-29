@@ -257,9 +257,9 @@ Let's reload the page. BAM!
 > NOTE: Code snippets moving forward will be parts of an entire file.
 
 ## I Do: Fetching Songs (20/110) w/ break
-As we can see in our sick new landing page. There's a show songs button for each artist. We want to be able to click on that button and see all of the songs that belong to that artist.
+As we can see on our new landing page, there's a show songs button for each Artist. We want to be able to click on that button and see all of the songs that belong to that Artist.  
 
-In the render function of our artists, we additionally want to add an event listener to this button. In the render function of `public/js/views/artistView.js`:
+In the render function of our artists, we additionally want to add an event listener to this button. In the render function of `public/js/views/artistView.js`...
 
 ```js
 var showButton = self.$el.find(".showSongs")
@@ -270,38 +270,37 @@ showButton.on("click", function(){
 });
 ```
 
-Cool, the events firing off. We also hid the div with class songs because we want to be able to call `.show` on it for the initial click.
+The event is firing off. We also hid the `div` with class `songs` because we want to be able to call `.show` on it for the initial click.  
 
-It's not enough to just log that the button was clicked though. Really what we want to do is append a song for each song associated with this artist.
+It's not enough to just log that the button was clicked though. Really what we want to do is append a Song for each Song associated with this Artist.  
 
-The first thing we need is the ability to get our songs. Let's update our artist model to incorporate that functionality. In `public/js/models/artist.js`:
+The first thing we need is the ability to get our Songs. Let's update our Artist model to incorporate that functionality. In `public/js/models/artist.js`...  
 
 ```js
 Artist.prototype.fetchSongs = function(){
-  var url = "http://localhost:3000/artists/" + this.id + "/songs"
-  var request = $.getJSON(url)
+  var url = "http://localhost:3000/artists/" + this.id + "/songs";
+  var request = $.getJSON(url);
   .then(function(response){
-    var songs = []
+    var songs = [];
     for(var i = 0; i < response.length; i++){
-      songs.push(new Song(response[i]))
+      songs.push(new Song(response[i]));
     }
-    return songs
-    })
+    return songs;
+  })
   .fail(function(repsonse){
-    console.log("js failed to load")
-    })
-  return request
+    console.log("js failed to load");
+  })
+  return request;
 }
 ```
 
-> note the similarities between `.fetch()` and `.fetchSongs()`. Though there are many similarities, I want to note the differences. `.fetch()` is a class method which is called on the constructor function to get all of the artists. `.fetchSongs` is an instance method and is available for each instance of the Artist constructor and grabs all of the songs for that single artist.
+> NOTE: While they look pretty similar, there are some important different between `.fetch()` and `.fetchSongs()`. `.fetch()` is a class method which is called on the constructor function to get all of the Artists. `.fetchSongs` is an instance method and is available for each instance of the Artist constructor and grabs all of the Songs for that single Artist.
 
-So we're able to get the songs for each artist. Now we want the ability to generate a view for each song so we can append it to the artist.
+So we're able to get the Songs for each Artist. Now, we want the ability to generate a view for each Song so we can append it to the Artist.  
 
+## You Do: Create and Edit `/public/js/view/songView.js` (10/120)
 
-## You do - Create and edit `/public/js/view/songView.js` (10/120):
-
-> The song view is kept minimal because we are just attaching it to the artist view. All we want to return in the render function is a p tag containing the title.
+The song view is kept minimal because we are just attaching it to the artist view. All we want to return in the render function is a `<p>` containing the title.  
 
 ## I do - show songs click event(20/140)
 
