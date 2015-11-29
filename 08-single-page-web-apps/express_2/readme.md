@@ -43,10 +43,20 @@ var complimentsController = {
 }
 ```
 
+```html
+<!-- views/compliments/index.hbs -->
+<ul>
+  {{#each compliments}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
+```
+
 ```js
 // index.js
 
-var app = require("express")();
+var express = require("express");
+var app = express();
 var complimentsController = require("./controllers/complimentsController");
 
 app.get("/compliments", complimentsController.index);
@@ -74,34 +84,32 @@ var compliments = [
   "Is it Ruby Tuesday yet?",
   "It's almost beer o'clock",
   "The Force is strong with you"
-]
+];
 
-module.exports = {
-  all: function(){
-    return compliments;
-  }
+var Compliment = function(){
+  
 }
+
+Compliment.all = function(){
+  return compliments;
+}
+
+module.exports = Compliment;
 ```
 
 ```js
 // controllers/complimentsController.js
 // compliment model is required in ../index.js
 
-module.exports = {
+var Compliment = require("../models/compliment");
+
+var complimentsController = {
   index: function(req, res){
-    res.render('index', {compliments: compliment.all()}) 
+    res.render('index', {compliments: Compliment.all()});
   }
 }
 
-```
-
-```html
-<!-- views/compliments/index.hbs -->
-<ul>
-  {{#each compliments}}
-    <li>{{this}}</li>
-  {{/each}}
-</ul>
+module.exports = complimentsController;
 ```
 
 > Bonus: show a random color when the page loads
@@ -151,13 +159,10 @@ http://stackoverflow.com/a/12984730/850825
 ```js
 // index.js
 
-app.use(function(req,res,next){
-  var format = req.param('format');
-  if(format){
-    req.header.accept = 'application/' + format;
-  }
+app.use("*.json",function (req, res, next) {
+  req.headers.accept = 'application/json';
   next();
-})
+});
 
 app.get("/compliments/?:format?", complimentsController.index)
 ```
@@ -166,13 +171,13 @@ app.get("/compliments/?:format?", complimentsController.index)
 // controllers/complimentsController.js
 
 module.exports = {
-  all: function(req, res){
+  index: function(req, res){
     res.format({
       html: function(){
-        res.render("views/compliments/index.hbs",{compliments: compliment.all()});
+        res.render("compliments/index.hbs",{compliments: Compliment.all()});
       },
       json: function(){
-	res.json(compliment.all());
+	res.json(Compliment.all());
       }
     }) 
   }
@@ -183,7 +188,7 @@ module.exports = {
 
 ### res.jsonp
 
-Link to a file:// index.html and show AJAX cross-domain failure.
+TODO Link to a file:// index.html and show AJAX cross-domain failure.
 
 ## Conclusion
 
