@@ -106,7 +106,7 @@ Remember to:
 * Link to that file to your layout.
 
 ## Fetching (20/60)
-It's not enough to just be able to create an object on the client side. We have to be able to make an ajax call to a server to actually parse the database into objects on the client side. Let's update our artist model to fetch from a database. In `js/models/artist.js`:
+It's not enough to just be able to create an object on the client side. We have to be able to make an ajax call to a server to actually parse the database into objects on the client side. Let's update our artist model to fetch from a database. In `js/models/artist.js`...
 
 ```js
 Artist.fetch = function(){
@@ -131,21 +131,19 @@ Artist.fetch = function(){
   return request
 }
 ```
+> `$.getJSON` is jQuery method that serves the same purpose as a GET `$.ajax` to a JSON source.
+> NOTE: We defined the `fetch` function inside the Artist constructor. This is more or less the same as class methods in Ruby.
 
-> notice that we defined the fetch function on the Artist Constructor functions. This is more or less the same as "class methods" you see in ruby.
-
-Alot's going on here. Let's take it slow.
-
-Let's play around with it in the console.
+There's a lot going on here. Let's take it slow and play around with it in the console.  
 
 ```js
 artists = Artist.fetch()
 // > Object{}
 ```
 
-> this doesn't really seem all that helpful. We can drill in and see some pretty cryptic stuff. But if you remember in the comments in the code above, you can that because we return the request, we have access to artists as an argument in future promises.
+> We can drill into the response object and see some pretty cryptic stuff. But if you remember in the code comments above, that's possible because we return the response. By saving the response to an `artists` variable, we have access to artists as an argument in future promises.
 
-Let try attaching a promise to it:
+Let try attaching a promise to it.
 
 ```js
 artists.then(function(artists){
@@ -154,7 +152,7 @@ artists.then(function(artists){
 // > [Artist, Artist, Artist, Artist, Artist]
 ```
 
-Sick, we now have access to our artists in our database on the  client side.
+We now have access to our artists in our database on the  client side.
 
 ## Break (10/70)
 
