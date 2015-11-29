@@ -159,7 +159,7 @@ Sick, we now have access to our artists in our database on the  client side.
 ## Views - Artist (20/90)
 We have the ability to create objects in JS from the database on the client side. We need to additionally render views based on those models. There's lots of ways to build views as well as lots of front end frameworks that do it as well. This is just one way.  
 
-Lets start by creating and editing `public/js/views/artistView.js`... 
+Lets start by creating and editing `public/js/views/artistView.js`...
 
 ```js
 var ArtistView = function(artist){
@@ -177,7 +177,7 @@ var bluesTravelerView = new Artist(bluesTraveler)
 
 We can call `.artist` or `.$el` and retrieve those properties now.
 
-We're setting 2 properties in the ArtistView objects. 1 is an artist, which gets passed into the constructor function. The second is an `.$el` property which is just a jquery object that's an empty div.
+We're setting 2 properties in the ArtistView objects. 1 is an artist, which gets passed into the constructor function. The second is an `.$el` property which is just a jQuery object that's an empty div.
 
 Let's create some additional functionality for the ArtistView Object in `public/js/views/artistView.js`:
 
@@ -229,7 +229,7 @@ ArtistView.prototype ={
 }
 ```
 
-> We'll get into templating later, probably using handlerbars! Which you're already familiar with! Instead of an `artistTemplate()` function there will be some handlebars syntax
+> We'll get into templating later, probably using handlebars! Which you're already familiar with! Instead of an `artistTemplate()` function there will be some handlebars syntax
 
 Really I want to do this sort of behavior for all artists on page load. So let's do that in `public/js/script.js`:
 
