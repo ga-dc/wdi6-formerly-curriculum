@@ -330,7 +330,7 @@ http://docs.mongodb.org/manual/core/write-operations-introduction/
 
 ```
 > db.restaurants.update(
-  {"address.zipcode": 20001},
+  {"name": "Cookies Corner"},
   { $set: { state: "DC" }},
   {multi: true }
 )
