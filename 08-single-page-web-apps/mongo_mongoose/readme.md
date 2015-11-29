@@ -853,7 +853,7 @@ app.post("/authors", authorsController.create)
 app.get("/authors/:id", authorsController.show)
 ```
 
-### Some Example Controller
+### Some Example Controller actions
 
 ```js
 var authorsController = {
