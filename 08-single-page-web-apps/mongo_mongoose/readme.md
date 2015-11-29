@@ -135,6 +135,8 @@ brew info mongo
 $ mongo
 ```
 
+> feels a little bit like a JS REPL
+
 You should see:
 
 ```
@@ -303,43 +305,6 @@ db.restaurants.find()
 Key: Value pairs
 ``` json
 { <field1>: <value1>, <field2>: <value2>, ... }
-```
-
-### You do (10 min): Find a single restaurant.  Save that to a variable.
-
-- Pay attention to details
-- Compare this to ActiveRecord
-
-
-``` mongo
-var cookies_corner = db.restaurants.find({name: "Cookies Corner"})
-```
-
-> Is it a single object?
-
-Note: requires `var`
-
-### We do: Find all in Embedded Document
-
-Look at our restaurant.  We have a document embedded in our restaurant.  
-
-> What is the embedded document?
-
-`address`
-
-To find an embedded document, we use `dot notation`.
-
-Note:
-> Dot notation requires quotes around the whole dotted field name.
-
-### We Do: Find restaurants by Zipcode
-
-> **Prompt**: Using what we know (I understand it's partial information), try to find all restaurants within a zipcode.
-
-Solution:
-
-``` mongo
-db.restaurants.find({"address.zipcode": 20001})
 ```
 
 ## Helpful References
