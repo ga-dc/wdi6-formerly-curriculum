@@ -45,7 +45,7 @@ Inside the `views/index.hbs`, is just `<div class="artists"></div>`.
 In our layout file we have a couple different things. We're linking to a stylesheet. We're loading some script files. Additionally theres a header for our application.
 
 ## I Do: Models (10/30)
-The first thing that I want to do is create a model file. This will hold the constructor function for a model. So let's go ahead and create a file for the artist model `$ touch public/js/models/artist.js`.
+The first thing that I want to do is create a model file. This will hold the constructor function for a model. Let's create a file for the artist model: `$ touch public/js/models/artist.js`
 
 In `public/js/models/artist.js`:
 
@@ -58,9 +58,9 @@ var Artist = function(info){
 }
 ```
 
-> In this constructor function, info is an argument when creating a new artist object. The properties of this function are from the columns in the database.
+> In this constructor function, `info` is an argument passed in when creating a new Artist object. The properties of this object match to the columns in the `artists` database table.
 
-Let's go ahead and test this out in the console of our browser:
+Let's go ahead and test this out in the console of our browser.  
 
 ```js
 var artist = new Artist()
@@ -74,28 +74,31 @@ What gives? We haven't included the script file in our layout file. In `views/la
 <script src="/js/models/artist.js"></script>
 ```
 
-Lets try it again ....:
+Lets try again.
 
 ```js
 var artist = new Artist()
 // > Uncaught TypeError: Cannot read property 'name' of undefined
 ```
 
-I think the issue here is that we didn't pass in an argument to the constructor function.
-
-Ok, third time's a charm:
+I think the issue here is that we didn't pass in an argument to the constructor function. Ok, third time's a charm.  
 
 ```js
-var artist = new Artist({name: "blues traveler", photoUrl: "someURL", nationality: "murica", id: 6})
+var artist = new Artist({
+  name: "Blues Traveler",
+  photoUrl: "http://coloredvinylrecords.com/pictures/b/blues-traveler-four-01433512670.png",
+  nationality: "murica",
+  id: 6
+})
 // > undefined
 artist
 // > Artist {name: "blues traveler", photoUrl: "someURL", nationality: "murica", id: 6}
 ```
 
-Great! we created an instance of our object in the client!
+Great - we created a client-side instance of our object!  
 
-## Models - You do(10/40)
-Great, now that we've created the artist model, go ahead and code the song model defintion.
+## You Do: Models (10/40)
+Now that we've created the artist model, go ahead and code the song model defintion.
 
 Remember to:
 - create a model file
