@@ -156,10 +156,10 @@ We now have access to our artists in our database on the  client side.
 
 ## Break (10/70)
 
-## Views - Artist (20/90)
-We have the ability to create objects in JS from the database on the client side. We need to additionally render views based on those models. There's lots of ways to build views as well as lots of front end frameworks that do it as well. This is just one way.  
+## Views: Artist (20/90)
+We have the ability to create objects in JS from the database on the client side. We need to additionally render views based on those models. There's lots of ways to build views as well as lots of front-end frameworks that do it as well. This is just one way.  
 
-Lets start by creating and editing `public/js/views/artistView.js`...
+Lets start by creating and editing `public/js/views/artistView.js`.
 
 ```js
 var ArtistView = function(artist){
@@ -168,18 +168,23 @@ var ArtistView = function(artist){
 };
 ```
 
-We can quickly check/test it out in the console by creating a new artistView in the console.
+We can quickly test this in the console by creating a new artistView.
 
-```
-var bluesTraveler = new Artist({name: "blues traveler", photoUrl: "someURL", nationality: "murica", id: 6})
+```js
+var bluesTraveler = new Artist({
+  name: "Blues Traveler",
+  photoUrl: "http://coloredvinylrecords.com/pictures/b/blues-traveler-four-01433512670.png",
+  nationality: "murica",
+  id: 6
+})
 var bluesTravelerView = new Artist(bluesTraveler)
 ```
 
 We can call `.artist` or `.$el` and retrieve those properties now.
 
-We're setting 2 properties in the ArtistView objects. 1 is an artist, which gets passed into the constructor function. The second is an `.$el` property which is just a jQuery object that's an empty div.
+We're setting 2 properties in the ArtistView objects. The first is an artist, which gets passed into the constructor function. The second is an `.$el` property which is just a jQuery object that's an empty div.  
 
-Let's create some additional functionality for the ArtistView Object in `public/js/views/artistView.js`:
+Let's create some additional functionality for the ArtistView Object in `public/js/views/artistView.js`.  
 
 ```js
 ArtistView.prototype ={
@@ -192,29 +197,32 @@ ArtistView.prototype ={
     self.$el.append("<button class='showSongs'>Show Songs</button>");
     self.$el.append("<div class='songs'></div>");
     // append the .$el to the div with class artists in our view.
-    $("div.artists").append(self.$el)
+    $("div.artists").append(self.$el);
   }
 }
 ```
 
-> note that we namespaced the .render() functionality under prototype. That is to say this is like an instance method. It is available to each instance of the ArtistView Object
+> NOTE: We namespaced the .render() functionality under prototype. That is to say, this is like an instance method. It is available to each instance of the ArtistView Object
 
-Let's test this out in the console.
+Let's test this out in the console.  
 
+```js
+var bluesTraveler = new Artist({
+  name: "Blues Traveler",
+  photoUrl: "http://coloredvinylrecords.com/pictures/b/blues-traveler-four-01433512670.png",
+  nationality: "murica",
+  id: 6
+});
+var bluesTravelerView = new ArtistView(bluesTraveler);
+bluesTravelerView.render();
 ```
-var bluesTraveler = new Artist({name: "blues traveler", photoUrl: "someURL", nationality: "murica", id: 6})
-var bluesTravelerView = new ArtistView(bluesTraveler)
-bluesTravelerView.render()
-```
 
-Great, we see the view was generated and rendered to our page!
-
-I see a quick refactor opportunity in `public/js/views/artistView.js`:
+Great, we see the view was generated and rendered to our page! Now let's do some refactoring in `public/js/views/artistView.js`.
 
 ```js
 ArtistView.prototype ={
   render: function(){
-    var self = this
+    var self = this;
     self.$el.html(self.artistTemplate(self.artist));
     $(".artists").append(self.$el);
   },
@@ -229,9 +237,9 @@ ArtistView.prototype ={
 }
 ```
 
-> We'll get into templating later, probably using handlebars! Which you're already familiar with! Instead of an `artistTemplate()` function there will be some handlebars syntax
+> We'll get into templating later. When we implement this (probably with Handlebars) we will no longer need this `artistTemplate` function.
 
-Really I want to do this sort of behavior for all artists on page load. So let's do that in `public/js/script.js`:
+We want all artists to be rendered upon page load. Let's take care of that in `public/js/script.js`:
 
 ```js
 $(document).ready(function(){
@@ -246,9 +254,9 @@ $(document).ready(function(){
 
 Let's reload the page. BAM!
 
-> note that the code snippets going forward will be parts of an entire file.
+> NOTE: Code snippets moving forward will be parts of an entire file.
 
-## I do - Fetching Songs (20/110) /w break
+## I Do: Fetching Songs (20/110) w/ break
 As we can see in our sick new landing page. There's a show songs button for each artist. We want to be able to click on that button and see all of the songs that belong to that artist.
 
 In the render function of our artists, we additionally want to add an event listener to this button. In the render function of `public/js/views/artistView.js`:
