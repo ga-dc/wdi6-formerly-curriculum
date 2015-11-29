@@ -14,24 +14,21 @@ Instead, it would be great if we could take that AJAX response and encapsulate t
 
 **HEADS UP:** This stuff is hard guys. OOJS is one of more difficult thing we teach in this class. That being said, it's OK to not fully understand right away. Pick up what you can, practice and break stuff.  
 
-> One thing to note about this class, and WDI as a whole. We teach you many many tools. You won't use every tool all the time, but start to identify good use cases for these tools. IE. if you were building a hole in the ground a foot deep, a back hoe might be a bit much and a shovel might do the trick. That said OOJS is not the end all be all of doing things on the front end.
+> NOTE: We teach you many many tools. You won't use every tool all the time, but start to identify good use cases for these tools. If you were building a hole in the ground a foot deep, a back hoe might be a bit much and a shovel might do the trick. That said OOJS is not the end all be all of doing things on the front end.
 
 ## Goal
 The goal here is to build this [app](https://github.com/ga-dc/tunr_node_oojs/tree/solution).
-We want to be able to create these views strictly on the client-side. Minus the header.
+We want to be able to create these views strictly on the client-side.  
 
 ## Setup (10/20)
-The first thing we should do is fork/clone the [tunr repo here](https://github.com/ga-dc/tunr_node_oojs).
-
-Let's start by installing dependencies and starting the server.
-
+The first thing we should do is fork/clone the [Tunr repo](https://github.com/ga-dc/tunr_node_oojs). Then, let's install dependencies and start the server.  
 
 ```bash
 $ npm install
 $ nodemon app.js
 ```
 
-Let's create a couple of folders as well
+Let's create a couple of folders as well.  
 
 ```bash
  $ mkdir public/js
@@ -39,15 +36,15 @@ Let's create a couple of folders as well
  $ mkdir public/js/views
  ```
 
-If we go into our browser we can view all the endpoints and see that everythings responding to json. Take a look at `app.js`, `controllers/artists.js` and `controllers/artists.js` and you can see the different routes.
+If we go into our browser we can view all the endpoints and see that we can access all Tunr data as JSON. Take a look at `app.js`, `controllers/artists.js` and `controllers/artists.js` and you can see the different routes.  
 
 Additionally if we look into `app.js` We can see at the root route we are rendering the index view.
 
 Inside the `views/index.hbs`, is just `<div class="artists"></div>`.
 
-In our layout file we have a couple different things. We're linking to a stylesheet. We're loading some script files. Additionally theres a header for our sweet application.
+In our layout file we have a couple different things. We're linking to a stylesheet. We're loading some script files. Additionally theres a header for our application.
 
-## Models - I do(10/30)
+## I Do: Models (10/30)
 The first thing that I want to do is create a model file. This will hold the constructor function for a model. So let's go ahead and create a file for the artist model `$ touch public/js/models/artist.js`.
 
 In `public/js/models/artist.js`:
