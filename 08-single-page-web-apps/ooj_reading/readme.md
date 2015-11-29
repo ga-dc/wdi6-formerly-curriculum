@@ -10,7 +10,7 @@
 ## Opening Framing (10/10)
 We've learned how to make web applications with RESTful routing. We've even learned how to create them as API's that respond with JSON. Additionally, we've also learned how to make requests to API in order to access data. But really all we did with that data was maybe create a single div in the promise of the ajax request. This isn't really ideal.
 
-I think instead, it would be great if we could take that ajax response, and encapsulate the information we want into JS objects on the client-side. Then with those objects we can render views utilizing view objects. In the same way we used rails/ruby to group functionality and separate concerns, we can do similar things with JS objects on the client side. This stuff is hard guys. OOJS is the most difficult thing we teach in this class. It's ok to not fully understand right away. Pick up what you can, practice and break stuff. 
+I think instead, it would be great if we could take that ajax response, and encapsulate the information we want into JS objects on the client-side. Then with those objects we can render views utilizing view objects. In the same way we used rails/ruby to group functionality and separate concerns, we can do similar things with JS objects on the client side. This stuff is hard guys. OOJS is the most difficult thing we teach in this class. It's ok to not fully understand right away. Pick up what you can, practice and break stuff.
 
 > One thing to note about this class, and WDI as a whole. We teach you many many tools. You won't use every tool all the time, but start to identify good use cases for these tools. IE. if you were building a hole in the ground a foot deep, a back hoe might be a bit much and a shovel might do the trick. That said OOJS is not the end all be all of doing things on the front end.
 
@@ -157,7 +157,9 @@ Sick, we now have access to our artists in our database on the  client side.
 ## Break (10/70)
 
 ## Views - Artist (20/90)
-We have the ability to create objects in JS from the database on the client side. We need to additionally render views based on those models. There's lots of ways to build views as well as lots of front end frameworks that do it as well. This is just one way. Adrian will be teaching a mini lesson on react on friday for another! Lets start by creating and editing `public/js/views/artistView.js`:
+We have the ability to create objects in JS from the database on the client side. We need to additionally render views based on those models. There's lots of ways to build views as well as lots of front end frameworks that do it as well. This is just one way.  
+
+Lets start by creating and editing `public/js/views/artistView.js`... 
 
 ```js
 var ArtistView = function(artist){
