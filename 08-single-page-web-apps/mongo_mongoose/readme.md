@@ -528,6 +528,8 @@ module.exports = ReminderModel
 
 > In these model files, were setting an export to a mongoose model.
 
+> `var AuthorModel = mongoose.model("Author")` is kind of like `class Author < ActiveRecord::Base`
+
 Great now that we have an interface for our models, lets create a seed file so we have some data to work with in our application.
 
 In `db/seeds.js`:
