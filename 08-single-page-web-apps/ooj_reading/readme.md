@@ -98,12 +98,12 @@ artist
 Great - we created a client-side instance of our object!  
 
 ## You Do: Models (10/40)
-Now that we've created the artist model, go ahead and code the song model defintion.
+Now that we've created the artist model, go ahead and code the Song model definition.
 
 Remember to:
-- create a model file
-- code the constructor function in that file
-- link that file to your layout.
+* Create a model file.
+* Code the constructor function in that file.
+* Link to that file to your layout.
 
 ## Fetching (20/60)
 It's not enough to just be able to create an object on the client side. We have to be able to make an ajax call to a server to actually parse the database into objects on the client side. Let's update our artist model to fetch from a database. In `js/models/artist.js`:
