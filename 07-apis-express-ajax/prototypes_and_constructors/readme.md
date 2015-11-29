@@ -57,9 +57,9 @@ if ( translate(card0) > translate(card1) ) {
 ```
 
 We've had to write a whole other global method just translate card faces into
-numerical values for comparison. You can see how this code is *proecdural*: we
+numerical values for comparison. You can see how this code is *procedural*: we
 do things step by step, manually creating values as we go in order to accomplish
-our work. Instead, we might have taken an object-oriented approch:
+our work. Instead, we might have taken an object-oriented approach:
 
 ```js
 var deck = [

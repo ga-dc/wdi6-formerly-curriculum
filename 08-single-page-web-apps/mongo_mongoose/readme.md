@@ -12,8 +12,6 @@
 - Use an ORM to persist data (Mongoose)
 - Connect ORM to an Express app, to persist data
 
-
-
 ## Opening
 
 We've learned a considerable amount of information about relational databases. We join on foreign keys in relational databases in order to query our database. Sometimes these joins can get really expensive to query the database. When dealing with less complex associations, non relational databases can be more effective. We've also seen that schema's in SQL(relational DB's) are fairly rigid. Adding columns can be taxing(migrations). Also if we delete a row in a table that is being used as a foreign key in another table, we must delete all the rows associated with that foreign key before we can delete the parent object. Mongo provides a more flexible, scalable solution for less complex domain models.
@@ -112,7 +110,7 @@ brew install mongo
 
 You should see:
 ```
-mongodb: stable 3.0.3 (bottled), devel 3.1.2
+mongodb: stable 3.0.7 (bottled), devel 3.1.2
 ```
 
 ### Start mongo:
