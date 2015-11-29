@@ -545,7 +545,7 @@ ReminderModel.remove({}, function(err){
 })
 
 var bob = new AuthorModel({name: "bob"})
-var charlie = new AuthorModel({name: "charlie"})
+var susy = new AuthorModel({name: "charlie"})
 var tom = new AuthorModel({name: "tom"})
 
 var reminder1 = new ReminderModel({body: "reminder1!!"})
@@ -555,7 +555,7 @@ var reminder4 = new ReminderModel({body: "reminder4!!"})
 var reminder5 = new ReminderModel({body: "reminder5!!"})
 var reminder6 = new ReminderModel({body: "reminder6!!"})
 
-var authors = [bob, charlie, tom]
+var authors = [bob, susy, tom]
 var reminders = [reminder1, reminder2, reminder3, reminder4, reminder5, reminder6]
 
 for(var i = 0; i < authors.length; i++){
