@@ -262,11 +262,11 @@ As we can see on our new landing page, there's a show songs button for each Arti
 In the render function of our artists, we additionally want to add an event listener to this button. In the render function of `public/js/views/artistView.js`...
 
 ```js
-var showButton = self.$el.find(".showSongs")
-var songsDiv = self.$el.find("div.songs")
-songsDiv.hide()
+var showButton = self.$el.find(".showSongs");
+var songsDiv = self.$el.find("div.songs");
+songsDiv.hide();
 showButton.on("click", function(){
-  console.log("show button clicked")
+  console.log("show button clicked");
 });
 ```
 
@@ -302,19 +302,19 @@ So we're able to get the Songs for each Artist. Now, we want the ability to gene
 
 The song view is kept minimal because we are just attaching it to the artist view. All we want to return in the render function is a `<p>` containing the title.  
 
-## I do - show songs click event(20/140)
+## I Do: Show Songs Click Event (20/140)
 
-Alright, let's update event listener in our render function inside of `public/js/views/artistView.js`:
+Alright, let's update event listener in our render function inside of `public/js/views/artistView.js`.
 
 ```js
 showButton.on("click", function(){
   if(songsDiv.children().length === 0){
     self.artist.fetchSongs().then(function(songs){
       songs.forEach(function(song){
-        var songView = new SongView(song)
-        songsDiv.append(songView.render())
+        var songView = new SongView(song);
+        songsDiv.append(songView.render());
         songsDiv.show();
-      })
+      });
     });
   }
   // toggle (note: songsDiv starts hidden)
@@ -322,17 +322,19 @@ showButton.on("click", function(){
 })
 ```
 
-Awesome! We can now click show songs and it even toggles. Seems a little bit off that the button still shows show songs after we click it, but we can fix that in a bit. Our code is starting to get a little bit out of control. I want to take this time to refactor abit. I want to get as much out of this render function as possible and separate our concerns. Let's first abstract out all of the functionality inside of the click event and namespace it into `toggleSongs`. In the `ArtistView.prototype` object inside of `public/js/views/artistView.js`:
+Awesome! We can now click Show Songs (and it even toggles). Seems a little bit off that the button still shows show songs after we click it, but we can fix that in a bit.  
+
+Our code is starting to get a little bit out of control. Let's take some time to refactor. We want to get as much out of this render function as possible and separate our concerns. Let's first abstract out all of the functionality inside of the click event and namespace it into `toggleSongs`. In the `ArtistView.prototype` object inside of `public/js/views/artistView.js`...
 
 ```js
 render: function(){
-  var self = this
+  var self = this;
   self.$el.html(self.artistTemplate(self.artist));
   $(".artists").append(self.$el);
-  var showButton = self.$el.find(".showSongs")
-  var songsDiv = self.$el.find("div.songs")
+  var showButton = self.$el.find(".showSongs");
+  var songsDiv = self.$el.find("div.songs");
   showButton.on("click", function(){
-    self.toggleSongs(songsDiv)
+    self.toggleSongs(songsDiv);
   })
 },
 
@@ -340,36 +342,36 @@ toggleSongs: function(songsDiv){
   if(songsDiv.children().length === 0){
     this.artist.fetchSongs().then(function(songs){
       songs.forEach(function(song){
-        var songView = new SongView(song)
-        songsDiv.append(songView.render())
+        var songView = new SongView(song);
+        songsDiv.append(songView.render());
         songsDiv.show();
-      })
+      });
     });
   }
   songsDiv.toggle();
 }
 ```
 
-Even though the method is toggleSongs, it's additionally appending views if it hasn't fetched yet. I think we should go ahead and abstract this out as well in order to separate our concerns. In the `ArtistView.prototype` object inside of `public/js/views/artistView.js`:
+Even though the method is `toggleSongs`, it's additionally appending views if it hasn't fetched yet. I think we should go ahead and abstract this out as well in order to separate our concerns. In the `ArtistView.prototype` object inside of `public/js/views/artistView.js`...
 
 ```js
 render: function(){
-  var self = this
+  var self = this;
   self.$el.html(self.artistTemplate(self.artist));
   $(".artists").append(self.$el);
-  var showButton = self.$el.find(".showSongs")
-  var songsDiv = self.$el.find("div.songs")
+  var showButton = self.$el.find(".showSongs");
+  var songsDiv = self.$el.find("div.songs");
   showButton.on("click", function(){
-    self.toggleSongs(songsDiv)
+    self.toggleSongs(songsDiv);
   })
 },
 
 toggleSongs: function(songsDiv){
-  var self = this
+  var self = this;
   if(songsDiv.children().length === 0){
     this.artist.fetchSongs().then(function(songs){
-      self.appendSongs(songs, songsDiv)
-      songsDiv.show()
+      self.appendSongs(songs, songsDiv);
+      songsDiv.show();
     });
   }
   songsDiv.toggle();
@@ -385,7 +387,7 @@ appendSongs: function(songs, songsDiv){
 
 > It's a little bit more code upfront, but you increase your code maintainability, scalability and modularity.
 
-One last little detail we need to fix on the UI. The buttons text should change from Show Songs to Hide Songs depending on the state of the application.
+One last little detail we need to fix on the UI. The buttons text should change from "Show Songs" to "Hide Songs" depending on the state of the application.  
 
-## You do - toggle the button! (10/150)
+## You Do: Toggle the Button (10/150)
 Create an instance method inside the `ArtistView.prototype` object. This method should make it such that the buttons text changes dynamically depending on whether songs are showing or not.
