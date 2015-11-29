@@ -2,11 +2,11 @@
 
 ## Learning Objectives
 
-- Use OOJS to structure front end code
-- Build model objects that create, update, destroy data on the server
-- Build view objects that render forms and interact with model objects
-- Describe the role of model objects on the Front-end
-- Describe the role of view objects on the Front-end
+* Use OOJS to structure front end code.
+* Build model objects that create, update, destroy data on the server.
+* Build view objects that render forms and interact with model objects.
+* Describe the role of model objects on the front-end.
+* Describe the role of view objects on the front-end.
 
 
 ## Framing
