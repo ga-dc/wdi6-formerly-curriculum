@@ -275,8 +275,10 @@ artist (to get rid of the form, and display the updated data).
 ```js
 updateArtist: function() {
     var self = this;
-    var data = {  name:     $('input[name=name]').val(),
-                  photoUrl: $('input[name=photoUrl]').val() };
+    var data = {  
+      name: $('input[name=name]').val(),
+      photoUrl: $('input[name=photoUrl]').val()
+    };
     self.artist.update(data).then(function() { self.render(); });
   },
 ```
@@ -285,53 +287,49 @@ Why can we call `.then` on `artist.update()`? That's because in our update
 method, we returned the jQuery promise object. In other words, updating an
 artist is inherently asyn, it may take a while, so the method lets us ask "when
 you're done updating, run this callback". In this case, the callback is to
-render the show view.
+render the show view.  
 
 ## Deleting Artists (You Do in Groups of 2) (30 minutes)
 
 For starter code, see the [oojs_part2_edit branch](https://github.com/ga-dc/tunr_node_oojs/tree/oojs_part2_edit)
 For a solution, see the [oojs_part2_delete branch](https://github.com/ga-dc/tunr_node_oojs/tree/oojs_part2_delete)
 
+Implement a feature so that the `edit` form has an additional button, which is labeled 'Delete Artist'. When the button is clicked, it should:  
 
-Implement a feature so that the `edit` form has an additional button, which is
-labeled 'Delete Artist'.
-
-When the button is clicked, it should:
-
-1. Call the `destroy` method on the Artist model. (you'll need to write that)
-2. That method should make an AJAX delete request to delete the artist by ID.
+1. Call the `destroy` method on the Artist model. (you'll need to write that).  
+2. That method should make an AJAX delete request to delete the artist by ID.  
 3. Once the response has come back (and not before!) you should fade out the
-   artist view's $el. (jQuery has a fadeOut method that makes this easy!)
+   artist view's $el. (jQuery has a fadeOut method that makes this easy!)  
 
-## Bonus
+### Bonus
 
-Try to implement any of the following features:
+Try to implement any of the following features...
 
-### Creating New Artists
+#### Creating New Artists
 
 At the top of the page is a link or button for "Add Artist". When the button is
-clicked, a form should appear (empty). Submitting the form should:
+clicked, a form should appear (empty). Submitting the form should:  
 
-1. Create a new artist on the backend
-2. Update the view to render the new artist
+1. Create a new artist on the backend.  
+2. Update the view to render the new artist.  
 
-### Playing Songs
+#### Playing Songs
 
-Add a button next to each song. When the button is clicked, it should:
+Add a button next to each song. When the button is clicked, it should:  
 
-1. Add an `audio` element tied to the song's `previewUrl`.
-2. Stop / Remove any other auido players on the page.
+1. Add an `audio` element tied to the song's `previewUrl`.  
+2. Stop / Remove any other auido players on the page.  
 
-### Update URLs (pushState)
+#### Update URLs (pushState)
 
 Use `history.pushState` to update the url and reflect what you're editing. You
-should be able to reload the page and go right back to the edit view
+should be able to reload the page and go right back to the edit view.  
 
-### CRUD songs
+#### CRUD songs
 
 Add full CRUD functionality for songs. Either make a new main view like for
 artists, or add edit / delete buttons next to each song, and a "new song" button
-for each artist.
+for each artist.  
 
 ## Summary
 
