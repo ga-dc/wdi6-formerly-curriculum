@@ -28,10 +28,33 @@ app.METHOD(path, [callback...], callback)
 - `callback` is the function executed when the route is matched.
 
 ### Exercise: Pair and Share: Write CRUD routes for a Compliment. (15 min)
+Think back to rails. Write all the RESTful routes for a single model `Compliment` in express, don't worry about adding functionality to the callback for now. EX:
+
+```js
+app.get('/compliments', function(req, res){
+  // code for compliment index route
+})
+```
+
+Let's create our express application `emergency_compliment` now:
+
+```bash
+$ mkdir emergency_compliment
+$ cd emergency_compliment
+$ npm init
+$ npm install express --save
+$ npm install hbs --save
+$ mkdir controllers
+$ mkdir views
+$ mkdir views/compliments
+$ touch index.js
+```
 
 ## We do: Create module and index route
 
 https://github.com/ga-dc/emergency_compliment
+
+Create controller `controllers/complimentsController.js` and place the following:
 
 ```js
 // controllers/complimentsController.js
@@ -43,6 +66,8 @@ var complimentsController = {
 }
 ```
 
+Create view `views/compliments/index.hbs` and place the following:
+
 ```html
 <!-- views/compliments/index.hbs -->
 <ul>
@@ -52,9 +77,9 @@ var complimentsController = {
 </ul>
 ```
 
-```js
-// index.js
+In `index.js`:
 
+```js
 var express = require("express");
 var app = express();
 var complimentsController = require("./controllers/complimentsController");
@@ -87,7 +112,7 @@ var compliments = [
 ];
 
 var Compliment = function(){
-  
+
 }
 
 Compliment.all = function(){
@@ -179,7 +204,7 @@ module.exports = {
       json: function(){
 	res.json(Compliment.all());
       }
-    }) 
+    })
   }
 }
 ```
