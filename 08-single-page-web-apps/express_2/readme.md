@@ -1,4 +1,4 @@
-# Express Routing
+\# Express Routing
 
 - Extract routes to separate files
 - Describe the role of response methods
@@ -28,10 +28,33 @@ app.METHOD(path, [callback...], callback)
 - `callback` is the function executed when the route is matched.
 
 ### Exercise: Pair and Share: Write CRUD routes for a Compliment. (15 min)
+Think back to rails. Write all the RESTful routes for a single model `Compliment` in express, don't worry about adding functionality to the callback for now. EX:
+
+```js
+app.get('/compliments', function(req, res){
+  // code for compliment index route
+})
+```
+
+Let's create our express application `emergency_compliment` now:
+
+```bash
+$ mkdir emergency_compliment
+$ cd emergency_compliment
+$ npm init
+$ npm install express --save
+$ npm install hbs --save
+$ mkdir controllers
+$ mkdir views
+$ mkdir views/compliments
+$ touch index.js
+```
 
 ## We do: Create module and index route
 
 https://github.com/ga-dc/emergency_compliment
+
+Create controller `controllers/complimentsController.js` and place the following:
 
 ```js
 // controllers/complimentsController.js
@@ -43,6 +66,8 @@ var complimentsController = {
 }
 ```
 
+Create view `views/compliments/index.hbs` and place the following:
+
 ```html
 <!-- views/compliments/index.hbs -->
 <ul>
@@ -52,9 +77,9 @@ var complimentsController = {
 </ul>
 ```
 
-```js
-// index.js
+In `index.js`:
 
+```js
 var express = require("express");
 var app = express();
 var complimentsController = require("./controllers/complimentsController");
@@ -87,7 +112,7 @@ var compliments = [
 ];
 
 var Compliment = function(){
-  
+
 }
 
 Compliment.all = function(){
@@ -116,6 +141,9 @@ module.exports = complimentsController;
 
 ## I Do: Forms, bodyParser, and creating compliments
 
+See [first express lesson](../07-apis-express-ajax/express_intro/readme.md) for
+more on forms and bodyParser.
+
 ### res.redirect
 
 We used this in the first exercise.
@@ -128,6 +156,12 @@ app.get('/', function (req, res){
 ```
 
 ## You do: edit compliments
+
+Write an edit route which renders a form to update a compliment.
+
+Write an update route which takes the form data and updates the compliment.
+Hint: For now, you can use `Compliment.all[:id] = new_data` to update the
+compliment.
 
 ## Break
 
@@ -156,6 +190,9 @@ That `res.json` looks handy.  THe link takes us to http://expressjs.com/4x/api.h
 
 http://stackoverflow.com/a/12984730/850825
 
+In short, we'll add some code that modifies each request to indicate the client
+wants JSON if the request ends in `.json`.
+
 ```js
 // index.js
 
@@ -179,12 +216,16 @@ module.exports = {
       json: function(){
 	res.json(Compliment.all());
       }
-    }) 
+    })
   }
 }
 ```
 
 ### You do: Create, update delete routes
+
+* Implement a create route which creates a new compliment using JSON
+* Implement update routes for JSON (no need for edit)
+* Implement a delete route to delete a compliment by ID (index)
 
 ### res.jsonp
 
