@@ -598,6 +598,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))
 // allows for put/delete request in html form
 app.use(methodOverride('_method'))
+// connects assets like stylesheets
+app.use(express.static(__dirname + '/public'))
 
 // app server located on port 4000
 app.listen(4000, function(){
