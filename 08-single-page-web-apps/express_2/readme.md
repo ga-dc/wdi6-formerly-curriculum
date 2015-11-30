@@ -164,7 +164,8 @@ app.get('/', function (req, res){
 Write an edit route which renders a form to update a compliment.
 
 Write an update route which takes the form data and updates the compliment.
-Hint: For now, you can use `Compliment.all[:id] = new_data` to update the
+
+Hint: For now, you can use `Compliment.all()[:id] = new_data` to update the
 compliment.
 
 ## Break
@@ -181,7 +182,7 @@ The [docs](http://expressjs.com/guide/routing.html#response-methods) share many 
 
 ### res.json
 
-That `res.json` looks handy.  THe link takes us to http://expressjs.com/4x/api.html.  If you search for
+That `res.json` looks handy.  The link takes us to http://expressjs.com/4x/api.html.  If you search for
 `res.json([body])`, we'll find what we are looking for.
 
 "This method is identical to res.send() with an object or array as the parameter. However, you can use it to convert other values to JSON, such as null, and undefined. (although these are technically not valid JSON)."
