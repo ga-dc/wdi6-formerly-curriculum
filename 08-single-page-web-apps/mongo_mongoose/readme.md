@@ -326,13 +326,12 @@ http://docs.mongodb.org/manual/core/write-operations-introduction/
 )
 ```
 
-### You do (10 min): Update all restaurants in 20001 to be in DC.
+### You do (10 min): Update a restaurants to have a new key-value par `{state: "DC"}`
 
 ```
 > db.restaurants.update(
   {"name": "Cookies Corner"},
-  { $set: { state: "DC" }},
-  {multi: true }
+  { $set: { state: "DC" }}
 )
 ```
 ```
