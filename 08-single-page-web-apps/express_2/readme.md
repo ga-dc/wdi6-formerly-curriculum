@@ -146,6 +146,8 @@ module.exports = complimentsController;
 See [first express lesson](../07-apis-express-ajax/express_intro/readme.md) for
 more on forms and bodyParser.
 
+http://stackoverflow.com/a/33986576/850825 for put and delete
+
 ### res.redirect
 
 We used this in the first exercise.
