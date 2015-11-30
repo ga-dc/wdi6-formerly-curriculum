@@ -23,12 +23,12 @@ MongoDB is an open-source **document database** that provides:
 
 ### A basic example of a `Person` document:
 
-``` json
+```json
 {
-  name: "Sue",
-  age: 26,
-  status: "Active",
-  groups: ["sass", "express"]
+  "name": "Sue",
+  "age": 26,
+  "status": "Active",
+  "groups": ["sass", "express"]
 }
 ```
 ---
@@ -42,7 +42,7 @@ TPS: What do you see?
 
 ### More complicated example of a `Restaurant` document:
 
-``` json
+```json
 {
    "_id" : ObjectId("54c955492b7c8eb21818bd09"),
    "address" : {
@@ -296,15 +296,16 @@ db.restaurants.count()
 ## CLI: Find records
 
 Find all:
-``` mongo
+```mongo
 db.restaurants.find()
 ```
 
-### Equality Conditions
+### Find by Conditions (like `where`)
 
 Key: Value pairs
-``` json
-{ <field1>: <value1>, <field2>: <value2>, ... }
+```mongo
+db.restaurants.find({name: "Cookies Corner"});
+db.restaurants.find({"address.zipcode": 20001});
 ```
 
 ## Helpful References
@@ -355,7 +356,7 @@ db.restaurants.remove({ conditions })
 
 ## CLI: Add a nested object
 
-# We already did this!
+> We already did this! (The address 'object' / 'subdocument')
 
 ## Key Advantages
 
@@ -393,7 +394,7 @@ replica set:
 
 # [No SQL?](https://www.mongodb.com/nosql-explained)
 
-## Group Exercise (10min): Which database would you choose for?
+## ST-WG (10min): Which database would you choose for?
 - Blog: Posts have_many Comments
 - HR app: Companies have_many Managers have_many Employees
 - Gallery: Artists have_many Paintings
@@ -450,7 +451,7 @@ $ npm install hbs --save
 $ npm install body-parser --save
 $ npm install method-override --save
 $ npm install mongoose --save
-$ touch app.js
+$ touch index.js
 ```
 
 > The 5 dependencies we'll be using for this app are:
@@ -575,7 +576,7 @@ for(var i = 0; i < authors.length; i++){
 
 Now that we've got all of our models and seed data set. Let's start building out the reminders application. Let's update our main application file to include the dependencies we'll need.
 
-In `app.js`:
+In `index.js`:
 
 ```js
 // express dependency for our application
@@ -682,7 +683,7 @@ In `views/authors/index.hbs`:
 
 ## Author's Show and New - You do
 Create Author's Show page
-- update `app.js` to include a route for an author's show page
+- update `index.js` to include a route for an author's show page
 - have it map to an action in `controllers/authorsController.js` called `show`
   - HINT!: Instead of `.find()` try `.findById`
 - create a `views/authors/show.hbs` that has the following:
@@ -692,7 +693,7 @@ Create Author's Show page
   - a link to the authors index page
 
 Create Author's New page
-- update `app.js` to include a route for an author's new page
+- update `index.js` to include a route for an author's new page
 - have it map to an action in `controllers/authorsController.js` called `new`
 - create a `views/authors/new.hbs` that has the following:
   - form to create new author(it's ok your form doesn't do anything right now)
@@ -709,7 +710,7 @@ Our `views/authors/new.hbs` should look something like this:
 </form>
 ```
 
-Lets setup our `app.js` to listen for that post request.
+Lets setup our `index.js` to listen for that post request.
 
 ```js
 app.post("/authors", authorsController.create)
@@ -758,7 +759,7 @@ If you followed along the you do for show(`views/authors/show.hbs`), it should l
 
 Let's define a route and a controller action for creating reminders under an author document.
 
-In `app.js`:
+In `index.js`:
 
 ```js
 app.post("/authors/:id/reminders", authorsController.addReminder)
@@ -798,7 +799,7 @@ Next, let's create the functionality to delete reminders as we complete them. Le
 
 Now we just need set a route and a controller action.
 
-In `app.js`:
+In `index.js`:
 
 ```js
 app.delete("/authors/:authorId/reminders/:id", authorsController.removeReminder)
