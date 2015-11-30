@@ -786,7 +786,6 @@ Next, let's create the functionality to delete reminders as we complete them. Le
   <div class="reminders-show-each">
     <p>{{body}}</p>
     <form method="post" action="/authors/{{../_id}}/reminders/{{_id}}?_method=delete">
-        <input type="hidden" name="_method" value="delete">
         <input type="submit" value="Done!">
     </form>
   </div>
