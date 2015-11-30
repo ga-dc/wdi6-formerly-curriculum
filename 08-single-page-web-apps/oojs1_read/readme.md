@@ -21,7 +21,7 @@ The goal here is to build this [app](https://github.com/ga-dc/tunr_mongo_oojs).
 We want to be able to create these views strictly on the client-side.  
 
 ## Setup (10/20)
-The first thing we should do is fork/clone the [Tunr repo](https://github.com/ga-dc/tunr_node_oojs). Then, let's install dependencies and start the server.  
+The first thing we should do is fork/clone the [Tunr repo](https://github.com/ga-dc/tunr_mongo_oojs). Then, let's install dependencies and start the server.  
 
 ```bash
 $ npm install
