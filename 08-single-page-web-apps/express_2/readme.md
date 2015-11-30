@@ -27,11 +27,34 @@ app.METHOD(path, [callback...], callback)
 - `path` is a path on the server, and
 - `callback` is the function executed when the route is matched.
 
-### Exercise: Pair and Share: Write CRUD routes for a Compliment. (15 min)
+Let's create our express application `emergency_compliment` now:
 
-## We do: Create module and index route
+```bash
+$ mkdir emergency_compliment
+$ cd emergency_compliment
+$ npm init
+$ npm install express --save
+$ npm install hbs --save
+$ mkdir controllers
+$ mkdir views
+$ mkdir views/compliments
+$ touch index.js
+```
+
+### Exercise: Pair and Share: Write CRUD routes for a Compliment. (15 min)
+Think back to rails. Write all the RESTful routes for a single model `Compliment` in express, don't worry about adding functionality to the callback for now. EX:
+
+```js
+app.get('/compliments', function(req, res){
+  // code for compliment index route
+})
+```
+
+## We do: Create controller module and index route
 
 https://github.com/ga-dc/emergency_compliment
+
+Create controller `controllers/complimentsController.js` and place the following:
 
 ```js
 // controllers/complimentsController.js
@@ -43,6 +66,8 @@ var complimentsController = {
 }
 ```
 
+Create view `views/compliments/index.hbs` and place the following:
+
 ```html
 <!-- views/compliments/index.hbs -->
 <ul>
@@ -52,9 +77,9 @@ var complimentsController = {
 </ul>
 ```
 
-```js
-// index.js
+In `index.js`:
 
+```js
 var express = require("express");
 var app = express();
 var complimentsController = require("./controllers/complimentsController");
@@ -67,6 +92,8 @@ app.listen(3000, function(){
 ```
 
 ## You do: Create show, edit, and update routes (15 min)
+
+Add methods to your `complimentsController`
 
 ## I do: Create model
 
@@ -87,7 +114,7 @@ var compliments = [
 ];
 
 var Compliment = function(){
-  
+
 }
 
 Compliment.all = function(){
@@ -116,6 +143,35 @@ module.exports = complimentsController;
 
 ## I Do: Forms, bodyParser, and creating compliments
 
+```html
+<!-- views/compliments/new.hbs -->
+<form action="/compliments" method="post">
+  <input type='text' name='compliment'>
+  <input type='submit' value='Create New Compliment'>
+</form>
+```
+
+```js
+// models/compliment.js
+
+Compliment.create = function(compliment){
+  compliments.push(compliment)
+  return compliment
+}
+```
+
+```js
+// index.js
+
+app.post("/compliments/?:format?", complimentsController.create);
+```
+
+
+See [first express lesson](../07-apis-express-ajax/express_intro/readme.md) for
+more on forms and bodyParser.
+
+http://stackoverflow.com/a/33986576/850825 for put and delete
+
 ### res.redirect
 
 We used this in the first exercise.
@@ -128,6 +184,13 @@ app.get('/', function (req, res){
 ```
 
 ## You do: edit compliments
+
+Write an edit route which renders a form to update a compliment.
+
+Write an update route which takes the form data and updates the compliment.
+
+Hint: For now, you can use `Compliment.all()[:id] = new_data` to update the
+compliment.
 
 ## Break
 
@@ -143,7 +206,7 @@ The [docs](http://expressjs.com/guide/routing.html#response-methods) share many 
 
 ### res.json
 
-That `res.json` looks handy.  THe link takes us to http://expressjs.com/4x/api.html.  If you search for
+That `res.json` looks handy.  The link takes us to http://expressjs.com/4x/api.html.  If you search for
 `res.json([body])`, we'll find what we are looking for.
 
 "This method is identical to res.send() with an object or array as the parameter. However, you can use it to convert other values to JSON, such as null, and undefined. (although these are technically not valid JSON)."
@@ -155,6 +218,9 @@ That `res.json` looks handy.  THe link takes us to http://expressjs.com/4x/api.h
 ## I do: api
 
 http://stackoverflow.com/a/12984730/850825
+
+In short, we'll add some code that modifies each request to indicate the client
+wants JSON if the request ends in `.json`.
 
 ```js
 // index.js
@@ -179,16 +245,26 @@ module.exports = {
       json: function(){
 	res.json(Compliment.all());
       }
-    }) 
+    })
   }
 }
 ```
 
 ### You do: Create, update delete routes
 
+* Implement a create route which creates a new compliment using JSON
+* Implement update routes for JSON (no need for edit)
+* Implement a delete route to delete a compliment by ID (index)
+
 ### res.jsonp
 
-TODO Link to a file:// index.html and show AJAX cross-domain failure.
+http://dabble.site/jsonp.html (view source)
+
+#### You do: 
+
+Read the question and answer about JSON with padding - http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about
+
+http://expressjs.com/api.html#res.jsonp
 
 ## Conclusion
 
@@ -201,12 +277,7 @@ TODO Link to a file:// index.html and show AJAX cross-domain failure.
 - http://expressjs.com/guide/routing.html
 - Really like the organization I see in [this tutorial](https://thewayofcode.wordpress.com/2013/04/21/how-to-build-and-test-rest-api-with-nodejs-express-mocha/)
 - Looking for more?  We recommend NodeSchool's [ExpressWorks](https://github.com/azat-co/expressworks)
-
-
-### Express Route Tester
-
-Similarly, let's take a look at the [Express Route Tester](http://forbeslindesay.github.io/express-route-tester/?_ga=1.256234632.2070291842.1433362238).  It can be a handy tool for testing basic Express routes.
-
+- [Express Route Tester](http://forbeslindesay.github.io/express-route-tester/?_ga=1.256234632.2070291842.1433362238)
 
 ## Conclusion
 
