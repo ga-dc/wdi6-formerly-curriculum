@@ -143,6 +143,30 @@ module.exports = complimentsController;
 
 ## I Do: Forms, bodyParser, and creating compliments
 
+```html
+<!-- views/compliments/new.hbs -->
+<form action="/compliments" method="post">
+  <input type='text' name='compliment'>
+  <input type='submit' value='Create New Compliment'>
+</form>
+```
+
+```js
+// models/compliment.js
+
+Compliment.create = function(compliment){
+  compliments.push(compliment)
+  return compliment
+}
+```
+
+```js
+// index.js
+
+app.post("/compliments/?:format?", complimentsController.create);
+```
+
+
 See [first express lesson](../07-apis-express-ajax/express_intro/readme.md) for
 more on forms and bodyParser.
 
