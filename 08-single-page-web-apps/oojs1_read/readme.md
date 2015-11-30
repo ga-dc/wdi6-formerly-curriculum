@@ -391,3 +391,103 @@ One last little detail we need to fix on the UI. The buttons text should change 
 
 ## You Do: Toggle the Button (10/150)
 Create an instance method inside the `ArtistView.prototype` object. This method should make it such that the buttons text changes dynamically depending on whether songs are showing or not.
+
+## Closing / Questions
+
+# Cliff Notes
+
+### /public/js/models/artist.js
+```js
+var Artist = function(info){
+  this.name = info.name;
+  this.photoUrl = info.photoUrl;
+  this.nationality = info.nationality;
+  this.id = info.id
+}
+
+Artist.fetch = function(){
+  var request = $.getJSON("http://localhost:3000/artists").then(function(response){
+    var artists = [];
+    for(var i = 0; i < response.length; i++){
+      artists.push(new Artist(response[i]));
+    }
+    return artists;
+  }).fail(function(response){
+    console.log("artists fetch fail");
+  });
+  return request;
+}
+
+Artist.prototype.fetchSongs = function(){
+  var url = "http://localhost:3000/artists/" + this.id + "/songs";
+  var request = $.getJSON(url);
+  .then(function(response){
+    var songs = [];
+    for(var i = 0; i < response.length; i++){
+      songs.push(new Song(response[i]));
+    }
+    return songs;
+  })
+  .fail(function(repsonse){
+    console.log("js failed to load");
+  });
+  return request;
+}
+```
+
+### /public/js/views/artistView.js
+```js
+var ArtistView = function(artist){
+  this.artist = artist;
+  this.$el = $("<div class='artist'></div>");
+}
+
+ArtistView.prototype = {
+  render: function(){
+    var self = this;
+    self.$el.html(self.artistTemplate(self.artist));
+    $(".artists").append(self.$el);
+    var showButton = self.$el.find(".showSongs");
+    var songsDiv = self.$el.find("div.songs");
+    showButton.on("click", function(){
+      self.toggleSongs(songsDiv);
+    })
+  },
+  toggleSongs: function(songsDiv){
+    var self = this;
+    if(songsDiv.children().length === 0){
+      this.artist.fetchSongs().then(function(songs){
+        self.appendSongs(songs, songsDiv);
+        songsDiv.show();
+      });
+    }
+    songsDiv.toggle();
+  },
+  appendSongs: function(songs, songsDiv){
+    songs.forEach(function(song){
+      var songView = new SongView(song);
+      songsDiv.append(songView.render());
+    });
+  },
+  artistTemplate: function(artist){
+    var html = $("<div>");
+    html.append("<h3>" + artist.name + "</h3>");
+    html.append("<img class='artist-photo' src='" + artist.photoUrl + "'>");
+    html.append("<button class='showSongs'>Show Songs</button>");
+    html.append("<div class='songs'></div>");
+    return(html);
+  }
+}
+```
+
+### /public/js/script.js
+```js
+$(document).ready(function(){
+  Artist.fetch().then(function(artists){
+    artists.forEach(function(artist){
+      var view = new ArtistView(artist)
+      view.render();
+    })
+  })
+});
+```
