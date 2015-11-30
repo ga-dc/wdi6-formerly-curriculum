@@ -1,4 +1,4 @@
-\# Express Routing
+# Express Routing
 
 - Extract routes to separate files
 - Describe the role of response methods
