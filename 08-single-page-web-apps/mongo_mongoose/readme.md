@@ -326,7 +326,9 @@ http://docs.mongodb.org/manual/core/write-operations-introduction/
 )
 ```
 
-### You do (10 min): Update a restaurants to have a new key-value par `{state: "DC"}`
+### You do (10 min):
+
+Update a restaurants to have a new key-value par `{state: "DC"}`
 
 ```
 > db.restaurants.update(
