@@ -17,7 +17,7 @@ Instead, it would be great if we could take that AJAX response and encapsulate t
 > NOTE: We teach you many many tools. You won't use every tool all the time, but start to identify good use cases for these tools. If you were building a hole in the ground a foot deep, a back hoe might be a bit much and a shovel might do the trick. That said OOJS is not the end all be all of doing things on the front end.
 
 ## Goal
-The goal here is to build this [app](https://github.com/ga-dc/tunr_node_oojs/tree/solution).
+The goal here is to build this [app](https://github.com/ga-dc/tunr_mongo_oojs).
 We want to be able to create these views strictly on the client-side.  
 
 ## Setup (10/20)
