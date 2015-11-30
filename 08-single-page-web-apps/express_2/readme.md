@@ -1,4 +1,4 @@
-\# Express Routing
+# Express Routing
 
 - Extract routes to separate files
 - Describe the role of response methods
@@ -27,15 +27,6 @@ app.METHOD(path, [callback...], callback)
 - `path` is a path on the server, and
 - `callback` is the function executed when the route is matched.
 
-### Exercise: Pair and Share: Write CRUD routes for a Compliment. (15 min)
-Think back to rails. Write all the RESTful routes for a single model `Compliment` in express, don't worry about adding functionality to the callback for now. EX:
-
-```js
-app.get('/compliments', function(req, res){
-  // code for compliment index route
-})
-```
-
 Let's create our express application `emergency_compliment` now:
 
 ```bash
@@ -50,7 +41,16 @@ $ mkdir views/compliments
 $ touch index.js
 ```
 
-## We do: Create module and index route
+### Exercise: Pair and Share: Write CRUD routes for a Compliment. (15 min)
+Think back to rails. Write all the RESTful routes for a single model `Compliment` in express, don't worry about adding functionality to the callback for now. EX:
+
+```js
+app.get('/compliments', function(req, res){
+  // code for compliment index route
+})
+```
+
+## We do: Create controller module and index route
 
 https://github.com/ga-dc/emergency_compliment
 
@@ -92,6 +92,8 @@ app.listen(3000, function(){
 ```
 
 ## You do: Create show, edit, and update routes (15 min)
+
+Add methods to your `complimentsController`
 
 ## I do: Create model
 
@@ -229,7 +231,13 @@ module.exports = {
 
 ### res.jsonp
 
-TODO Link to a file:// index.html and show AJAX cross-domain failure.
+http://dabble.site/jsonp.html (view source)
+
+#### You do: 
+
+Read the question and answer about JSON with padding - http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about
+
+http://expressjs.com/api.html#res.jsonp
 
 ## Conclusion
 
@@ -242,12 +250,7 @@ TODO Link to a file:// index.html and show AJAX cross-domain failure.
 - http://expressjs.com/guide/routing.html
 - Really like the organization I see in [this tutorial](https://thewayofcode.wordpress.com/2013/04/21/how-to-build-and-test-rest-api-with-nodejs-express-mocha/)
 - Looking for more?  We recommend NodeSchool's [ExpressWorks](https://github.com/azat-co/expressworks)
-
-
-### Express Route Tester
-
-Similarly, let's take a look at the [Express Route Tester](http://forbeslindesay.github.io/express-route-tester/?_ga=1.256234632.2070291842.1433362238).  It can be a handy tool for testing basic Express routes.
-
+- [Express Route Tester](http://forbeslindesay.github.io/express-route-tester/?_ga=1.256234632.2070291842.1433362238)
 
 ## Conclusion
 
