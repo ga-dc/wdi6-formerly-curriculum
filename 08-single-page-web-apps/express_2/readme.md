@@ -1,4 +1,4 @@
-# Express Routing
+\# Express Routing
 
 - Extract routes to separate files
 - Describe the role of response methods
@@ -141,6 +141,9 @@ module.exports = complimentsController;
 
 ## I Do: Forms, bodyParser, and creating compliments
 
+See [first express lesson](../07-apis-express-ajax/express_intro/readme.md) for
+more on forms and bodyParser.
+
 ### res.redirect
 
 We used this in the first exercise.
@@ -153,6 +156,12 @@ app.get('/', function (req, res){
 ```
 
 ## You do: edit compliments
+
+Write an edit route which renders a form to update a compliment.
+
+Write an update route which takes the form data and updates the compliment.
+Hint: For now, you can use `Compliment.all[:id] = new_data` to update the
+compliment.
 
 ## Break
 
@@ -180,6 +189,9 @@ That `res.json` looks handy.  THe link takes us to http://expressjs.com/4x/api.h
 ## I do: api
 
 http://stackoverflow.com/a/12984730/850825
+
+In short, we'll add some code that modifies each request to indicate the client
+wants JSON if the request ends in `.json`.
 
 ```js
 // index.js
@@ -210,6 +222,10 @@ module.exports = {
 ```
 
 ### You do: Create, update delete routes
+
+* Implement a create route which creates a new compliment using JSON
+* Implement update routes for JSON (no need for edit)
+* Implement a delete route to delete a compliment by ID (index)
 
 ### res.jsonp
 
