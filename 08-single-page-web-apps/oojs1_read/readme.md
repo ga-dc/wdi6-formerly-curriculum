@@ -31,18 +31,20 @@ $ nodemon app.js
 Let's create a couple of folders as well.  
 
 ```bash
- $ mkdir public/js
- $ mkdir public/js/models
- $ mkdir public/js/views
- ```
+$ mkdir public/js
+$ mkdir public/js/models
+$ mkdir public/js/views
+```
 
 If we go into our browser we can view all the endpoints and see that we can access all Tunr data as JSON. Take a look at `app.js`, `controllers/artists.js` and `controllers/artists.js` and you can see the different routes.  
 
 Additionally if we look into `app.js` We can see at the root route we are rendering the index view.
 
-Inside the `views/index.hbs`, is just `<div class="artists"></div>`.
+**NOTE:** This index view is not the same as the `.hbs` views we've been using in Express. In fact, we won't be making use of any Express views at all. Instead, we'll be working from a single `index.html` file in our `public` folder.
 
-In our layout file we have a couple different things. We're linking to a stylesheet. We're loading some script files. Additionally theres a header for our application.
+In the `<body>` of `public/index.html`, we have a header as well as `<div class="artists"></div>`.
+
+In the `<head>` we're linking to a stylesheet as well as some script files. We'll be adding a few more script files in class today.
 
 ## I Do: Models (10/30)
 The first thing that I want to do is create a model file. This will hold the constructor function for a model. Let's create a file for the artist model: `$ touch public/js/models/artist.js`

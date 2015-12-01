@@ -134,6 +134,7 @@ Now, we have only the code we need and can git commit.
 - **Student 2**
 ``` bash
 git checkout git-teams-starter
+git pull origin git-teams-starter
 git pull <remote> <your-branchname>
 ```
 - **Both Students** On one machine, look over the merge conflict, resolve it locally, commit, and push.
