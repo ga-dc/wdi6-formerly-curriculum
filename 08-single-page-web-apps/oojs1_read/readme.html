@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Angular Intro: Controllers &amp; Directives | Welcome to GA&#39;s WDI-DC</title>
+        <title>R / CRUD | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="../../11-angular/services_templates_and_routing/readme.html" />
+    <link rel="next" href="../../08-single-page-web-apps/oojs2_create_update_destroy/readme.html" />
     
     
-    <link rel="prev" href="../../11-angular/readme.html" />
+    <link rel="prev" href="../../07-apis-express-ajax/prototypes_and_constructors/readme.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="9.1"
-        data-chapter-title="Angular Intro: Controllers &amp; Directives"
-        data-filepath="11-angular/angular_intro_controllers_directives/readme.md"
+        data-level="7.2"
+        data-chapter-title="R / CRUD"
+        data-filepath="08-single-page-web-apps/oojs1_read/readme.md"
         data-basepath="../.."
         data-revision="Tue Dec 01 2015 13:31:10 GMT+0000 (UTC)"
         data-innerlanguage="">
@@ -748,7 +748,7 @@
             
         </li>
     
-        <li class="chapter " data-level="7.2" data-path="08-single-page-web-apps/oojs1_read/readme.html">
+        <li class="chapter active" data-level="7.2" data-path="08-single-page-web-apps/oojs1_read/readme.html">
             
                 
                     <a href="../../08-single-page-web-apps/oojs1_read/readme.html">
@@ -1041,7 +1041,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="9.1" data-path="11-angular/angular_intro_controllers_directives/readme.html">
+        <li class="chapter " data-level="9.1" data-path="11-angular/angular_intro_controllers_directives/readme.html">
             
                 
                     <a href="../../11-angular/angular_intro_controllers_directives/readme.html">
@@ -1154,373 +1154,413 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="angular-intro-controllers-and-directives">Angular Intro, Controllers, and Directives</h2>
+                        <h1 id="oojs--reading">OOJS - Reading</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Describe the benefits of using a front end framework</li>
-<li>Explain how libraries differ from frameworks.</li>
-<li>Build a controller with hard coded data.</li>
-<li>Render and bind controller data in the view.</li>
-<li>Explain what angular directives do and how they are leveraged to execute JS.</li>
-<li>Use <code>ng-repeat</code> to iterate over data.</li>
-<li>use <code>ng-hide</code>/<code>ng-show</code> to hide and show elements.</li>
-<li>use <code>ng-submit</code> to create hard coded objects on the client.</li>
+<li>Use <code>$.ajax</code> to populate objects client-side.</li>
+<li>Differentiate between &quot;class methods&quot; and &quot;instance (prototyped) methods&quot; in JS.</li>
+<li>Use OOJS to build model and view objects.</li>
+<li>Utilize promises to access the response from an <code>$.ajax</code> request.</li>
+<li>Render views client-side utilizing JS objects.</li>
 </ul>
-<h2 id="highlevel-overview-of-fefw">highlevel overview of FEFW</h2>
-<h2 id="opening-framing-55">Opening Framing (5/5)</h2>
-<p>How we got here:</p>
-<ol>
-<li><p>vanilla js</p>
-<ul>
-<li>a lot of code to write</li>
-</ul>
-</li>
-<li><p>jQuery</p>
-<ul>
-<li>easier to do more</li>
-<li>easier to write more bad code</li>
-</ul>
-</li>
-<li><p>OOJS</p>
-<ul>
-<li>more structured but a royal pain to write</li>
-</ul>
-</li>
-<li><p>Frameworks</p>
-<ul>
-<li>All the structure of OOJS with the ease of writing like jQuery.</li>
-</ul>
-</li>
-</ol>
-<p>What&apos;s the purpose of a front end framework? JS and all of it&apos;s many libraries are great, but you can start building and building your application and all of a sudden there&apos;s no structure and everything&apos;s soup.</p>
-<h3 id="libraries-2575">libraries (2.5/7.5)</h3>
-<ul>
-<li>libraries gives us tools to utilize.</li>
-<li>abstracts code and allows us to write our code more succinctly</li>
-<li>allows us to write applications faster and easier</li>
-<li>lots of options, very few rules (jQuery)</li>
-</ul>
-<h3 id="frameworks-2510">frameworks (2.5/10)</h3>
-<ul>
-<li>like libraries in that it gives us tools to utilize</li>
-<li>additionally they provide structure and conventions users have to follow in order for them to work.</li>
-<li>Lots of rules (convention), few options (Ruby on Rails)</li>
-</ul>
-<h2 id="what-is-a-front-end-framework-515">What is a front end framework? (5/15)</h2>
-<ul>
-<li>a library that attempts to move some or all application logic to the browser, while providing a simple interface for keeping the front-end in sync with the back-end</li>
-<li>applications can run completely in the browser, minimizing server load since the server is only accessed when the front end needs to synchronize data with the backend</li>
-<li>server sends over the app in the initial request (HTML/CSS/JS) then JS makes all subsequent requests with AJAX</li>
-<li>provides more fluid user experience</li>
-<li>loads everything from the database on page load (data and templates) then renders/updates the page content based on user interaction.</li>
-</ul>
-<h2 id="what-is-angular-1530">What is Angular? (15/30)</h2>
-<p>Take a look at <a href="http://www.tutorialspoint.com/angularjs/angularjs_overview.htm" target="_blank">this quick overview of angular</a>(10)</p>
-<p>T&amp;T - Some points to think about (5)</p>
-<ul>
-<li>What are some features or characteristics of Angular?</li>
-<li>How does Angular compare/differ from Backbone (or other front-end frameworks)?</li>
-</ul>
-<h2 id="angular-535">Angular (5/35)</h2>
-<ul>
-<li>structural front end framework for dynamic web apps</li>
-<li>uses HTML as your template language and lets you extend HTML&apos;s syntax to express your application&apos;s functionality</li>
-<li>allows you to utilize html attributes to add behavior through JS. (directives)</li>
-<li>changes are reflected in various areas and persisted immediately without page refresh</li>
-<li>it&apos;s interesting, there&apos;ll be a lot of logic in the dom.</li>
-</ul>
-<h2 id="setup-540">Setup (5/40)</h2>
-<p>Let&apos;s set up an angular environment</p>
-<p>Files/folders:</p>
-<pre><code class="lang-bash">$ mkdir todo_angular
-$ <span class="hljs-built_in">cd</span> todo_angular
-$ touch index.html
-$ mkdir js
-$ mkdir js/controllers
-$ touch js/app.js
+<h2 id="opening-framing-1010">Opening Framing (10/10)</h2>
+<p>We&apos;ve learned how to make web applications with RESTful routing. We&apos;ve even learned how to create them as API&apos;s that respond with JSON. Additionally, we&apos;ve also learned how to make requests to an API in order to access data. But really all we did with that data was maybe create a single div in the promise of the AJAX request. This isn&apos;t really ideal.</p>
+<p>Instead, it would be great if we could take that AJAX response and encapsulate the information we want into client-side JS objects. Then, with those model objects, we can render views utilizing view objects. In the same way we used Rails to group functionality and separate concerns, we can do similar things with JS objects on the client-side.  </p>
+<p><strong>HEADS UP:</strong> This stuff is hard guys. OOJS is one of more difficult thing we teach in this class. That being said, it&apos;s OK to not fully understand right away. Pick up what you can, practice and break stuff.  </p>
+<blockquote>
+<p>NOTE: We teach you many many tools. You won&apos;t use every tool all the time, but start to identify good use cases for these tools. If you were building a hole in the ground a foot deep, a back hoe might be a bit much and a shovel might do the trick. That said OOJS is not the end all be all of doing things on the front end.</p>
+</blockquote>
+<h2 id="goal">Goal</h2>
+<p>The goal here is to build this <a href="https://github.com/ga-dc/tunr_mongo_oojs" target="_blank">app</a>.
+We want to be able to create these views strictly on the client-side.  </p>
+<h2 id="setup-1020">Setup (10/20)</h2>
+<p>The first thing we should do is fork/clone the <a href="https://github.com/ga-dc/tunr_mongo_oojs" target="_blank">Tunr repo</a>. Then, let&apos;s install dependencies and start the server.  </p>
+<pre><code class="lang-bash">$ npm install
+$ nodemon app.js
 </code></pre>
-<p>Bower Installation:</p>
-<pre><code class="lang-bash">$ npm install -g bower
-$ bower install --save jquery
-$ bower install --save angular
+<p>Let&apos;s create a couple of folders as well.  </p>
+<pre><code class="lang-bash">$ mkdir public/js
+$ mkdir public/js/models
+$ mkdir public/js/views
+</code></pre>
+<p>If we go into our browser we can view all the endpoints and see that we can access all Tunr data as JSON. Take a look at <code>app.js</code>, <code>controllers/artists.js</code> and <code>controllers/artists.js</code> and you can see the different routes.  </p>
+<p>Additionally if we look into <code>app.js</code> We can see at the root route we are rendering the index view.</p>
+<p><strong>NOTE:</strong> This index view is not the same as the <code>.hbs</code> views we&apos;ve been using in Express. In fact, we won&apos;t be making use of any Express views at all. Instead, we&apos;ll be working from a single <code>index.html</code> file in our <code>public</code> folder.</p>
+<p>In the <code>&lt;body&gt;</code> of <code>public/index.html</code>, we have a header as well as <code>&lt;div class=&quot;artists&quot;&gt;&lt;/div&gt;</code>.</p>
+<p>In the <code>&lt;head&gt;</code> we&apos;re linking to a stylesheet as well as some script files. We&apos;ll be adding a few more script files in class today.</p>
+<h2 id="i-do-models-1030">I Do: Models (10/30)</h2>
+<p>The first thing that I want to do is create a model file. This will hold the constructor function for a model. Let&apos;s create a file for the artist model: <code>$ touch public/js/models/artist.js</code></p>
+<p>In <code>public/js/models/artist.js</code>:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Artist = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">info</span>)</span>{
+  <span class="hljs-keyword">this</span>.name = info.name;
+  <span class="hljs-keyword">this</span>.photoUrl = info.photoUrl;
+  <span class="hljs-keyword">this</span>.nationality = info.nationality;
+  <span class="hljs-keyword">this</span>.id = info.id
+}
 </code></pre>
 <blockquote>
-<p>installing bower globally so that we can add this dependency to our system</p>
+<p>In this constructor function, <code>info</code> is an argument passed in when creating a new Artist object. The properties of this object match to the columns in the <code>artists</code> database table.</p>
 </blockquote>
-<p><code>index.html</code>:</p>
-<pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">&quot;en&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
- <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;UTF-8&quot;</span>&gt;</span>
- <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Angular Lesson<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
- <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/jquery/dist/jquery.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
- <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/angular/angular.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
- <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;js/app.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
-
-<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+<p>Let&apos;s go ahead and test this out in the console of our browser.  </p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> artist = <span class="hljs-keyword">new</span> Artist()
+<span class="hljs-comment">// &gt; Uncaught ReferenceError: Artist is not defined</span>
+</code></pre>
+<p>What gives? We haven&apos;t included the script file in our layout file. In <code>views/layout.hbs</code>:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;/js/models/artist.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p>Lets try again.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> artist = <span class="hljs-keyword">new</span> Artist()
+<span class="hljs-comment">// &gt; Uncaught TypeError: Cannot read property &apos;name&apos; of undefined</span>
+</code></pre>
+<p>I think the issue here is that we didn&apos;t pass in an argument to the constructor function. Ok, third time&apos;s a charm.  </p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> artist = <span class="hljs-keyword">new</span> Artist({
+  name: <span class="hljs-string">&quot;Blues Traveler&quot;</span>,
+  photoUrl: <span class="hljs-string">&quot;http://coloredvinylrecords.com/pictures/b/blues-traveler-four-01433512670.png&quot;</span>,
+  nationality: <span class="hljs-string">&quot;murica&quot;</span>,
+  id: <span class="hljs-number">6</span>
+})
+<span class="hljs-comment">// &gt; undefined</span>
+artist
+<span class="hljs-comment">// &gt; Artist {name: &quot;blues traveler&quot;, photoUrl: &quot;someURL&quot;, nationality: &quot;murica&quot;, id: 6}</span>
+</code></pre>
+<p>Great - we created a client-side instance of our object!  </p>
+<h2 id="you-do-models-1040">You Do: Models (10/40)</h2>
+<p>Now that we&apos;ve created the artist model, go ahead and code the Song model definition.</p>
+<p>Remember to:</p>
+<ul>
+<li>Create a model file.</li>
+<li>Code the constructor function in that file.</li>
+<li>Link to that file to your layout.</li>
+</ul>
+<h2 id="fetching-2060">Fetching (20/60)</h2>
+<p>It&apos;s not enough to just be able to create an object on the client side. We have to be able to make an ajax call to a server to actually parse the database into objects on the client side. Let&apos;s update our artist model to fetch from a database. In <code>js/models/artist.js</code>...</p>
+<pre><code class="lang-js">Artist.fetch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// saving the ajax request to a local variable</span>
+  <span class="hljs-keyword">var</span> request = $.getJSON(<span class="hljs-string">&quot;http://localhost:3000/artists&quot;</span>)
+  <span class="hljs-comment">// the promise function on a successful ajax call.</span>
+  .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+    <span class="hljs-comment">// local variable in the promise callback instantiated as an empty array</span>
+    <span class="hljs-keyword">var</span> artists = []
+    <span class="hljs-comment">// loop over each element in the response</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; response.length; i++){
+      <span class="hljs-comment">// create a new JS Artist object for each element in the response</span>
+      artists.push(<span class="hljs-keyword">new</span> Artist(response[i]))
+    }
+    <span class="hljs-comment">// returns artists in the promise so that it can be passed in as an argument to future promises</span>
+    <span class="hljs-keyword">return</span> artists
+    })
+  .fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;artists fetch fail&quot;</span>)
+    })
+  <span class="hljs-comment">// explicit return of the fetch function that returns the json request with artists available an argument for future promises  </span>
+  <span class="hljs-keyword">return</span> request
+}
 </code></pre>
 <blockquote>
-<p>In the <code>index.html</code> file, we are linking to the bower components we already installed before along with our main <code>js/app.js</code> file</p>
+<p><code>$.getJSON</code> is jQuery method that serves the same purpose as a GET <code>$.ajax</code> to a JSON source.<br>NOTE: We defined the <code>fetch</code> function inside the Artist constructor. This is more or less the same as class methods in Ruby.</p>
 </blockquote>
-<h2 id="creating-angular-app-545">Creating angular app (5/45)</h2>
-<p>We&apos;re going to add an immediately invoked function expression to instantiate our angular application. In <code>js/app.js</code>:</p>
-<pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-  angular.module(<span class="hljs-string">&apos;todo&apos;</span>, []);
-})()
-</code></pre>
-<p>What&apos;s a module?
-What&apos;s an immediately-invoked function (IFFE)?</p>
-<blockquote>
-<p>The first argument is the name of the angular module. The second argument is an array of modules on which the current module will depend on. This is an immediately invoked function expression. We immediately invoke in order to start the angular application.</p>
-</blockquote>
-<h2 id="directives-550">Directives (5/50)</h2>
-<p>Directives are Angular&apos;s way of letting you make custom elements and attributes. HTML elements and attributes can have different behaviors. Angular lets you make different behaviors for these elements and attributes for these, too.</p>
-<p>Directives are markers on a DOM element that tell AngularJS&apos;s HTML compiler to attach a specified behavior to that DOM element (e.g. via event listeners).</p>
-<p>This definition always scares me. I might say &quot;Directives are Angular&apos;s way of letting you make custom elements and attributes. HTML elements and attributes can have different behaviors. Angular lets you make different behaviors for these elements and attributes for these, too.&quot;</p>
-<h3 id="our-first-directive--ngapp">Our first directive - ng-app.</h3>
-<p>Let&apos;s add our very first directive. In the <code>index.html</code>:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">&apos;en&apos;</span> <span class="hljs-attribute">ng-app</span>=<span class="hljs-value">&apos;todo&apos;</span>&gt;</span>
+<p>There&apos;s a lot going on here. Let&apos;s take it slow and play around with it in the console.  </p>
+<pre><code class="lang-js">artists = Artist.fetch()
+<span class="hljs-comment">// &gt; Object{}</span>
 </code></pre>
 <blockquote>
-<p>ng-app defines which portion of the html that our JS will be applied to. In this case, we&apos;re adding it to the <code>&lt;html&gt;</code> so we extend our JS functionality to the entire DOM. The domain of the directive begins and ends with the opening and closing tags of the html element the directive is defined in.</p>
+<p>We can drill into the response object and see some pretty cryptic stuff. But if you remember in the code comments above, that&apos;s possible because we return the response. By saving the response to an <code>artists</code> variable, we have access to artists as an argument in future promises.</p>
 </blockquote>
-<p><code>ng-app</code> says which HTML element is going to be the &quot;box&quot; inside which all of our Angular stuff goes.</p>
-<h2 id="angular-expression-1060">Angular expression (10/60)</h2>
-<h3 id="5"><code>{{}}</code>(5)</h3>
-<p>Because we defined our ng-app we are able to use <code>{{}}</code> much in the same way we used <code>&lt;%%&gt;</code> in ruby.</p>
-<p><code>{{}}</code> allows us to execute JS code in the <code>index.html</code></p>
-<h3 id="you-do-write-these-expressions-and-what-generates-on-the-page-try-other-things-out-5">You do write these expressions and what generates on the page. Try other things out! (5)</h3>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>{{5 + 5}}<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>{{5 == &quot;5&quot;}}<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>{{5 === &quot;5&quot;}}<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>{{&quot;pizza&quot;}}<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<p>Let try attaching a promise to it.</p>
+<pre><code class="lang-js">artists.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artists</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(artists)
+})
+<span class="hljs-comment">// &gt; [Artist, Artist, Artist, Artist, Artist]</span>
 </code></pre>
+<p>We now have access to our artists in our database on the  client side.</p>
 <h2 id="break-1070">Break (10/70)</h2>
-<h2 id="angular-controllers-1080">Angular controllers (10/80)</h2>
-<p>This is cool, but not very useful. We&apos;re basically just hard-coding in data here, which we&apos;ll never do in a &quot;real&quot; app. Instead, we want to dynamically insert data. <strong>Controllers</strong> are the go-between for views (our HTML) and our data.</p>
-<p>Let&apos;s create the controller file <code>$ touch js/controllers/todos.js</code> and add the following code:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">&quot;todo&quot;</span>)
-app.controller(<span class="hljs-string">&quot;todosController&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">this</span>.todos = [
-    <span class="hljs-string">&quot;Walk the Dog&quot;</span>,
-    <span class="hljs-string">&quot;Buy Groceries&quot;</span>,
-    <span class="hljs-string">&quot;Eat foot&quot;</span>,
-    <span class="hljs-string">&quot;Smell fish&quot;</span>
-  ]
+<h2 id="views-artist-2090">Views: Artist (20/90)</h2>
+<p>We have the ability to create objects in JS from the database on the client side. We need to additionally render views based on those models. There&apos;s lots of ways to build views as well as lots of front-end frameworks that do it as well. This is just one way.  </p>
+<p>Lets start by creating and editing <code>public/js/views/artistView.js</code>.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> ArtistView = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artist</span>)</span>{
+  <span class="hljs-keyword">this</span>.artist = artist;
+  <span class="hljs-keyword">this</span>.$el = $(<span class="hljs-string">&quot;&lt;div class=&apos;artist&apos;&gt;&lt;/div&gt;&quot;</span>);
+};
+</code></pre>
+<p>We can quickly test this in the console by creating a new artistView.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> bluesTraveler = <span class="hljs-keyword">new</span> Artist({
+  name: <span class="hljs-string">&quot;Blues Traveler&quot;</span>,
+  photoUrl: <span class="hljs-string">&quot;http://coloredvinylrecords.com/pictures/b/blues-traveler-four-01433512670.png&quot;</span>,
+  nationality: <span class="hljs-string">&quot;murica&quot;</span>,
+  id: <span class="hljs-number">6</span>
+})
+<span class="hljs-keyword">var</span> bluesTravelerView = <span class="hljs-keyword">new</span> Artist(bluesTraveler)
+</code></pre>
+<p>We can call <code>.artist</code> or <code>.$el</code> and retrieve those properties now.</p>
+<p>We&apos;re setting 2 properties in the ArtistView objects. The first is an artist, which gets passed into the constructor function. The second is an <code>.$el</code> property which is just a jQuery object that&apos;s an empty div.  </p>
+<p>Let&apos;s create some additional functionality for the ArtistView Object in <code>public/js/views/artistView.js</code>.  </p>
+<pre><code class="lang-js">ArtistView.prototype ={
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-comment">// we&apos;ll be adding event listeners later but will still need access to the Artist view in the event listener</span>
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+    <span class="hljs-comment">// appending elements to the .$el property</span>
+    self.$el.append(<span class="hljs-string">&quot;&lt;h3&gt;&quot;</span> + artist.name + <span class="hljs-string">&quot;&lt;/h3&gt;&quot;</span>);
+    self.$el.append(<span class="hljs-string">&quot;&lt;img class=&apos;artist-photo&apos; src=&apos;&quot;</span> + artist.photoUrl + <span class="hljs-string">&quot;&apos;&gt;&quot;</span>);
+    self.$el.append(<span class="hljs-string">&quot;&lt;button class=&apos;showSongs&apos;&gt;Show Songs&lt;/button&gt;&quot;</span>);
+    self.$el.append(<span class="hljs-string">&quot;&lt;div class=&apos;songs&apos;&gt;&lt;/div&gt;&quot;</span>);
+    <span class="hljs-comment">// append the .$el to the div with class artists in our view.</span>
+    $(<span class="hljs-string">&quot;div.artists&quot;</span>).append(self.$el);
+  }
+}
+</code></pre>
+<blockquote>
+<p>NOTE: We namespaced the .render() functionality under prototype. That is to say, this is like an instance method. It is available to each instance of the ArtistView Object</p>
+</blockquote>
+<p>Let&apos;s test this out in the console.  </p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> bluesTraveler = <span class="hljs-keyword">new</span> Artist({
+  name: <span class="hljs-string">&quot;Blues Traveler&quot;</span>,
+  photoUrl: <span class="hljs-string">&quot;http://coloredvinylrecords.com/pictures/b/blues-traveler-four-01433512670.png&quot;</span>,
+  nationality: <span class="hljs-string">&quot;murica&quot;</span>,
+  id: <span class="hljs-number">6</span>
+});
+<span class="hljs-keyword">var</span> bluesTravelerView = <span class="hljs-keyword">new</span> ArtistView(bluesTraveler);
+bluesTravelerView.render();
+</code></pre>
+<p>Great, we see the view was generated and rendered to our page! Now let&apos;s do some refactoring in <code>public/js/views/artistView.js</code>.</p>
+<pre><code class="lang-js">ArtistView.prototype ={
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+    self.$el.html(self.artistTemplate(self.artist));
+    $(<span class="hljs-string">&quot;.artists&quot;</span>).append(self.$el);
+  },
+  artistTemplate: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artist</span>)</span>{
+    <span class="hljs-keyword">var</span> html = $(<span class="hljs-string">&quot;&lt;div&gt;&quot;</span>);
+    html.append(<span class="hljs-string">&quot;&lt;h3&gt;&quot;</span> + artist.name + <span class="hljs-string">&quot;&lt;/h3&gt;&quot;</span>);
+    html.append(<span class="hljs-string">&quot;&lt;img class=&apos;artist-photo&apos; src=&apos;&quot;</span> + artist.photoUrl + <span class="hljs-string">&quot;&apos;&gt;&quot;</span>);
+    html.append(<span class="hljs-string">&quot;&lt;button class=&apos;showSongs&apos;&gt;Show Songs&lt;/button&gt;&quot;</span>);
+    html.append(<span class="hljs-string">&quot;&lt;div class=&apos;songs&apos;&gt;&lt;/div&gt;&quot;</span>);
+    <span class="hljs-keyword">return</span>(html);
+  }
+}
+</code></pre>
+<blockquote>
+<p>We&apos;ll get into templating later. When we implement this (probably with Handlebars) we will no longer need this <code>artistTemplate</code> function.</p>
+</blockquote>
+<p>We want all artists to be rendered upon page load. Let&apos;s take care of that in <code>public/js/script.js</code>:</p>
+<pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  Artist.fetch().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artists</span>)</span>{
+    artists.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artist</span>)</span>{
+      <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> ArtistView(artist)
+      view.render();
+    })
+  })
+});
+</code></pre>
+<p>Let&apos;s reload the page. BAM!</p>
+<blockquote>
+<p>NOTE: Code snippets moving forward will be parts of an entire file.</p>
+</blockquote>
+<h2 id="i-do-fetching-songs-20110-w-break">I Do: Fetching Songs (20/110) w/ break</h2>
+<p>As we can see on our new landing page, there&apos;s a show songs button for each Artist. We want to be able to click on that button and see all of the songs that belong to that Artist.  </p>
+<p>In the render function of our artists, we additionally want to add an event listener to this button. In the render function of <code>public/js/views/artistView.js</code>...</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> showButton = self.$el.find(<span class="hljs-string">&quot;.showSongs&quot;</span>);
+<span class="hljs-keyword">var</span> songsDiv = self.$el.find(<span class="hljs-string">&quot;div.songs&quot;</span>);
+songsDiv.hide();
+showButton.on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;show button clicked&quot;</span>);
+});
+</code></pre>
+<p>The event is firing off. We also hid the <code>div</code> with class <code>songs</code> because we want to be able to call <code>.show</code> on it for the initial click.  </p>
+<p>It&apos;s not enough to just log that the button was clicked though. Really what we want to do is append a Song for each Song associated with this Artist.  </p>
+<p>The first thing we need is the ability to get our Songs. Let&apos;s update our Artist model to incorporate that functionality. In <code>public/js/models/artist.js</code>...  </p>
+<pre><code class="lang-js">Artist.prototype.fetchSongs = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> url = <span class="hljs-string">&quot;http://localhost:3000/artists/&quot;</span> + <span class="hljs-keyword">this</span>.id + <span class="hljs-string">&quot;/songs&quot;</span>;
+  <span class="hljs-keyword">var</span> request = $.getJSON(url);
+  .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+    <span class="hljs-keyword">var</span> songs = [];
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; response.length; i++){
+      songs.push(<span class="hljs-keyword">new</span> Song(response[i]));
+    }
+    <span class="hljs-keyword">return</span> songs;
+  })
+  .fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">repsonse</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;js failed to load&quot;</span>);
+  })
+  <span class="hljs-keyword">return</span> request;
+}
+</code></pre>
+<blockquote>
+<p>NOTE: While they look pretty similar, there are some important different between <code>.fetch()</code> and <code>.fetchSongs()</code>. <code>.fetch()</code> is a class method which is called on the constructor function to get all of the Artists. <code>.fetchSongs</code> is an instance method and is available for each instance of the Artist constructor and grabs all of the Songs for that single Artist.</p>
+</blockquote>
+<p>So we&apos;re able to get the Songs for each Artist. Now, we want the ability to generate a view for each Song so we can append it to the Artist.  </p>
+<h2 id="you-do-create-and-edit-publicjsviewsongviewjs-10120">You Do: Create and Edit <code>/public/js/view/songView.js</code> (10/120)</h2>
+<p>The song view is kept minimal because we are just attaching it to the artist view. All we want to return in the render function is a <code>&lt;p&gt;</code> containing the title.  </p>
+<h2 id="i-do-show-songs-click-event-20140">I Do: Show Songs Click Event (20/140)</h2>
+<p>Alright, let&apos;s update event listener in our render function inside of <code>public/js/views/artistView.js</code>.</p>
+<pre><code class="lang-js">showButton.on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">if</span>(songsDiv.children().length === <span class="hljs-number">0</span>){
+    self.artist.fetchSongs().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">songs</span>)</span>{
+      songs.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">song</span>)</span>{
+        <span class="hljs-keyword">var</span> songView = <span class="hljs-keyword">new</span> SongView(song);
+        songsDiv.append(songView.render());
+        songsDiv.show();
+      });
+    });
+  }
+  <span class="hljs-comment">// toggle (note: songsDiv starts hidden)</span>
+  songsDiv.toggle();
 })
 </code></pre>
-<blockquote>
-<p>We&apos;ve instantiated a controller on our main app. This is where all the logic will be contained. We&apos;ll be learning later this week how to fetch data from an external API, that behavior will belong in the controller. For now, we&apos;ve hardcoded 4 strings as a property for the controller acting as our API fetch for our model. Our model is a todo string</p>
-</blockquote>
-<p>Additionally we need to add this controller as a dependency to our <code>index.html</code>:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;js/controllers/todos.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-</code></pre>
-<h3 id="setup--add-controller-and-seed-data-in-controller--you-do--grumblr-20100">Setup &amp; add controller and seed data in controller - you do - grumblr (20/100)</h3>
-<ul>
-<li>Set up the <code>grumblr</code> application as an angular application.</li>
-<li>Create an angular application in the main js file</li>
-<li>Create an angular controller</li>
-<li>That angular controller will have a property that is an array that contains 5 objects with the following properties:<ul>
-<li>title</li>
-<li>author name</li>
-<li>content</li>
-<li>photo url</li>
-</ul>
-</li>
-</ul>
-<h3 id="initialize-controller-in-the-dom">Initialize Controller in the DOM</h3>
-<p>In <code>index.html</code>:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">&apos;todosController as todosCtrl&apos;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>{{todosCtrl.todos[0]}}<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<blockquote>
-<p>we used the <code>ng-controller</code> directive here in order to instantiate our controller in the DOM. In the same way that <code>ng-app</code> established the domain of the js functionality in the html element, the <code>ng-controller</code> establishes the domain in this div.</p>
-<p><code>todosCtrl</code> is an instance of our controller. <code>ng-controller</code> gives this whole div access to all the values and methods defined in that controller. This instance of a controller is called a &quot;ViewModel&quot;.</p>
-</blockquote>
-<h3 id="accessing-values-in-the-controller--you-do-5105">Accessing values in the Controller - You do (5/105)</h3>
-<p>In the div above, use <code>{{}}</code> (an angular expression) to access a todo from the controller.</p>
-<h2 id="controller-functions-20125">Controller Functions (20/125)</h2>
-<p>We need to be able to define functions that interact with our models and views. We do this through the controller.</p>
-<p>Let&apos;s create a function in our controller and see if we can utilize it in the DOM. In <code>js/controllers/todos.js</code>:</p>
-<pre><code class="lang-js">  <span class="hljs-keyword">this</span>.sayHello = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Hello World!&quot;</span>)
+<p>Awesome! We can now click Show Songs (and it even toggles). Seems a little bit off that the button still shows show songs after we click it, but we can fix that in a bit.  </p>
+<p>Our code is starting to get a little bit out of control. Let&apos;s take some time to refactor. We want to get as much out of this render function as possible and separate our concerns. Let&apos;s first abstract out all of the functionality inside of the click event and namespace it into <code>toggleSongs</code>. In the <code>ArtistView.prototype</code> object inside of <code>public/js/views/artistView.js</code>...</p>
+<pre><code class="lang-js">render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+  self.$el.html(self.artistTemplate(self.artist));
+  $(<span class="hljs-string">&quot;.artists&quot;</span>).append(self.$el);
+  <span class="hljs-keyword">var</span> showButton = self.$el.find(<span class="hljs-string">&quot;.showSongs&quot;</span>);
+  <span class="hljs-keyword">var</span> songsDiv = self.$el.find(<span class="hljs-string">&quot;div.songs&quot;</span>);
+  showButton.on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    self.toggleSongs(songsDiv);
+  })
+},
+
+toggleSongs: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">songsDiv</span>)</span>{
+  <span class="hljs-keyword">if</span>(songsDiv.children().length === <span class="hljs-number">0</span>){
+    <span class="hljs-keyword">this</span>.artist.fetchSongs().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">songs</span>)</span>{
+      songs.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">song</span>)</span>{
+        <span class="hljs-keyword">var</span> songView = <span class="hljs-keyword">new</span> SongView(song);
+        songsDiv.append(songView.render());
+        songsDiv.show();
+      });
+    });
   }
+  songsDiv.toggle();
+}
 </code></pre>
-<blockquote>
-<p>all we did here is add a function to our controller we can use this functionality in a variety of ways.</p>
-</blockquote>
-<h3 id="ngclick"><code>ng-click</code></h3>
-<p>Sometimes we want JS functionality we&apos;ve defined in a controller to execute on click. Enter <code>ng-click</code>. <code>ng-click</code> says which controller function you want to execute when that HTML element is clicked. We&apos;re going to update the html and nest an <code>ng-click</code> anchor tag (<code>&lt;a&gt;&lt;/a&gt;</code>) in our <code>&lt;div&gt;</code> that contains the controller.</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&quot;todosCtrl.sayHello()&quot;</span>&gt;</span>Say Hello<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-</code></pre>
-<blockquote>
-<p>This is just an anchor with an <code>ng-click</code> attribute. The value of the attribute is a function of the todosController that logs hello. <code>ng-click</code> adds a click event to the dom element it&apos;s associated with.</p>
-</blockquote>
-<p>This sort of behavior is nice, but who wants to just say hello. I think it&apos;d be really really nice if it did something useful like show a form.</p>
-<p>We&apos;re going to be using another angular directive that allows us to leverage booleans values to display elements. The idea is that the element is only displayed if a property of the controller evaluates to true.</p>
-<p>Let&apos;s instantiate a property of our controller and replace our <code>.sayHello()</code> function to be <code>.toggleForm</code>. In <code>js/controllers/todos.js</code>:</p>
-<pre><code class="lang-js">  <span class="hljs-keyword">this</span>.formIsVisible = <span class="hljs-literal">false</span>
-  <span class="hljs-keyword">this</span>.toggleForm = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;toggleform&quot;</span>)
-    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.formIsVisible){
-      <span class="hljs-keyword">this</span>.formIsVisible = <span class="hljs-literal">false</span>
-    }
-    <span class="hljs-keyword">else</span>{
-      <span class="hljs-keyword">this</span>.formIsVisible = <span class="hljs-literal">true</span>
-    }
+<p>Even though the method is <code>toggleSongs</code>, it&apos;s additionally appending views if it hasn&apos;t fetched yet. I think we should go ahead and abstract this out as well in order to separate our concerns. In the <code>ArtistView.prototype</code> object inside of <code>public/js/views/artistView.js</code>...</p>
+<pre><code class="lang-js">render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+  self.$el.html(self.artistTemplate(self.artist));
+  $(<span class="hljs-string">&quot;.artists&quot;</span>).append(self.$el);
+  <span class="hljs-keyword">var</span> showButton = self.$el.find(<span class="hljs-string">&quot;.showSongs&quot;</span>);
+  <span class="hljs-keyword">var</span> songsDiv = self.$el.find(<span class="hljs-string">&quot;div.songs&quot;</span>);
+  showButton.on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    self.toggleSongs(songsDiv);
+  })
+},
+
+toggleSongs: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">songsDiv</span>)</span>{
+  <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+  <span class="hljs-keyword">if</span>(songsDiv.children().length === <span class="hljs-number">0</span>){
+    <span class="hljs-keyword">this</span>.artist.fetchSongs().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">songs</span>)</span>{
+      self.appendSongs(songs, songsDiv);
+      songsDiv.show();
+    });
   }
-</code></pre>
-<blockquote>
-<p>All we&apos;ve done here is instantiate a property of our controller to false. Then defined the <code>.toggleForm()</code> function of our controller to change <code>this.formIsVisible</code> between true and false any time that function is called</p>
-</blockquote>
-<h2 id="ngshow"><code>ng-show</code></h2>
-<p>We now need to link <code>.formIsVisible</code> to an actual form. We can do this by using an angular directive called <code>ng-show</code>. This adds a <code>display:none</code> using CSS if something is <code>true</code>. In this case, we&apos;re going to hide the form if <code>.formIsVisible</code> evaluates to <code>true</code>. In <code>index.html</code>:</p>
-<p><strong>Note:</strong> Directives all take somewhat different values! Before we had directives that looked like <code>ng-something={{something.else}}</code>, and <code>ng-something=object.method()</code>. Now we have <code>ng-show=&quot;todosCtrl.formIsVisible&quot;</code></p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">&quot;todosController as todosCtrl&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&quot;todosCtrl.toggleForm()&quot;</span>&gt;</span>New Todo<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">&quot;todosCtrl.formIsVisible&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>content<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;content&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<blockquote>
-<p><code>ng-click</code> is used here to toggle the value of <code>todosCtrl.formIsVisible</code> between true and false. <code>ng-show</code> is being used here to evaluate <code>todosCtrl.formIsVisible</code> and show the form if it&apos;s true and hide if it&apos;s false. If we click on <code>New Todo</code>, we can see that the form appears and disappears.</p>
-</blockquote>
-<h2 id="create-form--you-do--grumble-25150">Create form - you do - grumble (25/150)</h2>
-<ol>
-<li>Use <code>ng-controller</code> to initialize a controller in your view</li>
-<li>In the controller JS file, give the controller a property that is either <code>true</code> or <code>false</code> (like <code>.formIsVisible</code>)</li>
-<li>add a function to toggle a form to create Grumbles</li>
-<li>add an <code>ng-click</code> to call the function defined in step 3 that changes the boolean value of the property in step 2</li>
-<li>add a form with an <code>ng-show</code> that uses the property in step 2</li>
-<li>The form should contain label and input tags for:<ul>
-<li>title</li>
-<li>author name</li>
-<li>content</li>
-<li>photo url</li>
-</ul>
-</li>
-</ol>
-<h2 id="lunch">Lunch</h2>
-<h2 id="ng-repeat-1515">ng repeat (15/15)</h2>
-<p>Right now all we can do with our form is toggle it, but we&apos;ll be learning later today how to use the form to create a new todo. But first, let&apos;s render all of our todos using a new angular directive.</p>
-<p>In the past with OOJS or Backbone we generated a whole bunch of html through JS itself. In angular we&apos;ll be using directives through the html to execute this same sort of behavior. It feels more railsy/handlebarsy then OOJS or backbone. In <code>index.html</code>:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">&quot;todo in todosCtrl.todos&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>{{$index}}{{todo}}<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<blockquote>
-<p>All we&apos;ve done here, is print each todo with it coresponding index value. It is important to note that <code>$index</code> is the index value for each iteration of the <code>ng-repeat</code></p>
-</blockquote>
-<p>Let&apos;s also add the form that we&apos;ll be using to edit each corresponding grumble. In <code>index.html</code>:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">&quot;todo in todosCtrl.todos&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>{{$index}}{{todo}}<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span> =<span class="hljs-value">&apos;edit&apos;</span>&gt;</span>Edit Todo<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">form</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;content&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<blockquote>
-<p>We&apos;ve added a button that will be used to toggle the form as well as a generic form here.</p>
-</blockquote>
-<p>Earlier, we added a property and function to our controller and used some angular directives to hide and show forms. We&apos;re going to do the same sort of thing here to make our edit form show/hide correctly. In <code>index.html</code>:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">&quot;todo in todosCtrl.todos&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">&apos;!editTodo&apos;</span>&gt;</span>{{$index}}{{todo}}<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span> =<span class="hljs-value">&apos;edit&apos;</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&apos;editTodo = !editTodo&apos;</span>&gt;</span>Edit Todo<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">&apos;editTodo&apos;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;content&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<blockquote>
-<p>Note that we utilized a seemingly uninstantiated global variable <code>editTodo</code>. <code>ng-repeat</code>, however, establishes a scope for <code>editTodo</code>. If we utilized the same logic as the last time we did this behavior (ie using <code>todoCtrl.formIsVisible</code>) any time we click on one, all of the edit forms would open. Because we never instantiated editTodo it by default is undefined, which is falsey. So we use <code>!editTodo</code> so that we show them initially. We&apos;re using the scope of the <code>ng-repeat</code> to our advantage because there is a new scope for each iteration.</p>
-</blockquote>
-<h2 id="ng-repeat--you-do--grumblr-2035"><code>ng repeat</code> - you do - grumblr (20/35)</h2>
-<ul>
-<li>Display all of the hardcoded grumbles on to the screen using <code>ng-repeat</code></li>
-<li>Make sure that you display all of the information for each grumble(title, author name, content, photo url)</li>
-<li>make sure each grumble has a toggleable edit form.</li>
-</ul>
-<h2 id="view-model--revisted-540">View Model - Revisted! (5/40)</h2>
-<p>ViewModel is a model which has been tailored to support a specific UI, helping in easing data binding. In our case, when we did <code>ng-controller=&quot;todosController as todosCtrl&quot;</code>, we&apos;re creating a new instance of our controller (<code>todosCtrl</code>) -- the View Model -- that is tailored to support our interface. In this way, we can use the View Model to access functions and properties we&apos;ve defined in our controller. Everytime we load the DOM we create a new View Model based on the functionality defined in the controller.</p>
-<h2 id="ngmodel--break-4080">ng-model + break (40/80)</h2>
-<p>We can utilize the view model in a variety of ways. We&apos;ll be using view model to leverage the angular directive <code>ng-model</code> to retreive and set data. We can actually just create properties on the view model to serve this end.</p>
-<h3 id="show-example-of-2-way-data-binding">show example of 2 way data binding</h3>
-<blockquote>
-<p>you can update the view from the model, and the model with the view.</p>
-</blockquote>
-<p>We can see all of our todos, we can even toggle forms to create new ones and edit existing ones. Theres just one problem. We can&apos;t actually create or edit todos yet. We need a way to access the values of the input elements and call a function to create the Todo in the form. We&apos;ll be using <code>ng-model</code> and <code>ng-submit</code> to do these things. Let&apos;s get the functionality working for creating Todos. In <code>index.html</code>:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">&quot;todosController as todosCtrl&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&quot;todosCtrl.toggleForm()&quot;</span>&gt;</span>New Todo<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">&quot;todosCtrl.formIsVisible&quot;</span> <span class="hljs-attribute">ng-submit</span>=<span class="hljs-value">&quot;todosCtrl.create()&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>content<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;content&quot;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;todosCtrl.content&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<blockquote>
-<p>We added an angular directive to execute a function when the form is submitted <code>.create</code> (we haven&apos;t defined this method yet). Additionally, we added an <code>ng-model</code> to our input tag with a value of the <code>content</code> property of our <code>todosCtrl</code>. When we submit the form, the value contained in the input box will be stored as a property of the <code>todosCtrl</code>.</p>
-</blockquote>
-<p>Let&apos;s define our <code>.create</code> function in the controller now. In <code>js/controllers/todos.js</code>:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">this</span>.create = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">this</span>.todos.unshift(<span class="hljs-keyword">this</span>.content)
+  songsDiv.toggle();
+},
+
+appendSongs: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">songs, songsDiv</span>)</span>{
+  songs.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">song</span>)</span>{
+    <span class="hljs-keyword">var</span> songView = <span class="hljs-keyword">new</span> SongView(song);
+    songsDiv.append(songView.render());
+  });
 }
 </code></pre>
 <blockquote>
-<p>unshift is just like push, only it adds the argument as the first element of the array instead of the last.</p>
+<p>It&apos;s a little bit more code upfront, but you increase your code maintainability, scalability and modularity.</p>
 </blockquote>
-<h2 id="ngmodel--creategrumble--you-do-20100"><code>ng-model</code> &amp; <code>createGrumble</code> - you do (20/100)</h2>
-<p>Add the create same functionality we just did for todo&apos;s for your Grumblr application.</p>
-<ul>
-<li><strong>NOTE:</strong> we&apos;re not just saving a single property this time.</li>
-</ul>
-<h2 id="edit--update">edit &amp; update</h2>
-<p>We can also use <code>ng-model</code> to fill out the values of the form itself. We will need this bit of functionality to program the logic of our edit functionality. In <code>index.html</code>:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">&quot;todo in todosCtrl.todos&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">&quot;!editTodo&quot;</span>&gt;</span>{{$index}}{{todo}}<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span> =<span class="hljs-value">&quot;edit&quot;</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&quot;todosCtrl.edit($index); editTodo = !editTodo&quot;</span>&gt;</span>Edit Todo<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">&quot;editTodo&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;content&quot;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;todosCtrl.content&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;new&quot;</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&quot;todosCtrl.update($index); editTodo = !editTodo&quot;</span>&gt;</span>Save<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&apos;editTodo = !editTodo&apos;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&apos;cancel&apos;</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<blockquote>
-<p>We&apos;ve added alot of stuff here. We added <code>.edit</code> and <code>.update</code> (neither are defined... yet). The <code>.edit</code> function will essentially fill out the initial value of the <code>ng-model=&quot;todosCtrl.content&quot;</code>. The <code>.update</code> function will actually change the hardcoded string value in our array of <code>todos</code> located in controller defintion. Additionally both buttons in the form will toggle the form to hide it.</p>
-</blockquote>
-<p>Let&apos;s update the controller to include these two functions now. In <code>js/controllers/todos.js</code>:</p>
-<pre><code class="lang-js"><span class="hljs-comment">// when called, this function will select a todo by an index passed in as an argument.</span>
-<span class="hljs-comment">// It will then change the value of the html element with attribute: `ng-model=&apos;todoCtrl.content&apos;`</span>
-<span class="hljs-comment">// to be the string contained at that index value.</span>
-<span class="hljs-keyword">this</span>.edit = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">index</span>)</span>{
-  <span class="hljs-keyword">var</span> todo = <span class="hljs-keyword">this</span>.todos[index]
-  <span class="hljs-keyword">this</span>.content = todo
+<p>One last little detail we need to fix on the UI. The buttons text should change from &quot;Show Songs&quot; to &quot;Hide Songs&quot; depending on the state of the application.  </p>
+<h2 id="you-do-toggle-the-button-10150">You Do: Toggle the Button (10/150)</h2>
+<p>Create an instance method inside the <code>ArtistView.prototype</code> object. This method should make it such that the buttons text changes dynamically depending on whether songs are showing or not.</p>
+<h2 id="closing--questions">Closing / Questions</h2>
+<h1 id="cliff-notes">Cliff Notes</h1>
+<p>The solution for the <code>read</code> portion of today&apos;s in-class example is available <a href="https://github.com/ga-dc/tunr_mongo_oojs/tree/read" target="_blank">here</a>.</p>
+<h3 id="publicjsmodelsartistjs">/public/js/models/artist.js</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Artist = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">info</span>)</span>{
+  <span class="hljs-keyword">this</span>.name = info.name;
+  <span class="hljs-keyword">this</span>.photoUrl = info.photoUrl;
+  <span class="hljs-keyword">this</span>.nationality = info.nationality;
+  <span class="hljs-keyword">this</span>.id = info.id
 }
 
-<span class="hljs-comment">// when called, this will replace the content of a todo at at an index value that</span>
-<span class="hljs-comment">// passed in as an argument.</span>
-<span class="hljs-keyword">this</span>.update = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">index</span>)</span>{
-  <span class="hljs-keyword">this</span>.todos[index] = <span class="hljs-keyword">this</span>.content
+Artist.fetch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> request = $.getJSON(<span class="hljs-string">&quot;http://localhost:3000/artists&quot;</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+    <span class="hljs-keyword">var</span> artists = [];
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; response.length; i++){
+      artists.push(<span class="hljs-keyword">new</span> Artist(response[i]));
+    }
+    <span class="hljs-keyword">return</span> artists;
+  }).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;artists fetch fail&quot;</span>);
+  });
+  <span class="hljs-keyword">return</span> request;
+}
+
+Artist.prototype.fetchSongs = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> url = <span class="hljs-string">&quot;http://localhost:3000/artists/&quot;</span> + <span class="hljs-keyword">this</span>.id + <span class="hljs-string">&quot;/songs&quot;</span>;
+  <span class="hljs-keyword">var</span> request = $.getJSON(url);
+  .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+    <span class="hljs-keyword">var</span> songs = [];
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; response.length; i++){
+      songs.push(<span class="hljs-keyword">new</span> Song(response[i]));
+    }
+    <span class="hljs-keyword">return</span> songs;
+  })
+  .fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">repsonse</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;js failed to load&quot;</span>);
+  });
+  <span class="hljs-keyword">return</span> request;
 }
 </code></pre>
-<h2 id="editupdate-functionality--you-do--grumblr-30130">edit/update functionality - you do - grumblr (30/130)</h2>
-<p>We&apos;ve finished our todo app with everything except for delete functionality.
-You do:</p>
-<ul>
-<li>Update grumblr to match the functionality of Todos</li>
-<li>it should have create and edit functionality.</li>
-</ul>
-<blockquote>
-<p>Remember the todo app utilized an array of &quot;strings&quot;. You&apos;ll need to figure out how the functionalities for strings map to the functionalities for objects.</p>
-</blockquote>
-<h2 id="delete-functionality--you-do--grumblr-20150">delete functionality - you do - grumblr (20/150)</h2>
-<p>Using what you know about angular directives and controllers, update the view(<code>index.html</code>) and the controller (<code>js/controllers/grumbles.js</code>) to incorporate delete functionality for your grumbles.</p>
+<h3 id="publicjsviewsartistviewjs">/public/js/views/artistView.js</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> ArtistView = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artist</span>)</span>{
+  <span class="hljs-keyword">this</span>.artist = artist;
+  <span class="hljs-keyword">this</span>.$el = $(<span class="hljs-string">&quot;&lt;div class=&apos;artist&apos;&gt;&lt;/div&gt;&quot;</span>);
+}
+
+ArtistView.prototype = {
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+    self.$el.html(self.artistTemplate(self.artist));
+    $(<span class="hljs-string">&quot;.artists&quot;</span>).append(self.$el);
+    <span class="hljs-keyword">var</span> showButton = self.$el.find(<span class="hljs-string">&quot;.showSongs&quot;</span>);
+    <span class="hljs-keyword">var</span> songsDiv = self.$el.find(<span class="hljs-string">&quot;div.songs&quot;</span>);
+    showButton.on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      self.toggleSongs(songsDiv);
+    })
+  },
+  toggleSongs: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">songsDiv</span>)</span>{
+    <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">if</span>(songsDiv.children().length === <span class="hljs-number">0</span>){
+      <span class="hljs-keyword">this</span>.artist.fetchSongs().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">songs</span>)</span>{
+        self.appendSongs(songs, songsDiv);
+        songsDiv.show();
+      });
+    }
+    songsDiv.toggle();
+  },
+  appendSongs: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">songs, songsDiv</span>)</span>{
+    songs.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">song</span>)</span>{
+      <span class="hljs-keyword">var</span> songView = <span class="hljs-keyword">new</span> SongView(song);
+      songsDiv.append(songView.render());
+    });
+  },
+  artistTemplate: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artist</span>)</span>{
+    <span class="hljs-keyword">var</span> html = $(<span class="hljs-string">&quot;&lt;div&gt;&quot;</span>);
+    html.append(<span class="hljs-string">&quot;&lt;h3&gt;&quot;</span> + artist.name + <span class="hljs-string">&quot;&lt;/h3&gt;&quot;</span>);
+    html.append(<span class="hljs-string">&quot;&lt;img class=&apos;artist-photo&apos; src=&apos;&quot;</span> + artist.photoUrl + <span class="hljs-string">&quot;&apos;&gt;&quot;</span>);
+    html.append(<span class="hljs-string">&quot;&lt;button class=&apos;showSongs&apos;&gt;Show Songs&lt;/button&gt;&quot;</span>);
+    html.append(<span class="hljs-string">&quot;&lt;div class=&apos;songs&apos;&gt;&lt;/div&gt;&quot;</span>);
+    <span class="hljs-keyword">return</span>(html);
+  }
+}
+</code></pre>
+<h3 id="publicjsscriptjs">/public/js/script.js</h3>
+<pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  Artist.fetch().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artists</span>)</span>{
+    artists.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artist</span>)</span>{
+      <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> ArtistView(artist)
+      view.render();
+    })
+  })
+});
+</code></pre>
 
                     
                     </section>
@@ -1531,10 +1571,10 @@ You do:</p>
         </div>
 
         
-        <a href="../../11-angular/readme.html" class="navigation navigation-prev " aria-label="Previous page: MVW with Angular"><i class="fa fa-angle-left"></i></a>
+        <a href="../../07-apis-express-ajax/prototypes_and_constructors/readme.html" class="navigation navigation-prev " aria-label="Previous page: Prototypes and Constructors"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../11-angular/services_templates_and_routing/readme.html" class="navigation navigation-next " aria-label="Next page: Services, Templates, and Routing"><i class="fa fa-angle-right"></i></a>
+        <a href="../../08-single-page-web-apps/oojs2_create_update_destroy/readme.html" class="navigation navigation-next " aria-label="Next page: CUD / CRUD"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
