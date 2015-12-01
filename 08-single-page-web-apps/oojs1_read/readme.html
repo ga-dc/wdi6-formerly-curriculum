@@ -53,7 +53,7 @@
         data-chapter-title="R / CRUD"
         data-filepath="08-single-page-web-apps/oojs1_read/readme.md"
         data-basepath="../.."
-        data-revision="Tue Dec 01 2015 13:31:10 GMT+0000 (UTC)"
+        data-revision="Tue Dec 01 2015 13:40:48 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1257,7 +1257,8 @@ artist
 }
 </code></pre>
 <blockquote>
-<p><code>$.getJSON</code> is jQuery method that serves the same purpose as a GET <code>$.ajax</code> to a JSON source.<br>NOTE: We defined the <code>fetch</code> function inside the Artist constructor. This is more or less the same as class methods in Ruby.</p>
+<p><code>$.getJSON</code> is jQuery method that serves the same purpose as a GET <code>$.ajax</code> to a JSON source.  </p>
+<p>NOTE: We defined the <code>fetch</code> function inside the Artist constructor. This is more or less the same as class methods in Ruby.</p>
 </blockquote>
 <p>There&apos;s a lot going on here. Let&apos;s take it slow and play around with it in the console.  </p>
 <pre><code class="lang-js">artists = Artist.fetch()
@@ -1282,6 +1283,9 @@ artist
   <span class="hljs-keyword">this</span>.$el = $(<span class="hljs-string">&quot;&lt;div class=&apos;artist&apos;&gt;&lt;/div&gt;&quot;</span>);
 };
 </code></pre>
+<blockquote>
+<p><code>$el</code> is an HTML representation of what our view will look like when rendered on our webpage. The <code>$</code> means it&apos;s a jQuery object, so we can call jQuery methods on it.</p>
+</blockquote>
 <p>We can quickly test this in the console by creating a new artistView.</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> bluesTraveler = <span class="hljs-keyword">new</span> Artist({
   name: <span class="hljs-string">&quot;Blues Traveler&quot;</span>,
@@ -1294,7 +1298,7 @@ artist
 <p>We can call <code>.artist</code> or <code>.$el</code> and retrieve those properties now.</p>
 <p>We&apos;re setting 2 properties in the ArtistView objects. The first is an artist, which gets passed into the constructor function. The second is an <code>.$el</code> property which is just a jQuery object that&apos;s an empty div.  </p>
 <p>Let&apos;s create some additional functionality for the ArtistView Object in <code>public/js/views/artistView.js</code>.  </p>
-<pre><code class="lang-js">ArtistView.prototype ={
+<pre><code class="lang-js">ArtistView.prototype = {
   render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-comment">// we&apos;ll be adding event listeners later but will still need access to the Artist view in the event listener</span>
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
@@ -1315,7 +1319,7 @@ artist
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> bluesTraveler = <span class="hljs-keyword">new</span> Artist({
   name: <span class="hljs-string">&quot;Blues Traveler&quot;</span>,
   photoUrl: <span class="hljs-string">&quot;http://coloredvinylrecords.com/pictures/b/blues-traveler-four-01433512670.png&quot;</span>,
-  nationality: <span class="hljs-string">&quot;murica&quot;</span>,
+  nationality: <span class="hljs-string">&quot;USA&quot;</span>,
   id: <span class="hljs-number">6</span>
 });
 <span class="hljs-keyword">var</span> bluesTravelerView = <span class="hljs-keyword">new</span> ArtistView(bluesTraveler);
