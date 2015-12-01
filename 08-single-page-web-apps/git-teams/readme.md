@@ -49,7 +49,7 @@ interfering. When a feature is complete, it can be merged back into master.
 ## You Do: Emergency Compliment - Setup (5 min)
 
 Form pairs. To start:
-- One student should fork and clone the [starter-code](https://github.com/ga-dc/emergency_compliment) to their GitHub
+- One student should fork and clone the [starter-code](https://github.com/ga-dc/emergency_compliment/tree/git-teams-starter) to their GitHub
 - Add the second student as a contributor to this repository
 - The second student should clone the newly-forked repo, so they have a local copy and can start working
 
