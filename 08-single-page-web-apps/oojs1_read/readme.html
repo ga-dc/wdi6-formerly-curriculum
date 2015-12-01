@@ -53,7 +53,7 @@
         data-chapter-title="R / CRUD"
         data-filepath="08-single-page-web-apps/oojs1_read/readme.md"
         data-basepath="../.."
-        data-revision="Tue Dec 01 2015 22:34:16 GMT+0000 (UTC)"
+        data-revision="Tue Dec 01 2015 23:09:13 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1553,6 +1553,28 @@ ArtistView.prototype = {
     html.append(<span class="hljs-string">&quot;&lt;button class=&apos;showSongs&apos;&gt;Show Songs&lt;/button&gt;&quot;</span>);
     html.append(<span class="hljs-string">&quot;&lt;div class=&apos;songs&apos;&gt;&lt;/div&gt;&quot;</span>);
     <span class="hljs-keyword">return</span>(html);
+  }
+}
+</code></pre>
+<h3 id="publicjsmodelssongjs">/public/js/models/song.js</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Song = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">info</span>)</span>{
+  <span class="hljs-keyword">this</span>.title = info.title;
+  <span class="hljs-keyword">this</span>.album = info.album;
+  <span class="hljs-keyword">this</span>.previewUrl = info.previewUrl;
+  <span class="hljs-keyword">this</span>.artwork = info.artwork;
+  <span class="hljs-keyword">this</span>.artistId = info.artistId;
+  <span class="hljs-keyword">this</span>.id = info.id
+}
+</code></pre>
+<h3 id="publicjsmodelssongviewjs">/public/js/models/songView.js</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> SongView = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">song</span>)</span>{
+  <span class="hljs-keyword">this</span>.song = song;
+}
+
+SongView.prototype = {
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> el = $(<span class="hljs-string">&quot;&lt;p&gt;&quot;</span> + <span class="hljs-keyword">this</span>.song.title + <span class="hljs-string">&quot;&lt;/p&gt;&quot;</span>);
+    <span class="hljs-keyword">return</span>(el)
   }
 }
 </code></pre>
