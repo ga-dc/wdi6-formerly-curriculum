@@ -486,6 +486,32 @@ ArtistView.prototype = {
 }
 ```
 
+### /public/js/models/song.js
+```js
+var Song = function(info){
+  this.title = info.title;
+  this.album = info.album;
+  this.previewUrl = info.previewUrl;
+  this.artwork = info.artwork;
+  this.artistId = info.artistId;
+  this.id = info.id
+}
+```
+
+### /public/js/models/songView.js
+```js
+var SongView = function(song){
+  this.song = song;
+}
+
+SongView.prototype = {
+  render: function(){
+    var el = $("<p>" + this.song.title + "</p>");
+    return(el)
+  }
+}
+```
+
 ### /public/js/script.js
 ```js
 $(document).ready(function(){
