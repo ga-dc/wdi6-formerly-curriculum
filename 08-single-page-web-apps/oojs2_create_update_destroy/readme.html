@@ -53,7 +53,7 @@
         data-chapter-title="CUD / CRUD"
         data-filepath="08-single-page-web-apps/oojs2_create_update_destroy/readme.md"
         data-basepath="../.."
-        data-revision="Tue Dec 01 2015 14:00:04 GMT+0000 (UTC)"
+        data-revision="Tue Dec 01 2015 14:22:27 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1173,6 +1173,15 @@
 </ol>
 <p>You may have used <a href="https://github.com/ga-dc/tunr_node_oojs" target="_blank">a different repo</a> before. That one uses an ORM called Sequelize; this one uses MongoDB. Any front-end Javascript you wrote for that one will work perfectly fine with this one -- you should be able to just copy it over. Even so, we&apos;ll go through the steps from yesterday together to get this new repo set up.</p>
 <h2 id="1-set-up-the-repo">1. Set up the repo</h2>
+<p>If you don&apos;t have Mongo installed on your computer yet:</p>
+<pre><code class="lang-sh">$ brew update
+$ brew install mongo
+$ npm install --global mongod
+$ sudo mkdir -p /data/db
+$ ls -ld /data/db
+$ sudo chmod <span class="hljs-number">0755</span> /data/db
+$ sudo chown -R <span class="hljs-variable">$USER</span> /data/db
+</code></pre>
 <pre><code class="lang-sh">$ git <span class="hljs-built_in">clone</span> git@github.com:ga-dc/tunr_mongo_oojs.git
 $ <span class="hljs-built_in">cd</span> tunr_mongo_oojs
 $ npm install
