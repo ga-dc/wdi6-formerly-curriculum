@@ -8,7 +8,19 @@
 * Describe the role of model objects on the front-end.
 * Describe the role of view objects on the front-end.
 
-## Setup
+# Framing
+
+Our goal for today is to complete the Tunr app so that we have basic CRUD functionality for Artists. This means we'll be able to Create, Edit/Update, and Destroy artists. Additions to Songs functionality will be a bonus.
+
+# You Do: To begin the class...
+
+I'd like you to take **10 minutes** to do two things, the steps for which are detailed in this lesson plan:
+1. Clone down and set up the repo for this lesson.
+2. Turn and talk with the person next to you about the 5 questions below.
+
+You may have used [a different repo](https://github.com/ga-dc/tunr_node_oojs) before. That one uses an ORM called Sequelize; this one uses MongoDB. Any front-end Javascript you wrote for that one will work perfectly fine with this one -- you should be able to just copy it over. However, we'll be going through yesterday's material together.
+
+## 1. Set up the repo
 
 ```sh
 $ git clone git@github.com:ga-dc/tunr_mongo_oojs.git
@@ -25,11 +37,20 @@ If `mongod` doesn't seem to work, instead try:
 $ mongod --config /usr/local/etc/mongod.conf
 ```
 
-You may have used [a different repo](https://github.com/ga-dc/tunr_node_oojs) before. That one uses an ORM called Sequelize; this one uses MongoDB. Any front-end Javascript you wrote for that one will work perfectly fine with this one -- you should be able to just copy it over. However, we'll be going through yesterday's material together.
+## 2. Turn and talk
 
-# Framing
+- Pick one of the following and make an argument for it:
+  - Tunr should have an object-oriented front-end.
+  - Tunr should not have an object-oriented front-end.
+  - It doesn't matter whether Tunr has an object-oriented front-end.
+- How would you write `Artist.fetch()` in ActiveRecord? How about `Artist.prototype.fetchSongs()`?
+- Pick one of the following and make an argument for it:
+  - Tunr should be a single-page app.
+  - Tunr should be a multi-page app.
+- What's the difference between `Artist.methodName = function(){}` and `Artist.prototype.methodName = function(){}`?
+- Describe an app with a purpose completely different from Tunr that you could turn Tunr into with as little effort as possible.
 
-Our goal for today is to complete our app so that we have basic CRUD functionality for Artists. This means we'll be able to Create, Edit/Update, and Destroy artists. Additions to Songs functionality will be a bonus.
+# I do: Putting it together
 
 ## The Backend
 
@@ -44,7 +65,7 @@ backend has a few parts:
 
 But we're making this a **Single-Page Application**, and we're not using Handlebars.
 
-Q. What consistutes a single-page app?
+Q. What makes something a "single-page app"? How is a SPA different from anything else?
 ---
 
 > I wouldn't consider a website with one page of HTML to be a single-page app. It might be single-page, but it's not an app: an app lets you manipulate data and usually save it somewhere.
@@ -79,9 +100,9 @@ HTTP) to request or update data, and then render the appropriate HTML.
   - Rendering models into HTML  
   - Responding to events (e.g., clicking on buttons) appropriately.  
 
-## So how does all this fit together?
+## Design choices
 
-Q. Full disclosure: We don't teach the right way to make an Express app. Why not?
+Q. Here at GA DC, we *don't* teach the right way to make an Express app. Why not?
 ---
 
 > Trick question: there isn't a right way! Almost everything you see in this app -- file names, variable names, function names -- can be changed to something else. They are what they are because it's what made sense to the instructor who wrote this code.
@@ -99,7 +120,7 @@ We happen teach OOJS and Express so closely together largely because they look v
 
 ### Why be object-oriented?
 
-The tricky thing about this class is that you don't necessarily feel the "pain" that would make you want to write object-oriented Javascript. Our apps are really simple.
+The tricky thing about WDI is that you don't necessarily feel the "pain" that would make you want to write object-oriented Javascript. Our apps are really simple.
 
 However, even with simple apps, you can find yourself winding up with a single `script.js` file that's 500 lines long. That's probably already happened to many of you. You may not realize how much time you spend scrolling around looking for code, but it can add up to a tremendous amount.
 
@@ -114,7 +135,7 @@ You look at a file of code and you find...
 - A certain variable is used in less than 25% of the lines of the function in which it appears
 - You want to put off working on something else, and/or you want to look like you know what you're doing
 
-# Getting caught up from yesterday
+# We do: Getting caught up from yesterday
 
 Let's add in the code from yesterday. We're just going to add in the code for Artists as a refresher, and so we can answer lingering questions. Then, I'll ask you to check out a branch that has all the code for reading (but not creating, updating, or deleting) artists and songs.
 
@@ -277,7 +298,7 @@ That's all we're going to do ourselves. What's left is rendering songs, and thos
 
 # CUD
 
-## Turn & Talk (10 minutes)
+## Turn & Talk (5 minutes)
 
 Look at the following two pictures. They show a summary of the methods we're
 going to have at the end of today in our views. The highlighted ones are the
@@ -292,7 +313,7 @@ ones we'll be working on in this lesson.
 ### Artist View Methods
 ![artist view methods](images/artist_view_methods.png)
 
-## Editing
+# You do: Editing (20 minutes)
 
 **Heads up:** Our first feature, editing, will be the most intense!
 
@@ -304,7 +325,7 @@ Overall, we want our feature to work like this:
 4. The app updates the database.
 5. The app re-renders the artist to look like before, but with updated information.
 
-Let's take it step by step!  
+The lesson plan provides very detailed steps on how to do this. I'd like you to **go through this part of the lesson plan yourself** with the person next to you and add the functionality it describes to your Tunr.
 
 ### Adding the Edit Button
 
@@ -314,9 +335,11 @@ needs to be visible on each artist's "show" view.
 Let's add the button to the template:  
 
 ```js
+// ...
 html.append("<button class='showSongs'>Show Songs</button>");
 html.append("<button class='editArtist'>Edit Artist</button>");
 html.append("<div class='songs'></div>");
+// ...
 ```
 
 Now we need to update our `render` method to add the appropriate event listener
@@ -500,7 +523,9 @@ artist is inherently asyn, it may take a while, so the method lets us ask "when
 you're done updating, run this callback". In this case, the callback is to
 render the show view.  
 
-## Deleting Artists (You Do in Groups of 2) (30 minutes)
+# We do: Bring it back for questions
+
+# You do: Deleting Artists (30 minutes)
 
 For starter code, see the [oojs_part2_edit branch](https://github.com/ga-dc/tunr_node_oojs/tree/oojs_part2_edit)
 For a solution, see the [oojs_part2_delete branch](https://github.com/ga-dc/tunr_node_oojs/tree/oojs_part2_delete)
@@ -548,7 +573,7 @@ The Ruby language is very forgiving, whereas the Rails framework is pretty stric
 
 This topic is tough. Don't sweat it if you're having trouble keeping all these prototypes and instances and this-es straight. Object-oriented Javascript is one of those things you don't really need until you need it. There's usually not a whole lot of need for it while your apps are small. However, if you find the complexity of your app is starting to keep you from wanting to work on it, then making it object-oriented could be your saving grace.
 
-For an example of complex and hard-to-maintain Javascript, take a look at [this old Javascript that Robin wrote many moons ago](ugly.js). What are some of the "code smells" and faux pas it contains? How could it be refactored? What could be made into objects?
+For an example of complex and hard-to-maintain Javascript that would benefit from OOJS, take a look at [this old Javascript that Robin wrote many moons ago](ugly.js). What are some of the "code smells" and faux pas it contains? How could it be refactored? What could be made into objects?
 
 > To Robin's credit, it's very well-indented.
 

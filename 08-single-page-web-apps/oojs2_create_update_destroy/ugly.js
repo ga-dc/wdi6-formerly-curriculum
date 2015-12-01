@@ -1,5 +1,7 @@
 /*
-This is some Javascript Robin wrote way back in the day (read: in 2013) for the page on which he sold Noteboards. How could this be refactored and made more object-oriented?
+This is some Javascript Robin wrote way back in the day (read: in 2013) for the page on which he sold Noteboards. Its purpose is to send parameters to a PayPal button changing the cost of Noteboards depending on quantity and the cost of shipping depending on country.
+
+How could this be refactored and made more object-oriented?
 */
 
 var euro1 = "BE, FR, DK, SP, LU, AT, IT, GB, DE, SE";
