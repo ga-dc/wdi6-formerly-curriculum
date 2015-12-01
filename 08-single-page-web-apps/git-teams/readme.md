@@ -133,8 +133,7 @@ Now, we have only the code we need and can git commit.
 - **Student 2**
 ``` bash
 git checkout git-teams-starter
-git pull
-git merge <your_branchname>
+git pull <remote> <your-branchname>
 ```
 - **Both Students** On one machine, look over the merge conflict, resolve it locally, commit, and push.
 
@@ -163,12 +162,30 @@ Like git merge, git rebase also sometimes runs into merge conflicts that need to
 2. Add `app.use('/static', express.static(__dirname + '/public'));` to your `index.js`
 3. Create a directory called `public` and add a stylesheet called `styes.css` inside of it. Write some CSS.
 4. Link to your stylesheet from the `<head>` of `layout.hbs`.
-5. Commit your changes and open a pull request. Resolve any merge conflicts using `git pull --rebase` and `git rebase --continue`.
+5. Both students commit your changes.
+6. **Student1** push branch and make a pr, and merge your changes.
+7. **Student2** then try to do the same thing.
+8. **Student2** grab the necessary changes with `git pull --rebase` and resolve any merge conflicts with `git rebase --continue`.
 
-## The Human Side: Communication
+## The Human Side: Communication (10 mins)
 
-### Code Review
+### Why do code reviews?
 
+Jeff Atwood (co-founder of Stack Exchange, and a smart dude) has written a
+[great summary](http://blog.codinghorror.com/code-reviews-just-do-it/) which I
+encourage you to read. The short verion? Code review can reduce the number of
+errors in our programs dramatically.
+
+In addition we believe that learning to read code critically is an important
+part of improving our own code. After all, to improve our own code, we must read
+it, looking for ways to improve it.
+
+Additionally, many work environments practice some form of code review, so it's
+good to get practice in giving feedback to others now. Even if your future
+workplaces don't have a formal code review process, you may find them so helpful
+that you implement your own informal practices with your teammates!
+
+Interested to read more about [code reviews?](https://github.com/ga-dc/project2-code-review/blob/master/code_review_primer.md)
 
 ### Integration Manager Workflow (Distributed Workflow)
 
@@ -185,12 +202,14 @@ How It Works: One collaborator plays the role of 'Integration Manager'. This mea
 - Why should you never work on the same files on different branches?
 - Explain the difference between rebase and merge
 
-Discuss
-
 ## Cheat Sheets
-https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf
-http://ndpsoftware.com/git-cheatsheet.html#loc=stash; (Uses slightly different terminology that we're used to, but nifty)
+- [Github Official](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf)
+- [Interactive Git](http://ndpsoftware.com/git-cheatsheet.html#loc=stash;) (Uses slightly different terminology that we're used to, but nifty)
+
+## Rebase vs Merge
+![Rebase vs Merge](https://raw.githubusercontent.com/gitforteams/diagrams/master/flowcharts/rebase-or-merge.png)
 
 ## Further Reading
-https://jesse.sh/rebases/
-https://www.atlassian.com/git/tutorials/comparing-workflows
+- [Jesse's blog post!](https://jesse.sh/rebases/)
+- [Git Worklows Overview](https://www.atlassian.com/git/tutorials/comparing-workflows)
+- [Git Teams](http://gitforteams.com/)
