@@ -402,6 +402,27 @@ Create an instance method inside the `ArtistView.prototype` object. This method 
 
 The solution for the `read` portion of today's in-class example is available [here](https://github.com/ga-dc/tunr_mongo_oojs/tree/read).
 
+### /public/index.html
+```js
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tun.r</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/models/artist.js"></script>
+    <script src="js/models/song.js"></script>
+    <script src="js/views/artistView.js"></script>
+    <script src="js/views/songView.js"></script>
+    <script src="js/script.js"></script>
+  </head>
+  <body>
+    <header><h1>Tun.r</h1></header>
+    <div class="artists"></div>
+  </body>
+</html>
+```
+
 ### /public/js/models/artist.js
 ```js
 var Artist = function(info){
