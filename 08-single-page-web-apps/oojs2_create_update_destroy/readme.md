@@ -540,8 +540,9 @@ render the show view.
 
 # You do: Deleting Artists (30 minutes)
 
-For starter code, see the [oojs_part2_edit branch](https://github.com/ga-dc/tunr_node_oojs/tree/oojs_part2_edit)
-For a solution, see the [oojs_part2_delete branch](https://github.com/ga-dc/tunr_node_oojs/tree/oojs_part2_delete)
+For starter code, checkout the `read-update` branch.
+
+For solution code, checkout the `create-read-update-delete` branch.
 
 Implement a feature so that the `edit` form has an additional button, which is labeled 'Delete Artist'. When the button is clicked, it should:  
 
