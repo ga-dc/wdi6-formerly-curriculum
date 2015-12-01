@@ -25,6 +25,7 @@ The first thing we should do is fork/clone the [Tunr repo](https://github.com/ga
 
 ```bash
 $ npm install
+$ node db/seeds.js
 $ nodemon app.js
 ```
 
@@ -133,7 +134,7 @@ Artist.fetch = function(){
   return request
 }
 ```
-> `$.getJSON` is jQuery method that serves the same purpose as a GET `$.ajax` to a JSON source.  
+> [`$.getJSON`](http://api.jquery.com/jquery.getjson/) is jQuery method that serves the same purpose as a GET `$.ajax` to a JSON source.  
 
 > NOTE: We defined the `fetch` function inside the Artist constructor. This is more or less the same as class methods in Ruby.
 
