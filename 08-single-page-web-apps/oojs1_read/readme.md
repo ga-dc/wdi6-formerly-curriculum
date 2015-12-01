@@ -196,8 +196,8 @@ ArtistView.prototype = {
     // we'll be adding event listeners later but will still need access to the Artist view in the event listener
     var self = this;
     // appending elements to the .$el property
-    self.$el.append("<h3>" + artist.name + "</h3>");
-    self.$el.append("<img class='artist-photo' src='" + artist.photoUrl + "'>");
+    self.$el.append("<h3>" + self.artist.name + "</h3>");
+    self.$el.append("<img class='artist-photo' src='" + self.artist.photoUrl + "'>");
     self.$el.append("<button class='showSongs'>Show Songs</button>");
     self.$el.append("<div class='songs'></div>");
     // append the .$el to the div with class artists in our view.
@@ -231,8 +231,8 @@ ArtistView.prototype ={
   },
   artistTemplate: function(artist){
     var html = $("<div>");
-    html.append("<h3>" + artist.name + "</h3>");
-    html.append("<img class='artist-photo' src='" + artist.photoUrl + "'>");
+    html.append("<h3>" + this.artist.name + "</h3>");
+    html.append("<img class='artist-photo' src='" + this.artist.photoUrl + "'>");
     html.append("<button class='showSongs'>Show Songs</button>");
     html.append("<div class='songs'></div>");
     return(html);
