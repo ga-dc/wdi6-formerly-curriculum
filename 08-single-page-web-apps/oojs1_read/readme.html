@@ -53,7 +53,7 @@
         data-chapter-title="R / CRUD"
         data-filepath="08-single-page-web-apps/oojs1_read/readme.md"
         data-basepath="../.."
-        data-revision="Tue Dec 01 2015 17:22:38 GMT+0000 (UTC)"
+        data-revision="Tue Dec 01 2015 22:34:16 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1184,7 +1184,7 @@ $ nodemon app.js
 $ mkdir public/js/models
 $ mkdir public/js/views
 </code></pre>
-<p>If we go into our browser we can view all the endpoints and see that we can access all Tunr data as JSON. Take a look at <code>app.js</code>, <code>controllers/artists.js</code> and <code>controllers/artists.js</code> and you can see the different routes.  </p>
+<p>If we go into our browser we can view all the endpoints and see that we can access all Tunr data as JSON. Take a look at <code>app.js</code>, <code>controllers/artists.js</code> and <code>controllers/songs.js</code> and you can see the different routes.  </p>
 <p>Additionally if we look into <code>app.js</code> We can see at the root route we are rendering the index view.</p>
 <p><strong>NOTE:</strong> This index view is not the same as the <code>.hbs</code> views we&apos;ve been using in Express. In fact, we won&apos;t be making use of any Express views at all. Instead, we&apos;ll be working from a single <code>index.html</code> file in our <code>public</code> folder.</p>
 <p>In the <code>&lt;body&gt;</code> of <code>public/index.html</code>, we have a header as well as <code>&lt;div class=&quot;artists&quot;&gt;&lt;/div&gt;</code>.</p>
@@ -1294,7 +1294,7 @@ artist
   nationality: <span class="hljs-string">&quot;murica&quot;</span>,
   id: <span class="hljs-number">6</span>
 })
-<span class="hljs-keyword">var</span> bluesTravelerView = <span class="hljs-keyword">new</span> Artist(bluesTraveler)
+<span class="hljs-keyword">var</span> bluesTravelerView = <span class="hljs-keyword">new</span> ArtistView(bluesTraveler)
 </code></pre>
 <p>We can call <code>.artist</code> or <code>.$el</code> and retrieve those properties now.</p>
 <p>We&apos;re setting 2 properties in the ArtistView objects. The first is an artist, which gets passed into the constructor function. The second is an <code>.$el</code> property which is just a jQuery object that&apos;s an empty div.  </p>
@@ -1375,7 +1375,7 @@ showButton.on(<span class="hljs-string">&quot;click&quot;</span>, <span class="h
 <p>The first thing we need is the ability to get our Songs. Let&apos;s update our Artist model to incorporate that functionality. In <code>public/js/models/artist.js</code>...  </p>
 <pre><code class="lang-js">Artist.prototype.fetchSongs = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
   <span class="hljs-keyword">var</span> url = <span class="hljs-string">&quot;http://localhost:3000/artists/&quot;</span> + <span class="hljs-keyword">this</span>.id + <span class="hljs-string">&quot;/songs&quot;</span>;
-  <span class="hljs-keyword">var</span> request = $.getJSON(url);
+  <span class="hljs-keyword">var</span> request = $.getJSON(url)
   .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
     <span class="hljs-keyword">var</span> songs = [];
     <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; response.length; i++){
