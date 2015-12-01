@@ -56,9 +56,12 @@ Form pairs. To start:
 ```bash
 git checkout git-teams-starter
 npm install
+```
+And to run your app:
+```bash
 nodemon index.js
 ```
-
+View app on `http://localhost:3000`
 
 ## Single-Remote Workflows (15 min)
 
@@ -66,33 +69,45 @@ nodemon index.js
 
 How It Works: The remote repo has one single branch on it, master. All collaborators have separate clones of this repo. They can each work independently on separate things. However, before they push, they need to run git fetch/git pull to make sure that their master branch isn't out of date.
 
-(+) Very simple
+**(+)** Very simple
 
-(-) Collaboration is kind of clunky.
+**(-)** Collaboration is kind of clunky.
 
 ### Feature Branch Workflow
 
 How It Works: This workflow is very similar to the 'Centralized' workflow. The biggest difference is that there are branches (which helps to keep feature-related commits isolated), and that instead of pushing changes up directly, collaborators (a) push up changes to a new remote branch rather than master, and (b) submit a pull request to ask for them to be added to the remote repo's master branch.
 
-(+) Better isolation than Centralized model, but sharing is still easy. Very flexible.
+**(+)** Better isolation than Centralized model, but sharing is still easy. Very flexible.
 
-(-) Sometimes it's too flexible - it doesn't distinguish in any meaningful way between different branches, and that lack of structure can be problematic for larger projects.
+**(-)** Sometimes it's too flexible - it doesn't distinguish in any meaningful way between different branches, and that lack of structure can be problematic for larger projects.
 
 ## You Do: Merging: The Good, The Bad, and The Ugly (20 min)
 
 **Throughout today's exercises, we will use the `git-teams-starter` branch where we would usually use `master`.**
 
 ***The Good***
-- *Student 1* Check out a new feature branch and create `views/edit.hbs`
+- *Student 1* Check out a new feature branch and create `views/edit.hbs` and add the appropriate code
+  > **Hint:** You may need to look into [Method Override](https://github.com/expressjs/method-override#override-using-a-query-value) for your form's action!
+
 - *Student 2* Check out a new feature branch and add a route for `/compliments/:id/edit` to `index.js`
 - *Both Students* Commit you changes and push them to the remote repo. Open a pull request on Github to merge the changes from your feature branch into `git-teams-starter`. If there are no conflicts, merge your pull request. If there are, you might need to  `git pull` the latest changes, then `commit` again. Once your changes are successfully merged, delete your feature branches, check out `git-teams-starter`, and `pull`.
 
+Next, try break it!!!!
 ***The Bad AND The Ugly***
 - **Student 1** Check out a new feature branch and add an `update` method to `complimentsController`
 - **Student 2** Check out a new feature branch and add a `edit` method to `complimentsController`
 - **Both Students** Commit you changes and push them to the remote repo. Open a pull request on Github to merge the changes on your feature branch into `git-teams-starter`.
 - **Student 1** Merge your changes into `git-teams-starter` on GitHub.
 - **Student 2** Check your PR -- there should be a merge conflict!
+
+When you finish:
+
+Don't worry about writing any code to resolve the merge conflict now, instead, decide between your group how to think about and outline the steps for the next commit.
+
+Some things to consider:
+1. Who will resolve the conflict?
+2. What are the necessary commands you will need to run to incorporate those changes?
+3. What kind of system and channels best allow developers to prevent, and resolve merge conflicts most effectively?
 
 ## BREAK (10 min)
 
@@ -113,7 +128,7 @@ For example, if we decided we only needed var x, delete the other "stuff":
 `var x;`
 Now, we have only the code we need and can git commit.
 
-## You Do: `Git Merge` (10 min)
+## You Do: `Git Pull (Merge Conflicts)` (10 min)
 
 - **Student 2**
 ``` bash
@@ -121,7 +136,7 @@ git checkout git-teams-starter
 git pull
 git merge <your_branchname>
 ```
-- **Both Students** Look over the merge conflict, resolve it locally, commit, and push.
+- **Both Students** On one machine, look over the merge conflict, resolve it locally, commit, and push.
 
 - **Student 1** Pull down the changes to `git-teams-starter`
 
@@ -134,7 +149,7 @@ While merging represents one path for combining different branches, there is ano
 
 Here's what a rebase looks like. Suppose we have two branches, a master and a feature branch.
 
-One day, someone makes a commit onto the master branch. We want to include those changes into our feature branch, so that our code doesn't conflict with theirs. From our feature branch, if we run the command `git pull --rebase origin master`, we can tell git to rewrite the history of our feature branch as if the new commit on master had always been there.
+One day, someone makes a commit onto the master branch. We want to include those changes into our feature branch, so that our code doesn't conflict with theirs. From our feature branch, if we run the command `git pull --rebase <remote> <branch>`, we can tell git to rewrite the history of our feature branch as if the new commit on master had always been there.
 
 Rebase is extremely useful for cleaning up your commit history, but it also carries risk; when you rebase, you are in fact discarding your old commits and replacing them with new (though admittedly, similar) commits, and this can seriously screw up a collaborator if you're working in a shared repo. **The golden rule for git rebase is "Only rebase before sharing your code, never after."**
 
@@ -146,31 +161,31 @@ Like git merge, git rebase also sometimes runs into merge conflicts that need to
 1. Check out a new feature branch.
 1. Create `views/layout.hbs` - don't forget the `{{{body}}}` inside the `<body></body>` tags.
 2. Add `app.use('/static', express.static(__dirname + '/public'));` to your `index.js`
-3. Create a directory called `public` and add a stylesheet inside it. Write some CSS.
+3. Create a directory called `public` and add a stylesheet called `styes.css` inside of it. Write some CSS.
 4. Link to your stylesheet from the `<head>` of `layout.hbs`.
 5. Commit your changes and open a pull request. Resolve any merge conflicts using `git pull --rebase` and `git rebase --continue`.
 
-
 ## The Human Side: Communication
 
-#### Code Review
+### Code Review
 
-#### Integration Manager Workflow (Distributed Workflow)
+
+### Integration Manager Workflow (Distributed Workflow)
 
 These approaches all use multiple remote repos; typically, everyone has their own fork of the 'original' project (the version of the repo that's publicly visible and is managed by the project maintainer), and changes are submitted via pull request.
 
 How It Works: One collaborator plays the role of 'Integration Manager'. This means that they are responsible for managing the official repository and either accepting or rejecting pull requests as they come in.
 
-(+) One student integrates all changes, so there's consistency.
+**(+)** One student integrates all changes, so there's consistency.
 
-(-) Could get overwhelming for large projects.
+**(-)** Could get overwhelming for large projects.
 
 ## Quiz Questions
 - Identify the syntax needed to create a new branch. How about creating a new branch and switching to it?
 - Why should you never work on the same files on different branches?
 - Explain the difference between rebase and merge
 
-## Homework
+Discuss
 
 ## Cheat Sheets
 https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf
