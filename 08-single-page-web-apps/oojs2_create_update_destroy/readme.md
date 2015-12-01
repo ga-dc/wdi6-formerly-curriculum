@@ -23,6 +23,18 @@ You may have used [a different repo](https://github.com/ga-dc/tunr_node_oojs) be
 
 ## 1. Set up the repo
 
+If you don't have Mongo installed on your computer yet:
+
+```sh
+$ brew update
+$ brew install mongo
+$ npm install --global mongod
+$ sudo mkdir -p /data/db
+$ ls -ld /data/db
+$ sudo chmod 0755 /data/db
+$ sudo chown -R $USER /data/db
+```
+
 ```sh
 $ git clone git@github.com:ga-dc/tunr_mongo_oojs.git
 $ cd tunr_mongo_oojs
