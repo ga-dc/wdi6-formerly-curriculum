@@ -80,17 +80,19 @@ How It Works: This workflow is very similar to the 'Centralized' workflow. The b
 
 ## You Do: Merging: The Good, The Bad, and The Ugly (20 min)
 
+**Throughout today's exercises, we will use the `git-teams-starter` branch where we would usually use `master`.**
+
 ***The Good***
 - *Student 1* Check out a new feature branch and create `views/edit.hbs`
 - *Student 2* Check out a new feature branch and add a route for `/compliments/:id/edit` to `index.js`
-- *Both Students* Commit you changes and push them to the remote repo. Open a pull request on Github to merge the changes on your feature branch into master. If there are no conflicts, merge your pull request. If there are, you might need to  `git pull` the latest changes, then `commit` again. Once your changes are successfully merged, delete your feature branches.
+- *Both Students* Commit you changes and push them to the remote repo. Open a pull request on Github to merge the changes from your feature branch into `git-teams-starter`. If there are no conflicts, merge your pull request. If there are, you might need to  `git pull` the latest changes, then `commit` again. Once your changes are successfully merged, delete your feature branches, check out `git-teams-starter`, and `pull`.
 
 ***The Bad AND The Ugly***
 - **Student 1** Check out a new feature branch and add an `update` method to `complimentsController`
 - **Student 2** Check out a new feature branch and add a `edit` method to `complimentsController`
-- **Both Students** Commit you changes and push them to the remote repo. Open a pull request on Github to merge the changes on your feature branch into master.
-- **Student 1** Merge your changes into master.
-- **Student 2** There should be a merge conflict!
+- **Both Students** Commit you changes and push them to the remote repo. Open a pull request on Github to merge the changes on your feature branch into `git-teams-starter`.
+- **Student 1** Merge your changes into `git-teams-starter` on GitHub.
+- **Student 2** Check your PR -- there should be a merge conflict!
 
 ## BREAK (10 min)
 
@@ -115,10 +117,13 @@ Now, we have only the code we need and can git commit.
 
 - **Student 2**
 ``` bash
-git checkout master
+git checkout git-teams-starter
 git pull
+git merge <your_branchname>
 ```
 - **Both Students** Look over the merge conflict, resolve it locally, commit, and push.
+
+- **Student 1** Pull down the changes to `git-teams-starter`
 
 
 ## Rebasing (15 min)
