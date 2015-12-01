@@ -92,7 +92,7 @@ How It Works: This workflow is very similar to the 'Centralized' workflow. The b
 - *Student 2* Check out a new feature branch and add a route for `/compliments/:id/edit` to `index.js`
 - *Both Students* Commit you changes and push them to the remote repo. Open a pull request on Github to merge the changes from your feature branch into `git-teams-starter`. If there are no conflicts, merge your pull request. If there are, you might need to  `git pull` the latest changes, then `commit` again. Once your changes are successfully merged, delete your feature branches, check out `git-teams-starter`, and `pull`.
 
-Next, try break it!!!!
+Next, try to break it!!!!
 ***The Bad AND The Ugly***
 - **Student 1** Check out a new feature branch and add an `update` method to `complimentsController`
 - **Student 2** Check out a new feature branch and add a `edit` method to `complimentsController`
@@ -105,6 +105,7 @@ When you finish:
 Don't worry about writing any code to resolve the merge conflict now, instead, decide between your group how to think about and outline the steps for the next commit.
 
 Some things to consider:
+
 1. Who will resolve the conflict?
 2. What are the necessary commands you will need to run to incorporate those changes?
 3. What kind of system and channels best allow developers to prevent, and resolve merge conflicts most effectively?
@@ -157,15 +158,16 @@ Like git merge, git rebase also sometimes runs into merge conflicts that need to
 ## You Do: Resolve Merge Conflicts w/ Rebase (20 min)
 
 **Both Students**
+
 1. Check out a new feature branch.
-1. Create `views/layout.hbs` - don't forget the `{{{body}}}` inside the `<body></body>` tags.
-2. Add `app.use('/static', express.static(__dirname + '/public'));` to your `index.js`
-3. Create a directory called `public` and add a stylesheet called `styes.css` inside of it. Write some CSS.
-4. Link to your stylesheet from the `<head>` of `layout.hbs`.
-5. Both students commit your changes.
-6. **Student1** push branch and make a pr, and merge your changes.
-7. **Student2** then try to do the same thing.
-8. **Student2** grab the necessary changes with `git pull --rebase` and resolve any merge conflicts with `git rebase --continue`.
+2. Create `views/layout.hbs` - don't forget the `{{{body}}}` inside the `<body></body>` tags.
+3. Add `app.use('/static', express.static(__dirname + '/public'));` to your `index.js`
+4. Create a directory called `public` and add a stylesheet called `styes.css` inside of it. Write some CSS.
+5. Link to your stylesheet from the `<head>` of `layout.hbs`.
+6. Both students commit your changes.
+7. **Student1** push branch and make a pr, and merge your changes.
+8. **Student2** then try to do the same thing.
+9. **Student2** grab the necessary changes with `git pull --rebase` and resolve any merge conflicts with `git rebase --continue`.
 
 ## The Human Side: Communication (10 mins)
 
