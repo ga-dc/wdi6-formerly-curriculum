@@ -134,6 +134,7 @@ Artist.fetch = function(){
 }
 ```
 > `$.getJSON` is jQuery method that serves the same purpose as a GET `$.ajax` to a JSON source.  
+  
 > NOTE: We defined the `fetch` function inside the Artist constructor. This is more or less the same as class methods in Ruby.
 
 There's a lot going on here. Let's take it slow and play around with it in the console.  
