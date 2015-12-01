@@ -396,6 +396,8 @@ Create an instance method inside the `ArtistView.prototype` object. This method 
 
 # Cliff Notes
 
+The solution for the `read` portion of today's in-class example is available [here](https://github.com/ga-dc/tunr_mongo_oojs/tree/read).
+
 ### /public/js/models/artist.js
 ```js
 var Artist = function(info){
