@@ -48,6 +48,10 @@
 * ["Single Page" Web Applications](08-single-page-web-apps/readme.md)
   * [Intro to Express ](08-single-page-web-apps/express_intro/readme.md)
   * [Express Routing](08-single-page-web-apps/express_routing/readme.md)
+* Object-Oriented Javascript
+  * [Prototypes and Constructors](07-apis-express-ajax/prototypes_and_constructors/readme.md)
+  * [R / CRUD](08-single-page-web-apps/oojs1_read/readme.md)
+  * [CUD / CRUD](08-single-page-web-apps/oojs2_create_update_destroy/readme.md)
 * [Back and Front of Front End](10-back-and-front-of-front-end/readme.md)
   * BackBone
     * [Models and Collections](10-back-and-front-of-front-end/bb_models_collections/readme.md)
