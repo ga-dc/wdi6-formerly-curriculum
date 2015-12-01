@@ -1,5 +1,10 @@
 # OOJS on the Front End - Part Deux: Create, Update, Destroy
 
+## Screencasts
+
+- [Part 1](https://youtu.be/GZ2y31JBeHA)
+- [Part 2](https://youtu.be/Y5EfQB98AFQ)
+
 ## Learning Objectives
 
 * Use OOJS to structure front end code.
