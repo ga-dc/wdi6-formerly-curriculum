@@ -134,6 +134,7 @@ Artist.fetch = function(){
 }
 ```
 > `$.getJSON` is jQuery method that serves the same purpose as a GET `$.ajax` to a JSON source.  
+
 > NOTE: We defined the `fetch` function inside the Artist constructor. This is more or less the same as class methods in Ruby.
 
 There's a lot going on here. Let's take it slow and play around with it in the console.  
@@ -169,6 +170,7 @@ var ArtistView = function(artist){
   this.$el = $("<div class='artist'></div>");
 };
 ```
+> `$el` is an HTML representation of what our view will look like when rendered on our webpage. The `$` means it's a jQuery object, so we can call jQuery methods on it.
 
 We can quickly test this in the console by creating a new artistView.
 
@@ -189,7 +191,7 @@ We're setting 2 properties in the ArtistView objects. The first is an artist, wh
 Let's create some additional functionality for the ArtistView Object in `public/js/views/artistView.js`.  
 
 ```js
-ArtistView.prototype ={
+ArtistView.prototype = {
   render: function(){
     // we'll be adding event listeners later but will still need access to the Artist view in the event listener
     var self = this;
@@ -203,7 +205,6 @@ ArtistView.prototype ={
   }
 }
 ```
-
 > NOTE: We namespaced the .render() functionality under prototype. That is to say, this is like an instance method. It is available to each instance of the ArtistView Object
 
 Let's test this out in the console.  
@@ -212,7 +213,7 @@ Let's test this out in the console.
 var bluesTraveler = new Artist({
   name: "Blues Traveler",
   photoUrl: "http://coloredvinylrecords.com/pictures/b/blues-traveler-four-01433512670.png",
-  nationality: "murica",
+  nationality: "USA",
   id: 6
 });
 var bluesTravelerView = new ArtistView(bluesTraveler);
