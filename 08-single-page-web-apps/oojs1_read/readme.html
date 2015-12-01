@@ -53,7 +53,7 @@
         data-chapter-title="R / CRUD"
         data-filepath="08-single-page-web-apps/oojs1_read/readme.md"
         data-basepath="../.."
-        data-revision="Tue Dec 01 2015 14:58:42 GMT+0000 (UTC)"
+        data-revision="Tue Dec 01 2015 15:32:31 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1303,8 +1303,8 @@ artist
     <span class="hljs-comment">// we&apos;ll be adding event listeners later but will still need access to the Artist view in the event listener</span>
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
     <span class="hljs-comment">// appending elements to the .$el property</span>
-    self.$el.append(<span class="hljs-string">&quot;&lt;h3&gt;&quot;</span> + artist.name + <span class="hljs-string">&quot;&lt;/h3&gt;&quot;</span>);
-    self.$el.append(<span class="hljs-string">&quot;&lt;img class=&apos;artist-photo&apos; src=&apos;&quot;</span> + artist.photoUrl + <span class="hljs-string">&quot;&apos;&gt;&quot;</span>);
+    self.$el.append(<span class="hljs-string">&quot;&lt;h3&gt;&quot;</span> + self.artist.name + <span class="hljs-string">&quot;&lt;/h3&gt;&quot;</span>);
+    self.$el.append(<span class="hljs-string">&quot;&lt;img class=&apos;artist-photo&apos; src=&apos;&quot;</span> + self.artist.photoUrl + <span class="hljs-string">&quot;&apos;&gt;&quot;</span>);
     self.$el.append(<span class="hljs-string">&quot;&lt;button class=&apos;showSongs&apos;&gt;Show Songs&lt;/button&gt;&quot;</span>);
     self.$el.append(<span class="hljs-string">&quot;&lt;div class=&apos;songs&apos;&gt;&lt;/div&gt;&quot;</span>);
     <span class="hljs-comment">// append the .$el to the div with class artists in our view.</span>
@@ -1334,8 +1334,8 @@ bluesTravelerView.render();
   },
   artistTemplate: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artist</span>)</span>{
     <span class="hljs-keyword">var</span> html = $(<span class="hljs-string">&quot;&lt;div&gt;&quot;</span>);
-    html.append(<span class="hljs-string">&quot;&lt;h3&gt;&quot;</span> + artist.name + <span class="hljs-string">&quot;&lt;/h3&gt;&quot;</span>);
-    html.append(<span class="hljs-string">&quot;&lt;img class=&apos;artist-photo&apos; src=&apos;&quot;</span> + artist.photoUrl + <span class="hljs-string">&quot;&apos;&gt;&quot;</span>);
+    html.append(<span class="hljs-string">&quot;&lt;h3&gt;&quot;</span> + <span class="hljs-keyword">this</span>.artist.name + <span class="hljs-string">&quot;&lt;/h3&gt;&quot;</span>);
+    html.append(<span class="hljs-string">&quot;&lt;img class=&apos;artist-photo&apos; src=&apos;&quot;</span> + <span class="hljs-keyword">this</span>.artist.photoUrl + <span class="hljs-string">&quot;&apos;&gt;&quot;</span>);
     html.append(<span class="hljs-string">&quot;&lt;button class=&apos;showSongs&apos;&gt;Show Songs&lt;/button&gt;&quot;</span>);
     html.append(<span class="hljs-string">&quot;&lt;div class=&apos;songs&apos;&gt;&lt;/div&gt;&quot;</span>);
     <span class="hljs-keyword">return</span>(html);
