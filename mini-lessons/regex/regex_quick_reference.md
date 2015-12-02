@@ -3,7 +3,7 @@
 (from Rubular.com)
 
 | Pattern    | Description                                  |   | Pattern  | Description              |   | Pattern | Description    |
-| ---------- | -----------                                  | - | -------- | -----------              | - | ------- | -----------    |
+|------------|----------------------------------------------|---|----------|-------------|------------|---|---------|----------------|
 | `[abc]`    | A single character of: a, b, or c            |   | `.`  | Any single character         |   | `(...)` | Capture everything enclosed |
 | `[^abc]`   | Any single character except: a, b, or c      |   | `\s` | Any whitespace character     |   | `(a|b)` | a or b |
 | `[a-z]`    | Any single character in the range a-z        |   | `\S` | Any non-whitespace character |   | `a?`    | Zero or one of a |
