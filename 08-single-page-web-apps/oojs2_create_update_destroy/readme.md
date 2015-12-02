@@ -2,8 +2,12 @@
 
 ## Screencasts
 
-- [Part 1](https://youtu.be/GZ2y31JBeHA)
-- [Part 2](https://youtu.be/Y5EfQB98AFQ)
+- 12/1 (Robin)
+  - [Part 1](https://youtu.be/GZ2y31JBeHA)
+  - [Part 2](https://youtu.be/Y5EfQB98AFQ)
+- 12/2 (Robin)
+  - [Part 1](https://youtu.be/hB4skwJpTK4)
+  - [Part 2](https://youtu.be/45Cm9blHG70)
 
 ## Learning Objectives
 
