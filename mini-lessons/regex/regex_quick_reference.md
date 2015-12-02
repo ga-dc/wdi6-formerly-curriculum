@@ -5,7 +5,7 @@
 | Pattern    | Description                                  | Pattern  | Description                                     | Pattern  | Description                 |
 |------------|----------------------------------------------|----------|-------------------------------------------------|----------|-----------------------------|
 | `[abc]`    | A single character of: a, b, or c            | `.`      | Any single character                            |  `(...)` | Capture everything enclosed |
-| `[^abc]`   | Any single character except: a, b, or c      | `\s`     | Any whitespace character                        |  `(a &#124; b)` | a or b |
+| `[^abc]`   | Any single character except: a, b, or c      | `\s`     | Any whitespace character                        |  `(a|b)` | a or b |
 | `[a-z]`    | Any single character in the range a-z        | `\S`     | Any non-whitespace character                    |  `a?`    | Zero or one of a |
 | `[a-zA-Z]` | Any single character in the range a-z or A-Z | `\d`     | Any digit                                       |  `a*`    | Zero or more of a |
 | `^`        | Start of line                                | `\D`     | Any non-digit                                   |  `a+`    | One or more of a |
