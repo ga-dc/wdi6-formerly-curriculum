@@ -1,28 +1,11 @@
----
-title: Encrypting Passwords with Express/Mongoose
-type: lesson
-duration: "1:25"
-creator:
-    name: Gerry Mathe
-    city: London
-competencies: Server Applications
----
-
 # Encrypting Passwords with Express/Mongoose
 
-### Objectives
-*After this lesson, students will be able to:*
+## Learning Objectives
 
 - Create a mongoose-backed User model with email & password
 - Recall what encryption is and why it's important
 - Generate a salt & encrypt a password
 - Find a user based on email & password, and check against an encrypted password to authentication
-
-### Preparation
-*Before this lesson, students should already be able to:*
-
-- Create a MVC app with Express
-- Create a schema with mongoose and create/read documents
 
 ## Refresh Bcrypt and Authentication system - Intro (15 mins)
 
