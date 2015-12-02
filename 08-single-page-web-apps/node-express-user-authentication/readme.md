@@ -1,410 +1,461 @@
-# Encrypting Passwords with Express/Mongoose
+# Local Authentication with Express and Passport
 
-## Learning Objectives
+### Objectives
+*After this lesson, students will be able to:*
 
-- Create a mongoose-backed User model with email & password
-- Recall what encryption is and why it's important
-- Generate a salt & encrypt a password
-- Find a user based on email & password, and check against an encrypted password to authentication
+- Create a login form with email & password
+- Use passport-local to find a user & verify their password
+- Restrict access to API without an authenticated user
 
-## Refresh Bcrypt and Authentication system - Intro (15 mins)
+### Preparation
+*Before this lesson, students should already be able to:*
 
-#### Authentication system
-
-We've already implemented an authentication system in Rails, and the logic is the same in NodeJS. For this lesson, we will re-implement the login and signup logic over an api. In a later lesson, we will use different packages to make the authentication system easy to implement.
-
-For this lesson, our app will have two routes:
-
-- `POST    /signup`, we will send a password and an email to this route; this will hash the password and save it in the database
-
-- `POST    /login`, we send a password and an email to this route and then the server will respond with a message and a http status to indicate if the credentials are right.
+- Create an express application and add CRUD/REST resources
+- Create a Mongoose Model
+- Describe and authentication model
 
 
-#### Bcrypt, hashing refresher
+## Passport and the logics - Intro (5 mins)
 
-Remember, hashing is when a function is called on a variable - in this case a password - in order to produce a constant-sized output; it being a one-way function, there isn't a function to reverse or undo a hash and calling the function again - or reapplying the hash - isn't going to produce the same output again.
+From the [passport website](http://passportjs.org/docs):
 
-From another [stack post](http://stackoverflow.com/questions/1602776/what-is-password-hashing):
+"_Passport is authentication Middleware for Node. It is designed to serve a singular purpose: authenticate requests. When writing modules, encapsulation is a virtue, so Passport delegates all other functionality to the application. This separation of concerns keeps code clean and maintainable, and makes Passport extremely easy to integrate into an application._
 
-_"Hashing a password will take a clear text string and perform an algorithm on it (depending on the hash type) to get a completely different value. This value will be the same every time, so you can store the hashed password in a database and check the user's entered password against the hash."_
+_In modern web applications, authentication can take a variety of forms. Traditionally, users log in by providing a username and password. With the rise of social networking, single sign-on using an OAuth provider such as Facebook or Twitter has become a popular authentication method. Services that expose an API often require token-based credentials to protect access._"
 
-This prevents you from storing the cleartext passwords in the database (bad idea).
+#### Strategies
 
-Bcrypt is recognized as one of the most secure ways of encrypting passwords because of the per-password salt. Even with it being slower than any other algorithms, a lot of companies still prefer to use bcrypt for security reasons.
+The main concept when using passport is to register _Strategies_.  A strategy is a passport Middleware that will create some action in the background and execute a callback; the callback should be called with different arguments depending on whether the action that has been performed in the strategy was successful or not. Based on this and on some config params, passport will redirect the request to different paths.
 
-#### But wait, what's a salt?
-
-A salt is random data that can be added as additional input to a one-way function, in our case a one-way function that  hashes a password or passphrase. We use salts to defend against dictionary attacks, a technique for "cracking" an authentication mechanism by trying to determine the decryption key.
+Because strategies are packaged as individual modules, we can pick and choose which ones we need for our application. This logic allows the developer to keep the code simple - without unnecessary dependencies - in the controller and delegate the proper authentication job to some specific passport code.
 
 
-## Using bcrypt with Express - Codealong (20 mins)
+## Implementing Passport.js - Codealong (25 mins)
 
-Clone the starter code:
+#### Setup/Review Starter Code
+
+First, unzip the starter code and setup with `npm install` to ensure that we have all of the correct dependencies.
+
+The starter-code is structured like this:
 
 ```
-$ git clone https://github.com/ga-dc/express-user-authentication.git
+.
+└── app
+    ├── app.js
+    ├── config
+    │   ├── passport.js
+    │   └── routes.js
+    ├── controllers
+    │   └── users.js
+    ├── models
+    │   └── user.js
+    ├── package.json
+    ├── public
+    │   └── css
+    │       └── bootstrap.min.css
+    └── views
+        ├── index.ejs
+        ├── layout.ejs
+        ├── login.ejs
+        ├── secret.ejs
+        └── signup.ejs
+
+7 directories, 12 files
 ```
 
-Next, make sure that you run `npm install` to install of the dependencies.
+Now let's open the code up in Sublime with `subl .`.
 
-Once you have done this, run `nodemon app.js` to check for any errors. You shouldn't have any!
+#### Users & Statics Controller
 
-**Note:** Make sure that you have Mongo running! (`$ mongod`)
+Let's have a quick look at the `users.js` controller. As you can see, the file is structured like a module with 6 empty route handlers:
 
-#### Creating a User Model
+```
+// GET /signup
+// POST /signup
+// GET /login
+// POST /login
+// GET /logout
+// Restricted page
+```
 
-Now, we are going to declare and export a user model, so in `models/user.js`:
+The statics controller, just has the home action.
+
+#### Routes.js
+
+We have seperated the routes into a seperate file, to remove them from the app.js file.
+
+#### Signup
+
+First we will implement the signup logic. For this, we will have:
+
+1. a route action to display the signup form
+2. a route action to receive the params sent by the form
+
+When the server receives the signup params, the job of saving the user data into the database, hashing the password and validating the data will be delegated to the strategy allocated for this part of the authentication, this logic will be written in `config/passport.js`
+
+Open the file `config/passport.js` and add:
 
 ```javascript
-  var mongoose = require('mongoose');
-  var bcrypt   = require('bcrypt');
+  var LocalStrategy   = require('passport-local').Strategy;
+  var User            = require('../models/user');
 
-  var User = new mongoose.Schema({
-    name:  { type: String },
-    email: { type: String, required: true,  unique: true },
-    password: { type: String, required: true }
-  });
+  module.exports = function(passport) {
+    passport.use('local-signup', new LocalStrategy({
+      usernameField : 'email',
+      passwordField : 'password',
+      passReqToCallback : true
+    }, function(req, email, password, done) {
 
-  module.exports = mongoose.model('User', User);
-```
-
-Nothing new here - we declare the fields and their respective types, but we need to make sure that the email is unique, hence the `{unique: true}`.
-
-We have required mongoose and bcrypt here, athough we are not using bcrypt yet.
-
-To check that this has been correctly setup, let's go into our Mongo terminal and quickly check the schema in this database:
-
-```bash
-  mongo
-  use authentication-practise
-  show collections
-```
-
-You should see:
-
-```bash
-  system.indexes
-  users
-```
-
-#### App.js
-
-Let's first have a look at the `app.js` file:
-
-```javascript
-  var express       = require('express');
-  var path          = require('path');
-  var logger        = require('morgan');
-  var cookieParser  = require('cookie-parser');
-  var bodyParser    = require('body-parser');
-  var app           = express();
-  var mongoose      = require('mongoose');
-  var User          = require('./models/User');
-
-  app.use(logger('dev'));
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(cookieParser());
-
-  mongoose.connect('mongodb://localhost:27017/authentication-practise')
-
-  // Only render errors in development
-  if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-      res.status(err.status || 500);
-      res.render('error', {
-        message: err.message,
-        error: err
-      });
-    });
-  }
-
-  app.listen(3000)
-```
-
-Perhaps the only packages here that we have not seen are `cookie-parser` and `bcrypt`.
-[`cookie-parser`](https://github.com/expressjs/cookie-parser) is some middleware that helps you parse cookies.
-
-We are not actually going to use `cookie-parser` at the moment.
-
-#### Creating the signup route
-
-Now we will create the `signup` route. In app.js let's add that signup route:
-
-```javascript
-  app.post("/signup", function(req, res) {
-    var userObject = new User(req.body.user);
-
-    userObject.save(function(err, user) {
-      if(err){
-        return res.status(401).send({message: err.errmsg});
-      } else {
-        return res.status(200).send({message: "user created"});
-      }
-    });
-  })
-```
-
-Once again, nothing new here: we just create the route handler for the signup and save a user Document based on the params received in the request body; therefore the request body should be something like...
-
-```javascript
-  "user" : {
-    "name"        : "LLLLLL",
-    "email"       : "XXXXXX",
-    "password"    : "YYYYYY"
+    }));
   }
 ```
 
-Great, we can now create a user by posting to this route.
+Here we are declaring the strategy for the signup - the first argument given to `LocalStrategy` is a hash giving info about the fields we will use for the authentication.
 
-#### Test using cURL
+By default, passport-local expects to find the fields `username` and `password` in the request. If you use different field names, as we do, you can give this information to `LocalStrategy`.
 
-Let's test this by starting up the app with `nodemon app.js` and cURLing this route with some data.
+The third argument will tell the strategy to send the request object to the callback so that we can do further things with it.
 
-```bash
-curl -i -H "Content-Type: application/json" -d '{
-  "user" :{
-  "name"		   : "Alex",
-  "email"       : "alex@alex.com",
-  "password"    : "password"
-  }
+Then, we pass the function that we want to be executed as a callback when this strategy is called: this callback method will receive the request object; the values corresponding to the fields name given in the hash; and the callback method(`done`) to execute when this 'strategy' is done.
 
-}' http://localhost:3000/signup
-```
-
-You should see something like this:
-
-```
-HTTP/1.1 200 OK
-X-Powered-By: Express
-Content-Type: application/json; charset=utf-8
-Content-Length: 26
-ETag: W/"1a-T12+w8BGtrChZALrlerTPQ"
-Date: Sat, 15 Aug 2015 00:56:35 GMT
-Connection: keep-alive
-
-{"message":"user created"}%
-```
-
-#### Signup Logic
-
-Now that we have the signup route working and users being saved to our database, we need to implement the logic to encrypt the email when a user is created.
-
-In `user.js`, we are going to add some middleware that will be executed every time a save action is performed for a user model.
+Now, inside this callback method, we will implement our custom logic to signup a user.
 
 ```javascript
-  User.pre('save', function(next) {
-    // Some code in here
-  });
+  ...
+  }, function(req, email, password, callback) {
+    process.nextTick(function() {
 
-  module.exports = mongoose.model('User', User);
-```
+      // Find a user with this e-mail
+      User.findOne({ 'local.email' :  email }, function(err, user) {
+        if (err) return callback(err);
 
-*Note:* Similar to a Rails `before_save` callback.
-
-The code in this function will now be executed for every call to create, save and update.
-
-Inside this method let's add the logic to hash the password:
-
-```javascript
-  User.pre('save', function(next) {
-    var user = this;
-
-    // Generate a salt, with a salt_work_factor of 5
-    bcrypt.genSalt(5, function(err, salt) {
-      if (err) return next(err);
-
-      // Hash the password using our new salt
-      bcrypt.hash(user.password, salt, function(err, hash) {
-        if (err) return next(err);
-
-        // Override the cleartext password with the hashed one
-        user.password = hash;
-        next();
-      });
-    });
-  });
-```
-
-Here we are calling two methods to encrypt the password:
-
-- `genSalt()` will send a salt token to the callback method;
-	- the argument `5` corresponds to the number of rounds that will be executed when generating a token - the higher the number, the more complex the salt will be.
-- `bcrypt.hash()` will take the original password and hash it with the salt token passed as a second argument. Then the callback receive the hashed password.
-
-We do not need the original password anymore, so we can replace it by the hashed one:
-
-```
-this.password = hash;
-```  
-
-The call to `next()` will now go to the next middleware or execute the save action.  
-
-#### Create, save and update?!
-
-This logic will work every time a save action is called on a user document, which is an issue, because every time save and update will be called on a user document, the password will be re-hashed; therefore, the original clear password will not correspond to the new hashed password.
-
-So we need to hash the password only when the value of the password is different than the one stored - meaning the user/admin updated this password.  When the document is created, the field is set to null, so if the request contains a string for the password, Mongoose will perform a comparison between the value null and the new value.  Now, this test will work for a new document and for a document that is updated.
-
-Therefore, at the start of the middleware `pre` callback method, add:
-
-```javascript
-  User.pre('save', function(next) {
-    var user = this;
-
-    // Only hash the password if it has been modified (or is new)
-    if (!user.isModified('password')) return next();
-
-    ...
-```
-
-Now the password will be hashed only when the value changes.
-
-That's all for encoding the password!
-
-## Create a user document with cURL - Independent Practice (5 mins)
-
-To make sure your auth works, try to create a user document using another CURL command and use the Mongo terminal to check that the password has been hashed.
-
-#### Solution
-
-```bash
-curl -i -H "Content-Type: application/json" -d '{
-  "user" :{
-  "name"   : "Dave",
-  "email"       : "dave@dave.com",
-  "password"    : "password"
-  }
-
-}' http://localhost:3000/signup
-```
-
-Then for mongo:
-
-```bash
-mongo
-use authentication-practise
-db.users.find({})
-```
-
-You should see something like:
-
-```bash
-> db.users.find({})
-{ "_id" : ObjectId("55ce9b2edcb5c5d552c8c167"), "name" : "Alex", "email" : "alex@alex.com", "password" : "password", "__v" : 0 }
-{ "_id" : ObjectId("55ce9b3993bbc2a953e4a618"), "name" : "Dave", "email" : "dave@dave.com", "password" : "$2a$05$UPopBQOQjqYmcuNg0EyiyerixjqfoSZvx2Aw4BfwcKabd1/.1mLIa", "__v" : 0 }
-```
-
-You can see now that the password has been hashed!
-
-## Setting up the Login - Codealong (15 mins)
-
-For the login, we will need to add another route `/signin` that will also receive an email and password under the same format than signup:
-
-```javascript
-  "user" :{
-     "email"       : "XXXXXX",
-     "password"    : "YYYYYY"
-  }
-```
-
-But for the sign-in process, we will perform a search based on the email and then ask bcrypt to compare the value sent in the request and the hashed password stored in mongo.
-
-In app.js, let's add:
-
-```javascript
-  app.post("/signin", function(req, res) {
-    var userParams = req.body.user;
-
-    User.findOne({ email: userParams.email }, function(err, user) {
-
-      user.authenticate(userParams.password, function(err, isMatch) {
-        if (err) throw err;
-
-        if (isMatch) {
-          return res.status(200).send({message: "Valid Credentials !"});
+        // If there already is a user with this email
+        if (user) {
+          return callback(null, false, req.flash('signupMessage', 'This email is already used.'));
         } else {
-          return res.status(401).send({message: "The credentials provided do not correspond to a registered user"});
-        };
+        // There is no email registered with this email
+
+          // Create a new user
+          var newUser            = new User();
+          newUser.local.email    = email;
+          newUser.local.password = newUser.encrypt(password);
+
+          newUser.save(function(err) {
+            if (err) throw err;
+            return callback(null, newUser);
+          });
+        }
       });
     });
-  });
+  }));
+  ....
+
 ```
 
-#### User.authenticate method
+First we will try to find a user with the same email, to make sure this email is not already use.
 
-So the method `authenticate` (that we need to add in the model) will take the password as an argument and a callback method. This callback will receive any error that occurred and then a boolean corresponding to wether or not the password is valid. Based on this boolean, the route handler will respond with a different message and a different http status.
+Once we have the result of this mongo request, we will check if a user document is returned - meaning that a user with this email already exists.  In this case, we will call the `callback` method with the two arguments `null` and `false` - the first argument is for when a server error happens; the second one corresponds to the user object, which in this case hasn't been created, so we return false.
 
-Let's now write the method `authenticate` in the user model:
+If no user is returned, it means that the email received in the request can be used to create a new user object. We will, therefore create a new user object, hash the password and save the new created object to our mongo collection. When all this logic is created, we will call the `callback` method with the two arguments: `null` and the new user object created.
+
+In the first situation we pass `false` as the second argument, in the second case, we pass a user object to the callback, corresponding to true, based on this argument, passport will know if the strategy has been successfully executed and if the request should redirect to the `success` or `failure` path. (see below).
+
+#### User.js
+
+The last thing is to add the method `encrypt` to the user model to hash the password received and save it as encrypted:
 
 ```javascript
-  User.methods.authenticate = function(password, callback) {
-    // Compare is a bcrypt method that will return a boolean,
-    // if the first argument once encrypted corresponds to the second argument
-    bcrypt.compare(password, this.password, function(err, isMatch) {
-      callback(null, isMatch);
-    });
+  User.methods.encrypt = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
   };
 ```
 
-The call to `bcrypt.compare()` will take care of rehashing the password and comparing both versions, sending a boolean to the callback method, and the logic goes back to the route handler.
+As we did in the previous lesson, we generate a salt token and then hash the password using this new salt.
 
+That's all for the signup strategy.
 
-## Test your auth with a cURL - Independent Practice (5 mins)
+#### Route Handler
 
-You can test this using this curl command:
+Now we need to use this strategy in the route handler.
+
+In the `users.js` controller, for the method `postSignup`, we will add the call to the strategy we've declared
 
 ```javascript
-curl -i -H "Content-Type: application/json" -d '{
-  "user" :{
-  "email"       : "dave@dave.com",
-  "password"    : "password"
+  function postSignup(request, response) {
+    var signupStrategy = passport.authenticate('local-signup', {
+      successRedirect : '/',
+      failureRedirect : '/signup',
+      failureFlash : true
+    });
+
+    return signupStrategy();
+  }
+```
+
+Here we are calling the method `authenticate` (given to us by passport) and then telling passport which strategy (`'local-signup'`) to use.
+
+The second argument tells passport what to do in case of a success or failure.
+
+- If the authentication was successful, then the response will redirect to `/`
+- In case of failure, the response will redirect back to the form `/signup`
+
+
+#### Session
+
+We've seen in previous lessons that authentication is based on a value stored in a cookie, and then, this cookie is sent to the server for every request until the session expires or is destroyed.
+
+To use the session with passport, we need to create two new methods in `config/passport.js` :
+
+```javascript
+  module.exports = function(passport) {
+
+    passport.serializeUser(function(user, done) {
+      done(null, user.id);
+    });
+
+    passport.deserializeUser(function(id, callback) {
+      User.findById(id, function(err, user) {
+          callback(err, user);
+      });
+    });
+	...
+
+```
+
+The method `serializeUser` will be used when a user signs in or signs up, passport will call this method, our code then call the `done` callback, the second argument is what we want to be serialized.
+
+The second method will then be called every time there is a value for passport in the session cookie. In this method, we will receive the value stored in the cookie, in our case the `user.id`, then search for a user using this ID and then call the callback. The user object will then be stored in the request object passed to all controller methods calls.
+
+## Flash Messages - Intro (5 mins)
+
+Remember Rails? Flash messages were one-time messages that were rendered in the views and when the page was reloaded, the flash was destroyed.  
+
+In our current Node app, back when we have created the signup strategy, in the callback we had this code:
+
+```javascript
+  req.flash('signupMessage', 'This email is already used.')
+```
+
+This will store the message 'This email is already used.' into the response object and then we will be able to use it in the views. This is really useful to send back details about the process happening on the server to the client.
+
+
+## Incorporating Flash Messages - Codealong (5 mins)
+
+In the view `signup.ejs`, before the form, add:
+
+```ejs
+  <% if (message.length > 0) { %>
+    <div class="alert alert-danger"><%= message %></div>
+  <% } %>
+```
+
+Let's add some code into `getSignup` in the users Controller to render the template:
+
+```javascript
+  function getSignup(request, response) {
+    response.render('signup.ejs', { message: request.flash('signupMessage') });
+  }
+```
+
+Now, start up the app using `nodemon app.js` and visit `http://localhost:3000/signup` and try to signup two times with the same email, you should see the message "This email is already used." appearing when the form is reloaded.
+
+
+## Test it out - Independent Practice (5 mins)
+
+All the logic for the signup is now set - you should be able to go to `/signup` in a web browser and the signup form should be displayed, this is because by default, like in rails, NodeJS will look for a template that have the same name than the route, in this case `signup.ejs`. When you submit the form, it should create a user document.
+
+
+## Sign-in - Codealong (10 mins)
+
+Now we need to write the `signin` logic.
+
+We also need to implement a custom strategy for the login, In passport.js, after the signup strategy, add add a new LocalStrategy:
+
+```javascript
+  passport.use('local-login', new LocalStrategy({
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true
+  }, function(req, email, password, callback) {
+
+  }));
+```
+
+The first argument is the same as for the signup strategy - we ask passport to recognize the fields `email` and `password` and to pass the request to the callback function.
+
+For this strategy, we will search for a user document using the email received in the request, then if a user is found, we will try to compare the hashed password stored in the database to the one received in the request params. If they are equal, the the user is authenticated; if not, then the password is wrong.
+
+Inside `config/passport.js` let's add this code:
+
+```javascript
+  ...
+  }, function(req, email, password, callback) {
+
+    // Search for a user with this email
+    User.findOne({ 'local.email' :  email }, function(err, user) {
+      if (err) return callback(err);
+
+	   // If no user is found
+      if (!user) return callback(null, false, req.flash('loginMessage', 'No user found.'));
+
+      // Wrong password
+      if (!user.validPassword(password))           return callback(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+
+      return callback(null, user);
+    });
+  }));
+  ...
+
+```
+
+#### User validate method
+
+We need to add a new method to the user schema in `user.js` so that we can use the method `user.validatePassword()`. Let's add:
+
+```javascript
+  User.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.local.password);
+  };
+```
+
+#### Adding flash messages to the view
+
+As we are again using flash messages, we will to add some code to display them in the view:
+
+In `login.ejs`, add the same code that we added in `signup.ejs` to display the flash messages:
+
+```javascript
+  <% if (message.length > 0) { %>
+    <div class="alert alert-danger"><%= message %></div>
+  <% } %>
+```
+
+#### Login GET Route handler
+
+Now, let's add the code to render the login form in the `getLogin` action in the controller (`users.js`):
+
+```javascript
+  function getLogin(request, response) {
+    response.render('login.ejs', { message: request.flash('loginMessage') });
   }
 
-}' http://localhost:3000/signin
 ```
 
-If the credentials are valid, you should see:
+You'll notice that the flash message has a different name (`loginMessage`) than the in the signup route handler.
 
-```
-HTTP/1.1 200 OK
-X-Powered-By: Express
-Content-Type: application/json; charset=utf-8
-Content-Length: 33
-ETag: W/"21-0aBsDSDpbTcsYOjT+i4low"
-Date: Sat, 15 Aug 2015 02:00:35 GMT
-Connection: keep-alive
+#### Login POST Route handler
 
-{"message":"Valid Credentials !"}%     
-```
+We also need to have a route handler that deals with the login form after we have submit it. So in `users.js` lets also add:
 
-If they are not, you should see:
+```javascript
+  function postLogin(request, response) {
+    var loginProperty = passport.authenticate('local-login', {
+      successRedirect : '/',
+      failureRedirect : '/login',
+      failureFlash : true
+    });
 
-```
-HTTP/1.1 401 Unauthorized
-X-Powered-By: Express
-Content-Type: application/json; charset=utf-8
-Content-Length: 77
-ETag: W/"4d-KyCW58vX57enbCaaHhh9pA"
-Date: Sat, 15 Aug 2015 02:01:09 GMT
-Connection: keep-alive
-
-{"message":"The credentials provided do not correspond to a registered user"}%
+    return loginProperty(request, response);
+  }
 ```
 
-There we go! we've implemented a login system with bcrypt, Mongoose and Express.
+You should be able to login now!
 
-## Add validations and explicit messages - You Do (20 mins)
+## Test it out - Independent Practice (5 mins)
 
-Now try to add detailed error messages:
+#### Invalid Login
 
-- When the email is wrong
-- When the email is already taken
-- Also, try to use a password confirmation using [virtuals](http://mongoosejs.com/docs/2.7.x/docs/virtuals.html) attributes
+First try to login with:
+
+- a valid email
+- an invalid password
+
+You should also see the message 'Oops! Wrong password.'
+
+#### Valid Login
+
+Now, try to login with valid details and you should be taken to the index page with a message of "Welcome".
+
+The login strategy has now been setup!
+
+## Signout - Codealong (10 mins)
+
+#### Logout
+
+The last action to implement for our authentication system is to set the logout route and functionality.
+
+#### Accessing the User object globally
+
+By default, passport will make the user available on the object `request`. In most cases, we want to be able to use the user object everywhere, for that, we're going to add a middleware in `app.js`:
+
+```javascript
+  require('./config/passport')(passport);
+
+  app.use(function (req, res, next) {
+    global.user = req.user;
+    next()
+  });
+```
+
+Now in the layout, we can add:
+
+```javascript
+  <% if (user) { %>
+    <li><a href="/logout">Logout</a></li<a>
+  <% } else { %>
+    <li><a href="/login">Login</a></li>
+    <li><a href="/signup">Signup</a></li>
+  <% } %>
+```
+
+## Test it out - Independent Practice (5 mins)
+
+You should now be able to login and logout! Test this out.
+
+
+## Signout - Restricting access (10 mins)
+
+As you know, an authentication system is used to allow/deny access to some resources to authenticated users.
+
+Let's now turn our attention to the `secret` route handler and it's associated template.
+
+To restrict access to this route, we're going to add a method at the top of `config/routes.js`:
+
+```javascript
+  function authenticatedUser(req, res, next) {
+    // If the user is authenticated, then we continue the execution
+    if (req.isAuthenticated()) return next();
+
+    // Otherwise the request is always redirected to the home page
+    res.redirect('/');
+  }
+```
+
+Now when we want to "secure" access to a particular route, we will add a call to the method in the route definition.
+
+For the `/secret` route, we need to add this to the `/config/routes.js` file:
+
+```javascript
+  router.route("/secret")
+    .get(authenticatedUser, usersController.secret)
+```
+
+Now every time the route `/secret` is called, the method `authenticatedUser` will be executed first. In this method, we either redirect to the homepage or go to the next method to execute.
+
+Now test it out by clicking on the secret page link. You should see: "This page can only be accessed by authenticated users"
+
+
+## Independent Practice (20 minutes)
+
+> ***Note:*** _This can be a pair programming activity or done independently._
+
+- Add pages with restricted access.
+
+- Once the user is authenticated, make sure he/she can't access the sign-in or sign-up and redirect with a message, and vice-versa for the logout
 
 ## Conclusion (5 mins)
 
-This is far from a complete authentication solution, and implementing full authentication logic would takes days and days if it had to be done manually. Luckily for us, tools exists to make developers' lives easier, and we will discover those tools later.
+Passport is a really useful tool because it allows developers to abstract the logic of authentication and customize it, if needed. It comes with a lot of extensions that we will cover later.
 
-- How does hashing work with salts?
-- Why is bcrypt trusted over other algorithms or using decryption keys?
+- How do salts work with hashing?
+- Briefly describe the authentication process using passport in Express.
