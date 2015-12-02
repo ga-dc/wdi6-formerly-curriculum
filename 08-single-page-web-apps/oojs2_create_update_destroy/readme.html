@@ -53,7 +53,7 @@
         data-chapter-title="CUD / CRUD"
         data-filepath="08-single-page-web-apps/oojs2_create_update_destroy/readme.md"
         data-basepath="../.."
-        data-revision="Wed Dec 02 2015 14:44:38 GMT+0000 (UTC)"
+        data-revision="Wed Dec 02 2015 15:02:08 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1321,18 +1321,16 @@ $ touch public/js/views/songView.js
 <p>The model file.</p>
 </blockquote>
 <p>Add this:</p>
-<pre><code class="lang-js">Artist.fetch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> request = $.getJSON(<span class="hljs-string">&quot;http://localhost:3000/artists&quot;</span>)
-  .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
-    <span class="hljs-keyword">var</span> artists = [];
+<pre><code class="lang-js">Artist.all = []
+Artist.fetch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> url = <span class="hljs-string">&quot;http://localhost:3000/artists&quot;</span>;
+  <span class="hljs-keyword">var</span> request = $.getJSON(url).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
     <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; response.length; i++){
-      artists.push(<span class="hljs-keyword">new</span> Artist(response[i]));
+      Artist.all.push(<span class="hljs-keyword">new</span> Artist(response[i]));
     }
-    <span class="hljs-keyword">return</span> artists;
-    })
-  .fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;js failed to load&quot;</span>);
-    });
+  }).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;js failed to load&quot;</span>);
+  });
   <span class="hljs-keyword">return</span> request;
 };
 </code></pre>
@@ -1343,21 +1341,19 @@ $ touch public/js/views/songView.js
 <p>We need to be able to fetch songs as well. On the one hand it seems like that should go in the Song model. On the other hand, we&apos;re not going to be getting any songs without getting an Artist first. For that reason we chose to put it in the Artist model. However, either way is correct!</p>
 <pre><code class="lang-js">Artist.prototype = {
   fetchSongs: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    <span class="hljs-keyword">var</span> url = <span class="hljs-string">&quot;http://localhost:3000/artists/&quot;</span> + <span class="hljs-keyword">this</span>.id + <span class="hljs-string">&quot;/songs&quot;</span>;
-    <span class="hljs-keyword">var</span> request = $.getJSON(url)
-    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
-      <span class="hljs-keyword">var</span> songs = [];
+    <span class="hljs-keyword">var</span> artist = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">var</span> url = <span class="hljs-string">&quot;http://localhost:3000/artists/&quot;</span> + artist.id + <span class="hljs-string">&quot;/songs&quot;</span>;
+    artist.songs = [];
+    <span class="hljs-keyword">var</span> request = $.getJSON(url).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; response.length; i++){
-        songs.push(<span class="hljs-keyword">new</span> Song(response[i]));
+        artist.songs.push(<span class="hljs-keyword">new</span> Song(response[i]));
       }
-      <span class="hljs-keyword">return</span> songs;
-     })
-    .fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">repsonse</span>)</span>{
+    }).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">repsonse</span>)</span>{
       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;js failed to load&quot;</span>);
     });
     <span class="hljs-keyword">return</span> request;
   }
-};
+}
 </code></pre>
 <h2 id="q-the-first-fetch-was-attached-to-artist-this-is-attached-to-artistprototype-why">Q. The first <code>fetch</code> was attached to <code>Artist</code>; this is attached to <code>Artist.prototype</code>. Why?</h2>
 <blockquote>
@@ -1375,12 +1371,13 @@ $ touch public/js/views/songView.js
 ArtistView.prototype = {
   render: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
-    self.$el.html(self.artistTemplate(self.artist));
+    self.$el.html(self.artistTemplate());
     <span class="hljs-keyword">var</span> showButton = self.$el.find(<span class="hljs-string">&quot;.showSongs&quot;</span>);
     <span class="hljs-keyword">var</span> songsDiv   = self.$el.find(<span class="hljs-string">&quot;div.songs&quot;</span>);
     songsDiv.hide();
   },
-  artistTemplate: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artist</span>)</span>{
+  artistTemplate: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> artist = <span class="hljs-keyword">this</span>.artist;
     <span class="hljs-keyword">var</span> html = $(<span class="hljs-string">&quot;&lt;div&gt;&quot;</span>);
     html.append(<span class="hljs-string">&quot;&lt;h3&gt;&quot;</span> + artist.name + <span class="hljs-string">&quot;&lt;/h3&gt;&quot;</span>);
     html.append(<span class="hljs-string">&quot;&lt;img class=&apos;artist-photo&apos; src=&apos;&quot;</span> + artist.photoUrl + <span class="hljs-string">&quot;&apos;&gt;&quot;</span>);
@@ -1398,7 +1395,7 @@ ArtistView.prototype = {
 <p>The last part is to make the browser run all this stuff as soon as the page loads. We&apos;ll do this in the <code>script.js</code> file:</p>
 <pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
   Artist.fetch().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artists</span>)</span>{
-    artists.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artist</span>)</span>{
+    Artist.all.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artist</span>)</span>{
       <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> ArtistView(artist)
       view.render();
     })
@@ -1459,7 +1456,8 @@ editButton.on(<span class="hljs-string">&quot;click&quot;</span>, <span class="h
 </ol>
 <h4 id="making-the-edit-form-template">Making the Edit Form Template</h4>
 <p>Our template for the edit form is pretty similar to the one we wrote for &quot;show&quot;. The main difference is that here we&apos;re using <code>&lt;input&gt;</code> tags for <code>name</code> and <code>photoUrl</code>, that are pre-populated with the artist&apos;s current values.  </p>
-<pre><code class="lang-js">artistEditTemplate: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">artist</span>) </span>{
+<pre><code class="lang-js">artistEditTemplate: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> artist = <span class="hljs-keyword">this</span>.artist;
   <span class="hljs-keyword">var</span> html = $(<span class="hljs-string">&quot;&lt;div&gt;&quot;</span>);
   html.append(<span class="hljs-string">&quot;&lt;input name=&apos;name&apos; value=&apos;&quot;</span> + artist.name + <span class="hljs-string">&quot;&apos;&gt;&quot;</span>);
   html.append(<span class="hljs-string">&quot;&lt;img class=&apos;artist-photo&apos; src=&apos;&quot;</span> + artist.photoUrl + <span class="hljs-string">&quot;&apos;&gt;&quot;</span>);
@@ -1475,7 +1473,7 @@ editButton.on(<span class="hljs-string">&quot;click&quot;</span>, <span class="h
 HTML to update our view&apos;s <code>$el</code>.  </p>
 <pre><code class="lang-js">renderEditForm: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
-  self.$el.html(<span class="hljs-keyword">this</span>.artistEditTemplate(<span class="hljs-keyword">this</span>.artist));
+  self.$el.html(self.artistEditTemplate());
 },
 </code></pre>
 <p>But notice our submit button doesn&apos;t do anything!  </p>
@@ -1484,8 +1482,7 @@ HTML to update our view&apos;s <code>$el</code>.  </p>
 we want to run a function that updates the artist.  </p>
 <pre><code class="lang-js">renderEditForm: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
-  self.$el.html(<span class="hljs-keyword">this</span>.artistEditTemplate(<span class="hljs-keyword">this</span>.artist));
-
+  self.$el.html(<span class="hljs-keyword">this</span>.artistEditTemplate());
   self.$el.find(<span class="hljs-string">&quot;.updateArtist&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     self.updateArtist();
   });
