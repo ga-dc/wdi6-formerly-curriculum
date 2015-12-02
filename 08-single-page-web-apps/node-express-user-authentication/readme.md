@@ -97,18 +97,18 @@ When the server receives the signup params, the job of saving the user data into
 Open the file `config/passport.js` and add:
 
 ```javascript
-  var LocalStrategy   = require('passport-local').Strategy;
-  var User            = require('../models/user');
+var LocalStrategy   = require('passport-local').Strategy;
+ var User            = require('../models/user');
 
-  module.exports = function(passport) {
-    passport.use('local-signup', new LocalStrategy({
-      usernameField : 'email',
-      passwordField : 'password',
-      passReqToCallback : true
-    }, function(req, email, password, done) {
+ module.exports = function(passport) {
+   passport.use('local-signup', new LocalStrategy({
+     usernameField : 'email',
+     passwordField : 'password',
+     passReqToCallback : true
+   }, function(req, email, password, done) {
 
-    }));
-  }
+   }));
+};
 ```
 
 Here we are declaring the strategy for the signup - the first argument given to `LocalStrategy` is a hash giving info about the fields we will use for the authentication.
@@ -189,7 +189,7 @@ In the `users.js` controller, for the method `postSignup`, we will add the call 
       failureFlash : true
     });
 
-    return signupStrategy();
+    return signupStrategy(request, response);
   }
 ```
 
@@ -219,7 +219,7 @@ To use the session with passport, we need to create two new methods in `config/p
           callback(err, user);
       });
     });
-	...
+  ...
 
 ```
 
@@ -245,9 +245,9 @@ This will store the message 'This email is already used.' into the response obje
 In the view `signup.hbs`, before the form, add:
 
 ```hbs
-  <% if (message.length > 0) { %>
-    <div class="alert alert-danger"><%= message %></div>
-  <% } %>
+  {{#if (message.length)}}
+    <div class="alert alert-danger">{{message}}</div>
+  {{/if}}
 ```
 
 Let's add some code into `getSignup` in the users Controller to render the template:
@@ -263,7 +263,7 @@ Now, start up the app using `nodemon app.js` and visit `http://localhost:3000/si
 
 ## Test it out - Independent Practice (5 mins)
 
-All the logic for the signup is now set - you should be able to go to `/signup` in a web browser and the signup form should be displayed, this is because by default, like in rails, Nodhbs will look for a template that have the same name than the route, in this case `signup.hbs`. When you submit the form, it should create a user document.
+All the logic for the signup is now set - you should be able to go to `/signup` and create a user.
 
 
 ## Sign-in - Codealong (10 mins)
@@ -294,13 +294,18 @@ Inside `config/passport.js` let's add this code:
 
     // Search for a user with this email
     User.findOne({ 'local.email' :  email }, function(err, user) {
-      if (err) return callback(err);
+      if (err) {
+        return callback(err);
+      }
 
-	   // If no user is found
-      if (!user) return callback(null, false, req.flash('loginMessage', 'No user found.'));
-
+      // If no user is found
+      if (!user) {
+        return callback(null, false, req.flash('loginMessage', 'No user found.'));
+      }
       // Wrong password
-      if (!user.validPassword(password))           return callback(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+      if (!user.validPassword(password)) {
+        return callback(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+      }
 
       return callback(null, user);
     });
@@ -326,9 +331,9 @@ As we are again using flash messages, we will to add some code to display them i
 In `login.hbs`, add the same code that we added in `signup.hbs` to display the flash messages:
 
 ```javascript
-  <% if (message.length > 0) { %>
-    <div class="alert alert-danger"><%= message %></div>
-  <% } %>
+  {{#if (message.length)}}
+    <div class="alert alert-danger">{{message}}</div>
+  {{/if}}
 ```
 
 #### Login GET Route handler
@@ -339,7 +344,6 @@ Now, let's add the code to render the login form in the `getLogin` action in the
   function getLogin(request, response) {
     response.render('login.hbs', { message: request.flash('loginMessage') });
   }
-
 ```
 
 You'll notice that the flash message has a different name (`loginMessage`) than the in the signup route handler.
@@ -379,11 +383,6 @@ Now, try to login with valid details and you should be taken to the index page w
 
 The login strategy has now been setup!
 
-## Signout - Codealong (10 mins)
-
-#### Logout
-
-The last action to implement for our authentication system is to set the logout route and functionality.
 
 #### Accessing the User object globally
 
@@ -393,28 +392,43 @@ By default, passport will make the user available on the object `request`. In mo
   require('./config/passport')(passport);
 
   app.use(function (req, res, next) {
-    global.user = req.user;
-    next()
+    global.currentUser = req.user;
+    next();
   });
 ```
 
 Now in the layout, we can add:
 
 ```javascript
-  <% if (user) { %>
+<ul>
+  {{#if user}}
     <li><a href="/logout">Logout</a></li<a>
-  <% } else { %>
+  {{else}}
     <li><a href="/login">Login</a></li>
     <li><a href="/signup">Signup</a></li>
-  <% } %>
+  {{/if}}                
+</ul>
+```
+
+## Signout - Codealong (10 mins)
+
+#### Logout
+
+The last action to implement for our authentication system is to set the logout route and functionality.
+
+In `controllers/users.js`:
+```js
+function getLogout(request, response) {
+  request.logout();
+  response.redirect('/');
+}
 ```
 
 ## Test it out - Independent Practice (5 mins)
 
 You should now be able to login and logout! Test this out.
 
-
-## Signout - Restricting access (10 mins)
+## Restricting access (10 mins)
 
 As you know, an authentication system is used to allow/deny access to some resources to authenticated users.
 
