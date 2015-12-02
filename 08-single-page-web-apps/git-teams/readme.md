@@ -93,6 +93,7 @@ How It Works: This workflow is very similar to the 'Centralized' workflow. The b
 - *Both Students* Commit you changes and push them to the remote repo. Open a pull request on Github to merge the changes from your feature branch into `git-teams-starter`. If there are no conflicts, merge your pull request. If there are, you might need to  `git pull` the latest changes, then `commit` again. Once your changes are successfully merged, delete your feature branches, check out `git-teams-starter`, and `pull`.
 
 **Pro Tips**:
+
 1. If you already have an `emergency_compliment` repo, you can clone it down and give it a different name using: `git clone <repo url> <name for repo>`
 2. Make sure you are starting your branches from an `git-teams-starter`
 3. If you need to get more branches, or had forked previously, you are going to want to set the `ga-dc` version of `emergency-compliment` as your `upstream` remote.
