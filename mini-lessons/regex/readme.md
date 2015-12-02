@@ -70,7 +70,7 @@ Let's play with the string: `Robert AKA Robin is #1`
 Here are some basic matchers.  The pattern is matched, letter for letter.
 
 |    | In order to    | Like this   | What pattern would you use? |
-| -  | ------------   | ----------- | -------------------------- |
+|----|--------------|-------------|----------------------------|
 | 01 | Select "Robin" | Robert AKA `Robin` is #1 | /robin/                    |
 | 02 | Select "AKA"   | Robert `AKA` Robin is #1 | /AKA/                      |
 | 03 | Select both "Rob"s | `Rob`ert AKA `Rob`in is #1 | /Rob/                      |
