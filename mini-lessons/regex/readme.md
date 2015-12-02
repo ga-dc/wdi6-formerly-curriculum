@@ -15,10 +15,19 @@ Regular Expressions -- almost always just called "RegEx" -- are a specialized sy
 - You define a pattern, and search for parts of a string that match the pattern
 - Effectively its own language
 - Used in every major programming language (kind of like JSON)
+- Designed to be a concise.  So concise, it can be rather cryptic.
+
+## Where do we use regular expressions?
+
+Q. Where do you think it would helpful to have a specialized language for parsing strings?
+---
+
+> Some common examples are route identification, user input validation, and when importing or converting data.
+
 
 ## The pattern
 
-In js and ruby, a RegEx is wrapped in forward slashes (`/expression/`).
+A regular expression is a pattern of text that consists of ordinary characters (for example, letters a through z) and special characters, known as metacharacters. The pattern describes one or more strings to match when searching a body of text. The regular expression serves as a template for matching a character pattern to the string being searched.  In js and ruby, a RegEx is wrapped in forward slashes (`/expression/`).
 
 ### We Do: First glimpse (5 min)
 
@@ -36,9 +45,12 @@ For instance, if we wanted to match routes that had the word "song" in them, we 
 
 ### You Do: Document Dive (10 min)
 
-Take a minute to review the [Regex Quick Reference](#quick-reference) at the bottom of this lesson.
+Take a few minutes to read this [basic introduction](http://ruby-doc.com/docs/ProgrammingRuby/html/intro.html#S5).  Focus on the patterns, rather than the Ruby code.  
+When you reach the "Blocks and Iterators" section, take a minute to review the provided [Regex Quick Reference](#quick-reference).
 
-Try the another example: `/.*fly$/`
+Then, try the another example: `/.*fly$/`
+
+In the "Test String" area, type multiple words that contain "fly" (e.g. dragonfly, flypaper).
 
 Q. What are the `.`, `*`, and `$` used for?
 ---
@@ -127,7 +139,37 @@ We can identify a specific number of character (or group) matches
 
 Try it!
 
-## Applying in JS
+
+## Capture Groups
+
+A common use for a RegEx is to gather certain pieces of information from strings.  Parens are used to indicate this portion of the pattern is important and should be "captured".  Most often used in programming, where we can utilize the various captured portions.
+
+
+### Turn and Talk: How would you capture all the domains from a list of urls?
+
+
+## Play!
+
+https://regex.alf.nu/
+
+## Outside of Scope
+
+### Replacing stuff
+
+- `<h1>I like <strong>turtles!</stro`
+  - Strip tags
+    - `/<[a-z0-9/]*>/`
+- `Roses are red Violets are blue They think it don't be like it is But it do`
+  - Split into multiple lines.
+    - How?
+    - `/\s[A-Z]/g`
+      - Won't work because it'll replace the letter
+      - Need a way of "looking ahead" to see if there's a letter after this one
+    - `/\s(?=[A-Z])/g`
+
+
+
+### Applying in JS
 
 ```
 var html = "<h1>I like <strong>turtles!</strong></h1>";
@@ -151,21 +193,14 @@ console.dir(new RegExp("\b" + wordToMatch + "\w+\b", "g"));
 console.log(turtles.match(new RegExp("\\b" + wordToMatch + "\\w+\\b", "g")));
 ```
 
-## Capture Groups
-
-A common use for a RegEx is to gather certain pieces of information from strings.
-
-### Turn and Talk: How would you capture all the domains from a list of urls?
-
-
-## Play!
-
-https://regex.alf.nu/
-
 
 ## References
+- Ruby's [Intro to Regular Expressions](http://ruby-doc.com/docs/ProgrammingRuby/html/intro.html#S5)
+- Ruby's
 - [Quick Reference](quick_reference.md)
-
+- Try it out: http://regex101.com)
+- Try it with [Rubular](http://rubular.com)
+- A Quick Reference from [RegExTester]](http://www.regextester.com/jssyntax.html)
 
 
 ## Answers for "Playing with Robin":
@@ -190,63 +225,3 @@ https://regex.alf.nu/
 - `/[A-Z][a-z]{4}/g`
 - `/[A-Z][a-z]{4}\b/g`
 - `/\w{3,}/g`
-
-
-
-### Delete the following
-  - Flags
-    - `/robin/i`
-      - `i` is case-insensitive
-    - `/Rob/g`
-      - `g` is global (match all)
-    - `/rob/ig`
-      - `lumping flags together`
-  - Ranges
-    - `/[A-Z]/`
-    - `/[A-Z]/g`
-  - Exclude ranges
-    - `/[^A-Z]/g`
-      - Get everything that's *not* a capital letter
-    - `/[^A-Z\s]/g`
-      - Get everything that's neither a capital letter nor a whitespace
-      - Control characters
-        - Built-in "variables" that represent specific ranges
-        - `/\w/g`
-          - "Word" characters
-        - `/\b/g`
-          - Word boundaries
-        - `.`
-  - Numbers of characters
-    - `/[A-Z][a-z]{4}/g`
-      - Gets every string that's a capital letter followed by 4 letters
-    - `/[A-Z][a-z]{4}\b/g`
-      - Gets every string that's a capital letter followed by 4 letters followed by the end of a word
-    - `/\w{3,}/g`
-      - Gets every string that's a sequence of 3 or more "word" characters
-
-### Replacing stuff
-
-- `<h1>I like <strong>turtles!</strong></h1>`
-  - Strip tags
-    - `/<[a-z0-9/]*>/`
-- `Roses are red Violets are blue They think it don't be like it is But it do`
-  - Split into multiple lines.
-    - How?
-    - `/\s[A-Z]/g`
-      - Won't work because it'll replace the letter
-      - Need a way of "looking ahead" to see if there's a letter after this one
-    - `/\s(?=[A-Z])/g`
-
-### Validating stuff
-
-- E-mail addresses
-  - `/^[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.[a-zA-Z0-9\.]+$/`
-    - `^` is start of string, `$` is end of string
-  - `/^\w+@\w+\.[\w.]+$/`
-
-### Grouping
-
-- `poop is poopy`
-  - Try to match "poop"
-  - `/(.)(.)\2\1/g`
-  - Note Regex101's "Matcher Information" section

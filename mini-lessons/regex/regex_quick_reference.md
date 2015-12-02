@@ -1,4 +1,4 @@
-## Quick Reference
+# Quick Reference
 
 (from Rubular.com)
 
@@ -12,9 +12,9 @@
 | `$`        | End of line                                  |   | `\w` | Any word character (letter, number, underscore) |   | `a{3}`  | Exactly 3 of a |
 | `\A`       | Start of string                              |   | `\W` | Any non-word character       |   | `a{3,}` | 3 or more of a |
 | `\z`       | End of string                                |   | `\b` | Any word boundary            |   | `a{3,6}`| Between 3 and 6 of a |
+| `\`        | Escape character.                            |
 
-
-## options:
+## flag options:
 - `i` case insensitive
 - `m` make dot match newlines
 - `x` ignore whitespace in regex
