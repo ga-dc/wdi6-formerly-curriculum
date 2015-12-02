@@ -39,11 +39,17 @@ A salt is random data that can be added as additional input to a one-way functio
 
 ## Using bcrypt with Express - Codealong (20 mins)
 
-Take the starter-code an unzip it. Next, make sure that you run `npm install` to install of the dependencies.
+Clone the starter code:
+
+```
+$ git clone https://github.com/ga-dc/express-user-authentication.git
+```
+
+Next, make sure that you run `npm install` to install of the dependencies.
 
 Once you have done this, run `nodemon app.js` to check for any errors. You shouldn't have any!
 
-**Note:** Make sure that you have Mongo running!
+**Note:** Make sure that you have Mongo running! (`$ mongod`)
 
 #### Creating a User Model
 
