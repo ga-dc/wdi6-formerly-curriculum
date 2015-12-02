@@ -214,18 +214,16 @@ Q. In which file should this `Artist.fetch` method go?
 Add this:
 
 ```js
+Artist.all = []
 Artist.fetch = function(){
-  var request = $.getJSON("http://localhost:3000/artists")
-  .then(function(response) {
-    var artists = [];
+  var url = "http://localhost:3000/artists";
+  var request = $.getJSON(url).then(function(response){
     for(var i = 0; i < response.length; i++){
-      artists.push(new Artist(response[i]));
+      Artist.all.push(new Artist(response[i]));
     }
-    return artists;
-    })
-  .fail(function(response){
-      console.log("js failed to load");
-    });
+  }).fail(function(response){
+    console.log("js failed to load");
+  });
   return request;
 };
 ```
@@ -239,21 +237,19 @@ We need to be able to fetch songs as well. On the one hand it seems like that sh
 ```js
 Artist.prototype = {
   fetchSongs: function(){
-    var url = "http://localhost:3000/artists/" + this.id + "/songs";
-    var request = $.getJSON(url)
-    .then(function(response){
-      var songs = [];
+    var artist = this;
+    var url = "http://localhost:3000/artists/" + artist.id + "/songs";
+    artist.songs = [];
+    var request = $.getJSON(url).then(function(response){
       for(var i = 0; i < response.length; i++){
-        songs.push(new Song(response[i]));
+        artist.songs.push(new Song(response[i]));
       }
-      return songs;
-     })
-    .fail(function(repsonse){
+    }).fail(function(repsonse){
       console.log("js failed to load");
     });
     return request;
   }
-};
+}
 ```
 
 Q. The first `fetch` was attached to `Artist`; this is attached to `Artist.prototype`. Why?
@@ -275,12 +271,13 @@ var ArtistView = function(artist){
 ArtistView.prototype = {
   render: function(){
     var self = this;
-    self.$el.html(self.artistTemplate(self.artist));
+    self.$el.html(self.artistTemplate());
     var showButton = self.$el.find(".showSongs");
     var songsDiv   = self.$el.find("div.songs");
     songsDiv.hide();
   },
-  artistTemplate: function(artist){
+  artistTemplate: function(){
+    var artist = this.artist;
     var html = $("<div>");
     html.append("<h3>" + artist.name + "</h3>");
     html.append("<img class='artist-photo' src='" + artist.photoUrl + "'>");
@@ -302,7 +299,7 @@ The last part is to make the browser run all this stuff as soon as the page load
 ```js
 $(document).ready(function(){
   Artist.fetch().then(function(artists){
-    artists.forEach(function(artist){
+    Artist.all.forEach(function(artist){
       var view = new ArtistView(artist)
       view.render();
     })
@@ -386,7 +383,8 @@ Just like our rendering for the "show view", we'll need a method that:
 Our template for the edit form is pretty similar to the one we wrote for "show". The main difference is that here we're using `<input>` tags for `name` and `photoUrl`, that are pre-populated with the artist's current values.  
 
 ```js
-artistEditTemplate: function(artist) {
+artistEditTemplate: function() {
+  var artist = this.artist;
   var html = $("<div>");
   html.append("<input name='name' value='" + artist.name + "'>");
   html.append("<img class='artist-photo' src='" + artist.photoUrl + "'>");
@@ -407,7 +405,7 @@ HTML to update our view's `$el`.
 ```js
 renderEditForm: function() {
   var self = this;
-  self.$el.html(this.artistEditTemplate(this.artist));
+  self.$el.html(self.artistEditTemplate());
 },
 ```
 
@@ -421,8 +419,7 @@ we want to run a function that updates the artist.
 ```js
 renderEditForm: function() {
   var self = this;
-  self.$el.html(this.artistEditTemplate(this.artist));
-
+  self.$el.html(this.artistEditTemplate());
   self.$el.find(".updateArtist").on("click", function() {
     self.updateArtist();
   });
