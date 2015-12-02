@@ -49,50 +49,76 @@ Q. What are the `.`, `*`, and `$` used for?
 
 The dollar sign indicates "End of line".  To be honest, I think that is the same as `/fly$/`.  Let's try it.
 
-## You Do: Playing with Robin
+
+## Playing with Robin
 
 Let's play with the string: `Robert AKA Robin is #1`
 
-What pattern would you use?
+### Basic matchers
+
+Here are some basic matchers.  The pattern is matched, letter for letter.
+
+|    | In order to    | Like this   | What pattern would you use? |
+| -  | ------------   | ----------- | -------------------------- |
+| 01 | Select "Robin" | Robert AKA `Robin` is #1 | /robin/                    |
+| 02 | Select "AKA"   | Robert `AKA` Robin is #1 | /AKA/                      |
+| 03 | Select both "Rob"s | `Rob`ert AKA `Rob`in is #1 | /Rob/                      |
+
 
 ### Flags
 
-|    | Add the right flag(s) to this | In order to  | Like this   |
-| -  | --------------------------    | ------------ | ----------- |
-| 01 | /robin/                     | Select "Robin" | Robert AKA `Robin` is #1 |
-| 02 | /Rob/                   | Select both "Rob"s | `Rob`ert AKA `Rob`in is #1 |
-| 03 | /rob/                   | Select both "Rob"s | `Rob`ert AKA `Rob`in is #1 |
+We can add flags, after the pattern, to configure the RegEx.
+
+`/song/i` will match "song" and "Song".
+
+|    | In order to  | Like this   | What flag(s) would you add to this pattern? |
+| -  | ------------ | ----------- | --------------------------    |
+| 04 | Select "Robin" | Robert AKA `Robin` is #1 | /robin/                       |
+| 05 | Select both "Rob"s | `Rob`ert AKA `Rob`in is #1 | /Rob/                         |
+| 06 | Select both "Rob"s | `Rob`ert AKA `Rob`in is #1 | /rob/                         |
 
 ### Ranges
 
-|    | Add the right range to this |  In order to | Like this |
-| -  | --------------------------- | ------------ | --------- |
-| 04 | /b[e]/g            | Select "be" and "bi"  | Ro`be`rt AKA Ro`bi`n is #1 |
-| 05 | /R[][]/g           | Select "Rob"          | `Rob`ert AKA `Rob`in is #1 |
-| 06 | /[]/g              | Select just "R"       | `R`obert AKA `R`obin is #1 |
-| 07 | /[]/g         | Select all capital letters | `R`obert `AKA` `R`obin is #1 |
-| 08 | /[]/g     | Select everything that is not a capital letter | R`obert ` AKA` `R`obin is #1` |
-| 09 | /[0]/g            | Select any number | Robert AKA Robin is #`1` |
+We can use ranges of characters to avoid typing every single character.
+
+- `/[A-Z]/` matches all capital letters (from A to Z).
+
+|    |  In order to | Like this | Add the right range to this pattern |
+| -  | ------------ | --------- | --------------------------- |
+| 07 | Select "be" and "bi"  | Ro`be`rt AKA Ro`bi`n is #1 | /b[e]/g                     |
+| 08 | Select "Rob"          | `Rob`ert AKA `Rob`in is #1 | /R[][]/g                    |
+| 09 | Select just "R"       | `R`obert AKA `R`obin is #1 | /[]/g                       |
+| 10 | Select all capital letters | `R`obert `AKA` `R`obin is #1 | /[]/g                       |
+| 11 | Select everything that is not a capital letter | R`obert ` AKA` `R`obin is #1` | /[]/g                       |
+| 12 | Select any number | Robert AKA Robin is #`1` | /[0]/g                      |
 
 ### Wild Cards and Special Characters
 
-|    | Adjust this pattern |  In order to | Like this |
-| -  | ------------------- | ------------ |
-| 10 | /[A-Z]/g  | Select each word       | `Robert` `AKA` `Robin` `is` #1 |
-| 11 | //g       | Select all letters (individually)  | |
-| 12 | /\w/g     | Select each word       | `Robert` `AKA` `Robin` `is` #`1` |
-| 13 | //g       | Select just numbers    | Robert AKA Robin is #`1` |
-| 14 | /\b*/g     | Select only first letters | `R`obert `A`KA `R`obin `i`s #1 |
+- `/.*/`  Matches 0, 1, or more occurrences ('*') of any character ('.')
+- `/\d/` Matches any number (or "digit")
 
-### Numbers of Characters
+|    |  In order to | Like this | Adjust this pattern |
+| -  | ------------ | ------------------- |
+| 13 | Select each word       | `Robert` `AKA` `Robin` `is` #1 | /[A-Z]/g            |
+| 14 | Select all letters (individually)  | | //g                 |
+| 15 | Select each word       | `Robert` `AKA` `Robin` `is` #`1` | /\w/g               |
+| 16 | Select just numbers    | Robert AKA Robin is #`1` | //g                 |
+| 17 | Select only first letters | `R`obert `A`KA `R`obin `i`s #1 | /\b*/g              |
 
-|    | Adjust this pattern |  In order to | Like this |
-| -  | ------------------- | ------------ |
-| 15 | /[A-Z][a-z]{}/g     | Select "Rob" | `Rob`ert AKA `Rob`in is #1 |
-| 16 | /[A-Z][a-z]{4}/g  | Select "Robin" | Robert AKA `Robin` is #1 |
-| 17 | //g     | Select the first 3 words | `Robert` `AKA` `Robin` is #1 |
+### Counts
 
-## Validating stuff
+We can identify a specific number of character (or group) matches
+
+- `/[a-c]{3}` Matches 3 concurrent occurrences of a, b, or c (e.g. aba, aaa, bac.  Not: bad)
+
+|    |  In order to | Like this | Adjust this pattern, by specifying the count |
+| -  | ------------ | ------------------- |
+| 18 | Select "Rob" | `Rob`ert AKA `Rob`in is #1 | /[A-Z][a-z]{}/g     |
+| 19 | Select "Robin" | Robert AKA `Robin` is #1 | /[A-Z][a-z]{4}/g    |
+| 20 | Select the first 3 words | `Robert` `AKA` `Robin` is #1 | //g                 |
+
+
+### Validating stuff
 
 - E-mail addresses
   - `/^[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.[a-zA-Z0-9\.]+$/`
@@ -144,7 +170,10 @@ https://regex.alf.nu/
 
 ## Answers for "Playing with Robin":
 
-1. `/robin/i`
+1. `/robin/`
+- `/AKA/`
+- `/Rob`
+- `/robin/i`
 - `/Rob/g`
 - `/rob/g`
 - `/b[e-i]/g`
