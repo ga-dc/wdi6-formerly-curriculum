@@ -245,7 +245,7 @@ This will store the message 'This email is already used.' into the response obje
 In the view `signup.hbs`, before the form, add:
 
 ```hbs
-  {{#if (message.length)}}
+  {{#if message.length}}
     <div class="alert alert-danger">{{message}}</div>
   {{/if}}
 ```
@@ -331,7 +331,7 @@ As we are again using flash messages, we will to add some code to display them i
 In `login.hbs`, add the same code that we added in `signup.hbs` to display the flash messages:
 
 ```javascript
-  {{#if (message.length)}}
+  {{#if message.length}}
     <div class="alert alert-danger">{{message}}</div>
   {{/if}}
 ```
