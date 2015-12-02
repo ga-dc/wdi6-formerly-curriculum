@@ -82,8 +82,8 @@ We can add flags, after the pattern, to configure the RegEx.
 
 `/song/i` will match "song" and "Song".
 
-|    | In order to  | Like this   | What flag(s) would you add to this pattern? |
-|-|------------|-----------|--------------------------|
+|    |  In order to | Like this | Add the right range to this pattern |
+|----|--------------|-----------|-----------------------------|
 | 04 | Select "Robin" | Robert AKA `Robin` is #1 | /robin/                       |
 | 05 | Select both "Rob"s | `Rob`ert AKA `Rob`in is #1 | /Rob/                         |
 | 06 | Select both "Rob"s | `Rob`ert AKA `Rob`in is #1 | /rob/                         |
