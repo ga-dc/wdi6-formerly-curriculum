@@ -195,9 +195,8 @@ console.log(turtles.match(new RegExp("\\b" + wordToMatch + "\\w+\\b", "g")));
 
 ## References
 - Ruby's [Intro to Regular Expressions](http://ruby-doc.com/docs/ProgrammingRuby/html/intro.html#S5)
-- Ruby's
-- [Quick Reference](quick_reference.md)
-- Try it out: http://regex101.com)
+- [Quick Reference](regex_quick_reference.md)
+- Try it out: [Regex 101](http://regex101.com)
 - Try it with [Rubular](http://rubular.com)
 - A Quick Reference from [RegExTester]](http://www.regextester.com/jssyntax.html)
 
