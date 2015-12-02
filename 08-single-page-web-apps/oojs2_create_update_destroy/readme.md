@@ -21,7 +21,7 @@ Our goal for today is to complete the Tunr app so that we have basic CRUD functi
 
 I'd like you to take **10 minutes** to do two things, the steps for which are detailed in this lesson plan:
 
-1. Clone down and set up the repo for this lesson.
+1. [Clone down and set up the repo for this lesson](http://github.com/ga-dc/tunr_mongo_oojs).
 2. Turn and talk with the person next to you about the 5 questions below.
 
 You may have used [a different repo](https://github.com/ga-dc/tunr_node_oojs) before. That one uses an ORM called Sequelize; this one uses MongoDB. Any front-end Javascript you wrote for that one will work perfectly fine with this one -- you should be able to just copy it over. Even so, we'll go through the steps from yesterday together to get this new repo set up.
