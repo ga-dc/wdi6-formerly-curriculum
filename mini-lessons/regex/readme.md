@@ -60,6 +60,12 @@ Q. What are the `.`, `*`, and `$` used for?
 
 The dollar sign indicates "End of line".  To be honest, I think that is the same as `/fly$/`.  Let's try it.
 
+## Today is limited
+
+> Entire books have been written about regular expressions (for example, Mastering Regular Expressions), so we won't try to cover everything in just a short section.
+
+Today, we will be covering what you need for efficient and effective searches with your code editor, in order to find and/or replace relevant code.  You will also be able to use regular expressions for identifying routes in Express, Sinatra, or Rails.  You should also be familiar enough to use some regular expressions in code.
+
 
 ## Playing with Robin
 
