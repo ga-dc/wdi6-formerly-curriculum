@@ -95,7 +95,7 @@ We can use ranges of characters to avoid typing every single character.
 - `/[A-Z]/` matches all capital letters (from A to Z).
 
 |    |  In order to | Like this | Add the right range to this pattern |
-| -  | ------------ | --------- | --------------------------- |
+|----|--------------|-----------|-----------------------------|
 | 07 | Select "be" and "bi"  | Ro`be`rt AKA Ro`bi`n is #1 | /b[e]/g                     |
 | 08 | Select "Rob"          | `Rob`ert AKA `Rob`in is #1 | /R[][]/g                    |
 | 09 | Select just "R"       | `R`obert AKA `R`obin is #1 | /[]/g                       |
@@ -105,11 +105,11 @@ We can use ranges of characters to avoid typing every single character.
 
 ### Wild Cards and Special Characters
 
-- `/.*/`  Matches 0, 1, or more occurrences ('*') of any character ('.')
+- `/.*/`  Matches 0, 1, or more occurrences (`*`) of any character ('.')
 - `/\d/` Matches any number (or "digit")
 
 |    |  In order to | Like this | Adjust this pattern |
-| -  | ------------ | ------------------- |
+|--|--------------|--------------------|
 | 13 | Select each word       | `Robert` `AKA` `Robin` `is` #1 | /[A-Z]/g            |
 | 14 | Select all letters (individually)  | | //g                 |
 | 15 | Select each word       | `Robert` `AKA` `Robin` `is` #`1` | /\w/g               |
@@ -123,7 +123,7 @@ We can identify a specific number of character (or group) matches
 - `/[a-c]{3}` Matches 3 concurrent occurrences of a, b, or c (e.g. aba, aaa, bac.  Not: bad)
 
 |    |  In order to | Like this | Adjust this pattern, by specifying the count |
-| -  | ------------ | ------------------- |
+|-|------------|-------------------|
 | 18 | Select "Rob" | `Rob`ert AKA `Rob`in is #1 | /[A-Z][a-z]{}/g     |
 | 19 | Select "Robin" | Robert AKA `Robin` is #1 | /[A-Z][a-z]{4}/g    |
 | 20 | Select the first 3 words | `Robert` `AKA` `Robin` is #1 | //g                 |
