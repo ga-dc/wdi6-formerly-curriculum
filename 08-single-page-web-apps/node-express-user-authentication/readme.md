@@ -12,7 +12,7 @@
 
 - Create an express application and add CRUD/REST resources
 - Create a Mongoose Model
-- Describe and authentication model
+- Describe an authentication model
 
 
 ## Passport and the logics - Intro (5 mins)
@@ -47,6 +47,7 @@ The starter-code is structured like this:
     │   └── routes.js
     ├── controllers
     │   └── users.js
+    │   └── statics.js
     ├── models
     │   └── user.js
     ├── package.json
@@ -54,11 +55,11 @@ The starter-code is structured like this:
     │   └── css
     │       └── bootstrap.min.css
     └── views
-        ├── index.ejs
-        ├── layout.ejs
-        ├── login.ejs
-        ├── secret.ejs
-        └── signup.ejs
+        ├── index.hbs
+        ├── layout.hbs
+        ├── login.hbs
+        ├── secret.hbs
+        └── signup.hbs
 
 7 directories, 12 files
 ```
@@ -241,9 +242,9 @@ This will store the message 'This email is already used.' into the response obje
 
 ## Incorporating Flash Messages - Codealong (5 mins)
 
-In the view `signup.ejs`, before the form, add:
+In the view `signup.hbs`, before the form, add:
 
-```ejs
+```hbs
   <% if (message.length > 0) { %>
     <div class="alert alert-danger"><%= message %></div>
   <% } %>
@@ -253,7 +254,7 @@ Let's add some code into `getSignup` in the users Controller to render the templ
 
 ```javascript
   function getSignup(request, response) {
-    response.render('signup.ejs', { message: request.flash('signupMessage') });
+    response.render('signup.hbs', { message: request.flash('signupMessage') });
   }
 ```
 
@@ -262,7 +263,7 @@ Now, start up the app using `nodemon app.js` and visit `http://localhost:3000/si
 
 ## Test it out - Independent Practice (5 mins)
 
-All the logic for the signup is now set - you should be able to go to `/signup` in a web browser and the signup form should be displayed, this is because by default, like in rails, NodeJS will look for a template that have the same name than the route, in this case `signup.ejs`. When you submit the form, it should create a user document.
+All the logic for the signup is now set - you should be able to go to `/signup` in a web browser and the signup form should be displayed, this is because by default, like in rails, Nodhbs will look for a template that have the same name than the route, in this case `signup.hbs`. When you submit the form, it should create a user document.
 
 
 ## Sign-in - Codealong (10 mins)
@@ -322,7 +323,7 @@ We need to add a new method to the user schema in `user.js` so that we can use t
 
 As we are again using flash messages, we will to add some code to display them in the view:
 
-In `login.ejs`, add the same code that we added in `signup.ejs` to display the flash messages:
+In `login.hbs`, add the same code that we added in `signup.hbs` to display the flash messages:
 
 ```javascript
   <% if (message.length > 0) { %>
@@ -336,7 +337,7 @@ Now, let's add the code to render the login form in the `getLogin` action in the
 
 ```javascript
   function getLogin(request, response) {
-    response.render('login.ejs', { message: request.flash('loginMessage') });
+    response.render('login.hbs', { message: request.flash('loginMessage') });
   }
 
 ```
