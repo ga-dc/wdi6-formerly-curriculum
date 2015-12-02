@@ -2,10 +2,11 @@
 
 ## Learning objectives
 
-- Use built-in Javascript Regex methods to analyze and manipulate strings
+- Use basic patterns to identify portions of text
 - Explain the purpose of flags in an expression
 - Escape special characters
 - Refactor patterns using groups
+- Use built-in Javascript Regex methods to analyze and manipulate strings
 
 ## What?
 
