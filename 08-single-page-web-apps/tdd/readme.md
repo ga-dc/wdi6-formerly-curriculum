@@ -1,5 +1,11 @@
 ## Learning Objectives
 
+## Screencasts
+
+- [Part 1/3](https://youtu.be/sT-YhpEIMPQ)
+- [Part 2/3](https://youtu.be/3J3W0Hi2Jxw)
+- [Part 3/3](https://youtu.be/GMafQUii6Qc)
+
 * List benefits of unit testing in collaborative development process.
 * Identify language-agnostic patterns in testing syntax and methodology.
 * Differentiate the roles of and relationships between `suite`, `spec`, and `expectation` in the context of Jasmine testing.
@@ -19,11 +25,10 @@ Sort yourself into one of the following categories:
 3. I have not used TDD, but I want to.
 4. I have not used TDD, and I do not want to.
 
-Take a few minutes to jot down your answers to the following in the appropriate section of this [GoogleDoc](https://docs.google.com/a/generalassemb.ly/spreadsheets/d/1uzXmU1219p72E5_z-hvOJHYzqa6vD9qt4rBK7gqblmc/edit?usp=sharing):
 * For those of you who answered "no" to either part, why not? What did you or would you do instead?
 * For those you answered "yes" to either part, why do you find testing valuable? What problem(s) does testing solve?
 
-**ST-WG**: What patterns/themes/words/ideas do we see recurring in these answers?
+**ST-WG**: What patterns/themes/words/ideas do we see recurring in your answers?
 
 > Some possible responses...
 * Cons
@@ -81,9 +86,9 @@ Today we'll be using a Javascript testing framework called Jasmine. It's the sam
 
 - (5 min) Write a brief outline of your app. Write it **in English** -- but begin each line with either "describe" or "it".
   - Aim to have 2 total "describe" lines -- one for each of the models required for this project.
-  - Aim to have 5 total "it" lines.
+  - Aim to have 4 total "it" lines.
 
-- Now, get into a group of three with people who are **not** in your project's group.Then, over **8 minutes**:
+- Now, get into a group of three with people who are **not** in your project's group.Then, over **5 minutes**:
   - Briefly describe your project idea to the other two people.
   - Read through your tests.
   - With them, brainstorm other tests you might include.
@@ -271,9 +276,43 @@ Now that we have the pieces of our snowman builder described, we can start think
 * Last line is the actual expectation.
   * Begins with `expect`. Takes one argument, the variable whose value we are testing.
   * Followed by a **matcher** (e.g., `toBe`), which tests the expectation in a particular way.
-    * `toBe` isn't Jasmine's only matcher. Along with equality you can check for greater/less than, null and more.
-    * A full list of Jasmine's native matchers can be found [here](http://jasmine.github.io/edge/introduction.html#section-Expectations).
-    * If you're feeling adventurous, you can even [create your own custom matcher](http://jasmine.github.io/2.0/custom_matcher.html).
+
+## Jasmine's built-in matchers
+
+```txt
+'toBe' matcher compares with ===
+'toEqual' matcher
+'toMatch' matcher is for regular expressions
+'toBeDefined' matcher compares against `undefined`
+'toBeUndefined' matcher compares against `undefined`
+'toBeNull' matcher compares against null
+'toBeTruthy' matcher is for boolean casting testing
+'toBeFalsy' matcher is for boolean casting testing
+'toContain' matcher is for finding an item in an Array
+'toBeLessThan' matcher is for mathematical comparisons
+'toBeGreaterThan' matcher is for mathematical comparisons
+'toBeCloseTo' matcher is for precision math comparison
+'toThrow' matcher is for testing if a function throws an exception
+'toThrowError' matcher is for testing a specific thrown exception
+```
+
+One thing to note is that there isn't a built-in matcher for checking whether something is a specific type of object. There's no, `expect( olaf ).toBeA(Snowman)` (for who-knows-what reason).
+
+To test whether something is an object of a specific type, there are several things you could try:
+
+```
+expect( olaf.name ).toEqual(jasmine.any(String));
+expect( typeof olaf.name ).toBe("string");
+
+expect( olaf.constructor.name ).toBe("Snowman");
+expect( olaf instanceof Snowman).toBeTruthy();
+```
+
+Those last two won't work with function expressions (`var Snowman = function(){}`); only with function declarations (`function Snowman(){}`).
+
+A full list of Jasmine's native matchers can be found [here](http://jasmine.github.io/edge/introduction.html#section-Expectations).
+
+If you're feeling adventurous, you can even [create your own custom matcher](http://jasmine.github.io/2.0/custom_matcher.html).
 
 ## Let's add the first expectation:
 
@@ -505,6 +544,30 @@ A snowman - 7 ms
 
 Finished in 0.014 seconds
 4 tests, 5 assertions, 0 failures, 0 skipped
+```
+
+## Asynchronous tests
+
+One last thing to note is that while you can test AJAX requests and database interactions, it's a little tricky because they're asynchronous. **Make sure you use .then()**.
+
+Here are some examples:
+
+```js
+// ...
+it("can be saved to the database", function(){
+  var olaf = new Snowman("Olaf");
+  olaf.save().then(function(err, docs){
+    // err will always be null if the database action was successful
+    expect( err ).toBeNull();
+  });
+});
+
+it("makes a successful AJAX request", function(){
+  var olaf = new Snowman("Olaf");
+  $.getJSON("http://snowhub.com").then(function(response){
+    expect( response[0].name ).toBe( "John Snow" );
+  });
+});
 ```
 
 ## And that's a wrap
