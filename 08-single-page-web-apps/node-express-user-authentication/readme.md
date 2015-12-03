@@ -1,19 +1,16 @@
 # Local Authentication with Express and Passport
 
-### Objectives
-*After this lesson, students will be able to:*
+## Learning Objectives
 
 - Create a login form with email & password
 - Use passport-local to find a user & verify their password
 - Restrict access to API without an authenticated user
 
-### Preparation
-*Before this lesson, students should already be able to:*
+## Preparation
 
 - Create an express application and add CRUD/REST resources
 - Create a Mongoose Model
 - Describe an authentication model
-
 
 ## Passport and the logics - Intro (5 mins)
 
@@ -23,7 +20,7 @@ From the [passport website](http://passportjs.org/docs):
 
 _In modern web applications, authentication can take a variety of forms. Traditionally, users log in by providing a username and password. With the rise of social networking, single sign-on using an OAuth provider such as Facebook or Twitter has become a popular authentication method. Services that expose an API often require token-based credentials to protect access._"
 
-#### Strategies
+### Strategies
 
 The main concept when using passport is to register _Strategies_.  A strategy is a passport Middleware that will create some action in the background and execute a callback; the callback should be called with different arguments depending on whether the action that has been performed in the strategy was successful or not. Based on this and on some config params, passport will redirect the request to different paths.
 
@@ -34,7 +31,11 @@ Because strategies are packaged as individual modules, we can pick and choose wh
 
 #### Setup/Review Starter Code
 
-First, unzip the starter code and setup with `npm install` to ensure that we have all of the correct dependencies.
+First, clone the starter code 
+
+    $ git clone https://github.com/ga-dc/express-passport-local-authentication.git
+
+and setup with `npm install` to ensure that we have all of the correct dependencies.
 
 The starter-code is structured like this:
 
@@ -64,7 +65,7 @@ The starter-code is structured like this:
 7 directories, 12 files
 ```
 
-Now let's open the code up in Sublime with `subl .`.
+Now let's open the code up in Atom with `atom .`.
 
 #### Users & Statics Controller
 
@@ -105,7 +106,7 @@ var LocalStrategy   = require('passport-local').Strategy;
      usernameField : 'email',
      passwordField : 'password',
      passReqToCallback : true
-   }, function(req, email, password, done) {
+   }, function(req, email, password, callback) {
 
    }));
 };
@@ -210,8 +211,8 @@ To use the session with passport, we need to create two new methods in `config/p
 ```javascript
   module.exports = function(passport) {
 
-    passport.serializeUser(function(user, done) {
-      done(null, user.id);
+    passport.serializeUser(function(user, callback) {
+      callback(null, user.id);
     });
 
     passport.deserializeUser(function(id, callback) {
@@ -326,7 +327,7 @@ We need to add a new method to the user schema in `user.js` so that we can use t
 
 #### Adding flash messages to the view
 
-As we are again using flash messages, we will to add some code to display them in the view:
+As we are again using flash messages, we will need to add some code to display them in the view:
 
 In `login.hbs`, add the same code that we added in `signup.hbs` to display the flash messages:
 
