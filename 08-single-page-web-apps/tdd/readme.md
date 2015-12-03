@@ -156,11 +156,11 @@ describe("the test subject", function(){
 });
 ```
 
-`describe` and `it` are actually functions, just like, say, `console.log()`. They both take a string as their first argument. The second argument is a function. 
+`describe` and `it` are actually functions, just like, say, `console.log()`. They both take a string as their first argument. The second argument is a callback function. 
 
 A `describe` statement's function contains a bunch of `it` statements.
 
-An `it` statement's function contains the code that will do the actual testing.
+An `it` statement's function contains the code that will do the actual testing. We're not going to write that code yet -- we're just going to worry about getting set up with the proper syntax.
 
 For the snowman builder, the result would be this:
 
@@ -229,6 +229,8 @@ This includes adding the appropriate parentheses, double-quotes, semicolons, and
 
 When you're done, you should be able to run `jasmine-node spec` with no failing tests.
 
+The fact that these tests "pass" doesn't really mean anything since the tests don't actually test anything -- but at least we know there aren't any syntax errors.
+
 # The suite life of Jasmine
 
 Let's break this test down according to its parts.
@@ -255,6 +257,8 @@ A "suite" is the highest-level container in our test file.
 A suite contains **specs**. These are the `it` statements.
 
 In the "spec," we target a specific part of the suite.
+
+> "Spec" is short for "specification", which comes from "specific", as in, "we're testing a specific part of this app." Get it?
 
 # Great Expectations!
 
@@ -302,9 +306,79 @@ Finished in 0.012 seconds
 4 tests, 1 assertion, 1 failure, 0 skipped
 ````
 
-That's because I haven't included any code defining what a Snowman is. That's OK! I want to finish writing out all of my expectations first. I'll worry about making them pass later. For now, these tests are serving to help me plan out my app.
+That's because this script has no idea what a Snowman is -- we haven't linked in a file that describes a Snowman model yet.
+
+So I'm going to create a `snowman.js` file and put this in it:
 
 ```js
+// /snowman.js
+
+function Snowman(name) {
+  this.name = name;
+  this.features = ["carrot nose", "stick arms"];
+}
+
+module.exports = Snowman;
+```
+
+Next, I'm going to `require` that file inside my spec file:
+
+```js
+var Snowman = require("../snowman");
+
+describe( "A snowman", function(){
+
+  //My winter wonderland is a friendly place, so I want each snowman to have a name.
+  it( "should have a name", function(){
+    var olaf = new Snowman("Olaf");
+    expect( olaf.name ).toBeDefined();
+  });
+
+//...
+```
+
+...and now the test passes!
+
+# Review: Test-Driven Development Basics
+
+## "The" Process, Reconsidered (5 / 20)
+
+![tdd flowchart](img/tdd-flowchart.png)
+
+A planning-oriented approach TDD
+- Phase One: Before You Code
+  - **Think.**
+    - What do we want this app/feature to do?
+    - What are its components? (Think models!)
+    - What properties should each of those components have? What should they be able to do?
+    - What behaviors do you definitely want to avoid?
+  - **Write _tests_ an outline of your app/feature using testing syntax.**
+    - For today, we're going to break this down even further, first writing suites and specs, then going back and adding expectations.
+> - Phase 2: While You Code
+  - **Run your tests.** Seeing red.
+  - **Write code.** How can we make this test pass?
+  - **Test passes.** Green light.
+  - **Refactor and Repeat.**
+
+You write a failing test. Your next step is to write code that will make your test pass. This is kind of like Jeopardy, where the contestants are given the answer and then come up with a question for that answer: it's backwards from what we intuitively want to do, which is write passing code first and test it later.
+
+This process is oftened abbreviated **Red, Green, Refactor**: write a failing test, write the code to make it pass, then refactor. Lather, rinse repeat.
+
+## In the "real world"...
+
+...at this point we would write one more expectation, then write the code to make it pass, then write the next expectation, and so on, doing everything **one test at a time**.
+
+However, we're limited by time in this class, so I'm going to show you what the end result for this Snowman would look like, and then ask you to write all your own expectations.
+
+Q. Why is it not recommended to write *all* your expectations first, and then write all the code to make them pass?
+---
+> Because it's pretty straightforward to write the code to make one failing test into a passing test. It's super-overwhelming to write the code to make a bunch of failing tests pass.
+
+## The final Snowman specs:
+
+```js
+var Snowman = require("../snowman");
+
 describe( "A snowman", function(){
 
   //My winter wonderland is a friendly place, so I want each snowman to have a name.
@@ -338,7 +412,7 @@ describe( "A snowman", function(){
 });
 ```
 
-I'm not even going to bother running these tests because I know they'll fail. That's not important right now. I'm writing `expect` statements that make sense to me because this will inform the coding decisions I make later.
+I'm not even going to bother running `spec` because I know all but one of these tests will fail. That's not important right now. The important thing is that I'm writing `expect` statements that make sense to me because this will inform the coding decisions I make later.
 
 ## You do: Add expectations to your code (20 minutes)
 
@@ -395,30 +469,6 @@ That looks like a good test to me. Let's run it!
 
 Of course, it failed. We have tests, but they don't actually test anything -- there's no Snowman model!
 
-# Review: Test-Driven Development Basics
-
-## "The" Process, Reconsidered (5 / 20)
-
-![tdd flowchart](img/tdd-flowchart.png)
-
-A planning-oriented approach TDD
-- Phase One: Before You Code
-  - **Think.**
-    - What do we want this app/feature to do?
-    - What are its components? (Think models!)
-    - What properties should each of those components have? What should they be able to do?
-    - What behaviors do you definitely want to avoid?
-  - **Write _tests_ an outline of your app/feature using testing syntax.**
-    - For today, we're going to break this down even further, first writing suites and specs, then going back and adding expectations.
-> - Phase 2: While You Code
-  - **Run your tests.** Seeing red.
-  - **Write code.** How can we make this test pass?
-  - **Test passes.** Green light.
-  - **Refactor and Repeat.**
-
-We have a whole bunch of failing tests. Your next step would be to write code that will make your tests pass. This is kind of like Jeopardy, where the contestants are given the answer and then come up with a question for that answer: it's backwards from what we intuitively want to do, which is write passing code first and test it later.
-
-This process is oftened abbreviated **Red, Green, Refactor**.
 
 ### Let's Build a Snowman!
 
@@ -443,16 +493,6 @@ Snowman.prototype = {
 module.exports = Snowman;
 ```
 
-We'll also need to `require` the Snowman model, like in RSpec:
-
-```js
-// spec/snowman-spec.js
-
-var Snowman = require("../snowman");
-
-//...
-```
-
 Let's run our test again: `$ jasmine-node spec`
 
 ```
@@ -469,6 +509,8 @@ A snowman - 7 ms
 Finished in 0.014 seconds
 4 tests, 5 assertions, 0 failures, 0 skipped
 ```
+
+## And that's a wrap
 
 The snowman code is available here:
 
