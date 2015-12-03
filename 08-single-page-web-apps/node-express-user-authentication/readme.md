@@ -125,29 +125,26 @@ Now, inside this callback method, we will implement our custom logic to signup a
 ```javascript
   ...
   }, function(req, email, password, callback) {
-    process.nextTick(function() {
+    // Find a user with this e-mail
+    User.findOne({ 'local.email' :  email }, function(err, user) {
+      if (err) return callback(err);
 
-      // Find a user with this e-mail
-      User.findOne({ 'local.email' :  email }, function(err, user) {
-        if (err) return callback(err);
+      // If there already is a user with this email
+      if (user) {
+	return callback(null, false, req.flash('signupMessage', 'This email is already used.'));
+      } else {
+      // There is no email registered with this email
 
-        // If there already is a user with this email
-        if (user) {
-          return callback(null, false, req.flash('signupMessage', 'This email is already used.'));
-        } else {
-        // There is no email registered with this email
+	// Create a new user
+	var newUser            = new User();
+	newUser.local.email    = email;
+	newUser.local.password = newUser.encrypt(password);
 
-          // Create a new user
-          var newUser            = new User();
-          newUser.local.email    = email;
-          newUser.local.password = newUser.encrypt(password);
-
-          newUser.save(function(err) {
-            if (err) throw err;
-            return callback(null, newUser);
-          });
-        }
-      });
+	newUser.save(function(err) {
+	  if (err) throw err;
+	  return callback(null, newUser);
+	});
+      }
     });
   }));
   ....
@@ -246,7 +243,7 @@ This will store the message 'This email is already used.' into the response obje
 In the view `signup.hbs`, before the form, add:
 
 ```hbs
-  {{#if message.length}}
+  {{#if message}}
     <div class="alert alert-danger">{{message}}</div>
   {{/if}}
 ```
@@ -332,7 +329,7 @@ As we are again using flash messages, we will need to add some code to display t
 In `login.hbs`, add the same code that we added in `signup.hbs` to display the flash messages:
 
 ```javascript
-  {{#if message.length}}
+  {{#if message}}
     <div class="alert alert-danger">{{message}}</div>
   {{/if}}
 ```
@@ -393,7 +390,7 @@ By default, passport will make the user available on the object `request`. In mo
   require('./config/passport')(passport);
 
   app.use(function (req, res, next) {
-    global.currentUser = req.user;
+    res.locals.currentUser = req.user;
     next();
   });
 ```
@@ -402,8 +399,8 @@ Now in the layout, we can add:
 
 ```javascript
 <ul>
-  {{#if user}}
-    <li><a href="/logout">Logout</a></li<a>
+  {{#if currentUser}}
+    <li><a href="/logout">Logout {{currentUser.local.email}}</a></li<a>
   {{else}}
     <li><a href="/login">Login</a></li>
     <li><a href="/signup">Signup</a></li>
