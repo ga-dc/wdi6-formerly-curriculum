@@ -11,7 +11,7 @@
 
 We first encountered Test Driven Development during Unit 2, when we wrote unit tests in Ruby using RSpec.
 
-**LIVE SURVEY**:
+**LIVE SURVEY**: (10/10)
 Sort yourself into one of the following categories:
 
 1. I have used TDD, and I loved it.
@@ -37,7 +37,7 @@ Take a few minutes to jot down your answers to the following in the appropriate 
  * **Documentation.** Tests act as a documentation of sorts for how our code should work. Helpful to other developers and shareholders.
  * **Jobs.** Testing is a job requirement across the board.
 
-## All Together Now
+## All Together Now (10/20)
 
 When it comes to development in teams, both the benefits and the potential pitfalls of testing practices increase. Many feel that testing is essential when working on large, complex projects.
 
@@ -64,7 +64,7 @@ Before we write any of our snowman code, we're going to create a test. And befor
 
 Now that we have an English-y outline, we're going to start turning it into tests.
 
-# Remember RSpec?
+## Remember RSpec?
 
 Remember from RSpec that tests followed a "describe...it" format, like so:
 
@@ -77,13 +77,13 @@ Remember from RSpec that tests followed a "describe...it" format, like so:
 
 Today we'll be using a Javascript testing framework called Jasmine. It's the same thing as RSpec, just for Javascript. It uses "describe" and "it", just like RSpec.
 
-## You Do: Plan your project (30 min)
+## You Do: Plan your project (30/50)
 
 - (5 min) Write a brief outline of your app. Write it **in English** -- but begin each line with either "describe" or "it".
   - Aim to have 2 total "describe" lines -- one for each of the models required for this project.
   - Aim to have 5 total "it" lines.
 
-- Now, get into a group with three people who are **not** in your project's group.Then, over **8 minutes**:
+- Now, get into a group of three with people who are **not** in your project's group.Then, over **8 minutes**:
   - Briefly describe your project idea to the other two people.
   - Read through your tests.
   - With them, brainstorm other tests you might include.
@@ -93,7 +93,7 @@ Today we'll be using a Javascript testing framework called Jasmine. It's the sam
 
 Jasmine is only one testing framework. There's [Mocha](https://mochajs.org/), [QUnit](https://qunitjs.com/) and more... However, they're all very similar. Most use the same "describe...it" syntax.
 
-## Getting set up
+## Getting set up (5/55)
 First, we're going to install jasmine-node globally.
 
 It doesn't matter where you run this code:
@@ -134,7 +134,7 @@ Finished in 0.001 seconds
 0 tests, 0 assertions, 0 failures, 0 skipped
 ```
 
-## Javascripting your tests
+## Javascripting your tests (10/65)
 
 Now, paste the tests you wrote earlier into the `-spec.js` file you created.
 
@@ -223,7 +223,7 @@ Finished in 0.01 seconds
 4 tests, 0 assertions, 0 failures, 0 skipped
 ```
 
-## You Do: Update your code so that it has the proper syntax
+## You Do: Update your code so that it has the proper syntax (15/80)
 
 This includes adding the appropriate parentheses, double-quotes, semicolons, and functions.
 
@@ -231,7 +231,7 @@ When you're done, you should be able to run `jasmine-node spec` with no failing 
 
 The fact that these tests "pass" doesn't really mean anything since the tests don't actually test anything -- but at least we know there aren't any syntax errors.
 
-# The suite life of Jasmine
+# The suite life of Jasmine (5/85)
 
 Let's break this test down according to its parts.
 
@@ -260,7 +260,9 @@ In the "spec," we target a specific part of the suite.
 
 > "Spec" is short for "specification", which comes from "specific", as in, "we're testing a specific part of this app." Get it?
 
-# Great Expectations!
+## Break (10/95)
+
+# Great Expectations! (10/105)
 
 Now that we have the pieces of our snowman builder described, we can start thinking about how we'll know that our snowmen are living up to our expectations.
 
@@ -341,7 +343,7 @@ describe( "A snowman", function(){
 
 # Review: Test-Driven Development Basics
 
-## The Process, Recontextualized
+## The Process, Recontextualized (5/110)
 
 ![tdd flowchart](img/tdd-flowchart.png)
 
@@ -360,9 +362,9 @@ A planning-oriented approach TDD
 
 You write a failing test. Your next step is to write code that will make your test pass. This is kind of like Jeopardy, where the contestants are given the answer and then come up with a question for that answer: it's backwards from what we intuitively want to do, which is write passing code first and test it later.
 
-This process is oftened abbreviated **Red, Green, Refactor**: write a failing test, write the code to make it pass, then refactor. Lather, rinse repeat.
+This process is often abbreviated **Red, Green, Refactor**: write a failing test, write the code to make it pass, then refactor. Lather, rinse repeat.
 
-## In the "real world"...
+## In the "real world"... (10/120)
 
 ...at this point we would write one more expectation, then write the code to make it pass, then write the next expectation, and so on, doing everything **one test at a time**.
 
@@ -412,7 +414,7 @@ describe( "A snowman", function(){
 
 I'm not even going to bother running `spec` because I know all but one of these tests will fail. That's not important right now. The important thing is that I'm writing `expect` statements that make sense to me because this will inform the coding decisions I make later.
 
-## You do: Add expectations to your code (20 minutes)
+## You do: Add expectations to your code (20/140)
 
 You have two goals:
 - To write expectations that make sense in English...
@@ -422,7 +424,7 @@ Consider: What variables do you need to test? From an English perspective, what 
 
 **Take 5 minutes** to add expectations yourself. Then, meet up with your group of 3 and take 5 minutes to review each others' expectations.
 
-## Refactor
+## Refactor (10/150)
 
 Q. What's not DRY about my tests? What repeats?
 ---
