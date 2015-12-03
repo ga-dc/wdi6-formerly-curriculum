@@ -7,7 +7,7 @@
 * Use the `jasmine-node` CLI to run Jasmine tests.
 * Plan a project by creating a series of unit tests that define its parameters.
 
-# Do You Even Test, Bro? (10/10)
+# Do You Even Test, Bro?
 
 We first encountered Test Driven Development during Unit 2, when we wrote unit tests in Ruby using RSpec.
 
@@ -37,7 +37,7 @@ Take a few minutes to jot down your answers to the following in the appropriate 
  * **Documentation.** Tests act as a documentation of sorts for how our code should work. Helpful to other developers and shareholders.
  * **Jobs.** Testing is a job requirement across the board.
 
-## All Together Now (5 / 15)
+## All Together Now
 
 When it comes to development in teams, both the benefits and the potential pitfalls of testing practices increase. Many feel that testing is essential when working on large, complex projects.
 
@@ -150,13 +150,13 @@ describe("the test subject", function(){
   });
 
   it("should have this other quality", function(){
-  
+
   });
 
 });
 ```
 
-`describe` and `it` are actually functions, just like, say, `console.log()`. They both take a string as their first argument. The second argument is a callback function. 
+`describe` and `it` are actually functions, just like, say, `console.log()`. They both take a string as their first argument. The second argument is a callback function.
 
 A `describe` statement's function contains a bunch of `it` statements.
 
@@ -169,7 +169,7 @@ describe( "A snowman", function(){
 
   //My winter wonderland is a friendly place, so I want each snowman to have a name.
   it( "should have a name", function(){
-  
+
   });
 
   //In order for it to really be a snowman, it needs to have a carrot nose.
@@ -287,7 +287,7 @@ describe( "A snowman", function(){
 //...
 ```
 
-It fails! 
+It fails!
 
 ```
 $ jasmine-node spec
@@ -341,12 +341,11 @@ describe( "A snowman", function(){
 
 # Review: Test-Driven Development Basics
 
-## "The" Process, Reconsidered (5 / 20)
+## The Process, Recontextualized
 
 ![tdd flowchart](img/tdd-flowchart.png)
 
 A planning-oriented approach TDD
-- Phase One: Before You Code
   - **Think.**
     - What do we want this app/feature to do?
     - What are its components? (Think models!)
@@ -354,7 +353,6 @@ A planning-oriented approach TDD
     - What behaviors do you definitely want to avoid?
   - **Write _tests_ an outline of your app/feature using testing syntax.**
     - For today, we're going to break this down even further, first writing suites and specs, then going back and adding expectations.
-> - Phase 2: While You Code
   - **Run your tests.** Seeing red.
   - **Write code.** How can we make this test pass?
   - **Test passes.** Green light.
@@ -465,10 +463,7 @@ That looks like a good test to me. Let's run it!
 * From your in-class folder, run: `$ jasmine-node spec`
 * What error do we get?
 
-![failed snowman test](img/snowman-fail.png)
-
-Of course, it failed. We have tests, but they don't actually test anything -- there's no Snowman model!
-
+Of course, the rest of the tests are still "failing". The fact that they're running shows that my syntax is good to go, but I need to write the rest of the code to be tested.
 
 ### Let's Build a Snowman!
 
