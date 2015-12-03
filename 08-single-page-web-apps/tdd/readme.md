@@ -134,24 +134,63 @@ Finished in 0.001 seconds
 0 tests, 0 assertions, 0 failures, 0 skipped
 ```
 
-## Adding the tests
+## Javascripting your tests
 
 Now, paste the tests you wrote earlier into the `-spec.js` file you created.
 
 If you run `jasmine-node` at this point, you'll just get an error. We need to properly format the code for Javascript.
 
-`describe` and `it` are actually functions, just like, say, `console.log()`. They both take a string as their first argument. We'll make `describe` take a function as its second argument.
+A Jasmine test file will look like this:
+
+```js
+describe("the test subject", function(){
+
+  it("should have this quality", function(){
+
+  });
+
+  it("should have this other quality", function(){
+  
+  });
+
+});
+```
+
+`describe` and `it` are actually functions, just like, say, `console.log()`. They both take a string as their first argument. The second argument is a function. 
+
+A `describe` statement's function contains a bunch of `it` statements.
+
+An `it` statement's function contains the code that will do the actual testing.
 
 For the snowman builder, the result would be this:
 
 ```js
 describe( "A snowman", function(){
-  it("should have a name");
-  it("should have a carrot nose");
-  it("should have stick arms");
-  describe( "a snowman named Olaf", function(){
-    it("should like warm hugs");
+
+  //My winter wonderland is a friendly place, so I want each snowman to have a name.
+  it( "should have a name", function(){
+  
   });
+
+  //In order for it to really be a snowman, it needs to have a carrot nose.
+  it("should have a carrot nose", function () {
+
+  });
+
+  //It also needs stick arms.
+  it("should have stick arms", function () {
+
+  });
+
+  //If the snowman is named Olaf, he should like warm hugs.
+  describe( "a snowman named Olaf", function(){
+
+    it( "should like warm hugs", function(){
+
+    });
+
+  });
+
 });
 ```
 
@@ -186,7 +225,9 @@ Finished in 0.01 seconds
 
 ## You Do: Update your code so that it has the proper syntax
 
-It should run successfully when you're done.
+This includes adding the appropriate parentheses, double-quotes, semicolons, and functions.
+
+When you're done, you should be able to run `jasmine-node spec` with no failing tests.
 
 # The suite life of Jasmine
 
@@ -215,57 +256,6 @@ A suite contains **specs**. These are the `it` statements.
 
 In the "spec," we target a specific part of the suite.
 
-To make the specs actually do something, you need to pass a function as a second argument to each one. This function is what Jasmine will run to check whether the spec passes.
-
-For the snowman builder, the result would be this:
-
-```js
-describe( "A snowman", function(){
-
-  it( "should have a name", function(){
-
-  });
-
-  it("should have a carrot nose", function () {
-
-  });
-
-  it("should have stick arms", function () {
-
-  });
-
-  describe( "a snowman named Olaf", function(){
-
-    it( "should like warm hugs", function(){
-
-    });
-
-  });
-
-});
-```
-
-This doesn't have any impact on my tests:
-
-```
-$ jasmine-node spec --verbose
-
-A snowman - 5 ms
-    should have a name - 4 ms
-    should have a carrot nose - 0 ms
-    should have stick arms - 0 ms
-
-    a snowman named Olaf - 1 ms
-        should like warm hugs - 0 ms
-
-Finished in 0.011 seconds
-4 tests, 0 assertions, 0 failures, 0 skipped
-```
-
-> One interesting note is that before, without all the `functions` in `it`, the test took 0.01 seconds, and here it takes 0.011 seconds. At a very, very small level, you can see how creating functions slows down code execution.
-
-## You do: Update your specs so that each `it` also has a function
-
 # Great Expectations!
 
 Now that we have the pieces of our snowman builder described, we can start thinking about how we'll know that our snowmen are living up to our expectations.
@@ -279,24 +269,63 @@ Now that we have the pieces of our snowman builder described, we can start think
     * A full list of Jasmine's native matchers can be found [here](http://jasmine.github.io/edge/introduction.html#section-Expectations).
     * If you're feeling adventurous, you can even [create your own custom matcher](http://jasmine.github.io/2.0/custom_matcher.html).
 
+## Let's add the first expectation:
+
 ```js
 describe( "A snowman", function(){
 
+  //My winter wonderland is a friendly place, so I want each snowman to have a name.
   it( "should have a name", function(){
     var olaf = new Snowman("Olaf");
     expect( olaf.name ).toBeDefined();
   });
 
+//...
+```
+
+It fails! 
+
+```
+$ jasmine-node spec
+F...
+
+Failures:
+
+  1) A snowman should have a name
+   Message:
+     ReferenceError: Snowman is not defined
+   Stacktrace:
+     ReferenceError: Snowman is not defined
+    at null.<anonymous> (/Users/robertthomas/Desktop/foo/spec/s-spec.js:5:20)
+
+Finished in 0.012 seconds
+4 tests, 1 assertion, 1 failure, 0 skipped
+````
+
+That's because I haven't included any code defining what a Snowman is. That's OK! I want to finish writing out all of my expectations first. I'll worry about making them pass later. For now, these tests are serving to help me plan out my app.
+
+```js
+describe( "A snowman", function(){
+
+  //My winter wonderland is a friendly place, so I want each snowman to have a name.
+  it( "should have a name", function(){
+    var olaf = new Snowman("Olaf");
+    expect( olaf.name ).toBeDefined();
+  });
+
+  //In order for it to really be a snowman, it needs to have a carrot nose.
   it("should have a carrot nose", function () {
     var olaf = new Snowman("Olaf");
     expect ( olaf.features ).toContain("carrot nose");
   });
 
+  //It also needs stick arms.
   it("should have stick arms", function () {
     var olaf = new Snowman("Olaf");
     expect ( olaf.features ).toContain("stick arms");
   });
 
+  //If the snowman is named Olaf, he should like warm hugs.
   describe("A snowman named Olaf", function(){
     it( "should like warm hugs", function(){
       var frosty = new Snowman("Frosty");
