@@ -84,7 +84,7 @@ The statics controller, just has the home action.
 
 #### Routes.js
 
-We have seperated the routes into a seperate file, to remove them from the app.js file.
+We have separated the routes into a separate file, to remove them from the app.js file.
 
 #### Signup
 
