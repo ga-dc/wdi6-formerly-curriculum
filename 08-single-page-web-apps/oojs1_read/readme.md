@@ -29,15 +29,7 @@ $ node db/seeds.js
 $ nodemon app.js
 ```
 
-Let's create a couple of folders as well.  
-
-```bash
-$ mkdir public/js
-$ mkdir public/js/models
-$ mkdir public/js/views
-```
-
-If we go into our browser we can view all the endpoints and see that we can access all Tunr data as JSON. Take a look at `app.js`, `controllers/artists.js` and `controllers/songs.js` and you can see the different routes.  
+If we go into our browser we can view all the endpoints and see that we can access all Tunr data as JSON. Take a look at `app.js`, `controllers/artists.js` and `controllers/artists.js` and you can see the different routes.  
 
 Additionally if we look into `app.js` We can see at the root route we are rendering the index view.
 
