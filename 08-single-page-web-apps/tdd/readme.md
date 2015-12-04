@@ -1,146 +1,253 @@
 ## Learning Objectives
 
-* Explain the methodology behind Test Driven Development (TDD).
-* Review RSpec and general testing syntax.
-* Describe Jasmine.
-* List components of a Jasmine test.
-* Implement TDD using Jasmine.
-* Use different Jasmine matchers.
+## Screencasts
 
-## Do You Test? (5 / 5)
+- [Part 1/3](https://youtu.be/sT-YhpEIMPQ)
+- [Part 2/3](https://youtu.be/3J3W0Hi2Jxw)
+- [Part 3/3](https://youtu.be/GMafQUii6Qc)
 
-**THINK-PAIR-SHARE**: We’ve already applied Test Driven Development to Ruby. To get us back in that mindset, spend the next few minutes to think-pair-share on:
+## Learning Objectives
 
-* Why test?
-* Why not test?
-* What problem does testing solve?
+* List benefits of unit testing in collaborative development process.
+* Identify language-agnostic patterns in testing syntax and methodology.
+* Differentiate the roles of and relationships between `suite`, `spec`, and `expectation` in the context of Jasmine testing.
+* Implement `beforeEach()` and `afterEach()` to DRY up test code.
+* Use the `jasmine-node` CLI to run Jasmine tests.
+* Plan a project by creating a series of unit tests that define its parameters.
 
-For those of you who answered no, why not?
-* **Time.** It's a waste of my time and effort to test.
-* **It's too much.** I can test just fine using the console.
-* **App complexity.** My app is too simple to require testing.
+# Do You Even Test, Bro?
 
-Why should we?
-* **Bug detection.** Quickly identify unanticipated errors.
-* **Code Quality.** Create standards for our code before writing it.
-* **Time.** Shorten development time through bug detection.
-* **Documentation.** Tests act as a documentation of sorts for how our code should work. Helpful to other developers and shareholders.
-* **Jobs.** Testing is a job requirement across the board.
+We first encountered Test Driven Development during Unit 2, when we wrote unit tests in Ruby using RSpec.
 
-## Everybody Does It (5 / 10)
+**LIVE SURVEY**: (10/10)
+Sort yourself into one of the following categories:
 
-Testing is essential when working on large, complex projects.
+1. I have used TDD, and I loved it.
+2. I have used TDD, and I hated it.
+3. I have not used TDD, but I want to.
+4. I have not used TDD, and I do not want to.
+
+* For those of you who answered "no" to either part, why not? What did you or would you do instead?
+* For those you answered "yes" to either part, why do you find testing valuable? What problem(s) does testing solve?
+
+**ST-WG**: What patterns/themes/words/ideas do we see recurring in your answers?
+
+> Some possible responses...
+* Cons
+ * **Time.** It's a waste of my time and effort to test.
+ * **It's too much.** I can test just fine using the console.
+ * **App complexity.** My app is too simple to require testing.
+* Pros
+ * **Bug detection.** Quickly identify unanticipated errors.
+ * **Code Quality.** Create standards for our code before writing it.
+ * **Time.** Shorten development time through bug detection.
+ * **Documentation.** Tests act as a documentation of sorts for how our code should work. Helpful to other developers and shareholders.
+ * **Jobs.** Testing is a job requirement across the board.
+
+## All Together Now (10/20)
+
+When it comes to development in teams, both the benefits and the potential pitfalls of testing practices increase. Many feel that testing is essential when working on large, complex projects.
+
 * Take Ember.js for example. [If you look at the framework's repo](https://github.com/emberjs/ember.js#how-to-run-unit-tests), it comes packaged with a ton of tests.
 * So many moving parts. And so many people contributing to them. Can you imagine how crazy this would get without testing?
 
-## Test-Driven Development
+Testing is another thing that's a little hard to appreciate through this class because we mostly work alone to make relatively small apps. Working together on this project, you're likely to find that you lose whole hours manually testing your app: quitting Node, re-seeding your database, starting Node, opening your app in the browser, clicking through each page. Testing eliminates this for you, and makes for a much less stressful week.
 
-### The Process (5 / 15)
+Two common pain points in the wild are creating test coverage for existing code bases and ensuring that test suites are adequately maintained as an application grows in complexity. BOTH of these can be avoided by using TDD as a tool for ***planning***.  
 
-![tdd flowchart](img/tdd-flowchart.png)
+## Do you wanna build a snowman?
 
-TDD step by step.
-  1. **Think.** What do we want our code to do?
-  2. **Write a test.** This test must fail. Why?
-  3. **Run your test.** Seeing red.
-  4. **Write code.** How can we make this test pass?
-  5. **Test passes.** Green light.
-  6. **Refactor and Repeat.**
+For example, imagine you're Elsa from Frozen, creating an app that will build a snowman.
 
-### Unit Testing (5 / 20)
-
-We've already encountered TDD once with RSpec. Back then, we engaged in "Unit Testing."
-* Addresses the **what** of testing, while TDD covers the **when** and **why**.
-* Test the most basic component of an application. Not necessarily the smallest.
-
-Here's a sample from Matt's lesson, in which we tested the functionality of a Person class.
-* In particular the Person class' constructor method.
-* In a Unit test we can test any facet of a person.
-  * In can be a property (e.g., does this person have a name?)
-  * It can be a method (e.g., can this person talk?)
-
-```ruby
-# Let's test the Person class.
-describe Person do
-
-  # Specifically, let's test its constructor method.
-  describe "Constructor" do
-
-    # Before each test, let's create and store a Person instance in @matt.
-    before(:each) do
-      @matt = Person.new("Matt")
-    end
-
-    # Test 1: @matt should be an instance of Person.
-    it "should create a new instance of class Person" do
-      expect(@matt).to be_an_instance_of(Person)
-    end
-
-    # Test 2: @matt should have a name.
-    it "should have a name" do
-      expect(@matt.name).to_not be_nil
-    end
-  end
-end
-```
-
-We'll be doing this again when testing Javascript.
-
-## Jasmine
-
-Today we're diving into the world of Javascript testing.
-* One JS testing framework is Jasmine.
-  * Not the only one. There's [Mocha](https://mochajs.org/), [QUnit](https://qunitjs.com/) and more...
-* It bills itself as a "Behavior Driven Development" framework...
-
-## Behavior-Driven Development (5 / 25)
-
-What does "Behavior Driven Development" mean and how is it different from TDD?
-* BDD informs **which** tests we should be running.
-  * What is the purpose of your application? What are your user stories?
-  * Make sure that your tests reflect the direction and purpose of your application.
-  * BDD is less concerned with the granularity of your tests and more with whether they test the key functionality of your application.
-* BDD is not defined by what functions or keywords you use to test your code.
-  * It's a process to simplify and refine the number of tests you are running.
-* We've already started implementing it.
-  * Verbose test descriptions. Can be read in plain English.
-  * In today's in-class example, we'll be creating a basic Calculator application and testing its key features.
-
-## Meet Jasmine (10 / 35)
-
-Here's a sample Jasmine test from their [documentation](http://jasmine.github.io/2.1/introduction.html)...
+Before we write any of our snowman code, we're going to create a test. And before we create a test, we're going to think: What do I want my snowman builder to do? What should the snowmen it creates be like?
 
 ```js
-describe("A suite is just a function", function() {
-  var a;
+//I want my snowman builder to create a snowman object
+//My winter wonderland is a friendly place, so I want each snowman to have a name
+//In order for it to really be a snowman, it needs to have a carrot nose.
+//It also needs stick arms.
+//If the snowman is named Olaf, he should like warm hugs.
+```
 
-  it("and so is a spec", function() {
-    a = true;
+Now that we have an English-y outline, we're going to start turning it into tests.
 
-    expect(a).toBe(true);
+## Remember RSpec?
+
+Remember from RSpec that tests followed a "describe...it" format, like so:
+
+- describe "A snowman"
+  - it "should have a name"
+  - it "should have a carrot nose"
+  - it "should have stick arms"
+  - describe "a snowman named Olaf"
+    - it "should like warm hugs"
+
+Today we'll be using a Javascript testing framework called Jasmine. It's the same thing as RSpec, just for Javascript. It uses "describe" and "it", just like RSpec.
+
+## You Do: Plan your project (30/50)
+
+- (5 min) Write a brief outline of your app. Write it **in English** -- but begin each line with either "describe" or "it".
+  - Aim to have 2 total "describe" lines -- one for each of the models required for this project.
+  - Aim to have 4 total "it" lines.
+
+- Now, get into a group of three with people who are **not** in your project's group.Then, over **5 minutes**:
+  - Briefly describe your project idea to the other two people.
+  - Read through your tests.
+  - With them, brainstorm other tests you might include.
+- You'll repeat this for each member of your group.
+
+# Jasmine
+
+Jasmine is only one testing framework. There's [Mocha](https://mochajs.org/), [QUnit](https://qunitjs.com/) and more... However, they're all very similar. Most use the same "describe...it" syntax.
+
+## Getting set up (5/55)
+First, we're going to install jasmine-node globally.
+
+It doesn't matter where you run this code:
+
+```bash
+$ npm install  -g jasmine-node
+```
+
+Now, `cd` into your project folder. If you don't have a project folder, go ahead and make one. It doesn't really matter what folder you use for what we're about to do, but if you can, you may as well get some of your project done now so you don't have to later!
+
+I'm going to create a folder for a `snowman-builder` project.
+
+Inside your project folder, create a new folder called `spec`:
+
+```bash
+$ mkdir spec
+```
+
+Inside that new folder, create a file named after your model, followed by "dash-spec":
+
+```bash
+$ touch spec/snowman-spec.js
+```
+
+Now, run:
+
+```bash
+$ jasmine-node spec
+```
+
+You should get something like:
+
+```
+$ jasmine-node spec
+
+
+Finished in 0.001 seconds
+0 tests, 0 assertions, 0 failures, 0 skipped
+```
+
+## Javascripting your tests (10/65)
+
+Now, paste the tests you wrote earlier into the `-spec.js` file you created.
+
+If you run `jasmine-node` at this point, you'll just get an error. We need to properly format the code for Javascript.
+
+A Jasmine test file will look like this:
+
+```js
+describe("the test subject", function(){
+
+  it("should have this quality", function(){
+
   });
+
+  it("should have this other quality", function(){
+
+  });
+
 });
 ```
 
-Does any of it look familiar?
-* What similarities does it have with RSpec?
-  * `describe`, `it`, `expect`
-  * Fortunately, we get to work with the same testing syntax as we do in Ruby.
-* Look at them side-by-side...
+`describe` and `it` are actually functions, just like, say, `console.log()`. They both take a string as their first argument. The second argument is a callback function.
 
-![ruby js test side by side](img/ruby-js-side-by-side.png)
+A `describe` statement's function contains a bunch of `it` statements.
 
-Ruby aside, does this Jasmine test remind you of anything from WDI weeks 1-2?
-* Getting some strong callback vibes from this...
-* That's because `describe`, `beforeEach` and `it` are just functions!
+An `it` statement's function contains the code that will do the actual testing. We're not going to write that code yet -- we're just going to worry about getting set up with the proper syntax.
 
-Let's break down the format of a test.
-* No need to code along here. We'll make our own tests later in this class.
-
-**1. Suite**
+For the snowman builder, the result would be this:
 
 ```js
-describe( "A person", function(){
+describe( "A snowman", function(){
+
+  //My winter wonderland is a friendly place, so I want each snowman to have a name.
+  it( "should have a name", function(){
+
+  });
+
+  //In order for it to really be a snowman, it needs to have a carrot nose.
+  it("should have a carrot nose", function () {
+
+  });
+
+  //It also needs stick arms.
+  it("should have stick arms", function () {
+
+  });
+
+  //If the snowman is named Olaf, he should like warm hugs.
+  describe( "a snowman named Olaf", function(){
+
+    it( "should like warm hugs", function(){
+
+    });
+
+  });
+
+});
+```
+
+If I run this, I now get:
+
+```
+$ jasmine-node spec
+....
+
+Finished in 0.009 seconds
+4 tests, 0 assertions, 0 failures, 0 skipped
+```
+
+Just like in RSpec, each green dot indicates a passing test.
+
+If I add the `--verbose` flag, I get:
+
+```
+$ jasmine-node spec --verbose
+
+A snowman - 4 ms
+    should have a name - 1 ms
+    should have a carrot nose - 0 ms
+    should have stick arms - 0 ms
+
+    a snowman named Olaf - 0 ms
+        should like warm hugs - 0 ms
+
+Finished in 0.01 seconds
+4 tests, 0 assertions, 0 failures, 0 skipped
+```
+
+## You Do: Update your code so that it has the proper syntax (15/80)
+
+This includes adding the appropriate parentheses, double-quotes, semicolons, and functions.
+
+When you're done, you should be able to run `jasmine-node spec` with no failing tests.
+
+The fact that these tests "pass" doesn't really mean anything since the tests don't actually test anything -- but at least we know there aren't any syntax errors.
+
+# The suite life of Jasmine (5/85)
+
+Let's break this test down according to its parts.
+
+What you've done so far is create a **test suite**.
+
+1. **The Suite**.
+
+```js
+describe( "A snowman", function(){
   // Specs go here.
 });
 ```
@@ -152,291 +259,346 @@ A "suite" is the highest-level container in our test file.
   * (1) The string is the name of what we are testing
   * (2) The function contains the actual tests
 
-```js
-describe( "A person", function(){
-  // Specs go here.
-});
-```
+**2. The Specs**
 
-**2. Spec**
-
-```js
-describe( "A person", function(){
-
-  it( "should be named Adrian", function(){
-    // Expectations go here.
-  });
-
-  it( "should be 28 years old", function(){
-    // Expectations go here.
-  });
-});
-```
+A suite contains **specs**. These are the `it` statements.
 
 In the "spec," we target a specific part of the suite.
-* In the above example, we test to see if this person is named Adrian and is 28 years old.
 
-**3. Expectations**
+> "Spec" is short for "specification", which comes from "specific", as in, "we're testing a specific part of this app." Get it?
 
-```js
-describe( "A person", function(){
+## Break (10/95)
 
-  it( "is named Adrian", function(){
-    var person = { name: "Adrian", age: 28 };
-    var name = person.name;
-    expect( name ).toBe( "Adrian" );
-  });
+# Great Expectations! (10/105)
 
-  it( "should be 28 years old", function(){
-    var person = { name: "Adrian", age: 28 };
-    var age = person.age;
-    expect( age ).toBe( 28 );
-  });
-});
-```
+Now that we have the pieces of our snowman builder described, we can start thinking about how we'll know that our snowmen are living up to our expectations.
 
-Expectations are the meat-and-potatoes of our tests.
+**Expectations** are the meat-and-potatoes of our tests.
 * Begins with code content. In this case, saves the name of the person in question to a variable.
 * Last line is the actual expectation.
   * Begins with `expect`. Takes one argument, the variable whose value we are testing.
   * Followed by a **matcher** (e.g., `toBe`), which tests the expectation in a particular way.
-    * `toBe` isn't Jasmine's only matcher. Along with equality you can check for greater/less than, null and more.
-    * A full list of Jasmine's native matchers can be found [here](http://jasmine.github.io/edge/introduction.html#section-Expectations).
-    * If you're feeling adventurous, you can even [create your own custom matcher](http://jasmine.github.io/2.0/custom_matcher.html).
 
-**4. Refactor**
+## Jasmine's built-in matchers
 
-Could we make these tests DRYer?
-* We instantiate the `person` variable twice. Is there a function available that will let us do this once?
+```txt
+'toBe' matcher compares with ===
+'toEqual' matcher
+'toMatch' matcher is for regular expressions
+'toBeDefined' matcher compares against `undefined`
+'toBeUndefined' matcher compares against `undefined`
+'toBeNull' matcher compares against null
+'toBeTruthy' matcher is for boolean casting testing
+'toBeFalsy' matcher is for boolean casting testing
+'toContain' matcher is for finding an item in an Array
+'toBeLessThan' matcher is for mathematical comparisons
+'toBeGreaterThan' matcher is for mathematical comparisons
+'toBeCloseTo' matcher is for precision math comparison
+'toThrow' matcher is for testing if a function throws an exception
+'toThrowError' matcher is for testing a specific thrown exception
+```
+
+One thing to note is that there isn't a built-in matcher for checking whether something is a specific type of object. There's no, `expect( olaf ).toBeA(Snowman)` (for who-knows-what reason).
+
+To test whether something is an object of a specific type, there are several things you could try:
+
+```
+expect( olaf.name ).toEqual(jasmine.any(String));
+expect( typeof olaf.name ).toBe("string");
+
+expect( olaf.constructor.name ).toBe("Snowman");
+expect( olaf instanceof Snowman).toBeTruthy();
+```
+
+Those last two won't work with function expressions (`var Snowman = function(){}`); only with function declarations (`function Snowman(){}`).
+
+A full list of Jasmine's native matchers can be found [here](http://jasmine.github.io/edge/introduction.html#section-Expectations).
+
+If you're feeling adventurous, you can even [create your own custom matcher](http://jasmine.github.io/2.0/custom_matcher.html).
+
+## Let's add the first expectation:
 
 ```js
-describe( "A person", function(){
+describe( "A snowman", function(){
 
-  beforeEach( function(){
-    var person = {
-      name: "Adrian",
-      age: 28
-    };
+  //My winter wonderland is a friendly place, so I want each snowman to have a name.
+  it( "should have a name", function(){
+    var olaf = new Snowman("Olaf");
+    expect( olaf.name ).toBeDefined();
   });
 
-  it( "is named Adrian", function(){
-    var name = person.name;
-    expect( name ).toBe( "Adrian" );
+//...
+```
+
+It fails!
+
+```
+$ jasmine-node spec
+F...
+
+Failures:
+
+  1) A snowman should have a name
+   Message:
+     ReferenceError: Snowman is not defined
+   Stacktrace:
+     ReferenceError: Snowman is not defined
+    at null.<anonymous> (/Users/robertthomas/Desktop/foo/spec/s-spec.js:5:20)
+
+Finished in 0.012 seconds
+4 tests, 1 assertion, 1 failure, 0 skipped
+````
+
+That's because this script has no idea what a Snowman is -- we haven't linked in a file that describes a Snowman model yet.
+
+So I'm going to create a `snowman.js` file and put this in it:
+
+```js
+// /snowman.js
+
+function Snowman(name) {
+  this.name = name;
+  this.features = ["carrot nose", "stick arms"];
+}
+
+module.exports = Snowman;
+```
+
+Next, I'm going to `require` that file inside my spec file:
+
+```js
+var Snowman = require("../snowman");
+
+describe( "A snowman", function(){
+
+  //My winter wonderland is a friendly place, so I want each snowman to have a name.
+  it( "should have a name", function(){
+    var olaf = new Snowman("Olaf");
+    expect( olaf.name ).toBeDefined();
   });
 
-  it( "should be 28 years old", function(){
-    var age = person.age;
-    expect( age ).toBe( 28 );
+//...
+```
+
+...and now the test passes!
+
+# Review: Test-Driven Development Basics
+
+## The Process, Recontextualized (5/110)
+
+![tdd flowchart](img/tdd-flowchart.png)
+
+A planning-oriented approach TDD
+  - **Think.**
+    - What do we want this app/feature to do?
+    - What are its components? (Think models!)
+    - What properties should each of those components have? What should they be able to do?
+    - What behaviors do you definitely want to avoid?
+  - **Write _tests_ an outline of your app/feature using testing syntax.**
+    - For today, we're going to break this down even further, first writing suites and specs, then going back and adding expectations.
+  - **Run your tests.** Seeing red.
+  - **Write code.** How can we make this test pass?
+  - **Test passes.** Green light.
+  - **Refactor and Repeat.**
+
+You write a failing test. Your next step is to write code that will make your test pass. This is kind of like Jeopardy, where the contestants are given the answer and then come up with a question for that answer: it's backwards from what we intuitively want to do, which is write passing code first and test it later.
+
+This process is often abbreviated **Red, Green, Refactor**: write a failing test, write the code to make it pass, then refactor. Lather, rinse repeat.
+
+## In the "real world"... (10/120)
+
+...at this point we would write one more expectation, then write the code to make it pass, then write the next expectation, and so on, doing everything **one test at a time**.
+
+However, we're limited by time in this class, so I'm going to show you what the end result for this Snowman would look like, and then ask you to write all your own expectations.
+
+Q. Why is it not recommended to write *all* your expectations first, and then write all the code to make them pass?
+---
+> Because it's pretty straightforward to write the code to make one failing test into a passing test. It's super-overwhelming to write the code to make a bunch of failing tests pass.
+
+## The final Snowman specs:
+
+```js
+var Snowman = require("../snowman");
+
+describe( "A snowman", function(){
+
+  //My winter wonderland is a friendly place, so I want each snowman to have a name.
+  it( "should have a name", function(){
+    var olaf = new Snowman("Olaf");
+    expect( olaf.name ).toBeDefined();
   });
+
+  //In order for it to really be a snowman, it needs to have a carrot nose.
+  it("should have a carrot nose", function () {
+    var olaf = new Snowman("Olaf");
+    expect ( olaf.features ).toContain("carrot nose");
+  });
+
+  //It also needs stick arms.
+  it("should have stick arms", function () {
+    var olaf = new Snowman("Olaf");
+    expect ( olaf.features ).toContain("stick arms");
+  });
+
+  //If the snowman is named Olaf, he should like warm hugs.
+  describe("A snowman named Olaf", function(){
+    it( "should like warm hugs", function(){
+      var frosty = new Snowman("Frosty");
+      var olaf = new Snowman("Olaf");
+      expect( olaf.hug() ).toBe( "I like warm hugs!" );
+      expect( frosty.hug() ).not.toBe( "I like warm hugs!" );
+    });
+  });
+
 });
 ```
 
-## Getting Started
+I'm not even going to bother running `spec` because I know all but one of these tests will fail. That's not important right now. The important thing is that I'm writing `expect` statements that make sense to me because this will inform the coding decisions I make later.
 
-First, we're going to install jasmine-node globally.
-* `$ npm install  -g jasmine-node`
-* Now we can use Jasmine across projects.
+## You do: Add expectations to your code (20/140)
 
-## What are we going to test?
+You have two goals:
+- To write expectations that make sense in English...
+- ...while still being valid Javascript: you close all your parentheses, put semicolons where you need them, and so on.
 
-During this lesson we are going to write tests for and create a calculator application.
-* We're going to stick with Javascript here. No HTML/CSS at the moment.
+Consider: What variables do you need to test? From an English perspective, what names would it make sense for the different variables and methods to have?
 
-## Let's get to work (20 / 55)
+**Take 5 minutes** to add expectations yourself. Then, meet up with your group of 3 and take 5 minutes to review each others' expectations.
 
-### Create your JS files.
+## Refactor (10/150)
 
-Switch into your in-class folder and create the following.
-* Our calculator: `$ touch calculator.js`
-* Our test folder: `$ mkdir spec`
-* Our test file: `$ touch spec/calculator-spec.js`
+Q. What's not DRY about my tests? What repeats?
+---
+> `var olaf = new Snowman("Olaf");`
 
-### Create our first test.
+In RSpec we could DRY up tests by making a piece of code run before each test. We can do the same thing here:
 
-Before we write any of our calculator code, we're going to create a test.
-* Let's start simple and create a test for our calculator's add functionality.
-* But first, let's prepare our spec file so that it can actually test our calculator.
+``` js
+describe( "A snowman", function(){
+  var olaf;
 
-```js
-// spec/calculator-spec.js
-
-// Not unlike Ruby, `require` lets us reference `calculator.js` in our spec file.
-// Now, any functions defined in calculator.js can be referenced using the format `calculator.functionName`.
-
-var calculator = require( "../calculator" )
-```
-
-Let's break this test down according to its parts. First, **the suite**.
-* What should our suite look like?
-
-```js
-var calculator = require( "../calculator" )
-
-describe( "a calculator", function(){
-
-  describe( "addition method", function(){
-    // Tests for our addition function will go in here.
+  beforeEach(function(){
+    olaf = new Snowman("Olaf");
   });
 
-})
-```
+  it( "should have a name", function(){
+    expect( olaf.name ).toBeDefined();
+  });
 
-Next up, let's make **a spec**.
-* Let's test if our addition function can add 2 and 2 together.
-* What should our spec look like?
+  it("should have a carrot nose and stick arms", function () {
+    expect ( olaf.features ).toContain("carrot nose", "stick arms");
+  });
 
-```js
-var calculator = require( "../calculator" )
+  describe("A snowman named Olaf", function(){
+    var frosty;
+    it( "should like warm hugs", function(){
+      frosty = new Snowman("Frosty");
+      expect( olaf.hug() ).toBe( "I like warm hugs!" );
+      expect( frosty.hug() ).not.toBe( "I like warm hugs!" );
+    });
+  });
 
-describe( "addition method", function(){
-  it( "should add two numbers", function(){
-    // Expectations go in here.
-  })
 });
 ```
 
-And finally, let's create **the expectations** for our test.
-* What should our add function look like?
-
-```js
-var calculator = require( "../calculator" )
-
-describe( "addition method", function(){
-  it( "should add two numbers", function(){
-    // Let's store the sum of our addition function.
-    // Because our add function will be stored in calculator.js, we can reference it as such...
-    var sum = calculator.add( 2, 2 );
-
-    // Now what do we expect that sum to be?
-    expect( sum ).toBe( 4 );
-  })
-});
-```
-
+### Let's Test It Out!
 That looks like a good test to me. Let's run it!
 * From your in-class folder, run: `$ jasmine-node spec`
 * What error do we get?
 
-![failed add test](img/failed-add-test.png)
+Of course, the rest of the tests are still "failing". The fact that they're running shows that my syntax is good to go, but I need to write the rest of the code to be tested.
 
-Of course, it failed. Let's create that addition function.
+### Let's Build a Snowman!
 
 ```js
-// calculator.js
-
-exports.add = function(){
-
+// /snowman.js
+function Snowman(name) {
+  this.name = name;
+  this.features = ["carrot nose", "stick arms"];
 }
-```
 
-`exports`? What's that?
-* With `exports` we can, well, "export" `add` or any other function in `calculator.js` to another javascript file.
-  * Say we had an `accounting.js` file. We could give it full calculator functionality by `require`ing `calculator.js`.
-
-Moving on. Let's fill out our `add` function.
-
-```js
-exports.add = function( addend1, addend2 ){
-  return ( addend1 + addend2 );
+Snowman.prototype = {
+  hug: function(){
+    if (this.name == "Olaf") {
+      return "I like warm hugs!";
+    }
+    else {
+      return "Why are you hugging snow?";
+    }
+  }
 };
+
+module.exports = Snowman;
 ```
 
-Let's run our test again.
+Let's run our test again: `$ jasmine-node spec`
 
-![passed add test](img/passed-add-test.png)
+```
+$ jasmine-node spec --verbose
 
-### We Do: Let's do the same for subtract. (5 / 60)
-* Create the test - run your test - create the function - run your test.
+A snowman - 7 ms
+    should have a name - 4 ms
+    should have a carrot nose - 1 ms
+    should have stick arms - 0 ms
 
-## Object-Oriented Javascript (5 / 65)
+    A snowman named Olaf - 1 ms
+        should like warm hugs - 1 ms
 
-You've already spent some time this week stepping up your OOJS game.
-* So you might be wondering why we're exporting our calculator methods individually.
-* Let's reformat our calculator into a Javascript object and "export" it to our spec file.
-* How do we go about doing that?
-  * `module.exports`! Help me set that up.
-  * What's the different between `exports.functionName` and `module.exports`?
-* Won't require any changes to our tests. Just `calculator.js`.
-  * Why is that?
+Finished in 0.014 seconds
+4 tests, 5 assertions, 0 failures, 0 skipped
+```
+
+## Asynchronous tests
+
+One last thing to note is that while you can test AJAX requests and database interactions, it's a little tricky because they're asynchronous. **Make sure you use .then()**.
+
+Here are some examples:
 
 ```js
-// calculator.js
+// ...
+it("can be saved to the database", function(){
+  var olaf = new Snowman("Olaf");
+  olaf.save().then(function(err, docs){
+    // err will always be null if the database action was successful
+    expect( err ).toBeNull();
+  });
+});
 
-// Think of `module.exports` as a collection of `exports.functionName`'s.
-// Here it's set to an object that contains all of our calculator functionality.
-// Imagine that `module.exports` was replaced with `var calculator`.
-
-module.exports = {
-  add: function( addend1, addend2 ){
-    return ( addend1 + addend2 );
-  },
-
-  subtract: function( minuend, subtrahend ){
-    return ( minuend - subtrahend );
-  },
-
-  // The rest of your calculator methods go here.
-}
+it("makes a successful AJAX request", function(){
+  var olaf = new Snowman("Olaf");
+  $.getJSON("http://snowhub.com").then(function(response){
+    expect( response[0].name ).toBe( "John Snow" );
+  });
+});
 ```
 
-## Break (10 / 75)
+## And that's a wrap
 
-## Exercise: Build Out Our Calculator (15 / 90)
+The snowman code is available here:
 
-Follow the same process and add some functionality to our calculator.
-  1. Multiplication
-  2. Division
-  3. Square
-  4. Exponential
-  5. Average
+https://github.com/ga-dc/snowman_building_with_jasmine
 
-[Here's the calculator solution](https://github.com/ga-dc/jasmine-calculator) in case you need some guidance.
+## Quiz Questions
+- Put the following actions in order, from what should happen first to what should happen last:
+  1. Write the code for your app
+  - Write an English-y outline of your app's models and what they should do
+  - Write passing tests for your app
+  - Refactor your app's code
+  - Write failing tests for your app
 
-### Bonus
-Implement `beforeEach` so that it initializes a `total` variable before each test.
-* Create a test that verifies the value of `total` after running multiple methods.
-  * e.g., Make sure `total` is the correct value after running `calculator.add` and `calculator.subtract` in a single test.
-* Reset the value of total using `afterEach`.
+  > Outline, failing (red), write code, passing (green), refactor
 
-Test and add some advanced functionality.
-* [Factorial](http://www.mathsisfun.com/definitions/factorial.html)
-* [Logarithmic](https://www.mathsisfun.com/algebra/logarithms.html)
+- What's the difference between a `suite`, a `spec`, and an `expectation`?
+  > A suite is a series of tests that describe a particular object or feature; a spec is one test; an expectation is the code that goes inside the spec that does the actual testing
 
-Test for error messages when your calculator makes an invalid operation.
-* For example, test to make sure that your calculator returns a helpful error message when it tries to divide by 0.
+- What's the difference between `describe`, `it`, and `expect` statements?
+  > `describe` is a suite; `it` is a spec; `expect` goes inside a spec
 
-## Exercise (Cont.): Add Some Matchers (10 / 100)
-
-We've already played around with one matcher in our test expectations: `.toBe( )`
-* Implement the following functions using the indicated matchers...
-  * `.isNegative`: use `.not.` to check whether an input is negative. If it is, the expectation should return true.
-  * `.isGreaterThan`: use `.toBeGreaterThan()` to check whether the first of two arguments is greater than the second. If it is, the expectation should return true.
-* Need help? Look at the [Jasmine Documentation](http://jasmine.github.io/2.0/introduction.html#section-Matchers).
-
-[Here's the calculator solution](https://github.com/ga-dc/jasmine-calculator) in case you need some guidance.
-
-### Bonus
-
-* `.isEven`: use `.toMatch()` to check if a value is even.
-  * **Hint:** requires Regex
-* [Create your own custom matcher](http://jasmine.github.io/2.0/custom_matcher.html).
-
-## Break (10 / 110)
-
-## Exercise + Homework: Clock Hands (30 / 140)
-
-With the remaining time in class I'd like you to create this [Clock Hands angle calculator](https://github.com/ga-dc/sundial) using a TDD approach.
-* Combine problem solving with TDD.
-* There is no single way to do this, so feel free to create whatever tests you would like.
-* While you're together, I encourage you to tackle this exercise pair-programming style.
-  * First, outline the problem. Think about not only how to approach it but what tests you will need to support it.
-  * Keep switching off: have one person write a test and the other write the code to make it pass.
-
-## Questions + Closing (10 / 150)
+- What does `beforeEach` do?
+  > Contains code that is run before each spec
 
 ## Additional Reading
 
-* [Difference Between TDD and BDD](https://joshldavis.com/2013/05/27/difference-between-tdd-and-bdd/)
-* [Jasmine Documentation](http://jasmine.github.io/2.1/introduction.html)
+* [Jasmine's really great documentation](http://jasmine.github.io/2.1/introduction.html)
 * [Creating Custom Matchers in Jasmine](http://jasmine.github.io/2.0/custom_matcher.html)
 * [Testing AJAX Calls with Jasmine](http://jasmine.github.io/2.1/ajax.html)

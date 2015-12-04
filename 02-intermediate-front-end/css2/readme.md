@@ -1,232 +1,201 @@
-# CSS2 - Layout, Selectors, and Fonts
+# CSS2 - Layout, Advanced Selectors, Etc.
 
-- Label elements on a webpage as being blocks, inline, or inline-blocks
-- List use cases for using relative, static, absolute, and fixed positioning, and floats
-- Contrast the display options: inline, inline-block, and block
-- Embed a font in a website using either a CDN or uploaded fonts
-- Describe a use case for the `:before` and `:after` selectors
-- Select any element without relying on classes and IDs
-    - `:nth-child(1)`, `:nth-of-type(odd)`, `input:checked + label`, `section:target > element`, `input[type=checkbox]`
+* Position elements using `position: [relative | static | fixed | absolute]`
+* Use the `float` and `clear` properties to position elements on a webpage.
+* Explain what a clearfix is and when you would use one.
+* Use advanced CSS selectors -- attributes, pseudo-selector, relationships -- to target elements on a webpage.
+* Use pseudo elements to style forms.
 
-## Framing
+## Note
 
-The internet was designed to share documents.  A WEB of connected documents.  Granted, they were enabling a new world of hyperlinked documents, but it was just text.  All the underlying technologies -- the servers, the protocols, the markup language, everything -- was engineered to support sharing pages of text.  This whole thing, this "cloud", was not _designed_ to provide this rich media, real-time web that we enjoy today, and yet it does.  Quite well.  That's like designing a  bridge for pedestrians and then having it repurposed for carrying freight trains.  It is amazing that it has held up for so long.  
+Links for all the Codepen examples I'll be using in class are in their respective sections in the lesson plan. If you want to play around with them yourselves, make sure to follow along!  
+* Make sure to fork the repo so you can make/save changes to the examples.
 
-Let's **own** our portion of this World Wide Web.  Let's make sure it is a pleasure to interact with.  We need to control the layout.  To select specific elements and position as we see fit.  And, it must be maintainable so our _team_ can make changes, quickly.
+## Framing (5 / 5)
 
-## The Layout
+>Where are we? How did we get here? Where are we going?
 
-We are always on the lookout for a trusted source.  Something we can use as a reference; a textbook.  A resource you can refer back to during your career.  Today we will be using [LearnLayout.com](http://learnlayout.com/).
+Over the last two weeks, we have covered the basics of front-end web development. Today's CSS lesson is about preparing
+you for Project 1, your first portfolio piece! More on Project 1 Friday.
 
-## [No Layout](http://learnlayout.com/no-layout.html)
+Today we'll focus on layout, common (but more advanced CSS selectors), and styling forms to enhance the user experience.
 
-Because you have to start somewhere.
+## Layout: Turn & Talk (5 / 10)
 
-Resize.  Resize.  Resize.
+Spend 2 minutes talking with a partner about the CSS properties we have learned this course that allow us to control layout.
+* What can we do with these properties?
+* What tools do we still lack?
 
-## [display](http://learnlayout.com/display.html)
+## Position (20 / 30)
 
-`display` is CSS's most important property for controlling layout.
+We've used combinations of `margin` `border` and `padding` to modify the layout of DOM elements. But changing the box model isn't always enough...
+* Sometimes we need to move the box itself! That's where **position** comes in.
+* We could do that with `margin`, but our CSS would get pretty messy and unpredictable.
+* **Position** has 4 properties we can use to control layout...
 
-Stomp. Stomp.  Stomp.
+### How do we offset the position of an element?
 
-I repeat... `display` is CSS's **most important property** for controlling layout.
+`left` `right` `top` `bottom`
+* If `left: 100px;`, then the element is offset (or pushed away) 100px left from its default position.
+* How and whether elements can be offset depends on the value of their **position** property.
+* Demo **[[Codepen](http://codepen.io/amaseda/pen/yYvBEq)]**.
 
-[The Usual Suspects](https://en.wikipedia.org/wiki/The_Usual_Suspects):
-- block
-- inline
-- none
+### Static
 
-Demo (compare visibility/display): http://codepen.io/mattscilipoti/pen/JdpdoJ
+**I'll be using this [Codepen](http://codepen.io/amaseda/pen/LpQNZv) to illustrate the different `position` properties.**  
 
-To give you an idea of just how big the world is that you are entering, check out this list of [display values](https://developer.mozilla.org/en-US/docs/CSS/display).  
+All elements are `static` by default.
+* When `position: static;` you cannot offset the position of an element.
+* You will only need to type this out if you need to override an existing `property` value.
 
-Don't worry about learning it all.  Focus on learning how to identify your specific problem and research the tools to answer it.
+### Fixed
+A fixed element is pinned to a designated place on the browser window.
+* Use `left` `right` `top` `bottom` to designate where on the page the fixed element should be displayed.
+* When you scroll, a fixed element will remain the same place in the browser window.
+* This can be useful when creating a header or footer menu that stays with the user as he/she explores a website.
 
-## [margin: auto;](http://learnlayout.com/margin-auto.html)
+### Relative and Absolute Positioning
 
-Useful for... centering.  Kinda.
-   - use `text-align:center` for `inline` and `inline-block`
-   - `margin:0 auto` for `block`
+`relative` and `absolute` positioning can be a bit confusing at first. Let's begin with some exploration...
 
-## [max-width](http://learnlayout.com/max-width.html)
+**YOU DO:** Take two minutes to apply `relative` and `absolute` positioning to the in-class example.
+* What do you notice when you apply `left` `right` `top` `bottom`? **Where are elements blocks offset from?**
 
-And its twin: `min-width`
+### Relative
+When we change the `left` `right` `top` `bottom` of a relatively-positioned element, it is moved from its position in the document.
+* Really, it's a statically-positioned element that can be offset.
+* When a relatively-positioned element is moved, it does not affect the position of other elements.
 
-## [The Box Model](http://learnlayout.com/box-model.html)
+### Absolute
+Absolutely-positioned elements are offset based on the position of their parent container.
+* So an element with `top: 0` and `left: 0` will be moved to the upper left corner of that element's parent container.
+* They are extracted from the document flow.
 
-You Do: One of these things is not like the other...
-> Compare the top & bottom box.  
-> 1. Are they the same width?
-> 2. What is different?
-> 3. What settings would you use to make them equal?
+#### Combining Different Position Values
 
----
+Absolute position is particularly useful when we want to pinpoint the position of an element inside a container.
+* We can do this by setting the container to `position: relative` and the elements inside of it to `position: absolute`.
+  * [This CSS Tricks post](https://css-tricks.com/absolute-positioning-inside-relative-positioning/) does a good job of demonstrating this.
+* [radical](http://a.singlediv.com/)
 
-Answers:
-1. Yes.  `width: 500px;`
-2. `padding` and `border`
-3. `.fancy { width: 386 }`
+### Exercise: Positioning Operation (15 / 45)
 
-## [box-sizing](http://learnlayout.com/box-sizing.html)
+Spend 10 minutes playing Operation using what you've learned so far: [Positioning Operation](https://github.com/ga-dc/positioning_operation)
 
-`box-sizing: border-box;` - just one solution to this problem.
+## Break (10 / 55)
 
-## [position](http://learnlayout.com/position.html)
+## Floats (20 / 75)
 
-- static: not positioned
-- relative: relative to normal position
-- fixed: relative to viewport
-- absolute: relative to the nearest **positioned** ancestor
+Sometimes our layout goals are simpler. Rather than pinpointing the position of an element, we may just want to move it to the left or right side of a page.
+* We accomplish that using another CSS property: `float`.
 
-## [Position Example 8/19](http://learnlayout.com/position-example.html)
+A basic example you'll encounter in most tutorials is the "text wrap", or surrounding an image with text **[[Codepen](http://codepen.io/amaseda/pen/ZbvwMV)]**.
+* Images are, by default, `inline` elements.
+* To remove them from that flow and re-position them, we set `float` to either `left` or `right`.
+* We can also do this with multiple images with similar or varying `float` values.
 
-Let's start by reviewing the page.  Container div, nav, 3 sections, and a footer.
+We can also use floats to set up the entire layout of a webpage...
+* [We can use floats to replicate the basic structure of GitHub's homepage.](https://github.com/).
+* Let's try that out ourselves **[[Codepen](http://codepen.io/amaseda/pen/JYMxwj)]**.
 
-## Exercise: Positioning Operation
+### Clear
 
-https://github.com/ga-dc/positioning_operation
+That all sounds pretty straightforward. But floating, if untamed, can cause some layout issues...
 
-## [float](http://learnlayout.com/float.html)
+Let's use the first example, but this time without any text **[[Codepen](http://codepen.io/amaseda/pen/NGXQKZ)]**.
+* What happens to the container when we set our image to `float: left;`?
+* What about if we substitute our image with a block element (e.g., `<div>`)?
+* When all the elements inside a container are floated, it shrinks to the smallest size possible.
+  * Inline element dimensions are ignored.
+  * Block elements are condensed to the smallest size possible.
 
-Often used for layouts.  Coming soon...
+We can fix this using the `clear` property.
+* Watch what happens when we add an empty `<div>` with a property of `clear: both;`...
+* The container is re-sized to fit its children elements.
+* This empty `<div>` is kind of ugly though...
 
-## [clear](http://learnlayout.com/clear.html)
+### Clearfix
 
-- left
-- right
-- **both**: usually, this is the right tool for the job
+Enter clearfix.
+* [Nicolas Gallagher](http://nicolasgallagher.com/micro-clearfix-hack/) created a technique that accomplishes the same thing by adding a class to the container.
+* Makes use of the `:before` and `:after` pseudo-classes.
+* Very reusable!
 
+### Further Layout Reading
 
-## [the clearfix hack](http://learnlayout.com/clearfix.html)
+We'll encounter the following in future lessons, but feel free to get a headstart...
 
-> Q. How does `.clearfix` differ from other css rules we have applied?
-
----
-
-A. It's not for a specific page or component.  It's reused in many places.
-
-Ensure you organize these "reusable" css rules together.  You can group them together in styles.css, but I recommend using a separate file (shared.css, constraints.css, )
-
-Don't miss the links.
-
-## [percent width](http://learnlayout.com/percent.html)
-
-As the name implies.
-
-- You will see this a lot in layouts.
-- Sometimes combined with min/max-width.
-
-##[media queries](http://learnlayout.com/media-queries.html)
-
-Responsive Design is a topic for another lesson.
-
-## Misc
-
-- Ever wanted to make a grid of boxes?  Check out [`inline-block`](http://learnlayout.com/inline-block.html)
-- Want text in [columns?](http://learnlayout.com/column.html)
-  - `column-count`
-  - `column-gap`
-- flexbox: interesting stuff.  Covered in Responsive Design lesson.
-- css frameworks: we have a lesson about these too.  
-  > They're no replacement for knowing how CSS works.
-
-## Google fonts
-https://www.google.com/fonts#
-
-1. Choose:
-Search or browse hundreds of font families, then add the ones you like to your Collection.
-
-2. Review:
-Compare and refine your Collection, even see the styles in a dynamic sample layout.
-
-3. Use:
-Grab the code we prepare and you’re ready to add the Collection to your website!
-
-## Bonus: Font-Awesome
-
-http://fontawesome.io/get-started/
+* [Learn Layout](http://learnlayout.com/): A great review of everything we've gone over so far (and more).
+* [Responsive Web Design](http://alistapart.com/article/responsive-web-design)
+* [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+* CSS Frameworks (e.g., [Bootstrap](http://getbootstrap.com/), [Foundation](http://foundation.zurb.com/))
 
 
 ## Advanced CSS Selectors
 
-### pseudo-element `:after`, `:before`
+Sometimes we want to be very particular about which elements on a page we're styling, whether that's for layout or otherwise. CSS comes with a number of **advanced selectors** that allow us to be very specific in which elements we target, for example...
+* Each `<li>` inside of a `<ul>`.
+* Every radio button on the page.
+* Every even-numbered checkbox inside of a `<div>` with `class="what-a-mess"`.
 
-These allow you to insert content via CSS.  The content is not actually in the DOM, but it appears on the page as if it is.
+### Selector Scavenger Hunt (30 / 105)
 
-This css:
-``` css
-div::after {
-  content: "hi";
-}
-```
+Break off into teams and spend 15 minutes researching the following...
+* **Teams 1, 3, 4, 7:** Pseudo-Selectors  
+* **Teams 2, 5, 6, 8:** Relationships  
 
-Causes 'hi' to appear at the end of every div, essentially:
-``` html
-<div>
-  <!-- Rest of stuff inside the div -->
-  hi
-</div>
-```
+Each team should spend 15 minutes creating a [Codepen(s)](http://codepen.io) that answers the below questions for their assigned topic.
+* Make sure to include examples. Don't just write out definitions.
+* When you're done, Slack the link to your [Codepen(s)](http://codepen.io) in the classroom channel.
 
-What content?
+#### Teams 1, 3, 5, 7: Pseudo-Classes
 
-- string: `content: "a string";`
-- image: `content: url(/path/to/image.jpg);` - The image is inserted at it's exact dimensions and cannot be resized. Since things like gradients are actually images, a pseudo element can be a gradient.
-- nothing: `content: "";` - Useful for clearfix and inserting images as background-images (set width and height, and can even resize with background-size).
-- counter: `content: counter(li);` - css-tricks says this is "Really useful for styling lists until :marker comes along."  (This is above my paygrade.)
+What are pseudo-classes? How do they differ from pseudo-elements?
 
-- https://css-tricks.com/pseudo-element-roundup/
+How do the following groups of pseudo-selectors work...
+* `:hover`, `:visited`, `:active`
+* `:first-of-type`, `:nth-of-type`
+* `:first-child`, `:nth-child`
+* Another one of your choice!
+  * https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
 
-https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_Started/Selectors
+#### Teams 2, 4, 6, 8: Relationships
 
-### You Do (Write/Pair/Share): Students will create html and css to illustrate each selector.
+With a single selector, how do we select...
+* Child elements
+* Direct child elements
+* Elements of a certain type and class (e.g., `<div class="pizza"></div>`)
+* Multiple elements (e.g., `<div class="pizza"></div>` AND `<p id="hamburger"></p>`)
+* Direct and Indirect Siblings
 
-Let's get more comfortable with the tools we'll be using as developers.
+http://www.w3.org/TR/selectors/#selectors
 
-Break classroom into 3 groups.  Each group gets a category to research.  This will be individual/pair work, but your group number indicates which category you should focus on.
+## Break (10 / 115)
 
-You will:
-- research a selector
-- create a few examples in CodePen (or similar) to share with class.  Try to illustrate different scenarios.
+## Styling HTML Forms
 
-1. By Relationship
-2. By Attribute
-3. By pseudo-class
+http://codepen.io/jshawl/pen/OyQJpZ?editors=110
 
-## By relationship: `section:target > element`
+## Exercise: Moonrise Kingdom (30 / 145)
 
-- A E
-  > Any E element that is a descendant of an A element (that is: a child, or a child of a child, etc.)
-- A > E
-  > Any E element that is a child (i.e. direct descendant) of an A element
-- E:first-child
-  > Any E element that is the first child of its parent
-- B + E
-  > Any E element that is the next sibling of a B element (that is: the next child of the same parent)
+You probably don't have all the CSS knowledge required to do this exercise perfectly. That's okay!
+* Use what you've learned so far and when in doubt: ask a classmate, Google it or ask an instructor.
+* As always, you're encourage to work with each other on this!
+* Some things to look up: Google web fonts, percent widths.
 
-### By attribute: `input[type=checkbox]`
+[http://github.com/ga-dc/moonrise_kingdom](http://github.com/ga-dc/moonrise_kingdom)
 
-- `selector[attribute=value]`
+## Closing Q&A (5 / 150)
 
-### By pseudo-class: `:nth-of-type(odd)`
+### Turn-and-Talk (1)
 
-Also known as "pseudo-classes", in CSS, are used to indicate elements in a special state or position.
+## Suggested Exercises
 
-Remember `:hover`, `:visited`?  We're adding a few more.
+* Continue working on Moonrise Kingdom.
+* [eCardly](https://github.com/ga-dc/ecardly)
 
-https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
+## Sample Quiz Questions
 
-- `:nth-child(1)`
-- `:nth-of-type(odd)`
-
-
-## Homework:
-
-https://github.com/ga-dc/ecardly
-
-## Sample questions
-
-- "What is the difference between 'relative' and 'absolute' positioning?"
-- "What is a reliable source for 3rd party fonts?"
-- "Name 2 pseudo-classes that allow css to add content to a page."
+* Where are elements with `position: relative` offset from when moved using `left` `right` `top` `bottom`?
+* What problem to floated elements present when not cleared using `clear`?
+* What pseudo-class would you use to select all the even-numbered instances of `<li>` on a page?

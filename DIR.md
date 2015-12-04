@@ -1,9 +1,14 @@
-##Details for the DIR Interview Process
+# DIR Interview Process
 
-Given the number of candidates that are interested in the DIR position, we'd like to make the following adjustments; 
+We want you! We're looking for Developers in Residence for the next cohort. This is a chance for you to gain some valuable experience as part of the WDI instructional team.
 
-1. Coding exercise will be due by Sunday, August 30th @ 9:00 noon. Please email a link to your repo to Brian (brianm@ga.co).
-2. Based on the results of the coding excercise, we will be selecting a group of students to continue on to the Sample Teach excercise
-3. We will send the Sample Teach appointments out by Monday, August 31st.
-4. The Sample teach sessions will be scheduled during Week 10 or Week 11 of the course. 
-5. Should you be selected for the Sample Teach exercise, you will have at least 7 days to prepare 
+## What does being a DIR mean?
+  Being a DIR is an opportunity for you to be an integral part of the WDI instructional team. You will be working full time along side the instructors for an entire cohort. Responsibilities include teaching, planning, mentoring, and collaborating with other teams at General Assembly.
+
+## DIR Application Process
+
+1. [Coding exercise](https://github.com/GA-WDI/instructor-code-challenge) will be due by Friday, December 18th @ 9:00 noon. Please email a link to your repo to Brian (brianm@ga.co).
+2. Based on the results of the coding exercise, we will be selecting a group of students to continue on to the Sample Teach exercise.
+3. Should you be selected for the Sample Teach exercise, you will have at least 7 days to prepare.
+4. We will send the Sample Teach appointments out by Monday, December 28th.
+

@@ -66,10 +66,9 @@ Build an interactive "single page" web application that persists data.
 
 ### JS TDD
 
-- Explain the purpose of TDD/BDD.
-- Review RSpec and standard testing syntax.
-- Describe Jasmine.
-- List components of a Jasmine test.
-- Compare/Contrast Jasmine & RSpec.
-- Implement TDD using Jasmine.
-- Use different Jasmine matchers.
+* List benefits of unit testing in collaborative development process.
+* Identify language-agnostic patterns in testing syntax and methodology.
+* Differentiate the roles of and relationships between `suite`, `spec`, and `expectation` in the context of Jasmine testing.
+* Implement `beforeEach()` and `afterEach()` to DRY up test code.
+* Use the `jasmine-node` CLI to run Jasmine tests.
+* Plan a project by creating a series of unit tests that define its parameters.

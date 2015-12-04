@@ -4,7 +4,7 @@
 
 - Review how to select elements using Vanilla Javascript.
 - Differentiate between a Javascript library and framework.
-- Define jQuery as a JS library.
+- Define the role that jQuery serves as a library
 - Define what a CDN ("Content Delivery Network") is and how to use one.
 - Use jQuery selectors to select DOM elements.
 - Differentiate between DOM and jQuery objects.
@@ -23,8 +23,8 @@ Before we dive into the world of jQuery, let's make sure we've got our Vanilla J
 
 ### Exercise: JS Selector Review (10min)
 
-Follow along with "My Blawg": https://github.com/amaseda/jquery-inclass-blawg
-- Clone: `$ git clone git@github.com:amaseda/jquery-inclass-blawg.git`
+Follow along with "My Blawg": https://github.com/ga-dc/jquery-inclass-blawg
+- Clone: `$ git clone https://github.com/ga-dc/jquery-inclass-blawg.git`
 - Open: `$ open index.html`
 - We'll be using this as an example throughout today's class.
 
@@ -293,8 +293,8 @@ The jQuery methods we will be going over today are both "getters" and "setters".
 - With an argument, replaces the HTML content of a DOM object.
 
   ```javascript
-  // Replaces HTML content of a DOM element of id "title" with 'Adrian's Blawg'
-  $( "#title" ).html( "Adrian's Blawg" );
+  // Replaces HTML content of a DOM element of id "title" with 'Adam's Blawg'
+  $( "#title" ).html( "Adams's Blawg" );
   ```
 
 - If a collection is selected, the method is performed on the first item in the collection.

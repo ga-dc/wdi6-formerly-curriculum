@@ -18,13 +18,11 @@
 * [Everything you wanted to know about JavaScript scope](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
 
 
-##### IIFE
-* [Ben Alman IFFE Pattern](http://benalman.com/news/2010/11/immediately-invoked-function-expression/)
-* [IFFE Pattern](http://adripofjavascript.com/blog/drips/understanding-the-module-pattern-in-javascript.html)
-
 ## What are Closures
 
 Closure is the property of function such that it can access variables in the same scope, i.e. scope chain, it was declared in. Even when that function is operating outside of that scope.
+
+A function is called a "closure" because it "closes around" some variables and functions. It's like an envelope containing variables and functions. When you send that envelope around, it still contains all the same variables and functions.
 
 All functions in JS are closures. Effectively, this means:
 
@@ -94,7 +92,6 @@ console.log(msg);
 
 ## Another (More Complex) Example
 
-
 The key to understanding closure is to know that a function declared in a scope can **ALWAYS** access other variables in that scope.
 
 **Even when that function is executing outside of the declaring function**
@@ -109,8 +106,8 @@ function makeAdder(x) {
 var add5 = makeAdder(5);
 var add10 = makeAdder(10);
 
-console.log(add5(2));  // 7
-console.log(add10(2)); // 12
+console.log(  add5(2) );  // 7
+console.log(  add10(2) ); // 12
 ```
 
 ## Encapsulation.
@@ -121,18 +118,19 @@ It's often good to *hide* the details of how something is being done from outsid
 
 This will reduce the knowledge needed by the client.
 
-For example, when we drive our cars we don't worry about the specifics of the engine or drive train. We interface with the car using the gas pedal, brake and stearing wheel.
+For example, when we drive our cars we don't worry about the specifics of the engine or drivetrain. We interface with the car using the gas pedal, brake and steering wheel.
 
-The engine are drive train the car's implementation.
+The engine and drivetrain are part of the car's implementation.
 
 The gas pedal, brake pedal and steering wheel are the car's interface to client, the driver.
 
-**Create a file `js/personFactory.js`**
+**Create a file `js/makePerson.js`**
 
-Below is a people factory. Give it a name and an age and I'll create a person. That is, it will create objects that represent a specific person.
+Below is a people factory. Give it a name and an age and it'll create a person.
+That is, it will create objects that represent a specific person.
 
 ```js
-function personFactory( fullName, currentAge ){
+function makePerson( fullName, currentAge ){
   var _name = fullName;  // 1
   var _age = currentAge;  // 1
 
@@ -150,20 +148,19 @@ function personFactory( fullName, currentAge ){
 }
 
 // Create a new person instance.
-var bob = new personFactory( "Bob", 45 ); //5
+var bob = makePerson( "Bob", 45 ); //5
 
 // Check to see if the age property exists in a public
 // portion of the person instance.
-console.log(
-  "Can we access the Bob's _age?",
-  ("_age" in bob)
-);  // 7
+// 7
+console.log("Can we access the Bob's _age?")
+console.log("_age" in bob)  
 
 // Get the age using the accessors.
-console.log(
-  "Age is (little lie here):",
-  bob.getAge()
-); // 8
+// 8
+console.log("Age is (little lie here):")
+console.log(bob.getAge())
+);
 
 ```
 

@@ -26,9 +26,9 @@ class Person
   attr_accessor :name
   attr_reader :hunger_level
 
-  def intitialize(initial_name, initial_hunger_level)
+  def initialize(initial_name, initial_hunger_level)
     @name = initial_name
-    @hunger_level = initial_hunger_
+    @hunger_level = initial_hunger_level
   end
 
   def hunger_level=(new_hunger_level)
@@ -142,7 +142,7 @@ class Person
 end
 ```
 
-### Exercise (10 minutes)
+### Code Walkthrough(10 minutes)
 
 **[Application Config Class in Ruby](https://github.com/ga-dc/ruby_application_configuration)**
 
@@ -182,7 +182,7 @@ class Person
   attr_accessor :name
   attr_reader :hunger_level
 
-  def intitialize(initial_name, initial_hunger_level)
+  def initialize(initial_name, initial_hunger_level)
     @name = initial_name
     @hunger_level = initial_hunger_
   end
@@ -220,7 +220,7 @@ puts bob.hunger_level
 
 # Homework
 
-[Gladiator!](https://github.com/ga-dc/gladiator)
+[Landlord! Ruby Classes Part](https://github.com/ga-dc/landlord/blob/andy/readme.md#ruby-classes)
 
 
 ## Sample Questions

@@ -11,6 +11,10 @@
 * [Understanding Scope and Context in JavaScript](http://ryanmorr.com/understanding-scope-and-context-in-javascript/)
 * [Everything you wanted to know about JavaScript scope](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
 
+## Why Scope? Why Now?
+
+>Understanding JavaScript scope is key to writing bulletproof code and being a better developer. You’ll understand where variables/functions are accessible, be able to change the scope of your code’s context and be able to write faster and more maintainable code, as well as debug much faster.
+
 ## What is Scope?
 
 In programming, scope is where a variable can be referenced; in other words,
@@ -57,15 +61,19 @@ function playBaseball() {
   pitcherName    = "Jesse Shawl";
   var batterName = "Breece Horper";
 
-  console.log(batterName);  // works, globals always in scope
-  console.log(pitcherName); // works, local variable in scope
+  console.log(batterName);  // works, local variable in scope
+  console.log(pitcherName); // works, globals always in scope
 }
+
+playBaseball()
 
 console.log(favoriteAnimal); // works, globals always in scope
 console.log(favoriteFood);   // works, local variable in current scope
 
 console.log(pitcherName); // works, globals always in scope
 console.log(batterName);  // DOES NOT WORK, variable is an inner scope
+
+console.dir(window); // note how favoriteAnimal / favoriteFood are properties of window.
 ```
 
 ### More Interesting / Complex
@@ -88,7 +96,8 @@ function displayPerson(fname, lname){ //4, 5
 };
 
 function removeYears(){ // 8
-  var minusYears = 10, age = 49;
+  var minusYears = 10
+  var age = 49;
   return age - minusYears;
 };
 
@@ -100,23 +109,23 @@ console.log(removeYears());
 
 * Here's how JS will parse this:
 
-    1) Found 'var firstName' variable declaration.  
+    1. Found 'var firstName' variable declaration.  
     Put firstName variable in Global Scope.  
-    2) Found 'var lastName' variable declaration.  
+    2. Found 'var lastName' variable declaration.  
     Put lastName in Global Scope.  
-    3) Found 'var age' variable declaration.  
+    3. Found 'var age' variable declaration.  
     Put age in Global Scope.  
-    4) Found 'var displayPerson' declaration.  
+    4. Found 'var displayPerson' declaration.  
     Put age in displayPerson in Global Scope.
 
     **Notice that displayPerson's value is a function. So, create a inner scope and process this function.**
 
-    5) Found the fname and lname declarations.
+    5. Found the fname and lname declarations.
     *Note: functions arguments behave just like local variables.*
     Put them in the displayPerson function scope.  
-    6) Found prefix, fullName variable declarations.  
+    6. Found prefix, fullName variable declarations.  
     Put them in the displayPerson function scope.  
-    7) Found getFullName declaration.  
+    7. Found getFullName declaration.  
     Put getFullName in the displayPerson function scope.
 
     **Notice that getFullName is a function. So, create an inner scope and  process this function.**
@@ -125,12 +134,12 @@ console.log(removeYears());
 
     ![Scope](assets/JS_Scope1.png)
 
-    8) Found removeYears variable declaration.
+    8. Found removeYears variable declaration.
     Put removeYears in Global scope.  
 
     **Notice that removeYears value is a function. So, create a inner scope and process this function.**
 
-    9) Found age and minusYears variable declarations.  
+    9. Found age and minusYears variable declarations.  
     Put these in the function's scope.
 
     ![Scope](assets/JS_Scope2.png)

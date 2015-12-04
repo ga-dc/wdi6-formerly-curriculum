@@ -17,38 +17,41 @@ It's our good ol' friend the Rails rMVC diagram!
 
 ![https://camo.githubusercontent.com/b17f7f6527eb7d35474e24ed3ff299b8689615a0/687474703a2f2f692e737461636b2e696d6775722e636f6d2f5366324f512e706e67](https://camo.githubusercontent.com/b17f7f6527eb7d35474e24ed3ff299b8689615a0/687474703a2f2f692e737461636b2e696d6775722e636f6d2f5366324f512e706e67)
 
-The router matches an HTTP request to the corresponding controller action.
+The router matches an HTTP request to a controller and action.
 * The gateway to the rMVC (router / model / view / controller).
-* So something like this `get "/students/2"` is directed to the students controller show route.
+* So something like this `get "/artists/2"` is directed to the artists controller show action.
 * Returns an error if the HTTP request is unrecognizable and/or does not match a controller action.
 <br><br>
 
 ## Routes (10 / 20)
 
-You guys dove into Rails' `routes.rb` file in Andy's MVC class and create individual routes for pages using Sinatra-like syntax.
+Fork/clone [this repo](https://github.com/ga-dc/tunr_rails_routes_resources) for the starter code of this lesson. This repo also contains a solution branch containing all the code we'll be executing today.
+
+You guys dove into Rails' `routes.rb` file in the MVC class and created individual routes for pages using Sinatra-like syntax.
 * **NOTE:** The `routes.rb` file is located in the `config` folder of your Rails application.
 
 A route to our index page would look like this:
 ```rb
 # index
-get "/artists/", to "artists#index"
+get "/artists", to "artists#index"
 ```
 
 This would look the exact same for our Song model
 * Just replace the model reference in the HTTP request and controller method.
 
-You already took care of this in an earlier class, but we can also define the default route that is triggered when a user visits the home page of our application using the `root` keyword.
-* In the below example we direct the user to our artists index page.
+You already took care of this in an earlier class, but we can also define the default route that is triggered when a user visits the home page of our application using the `root` method.
+
+* In the below example we direct the user to our artists index page when the root route is requested.
 
 ```rb
-# When we visit http://localhost:3030/, we trigger the index action in our Artists controller
+# When we visit http://localhost:3000/, we trigger the index action in our Artists controller
 root :to => "artists#index"
 ```
 <br><br>
 
 ## Resourceful Routes (5 / 25)
 
-During Adam's class you learned a bit of Rails wizardry that allowed you to generate all of your application's RESTful routes using one word: **resources**!
+During the helpers class you learned a bit of Rails wizardry that allowed you to generate all of your application's RESTful routes using one word: **resources**!
 * Explicitly tells Rails that we will be using RESTful routes.
 * Generates path helpers, which we'll look at shortly.
 
@@ -70,7 +73,7 @@ resources :artists, :songs
 If you're ever confused as to what routes are available to you based on how you have set up your `routes.rb` file, Ruby has a handy tool that tells you.
 * Open up your terminal and, in the same folder as your application, type in `rake routes`.
 
-```rb
+```bash
 Prefix      Verb   URI Pattern                 Controller#Action
 root        GET    /                           artists#index
 songs       GET    /songs(.:format)            songs#index
@@ -93,20 +96,21 @@ song        GET    /songs/:id(.:format)        songs#show
 ```
 
 You've seen most of this information before: HTTP request verbs, routes and controller actions.
-* Path helpers are new, at least from what we learned in Sinatra. You started to learn about them during Adam's helpers class.
+* Path helpers are new, at least from what we learned in Sinatra. You started to learn about them during the helpers class.
 <br><br>
 
-### Path Helpers  
+### [Path Helpers](https://github.com/ga-dc/curriculum/tree/master/05-mvc-with-rails/rails-helpers)  
 **Q:** Can somebody remind me what helpers are and how path helpers fit into that category?
 * **Helpers** make our lives easier and save us the trouble of writing out long, repetitive code.
 * **Path helpers** are references to routes and controller actions.
 * Build them using the prefixes from `rake routes`.
+* often times they'll be placed in views, but are also utilized elsewhere.
 
 Path helpers vary between routes
 * `index`: `artists_path`
 * Why do we add `_path`? Generates a relative path (vs. `_url`).
 * **Q:** What about the path helper `edit`? How is it different from `index`. Takes an object as an argument.
-  * `artists_path( some_artist )    # "/artists/:id/edit"`
+  * `edit_artist_path( some_artist )    # "/artists/:id/edit"`
 
 Only four path helpers for each model.
 * Some paths can be used for multiple routes (e.g., `artist_path` covers `artists#show` `#update` and `#destroy`).
@@ -115,11 +119,11 @@ Only four path helpers for each model.
 
 ## Routes and Helpers (5 / 40)
 
-With path helpers, we can tidy up the other helpers you guys have alrady implemented in Tunr.
+With path helpers, we can tidy up the other helpers you guys have already implemented in Tunr.
 * Q: What sort of helpers have we already encountered this week?
 <br><br>
 
-### Link Helpers
+### [Link Helpers](http://mixandgo.com/blog/how-to-use-link_to-in-rails)
 
 ```rb
 # views/artists/index.html.erb
@@ -134,7 +138,7 @@ With path helpers, we can tidy up the other helpers you guys have alrady impleme
 ```
 <br><br>
 
-### Form Helpers
+### [Form Helpers](http://guides.rubyonrails.org/form_helpers.html#binding-a-form-to-an-object)
 
 ```rb
 # views/artists/new.html.erb
@@ -174,13 +178,22 @@ With path helpers, we can tidy up the other helpers you guys have alrady impleme
 <br><br>
 
 ## Nested Resources (15 / 55)
-The way our app is currently routed isn't too helpful, right?
+[N.B. the Rails docs are awesome!](http://guides.rubyonrails.org/routing.html#nested-resources)
+
+The way our app is currently routed is fine. Songs and artists have their very own resources and doesn't depend on the other. We can, however, change our domain a bit. We can actually nest our resources. We want to be able to visit urls like this:
+
+`http://www.tu.nr/artists/3/songs/12`
+
 * Currently we can visit an artist show page, which includes a link of all that artist's songs.
-* But we want to be able to visit a URL like this: `http://www.tu.nr/artists/3/songs/12`
+
 * What would it mean to have a URL like that? Why do we do it this way?
   * It concisely reflects our data structure: all songs are dependent on an artist.
   * Also allows users to access specific information using the URL.
 * Ultimately, we want to structure our routes so that all Songs exist in the context of a parent Artist.
+
+> The reasons might not be so apparent for routes like show, edit, update and destroy because we have access to a song ID in the url anyway. But by using nested resources, it's easier to create a song because we have the artists id in the url. Or maybe we want the songs index route to be namespaced under an artist.
+
+> This brings us to another side note. Ultimately your domain model is just that, yours. It's up to you to decide whats the right fit. Which tables make the most sense for the problems that I face in my application. Which associations should I use to best facilitate querying my database. Which resources should I have and under which namespaces? These are the questions developers ask themselves each and every time a new application is being created. We're just here to teach you some tools to answer these questions for yourself.
 
 So our ideal Song index will look something like this...
 
@@ -259,7 +272,6 @@ Has anything changed?
 ```rb
 Prefix            Verb   URI Pattern                                  Controller#Action
 root              GET    /                                            artists#index
-songs             GET    /songs(.:format)                             songs#index
 artist_songs      GET    /artists/:artist_id/songs(.:format)          songs#index
                   POST   /artists/:artist_id/songs(.:format)          songs#create
 new_artist_song   GET    /artists/:artist_id/songs/new(.:format)      songs#new
@@ -487,3 +499,5 @@ Spend the remaining class-time either working on your homework or you can ask me
 <br><br>
 
 ## Sample Quiz Questions
+
+- List the routes provided using the resources method and the associated action for each

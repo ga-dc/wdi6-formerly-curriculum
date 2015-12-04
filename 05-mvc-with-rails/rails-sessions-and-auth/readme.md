@@ -1,434 +1,66 @@
-# Sessions and Auth
+# Devise! and sessions
 
 ## Learning Objectives
-- Contrast the use cases for cookies, sessions, and permanent storage.
+- Explain what state is in a web application
+- Explain how sessions give state to a web application
+- Explain how user authentication utilizes sessions
 - Define and then access a session variable in a Rails application.
-- Create a (very) simple hashing algorithm.
-- Describe the differences between hashing and encoding.
-- Add sign-in, sign-up, and sign-out functionality to a Rails application.
-- Securely store and access passwords.
-- Describe the functionality of `has_secure_password`.
-- Differentiate between authentication and authorization.
+- Set session hash key value pairs inside of a rails application
+- Implement user authentication into a web application utilizing the devise gem
+- Implement useful helper methods devise provides
+- Differentiate between authentication and authorization
 
-**Please follow along with the lesson plan.**
+### Opening Framing (10m)
 
-## Adding users
+So we've figured out how to implement CRUD functionality into our apps. This is
+great, but should anyone using our application be able to do whatever they want?
+It would really suck if your buddies could post for you on Facebook or if
+someone withdrew money from your banking site.
 
-Currently, Tunr just supports one single user. It would be nice if it could have multiple users. Whenever a user logs in, they'd see only *their* artists and songs.
+### T & T
+Well, that shouldn't be the case. We need to be able to preserve the "state" of
+the application. If a user is logged in, that user should be logged in until he
+logs out, persisting the state of that user being logged in.
 
-To start, let's **create a User model**. It's going to be really simple, with just a username and password:
+For the next 5 minutes turn to your partner in class and discuss how we might be
+able to prevent people from doing whatever they want on your website.
 
-```
-rails generate migration create_users
-```
-```rb
-# db/migrate/[timestamp]_users.db
+Here's some talking points:
+- What does it mean for a user to be signed in?
+- For that matter, what does it mean to be a user? How are we representing that data.
+- We've used our backend to store data about artists and songs.
+  - Can we use it to store data about a user itself?
 
-class CreateUsers < ActiveRecord::Migration
-  def change
-    create_table :users do |t|
-      t.string :username
-      t.string :password_digest
-    end
-  end
-end
-```
+> We need to start thinking about how to capture information into a User model.
+That has information about username, email, or password. We also need a way to
+transfer or preserve state in our applications from request to request.
 
-We'll talk about why this is `password_digest` instead of just `password` later.
+## "State" and Cookies
 
-```
-rake db:drop
-rake db:create
-rake db:migrate
-```
+HTTP is stateless, which means that each HTTP request comes in with no history,
+by default. This means that the server can't associate one request with a
+previous one.
 
-We'll need to **create the user model**. We could add in fancy validations to make sure passwords are at least 8 characters or what-have-you, but that's a "nice-to-have" we can come back to later.
+So, if we want to remember bits of information related to a specific person (i.e.
+browser), we need a way to store that info and associate it with the browser.
 
-```rb
-# app/models/user.rb
+This is done through cookies...
 
-class User < ActiveRecord::Base
-  validates :username, presence: true, uniqueness: true
-  validates :password_digest, presence: true
-end
-```
+### Looking at Cookies
 
-Next, we'll create **a sign-up form**. The form will POST to a `/sign_up` route that we have yet to create.
-
-```erb
-# app/views/users/sign_up.html.erb
-
-<h2>Sign up</h2>
-<%= form_tag("/sign_up", method: "post") do %>
-  <input type="text" name="username" placeholder="username" />
-  <input type="password" name="password" placeholder="password" />
-  <input type="password" name="password_confirmation" placeholder="password again" />
-  <input type="submit" value="Sign up" />
-<% end %>
-```
-
-Then, we'll create **a sign-in form**. The form will POST to a `/sign_in` route, which again we have yet to create.
-
-```erb
-# app/views/users/sign_in.html.erb
-
-<h2>Sign in</h2>
-<%= form_tag("/sign_in", method: "post") do %>
-  <input type="text" name="username" placeholder="username" />
-  <input type="password" name="password" placeholder="password" />
-  <input type="submit" value="Sign in" />
-<% end %>
-```
-
-Next, we'll make links to sign-in, sign-up, and sign-out on the **main application layout**. *(We don't actually have a page for sign-out yet... But we will... sort of!)*
-
-```erb
-# app/views/layout/application.html.erb
-
-# ...
-<h1>Tun.r</h1>
-<nav>
-  <a href="/sign_in">Sign in</a>
-  <a href="/sign_up">Sign up</a>
-  <a href="/sign_out">Sign out</a>
-  <a href="/songs">Songs</a>
-  <a href="/artists">Artists</a>
-</nav>
-# ...
-```
-
-Now we'll set up the **routes** to direct requests to the proper controller actions:
-
-##### What actions should a user have?
-- We won't add in an "edit password" functionality yet.
-##### What kind of HTTP request should go to each action?
-
-```rb
-# config/routes.rb
-
-Rails.application.routes.draw do
-  root to: 'artists#index'
-  get '/songs', to: 'songs#index'
-  resources :artists do
-    resources :songs
-    resources :genres
-  end
-  get '/sign_in', to: 'users#sign_in'
-  post '/sign_in', to: 'users#sign_in!'
-  get '/sign_up', to: 'users#sign_up'
-  post '/sign_up', to: 'users#sign_up!'
-  get '/sign_out', to: 'users#sign_out'
-end
-```
-
-Now we'll need a controller to actually receive and respond to these requests.
-
-Let's make the **users controller**:
-
-```rb
-# app/controllers/users_controller.rb
-
-class UsersController < ApplicationController
-
-  def sign_up
-  end
-
-  def sign_up!
-    user = User.new(
-      username: params[:username],
-      password_digest: params[:password]
-    )
-    if params[:password_confirmation] != params[:password]
-      message = "Your passwords don't match!"
-    elsif user.save
-      message = "Your account has been created!"
-    else
-      message = "Your account couldn't be created. Did you enter a unique username and password?"
-    end
-    puts message
-    redirect_to action: :sign_up
-  end
-
-  def sign_in
-  end
-
-  def sign_in!
-    @user = User.find_by(username: params[:username])
-    if !@user
-      message = "This user doesn't exist!"
-    elsif @user.password_digest != params[:password]
-      message = "Your password's wrong!"
-    else
-      message = "You're signed in, #{@user.username}!"
-    end
-    puts message
-    redirect_to action: :sign_in
-  end
-
-  def sign_out
-    puts "You're signed out!"
-    redirect_to root_url
-  end
-
-end
-```
-
-...and now if we **run** our application, we can see that it's working successfully!
-
-## The Flash
-
-`puts`ing out error messages isn't very helpful, since the user is never going to be able to see them.
-
-Rails gives us a handy method for showing users error messages, called `flash`. It's a hash that is generated in one controller action, and is accessible only in the *next* controller action. That is: a flash message is single-use.
-
-Let's **add flash messages to the Users controller**:
-
-```rb
-# app/controllers/users_controller.rb
-
-  def sign_in!
-# ...
-    flash[:notice] = message
-  end
-
-  def sign_up!
-# ...
-    flash[:notice] = message
-  end
-
-  def sign_out
-# ...
-    flash[:notice] = message
-  end
-
-  end
-```
-
-...and make the flash messages **show up in the view**:
-
-```erb
-# app/users/application.html.erb
-
-<h1>Tun.r</h1>
-<nav>
-  <a href="/sign_in">Sign in</a>
-  <a href="/sign_up">Sign up</a>
-  <a href="/sign_out">Sign out</a>
-  <a href="/songs">Songs</a>
-  <a href="/artists">Artists</a>
-</nav>
-<h2><%= flash[:notice] %>
-```
-
-## Password security
-
-##### All the passwords are stored in the database as plain text. Why is that a problem?
-
-Most people use the same password for many sites. Anyone with access to the database could see people's passwords and easily try them out on other sites.
-
-### Two truths and a lie:
-
-- Washington is an expensive city in which to live.
-- Jesse has nice hair.
-- It is possible to make something 100% secure.
-
-There is no such thing as a completely secure system. With enough time and effort, anything can be hacked.
-
-Your best bet is to make it **annoying** to hack your system.
-
-##### Given two systems, what would make a hacker choose to hack one over the other?
-- Effort required
-- Potential payout
-- Severity of consequences
-
-All hackers choose their targets with a simple formula:
-```
-desire to hack = (perceived payout relative other targets) - (perceived effort relative other targets)
-```
-
-That means you can protect yourself either by making it look like the data your app stores is worthless, *or* by making your app more annoying to hack than other apps.
-
-If all you're protecting is a handful of e-mail addresses or comments on a minor blog, a box asking "What is 3 + 7?" is probably sufficient protection. Even though it's easy to hack, there are so many other sites with even less protection, and those are the ones hackers will target.
-
-### Hashing
-
-##### So how can we make it annoying to try to hack the passwords in our database?
-- Encrypt
-  - But what if someone figures out your encryption algorithm?
-
-Instead, we use **hashing**, which is like encryption but without the need to decrypt.
-
-For example, take this number:
-
-```
-33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601
-```
-
-This is my password, encrypted with an algorithm. I'll give you some hints: my password is a 7-digit number, and the algorithm is taking that number to the 40th power. So to find my password, all you need to do is find a calculator and enter:
-
-```
-33993673848282495216560077504280594059128549394489757514768726934773416841839157064011040089835002141848809883232920605619516633004880348600310560794457410501698455318707955859288688370267366292287244426179077614143160867036115289761409284501330209791881804790388195916823965601 ^ (1/40)
-```
-
-##### Why am I still confident that you won't figure out my password?
-- Because that's a really, really difficult calculation for any computer to make!
-
-So let's say instead of my password, the database stores this number, which is only about 260 bytes as a string. When I enter my password, my app takes whatever I entered to the 40th power. If it matches, even though it doesn't know my actual password, it knows I entered my password correctly. If what I entered is just one number off, the calculation's result will be completely different, and it won't match.
-
-This way, the only place my actual password is stored is in my own human memory.
-
-Could someone hack my password? Yes, but it would take a tremendous amount of computer power.
-
-Hashing is used very, very widely in **authentication** -- that is, making sure someone is who they say they are.
-
-## Hashing Tunr
-
-We're going to use a gem called "bcrypt" that uses a really secure hashing algorithm.
-
-Add it to your **Gemfile**...
-
-```
-# Gemfile
-
-# ...
-gem 'bcrypt'
-# ...
-```
-
-...and **install the Gem**:
-
-```
-bundle install
-```
-
-Let's play around with it in the **rails console**:
-
-```
-rails c
-```
-
-BCrypt's hashing method is `BCrypt::Password.create`. If we run this multiple times, we get a different result each time:
-
-```
-> BCrypt::Password.create("hello")
-```
-
-That's because to keep things *really* secure, BCrypt adds some random extra letters onto the end of the hash. These extra letters are called a **salt**. This process is **salting a hash**.
-
-To check whether a string matches the hash, we first have to let BCrypt decode its hash:
-
-```
-> BCrypt::Password.create("hello")
- => "$2a$10$yADYNXdzkZC6bLElijmYxuT2bLjG09Oe7i/7asficgWqgHqbj73Ge"
-> hash = "$2a$10$yADYNXdzkZC6bLElijmYxuT2bLjG09Oe7i/7asficgWqgHqbj73Ge"
-> decoded_hash = BCrypt::Password.new(hash)
-> decoded_hash.is_password?("hello")
- => false
-> decoded_hash.is_password?("Hello")
- => true
-```
-
-Putting this all together in Tunr, we'll **hash passwords in the Users controller**:
-
-```rb
-# app/controllers/users_controller.rb
-
-class UsersController < ApplicationController
-
-  def sign_up
-  end
-
-  def sign_up!
-    user = User.new(
-      username: params[:username],
-      password_digest: BCrypt::Password.create(params[:password])
-    )
-    if params[:password_confirmation] != params[:password]
-      message = "Your passwords don't match!"
-    elsif user.save
-      message = "Your account has been created!"
-    else
-      message = "Your account couldn't be created. Did you enter a unique username and password?"
-    end
-    flash[:notice] = message
-    redirect_to action: :sign_up
-  end
-
-  def sign_in
-  end
-
-  def sign_in!
-    @user = User.find_by(username: params[:username])
-    if !@user
-      message = "This user doesn't exist!"
-    elsif !BCrypt::Password.new(@user.password_digest).is_password?(params[:password])
-      message = "Your password's wrong!"
-    else
-      message = "You're signed in, #{@user.username}!"
-    end
-    flash[:notice] = message
-    redirect_to action: :sign_in
-  end
-
-  def sign_out
-    flash[:notice] = "You're signed out!"
-    redirect_to root_url
-  end
-
-end
-```
-
-## has_secure_password
-
-Rails provides a method called `has_secure_password` does... about what you would expect from the name. This includes:
-- Making sure a User isn't created without a password
-- Makes sure your User model has a `password_digest` column. A digest is the hashed value of something -- that is, the big long random string. (The way your password would look after you've digested it, if you will.)
-- Making sure the password is less than or equal to 72 characters
-- If you have a "type your password again to confirm it" field, it makes sure they match
-
-To use it, just **add has_secure_password to your User model**:
-
-```rb
-# app/models/user.rb
-
-class User < ActiveRecord::Base
-  validates :username, presence: true, uniqueness: true
-  has_secure_password
-end
-```
-
-Let's re-create the database so now it contains only secure passwords:
-
-```
-rake db:drop
-rake db:create
-rake db:migrate
-```
-
-## User persistence
-
-##### What's missing from our user sign-in process?
-##### If I refresh the page, am I still signed in?
-
-We need to figure out a way to have Rails remember I'm signed in.
-
-##### Why not just created an "is_signed_in" column in my User table?
-- How would Rails now how to sign out? More importantly, if multiple users are accessing the app, how would Rails know which signed_in user is on which computer?
-
-## Cookie Monster
-
-### We do:
 1. In Chrome, go to Preferences
 - Show advanced settings
 - Click "Content settings"
 - Click "All cookies and site data"
 - Scroll to `github.com`
 
-Click around on the different "buttons" or "tabs". In particular, look at `dotcom_user`, `signed_in`, and `tz`.
+Click around on the different "buttons" or "tabs". In particular, look at
+`dotcom_user`, `signed_in`, and `tz`.
 
 ##### Turn and talk: What do you see? What do these do?
 
-A *cookie* is a piece of data stored on your computer by your web browser and associated with a particular website.
+A *cookie* is a piece of data stored on your computer by your web browser and
+associated with a particular website.
 
 ### Example cookies:
 
@@ -444,353 +76,389 @@ Created: Wednesday, July 22, 2015 at 7:04:22 PM
 Expires: Sunday, July 22, 2035 at 7:04:22 PM
 ```
 
-Normally my online banking account only has 5 cookies, but as soon as I log in it gets an additional 15 or so, including this one:
-```
-Name: FORTUNE_COOKIE
-Content: abcd-efgh-ijkl-mnop-qrst-uvwx-yz12-3456
-Domain: .online.wellsfargo.com
-Path: /
-Send for: Secure connections only
-Accessible to script: No (HttpOnly)
-Created: Saturday, July 25, 2015 at 6:07:09 PM
-Expires: When the browsing session ends
-```
-
-##### What might be the purpose of these cookies?
-##### Why is Github's expiration date so far in the future, while Wells Fargo's is when the browsing session ends?
-##### What's the significance of 'Send for: Secure connections only'?
-
-Notice the "Accessible to script". Cookies can be accessed via Javascript.
-
-If you go to `github.com`, open the console, and type `document.cookies`, you'll get something like this:
-
-```
-tz=America%2FNew_York; _ga=GA1.2.3456.7890; _gat=1"
-```
-
-Hiding from scripts, expiration dates, secure connections only...
-
-##### Turn and talk: Why does security with cookies seem to be such a big deal?
-
-### Writing
-
-Modifying cookies is super easy. Let's have Tunr "remember" the username **when users run the sign_in controller action** by saving it as a cookie:
-
-```rb
-# app/controllers/users_controller.rb
-
-def sign_in!
-# ...
-  else
-    message = "You're signed in, #{@user.username}! "
-    cookies[:username] = @user.username
-  end
-end
-
-# ...
-```
-
-If I check the cookies for `localhost` in Chrome, there's now a cookie called `username`!
-
-I can change the expiration time of my cookie like this:
-
-```rb
-# app/controllers/users_controller.rb
-
-def sign_in!
-# ...
-  else
-    message = "You're signed in, #{@user.username}! "
-    cookies[:username] = {
-      value: @user.username,
-      expires: 100.years.from_now
-    }
-  end
-end
-# ...
-```
-
-If I make this `10.seconds.from_now`, sign in again, and immediately look at the cookies for `localhost` I can see this cookie. If I close the window, wait a few seconds, and look again, it's vanished!
-
-By default, the expiration time is "when the current session ends" -- that is, when the browser is closed.
-
-### Reading
-
-`cookies` is a **hash**, just like any other hash. If I put `<%= cookies.to_json %>` in my `.html.erb`, it'll show me all the cookies for this domain (`localhost`, in this case).
-
-To **read** my cookie, I just use `cookies[:username]`. I'll put this in the `sign_in_prompt` page to **have the username filled in automatically**:
-
-```erb
-# app/views/users/sign_in_prompt.html.erb
-
-<h2>Sign in</h2>
-<%= form_tag("/sign_in", method: "post") do %>
-  <input type="text" name="username" placeholder="username" value="<%= cookies[:username] %>"/>
-  <input type="password" name="password" placeholder="password" />
-  <input type="submit" value="Sign in" />
-<% end %>
-```
-
-Now, when I type in a username and "Sign in", my username is filled in! I can close the browser, and when I go back to the page it'll still be there.
-
-Hopefully you can start to see the utility of cookies. They were originally invented for e-commerce, to let you store the items in your shopping cart on, say, Amazon. Now they're used for all kinds of things.
-
-### Same old problem
-
-Now we can remember the user's username. But we're not actually remembering the user is signed in.
-
-We could just create a cookie called `is_signed_in` and set that to true.
-
-##### What could go wrong with using an `is_signed_in` cookie?
-- Cookies are stored on the user's computer. This means we're basically relying on a user to tell us whether or not they're signed in. That's not very secure. There are Chrome extensions that let you add and edit the cookies on your computer. **We** want to tell the **user** whether or not they're signed in, not have them tell us.
+Is it secure to store this info in cookies? Not really... the user can edit
+cookies. The common fix is to store a long token in a cookie, and use that to
+identify the user. The relevant data is then stored on the server, where it's
+secure, and matched up with the token.
 
 ## Sessions
 
-Remember `flash` messages? Those are a lot like cookies, except instead of being stored on the user's browser, they're stored on **your server**.
+In Rails, we can read and set cookies manually, but that can be a bit of a pain.
 
-This is an example of a **session variable**. It's like a cookie in reverse. A cookie is stored on the user's browser and associated with a particular domain. A session variable is stored on the server and associated with a particular user's browser.
+Instead, we almost always use an abstraction of cookies, called the session:
 
-Because session variables are stored on your server, the user can't manipulate them.
+- A session is just a place to store data during one request that you can read during later requests.
+- A session is a hash containing key value pairs that provide state in your application
 
-### How sessions work
+Let's hop into some code so we can see sessions in action.
 
-When your browser starts interacting with a server -- that is, when you go to a website -- the server gives you a unique ID and stores it as a cookie on your computer.
+The code we'll be working with today can be found
+[here](https://github.com/ga-dc/tunr_rails_sessions_devise) This is a version of
+the tunr rails application we've been building on this week. It contains
+everything that we've learned up until now.
 
-Then, the server can save data and store it, associated with that ID.
+Make sure you fork/clone this repo if you would like to follow along. It is not
+too important to follow along for this portion of this lesson. I encourage you
+to just watch and use the following code to practice it yourself later.
 
-Like this:
+## Set and Use session key-value pairs
 
-```
-# USER'S BROWSER
+In order to understand sessions, we're going to add some code to our existing
+artists controller to allow users to sort artists.
+In `app/controllers/artists_controller.rb`:
 
-cookies = {
-  "google.com": {...},
-  "tunr.com": {
-    "username": "robin",
-    "session_id": "8675309"
-  }
-}
-```
-
-```
-# YOUR SERVER
-
-session_vars = {
-  "1234567": {...},
-  "8675309": {
-    "is_signed_in": true
-  }
-}
-```
-
-Whenever you use a session variable in your code, your server just checks the user's browser for that cookie, gets the ID, and then looks up all the session variables for that ID.
-
-Rails automatically generates that ID for you. We can see it in our cookies:
-
-```
-Name: _tunr_session
-Content:  abcdefghijklmnopqrstuvwxyz
-Domain: localhost
-Path: /
-Send for: Any kind of connection
-Accessible to script: No (HttpOnly)
-Created:  Tuesday, July 28, 2015 at 10:54:08 AM
-Expires:  When the browsing session ends
-```
-
-##### Looking at this cookie, why would you say session variables are called "ession variables"?
-- The session ID is destroyed when your browsing session ends, making those session variables inaccessible.
-
-### Applying to Tunr
-
-Let's add an `is_signed_in` session variable to Tunr. We'll create it in the Users controller. 
-
-```rb
-# app/controllers/users_controller.rb
-
-def sign_in!
-# ...
-  else
-    message = "You're signed in, #{@user.username}! "
-    cookies[:username] = {
-      value: @user.username,
-      expires: 100.years.from_now
-    }
-    session[:user] = @user
-  end
-# ...
+```ruby
+# this action will set the `sort_by` property
+def sort
+  session[:sort_by] = params[:sort_by]
+  redirect_to artists_path
 end
 
-def sign_out!
-  reset_session
-  redirect_to root_url
-end
-```
-
-Now let's **modify the application layout accordingly**. If the user isn't signed in, we'll show "sign in" and "sign up" links. If they **are** signed in, we'll show a "sign out" link.
-
-```erb
-# app/views/layouts/application.html.erb
-
-# ...
-<nav>
-  <% if session[:user] %>
-    <a href="/sign_out"><%= session[:user]["username"] %>: sign out</a></h2>
-  <% else %>
-    <a href="/sign_up">Sign up</a>
-    <a href="/sign_in">Sign in</a>
-  <% end %>
-  <a href="/songs">Songs</a>
-  <a href="/artists">Artists</a>
-</nav>
-# ...
-```
-
-### Before actions
-
-We'll tighten up this app even more by making it so you can't see **anything** unless you've logged in.
-
-We're going to use a method called `before_action`. This lets us do something before *every single action* happens.
-
-In this case, we're going to use it to authenticate the user before every action.
-
-##### What's the difference between "authenticate" and "authorize"?
-- Authenticating is checking whether someone is who they say they are
-- Authorizing is giving someone special privileges
-  - So when you've *authenticated* a user, they are *authorized* to use your app
-
-Let's **update the application controller to authenticate before every action**:
-
-```rb
-# app/controllers/application_controller.rb
-
-class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
-  before_action :authenticate
-
-  private
-  def authenticate
-    if !session[:user]
-      redirect_to "/sign_in"
-    end
-  end
-end
-```
-
-*(**Note** that `protect_from_forgery` thing: that works via sessions. It inserts a hidden random string on every form in your app. When that form is submitted, Rails compares that string against a session variable it set for you.)*
-
-If we run the app now... we'll get a "too many redirects" error. That's because we're telling the app to redirect to the sign_in page before every action... including just trying to go to the sign_in page. So when someone is directed to the sign_in page, they're redirected to the sign_in page, and redirected, and redirected...
-
-We want this authentication to happen on every action **except** the user actions. So we can use another special method called `skip_before_action`.
-
-Let's update the **User controller** to prevent authentication, and therefore an infinite loop:
-
-```rb
-# app/controllers/users_controller.rb
-
-class UsersController < ApplicationController
-  skip_before_action :authenticate
-# ...
-end
-```
-
-## Putting it all together
-
-The goal for this app is for it to serve as your personal playlist. Each user will see only the songs and artists they created.
-
-Now that we're letting the app have multiple users, we need to associate each song and artist with a particular user.
-
-**Important note:** The way the app's set up, if 30 users all add "Bohemian Rhapsody" to their playlist, there will be 30 copies of "Bohemian Rhapsody" and in the "Songs" table, and at least 30 copies of "Queen" in the "Artists" table. This isn't very efficient, but it's useful for demonstrating the concepts we're covering here.
-
-##### How do we associate songs and artists with a user?
-- Give the `songs` and `artists` tables a `user_id` column?
-  - We can actually do it with less work. Each song already belongs to an artist, so we'll just make each artist belong to a user and leave the songs alone -- that is, we'll **add a `user_id` column to the `artists` table**. *(This means you can't have a song without an artist, but I'm OK with that.)*
-
-```
-rails generate migration add_users_to_artists
-```
-```rb
-# db/migrate/[timestamp]_add_users_to_artists.rb
-
-class AddUserToArtists < ActiveRecord::Migration
-  def change
-    add_column :artists, :user_id, :integer
-  end
-end
-```
-
-```
-rake db:drop
-rake db:create
-rake db:migrate
-```
-
-Now let's make sure we can do `@user.artists` and `@artist.user` and so forth by **updating the Artist model and creating a User model**:
-
-```rb
-# app/models/artist.rb
-
-class Artist < ActiveRecord::Base
-  has_many :songs, dependent: :destroy
-  belongs_to :user
-end
-```
-
-```rb
-# app/models/user.rb
-
-class User < ActiveRecord::Base
-  has_secure_password
-  has_many :artists
-end
-```
-
-Let's **change the `artists` controller so that whenever you add an artist, it saves the username**.
-
-```rb
-# app/controllers/artists_controller.rb
-
-def create
-  @user = User.find(session[:user]["id"])
-  @artist = @user.artists.create!(artist_params)
-  redirect_to (artist_path(@artist))
-end
-```
-
-With this done, we can **modify the controller to show the songs and artists for this user only**.
-
-```rb
-# app/controllers/artists_controller.rb
-
+# in our index, sort by the session value
 def index
-  @artists = User.find(session[:user]["id"]).artists
+  @artists = Artist.all.order(session[:sort_by])
 end
 ```
 
-## Review
+Let's update our `app/views/artists/index.html.erb` to include a form that
+allows us to change the sort value:
 
-##### What are the steps for adding user authentication?
-1. User migration
-- User model
-- Install BCrypt gem
-- User controller
-  - Sign up
-  - Sign in
-  - Sign out
-- Routes
+```html
+<form action="/artists/sort" method="get">
+  <label>Sort By</label>
+  <input type="text" name="sort_by">
+  <input type="submit" value="sort">
+</form>
+Sorting by: <%= session[:sort_by] %>
+```
 
-##### What are the three BCrypt methods we used?
-- `hash = BCrypt::Password.create("hello")`
-- `decoded_hash = BCrypt::Password.new(hash)`
-- `decoded_hash.is_password?("hello")`
+Now because we created this action, let's update our `config/routes.rb` to route
+submissions of the form to the sort action:
 
-##### Where are (a) cookies and (b) session variables stored?
-- (a) the server, (b) the browser
-- (a) the browser, (b) the database
-- (a) the database, (b) the server
-- (a) the browser, (b) the server
+```ruby
+get '/artists/sort', to: 'artists#sort'
+```
 
-##### What's the difference between encryption and hashing?
-##### What's the difference between authenticating and authorizing?
+If we open a new incognito window (`⌘ + ⇧ + n`) and navigate to
+`http://localhost:3000/artists`, we'll see the session isn't set in that browser
+because it's a brand new session, and thus our sorting is lost.
+
+When we clear our cookies/session in our browser we can see in our index route
+that the sorting is lost too.
+
+> Now that we have the ability to transfer information from request to request.
+We can preserve state in our application.
+
+## Setting objects in sessions
+Instead of hardcoding strings into our sessions hash, lets see if we can store
+object ids.
+
+Let's update our show action to set a session. In
+`app/controllers/artists_controller.rb`:
+
+```ruby
+def index
+  @last_viewed_artist = Artist.find(session[:last_viewed_artist_id])
+
+  @artists = Artist.all
+end
+
+def show
+  @artist = Artist.find(params[:id])
+  session[:last_viewed_artist_id] = @artist.id
+end
+```
+
+In your `app/views/artists/index.html.erb place the following:
+
+```html
+<% if @last_viewed_artist %>
+  <h3>Last viewed artist: <%= @last_viewed_artist.name %></h3>
+<% end %>
+```
+
+Now every time We click on an artists show page it will update the session to
+contain the most recently viewed artist. Then any time we make a request to the
+artists index path we can see the most recently viewed artist's name.
+
+> So now we can store objects or attributes of objects in our sessions as well.
+This may include id's of a user model, which is basically what devise is going
+to do for us when a user "signs in"
+
+## Deleting parts of the session
+Lets add a new action/route/view for deleting session.
+
+In `app/controllers/artists_controller.rb`:
+
+```ruby
+def delete_session
+  session.delete(:last_viewed_artist)
+  # or reset_session
+  # which resets the entire session hash
+  redirect_to artists_path
+end
+```
+
+In `config/routes.rb`:
+
+```ruby
+get '/artists/delete_session', to: 'artists#delete_session'
+```
+
+> This is the sort of thing thats happening when a user "logs out"
+
+Checkout the [testing_sessions branch](https://github.com/ga-dc/tunr_rails_sessions_devise/tree/sessions_demo)
+for all the code thus far.
+
+### You do
+Take the next 5 minutes to:
+- create a new action in the posts controller that instantiates a session key-value pair
+- save it to an instance variable in the index, and have it display in the index view
+
+### Break 10m
+## Reframing
+
+Devise is a gem in rails that we use in order to streamline user authentication.
+Rails developers saw that they we're incorporating user authentication in many
+of their applications. They built the devise gem assuming best practices (rails
+way) for User Auth. The devise gem uses sessions in a big way.
+
+At a high level, devise uses sessions to store user information from one request
+to the next. It sets that session by verifying with passwords(password_digest)
+on a user model. Once you set that session then you can refer to that user
+object until either the session is cleared(user logs out or session clears
+manually through browser) or the session is set to a new value (not common--
+if ever?)
+
+We're going to talk about how to get devise up and running and a couple of
+helper methods.
+
+If you'd like to learn about hand rolled user authentication reference [this lesson plan](https://github.com/ga-dc/curriculum/tree/master/05-mvc-with-rails/rails-sessions-and-auth)
+
+## Devise We do codealong (50m)
+- Fork and clone [this repo](https://github.com/ga-dc/devise_blog/tree/starter)
+- This repo contains a rails application that is a single model crud application for posts.
+- the first thing we should do is add `devise` to the Gemfile and run a bundle install
+
+```ruby
+gem 'devise'
+```
+
+Next install devise then generate the devise User
+
+```bash
+# normal bundle install
+bundle install
+
+# installs devise
+rails generate devise:install
+
+# generator used to create devise user model
+rails generate devise User
+```
+You may have to restart your server at this point.
+
+A lot of code just got generated for us.
+
+> this would be a good place to `git commit`
+
+This is some of the stuff that it's given us:
+
+![railsgdeviseuser](images/railsgdeviseuser.png)
+
+> Take a look at the devise source code! and you can see all of the different controllers
+
+It's a lot of stuff to look at, but let's break it down. Going from top to
+bottom excluding some of the files we won't be using for this class.
+
+The first thing that was created was a migration for this model. In
+`db/migrate/<somedate>_devise_create_users.rb` there's a lot of information here,
+but I think most pertinent to us in the scope of user auth is the email and
+password attributes.
+
+### Hashing and Salting (aside)
+[plain text offender](plaintextoffenders.com)
+
+`:encrypted_password` is interesting. Why wouldn't they just use `:password` as
+a column? So obviously we don't want to just store someone's password in a
+database. That would not be so great. Really what we want to do, is put an
+encrypted_password into our database. The way a password gets encrypted is that
+some random string gets generated and added to the password(salting). Then that
+new string goes through a hashing algorithm that outputs a "random" string.
+That's what gets stored in the database.
+
+So when a user tries to log in, the password gets added the same salt and then
+goes through the same algorithm and it looks against the database for the result.
+
+As stored in the database, the passwords `password1234` and `password1235` would
+look very different.
+
+If you want to know more about how to code your own(handroll) user models and
+not have to use devise. Look at [this lesson plan](https://github.com/ga-dc/curriculum/tree/rails_devise/05-mvc-with-rails/rails-sessions-and-auth).
+
+### Back to what devise gives us...
+
+The next thing that I see is a model definition was created for us in
+`app/model/user.rb`:
+
+```ruby
+class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+end
+
+```
+
+> the different arguments being passed in to devise are very semantically named
+as far as their utilities go.
+
+The next thing that was added was `devise_for :users` in our `config/routes.rb`
+
+That one line of code opens routes to a lot of devise user authentication
+controller actions
+
+## Devise -configuration(15/45)
+add this to `config/environments/development.rb`:
+
+```ruby
+ config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+ ```
+> In an email there is no context for host and port where as other urls are
+relative and don't need explicit host and port
+
+I think it'd be nice we just went ahead and added a logout button to the layout
+so that we can easily log in and log out as a user. So in our
+`app/views/layouts/application.html.erb` add the following code:
+
+
+ ```html
+<% if current_user %>
+  <h3><%= link_to 'Signout', destroy_user_session_path, :method => :delete %></h3>
+<% else %>
+  <h3><%= link_to 'Signup', new_user_registration_path %></h3>
+  <h3><%= link_to 'Login', new_user_session_path %></h3>
+<% end %>
+```
+
+> current_user is a helper method that allows us to access the user if one is
+logged in. If they are logged in, the signout link will appear, if not both the
+signup and login link will appear.
+
+
+Let's also add a root path to our `config/routes.rb`:
+
+```ruby
+root 'posts#index'
+```
+
+## Devise Helpers (15/60)
+
+Let's go ahead and fire up our server `$ rails s` and sign up for our site!
+
+Welcome aboard! You're an authenticated rider on rails! What does that really
+mean though?
+
+(ST-WG) What's fundamentally different about our application than before? ..
+
+So we've signed up and can see that nothing really has changed, we can still
+access our posts like normal.
+
+Let's add a bit of code too see if we can garner some more functionality.
+
+The first thing that I want to do is add the helper method `authenticate_user!`
+in the index action of the posts controller. So inside
+`app/controllers/posts_controller.rb`:
+
+```ruby
+def index
+  authenticate_user!
+  @posts = Post.all
+end
+```
+
+You'll notice now, if i'm not logged in, i can no longer access the index action
+and it redirects me to the signup page if i try to access this action. This is
+really cool. I now have a way to restrict controller actions unless people are
+logged in.
+
+This sort of thing is common with a lot of actions or all actions of a controller.
+So we can use a `before_action` callback to handle this. Let's get rid of the
+`authenticate_user!` in the index action and put the following code at the top
+of `app/controllers/posts_controller.rb`:
+
+```ruby
+class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  def index
+     # ... more code follows
+```
+
+> note I only want to authenticate the user for the create edit update and
+destroy actions, it doesn't matter to me who is able to view posts. Though this
+is totally dependent upon the domain model.
+
+We saw `current_user` above earlier. But we only took advantage of its
+truthiness/falsiness to generate some links for us. I think more importantly
+though, `current_user` is a helper method that returns a ruby object in our
+database that represents the user that is logged in.
+
+To illustrate this more effectively. Let's add a bit of functionality. What we
+want to achieve is for users to be able to have many posts and for posts to
+belong to a user.
+
+Let's do the following:
+- add `has_many` and `belongs_to` associations in our model definitions
+- add a foreign key to our posts table /w migration (`rails g migration add_foreign_key_to_posts user_id:integer`)
+- `$ rake db:migrate`
+- in the index action, change `@posts = Post.all` to `@posts = current_user.posts`
+
+> note that since we don't have the `authenticate_user!` helper on the index
+action, if we were to access posts directly without authenticating it would
+error out. So to fix that we should enter some if/else conditional to handle
+this.
+
+Something like this:
+
+```ruby
+def index
+  if current_user
+    @posts = current_user.posts
+  else
+    @posts = Post.all
+  end
+end
+
+```
+
+- in the create action , change `@post = Post.new(post_params)` to `@post = current_user.posts.create(post_params)`
+
+## Class Ex
+
+Add devise to tunr!
+
+Specifically:
+- include the gem
+- perform the steps to initialize devise in the app and add a user
+- add view code to let users sign in and out
+- ensure that users can't create / delete / update artists or songs if they
+  aren't signed in
+
+We will take advantage of our user authentication later this week when we allow
+users to 'favorite' songs.
+
+## What you can look forward to with devise!
+
+> Should you want to learn more on your own, or if we have extra time I can talk
+about devise views a little bit.
+
+[Devise Documentation](https://github.com/plataformatec/devise)
+
+This documentation contains a lot of great information.
+
+- Customize devise views
+- Customize devise model attributes [Direct Link to Docs](https://github.com/plataformatec/devise#strong-parameters)
+
+If you want to add devise to a brand new rails application check out this [blog post](http://andrewsunglaekim.github.io/Getting-a-handle-on-devise/)
