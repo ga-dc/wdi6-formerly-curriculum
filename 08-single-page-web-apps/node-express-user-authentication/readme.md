@@ -133,8 +133,7 @@ Now, inside this callback method, we will implement our custom logic to signup a
       if (user) {
 	return callback(null, false, req.flash('signupMessage', 'This email is already used.'));
       } else {
-      // There is no email registered with this email
-
+      // There is no email registered with this emai
 	// Create a new user
 	var newUser            = new User();
 	newUser.local.email    = email;
@@ -400,7 +399,7 @@ Now in the layout, we can add:
 ```javascript
 <ul>
   {{#if currentUser}}
-    <li><a href="/logout">Logout {{currentUser.local.email}}</a></li<a>
+    <li><a href="/logout">Logout {{currentUser.local.email}}</a></li>
   {{else}}
     <li><a href="/login">Login</a></li>
     <li><a href="/signup">Signup</a></li>
