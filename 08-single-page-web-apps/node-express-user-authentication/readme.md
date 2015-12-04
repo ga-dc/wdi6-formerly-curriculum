@@ -31,7 +31,7 @@ Because strategies are packaged as individual modules, we can pick and choose wh
 
 #### Setup/Review Starter Code
 
-First, clone the starter code 
+First, clone the starter code
 
     $ git clone https://github.com/ga-dc/express-passport-local-authentication.git
 
