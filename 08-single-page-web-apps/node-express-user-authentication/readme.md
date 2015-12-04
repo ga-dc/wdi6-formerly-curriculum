@@ -84,7 +84,7 @@ The statics controller, just has the home action.
 
 #### Routes.js
 
-We have seperated the routes into a seperate file, to remove them from the app.js file.
+We have separated the routes into a separate file, to remove them from the app.js file.
 
 #### Signup
 
@@ -200,7 +200,7 @@ The second argument tells passport what to do in case of a success or failure.
 
 #### Session
 
-We've seen in previous lessons that authentication is based on a value stored in a cookie, and then, this cookie is sent to the server for every request until the session expires or is destroyed.
+We've seen in previous lessons that authentication is based on a value stored in a cookie, and then, this cookie is sent to the server for every request until the session expires or is destroyed. This is a form of [serialization](https://en.wikipedia.org/wiki/Serialization).
 
 To use the session with passport, we need to create two new methods in `config/passport.js` :
 
@@ -219,6 +219,8 @@ To use the session with passport, we need to create two new methods in `config/p
   ...
 
 ```
+
+What exactly are we doing here? To keep a user logged in, we will need to serialize their user.id to save it to their session. Then, whenever we want to check whether a user is logged in, we will need to deserialize that information from their session, and check to see whether the deserialized information matches a user in our database.
 
 The method `serializeUser` will be used when a user signs in or signs up, passport will call this method, our code then call the `done` callback, the second argument is what we want to be serialized.
 
