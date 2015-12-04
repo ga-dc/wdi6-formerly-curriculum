@@ -6,6 +6,8 @@
 - [Part 2/3](https://youtu.be/3J3W0Hi2Jxw)
 - [Part 3/3](https://youtu.be/GMafQUii6Qc)
 
+## Learning Objectives
+
 * List benefits of unit testing in collaborative development process.
 * Identify language-agnostic patterns in testing syntax and methodology.
 * Differentiate the roles of and relationships between `suite`, `spec`, and `expectation` in the context of Jasmine testing.
