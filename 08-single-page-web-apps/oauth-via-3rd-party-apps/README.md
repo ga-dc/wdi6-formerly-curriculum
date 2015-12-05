@@ -1,26 +1,20 @@
 # Into to OAuth and 3rd Party APIs with Express
 
-### Objectives
-*After this lesson, students will be able to:*
+## Learning Objectives
 
-- Describe OAuth is & why it's commonly used
-- Use a Passport strategy to authenticate with a 3rd party login
+* Describe OAuth is & why it's commonly used
+* Use a Passport strategy to authenticate with a 3rd party login
 
-### Preparation
-*Before this lesson, students should already be able to:*
+> Worth doing T&T about the benefits of local vs. 3rd party login?
 
-- Use Mongo and Mongoose
-- Create an app with Node and Express
-
-
-## What is OAuth? Intro (10 mins)
+## What is OAuth? (10 mins)
 
 You see many sites with buttons that allow for users to sign up with their Facebook or Twitter credentials.  OAuth makes all this possible.  
 
 [OAuth](https://en.wikipedia.org/wiki/OAuth) is an agreed-upon set of standards for logging in through a third party service. It involves:
 
-1. Leaving a website
-2. Authenticating with the third party
+1. Leaving a website.
+2. Authenticating with the third party.
 3. Then the third party will redirect the user back to the original website with, among other things, an authentication token that can be persisted and used to request more information later.  
 
 At a high level, the standard lays out the overall protocol of login: you have to have _this_ route in your application, with _these_ parameters in your request/response, and after that, you need to be directed to _these_ pages.  And because it's a set of standards that are universally accepted, there's a whole bunch of libraries we can use to make this happen - like [Passport](http://passportjs.org/)!
@@ -30,7 +24,13 @@ At a high level, the standard lays out the overall protocol of login: you have t
 
 You probably know this as "Login with Facebook": you click on "Login with Facebook", you're redirected to Facebook's application, and then you get back to your site.  As a developer, one benefit is that you don't have to worry about developing your own authentication system.  The other benefit is your application gets a whole bunch of information it can use - or persist - later on, from Facebook.  A downside for the users is that in order to login, they're giving a lot of of their data to the requesting application. Developers and companies love this, though, because they can use all this data from the OAuth provider (Facebook/Twitter etc).
 
+#### What information is available via OAuth?
+
+> Show example response after getting user information from Facebook. Maybe have sample app ready to go so it can be generated via example.
+
 #### How it works
+
+> Great opportunity for diagram.
 
 To make any of our apps work, we need to first declare our app as a Facebook application using Facebook's [developer interface](https://developers.facebook.com/).  Ultimately, we'll be defining the set of permissions / information we are requesting from the user.
 
@@ -40,60 +40,150 @@ As a Facebook user, when you login, you pass in two important pieces of informat
 
 After our app is given the okay, Facebook sends back an **access token**. With that access token, Facebook can identify users of our application as real Facebook users. These access tokens only last so long, usually expiring after a week or so, but with this access token we can call out to Facebook, if we want, and get Facebook data associated with that Facebook user.
 
+> Insert example of access token being returned. Might be accessible via earlier example.
 
-## Let's create an app implementing Facebook login - Codealong (50 mins)
 
-To demonstrate OAuth, we are going to create a really simple app that shows the Facebook details of a user when there is a user connected or a link to Facebook login if the user isn't connected.
+## Codealong: Implement Twitter Log-In (50 mins)
 
-#### First, signup to use Facebook's API
+> Should replace this application with the one started in the first Passport class.
 
-> Note: Students may have to authenticate Facebook with mobile number.
+To demonstrate OAuth, we are going to create a really simple app that shows the Twitter details of a user when there is a user connected or a link to Twitter login if the user isn't connected.
 
-To set up our application to use Facebook's authentication, first, navigate to [Facebook Developers](https://developers.facebook.com/) and follow these steps:
+### Sign up for Twitter API
 
-- My Apps > Add a New App
-- Choose www (Website)
-- Choose skip and Create App ID
-- Add details:
-  - Display Name (Not Unique): Node Authentication App
-  - Namespace (Unique): alex_node_app
-  - Choose category: Education  
-- Pass the Facebook Captcha
+> NOTE: For the in-class example we will be using Twitter. If you do not have Twitter, feel free to use Facebook.
 
-#### Set the platform
+Navigate to [Twitter Apps](https://apps.twitter.com/) and follow these steps:
 
-Since we'll be working locally, we have to specify our local host address for this application.  Navigate to 'Settings' and click on Add Platform. Add to Site URL:
+* Click "Create New App".
+* Give your application a "Name", "Description", "Website" and "Callback URL".
+  * Enter whatever you want for "Name", "Description" and "Website".
+  * Enter `http://127.0.0.1` for "Callback URL".
+* Agree to "Developer Agreement".
+* Click "Create Your Twitter Application".
+* In the "Keys and Access Tokens" tab of application management, take note of the "Consumer Key" and "Consumer Secret".
 
-```
-http://localhost:3000/
-```
+### Clone Repo and Install
 
-Save your changes.
+Clone the `solution` branch of the repo you worked on in the first Passport class: [https://github.com/ga-dc/express-passport-local-authentication/tree/solution](https://github.com/ga-dc/express-passport-local-authentication/tree/solution)  
 
-#### Save environment variables
+Then, as always, run `$ npm install`.  
+* Our dependencies include `passport-twitter`.
 
-Returning to terminal, as you will need to add your Environment Variables to your `.zshrc` file
+### Create Environment Variables
 
-```
-subl ~/.zshrc
-```
+#### Q: How Do We Hide API Keys in Express?
 
-And add:
+> Not sure? Think about what happens when you install Figaro in a Rails application.
 
-```
-export FACEBOOK_API_KEY=
-export FACEBOOK_API_SECRET=
+In the main directory of your application, create a `env.js` file. This file will contain API information that we want to keep hidden from the end-user. We will export an object from this file and require/reference it whenever we want to access this information.
+
+```bash
+$ touch env.js
 ```
 
-Of course, you'll need to fill in the details from Facebook Developer API; you will also need to add your password in order to get your API secret key.
+```js
+// env.js
 
-Then save and source the `.zshrc`:
-
+// The below information can be found in the application management page of your Twitter app - https://apps.twitter.com/
+module.exports = {
+  consumerKey: "your consumer key here",
+  consumerSecret: "your consumer secret here",
+  callbackUrl: "your callback url here"
+}
 ```
-source ~/.zshrc
+
+> Make sure to include `env.js` in `.gitignore` so your API key and secret are not pushed to GitHub!
+
+### Create Passport Strategy
+
+#### Q: What is a Strategy?
+
+```js
+// /config/passport.js
+
+// New Requires
+// (1) TwitterStrategy: middleware required to implement Twitter login via Passport.
+// (2) Env: so we can access our Twitter API information.
+var TwitterStrategy = require('passport-twitter').Strategy;
+var LocalStrategy   = require('passport-local').Strategy;
+var User            = require('../models/user');
+var env             = require('../env');
+
+module.exports = function(passport){
+
+  // passport.serializeUser()
+  // passport.deserializeUser()
+
+  // passport.use('local-signup', new LocalStrategy())
+
+  // Unlike local authorization, we don't need to pass our Twitter Strategy a name argument.
+  passport.use(new TwitterStrategy({
+    // Here we reference the values stored in env.js.
+    consumerKey: env.consumerKey,
+    consumerSecret: env.ConsumerSecret,
+    callbackUrl: env.callbackUrl
+  }, function(aToken, aTokenSecret, aProfile, done){
+    token = aToken;
+    tokenSecret = aTokenSecret;
+    profile = aProfile;
+    done(null, profile);
+  }));
+}
 ```
 
-#### Create the model
+### Set up our First Route
+
+Our next order of business is to create a route that, when visited by the user, will redirect them to authorize on Twitter.com.
+
+```js
+// /config/routes.js
+
+// We need to require Passport since we now reference it in our routes file.
+var express = require('express');
+var passport = require('passport');
+var router = express.Router();
+var usersController = require('../controllers/users');
+var staticsController = require('../controllers/statics');
+
+// function authenticatedUser()
+
+// router.route( '/', '/signup', '/login', '/logout', '/secret')
+
+// passport.authenticate('twitter') is all we need to trigger that redirect to Twitter. Thanks Passport!
+router.route('/auth/twitter')
+  .get(passport.authenticate('twitter'), usersController.twitter);
+
+module.exports = router;
+```
+
+```js
+// /controllers/users.js
+
+// function getSignup, postSignup, getLogin, postLogin, getLogout, secret
+
+function twitter(request, response){
+
+}
+
+module.exports = {
+  getLogin: getLogin,
+  postLogin: postLogin ,
+  getSignup: getSignup,
+  postSignup: postSignup,
+  getLogout: getLogout,
+  secret: secret,
+  twitter: twitter
+};
+```
+
+> Include code that adds "Login via Twitter" link to login.hbs.
+
+This code is all we need to redirect users to Twitter for authorization. Test this out by clicking the "Login with Twitter" link on our login page. You should see something very similar to this in your browser...  
+
+![Twitter authorization screen](http://i.imgur.com/YliYWHb.png)
+
+#### Create the Model
 
 Now that Facebook knows about us - and note, you'll have to do this for each application you use Facebook auth - we can jump into our application and add the fields into the user model to store the data sent back by Facebook.
 
