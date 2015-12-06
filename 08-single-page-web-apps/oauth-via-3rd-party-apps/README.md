@@ -5,9 +5,11 @@
 * Describe OAuth is & why it's commonly used
 * Use a Passport strategy to authenticate with a 3rd party login
 
-> Worth doing T&T about the benefits of local vs. 3rd party login?
+## Turn & Talk: Local vs. 3rd Party User Authentication
 
-## What is OAuth? (10 mins)
+What are the pros and cons of authenticating users locally (plain ol' username and password) or via a 3rd party application (like Twitter or Facebook).
+
+## What is OAuth?
 
 You see many sites with buttons that allow for users to sign up with their Facebook or Twitter credentials.  OAuth makes all this possible.  
 
@@ -21,7 +23,6 @@ At a high level, the standard lays out the overall protocol of login: you have t
 
 ![facebook-login](https://cloud.githubusercontent.com/assets/40461/9360397/e49b15be-468d-11e5-8b88-3757ca6cbcac.png)
 
-
 You probably know this as "Login with Facebook": you click on "Login with Facebook", you're redirected to Facebook's application, and then you get back to your site.  As a developer, one benefit is that you don't have to worry about developing your own authentication system.  The other benefit is your application gets a whole bunch of information it can use - or persist - later on, from Facebook.  A downside for the users is that in order to login, they're giving a lot of of their data to the requesting application. Developers and companies love this, though, because they can use all this data from the OAuth provider (Facebook/Twitter etc).
 
 #### What information is available via OAuth?
@@ -30,26 +31,22 @@ You probably know this as "Login with Facebook": you click on "Login with Facebo
 
 #### How it works
 
-> Great opportunity for diagram.
+To make any of our apps work, we need to first declare our app as a Twitter application using Twitter's [developer interface](https://apps.twitter.com/).  Ultimately, we'll be defining the set of permissions / information we are requesting from the user.
 
-To make any of our apps work, we need to first declare our app as a Facebook application using Facebook's [developer interface](https://developers.facebook.com/).  Ultimately, we'll be defining the set of permissions / information we are requesting from the user.
+A visitor of our website clicks **Login with Twitter**, and leaves our original application and are brought to Twitter - as a developer, you lose everything you had (params from a form, for example).  
 
-A visitor of our website clicks **Login with Facebook**, and leaves our original application and are brought to Facebook - as a developer, you lose everything you had (params from a form, for example).  
+As a Twitter user, when you login, you pass in two important pieces of information to Twitter: the **app ID** and the **app secret** that identifies the application requesting the information.  
 
-As a Facebook user, when you login, you pass in two important pieces of information to Facebook: the **app ID** and the **app secret** that identifies the application requesting the information.  
-
-After our app is given the okay, Facebook sends back an **access token**. With that access token, Facebook can identify users of our application as real Facebook users. These access tokens only last so long, usually expiring after a week or so, but with this access token we can call out to Facebook, if we want, and get Facebook data associated with that Facebook user.
-
-> Insert example of access token being returned. Might be accessible via earlier example.
+After our app is given the okay, Twitter sends back an **access token**. With that access token, Twitter can identify users of our application as real Twitter users. These access tokens only last so long, usually expiring after a week or so, but with this access token we can call out to Twitter, if we want, and get Twitter data associated with that Twitter user.
 
 
-## Codealong: Implement Twitter Log-In
+## You Do: Implement Twitter Log-In
 
 To demonstrate OAuth, we are going to create a really simple app that shows the Twitter details of a user when there is a user connected or a link to Twitter login if the user isn't connected.
 
 ### Sign up for Twitter API
 
-> NOTE: For the in-class example we will be using Twitter. If you do not have Twitter, feel free to use Facebook.
+> NOTE: For the in-class example we will be using Twitter. If you don't have an account, create a dummy account for today's class.
 
 Navigate to [Twitter Apps](https://apps.twitter.com/) and follow these steps:
 
@@ -93,15 +90,41 @@ module.exports = {
 
 > Make sure to include `env.js` in `.gitignore` so your API key and secret are not pushed to GitHub!
 
+### Update Login View
+
+Let's update `/views/login.hbs` so that the user has the option of logging in via Twitter. We'll do this by adding an image that, when clicked, will direct the user to a route that we'll set up in a later step.
+
+```html
+<h2>Login</h2>
+
+{{#if message.length}}
+  <div class="alert alert-danger">{{message}}</div>
+{{/if}}
+
+<form method="post" action="/login">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control" type="text" name="email" id="email">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Password</label>
+    <input class="form-control" type="password" name="password" id="password">
+  </div>
+
+  <input class="btn btn-default" type="submit">
+</form>
+
+<!-- Here's the Twitter image! -->
+<a href="/auth/twitter"><img id="twitter-login" src="http://i.imgur.com/3kYcO3Y.png"></a>
+```
+
 ### Update Model
 
 At the moment our User model can only handle local signups and logins. We need to modify it so that, when somebody signs up using Twitter, it saves pertinent information about his or her Twitter account.
 
 ```javascript
 // /models/user.js
-
-var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
 
 // The local object in the User schema is used when a user signs up or logs in locally.
 // The twitter object is used when a user signs up or logs in via Twitter.
@@ -118,21 +141,13 @@ var User = mongoose.Schema({
     displayName: String
   }
 });
-
-User.methods.validPassword = function(password) {
-  return bcrypt.compareSync(password, this.local.password);
-};
-
-User.methods.encrypt = function(password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
-
-module.exports = mongoose.model('User', User);
 ```
 
 ### Create Passport Strategy
 
-#### Q: What is a Strategy?
+Next we're going to create a Passport Strategy that handles all Twitter authentication. This is going to look pretty similar to the Strategy we set up for local login and signup.  
+
+The first step is to pass in credentials for the current app to the Facebook strategy.
 
 ```js
 // /config/passport.js
@@ -147,25 +162,52 @@ var env             = require('../env');
 
 module.exports = function(passport){
 
-  // passport.serializeUser()
-  // passport.deserializeUser()
+  // passport.serializeUser(), .deserializeUser(), .use('local-signup', new LocalStrategy())
 
-  // passport.use('local-signup', new LocalStrategy())
-
-  // Unlike local authorization, we don't need to pass our Twitter Strategy a name argument.
-  passport.use(new TwitterStrategy({
-    // Here we reference the values stored in env.js.
+  passport.use('twitter', new TwitterStrategy({
+    // Here we reference the values in env.js.
     consumerKey: env.consumerKey,
-    consumerSecret: env.ConsumerSecret,
+    consumerSecret: env.consumerSecret,
     callbackUrl: env.callbackUrl
-  }, function(aToken, aTokenSecret, aProfile, done){
-    token = aToken;
-    tokenSecret = aTokenSecret;
-    profile = aProfile;
-    done(null, profile);
-  }));
+  })
 }
 ```
+
+Then we need to create a new User based on the information passed to us from Twitter.
+
+```js
+passport.use('twitter', new TwitterStrategy({
+  consumerKey: env.consumerKey,
+  consumerSecret: env.consumerSecret,
+  callbackUrl: env.callbackUrl
+}, function(token, secret, profile, done){
+  process.nextTick(function(){
+    User.findOne({'twitter.id': profile.id}, function(err, user){
+      if(err) return done(err);
+
+      // If the user already exists, just return that user.
+      if(user){
+        return done(null, user);
+      } else {
+        // Otherwise, create a brand new user using information passed from Twitter.
+        var newUser = new User();
+
+        // Here we're saving information passed to us from Twitter.
+        newUser.twitter.id = profile.id;
+        newUser.twitter.token = token;
+        newUser.twitter.username = profile.username;
+        newUser.twitter.displayName = profile.displayName;
+
+        newUser.save(function(err){
+          if(err) throw err;
+          return done(null, newUser);
+        })
+      }
+    })
+  })
+```
+
+We need to store `id` and `token` to the user because they are required in the Twitter authentication process. `userName` and `displayName`, however, are optional. We as developers chose to retain this information. There is more information stored in the Twitter response that we could save to our model if we want.
 
 ### Set up our First Route
 
@@ -182,37 +224,14 @@ var usersController = require('../controllers/users');
 var staticsController = require('../controllers/statics');
 
 // function authenticatedUser()
-
 // router.route( '/', '/signup', '/login', '/logout', '/secret')
 
 // passport.authenticate('twitter') is all we need to trigger that redirect to Twitter.
 router.route('/auth/twitter')
-  .get(passport.authenticate('twitter'), usersController.twitter);
+  .get(passport.authenticate('twitter'));
 
 module.exports = router;
 ```
-
-```js
-// /controllers/users.js
-
-// function getSignup, postSignup, getLogin, postLogin, getLogout, secret
-
-function twitter(request, response){
-  // Don't need to put any code in here. Thanks Passport!
-}
-
-module.exports = {
-  getLogin: getLogin,
-  postLogin: postLogin ,
-  getSignup: getSignup,
-  postSignup: postSignup,
-  getLogout: getLogout,
-  secret: secret,
-  twitter: twitter
-};
-```
-
-> Include code that adds "Login via Twitter" link to login.hbs.
 
 This code is all we need to redirect users to Twitter for authorization. Test this out by clicking the "Login with Twitter" link on our login page. You should see something very similar to this in your browser...  
 
@@ -220,44 +239,25 @@ This code is all we need to redirect users to Twitter for authorization. Test th
 
 #### Handle the Callback
 
-Now we need to create a route that handles the information sent back from Twitter. Let's create an additional route in `config/routes.js` that will take care of this callback.
+Now we need to create a route in `config/routes.js` that handles the information sent back from Twitter.
 
 ```js
 // /config/routes.js
 
 router.route('/auth/twitter/callback')
-  .get(passport.authenticate('twitter'), usersController.twitterCallback);
-```
-
-Next, let's create a corresponding `twitterCallback` function in `/controllers/users.js`.
-
-```js
-// /controllers/users.js
-
-function twitterCallback(request, response){
-  passport.authenticate('twitter', {
+  .get(passport.authenticate('twitter', {
     successRedirect: '/',
     failureRedirect: '/login'
-  });
-}
-
-// Don't forget to export our new function.
-module.exports = {
-  getLogin: getLogin,
-  postLogin: postLogin ,
-  getSignup: getSignup,
-  postSignup: postSignup,
-  getLogout: getLogout,
-  secret: secret,
-  twitter: twitter,
-  twitterCallback: twitterCallback
-};
+  }));
 ```
+How does Twitter know to redirect the user to this route after it's done authenticating? Because we defined the callback URL in our Twitter Strategy.
 
-## Independent Practice (20 minutes)
+#### All Done!
+
+Pretty similar to what you did in the last class, right? Though we are implementing a different kind of user authentication here, the code required to implement this is very similar to local authentication because of the way Passport is set up.
+
+## You Do: Implement Facebook Login
 
 > ***Note:*** _This can be a pair programming activity or done independently._
 
-Try to add GitHub to this app and make sure the strategy doesn't create two users if you authenticate with GitHub and Facebook.
-
-Take a look at the [GitHub OAuth API docs](https://developer.github.com/v3/oauth/).
+Try to add Facebook to this app. Start by creating a Facebook application [here](https://developers.facebook.com/).
