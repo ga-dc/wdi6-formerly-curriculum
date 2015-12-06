@@ -27,7 +27,40 @@ You probably know this as "Login with Facebook": you click on "Login with Facebo
 
 #### What information is available via OAuth?
 
-> Show example response after getting user information from Facebook. Maybe have sample app ready to go so it can be generated via example.
+Here's part of a sample response from Twitter. There's plenty more information that is cut off here for readability.
+
+```js
+{
+  id: '8839212',
+  username: 'urdmaseda',
+  displayName: 'Adrian Maseda',
+  photos: [ { value: 'https://pbs.twimg.com/profile_images/609055940596236288/RfQHyuDo_normal.jpg' } ],
+  provider: 'twitter',
+  _json:
+   { id: 8839212,
+     id_str: '8839212',
+     name: 'Adrian Maseda',
+     screen_name: 'urdmaseda',
+     location: 'DC',
+     profile_location: null,
+     description: 'WDI Instructor @GA_DC // Founder @AllThingsGo',
+     url: 'http://t.co/WVMZNQNlM7',
+     entities: { url: [Object], description: [Object] },
+     protected: false,
+     followers_count: 501,
+     friends_count: 641,
+     listed_count: 20,
+     created_at: 'Wed Sep 12 18:56:55 +0000 2007',
+     favourites_count: 667,
+     utc_offset: -18000,
+     time_zone: 'Eastern Time (US & Canada)',
+     geo_enabled: false,
+     verified: false,
+     statuses_count: 2157,
+     lang: 'en',
+  }
+}
+```
 
 #### How it works
 
@@ -38,6 +71,8 @@ A visitor of our website clicks **Login with Twitter**, and leaves our original 
 As a Twitter user, when you login, you pass in two important pieces of information to Twitter: the **app ID** and the **app secret** that identifies the application requesting the information.  
 
 After our app is given the okay, Twitter sends back an **access token**. With that access token, Twitter can identify users of our application as real Twitter users. These access tokens only last so long, usually expiring after a week or so, but with this access token we can call out to Twitter, if we want, and get Twitter data associated with that Twitter user.
+
+> You'll be able to see this access token via the callback URL in the browser. It will look something like /auth/twitter/callback?oauth_token=_emExwAAAAAAjDpMAAABUXmEXAg&oauth_verifier=e9g1zE58fJGz1K3FJklSqg0GG5OTNDE0
 
 
 ## You Do: Implement Twitter Log-In
