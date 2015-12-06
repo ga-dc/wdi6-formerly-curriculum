@@ -72,7 +72,7 @@ As a Twitter user, when you login, you pass in two important pieces of informati
 
 After our app is given the okay, Twitter sends back an **access token**. With that access token, Twitter can identify users of our application as real Twitter users. These access tokens only last so long, usually expiring after a week or so, but with this access token we can call out to Twitter, if we want, and get Twitter data associated with that Twitter user.
 
-> You'll be able to see this access token via the callback URL in the browser. It will look something like /auth/twitter/callback?oauth_token=_emExwAAAAAAjDpMAAABUXmEXAg&oauth_verifier=e9g1zE58fJGz1K3FJklSqg0GG5OTNDE0
+> You'll be able to see this access token via the callback URL in the browser. It will look something like `/auth/twitter/callback?oauth_token=_emExwAAAAAAjDpMAAABUXmEXAg&oauth_verifier=e9g1zE58fJGz1K3FJklSqg0GG5OTNDE0`
 
 
 ## You Do: Implement Twitter Log-In
