@@ -43,9 +43,7 @@ After our app is given the okay, Facebook sends back an **access token**. With t
 > Insert example of access token being returned. Might be accessible via earlier example.
 
 
-## Codealong: Implement Twitter Log-In (50 mins)
-
-> Should replace this application with the one started in the first Passport class.
+## Codealong: Implement Twitter Log-In
 
 To demonstrate OAuth, we are going to create a really simple app that shows the Twitter details of a user when there is a user connected or a link to Twitter login if the user isn't connected.
 
@@ -89,11 +87,48 @@ $ touch env.js
 module.exports = {
   consumerKey: "your consumer key here",
   consumerSecret: "your consumer secret here",
-  callbackUrl: "your callback url here"
+  callbackUrl: "http://127.0.0.1:3000"
 }
 ```
 
 > Make sure to include `env.js` in `.gitignore` so your API key and secret are not pushed to GitHub!
+
+### Update Model
+
+At the moment our User model can only handle local signups and logins. We need to modify it so that, when somebody signs up using Twitter, it saves pertinent information about his or her Twitter account.
+
+```javascript
+// /models/user.js
+
+var mongoose = require('mongoose');
+var bcrypt   = require('bcrypt-nodejs');
+
+// The local object in the User schema is used when a user signs up or logs in locally.
+// The twitter object is used when a user signs up or logs in via Twitter.
+// What do you think we would do if we wanted to add authentication via Facebook or Github?
+var User = mongoose.Schema({
+  local : {
+    email: String,
+    password: String,
+  },
+  twitter : {
+    id: String,
+    token: String,
+    username: String,
+    displayName: String
+  }
+});
+
+User.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.local.password);
+};
+
+User.methods.encrypt = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+module.exports = mongoose.model('User', User);
+```
 
 ### Create Passport Strategy
 
@@ -150,7 +185,7 @@ var staticsController = require('../controllers/statics');
 
 // router.route( '/', '/signup', '/login', '/logout', '/secret')
 
-// passport.authenticate('twitter') is all we need to trigger that redirect to Twitter. Thanks Passport!
+// passport.authenticate('twitter') is all we need to trigger that redirect to Twitter.
 router.route('/auth/twitter')
   .get(passport.authenticate('twitter'), usersController.twitter);
 
@@ -163,7 +198,7 @@ module.exports = router;
 // function getSignup, postSignup, getLogin, postLogin, getLogout, secret
 
 function twitter(request, response){
-
+  // Don't need to put any code in here. Thanks Passport!
 }
 
 module.exports = {
@@ -183,171 +218,40 @@ This code is all we need to redirect users to Twitter for authorization. Test th
 
 ![Twitter authorization screen](http://i.imgur.com/YliYWHb.png)
 
-#### Create the Model
+#### Handle the Callback
 
-Now that Facebook knows about us - and note, you'll have to do this for each application you use Facebook auth - we can jump into our application and add the fields into the user model to store the data sent back by Facebook.
+Now we need to create a route that handles the information sent back from Twitter. Let's create an additional route in `config/routes.js` that will take care of this callback.
 
-In `models/user.js`:
+```js
+// /config/routes.js
 
-```javascript
-var mongoose = require('mongoose');
-
-module.exports = mongoose.model('User',{
-  fb: {
-    id: String,
-    access_token: String,
-    firstName: String,
-    lastName: String,
-    email: String
-  }
-});
+router.route('/auth/twitter/callback')
+  .get(passport.authenticate('twitter'), usersController.twitterCallback);
 ```
 
-#### Add the Facebook strategy
+Next, let's create a corresponding `twitterCallback` function in `/controllers/users.js`.
 
-As we've already seen when we've used `passport-local`, passport use strategies.  `passport-facebook` uses the same process!  In the file `config/passport.js` we need to add a lot of code:
+```js
+// /controllers/users.js
 
-```javascript
-var User = require('../models/user');
-var FacebookStrategy = require('passport-facebook').Strategy;
-
-module.exports = function(passport){
-  passport.serializeUser(function(user, done) {
-    done(null, user._id);
-  });
-
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-      console.log('deserializing user:',user);
-      done(err, user);
-    });
-  });
-
-  passport.use('facebook', new FacebookStrategy({
-    clientID        : process.env.FACEBOOK_API_KEY,
-    clientSecret    : process.env.FACEBOOK_API_SECRET,
-    callbackURL     : 'http://localhost:3000/auth/facebook/callback',
-    enableProof     : true,
-    profileFields   : ['name', 'emails']
-  }, function(access_token, refresh_token, profile, done) {
-
-    // // Use this to see the information returned from Facebook
-    // console.log(profile)
-
-    process.nextTick(function() {
-
-      User.findOne({ 'fb.id' : profile.id }, function(err, user) {
-        if (err) return done(err);
-        if (user) {
-          return done(null, user);
-        } else {
-
-          var newUser = new User();
-          newUser.fb.id           = profile.id;
-          newUser.fb.access_token = access_token;
-          newUser.fb.firstName    = profile.name.givenName;
-          newUser.fb.lastName     = profile.name.familyName;
-          newUser.fb.email        = profile.emails[0].value;
-
-          newUser.save(function(err) {
-            if (err)
-              throw err;
-
-            return done(null, newUser);
-          });
-        }
-
-      });
-    });
-  }));
-
-}
-```
-
-There's a lot going on here so lets break it down. This code is really similar to what we did to use `passport-local`:
-
-- First, we give the credentials for the current app to the Facebook strategy;
-- Then, with the array given to `profileFields`, we describe which fields we want to get back from Facebook;
-- The function that follows will be executed when Facebook sends back the data to the website using `/auth/facebook/callback` endpoint;
-- Finally, if the user already exists, the code directly executes the callback and gives the user object found by mongo to the callback, otherwise, we create a new user object and execute the callback.
-
-#### Add the routes and the views
-
-To authenticate via OAuth with Facebook, an app needs three routes:
-
-- A route to request Facebook
-- A route for the Facebook callback
-- A route for the logout
-
-For simplicity sake, we will set up just one view that shows different data depending on whether or not the user is logged in or not. In layout.ejs, add:
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Facebook authentication</title>
-</head>
-<body>
-  <h1>FACEBOOK LOGIN USING PASSPORT</h1>  
-  <div>
-    <% if(user != undefined){ %>
-      <h2>Below is the data sent by facebook</h2>
-      <pre>
-        <%= user.fb %>
-      </pre>
-      <a href="/logout">Logout</a>
-    <% } else { %>
-      <a href="/auth/facebook">Login with Facebook</a>
-    <% } %>
-  </div>
-</body>
-</html>
-```
-
-Look, again, in your `user.js` file, to the block of code that provides us with the `user` object if it already exists - there are a whole bunch of attributes that we'll have access to. In this case, if the user exists, we'll do a `user.fb` to show the Facebook data for the current user and a link to logout, or a link to sign-in via Facebook, if the user isn't logged in.  Remember, from our logic above, if the user doesn't exist, and they click sign-in, we will create a new user for our application using information from Facebook.
-
-Now, we need to create a route to render this view:
-
-```javascript
-app.get('/', function(req, res){
-  res.render('layout', {user: req.user});
-});
-```
-
-When using passport, the user object will always be attached to the request object. In this method, the user object will be sent to the view using `{user: req.user}`.
-
-Now, let's add the route that will be used to create the request to Facebook:
-
-```javascript
-app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email'} ));
-```
-
-This one's easy and will redirect the user to the Facebook website.  If the user already authorized the app, then Facebook will send back the request to the url passed as a param with the field `callbackURL`.
-
-> #### Scope?!
-
-> The "scope" argument we are passing to the `facebook` Strategy, is to change the permissions that we want to request from Facebook. By default, the [Facebook Graph](https://developers.facebook.com/docs/facebook-login/permissions/v2.4) doesn't give you access to the users's email. It will also not provide you an email if you haven't verified it.
-
-For this app, if you take a look at the strategy, we've used `http://localhost:3000/auth/facebook/callback`. We will now create the route handler for this route:
-
-```javascript
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {
+function twitterCallback(request, response){
+  passport.authenticate('twitter', {
     successRedirect: '/',
-    failureRedirect: '/'
-  })
-);
-```
+    failureRedirect: '/login'
+  });
+}
 
-For this app, we will always redirect to the main page, but in some other apps, you may want to have different actions depending on the result of the login, `success` or `failure`.
-
-The last route is the one that will log the user out:
-
-```javascript
-app.get("/logout", function(req, res){
-  req.logout();
-  res.redirect("/")
-})
+// Don't forget to export our new function.
+module.exports = {
+  getLogin: getLogin,
+  postLogin: postLogin ,
+  getSignup: getSignup,
+  postSignup: postSignup,
+  getLogout: getLogout,
+  secret: secret,
+  twitter: twitter,
+  twitterCallback: twitterCallback
+};
 ```
 
 ## Independent Practice (20 minutes)
