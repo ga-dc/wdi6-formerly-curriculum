@@ -76,6 +76,10 @@ After our app is given the okay, Twitter sends back an **access token**. With th
 
 > You'll be able to see this access token via the callback URL in the browser. It will look something like `/auth/twitter/callback?oauth_token=_emExwAAAAAAjDpMAAABUXmEXAg&oauth_verifier=e9g1zE58fJGz1K3FJklSqg0GG5OTNDE0`
 
+### Here's a diagram of the whole OAuth process:
+
+![Here's a diagram of the whole OAuth process.](http://i.imgur.com/FLDP5YY.png)
+
 ### Sign up for Twitter API
 
 > NOTE: For the in-class examples we will be using Twitter. If you don't have a Twitter account, create a dummy account for today's class.
@@ -122,14 +126,18 @@ $ touch env.js
 module.exports = {
   sessionSecret: "fruitbat",
   twitter: {
-    consumerKey: "KPmEOnMQDrEOZYdOGRsGRhm1",
-    consumerSecret: "FHhgweUJkKpnNOqsdQjezONeYVsriMsUVeQ7AOsN6HzRpffB",
+    consumerKey: "abc123",
+    consumerSecret: "def456",
     callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
   }
 }
 ```
 
 > Make sure to include `env.js` in `.gitignore` so your API key and secret are not pushed to GitHub!
+
+### Note: Localhost vs 127.0.0.1
+
+Twitter won't reply to requests from Localhost. You can't start off on `localhost:3000` and then have the callback direct you to `127.0.0.1`. This is because your session ID's cookie will have been associated with `localhost` and *not* with `127.0.0.1`.
 
 ### You do: Explore an OAuth app
 
@@ -304,10 +312,6 @@ router.route('/auth/twitter')
 module.exports = router;
 ```
 
-This code is all we need to redirect users to Twitter for authorization. Test this out by clicking the "Login with Twitter" link on our login page. You should see something very similar to this in your browser...  
-
-![Twitter authorization screen](http://i.imgur.com/YliYWHb.png)
-
 #### Handle the Callback
 
 Now we need to create a route in `config/routes.js` that handles the information sent back from Twitter.
@@ -321,7 +325,12 @@ router.route('/auth/twitter/callback')
     failureRedirect: '/login'
   }));
 ```
+
 How does Twitter know to redirect the user to this route after it's done authenticating? Because we defined the callback URL in our Twitter Strategy.
+
+This code is all we need to redirect users to Twitter for authorization. Test this out by clicking the "Login with Twitter" link on our login page. You should see something very similar to this in your browser...  
+
+![Twitter authorization screen](http://i.imgur.com/YliYWHb.png)
 
 #### All Done!
 
