@@ -85,7 +85,7 @@ Navigate to [Twitter Apps](https://apps.twitter.com/) and follow these steps:
 * Click "Create New App".
 * Give your application a "Name", "Description", "Website" and "Callback URL".
   * Enter whatever you want for "Name", "Description" and "Website".
-  * Enter `http://127.0.0.1/auth/twitter/callback` for "Callback URL".
+  * Enter `http://127.0.0.1:3000/auth/twitter/callback` for "Callback URL".
 * Agree to "Developer Agreement".
 * Click "Create Your Twitter Application".
 * In the "Keys and Access Tokens" tab of application management, take note of the "Consumer Key" and "Consumer Secret".
