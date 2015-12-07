@@ -85,12 +85,12 @@ Navigate to [Twitter Apps](https://apps.twitter.com/) and follow these steps:
 * Click "Create New App".
 * Give your application a "Name", "Description", "Website" and "Callback URL".
   * Enter whatever you want for "Name", "Description" and "Website".
-  * Enter `http://127.0.0.1/twitter-callback` for "Callback URL".
+  * Enter `http://127.0.0.1/auth/twitter/callback` for "Callback URL".
 * Agree to "Developer Agreement".
 * Click "Create Your Twitter Application".
 * In the "Keys and Access Tokens" tab of application management, take note of the "Consumer Key" and "Consumer Secret".
 
-## You Do: Get to know OAuth and Passport
+## Get to know OAuth and Passport
 
 We've made a super-simple app that consists of a "Log in with Twitter" functionality and not much else. Each part of the app has a `console.log` that tells you what that part does when it's run.
 
@@ -122,11 +122,13 @@ $ touch env.js
 module.exports = {
   consumerKey: "your consumer key here",
   consumerSecret: "your consumer secret here",
-  callbackUrl: "http://127.0.0.1:3000/twitter-callback"
+  callbackUrl: "http://127.0.0.1:3000/auth/twitter/callbac"
 }
 ```
 
 > Make sure to include `env.js` in `.gitignore` so your API key and secret are not pushed to GitHub!
+
+### You do: Explore an OAuth app
 
 **Take 10 minutes** with the person next to you to explore this app. Click on all the links, and see what happens in your server log when you do. As you go, answer these questions about this app:
 
@@ -138,14 +140,13 @@ module.exports = {
 
 ## You Do: Implement Twitter Log-In
 
-To demonstrate OAuth, we are going to create a really simple app that shows the Twitter details of a user when there is a user connected or a link to Twitter login if the user isn't connected.
+To demonstrate OAuth, we are going to create another really simple app that shows the Twitter details of a user when there is a user connected or a link to Twitter login if the user isn't connected.
 
 ### Clone Repo and Install
 
 Clone the `solution` branch of the repo you worked on in the first Passport class: [https://github.com/ga-dc/express-passport-local-authentication/tree/solution](https://github.com/ga-dc/express-passport-local-authentication/tree/solution)  
 
 Then, as always, run `$ npm install`.  
-* Our dependencies include `passport-twitter`.
 
 ### Update Login View
 
@@ -318,3 +319,10 @@ Pretty similar to what you did in the last class, right? Though we are implement
 > ***Note:*** _This can be a pair programming activity or done independently._
 
 Try to add Facebook to this app. Start by creating a Facebook application [here](https://developers.facebook.com/).
+
+# Quiz Questions
+
+- What's an advantage of using OAuth over local authentication? What's a disadvantage?
+- What's the purpose of an OAuth callback URL?
+- What are the 3 things that would go into an `env.js` file, at minimum, for an OAuth app?
+ 
