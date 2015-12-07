@@ -205,7 +205,7 @@ var User = mongoose.Schema({
 
 Next we're going to create a Passport Strategy that handles all Twitter authentication. This is going to look pretty similar to the Strategy we set up for local login and signup.  
 
-The first step is to pass in credentials for the current app to the Facebook strategy.
+The first step is to pass in credentials for the current app to the Twitter strategy.
 
 ```js
 // /config/passport.js
@@ -325,4 +325,3 @@ Try to add Facebook to this app. Start by creating a Facebook application [here]
 - What's an advantage of using OAuth over local authentication? What's a disadvantage?
 - What's the purpose of an OAuth callback URL?
 - What are the 3 things that would go into an `env.js` file, at minimum, for an OAuth app?
- 
