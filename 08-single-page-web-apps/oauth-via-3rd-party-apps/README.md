@@ -151,6 +151,16 @@ Clone the `solution` branch of the repo you worked on in the first Passport clas
 
 Then, as always, run `$ npm install`.  
 
+Create an `env.js` that looks like this:
+
+```
+module.exports = {
+  consumerKey: "abc",
+  consumerSecret: "123",
+  callbackUrl: "http://127.0.0.1/auth/twitter/callback"
+}
+```
+
 ### Update Login View
 
 Let's update `/views/login.hbs` so that the user has the option of logging in via Twitter. We'll do this by adding an image that, when clicked, will direct the user to a route that we'll set up in a later step.
