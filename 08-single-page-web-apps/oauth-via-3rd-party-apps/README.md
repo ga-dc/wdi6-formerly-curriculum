@@ -157,7 +157,7 @@ Create an `env.js` that looks like this:
 module.exports = {
   consumerKey: "abc",
   consumerSecret: "123",
-  callbackUrl: "http://127.0.0.1/auth/twitter/callback"
+  callbackUrl: "http://127.0.0.1:3000/auth/twitter/callback"
 }
 ```
 
