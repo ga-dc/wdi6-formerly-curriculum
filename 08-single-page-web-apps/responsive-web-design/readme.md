@@ -2,12 +2,12 @@
 
 ## Learning Objectives
 
-- Use media queries to adjust styles for different viewport sizes.
 - Explain the difference between a responsive website and a mobile-specific website.
+- Compare mobile-first to desktop-first responsive design
+- Use media queries to adjust styles for different viewport sizes.
 - Identify and use relative units like `em`, `rem`, `vh`, `vw`, etc..
 - List the different media query values and their conditions.
 - Use the iOS simulator, Safari console, and Chrome Dev tools to debug responsive CSS.
-- Compare mobile-first to desktop-first responsive design
 
 ## Opening
 
@@ -125,11 +125,15 @@ pair:
 
 ## We do: Convert the "Craigslist Grid"
 
-Let's convert [the grid we had yesterday](http://dabble.site/grid.html) to adjust the layout when the viewport size changes.
+Let's convert [this site ](http://dabble.site/grid.html) to adjust the layout when the viewport size changes.
+
+Create a working directory and download this page:
 
     $ curl -O http://dabble.site/grid.html
 
-Eventually, we'll end up with http://dabble.site/grid-v1.html
+What moves?  What stays?  Not sure where to start? Here's some ideas: http://dabble.site/grid-v1.html
+
+What if each section had a purpose?  [Like this?](???)  Does that change your decisions?
 
 ## You do: 007 Exercise
 
@@ -143,4 +147,4 @@ Be sure to include
 <meta name="viewport" content="width=device-width">
 ```
 
->Mobile Safari introduced the "viewport meta tag" to let web developers control the viewport's size and scale. Many other mobile browsers now support this tag, although it is not part of any web standard. 
+>Mobile Safari introduced the "viewport meta tag" to let web developers control the viewport's size and scale. Many other mobile browsers now support this tag, although it is not part of any web standard.
