@@ -120,9 +120,12 @@ $ touch env.js
 
 // The below information can be found in the application management page of your Twitter app - https://apps.twitter.com/
 module.exports = {
-  consumerKey: "your consumer key here",
-  consumerSecret: "your consumer secret here",
-  callbackUrl: "http://127.0.0.1:3000/auth/twitter/callbac"
+  sessionSecret: "fruitbat",
+  twitter: {
+    consumerKey: "KPmEOnMQDrEOZYdOGRsGRhm1",
+    consumerSecret: "FHhgweUJkKpnNOqsdQjezONeYVsriMsUVeQ7AOsN6HzRpffB",
+    callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+  }
 }
 ```
 
