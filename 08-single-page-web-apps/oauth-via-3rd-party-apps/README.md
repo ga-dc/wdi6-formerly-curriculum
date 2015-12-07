@@ -5,10 +5,6 @@
 * Describe OAuth is & why it's commonly used
 * Use a Passport strategy to authenticate with a 3rd party login
 
-## Turn & Talk: Local vs. 3rd Party User Authentication
-
-What are the pros and cons of authenticating users locally (plain ol' username and password) or via a 3rd party application (like Twitter or Facebook).
-
 ## What is OAuth?
 
 You see many sites with buttons that allow for users to sign up with their Facebook or Twitter credentials.  OAuth makes all this possible.  
@@ -23,7 +19,13 @@ At a high level, the standard lays out the overall protocol of login: you have t
 
 ![facebook-login](https://cloud.githubusercontent.com/assets/40461/9360397/e49b15be-468d-11e5-8b88-3757ca6cbcac.png)
 
-You probably know this as "Login with Facebook": you click on "Login with Facebook", you're redirected to Facebook's application, and then you get back to your site.  As a developer, one benefit is that you don't have to worry about developing your own authentication system.  The other benefit is your application gets a whole bunch of information it can use - or persist - later on, from Facebook.  A downside for the users is that in order to login, they're giving a lot of of their data to the requesting application. Developers and companies love this, though, because they can use all this data from the OAuth provider (Facebook/Twitter etc).
+You probably know this as "Login with Facebook": you click on "Login with Facebook", you're redirected to Facebook's application, and then you get back to your site.
+
+## Turn & Talk: Local vs. 3rd Party User Authentication
+
+What are the pros and cons of authenticating users locally (plain ol' username and password) or via a 3rd party application (like Twitter or Facebook).
+
+> As a developer, one benefit is that you don't have to worry about developing your own authentication system.  The other benefit is your application gets a whole bunch of information it can use - or persist - later on, from Facebook.  A downside for the users is that in order to login, they're giving a lot of of their data to the requesting application. Developers and companies love this, though, because they can use all this data from the OAuth provider (Facebook/Twitter etc).
 
 #### What information is available via OAuth?
 
@@ -74,31 +76,32 @@ After our app is given the okay, Twitter sends back an **access token**. With th
 
 > You'll be able to see this access token via the callback URL in the browser. It will look something like `/auth/twitter/callback?oauth_token=_emExwAAAAAAjDpMAAABUXmEXAg&oauth_verifier=e9g1zE58fJGz1K3FJklSqg0GG5OTNDE0`
 
-
-## You Do: Implement Twitter Log-In
-
-To demonstrate OAuth, we are going to create a really simple app that shows the Twitter details of a user when there is a user connected or a link to Twitter login if the user isn't connected.
-
 ### Sign up for Twitter API
 
-> NOTE: For the in-class example we will be using Twitter. If you don't have an account, create a dummy account for today's class.
+> NOTE: For the in-class examples we will be using Twitter. If you don't have a Twitter account, create a dummy account for today's class.
 
 Navigate to [Twitter Apps](https://apps.twitter.com/) and follow these steps:
 
 * Click "Create New App".
 * Give your application a "Name", "Description", "Website" and "Callback URL".
   * Enter whatever you want for "Name", "Description" and "Website".
-  * Enter `http://127.0.0.1` for "Callback URL".
+  * Enter `http://127.0.0.1/twitter-callback` for "Callback URL".
 * Agree to "Developer Agreement".
 * Click "Create Your Twitter Application".
 * In the "Keys and Access Tokens" tab of application management, take note of the "Consumer Key" and "Consumer Secret".
 
-### Clone Repo and Install
+## You Do: Get to know OAuth and Passport
 
-Clone the `solution` branch of the repo you worked on in the first Passport class: [https://github.com/ga-dc/express-passport-local-authentication/tree/solution](https://github.com/ga-dc/express-passport-local-authentication/tree/solution)  
+We've made a super-simple app that consists of a "Log in with Twitter" functionality and not much else. Each part of the app has a `console.log` that tells you what that part does when it's run.
 
-Then, as always, run `$ npm install`.  
-* Our dependencies include `passport-twitter`.
+In order to re-familiarize yourselves with Passport, and get to know OAuth a bit better, we'd like you to clone down this app and explore it for a little bit.
+
+```bash
+$ git clone git@github.com:ga-dc/super-simple-twitter-app.git
+$ cd super-simple-twitter-app
+$ git checkout annotated
+$ npm install
+```
 
 ### Create Environment Variables
 
@@ -119,11 +122,30 @@ $ touch env.js
 module.exports = {
   consumerKey: "your consumer key here",
   consumerSecret: "your consumer secret here",
-  callbackUrl: "http://127.0.0.1:3000"
+  callbackUrl: "http://127.0.0.1:3000/twitter-callback"
 }
 ```
 
 > Make sure to include `env.js` in `.gitignore` so your API key and secret are not pushed to GitHub!
+
+**Take 10 minutes** with the person next to you to explore this app. Click on all the links, and see what happens in your server log when you do. As you go, answer these questions about this app:
+
+- What is "serialization"?
+- What is "deserialization"?
+- What is "authentication"?
+- What is a "strategy"?
+- How are sessions and cookies related?
+
+## You Do: Implement Twitter Log-In
+
+To demonstrate OAuth, we are going to create a really simple app that shows the Twitter details of a user when there is a user connected or a link to Twitter login if the user isn't connected.
+
+### Clone Repo and Install
+
+Clone the `solution` branch of the repo you worked on in the first Passport class: [https://github.com/ga-dc/express-passport-local-authentication/tree/solution](https://github.com/ga-dc/express-passport-local-authentication/tree/solution)  
+
+Then, as always, run `$ npm install`.  
+* Our dependencies include `passport-twitter`.
 
 ### Update Login View
 
