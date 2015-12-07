@@ -1,4 +1,4 @@
-# Into to OAuth and 3rd Party APIs with Express
+# Intro to OAuth and 3rd Party APIs with Express
 
 ## Learning Objectives
 
