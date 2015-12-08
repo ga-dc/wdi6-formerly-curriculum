@@ -235,6 +235,7 @@ Be sure to include
 
 ## Resources
 
+- The post that introduced us to [responsive web design]](http://alistapart.com/article/responsive-web-design)
 - http://screensiz.es
 - http://mediaqueri.es
 - Media Query [Logical Operators](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Logical_operators)
