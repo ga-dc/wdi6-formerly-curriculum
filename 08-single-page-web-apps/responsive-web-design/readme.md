@@ -214,15 +214,17 @@ Be sure to include
 <meta name="viewport" content="width=device-width">
 ```
 
->Mobile Safari introduced the "viewport meta tag" to let web developers control the viewport's size and scale. Many other mobile browsers now support this tag, although it is not part of any web standard.
+>Mobile Safari introduced the "viewport meta tag" to let web developers control the viewport's size and scale. Many other mobile browsers now support this tag, although it is not part of any web standard.  This setting makes the width of the browser’s viewport equal to the width of the device’s screen.
+
 
 ## Cheatsheet:
 
 - Sizes, sizes, and more sizes
-- `@media (max-width: 400px)`
-- And
-- Or
+- fluid media: `img, embed, object, video { max-width: 1 };`
+- `@media (max-width: 400px) { ... }`
 - min/max-width, min/max-height
+- And: `@media (max-width: 400px) and (orientation: portrait) { ... }`
+- Or (comma separated): `@media (min-width: 700px), handheld and (orientation: landscape) { ... }`
 
 ## Questions
 
