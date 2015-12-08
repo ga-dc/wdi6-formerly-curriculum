@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Bootstrap | Welcome to GA&#39;s WDI-DC</title>
+        <title>Responsive Web Design | Welcome to GA&#39;s WDI-DC</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.4">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="../../10-back-and-front-of-front-end/flexbox/readme.html" />
+    <link rel="next" href="../../10-back-and-front-of-front-end/readme.html" />
     
     
-    <link rel="prev" href="../../10-back-and-front-of-front-end/bb_routers/readme.html" />
+    <link rel="prev" href="../../08-single-page-web-apps/oojs2_create_update_destroy/readme.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="8.2.1"
-        data-chapter-title="Bootstrap"
-        data-filepath="10-back-and-front-of-front-end/bootstrap/readme.md"
+        data-level="7.4"
+        data-chapter-title="Responsive Web Design"
+        data-filepath="08-single-page-web-apps/responsive-web-design/readme.md"
         data-basepath="../.."
         data-revision="Tue Dec 08 2015 13:26:12 GMT+0000 (UTC)"
         data-innerlanguage="">
@@ -771,7 +771,7 @@
             
         </li>
     
-        <li class="chapter " data-level="7.4" data-path="08-single-page-web-apps/responsive-web-design/readme.html">
+        <li class="chapter active" data-level="7.4" data-path="08-single-page-web-apps/responsive-web-design/readme.html">
             
                 
                     <a href="../../08-single-page-web-apps/responsive-web-design/readme.html">
@@ -888,7 +888,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="8.2.1" data-path="10-back-and-front-of-front-end/bootstrap/readme.html">
+        <li class="chapter " data-level="8.2.1" data-path="10-back-and-front-of-front-end/bootstrap/readme.html">
             
                 
                     <a href="../../10-back-and-front-of-front-end/bootstrap/readme.html">
@@ -1162,224 +1162,189 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="bootstrap">Bootstrap</h1>
-<p>Screencasts:</p>
+                        <h1 id="responsive-web-design">Responsive Web Design</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li><a href="http://youtu.be/Nerq19rQFrc" target="_blank">Part 1</a></li>
-<li><a href="http://youtu.be/iTeqXPIvgys" target="_blank">Part 2</a></li>
-<li><a href="http://youtu.be/O-sh4Hb3FUw" target="_blank">Part 3</a></li>
+<li>Explain the difference between a responsive website and a mobile-specific website.</li>
+<li>Compare mobile-first to desktop-first responsive design</li>
+<li>Use media queries to adjust styles for different viewport sizes.</li>
+<li>Identify and use relative units like <code>em</code>, <code>rem</code>, <code>vh</code>, <code>vw</code>, etc..</li>
+<li>List the different media query values and their conditions.</li>
+<li>Use the iOS simulator, Safari console, and Chrome Dev tools to debug responsive CSS.</li>
 </ul>
-<h2 id="leaning-adjectives">Leaning Adjectives</h2>
-<ul>
-<li>Explain the benefits (and shortcomings) of using a design framework.</li>
-<li>Describe the use cases for Bootstrap as a library versus as a framework.</li>
-<li>List 10 useful classes from the Bootstrap library.</li>
-<li>Compare and contrast Bootstrap with other front-end frameworks (e.g., Foundation and Material Design).</li>
-</ul>
-<h2 id="check-out-this-awesome-app-we-made"><a href="http://ga-dc.github.io/grumblr_backbone/" target="_blank">Check out this awesome app we made</a></h2>
-<h3 id="this-is-a-backbone-app">This is a Backbone app</h3>
-<p><a href="http://github.com/ga-dc/grumblr_backbone" target="_blank">Here&apos;s the source code.</a></p>
-<p>Quick crash course in Backbone: The HTML is pretty much just a template that uses Handlebars syntax. I define the models being used in the application (Grumbles and Comments in this case), and Backbone takes care of all the AJAX calls and stuff for me.</p>
-<p>To get a better idea of what&apos;s going on underneath the hood, you can Inspect Element, click on the <code>&lt;html&gt;</code> tag, and hit <code>fn</code> + <code>F2</code>, and it&apos;ll show you all of the HTML <strong>after it has been rendered by Javascript</strong>.</p>
-<p>Feel free to poke around in the code.</p>
-<h3 id="but-just-using-the-app-as-a-regular-user">But just <em>using</em> the app as a regular user</h3>
-<p>...it looks pretty nice, right? Much to my chagrin, we actually didn&apos;t write any of the CSS for this page. We wrote no CSS at all. Bootstrap gives you a stylesheet that includes a metric ton of classes. Add the classes to your HTML, and you&apos;ve got the &quot;look and feel&quot; of your site taken-care-of.</p>
-<p>Bootstrap is the visual theme on which much of the modern web is based. For instance, the styling of Github&apos;s readmes and markdown files is based very heavily on Bootstrap.</p>
-<p>Bootstrap was born in 2011 as Twitter Blueprint. The fact that it&apos;s ubiquitious now speaks to how much of a need there was for it: prior to Bootstrap, there were lots of mini-frameworks you could use, but trying to run 35 stylesheets at the same time creates a tremendous headache.</p>
-<h3 id="bootstrap-is-a-godsend-for-developers">Bootstrap is a godsend for developers</h3>
-<p>As has been discussed, you can make the most amazing back-end functionality ever, but if the front-end doesn&apos;t look presentable you&apos;ll have a difficult time selling it.</p>
-<p>Bootstrap lets you make a polished-looking app with minimal effort. As a result, many websites today look very &quot;Bootstrappy&quot;.</p>
-<p>Unless you&apos;re trying to get a job in the realm of visual design, it&apos;s better to spend 15 minutes making your app look good with Bootstrap than it is to spend 3 days writing your own CSS. Why?</p>
-<p>The obvious reason is that one takes you 15 minutes, the other takes 3 days, and time is money. And of course, there are those clients who are non-tech-savvy and think you&apos;ll have written all the CSS yourself no matter what you do.</p>
-<p>But...</p>
-<h4 id="why-might-techsavvy-employers-actually-prefer-a-candidate-who-spent-15-minutes-using-bootstrap-to-one-who-spend-3-days-writing-their-own-css-doesnt-the-second-way-show-better-work-ethic">Why might tech-savvy employers actually <em>prefer</em> a candidate who spent 15 minutes using Bootstrap to one who spend 3 days writing their own CSS? Doesn&apos;t the second way show better work ethic?</h4>
-<p>Making sure you have a presentable front-end is a lot like making sure you wrote your name on the test before turning it in. Painstakingly writing your name in calligraphy won&apos;t get you a better result than chicken-scratching your name; in fact, it&apos;ll probably just look like a waste of time.</p>
-<h2 id="bootstraps-classes-have-weird-names">Bootstrap&apos;s classes have weird names</h2>
-<ul>
-<li>Popover</li>
-<li>Scrollspy</li>
-<li>Affix</li>
-<li>Jumbotron</li>
-<li>Well</li>
-<li>Glyphicon</li>
-<li>Badge</li>
-<li>Progress bar</li>
-<li>List groups</li>
-<li>Navbar</li>
-<li>Dropdowns</li>
-<li>Panels</li>
-<li>Carousel</li>
-<li>Modal</li>
-<li>Tooltip</li>
-</ul>
-<h3 id="you-do-10-bootstravenger-hunt">You do (10): Bootstravenger Hunt</h3>
-<p>Originally I was going to walk through all of these classes with the class as a group, one-by-one. Then I realized that would take years.</p>
-<p>So instead, with your table, Google madly to make a cheat sheet for yourself that includes:</p>
-<ul>
-<li>What each word means</li>
-<li>A URL that shows an example of that word/class in action</li>
-</ul>
-<h4 id="what-did-everyone-get">What did everyone get?</h4>
-<h3 id="outofthebox-bootstrap-styles-some-elements">Out-of-the-box, Bootstrap styles some elements</h3>
-<p>For instance, you&apos;ll notice changes with <code>&lt;button&gt;</code>, <code>&lt;mark&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;samp&gt;</code>, <code>&lt;kbd&gt;</code>, <code>&lt;pre&gt;</code>, <code>&lt;abbr&gt;</code>...</p>
-<p>These are all standard HTML elements, and browsers have default styling for all of them. For instance, on pretty much every browser anything inside <code>&lt;code&gt;</code>, <code>&lt;kbd&gt;</code>, and <code>&lt;pre&gt;</code> will be in a monospace font.</p>
-<p>Bootstrap takes it a step further by adding additional styling.</p>
-<h3 id="bootstrap-doesnt-style-most-elements-outofthebox">Bootstrap <em>doesn&apos;t</em> style most elements out-of-the-box</h3>
-<p>For instance, <code>&lt;button&gt;</code> with Bootstrap doesn&apos;t look that different from the button resulting from your browser&apos;s default styling: it has square corners and a slightly different gradient, but that&apos;s pretty much it.</p>
-<p>Bootstrap gives you several different colors you can use for text and buttons to indicate things like errors, warning, success messages, and so on. They are:</p>
-<pre><code>Muted, important, success, info, warning, and danger
-</code></pre><p>You can also change the size of a button. If I wanted to make a small &quot;delete&quot; button, I&apos;d write something like this:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn btn-danger btn-xs&quot;</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<h2 id="opening-5-min">Opening (5 min)</h2>
+<p>Ultimately we are trying to answer the question:</p>
+<blockquote>
+<p>How do we build web applications and sites for an optimal interaction experience on a multitude of devices?</p>
+</blockquote>
+<h3 id="how-we-got-here">How we got here</h3>
+<p>In the beginning, there was no CSS. Every site looked nearly identical. As styling web pages became more common,
+developers began structuring their pages with table layouts and fixed-width CSS.</p>
+<p>Many designers still ask</p>
+<blockquote>
+<p>What are the most common dimensions for a website design?</p>
+</blockquote>
+<h2 id="you-tell-me-httpscreensizes-5-min">You tell me! <a href="http://screensiz.es" target="_blank">http://screensiz.es</a> (5 min)</h2>
+<h2 id="you-do-turn-and-talk-10-min">You do: Turn and Talk (10 min)</h2>
+<p>What makes a design fixed? What makes a design fluid? What makes a site responsive?</p>
+<p>Check out <a href="http://mediaqueri.es" target="_blank">mediaqueri.es</a> for inspiration.</p>
+<h2 id="mobile-specific-sites-5-min">Mobile Specific Sites (5 min)</h2>
+<p>One way to create optimal experiences for mobile users is a dedicated mobile site.</p>
+<p>You know you&apos;re on one when you see <code>m.</code> in the url!</p>
+<p>Compare <a href="https://m.ups.com" target="_blank">https://m.ups.com</a> with <a href="https://ups.com" target="_blank">https://ups.com</a></p>
+<p><img src="http://imgs.xkcd.com/comics/server_attention_span.png" alt=""></p>
+<p>Avoid these... please.</p>
+<h2 id="the-three-components-of-responsive-web-design-10-min">The Three Components of Responsive Web Design (10 min)</h2>
+<ol>
+<li>Flexible (or Fluid) Grids</li>
+<li>Flexible Images (or Media)</li>
+<li>Media Specific Layouts</li>
+</ol>
+<h2 id="flexible-grids">Flexible Grids</h2>
+<p>A grid based layout which adjusts with screen size.</p>
+<p>Coming soon to a lesson near you.</p>
+<h2 id="flexible-images">Flexible Images</h2>
+<p>We need images that fit their containers.<br>It turns <code>max-width: 100%</code> is the answer.  Most of the time.  For any media.</p>
+<p>Even as our flexible container resizes, shrinking or enlarging our image, the image&#x2019;s aspect ratio remains intact.</p>
+<pre><code class="lang-css"><span class="hljs-tag">img</span>,
+<span class="hljs-tag">embed</span>,
+<span class="hljs-tag">object</span>,
+<span class="hljs-tag">video</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;
+}</span>
 </code></pre>
-<h3 id="thats-not-very-dry-is-it">That&apos;s not very DRY, is it?</h3>
-<p>There&apos;s a lot of this in Bootstrap: having 38 different classes that all start with <code>btn</code>. It would be a lot less annoying if we could make the button look like this:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn danger xs&quot;</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-</code></pre>
-<h4 id="so-why-does-bootstrap-have-such-repetitive-class-names">...so why does Bootstrap have such repetitive class names?</h4>
-<p>This is one place where you sort-of see Bootstrap trying to straddle the line between being a framework and being a library.</p>
-<p><strong>You insert a library into your code; you insert your code into a framework.</strong></p>
-<p>It&apos;s not unlikely that some Bootstrap user will want to make their own CSS class called <code>.danger</code> that is completely unrelated to Bootstrap. It&apos;s extremely unlikely that anyone&apos;s going to create their own class called <code>.btn-danger</code>.</p>
-<p>Bootstrap&apos;s &quot;library personality&quot; wants to be as unobtrusive as possible and not conflict with any classes users might be defining. This is the personality that&apos;s prevailing over the Bootstrap&apos;s other half, the &quot;framework personality,&quot; which would use <code>.danger</code> and include documentation saying that users <strong>should not</strong> create classes called <code>.danger</code>.</p>
-<p>But anyway...</p>
-<h2 id="lets-download-bootstrap">Let&apos;s download Bootstrap</h2>
-<ul>
-<li>You can grab it from a CDN.<ul>
-<li><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css&quot;&gt;</code></li>
-</ul>
-</li>
-<li>You can download <code>bootstrap.css</code> or the minified version, <code>bootstrap.min.css</code>.<ul>
-<li><a href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" target="_blank">https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css</a></li>
-</ul>
-</li>
-<li>You can download the uncompiled source code as SASS or LESS (which we&apos;ll touch on later), pick the components you want, and compile that.<ul>
-<li><a href="http://getbootstrap.com/getting-started/#download" target="_blank">http://getbootstrap.com/getting-started/#download</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="containers">Containers</h3>
-<p>Bootstrap sections a page with &quot;container&quot;, as in <code>&lt;div class=&quot;container&quot;&gt;</code> You&apos;re not supposed to put a container inside another container.</p>
-<p>Inside a container, you can use Bootstrap&apos;s built-in grid system. It lets you break a page up into 12 columns. You do this by writing something like:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;container&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;col-md-3&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;col-md-9&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</code></pre>
-<p>This indicates how many columns you want to appear on which size screen. So a div with <code>class=&quot;col-lg-9 col-sm-12&quot;</code> would be 9/12ths the width of a desktop screen, and 12/12ths the width of a mobile screen.</p>
-<p><code>xs</code> (phones), <code>sm</code> (tablets), <code>md</code> (desktops), <code>lg</code> (big desktops)</p>
-<h2 id="bootstrap-is-great-for-styling-forms-but-not-dry">Bootstrap is great for styling forms... but not DRY</h2>
-<p>Look at how un-DRY this code is:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;grumbleForm&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-horizontal&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-group&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;control-label col-sm-3&quot;</span>&gt;</span>Title:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;col-sm-9&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-control&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;title&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;{{ title }}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-group&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;control-label col-sm-3&quot;</span>&gt;</span>By:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;col-sm-9&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-control&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;authorName&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;{{ authorName }}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-group&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;control-label col-sm-3&quot;</span>&gt;</span>Content:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;col-sm-9&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-control&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;content&quot;</span>&gt;</span>{{ content }}<span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-group&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;control-label col-sm-3&quot;</span>&gt;</span>Photo URL:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;col-sm-9&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-control&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;photoUrl&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;{{ photoUrl }}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-group&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;control-label col-sm-3&quot;</span>&gt;</span>&amp;nbsp;<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;col-sm-9&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn submit btn-primary&quot;</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn cancel&quot;</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
-</code></pre>
-<p><strong>If only</strong> there was some way to not have to write <code>form-group</code> three milllion times!</p>
-<h3 id="customizing-bootstrap">Customizing Bootstrap</h3>
-<p>It&apos;s easy in some ways. Check out how many colors and dimensions and stuff you can change here, with a big fat &quot;Compile and Download&quot; button at the bottom:</p>
-<p><a href="http://getbootstrap.com/customize/" target="_blank">http://getbootstrap.com/customize/</a></p>
-<p>But let&apos;s say there&apos;s something else you want to customize.</p>
-<h3 id="you-can-add-in-your-own-stylesheet-and-classes">You can add in your own stylesheet and classes...</h3>
-<p>...but there&apos;s always the chance that your styles will conflict with those of Bootstrap, meaning you&apos;ll need to write <code>!important</code> everywhere or juggle IDs.</p>
-<h3 id="you-could-edit-the-bootstrap-css-itself">You could edit the Bootstrap CSS itself...</h3>
-<p>...but it&apos;s enormous and generally it&apos;s discouraged to edit open-source code. For one thing, it&apos;s <em>huge</em>. For another, if you ever want to update your Bootstrap to the newest version you&apos;ll have to copy over all your changes.</p>
-<h3 id="you-could-pick-and-choose-the-bootstrap-components-you-want">You could pick and choose the Bootstrap components you want...</h3>
-<p>...but if I look in <code>grumblr/assets/stylesheets/bootstrap/less</code> I can see that there are a zillion different stylesheets, and I really don&apos;t feel like having to write <code>&lt;link rel=&quot;stylesheet&quot;&gt;</code> for each one.</p>
-<h3 id="so-what-if-we-could-modify-the-bootstrap-css-without-touching-it">So what if we could modify the Bootstrap CSS without touching it?</h3>
-<p>We can use SASS to make some changes and pre-compile Bootstrap!</p>
-<p>Bootstrap&apos;s written in LESS, which is like SASS but written in Javascript, but there&apos;s an official SASS port.</p>
-<h3 id="bootstrapsass">bootstrap-sass</h3>
-<p>Download bootstrap-sass like so:</p>
-<ul>
-<li><code>gem install sass</code></li>
-<li><code>bower install bootstrap-sass</code></li>
-</ul>
-<p>I&apos;m going to make a new stylesheet called <code>captainVonBootsTrapp.scss</code> that contains this:</p>
-<pre><code class="lang-scss"><span class="hljs-at_rule">@<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss&quot;</span>;</span>
+<h2 id="media-queries">Media Queries</h2>
+<p>One way to adjust the styles depending on the device&apos;s size is by using media queries:</p>
+<pre><code class="lang-css"><span class="hljs-tag">body</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> papayawhip</span></span>;
+}</span>
 
-<span class="hljs-tag">input</span>,
-<span class="hljs-tag">textarea</span> {
-  <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span><span class="hljs-preprocessor"> .form-control</span>;</span>
-}
-<span class="hljs-tag">label</span> {
-  <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span><span class="hljs-preprocessor"> .control-label</span>;</span>
-}
-<span class="hljs-tag">fieldset</span> {
-  <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span><span class="hljs-preprocessor"> .form-group</span>;</span>
-}
-<span class="hljs-class">.form-horizontal</span>{
-  <span class="hljs-tag">label</span>{
-    <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span><span class="hljs-preprocessor"> .col-sm-3</span>;</span>
-  }
-  <span class="hljs-tag">div</span>{
-    <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span><span class="hljs-preprocessor"> .col-sm-9</span>;</span>
-  }
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (max-width: <span class="hljs-number">400px</span>)</span>{
+  <span class="hljs-tag">body</span><span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> tomato</span></span>;
+  }</span>
 }
 </code></pre>
-<p>Then I&apos;ll <code>touch captainVonBootsTrapp.css</code>.</p>
-<p>Finally, <code>sass captainVonBootsTrapp.scss captainVonBootsTrapp.css</code></p>
-<p>Now I only need to <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;assets/stylesheets/captainVonBootsTrapp.css&quot; /&gt;</code> and I get <strong>all</strong> of Bootstrap <strong>plus</strong> the changes I made!</p>
-<p>This lets me drastically DRY up that form HTML from before:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;grumbleForm&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-horizontal&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Title:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;title&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;{{ title }}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>By:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;authorName&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;{{ authorName }}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Content:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;content&quot;</span>&gt;</span>{{ content }}<span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Photo URL:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;photoUrl&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;{{ photoUrl }}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>&amp;nbsp;<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn submit btn-primary&quot;</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn cancel&quot;</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+<p>Using media queries, we can group our css rules according to the size of our expected viewing devises.  This media query says, if our viewport is less than 400px, use the following css rules.</p>
+<p>The 400px corresponds to the device&apos;s viewport.  A device&apos;s viewport is different from both its screen size and resolution.  Check out <a href="http://www.quirksmode.org/mobile/viewports.html" target="_blank">this article</a> if you&apos;re interested in why.</p>
+<p>Other possible values include</p>
+<pre><code>/* these are most commonly used */
+min-width | max-width | min-height | max-height
+
+/* these are possible, but less common */
+| width | height
+| device-width | min-device-width | max-device-width
+| device-height | min-device-height | max-device-height
+| aspect-ratio | min-aspect-ratio | max-aspect-ratio | max-device-aspect-ratio
+| device-aspect-ratio | min-device-aspect-ratio |
+| color | min-color | max-color
+| color-index | min-color-index | max-color-index
+| monochrome | min-monochrome | max-monochrome
+| resolution | min-resolution | max-resolution
+| scan | grid
+</code></pre><h2 id="you-do-media-queries-15-min">You do: Media Queries (15 min)</h2>
+<h3 id="step-1">Step 1</h3>
+<p>Working with the example above, create a <a href="https://jsfiddle.net/" target="_blank">jsfiddle</a>, <a href="http://codepen.io/pen/" target="_blank">codepen</a>, or <a href="http://justinjackson.ca/words.html" target="_blank">webpage</a> that includes at least two media queries.</p>
+<p>When the viewport is less than 800px wide, make the background yellow. When the viewport is less
+than 400px wide, make the background green.</p>
+<p><img src="https://dl.dropboxusercontent.com/s/o8xh3hdql9oijo2/mediaqueries.gif?dl=0" alt=""></p>
+<h3 id="step-2">Step 2</h3>
+<p>Try out a few of the properties above. You can combine media queries to get several different results.</p>
+<p>i.e. what combination of media queries could produce the following grid as the viewport <a href="http://maximin.tv/srm/" target="_blank">changes size</a>?</p>
+<table>
+<thead>
+<tr>
+<th>green</th>
+<th>yellow</th>
+<th>red</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>turqouise</td>
+<td>green</td>
+<td>purple</td>
+</tr>
+</tbody>
+</table>
+<p><a href="http://recordit.co/UfnuMHQbWa" target="_blank">Like this.</a></p>
+<h3 id="media-query-logical-operators">Media Query Logical Operators</h3>
+<p>You should have just seen these in your research.</p>
+<h2 id="q-how-do-we-and-two-media-queries">Q. How do we &quot;and&quot; two media queries?</h2>
+<blockquote>
+<p>A. The &quot;and&quot;  clause</p>
+</blockquote>
+<pre><code class="lang-css"><span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (min-width: <span class="hljs-number">700px</span>) and (orientation: landscape) </span>{ ... }
 </code></pre>
-<h2 id="everything-else-about-bootstrap">Everything else about Bootstrap</h2>
-<p>...is just picking and choosing the classes you want.</p>
-<h2 id="you-do-redesign-grumblr">You do: Redesign Grumblr!</h2>
-<p><a href="https://github.com/ga-dc/grumblr_css_redesign" target="_blank">https://github.com/ga-dc/grumblr_css_redesign</a></p>
-<h2 id="questions">Questions</h2>
+<h2 id="q-how-do-we-or-two-media-queries">Q. How do we &quot;or&quot; two media queries?</h2>
+<blockquote>
+<p>A.  Comma separated List</p>
+</blockquote>
+<pre><code class="lang-css"><span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (min-width: <span class="hljs-number">700px</span>), handheld and (orientation: landscape)
+</span></code></pre>
+<h2 id="q-what-does-the-not-keyword-do">Q. What does the &quot;not&quot; keyword do?</h2>
+<blockquote>
+<p>A. Applies to the whole media query and returns true if the media query would otherwise return false (such as monochrome on a color display or a screen width of 600px with a min-width: 700px feature query).  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#not" target="_blank">See more here</a></p>
+</blockquote>
+<h2 id="mobile-first-vs-desktop-first">Mobile first vs Desktop first</h2>
+<p>Q. What is the difference between starting with the smallest viewport and applying styles as the viewport size increases</p>
+<h2 id="and-starting-with-the-largest-viewport-size-as-the-default">and starting with the largest viewport size as the default?</h2>
+<blockquote>
+<p>A. See below.</p>
+</blockquote>
+<h2 id="q-do-the-order-of-the-media-queries-matter">Q. Do the order of the media queries matter?</h2>
+<blockquote>
+<p>A. Yes.</p>
+</blockquote>
+<h2 id="q-do-media-queries-affect-specificity">Q. Do media queries affect specificity?</h2>
+<blockquote>
+<p>A. No.</p>
+</blockquote>
+<h2 id="break-10-min">Break (10 min)</h2>
+<h2 id="relative-units-of-measurement">Relative units of measurement</h2>
+<p>So far, we&apos;ve been working with pixels (absolute unit of measurement) and percentages (relative unit of measurements)</p>
+<h3 id="you-do-research-the-following-units-30-min">You do: Research the following units (30 min)</h3>
+<p>Form groups with your tables to research, discuss (15 min), and demo one of the following pair:</p>
 <ul>
-<li>What&apos;s the difference between a framework and a library?</li>
-<li>Name two Bootstrap classes and explain what they do.</li>
-<li>What&apos;s the difference between a glyphicon and a jumbotron and a Megatron?</li>
-<li>Give an example of a situation in which you might want to use Bootstrap, versus one in which you might not.</li>
+<li>em and rem</li>
+<li>vh and vw</li>
+<li>vmin and vmax</li>
+<li>ex and ch</li>
+</ul>
+<h2 id="you-do-convert-the-craigslist-grid-15-min">You do: Convert the &quot;Craigslist Grid&quot; (15 min)</h2>
+<p><a href="https://github.com/ga-dc/craigslist_grid" target="_blank">https://github.com/ga-dc/craigslist_grid</a></p>
+<h2 id="break-10-min">Break (10 min)</h2>
+<h2 id="you-do-007-exercise-20-min">You do: 007 Exercise (20 min)</h2>
+<p><a href="https://github.com/ga-dc/responsive_007" target="_blank">https://github.com/ga-dc/responsive_007</a></p>
+<h2 id="we-do-check-it-out-w-chrome-dev-tools-15-min">We do: Check it out w/ Chrome dev tools (15 min)</h2>
+<p>Be sure to include</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;viewport&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">&quot;width=device-width&quot;</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p>Mobile Safari introduced the &quot;viewport meta tag&quot; to let web developers control the viewport&apos;s size and scale. Many other mobile browsers now support this tag, although it is not part of any web standard.  This setting makes the width of the browser&#x2019;s viewport equal to the width of the device&#x2019;s screen.</p>
+</blockquote>
+<h2 id="questions">Questions</h2>
+<ol>
+<li>What are the three components of responsive web design?</li>
+<li>How do we &quot;and&quot; two media queries?</li>
+<li>What is the name of the design pattern where the initial designs support mobile, then we move to larger devices?</li>
+</ol>
+<h2 id="cheatsheet">Cheatsheet:</h2>
+<ul>
+<li>Sizes, sizes, and more sizes</li>
+<li>fluid media: <code>img, embed, object, video { max-width: 1 };</code></li>
+<li><code>@media (max-width: 400px) { ... }</code></li>
+<li>min/max-width, min/max-height</li>
+<li>And: <code>@media (max-width: 400px) and (orientation: portrait) { ... }</code></li>
+<li>Or (comma separated): <code>@media (min-width: 700px), handheld and (orientation: landscape) { ... }</code></li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="http://screensiz.es" target="_blank">http://screensiz.es</a></li>
+<li><a href="http://mediaqueri.es" target="_blank">http://mediaqueri.es</a></li>
+<li>Media Query <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Logical_operators" target="_blank">Logical Operators</a></li>
+<li><a href="http://www.quirksmode.org/mobile/viewports.html" target="_blank">Viewports</a></li>
+<li>Book: Responsive Web Design, Ethan Marcotte</li>
 </ul>
 
                     
@@ -1391,10 +1356,10 @@
         </div>
 
         
-        <a href="../../10-back-and-front-of-front-end/bb_routers/readme.html" class="navigation navigation-prev " aria-label="Previous page: Routers"><i class="fa fa-angle-left"></i></a>
+        <a href="../../08-single-page-web-apps/oojs2_create_update_destroy/readme.html" class="navigation navigation-prev " aria-label="Previous page: CUD / CRUD"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../10-back-and-front-of-front-end/flexbox/readme.html" class="navigation navigation-next " aria-label="Next page: Flex Box"><i class="fa fa-angle-right"></i></a>
+        <a href="../../10-back-and-front-of-front-end/readme.html" class="navigation navigation-next " aria-label="Next page: Back and Front of Front End"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
