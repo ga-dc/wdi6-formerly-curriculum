@@ -9,7 +9,7 @@
 - List the different media query values and their conditions.
 - Use the iOS simulator, Safari console, and Chrome Dev tools to debug responsive CSS.
 
-## Opening
+## Opening (5 min)
 
 Ultimately we are trying to answer the question:
 
@@ -24,15 +24,15 @@ Many designers still ask
 
 >What are the most common dimensions for a website design?
 
-You tell me! http://screensiz.es
+## You tell me! http://screensiz.es (5 min)
 
-## You do: Turn and Talk
+## You do: Turn and Talk (10 min)
 
 What makes a design fixed? What makes a design fluid? What makes a site responsive?
 
 Check out [mediaqueri.es](http://mediaqueri.es) for inspiration.
 
-## Mobile Specific Sites
+## Mobile Specific Sites (5 min)
 
 One way to create optimal experiences for mobile users is a dedicated mobile site.
 
@@ -82,7 +82,7 @@ min-width | max-width | min-height | max-height
 | scan | grid
 ```
 
-## You do
+## You do: Media Queries (20 min)
 
 ### Step 1
 
@@ -108,35 +108,48 @@ i.e. what combination of media queries could produce the following grid as the v
 
 ## Mobile first vs Desktop first
 
-What is the difference between starting with the smallest viewport and applying styles as the viewport size increases
+Q. What is the difference between starting with the smallest viewport and applying styles as the viewport size increases
 and starting with the largest viewport size as the default?
+---
 
-Do the order of the media queries matter? Yes.
 
-Do media queries affect specificty? No.
+
+Q. Do the order of the media queries matter?
+---
+
+> A. Yes.
+
+Q. Do media queries affect specificty?
+---
+
+> A. No.
 
 ## Relative units of measurement
 
 So far, we've been working with pixels (absolute unit of measurement) and percentages (relative unit of measurements)
 
-### You do: research the following units
+## Break (10 min)
 
-Form groups with your tables to research, discuss, and demo one of the following pair:
+### You do: Research the following units (30 min)
+
+Form groups with your tables to research, discuss (15 min), and demo one of the following pair:
 
 - em and rem
 - vh and vw
 - vmin and vmax
 - ex and ch
 
-## You do: Convert the "Craigslist Grid"
+## You do: Convert the "Craigslist Grid" (15 min)
 
 https://github.com/ga-dc/craigslist_grid
 
-## You do: 007 Exercise
+## Break (10 min)
+
+## You do: 007 Exercise (25 min)
 
 https://github.com/ga-dc/responsive_007
 
-## We do: Check it out w/ Chrome dev tools
+## We do: Check it out w/ Chrome dev tools (15 min)
 
 Be sure to include
 
