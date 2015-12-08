@@ -42,6 +42,36 @@ Compare https://m.ups.com with https://ups.com
 
 ![](http://imgs.xkcd.com/comics/server_attention_span.png)
 
+Avoid these... please.
+
+## The Three Components of Responsive Web Design (10 min)
+
+1. Flexible (or Fluid) Grids
+1. Flexible Images (or Media)
+1. Media Specific Layouts
+
+## Flexible Grids
+
+A grid based layout which adjusts with screen size.
+
+Coming soon to a lesson near you.
+
+## Flexible Images
+
+We need images that fit their containers.  
+It turns `max-width: 100%` is the answer.  Most of the time.  For any media.
+
+Even as as our flexible container resizes , shrinking or enlarging our image, the image’s aspect ratio remains intact.
+
+```css
+img,
+embed,
+object,
+video {
+  max-width: 100%;
+}
+```
+
 ## Media Queries
 
 One way to adjust the styles depending on the device's size is by using media queries:
@@ -82,7 +112,7 @@ min-width | max-width | min-height | max-height
 | scan | grid
 ```
 
-## You do: Media Queries (20 min)
+## You do: Media Queries (15 min)
 
 ### Step 1
 
@@ -173,7 +203,7 @@ https://github.com/ga-dc/craigslist_grid
 
 ## Break (10 min)
 
-## You do: 007 Exercise (25 min)
+## You do: 007 Exercise (20 min)
 
 https://github.com/ga-dc/responsive_007
 
@@ -206,3 +236,4 @@ Be sure to include
 - http://mediaqueri.es
 - Media Query [Logical Operators](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Logical_operators)
 - [Viewports](http://www.quirksmode.org/mobile/viewports.html)
+- Book: Responsive Web Design, Ethan Marcotte
