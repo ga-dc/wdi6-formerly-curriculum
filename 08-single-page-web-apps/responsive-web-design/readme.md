@@ -84,6 +84,8 @@ min-width | max-width | min-height | max-height
 
 ## You do
 
+### Step 1
+
 Working with the example above, create a [jsfiddle](https://jsfiddle.net/), [codepen](http://codepen.io/pen/), or [webpage](http://justinjackson.ca/words.html) that includes at least two media queries.
 
 When the viewport is less than 800px wide, make the background yellow. When the viewport is less
@@ -91,14 +93,18 @@ than 400px wide, make the background green.
 
 ![](https://dl.dropboxusercontent.com/s/o8xh3hdql9oijo2/mediaqueries.gif?dl=0)
 
-#### Bonus
-try out a few of the properties above. You can combine media queries to get several different results.
+### Step 2
+
+Try out a few of the properties above. You can combine media queries to get several different results.
 
 i.e. what combination of media queries could produce the following grid as the viewport [changes size](http://maximin.tv/srm/)?
 
-green   | yellow | red
- -------- | -----  | ---
-turqouise | green  | purple
+| green     | yellow | red    |
+|-----------|--------|--------|
+| turqouise | green  | purple |
+
+[Like this.](http://recordit.co/UfnuMHQbWa)
+
 
 ## Mobile first vs Desktop first
 
@@ -115,25 +121,16 @@ So far, we've been working with pixels (absolute unit of measurement) and percen
 
 ### You do: research the following units
 
-Form groups with your tables to research, discuss, and demo one of the following
-pair:
+Form groups with your tables to research, discuss, and demo one of the following pair:
 
 - em and rem
 - vh and vw
 - vmin and vmax
 - ex and ch
 
-## We do: Convert the "Craigslist Grid"
+## You do: Convert the "Craigslist Grid"
 
-Let's convert [this site ](http://dabble.site/grid.html) to adjust the layout when the viewport size changes.
-
-Create a working directory and download this page:
-
-    $ curl -O http://dabble.site/grid.html
-
-What moves?  What stays?  Not sure where to start? Here's some ideas: http://dabble.site/grid-v1.html
-
-What if each section had a purpose?  [Like this?](???)  Does that change your decisions?
+https://github.com/ga-dc/craigslist_grid
 
 ## You do: 007 Exercise
 
