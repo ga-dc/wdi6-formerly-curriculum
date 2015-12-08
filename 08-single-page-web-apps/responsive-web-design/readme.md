@@ -61,7 +61,7 @@ Coming soon to a lesson near you.
 We need images that fit their containers.  
 It turns `max-width: 100%` is the answer.  Most of the time.  For any media.
 
-Even as as our flexible container resizes , shrinking or enlarging our image, the image’s aspect ratio remains intact.
+Even as our flexible container resizes, shrinking or enlarging our image, the image’s aspect ratio remains intact.
 
 ```css
 img,
@@ -217,6 +217,12 @@ Be sure to include
 >Mobile Safari introduced the "viewport meta tag" to let web developers control the viewport's size and scale. Many other mobile browsers now support this tag, although it is not part of any web standard.  This setting makes the width of the browser’s viewport equal to the width of the device’s screen.
 
 
+## Questions
+
+1. What are the three components of responsive web design?
+2. How do we "and" two media queries?
+3. What is the name of the design pattern where the initial designs support mobile, then we move to larger devices?
+
 ## Cheatsheet:
 
 - Sizes, sizes, and more sizes
@@ -225,11 +231,6 @@ Be sure to include
 - min/max-width, min/max-height
 - And: `@media (max-width: 400px) and (orientation: portrait) { ... }`
 - Or (comma separated): `@media (min-width: 700px), handheld and (orientation: landscape) { ... }`
-
-## Questions
-
-1. How do we "and" two media queries?
-2. What is the name of the design pattern where the initial designs support mobil, then we move to larger devices?
 
 ## Resources
 
