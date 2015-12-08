@@ -105,6 +105,34 @@ i.e. what combination of media queries could produce the following grid as the v
 
 [Like this.](http://recordit.co/UfnuMHQbWa)
 
+### Media Query Conditionals
+
+You should have just seen these in your research.
+
+Q. How do we "and" two media queries?
+---
+
+> A. The "and"  clause
+
+```css
+@media (min-width: 700px) and (orientation: landscape) { ... }
+```
+
+
+Q. How do we "or" two media queries?
+---
+
+> A.  Comma separated List
+
+```css
+@media (min-width: 700px), handheld and (orientation: landscape)
+```
+
+Q. What does the "not" keyword do?
+---
+
+> A. Applies to the whole media query and returns true if the media query would otherwise return false (such as monochrome on a color display or a screen width of 600px with a min-width: 700px feature query).  [See more here](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#not)
+
 
 ## Mobile first vs Desktop first
 
@@ -112,23 +140,23 @@ Q. What is the difference between starting with the smallest viewport and applyi
 and starting with the largest viewport size as the default?
 ---
 
-
+> A. See below.
 
 Q. Do the order of the media queries matter?
 ---
 
 > A. Yes.
 
-Q. Do media queries affect specificty?
+Q. Do media queries affect specificity?
 ---
 
 > A. No.
 
+## Break (10 min)
+
 ## Relative units of measurement
 
 So far, we've been working with pixels (absolute unit of measurement) and percentages (relative unit of measurements)
-
-## Break (10 min)
 
 ### You do: Research the following units (30 min)
 
@@ -158,3 +186,11 @@ Be sure to include
 ```
 
 >Mobile Safari introduced the "viewport meta tag" to let web developers control the viewport's size and scale. Many other mobile browsers now support this tag, although it is not part of any web standard.
+
+## Cheatsheet:
+
+- Sizes, sizes, and more sizes
+- `@media (max-width: 400px)`
+- And
+- Or
+- min/max-width, min/max-height
