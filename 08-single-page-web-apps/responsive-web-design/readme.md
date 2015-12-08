@@ -105,7 +105,7 @@ i.e. what combination of media queries could produce the following grid as the v
 
 [Like this.](http://recordit.co/UfnuMHQbWa)
 
-### Media Query Conditionals
+### Media Query Logical Operators
 
 You should have just seen these in your research.
 
@@ -194,3 +194,15 @@ Be sure to include
 - And
 - Or
 - min/max-width, min/max-height
+
+## Questions
+
+1. How do we "and" two media queries?
+2. What is the name of the design pattern where the initial designs support mobil, then we move to larger devices?
+
+## Resources
+
+- http://screensiz.es
+- http://mediaqueri.es
+- Media Query [Logical Operators](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Logical_operators)
+- [Viewports](http://www.quirksmode.org/mobile/viewports.html)
