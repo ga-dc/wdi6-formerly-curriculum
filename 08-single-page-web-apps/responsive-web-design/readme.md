@@ -181,6 +181,7 @@ Q. Do media queries affect specificity?
 
 > A. No.
 
+[Read more](https://css-tricks.com/logic-in-media-queries/)
 ## Break (10 min)
 
 ## Relative units of measurement
