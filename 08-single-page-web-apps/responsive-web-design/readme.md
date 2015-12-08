@@ -88,10 +88,9 @@ body{
 }
 ```
 
-The `max-width` is the device's viewport size.
+Using media queries, we can group our css rules according to the size of our expected viewing devises.  This media query says, if our viewport is less than 400px, use the following css rules.
 
-A device's viewport is different from both its screen size and resolution.
-Check out [this article](http://www.quirksmode.org/mobile/viewports.html) if you're interested in why.
+The 400px corresponds to the device's viewport.  A device's viewport is different from both its screen size and resolution.  Check out [this article](http://www.quirksmode.org/mobile/viewports.html) if you're interested in why.
 
 Other possible values include
 
