@@ -7,8 +7,7 @@ We want you! We're looking for Developers in Residence for the next cohort. This
 
 ## DIR Application Process
 
-1. [Coding exercise](https://github.com/GA-WDI/instructor-code-challenge) will be due by Friday, December 18th @ 9:00 noon. Please email a link to your repo to Brian (brianm@ga.co).
+1. [Coding exercise](https://github.com/GA-WDI/instructor-code-challenge) will be due by Friday, December 18th @ 9:00am. Please email a link to your repo to Brian (brianm@ga.co).
 2. Based on the results of the coding exercise, we will be selecting a group of students to continue on to the Sample Teach exercise.
 3. Should you be selected for the Sample Teach exercise, you will have at least 7 days to prepare.
 4. We will send the Sample Teach appointments out by Monday, December 28th.
-
