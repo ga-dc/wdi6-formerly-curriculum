@@ -1,4 +1,4 @@
-# Angular Services, Templates, and Routes
+# Angular Services and Factories
 
 ## Learning Objectives
 
@@ -11,6 +11,7 @@
 - Use the ng-view directive to load angular templates
 - Define multiple controllers in a single module
 - Use $routeParams and $location to access query parameters and update the URL
+- Difference between Service and Factory.
 - Create separate views and routes for each CRUD action
 - Compare/contrast the components of angular to OOJS / Backbone.js
 
