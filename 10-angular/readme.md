@@ -1,5 +1,6 @@
 # Learning Objectives - Week 11 - Christina Angulara!
-## Angular Intro, Controllers, and Directives
+
+## Introduction to Angular
 - Describe the benefits of using a front end framework
 - Explain how libraries differ from frameworks.
 - Compare MVVM paradigm with traditional MVC
@@ -14,30 +15,32 @@
 - explain how angular utilizes `ng-model` to leverage 2-way data binding in fluid user experience
 - explain 2 way databinding
 - explain how angular utilizes `ng-model` to execute 2-way databinding
-
-## Templating, Routing, and Services
-
-- Explain what dependency injection is and what problem it solves
-- Explain the purpose of the $routeProvider in Angular
-- Explain the purpose of templates in Angular
-- Explain the purpose of services in Angular
 - Compare/contrast the components of angular to OOJS / Backbone.js
-- Use $routeProvider and $location to access query parameters and update the URL
+
+## Angular Directives
+- Use ng-repeat to iterate over data
+- Use ng-if & ng-hide/ng-show to hide & show elements
+- Use ng-form to build forms
+- Research other Angular directives that are included in Angular's library
+
+## UI Router
+- Explain what dependency injection is and what problem it solves
+- Explain the purpose of templates in Angular
+- Create separate views and routes for each CRUD action
 - Use the ng-view directive to load angular templates
+- Use $stateProvider and $state to access query parameters and update the URL
 - Define multiple controllers in a single module
+
+## Resources and Factories
+- Explain the purpose of services in Angular
 - Create restful client-side routes using $routeProvider
 - Create a custom service to access data from an api
-- Create separate views and routes for each CRUD action
 
 ## Custom Directives
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
 - Explain the purpose of each of the four directive options, and the four options for the "restrict" directive, E, A, C, M
 - Use a custom directive to render an array of objects
 
-## Angularfire
-- Create and configure a Firebase back-end
-- Create a Javascript that communicates with a Firebase back-end
-- Explain the difference between HTTP and Websockets, and provide an advantage and disadvantage of each
-- Use a custom directive to render an array of objects sourced from Firebase
-- Explain what Angularfire is and how it differs from Firebase
-- Deploy your app to Firebase Hosting
+## Custom Directives and Authentication
+- Build a custom factory that uses $resource and adds an auth token
+- Add custom headers to $http to authenticate an API
