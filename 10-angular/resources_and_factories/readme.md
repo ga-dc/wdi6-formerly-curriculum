@@ -23,6 +23,9 @@ We'll:
 - use multiple controllers to give context to a view.
 - use a router to read and update the url to represent state.
 
+## Set up grumblr API
+
+    $ git clone git@github.com:ga-dc/grumblr_rails_api.git
 
 ## Walkthrough of Current App
 
