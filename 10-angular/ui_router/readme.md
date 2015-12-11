@@ -81,6 +81,8 @@ These are all functions and constants used internally by Angular. The effects of
 
 # Our first module
 
+We're going to create our own Angular module. It's not going to do anything for a bit. For the next part of this class, we're only going to focus on setting up modules.
+
 Notice there's an `app.js` linked in this `index.html`. Open it and add this line:
 
 ```js
@@ -98,10 +100,10 @@ The `requires` part of `grumblr` is currently an empty array.
 Now, modify `app.js` to look like this:
 
 ```js
-angular.module("grumblr", ["$uiRouter"]);
+angular.module("grumblr", ["ui.router"]);
 ```
 
-We put something called "$uiRouter" in that array. Checking `grumblr.requires` again, it's now an array with one thing inside it -- `$uiRouter`!
+We put something called "ui.router" in that array. You may recognize it as another one of the modules we have. Checking `grumblr.requires` again, it's now an array with one thing inside it -- `ui.router`!
 
 Q. Based on your experiences with the word `require` so far, what does this array in `angular.module` do?
 ---
@@ -143,6 +145,112 @@ Q. Open question: Why might the Angular developers have chosen to redirect you t
 
 > Secondly, it lets them explain the error in greater depth. Angular is a little complicated, and it might take a lot of text to explain what's going on. So rather than write huge error messages, they redirect you to a webpage with full descriptions and examples.
 
-- Todo
-  - IIFEs
-  - Use strict
+## ng-app
+
+At this point Angular is "aware" of this module but isn't actually using it anywhere.
+
+To prove it, try changing the `ui.router` to some random word, like `zoboomafoo`. That's a module we clearly don't have, so you'd expect Angular to throw an error. It doesn't. That's because it's only "aware" of the module but hasn't actually turned it on.
+
+To "require" the module, change the `html` tag in your `index.html` to look like this:
+
+```html
+<html data-ng-app="grumblr">
+```
+
+If you refresh the page you should see a whole lot of nothing.
+
+This is Angular's version of `$document(ready)`. You don't "start" an Angular app; you just add this `data-ng-app` directive and it loads your module as soon as it's able to do so.
+
+Change `ui.router` to `zoboomafoo` now and you'll get an error. `ui.router` should be just fine. This shows Angular's trying to run this module.
+
+Q. `data-ng-app` is a directive. What's a directive?
+---
+> A custom HTML element or attribute that's defined by Angular.
+
+Q. `data-ng-app` and `ng-app` do the exact same thing. Why add `data-`?
+---
+> It makes the HTML validate. You may see us forget to use `data-` occasionally in this class. It doesn't change the functionality at all; it literally just makes the HTML validate.
+
+You can only have **one** `data-ng-app` per page in Angular. Since that's the case, usually people put it in the `<html>` element. Add more `ng-app`s and it may not yell at you, but it'll defintely cause things to break.
+
+## Module style conventions
+
+We're still not going to make this module do anything yet. First, we're going to talk about the proper way to write a module. You'll just have to be content that the module isn't throwing errors.
+
+Angular is complex, and as such there's a big movement to standardize how people write it. The go-to style guide is this:
+
+https://github.com/johnpapa/angular-styleguide
+
+> John Papa has, I believe, no relation to Papa John's.
+
+The fact that this thing has 14,000 stars on Github should give you an idea of how well-respected and widely-used it is.
+
+As with all style conventions, the ones detailed in here won't impact the performance or functionality of your app at all. The purpose is just to make things easier to read and more standard for developers.
+
+## IIFEs
+
+The "correct" way to write a module is to wrap the whole thing in an IIFE, or an **immediately-invoked function expression**.
+
+Q. Turn and talk: What the heck is an IIFE? What's the point?
+---
+> It's a function that is called as soon as it's defined. The point is that any variables declared inside it won't exist *outside* it. This is useful when you have some procedural code you need to run and don't want a bunch of global variables and functions bogging down the browser.
+
+To use this convention, rewrite your `app.js` to look like the following:
+
+```js
+(function (){
+  angular
+  .module("grumblr", [
+    "ui.router"
+  ]);
+}());
+```
+
+We'll be writing everything in Angular like this from now on. Notice things have been spaced out onto separate lines, too.
+
+Q. Why is `ui.router` off on its own line?
+---
+> Presumably we're going to add more dependencies later on. This way, they're visually in a nice list instead of a big long line.
+
+## Strictness
+
+Now for something weird: make the very first line of this file `"use strict";`. You may have seen this when Googling stuff. It looks like we're just writing a weird little random string here. What purpose can it possibly have?
+
+To find out, add this garden-variety `for` loop to the bottom of your `app.js`:
+
+```js
+var array = ["a", "b", "c"];
+for(i = 0; i < array.length; i++){
+  console.log(array[i]);
+}
+```
+
+### You do: Figure out what `use strict` does.
+
+Take 3 minutes to compare what happens now to what happens when you delete the `use strict` line. Google it for more information.
+
+### Basically...
+
+`"use strict"` forces you to write better Javascript. The big thing here is that it forces you to not use a variable without first declaring it. [There are many other uses as well.](http://www.w3schools.com/js/js_strict.asp)
+
+### Why declaring variables is important
+
+To demonstrate why this is important, remove the `"use strict";` line. For instructional purposes only, I'm going to rename the `i` variable to something more visually interesting -- `potatoSack`, in this case:
+
+```
+var array = ["a", "b", "c"];
+for(potatoSack = 0; potatoSack < array.length; potatoSack++){
+  console.log(array[potatoSack]);
+}
+```
+
+Now I'm going to `console.log(window)` in the Chrome console. Scrolling down, I see `potatoSack` is attached to `window`!
+
+![Potatosack attached to window](http://i.imgur.com/e7IgnAY.png)
+
+When you don't use `var` Javascript attaches the variable to the top-most object it can find. On a webpage, this is always going to be `window`. Do that a lot and it will drastically reduce the performance of your app. `use strict` prevents you from making this mistake.
+
+With all our ducks in a row, we're now ready to make this module actually do something.
+
+# Making this module actually do something
+
