@@ -2,50 +2,168 @@
 
 ## Learning Objectives
 
-- Explain what dependency injection is and what problem it solves
-- Explain the purpose of services in Angular
-- Create a custom service to access data from an api
-- Explain the purpose of the $routeProvider in Angular
-- Create restful client-side routes using $routeProvider
-- Explain the purpose of templates in Angular
-- Use the ng-view directive to load angular templates
-- Define multiple controllers in a single module
-- Use $routeParams and $location to access query parameters and update the URL
-- Difference between Service and Factory.
-- Create separate views and routes for each CRUD action
-- Compare/contrast the components of angular to OOJS / Backbone.js
+* Explain what dependency injection is and what problem it solves
+* Explain the purpose of services in Angular
+* Create a custom service to access data from an api
+* Explain the purpose of the $routeProvider in Angular
+* Create restful client-side routes using $routeProvider
+* Explain the purpose of templates in Angular
+* Use the ng-view directive to load angular templates
+* Define multiple controllers in a single module
+* Use $routeParams and $location to access query parameters and update the URL
+* Difference between Service and Factory.
+* Create separate views and routes for each CRUD action
+* Compare/contrast the components of angular to OOJS / Backbone.js
 
 ## Overview of Today's Lesson (role of Templates, Routers, and Services)
 
-We'll:
+Today we will...  
 
-- use a service so that we can connect to an API to store our data.
-- use templates to organize reusable chunks of HTML.
-- use multiple controllers to give context to a view.
-- use a router to read and update the url to represent state.
+* Use a service so that we can connect to an API to store our data.
+* Use templates to organize reusable chunks of HTML.
+* Use multiple controllers to give context to a view.
 
-## Set up grumblr API
+## Set Up Grumblr API
 
-    $ git clone git@github.com:ga-dc/grumblr_rails_api.git
+Let's start by cloning and running a Grumblr Rails API in the background. Our front-end Grumblr application will make AJAX calls to this API.
+
+  ```bash
+  $ git clone git@github.com:ga-dc/grumblr_rails_api.git
+  $ bundle install
+  $ rails s
+  ```
 
 ## Walkthrough of Current App
 
-    $ git clone git@github.com:ga-dc/grumblr_angular.git
+We'll continue working on our front-end Grumblr Application from where you left off in your UI Router lesson. Follow either of the two instructions below to get your starter code.
 
-Current Problems:
+  Go to (https://github.com/ga-dc/grumblr_angular/tree/2.0.0)[https://github.com/ga-dc/grumblr_angular/tree/2.0.0] and download that ZIP file. Unzip and move it to `wdi/in-class`.
 
-1. No url changes or representation of state.
-2. All HTML is in a single file.
-3. Data does not persist.
+  **or**  
 
-Make sure it's working locally, and show how the current app has the three
-problems listed above.
+  ```bash
+  $ git clone git@github.com:ga-dc/grumblr_angular.git
+  $ git checkout 2e1e3b1468b459ecc62542adb7b494a9b9d44709
+  ```
 
-To obtain the starter code for today, `cd` to `grumblr_angular`:
+Let's do a walkthrough of the application as it stands.
 
-    $ git checkout -b templating-and-routing origin/controllers-and-directives-with-comments
-    $ bower install
-    $ python -m SimpleHTTPServer
+```html
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html data-ng-app="grumblr">
+  <head>
+    <title>Angular</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-resource.min.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/grumbles/grumbles.js"></script>
+    <script src="js/grumbles/index.controller.js"></script>
+  </head>
+  <body>
+    <h1>Grumblr</h1>
+    <main data-ui-view></main>
+  </body>
+</html>
+```
+> What is `ng-app` doing?
+> What is `data-ui-view` doing?
+
+```html
+<!-- js/grumbles/index.html -->
+
+<h2>These are all the Grumbles</h2>
+
+<div data-ng-repeat="grumble in GrumbleIndexViewModel.grumbles">
+  <p>{{grumble.title}}</p>
+</div>
+```
+> What does ng-repeat do?
+> This index file is functioning the same as what view tool in Rails?
+
+```html
+<!-- js/grumbles/show.html -->
+<h2>This is a Grumble</h2>
+```
+
+```js
+// js/app.js
+
+"use strict";
+
+(function(){
+  angular
+  .module("grumblr", [
+    "ui.router",
+    "grumbles"
+  ])
+  .config([
+    "$stateProvider",
+    RouterFunction
+  ]);
+
+  function RouterFunction($stateProvider){
+    $stateProvider
+    .state("grumbleIndex", {
+      url: "/grumbles",
+      templateUrl: "js/grumbles/index.html",
+      controller: "GrumbleIndexController",
+      controllerAs: "GrumbleIndexViewModel"
+    })
+    .state("grumbleShow", {
+      url: "/grumbles/:id",
+      templateUrl: "js/grumbles/show.html"
+    });
+  }
+}());
+```
+> What is an Angular module?
+> What arguments are being passed into the module?
+> What purpose does UI Router serve in Angular?
+> What does each `.state` represent?
+> What is `controllerAs:`?
+
+```js
+// js/grumbles/grumbles.js
+
+"use strict";
+
+(function(){
+  angular
+  .module("grumbles", []);
+}());
+```
+> Why don't we have to pass anything into this module?
+
+```js
+// js/grumbles/index.controller.js
+
+"use strict";
+
+(function(){
+  angular
+  .module("grumbles")
+  .controller("GrumbleIndexController", [
+    GrumbleIndexControllerFunction
+  ]);
+
+  function GrumbleIndexControllerFunction(){
+    this.grumbles = [
+      {title: "These"},
+      {title: "Are"},
+      {title: "Hardcoded"},
+      {title: "Grumbles"}
+    ]
+  }
+}());
+```
+> What purpose does a controller serve in Angular? What might be a more accurate thing to call it?
+> Why have we named our controller this way?
+
+You'll notice that, at the moment, we have hard-coded models into the Grumbles controller. Today we'll be learning about `$resource`, an interace that allows us to make calls to that Rails API we set up at the start of class.
 
 ## Services
 
