@@ -2,26 +2,13 @@
 
 ## Learning Objectives
 
-* Explain what dependency injection is and what problem it solves
-* Explain the purpose of services in Angular
-* Create a custom service to access data from an api
-* Explain the purpose of the $routeProvider in Angular
-* Create restful client-side routes using $routeProvider
-* Explain the purpose of templates in Angular
-* Use the ng-view directive to load angular templates
-* Define multiple controllers in a single module
-* Use $routeParams and $location to access query parameters and update the URL
-* Difference between Service and Factory.
-* Create separate views and routes for each CRUD action
-* Compare/contrast the components of angular to OOJS / Backbone.js
+* Explain the purpose of and differentiate between Factories and Services in Angular.
+* Use `ngResource` to pull information from an API.
+* Define multiple controllers in a single module.
+* Use $stateParams to access query parameters and update the URL.
+* Create separate views and routes for each CRUD action.
 
-## Overview (2.5 minutes / 0:02)
-
-Today we will...  
-
-* Use a factory so that we can connect to an API to store our data.
-* Use templates to organize reusable chunks of HTML.
-* Use multiple controllers to give context to a view.
+## Framing (2.5 minutes / 0:02)
 
 ## Set Up Grumblr API (2.5 minutes / 0:05)
 
