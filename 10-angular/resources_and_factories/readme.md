@@ -78,6 +78,7 @@ Let's do a walkthrough of the application as it stands.
 > **data-ui-sref:** This creates a link that, when clicked, directs the user to `#/grumbles` without reloading the page. We must use this instead of the traditional `href` so that triggers our router.  
 >  
 > **data-ui-view:** Whichever view is triggered by the user will be displayed in the DOM element with this attribute.  
+  
 
 ```html
 <!-- js/grumbles/index.html -->
