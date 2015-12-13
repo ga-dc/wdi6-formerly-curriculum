@@ -37,7 +37,7 @@ Let's start by cloning and running a Grumblr Rails API in the background. Our fr
 
 We'll continue working on our front-end Grumblr Application from where you left off in your UI Router lesson. Follow either of the two instructions below to get your starter code.
 
-  Go to (https://github.com/ga-dc/grumblr_angular/tree/2.0.0)[https://github.com/ga-dc/grumblr_angular/tree/2.0.0] and download that ZIP file. Unzip and move it to `wdi/in-class`.
+  Go to [https://github.com/ga-dc/grumblr_angular/tree/2.0.0](https://github.com/ga-dc/grumblr_angular/tree/2.0.0) and download that ZIP file. Unzip and move it to `wdi/in-class`.
 
   **or**  
 
@@ -165,7 +165,7 @@ Let's do a walkthrough of the application as it stands.
 
 You'll notice that, at the moment, we have hard-coded models into the Grumbles controller. Today we'll be learning about `$resource`, an interace that allows us to make calls to that Rails API we set up at the start of class.
 
-## Factories, Services and Providers - Oh My!
+## Factories and Services
 
 First up, we'll convert the hardcoded data to read from an external API using a factory. A factory, however, is not the only way to accomplish this. Let's see what tools we have at our disposal.
 
@@ -244,7 +244,7 @@ And in our controller...
 
 Our controllers look nearly identical in both examples. The difference is in the content of the factory and service. **What do you notice?**
 
-#### So What - Which One Should I Use?
+#### Which One Should I Use?
 
 > Is it worth going into how, under the hood, instantiating a service actually involves instantiating a factory?
 
@@ -273,10 +273,6 @@ Add `ngResource` as a dependency to our application in `js/grumbles/grumbles.js`
     ]);
 }());
 ```
-> What is a dependency?
-> Add note about not passing in dependency to `app.js`.
-> Why is ui-router passed in as dependency to `app.js`?
-> Why are we doing it ^this^ way?
 
 Create a new file `js/grumbles/grumble.factory.js` and include in `index.html`.
 
@@ -314,10 +310,10 @@ Out of the box, this gives us several methods for our newly defined `Grumble` se
 When the data is returned from the server, the response object is an instance of the resource class. The actions `save`, `remove` and `delete` are available on it as methods with the `$` prefix. This allows you to easily perform CRUD operations on server-side data like this...
 
 ```js
-var User = $resource('/user/:userId');
-var user = User.get( { userId:123 }, function(user) {
-  user.abc = true;
-  user.$save();
+var Grumble = $resource('/grumbles/:id');
+var grumble = Grumble.get( { id:123 }, function(grumble) {
+  grumble.abc = true;
+  grumble.$save();
 });
 ```
 > Perform this in the console. Highlight what form the response is returned as.
@@ -365,7 +361,7 @@ For the rest of class we're going to be adding the missing CRUD functionality to
 
 ### YOU DO: Edit
 
-Do the same as above, but with `edit`!  You just the route and view -- don't worry about updating grumbles on the server
+Do the same as above, but with `edit`! Just do the route and view - don't worry about updating grumbles on the server.
 
 ## I DO: Update
 
@@ -383,17 +379,17 @@ grumbleServices.factory('Grumble', ['$resource', function($resource) {
 
 You can now update a grumble like so...
 
-  ```js
-  this.grumble.$update({id: this.grumble.id})
-  ```
+```js
+this.grumble.$update({id: this.grumble.id})
+```
 
-  **or**  
+**or**  
 
-  ```js
-  Grumble.update({id: this.grumble.id}, this.grumble, function(){
-    $location.path("/grumbles/" + self.id)
-  })
-  ```
+```js
+Grumble.update({id: this.grumble.id}, this.grumble, function(){
+  $location.path("/grumbles/" + self.id)
+})
+```
 
 ### Update edit view to update grumbles on server
 
