@@ -104,22 +104,20 @@ We're going to add an immediately invoked function expression to instantiate our
 })()
 ```
 
-What's a module?
-What's an immediately-invoked function (IFFE)?
+What's a [module](https://docs.angularjs.org/api/ng/function/angular.module)?
+What's an immediately-invoked function ([IIFE](http://gregfranko.com/blog/i-love-my-iife/))?
 
-> The first argument is the name of the angular module. The second argument is an array of modules on which the current module will depend on. This is an immediately invoked function expression. We immediately invoke in order to start the angular application.
+> This is an immediately invoked function expression. The name really tells us everything we need to know about what an IIFE is. It is a __function expression__ (as apposed to a declaration which is why we wrap the expression in parenthesis) which is immediately-invoked (the `()` after the expression executes it). Why do we want to do this. What do functions provide us? The IIFE calls `angular.module` with two arguments which creates a new module -- our application. The first argument is the name of the angular module. The second argument is an array of modules on which the current module will depend.
 
-## Directives (5/50)
+## [Directives](https://docs.angularjs.org/guide/directive) (5/50)
 
-Directives are markers on a DOM element (tags and attributes) that tell AngularJS's HTML compiler to attach a specified behavior to that DOM element (e.g. via event listeners).
+Directives are markers on a DOM element (tags and attributes) that tell AngularJS's HTML compiler to attach a specified behavior to that DOM element.
 
-Angular has many built-in directives which we will introduce this morning and explore in depth this afternoon. Later in the week we will go further defining our own custom directives.
+Angular has many built-in directives which we will introduce this morning and explore in depth this afternoon. Later in the week we will go further, defining our own custom directives.
 
-I might say "Directives are Angular's way of letting you make custom elements and attributes. HTML elements and attributes can have different behaviors. Angular lets you make different behaviors for these elements and attributes for these, too."
+Directives are Angular's way of letting you add behavior to elements and attributes. DOM elements already have behavior we would want for displaying and linking documents, the original utility of the web. Angular directives add behaviors we would want for building applications.
 
-DOM elements already have behavior we would want for displaying and linking documents, the original utility of the web. Angular directives add behaviors we would want for building applications.
-
-### Our first directive - ng-app.
+### Our first directive - [ng-app](https://docs.angularjs.org/api/ng/directive/ngApp).
 Let's add our very first directive. In the `index.html`:
 
 ```html
@@ -128,9 +126,9 @@ Let's add our very first directive. In the `index.html`:
 
 > ng-app designates the root element of the application and is usually place near the root element of the page (i.e. the `<html>` or `<body>` tags). In this case, we're adding it to the `<html>`. The domain of the directive begins and ends with the opening and closing tags of the html element on which the directive is defined.
 
-`ng-app` says which HTML element is going to be the "box" inside which all of our Angular stuff goes.
+`ng-app` says which HTML element is going to be the "box" inside which all of our Angular stuff lives.
 
-## Angular expression (10/60)
+## [Angular expression](https://docs.angularjs.org/guide/expression) (10/60)
 ### `{{}}`(5)
 Because we defined our ng-app we are able to use `{{}}` much in the same way we did with hbs or how we used `<%%>` in erb.
 
@@ -145,7 +143,7 @@ Because we defined our ng-app we are able to use `{{}}` much in the same way we 
 ```
 
 ## Break (10/70)
-## Angular controllers (10/80)
+## [Angular controllers](https://docs.angularjs.org/guide/controller) (10/80)
 
 This is cool, but not very useful. We're basically just hard-coding in data here, which we'll never do in a "real" app. Instead, we want to dynamically insert data. **Controllers** are the go-between for views (our HTML) and our data.
 
@@ -160,7 +158,7 @@ app.controller("todosController", function(){
     "Eat foot",
     "Smell fish"
   ]
-})
+});
 ```
 
 > We've instantiated a controller on our main app. This is where all the logic will be contained. We'll be learning later this week how to fetch data from an external API, that behavior will belong in the controller. For now, we've hardcoded 4 strings as a property for the controller acting as our API fetch for our model. Our model is a todo string
@@ -170,6 +168,8 @@ Additionally we need to add this controller as a dependency to our `index.html`:
 ```html
 <script src="app/controllers/todos.js"></script>
 ```
+
+> Placement of the script tag matters here. Think about what is going on in the file to get an idea of where the tag should go.
 
 ### Setup & add controller and seed data in controller - you do - grumblr (20/100)
 - Set up the `grumblr` application as an angular application.
@@ -189,12 +189,12 @@ In `index.html`:
 </div>
 ```
 
-> we used the `ng-controller` directive here in order to instantiate our controller in the DOM. In the same way that `ng-app` established the domain of the js functionality in the html element, the `ng-controller` establishes the domain in this div.
+> we used the [`ng-controller` directive](https://docs.angularjs.org/api/ng/directive/ngController) here in order to instantiate our controller in the DOM. In the same way that `ng-app` established the domain of the js functionality in the html element, the `ng-controller` establishes the domain in this div.
 
 > `todosCtrl` is an instance of our controller. `ng-controller` gives this whole div access to all the values and methods defined in that controller. This instance of a controller is called a "ViewModel".
 
 ### Accessing values in the Controller - You do (5/105)
-In the div above, use `{{}}` (an angular expression) to access a todo from the controller.
+As above, use `{{}}` (an angular expression) to access a grumble from the controller.
 
 ## Controller Functions (20/125)
 We need to be able to define functions that interact with our models and views. We do this through the controller.
@@ -207,10 +207,10 @@ Let's create a function in our controller and see if we can utilize it in the DO
   }
 ```
 
-> all we did here is add a function to our controller we can use this functionality in a variety of ways.
+> All we did here is add a function to our controller. We can use this functionality in a variety of ways.
 
-### `ng-click`
-Sometimes we want JS functionality we've defined in a controller to execute on click. Enter `ng-click`. `ng-click` says which controller function you want to execute when that HTML element is clicked. We're going to update the html and nest an `ng-click` anchor tag (`<a></a>`) in our `<div>` that contains the controller.
+### [`ng-click`](https://docs.angularjs.org/api/ng/directive/ngClick)
+Often we want JS functionality we've defined in a controller to execute on click. There is a built-in directive `ng-click` which executes a specified controller function when that HTML element is clicked. We're going to update the html and nest an `ng-click` anchor tag (`<a></a>`) in our `<div>` that contains the controller.
 
 ```html
 <a href="#" ng-click="todosCtrl.sayHello()">Say Hello</a>
@@ -218,7 +218,7 @@ Sometimes we want JS functionality we've defined in a controller to execute on c
 
 > This is just an anchor with an `ng-click` attribute. The value of the attribute is a function of the todosController that logs hello. `ng-click` adds a click event to the dom element it's associated with.
 
-This sort of behavior is nice, but who wants to just say hello. I think it'd be really really nice if it did something useful like show a form.
+This sort of behavior is nice, but who wants to just say hello. It'd be great if it did something useful like show a form.
 
 We're going to be using another angular directive that allows us to leverage booleans values to display elements. The idea is that the element is only displayed if a property of the controller evaluates to true.
 
@@ -239,7 +239,7 @@ Let's instantiate a property of our controller and replace our `.sayHello()` fun
 
 > All we've done here is instantiate a property of our controller to false. Then defined the `.toggleForm()` function of our controller to change `this.formIsVisible` between true and false any time that function is called
 
-## `ng-show`
+## [`ng-show`](https://docs.angularjs.org/api/ng/directive/ngShow)
 We now need to link `.formIsVisible` to an actual form. We can do this by using an angular directive called `ng-show`. This adds a `display:none` using CSS if something is `true`. In this case, we're going to hide the form if `.formIsVisible` evaluates to `true`. In `index.html`:
 
 **Note:** Directives all take somewhat different values! Before we had directives that looked like `ng-something={{something.else}}`, and `ng-something=object.method()`. Now we have `ng-show="todosCtrl.formIsVisible"`
@@ -271,10 +271,10 @@ We now need to link `.formIsVisible` to an actual form. We can do this by using 
 
 ## Lunch
 
-## ng repeat (15/15)
-Right now all we can do with our form is toggle it, but we'll be learning later today how to use the form to create a new todo. But first, let's render all of our todos using a new angular directive.
+## [ng-repeat](https://docs.angularjs.org/api/ng/directive/ngRepeat) (15/15)
+Right now all we can do with our form is toggle it, but we'll be learning later today how to use the form to create a new todo. But first, let's render all of our todos using a the ng-repeat directive.
 
-In the past with OOJS or Backbone we generated a whole bunch of html through JS itself. In angular we'll be using directives through the html to execute this same sort of behavior. It feels more railsy/handlebarsy then OOJS or backbone. In `index.html`:
+In the past with jQuery and hbs we generated a whole bunch of html with JavaScript. In Angular we'll be using directives in our html to execute this same sort of behavior. In `index.html`:
 
 ```html
 <div ng-repeat="todo in todosCtrl.todos">
@@ -317,13 +317,13 @@ Earlier, we added a property and function to our controller and used some angula
 - Make sure that you display all of the information for each grumble(title, author name, content, photo url)
 - make sure each grumble has a toggleable edit form.
 
-## View Model - Revisted! (5/40)
+## ViewModel - Revisted! (5/40)
 ViewModel is a model which has been tailored to support a specific UI, helping in easing data binding. In our case, when we did `ng-controller="todosController as todosCtrl"`, we're creating a new instance of our controller (`todosCtrl`) -- the View Model -- that is tailored to support our interface. In this way, we can use the View Model to access functions and properties we've defined in our controller. Everytime we load the DOM we create a new View Model based on the functionality defined in the controller.
 
-## ng-model + break (40/80)
+## [ng-model](https://docs.angularjs.org/api/ng/directive/ngModel) + break (40/80)
 We can utilize the view model in a variety of ways. We'll be using view model to leverage the angular directive `ng-model` to retreive and set data. We can actually just create properties on the view model to serve this end.
 
-### show example of 2 way data binding
+### example of 2 way data binding
 
 > you can update the view from the model, and the model with the view.
 
@@ -345,8 +345,8 @@ Let's define our `.create` function in the controller now. In `app/controllers/t
 
 ```js
 this.create = function(){
-  this.todos.unshift(this.content)
-}
+  this.todos.unshift(this.content);
+};
 ```
 
 > unshift is just like push, only it adds the argument as the first element of the array instead of the last.
@@ -372,7 +372,7 @@ We can also use `ng-model` to fill out the values of the form itself. We will ne
 </div>
 ```
 
-> We've added alot of stuff here. We added `.edit` and `.update` (neither are defined... yet). The `.edit` function will essentially fill out the initial value of the `ng-model="todosCtrl.content"`. The `.update` function will actually change the hardcoded string value in our array of `todos` located in controller defintion. Additionally both buttons in the form will toggle the form to hide it.
+> We've added a lot of stuff here. We added `.edit` and `.update` (neither are defined... yet). The `.edit` function will essentially fill out the initial value of the `ng-model="todosCtrl.content"`. The `.update` function will actually change the hardcoded string value in our array of `todos` located in controller defintion. Additionally both buttons in the form will toggle the form to hide it. NOTE: if we have added this next to our new todo form, we have introduced a bug? Try to find it and fix it. There's more than one way to do that.
 
 Let's update the controller to include these two functions now. In `app/controllers/todos.js`:
 
@@ -381,19 +381,19 @@ Let's update the controller to include these two functions now. In `app/controll
 // It will then change the value of the html element with attribute: `ng-model='todoCtrl.content'`
 // to be the string contained at that index value.
 this.edit = function(index){
-  var todo = this.todos[index]
-  this.content = todo
-}
+  var todo = this.todos[index];
+  this.content = todo;
+};
 
 // when called, this will replace the content of a todo at at an index value that
 // passed in as an argument.
 this.update = function(index){
-  this.todos[index] = this.content
-}
+  this.todos[index] = this.content;
+};
 ```
 
 ## edit/update functionality - you do - grumblr (30/130)
-We've finished our todo app with everything except for delete functionality.
+We've added basic functionality our todo app with just delete left to implement.
 You do:
 - Update grumblr to match the functionality of Todos
 - it should have create and edit functionality.
