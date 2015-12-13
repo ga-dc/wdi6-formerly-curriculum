@@ -24,22 +24,23 @@ How we got here:
   - more structured but a royal pain to write
 
 4. Frameworks
-  - All the structure of OOJS with the ease of writing like jQuery.
+  - provides code to structure and relate front-end components
 
 What's the purpose of a front end framework? JS and all of it's many libraries are great, but you can start building and building your application and all of a sudden there's no structure and everything's soup.
 
 ### libraries (2.5/7.5)
 
 - libraries gives us tools to utilize.
-- abstracts code and allows us to write our code more succinctly
+- abstracts behaviors and allows us to write our code more succinctly
 - allows us to write applications faster and easier
 - lots of options, very few rules (jQuery)
 
 ### frameworks (2.5/10)
 
 - like libraries in that it gives us tools to utilize
-- additionally they provide structure and conventions users have to follow in order for them to work.
-- Lots of rules (convention), few options (Ruby on Rails)
+- additionally they abstract structure and provide conventions for users to write code into that structure.
+- Lots of rules (convention), fewer options (Express)
+- What parts of your front-end from project3 could have been generically abstracted?
 
 ## What is a front end framework? (5/15)
 - a library that attempts to move some or all application logic to the browser, while providing a simple interface for keeping the front-end in sync with the back-end
@@ -54,7 +55,6 @@ Take a look at [this quick overview of angular](http://www.tutorialspoint.com/an
 
 T&T - Some points to think about (5)
 - What are some features or characteristics of Angular?
-- How does Angular compare/differ from Backbone (or other front-end frameworks)?
 
 ## Angular (5/35)
 - structural front end framework for dynamic web apps
@@ -71,19 +71,10 @@ Files/folders:
 $ mkdir todo_angular
 $ cd todo_angular
 $ touch index.html
-$ mkdir js
-$ mkdir js/controllers
-$ touch js/app.js
+$ mkdir app
+$ mkdir app/controllers
+$ touch app/app.js
 ```
-
-Bower Installation:
-```bash
-$ npm install -g bower
-$ bower install --save jquery
-$ bower install --save angular
-```
-
-> installing bower globally so that we can add this dependency to our system
 
 `index.html`:
 ```html
@@ -92,9 +83,9 @@ $ bower install --save angular
 <head>
  <meta charset="UTF-8">
  <title>Angular Lesson</title>
- <script src="bower_components/jquery/dist/jquery.min.js"></script>
- <script src="bower_components/angular/angular.min.js"></script>
- <script src="js/app.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+ <script src="app/app.js"></script>
 </head>
 <body>
 
@@ -102,10 +93,10 @@ $ bower install --save angular
 </html>
 ```
 
-> In the `index.html` file, we are linking to the bower components we already installed before along with our main `js/app.js` file
+> In the `index.html` file, we are linking to a cdn to import jQuery and AngularJS before along with our main `app/app.js` file
 
 ## Creating angular app (5/45)
-We're going to add an immediately invoked function expression to instantiate our angular application. In `js/app.js`:
+We're going to add an immediately invoked function expression to instantiate our angular application. In `app/app.js`:
 
 ```js
 (function() {
@@ -119,11 +110,14 @@ What's an immediately-invoked function (IFFE)?
 > The first argument is the name of the angular module. The second argument is an array of modules on which the current module will depend on. This is an immediately invoked function expression. We immediately invoke in order to start the angular application.
 
 ## Directives (5/50)
-Directives are Angular's way of letting you make custom elements and attributes. HTML elements and attributes can have different behaviors. Angular lets you make different behaviors for these elements and attributes for these, too.
 
-Directives are markers on a DOM element that tell AngularJS's HTML compiler to attach a specified behavior to that DOM element (e.g. via event listeners).
+Directives are markers on a DOM element (tags and attributes) that tell AngularJS's HTML compiler to attach a specified behavior to that DOM element (e.g. via event listeners).
 
-This definition always scares me. I might say "Directives are Angular's way of letting you make custom elements and attributes. HTML elements and attributes can have different behaviors. Angular lets you make different behaviors for these elements and attributes for these, too."
+Angular has many built-in directives which we will introduce this morning and explore in depth this afternoon. Later in the week we will go further defining our own custom directives.
+
+I might say "Directives are Angular's way of letting you make custom elements and attributes. HTML elements and attributes can have different behaviors. Angular lets you make different behaviors for these elements and attributes for these, too."
+
+DOM elements already have behavior we would want for displaying and linking documents, the original utility of the web. Angular directives add behaviors we would want for building applications.
 
 ### Our first directive - ng-app.
 Let's add our very first directive. In the `index.html`:
@@ -132,17 +126,17 @@ Let's add our very first directive. In the `index.html`:
 <html lang='en' ng-app='todo'>
 ```
 
-> ng-app defines which portion of the html that our JS will be applied to. In this case, we're adding it to the `<html>` so we extend our JS functionality to the entire DOM. The domain of the directive begins and ends with the opening and closing tags of the html element the directive is defined in.
+> ng-app designates the root element of the application and is usually place near the root element of the page (i.e. the `<html>` or `<body>` tags). In this case, we're adding it to the `<html>`. The domain of the directive begins and ends with the opening and closing tags of the html element on which the directive is defined.
 
 `ng-app` says which HTML element is going to be the "box" inside which all of our Angular stuff goes.
 
 ## Angular expression (10/60)
 ### `{{}}`(5)
-Because we defined our ng-app we are able to use `{{}}` much in the same way we used `<%%>` in ruby.
+Because we defined our ng-app we are able to use `{{}}` much in the same way we did with hbs or how we used `<%%>` in erb.
 
 `{{}}` allows us to execute JS code in the `index.html`
 
-### You do write these expressions and what generates on the page. Try other things out! (5)
+### You do: Try adding these elements to your index.html. Move them around, nest other divs and move ng-app among them, and try other embedded JavaScript! (5)
 ```html
 <div>{{5 + 5}}</div>
 <div>{{5 == "5"}}</div>
@@ -155,7 +149,7 @@ Because we defined our ng-app we are able to use `{{}}` much in the same way we 
 
 This is cool, but not very useful. We're basically just hard-coding in data here, which we'll never do in a "real" app. Instead, we want to dynamically insert data. **Controllers** are the go-between for views (our HTML) and our data.
 
-Let's create the controller file `$ touch js/controllers/todos.js` and add the following code:
+Let's create the controller file `$ touch app/controllers/todos.js` and add the following code:
 
 ```js
 var app = angular.module("todo")
@@ -174,7 +168,7 @@ app.controller("todosController", function(){
 Additionally we need to add this controller as a dependency to our `index.html`:
 
 ```html
-<script src="js/controllers/todos.js"></script>
+<script src="app/controllers/todos.js"></script>
 ```
 
 ### Setup & add controller and seed data in controller - you do - grumblr (20/100)
@@ -205,7 +199,7 @@ In the div above, use `{{}}` (an angular expression) to access a todo from the c
 ## Controller Functions (20/125)
 We need to be able to define functions that interact with our models and views. We do this through the controller.
 
-Let's create a function in our controller and see if we can utilize it in the DOM. In `js/controllers/todos.js`:
+Let's create a function in our controller and see if we can utilize it in the DOM. In `app/controllers/todos.js`:
 
 ```js
   this.sayHello = function(){
@@ -228,7 +222,7 @@ This sort of behavior is nice, but who wants to just say hello. I think it'd be 
 
 We're going to be using another angular directive that allows us to leverage booleans values to display elements. The idea is that the element is only displayed if a property of the controller evaluates to true.
 
-Let's instantiate a property of our controller and replace our `.sayHello()` function to be `.toggleForm`. In `js/controllers/todos.js`:
+Let's instantiate a property of our controller and replace our `.sayHello()` function to be `.toggleForm`. In `app/controllers/todos.js`:
 
 ```js
   this.formIsVisible = false
@@ -347,7 +341,7 @@ We can see all of our todos, we can even toggle forms to create new ones and edi
 
 > We added an angular directive to execute a function when the form is submitted `.create` (we haven't defined this method yet). Additionally, we added an `ng-model` to our input tag with a value of the `content` property of our `todosCtrl`. When we submit the form, the value contained in the input box will be stored as a property of the `todosCtrl`.
 
-Let's define our `.create` function in the controller now. In `js/controllers/todos.js`:
+Let's define our `.create` function in the controller now. In `app/controllers/todos.js`:
 
 ```js
 this.create = function(){
@@ -380,7 +374,7 @@ We can also use `ng-model` to fill out the values of the form itself. We will ne
 
 > We've added alot of stuff here. We added `.edit` and `.update` (neither are defined... yet). The `.edit` function will essentially fill out the initial value of the `ng-model="todosCtrl.content"`. The `.update` function will actually change the hardcoded string value in our array of `todos` located in controller defintion. Additionally both buttons in the form will toggle the form to hide it.
 
-Let's update the controller to include these two functions now. In `js/controllers/todos.js`:
+Let's update the controller to include these two functions now. In `app/controllers/todos.js`:
 
 ```js
 // when called, this function will select a todo by an index passed in as an argument.
@@ -407,4 +401,4 @@ You do:
 > Remember the todo app utilized an array of "strings". You'll need to figure out how the functionalities for strings map to the functionalities for objects.
 
 ## delete functionality - you do - grumblr (20/150)
-Using what you know about angular directives and controllers, update the view(`index.html`) and the controller (`js/controllers/grumbles.js`) to incorporate delete functionality for your grumbles.
+Using what you know about angular directives and controllers, update the view(`index.html`) and the controller (`app/controllers/grumbles.js`) to incorporate delete functionality for your grumbles.
