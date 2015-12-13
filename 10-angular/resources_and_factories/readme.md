@@ -49,11 +49,9 @@ We'll continue working on our front-end Grumblr Application from where you left 
   $ git checkout 2e1e3b1468b459ecc62542adb7b494a9b9d44709
   ```
 
-Let's do a walkthrough of the application as it stands.
+#### index.html
 
 ```html
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html data-ng-app="grumblr">
   <head>
@@ -78,7 +76,8 @@ Let's do a walkthrough of the application as it stands.
 > **data-ui-sref:** This creates a link that, when clicked, directs the user to `#/grumbles` without reloading the page. We must use this instead of the traditional `href` so that triggers our router.  
 >  
 > **data-ui-view:** Whichever view is triggered by the user will be displayed in the DOM element with this attribute.  
-   
+
+#### js/grumbles/index.html
 
 ```html
 <!-- js/grumbles/index.html -->
