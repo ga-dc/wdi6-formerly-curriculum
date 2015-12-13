@@ -68,13 +68,14 @@ Let's do a walkthrough of the application as it stands.
     <script src="js/grumbles/grumble.factory.js"></script>
   </head>
   <body>
-    <h1>Grumblr</h1>
+    <h1><a data-ui-sref="grumbleIndex">Grumblr</a></h1>
     <main data-ui-view></main>
   </body>
 </html>
 ```
-> What is `ng-app` doing?
-> What is `data-ui-view` doing?
+> **data-ng-app**: Establishes the domain of our Angular application.  
+> **date-ui-sref:** This creates a link that, when clicked, directs the user to `#/grumbles` without reloading the page. We must use this instead of the traditional `href` so that triggers our router.  
+> **date-ui-view:** Whichever view is triggered by the user will be displayed in the DOM element with this attribute.  
 
 ```html
 <!-- js/grumbles/index.html -->
