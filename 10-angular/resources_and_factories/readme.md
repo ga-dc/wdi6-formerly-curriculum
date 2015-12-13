@@ -27,11 +27,14 @@ Today we will...
 
 Let's start by cloning and running a Grumblr Rails API in the background. Our front-end Grumblr application will make AJAX calls to this API.
 
-  ```bash
-  $ git clone git@github.com:ga-dc/grumblr_rails_api.git
-  $ bundle install
-  $ rails s
-  ```
+```bash
+$ git clone git@github.com:ga-dc/grumblr_rails_api.git
+$ cd grumblr_rails_api
+$ touch config/secrets.yml
+# Follow the instructions in the repo README re: secrets.yml
+$ bundle install
+$ rails s
+```
 
 ## Walkthrough of Current App
 
@@ -62,6 +65,7 @@ Let's do a walkthrough of the application as it stands.
     <script src="js/app.js"></script>
     <script src="js/grumbles/grumbles.js"></script>
     <script src="js/grumbles/index.controller.js"></script>
+    <script src="js/grumbles/grumble.factory.js"></script>
   </head>
   <body>
     <h1>Grumblr</h1>
