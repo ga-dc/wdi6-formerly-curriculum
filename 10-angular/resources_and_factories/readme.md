@@ -165,272 +165,209 @@ Let's do a walkthrough of the application as it stands.
 
 You'll notice that, at the moment, we have hard-coded models into the Grumbles controller. Today we'll be learning about `$resource`, an interace that allows us to make calls to that Rails API we set up at the start of class.
 
-## Services
+## Factories, Services and Providers - Oh My!
 
-First up, we'll convert the hardcoded data to read from an external API using a service.
+First up, we'll convert the hardcoded data to read from an external API using a factory. A factory, however, is not the only way to accomplish this. Let's see what tools we have at our disposal.
 
-Useful terminology:
+### Factory
+A factory is an Angular component that adds functionality to an Angular application. Factories allow us to separate concerns and extract functionality that would otherwise be defined in our controller. We do this by creating an object, attaching properties and methods to it and then returning that object. Here's a simple example...
 
-- **Factory**
-  - You create an object, attach properties and methods, and return that object
-- **Service**
-  - Like a factory, but instantiated with `new`. Instead of defining an object and returning it, we
-  attach properties and methods to `this`
-- **Provider**
-  - Used to create configurable Service objects. Useful if you wanted to have separate development and production URLs
+```js
+(function(){
+  angular
+    .module( "appName" )
+    .factory( "factoryName", function(){
+      return {
+        helloWorld: function(){
+          console.log( "Hello world!" );
+        }
+      }
+    }
+  ]);
+}());
+```
+> Factories can also take dependencies. In that case, the arguments passed into a factory will look a little different. We'll see that in play when we learn about `ng-resource` later today.
+
+Now we can call it in a controller...
+
+```js
+(function(){
+  angular
+    .module( "appName" )
+    .controller( "controllerName", [
+      // The factory is passed in as a dependency to our controller.
+      "factoryName",
+      controllerFunction
+    ]);
+
+  function controllerFunction(){
+    // When `helloWorld` is called on the controller, it runs the function that we defined in our factory.
+    this.helloWorld = factoryName.helloWorld();
+  }
+}());
+```
+> This is nice because it keeps our controller clean. We leave the function declaration(s) to our factory.
+
+### Service
+A service achieves the same purpose as a factory. It is instantiated, however, using the `new` keyword. Instead of defining an object and returning it, we attach properties and methods to `this`. Let's recreate the above factory using a service...
+
+```js
+(function(){
+  angular
+    .module( "appName" )
+    .service( "serviceName", function(){
+      this.helloWorld = function(){
+        console.log( "Hello world!" );
+      }
+    })
+})
+```
+
+And in our controller...
+```js
+(function(){
+  angular
+    .module( "appName" )
+    .controller( "controllerName", [
+      "serviceName",
+      controllerFunction
+    ]
+  });
+
+  function controllerFunction(){
+    this.helloWorld = serviceName.helloWorld();
+  }
+}());
+```
+
+### What's the Difference?
+
+Our controllers look nearly identical in both examples. The difference is in the content of the factory and service. **What do you notice?**
+
+#### So What - Which One Should I Use?
+
+> Is it worth going into how, under the hood, instantiating a service actually involves instantiating a factory?
 
 ### Create Grumble Factory
 
-By default, angular does not include a way to interact with APIs.
+Let's make a factory that's actual useful. It's purpose: enable us to perform CRUD functions on our Rails Grumblr API.  
 
-For that, there is a separate module, called [angular-resource](https://docs.angularjs.org/api/ngResource).
+By default, Angular does not include a way to interact with APIs.  For that, there is a separate module, called [angular-resource](https://docs.angularjs.org/api/ngResource).
 
-Install with:
-
-    $ bower install --save angular-resource
-
-Link to it in index.html
-
-```html
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-```
-
-Add `ngResource` as a dependency to our application.
-
-```js
-// js/app.js
-
-var app = angular.module('grumblr', [
-  'grumbleControllers',
-  'ngResource'
-])
-```
-
-create a new file in `js/services/grumble.js` and include in index.html
+Let's include it in our application using a CDN.
 
 ```html
 <!-- index.html -->
-<script src="js/services/grumble.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-resource.min.js"></script>
 ```
 
+Add `ngResource` as a dependency to our application in `js/grumbles/grumbles.js`.
+
 ```js
-// js/services/grumble.js
-(function() {
-  var grumbleServices = angular.module('grumbleServices', ['ngResource']);
-  grumbleServices.factory('Grumble', ['$resource', function($resource) {
-    return $resource('http://grumblr.wdidc.org/grumbles/:id');
-  }]);
-})();
+// js/grumbles/grumbles.js
+
+(function(){
+  angular
+    .module( "grumbles", [
+      "ngResource"
+    ]);
+}());
 ```
+> What is a dependency?
+> Add note about not passing in dependency to `app.js`.
+> Why is ui-router passed in as dependency to `app.js`?
+> Why are we doing it ^this^ way?
 
-and add `grumbleServices` as a dependency in `app.js`
+Create a new file `js/grumbles/grumble.factory.js` and include in `index.html`.
 
-```js
-// app.js
-
-(function() {
-  var app = angular.module('grumblr', [
-    'grumbleControllers',
-    'ngResource',
-    'grumbleServices'
-  ]);
-})()
+```html
+<!-- index.html -->
+<script src="js/grumbles/grumble.factory.js"></script>
 ```
-
-Out of the box, this gives us several methods for our newly defined `Grumble` service:
-
-- `Grumble.get`
-- `Grumble.save`
-- `Grumble.query`
-- `Grumble.remove`
-- `Grumble.delete`
-
->When the data is returned from the server then the object is an instance of the resource class. The actions save, remove and delete are available on it as methods with the $ prefix. This allows you to easily perform CRUD operations (create, read, update, delete) on server-side data like this:
+> Note the file naming syntax! Not mandatory but we're choosing to follow [this Angular style guide](https://github.com/johnpapa/angular-styleguide).
 
 ```js
-// for example...
+// js/grumbles/grumble.factory.js
+(function(){
+  angular
+    .module( "grumbles" )
+    .factory( "GrumbleFactory", [
+      "$resource",
+      FactoryFunction
+    ]);
+
+    function FactoryFunction( $resource ){
+      return $resource( "http://localhost:3000/grumbles/:id" );
+    }
+}());
+```
+> Naming this function `controllerFunction` is another stylistic decision. We can call it whatever we want.
+
+Out of the box, this gives us several methods for our newly defined `Grumble` service...
+
+* `Grumble.get`
+* `Grumble.save`
+* `Grumble.query`
+* `Grumble.remove`
+* `Grumble.delete`
+
+When the data is returned from the server, the response object is an instance of the resource class. The actions `save`, `remove` and `delete` are available on it as methods with the `$` prefix. This allows you to easily perform CRUD operations on server-side data like this...
+
+```js
 var User = $resource('/user/:userId');
-var user = User.get({userId:123}, function(user) {
+var user = User.get( { userId:123 }, function(user) {
   user.abc = true;
   user.$save();
 });
 ```
+> Perform this in the console. Highlight what form the response is returned as.
 
-### Update Index Controller (I do)
+### I DO: Update Index Controller
 
 ```js
-// js/controllers/grumbles.js
-// index controller
-grumbleControllers.controller('grumblesController', ['Grumble', function(Grumble) {
-  this.grumbles = Grumble.query();
-}]);
+// js/controllers/index.controller.js
+(function(){
+
+  angular
+    .module( "grumbles" )
+    .controller( "GrumbleIndexController", [
+      "GrumbleFactory",
+      controllerFunction
+    ]);
+
+    // Whenever `.grumbles` is called on our ViewModel, it returns the response from `.query()`
+    function controllerFunction( GrumbleFactory ){
+      this.grumbles = GrumbleFactory.query();
+    }
+
+}());
 ```
+> Demonstrate `.query` in console.
 
-### You do: Delete, and Create
-
-[Docs here](https://docs.angularjs.org/api/ngResource/service/$resource#usage)
+### YOU DO: Delete and Create
 
 Replace the `delete` and `create` methods to use our new `Grumble` service.
 
-- Reuse existing HTML when possible
-  - https://github.com/ga-dc/grumblr_angular/blob/controllers-and-directives/index.html
+Refrain from modifying the existing HTML in `/js/index.html` and `/js/show.html` if possible.
 
 We'll refactor this later and separate logic into separate controllers.
 
 ## Break
 
-## Creating Templates / Routes
+For the rest of class we're going to be adding the missing CRUD functionality to our application. Using only the knowledge we have so far, this will make our application a multi-page application. After tomorrow's **Custom Directives** class, you will be converting Grumblr into a more fluid single page application.  
 
-As our application grows in complexity, it becomes more difficult to manage state.
+### I DO: New/Create Grumble
 
-We'll use the built-in angular router and templating to separate our concerns.
+1. Link to a new page  
+2. Define a route  
+3. Create newGrumbleController  
+4. New template in js/views called new.html  
 
-### How the pieces fit together
+### YOU DO: Edit
 
-![](https://i-msdn.sec.s-msft.com/dynimg/IC416621.png)
+Do the same as above, but with `edit`!  You just the route and view -- don't worry about updating grumbles on the server
 
-You should recognize this diagram from yesterday's discussion of MVVM.
-
-For each route, we will have a corresponding diagram.
-
-### Add `ngRoute`
-
-    $ bower install --save angular-route
-
-```html
-<!-- index.html -->
-<script src="bower_components/angular-route/angular-route.js"></script>
-```
-
-```js
-// js/app.js
-angular.module('grumblr', [
-    'ngRoute',
-    'ngResource',
-    'grumbleControllers'
-])
-```
-
-Create a routes.js file:
-
-```js
-// routes.js
-(function(){
- var router = angular.module('grumbleRouter', []);
- router.config(['$routeProvider', function($routeProvider){
-   $routeProvider.when("/grumbles",{
-     templateUrl: 'js/views/grumbles/index.html',
-     controller: 'grumblesController',
-     controllerAs: 'grumblesCtrl'
-   });
- }]);
-})();
-```
-
-Specifying `controller` and `controllerAs` in the router config allows us to remove `ng-controller` from our view.
-
-Effectively, this means each view will have its own controller.
-
-Next, let's add `grumbleRouter` to `app.js` as module dependency.
-
-```js
-// js/app.js
-angular.module('grumblr', [
-    'ngRoute',
-    'ngResource',
-    'grumbleControllers',
-    'grumbleRouter'
-])
-```
-
-#### Index (I do)
-
-in index.html add
-
-`<div ng-view></div>`
-
-Create a new file `js/views/grumbles/index.html`
-
-in it:
-
-```html
-<div class='grumbles' ng-repeat>
-
-</div>
-```
-
-### Show (You do)
-
-well, almost. We need to create a separate controller for the show page. Typically, you will see one controller per view.
-
-Let's create a new controller:
-
-```js
-...controller('grumbleController',['$routeParams','Grumble', function($routeParams, Grumble){
-    this.grumble = Grumble.get({id: $routeParams.id})
-  }])
-```
-
-#### You do: define a new route `/grumbles/:id`
-
-that:
-
-- loads the controller we just created
-- loads a new template in `js/views/grumbles/show.html`
-
-This template should display:
-
-- grumble title
-- grumble author name
-- grumble content
-- grumble photoUrl
-
-Add a link (using `ng-href`)on index page to link to show page.
-
-Finish early? Check out [ui-router](https://github.com/angular-ui/ui-router) from the angular-ui team
-and replace the ng-router with ui-router.
-
-Or read the [tldr version](http://stackoverflow.com/a/21024270/850825)
-
-#### $location (we do)
-
-Move delete link to show page. It would be useful if we could redirect the user
-or rather, update the url and switch out the template after a Grumble is deleted.
-
-We can manipulate the url using angular's `$location` service:
-
-```js
-// js/controllers/grumbles.js
-// show controller (handles delete link on show page)
-app.controller('grumbleController', ['$routeParams','$location','Grumble', function($routeParams, $location, Grumble){
-  this.grumble = Grumble.get({id: $routeParams.id});
-  this.delete = function(id){
-    Grumble.delete({id: id}, function(){
-      $location.path("/grumbles")
-    });
-  }
-}]);
-```
-
-Without the callback, the view would update before the delete request returns from the server.
-
-We can force a reload of the data by updating the applications path.
-
-## Lunch
-
-#### New/Create Grumble (I do)
-
-- link to a new page
-- define a route
-- create newGrumbleController
-- new template in js/views called new.html
-
-#### Edit (You do)
-
-do the same as above, but with edit!
-but just the route and view, dont worry about updating grumbles on the server
-
-### I do: Edit/ Update
+## I DO: Update
 
 Angular doesn't have opinions about REST or how things get updated. As a result,
 we have to create our own `update` method which will make a `PUT` request
@@ -439,20 +376,24 @@ to the server.
 ```js
 grumbleServices.factory('Grumble', ['$resource', function($resource) {
   return $resource('http://grumblr.wdidc.org/grumbles/:id', {}, {
-    update: {method:'PUT'}
+    update: { method:'PUT' }
   });
 }]);
 ```
 
-You can now update a grumble like so:
+You can now update a grumble like so...
 
-```js
-this.grumble.$update({id: this.grumble.id})
-// or
-Grumble.update({id: this.grumble.id}, this.grumble, function(){
-  $location.path("/grumbles/" + self.id)
-})
-```
+  ```js
+  this.grumble.$update({id: this.grumble.id})
+  ```
+
+  **or**  
+
+  ```js
+  Grumble.update({id: this.grumble.id}, this.grumble, function(){
+    $location.path("/grumbles/" + self.id)
+  })
+  ```
 
 ### Update edit view to update grumbles on server
 
