@@ -1,4 +1,4 @@
-# Angular Services and Factories
+# Factories, Services and `ngResource`
 
 ## Learning Objectives
 
