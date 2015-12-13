@@ -74,7 +74,9 @@ Let's do a walkthrough of the application as it stands.
 </html>
 ```
 > **data-ng-app**: Establishes the domain of our Angular application.  
+>  
 > **date-ui-sref:** This creates a link that, when clicked, directs the user to `#/grumbles` without reloading the page. We must use this instead of the traditional `href` so that triggers our router.  
+>  
 > **date-ui-view:** Whichever view is triggered by the user will be displayed in the DOM element with this attribute.  
 
 ```html
