@@ -256,9 +256,6 @@ With all our ducks in a row, we're now ready to make this module actually do som
 
 # Making this module actually do something
 
-TODO: $locationProvider for clean URLs
-https://scotch.io/quick-tips/pretty-urls-in-angularjs-removing-the-hashtag
-
 We're going to configure this app to have routes to multiple views: a view for the Grumbles index, and a Grumbles show page.
 
 Remember in Express we had a `config/routes.js` file with all of the routes defined in it. Here, we put the `routes` inside a `config` module.
