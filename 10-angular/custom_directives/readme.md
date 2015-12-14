@@ -1,9 +1,12 @@
 # Custom Directives
 
 ## Lenin's Objections
+
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
 - Explain the purpose of each of the four directive options, and the four options for the "restrict" directive, E, A, C, M
 - Use a custom directive to render an array of objects
+- Use `link` method to set scope
+- Explain the difference between `@` and `=` in `scope` object
 
 [Starter Code](https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.0) | 
 [Solution Code](https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.1)
@@ -732,3 +735,5 @@ BONUS: Take that and make it look pretty!
   - The other way around.
 - What's the purpose of the `link` property of a directive?
   - You can define scope variables inside it -- that is, the data that's available inside your custom directive. Putting `scope.name = "Steve"` inside `link` means you can use `{{name}}` inside your directive's template.
+
+
