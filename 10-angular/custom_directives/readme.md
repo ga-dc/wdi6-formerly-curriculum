@@ -1,33 +1,12 @@
 # Custom Directives
 
-[Screencast](https://youtu.be/_JKtEbOfX0o)
-
 ## Lenin's Objections
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
 - Explain the purpose of each of the four directive options, and the four options for the "restrict" directive, E, A, C, M
 - Use a custom directive to render an array of objects
 
-Note that what we cover in class isn't using Firebase; it's picking up where you left off yesterday afternoon.
-
-```
-git checkout -b templating-and-routing-with-comments origin/templating-and-routing-with-comments 
-```
-
-## This class is about tidying up
-
-That is: breaking things up into separate files.
-
-We approached Angular a bit differently than we did, say, Node. You see how we have all of our controllers in one file? We could totally split those up into separate files, and in Node, we probably would have started off that way. Here, though we're starting with very few files.
-
-Take a look at the Grumbles controller file. It's only 46 lines long and I feel like it's hard to tell which controller is where. It would only take me an extra 2 seconds to figure out, though, which begs the question...
-
-**Why is 2 seconds important? [Relevant visual aid.](http://i.imgur.com/Ssz6pjF.png)**
-
-### All of programming is shortcuts
-
-Programming is making shortcuts. The first programmer wrote in 0s and 1s. The second programmer got tired of writing 0s and 1s and invented machine code to do it for him (or her). The third programmer got tired of writing machine code and invented assembly code. The fourth programmer got tired of writing assembly and invented C. The fifth programmer got tired of writing C and invented Ruby. And on the sixth day, God rested.
-
-Indenting is a tiny thing that has a tremendous impact on the usability of your code. Breaking things up into files is the same. It doesn't affect the performance of your app at all -- maybe by a couple milliseconds -- it just improves the readability.
+[Starter Code](https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.0) | 
+[Solution Code](https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.1)
 
 ##### Turn and talk: What things do you see that aren't DRY in Grumblr?
 
