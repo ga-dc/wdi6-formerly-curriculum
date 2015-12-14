@@ -1,0 +1,1642 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>AJAX | Welcome to GA&#39;s WDI-DC</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.5">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../07-apis-express-ajax/prototypes_and_constructors/readme.html" />
+    
+    
+    <link rel="prev" href="../../07-apis-express-ajax/apis/readme.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="5.2"
+        data-chapter-title="AJAX"
+        data-filepath="07-apis-express-ajax/ajax/readme.md"
+        data-basepath="../.."
+        data-revision="Mon Dec 14 2015 02:28:46 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        An Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="01-front-end-fundamentals/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Front End Fundamentals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="01-front-end-fundamentals/command-line/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/command-line/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Command Line Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01-front-end-fundamentals/git/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/git/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Git
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Intro to Web and HTML
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="01-front-end-fundamentals/css/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/css/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        CSS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="01-front-end-fundamentals/javascript-data-types/readme.html">
+            
+            <span><b>1.5.</b> JavaScript Data Types</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="01-front-end-fundamentals/javascript-loops-conditionals/readme.html">
+            
+            <span><b>1.6.</b> JavaScript Loops and Conditionals</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="01-front-end-fundamentals/javascript-objects-functions/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-objects-functions/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        JavaScript Objects and Functions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="01-front-end-fundamentals/javascript-DOM/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-DOM/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        JavaScript DOM
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="02-intermediate-front-end/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Intermediate Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="02-intermediate-front-end/scope-context-closures/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Scope, Context, and Closures
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="02-intermediate-front-end/scope-context-closures/scope.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/scope.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        Scope
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="02-intermediate-front-end/scope-context-closures/context.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/context.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        Context
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="02-intermediate-front-end/scope-context-closures/closures.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/closures.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        Closures
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="02-intermediate-front-end/events-and-callbacks/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/events-and-callbacks/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Events and Callbacks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="02-intermediate-front-end/git_branching/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/git_branching/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Git Branching
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        jQuery
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="02-intermediate-front-end/jquery/jquery-two.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-two.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        jQuery 2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="02-intermediate-front-end/workflows/lesson_plan.html">
+            
+            <span><b>2.6.</b> Workflows</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="02-intermediate-front-end/css2/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/css2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        CSS 2 (Layout &amp; Fonts)
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="04-ruby-mvc-sinatra/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Ruby + MVC with Sinatra
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="04-ruby-mvc-sinatra/ruby-basics/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-basics/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Ruby Basics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Ruby Enumerables
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
+            
+            <span><b>3.3.</b> Problem Modeling</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="04-ruby-mvc-sinatra/domain_modeling/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Domain Modeling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="04-ruby-mvc-sinatra/databases/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/databases/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="04-ruby-mvc-sinatra/active-record-intro/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/active-record-intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Active Record
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Sinatra &amp; REST
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Sinatra &amp; Active Record
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="05-mvc-with-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        MVC with Rails
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="05-mvc-with-rails/rspec/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rspec/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Unit Testing with RSpec
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        MVC Intro to Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="05-mvc-with-rails/rails-models-and-migrations/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-models-and-migrations/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Models and Migrations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="05-mvc-with-rails/rails-views-and-controllers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-views-and-controllers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Views and Controllers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="05-mvc-with-rails/rails-routes-and-resources/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-routes-and-resources/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Routes and Resources
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="05-mvc-with-rails/rails-helpers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-helpers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Helpers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="05-mvc-with-rails/rails-error-handling/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-error-handling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        Error Handling and Validations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        Sessions and Auth
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="05-mvc-with-rails/rails-deployment/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-deployment/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        Deployment
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="07-apis-express-ajax/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        APIs/Express/AJAX
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="07-apis-express-ajax/apis/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/apis/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Building APIs in Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.2" data-path="07-apis-express-ajax/ajax/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        AJAX
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="07-apis-express-ajax/prototypes_and_constructors/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/prototypes_and_constructors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Prototypes and Constructors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="07-apis-express-ajax/express_intro/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/express_intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Intro to Express
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="08-single-page-web-apps/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Single Page Web Apps
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="08-single-page-web-apps/express_2/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/express_2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Express Routing / APIs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="08-single-page-web-apps/mongo_mongoose/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/mongo_mongoose/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Mongo and Mongoose
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="08-single-page-web-apps/node-express-user-authentication/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/node-express-user-authentication/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Local Authentication using Passport
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="08-single-page-web-apps/oauth-via-3rd-party-apps/readme.html">
+            
+            <span><b>6.4.</b> OAuth using Passport</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="08-single-page-web-apps/oojs1_read/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/oojs1_read/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Object-Oriented FE JS: R / CRUD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Object-Oriented FE JS: CUD / CRUD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="08-single-page-web-apps/git-teams/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/git-teams/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Git Team Workflows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="08-single-page-web-apps/responsive-web-design/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/responsive-web-design/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Responsive Web Design
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="08-single-page-web-apps/tdd/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/tdd/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        TDD JS using Jasmine
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="10-angular/readme.html">
+            
+                
+                    <a href="../../10-angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        MVW with Angular
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="10-angular/angular_intro_controllers_directives/readme.html">
+            
+            <span><b>7.1.</b> Angular Intro: Controllers &amp; Directives</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="10-angular/services_templates_and_routing/readme.html">
+            
+            <span><b>7.2.</b> Services, Templates, and Routing</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="10-angular/custom_directives/readme.html">
+            
+                
+                    <a href="../../10-angular/custom_directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Custom Directives
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="10-angular/firebase_in_angular/readme.html">
+            
+                
+                    <a href="../../10-angular/firebase_in_angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        AngularFire: Firebase &amp; Angular
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="10-angular/angular-vs-rails.html">
+            
+                
+                    <a href="../../10-angular/angular-vs-rails.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Angular vs. Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="11-multi-track/readme.html">
+            
+                
+                    <a href="../../11-multi-track/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        Back and Front of Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1" >
+            
+            <span><b>7.6.1.</b> BackBone</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1.1" data-path="11-multi-track/bb_models_collections/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_models_collections/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.1.</b>
+                        
+                        Models and Collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.2" data-path="11-multi-track/bb_views_part1/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_views_part1/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.2.</b>
+                        
+                        Views (part 1)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.3" data-path="11-multi-track/bb_views_part2/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_views_part2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.3.</b>
+                        
+                        Views (part 2)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.4" data-path="11-multi-track/bb_routers/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_routers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.4.</b>
+                        
+                        Routers
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2" >
+            
+            <span><b>7.6.2.</b> Front End</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.2.1" data-path="11-multi-track/bootstrap/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bootstrap/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.1.</b>
+                        
+                        Bootstrap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.2" data-path="11-multi-track/flexbox/readme.html">
+            
+                
+                    <a href="../../11-multi-track/flexbox/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.2.</b>
+                        
+                        Flex Box
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.3" data-path="11-multi-track/foundation/readme.html">
+            
+                
+                    <a href="../../11-multi-track/foundation/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.3.</b>
+                        
+                        Foundation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.4" data-path="11-multi-track/intro-to-php/readme.html">
+            
+                
+                    <a href="../../11-multi-track/intro-to-php/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.4.</b>
+                        
+                        Intro to PHP
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.5" data-path="11-multi-track/jquery-plugins/readme.html">
+            
+                
+                    <a href="../../11-multi-track/jquery-plugins/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.5.</b>
+                        
+                        jQuery Plugins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.6" data-path="11-multi-track/mapping/readme.html">
+            
+                
+                    <a href="../../11-multi-track/mapping/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.6.</b>
+                        
+                        Mapping
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.7" data-path="11-multi-track/pseudo-selectors/readme.html">
+            
+                
+                    <a href="../../11-multi-track/pseudo-selectors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.7.</b>
+                        
+                        Pseudo Selectors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.8" data-path="11-multi-track/sass1-basic-reuse/readme.html">
+            
+                
+                    <a href="../../11-multi-track/sass1-basic-reuse/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.8.</b>
+                        
+                        Sass 1: Basic Reuse
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.9" data-path="11-multi-track/sass2-control-directives/readme.html">
+            
+                
+                    <a href="../../11-multi-track/sass2-control-directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.9.</b>
+                        
+                        Sass 2: Control Directives
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Welcome to GA&#39;s WDI-DC</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="ajax">Ajax</h1>
+<h2 id="screencasts">Screencasts</h2>
+<ul>
+<li><a href="https://youtu.be/K4zRqJm7sXU" target="_blank">ajax 1</a></li>
+<li><a href="https://youtu.be/WoA5LnPXWB8" target="_blank">ajax 2</a></li>
+<li><a href="https://youtu.be/3xUy5QmrBuc" target="_blank">ajax 3</a></li>
+</ul>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>Explain the difference between synchronous and asynchronous program execution</li>
+<li>Explain why synchronous program execution is not conducive to the front-end.</li>
+<li>Use jQuery <code>$.ajax()</code> method to make asynchronous GET requests for data.</li>
+<li>Use jQuery&apos;s &apos;promise-like&apos; methods to handle AJAX responses asynchronously.</li>
+<li>Render new HTML content using data loaded from an Ajax request.</li>
+<li>Perform POST, PUT, and DELETE requests to an API to modify data.</li>
+</ul>
+<h2 id="opening-framing-55">Opening Framing (5/5)</h2>
+<h3 id="pki-">PKI -</h3>
+<p>Let&apos;s list out some technologies we&apos;ve learned in this class thus far.</p>
+<p>That is a tremendous amount of stuff. In the first couple of weeks we learned how to style a semantically structured HTML site with the ability to manipulate the DOM. In the past couple weeks or so, we&apos;ve been learning a lot about server-side requests and responses. Today we&apos;ll be tying these concepts together. Currently we know how to create applications with full CRUD on models in our database, and that&apos;s great. When we do that CRUD, however, it requires a page reload of some kind. It would be really nice if had some functionality on the client side of our application but still communicate with the backend without a page refresh. If only we had a client side language that was non blocking and asynchronous...</p>
+<p>(ST-WG) Think back to the first couple weeks of class, whats the difference between synchronous and asynchronous program execution? More importantly, what kind of things can we do with non blocking asynchronous program execution?</p>
+<h3 id="t--t-1015">T &amp; T (10/15)</h3>
+<p>Let&apos;s look at Google Maps. How would this site work with things not happening asynchronously?</p>
+<p>Turn and talk to you neighbor, why might synchronous programming not be effective for the front end? Consider how http requests work within your rails application.</p>
+<p>We don&apos;t want to sit around and wait for code to execute before we load the rest of our script. It would be really nice if we could just describe what we want to happen when the code finally does execute, in a callback.</p>
+<h2 id="ajax-json-1025"><code>$.ajax</code>- JSON (10/25)</h2>
+<p>For the first part of this lesson we&apos;ll be using the <a href="http://www.wunderground.com/weather/api/d/docs" target="_blank">Weather Underground API</a>. <strong>Follow the link and sign up for a key.</strong></p>
+<p>Once you&apos;re ready, follow this link. Check out the example in the middle of the page. You&apos;ll see a URL   that looks something like: <code>http://api.wunderground.com/api/your_key/conditions/q/CA/San_Francisco.json</code></p>
+<blockquote>
+<p>Replace <code>your_key</code> with your actual key and visit that URL.
+If you&apos;re using the key provided in the lesson plan, we only have a rate limit of 500 so please don&apos;t over use!</p>
+</blockquote>
+<p>You should see a really gigantic object/hash. It can be really intimidating at first. But let&apos;s just start clicking around till we find some information we might want to display.</p>
+<p>Turns out, we can actually access this JSON object using Javascript!</p>
+<blockquote>
+<p>JSON stands for Javascript Object Notation. JSON can come in a bunch of different ways. But at the end of the day, it&apos;s just an object/hash.</p>
+</blockquote>
+<h2 id="ajax-2550"><code>$.ajax</code> (25/50)</h2>
+<p>The jQuery library gives us access to this awesome thing called &quot;Asynchronous Javascript and XML&quot; (AJAX). With the help of AJAX we can do server side requests asynchronously on the client without having to send an actual browser request that reloads the page.</p>
+<p>With AJAX we can make the usual HTTP requests: &apos;GET&apos; &apos;POST&apos; &apos;PUT&apos; &apos;PATCH&apos; &apos;DELETE&apos;. Let&apos;s give that a shot.  </p>
+<p>The first thing we&apos;ll do is create the files we need for this application...  </p>
+<pre><code class="lang-bash">$ mkdir wunderground_ajax
+$ <span class="hljs-built_in">cd</span> wunderground_ajax
+$ touch index.html
+$ touch script.js
+</code></pre>
+<p>Let&apos;s give <code>index.html</code> a <code>&lt;head&gt;</code> that links to both jQuery and our script file...  </p>
+<pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">&quot;en&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;UTF-8&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>hello<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;https://code.jquery.com/jquery-2.1.4.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;script.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p>AJAX is given to us through the jQuery library.</p>
+</blockquote>
+<p>Let&apos;s go ahead and make our first AJAX <code>GET</code> request in our <code>script.js</code>...</p>
+<pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  $(<span class="hljs-string">&quot;h1&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> url = <span class="hljs-string">&quot;https://api.wunderground.com/api/f28a93cae85945b6/geolookup/conditions/q/va/midlothian.json&quot;</span>
+    $.ajax({
+      url: url,
+      type: <span class="hljs-string">&quot;get&quot;</span>,
+      dataType: <span class="hljs-string">&quot;json&quot;</span>
+      <span class="hljs-comment">// $.ajax takes an object as an argument with at least three key-value pairs...</span>
+      <span class="hljs-comment">// (1) The URL endpoint for the JSON object.</span>
+      <span class="hljs-comment">// (2) Type of HTTP request.</span>
+      <span class="hljs-comment">// (3) Datatype. Usually JSON.</span>
+    }).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Ajax request success!&quot;</span>)
+    }).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Ajax request fails!&quot;</span>)
+    }).always(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;This always happens regardless of successful ajax request or not.&quot;</span>)
+    })
+  })
+})
+</code></pre>
+<blockquote>
+<p>This is kind of similar to when we used HTTParty synchronously on the back-end!</p>
+<p>You&apos;ll notice there are 3 functions that are tacked onto the AJAX call. These are known as promises. Promises are just callbacks that may or may not happen. A promise represents the future result of an asynchronous operation. In the <code>.done()</code> promise if that ajax is executed successfully, the block of code inside it will execute. In the <code>.fail()</code> promise, if that ajax is not executed successfully, the block of code inside it will execute. In the <code>.always()</code> promise, code block inside will always occur regardless of the ajax&apos;s success.</p>
+</blockquote>
+<p>But how do we go about accessing that big JSON object we saw before? By passing in an argument to the anonymous function callback. The <code>$.ajax</code> call returns a response that you can then pass in as an argument to the promise.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// `response` contains the actual response from the ajax call.</span>
+.done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(response)
+})
+</code></pre>
+<p>We can drill through this response just like any other JS object.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// Note that we use traditional Javascript object notation to access the response.</span>
+.done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(response.current_observation.temp_f)
+})
+</code></pre>
+<h2 id="you-do-dom-manipulation-using-response-data-1060">YOU DO: DOM Manipulation Using Response Data (10/60)</h2>
+<p>Take our existing code for the the weather underground app. Instead of logging the temperature, the <code>.done()</code> promise should create a div with the current wind speed in mph.  </p>
+<h3 id="bonus">Bonus</h3>
+<ol>
+<li>Create an input text field for City and State in the HTML.  </li>
+<li>Have the endpoint url change dynamically based on user input to generate a div about current weather in that area.  </li>
+</ol>
+<h2 id="break-1070">Break (10/70)</h2>
+<h2 id="intro-ajax-and-crud-575">Intro: AJAX and CRUD (5/75)</h2>
+<p>So we&apos;ve used AJAX to do an asynchronous <code>GET</code> request to a 3rd party API. More often than not, 3rd party API&apos;s are usually read only. They probably don&apos;t want just anyone to be able to update the weather however they want. That is not to say that kind of functionality doesn&apos;t exist, we just don&apos;t have access to it.</p>
+<p>It just so happens we&apos;ve built a new Rails API where we can do full CRUD with AJAX. Go ahead and fork and clone <a href="https://github.com/ga-dc/tunr_ajax" target="_blank">this repo</a>.</p>
+<p>Once you&apos;ve cloned the repo, <code>cd</code> into it and run the usual commands...</p>
+<pre><code class="lang-bash">$ bundle install
+$ rake db:create db:migrate db:seed
+</code></pre>
+<p>We can now use <code>$.ajax()</code> to make asynchronous HTTP requests to our Tunr app! Let&apos;s go ahead and create a new Artists controller action and corresponding view: <code>test_ajax</code></p>
+<h2 id="setting-up-a-view-to-test-ajax-with-1085">Setting up a view to test AJAX with (10/85)</h2>
+<p>Let&apos;s update our routes in <code>config/routes.rb</code> for a new route to test all of our AJAX calls in:</p>
+<pre><code class="lang-ruby">get <span class="hljs-string">&apos;/test_ajax&apos;</span>, <span class="hljs-symbol">to:</span> <span class="hljs-string">&apos;artists#test_ajax&apos;</span>
+</code></pre>
+<p>in <code>app/controllers/artists_controller.rb</code>:</p>
+<pre><code class="lang-ruby"><span class="hljs-comment"># We&apos;re just creating this so we can test AJAX on a separate view, test_ajax.html.erb.</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_ajax</span></span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Create <code>app/views/artists/test_ajax.html.erb</code> and place the following content:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;test_ajax_get&quot;</span>&gt;</span>AJAX GET!<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;test_ajax_post&quot;</span>&gt;</span>AJAX POST!<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;test_ajax_put&quot;</span>&gt;</span>AJAX PUT!<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;test_ajax_delete&quot;</span>&gt;</span>AJAX DELETE!<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<p>We&apos;re just going to add a quick event listener to this div inside <code>app/assets/javascripts/application.js</code>:</p>
+<pre><code class="lang-javascript">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  $(<span class="hljs-string">&quot;.test_ajax_get&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    alert(<span class="hljs-string">&quot;clicked!&quot;</span>);
+  })
+})
+</code></pre>
+<h2 id="ajax-get-590">AJAX GET (5/90)</h2>
+<p>Great, everything&apos;s working. Let&apos;s try doing a <code>GET</code> request to our API like we did with the Weather underground API. In <code>app/assets/javascripts/application.js</code>:</p>
+<pre><code class="lang-javascript">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  $(<span class="hljs-string">&quot;.test_ajax_get&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    $.ajax({
+      type: <span class="hljs-string">&apos;GET&apos;</span>,
+      dataType: <span class="hljs-string">&apos;json&apos;</span>,
+      url: <span class="hljs-string">&quot;http://localhost:3000/artists&quot;</span>
+    }).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+      <span class="hljs-built_in">console</span>.log(response);
+    }).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Ajax get request failed.&quot;</span>);
+    })
+  })
+})
+</code></pre>
+<blockquote>
+<p>If we access the response object, we can see all of the artists that were seeded in the database. Inside the done promise, we can interact with and display all the contents of the response.</p>
+</blockquote>
+<h2 id="setup-for-ajax-post-10100">Setup for AJAX POST (10/100)</h2>
+<p>Lets update our view to include some input fields and all of our existing artists in <code>app/views/artists/test_ajax.html.erb</code>:</p>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- div attached to event handler --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;test_ajax_get&quot;</span>&gt;</span>AJAX GET!<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- form for ajax post and put request --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Name:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;name&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Photo_url:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;photo_url&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Nationality:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;nationality&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- divs attached to event handlers --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;test_ajax_post&quot;</span>&gt;</span>AJAX POST!!<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;test_ajax_put&quot;</span>&gt;</span>AJAX PUT!!<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;test_ajax_delete&quot;</span>&gt;</span>AJAX DELETE!!<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Artists<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;artists&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">%</span> @<span class="hljs-attribute">artists.each</span> <span class="hljs-attribute">do</span> |<span class="hljs-attribute">artist</span>| %&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/artists/&lt;%= artist.id %&gt;&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">artist.name</span> %&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">%</span> <span class="hljs-attribute">end</span> %&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p>Now we&apos;re listing all the artists in this view. We&apos;ve also included an HTML form we&apos;ll use soon to generate new artists.</p>
+</blockquote>
+<h2 id="ajax-post-10110">AJAX Post (10/110)</h2>
+<p>Let&apos;s try and create an artist using AJAX. Let&apos;s update our <code>app/assets/javascripts/application.js</code>...</p>
+<pre><code class="lang-javascript">$(<span class="hljs-string">&quot;.test_ajax_post&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  $.ajax({
+    type: <span class="hljs-string">&apos;POST&apos;</span>,
+    data: {artist: {photo_url: <span class="hljs-string">&quot;www.google.com&quot;</span>, name: <span class="hljs-string">&quot;bob&quot;</span>, nationality: <span class="hljs-string">&quot;bob&quot;</span>}},
+    dataType: <span class="hljs-string">&apos;json&apos;</span>,
+    url: <span class="hljs-string">&quot;http://localhost:3000/artists&quot;</span>
+  }).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(response);
+  }).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Ajax get request failed&quot;</span>);
+  })
+})
+</code></pre>
+<p>As you can see, every time we click on this button another artist is generated. This is awesome! We can now create things in our database on the client side. But there&apos;s a problem here: we&apos;ve hardcoded the attributes.</p>
+<p><strong>Question for you:</strong> how might we be able to dynamically acquire data on the client side instead of hardcoding values?</p>
+<h2 id="break">BREAK</h2>
+<h2 id="you-do-work-in-pairs-20130">YOU DO: Work in Pairs (20/130)</h2>
+<p>Use the form to dynamically generate artists from the client side.</p>
+<ul>
+<li><strong>BONUS</strong>: Once you create a new artist in the database, asynchronously update the view so that it includes the new artist. (Hint: look at the response)</li>
+</ul>
+<h2 id="ajax-put-10140--we-do">AJAX PUT (10/140) - We do</h2>
+<p>Let&apos;s now update an existing artist by adding another AJAX call to our next event listener:</p>
+<pre><code class="lang-javascript">$(<span class="hljs-string">&quot;.test_ajax_put&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  $.ajax({
+    type: <span class="hljs-string">&apos;PUT&apos;</span>,
+    data: {
+      artist: {
+        name: <span class="hljs-string">&quot;Robert Goulet&quot;</span>,
+        nationality: <span class="hljs-string">&quot;American&quot;</span>,
+        photo_url: <span class="hljs-string">&quot;http://media.giphy.com/media/u5yMOKjUpASwU/giphy.gif&quot;</span>
+      }
+    },
+    dataType: <span class="hljs-string">&apos;json&apos;</span>,
+    url: <span class="hljs-string">&quot;/artists/6&quot;</span>
+  }).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(response);
+  }).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Failed to update.&quot;</span>);
+  })
+})
+</code></pre>
+<blockquote>
+<p>NOTE: This is just to show you how put requests work. Normally we would not hardcode the URL. We&apos;ll get more into this during OOJS/Front-end Frameworks. But think about how we could modify the DOM in order to effectively use AJAX PUT requests.</p>
+</blockquote>
+<h2 id="ajax-delete-10150--you-do">AJAX DELETE (10/150) - You do</h2>
+<p>Let&apos;s update our Javascript for our final event listener to delete a record in our database through AJAX in <code>app/assets/javascripts/application.js</code>...</p>
+<pre><code class="lang-javascript">$(<span class="hljs-string">&quot;.test_ajax_delete&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  $.ajax({
+    type: <span class="hljs-string">&apos;DELETE&apos;</span>,
+    dataType: <span class="hljs-string">&apos;json&apos;</span>,
+    url: <span class="hljs-string">&quot;http://localhost:3000/artists/9&quot;</span>
+  }).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;DELETED&quot;</span>);
+    <span class="hljs-built_in">console</span>.log(response);
+  }).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Failed to delete.&quot;</span>);
+  })
+})
+</code></pre>
+<h3 id="bonus-exercises-for-put-and-delete">Bonus Exercises for PUT and DELETE</h3>
+<ol>
+<li>Create a button or link that, when clicked, creates inline editing for an artist.</li>
+<li>Create a button that submits an AJAX <code>PUT</code> request to update that artist in the database. Change the view on the client side, if need be.</li>
+<li>Create a button or link for each artist that submits an AJAX <code>DELETE</code> request to delete an artist in the database. Update the view in the client side accordingly.</li>
+</ol>
+<h2 id="you-do-on-your-own-time-practice-makes-perfect">YOU DO (On Your Own Time): Practice Makes Perfect</h2>
+<ul>
+<li>Do everything we&apos;ve done in class today for Songs.</li>
+<li>Create an AJAX request in another app you&apos;ve created (e.g., projects, Scribble). Be sure to make sure your controller actions respond to JSON.</li>
+</ul>
+<h2 id="homework-over-thanksgiving">Homework over Thanksgiving:</h2>
+<p>You can find the homework over thanksgiving <a href="https://github.com/ga-dc/thanksgiving-homework" target="_blank">here</a></p>
+<h2 id="sample-quiz-questions">Sample Quiz Questions</h2>
+<ol>
+<li>Write an AJAX GET request to a known end point.  </li>
+<li>How does a promise differ from a callback?  </li>
+<li>Write an AJAX POST to create an object in a rails application.  </li>
+</ol>
+<h2 id="cliff-notes">Cliff Notes</h2>
+<p>In order to do an AJAX <code>get</code> request to a 3rd party API:</p>
+<pre><code class="lang-javascript">$.ajax({
+  url: url,
+  type: <span class="hljs-string">&quot;get&quot;</span>,
+  dataType: <span class="hljs-string">&quot;json&quot;</span>
+  <span class="hljs-comment">// $.ajax takes an object as an argument with at least three key-value pairs...</span>
+  <span class="hljs-comment">// (1) The URL endpoint for the JSON object.</span>
+  <span class="hljs-comment">// (2) Type of HTTP request.</span>
+  <span class="hljs-comment">// (3) Datatype. Usually JSON.</span>
+}).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(response)
+  <span class="hljs-comment">// Here is where you place code for DOM manipulation or anything else you&apos;d like to do with the response</span>
+}).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Ajax request fails!&quot;</span>)
+}).always(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;This always happens regardless of successful ajax request or not.&quot;</span>)
+})
+</code></pre>
+<p>In order to do an AJAX <code>get</code> request to your own rails API:</p>
+<pre><code class="lang-javascript">$.ajax({
+  type: <span class="hljs-string">&apos;GET&apos;</span>,
+  dataType: <span class="hljs-string">&apos;json&apos;</span>,
+  url: <span class="hljs-string">&quot;http://localhost:3000/artists&quot;</span>
+}).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(response);
+}).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Ajax get request failed.&quot;</span>);
+})
+</code></pre>
+<p>In order to do an AJAX <code>post</code> request to your own rails API:</p>
+<pre><code class="lang-javascript">$.ajax({
+  type: <span class="hljs-string">&apos;POST&apos;</span>,
+  data: {artist: {photo_url: <span class="hljs-string">&quot;www.google.com&quot;</span>, name: <span class="hljs-string">&quot;bob&quot;</span>, nationality: <span class="hljs-string">&quot;bob&quot;</span>}},
+  dataType: <span class="hljs-string">&apos;json&apos;</span>,
+  url: <span class="hljs-string">&quot;http://localhost:3000/artists&quot;</span>
+}).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(response);
+}).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Ajax get request failed&quot;</span>);
+})
+</code></pre>
+<p>In order to do an AJAX <code>put</code> request to your own rails API:</p>
+<pre><code class="lang-javascript">$.ajax({
+  type: <span class="hljs-string">&apos;PUT&apos;</span>,
+  data: {
+    artist: {
+      name: <span class="hljs-string">&quot;Robert Goulet&quot;</span>,
+      nationality: <span class="hljs-string">&quot;American&quot;</span>,
+      photo_url: <span class="hljs-string">&quot;http://media.giphy.com/media/u5yMOKjUpASwU/giphy.gif&quot;</span>
+    }
+  },
+  dataType: <span class="hljs-string">&apos;json&apos;</span>,
+  url: <span class="hljs-string">&quot;/artists/6&quot;</span>
+}).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(response);
+}).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Failed to update.&quot;</span>);
+})
+</code></pre>
+<p>In order to do an AJAX <code>delete</code> request to your own rails API:</p>
+<pre><code class="lang-javascript">$.ajax({
+  type: <span class="hljs-string">&apos;DELETE&apos;</span>,
+  dataType: <span class="hljs-string">&apos;json&apos;</span>,
+  url: <span class="hljs-string">&quot;http://localhost:3000/artists/9&quot;</span>
+}).done(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;DELETED&quot;</span>);
+  <span class="hljs-built_in">console</span>.log(response);
+}).fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Failed to delete.&quot;</span>);
+})
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../07-apis-express-ajax/apis/readme.html" class="navigation navigation-prev " aria-label="Previous page: Building APIs in Rails"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../07-apis-express-ajax/prototypes_and_constructors/readme.html" class="navigation navigation-next " aria-label="Next page: Prototypes and Constructors"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

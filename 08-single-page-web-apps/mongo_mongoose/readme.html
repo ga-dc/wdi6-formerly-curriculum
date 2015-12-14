@@ -1,0 +1,2024 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Mongo and Mongoose | Welcome to GA&#39;s WDI-DC</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.5">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../08-single-page-web-apps/node-express-user-authentication/readme.html" />
+    
+    
+    <link rel="prev" href="../../08-single-page-web-apps/express_2/readme.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="6.2"
+        data-chapter-title="Mongo and Mongoose"
+        data-filepath="08-single-page-web-apps/mongo_mongoose/readme.md"
+        data-basepath="../.."
+        data-revision="Mon Dec 14 2015 02:28:46 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        An Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="01-front-end-fundamentals/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Front End Fundamentals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="01-front-end-fundamentals/command-line/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/command-line/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Command Line Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01-front-end-fundamentals/git/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/git/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Git
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Intro to Web and HTML
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="01-front-end-fundamentals/css/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/css/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        CSS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="01-front-end-fundamentals/javascript-data-types/readme.html">
+            
+            <span><b>1.5.</b> JavaScript Data Types</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="01-front-end-fundamentals/javascript-loops-conditionals/readme.html">
+            
+            <span><b>1.6.</b> JavaScript Loops and Conditionals</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="01-front-end-fundamentals/javascript-objects-functions/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-objects-functions/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        JavaScript Objects and Functions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="01-front-end-fundamentals/javascript-DOM/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-DOM/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        JavaScript DOM
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="02-intermediate-front-end/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Intermediate Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="02-intermediate-front-end/scope-context-closures/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Scope, Context, and Closures
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="02-intermediate-front-end/scope-context-closures/scope.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/scope.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        Scope
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="02-intermediate-front-end/scope-context-closures/context.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/context.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        Context
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="02-intermediate-front-end/scope-context-closures/closures.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/closures.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        Closures
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="02-intermediate-front-end/events-and-callbacks/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/events-and-callbacks/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Events and Callbacks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="02-intermediate-front-end/git_branching/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/git_branching/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Git Branching
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        jQuery
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="02-intermediate-front-end/jquery/jquery-two.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-two.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        jQuery 2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="02-intermediate-front-end/workflows/lesson_plan.html">
+            
+            <span><b>2.6.</b> Workflows</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="02-intermediate-front-end/css2/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/css2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        CSS 2 (Layout &amp; Fonts)
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="04-ruby-mvc-sinatra/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Ruby + MVC with Sinatra
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="04-ruby-mvc-sinatra/ruby-basics/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-basics/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Ruby Basics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Ruby Enumerables
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
+            
+            <span><b>3.3.</b> Problem Modeling</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="04-ruby-mvc-sinatra/domain_modeling/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Domain Modeling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="04-ruby-mvc-sinatra/databases/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/databases/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="04-ruby-mvc-sinatra/active-record-intro/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/active-record-intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Active Record
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Sinatra &amp; REST
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Sinatra &amp; Active Record
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="05-mvc-with-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        MVC with Rails
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="05-mvc-with-rails/rspec/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rspec/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Unit Testing with RSpec
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        MVC Intro to Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="05-mvc-with-rails/rails-models-and-migrations/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-models-and-migrations/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Models and Migrations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="05-mvc-with-rails/rails-views-and-controllers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-views-and-controllers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Views and Controllers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="05-mvc-with-rails/rails-routes-and-resources/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-routes-and-resources/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Routes and Resources
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="05-mvc-with-rails/rails-helpers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-helpers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Helpers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="05-mvc-with-rails/rails-error-handling/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-error-handling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        Error Handling and Validations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        Sessions and Auth
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="05-mvc-with-rails/rails-deployment/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-deployment/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        Deployment
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="07-apis-express-ajax/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        APIs/Express/AJAX
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="07-apis-express-ajax/apis/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/apis/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Building APIs in Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="07-apis-express-ajax/ajax/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        AJAX
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="07-apis-express-ajax/prototypes_and_constructors/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/prototypes_and_constructors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Prototypes and Constructors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="07-apis-express-ajax/express_intro/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/express_intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Intro to Express
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="08-single-page-web-apps/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Single Page Web Apps
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="08-single-page-web-apps/express_2/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/express_2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Express Routing / APIs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.2" data-path="08-single-page-web-apps/mongo_mongoose/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/mongo_mongoose/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Mongo and Mongoose
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="08-single-page-web-apps/node-express-user-authentication/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/node-express-user-authentication/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Local Authentication using Passport
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="08-single-page-web-apps/oauth-via-3rd-party-apps/readme.html">
+            
+            <span><b>6.4.</b> OAuth using Passport</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="08-single-page-web-apps/oojs1_read/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/oojs1_read/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Object-Oriented FE JS: R / CRUD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Object-Oriented FE JS: CUD / CRUD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="08-single-page-web-apps/git-teams/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/git-teams/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Git Team Workflows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="08-single-page-web-apps/responsive-web-design/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/responsive-web-design/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Responsive Web Design
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="08-single-page-web-apps/tdd/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/tdd/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        TDD JS using Jasmine
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="10-angular/readme.html">
+            
+                
+                    <a href="../../10-angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        MVW with Angular
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="10-angular/angular_intro_controllers_directives/readme.html">
+            
+            <span><b>7.1.</b> Angular Intro: Controllers &amp; Directives</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="10-angular/services_templates_and_routing/readme.html">
+            
+            <span><b>7.2.</b> Services, Templates, and Routing</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="10-angular/custom_directives/readme.html">
+            
+                
+                    <a href="../../10-angular/custom_directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Custom Directives
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="10-angular/firebase_in_angular/readme.html">
+            
+                
+                    <a href="../../10-angular/firebase_in_angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        AngularFire: Firebase &amp; Angular
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="10-angular/angular-vs-rails.html">
+            
+                
+                    <a href="../../10-angular/angular-vs-rails.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Angular vs. Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="11-multi-track/readme.html">
+            
+                
+                    <a href="../../11-multi-track/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        Back and Front of Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1" >
+            
+            <span><b>7.6.1.</b> BackBone</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1.1" data-path="11-multi-track/bb_models_collections/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_models_collections/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.1.</b>
+                        
+                        Models and Collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.2" data-path="11-multi-track/bb_views_part1/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_views_part1/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.2.</b>
+                        
+                        Views (part 1)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.3" data-path="11-multi-track/bb_views_part2/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_views_part2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.3.</b>
+                        
+                        Views (part 2)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.4" data-path="11-multi-track/bb_routers/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_routers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.4.</b>
+                        
+                        Routers
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2" >
+            
+            <span><b>7.6.2.</b> Front End</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.2.1" data-path="11-multi-track/bootstrap/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bootstrap/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.1.</b>
+                        
+                        Bootstrap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.2" data-path="11-multi-track/flexbox/readme.html">
+            
+                
+                    <a href="../../11-multi-track/flexbox/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.2.</b>
+                        
+                        Flex Box
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.3" data-path="11-multi-track/foundation/readme.html">
+            
+                
+                    <a href="../../11-multi-track/foundation/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.3.</b>
+                        
+                        Foundation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.4" data-path="11-multi-track/intro-to-php/readme.html">
+            
+                
+                    <a href="../../11-multi-track/intro-to-php/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.4.</b>
+                        
+                        Intro to PHP
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.5" data-path="11-multi-track/jquery-plugins/readme.html">
+            
+                
+                    <a href="../../11-multi-track/jquery-plugins/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.5.</b>
+                        
+                        jQuery Plugins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.6" data-path="11-multi-track/mapping/readme.html">
+            
+                
+                    <a href="../../11-multi-track/mapping/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.6.</b>
+                        
+                        Mapping
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.7" data-path="11-multi-track/pseudo-selectors/readme.html">
+            
+                
+                    <a href="../../11-multi-track/pseudo-selectors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.7.</b>
+                        
+                        Pseudo Selectors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.8" data-path="11-multi-track/sass1-basic-reuse/readme.html">
+            
+                
+                    <a href="../../11-multi-track/sass1-basic-reuse/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.8.</b>
+                        
+                        Sass 1: Basic Reuse
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.9" data-path="11-multi-track/sass2-control-directives/readme.html">
+            
+                
+                    <a href="../../11-multi-track/sass2-control-directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.9.</b>
+                        
+                        Sass 2: Control Directives
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Welcome to GA&#39;s WDI-DC</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="mongodb">MongoDB</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>Compare and contrast relational to document based (NoSql)</li>
+<li>Setup local mongo db server</li>
+<li>CRUD documents using mongo CLI</li>
+<li>Use an ORM to persist data (Mongoose)</li>
+<li>Connect ORM to an Express app, to persist data</li>
+</ul>
+<h2 id="opening">Opening</h2>
+<p>Well, we&apos;ve come full circle ... again. What we&apos;re learning today isn&apos;t fundamentally that different from what we know. We&apos;re going to learn a different way to store information. A document-based non-relational way. We&apos;ve learned a considerable amount of information about relational databases. We join on foreign keys in relational databases in order to query our database. Sometimes these joins can get really expensive to query the database. When dealing with less complex associations, non relational databases can be more effective. We&apos;ve also seen that schema&apos;s in SQL(relational DB&apos;s) are fairly rigid. Adding columns can be taxing(migrations). Also if we delete a row in a table that is being used as a foreign key in another table, we must delete all the rows associated with that foreign key before we can delete the parent object. Mongo provides a more flexible, scalable solution for less complex domain models.</p>
+<blockquote>
+<p>This is not to say that mongo is a better solution than postgres or other SQL libraries, but an alternative solution.</p>
+</blockquote>
+<p>MongoDB is an open-source <strong>document database</strong> that provides:</p>
+<ul>
+<li>High Performance</li>
+<li>High Availability</li>
+<li>Automatic Scaling</li>
+</ul>
+<h2 id="document-database">Document Database?</h2>
+<h3 id="a-basic-example-of-a-person-document">A basic example of a <code>Person</code> document:</h3>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Sue&quot;</span>,
+  <span class="hljs-string">&quot;age&quot;</span>: <span class="hljs-number">26</span>,
+  <span class="hljs-string">&quot;status&quot;</span>: <span class="hljs-string">&quot;Active&quot;</span>,
+  <span class="hljs-string">&quot;groups&quot;</span>: [<span class="hljs-string">&quot;sass&quot;</span>, <span class="hljs-string">&quot;express&quot;</span>]
+}
+</code></pre>
+<hr>
+<p>TPS: What do you see?</p>
+<h3 id="a-document">A Document</h3>
+<ul>
+<li>json</li>
+<li>different data types</li>
+<li>even arrays</li>
+</ul>
+<h3 id="more-complicated-example-of-a-restaurant-document">More complicated example of a <code>Restaurant</code> document:</h3>
+<pre><code class="lang-json">{
+   <span class="hljs-string">&quot;_id&quot;</span> : ObjectId(<span class="hljs-string">&quot;54c955492b7c8eb21818bd09&quot;</span>),
+   <span class="hljs-string">&quot;address&quot;</span> : {
+      <span class="hljs-string">&quot;street&quot;</span> : <span class="hljs-string">&quot;2 Avenue&quot;</span>,
+      <span class="hljs-string">&quot;zipcode&quot;</span> : <span class="hljs-string">&quot;10075&quot;</span>,
+      <span class="hljs-string">&quot;building&quot;</span> : <span class="hljs-string">&quot;1480&quot;</span>,
+      <span class="hljs-string">&quot;coord&quot;</span> : [ -<span class="hljs-number">73.9557413</span>, <span class="hljs-number">40.7720266</span> ],
+   },
+   <span class="hljs-string">&quot;borough&quot;</span> : <span class="hljs-string">&quot;Manhattan&quot;</span>,
+   <span class="hljs-string">&quot;cuisine&quot;</span> : <span class="hljs-string">&quot;Italian&quot;</span>,
+   <span class="hljs-string">&quot;grades&quot;</span> : [
+      {
+         <span class="hljs-string">&quot;date&quot;</span> : ISODate(<span class="hljs-string">&quot;2014-10-01T00:00:00Z&quot;</span>),
+         <span class="hljs-string">&quot;grade&quot;</span> : <span class="hljs-string">&quot;A&quot;</span>,
+         <span class="hljs-string">&quot;score&quot;</span> : <span class="hljs-number">11</span>
+      },
+      {
+         <span class="hljs-string">&quot;date&quot;</span> : ISODate(<span class="hljs-string">&quot;2014-01-16T00:00:00Z&quot;</span>),
+         <span class="hljs-string">&quot;grade&quot;</span> : <span class="hljs-string">&quot;B&quot;</span>,
+         <span class="hljs-string">&quot;score&quot;</span> : <span class="hljs-number">17</span>
+      }
+   ],
+   <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Vella&quot;</span>,
+   <span class="hljs-string">&quot;restaurant_id&quot;</span> : <span class="hljs-string">&quot;41704620&quot;</span>
+}
+</code></pre>
+<h2 id="documentation">Documentation</h2>
+<p><a href="https://www.mongodb.org" target="_blank">https://www.mongodb.org</a></p>
+<h2 id="documents">Documents</h2>
+<h3 id="a-record-in-mongodb-is-a-document">A record in MongoDB is a document</h3>
+<ul>
+<li>a data structure composed of field(key) and value pairs.<ul>
+<li>similar to JSON objects.</li>
+<li>stored as BJSON</li>
+</ul>
+</li>
+<li>fields may include other documents, arrays, and arrays of documents.</li>
+<li>analogous to rows in a table</li>
+</ul>
+<h2 id="collections">Collections</h2>
+<p>MongoDB stores documents in collections.</p>
+<ul>
+<li>Collections are analogous to tables in relational databases.</li>
+<li>does <strong>NOT</strong> require its documents to have the same schema.</li>
+<li>documents stored in a collection must have a unique <code>_id</code> field that acts as a primary key.</li>
+</ul>
+<h2 id="installation"><a href="https://docs.mongodb.org/getting-started/shell/tutorial/install-mongodb-on-os-x/" target="_blank">Installation</a></h2>
+<h3 id="install">Install</h3>
+<pre><code>brew update
+brew install mongo
+</code></pre><p>You should see:</p>
+<pre><code>mongodb: stable 3.0.7 (bottled), devel 3.1.2
+</code></pre><h3 id="start-mongo">Start mongo:</h3>
+<pre><code>mongod --config /usr/local/etc/mongod.conf
+</code></pre><p>You should see:</p>
+<p><code>nothing</code></p>
+<blockquote>
+<p>no news is good news</p>
+</blockquote>
+<h3 id="more-info">More info?</h3>
+<pre><code>brew info mongo
+</code></pre><h2 id="mongo-shell">Mongo shell</h2>
+<h3 id="start-the-shell">Start the shell</h3>
+<pre><code>$ mongo
+</code></pre><blockquote>
+<p>feels a little bit like a JS REPL</p>
+</blockquote>
+<p>You should see:</p>
+<pre><code>MongoDB shell version: 3.0.3
+connecting to: test
+&gt;
+</code></pre><h3 id="help">Help</h3>
+<pre><code>help
+</code></pre><p>ThinkShare (2min):</p>
+<ul>
+<li>What jumps out as important?</li>
+<li>Try it</li>
+</ul>
+<h2 id="what-jumped-out-to-me">What jumped out to me</h2>
+<ul>
+<li><code>show dbs</code>: show database names</li>
+<li><code>show collections</code>:  show collections in current database</li>
+<li><code>use &lt;db_name&gt;</code>: set current database</li>
+<li><code>db.foo.find()</code>: list objects in collection foo</li>
+</ul>
+<p>Also:</p>
+<ul>
+<li><code>&lt;tab&gt;</code> key completion</li>
+<li><code>&lt;up-arrow&gt;</code> and the <code>&lt;down-arrow&gt;</code> for history.</li>
+</ul>
+<p>In the mongo REPL we want to connect to create/connect to a database.</p>
+<p>We <em>want</em> to work with the <code>restaurants</code> database:</p>
+<pre><code>use restaurant_db
+</code></pre><p>Verify:</p>
+<pre><code>&gt; db
+restaurant_db
+</code></pre><p>Common Mistake:
+<code>show dbs</code></p>
+<blockquote>
+<p>note we don&apos;t see restaurants listed. It isn&apos;t until we add a document to our database does it list the DB in <code>show dbs</code></p>
+</blockquote>
+<h2 id="cli-create-a-record">CLI: Create a record</h2>
+<h3 id="insert">Insert</h3>
+<ul>
+<li>use <code>insert()</code> to add documents to a collection</li>
+</ul>
+<h3 id="insert-a-restaurant">Insert a restaurant</h3>
+<pre><code class="lang-json">db.restaurants.insert(
+   {
+      name: <span class="hljs-string">&quot;Cookies Corner&quot;</span>,
+      <span class="hljs-string">&quot;address&quot;</span> : {
+         <span class="hljs-string">&quot;street&quot;</span> : <span class="hljs-string">&quot;1970 2nd St NW&quot;</span>,
+         <span class="hljs-string">&quot;zipcode&quot;</span> : <span class="hljs-number">20001</span>,
+      },
+      yelp: <span class="hljs-string">&quot;http://www.yelp.com/biz/cookies-corner-washington&quot;</span>,
+});
+</code></pre>
+<blockquote>
+<p>The db is the database we&apos;re connected to. In this case, <code>restaurant_db</code>. <code>.restaurants</code> is then referring to a collection in our <code>restaurant_db</code>. We use the <code>.insert()</code> to add the document inside the parentheses.</p>
+</blockquote>
+<h3 id="verify-the-insert">Verify the insert</h3>
+<pre><code>&gt; show collections
+restaurants
+system.indexes
+</code></pre><p>Note: restaurants</p>
+<pre><code>&gt; db.restaurants.find()
+</code></pre><ul>
+<li>name</li>
+<li>address</li>
+<li>yelp</li>
+</ul>
+<p>What is surprising/unexpected?</p>
+<ul>
+<li>where did restaurants come from?</li>
+<li><code>_id</code>?</li>
+<li><a href="https://docs.mongodb.org/manual/reference/object-id/" target="_blank">ObjectId</a></li>
+</ul>
+<h2 id="review-insert">Review <code>insert</code></h2>
+<pre><code>// insert
+db.your_collection_name.insert({ data as json })
+// find
+db.your_collection_name.find()
+</code></pre><p>New Record:</p>
+<ul>
+<li>If the document passed to the insert() method does not contain the _id field, the mongo shell automatically adds the field to the document and sets the field&#x2019;s value to a generated ObjectId.</li>
+</ul>
+<p>New collection:</p>
+<ul>
+<li>If you attempt to add documents to a collection that does not exist, MongoDB will create the collection for you.</li>
+</ul>
+<h2 id="dropping-a-database">Dropping a Database</h2>
+<pre><code>use milk-n-cookies
+db.dropDatabase()
+</code></pre><p>Drops the <strong>current</strong> database.</p>
+<h3 id="exercise-5-minutes-add-a-few-more-restaurants">Exercise (5 minutes): Add a few more restaurants.</h3>
+<p>ProTip: I recommend you construct your statements in your editor and copy/paste.  It will help you now &amp; later.</p>
+<blockquote>
+<p>Prompt: Did anyone insert multiple at one time?</p>
+</blockquote>
+<p>Let&apos;s recreate the steps together:
+Where are we now?</p>
+<pre><code>db
+</code></pre><ol>
+<li>Create DB</li>
+<li>Use the appropriate DB</li>
+<li>Insert multiple restaurants</li>
+</ol>
+<pre><code class="lang-mongo">db.restaurants.remove({});
+db.restaurants.insert([
+  {
+      name: &quot;Cookies Corner&quot;,
+      &quot;address&quot; : {
+         &quot;street&quot; : &quot;1970 2nd St NW&quot;,
+         &quot;zipcode&quot; : 20001,
+      },
+      yelp: &quot;http://www.yelp.com/biz/cookies-corner-washington&quot;
+  },
+  { name: &quot;The Blind Dog Cafe&quot;, address: { street: &quot;944 Florida Ave&quot;,
+        zipcode: 20001 }, yelp: &quot;http://www.yelp.com/biz/the-blind-dog-cafe-washington-2?osq=cookies&quot; },
+  {name: &quot;Birch &amp; Barley&quot;, address: { street: &quot;1337 14th St NW&quot;, zipcode: 20005}, yelp: &quot;http://www.yelp.com/biz/birch-and-barley-washington?osq=Restaurants+cookies&quot;},
+  {name: &quot;Captain Cookie and the Milk Man&quot;, address: { street: &quot;Dupont Circle&quot;, zipcode: 20036 }, yelp: &quot;http://www.yelp.com/biz/captain-cookie-and-the-milk-man-washington-5&quot; },
+  {name: &quot;J&#x2019;s Cookies&quot;, address: { street: &quot;1700 N Moore St&quot;, zipcode: 22209}, yelp: &quot;http://www.yelp.com/biz/js-cookies-arlington&quot; }
+])
+db.restaurants.count()
+</code></pre>
+<h2 id="primary-key"><a href="http://docs.mongodb.org/manual/reference/glossary/#term-primary-key" target="_blank">Primary key</a></h2>
+<ul>
+<li>A record&#x2019;s unique immutable identifier.</li>
+<li>RDBMS: usually <em>id</em> field, typically an <em>Integer</em></li>
+<li>MongoDB: the <em>_id</em> field, usually a <em><a href="http://docs.mongodb.org/manual/reference/glossary/#term-bson" target="_blank">BSON</a> <a href="http://docs.mongodb.org/manual/reference/glossary/#term-objectid" target="_blank">ObjectId</a></em>.</li>
+</ul>
+<h2 id="cli-find-records">CLI: Find records</h2>
+<p>Find all:</p>
+<pre><code class="lang-mongo">db.restaurants.find()
+</code></pre>
+<h3 id="find-by-conditions-like-where">Find by Conditions (like <code>where</code>)</h3>
+<p>Key: Value pairs</p>
+<pre><code class="lang-mongo">db.restaurants.find({name: &quot;Cookies Corner&quot;});
+db.restaurants.find({&quot;address.zipcode&quot;: 20001});
+</code></pre>
+<h2 id="helpful-references">Helpful References</h2>
+<ul>
+<li><a href="http://docs.mongodb.org/manual/reference/sql-comparison/" target="_blank">Mongo to SQL Mapping Chart</a></li>
+<li><a href="http://docs.mongodb.org/manual/core/crud-introduction/" target="_blank">CRUD Intro</a></li>
+<li><a href="http://docs.mongodb.org/manual/reference/crud/" target="_blank">CRUD Commands</a></li>
+<li><a href="http://docs.mongodb.org/manual/reference/bios-example-collection/" target="_blank">bios Collection</a></li>
+</ul>
+<h2 id="cli-update-a-records">CLI: Update a record(s)</h2>
+<p><a href="http://docs.mongodb.org/manual/core/write-operations-introduction/" target="_blank">http://docs.mongodb.org/manual/core/write-operations-introduction/</a></p>
+<pre><code>&gt; db.your_collection.update(
+  { criteria },  
+  { $set: { assignments }},
+  { options }
+)
+</code></pre><h3 id="you-do-10-min">You do (10 min):</h3>
+<p>Update a restaurants to have a new key-value par <code>{state: &quot;DC&quot;}</code></p>
+<pre><code>&gt; db.restaurants.update(
+  {&quot;name&quot;: &quot;Cookies Corner&quot;},
+  { $set: { state: &quot;DC&quot; }}
+)
+</code></pre><pre><code>WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+</code></pre><blockquote>
+<p>the first key value pair find the document you&apos;d like to update, the second is what values you&apos;d like to set and third is any additional options</p>
+</blockquote>
+<p>Verify:</p>
+<pre><code>&gt; db.restaurants.find()
+</code></pre><h2 id="cli-remove-records">CLI: Remove records</h2>
+<pre><code>db.restaurants.remove({ conditions })
+</code></pre><h2 id="cli-add-a-nested-object">CLI: Add a nested object</h2>
+<blockquote>
+<p>We already did this! (The address &apos;object&apos; / &apos;subdocument&apos;)</p>
+</blockquote>
+<h2 id="key-advantages">Key Advantages</h2>
+<ul>
+<li>Usability</li>
+<li>High Performance</li>
+<li>High Availability</li>
+<li>Automatic Scaling</li>
+<li>No SQL :)</li>
+</ul>
+<h3 id="usability">Usability</h3>
+<ul>
+<li>Documents (i.e. objects) correspond to native data types in many programming languages.</li>
+<li>Schema-less, less need to manage migrations</li>
+<li>Dynamic schema supports fluent polymorphism.</li>
+</ul>
+<h3 id="high-performance">High Performance</h3>
+<ul>
+<li>Embedded documents and arrays reduce need for expensive joins (reduces I/O).</li>
+<li>Indexes support faster queries and can include keys from embedded documents and arrays.</li>
+</ul>
+<h3 id="high-availability">High Availability</h3>
+<p>MongoDB&#x2019;s replication facility, called replica sets, provide:</p>
+<ul>
+<li>automatic failover.</li>
+<li>data redundancy.</li>
+</ul>
+<p>replica set:</p>
+<blockquote>
+<p>is a group of MongoDB servers that maintain the same data set, providing redundancy and increasing data availability.</p>
+</blockquote>
+<h3 id="automatic-scaling">Automatic Scaling</h3>
+<ul>
+<li>Automatic sharding distributes data across a cluster of machines.</li>
+<li>Replica sets can provide eventually-consistent reads for low-latency high throughput deployments.</li>
+</ul>
+<h1 id="no-sql"><a href="https://www.mongodb.com/nosql-explained" target="_blank">No SQL?</a></h1>
+<h2 id="stwg-10min-which-database-would-you-choose-for">ST-WG (10min): Which database would you choose for?</h2>
+<ul>
+<li>Blog: Posts have_many Comments</li>
+<li>HR app: Companies have_many Managers have_many Employees</li>
+<li>Gallery: Artists have_many Paintings</li>
+</ul>
+<h2 id="come-up-with-your-own-examples-for-both">Come up with your own examples, for both</h2>
+<h2 id="vote-for-your-best-example-for">Vote for your best example for:</h2>
+<ul>
+<li>RDBMS</li>
+<li>Document Database</li>
+</ul>
+<p><img src="https://www.filepicker.io/api/file/KDQZV88GTIaQn6p0GagE" alt="mongoose.js"></p>
+<hr>
+<h2 id="httpmongoosejscom"><a href="http://mongoosejs.com" target="_blank">http://mongoosejs.com</a></h2>
+<h2 id="why">Why?</h2>
+<blockquote>
+<p>Let&apos;s face it, writing MongoDB validation, casting and business logic boilerplate is a drag.</p>
+</blockquote>
+<p>That&apos;s why we wrote Mongoose.</p>
+<p>Review example on <a href="http://mongoosejs.com" target="_blank">mongoosejs.com</a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mongoose&apos;</span>);
+mongoose.connect(<span class="hljs-string">&apos;mongodb://localhost/test&apos;</span>);
+
+<span class="hljs-keyword">var</span> Cat = mongoose.model(<span class="hljs-string">&apos;Cat&apos;</span>, { name: <span class="hljs-built_in">String</span> });
+
+<span class="hljs-keyword">var</span> kitty = <span class="hljs-keyword">new</span> Cat({ name: <span class="hljs-string">&apos;Zildjian&apos;</span> });
+kitty.save(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-comment">// ...</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;meow&apos;</span>);
+});
+</code></pre>
+<p>Ok well thats nice. But let&apos;s see how mongoose plays with express by building an app called <a href="https://github.com/ga-dc/reminders_mongo" target="_blank">reminders</a></p>
+<h2 id="reminders-schema-models--seeds">Reminders- Schema, Models &amp; Seeds</h2>
+<p>Lets create a brand new express application and grab up all the dependencies we&apos;ll need</p>
+<pre><code class="lang-bash">$ mkdir reminders_mongo
+$ <span class="hljs-built_in">cd</span> reminders_mongo
+$ npm init
+$ npm install express --save
+$ npm install hbs --save
+$ npm install body-parser --save
+$ npm install method-override --save
+$ npm install mongoose --save
+$ touch index.js
+</code></pre>
+<blockquote>
+<p>The 5 dependencies we&apos;ll be using for this app are:</p>
+<ol>
+<li><code>express</code> - web Frameworks</li>
+<li><code>hbs</code> - view engine</li>
+<li><code>body-parser</code> - allows us to get parameter values from forms</li>
+<li><code>method-override</code> - allows us to do put/delete requests in our hbs views</li>
+<li><code>mongoose</code> - our Mongo ORM</li>
+</ol>
+</blockquote>
+<p>Let&apos;s first start by defining our schema, models and creating some seed data.</p>
+<p>Folders/files:</p>
+<pre><code class="lang-bash">$ mkdir db
+$ mkdir models
+$ touch models/author.js
+$ touch models/reminder.js
+$ touch db/schema.js
+$ touch db/seeds.js
+</code></pre>
+<p>Just like in <code>active-record</code> we will define the structure of our database using schemas</p>
+<p>Instead of defining tables we&apos;ll be defining documents.</p>
+<p>In <code>db/schema.js</code>:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// requiring mongoose dependency</span>
+<span class="hljs-keyword">var</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mongoose&apos;</span>)
+
+<span class="hljs-comment">// instantiate a name space for our Schema constructor defined by mongoose.</span>
+<span class="hljs-keyword">var</span> Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId
+
+<span class="hljs-comment">// defining schema for reminders</span>
+<span class="hljs-keyword">var</span> ReminderSchema = <span class="hljs-keyword">new</span> Schema({
+  body: <span class="hljs-built_in">String</span>
+})
+
+<span class="hljs-comment">// defining schema for authors.</span>
+<span class="hljs-keyword">var</span> AuthorSchema = <span class="hljs-keyword">new</span> Schema({
+  name: <span class="hljs-built_in">String</span>,
+  reminders: [ReminderSchema]
+})
+
+<span class="hljs-comment">// setting models in mongoose utilizing schemas defined above</span>
+<span class="hljs-keyword">var</span> AuthorModel = mongoose.model(<span class="hljs-string">&quot;Author&quot;</span>, AuthorSchema)
+<span class="hljs-keyword">var</span> ReminderModel = mongoose.model(<span class="hljs-string">&quot;Reminder&quot;</span>, ReminderSchema)
+</code></pre>
+<blockquote>
+<p>Note the syntax for reminders  in the <code>AuthorSchema</code>. This signifies it will be an array of reminder documents</p>
+</blockquote>
+<p>Next, let&apos;s define our models that will provide the interface for queries and other logic.</p>
+<p>In <code>models/author.js</code>:</p>
+<pre><code class="lang-js"><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../db/schema&quot;</span>)
+<span class="hljs-keyword">var</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mongoose&apos;</span>)
+
+<span class="hljs-keyword">var</span> AuthorModel = mongoose.model(<span class="hljs-string">&quot;Author&quot;</span>)
+<span class="hljs-built_in">module</span>.exports = AuthorModel
+</code></pre>
+<p>In <code>models/reminder.js</code>:</p>
+<pre><code class="lang-js"><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../db/schema&quot;</span>)
+<span class="hljs-keyword">var</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mongoose&apos;</span>)
+
+<span class="hljs-keyword">var</span> ReminderModel = mongoose.model(<span class="hljs-string">&quot;Reminder&quot;</span>)
+<span class="hljs-built_in">module</span>.exports = ReminderModel
+</code></pre>
+<blockquote>
+<p>In these model files, were setting an export to a mongoose model.</p>
+<p><code>var AuthorModel = mongoose.model(&quot;Author&quot;)</code> is kind of like <code>class Author &lt; ActiveRecord::Base</code></p>
+</blockquote>
+<p>Great now that we have an interface for our models, lets create a seed file so we have some data to work with in our application.</p>
+<p>In <code>db/seeds.js</code>:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mongoose&apos;</span>)
+<span class="hljs-keyword">var</span> conn = mongoose.connect(<span class="hljs-string">&apos;mongodb://localhost/reminders&apos;</span>)
+<span class="hljs-keyword">var</span> AuthorModel = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../models/author&quot;</span>)
+<span class="hljs-keyword">var</span> ReminderModel = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../models/reminder&quot;</span>)
+AuthorModel.remove({}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(err)
+})
+ReminderModel.remove({}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(err)
+})
+
+<span class="hljs-keyword">var</span> bob = <span class="hljs-keyword">new</span> AuthorModel({name: <span class="hljs-string">&quot;bob&quot;</span>})
+<span class="hljs-keyword">var</span> susy = <span class="hljs-keyword">new</span> AuthorModel({name: <span class="hljs-string">&quot;charlie&quot;</span>})
+<span class="hljs-keyword">var</span> tom = <span class="hljs-keyword">new</span> AuthorModel({name: <span class="hljs-string">&quot;tom&quot;</span>})
+
+<span class="hljs-keyword">var</span> reminder1 = <span class="hljs-keyword">new</span> ReminderModel({body: <span class="hljs-string">&quot;reminder1!!&quot;</span>})
+<span class="hljs-keyword">var</span> reminder2 = <span class="hljs-keyword">new</span> ReminderModel({body: <span class="hljs-string">&quot;reminder2!!&quot;</span>})
+<span class="hljs-keyword">var</span> reminder3 = <span class="hljs-keyword">new</span> ReminderModel({body: <span class="hljs-string">&quot;reminder3!!&quot;</span>})
+<span class="hljs-keyword">var</span> reminder4 = <span class="hljs-keyword">new</span> ReminderModel({body: <span class="hljs-string">&quot;reminder4!!&quot;</span>})
+<span class="hljs-keyword">var</span> reminder5 = <span class="hljs-keyword">new</span> ReminderModel({body: <span class="hljs-string">&quot;reminder5!!&quot;</span>})
+<span class="hljs-keyword">var</span> reminder6 = <span class="hljs-keyword">new</span> ReminderModel({body: <span class="hljs-string">&quot;reminder6!!&quot;</span>})
+
+<span class="hljs-keyword">var</span> authors = [bob, susy, tom]
+<span class="hljs-keyword">var</span> reminders = [reminder1, reminder2, reminder3, reminder4, reminder5, reminder6]
+
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; authors.length; i++){
+  authors[i].reminders.push(reminders[i], reminders[i+<span class="hljs-number">3</span>])
+  authors[i].save(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)</span>{
+    <span class="hljs-keyword">if</span> (err){
+      <span class="hljs-built_in">console</span>.log(err)
+    }<span class="hljs-keyword">else</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;author was saved&quot;</span>)
+    }
+  })
+}
+</code></pre>
+<p>Now that we&apos;ve got all of our models and seed data set. Let&apos;s start building out the reminders application. Let&apos;s update our main application file to include the dependencies we&apos;ll need.</p>
+<p>In <code>index.js</code>:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// express dependency for our application</span>
+<span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;express&apos;</span>)
+<span class="hljs-comment">// loads mongoose dependency</span>
+<span class="hljs-keyword">var</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mongoose&apos;</span>)
+<span class="hljs-comment">// loads dependency for middleware for paramters</span>
+<span class="hljs-keyword">var</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;body-parser&apos;</span>)
+<span class="hljs-comment">// loads dependency that allows put and delete where not supported in html</span>
+<span class="hljs-keyword">var</span> methodOverride = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;method-override&apos;</span>)
+<span class="hljs-comment">// loads module containing all authors contrller actions. not defined yet...</span>
+<span class="hljs-keyword">var</span> authorsController = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./controllers/authorsController&quot;</span>)
+<span class="hljs-comment">// connect mongoose interfaces to reminders mongo db</span>
+mongoose.connect(<span class="hljs-string">&apos;mongodb://localhost/reminders&apos;</span>)
+<span class="hljs-keyword">var</span> app = express()
+<span class="hljs-comment">// sets view engine to handlebars</span>
+app.set(<span class="hljs-string">&quot;view engine&quot;</span>, <span class="hljs-string">&quot;hbs&quot;</span>)
+<span class="hljs-comment">// allows for parameters in JSON and html</span>
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:<span class="hljs-literal">true</span>}))
+<span class="hljs-comment">// allows for put/delete request in html form</span>
+app.use(methodOverride(<span class="hljs-string">&apos;_method&apos;</span>))
+<span class="hljs-comment">// connects assets like stylesheets</span>
+app.use(express.static(__dirname + <span class="hljs-string">&apos;/public&apos;</span>))
+
+<span class="hljs-comment">// app server located on port 4000</span>
+app.listen(<span class="hljs-number">4000</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;app listening on port 4000&quot;</span>)
+})
+
+<span class="hljs-comment">// first route we&apos;ll define together ...</span>
+app.get(<span class="hljs-string">&quot;/authors&quot;</span>, authorsController.index)
+</code></pre>
+<h2 id="authors-index--we-do">Authors Index - We do</h2>
+<p>As we can see on the last line of the code above, we have just one route. It&apos;s using <code>authorsController.index</code> as a callback, but it hasn&apos;t been defined yet. Let&apos;s define it now.</p>
+<pre><code class="lang-bash">$ mkdir controllers
+$ touch authorsController.js
+</code></pre>
+<p>In <code>controllers/authorsController.js</code>:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> AuthorModel = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../models/author&quot;</span>)
+<span class="hljs-keyword">var</span> ReminderModel = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../models/reminder&quot;</span>)
+
+<span class="hljs-keyword">var</span> authorsController = {
+  index: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>)</span>{
+    AuthorModel.find({}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, docs</span>)</span>{
+      res.render(<span class="hljs-string">&quot;authors/index&quot;</span>, {authors: docs})
+    })
+  }
+}
+
+<span class="hljs-built_in">module</span>.exports = authorsController;
+</code></pre>
+<blockquote>
+<p>We use our model definitions from before to query our database. In our <code>index</code> action, we&apos;re doing a mongoose query for all Author documents. Upon success we render the view <code>authors/index</code> and pass in the object <code>{authors: docs}</code>. <code>docs</code> contains all the <code>Author</code> documents.</p>
+</blockquote>
+<p>We&apos;re rendering a handlebars view that doesn&apos;t exist yet. Lets create it now as well as our layout view.</p>
+<pre><code class="lang-bash">$ mkdir views
+$ mkdir views/authors
+$ touch views/layout.hbs
+$ touch views/authors/index.hbs
+</code></pre>
+<p>In <code>views/layout.hbs</code>:</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/css/styles.css&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+      &lt;h1&gt;&lt;a href=&quot;/authors&quot;&gt;Reminder.ly?&lt;/a&gt;&lt;/h1&gt;
+    &lt;/header&gt;
+   {{{body}}}
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>In <code>views/authors/index.hbs</code>:</p>
+<pre><code>&lt;a href=&quot;/authors/new&quot;&gt;New Author&lt;/a&gt;
+{{#each authors}}
+  &lt;div class=&quot;author&quot;&gt;
+    &lt;div class=&quot;authorName&quot;&gt;&lt;a href=&quot;/authors/{{_id}}&quot;&gt;{{name}}&lt;/a&gt;&lt;/div&gt;
+    {{#each reminders}}
+      &lt;p class=&quot;reminder&quot;&gt;{{body}}&lt;/p&gt;
+    {{/each}}
+    &lt;br&gt;
+  &lt;/div&gt;
+{{/each}}
+</code></pre><blockquote>
+<p>For each author, we display a link to that author&apos;s show page(which doesn&apos;t exist yet..), the author&apos;s name, as well as all the reminders that belong to them.</p>
+</blockquote>
+<h2 id="authors-show-and-new--you-do">Author&apos;s Show and New - You do</h2>
+<p>Create Author&apos;s Show page</p>
+<ul>
+<li>update <code>index.js</code> to include a route for an author&apos;s show page</li>
+<li>have it map to an action in <code>controllers/authorsController.js</code> called <code>show</code><ul>
+<li>HINT!: Instead of <code>.find()</code> try <code>.findById</code></li>
+</ul>
+</li>
+<li>create a <code>views/authors/show.hbs</code> that has the following:<ul>
+<li>all of the author&apos;s reminders</li>
+<li>a form for creating a new reminder(it&apos;s ok your form doesn&apos;t do anything right now)</li>
+<li>a link to edit the author</li>
+<li>a link to the authors index page</li>
+</ul>
+</li>
+</ul>
+<p>Create Author&apos;s New page</p>
+<ul>
+<li>update <code>index.js</code> to include a route for an author&apos;s new page</li>
+<li>have it map to an action in <code>controllers/authorsController.js</code> called <code>new</code></li>
+<li>create a <code>views/authors/new.hbs</code> that has the following:<ul>
+<li>form to create new author(it&apos;s ok your form doesn&apos;t do anything right now)</li>
+</ul>
+</li>
+</ul>
+<h2 id="creating-a-new-author--we-do">Creating a new author - We do</h2>
+<p>Our <code>views/authors/new.hbs</code> should look something like this:</p>
+<pre><code>&lt;h2&gt;Create new Author&lt;/h2&gt;
+&lt;form action=&quot;/authors&quot; method=&quot;post&quot;&gt;
+&lt;label&gt;Name:&lt;/label&gt;
+&lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;
+&lt;input type=&quot;submit&quot;&gt;
+&lt;/form&gt;
+</code></pre><p>Lets setup our <code>index.js</code> to listen for that post request.</p>
+<pre><code class="lang-js">app.post(<span class="hljs-string">&quot;/authors&quot;</span>, authorsController.create)
+</code></pre>
+<p>Finally, let&apos;s update our controller to include the create action that creates a new Author document.</p>
+<p>In <code>controllers/authorsController.js</code>:</p>
+<pre><code class="lang-js">create: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>)</span>{
+  <span class="hljs-keyword">var</span> author = <span class="hljs-keyword">new</span> AuthorModel({name: req.body.name})
+  author.save(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)</span>{
+    <span class="hljs-keyword">if</span> (!err){
+      res.redirect(<span class="hljs-string">&quot;authors&quot;</span>)
+    }
+  })
+}
+</code></pre>
+<blockquote>
+<p>We&apos;re grabbing the form input using <code>req.body.name</code> and then creating a new <code>Author</code> document then saving it. Upon save it will redirect to the authors index page.</p>
+</blockquote>
+<h2 id="creating-and-deleting-nested-documents--we-do">Creating and deleting nested documents - We do</h2>
+<p>If you followed along the you do for show(<code>views/authors/show.hbs</code>), it should look something like this:</p>
+<pre><code>&lt;h2&gt;Reminders for {{name}}&lt;/h2&gt;
+&lt;div&gt;
+  {{#each reminders}}
+    &lt;div class=&quot;reminders-show-each&quot;&gt;
+      &lt;p&gt;{{body}}&lt;/p&gt;
+    &lt;/div&gt;
+  {{/each}}
+&lt;/div&gt;
+
+&lt;div id=&quot;reminder-new&quot;&gt;
+  &lt;h3&gt;New Reminder&lt;/h3&gt;
+  &lt;form action=&quot;/authors/{{_id}}/reminders&quot; method=&quot;post&quot;&gt;
+    &lt;label&gt;Body&lt;/label&gt;
+    &lt;input type=&quot;text&quot; name=&quot;body&quot;&gt;
+    &lt;input type=&quot;submit&quot;&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+</code></pre><p>Let&apos;s define a route and a controller action for creating reminders under an author document.</p>
+<p>In <code>index.js</code>:</p>
+<pre><code class="lang-js">app.post(<span class="hljs-string">&quot;/authors/:id/reminders&quot;</span>, authorsController.addReminder)
+</code></pre>
+<p>In <code>controller/authorsController.js</code>:</p>
+<pre><code class="lang-js">addReminder: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>)</span>{
+  AuthorModel.findById(req.params.id, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, docs</span>)</span>{
+    docs.reminders.push(<span class="hljs-keyword">new</span> ReminderModel({body: req.body.body}))
+    docs.save(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)</span>{
+      <span class="hljs-keyword">if</span>(!err){
+        res.redirect(<span class="hljs-string">&quot;/authors/&quot;</span> + req.params.id)
+      }
+    })
+  })
+}
+</code></pre>
+<blockquote>
+<p>In this callback, we&apos;re finding an author by the id in the url. Then when we find it, we&apos;re going to push a new <code>Reminder</code> document to that author and save the author with that new reminder.</p>
+</blockquote>
+<p>Next, let&apos;s create the functionality to delete reminders as we complete them. Lets update our <code>views/authors/show.hbs</code> to include a form for deleting for each reminder:</p>
+<pre><code>{{#each reminders}}
+  &lt;div class=&quot;reminders-show-each&quot;&gt;
+    &lt;p&gt;{{body}}&lt;/p&gt;
+    &lt;form method=&quot;post&quot; action=&quot;/authors/{{../_id}}/reminders/{{_id}}?_method=delete&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Done!&quot;&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+{{/each}}
+</code></pre><blockquote>
+<p>The actions a little weird. In order to get the id of our parent object we use <code>../_id</code>. This will also be true of any other attributes we&apos;d want from the parent object. Another weird thing is <code>?_method=delete</code>. This was the best work around we could find using <code>method-override</code> dependency to allow for <code>PUT</code> and <code>DELETE</code> requests in html forms on express.</p>
+</blockquote>
+<p>Now we just need set a route and a controller action.</p>
+<p>In <code>index.js</code>:</p>
+<pre><code class="lang-js">app.delete(<span class="hljs-string">&quot;/authors/:authorId/reminders/:id&quot;</span>, authorsController.removeReminder)
+</code></pre>
+<p>In <code>controllers/authorsController.js</code>:</p>
+<pre><code class="lang-js">removeReminder: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>)</span>{
+  AuthorModel.findByIdAndUpdate(req.params.authorId, {
+    $pull:{
+      reminders: {_id: req.params.id}
+    }
+  }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, docs</span>)</span>{
+    <span class="hljs-keyword">if</span>(!err){
+      res.redirect(<span class="hljs-string">&quot;/authors/&quot;</span> + req.params.authorId)
+    }
+  })
+}
+</code></pre>
+<blockquote>
+<p>This is an alternate sytax <code>.findByIdAndUpdate()</code>. We can actually us this method and pass in an options object. In this case, we&apos;re setting a key of <code>$pull</code>. This will find the reminder by the id specified in the url(<code>req.params.id</code>) and get rid of it from the author. Then upon success of <code>.findByIdAndUpdate()</code> it redirects tot hat author&apos;s show page.</p>
+</blockquote>
+<h2 id="authors-editupdatedestroy">Authors Edit/Update/destroy</h2>
+<p>Using what you&apos;ve learned in class, set up edit update and destroy for authors.</p>
+<h2 id="cliff-notes">Cliff Notes</h2>
+<h3 id="example-schema">Example Schema</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mongoose&apos;</span>)
+
+<span class="hljs-keyword">var</span> Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId
+
+<span class="hljs-keyword">var</span> ChildSchema = <span class="hljs-keyword">new</span> Schema({
+  body: <span class="hljs-built_in">String</span>
+})
+
+<span class="hljs-keyword">var</span> ParentSchema = <span class="hljs-keyword">new</span> Schema({
+  name: <span class="hljs-built_in">String</span>,
+  children: [ChildSchema]
+})
+
+<span class="hljs-keyword">var</span> ParentModel = mongoose.model(<span class="hljs-string">&quot;ParentModel&quot;</span>, AuthorSchema)
+<span class="hljs-keyword">var</span> ChildModel = mongoose.model(<span class="hljs-string">&quot;ChildModel&quot;</span>, ReminderSchema)
+</code></pre>
+<h3 id="some-example-routes">Some Example routes</h3>
+<pre><code class="lang-js">app.get(<span class="hljs-string">&quot;/authors&quot;</span>, authorsController.index)
+app.get(<span class="hljs-string">&quot;/authors/new&quot;</span>, authorsController.new)
+app.post(<span class="hljs-string">&quot;/authors&quot;</span>, authorsController.create)
+app.get(<span class="hljs-string">&quot;/authors/:id&quot;</span>, authorsController.show)
+</code></pre>
+<h3 id="some-example-controller-actions">Some Example Controller actions</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> authorsController = {
+  index: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>)</span>{
+    AuthorModel.find({}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, docs</span>)</span>{
+      res.render(<span class="hljs-string">&quot;authors/index&quot;</span>, {authors: docs})
+    })
+  },
+  <span class="hljs-keyword">new</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>)</span>{
+    res.render(<span class="hljs-string">&quot;authors/new&quot;</span>)
+  },
+  create: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>)</span>{
+    <span class="hljs-keyword">var</span> author = <span class="hljs-keyword">new</span> AuthorModel({name: req.body.name})
+    author.save(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)</span>{
+      <span class="hljs-keyword">if</span> (!err){
+        res.redirect(<span class="hljs-string">&quot;authors&quot;</span>)
+      }
+    })
+  },
+  show: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>)</span>{
+    AuthorModel.findById(req.params.id, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, docs</span>)</span>{
+      res.render(<span class="hljs-string">&quot;authors/show&quot;</span>, docs)
+    })
+
+  }
+}
+</code></pre>
+<h3 id="helpful-mongoose-queries">Helpful mongoose queries</h3>
+<pre><code class="lang-js"><span class="hljs-comment">// finds all documents of specified model type can also use to specify key value pair in query</span>
+Model.find({}, callback)
+
+<span class="hljs-comment">// finds model by id</span>
+Model.findById(someId, callback)
+
+<span class="hljs-comment">// removes document that match key value</span>
+Model.remove({someKey: someValue}, callback)
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../08-single-page-web-apps/express_2/readme.html" class="navigation navigation-prev " aria-label="Previous page: Express Routing / APIs"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../08-single-page-web-apps/node-express-user-authentication/readme.html" class="navigation navigation-next " aria-label="Next page: Local Authentication using Passport"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

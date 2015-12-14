@@ -1,0 +1,1815 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>TDD JS using Jasmine | Welcome to GA&#39;s WDI-DC</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.5">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../10-angular/readme.html" />
+    
+    
+    <link rel="prev" href="../../08-single-page-web-apps/responsive-web-design/readme.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="6.9"
+        data-chapter-title="TDD JS using Jasmine"
+        data-filepath="08-single-page-web-apps/tdd/readme.md"
+        data-basepath="../.."
+        data-revision="Mon Dec 14 2015 02:28:46 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        An Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="01-front-end-fundamentals/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Front End Fundamentals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="01-front-end-fundamentals/command-line/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/command-line/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Command Line Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01-front-end-fundamentals/git/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/git/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Git
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Intro to Web and HTML
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="01-front-end-fundamentals/css/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/css/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        CSS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="01-front-end-fundamentals/javascript-data-types/readme.html">
+            
+            <span><b>1.5.</b> JavaScript Data Types</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="01-front-end-fundamentals/javascript-loops-conditionals/readme.html">
+            
+            <span><b>1.6.</b> JavaScript Loops and Conditionals</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="01-front-end-fundamentals/javascript-objects-functions/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-objects-functions/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        JavaScript Objects and Functions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="01-front-end-fundamentals/javascript-DOM/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-DOM/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        JavaScript DOM
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="02-intermediate-front-end/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Intermediate Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="02-intermediate-front-end/scope-context-closures/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Scope, Context, and Closures
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="02-intermediate-front-end/scope-context-closures/scope.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/scope.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        Scope
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="02-intermediate-front-end/scope-context-closures/context.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/context.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        Context
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="02-intermediate-front-end/scope-context-closures/closures.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/closures.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        Closures
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="02-intermediate-front-end/events-and-callbacks/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/events-and-callbacks/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Events and Callbacks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="02-intermediate-front-end/git_branching/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/git_branching/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Git Branching
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        jQuery
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="02-intermediate-front-end/jquery/jquery-two.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-two.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        jQuery 2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="02-intermediate-front-end/workflows/lesson_plan.html">
+            
+            <span><b>2.6.</b> Workflows</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="02-intermediate-front-end/css2/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/css2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        CSS 2 (Layout &amp; Fonts)
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="04-ruby-mvc-sinatra/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Ruby + MVC with Sinatra
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="04-ruby-mvc-sinatra/ruby-basics/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-basics/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Ruby Basics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Ruby Enumerables
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
+            
+            <span><b>3.3.</b> Problem Modeling</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="04-ruby-mvc-sinatra/domain_modeling/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Domain Modeling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="04-ruby-mvc-sinatra/databases/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/databases/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="04-ruby-mvc-sinatra/active-record-intro/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/active-record-intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Active Record
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Sinatra &amp; REST
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Sinatra &amp; Active Record
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="05-mvc-with-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        MVC with Rails
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="05-mvc-with-rails/rspec/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rspec/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Unit Testing with RSpec
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        MVC Intro to Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="05-mvc-with-rails/rails-models-and-migrations/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-models-and-migrations/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Models and Migrations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="05-mvc-with-rails/rails-views-and-controllers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-views-and-controllers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Views and Controllers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="05-mvc-with-rails/rails-routes-and-resources/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-routes-and-resources/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Routes and Resources
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="05-mvc-with-rails/rails-helpers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-helpers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Helpers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="05-mvc-with-rails/rails-error-handling/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-error-handling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        Error Handling and Validations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        Sessions and Auth
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="05-mvc-with-rails/rails-deployment/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-deployment/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        Deployment
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="07-apis-express-ajax/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        APIs/Express/AJAX
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="07-apis-express-ajax/apis/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/apis/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Building APIs in Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="07-apis-express-ajax/ajax/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        AJAX
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="07-apis-express-ajax/prototypes_and_constructors/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/prototypes_and_constructors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Prototypes and Constructors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="07-apis-express-ajax/express_intro/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/express_intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Intro to Express
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="08-single-page-web-apps/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Single Page Web Apps
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="08-single-page-web-apps/express_2/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/express_2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Express Routing / APIs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="08-single-page-web-apps/mongo_mongoose/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/mongo_mongoose/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Mongo and Mongoose
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="08-single-page-web-apps/node-express-user-authentication/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/node-express-user-authentication/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Local Authentication using Passport
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="08-single-page-web-apps/oauth-via-3rd-party-apps/readme.html">
+            
+            <span><b>6.4.</b> OAuth using Passport</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="08-single-page-web-apps/oojs1_read/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/oojs1_read/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Object-Oriented FE JS: R / CRUD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Object-Oriented FE JS: CUD / CRUD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="08-single-page-web-apps/git-teams/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/git-teams/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Git Team Workflows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="08-single-page-web-apps/responsive-web-design/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/responsive-web-design/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Responsive Web Design
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.9" data-path="08-single-page-web-apps/tdd/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/tdd/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        TDD JS using Jasmine
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="10-angular/readme.html">
+            
+                
+                    <a href="../../10-angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        MVW with Angular
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="10-angular/angular_intro_controllers_directives/readme.html">
+            
+            <span><b>7.1.</b> Angular Intro: Controllers &amp; Directives</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="10-angular/services_templates_and_routing/readme.html">
+            
+            <span><b>7.2.</b> Services, Templates, and Routing</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="10-angular/custom_directives/readme.html">
+            
+                
+                    <a href="../../10-angular/custom_directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Custom Directives
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="10-angular/firebase_in_angular/readme.html">
+            
+                
+                    <a href="../../10-angular/firebase_in_angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        AngularFire: Firebase &amp; Angular
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="10-angular/angular-vs-rails.html">
+            
+                
+                    <a href="../../10-angular/angular-vs-rails.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Angular vs. Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="11-multi-track/readme.html">
+            
+                
+                    <a href="../../11-multi-track/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        Back and Front of Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1" >
+            
+            <span><b>7.6.1.</b> BackBone</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1.1" data-path="11-multi-track/bb_models_collections/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_models_collections/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.1.</b>
+                        
+                        Models and Collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.2" data-path="11-multi-track/bb_views_part1/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_views_part1/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.2.</b>
+                        
+                        Views (part 1)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.3" data-path="11-multi-track/bb_views_part2/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_views_part2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.3.</b>
+                        
+                        Views (part 2)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.4" data-path="11-multi-track/bb_routers/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_routers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.4.</b>
+                        
+                        Routers
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2" >
+            
+            <span><b>7.6.2.</b> Front End</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.2.1" data-path="11-multi-track/bootstrap/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bootstrap/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.1.</b>
+                        
+                        Bootstrap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.2" data-path="11-multi-track/flexbox/readme.html">
+            
+                
+                    <a href="../../11-multi-track/flexbox/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.2.</b>
+                        
+                        Flex Box
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.3" data-path="11-multi-track/foundation/readme.html">
+            
+                
+                    <a href="../../11-multi-track/foundation/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.3.</b>
+                        
+                        Foundation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.4" data-path="11-multi-track/intro-to-php/readme.html">
+            
+                
+                    <a href="../../11-multi-track/intro-to-php/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.4.</b>
+                        
+                        Intro to PHP
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.5" data-path="11-multi-track/jquery-plugins/readme.html">
+            
+                
+                    <a href="../../11-multi-track/jquery-plugins/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.5.</b>
+                        
+                        jQuery Plugins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.6" data-path="11-multi-track/mapping/readme.html">
+            
+                
+                    <a href="../../11-multi-track/mapping/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.6.</b>
+                        
+                        Mapping
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.7" data-path="11-multi-track/pseudo-selectors/readme.html">
+            
+                
+                    <a href="../../11-multi-track/pseudo-selectors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.7.</b>
+                        
+                        Pseudo Selectors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.8" data-path="11-multi-track/sass1-basic-reuse/readme.html">
+            
+                
+                    <a href="../../11-multi-track/sass1-basic-reuse/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.8.</b>
+                        
+                        Sass 1: Basic Reuse
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.9" data-path="11-multi-track/sass2-control-directives/readme.html">
+            
+                
+                    <a href="../../11-multi-track/sass2-control-directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.9.</b>
+                        
+                        Sass 2: Control Directives
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Welcome to GA&#39;s WDI-DC</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="learning-objectives">Learning Objectives</h2>
+<h2 id="screencasts">Screencasts</h2>
+<ul>
+<li><a href="https://youtu.be/sT-YhpEIMPQ" target="_blank">Part 1/3</a></li>
+<li><a href="https://youtu.be/3J3W0Hi2Jxw" target="_blank">Part 2/3</a></li>
+<li><a href="https://youtu.be/GMafQUii6Qc" target="_blank">Part 3/3</a></li>
+</ul>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>List benefits of unit testing in collaborative development process.</li>
+<li>Identify language-agnostic patterns in testing syntax and methodology.</li>
+<li>Differentiate the roles of and relationships between <code>suite</code>, <code>spec</code>, and <code>expectation</code> in the context of Jasmine testing.</li>
+<li>Implement <code>beforeEach()</code> and <code>afterEach()</code> to DRY up test code.</li>
+<li>Use the <code>jasmine-node</code> CLI to run Jasmine tests.</li>
+<li>Plan a project by creating a series of unit tests that define its parameters.</li>
+</ul>
+<h1 id="do-you-even-test-bro">Do You Even Test, Bro?</h1>
+<p>We first encountered Test Driven Development during Unit 2, when we wrote unit tests in Ruby using RSpec.</p>
+<p><strong>LIVE SURVEY</strong>: (10/10)
+Sort yourself into one of the following categories:</p>
+<ol>
+<li>I have used TDD, and I loved it.</li>
+<li>I have used TDD, and I hated it.</li>
+<li>I have not used TDD, but I want to.</li>
+<li><p>I have not used TDD, and I do not want to.</p>
+</li>
+<li><p>For those of you who answered &quot;no&quot; to either part, why not? What did you or would you do instead?</p>
+</li>
+<li>For those you answered &quot;yes&quot; to either part, why do you find testing valuable? What problem(s) does testing solve?</li>
+</ol>
+<p><strong>ST-WG</strong>: What patterns/themes/words/ideas do we see recurring in your answers?</p>
+<blockquote>
+<p>Some possible responses...</p>
+<ul>
+<li>Cons<ul>
+<li><strong>Time.</strong> It&apos;s a waste of my time and effort to test.</li>
+<li><strong>It&apos;s too much.</strong> I can test just fine using the console.</li>
+<li><strong>App complexity.</strong> My app is too simple to require testing.</li>
+</ul>
+</li>
+<li>Pros<ul>
+<li><strong>Bug detection.</strong> Quickly identify unanticipated errors.</li>
+<li><strong>Code Quality.</strong> Create standards for our code before writing it.</li>
+<li><strong>Time.</strong> Shorten development time through bug detection.</li>
+<li><strong>Documentation.</strong> Tests act as a documentation of sorts for how our code should work. Helpful to other developers and shareholders.</li>
+<li><strong>Jobs.</strong> Testing is a job requirement across the board.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="all-together-now-1020">All Together Now (10/20)</h2>
+<p>When it comes to development in teams, both the benefits and the potential pitfalls of testing practices increase. Many feel that testing is essential when working on large, complex projects.</p>
+<ul>
+<li>Take Ember.js for example. <a href="https://github.com/emberjs/ember.js#how-to-run-unit-tests" target="_blank">If you look at the framework&apos;s repo</a>, it comes packaged with a ton of tests.</li>
+<li>So many moving parts. And so many people contributing to them. Can you imagine how crazy this would get without testing?</li>
+</ul>
+<p>Testing is another thing that&apos;s a little hard to appreciate through this class because we mostly work alone to make relatively small apps. Working together on this project, you&apos;re likely to find that you lose whole hours manually testing your app: quitting Node, re-seeding your database, starting Node, opening your app in the browser, clicking through each page. Testing eliminates this for you, and makes for a much less stressful week.</p>
+<p>Two common pain points in the wild are creating test coverage for existing code bases and ensuring that test suites are adequately maintained as an application grows in complexity. BOTH of these can be avoided by using TDD as a tool for <strong><em>planning</em></strong>.  </p>
+<h2 id="do-you-wanna-build-a-snowman">Do you wanna build a snowman?</h2>
+<p>For example, imagine you&apos;re Elsa from Frozen, creating an app that will build a snowman.</p>
+<p>Before we write any of our snowman code, we&apos;re going to create a test. And before we create a test, we&apos;re going to think: What do I want my snowman builder to do? What should the snowmen it creates be like?</p>
+<pre><code class="lang-js"><span class="hljs-comment">//I want my snowman builder to create a snowman object</span>
+<span class="hljs-comment">//My winter wonderland is a friendly place, so I want each snowman to have a name</span>
+<span class="hljs-comment">//In order for it to really be a snowman, it needs to have a carrot nose.</span>
+<span class="hljs-comment">//It also needs stick arms.</span>
+<span class="hljs-comment">//If the snowman is named Olaf, he should like warm hugs.</span>
+</code></pre>
+<p>Now that we have an English-y outline, we&apos;re going to start turning it into tests.</p>
+<h2 id="remember-rspec">Remember RSpec?</h2>
+<p>Remember from RSpec that tests followed a &quot;describe...it&quot; format, like so:</p>
+<ul>
+<li>describe &quot;A snowman&quot;<ul>
+<li>it &quot;should have a name&quot;</li>
+<li>it &quot;should have a carrot nose&quot;</li>
+<li>it &quot;should have stick arms&quot;</li>
+<li>describe &quot;a snowman named Olaf&quot;<ul>
+<li>it &quot;should like warm hugs&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Today we&apos;ll be using a Javascript testing framework called Jasmine. It&apos;s the same thing as RSpec, just for Javascript. It uses &quot;describe&quot; and &quot;it&quot;, just like RSpec.</p>
+<h2 id="you-do-plan-your-project-3050">You Do: Plan your project (30/50)</h2>
+<ul>
+<li><p>(5 min) Write a brief outline of your app. Write it <strong>in English</strong> -- but begin each line with either &quot;describe&quot; or &quot;it&quot;.</p>
+<ul>
+<li>Aim to have 2 total &quot;describe&quot; lines -- one for each of the models required for this project.</li>
+<li>Aim to have 4 total &quot;it&quot; lines.</li>
+</ul>
+</li>
+<li><p>Now, get into a group of three with people who are <strong>not</strong> in your project&apos;s group.Then, over <strong>5 minutes</strong>:</p>
+<ul>
+<li>Briefly describe your project idea to the other two people.</li>
+<li>Read through your tests.</li>
+<li>With them, brainstorm other tests you might include.</li>
+</ul>
+</li>
+<li>You&apos;ll repeat this for each member of your group.</li>
+</ul>
+<h1 id="jasmine">Jasmine</h1>
+<p>Jasmine is only one testing framework. There&apos;s <a href="https://mochajs.org/" target="_blank">Mocha</a>, <a href="https://qunitjs.com/" target="_blank">QUnit</a> and more... However, they&apos;re all very similar. Most use the same &quot;describe...it&quot; syntax.</p>
+<h2 id="getting-set-up-555">Getting set up (5/55)</h2>
+<p>First, we&apos;re going to install jasmine-node globally.</p>
+<p>It doesn&apos;t matter where you run this code:</p>
+<pre><code class="lang-bash">$ npm install  -g jasmine-node
+</code></pre>
+<p>Now, <code>cd</code> into your project folder. If you don&apos;t have a project folder, go ahead and make one. It doesn&apos;t really matter what folder you use for what we&apos;re about to do, but if you can, you may as well get some of your project done now so you don&apos;t have to later!</p>
+<p>I&apos;m going to create a folder for a <code>snowman-builder</code> project.</p>
+<p>Inside your project folder, create a new folder called <code>spec</code>:</p>
+<pre><code class="lang-bash">$ mkdir spec
+</code></pre>
+<p>Inside that new folder, create a file named after your model, followed by &quot;dash-spec&quot;:</p>
+<pre><code class="lang-bash">$ touch spec/snowman-spec.js
+</code></pre>
+<p>Now, run:</p>
+<pre><code class="lang-bash">$ jasmine-node spec
+</code></pre>
+<p>You should get something like:</p>
+<pre><code>$ jasmine-node spec
+
+
+Finished in 0.001 seconds
+0 tests, 0 assertions, 0 failures, 0 skipped
+</code></pre><h2 id="javascripting-your-tests-1065">Javascripting your tests (10/65)</h2>
+<p>Now, paste the tests you wrote earlier into the <code>-spec.js</code> file you created.</p>
+<p>If you run <code>jasmine-node</code> at this point, you&apos;ll just get an error. We need to properly format the code for Javascript.</p>
+<p>A Jasmine test file will look like this:</p>
+<pre><code class="lang-js">describe(<span class="hljs-string">&quot;the test subject&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+  it(<span class="hljs-string">&quot;should have this quality&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+  });
+
+  it(<span class="hljs-string">&quot;should have this other quality&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+  });
+
+});
+</code></pre>
+<p><code>describe</code> and <code>it</code> are actually functions, just like, say, <code>console.log()</code>. They both take a string as their first argument. The second argument is a callback function.</p>
+<p>A <code>describe</code> statement&apos;s function contains a bunch of <code>it</code> statements.</p>
+<p>An <code>it</code> statement&apos;s function contains the code that will do the actual testing. We&apos;re not going to write that code yet -- we&apos;re just going to worry about getting set up with the proper syntax.</p>
+<p>For the snowman builder, the result would be this:</p>
+<pre><code class="lang-js">describe( <span class="hljs-string">&quot;A snowman&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+  <span class="hljs-comment">//My winter wonderland is a friendly place, so I want each snowman to have a name.</span>
+  it( <span class="hljs-string">&quot;should have a name&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+  });
+
+  <span class="hljs-comment">//In order for it to really be a snowman, it needs to have a carrot nose.</span>
+  it(<span class="hljs-string">&quot;should have a carrot nose&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+
+  });
+
+  <span class="hljs-comment">//It also needs stick arms.</span>
+  it(<span class="hljs-string">&quot;should have stick arms&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+
+  });
+
+  <span class="hljs-comment">//If the snowman is named Olaf, he should like warm hugs.</span>
+  describe( <span class="hljs-string">&quot;a snowman named Olaf&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+    it( <span class="hljs-string">&quot;should like warm hugs&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+    });
+
+  });
+
+});
+</code></pre>
+<p>If I run this, I now get:</p>
+<pre><code>$ jasmine-node spec
+....
+
+Finished in 0.009 seconds
+4 tests, 0 assertions, 0 failures, 0 skipped
+</code></pre><p>Just like in RSpec, each green dot indicates a passing test.</p>
+<p>If I add the <code>--verbose</code> flag, I get:</p>
+<pre><code>$ jasmine-node spec --verbose
+
+A snowman - 4 ms
+    should have a name - 1 ms
+    should have a carrot nose - 0 ms
+    should have stick arms - 0 ms
+
+    a snowman named Olaf - 0 ms
+        should like warm hugs - 0 ms
+
+Finished in 0.01 seconds
+4 tests, 0 assertions, 0 failures, 0 skipped
+</code></pre><h2 id="you-do-update-your-code-so-that-it-has-the-proper-syntax-1580">You Do: Update your code so that it has the proper syntax (15/80)</h2>
+<p>This includes adding the appropriate parentheses, double-quotes, semicolons, and functions.</p>
+<p>When you&apos;re done, you should be able to run <code>jasmine-node spec</code> with no failing tests.</p>
+<p>The fact that these tests &quot;pass&quot; doesn&apos;t really mean anything since the tests don&apos;t actually test anything -- but at least we know there aren&apos;t any syntax errors.</p>
+<h1 id="the-suite-life-of-jasmine-585">The suite life of Jasmine (5/85)</h1>
+<p>Let&apos;s break this test down according to its parts.</p>
+<p>What you&apos;ve done so far is create a <strong>test suite</strong>.</p>
+<ol>
+<li><strong>The Suite</strong>.</li>
+</ol>
+<pre><code class="lang-js">describe( <span class="hljs-string">&quot;A snowman&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// Specs go here.</span>
+});
+</code></pre>
+<p>A &quot;suite&quot; is the highest-level container in our test file.</p>
+<ul>
+<li>A suite defines what we are testing. Oftentimes, this is an object.</li>
+<li>Indicated using the <code>describe</code> function.</li>
+<li>Takes two arguments: (1) a string, (2) a function<ul>
+<li>(1) The string is the name of what we are testing</li>
+<li>(2) The function contains the actual tests</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. The Specs</strong></p>
+<p>A suite contains <strong>specs</strong>. These are the <code>it</code> statements.</p>
+<p>In the &quot;spec,&quot; we target a specific part of the suite.</p>
+<blockquote>
+<p>&quot;Spec&quot; is short for &quot;specification&quot;, which comes from &quot;specific&quot;, as in, &quot;we&apos;re testing a specific part of this app.&quot; Get it?</p>
+</blockquote>
+<h2 id="break-1095">Break (10/95)</h2>
+<h1 id="great-expectations-10105">Great Expectations! (10/105)</h1>
+<p>Now that we have the pieces of our snowman builder described, we can start thinking about how we&apos;ll know that our snowmen are living up to our expectations.</p>
+<p><strong>Expectations</strong> are the meat-and-potatoes of our tests.</p>
+<ul>
+<li>Begins with code content. In this case, saves the name of the person in question to a variable.</li>
+<li>Last line is the actual expectation.<ul>
+<li>Begins with <code>expect</code>. Takes one argument, the variable whose value we are testing.</li>
+<li>Followed by a <strong>matcher</strong> (e.g., <code>toBe</code>), which tests the expectation in a particular way.</li>
+</ul>
+</li>
+</ul>
+<h2 id="jasmines-builtin-matchers">Jasmine&apos;s built-in matchers</h2>
+<pre><code class="lang-txt">&apos;toBe&apos; matcher compares with ===
+&apos;toEqual&apos; matcher
+&apos;toMatch&apos; matcher is for regular expressions
+&apos;toBeDefined&apos; matcher compares against `undefined`
+&apos;toBeUndefined&apos; matcher compares against `undefined`
+&apos;toBeNull&apos; matcher compares against null
+&apos;toBeTruthy&apos; matcher is for boolean casting testing
+&apos;toBeFalsy&apos; matcher is for boolean casting testing
+&apos;toContain&apos; matcher is for finding an item in an Array
+&apos;toBeLessThan&apos; matcher is for mathematical comparisons
+&apos;toBeGreaterThan&apos; matcher is for mathematical comparisons
+&apos;toBeCloseTo&apos; matcher is for precision math comparison
+&apos;toThrow&apos; matcher is for testing if a function throws an exception
+&apos;toThrowError&apos; matcher is for testing a specific thrown exception
+</code></pre>
+<p>One thing to note is that there isn&apos;t a built-in matcher for checking whether something is a specific type of object. There&apos;s no, <code>expect( olaf ).toBeA(Snowman)</code> (for who-knows-what reason).</p>
+<p>To test whether something is an object of a specific type, there are several things you could try:</p>
+<pre><code>expect( olaf.name ).toEqual(jasmine.any(String));
+expect( typeof olaf.name ).toBe(&quot;string&quot;);
+
+expect( olaf.constructor.name ).toBe(&quot;Snowman&quot;);
+expect( olaf instanceof Snowman).toBeTruthy();
+</code></pre><p>Those last two won&apos;t work with function expressions (<code>var Snowman = function(){}</code>); only with function declarations (<code>function Snowman(){}</code>).</p>
+<p>A full list of Jasmine&apos;s native matchers can be found <a href="http://jasmine.github.io/edge/introduction.html#section-Expectations" target="_blank">here</a>.</p>
+<p>If you&apos;re feeling adventurous, you can even <a href="http://jasmine.github.io/2.0/custom_matcher.html" target="_blank">create your own custom matcher</a>.</p>
+<h2 id="lets-add-the-first-expectation">Let&apos;s add the first expectation:</h2>
+<pre><code class="lang-js">describe( <span class="hljs-string">&quot;A snowman&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+  <span class="hljs-comment">//My winter wonderland is a friendly place, so I want each snowman to have a name.</span>
+  it( <span class="hljs-string">&quot;should have a name&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> olaf = <span class="hljs-keyword">new</span> Snowman(<span class="hljs-string">&quot;Olaf&quot;</span>);
+    expect( olaf.name ).toBeDefined();
+  });
+
+<span class="hljs-comment">//...</span>
+</code></pre>
+<p>It fails!</p>
+<pre><code>$ jasmine-node spec
+F...
+
+Failures:
+
+  1) A snowman should have a name
+   Message:
+     ReferenceError: Snowman is not defined
+   Stacktrace:
+     ReferenceError: Snowman is not defined
+    at null.&lt;anonymous&gt; (/Users/robertthomas/Desktop/foo/spec/s-spec.js:5:20)
+
+Finished in 0.012 seconds
+4 tests, 1 assertion, 1 failure, 0 skipped
+`
+</code></pre><p>That&apos;s because this script has no idea what a Snowman is -- we haven&apos;t linked in a file that describes a Snowman model yet.</p>
+<p>So I&apos;m going to create a <code>snowman.js</code> file and put this in it:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// /snowman.js</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Snowman</span>(<span class="hljs-params">name</span>) </span>{
+  <span class="hljs-keyword">this</span>.name = name;
+  <span class="hljs-keyword">this</span>.features = [<span class="hljs-string">&quot;carrot nose&quot;</span>, <span class="hljs-string">&quot;stick arms&quot;</span>];
+}
+
+<span class="hljs-built_in">module</span>.exports = Snowman;
+</code></pre>
+<p>Next, I&apos;m going to <code>require</code> that file inside my spec file:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Snowman = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../snowman&quot;</span>);
+
+describe( <span class="hljs-string">&quot;A snowman&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+  <span class="hljs-comment">//My winter wonderland is a friendly place, so I want each snowman to have a name.</span>
+  it( <span class="hljs-string">&quot;should have a name&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> olaf = <span class="hljs-keyword">new</span> Snowman(<span class="hljs-string">&quot;Olaf&quot;</span>);
+    expect( olaf.name ).toBeDefined();
+  });
+
+<span class="hljs-comment">//...</span>
+</code></pre>
+<p>...and now the test passes!</p>
+<h1 id="review-testdriven-development-basics">Review: Test-Driven Development Basics</h1>
+<h2 id="the-process-recontextualized-5110">The Process, Recontextualized (5/110)</h2>
+<p><img src="img/tdd-flowchart.png" alt="tdd flowchart"></p>
+<p>A planning-oriented approach TDD</p>
+<ul>
+<li><strong>Think.</strong><ul>
+<li>What do we want this app/feature to do?</li>
+<li>What are its components? (Think models!)</li>
+<li>What properties should each of those components have? What should they be able to do?</li>
+<li>What behaviors do you definitely want to avoid?</li>
+</ul>
+</li>
+<li><strong>Write <em>tests</em> an outline of your app/feature using testing syntax.</strong><ul>
+<li>For today, we&apos;re going to break this down even further, first writing suites and specs, then going back and adding expectations.</li>
+</ul>
+</li>
+<li><strong>Run your tests.</strong> Seeing red.</li>
+<li><strong>Write code.</strong> How can we make this test pass?</li>
+<li><strong>Test passes.</strong> Green light.</li>
+<li><strong>Refactor and Repeat.</strong></li>
+</ul>
+<p>You write a failing test. Your next step is to write code that will make your test pass. This is kind of like Jeopardy, where the contestants are given the answer and then come up with a question for that answer: it&apos;s backwards from what we intuitively want to do, which is write passing code first and test it later.</p>
+<p>This process is often abbreviated <strong>Red, Green, Refactor</strong>: write a failing test, write the code to make it pass, then refactor. Lather, rinse repeat.</p>
+<h2 id="in-the-real-world-10120">In the &quot;real world&quot;... (10/120)</h2>
+<p>...at this point we would write one more expectation, then write the code to make it pass, then write the next expectation, and so on, doing everything <strong>one test at a time</strong>.</p>
+<p>However, we&apos;re limited by time in this class, so I&apos;m going to show you what the end result for this Snowman would look like, and then ask you to write all your own expectations.</p>
+<h2 id="q-why-is-it-not-recommended-to-write-all-your-expectations-first-and-then-write-all-the-code-to-make-them-pass">Q. Why is it not recommended to write <em>all</em> your expectations first, and then write all the code to make them pass?</h2>
+<blockquote>
+<p>Because it&apos;s pretty straightforward to write the code to make one failing test into a passing test. It&apos;s super-overwhelming to write the code to make a bunch of failing tests pass.</p>
+</blockquote>
+<h2 id="the-final-snowman-specs">The final Snowman specs:</h2>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Snowman = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../snowman&quot;</span>);
+
+describe( <span class="hljs-string">&quot;A snowman&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+  <span class="hljs-comment">//My winter wonderland is a friendly place, so I want each snowman to have a name.</span>
+  it( <span class="hljs-string">&quot;should have a name&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> olaf = <span class="hljs-keyword">new</span> Snowman(<span class="hljs-string">&quot;Olaf&quot;</span>);
+    expect( olaf.name ).toBeDefined();
+  });
+
+  <span class="hljs-comment">//In order for it to really be a snowman, it needs to have a carrot nose.</span>
+  it(<span class="hljs-string">&quot;should have a carrot nose&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> olaf = <span class="hljs-keyword">new</span> Snowman(<span class="hljs-string">&quot;Olaf&quot;</span>);
+    expect ( olaf.features ).toContain(<span class="hljs-string">&quot;carrot nose&quot;</span>);
+  });
+
+  <span class="hljs-comment">//It also needs stick arms.</span>
+  it(<span class="hljs-string">&quot;should have stick arms&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> olaf = <span class="hljs-keyword">new</span> Snowman(<span class="hljs-string">&quot;Olaf&quot;</span>);
+    expect ( olaf.features ).toContain(<span class="hljs-string">&quot;stick arms&quot;</span>);
+  });
+
+  <span class="hljs-comment">//If the snowman is named Olaf, he should like warm hugs.</span>
+  describe(<span class="hljs-string">&quot;A snowman named Olaf&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    it( <span class="hljs-string">&quot;should like warm hugs&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">var</span> frosty = <span class="hljs-keyword">new</span> Snowman(<span class="hljs-string">&quot;Frosty&quot;</span>);
+      <span class="hljs-keyword">var</span> olaf = <span class="hljs-keyword">new</span> Snowman(<span class="hljs-string">&quot;Olaf&quot;</span>);
+      expect( olaf.hug() ).toBe( <span class="hljs-string">&quot;I like warm hugs!&quot;</span> );
+      expect( frosty.hug() ).not.toBe( <span class="hljs-string">&quot;I like warm hugs!&quot;</span> );
+    });
+  });
+
+});
+</code></pre>
+<p>I&apos;m not even going to bother running <code>spec</code> because I know all but one of these tests will fail. That&apos;s not important right now. The important thing is that I&apos;m writing <code>expect</code> statements that make sense to me because this will inform the coding decisions I make later.</p>
+<h2 id="you-do-add-expectations-to-your-code-20140">You do: Add expectations to your code (20/140)</h2>
+<p>You have two goals:</p>
+<ul>
+<li>To write expectations that make sense in English...</li>
+<li>...while still being valid Javascript: you close all your parentheses, put semicolons where you need them, and so on.</li>
+</ul>
+<p>Consider: What variables do you need to test? From an English perspective, what names would it make sense for the different variables and methods to have?</p>
+<p><strong>Take 5 minutes</strong> to add expectations yourself. Then, meet up with your group of 3 and take 5 minutes to review each others&apos; expectations.</p>
+<h2 id="refactor-10150">Refactor (10/150)</h2>
+<h2 id="q-whats-not-dry-about-my-tests-what-repeats">Q. What&apos;s not DRY about my tests? What repeats?</h2>
+<blockquote>
+<p><code>var olaf = new Snowman(&quot;Olaf&quot;);</code></p>
+</blockquote>
+<p>In RSpec we could DRY up tests by making a piece of code run before each test. We can do the same thing here:</p>
+<pre><code class="lang-js">describe( <span class="hljs-string">&quot;A snowman&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> olaf;
+
+  beforeEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    olaf = <span class="hljs-keyword">new</span> Snowman(<span class="hljs-string">&quot;Olaf&quot;</span>);
+  });
+
+  it( <span class="hljs-string">&quot;should have a name&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    expect( olaf.name ).toBeDefined();
+  });
+
+  it(<span class="hljs-string">&quot;should have a carrot nose and stick arms&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    expect ( olaf.features ).toContain(<span class="hljs-string">&quot;carrot nose&quot;</span>, <span class="hljs-string">&quot;stick arms&quot;</span>);
+  });
+
+  describe(<span class="hljs-string">&quot;A snowman named Olaf&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">var</span> frosty;
+    it( <span class="hljs-string">&quot;should like warm hugs&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      frosty = <span class="hljs-keyword">new</span> Snowman(<span class="hljs-string">&quot;Frosty&quot;</span>);
+      expect( olaf.hug() ).toBe( <span class="hljs-string">&quot;I like warm hugs!&quot;</span> );
+      expect( frosty.hug() ).not.toBe( <span class="hljs-string">&quot;I like warm hugs!&quot;</span> );
+    });
+  });
+
+});
+</code></pre>
+<h3 id="lets-test-it-out">Let&apos;s Test It Out!</h3>
+<p>That looks like a good test to me. Let&apos;s run it!</p>
+<ul>
+<li>From your in-class folder, run: <code>$ jasmine-node spec</code></li>
+<li>What error do we get?</li>
+</ul>
+<p>Of course, the rest of the tests are still &quot;failing&quot;. The fact that they&apos;re running shows that my syntax is good to go, but I need to write the rest of the code to be tested.</p>
+<h3 id="lets-build-a-snowman">Let&apos;s Build a Snowman!</h3>
+<pre><code class="lang-js"><span class="hljs-comment">// /snowman.js</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Snowman</span>(<span class="hljs-params">name</span>) </span>{
+  <span class="hljs-keyword">this</span>.name = name;
+  <span class="hljs-keyword">this</span>.features = [<span class="hljs-string">&quot;carrot nose&quot;</span>, <span class="hljs-string">&quot;stick arms&quot;</span>];
+}
+
+Snowman.prototype = {
+  hug: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.name == <span class="hljs-string">&quot;Olaf&quot;</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;I like warm hugs!&quot;</span>;
+    }
+    <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Why are you hugging snow?&quot;</span>;
+    }
+  }
+};
+
+<span class="hljs-built_in">module</span>.exports = Snowman;
+</code></pre>
+<p>Let&apos;s run our test again: <code>$ jasmine-node spec</code></p>
+<pre><code>$ jasmine-node spec --verbose
+
+A snowman - 7 ms
+    should have a name - 4 ms
+    should have a carrot nose - 1 ms
+    should have stick arms - 0 ms
+
+    A snowman named Olaf - 1 ms
+        should like warm hugs - 1 ms
+
+Finished in 0.014 seconds
+4 tests, 5 assertions, 0 failures, 0 skipped
+</code></pre><h2 id="asynchronous-tests">Asynchronous tests</h2>
+<p>One last thing to note is that while you can test AJAX requests and database interactions, it&apos;s a little tricky because they&apos;re asynchronous. <strong>Make sure you use .then()</strong>.</p>
+<p>Here are some examples:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// ...</span>
+it(<span class="hljs-string">&quot;can be saved to the database&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> olaf = <span class="hljs-keyword">new</span> Snowman(<span class="hljs-string">&quot;Olaf&quot;</span>);
+  olaf.save().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, docs</span>)</span>{
+    <span class="hljs-comment">// err will always be null if the database action was successful</span>
+    expect( err ).toBeNull();
+  });
+});
+
+it(<span class="hljs-string">&quot;makes a successful AJAX request&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> olaf = <span class="hljs-keyword">new</span> Snowman(<span class="hljs-string">&quot;Olaf&quot;</span>);
+  $.getJSON(<span class="hljs-string">&quot;http://snowhub.com&quot;</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+    expect( response[<span class="hljs-number">0</span>].name ).toBe( <span class="hljs-string">&quot;John Snow&quot;</span> );
+  });
+});
+</code></pre>
+<h2 id="and-thats-a-wrap">And that&apos;s a wrap</h2>
+<p>The snowman code is available here:</p>
+<p><a href="https://github.com/ga-dc/snowman_building_with_jasmine" target="_blank">https://github.com/ga-dc/snowman_building_with_jasmine</a></p>
+<h2 id="quiz-questions">Quiz Questions</h2>
+<ul>
+<li><p>Put the following actions in order, from what should happen first to what should happen last:</p>
+<ol>
+<li>Write the code for your app</li>
+<li>Write an English-y outline of your app&apos;s models and what they should do</li>
+<li>Write passing tests for your app</li>
+<li>Refactor your app&apos;s code</li>
+<li>Write failing tests for your app</li>
+</ol>
+<blockquote>
+<p>Outline, failing (red), write code, passing (green), refactor</p>
+</blockquote>
+</li>
+<li><p>What&apos;s the difference between a <code>suite</code>, a <code>spec</code>, and an <code>expectation</code>?</p>
+<blockquote>
+<p>A suite is a series of tests that describe a particular object or feature; a spec is one test; an expectation is the code that goes inside the spec that does the actual testing</p>
+</blockquote>
+</li>
+<li><p>What&apos;s the difference between <code>describe</code>, <code>it</code>, and <code>expect</code> statements?</p>
+<blockquote>
+<p><code>describe</code> is a suite; <code>it</code> is a spec; <code>expect</code> goes inside a spec</p>
+</blockquote>
+</li>
+<li><p>What does <code>beforeEach</code> do?</p>
+<blockquote>
+<p>Contains code that is run before each spec</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="additional-reading">Additional Reading</h2>
+<ul>
+<li><a href="http://jasmine.github.io/2.1/introduction.html" target="_blank">Jasmine&apos;s really great documentation</a></li>
+<li><a href="http://jasmine.github.io/2.0/custom_matcher.html" target="_blank">Creating Custom Matchers in Jasmine</a></li>
+<li><a href="http://jasmine.github.io/2.1/ajax.html" target="_blank">Testing AJAX Calls with Jasmine</a></li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../08-single-page-web-apps/responsive-web-design/readme.html" class="navigation navigation-prev " aria-label="Previous page: Responsive Web Design"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../10-angular/readme.html" class="navigation navigation-next " aria-label="Next page: MVW with Angular"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

@@ -1,0 +1,1728 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Error Handling and Validations | Welcome to GA&#39;s WDI-DC</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.5">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../05-mvc-with-rails/rails-sessions-and-auth/readme.html" />
+    
+    
+    <link rel="prev" href="../../05-mvc-with-rails/rails-helpers/readme.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4.7"
+        data-chapter-title="Error Handling and Validations"
+        data-filepath="05-mvc-with-rails/rails-error-handling/readme.md"
+        data-basepath="../.."
+        data-revision="Mon Dec 14 2015 02:28:46 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        An Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="01-front-end-fundamentals/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Front End Fundamentals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="01-front-end-fundamentals/command-line/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/command-line/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Command Line Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01-front-end-fundamentals/git/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/git/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Git
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Intro to Web and HTML
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="01-front-end-fundamentals/css/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/css/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        CSS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="01-front-end-fundamentals/javascript-data-types/readme.html">
+            
+            <span><b>1.5.</b> JavaScript Data Types</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="01-front-end-fundamentals/javascript-loops-conditionals/readme.html">
+            
+            <span><b>1.6.</b> JavaScript Loops and Conditionals</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="01-front-end-fundamentals/javascript-objects-functions/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-objects-functions/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        JavaScript Objects and Functions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="01-front-end-fundamentals/javascript-DOM/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-DOM/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        JavaScript DOM
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="02-intermediate-front-end/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Intermediate Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="02-intermediate-front-end/scope-context-closures/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Scope, Context, and Closures
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="02-intermediate-front-end/scope-context-closures/scope.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/scope.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        Scope
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="02-intermediate-front-end/scope-context-closures/context.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/context.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        Context
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="02-intermediate-front-end/scope-context-closures/closures.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/closures.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        Closures
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="02-intermediate-front-end/events-and-callbacks/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/events-and-callbacks/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Events and Callbacks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="02-intermediate-front-end/git_branching/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/git_branching/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Git Branching
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        jQuery
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="02-intermediate-front-end/jquery/jquery-two.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-two.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        jQuery 2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="02-intermediate-front-end/workflows/lesson_plan.html">
+            
+            <span><b>2.6.</b> Workflows</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="02-intermediate-front-end/css2/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/css2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        CSS 2 (Layout &amp; Fonts)
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="04-ruby-mvc-sinatra/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Ruby + MVC with Sinatra
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="04-ruby-mvc-sinatra/ruby-basics/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-basics/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Ruby Basics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Ruby Enumerables
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
+            
+            <span><b>3.3.</b> Problem Modeling</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="04-ruby-mvc-sinatra/domain_modeling/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Domain Modeling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="04-ruby-mvc-sinatra/databases/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/databases/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="04-ruby-mvc-sinatra/active-record-intro/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/active-record-intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Active Record
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Sinatra &amp; REST
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Sinatra &amp; Active Record
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="05-mvc-with-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        MVC with Rails
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="05-mvc-with-rails/rspec/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rspec/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Unit Testing with RSpec
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        MVC Intro to Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="05-mvc-with-rails/rails-models-and-migrations/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-models-and-migrations/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Models and Migrations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="05-mvc-with-rails/rails-views-and-controllers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-views-and-controllers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Views and Controllers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="05-mvc-with-rails/rails-routes-and-resources/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-routes-and-resources/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Routes and Resources
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="05-mvc-with-rails/rails-helpers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-helpers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Helpers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.7" data-path="05-mvc-with-rails/rails-error-handling/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-error-handling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        Error Handling and Validations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        Sessions and Auth
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="05-mvc-with-rails/rails-deployment/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-deployment/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        Deployment
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="07-apis-express-ajax/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        APIs/Express/AJAX
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="07-apis-express-ajax/apis/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/apis/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Building APIs in Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="07-apis-express-ajax/ajax/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        AJAX
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="07-apis-express-ajax/prototypes_and_constructors/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/prototypes_and_constructors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Prototypes and Constructors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="07-apis-express-ajax/express_intro/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/express_intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Intro to Express
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="08-single-page-web-apps/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Single Page Web Apps
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="08-single-page-web-apps/express_2/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/express_2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Express Routing / APIs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="08-single-page-web-apps/mongo_mongoose/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/mongo_mongoose/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Mongo and Mongoose
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="08-single-page-web-apps/node-express-user-authentication/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/node-express-user-authentication/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Local Authentication using Passport
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="08-single-page-web-apps/oauth-via-3rd-party-apps/readme.html">
+            
+            <span><b>6.4.</b> OAuth using Passport</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="08-single-page-web-apps/oojs1_read/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/oojs1_read/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Object-Oriented FE JS: R / CRUD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Object-Oriented FE JS: CUD / CRUD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="08-single-page-web-apps/git-teams/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/git-teams/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Git Team Workflows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="08-single-page-web-apps/responsive-web-design/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/responsive-web-design/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Responsive Web Design
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="08-single-page-web-apps/tdd/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/tdd/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        TDD JS using Jasmine
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="10-angular/readme.html">
+            
+                
+                    <a href="../../10-angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        MVW with Angular
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="10-angular/angular_intro_controllers_directives/readme.html">
+            
+            <span><b>7.1.</b> Angular Intro: Controllers &amp; Directives</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="10-angular/services_templates_and_routing/readme.html">
+            
+            <span><b>7.2.</b> Services, Templates, and Routing</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="10-angular/custom_directives/readme.html">
+            
+                
+                    <a href="../../10-angular/custom_directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Custom Directives
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="10-angular/firebase_in_angular/readme.html">
+            
+                
+                    <a href="../../10-angular/firebase_in_angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        AngularFire: Firebase &amp; Angular
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="10-angular/angular-vs-rails.html">
+            
+                
+                    <a href="../../10-angular/angular-vs-rails.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Angular vs. Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="11-multi-track/readme.html">
+            
+                
+                    <a href="../../11-multi-track/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        Back and Front of Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1" >
+            
+            <span><b>7.6.1.</b> BackBone</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1.1" data-path="11-multi-track/bb_models_collections/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_models_collections/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.1.</b>
+                        
+                        Models and Collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.2" data-path="11-multi-track/bb_views_part1/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_views_part1/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.2.</b>
+                        
+                        Views (part 1)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.3" data-path="11-multi-track/bb_views_part2/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_views_part2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.3.</b>
+                        
+                        Views (part 2)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.4" data-path="11-multi-track/bb_routers/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_routers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.4.</b>
+                        
+                        Routers
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2" >
+            
+            <span><b>7.6.2.</b> Front End</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.2.1" data-path="11-multi-track/bootstrap/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bootstrap/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.1.</b>
+                        
+                        Bootstrap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.2" data-path="11-multi-track/flexbox/readme.html">
+            
+                
+                    <a href="../../11-multi-track/flexbox/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.2.</b>
+                        
+                        Flex Box
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.3" data-path="11-multi-track/foundation/readme.html">
+            
+                
+                    <a href="../../11-multi-track/foundation/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.3.</b>
+                        
+                        Foundation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.4" data-path="11-multi-track/intro-to-php/readme.html">
+            
+                
+                    <a href="../../11-multi-track/intro-to-php/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.4.</b>
+                        
+                        Intro to PHP
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.5" data-path="11-multi-track/jquery-plugins/readme.html">
+            
+                
+                    <a href="../../11-multi-track/jquery-plugins/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.5.</b>
+                        
+                        jQuery Plugins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.6" data-path="11-multi-track/mapping/readme.html">
+            
+                
+                    <a href="../../11-multi-track/mapping/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.6.</b>
+                        
+                        Mapping
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.7" data-path="11-multi-track/pseudo-selectors/readme.html">
+            
+                
+                    <a href="../../11-multi-track/pseudo-selectors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.7.</b>
+                        
+                        Pseudo Selectors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.8" data-path="11-multi-track/sass1-basic-reuse/readme.html">
+            
+                
+                    <a href="../../11-multi-track/sass1-basic-reuse/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.8.</b>
+                        
+                        Sass 1: Basic Reuse
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.9" data-path="11-multi-track/sass2-control-directives/readme.html">
+            
+                
+                    <a href="../../11-multi-track/sass2-control-directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.9.</b>
+                        
+                        Sass 2: Control Directives
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Welcome to GA&#39;s WDI-DC</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="error-handling">Error Handling</h1>
+<h2 id="screencasts">Screencasts</h2>
+<ul>
+<li><a href="https://youtu.be/sHSsc7EGI0g" target="_blank">Part 1/5</a></li>
+<li><a href="https://youtu.be/wKMuNDLDKFA" target="_blank">Part 2/5</a></li>
+<li><a href="https://youtu.be/HZPTIpZUAnQ" target="_blank">Part 3/5</a></li>
+<li><a href="https://youtu.be/yvNO_yoWcqE" target="_blank">Part 4/5</a></li>
+<li><a href="https://youtu.be/hEKDLhZQOSA" target="_blank">Part 5/5</a></li>
+</ul>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>Explain the purpose of <code>flash</code> in Rails</li>
+<li>Compare and contrast <code>flash[:notice]</code> and <code>flash[:alert]</code></li>
+<li>List three ActiveRecord methods that trigger validations</li>
+<li>Compare and contrast the validation helpers <code>confirmation</code>, <code>inclusion</code>, <code>exclusion</code>, <code>length</code>, <code>presence</code>, <code>uniqueness</code>, and <code>numericality</code></li>
+<li>Compare and contrast the validation options <code>allow_nil</code>, <code>allow_blank</code>, and <code>on</code></li>
+<li>Create a custom validation on an ActiveRecord model</li>
+<li>Explain the benefits of explicitly handling errors</li>
+<li>Produce and handle an error in Ruby using the keywords <code>begin</code>, <code>rescue</code>, and <code>raise</code>.</li>
+</ul>
+<h2 id="setup">Setup</h2>
+<p>Clone down the <a href="https://github.com/ga-dc/tunr_rails_errors_validations" target="_blank">errors and validations Tunr repo</a>.</p>
+<h1 id="messages-to-the-user">Messages to the User</h1>
+<p>Our app works, but it also breaks quite easily. It&apos;s useful for <em>us</em> when the app breaks because we can see where all the errors are... but those big red error pages don&apos;t make for a very good user experience.</p>
+<h2 id="framing">Framing</h2>
+<p>It would be nice if we could find a <em>nice</em> way let the user know that their artist was successfully created.  </p>
+<h2 id="q-based-on-what-weve-learned-so-far-how-could-you-show-the-user-a-message-that-their-artist-was-successfully-created">Q. Based on what we&apos;ve learned so far, how could you show the user a message that their Artist was successfully created?</h2>
+<blockquote>
+<p>A. The easiest way would be to just create an instance variable <code>@message</code>.</p>
+</blockquote>
+<pre><code class="lang-rb"><span class="hljs-comment"># app/controllsers/artists_controller.rb</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.create!(artist_params)
+  <span class="hljs-variable">@message</span> = <span class="hljs-string">&quot;<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.name}</span> was created.&quot;</span>
+  redirect_to <span class="hljs-variable">@artist</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Then, in <code>app/views/artists/show.html.erb</code>:</p>
+<pre><code class="lang-erb"><span class="xml"><span class="hljs-comment">&lt;!-- app/views/artists/show.html.erb --&gt;</span>
+Message: </span>&lt;%=<span class="ruby"> <span class="hljs-variable">@message</span> </span>%&gt;<span class="xml">
+</span></code></pre>
+<h2 id="q-try-it-why-doesnt-this-work">Q. Try it! Why doesn&apos;t this work?</h2>
+<blockquote>
+<p>A. Context. We redirect to a different page. A redirect is a separate GET request. Instance variables exist only on <em>one</em> request. They don&apos;t persist across requests.</p>
+</blockquote>
+<h2 id="q-weve-seen-two-main-ways-of-storing-user-data-so-its-available-from-page-to-page-and-request-to-request-what-are-they">Q. We&apos;ve seen two main ways of storing user data so it&apos;s available from page to page, and request to request. What are they?</h2>
+<blockquote>
+<p>A. We could store errors in the database, but that&apos;s hugely inefficient. A better idea would be to use temporary <strong>session variables</strong>, which you just learned about.</p>
+</blockquote>
+<p>Rails has a built-in way of storing messages in sessions, called <code>flash</code>.</p>
+<p><code>flash</code> is a hash that&apos;s created on one request, available through the next, then destroyed.  It was created to &quot;flash&quot; a message to the user and then go away.</p>
+<p>Replace the <code>error</code> instance variable with <code>flash[:alert]</code> in your Artist controller to see it in action:</p>
+<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/artists_controller.rb</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.create!(artist_params)
+  flash[<span class="hljs-symbol">:notice</span>] = <span class="hljs-string">&quot;<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.name}</span> was created.&quot;</span>
+  redirect_to <span class="hljs-variable">@artist</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Then, in <code>views/artists/show.html.erb</code>, replace the <code>@message</code> line with this:</p>
+<pre><code class="lang-erb"><span class="xml"><span class="hljs-comment">&lt;!-- views/artists/show.html.erb --&gt;</span>
+</span>&lt;%<span class="ruby"> flash.each <span class="hljs-keyword">do</span> |type, message| </span>%&gt;<span class="xml">
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span></span>&lt;%=<span class="ruby"> type </span>%&gt;<span class="xml">: </span>&lt;%=<span class="ruby"> message </span>%&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+</span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
+</span></code></pre>
+<h4 id="try-it">Try it!</h4>
+<h2 id="flash-convention"><a href="http://gaspull.geeksaresexytech.netdna-cdn.com/wp-content/uploads/2015/07/P1060110.jpg" target="_blank">Flash convention</a></h2>
+<p>We used <code>flash[:alert]</code>, but as with any hash, we can use <code>flash[:notice]</code>, <code>flash[:wombat]</code>, <code>flash[:bananapatch]</code>, <code>flash[:error]</code>, whatever.</p>
+<p>It&apos;s convention to stick to two main ones: <code>:alert</code> and <code>:notice</code>.</p>
+<h2 id="q-why-should-you-stick-to-this-convention">Q. Why should you stick to this convention?</h2>
+<blockquote>
+<p>Having one or two flash types makes it really easy to style your Flashes with CSS.  Also, rails provides special helpers for alert and notice.  In the <a href="http://guides.rubyonrails.org/action_controller_overview.html#the-flash" target="_blank">controllers</a> and <a href="http://api.rubyonrails.org/classes/ActionDispatch/Flash.html" target="_blank">views</a>.</p>
+</blockquote>
+<p>Consider:</p>
+<pre><code class="lang-erb"><span class="xml"><span class="hljs-comment">&lt;!-- views/artists/show.html.erb --&gt;</span>
+</span>&lt;%<span class="ruby"> flash.each <span class="hljs-keyword">do</span> |type, message| </span>%&gt;<span class="xml">
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;</span></span></span>&lt;%=<span class="ruby"> type </span>%&gt;<span class="xml"><span class="hljs-tag"><span class="hljs-value">&quot;</span>&gt;</span></span>&lt;%=<span class="ruby"> message </span>%&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+</span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
+</span></code></pre>
+<p>And this css:</p>
+<pre><code class="lang-css"><span class="hljs-comment">/* app/assets/stylesheets/application.css */</span>
+<span class="hljs-class">.alert</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value">red</span></span>;
+}</span>
+<span class="hljs-class">.notice</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value">blue</span></span>;
+}</span>
+</code></pre>
+<h2 id="q-presumably-wed-want-to-show-error-messages-on-any-page-what-problem-do-we-run-into-now">Q. Presumably, we&apos;d want to show error messages on any page. What problem do we run into now?</h2>
+<blockquote>
+<p>A. We only show flash messages on the Artist show page.</p>
+</blockquote>
+<h2 id="q-where-would-be-the-best-place-to-put-the-flash-messages-so-we-dont-have-to-repeat-anything">Q. Where would be the best place to put the flash messages so we don&apos;t have to repeat anything?</h2>
+<blockquote>
+<p>A. In <code>views/layouts/application.html.erb</code></p>
+</blockquote>
+<pre><code class="lang-erb"><span class="xml"><span class="hljs-comment">&lt;!-- app/views/layouts/application.html.erb --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Tun.r<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">nav</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/songs&quot;</span>&gt;</span>Songs<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;/artists&quot;</span>&gt;</span>Artists<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">nav</span>&gt;</span>
+</span>&lt;%<span class="ruby"> flash.each <span class="hljs-keyword">do</span> |type, message| </span>%&gt;<span class="xml">
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;</span></span></span>&lt;%=<span class="ruby"> type </span>%&gt;<span class="xml"><span class="hljs-tag"><span class="hljs-value">&quot;</span>&gt;</span></span>&lt;%=<span class="ruby"> message </span>%&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+</span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
+</span></code></pre>
+<h2 id="shorthand-flash-5-min">Shorthand Flash (5 min)</h2>
+<p>You can DRY up your code a bit by putting the flash message right in the <code>redirect_to</code>:</p>
+<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/artists_controller.rb</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.create!(artist_params)
+  redirect_to <span class="hljs-variable">@artist</span>, <span class="hljs-symbol">notice:</span> <span class="hljs-string">&quot;<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.name}</span> was successfully saved.&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Note that this only works with flashes named <code>notice:</code> or <code>alert:</code>. It does not work with <code>render</code>.</p>
+<hr>
+<h1 id="validations">Validations</h1>
+<p>Flash is especially helpful for correcting the user when they use your app in the wrong way -- entering bogus data, for example.</p>
+<h2 id="framing-5-min">Framing (5 min)</h2>
+<p>In our Rails apps, we&apos;ve been entering a lot of bogus data -- artists with blank names, for instance. That&apos;s fine while we&apos;re in development, but we don&apos;t want the users of our live app to be able to get away with that.</p>
+<h2 id="q-based-on-what-we-know-how-could-we-prevent-users-from-entering-blank-data-into-a-field">Q. Based on what we know, how could we prevent users from entering <strong>blank data</strong> into a field?</h2>
+<blockquote>
+<p>A. Javascript.</p>
+</blockquote>
+<p>...but that&apos;s easily circumvented with Chrome&apos;s Inspector.</p>
+<blockquote>
+<p>A. We could put that in the controller, like so:</p>
+</blockquote>
+<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/artists_controller.rb</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
+  <span class="hljs-keyword">if</span> params[<span class="hljs-symbol">:name</span>] == <span class="hljs-string">&quot;&quot;</span>
+    flash[<span class="hljs-symbol">:alert</span>] = <span class="hljs-string">&quot;Can&apos;t be blank!&quot;</span>
+    redirect_to <span class="hljs-variable">@artist</span>
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.create(artist_params)
+    redirect_to <span class="hljs-variable">@artist</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>...but putting it in the controller is going to lead to some pretty unwieldy controller methods. Besides, we may want there to be several routes that create or update an artist, and we&apos;d need to copy and paste that bit of code for each one. That&apos;s hardly DRY!</p>
+<blockquote>
+<p>A. We could put in database constraints, like <code>NOT NULL</code> and <code>UNIQUE</code>, by going and playing around in SQL.</p>
+</blockquote>
+<p>But...it&apos;s SQL.  Rails provides <a href="http://edgeguides.rubyonrails.org/active_record_migrations.html#column-modifiers" target="_blank">some helpers</a> for managing database constraints.  Beyond those, it can be difficult.</p>
+<p>Wouldn&apos;t it be nice if, before an Artist record was saved, we could validate that the data entered into its fields were correct?</p>
+<h2 id="you-do-15-min">You do (15 min)</h2>
+<p><a href="http://guides.rubyonrails.org/active_record_validations.html" target="_blank">The docs, for reference.</a></p>
+<ul>
+<li>Add the following code to your Artist model. What does each line do?</li>
+</ul>
+<pre><code class="lang-rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Artist</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-keyword">true</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">length:</span> {<span class="hljs-symbol">in:</span> <span class="hljs-number">1</span>..<span class="hljs-number">20</span>}
+  validates <span class="hljs-symbol">:nationality</span>, <span class="hljs-symbol">inclusion:</span> [<span class="hljs-string">&quot;USA&quot;</span>, <span class="hljs-string">&quot;Canada&quot;</span>, <span class="hljs-string">&quot;UK&quot;</span>]
+<span class="hljs-keyword">end</span>
+</code></pre>
+<ul>
+<li>What&apos;s the <em>un</em>-DRY version of the following?</li>
+</ul>
+<pre><code class="lang-rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Artist</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">:nationality</span>, <span class="hljs-symbol">:photo_url</span>, <span class="hljs-symbol">presence:</span> <span class="hljs-keyword">true</span>
+  validates <span class="hljs-symbol">:name</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-keyword">true</span>, <span class="hljs-symbol">length:</span> {<span class="hljs-symbol">maximum:</span> <span class="hljs-number">100</span>}
+<span class="hljs-keyword">end</span>
+</code></pre>
+<ul>
+<li>Can you figure out what these would do?</li>
+</ul>
+<pre><code class="lang-rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  validates <span class="hljs-symbol">:password</span>, <span class="hljs-symbol">confirmation:</span> <span class="hljs-keyword">true</span>
+  validates <span class="hljs-symbol">:age</span>, <span class="hljs-symbol">numericality:</span> {<span class="hljs-symbol">only_integer:</span> <span class="hljs-keyword">true</span>, <span class="hljs-symbol">greater_than_or_equal_to:</span> <span class="hljs-number">13</span>}
+  validates <span class="hljs-symbol">:country</span>, <span class="hljs-symbol">exclusion:</span> [<span class="hljs-string">&quot;North Korea&quot;</span>]
+<span class="hljs-keyword">end</span>
+</code></pre>
+<ul>
+<li>What are the differences between the two following snippets?</li>
+</ul>
+<pre><code class="lang-rb"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  validates <span class="hljs-symbol">:password</span>, <span class="hljs-symbol">confirmation:</span> <span class="hljs-keyword">true</span>
+  validates <span class="hljs-symbol">:ssn</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-keyword">true</span>, <span class="hljs-symbol">allow_blank:</span> <span class="hljs-keyword">true</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  validates <span class="hljs-symbol">:password</span>, <span class="hljs-symbol">confirmation:</span> <span class="hljs-keyword">true</span>, <span class="hljs-symbol">on:</span> create
+  validates <span class="hljs-symbol">:ssn</span>, <span class="hljs-symbol">uniqueness:</span> <span class="hljs-keyword">true</span>, <span class="hljs-symbol">allow_nil:</span> <span class="hljs-keyword">true</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2 id="custom-validations-10-min">Custom validations (10 min)</h2>
+<p>You can also easily create your own custom validations. For instance, this will make Tunr reject any artist named Billy Ray Cyrus:</p>
+<pre><code class="lang-rb"><span class="hljs-comment"># app/models/artist.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Artist</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActiveRecord::Base</span></span></span>
+  validate <span class="hljs-symbol">:break_billy_rays_achy_breaky_heart</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">break_billy_rays_achy_breaky_heart</span></span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">self</span>.name == <span class="hljs-string">&quot;Billy Ray Cyrus&quot;</span>
+      errors.add(<span class="hljs-symbol">:name</span>, <span class="hljs-string">&quot;cannot be Billy Ray Cyrus, because he doesn&apos;t qualify as an artist.&quot;</span>)
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2 id="q-test-it-out-by-using-the-form-to-create-a-new-artist-named-billy-ray-cyrus-what-does-errorsadd-do">Q. Test it out by using the form to create a new artist named &quot;Billy Ray Cyrus&quot;. What does <code>errors.add</code> do?</h2>
+<blockquote>
+<p>A. Determines what the error message is.</p>
+</blockquote>
+<h2 id="q-this-validation-wont-be-triggered-if-the-user-writes-billy-ray-cyrus-in-alllowercase-how-could-you-fix-that">Q. This validation won&apos;t be triggered if the user writes &quot;billy ray cyrus&quot; in all-lowercase. How could you fix that?</h2>
+<blockquote>
+<p>A. <code>if self.name.downcase == &quot;billy ray cyrus&quot;</code></p>
+</blockquote>
+<h2 id="validation-in-the-console-10-min">Validation in the console (10 min)</h2>
+<p>Let&apos;s test out these validations in the Rails console.</p>
+<p>You can leave <code>rails s</code> running in one tab; it doesn&apos;t matter. In a <em>different</em> tab, run <code>rails c</code>.</p>
+<p>Your &quot;prompt&quot; in the Rails console should look something like this:</p>
+<pre><code>2.2.3 :001&gt;
+</code></pre><p>Now, type in:</p>
+<pre><code>$ billy = Artist.new(name: &quot;Billy Ray Cyrus&quot;)
+$ miley = Artist.new(name: &quot;Miley Cyrus&quot;)
+</code></pre><h2 id="q-what-does-billyvalid-do-what-about-mileyvalid">Q. What does <code>billy.valid?</code> do? What about <code>miley.valid?</code></h2>
+<blockquote>
+<p>A. Tells us whether these Artists will be able to be saved to the database.</p>
+</blockquote>
+<h2 id="q-after-typing-billyvalid-type-billyerrors-what-does-it-do-what-about-billyerrorsfullmessages">Q. After typing <code>billy.valid?</code>, type <code>billy.errors</code>. What does it do? What about <code>billy.errors.full_messages</code>?</h2>
+<blockquote>
+<p>A. Contains the error messages generated by trying to save the Artist.</p>
+</blockquote>
+<p>These are the methods Rails uses underneath the surface to trigger validation errors.</p>
+<h2 id="q-imagine-you-see-the-below-line-of-code-has-been-added-to-the-viewsartistsnewhtmlerb-page-what-does-it-do">Q. Imagine you see the below line of code has been added to the <code>views/artists/new.html.erb</code> page. What does it do?</h2>
+<pre><code>&lt;%= @artist.errors.full_messages.first if @artist.errors.any? %&gt;
+</code></pre><blockquote>
+<p>A. It prints out the first error message that was generated.</p>
+</blockquote>
+<h3 id="validation-triggers">Validation triggers</h3>
+<p>If you only write these:</p>
+<pre><code>$ billy = Artist.new(name: &quot;Billy Ray Cyrus&quot;)
+$ billy.errors.full_messages
+</code></pre><p>...you&apos;ll get a blank array. That&apos;s because <code>.new</code> doesn&apos;t actually make the validations happen. The only methods that <em>do</em> are:</p>
+<pre><code>.valid?
+.save
+.save!
+.create
+.create!
+.update
+.update!
+</code></pre><p>...so <code>.errors.full_messages</code> must be run after these.</p>
+<h2 id="break-10-min">Break (10 min)</h2>
+<h2 id="bangin-methods-10-min">Bangin&apos; methods (10 min)</h2>
+<p>Let&apos;s try using <code>.create</code> instead of <code>.new</code>:</p>
+<pre><code>$ billy = Artist.create(name: &quot;Billy Ray Cyrus&quot;)
+</code></pre><h3 id="rollback">Rollback</h3>
+<p>You should see something like:</p>
+<pre><code>2.2.1 :024 &gt; billy = Artist.create(name: &quot;Billy Ray Cyrus&quot;)
+   (0.2ms)  BEGIN
+   (0.6ms)  ROLLBACK
+ =&gt; #&lt;Artist id: nil, name: &quot;Billy Ray Cyrus&quot;, photo_url: nil, nationality: nil, created_at: nil, updated_at: nil&gt;
+</code></pre><p>That <code>ROLLBACK</code> indicates that ActiveRecord tried running a SQL command, but it was unsuccessful, so it&apos;s undoing -- or &quot;rolling-back&quot; -- any changes that it made.</p>
+<h3 id="with-a-bang">With a bang</h3>
+<p>Now try the same command, but put a bang <code>!</code> at the end of <code>.create</code>:</p>
+<pre><code>$ billy = Artist.create!(name: &quot;Billy Ray Cyrus&quot;)
+</code></pre><h2 id="q-whats-the-difference-between-create-and-create">Q. What&apos;s the difference between <code>.create</code> and <code>.create!</code>?</h2>
+<blockquote>
+<p>A. Adding in a bang makes the app throw a fatal error -- that is, &quot;break&quot; -- if a validation fails. Without the bang, it fails &quot;silently&quot;.</p>
+</blockquote>
+<p>You can add a bang to both <code>.create</code> and <code>.save</code>.</p>
+<h2 id="using-a-boolean-instead-of-the-exception-10-min">Using a boolean instead of the exception (10 min)</h2>
+<p>The discussion on validations has so far shown you about 18 different ways a user can &quot;break&quot; your app.</p>
+<p>Truth be told, however, we don&apos;t usually use <code>.create</code> or <code>.create!</code> in Rails apps. Instead, we use <code>.new</code> and <code>.save</code>.</p>
+<h2 id="q-whats-the-difference-between-create-and-new--save">Q. What&apos;s the difference between <code>.create</code> and <code>.new / .save</code>?</h2>
+<blockquote>
+<p>A. <code>.create</code> is the same thing as <code>.new</code> and <code>.save</code> run right after each other.</p>
+</blockquote>
+<p>This gives us a way of making sure the user doesn&apos;t see a broken app:</p>
+<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/artists_controller.rb</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span></span>
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.new(artist_params)
+  <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>.save
+    flash[<span class="hljs-symbol">:notice</span>] = <span class="hljs-string">&quot;<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.name}</span> was successfully created.&quot;</span>
+    redirect_to <span class="hljs-variable">@artist</span>
+  <span class="hljs-keyword">else</span>
+    render <span class="hljs-symbol">:new</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>...and in the form view:</p>
+<pre><code class="lang-erb"><span class="xml"><span class="hljs-comment">&lt;!-- app/views/artists/_form.html.erb --&gt;</span>
+</span>&lt;%=<span class="ruby"> <span class="hljs-variable">@artist</span>.errors.full_messages.first <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>.errors.any? </span>%&gt;<span class="xml">
+</span>&lt;%=<span class="ruby"> form_for <span class="hljs-variable">@artist</span> <span class="hljs-keyword">do</span> |f| </span>%&gt;<span class="xml">
+</span></code></pre>
+<p>This way, one thing happens when the user is successful -- and when they&apos;re <em>not</em> successful, something else happens and they&apos;re told what they did wrong.</p>
+<h3 id="this--is-the-right-way-to-write-a-rails-controller">This ^ is the &quot;right way&quot; to write a Rails controller.</h3>
+<p>You could also do:</p>
+<pre><code class="lang-erb"><span class="xml"><span class="hljs-comment">&lt;!-- app/views/artists/_form.html.erb --&gt;</span>
+</span>&lt;%<span class="ruby"> <span class="hljs-variable">@artist</span>.errors.full_messages.each <span class="hljs-keyword">do</span> |message| </span>%&gt;<span class="xml">
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span></span>&lt;%=<span class="ruby"> message </span>%&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+</span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
+</span></code></pre>
+<h3 id="pro-debugging-tip">Pro (debugging) tip</h3>
+<p>Add <code>&lt;%= debug(@artist) %&gt;</code> to &quot;app/views/artists/new.html.erb&quot; to see information contained in <code>@artist</code>.  Try submitting invalid information for a new Artist.</p>
+<h2 id="you-do-apply-this-to-the-artistsupdate-action-10-min">You do: Apply this to the artists#update action (10 min)</h2>
+<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/artists_controller.rb</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span></span>
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>.update(artist_params)
+    flash[<span class="hljs-symbol">:notice</span>] = <span class="hljs-string">&quot;<span class="hljs-subst">#{<span class="hljs-variable">@artist</span>.name}</span> was created.&quot;</span>
+    redirect_to <span class="hljs-variable">@artist</span>
+  <span class="hljs-keyword">else</span>
+    render <span class="hljs-symbol">:new</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<hr>
+<h2 id="simpleform-10-min">SimpleForm (10 min)</h2>
+<p>Ensure your Gemfile contains:</p>
+<pre><code>gem &apos;simple_form&apos;
+</code></pre><p><code>bundle install</code>, and <strong>restart the server</strong>.</p>
+<p>Change your <code>artists/_form.html.erb</code> form to use <code>simple_form_for</code>:</p>
+<pre><code class="lang-erb"><span class="xml"><span class="hljs-comment">&lt;!-- app/views/artists/_form.html.erb --&gt;</span>
+</span>&lt;%=<span class="ruby"> simple_form_for <span class="hljs-variable">@artist</span> <span class="hljs-keyword">do</span> |f| </span>%&gt;<span class="xml">
+  </span>&lt;%=<span class="ruby"> f.input <span class="hljs-symbol">:name</span> </span>%&gt;<span class="xml">
+  </span>&lt;%=<span class="ruby"> f.input <span class="hljs-symbol">:photo_url</span> </span>%&gt;<span class="xml">
+  </span>&lt;%=<span class="ruby"> f.input <span class="hljs-symbol">:nationality</span> </span>%&gt;<span class="xml">
+  </span>&lt;%=<span class="ruby"> f.submit </span>%&gt;<span class="xml">
+</span>&lt;%<span class="ruby"> <span class="hljs-keyword">end</span> </span>%&gt;<span class="xml">
+</span></code></pre>
+<p>Finally, make sure your Artist model has a validation in it.</p>
+<p>Try creating a new Artist, making sure you fail that validation.</p>
+<h2 id="pretty-cool-huh">Pretty cool, huh?</h2>
+<h2 id="break-10-min">Break (10 min)</h2>
+<h1 id="error-handling">Error Handling</h1>
+<p>We recommend you start a new branch for this portion.  We&apos;re sharing concepts, not, necessarily, best practices.</p>
+<h2 id="framing-5-min">Framing (5 min)</h2>
+<p>Let&apos;s force the app to break by looking up an artist that doesn&apos;t exist. Try going to <code>localhost:3000/artists/8675309</code>.</p>
+<p>Notice that across the top it says <code>ActiveRecord::RecordNotFound</code>.</p>
+<p>This is something that is very likely to happen: your users will look up an artist that has been deleted, or get bored and type in random IDs.</p>
+<h2 id="q-how-could-you-control-for-users-looking-up-records-that-dont-exist">Q. How could you control for users looking up records that don&apos;t exist?</h2>
+<blockquote>
+<p>A. You could just check to see if an artist with that ID exists, and if it doesn&apos;t, then redirect somewhere else.</p>
+</blockquote>
+<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/artists_controller.rb</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span></span>
+  <span class="hljs-variable">@artist</span> = <span class="hljs-constant">Artist</span>.find(params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">if</span> <span class="hljs-variable">@artist</span>
+    render <span class="hljs-symbol">:show</span>
+  <span class="hljs-keyword">else</span>
+    redirect_to <span class="hljs-variable">@artist</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>This is fine, but it&apos;s not very DRY: if we wanted to protect songs from this error we&apos;d need to copy and paste almost the exact same code.</p>
+<h2 id="rescuefrom-5-min">rescue_from (5 min)</h2>
+<p>Replace the contents of your application controller with this:</p>
+<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/application_controller.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActionController::Base</span></span></span>
+  protect_from_forgery <span class="hljs-symbol">with:</span> <span class="hljs-symbol">:exception</span>
+  rescue_from <span class="hljs-constant">ActiveRecord::RecordNotFound</span>, <span class="hljs-symbol">with:</span> <span class="hljs-symbol">:couldnt_find_record</span>
+
+  private
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">couldnt_find_record</span></span>
+    redirect_to root_url, <span class="hljs-symbol">notice:</span> <span class="hljs-string">&quot;That record doesn&apos;t exist!&quot;</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now try going to <code>localhost:3000/artists/8675309</code>.</p>
+<h3 id="what-happened">What happened?</h3>
+<p>We told Rails to &quot;rescue us from&quot; a specific kind of error -- in this case, ActiveRecord&apos;s &quot;Not Found&quot; error. We told it to rescue us by running a method called <code>couldnt_find_record</code> that we&apos;ve defined. What that method does is nothing new: it redirects us to some URL, and flashes a notice.</p>
+<h2 id="exception-types-15-min">Exception types (15 min)</h2>
+<p>Every error -- or &quot;exception&quot; -- in Ruby belongs to a class. In this case, <code>RecordNotFound</code> is the class. When a validation fails, you get:</p>
+<pre><code>ActiveRecord::RecordNotFound
+</code></pre><p>The exception&apos;s class is <code>RecordNotFound</code>.</p>
+<p>Most classes of exceptions inherit from <code>StandardError</code>.</p>
+<h3 id="we-do">We do</h3>
+<p>In your rails console, type:</p>
+<pre><code>$ ActiveRecord::RecordNotFound.new.class
+</code></pre><p>Then, try:</p>
+<pre><code>$ ActiveRecord::RecordNotFound.new.class.superclass
+</code></pre><p>Next, add another <code>.superclass</code> onto the end of that. Then another <code>.superclass</code>. Keep on going until you get <code>nil</code>.</p>
+<p>Now, try it with:</p>
+<ul>
+<li><code>ZeroDivisionError</code> (What happens when you divide by zero)</li>
+<li><code>NoMethodError</code> (What happens when you try <code>&quot;batman&quot; - 42</code>, or <code>@artist.favorite_food</code>)</li>
+</ul>
+<h3 id="rescuing-from-types">Rescuing from types</h3>
+<p>So errors have different classes, and all those classes inherit from <code>StandardError</code> and <code>Exception</code>. Who cares?</p>
+<p>You&apos;d probably want to handle an error where someone divided by zero differently from an error where they looked up a record that doesn&apos;t exist.</p>
+<p>Using <code>rescue_from</code>, you can make different things happen based on the type of error.</p>
+<pre><code class="lang-rb"><span class="hljs-comment"># app/controllers/application_controller.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationController</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">ActionController::Base</span></span></span>
+  protect_from_forgery <span class="hljs-symbol">with:</span> <span class="hljs-symbol">:exception</span>
+  rescue_from <span class="hljs-constant">ActiveRecord::RecordNotFound</span>, <span class="hljs-symbol">with:</span> <span class="hljs-symbol">:couldnt_find_record</span>
+  rescue_from <span class="hljs-constant">NoMethodError</span>, <span class="hljs-symbol">with:</span> <span class="hljs-symbol">:no_method_error</span>
+
+  private
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">couldnt_find_record</span></span>
+    redirect_to root_url, <span class="hljs-symbol">notice:</span> <span class="hljs-string">&quot;That record doesn&apos;t exist!&quot;</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">no_method_error</span></span>
+    redirect_to root_url, <span class="hljs-symbol">notice:</span> <span class="hljs-string">&quot;The developer working on this didn&apos;t cover their butt appropriately. Our bad.&quot;</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2 id="beginrescue-time-permitting-15-min">begin/rescue (time permitting) (15 min)</h2>
+<p>What&apos;s going on underneath the hood is Rails using Ruby&apos;s built-in <code>begin/rescue</code> syntax.</p>
+<p>Let&apos;s step away from Rails for a second. In your <code>wdi/sandbox</code> folder, create a new file called <code>exceptions.rb</code>.</p>
+<p>In it, paste the following:</p>
+<pre><code class="lang-rb"><span class="hljs-number">3</span> / <span class="hljs-number">0</span>
+
+puts <span class="hljs-string">&quot;done&quot;</span>
+</code></pre>
+<p>Run that with <code>ruby exceptions.rb</code>. It should throw a &quot;ZeroDivisionError&quot; at you.</p>
+<p>Now, replace the file with this:</p>
+<pre><code class="lang-rb"><span class="hljs-keyword">begin</span>
+  <span class="hljs-number">3</span> / <span class="hljs-number">0</span>
+<span class="hljs-keyword">rescue</span> =&gt; my_error
+  puts my_error
+<span class="hljs-keyword">end</span>
+
+puts <span class="hljs-string">&quot;done&quot;</span>
+</code></pre>
+<p><code>begin</code> tells Ruby, &quot;Start listening for an exception.&quot; Whenever Ruby runs into an error, it stops whatever it&apos;s doing and looks for a <code>rescue</code> statement. If it finds one, it does whatever the <code>rescue</code> says to do, and then continues.</p>
+<p>Inside <code>rescue</code>, using the hashrocket <code>=&gt;</code> syntax, we can do something with the exception that was generated.</p>
+<p>This gives us a way of handling errors. It&apos;s where <code>rescue_from</code> gets its name.</p>
+<p>We will use <code>begin/rescue</code> very little, but it happens all the time underneath the surface of the gems we use, and is something you&apos;ll see occasionally.</p>
+<h1 id="questions-5-min">Questions (5 min)</h1>
+<ul>
+<li>What&apos;s the difference between <code>.create</code> and <code>.create!</code>?</li>
+<li>You see <code>ROLLBACK</code> in your Rails server log. What does that mean?</li>
+<li>What does it mean to let something &quot;fail silently&quot;, and why is it considered bad?</li>
+<li>What&apos;s the difference between <code>begin</code> and <code>rescue</code>?</li>
+<li>What&apos;s the difference between an error and an exception?</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../05-mvc-with-rails/rails-helpers/readme.html" class="navigation navigation-prev " aria-label="Previous page: Helpers"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../05-mvc-with-rails/rails-sessions-and-auth/readme.html" class="navigation navigation-next " aria-label="Next page: Sessions and Auth"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

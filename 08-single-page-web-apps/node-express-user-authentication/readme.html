@@ -1,0 +1,1627 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Local Authentication using Passport | Welcome to GA&#39;s WDI-DC</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.5">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../08-single-page-web-apps/oojs1_read/readme.html" />
+    
+    
+    <link rel="prev" href="../../08-single-page-web-apps/mongo_mongoose/readme.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="6.3"
+        data-chapter-title="Local Authentication using Passport"
+        data-filepath="08-single-page-web-apps/node-express-user-authentication/readme.md"
+        data-basepath="../.."
+        data-revision="Mon Dec 14 2015 02:28:46 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        An Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="01-front-end-fundamentals/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Front End Fundamentals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="01-front-end-fundamentals/command-line/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/command-line/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Command Line Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01-front-end-fundamentals/git/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/git/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Git
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Intro to Web and HTML
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="01-front-end-fundamentals/css/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/css/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        CSS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="01-front-end-fundamentals/javascript-data-types/readme.html">
+            
+            <span><b>1.5.</b> JavaScript Data Types</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="01-front-end-fundamentals/javascript-loops-conditionals/readme.html">
+            
+            <span><b>1.6.</b> JavaScript Loops and Conditionals</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="01-front-end-fundamentals/javascript-objects-functions/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-objects-functions/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        JavaScript Objects and Functions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="01-front-end-fundamentals/javascript-DOM/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-DOM/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        JavaScript DOM
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="02-intermediate-front-end/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Intermediate Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="02-intermediate-front-end/scope-context-closures/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Scope, Context, and Closures
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="02-intermediate-front-end/scope-context-closures/scope.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/scope.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        Scope
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="02-intermediate-front-end/scope-context-closures/context.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/context.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        Context
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="02-intermediate-front-end/scope-context-closures/closures.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/closures.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        Closures
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="02-intermediate-front-end/events-and-callbacks/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/events-and-callbacks/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Events and Callbacks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="02-intermediate-front-end/git_branching/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/git_branching/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Git Branching
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        jQuery
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="02-intermediate-front-end/jquery/jquery-two.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-two.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        jQuery 2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="02-intermediate-front-end/workflows/lesson_plan.html">
+            
+            <span><b>2.6.</b> Workflows</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="02-intermediate-front-end/css2/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/css2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        CSS 2 (Layout &amp; Fonts)
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="04-ruby-mvc-sinatra/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Ruby + MVC with Sinatra
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="04-ruby-mvc-sinatra/ruby-basics/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-basics/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Ruby Basics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Ruby Enumerables
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
+            
+            <span><b>3.3.</b> Problem Modeling</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="04-ruby-mvc-sinatra/domain_modeling/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Domain Modeling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="04-ruby-mvc-sinatra/databases/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/databases/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="04-ruby-mvc-sinatra/active-record-intro/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/active-record-intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Active Record
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Sinatra &amp; REST
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Sinatra &amp; Active Record
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="05-mvc-with-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        MVC with Rails
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="05-mvc-with-rails/rspec/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rspec/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Unit Testing with RSpec
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        MVC Intro to Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="05-mvc-with-rails/rails-models-and-migrations/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-models-and-migrations/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Models and Migrations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="05-mvc-with-rails/rails-views-and-controllers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-views-and-controllers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Views and Controllers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="05-mvc-with-rails/rails-routes-and-resources/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-routes-and-resources/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Routes and Resources
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="05-mvc-with-rails/rails-helpers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-helpers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Helpers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="05-mvc-with-rails/rails-error-handling/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-error-handling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        Error Handling and Validations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        Sessions and Auth
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="05-mvc-with-rails/rails-deployment/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-deployment/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        Deployment
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="07-apis-express-ajax/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        APIs/Express/AJAX
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="07-apis-express-ajax/apis/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/apis/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Building APIs in Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="07-apis-express-ajax/ajax/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        AJAX
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="07-apis-express-ajax/prototypes_and_constructors/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/prototypes_and_constructors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Prototypes and Constructors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="07-apis-express-ajax/express_intro/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/express_intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Intro to Express
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="08-single-page-web-apps/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Single Page Web Apps
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="08-single-page-web-apps/express_2/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/express_2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Express Routing / APIs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="08-single-page-web-apps/mongo_mongoose/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/mongo_mongoose/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Mongo and Mongoose
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.3" data-path="08-single-page-web-apps/node-express-user-authentication/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/node-express-user-authentication/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Local Authentication using Passport
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="08-single-page-web-apps/oauth-via-3rd-party-apps/readme.html">
+            
+            <span><b>6.4.</b> OAuth using Passport</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="08-single-page-web-apps/oojs1_read/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/oojs1_read/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Object-Oriented FE JS: R / CRUD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Object-Oriented FE JS: CUD / CRUD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="08-single-page-web-apps/git-teams/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/git-teams/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Git Team Workflows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="08-single-page-web-apps/responsive-web-design/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/responsive-web-design/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Responsive Web Design
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="08-single-page-web-apps/tdd/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/tdd/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        TDD JS using Jasmine
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="10-angular/readme.html">
+            
+                
+                    <a href="../../10-angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        MVW with Angular
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="10-angular/angular_intro_controllers_directives/readme.html">
+            
+            <span><b>7.1.</b> Angular Intro: Controllers &amp; Directives</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="10-angular/services_templates_and_routing/readme.html">
+            
+            <span><b>7.2.</b> Services, Templates, and Routing</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="10-angular/custom_directives/readme.html">
+            
+                
+                    <a href="../../10-angular/custom_directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Custom Directives
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="10-angular/firebase_in_angular/readme.html">
+            
+                
+                    <a href="../../10-angular/firebase_in_angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        AngularFire: Firebase &amp; Angular
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="10-angular/angular-vs-rails.html">
+            
+                
+                    <a href="../../10-angular/angular-vs-rails.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Angular vs. Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="11-multi-track/readme.html">
+            
+                
+                    <a href="../../11-multi-track/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        Back and Front of Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1" >
+            
+            <span><b>7.6.1.</b> BackBone</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1.1" data-path="11-multi-track/bb_models_collections/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_models_collections/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.1.</b>
+                        
+                        Models and Collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.2" data-path="11-multi-track/bb_views_part1/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_views_part1/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.2.</b>
+                        
+                        Views (part 1)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.3" data-path="11-multi-track/bb_views_part2/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_views_part2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.3.</b>
+                        
+                        Views (part 2)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.4" data-path="11-multi-track/bb_routers/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_routers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.4.</b>
+                        
+                        Routers
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2" >
+            
+            <span><b>7.6.2.</b> Front End</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.2.1" data-path="11-multi-track/bootstrap/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bootstrap/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.1.</b>
+                        
+                        Bootstrap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.2" data-path="11-multi-track/flexbox/readme.html">
+            
+                
+                    <a href="../../11-multi-track/flexbox/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.2.</b>
+                        
+                        Flex Box
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.3" data-path="11-multi-track/foundation/readme.html">
+            
+                
+                    <a href="../../11-multi-track/foundation/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.3.</b>
+                        
+                        Foundation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.4" data-path="11-multi-track/intro-to-php/readme.html">
+            
+                
+                    <a href="../../11-multi-track/intro-to-php/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.4.</b>
+                        
+                        Intro to PHP
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.5" data-path="11-multi-track/jquery-plugins/readme.html">
+            
+                
+                    <a href="../../11-multi-track/jquery-plugins/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.5.</b>
+                        
+                        jQuery Plugins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.6" data-path="11-multi-track/mapping/readme.html">
+            
+                
+                    <a href="../../11-multi-track/mapping/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.6.</b>
+                        
+                        Mapping
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.7" data-path="11-multi-track/pseudo-selectors/readme.html">
+            
+                
+                    <a href="../../11-multi-track/pseudo-selectors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.7.</b>
+                        
+                        Pseudo Selectors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.8" data-path="11-multi-track/sass1-basic-reuse/readme.html">
+            
+                
+                    <a href="../../11-multi-track/sass1-basic-reuse/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.8.</b>
+                        
+                        Sass 1: Basic Reuse
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.9" data-path="11-multi-track/sass2-control-directives/readme.html">
+            
+                
+                    <a href="../../11-multi-track/sass2-control-directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.9.</b>
+                        
+                        Sass 2: Control Directives
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Welcome to GA&#39;s WDI-DC</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="local-authentication-with-express-and-passport">Local Authentication with Express and Passport</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>Create a login form with email &amp; password</li>
+<li>Use passport-local to find a user &amp; verify their password</li>
+<li>Restrict access to API without an authenticated user</li>
+</ul>
+<h2 id="preparation">Preparation</h2>
+<ul>
+<li>Create an express application and add CRUD/REST resources</li>
+<li>Create a Mongoose Model</li>
+<li>Describe an authentication model</li>
+</ul>
+<h2 id="passport-and-the-logics--intro-5-mins">Passport and the logics - Intro (5 mins)</h2>
+<p>From the <a href="http://passportjs.org/docs" target="_blank">passport website</a>:</p>
+<p>&quot;<em>Passport is authentication Middleware for Node. It is designed to serve a singular purpose: authenticate requests. When writing modules, encapsulation is a virtue, so Passport delegates all other functionality to the application. This separation of concerns keeps code clean and maintainable, and makes Passport extremely easy to integrate into an application.</em></p>
+<p><em>In modern web applications, authentication can take a variety of forms. Traditionally, users log in by providing a username and password. With the rise of social networking, single sign-on using an OAuth provider such as Facebook or Twitter has become a popular authentication method. Services that expose an API often require token-based credentials to protect access.</em>&quot;</p>
+<h3 id="strategies">Strategies</h3>
+<p>The main concept when using passport is to register <em>Strategies</em>.  A strategy is a passport Middleware that will create some action in the background and execute a callback; the callback should be called with different arguments depending on whether the action that has been performed in the strategy was successful or not. Based on this and on some config params, passport will redirect the request to different paths.</p>
+<p>Because strategies are packaged as individual modules, we can pick and choose which ones we need for our application. This logic allows the developer to keep the code simple - without unnecessary dependencies - in the controller and delegate the proper authentication job to some specific passport code.</p>
+<h2 id="implementing-passportjs--codealong-25-mins">Implementing Passport.js - Codealong (25 mins)</h2>
+<h4 id="setupreview-starter-code">Setup/Review Starter Code</h4>
+<p>First, clone the starter code</p>
+<pre><code>$ git clone https://github.com/ga-dc/express-passport-local-authentication.git
+</code></pre><p>and setup with <code>npm install</code> to ensure that we have all of the correct dependencies.</p>
+<p>The starter-code is structured like this:</p>
+<pre><code>.
+&#x2514;&#x2500;&#x2500; app
+    &#x251C;&#x2500;&#x2500; app.js
+    &#x251C;&#x2500;&#x2500; config
+    &#x2502;   &#x251C;&#x2500;&#x2500; passport.js
+    &#x2502;   &#x2514;&#x2500;&#x2500; routes.js
+    &#x251C;&#x2500;&#x2500; controllers
+    &#x2502;   &#x2514;&#x2500;&#x2500; users.js
+    &#x2502;   &#x2514;&#x2500;&#x2500; statics.js
+    &#x251C;&#x2500;&#x2500; models
+    &#x2502;   &#x2514;&#x2500;&#x2500; user.js
+    &#x251C;&#x2500;&#x2500; package.json
+    &#x251C;&#x2500;&#x2500; public
+    &#x2502;   &#x2514;&#x2500;&#x2500; css
+    &#x2502;       &#x2514;&#x2500;&#x2500; bootstrap.min.css
+    &#x2514;&#x2500;&#x2500; views
+        &#x251C;&#x2500;&#x2500; index.hbs
+        &#x251C;&#x2500;&#x2500; layout.hbs
+        &#x251C;&#x2500;&#x2500; login.hbs
+        &#x251C;&#x2500;&#x2500; secret.hbs
+        &#x2514;&#x2500;&#x2500; signup.hbs
+
+7 directories, 12 files
+</code></pre><p>Now let&apos;s open the code up in Atom with <code>atom .</code>.</p>
+<h4 id="users--statics-controller">Users &amp; Statics Controller</h4>
+<p>Let&apos;s have a quick look at the <code>users.js</code> controller. As you can see, the file is structured like a module with 6 empty route handlers:</p>
+<pre><code>// GET /signup
+// POST /signup
+// GET /login
+// POST /login
+// GET /logout
+// Restricted page
+</code></pre><p>The statics controller, just has the home action.</p>
+<h4 id="routesjs">Routes.js</h4>
+<p>We have separated the routes into a separate file, to remove them from the app.js file.</p>
+<h4 id="signup">Signup</h4>
+<p>First we will implement the signup logic. For this, we will have:</p>
+<ol>
+<li>a route action to display the signup form</li>
+<li>a route action to receive the params sent by the form</li>
+</ol>
+<p>When the server receives the signup params, the job of saving the user data into the database, hashing the password and validating the data will be delegated to the strategy allocated for this part of the authentication, this logic will be written in <code>config/passport.js</code></p>
+<p>Open the file <code>config/passport.js</code> and add:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> LocalStrategy   = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;passport-local&apos;</span>).Strategy;
+ <span class="hljs-keyword">var</span> User            = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;../models/user&apos;</span>);
+
+ <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">passport</span>) </span>{
+   passport.use(<span class="hljs-string">&apos;local-signup&apos;</span>, <span class="hljs-keyword">new</span> LocalStrategy({
+     usernameField : <span class="hljs-string">&apos;email&apos;</span>,
+     passwordField : <span class="hljs-string">&apos;password&apos;</span>,
+     passReqToCallback : <span class="hljs-literal">true</span>
+   }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, email, password, callback</span>) </span>{
+
+   }));
+};
+</code></pre>
+<p>Here we are declaring the strategy for the signup - the first argument given to <code>LocalStrategy</code> is a hash giving info about the fields we will use for the authentication.</p>
+<p>By default, passport-local expects to find the fields <code>username</code> and <code>password</code> in the request. If you use different field names, as we do, you can give this information to <code>LocalStrategy</code>.</p>
+<p>The third argument will tell the strategy to send the request object to the callback so that we can do further things with it.</p>
+<p>Then, we pass the function that we want to be executed as a callback when this strategy is called: this callback method will receive the request object; the values corresponding to the fields name given in the hash; and the callback method(<code>done</code>) to execute when this &apos;strategy&apos; is done.</p>
+<p>Now, inside this callback method, we will implement our custom logic to signup a user.</p>
+<pre><code class="lang-javascript">  ...
+  }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, email, password, callback</span>) </span>{
+    <span class="hljs-comment">// Find a user with this e-mail</span>
+    User.findOne({ <span class="hljs-string">&apos;local.email&apos;</span> :  email }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, user</span>) </span>{
+      <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> callback(err);
+
+      <span class="hljs-comment">// If there already is a user with this email</span>
+      <span class="hljs-keyword">if</span> (user) {
+    <span class="hljs-keyword">return</span> callback(<span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, req.flash(<span class="hljs-string">&apos;signupMessage&apos;</span>, <span class="hljs-string">&apos;This email is already used.&apos;</span>));
+      } <span class="hljs-keyword">else</span> {
+      <span class="hljs-comment">// There is no email registered with this emai</span>
+    <span class="hljs-comment">// Create a new user</span>
+    <span class="hljs-keyword">var</span> newUser            = <span class="hljs-keyword">new</span> User();
+    newUser.local.email    = email;
+    newUser.local.password = newUser.encrypt(password);
+
+    newUser.save(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+      <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">throw</span> err;
+      <span class="hljs-keyword">return</span> callback(<span class="hljs-literal">null</span>, newUser);
+    });
+      }
+    });
+  }));
+  ....
+</code></pre>
+<p>First we will try to find a user with the same email, to make sure this email is not already use.</p>
+<p>Once we have the result of this mongo request, we will check if a user document is returned - meaning that a user with this email already exists.  In this case, we will call the <code>callback</code> method with the two arguments <code>null</code> and <code>false</code> - the first argument is for when a server error happens; the second one corresponds to the user object, which in this case hasn&apos;t been created, so we return false.</p>
+<p>If no user is returned, it means that the email received in the request can be used to create a new user object. We will, therefore create a new user object, hash the password and save the new created object to our mongo collection. When all this logic is created, we will call the <code>callback</code> method with the two arguments: <code>null</code> and the new user object created.</p>
+<p>In the first situation we pass <code>false</code> as the second argument, in the second case, we pass a user object to the callback, corresponding to true, based on this argument, passport will know if the strategy has been successfully executed and if the request should redirect to the <code>success</code> or <code>failure</code> path. (see below).</p>
+<h4 id="userjs">User.js</h4>
+<p>The last thing is to add the method <code>encrypt</code> to the user model to hash the password received and save it as encrypted:</p>
+<pre><code class="lang-javascript">  User.methods.encrypt = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">password</span>) </span>{
+    <span class="hljs-keyword">return</span> bcrypt.hashSync(password, bcrypt.genSaltSync(<span class="hljs-number">8</span>), <span class="hljs-literal">null</span>);
+  };
+</code></pre>
+<p>As we did in the previous lesson, we generate a salt token and then hash the password using this new salt.</p>
+<p>That&apos;s all for the signup strategy.</p>
+<h4 id="route-handler">Route Handler</h4>
+<p>Now we need to use this strategy in the route handler.</p>
+<p>In the <code>users.js</code> controller, for the method <code>postSignup</code>, we will add the call to the strategy we&apos;ve declared</p>
+<pre><code class="lang-javascript">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postSignup</span>(<span class="hljs-params">request, response</span>) </span>{
+    <span class="hljs-keyword">var</span> signupStrategy = passport.authenticate(<span class="hljs-string">&apos;local-signup&apos;</span>, {
+      successRedirect : <span class="hljs-string">&apos;/&apos;</span>,
+      failureRedirect : <span class="hljs-string">&apos;/signup&apos;</span>,
+      failureFlash : <span class="hljs-literal">true</span>
+    });
+
+    <span class="hljs-keyword">return</span> signupStrategy(request, response);
+  }
+</code></pre>
+<p>Here we are calling the method <code>authenticate</code> (given to us by passport) and then telling passport which strategy (<code>&apos;local-signup&apos;</code>) to use.</p>
+<p>The second argument tells passport what to do in case of a success or failure.</p>
+<ul>
+<li>If the authentication was successful, then the response will redirect to <code>/</code></li>
+<li>In case of failure, the response will redirect back to the form <code>/signup</code></li>
+</ul>
+<h4 id="session">Session</h4>
+<p>We&apos;ve seen in previous lessons that authentication is based on a value stored in a cookie, and then, this cookie is sent to the server for every request until the session expires or is destroyed. This is a form of <a href="https://en.wikipedia.org/wiki/Serialization" target="_blank">serialization</a>.</p>
+<p>To use the session with passport, we need to create two new methods in <code>config/passport.js</code> :</p>
+<pre><code class="lang-javascript">  <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">passport</span>) </span>{
+
+    passport.serializeUser(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">user, callback</span>) </span>{
+      callback(<span class="hljs-literal">null</span>, user.id);
+    });
+
+    passport.deserializeUser(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">id, callback</span>) </span>{
+      User.findById(id, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, user</span>) </span>{
+          callback(err, user);
+      });
+    });
+  ...
+</code></pre>
+<p>What exactly are we doing here? To keep a user logged in, we will need to serialize their user.id to save it to their session. Then, whenever we want to check whether a user is logged in, we will need to deserialize that information from their session, and check to see whether the deserialized information matches a user in our database.</p>
+<p>The method <code>serializeUser</code> will be used when a user signs in or signs up, passport will call this method, our code then call the <code>done</code> callback, the second argument is what we want to be serialized.</p>
+<p>The second method will then be called every time there is a value for passport in the session cookie. In this method, we will receive the value stored in the cookie, in our case the <code>user.id</code>, then search for a user using this ID and then call the callback. The user object will then be stored in the request object passed to all controller methods calls.</p>
+<h2 id="flash-messages--intro-5-mins">Flash Messages - Intro (5 mins)</h2>
+<p>Remember Rails? Flash messages were one-time messages that were rendered in the views and when the page was reloaded, the flash was destroyed.  </p>
+<p>In our current Node app, back when we have created the signup strategy, in the callback we had this code:</p>
+<pre><code class="lang-javascript">  req.flash(<span class="hljs-string">&apos;signupMessage&apos;</span>, <span class="hljs-string">&apos;This email is already used.&apos;</span>)
+</code></pre>
+<p>This will store the message &apos;This email is already used.&apos; into the response object and then we will be able to use it in the views. This is really useful to send back details about the process happening on the server to the client.</p>
+<h2 id="incorporating-flash-messages--codealong-5-mins">Incorporating Flash Messages - Codealong (5 mins)</h2>
+<p>In the view <code>signup.hbs</code>, before the form, add:</p>
+<pre><code class="lang-hbs"><span class="xml">  </span><span class="hljs-expression">{{<span class="hljs-begin-block">#<span class="hljs-keyword">if</span> message</span>}}</span><span class="xml">
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;alert alert-danger&quot;</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">message</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  </span><span class="hljs-expression">{{<span class="hljs-end-block">/<span class="hljs-keyword">if</span></span>}}</span><span class="xml">
+</span></code></pre>
+<p>Let&apos;s add some code into <code>getSignup</code> in the users Controller to render the template:</p>
+<pre><code class="lang-javascript">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getSignup</span>(<span class="hljs-params">request, response</span>) </span>{
+    response.render(<span class="hljs-string">&apos;signup.hbs&apos;</span>, { message: request.flash(<span class="hljs-string">&apos;signupMessage&apos;</span>) });
+  }
+</code></pre>
+<p>Now, start up the app using <code>nodemon app.js</code> and visit <code>http://localhost:3000/signup</code> and try to signup two times with the same email, you should see the message &quot;This email is already used.&quot; appearing when the form is reloaded.</p>
+<h2 id="test-it-out--independent-practice-5-mins">Test it out - Independent Practice (5 mins)</h2>
+<p>All the logic for the signup is now set - you should be able to go to <code>/signup</code> and create a user.</p>
+<h2 id="signin--codealong-10-mins">Sign-in - Codealong (10 mins)</h2>
+<p>Now we need to write the <code>signin</code> logic.</p>
+<p>We also need to implement a custom strategy for the login, In passport.js, after the signup strategy, add add a new LocalStrategy:</p>
+<pre><code class="lang-javascript">  passport.use(<span class="hljs-string">&apos;local-login&apos;</span>, <span class="hljs-keyword">new</span> LocalStrategy({
+    usernameField : <span class="hljs-string">&apos;email&apos;</span>,
+    passwordField : <span class="hljs-string">&apos;password&apos;</span>,
+    passReqToCallback : <span class="hljs-literal">true</span>
+  }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, email, password, callback</span>) </span>{
+
+  }));
+</code></pre>
+<p>The first argument is the same as for the signup strategy - we ask passport to recognize the fields <code>email</code> and <code>password</code> and to pass the request to the callback function.</p>
+<p>For this strategy, we will search for a user document using the email received in the request, then if a user is found, we will try to compare the hashed password stored in the database to the one received in the request params. If they are equal, the the user is authenticated; if not, then the password is wrong.</p>
+<p>Inside <code>config/passport.js</code> let&apos;s add this code:</p>
+<pre><code class="lang-javascript">  ...
+  }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, email, password, callback</span>) </span>{
+
+    <span class="hljs-comment">// Search for a user with this email</span>
+    User.findOne({ <span class="hljs-string">&apos;local.email&apos;</span> :  email }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, user</span>) </span>{
+      <span class="hljs-keyword">if</span> (err) {
+        <span class="hljs-keyword">return</span> callback(err);
+      }
+
+      <span class="hljs-comment">// If no user is found</span>
+      <span class="hljs-keyword">if</span> (!user) {
+        <span class="hljs-keyword">return</span> callback(<span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, req.flash(<span class="hljs-string">&apos;loginMessage&apos;</span>, <span class="hljs-string">&apos;No user found.&apos;</span>));
+      }
+      <span class="hljs-comment">// Wrong password</span>
+      <span class="hljs-keyword">if</span> (!user.validPassword(password)) {
+        <span class="hljs-keyword">return</span> callback(<span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, req.flash(<span class="hljs-string">&apos;loginMessage&apos;</span>, <span class="hljs-string">&apos;Oops! Wrong password.&apos;</span>));
+      }
+
+      <span class="hljs-keyword">return</span> callback(<span class="hljs-literal">null</span>, user);
+    });
+  }));
+  ...
+</code></pre>
+<h4 id="user-validate-method">User validate method</h4>
+<p>We need to add a new method to the user schema in <code>user.js</code> so that we can use the method <code>user.validatePassword()</code>. Let&apos;s add:</p>
+<pre><code class="lang-javascript">  User.methods.validPassword = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">password</span>) </span>{
+    <span class="hljs-keyword">return</span> bcrypt.compareSync(password, <span class="hljs-keyword">this</span>.local.password);
+  };
+</code></pre>
+<h4 id="adding-flash-messages-to-the-view">Adding flash messages to the view</h4>
+<p>As we are again using flash messages, we will need to add some code to display them in the view:</p>
+<p>In <code>login.hbs</code>, add the same code that we added in <code>signup.hbs</code> to display the flash messages:</p>
+<pre><code class="lang-javascript">  {{#if message}}
+    &lt;div class=&quot;alert alert-danger&quot;&gt;{{message}}&lt;/div&gt;
+  {{/if}}
+</code></pre>
+<h4 id="login-get-route-handler">Login GET Route handler</h4>
+<p>Now, let&apos;s add the code to render the login form in the <code>getLogin</code> action in the controller (<code>users.js</code>):</p>
+<pre><code class="lang-javascript">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getLogin</span>(<span class="hljs-params">request, response</span>) </span>{
+    response.render(<span class="hljs-string">&apos;login.hbs&apos;</span>, { message: request.flash(<span class="hljs-string">&apos;loginMessage&apos;</span>) });
+  }
+</code></pre>
+<p>You&apos;ll notice that the flash message has a different name (<code>loginMessage</code>) than the in the signup route handler.</p>
+<h4 id="login-post-route-handler">Login POST Route handler</h4>
+<p>We also need to have a route handler that deals with the login form after we have submit it. So in <code>users.js</code> lets also add:</p>
+<pre><code class="lang-javascript">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postLogin</span>(<span class="hljs-params">request, response</span>) </span>{
+    <span class="hljs-keyword">var</span> loginProperty = passport.authenticate(<span class="hljs-string">&apos;local-login&apos;</span>, {
+      successRedirect : <span class="hljs-string">&apos;/&apos;</span>,
+      failureRedirect : <span class="hljs-string">&apos;/login&apos;</span>,
+      failureFlash : <span class="hljs-literal">true</span>
+    });
+
+    <span class="hljs-keyword">return</span> loginProperty(request, response);
+  }
+</code></pre>
+<p>You should be able to login now!</p>
+<h2 id="test-it-out--independent-practice-5-mins">Test it out - Independent Practice (5 mins)</h2>
+<h4 id="invalid-login">Invalid Login</h4>
+<p>First try to login with:</p>
+<ul>
+<li>a valid email</li>
+<li>an invalid password</li>
+</ul>
+<p>You should also see the message &apos;Oops! Wrong password.&apos;</p>
+<h4 id="valid-login">Valid Login</h4>
+<p>Now, try to login with valid details and you should be taken to the index page with a message of &quot;Welcome&quot;.</p>
+<p>The login strategy has now been setup!</p>
+<h4 id="accessing-the-user-object-globally">Accessing the User object globally</h4>
+<p>By default, passport will make the user available on the object <code>request</code>. In most cases, we want to be able to use the user object everywhere, for that, we&apos;re going to add a middleware in <code>app.js</code>:</p>
+<pre><code class="lang-javascript">  <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./config/passport&apos;</span>)(passport);
+
+  app.use(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res, next</span>) </span>{
+    res.locals.currentUser = req.user;
+    next();
+  });
+</code></pre>
+<p>Now in the layout, we can add:</p>
+<pre><code class="lang-javascript">&lt;ul&gt;
+  {{#if currentUser}}
+    &lt;li&gt;&lt;a href=&quot;/logout&quot;&gt;Logout {{currentUser.local.email}}&lt;/a&gt;&lt;/li&gt;
+  {{else}}
+    &lt;li&gt;&lt;a href=&quot;/login&quot;&gt;Login&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/signup&quot;&gt;Signup&lt;/a&gt;&lt;/li&gt;
+  {{/if}}                
+&lt;/ul&gt;
+</code></pre>
+<h2 id="signout--codealong-10-mins">Signout - Codealong (10 mins)</h2>
+<h4 id="logout">Logout</h4>
+<p>The last action to implement for our authentication system is to set the logout route and functionality.</p>
+<p>In <code>controllers/users.js</code>:</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getLogout</span>(<span class="hljs-params">request, response</span>) </span>{
+  request.logout();
+  response.redirect(<span class="hljs-string">&apos;/&apos;</span>);
+}
+</code></pre>
+<h2 id="test-it-out--independent-practice-5-mins">Test it out - Independent Practice (5 mins)</h2>
+<p>You should now be able to login and logout! Test this out.</p>
+<h2 id="restricting-access-10-mins">Restricting access (10 mins)</h2>
+<p>As you know, an authentication system is used to allow/deny access to some resources to authenticated users.</p>
+<p>Let&apos;s now turn our attention to the <code>secret</code> route handler and it&apos;s associated template.</p>
+<p>To restrict access to this route, we&apos;re going to add a method at the top of <code>config/routes.js</code>:</p>
+<pre><code class="lang-javascript">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">authenticatedUser</span>(<span class="hljs-params">req, res, next</span>) </span>{
+    <span class="hljs-comment">// If the user is authenticated, then we continue the execution</span>
+    <span class="hljs-keyword">if</span> (req.isAuthenticated()) <span class="hljs-keyword">return</span> next();
+
+    <span class="hljs-comment">// Otherwise the request is always redirected to the home page</span>
+    res.redirect(<span class="hljs-string">&apos;/&apos;</span>);
+  }
+</code></pre>
+<p>Now when we want to &quot;secure&quot; access to a particular route, we will add a call to the method in the route definition.</p>
+<p>For the <code>/secret</code> route, we need to add this to the <code>/config/routes.js</code> file:</p>
+<pre><code class="lang-javascript">  router.route(<span class="hljs-string">&quot;/secret&quot;</span>)
+    .get(authenticatedUser, usersController.secret)
+</code></pre>
+<p>Now every time the route <code>/secret</code> is called, the method <code>authenticatedUser</code> will be executed first. In this method, we either redirect to the homepage or go to the next method to execute.</p>
+<p>Now test it out by clicking on the secret page link. You should see: &quot;This page can only be accessed by authenticated users&quot;</p>
+<h2 id="independent-practice-20-minutes">Independent Practice (20 minutes)</h2>
+<blockquote>
+<p><strong><em>Note:</em></strong> <em>This can be a pair programming activity or done independently.</em></p>
+</blockquote>
+<ul>
+<li><p>Add pages with restricted access.</p>
+</li>
+<li><p>Once the user is authenticated, make sure he/she can&apos;t access the sign-in or sign-up and redirect with a message, and vice-versa for the logout</p>
+</li>
+</ul>
+<h2 id="conclusion-5-mins">Conclusion (5 mins)</h2>
+<p>Passport is a really useful tool because it allows developers to abstract the logic of authentication and customize it, if needed. It comes with a lot of extensions that we will cover later.</p>
+<ul>
+<li>How do salts work with hashing?</li>
+<li>Briefly describe the authentication process using passport in Express.</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../08-single-page-web-apps/mongo_mongoose/readme.html" class="navigation navigation-prev " aria-label="Previous page: Mongo and Mongoose"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../08-single-page-web-apps/oojs1_read/readme.html" class="navigation navigation-next " aria-label="Next page: Object-Oriented FE JS: R / CRUD"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

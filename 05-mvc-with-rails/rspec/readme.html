@@ -1,0 +1,1793 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Unit Testing with RSpec | Welcome to GA&#39;s WDI-DC</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.5">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../05-mvc-with-rails/MVC-intro-to-rails/readme.html" />
+    
+    
+    <link rel="prev" href="../../05-mvc-with-rails/readme.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4.1"
+        data-chapter-title="Unit Testing with RSpec"
+        data-filepath="05-mvc-with-rails/rspec/readme.md"
+        data-basepath="../.."
+        data-revision="Mon Dec 14 2015 02:28:46 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        An Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="01-front-end-fundamentals/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Front End Fundamentals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="01-front-end-fundamentals/command-line/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/command-line/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Command Line Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01-front-end-fundamentals/git/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/git/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Git
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/intro-to-web-and-html/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Intro to Web and HTML
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="01-front-end-fundamentals/css/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/css/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        CSS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="01-front-end-fundamentals/javascript-data-types/readme.html">
+            
+            <span><b>1.5.</b> JavaScript Data Types</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="01-front-end-fundamentals/javascript-loops-conditionals/readme.html">
+            
+            <span><b>1.6.</b> JavaScript Loops and Conditionals</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="01-front-end-fundamentals/javascript-objects-functions/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-objects-functions/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        JavaScript Objects and Functions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="01-front-end-fundamentals/javascript-DOM/readme.html">
+            
+                
+                    <a href="../../01-front-end-fundamentals/javascript-DOM/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        JavaScript DOM
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="02-intermediate-front-end/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Intermediate Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="02-intermediate-front-end/scope-context-closures/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Scope, Context, and Closures
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="02-intermediate-front-end/scope-context-closures/scope.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/scope.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        Scope
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="02-intermediate-front-end/scope-context-closures/context.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/context.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        Context
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="02-intermediate-front-end/scope-context-closures/closures.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/scope-context-closures/closures.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        Closures
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="02-intermediate-front-end/events-and-callbacks/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/events-and-callbacks/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Events and Callbacks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="02-intermediate-front-end/git_branching/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/git_branching/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Git Branching
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-intro-selectors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        jQuery
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="02-intermediate-front-end/jquery/jquery-two.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/jquery/jquery-two.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        jQuery 2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="02-intermediate-front-end/workflows/lesson_plan.html">
+            
+            <span><b>2.6.</b> Workflows</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="02-intermediate-front-end/css2/readme.html">
+            
+                
+                    <a href="../../02-intermediate-front-end/css2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        CSS 2 (Layout &amp; Fonts)
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="04-ruby-mvc-sinatra/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Ruby + MVC with Sinatra
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="04-ruby-mvc-sinatra/ruby-basics/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-basics/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Ruby Basics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/ruby-enumerables/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Ruby Enumerables
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="04-ruby-mvc-sinatra/problem_modeling/readme.html">
+            
+            <span><b>3.3.</b> Problem Modeling</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="04-ruby-mvc-sinatra/domain_modeling/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/domain_modeling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Domain Modeling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="04-ruby-mvc-sinatra/databases/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/databases/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="04-ruby-mvc-sinatra/active-record-intro/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/active-record-intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Active Record
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-rest/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Sinatra &amp; REST
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+            
+                
+                    <a href="../../04-ruby-mvc-sinatra/sinatra-and-activerecord/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Sinatra &amp; Active Record
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="05-mvc-with-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        MVC with Rails
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="4.1" data-path="05-mvc-with-rails/rspec/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rspec/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Unit Testing with RSpec
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/MVC-intro-to-rails/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        MVC Intro to Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="05-mvc-with-rails/rails-models-and-migrations/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-models-and-migrations/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Models and Migrations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="05-mvc-with-rails/rails-views-and-controllers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-views-and-controllers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Views and Controllers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="05-mvc-with-rails/rails-routes-and-resources/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-routes-and-resources/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Routes and Resources
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="05-mvc-with-rails/rails-helpers/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-helpers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Helpers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="05-mvc-with-rails/rails-error-handling/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-error-handling/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        Error Handling and Validations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-sessions-and-auth/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        Sessions and Auth
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="05-mvc-with-rails/rails-deployment/readme.html">
+            
+                
+                    <a href="../../05-mvc-with-rails/rails-deployment/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        Deployment
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="07-apis-express-ajax/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        APIs/Express/AJAX
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="07-apis-express-ajax/apis/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/apis/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Building APIs in Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="07-apis-express-ajax/ajax/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/ajax/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        AJAX
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="07-apis-express-ajax/prototypes_and_constructors/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/prototypes_and_constructors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Prototypes and Constructors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="07-apis-express-ajax/express_intro/readme.html">
+            
+                
+                    <a href="../../07-apis-express-ajax/express_intro/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Intro to Express
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="08-single-page-web-apps/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Single Page Web Apps
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="08-single-page-web-apps/express_2/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/express_2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Express Routing / APIs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="08-single-page-web-apps/mongo_mongoose/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/mongo_mongoose/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Mongo and Mongoose
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="08-single-page-web-apps/node-express-user-authentication/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/node-express-user-authentication/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Local Authentication using Passport
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="08-single-page-web-apps/oauth-via-3rd-party-apps/readme.html">
+            
+            <span><b>6.4.</b> OAuth using Passport</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="08-single-page-web-apps/oojs1_read/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/oojs1_read/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Object-Oriented FE JS: R / CRUD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Object-Oriented FE JS: CUD / CRUD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="08-single-page-web-apps/git-teams/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/git-teams/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Git Team Workflows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="08-single-page-web-apps/responsive-web-design/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/responsive-web-design/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Responsive Web Design
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="08-single-page-web-apps/tdd/readme.html">
+            
+                
+                    <a href="../../08-single-page-web-apps/tdd/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        TDD JS using Jasmine
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="10-angular/readme.html">
+            
+                
+                    <a href="../../10-angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        MVW with Angular
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="10-angular/angular_intro_controllers_directives/readme.html">
+            
+            <span><b>7.1.</b> Angular Intro: Controllers &amp; Directives</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="10-angular/services_templates_and_routing/readme.html">
+            
+            <span><b>7.2.</b> Services, Templates, and Routing</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="10-angular/custom_directives/readme.html">
+            
+                
+                    <a href="../../10-angular/custom_directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Custom Directives
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="10-angular/firebase_in_angular/readme.html">
+            
+                
+                    <a href="../../10-angular/firebase_in_angular/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        AngularFire: Firebase &amp; Angular
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="10-angular/angular-vs-rails.html">
+            
+                
+                    <a href="../../10-angular/angular-vs-rails.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Angular vs. Rails
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="11-multi-track/readme.html">
+            
+                
+                    <a href="../../11-multi-track/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        Back and Front of Front End
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1" >
+            
+            <span><b>7.6.1.</b> BackBone</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.1.1" data-path="11-multi-track/bb_models_collections/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_models_collections/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.1.</b>
+                        
+                        Models and Collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.2" data-path="11-multi-track/bb_views_part1/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_views_part1/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.2.</b>
+                        
+                        Views (part 1)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.3" data-path="11-multi-track/bb_views_part2/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_views_part2/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.3.</b>
+                        
+                        Views (part 2)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.1.4" data-path="11-multi-track/bb_routers/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bb_routers/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.1.4.</b>
+                        
+                        Routers
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2" >
+            
+            <span><b>7.6.2.</b> Front End</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.6.2.1" data-path="11-multi-track/bootstrap/readme.html">
+            
+                
+                    <a href="../../11-multi-track/bootstrap/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.1.</b>
+                        
+                        Bootstrap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.2" data-path="11-multi-track/flexbox/readme.html">
+            
+                
+                    <a href="../../11-multi-track/flexbox/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.2.</b>
+                        
+                        Flex Box
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.3" data-path="11-multi-track/foundation/readme.html">
+            
+                
+                    <a href="../../11-multi-track/foundation/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.3.</b>
+                        
+                        Foundation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.4" data-path="11-multi-track/intro-to-php/readme.html">
+            
+                
+                    <a href="../../11-multi-track/intro-to-php/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.4.</b>
+                        
+                        Intro to PHP
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.5" data-path="11-multi-track/jquery-plugins/readme.html">
+            
+                
+                    <a href="../../11-multi-track/jquery-plugins/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.5.</b>
+                        
+                        jQuery Plugins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.6" data-path="11-multi-track/mapping/readme.html">
+            
+                
+                    <a href="../../11-multi-track/mapping/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.6.</b>
+                        
+                        Mapping
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.7" data-path="11-multi-track/pseudo-selectors/readme.html">
+            
+                
+                    <a href="../../11-multi-track/pseudo-selectors/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.7.</b>
+                        
+                        Pseudo Selectors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.8" data-path="11-multi-track/sass1-basic-reuse/readme.html">
+            
+                
+                    <a href="../../11-multi-track/sass1-basic-reuse/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.8.</b>
+                        
+                        Sass 1: Basic Reuse
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6.2.9" data-path="11-multi-track/sass2-control-directives/readme.html">
+            
+                
+                    <a href="../../11-multi-track/sass2-control-directives/readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.2.9.</b>
+                        
+                        Sass 2: Control Directives
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Welcome to GA&#39;s WDI-DC</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="rspec">RSpec</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>List benefits of unit testing, both to the creation process and to the collaboration process</li>
+<li>Describe the difference between <code>context</code>, <code>describe</code>, and <code>it</code></li>
+<li>Describe the difference between <code>let</code>, <code>before(:each)</code>, and <code>before(:all)</code></li>
+<li>Plan the creation of a project by reducing it to a series of unit tests</li>
+<li>Contrast unit tests and functional tests</li>
+<li>Add specs to an existing Sinatra app</li>
+<li>Define Test-Driven Development and give an example of why it&apos;s useful</li>
+</ul>
+<h2 id="why-learn-this">Why learn this?</h2>
+<p>We&apos;ve been using the &quot;Sinatra Reloader&quot; gem pretty much since we first touched Sinatra.</p>
+<h4 id="why">Why?</h4>
+<blockquote>
+<p>Pretty obviously: it&apos;s super-annoying to have to quit and restart Sinatra all the time!</p>
+</blockquote>
+<p>You know what else is super-annoying? Every time you change the &quot;POST&quot; route of Tunr or Sinatra, even just a little bit, you have to go back to <code>localhost:4567/artists/10/edit</code> <em>again</em>, fill in the form <em>again</em>, click &quot;submit&quot; <em>again</em>, read the error message <em>again</em>, restart Pry <em>again</em>...</p>
+<p>Whether or not you noticed, you&apos;re spending a <strong>lot</strong> of time just checking to see if your app works. That&apos;s time that could be spent adding new features, or even sleeping, Heaven forbid.</p>
+<p><em>Life doesn&apos;t have to be this way.</em></p>
+<p>Wouldn&apos;t it be nice if there was something that would do all that testing for you? Maybe you could just type on command into your Terminal and it would show you everything that works and everything that doesn&apos;t?</p>
+<h2 id="where-are-we-headed">Where are we headed?</h2>
+<p>We&apos;re going to end up with something like this:</p>
+<pre><code class="lang-rb">describe <span class="hljs-constant">Apartment</span> <span class="hljs-keyword">do</span>
+  it <span class="hljs-string">&quot;has the class Apartment&quot;</span> <span class="hljs-keyword">do</span>
+    apartment = <span class="hljs-constant">Apartment</span>.new
+    expect(apartment).to be_a(<span class="hljs-constant">Apartment</span>)
+  <span class="hljs-keyword">end</span>
+  it <span class="hljs-string">&quot;has a String for an address&quot;</span> <span class="hljs-keyword">do</span>
+    white_house = <span class="hljs-constant">Apartment</span>.new(<span class="hljs-symbol">address:</span> <span class="hljs-string">&quot;1600 Penn Ave&quot;</span>)
+    expect(white_house.address).to be_a(<span class="hljs-constant">String</span>)
+  <span class="hljs-keyword">end</span>
+  describe <span class="hljs-string">&quot;#add_tenant&quot;</span> <span class="hljs-keyword">do</span>
+    context <span class="hljs-string">&quot;when the number of tenants&quot;</span> <span class="hljs-keyword">do</span>
+      context <span class="hljs-string">&quot;is less than the number of beds&quot;</span> <span class="hljs-keyword">do</span>
+        it <span class="hljs-string">&quot;adds a tenant&quot;</span> <span class="hljs-keyword">do</span>
+          apartment = <span class="hljs-constant">Apartment</span>.create(<span class="hljs-symbol">num_beds:</span> <span class="hljs-number">3</span>)
+          apartment.add_tenant(<span class="hljs-string">&quot;alice&quot;</span>)
+          apartment.add_tenant(<span class="hljs-string">&quot;bob&quot;</span>)
+          expect(apartment.tenants.count).to eq(<span class="hljs-number">2</span>)
+        <span class="hljs-keyword">end</span>
+      <span class="hljs-keyword">end</span>
+      context <span class="hljs-string">&quot;is equal to the number of beds&quot;</span> <span class="hljs-keyword">do</span>
+        it <span class="hljs-string">&quot;does not add a tenant&quot;</span> <span class="hljs-keyword">do</span>
+          apartment = <span class="hljs-constant">Apartment</span>.create(<span class="hljs-symbol">num_beds:</span> <span class="hljs-number">3</span>)
+          apartment.add_tenant(<span class="hljs-string">&quot;alice&quot;</span>)
+          apartment.add_tenant(<span class="hljs-string">&quot;bob&quot;</span>)
+          apartment.add_tenant(<span class="hljs-string">&quot;carol&quot;</span>)
+          apartment.add_tenant(<span class="hljs-string">&quot;don&quot;</span>)
+          expect(apartment.tenants.count).to eq(<span class="hljs-number">3</span>)
+        <span class="hljs-keyword">end</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2 id="q-what-in-there-looks-familiar">Q. What in there looks familiar?</h2>
+<h2 id="q-what-does-expectapartmenttenantscountto-eq3-mean-in-regular-english">Q. What does <code>expect(apartment.tenants.count).to eq(3)</code> mean in regular English?</h2>
+<h2 id="setup">Set-up</h2>
+<p>In your <code>wdi/sandbox</code> directory:</p>
+<pre><code class="lang-sh">$ git <span class="hljs-built_in">clone</span> git@github.com:ga-dc/landlord.git
+$ <span class="hljs-built_in">cd</span> landlord
+$ git checkout rspec
+</code></pre>
+<p>This is a non-Sinatra version of Landlord -- just the ActiveRecord models.</p>
+<p>Now let&apos;s get the database set up:</p>
+<pre><code class="lang-sh">$ bundle install
+$ createdb landlord_rspec
+$ psql <span class="hljs-operator">-f</span> db/landlord_schema.sql <span class="hljs-operator">-d</span> landlord_rspec
+</code></pre>
+<p>Now we&apos;re ready to rock. Check out this bit from the <code>readme.md</code>:</p>
+<blockquote>
+<p>Define an instance method <code>add_tenant</code> on the Apartment class that allows you to add tenants to an existing apartment. Do not add the tenant to the apartment if the number of tenants would exceed the number of beds</p>
+</blockquote>
+<p>If you take a look at <code>models/apartment.rb</code>, you can see that this has been defined for us. It&apos;s a pretty simple method, so it makes a great candidate for the first test we&apos;re going to write.</p>
+<h3 id="install-rspec">Install RSpec</h3>
+<p>We&apos;re going to do some stuff now that you haven&apos;t seen before. I want to walk through it first, and then explain what everything is afterward.</p>
+<p>The first thing we&apos;ll do is install a gem called RSpec. To do this, just add <code>gem &apos;rspec&apos;</code> to the <code>Gemfile</code>:</p>
+<pre><code class="lang-rb">source <span class="hljs-string">&quot;https://rubygems.org&quot;</span>
+
+gem <span class="hljs-string">&quot;activerecord&quot;</span>
+gem <span class="hljs-string">&quot;pg&quot;</span>
+gem <span class="hljs-string">&quot;rspec&quot;</span>
+</code></pre>
+<p>Then, in your Terminal:</p>
+<pre><code class="lang-sh">$ bundle install
+$ rspec
+</code></pre>
+<p>After running <code>rspec</code>, you should get a message saying &quot;No examples found.&quot; When it says &quot;examples&quot;, it means &quot;tests&quot;. It&apos;s saying, &quot;You haven&apos;t written any tests for me to run!&quot;</p>
+<h3 id="set-up-the-directory">Set up the directory</h3>
+<p>Now, create a folder called <code>spec</code>, and a file called <code>apartment_spec.rb</code>:</p>
+<pre><code class="lang-sh">$ mkdir spec
+$ touch spec/apartment_spec.rb
+</code></pre>
+<p>&quot;Spec&quot;, like &quot;examples&quot;, basically means &quot;tests&quot;. We&apos;re going to put some tests inside this file.</p>
+<p>This file requires both the <code>rspec</code> gems and the <code>active_record</code> gems.</p>
+<h2 id="q-how-would-you-include-those-two-gems-in-this-file">Q. How would you include those two gems in this file?</h2>
+<blockquote>
+<p>Require the files that contain the code:</p>
+</blockquote>
+<pre><code class="lang-rb"><span class="hljs-keyword">require</span> <span class="hljs-string">&quot;rspec&quot;</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">&quot;active_record&quot;</span>
+</code></pre>
+<p>This file also needs to know how to connect with the database, and it needs to know about the apartment and tenant models.</p>
+<h2 id="q-how-would-you-connect-the-file-to-the-database-and-models">Q. How would you connect the file to the database and models?</h2>
+<pre><code class="lang-rb">require_relative <span class="hljs-string">&quot;../config/connection&quot;</span>
+require_relative <span class="hljs-string">&quot;../models/apartment&quot;</span>
+require_relative <span class="hljs-string">&quot;../models/tenant&quot;</span>
+</code></pre>
+<p>To make sure everything&apos;s set up properly, run <code>rspec</code> again. You should still get &quot;No examples found.&quot; If you get anything else, something was set up incorrectly.</p>
+<h3 id="writing-the-first-tests">Writing the first tests</h3>
+<p>We&apos;re writing tests that describe the Apartment class. So, after all your <code>require</code> lines, write:</p>
+<pre><code class="lang-rb">describe <span class="hljs-constant">Apartment</span> <span class="hljs-keyword">do</span>
+</code></pre>
+<p>...and remember, every <code>do</code> needs an <code>end</code>. Add it.</p>
+<p>We&apos;re going to write a simple test just to make sure a new Apartment has the class of Apartment... which, of course, it will, but that&apos;s OK!</p>
+<pre><code class="lang-rb"><span class="hljs-keyword">require</span> <span class="hljs-string">&quot;rspec&quot;</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">&quot;active_record&quot;</span>
+require_relative <span class="hljs-string">&quot;../config/connection&quot;</span>
+require_relative <span class="hljs-string">&quot;../models/apartment&quot;</span>
+require_relative <span class="hljs-string">&quot;../models/tenant&quot;</span>
+
+describe <span class="hljs-constant">Apartment</span> <span class="hljs-keyword">do</span>
+  it <span class="hljs-string">&quot;has the class Apartment&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Save the file, and run <code>rspec</code> again.</p>
+<p>Now you should get a message in your Terminal like:</p>
+<pre><code class="lang-plain">$ rspec
+*
+
+Pending: (Failures listed here are expected and do not affect your suite&apos;s status)
+
+  1) Apartment has the class Apartment
+       # Not yet implemented
+            # ./spec/apartment_spec.rb:8
+
+Finished in 0.00088 seconds (files took 0.61795 seconds to load)
+1 example, 0 failures, 1 pending
+</code></pre>
+<p>Wow! That&apos;s different! This is a list of all the tests we&apos;ve written. Right now, that&apos;s a grand total of one.</p>
+<p>There are a couple things to point out here.</p>
+<ul>
+<li>&quot;Not yet implemented&quot;<ul>
+<li>That means that this test doesn&apos;t actually test anything yet. Clearly it doesn&apos;t -- we just wrote some English, we didn&apos;t write any actual code.</li>
+</ul>
+</li>
+<li>The file and line number<ul>
+<li>This shows the line on which that particular test is found.</li>
+</ul>
+</li>
+<li><code>1 example... 1 pending</code><ul>
+<li>&quot;Pending&quot; is another way of saying &quot;not yet implemented&quot;, and &quot;example&quot; is another way of saying &quot;test&quot;.</li>
+</ul>
+</li>
+</ul>
+<p>Let&apos;s add another pending test:</p>
+<pre><code class="lang-rb">describe <span class="hljs-constant">Apartment</span> <span class="hljs-keyword">do</span>
+  it <span class="hljs-string">&quot;has the class Apartment&quot;</span>
+  it <span class="hljs-string">&quot;has a String for an address&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2 id="q-run-rspec-again-anything-crazy-going-on">Q. Run <code>rspec</code> again. Anything crazy going on?</h2>
+<p>You might have noticed when we ran <code>rspec</code> before that there was a little asterisk <code>*</code> at the top of the message, and now there are two <code>**</code>. This indicates two pending tests.</p>
+<h3 id="itdo">It...do</h3>
+<p>Now add <code>do</code> at the end of the first <code>it</code> line. Remember, each <code>do</code> needs an <code>end</code>!</p>
+<pre><code class="lang-rb">describe <span class="hljs-constant">Apartment</span> <span class="hljs-keyword">do</span>
+  it <span class="hljs-string">&quot;has the class Apartment&quot;</span> <span class="hljs-keyword">do</span>
+
+  <span class="hljs-keyword">end</span>
+  it <span class="hljs-string">&quot;has a String for an address&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h2 id="q-run-rspec-again-whats-different">Q. Run <code>rspec</code> again. What&apos;s different?</h2>
+<blockquote>
+<p>Now there&apos;s only one pending test.</p>
+</blockquote>
+<p>Instead of two asterisks <code>**</code>, you should see a dot and an asterisk <code>.*</code>, and something saying <code>2 examples, 0 failures, 1 pending</code>.</p>
+<p>Adding <code>do...end</code> makes RSpec think this test is an actual test -- not pending anymore. There&apos;s no malfunctioning code inside this test, so RSpec is saying it passes. Asterisk <code>*</code> indicates a pending test, and dot <code>.</code> indicates a passing test.</p>
+<h2 id="formatting-the-output">Formatting the output</h2>
+<p>Pass the &quot;format&quot; flag to the rspec command:</p>
+<pre><code>rspec --color --format documentation
+</code></pre><p>The default format is &quot;progress&quot;, it&apos;s designed to show the result of many tests, concisely.  Until we have a bunch of tests, I prefer the &quot;documentation&quot; format.  It helps me to ask the right questions.  You can run it with the shorthand, <code>rspec -c -fd</code>.</p>
+<p>If you prefer this as your default, you can add it to RSpec&apos;s configuration file, <code>~\.rspec</code>.  Here&apos;s mine:</p>
+<pre><code>--color
+--format documentation
+</code></pre><h2 id="actually-testing-something">Actually testing something</h2>
+<p>Let&apos;s make these tests actually test something. Inside the first test, make (but don&apos;t save) a new Apartment and save it to a variable.</p>
+<pre><code class="lang-rb">it <span class="hljs-string">&quot;has the class Apartment&quot;</span> <span class="hljs-keyword">do</span>
+  apartment = <span class="hljs-constant">Apartment</span>.new
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Now, let&apos;s tell the test that we expect that new apartment to be an apartment:</p>
+<pre><code class="lang-rb">it <span class="hljs-string">&quot;has the class Apartment&quot;</span> <span class="hljs-keyword">do</span>
+  apartment = <span class="hljs-constant">Apartment</span>.new
+  expect(apartment).to be_a(<span class="hljs-constant">Apartment</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Run <code>rspec</code>. The test should still pass.</p>
+<p>Read that new line to yourself. We literally wrote &quot;expect apartment to be a apartment&quot;. This is totally proper English, except for us using &quot;a&quot; instead of &quot;an&quot;!</p>
+<p>...but it&apos;s code! The methods that come built-in with RSpec were created in such a way that tests look as English-y as possible.</p>
+<p>Now let&apos;s make the test <strong>fail</strong>. Let&apos;s say we &quot;expect apartment to be a Integer&quot;:</p>
+<pre><code class="lang-rb">it <span class="hljs-string">&quot;has the class Apartment&quot;</span> <span class="hljs-keyword">do</span>
+  apartment = <span class="hljs-constant">Apartment</span>.new
+  expect(apartment).to be_a(<span class="hljs-constant">Integer</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Run <code>rspec</code> and... You got an F! See how it says <code>F.</code> with a dot after it? That indicates you have one failing test, and one passing test.</p>
+<p>Whenever a test fails, RSpec will put an error message after that test which should give you an idea of why it failed. This message is a little complicated, so let&apos;s create a simpler one.</p>
+<p>Change the line to:</p>
+<pre><code class="lang-rb">expect(apartment.<span class="hljs-keyword">class</span>.to_s).to eq(<span class="hljs-string">&quot;Integer&quot;</span>)
+</code></pre>
+<p>Now we&apos;re saying, &quot;the name of the apartment&apos;s class should equal &apos;Integer&apos;&quot;.</p>
+<p>Run <code>rspec</code>. This new message is easier to read:</p>
+<pre><code>expected: &quot;Integer&quot;
+  got: &quot;Apartment&quot;
+</code></pre><p>On top is what we expected the apartment&apos;s class to be; on the bottom is what RSpec actually got when it ran the code.</p>
+<h3 id="the-second-test">The second test</h3>
+<p>Now we&apos;ll change the first test so it passes again, and make the second test pass:</p>
+<pre><code class="lang-rb"><span class="hljs-keyword">require</span> <span class="hljs-string">&quot;rspec&quot;</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">&quot;active_record&quot;</span>
+require_relative <span class="hljs-string">&quot;../config/connection&quot;</span>
+require_relative <span class="hljs-string">&quot;../models/apartment&quot;</span>
+require_relative <span class="hljs-string">&quot;../models/tenant&quot;</span>
+
+describe <span class="hljs-constant">Apartment</span> <span class="hljs-keyword">do</span>
+  it <span class="hljs-string">&quot;has the class Apartment&quot;</span> <span class="hljs-keyword">do</span>
+    apartment = <span class="hljs-constant">Apartment</span>.new
+    expect(apartment).to be_a(<span class="hljs-constant">Apartment</span>)
+  <span class="hljs-keyword">end</span>
+  it <span class="hljs-string">&quot;has a String for an address&quot;</span> <span class="hljs-keyword">do</span>
+    white_house = <span class="hljs-constant">Apartment</span>.new(<span class="hljs-symbol">address:</span> <span class="hljs-string">&quot;1600 Penn Ave&quot;</span>)
+    expect(white_house.address).to be_a(<span class="hljs-constant">String</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3 id="moar-tests">Moar tests</h3>
+<p>Finally, we&apos;ll test what we originally came here to test, which was the <code>add_tenant</code> method.</p>
+<p>Replace your tests with this:</p>
+<pre><code class="lang-rb">describe <span class="hljs-constant">Apartment</span> <span class="hljs-keyword">do</span>
+  describe <span class="hljs-string">&quot;#add_tenant&quot;</span> <span class="hljs-keyword">do</span>
+    context <span class="hljs-string">&quot;when the number of tenants&quot;</span> <span class="hljs-keyword">do</span>
+      context <span class="hljs-string">&quot;is less than the number of beds&quot;</span> <span class="hljs-keyword">do</span>
+        it <span class="hljs-string">&quot;adds a tenant&quot;</span>
+      <span class="hljs-keyword">end</span>
+      context <span class="hljs-string">&quot;is equal to the number of beds&quot;</span> <span class="hljs-keyword">do</span>
+        it <span class="hljs-string">&quot;does not add a tenant&quot;</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>Crazy, right? Breathe, and let&apos;s go through it a bit at a time.</p>
+<p>You can <strong>nest</strong> as many <code>describe</code> blocks as you want. What&apos;s the purpose? Just to lump together some tests. <strong>It doesn&apos;t affect the code at all.</strong> It&apos;s purely to keep things organized visually.</p>
+<p>Also, <strong><code>context</code> does literally the exact same thing as <code>describe</code></strong>. They&apos;re identical. RSpec makes no difference between them. So why have both? To make your tests more readable from an English standpoint. You can see here I&apos;m using <code>describe</code> for when I&apos;m talking about specific objects or methods, and <code>context</code> when I&apos;m talking about, well, different contexts. If I replace <code>describe</code> with <code>context</code>, and vice-versa, the tests will run the exact same way.</p>
+<p><strong>RSpec is all about making tests easy to read from an English standpoint.</strong></p>
+<p>The hash <code>#</code> in front of <code>add_tenant</code> also doesn&apos;t do anything -- it&apos;s just what programmers usually use to indicate that something is a method, in the same way they use <code>$</code> to indicate a command you should enter in the terminal.</p>
+<p>The only things on here that are actual tests are the <code>it</code> lines.</p>
+<p><strong><code>describe</code> and <code>context</code> are not tests; they just help organize them. Only <code>it</code> is a test.</strong></p>
+<p><code>it</code> also is <strong>childless</strong>. <code>it</code> cannot have any <code>describe</code>, <code>context</code>, or <code>it</code> blocks inside it.</p>
+<p>Now run <code>rspec</code>. You should get:</p>
+<pre><code>  1) Apartment#add_tenant when the number of tenants is less than the number of beds adds a tenant
+     # Not yet implemented
+     # ./spec/apartment_spec.rb:11
+
+  2) Apartment#add_tenant when the number of tenants is equal to the number of beds does not add a tenant
+     # Not yet implemented
+     # ./spec/apartment_spec.rb:14
+</code></pre><p>Going along with the theme of readability, RSpec takes what we wrote and condenses it into sentences.</p>
+<h3 id="making-the-addtenant-tests-pass">Making the <code>#add_tenant</code> tests pass</h3>
+<pre><code class="lang-rb"><span class="hljs-keyword">require</span> <span class="hljs-string">&quot;rspec&quot;</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">&quot;active_record&quot;</span>
+require_relative <span class="hljs-string">&quot;../config/connection&quot;</span>
+require_relative <span class="hljs-string">&quot;../models/apartment&quot;</span>
+require_relative <span class="hljs-string">&quot;../models/tenant&quot;</span>
+
+
+describe <span class="hljs-constant">Apartment</span> <span class="hljs-keyword">do</span>
+  describe <span class="hljs-string">&quot;#add_tenant&quot;</span> <span class="hljs-keyword">do</span>
+    context <span class="hljs-string">&quot;when there is room (&lt;= the number of beds)&quot;</span> <span class="hljs-keyword">do</span>
+      it <span class="hljs-string">&quot;adds a tenant&quot;</span> <span class="hljs-keyword">do</span>
+        apartment = <span class="hljs-constant">Apartment</span>.create(<span class="hljs-symbol">num_beds:</span> <span class="hljs-number">3</span>)
+        apartment.add_tenant(<span class="hljs-string">&quot;alice&quot;</span>)
+        apartment.add_tenant(<span class="hljs-string">&quot;bob&quot;</span>)
+        expect(apartment.tenants.count).to eq(<span class="hljs-number">2</span>)
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+
+    context <span class="hljs-string">&quot;when it is full (tenants == number of beds)&quot;</span> <span class="hljs-keyword">do</span>
+      it <span class="hljs-string">&quot;does not add a tenant&quot;</span> <span class="hljs-keyword">do</span>
+        apartment = <span class="hljs-constant">Apartment</span>.create(<span class="hljs-symbol">num_beds:</span> <span class="hljs-number">3</span>)
+        apartment.add_tenant(<span class="hljs-string">&quot;alice&quot;</span>)
+        apartment.add_tenant(<span class="hljs-string">&quot;bob&quot;</span>)
+        apartment.add_tenant(<span class="hljs-string">&quot;carol&quot;</span>)
+        apartment.add_tenant(<span class="hljs-string">&quot;don&quot;</span>)
+        expect(apartment.tenants.count).to eq(<span class="hljs-number">3</span>)
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3 id="drying-it-up">DRYing it up</h3>
+<h4 id="which-lines-on-here-repeat">Which lines on here repeat?</h4>
+<p>Usually, you&apos;re going to have a whole bunch of tests that all do very similar things. Writing <code>apartment = Apartment.create</code> a bunch of times would get tiresome.</p>
+<p>Swap out your code with this:</p>
+<pre><code class="lang-rb">describe <span class="hljs-constant">Apartment</span> <span class="hljs-keyword">do</span>
+  describe <span class="hljs-string">&quot;#add_tenant&quot;</span> <span class="hljs-keyword">do</span>
+    before(<span class="hljs-symbol">:each</span>) <span class="hljs-keyword">do</span>
+      <span class="hljs-variable">@apartment</span> = <span class="hljs-constant">Apartment</span>.create(<span class="hljs-symbol">num_beds:</span> <span class="hljs-number">3</span>)
+      <span class="hljs-comment"># we start with 2 tenants (3 bedrooms)</span>
+      <span class="hljs-variable">@apartment</span>.add_tenant(<span class="hljs-string">&quot;alice&quot;</span>)
+      <span class="hljs-variable">@apartment</span>.add_tenant(<span class="hljs-string">&quot;bob&quot;</span>)
+    <span class="hljs-keyword">end</span>
+
+    context <span class="hljs-string">&quot;when there is room (&lt;= the number of beds)&quot;</span> <span class="hljs-keyword">do</span>
+      it <span class="hljs-string">&quot;adds a tenant&quot;</span> <span class="hljs-keyword">do</span>
+        <span class="hljs-variable">@apartment</span>.add_tenant(<span class="hljs-string">&quot;Third tenant&quot;</span>)
+        expect(<span class="hljs-variable">@apartment</span>.tenants.count).to eq(<span class="hljs-number">3</span>)
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+
+    context <span class="hljs-string">&quot;when it is full (tenants == number of beds)&quot;</span> <span class="hljs-keyword">do</span>
+      it <span class="hljs-string">&quot;does not add a tenant&quot;</span> <span class="hljs-keyword">do</span>
+        <span class="hljs-variable">@apartment</span>.add_tenant(<span class="hljs-string">&quot;Third tenant&quot;</span>)
+        <span class="hljs-variable">@apartment</span>.add_tenant(<span class="hljs-string">&quot;One too many&quot;</span>)
+        expect(<span class="hljs-variable">@apartment</span>.tenants.count).to eq(<span class="hljs-number">3</span>)
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>What changed? We moved the <code>Apartment.create</code>, <code>alice</code>, and <code>bob</code> into a <code>before:each</code> block.  Since the local variable is not available across methods, we converted <code>apartment</code> to an instance variable (with <code>@</code>). This change also encouraged us to clarify the &quot;third&quot; and &quot;extra&quot; tenant.</p>
+<p>Run <code>rspec</code>. It should still work.</p>
+<h4 id="change-the-each-to-all-run-rspec-whats-different">Change the <code>:each</code> to <code>:all</code>. Run <code>rspec</code>. What&apos;s different?</h4>
+<p><strong>before:each</strong> is a block of code that runs <em>before each</em> test inside it. Try adding a <code>puts &quot;*&quot; * 50</code> inside <code>before:each</code>, then running <code>rspec</code>. You should see two lines of asterisks pop up.</p>
+<p><strong>before:all</strong> is the same concept, except it only runs <strong>once</strong>, <em>before all</em> the tests inside it have started.</p>
+<h3 id="before-vs-let"><code>before</code> vs <code>let</code></h3>
+<p>Now replace the code with this:</p>
+<pre><code class="lang-rb">describe <span class="hljs-constant">Apartment</span> <span class="hljs-keyword">do</span>
+  describe <span class="hljs-string">&quot;#add_tenant&quot;</span> <span class="hljs-keyword">do</span>
+    subject(<span class="hljs-symbol">:apartment</span>) <span class="hljs-keyword">do</span>
+      apartment = <span class="hljs-constant">Apartment</span>.create(<span class="hljs-symbol">num_beds:</span> <span class="hljs-number">3</span>)
+      <span class="hljs-comment"># we start with 2 tenants (3 bedrooms)</span>
+      apartment.add_tenant(<span class="hljs-string">&quot;alice&quot;</span>)
+      apartment.add_tenant(<span class="hljs-string">&quot;bob&quot;</span>)
+      apartment <span class="hljs-comment"># return the apartment</span>
+    <span class="hljs-keyword">end</span>
+
+    context <span class="hljs-string">&quot;when there is room (&lt;= the number of beds)&quot;</span> <span class="hljs-keyword">do</span>
+      it <span class="hljs-string">&quot;adds a tenant&quot;</span> <span class="hljs-keyword">do</span>
+        apartment.add_tenant(<span class="hljs-string">&quot;Third tenant&quot;</span>)
+        expect(apartment.tenants.count).to eq(<span class="hljs-number">3</span>)
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+
+    context <span class="hljs-string">&quot;when it is full (tenants == number of beds)&quot;</span> <span class="hljs-keyword">do</span>
+      it <span class="hljs-string">&quot;does not add a tenant&quot;</span> <span class="hljs-keyword">do</span>
+        apartment.add_tenant(<span class="hljs-string">&quot;Third tenant&quot;</span>)
+        apartment.add_tenant(<span class="hljs-string">&quot;One too many&quot;</span>)
+        expect(apartment.tenants.count).to eq(<span class="hljs-number">3</span>)
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<p>What changed?  We&apos;ve identified that &quot;apartment&quot; is the &quot;subject under test&quot;, converting the instance variable (@apartment) into the &quot;subject&quot; helper.  This method takes a name (:apartment) and block of code that returns the subject (a new Apartment with tenants).  It provides a method, named &quot;apartment&quot;, that we now use throughout our spec.  </p>
+<p>This is a way of ensuring the subject is available in every test, just like <code>before:each</code> and <code>before:all</code>. What&apos;s the difference? <code>subject</code> is semantic.</p>
+<p>Interestingly, we could also replace each use of &quot;apartment&quot; with &quot;subject&quot;.</p>
+<h3 id="let"><code>let</code></h3>
+<p>RSpec also provides a &quot;let&quot; helper, which works the same way.  You can use it to identify other important components of the specification.</p>
+<h3 id="one-big-happy-family">One big happy family</h3>
+<p>As you can see, you can have <code>subject</code>, <code>let</code>, and <code>before:each</code> right next to each other.</p>
+<h2 id="the-database">The Database</h2>
+<p>Let&apos;s check out something in PSQL:</p>
+<pre><code class="lang-sh">$ psql
+$ \c landlord_rspec
+$ SELECT * FROM tenants;
+</code></pre>
+<p>Wow! That&apos;s a boatload of tenants! When you use <code>Apartment.create</code> or <code>apartment.tenants.create</code> in RSpec, it <em>actually creates data in your database</em>. For this reason, it&apos;s almost always a good idea to have a separate database for your RSpec stuff. (That&apos;s why we created a <code>landlord_rspec</code> database for this instead of just using your existing <code>landlord</code> database.)</p>
+<h2 id="the-flow">The Flow</h2>
+<p>Most testing frameworks, including RSpec, follow this flow:</p>
+<ul>
+<li>Setup</li>
+<li>Run</li>
+<li>Teardown</li>
+</ul>
+<p>Each spec should run in isolation.  </p>
+<p>Notice, these tenant specs are very particular about how many tenants are in the apartment. If they didn&apos;t run in isolation, the &quot;full&quot; apartment would end up with multiple &quot;Third tenant&quot;.</p>
+<p>We setup this spec, using &quot;subject&quot;.  It is recreated for each spec (<code>it/do</code>).  And, if there is a teardown, it would be run next.  Our teardown here, is that all variables go out scope.  Everything starts fresh.</p>
+<h1 id="unit-testing">Unit testing</h1>
+<p>RSpec is intended for unit testing. The other type of testing is functional testing. We may visit that later on in the course.</p>
+<p>The difference is that &quot;unit tests tell a developer that code is doing things right; functional tests tell a developer that code is doing the right things.&quot;</p>
+<p>The &quot;units&quot; in unit tests are individual methods. Unit tests are intended to test small, little blocks of code, and make sure a specific input results in a specific output. A good unit test should <strong>not be more than 5 lines long</strong>.</p>
+<p>Functional tests have a much wider focus. You&apos;d use functional testing to make sure a sign-in form works, or that a user who doesn&apos;t have admin privileges can see this page, while a user who does have admin privlieges can see that page.</p>
+<p>Unit testing always should come before functional testing. Functional testing is much less crucial. Unit testing is so important, that...</p>
+<h2 id="employers-give-you-major-bonus-points-for-it">Employers give you major bonus points for it</h2>
+<p>You&apos;ll see the term <strong>test coverage</strong> pop up pretty often. People are always aiming for &quot;100% test coverage&quot;. If your app has 100% test coverage, that means every single method in your app has a unit test verifying that it works.</p>
+<p>For instance, while it&apos;s easy and free to write Salesforce apps, Salesforce will only add your app to its &quot;app store&quot; if you&apos;ve obtained 100% test coverage, and Salesforce&apos;s developer team can run your tests and have them all pass.</p>
+<h4 id="what-are-the-reasons-testing-is-so-important-why-would-employers-love-it-so-much">What are the reasons testing is so important? Why would employers love it so much?</h4>
+<h1 id="writing-tests">Writing tests</h1>
+<p>We&apos;ve asked you to write user stories. Writing unit tests is a very similar process.</p>
+<p>When we think of &quot;testing&quot; we tend to think of something you do <em>after</em> you&apos;ve created something. With unit tests, you&apos;re encouraged to write the tests <em>first</em> before you even start writing actual code.</p>
+<h4 id="turn-and-talk">Turn and talk</h4>
+<blockquote>
+<p>Why would you write tests beforehand? Come up with as many reasons as you can. To get started, imagine if instead of a <code>readme.md</code> for Landlord you&apos;d been given just the following in a <code>spec.rb</code> file:</p>
+</blockquote>
+<pre><code>describe Apartment do
+  it &quot;has the class Apartment&quot;
+  it &quot;has a String for an address&quot;
+  describe &quot;#add_tenant&quot; do
+    context &quot;when the number of tenants&quot; do
+      context &quot;is less than the number of beds&quot; do
+        it &quot;adds a tenant&quot;
+      end
+      context &quot;is equal to the number of beds&quot; do
+        it &quot;does not add a tenant&quot;
+      end
+    end
+  end
+end
+</code></pre><h3 id="tdd">TDD</h3>
+<p>You&apos;ve probably already run into the situation of not knowing when an app is &quot;done&quot;. You&apos;ve also probably started an assignment or project only to find there are an overwhelming number of things to do. Then, on top of that, you have all that by-hand, manual testing to do as you make your app.</p>
+<p>When you write tests first, you&apos;re creating a tidy little checklist for yourself of things to complete. The <strong>goal of unit tests</strong> is that <strong>when all of the tests pass, your app is complete</strong>.</p>
+<p>You&apos;re used to thinking the other way around: when the app is complete, all the tests should pass. Writing the tests first forces you to think about what an app really <em>needs</em> to do to be complete. It forces you to scope things down to your MVP. It forces you to think of your app as a bunch of little pieces, rather than one big behoemeth.</p>
+<p>This process of writing the tests <strong>first</strong> is called <strong>Test-Driven Development</strong>, or TDD.</p>
+<p>In short: writing out unit tests, even if you just leave them pending, will make this class much easier, and make you look super-marketable.</p>
+<h3 id="planning-with-tdd">Planning with TDD</h3>
+<h4 id="when-you-were-planning-project-1-how-did-you-do-it">When you were planning Project 1, how did you do it?</h4>
+<p>Next time you find yourself writing a list of things your app should do, or writing out user stories, or <em>any</em> sort of list, try writing that list using the <code>describe</code>, <code>context</code>, <code>it</code> syntax. Even if you never actually write the code that makes these tests pass, this is an extremely effective way of planning that looks really impressive.</p>
+<p>We use RSpec to test GArnet, the attendance/homework tracking app. Before any changes get pushed up to our live server, they have to pass all the tests -- an automated system rejects the changes if they don&apos;t pass.</p>
+<p><a href="https://travis-ci.org/ga-dc/garnet/builds/89503768#L241" target="_blank">Here&apos;s what that looks like. Seem familiar?</a> Clearly there are a lot of tests that are just pending and don&apos;t do anything yet -- almost 60! These dramatically help us plan.</p>
+<h3 id="you-do">You do</h3>
+<p><a href="https://www.youtube.com/watch?v=E2evC2xTNWg" target="_blank">Watch this video.</a></p>
+<p>Split up into groups of 4. For 15 minutes, on a whiteboard, work with your group to draft the unit tests for this cereal-delivering robot.</p>
+<p>Your goal: When all the tests pass, that mean the robot works. However, you&apos;re only writing <strong>pending</strong> tests -- don&apos;t actually write the code that would make the tests pass.</p>
+<p>Constraints: Try to write everything as <code>describe</code>, <code>context</code>, and <code>it</code> blocks. Method names should start with <code>#</code>.</p>
+<h2 id="rspec-tricks">RSpec tricks</h2>
+<h3 id="rspec-init">rspec --init</h3>
+<p>When you look at repos with RSpec inside them, you&apos;re likely to see two files we don&apos;t have right now: <code>.rspec</code> and <code>spec_helper.rb</code>. These files are generated by running RSpec&apos;s built-in file generator.</p>
+<p>Go back to your <code>wdi</code> folder, and create a new directory. It doesn&apos;t matter what it&apos;s called. <code>cd</code> into that directory.</p>
+<p>Then, run <code>$ rspec --init</code>. This should make those two files. Take a look at <code>.rspec</code>. It should have very little in it. Now, take a look at <code>spec_helper.rb</code>. It has much more inside. Both of these files are configuration files. Neither of them are necessary unless you want to configure RSpec a certain way.</p>
+<h3 id="rspec-f-d">rspec -f d</h3>
+<p>Go back to the <code>landlord</code> folder we&apos;ve been working in today. We&apos;re going to run <code>rspec</code> again, but this time we&apos;re going to give it some additional parameters. Run:</p>
+<pre><code class="lang-sh">$ rspec --color <span class="hljs-operator">-f</span> d
+</code></pre>
+<p>This prints out all of your tests in a nicer format with colors. The <code>-f d</code> prints out your tests in a nice outline format. Before, The only sentences printed out were pending or failed tests.</p>
+<p>Green tests have passed, red have failed, and yellow tests are pending. You may hear us say &quot;Red, Green, Refactor&quot;. This is sort-of the mantra of TDD: write tests before you write code (&quot;red&quot; because the tests won&apos;t pass without any code), then write the code to make them pass (and turn green), then refactor that code.</p>
+<p>You can also print out your tests as HTML. Try running:</p>
+<pre><code class="lang-sh">$ rspec <span class="hljs-operator">-f</span> h -o tests.html
+</code></pre>
+<p>The <code>-f h</code> says &quot;print this out has HTML&quot;, and the <code>-o</code> says into which file you want it to be printed. Try opening up that file in Chrome!</p>
+<h3 id="you-do-garnet-users">You do: GArnet users</h3>
+<p>We&apos;re going to use a repo pulls some of the User tests and methods from Garnet:</p>
+<p><a href="https://github.com/ga-dc/rspec-user-practice" target="_blank">rspec-user-practice</a></p>
+<p>You can check out Garnet <a href="https://github.com/ga-dc/garnet/tree/master/spec" target="_blank">here</a>.</p>
+<p>Fill in the blanks on the <code>user_spec.rb</code> file to make the tests pass!</p>
+<h3 id="you-do-purrspec">You do: Purrspec</h3>
+<p><a href="https://github.com/ga-dc/purrspec" target="_blank">Purrspec</a></p>
+<h1 id="for-example">For example</h1>
+<pre><code class="lang-rb">describe <span class="hljs-constant">Model</span> <span class="hljs-keyword">do</span>
+  let(<span class="hljs-symbol">:variable</span>) <span class="hljs-keyword">do</span> value <span class="hljs-keyword">end</span>
+  before(<span class="hljs-symbol">:all</span>) <span class="hljs-keyword">do</span>
+    <span class="hljs-variable">@variable</span> = value
+  <span class="hljs-keyword">end</span>
+  before(<span class="hljs-symbol">:each</span>) <span class="hljs-keyword">do</span>
+    puts <span class="hljs-string">&quot;Hello!&quot;</span>
+    <span class="hljs-variable">@variable</span> = value
+  <span class="hljs-keyword">end</span>
+
+  describe <span class="hljs-string">&quot;#method&quot;</span> <span class="hljs-keyword">do</span>
+    context <span class="hljs-string">&quot;some condition&quot;</span> <span class="hljs-keyword">do</span>
+      it <span class="hljs-string">&quot;should return this&quot;</span> <span class="hljs-keyword">do</span>
+        expect(<span class="hljs-variable">@variable</span>).to eq(value)
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+    it <span class="hljs-string">&quot;should have this class&quot;</span> <span class="hljs-keyword">do</span>
+      expect(<span class="hljs-comment">#method).to be_a(Class)</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  it <span class="hljs-string">&quot;should not be in this array&quot;</span> <span class="hljs-keyword">do</span>
+    expect([array]).to_not <span class="hljs-keyword">include</span>(value)
+  <span class="hljs-keyword">end</span>
+
+  describe <span class="hljs-string">&quot;#attributes&quot;</span> <span class="hljs-keyword">do</span>
+    it <span class="hljs-string">&quot;should all be this class&quot;</span> <span class="hljs-keyword">do</span>
+      expect([<span class="hljs-comment">#attributes]).to all(be(Class))</span>
+    <span class="hljs-keyword">end</span>
+    it <span class="hljs-string">&quot;should have the same values as this array&quot;</span> <span class="hljs-keyword">do</span>
+      expect([<span class="hljs-comment">#attributes]).to match_array([array])</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../05-mvc-with-rails/readme.html" class="navigation navigation-prev " aria-label="Previous page: MVC with Rails"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../05-mvc-with-rails/MVC-intro-to-rails/readme.html" class="navigation navigation-next " aria-label="Next page: MVC Intro to Rails"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
