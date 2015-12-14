@@ -37,6 +37,8 @@ In the coming classes you're going to be interacting with data from an API that 
 
 Open up your Chrome console and enter `console.log(angular)`. Click on the output to expand it.
 
+![Console log angular](http://i.imgur.com/0z37sD2.png)
+
 This is the `angular` object. It contains absolutely everything that has to do with Angular. You can see it has some weird things attached to it, like `getTestability` and `$$csp`, but it also has a whole bunch of pretty easy-to-read things: `angular.isDate`, `angular.forEach`, `angular.toJson`, and so on.
 
 Q. What are all these things attached to the `angular` object? Why are they here?
@@ -47,15 +49,17 @@ Q. What are all these things attached to the `angular` object? Why are they here
 
 > Those of you not using Chrome can just observe me doing this. What we're doing here doesn't have any practical application; we're just exploring.
 
-After a lot of hunting, you can see something interesting: These are all the **modules** available to us from the Angular libraries included in this file.
-
 ![Inside module](http://i.imgur.com/1eLxSDz.png)
+
+After a lot of hunting, you can see something interesting: These are all the **modules** available to us from the Angular libraries included in this file.
 
 ## Modules
 
 Modules -- not to be confused with *models* -- are the building block of Angular. Every Angular app is a collection of modules interacting with each other. They're kind of like Javascript objects, and kind of like gems, and kind of like models, and kind of like jQuery plug-ins.
 
 If you click on any one of those modules, and then click on `requires`, you can see that each one requires another module. This is evidence of how they all work off of each other.
+
+![Requires](http://i.imgur.com/ZvfroEY.png)
 
 **I'm going to remove two Angular libraries** out of the three included on this page, `angular-ui-router` and `angular-resource`, just by deleting their `<script>` tags. Now I only have two modules: `ng` and `ngLocale`. These are the only two that come out-of-the-box with Angular.
 
