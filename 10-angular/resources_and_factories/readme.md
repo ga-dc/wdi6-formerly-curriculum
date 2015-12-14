@@ -406,6 +406,7 @@ This will look very similar to the index controller, which a couple exceptions.
   }
 }());
 ```
+> `$stateParams` is a service that belongs to ui-router. We pass it into our controller the same way we do with `GrumbleFactory`.
 
 #### Update `show.html`
 
