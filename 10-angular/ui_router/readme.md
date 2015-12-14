@@ -710,7 +710,9 @@ Q. How would we make the main `Grumblr` header at the top into a link to the ind
 ---
 > `<h1><a data-ui-sref="grumbleIndex">Grumblr</a></h1>`
 
-# Show Pages
+# You Do: Show Pages
+
+#### Follow the rest of the lesson plan yourself to implement the rest of Grumblr.
 
 Now we'll actually make the show pages themselves. This means creating a new controller, because we're doing **one controller, one view**.
 
@@ -845,3 +847,21 @@ this.create = function(){
 ```
 
 Take these snippets and incorporate them into your Grumblr in the appropriate way. Then, work on updating and deleting grumbles.
+
+# Quiz Questions
+
+What's the difference between `.module("myModule")` and `.module("myModule", [])`?
+> The first retrieves an existing module; the second creates a new module.
+
+What's an Angular "state"?
+> A URL with an attached template, and usually a controller.
+
+Why does a state need both a `controller` and a `controllerAs` parameter?
+> The first says which controller should be used; the second says into which variable its new instance (view model) should be saved.
+
+How many views should be managed by one controller?
+> Just one: one view, one controller.
+
+What's the equivalent of `{{yield}}` or `<%= yield %>` in Angular?
+> `data-ui-view`
+
