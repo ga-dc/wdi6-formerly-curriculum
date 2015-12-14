@@ -322,9 +322,7 @@ Two weird things here:
 
 **Weird thing number 1:** First `$stateProvider` is in quotes. Then it isn't. This is how Angular wrangles dependency injection. The reason it does things this goofy way is to protect against minification: compressing your Javascript code to make the file smaller. When you minify Javascript, variable names get changed, but strings don't. Without this, `$stateProvider` would get replaced with a variable name like `c`, which would throw an error because Angular doesn't know about anything named `c`.
 
-Seem like a hack? That's because it is -- a systemic hack.
-
-> "Under the hood, most critical software you use every day (like Mac OS X, or Facebook) contains a terrifying number of hacks and shortcuts that happen to barely fit together into a working whole. It would be like taking apart a brand-new 747 and discovering that the fuel line is held in place by a coat-hanger and the landing gear is attached with duct tape." - Ben Cherry
+> Yes, this is a bit hacky -- but it's Good Angular!
 
 **Weird thing number 2:** What's up with this `RouterFunction`? It only gets called once; why not just do something like:
 
