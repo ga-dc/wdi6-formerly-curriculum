@@ -383,9 +383,15 @@ Each grumble listed here should link to its corresponding show page.
 
 #### Create a Show Controller
 
-This will look very similar to the index controller, which a couple exceptions.
-* The controller requires access to the `$stateParams` module.
-* `ngResource`'s `get` method requires an object as an argument, which contains a key-value pair for the grumble's id.
+This will look very similar to the index controller, which a couple exceptions.  
+The controller requires access to ui-router's `$stateParams` service. We pass it in the same way we do `GrumbleFactory`.  
+* `$stateParams` returns an object containing the information passed into, in this case, `grumbleShow`. If we print it to the console, it looks like this...
+```js
+Object {id: "6"}
+```
+
+The controller will have a `grumble` property. It should be set to the return value of `ngResource`'s `get` method.
+* `ngResource`'s `get` method requires an object as an argument, which contains a key-value pair for the grumble's id.  
 
 ```js
 // js/grumbles/show.controller.js
@@ -406,7 +412,6 @@ This will look very similar to the index controller, which a couple exceptions.
   }
 }());
 ```
-> `$stateParams` is a service that belongs to ui-router. We pass it into our controller the same way we do with `GrumbleFactory`.
 
 #### Update `show.html`
 
