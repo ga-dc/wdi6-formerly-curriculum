@@ -254,3 +254,136 @@ With all our ducks in a row, we're now ready to make this module actually do som
 
 # Making this module actually do something
 
+TODO: $locationProvider for clean URLs
+https://scotch.io/quick-tips/pretty-urls-in-angularjs-removing-the-hashtag
+
+We're going to configure this app to have routes to multiple views: a view for the Grumbles index, and a Grumbles show page.
+
+Remember in Express we had a `config/routes.js` file with all of the routes defined in it. Here, we put the `routes` inside a `config` module.
+
+Add `.config` to your `app.js`:
+
+```js
+"use strict";
+
+(function(){
+  angular
+  .module("grumblr", [
+    "ui.router"
+  ])
+  .config([
+    "$stateProvider"
+  ]);
+}());
+```
+
+You'll notice `$stateProvider` is in quotes. You'll also notice that if you refresh the page, you'll get an error. That's OK -- we're going to talk about `$stateProvider` first and then we'll address the error.
+
+## $stateProvider
+
+The `ui.router` module we're requiring includes factories, services, providers, and more. We're not going to talk about the differences between those for now. Just know that `$stateProvider` is something `ui.router` gives us to manage **states**.
+
+A state in Angular is basically a route: it's an umbrella term for a URL, the view associated with it, and any controllers used in that view.
+
+## Config needs functions
+
+The reason `.config` is throwing an error is because Angular expects calling `.config` to always result in it calling a function -- and we haven't yet told `.config` to call a function. The purpose of the function is to actually *do* the configuring.
+
+Here's how we're going to add the function:
+
+```js
+"use strict";
+
+(function(){
+  angular
+  .module("grumblr", [
+    "ui.router"
+  ])
+  .config([
+    "$stateProvider",
+    RouterFunction
+  ]);
+
+  function RouterFunction($stateProvider){
+    
+  }
+}());
+```
+
+## Wat
+
+Two weird things here:
+
+**Weird thing number 1:** First `$stateProvider` is in quotes. Then it isn't. This is how Angular wrangles dependency injection. The reason it does things this goofy way is to protect against minification: compressing your Javascript code to make the file smaller. When you minify Javascript, variable names get changed, but strings don't. Without this, `$stateProvider` would get replaced with a variable name like `c`, which would throw an error because Angular doesn't know about anything named `c`.
+
+Seem like a hack? That's because it is -- a systemic hack.
+
+> "Under the hood, most critical software you use every day (like Mac OS X, or Facebook) contains a terrifying number of hacks and shortcuts that happen to barely fit together into a working whole. It would be like taking apart a brand-new 747 and discovering that the fuel line is held in place by a coat-hanger and the landing gear is attached with duct tape." - Ben Cherry
+
+**Weird thing number 2:** What's up with this `RouterFunction`? It only gets called once; why not just do something like:
+
+```js
+"use strict";
+
+(function(){
+  angular
+  .module("grumblr", [
+    "ui.router"
+  ])
+  .config([
+    "$stateProvider",
+    function($stateProvider){
+
+    }
+  ]);
+}());
+```
+
+That works the exact same way.
+
+Q. So why do we do it with the named function? Why not an anonymous function? (Hint: Trick question)
+---
+> Because the anonymous function looks uglier and gives us more parentheses to juggle.
+
+`RouterFunction` doesn't have to be called `RouterFunction`; it could be called `wombatsAnonymous`. We just named it that because that's what it is: a function that does routing.
+
+## ui-view
+
+Add the `ui-view` directive to your `index.html`:
+
+```html
+<body>
+  <h1>Grumblr</h1>
+  <div data-ui-view></div>
+</body>
+```
+
+This is a lot like `yield` in ERB and HBS files: it tells Angular where to put the views we're about to define. `index.html` is now like a `layout.hbs` or `layout.html.erb` file. 
+
+Note that you may see `ng-view` a lot in Angular documentation. This is used with the `ngRoute` module, which is the original built-in router included with Angular. Although it's still supported, Angular itself recommends you use `uiRouter`. They do the same thing -- `uiRouter` is just better.
+
+## Defining states
+
+Modify the RouterFunction to look like this:
+
+```js
+function RouterFunction($stateProvider){
+  $stateProvider
+  .state("grumbleIndex", {
+    url: "/grumbles",
+    template: "I'm the Grumbles index!"
+  });
+}
+```
+
+We've just defined the first **state**. Remember I said earlier that a state is a lot like a route in Rails or Express: it's a URL, often with an associated view and controller.
+
+In your browser, go to `index.html#/grumbles`. You should see "I'm the Grumbles index!" show up!
+
+The `/grumbles` comes from the `url` we defined. Change it to `/wombat` and now you'd need to go to `#/wombat`.
+
+Q. Where does the `#` come from?
+---
+> We're not changing any views on the back end -- there are no page refreshes going on here. The `#` is a "jump anchor". Usually these are used for links that "jump down" a page of text. The important thing is that changing whatever comes after the `#` doesn't cause a page refresh.
+
+// TODO: Removing jump anchor, adding a controller
