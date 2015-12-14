@@ -19,6 +19,8 @@ Please go to this link and download the ZIP file:
 
 https://github.com/ga-dc/grumblr_angular/releases/tag/1.0.0
 
+> The version number of this indicates that it's the starter code of the first Angular class. The solution code is 1.0.1. The solution code of the third Angular class is 3.0.1.
+
 Then, if your computer didn't automatically "unzip" the ZIP file, double-click it. This should create a folder called `grumblr_angular-1.0.0`. Move it into your `wdi/in-class` folder.
 
 This has the same end result as `git clone` except there's no `.git` folder in there. The reason we're asking you to use this ZIP file is because it gives you a nice little folder with its own version number: the subsequent folders you download will have their own numbers as well, so you won't have a zillion duplicate folders.
@@ -32,6 +34,8 @@ It's all terribly exciting: the word `Grumblr`, and that's pretty much it.
 Grumblr is like Tumblr, only grumblier. It's a two-model CRUD app with posts and comments. Down the road it'll have users too.
 
 In the coming classes you're going to be interacting with data from an API that we provide. For this class, though, we'll just be hardcoding data and getting some views up and running.
+
+> Note: There's no reason this app uses CloudFlare for some dependencies and Google APIs for others. It'd probably be a better idea to use the same domain for all of them, just to be consistent.
 
 ## Under the hood
 
@@ -57,7 +61,7 @@ Modules -- not to be confused with *models* -- are the building block of Angular
 
 If you click on any one of those modules, and then click on `requires`, you can see that each one requires another module. This is evidence of how they all work off of each other.
 
-**I'm going to remove two Angular libraries** out of the three included on this page, just by deleting their `<script>` tags. Now I only have two modules: `ng` and `ngLocale`. These are the only two that come out-of-the-box with Angular.
+**I'm going to remove two Angular libraries** out of the three included on this page, `angular-ui-router` and `angular-resource`, just by deleting their `<script>` tags. Now I only have two modules: `ng` and `ngLocale`. These are the only two that come out-of-the-box with Angular.
 
 ![Two default modules](http://i.imgur.com/dRgcpXi.png)
 
@@ -89,7 +93,7 @@ Notice there's an `app.js` linked in this `index.html`. Open it and add this lin
 angular.module("grumblr", []);
 ```
 
-**It's very important that you include that empty array.**
+**It's very important that you include that empty array.** We'll talk about why in a moment.
 
 If I go poking around with `angular.module` in the console again, I can see that `grumblr` has been added to Angular's available modules:
 
@@ -116,6 +120,8 @@ The process of requiring dependencies in Angular is called **dependency injectio
 #### Try removing that array altogether. What happens?
 
 We get an error. In order to create a module you have to specify the number of dependencies it has, even if that number is zero.
+
+A `.module` with an array creates a new module; without an array it looks up an existing module of that name.
 
 ## Angular Errors
 
@@ -378,7 +384,7 @@ function RouterFunction($stateProvider){
 
 We've just defined the first **state**. Remember I said earlier that a state is a lot like a route in Rails or Express: it's a URL, often with an associated view and controller.
 
-In your browser, go to `index.html#/grumbles`. You should see "I'm the Grumbles index!" show up!
+In your browser, go to `index.html#/grumbles`. You should see "I'm the Grumbles index!" show up! You could put HTML in that `template` as well.
 
 The `/grumbles` comes from the `url` we defined. Change it to `/wombat` and now you'd need to go to `#/wombat`.
 
@@ -386,4 +392,190 @@ Q. Where does the `#` come from?
 ---
 > We're not changing any views on the back end -- there are no page refreshes going on here. The `#` is a "jump anchor". Usually these are used for links that "jump down" a page of text. The important thing is that changing whatever comes after the `#` doesn't cause a page refresh.
 
-// TODO: Removing jump anchor, adding a controller
+## Templates
+
+Writing a huge string of HTML inside that `template` parameter would be annoying. There's a second option: `templateUrl`. You can have Angular load and insert whole HTML files for you -- just like with *partials* in Rails and Express.
+
+Let's create a folder in which we can put some partials:
+
+```js
+$ mkdir js/grumbles
+$ touch js/grumbles/index.html
+```
+
+Put a piece of HTML into that `index.html`, just so we know it's working:
+
+```html
+<h2>I'm the Grumbles index!</h2>
+```
+
+Now, change `template` to `templateUrl` and make its value the path to the `index.html` you created:
+
+```js
+function RouterFunction($stateProvider){
+  $stateProvider
+  .state("grumbleIndex", {
+    url: "/grumbles",
+    templateUrl: "js/grumbles/index.html"
+  });
+}
+```
+
+Bam! Now you have an easy way of using partials and never again having to write huge swaths of HTML in a Javascript file. You will virtually never use `template`; always `templateUrl`.
+
+## Moar States
+
+We'll create one more state: a `show` page. Do this by chaining an additional `.state` onto the earlier one:
+
+```js
+function RouterFunction($stateProvider){
+  $stateProvider
+  .state("grumbleIndex", {
+    url: "/grumbles",
+    templateUrl: "js/grumbles/index.html"
+  })
+  .state("grumbleShow", {
+    url: "/grumbles/show",
+    templateUrl: "js/grumbles/show.html"
+  });
+}
+```
+
+Create a `show.html` page as well.
+
+# You do: Create states for `edit` and `new`
+> Make sure you can go to them in your browser!
+
+# Controllers
+
+The progression that we're following for creating this app is the same that I would follow for creating a "real" app: creating some routes is an easy win, so I'll do those first and test out the URLs. Then I'll worry about what we're going to do next: putting in data.
+
+Q. In Rails, what do we call the thing that controls which data should be available to a user at which route?
+---
+> A controller.
+
+A controller in Angular is similar: it's where we control which data is available on the view. However, Rails and Express controllers usually contained the logic for a bunch of routes -- that is, a bunch of **actions**. In Angular, it's considered good style to have **one controller for one action**.
+
+Q. If I've defined the `show` and `index` actions, how many controllers should I have?
+---
+> Two controllers: one for each action.
+
+We're just going to make one controller for now: the `index` controller:
+
+```
+$ touch js/grumbles/index.controller.js
+```
+
+This naming convention is used because it puts the `index` controller alphabetically right next to the `index` view. Since each view is going to have a controller, we're not going to put all the controllers together the way we would in Rails or Express: that would result in a lot of jumping around from file-to-file.
+
+Replace the contents of that controller file with this:
+
+```js
+"use strict";
+
+(function(){
+  angular
+  .module("grumblr")
+  .controller("GrumbleIndexController", [
+    GrumbleIndexControllerFunction
+  ]);
+
+  function GrumbleIndexControllerFunction(){
+    console.log("I'm in the controller!");
+  }
+}());
+```
+
+> Note: `GrumbleIndexControllerFunction` is a super-long function name. A better name might be just `ControllerFunction`. We just used this long name to be a little more explicit for instructional purposes.
+
+Then, in the app's **main** `index.html`, include the controller file right below `app.js`:
+
+```html
+<script src="js/app.js"></script>
+<script src="js/grumbles/index.controller.js"></script>
+```
+
+Q. Why isn't there an array in the `.module`?
+---
+> Because this module has already been created; we're adding something *to* the module. Angular thinks any `.module` with an array in it is creating a new module.
+
+
+Q. This controller isn't doing anything yet. How can I tell?
+---
+> I'd see "I'm in the controller!" console logged.
+
+To activate this controller, we need to tell the router that it should use this controller for the `index` state / route:
+
+```js
+function RouterFunction($stateProvider){
+  $stateProvider
+  .state("grumbleIndex", {
+    url: "/grumbles",
+    templateUrl: "js/grumbles/index.html",
+    controller: "GrumbleIndexController"
+  })
+  .state("grumbleShow", {
+    url: "/grumbles/:id",
+    templateUrl: "js/grumbles/show.html"
+  });
+}
+```
+
+Now you should see that console logging.
+
+## Instantiation
+
+What's actually going on here is Angular is running `new GrumbleIndexController()`; that is, it's creating a new instance of that object.
+
+You can see that this can be used to make things happen, like console loggings. But that's not really the point of controllers. The point is to pass data to the view.
+
+Q. How do you give an instance of a Javascript object a property from inside its constructor function?
+---
+> You use `this`:
+
+```js
+function GrumbleIndexControllerFunction(){
+  this.grumble = "This is a grumble.";
+}
+```
+
+Now we need a way of making this new controller instance available in the view: it's been instantiated, but we need to actually save that instance somewhere the view can use it.
+
+You do this with `controllerAs`:
+
+```js
+function RouterFunction($stateProvider){
+  $stateProvider
+  .state("grumbleIndex", {
+    url: "/grumbles",
+    templateUrl: "js/grumbles/index.html",
+    controller: "GrumbleIndexController",
+    controllerAs: "GrumbleIndexViewModel"
+  })
+  .state("grumbleShow", {
+    url: "/grumbles/:id",
+    templateUrl: "js/grumbles/show.html"
+  });
+}
+```
+
+Q. Why am I calling this `ViewModel`?
+---
+> A viewmodel is the Angular term for an instance of a controller. It's an interface between a view and a model.
+
+Now, add to your `grumbles/index.html`:
+
+```html
+<h2>I'm the Grumbles index!</h2>
+{{GrumbleIndexViewModel.grumble}}
+```
+
+Refresh, and you should see the text show up!
+
+This is short for "Save this instance of the **controller as**..."
+
+- TODO
+  - ui-href
+  - Faking ngResource
+  - Enumeration in the view
+  - Removing jump anchor
