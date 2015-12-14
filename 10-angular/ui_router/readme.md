@@ -523,16 +523,17 @@ Replace the contents of that controller file with this:
 
 > Note: `GrumbleIndexControllerFunction` is a super-long function name. A better name might be just `ControllerFunction`. We just used this long name to be a little more explicit for instructional purposes.
 
-Then, in the app's **main** `index.html`, include the controller file right below `app.js`:
+Then, in the app's **main** `index.html`, include the controller file right below `grumbles.module.js`:
 
 ```html
 <script src="js/app.js"></script>
+<script arc="js/grumbles/grumbles.module.js"></script>
 <script src="js/grumbles/index.controller.js"></script>
 ```
 
-Q. Why isn't there an array in the `.module`?
+Q. Why isn't there an array in this `.module`?
 ---
-> Because this module has already been created; we're adding something *to* the module. Angular thinks any `.module` with an array in it is creating a new module.
+> Because the `grumbles` has already been created; we're adding something *to* the module. Angular thinks any `.module` with an array in it is creating a new module.
 
 
 Q. This controller isn't doing anything yet. How can I tell?
@@ -562,7 +563,9 @@ Now you should see that console logging.
 
 What's actually going on here is Angular is running `new GrumbleIndexController()`; that is, it's creating a new instance of that object.
 
-You can see that this can be used to make things happen, like console loggings. But that's not really the point of controllers. The point is to pass data to the view.
+You can see that this can be used to make things happen, like console logging. But console logging isn't really the point of controllers. The point is to pass data to the view.
+
+For this case, let's try to make a variable called `grumble` available in the view. We have an instance of `GrumbleInstanceController`, and want to give it a `grumble` property.
 
 Q. How do you give an instance of a Javascript object a property from inside its constructor function?
 ---
@@ -570,7 +573,7 @@ Q. How do you give an instance of a Javascript object a property from inside its
 
 ```js
 function GrumbleIndexControllerFunction(){
-  this.grumble = "This is a grumble.";
+  this.grumbles = "These are some grumbles."
 }
 ```
 
@@ -598,16 +601,17 @@ Q. Why am I calling this `ViewModel`?
 ---
 > A viewmodel is the Angular term for an instance of a controller. It's an interface between a view and a model.
 
+
+This is short for "Save this instance of the **controller as**..."
+
 Now, add to your `grumbles/index.html`:
 
 ```html
 <h2>I'm the Grumbles index!</h2>
-{{GrumbleIndexViewModel.grumble}}
+{{GrumbleIndexViewModel.grumbles}}
 ```
 
 Refresh, and you should see the text show up!
-
-This is short for "Save this instance of the **controller as**..."
 
 ## Faking data
 
@@ -664,7 +668,7 @@ We have some semblance of an index page; let's head toward show pages for each g
 
 ## ui-sref
 
-Typing out their URLs would be annoying, so we'll make some links to the show pages:
+Before we make the show pages themselves, we're going to create some links to them.
 
 ```html
 <h2>I'm the Grumbles index!</h2>
@@ -680,7 +684,7 @@ Q. What does `sref` stand for? Where have we seen `grumbleshow` before?
 
 We're referring to one of the states defined earlier in the router. This little `sref` thing checks whether or not a state exists, and if it does, it returns the URL for it. If that URL has parameters -- `:id` in this case -- you can supply a value for that parameter and it'll add it into the appropriate place in the URL.
 
-This is cool because I can change the router all sorts of ways and `ui-sref` will automatically update to match.
+This is cool because I can change the router all sorts of ways and `ui-sref` will still provide the correct URL. 
 
 ## $index
 
@@ -717,7 +721,7 @@ $ touch js/grumbles/show.controller.js
 
 ## Set up
 
-To start the show controller, I'm just going to copy the index controller and change `index` to `show`, and change `this.grumbles` to `this.grumble` since we're just showing one:
+To start the show controller, I'm just going to copy the index controller. I'll change `index` to `show`, and change `this.grumbles` to `this.grumble` since we're just showing one:
 
 ```js
 "use strict";
@@ -735,7 +739,7 @@ To start the show controller, I'm just going to copy the index controller and ch
 }());
 ```
 
-I'll update the router accordingly:
+I'll update the router accordingly to reference the new controller:
 
 ```js
 .state("grumbleShow", {
@@ -745,6 +749,8 @@ I'll update the router accordingly:
   controllerAs: "GrumbleShowViewModel"
 });
 ```
+
+## $stateParams
 
 Now I need a way of getting the ID from the URL. Angular makes this possible with a module called `$stateParams`, included with `ui.router`. I'll inject it into the controller the same way I injected into the router, and add a `console.log` so we can see what's in `$stateParams`:
 
@@ -765,7 +771,7 @@ Now I need a way of getting the ID from the URL. Angular makes this possible wit
 }());
 ```
 
-You can see that it's a small object containing the URL parameters (or parameter in this case).
+You can see that it's a small object containing the URL parameters (or the URL's one parameter, in this case).
 
 So, to get the index of the current grumble, you just need `$stateParams.id`:
 
@@ -779,11 +785,11 @@ Wha-bam! You have a little app!
 
 # Removing the hash
 
-You've probably never seen an Angular app that has hashmarks in its URLs the way we have here. That's because Angular makes them super-easy to remove.
+You've probably never seen an Angular app that has hashmarks in its URLs the way we have here. That's because they're ugly and Angular makes them super-easy to remove.
 
 ## http-server
 
-This will be easier with a less-clunky URL. Right now your URL is probably something horrible like `file:///Users/robertthomas/wdi/in-class/grumblr_angular-1.0.0/index.html`. We're going to use a Node module called `http-server` to give us a nice little server so we can use a cleaner URL.
+This will be easier with a less-clunky URL. Right now your URL is probably something horrible like `file:///Users/robertthomas/wdi/in-class/grumblr_angular-1.0.0/index.html`. We're going to use a Node module called `http-server` to give us a nice little server so we can use a cleaner URL, like `localhost:8080`.
 
 In your current Grumblr folder:
 
@@ -813,7 +819,9 @@ First, inject `$locationProvder` into your router. Then, add `$locationProvider.
 // ...
 ```
 
-If you refresh the page now and follow the error link, it'll tell you that `$location` needs a `<base>` tag. This is a standard but little-used HTML tag, the purpose of which is to say what URL all relative URLs should be based on.
+If you refresh the page now and follow the error link, it'll tell you that `$location` needs a `<base>` tag.
+
+> This is a standard but little-used HTML tag, the purpose of which is to say what URL all relative URLs should be based on.
 
 Add this to your main `index.html`, right below the `<title>`:
 
@@ -821,11 +829,17 @@ Add this to your main `index.html`, right below the `<title>`:
 <base href="http://localhost:8080/" />
 ```
 
-Go to `localhost:8080` and you should be able to click on URLs without seeing that hash. Note that if you actually type `localhost:8080/grumbles` into your browser's address bar it won't work. That's because your `http-server` considers that to be a completely different route -- it doesn't know that you actually want `index.html`.
+Go to `localhost:8080` and you should be able to click on URLs without seeing that hash. Note that if you actually type `localhost:8080/grumbles` into your browser's address bar it won't work.
+
+That's because your `http-server` considers that to be a completely different route -- it doesn't know that you actually want `index.html`.
+
+Remember that Angular is geared toward single-page apps. In the "real world", you'd probably have the server redirect every page to `index.html`.
 
 # You do: CRUD Grumbles
 
-This data won't persist since we're not hooked up to a database. But being able to CRUD grumbles, even if they just exist until you next refresh the page, will be really useful in doing it for real later on!
+This data won't persist since we're not hooked up to a database: refresh the page and it's gone.
+
+But being able to CRUD grumbles, even if they just exist until you next refresh the page, will be really useful in doing it for realzies later on!
 
 To start, here's what you'll need to make "Create" work:
 
