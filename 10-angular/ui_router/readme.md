@@ -446,6 +446,46 @@ Create a `show.html` page as well.
 # You do: Create states for `edit` and `new`
 > Make sure you can go to them in your browser!
 
+# Modularity
+
+Before we continue, we're going to create a new module, called `grumbles`, that represents the grumbles themselves -- whereas the `grumblr` module represents the whole app. This `grumbles` module is going to contain all of the code and logic specific to individual grumbles -- creating, saving, updating, displaying, and so on -- whereas the `grumblr` module will contain the code necessary to run the app at a high level.
+
+```
+$ touch js/grumbles/grumbles.module.js
+```
+
+Why? It's good practice. Angular's all about modules in the same way that Rails apps are all about models. Rather than having one big module, it's good convention to have a bunch of smaller modules that contain only the things relevant to themselves.
+
+All we're going to put into that file is this:
+
+```js
+"use strict";
+
+(function(){
+  angular
+  .module("grumbles", []);
+}());
+```
+
+That is: we're only going to create the module. We don't have a need to do more to it. But it's still good practice.
+
+Now that module needs to be dependency-injected into the main Grumblr module:
+
+```
+angular
+.module("grumblr", [
+  "ui.router",
+  "grumbles"
+])
+```
+
+...and needs to be required in the main `index.html`:
+
+```html
+<script src="js/app.js"></script>
+<script src="js/grumbles/grumbles.module.js"></script>
+```
+
 # Controllers
 
 The progression that we're following for creating this app is the same that I would follow for creating a "real" app: creating some routes is an easy win, so I'll do those first and test out the URLs. Then I'll worry about what we're going to do next: putting in data.
@@ -475,7 +515,7 @@ Replace the contents of that controller file with this:
 
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .controller("GrumbleIndexController", [
     GrumbleIndexControllerFunction
   ]);
@@ -574,8 +614,234 @@ Refresh, and you should see the text show up!
 
 This is short for "Save this instance of the **controller as**..."
 
-- TODO
-  - ui-href
-  - Faking ngResource
-  - Enumeration in the view
-  - Removing jump anchor
+## Faking data
+
+Let's make this index more index-y so that it shows multiple grumbles.
+
+Normally, at this point, I'd add in some actual data. We're going to be using that Grumblr API eventually, but that involves using factories, which we'll get into tomorrow.
+
+For now, we're just going to "fake" the data by creating a global variable containing an array of fake grumbles. Just to serve as a reminder that **you would never actually do this in a real app**, we're going to put this fake data in the main `index.html`.
+
+Before `<script src="js/app.js">`, add this:
+
+```html
+    <script>
+var grumbles = [
+  {
+    title: "I am Grumble One"
+  },
+  {
+    title: "I'm another Grumble"
+  }
+]
+    </script>
+    <script src="js/app.js"></script>
+```
+
+We can access this global variable in all the other files. Set `this.grumbles` equal to that variable in your controller:
+
+```js
+function GrumbleIndexControllerFunction(){
+  this.grumbles = grumbles;
+}
+```
+
+Let's see it in `grumbles/index.html`:
+
+```html
+<h2>I'm the Grumbles index!</h2>
+{{GrumbleIndexViewModel.grumbles}}
+```
+
+Q. What Angular directive will we use to loop through the grumbles and print them out individually?
+---
+> ng-repeat
+
+```html
+<div data-ng-repeat="grumble in GrumbleIndexViewModel.grumbles">
+  <p>{{grumble.title}}</p>
+</div>
+```
+
+This is a lot like `.each` in Rails: it's looping trough the `grumbles` array and saving each one as a variable called `grumble` whose properties we can now access.
+
+We have some semblance of an index page; let's head toward show pages for each grumble.
+
+## ui-sref
+
+Typing out their URLs would be annoying, so we'll make some links to the show pages:
+
+```html
+<h2>I'm the Grumbles index!</h2>
+<div data-ng-repeat="grumble in GrumbleIndexViewModel.grumbles">
+  <p><a data-ui-sref="grumbleShow({id: 42})">{{grumble.title}}</a></p>
+</div>
+```
+
+Q. What does `sref` stand for? Where have we seen `grumbleshow` before?
+---
+> It stands for "state".
+
+
+We're referring to one of the states defined earlier in the router. This little `sref` thing checks whether or not a state exists, and if it does, it returns the URL for it. If that URL has parameters -- `:id` in this case -- you can supply a value for that parameter and it'll add it into the appropriate place in the URL.
+
+This is cool because I can change the router all sorts of ways and `ui-sref` will automatically update to match.
+
+## $index
+
+Obviously we don't want to hardcode the ID. The problem is, these grumbles don't actually have IDs -- they're just items in an array.
+
+Q. Hmm. "Items in an array..." What do items in an array have that's sort-of like an ID?
+---
+> An index.
+
+Inside `ng-repeat`, you automatically have access to a variable called `$index`. This refers to the index of the current item in the thing being repeated.
+
+```html
+<h2>I'm the Grumbles index!</h2>
+<div data-ng-repeat="grumble in GrumbleIndexViewModel.grumbles">
+  <p><a data-ui-sref="grumbleShow({id: $index})">{{grumble.title}}</a></p>
+</div>
+```
+
+Now you can see the URL of each grumble reflects its index in the global array of grumbles.
+
+Q. How would we make the main `Grumblr` header at the top into a link to the index page?
+---
+> `<h1><a data-ui-sref="grumbleIndex">Grumblr</a></h1>`
+
+# Show Pages
+
+Now we'll actually make the show pages themselves. This means creating a new controller, because we're doing **one controller, one view**.
+
+```
+$ touch js/grumbles/show.controller.js
+```
+
+## Set up
+
+To start the show controller, I'm just going to copy the index controller and change `index` to `show`, and change `this.grumbles` to `this.grumble` since we're just showing one:
+
+```js
+"use strict";
+
+(function(){
+  angular
+  .module("grumbles")
+  .controller("GrumbleShowController", [
+    GrumbleShowControllerFunction
+  ]);
+
+  function GrumbleShowControllerFunction(){
+    this.grumble = {}
+  }
+}());
+```
+
+I'll update the router accordingly:
+
+```js
+.state("grumbleShow", {
+  url: "/grumbles/:id",
+  templateUrl: "js/grumbles/show.html",
+  controller: "GrumbleShowController",
+  controllerAs: "GrumbleShowViewModel"
+});
+```
+
+Now I need a way of getting the ID from the URL. Angular makes this possible with a module called `$stateParams`, included with `ui.router`. I'll inject it into the controller the same way I injected into the router, and add a `console.log` so we can see what's in `$stateParams`:
+
+```js
+"use strict";
+
+(function(){
+  angular
+  .module("grumbles")
+  .controller("GrumbleShowController", [
+    "$stateParams",
+    GrumbleShowControllerFunction
+  ]);
+
+  function GrumbleShowControllerFunction($stateParams){
+    this.grumble = grumbles[$stateParams.id];
+  }
+}());
+```
+
+You can see that it's a small object containing the URL parameters (or parameter in this case).
+
+So, to get the index of the current grumble, you just need `$stateParams.id`:
+
+```js
+function GrumbleShowControllerFunction($stateParams){
+  this.grumble = grumbles[$stateParams.id];
+}
+```
+
+Wha-bam! You have a little app!
+
+# Removing the hash
+
+You've probably never seen an Angular app that has hashmarks in its URLs the way we have here. That's because Angular makes them super-easy to remove.
+
+## http-server
+
+This will be easier with a less-clunky URL. Right now your URL is probably something horrible like `file:///Users/robertthomas/wdi/in-class/grumblr_angular-1.0.0/index.html`. We're going to use a Node module called `http-server` to give us a nice little server so we can use a cleaner URL.
+
+In your current Grumblr folder:
+
+```
+$ npm install --global http-server
+$ http-server
+```
+
+...and that's it! Now if you go to `localhost:8080` you should see your app.
+
+## $locationProvider
+
+Now we'll actually remove the hash.
+
+First, inject `$locationProvder` into your router. Then, add `$locationProvider.html5Mode(true)`. The result should be:
+
+```js
+// ...
+  .config([
+    "$stateProvider",
+    "$locationProvider",
+    RouterFunction
+  ]);
+
+  function RouterFunction($stateProvider, $locationProvider){
+    $locationProvider.html5Mode(true);
+// ...
+```
+
+If you refresh the page now and follow the error link, it'll tell you that `$location` needs a `<base>` tag. This is a standard but little-used HTML tag, the purpose of which is to say what URL all relative URLs should be based on.
+
+Add this to your main `index.html`, right below the `<title>`:
+
+```html
+<base href="http://localhost:8080/" />
+```
+
+Go to `localhost:8080` and you should be able to click on URLs without seeing that hash. Note that if you actually type `localhost:8080/grumbles` into your browser's address bar it won't work. That's because your `http-server` considers that to be a completely different route -- it doesn't know that you actually want `index.html`.
+
+# You do: CRUD Grumbles
+
+This data won't persist since we're not hooked up to a database. But being able to CRUD grumbles, even if they just exist until you next refresh the page, will be really useful in doing it for real later on!
+
+To start, here's what you'll need to make "Create" work:
+
+`data-ng-model="GrumbleIndexViewModel.newGrumble.title"`
+
+`data-ng-click="GrumbleIndexViewModel.create()`
+
+```js
+this.newGrumble = {};
+this.create = function(){
+  grumbles.push(this.newGrumble);
+  this.newGrumble = {}
+}
+```
+
+Take these snippets and incorporate them into your Grumblr in the appropriate way. Then, work on updating and deleting grumbles.
