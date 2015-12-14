@@ -76,11 +76,15 @@ So: let's make one!
 
 ## Grumble `show`
 
+[Starter Code](https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.0) | 
+
+Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/grumblr_rails_api
+
 - In `index.html`, add this custom directive: `<my-custom-directive></my-custom-directive>`. Refresh the page, and you shouldn't see anything.
 
   **Note about self-closing tags:** This directive doesn't have any text content, so you could use a self-closing tag, `<my-custom-directive />`. However, Angular's pretty picky about self-closing tags. If your entire page goes blank when you're using a custom directive with a self-closing tag, try using open and close tags instead.
 
-- Now we'll give the directive its behavior. Let's make `js/directives/grumble.js`.
+- Now we'll give the directive its behavior. Let's make `js/grumbles/grumble.directive.js`.
 
 - Next we'll set up the actual Javascript. Directives look like pretty much every other module:
 
@@ -108,9 +112,7 @@ So: let's make one!
   })();
   ```
 
-- Finally, inject `grumbleDirectives` into your `app.js`, the way we did with `grumbleServices` and `grumbleControllers`
-
-- Actually finally, include `<script src="js/directives/grumble.js"></script>` in the app's main `index.html`.
+- Finally, include `<script src="js/grumbles/grumble.directive.js"></script>` in the app's main `index.html`.
 
 ...and that's it! Run it, and see what happens.
 
@@ -127,14 +129,14 @@ For example:
     return {
       template: "<h1>Hi there!</h1>",
       link: function(){
-        console.log("hello")
+        console.log("directive used")
       }
     }
   });
 })();
 ```
 
-Now my console will print `hello` once for every instance of `<my-custom-directive>` on a page. So on the `index` page, if there are 10 Grumbles, and I put `<my-custom-directive>` inside `ng-repeat`, `ng-repeat` will duplicate this directive 10 times, and I should see `hello` 10 times.
+Now my console will print `directive used` once for every instance of `<my-custom-directive>` on a page. So on the `index` page, if there are 10 Grumbles, and I put `<my-custom-directive>` inside `ng-repeat`, `ng-repeat` will duplicate this directive 10 times, and I should see `hello` 10 times.
 
 Angular actually passes into this `link` function an argument called `scope`. This is an object that's available **both in the directive's JS and the directive's HTML**. So anything I add to it in the JS will be available in the HTML, and vice-versa.
 
@@ -355,7 +357,7 @@ Similarly, the HTML validator doesn't like custom elements, and you **can't** ju
 
 Angular lets you put all the HTML inside a completely different file using `templateUrl` instead of `template`.
 
-First, make a file inside the `views/grumbles` folder called `_grumble_show.html`. Rails convention for partials is to put an underscore `_` at the beginning of their file name, so we may as well do that here. Inside it, put:
+First, make a file inside the `js/grumbles` folder called `_grumble_show.html`. Rails convention for partials is to put an underscore `_` at the beginning of their file name, so we may as well do that here. Inside it, put:
 
 ```html
 <h1>Hi there, {{myName}}!</h1>
@@ -368,7 +370,7 @@ Now, replace `template` in the directive's JS file with `templateUrl` and a link
   var directives = angular.module('grumbleDirectives',[]);
   directives.directive('myCustomDirective', function(){
     return {
-      templateUrl: "views/grumbles/_grumble_show.html",
+      templateUrl: "js/grumbles/_grumble_show.html",
       replace: true,
       link: function(scope){
         scope.myName = "Slim Shady";
@@ -380,7 +382,7 @@ Now, replace `template` in the directive's JS file with `templateUrl` and a link
 
 ## Making a more useful directive
 
-What I'd like to use for my template is the HTML that's used for showing the information about a grumble. That is: the HTML that's identical between `views/index.html` and `views/show.html`. We'll make a directive with this as a template.
+What I'd like to use for my template is the HTML that's used for showing the information about a grumble. That is: the HTML that's identical between `index` and `show`. We'll make a directive with this as a template.
 
 For now, we'll leave `show` alone and just get this working in `index`.
 
@@ -401,7 +403,7 @@ Now I need to make that grumble available inside the partial's HTML. I do this b
   var directives = angular.module('grumbleDirectives',[]);
   directives.directive('grumbleShow', function(){
     return {
-      templateUrl: "views/grumbles/_grumble_show.html",
+      templateUrl: "js/grumbles/_grumble_show.html",
       replace: true,
       scope: {
         grumble: "@"
@@ -430,7 +432,7 @@ This is because `grumble` is an *object*. The `@` in `scope` is for passing stri
 })();
 ```
 
-`views/index.html` should look like this:
+`js/index.html` should look like this:
 
 ```html
 <div>
@@ -472,18 +474,18 @@ To start, make a second directive in your Javascript just by copying and pasting
 
 ```js
 (function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('grumbleShow', function(){
+  angular
+  .module("grumbles")
+  .directive('grumbleShow', function(){
     return {
-      templateUrl: "views/grumbles/_grumble_show.html",
+      templateUrl: "js/grumbles/_grumble_show.html",
       replace: true,
       scope: {
         grumble: "="
       }
     }
-  });
-
-  directives.directive('grumbleSave', function(){
+  })
+  .directive('grumbleSave', function(){
     return {
       templateUrl: "",
       replace: true,
@@ -495,7 +497,7 @@ To start, make a second directive in your Javascript just by copying and pasting
 })();
 ```
 
-Put your partial in a file called `views/grumbles/_grumble_save.html`.
+Put your partial in a file called `js/grumbles/_grumble_save.html`.
 
 **Note:** Don't worry about getting the "Save" and "New Grumble" buttons to work; just focus on getting the form to show up properly.
 
@@ -585,9 +587,7 @@ Then, show or hide the buttons based on the value of formType:
 
 If you aren't caught up yet, you can checkout the solution code:
 
-```
-git checkout -b custom-directives-reused origin/custom-directives-reused
-```
+https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.1
 
 ## Substituting directives for controllers
 
@@ -612,7 +612,7 @@ I can remove it from the controller and plunk it right in the directive:
 ```js
 directives.directive('grumbleSave', function(){
   return {
-    templateUrl: "views/grumbles/_grumble_save.html",
+    templateUrl: "js/grumbles/_grumble_save.html",
     replace: true,
     scope: {
       grumble: "=",
@@ -635,12 +635,12 @@ directives.directive('grumbleSave', function(){
 - `$location` and `Grumble` are dependencies that have to be injected.
 
 ```js
-directives.directive('grumbleSave',[
+.directive('grumbleSave',[
   "$location",
   "Grumble",
   function($location, Grumble){
     return {
-      templateUrl: "views/grumbles/_grumble_save.html",
+      templateUrl: "js/grumbles/_grumble_save.html",
       replace: true,
       scope: {
         grumble: "=",
@@ -658,14 +658,6 @@ directives.directive('grumbleSave',[
 );
 ```
 
-This means I can delete the newGrumbleController altogether. So I'll delete that from `js/controllers/grumbles.js`, and I'll remove it from `routes.js`:
-
-```js
-when("/grumbles/new", {
-  templateUrl: 'views/grumbles/new.html'
-}).
-```
-
 ...and when I try to save a Grumble, it works!
 
 ### The last thing to change is this ugly directive
@@ -677,7 +669,7 @@ The directive has way too many brackets.
 One attempt:
 
 ```js
-directives.directive('grumbleSave',["$location", "Grumble", grumbleSave]);
+.directive('grumbleSave',["$stateProvider", "Grumble", grumbleSave]);
 
 function grumbleSave($location, Grumble){
   return {
@@ -719,112 +711,10 @@ A "soft" rule or guideline for when to use directives or controllers is:
 - `template` and `templateUrl`
 - `link`
 
-##### What's the *right* way to use them?
-
-There isn't one.
-
-### The story of Robin and Angular
-
-I *love* Angular. It's so useful! It lets me rapidly prototype a single-page app in a much more visual way since things are governed so much by the HTML.
-
-However, until recently I was pretty frustrated with Angular.
-
-At my last job, I was asked to learn Angular to make an app. It *kicked my butt*. It seemed so "draw the rest of the effing owl". I couldn't even find adequate definitions for "controller" and "directive", let alone know when to use which. I was spared from total failure only by the fact that GA came along and poached me.
-
-Going it over again before this class, I ran into the same trouble.
-
-#### In retrospect, this reminds me very much of when I was selling Noteboards.
-
-Folks around the world had been asking me to sell them internationally. I had a vague idea that I needed to pay tariffs or at least fill out some paperwork to do so. I looked for instructions. I *couldn't find them anywhere*.
-
-This seemed so "draw the rest of the effing owl". It was like how to register to sell internationally was a state secret. Being the law-abiding citizen I am, and not wanting to get in trouble, I ended up just not selling them internationally at all.
-
-...until one day, about 6 months in, it hit me:
-
-**There is no owl.**
-
-The absence of resources telling me the rules and restrictions and the "right" thing to do meant there weren't rules and restrictions. All I had to do was mail them, and unless I was selling in excess of some random big number or selling some controller substance, I didn't have to worry about covering my butt. The choices were all my own.
-
-### Angular has fewer owls than you think
-
-Unlike, say, Rails, which was written with pretty explicit rules in mind, Angular is in some ways a much more flexible framework: you use it however you want to use it.
-
-There are lots of choices you have to make *for which there aren't "right" answers*, and that have no bearing on the performance of your app whatsoever.
-
-Once I discovered that Angular is owl-less, I started *loving* it.
-
-##### What are some of these choices that don't have right answers?
-
-- Put methods in directives or controllers?
-- Use directives as elements or attributes?
-- Use Firebase or AJAX?
-- Use `<div data-grumble>` or `<div grumble>`?
-- Use a CDN or Bower?
-- More or fewer files?
-  - We put all of the controllers in one big file, but could totally have put them in separate files. The only reason we didn't is there wasn't a pressing need since this app is pretty small. But if we make lots of custom directives it might be good to make a file for each.
-  ```js
-  // grumbleDirective.js
-  angular.module('grumblr').directive('grumble')...
-  ```
-  ```js
-  // commentDirective.js
-  angular.module('grumblr').directive('comment')...
-  ```
-  ```html
-  // index.html
-  <script src="directives/grumbleDirective.js"></script>
-  <script src="directives/commentDirective.js"></script>
-  ```
-- Organize your files by the model they relate to, or by the type of file?
-  ```
-  directives/
-    grumble.js
-    comment.js
-  controllers/
-    grumble.js
-    comment.js
-  ```
-  ```
-  grumble/
-    directives.js
-    controllers.js
-  comment/
-    directive.js
-    controllers.js
-  ```
-- Have a whole bunch of modules, or one?
-  - We made a module to hold all of our directives:
-  ```js
-  (function(){
-    var directives = angular.module('grumbleDirectives',[]);
-    directives.directive("grumble")...
-    directives.directive("somethingElse")...
-  })();
-  ```
-  ...but we could just attach them to the main module we defined in `app.js`:
-  ```js
-  (function(){
-    angular.module('grumblr');
-    .directive("grumble")...
-    .directive("somethingElse")...
-  })();
-  ```
-
-There's as much a right answer to these as there is to:
-- Hyphens or underscores?
-- 2 spaces or 4?
-- Tabs or spaces?
-- Atom or SublimeText?
-
-**The only answer is to pick the one you like the best and stick with it.**
-
 There *are* conventions that you can adhere to, which would be a good idea for maximum readability:
 
 https://github.com/johnpapa/angular-styleguide
 
-The "final solution" for Grumblr was made trying to adhere more-or-less to these guidelines:
-
-https://github.com/ga-dc/grumblr_angular/tree/firebase-and-directives-with-comments-and-grouped-by-module
 
 BONUS: Take that and make it look pretty!
 
