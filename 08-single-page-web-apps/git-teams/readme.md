@@ -168,14 +168,14 @@ Like git merge, git rebase also sometimes runs into merge conflicts that need to
 **Both Students**
 
 1. Check out a new feature branch.
-2. Create `views/layout.hbs` - don't forget the `{{{body}}}` inside the `<body></body>` tags.
-3. Add `app.use('/static', express.static(__dirname + '/public'));` to your `index.js`
-4. Create a directory called `public` and add a stylesheet called `styles.css` inside of it. Write some CSS.
-5. Link to your stylesheet from the `<head>` of `layout.hbs`.
-6. Both students commit your changes.
-7. **Student 1** push branch and make a pr, and merge your changes.
-8. **Student 2** then try to do the same thing.
-9. **Student 2** grab the necessary changes with `git pull --rebase` and resolve any merge conflicts with `git rebase --continue`.
+- Create `views/layout.hbs` - don't forget the {% raw %}`{{{body}}}`{% endraw %} inside the `<body></body>` tags.
+- Add `app.use('/static', express.static(__dirname + '/public'));` to your `index.js`
+- Create a directory called `public` and add a stylesheet called `styles.css` inside of it. Write some CSS.
+- Link to your stylesheet from the `<head>` of `layout.hbs`.
+- Both students commit your changes.
+- **Student 1** push branch and make a pr, and merge your changes.
+- **Student 2** then try to do the same thing.
+- **Student 2** grab the necessary changes with `git pull --rebase` and resolve any merge conflicts with `git rebase --continue`.
 
 ## The Human Side: Communication (10 mins)
 
