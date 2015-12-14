@@ -15,17 +15,13 @@
 
 # Getting set up
 
-Please go to this link and download the ZIP file:
+If you haven't already, please fork the grumblr_angular repo
 
-https://github.com/ga-dc/grumblr_angular/releases/tag/1.0.0
+    $ git clone https://github.com/ga-dc/grumblr_angular
 
-> The version number of this indicates that it's the starter code of the first Angular class. The solution code is 1.0.1. The solution code of the third Angular class is 3.0.1.
+You can get today's starter code by checking out a new branch:
 
-Then, if your computer didn't automatically "unzip" the ZIP file, double-click it. This should create a folder called `grumblr_angular-1.0.0`. Move it into your `wdi/in-class` folder.
-
-This has the same end result as `git clone` except there's no `.git` folder in there. The reason we're asking you to use this ZIP file is because it gives you a nice little folder with its own version number: the subsequent folders you download will have their own numbers as well, so you won't have a zillion duplicate folders.
-
-Note, though, that since there's no `.git` folder that means you can't make commits and branch and track changes. If you want to be able to do that, take a moment right now to `git init` and make an initial commit.
+    $ git checkout -b ui-router 1.0.0
 
 ## Open the file in Atom and your browser
 
