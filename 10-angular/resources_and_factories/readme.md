@@ -27,14 +27,14 @@ $ rails s
 
 We'll continue working on our front-end Grumblr Application from where you left off in your UI Router lesson. Follow either of the two instructions below to get your starter code.
 
-  Go to [https://github.com/ga-dc/grumblr_angular/tree/2.0.0](https://github.com/ga-dc/grumblr_angular/tree/2.0.0) and download that ZIP file. Unzip and move it to `wdi/in-class`.
+Go to [https://github.com/ga-dc/grumblr_angular/tree/2.0.0](https://github.com/ga-dc/grumblr_angular/tree/2.0.0) and download that ZIP file. Unzip and move it to `wdi/in-class`.
 
-  **or**  
+**or**  
 
-  ```bash
-  $ git clone git@github.com:ga-dc/grumblr_angular.git
-  $ git checkout 2e1e3b1468b459ecc62542adb7b494a9b9d44709
-  ```
+```bash
+$ git clone git@github.com:ga-dc/grumblr_angular.git
+$ git checkout 2e1e3b1468b459ecc62542adb7b494a9b9d44709
+```
 
 #### index.html
 
