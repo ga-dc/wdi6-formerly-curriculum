@@ -422,3 +422,100 @@ Use what you learned on your first day of Angular to create a show view for a Gr
 [Here's the solution.](https://github.com/ga-dc/grumblr_angular/commit/892a8a2a190e64498723574ea8e6536a75c247ca)
 
 Our app now matches the solution code for this class. We're going to spend the remainder of the lesson rounding out CRUD functionality in our application. Tomorrow you will learn about **Custom Directives** that will allow you to do this in true SPA fashion. But for now, we're going to use the same process we did when implementing `index` and `show`.
+
+
+### I DO: New/Create (15 minutes / 1:35)
+
+#### Create `grumbleNew` Route
+
+```js
+// app.js
+
+$stateProvider
+  .state("grumbleIndex", {
+    url: "/grumbles",
+    templateUrl: "js/grumbles/index.html",
+    controller: "GrumbleIndexController",
+    controllerAs: "GrumbleIndexViewModel"
+  })
+  .state("grumbleShow", {
+    url: "/grumbles/:id",
+    templateUrl: "js/grumbles/show.html",
+    controller: "GrumbleShowController",
+    controllerAs: "GrumbleShowViewModel"
+  })
+  .state("grumbleNew", {
+    url: "/grumbles/new",
+    templateUrl: "js/grumbles/new.html",
+    controller: "GrumbleCreateController",
+    controllerAs: "GrumbleCreateViewModel"
+  });
+```
+
+#### Create `new.html`
+
+Let's start by creating a form view for creating Grumbles.
+
+```html
+<!-- js/grumbles/new.html -->
+
+<form>
+  <input placeholder="Title" data-ng-model="GrumbleNewViewModel.grumble.title" />
+  <input placeholder="Author name" data-ng-model="GrumbleNewViewModel.grumble.authorName" />
+  <input placeholder="Photo URL" data-ng-model="GrumbleNewViewModel.grumble.photoUrl" />
+  <textarea placeholder="Grumble content" data-ng-model="GrumbleNewViewModel.grumble.content"></textarea>
+  <button type="button" data-ng-click="GrumbleNewViewModel.create()">Create</button>
+</form>
+```
+> Fields are matched to grumble properties using the `data-ng-model` directive.  
+#### Link to Create Controller in `index.html`
+
+```html
+<!-- index.html -->
+
+<script src="js/app.js"></script>
+<script src="js/grumbles/grumbles.js"></script>
+<script src="js/grumbles/index.controller.js"></script>
+<script src="js/grumbles/show.controller.js"></script>
+<script src="js/grumbles/create.controller.js"></script>
+<script src="js/grumbles/grumble.factory.js"></script>
+```
+
+#### Create `create.controller.js`
+
+```js
+// js/grumbles/create.controller.js
+
+"use strict";
+
+(function(){
+  angular
+    .module( "grumbles" )
+    .controller( "GrumbleCreateController", [
+      "GrumbleFactory",
+      "$stateParams",
+      GrumbleCreateControllerFunction
+    ]);
+
+  function GrumbleCreateControllerFunction(GrumbleFactory, $stateParams){
+    var self = this;
+    self.grumble = {}
+    self.create = function(){
+      GrumbleFactory.save({
+        title: self.grumble.title,
+        authorName: self.grumble.authorName,
+        photoUrl: self.grumble.photoUrl,
+        content: self.grumble.content
+      });
+    }
+  }
+}());
+```
+
+### YOU DO: Edit/Update (20 minutes / 1:55)
+
+### BREAK (10 minutes / 2:05)
+
+### YOU DO: Delete (10 minutes / 2:15)
+
+### Closing/Questions (15 minutes / 2:30)
