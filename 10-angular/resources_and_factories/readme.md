@@ -373,6 +373,7 @@ $ touch js/grumbles/show.controller.js
 Use the same format as we did with `grumbleIndex`.  
 * You can chain the new `.state()` to the existing one.
 * The `url` will require a placeholder for the individual grumble's unique identifier.  
+
 > HINT: How did we represent this in Express?  
 
 #### Update `index.html`
@@ -518,6 +519,14 @@ Let's start by creating a form view for creating Grumbles.
 ```
 
 ### YOU DO: Edit/Update (20 minutes / 1:55)
+
+The steps here are pretty similar to those of the last "I Do," with a few exceptions.
+
+#### Create and Link to an Edit Controller File
+#### Add an Edit `.state()` to `app.js`
+#### Update `index.html`
+#### Create an Edit Controller
+#### Create `edit.html`
 
 ### BREAK (10 minutes / 2:05)
 
