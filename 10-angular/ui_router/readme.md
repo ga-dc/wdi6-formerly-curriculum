@@ -1,5 +1,11 @@
 # Angular and $uiRouter
 
+## Screencasts
+
+- Dec 15, 2015, (Robin)
+  - [Part 1](https://youtu.be/FurQ9FGzJwk)
+  - [Part 2](https://youtu.be/CtV0ULLlLf0)
+
 ## Learning Objectives
 
 - Explain what dependency injection is and what problem it solves
@@ -297,21 +303,6 @@ Q. So why do we do it with the named function? Why not an anonymous function? (H
 
 `RouterFunction` doesn't have to be called `RouterFunction`; it could be called `wombatsAnonymous`. We just named it that because that's what it is: a function that does routing.
 
-## ui-view
-
-Add the `ui-view` directive to your `index.html`:
-
-```html
-<body>
-  <h1>Grumblr</h1>
-  <div data-ui-view></div>
-</body>
-```
-
-This is a lot like `yield` in ERB and HBS files: it tells Angular where to put the views we're about to define. `index.html` is now like a `layout.hbs` or `layout.html.erb` file. 
-
-Note that you may see `ng-view` a lot in Angular documentation. This is used with the `ngRoute` module, which is the original built-in router included with Angular. Although it's still supported, Angular itself recommends you use `uiRouter`. They do the same thing -- `uiRouter` is just better.
-
 ## Defining states
 
 Modify the RouterFunction to look like this:
@@ -328,7 +319,26 @@ function RouterFunction($stateProvider){
 
 We've just defined the first **state**. Remember I said earlier that a state is a lot like a route in Rails or Express: it's a URL, often with an associated view and controller.
 
-In your browser, go to `index.html#/grumbles`. You should see "I'm the Grumbles index!" show up! You could put HTML in that `template` as well.
+In your browser, go to `index.html#/grumbles`. (We'll talk about that weird hashmark in a second.) You shouldn't see anything.
+
+## ui-view
+
+That's because we haven't told Angular where to "insert" the view in the main page. We need something like `{{{body}}}` in Handlebars, or `<%= yield %>` in Rails. Add the `ui-view` directive to your `index.html`:
+
+```html
+<body>
+  <h1>Grumblr</h1>
+  <div data-ui-view></div>
+</body>
+```
+
+`index.html` is now like a `layout.hbs` or `layout.html.erb` file. 
+
+Note that you may see `ng-view` a lot in Angular documentation. This is used with the `ngRoute` module, which is the original built-in router included with Angular. Although it's still supported, Angular itself recommends you use `uiRouter`. They do the same thing -- `uiRouter` is just better.
+
+## Templates and Routes
+
+Now you should see "I'm the Grumbles index!" show up! You could put HTML in that `template` as well.
 
 The `/grumbles` comes from the `url` we defined. Change it to `/wombat` and now you'd need to go to `#/wombat`.
 
