@@ -158,7 +158,7 @@ To use this convention, rewrite your `app.js` to look like the following:
   .module("grumblr", [
     "ui.router"
   ]);
-}());
+})();
 ```
 
 We'll be writing everything in Angular like this from now on. Notice things have been spaced out onto separate lines, too.
