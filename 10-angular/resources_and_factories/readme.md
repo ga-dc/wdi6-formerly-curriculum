@@ -50,7 +50,6 @@ $ git checkout 2e1e3b1468b459ecc62542adb7b494a9b9d44709
     <script src="js/app.js"></script>
     <script src="js/grumbles/grumbles.js"></script>
     <script src="js/grumbles/index.controller.js"></script>
-    <script src="js/grumbles/grumble.factory.js"></script>
   </head>
   <body>
     <h1><a data-ui-sref="grumbleIndex">Grumblr</a></h1>
@@ -164,7 +163,7 @@ First up, we'll convert the hardcoded data to read from an external API using a 
 
 ### Factory
 A factory is an Angular component that adds functionality to an Angular application. It does this by generating new instances of something. In this case, Grumbles.  
-  
+
 Factories allow us to separate concerns and extract functionality that would otherwise be defined in our controller. We do this by creating an object, attaching properties and methods to it and then returning that object. Here's a simple example...
 
 ```js
