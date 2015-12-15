@@ -1,5 +1,11 @@
 # Angular and $uiRouter
 
+## Screencasts
+
+- Dec 15, 2015, (Robin)
+  - [Part 1](https://youtu.be/FurQ9FGzJwk)
+  - [Part 2](https://youtu.be/CtV0ULLlLf0)
+
 ## Learning Objectives
 
 - Explain what dependency injection is and what problem it solves
