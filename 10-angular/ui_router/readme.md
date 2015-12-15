@@ -789,11 +789,17 @@ Add this to your main `index.html`, right below the `<title>`:
 <base href="http://localhost:8080/" />
 ```
 
-Go to `localhost:8080` and you should be able to click on URLs without seeing that hash. Note that if you actually type `localhost:8080/grumbles` into your browser's address bar it won't work.
+Go to `localhost:8080` and you should be able to click on URLs without seeing that hash.
+
+## $locationProvider bugs
+
+Note that if you actually type `localhost:8080/grumbles` into your browser's address bar it won't work.
 
 That's because your `http-server` considers that to be a completely different route -- it doesn't know that you actually want `index.html`.
 
 Remember that Angular is geared toward single-page apps. In the "real world", you'd probably have the server redirect every page to `index.html`.
+
+This can cause some bugs due to browser caching. You can mitigate these bugs in Chrome by disabling caching when you have the console open. [This Gif has instructions.](http://i.imgur.com/p2TZixz.gifv)
 
 # You do: CRD Grumbles
 
