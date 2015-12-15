@@ -474,6 +474,7 @@ Let's start by creating a form view for creating Grumbles.
 </form>
 ```
 > Fields are matched to grumble properties using the `data-ng-model` directive.  
+
 #### Link to Create Controller in `index.html`
 
 ```html
@@ -522,11 +523,11 @@ Let's start by creating a form view for creating Grumbles.
 
 The steps here are pretty similar to those of the last "I Do," with a few exceptions.
 
-#### Create and Link to an Edit Controller File
-#### Add an Edit `.state()` to `app.js`
+#### Create `grumbleNew` Route
 #### Update `index.html`
-#### Create an Edit Controller
 #### Create `edit.html`
+#### Link to Create Controller in `index.html`
+#### Create `create.controller.js`
 
 ### BREAK (10 minutes / 2:05)
 
