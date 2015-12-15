@@ -525,6 +525,17 @@ The steps here are pretty similar to those of the last "I Do," with a few except
 
 #### Create `grumbleNew` Route
 #### Update `index.html`
+
+Let's update our `ng-repeat` div so that it also displays a link with each Grumble that will direct us to an edit page.
+
+```html
+<!-- js/grumbles/index.html -->
+
+<div data-ng-repeat="grumble in GrumbleIndexViewModel.grumbles">
+  <p><a data-ui-sref="grumbleShow({id: grumble.id})">{{grumble.title}}</a></p>
+  <a data-ui-sref="grumbleEdit({id: grumble.id})">Edit</a>
+</div>
+```
 #### Create `edit.html`
 #### Link to Create Controller in `index.html`
 #### Create `create.controller.js`
