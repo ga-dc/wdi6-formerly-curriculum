@@ -659,6 +659,10 @@ Q. How would we make the main `Grumblr` header at the top into a link to the ind
 
 # You Do: Show Pages
 
+**This is the point at which tomorrow's lesson plan is going to start.** At this point you'll start pulling in actual API data instead of hardcoded stuff. However, to get some more repetition in playing around with the different pieces of Angular, we'd like you to add in a `show` route, and eventually full CRUD, still using hardcoded data.
+
+Bear in mind, though, that this means you won't be re-using the code you wrote tonight -- so don't get too attached to it. Its purpose is to be a playground for repetition.
+
 #### Follow the rest of the lesson plan yourself to implement the rest of Grumblr.
 
 Now we'll actually make the show pages themselves. This means creating a new controller, because we're doing **one controller, one view**.
