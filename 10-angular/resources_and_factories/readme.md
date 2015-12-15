@@ -329,6 +329,8 @@ var grumble = Grumble.get( { id:123 }, function(grumble) {
 
 ### I DO: Update Index Controller (5 minutes / 1:00)
 
+Let's update our index controller so that, instead of using hard-coded grumbles, `this.grumbles` is set to the result of making a `GET` request to `http://localhost:3000/grumbles`.
+
 ```js
 // js/controllers/index.controller.js
 (function(){
