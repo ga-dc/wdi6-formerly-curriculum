@@ -430,16 +430,15 @@ function RouterFunction($stateProvider){
     templateUrl: "js/grumbles/index.html"
   })
   .state("grumbleShow", {
-    url: "/grumbles/show",
+    url: "/grumbles/:id",
     templateUrl: "js/grumbles/show.html"
   });
 }
 ```
 
-Create a `show.html` page as well.
+Note: **We can use URL parameters** in Angular the exact same way we did in Rails and Express! The URL parameter in this case is `:id`. It behaves just like in the other frameworks.
 
-# You do: Create states for `edit` and `new`
-> Make sure you can go to them in your browser!
+Create a `show.html` page as well.
 
 # Modularity
 
@@ -719,6 +718,15 @@ Now we'll actually make the show pages themselves. This means creating a new con
 $ touch js/grumbles/show.controller.js
 ```
 
+Be sure to include it in your main `index.html`:
+
+```html
+<script src="js/app.js"></script>
+<script src="js/grumbles/grumbles.module.js"></script>
+<script src="js/grumbles/index.controller.js"></script>
+<script src="js/grumbles/show.controller.js"></script>
+```
+
 ## Set up
 
 To start the show controller, I'm just going to copy the index controller. I'll change `index` to `show`, and change `this.grumbles` to `this.grumble` since we're just showing one:
@@ -766,7 +774,7 @@ Now I need a way of getting the ID from the URL. Angular makes this possible wit
   ]);
 
   function GrumbleShowControllerFunction($stateParams){
-    this.grumble = grumbles[$stateParams.id];
+    console.log($stateParams);
   }
 }());
 ```
@@ -779,6 +787,12 @@ So, to get the index of the current grumble, you just need `$stateParams.id`:
 function GrumbleShowControllerFunction($stateParams){
   this.grumble = grumbles[$stateParams.id];
 }
+```
+
+Finally, I'll put something in `show.html` to make this actually show up:
+
+```html
+<h2>{{GrumbleShowViewModel.grumble.title}}</h2>
 ```
 
 Wha-bam! You have a little app!
@@ -835,11 +849,15 @@ That's because your `http-server` considers that to be a completely different ro
 
 Remember that Angular is geared toward single-page apps. In the "real world", you'd probably have the server redirect every page to `index.html`.
 
-# You do: CRUD Grumbles
+# You do: CRD Grumbles
 
 This data won't persist since we're not hooked up to a database: refresh the page and it's gone.
 
-But being able to CRUD grumbles, even if they just exist until you next refresh the page, will be really useful in doing it for realzies later on!
+But being able to CRD grumbles, even if they just exist until you next refresh the page, will be really useful in doing it for realzies later on!
+
+Q. Why are we just doing CRD? Where's the `U`?
+---
+> Thanks to two-way data binding, an "update" button is unnecessary! The grumble is updated automatically as you type.
 
 To start, here's what you'll need to make "Create" work:
 
@@ -850,12 +868,14 @@ To start, here's what you'll need to make "Create" work:
 ```js
 this.newGrumble = {};
 this.create = function(){
-  grumbles.push(this.newGrumble);
+  grumbles.unshift(this.newGrumble);
   this.newGrumble = {}
 }
 ```
 
 Take these snippets and incorporate them into your Grumblr in the appropriate way. Then, work on updating and deleting grumbles.
+
+[The solution code is available here.](https://github.com/ga-dc/grumblr_angular/tree/ui-router-solution)
 
 # Quiz Questions
 
