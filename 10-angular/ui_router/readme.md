@@ -23,6 +23,21 @@ You can get today's starter code by checking out a new branch:
 
     $ git checkout -b ui-router 1.0.0
 
+## http-server
+
+Angular makes a bunch of AJAX requests, which can get a little hairy when you're not serving it through an actual server: that is, when it shows up as `file:///` in your browser rather than `localhost`.
+
+We're going to use a simple Node-y server to run this app.
+
+In your current Grumblr folder:
+
+```
+$ npm install --global http-server
+$ http-server
+```
+
+...and that's it! Now if you go to `localhost:8080` you should see your app.
+
 ## Open the file in Atom and your browser
 
 It's all terribly exciting: the word `Grumblr`, and that's pretty much it.
@@ -797,26 +812,9 @@ Finally, I'll put something in `show.html` to make this actually show up:
 
 Wha-bam! You have a little app!
 
-# Removing the hash
+# $locationProvider
 
 You've probably never seen an Angular app that has hashmarks in its URLs the way we have here. That's because they're ugly and Angular makes them super-easy to remove.
-
-## http-server
-
-This will be easier with a less-clunky URL. Right now your URL is probably something horrible like `file:///Users/robertthomas/wdi/in-class/grumblr_angular-1.0.0/index.html`. We're going to use a Node module called `http-server` to give us a nice little server so we can use a cleaner URL, like `localhost:8080`.
-
-In your current Grumblr folder:
-
-```
-$ npm install --global http-server
-$ http-server
-```
-
-...and that's it! Now if you go to `localhost:8080` you should see your app.
-
-## $locationProvider
-
-Now we'll actually remove the hash.
 
 First, inject `$locationProvder` into your router. Then, add `$locationProvider.html5Mode(true)`. The result should be:
 
