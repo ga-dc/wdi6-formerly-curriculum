@@ -246,7 +246,9 @@ Our controllers look nearly identical in both examples. The difference is in the
 
 #### Which One Should I Use?
 
-> Is it worth going into how, under the hood, instantiating a service actually involves instantiating a factory?
+Factories are not run with new: they're executed like normal functions. Both are run only once: when they're first loaded. It's a pretty minor difference. So when should you use which? The answer is it doesn't really matter. You might take a look at this "cheat sheet" of what should be used when:
+
+[http://demisx.github.io/angularjs/2014/09/14/angular-what-goes-where.html](http://demisx.github.io/angularjs/2014/09/14/angular-what-goes-where.html)
 
 ### I DO: Create Grumble Factory (15 minutes / 0:55)
 
