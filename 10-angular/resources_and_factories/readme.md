@@ -25,7 +25,7 @@ $ rails s
 
 ## Walkthrough of Current App (20 minutes / 0:25)
 
-We'll continue working on our front-end Grumblr Application from where you left off in your UI Router lesson. Follow either of the two instructions below to get your starter code.
+Where we're picking up the app, it has only a functioning index route that uses grumbles hardcoded into the index controller. Also, it doesn't use $locationProvider to remove the hashmark from URLs: all the URLs will be something like index.html#/grumbles/32. This makes things a bit easier for development.
 
 Go to [https://github.com/ga-dc/grumblr_angular/tree/2.0.0](https://github.com/ga-dc/grumblr_angular/tree/2.0.0) and download that ZIP file. Unzip and move it to `wdi/in-class`.
 
