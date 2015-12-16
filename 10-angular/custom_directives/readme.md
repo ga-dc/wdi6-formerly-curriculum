@@ -160,10 +160,11 @@ For instance, I'm going to add a property called `myName` to `scope`. That will 
 
 ```js
 (function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('myCustomDirective', function(){
+  angular
+  .module("grumblr")
+  .directive("myCustomDirective", function(){
     return {
-      template: "<h1>Hi there, {{myName}}!</h1>",
+      template: "<h1>Hi There {{myName}}!</h1>",
       link: function(scope){
         scope.myName = "Slim Shady";
       }
@@ -178,15 +179,16 @@ You can add entire methods to scope and make those available in your HTML. I'll 
 
 ```js
 (function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('myCustomDirective', function(){
+  angular
+  .module("grumblr")
+  .directive("myCustomDirective", function(){
     return {
-      template: "<h1>Hi there, {{myName}}!<button ng-click='complimentMe()'>Pay me a compliment</button></h1>",
+      template: "<h1 ng-click='sayHi()'>Hi There {{myName}}!</h1>",
       link: function(scope){
         scope.myName = "Slim Shady";
-        scope.complimentMe = function(){
-          alert("You're looking good today!");
-        }
+	scope.sayHi = function(){
+	  alert("You’re looking good today");
+	}
       }
     }
   });
