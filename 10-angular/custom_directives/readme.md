@@ -104,7 +104,7 @@ Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/
 ```js
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .directive("myCustomDirective", function(){
   
   });
@@ -118,7 +118,7 @@ Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/
 ```js
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .directive("myCustomDirective", function(){
     return {
       template: "<h1>Hi There!</h1>"
@@ -140,7 +140,7 @@ For example:
 ```js
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .directive("myCustomDirective", function(){
     return {
       template: "<h1>Hi There!</h1>",
@@ -161,7 +161,7 @@ For instance, I'm going to add a property called `myName` to `scope`. That will 
 ```js
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .directive("myCustomDirective", function(){
     return {
       template: "<h1>Hi There {{myName}}!</h1>",
@@ -180,7 +180,7 @@ You can add entire methods to scope and make those available in your HTML. I'll 
 ```js
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .directive("myCustomDirective", function(){
     return {
       template: "<h1 ng-click='sayHi()'>Hi There {{myName}}!</h1>",
@@ -223,7 +223,7 @@ If you only want your directive to be available as an element, you add `restrict
 ```js
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .directive("myCustomDirective", function(){
     return {
       template: "<h1 ng-click='sayHi()'>Hi There {{myName}}!</h1>",
@@ -265,7 +265,7 @@ If my directive looks like this:
 ```js
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .directive("myCustomDirective", function(){
     return {
       template: "<h1>Hi there, {{myName}}!</h1>",
@@ -297,7 +297,7 @@ I can add `replace: true` and that will have my template *replace* the element t
 ```js
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .directive("myCustomDirective", function(){
     return {
       template: "<h1>Hi there, {{myName}}!</h1>",
@@ -333,7 +333,7 @@ We do so using attributes:
 ```js
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .directive("myCustomDirective", function(){
     return {
       template: "<h1>Hi there, {{myName}}! {{someAttribute}}</h1>",
@@ -393,7 +393,7 @@ Now, replace `template` in the directive's JS file with `templateUrl` and a link
 ```js
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .directive("myCustomDirective", function(){
     return {
       templateUrl: "js/grumbles/_grumble_show.html",
@@ -427,7 +427,7 @@ Now I need to make that grumble available inside the partial's HTML. I do this b
 ```js
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .directive("myCustomDirective", function(){
     return {
       templateUrl: "js/grumbles/_grumble_show.html",
@@ -447,7 +447,7 @@ This is because `grumble` is an *object*. The `@` in `scope` is for passing stri
 ```js
 (function(){
   angular
-  .module("grumblr")
+  .module("grumbles")
   .directive("myCustomDirective", function(){
     return {
       templateUrl: "views/grumbles/_grumble_show.html",
@@ -465,7 +465,7 @@ This is because `grumble` is an *object*. The `@` in `scope` is for passing stri
 ```html
 <div>
   <a ng-href="/#/grumbles/new">New Grumble</a>
-  <div class="grumbles" ng-repeat="grumble in grumblesCtrl.grumbles">
+  <div class="grumbles" ng-repeat="grumble in GrumbleIndexViewModel.grumbles">
     <grumble-show data-grumble="grumble"></grumble-show>
   </div>
 </div>
@@ -488,12 +488,12 @@ In `show.html`, delete the HTML that matches the HTML of the custom directive. T
 
 ##### Turn and talk: Why doesn't the grumble show up?
 
-Looking at the `show.html` page, all of the grumble data comes from `grumbleCtrl.grumble`. Looking at the `_grumble.html` page, all of the data comes from just `grumble`.
+Looking at the `show.html` page, all of the grumble data comes from `GrumbleShowViewModel.grumble`. Looking at the `_grumble_show.html` page, all of the data comes from just `grumble`.
 
 So just delete that occurence of `grumbleCtrl`:
 
 ```html
-<grumble-show data-grumble="grumbleCtr.grumble"></grumble-show>
+<grumble-show data-grumble="GrumbleShowViewModel.grumble"></grumble-show>
 ```
 
 ## 10 min: Do the same for `edit` and `new`
@@ -545,7 +545,7 @@ Put your partial in a file called `js/grumbles/_grumble_save.html`.
 
 ```html
 <div>
-  <grumble-save data-grumble="grumbleCtrl.grumble"></grumble-save>
+  <grumble-save data-grumble="GrumbleShowViewModel.grumble"></grumble-save>
 </div>
 ```
 
@@ -574,7 +574,7 @@ Add an attribute called `form-type` to the directive element:
 
 ```html
 <div>
-  <grumble-save data-grumble="grumbleCtrl.grumble" data-form-type="edit"></grumble-save>
+  <grumble-save data-grumble="GrumbleShowViewModel.grumble" data-form-type="edit"></grumble-save>
 </div>
 ```
 
