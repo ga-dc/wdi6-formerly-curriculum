@@ -1,6 +1,6 @@
 # Custom Directives
 
-## Lenin's Objections
+## Learning Objectives
 
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
 - Explain the purpose of each of the four directive options, and the four options for the "restrict" directive, E, A, C, M
@@ -10,6 +10,18 @@
 
 [Starter Code](https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.0) | 
 [Solution Code](https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.1)
+
+```
+// TODO use resource-solution branch
+```
+
+```
+$ git checkout -b custom-directives 3.0.0
+```
+
+### You do:
+
+Make every Grumble on the index, look like the Grumble in the show.
 
 ##### Turn and talk: What things do you see that aren't DRY in Grumblr?
 
@@ -79,8 +91,6 @@ So: let's make one!
 
 ## Grumble `show`
 
-[Starter Code](https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.0) | 
-
 Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/grumblr_rails_api
 
 - In `index.html`, add this custom directive: `<my-custom-directive></my-custom-directive>`. Refresh the page, and you shouldn't see anything.
@@ -91,29 +101,31 @@ Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/
 
 - Next we'll set up the actual Javascript. Directives look like pretty much every other module:
 
-  ```js
-  (function(){
-    var directives = angular.module('grumbleDirectives',[]);
-    directives.directive('myCustomDirective', function(){
-        
-    });
-  })();
-  ```
+```js
+(function(){
+  angular
+  .module("grumblr")
+  .directive("myCustomDirective", function(){
+  
+  });
+})();
+```
 
   One thing to note is that Angular expects you to write the directive's name as camelCase inside the directive *JS*, but as spine case inside the *HTML*. `.directive('myCustomDirective')` automatically turns into `<my-custom-directive>`.
 
 - Now we'll tell the directive what to use as a template:
 
-  ```js
-  (function(){
-    var directives = angular.module('grumbleDirectives',[]);
-    directives.directive('myCustomDirective', function(){
-      return {
-        template: "<h1>Hi there!</h1>"
-      }
-    });
-  })();
-  ```
+```js
+(function(){
+  angular
+  .module("grumblr")
+  .directive("myCustomDirective", function(){
+    return {
+      template: "<h1>Hi There!</h1>"
+    } 
+  });
+})();
+```
 
 - Finally, include `<script src="js/grumbles/grumble.directive.js"></script>` in the app's main `index.html`.
 
@@ -127,12 +139,13 @@ For example:
 
 ```js
 (function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('myCustomDirective', function(){
+  angular
+  .module("grumblr")
+  .directive("myCustomDirective", function(){
     return {
-      template: "<h1>Hi there!</h1>",
+      template: "<h1>Hi There!</h1>",
       link: function(){
-        console.log("directive used")
+        console.log("directive used") 
       }
     }
   });
