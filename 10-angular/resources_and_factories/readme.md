@@ -19,8 +19,6 @@ Let's start by cloning and running a Grumblr Rails API in the background. Our fr
 ```bash
 $ git clone git@github.com:ga-dc/grumblr_rails_api.git
 $ cd grumblr_rails_api
-$ touch config/secrets.yml
-# Follow the instructions in the repo README re: secrets.yml
 $ bundle install
 $ rake db:create
 $ rake db:migrate
