@@ -477,6 +477,20 @@ Let's start by creating a form view for creating Grumbles.
 </form>
 ```
 > Fields are matched to grumble properties using the `data-ng-model` directive.  
+#### Add New Link to `index.html`
+
+This link will trigger the `grumbleNew` state when clicked.
+
+```html
+<a data-ui-sref="grumbleNew">New Grumble</a>
+
+<h2>These are all the Grumbles</h2>
+
+<div data-ng-repeat="grumble in GrumbleIndexViewModel.grumbles">
+  <p><a data-ui-sref="grumbleShow({id: grumble.id})">{{grumble.title}}</a></p>
+  <a data-ui-sref="grumbleEdit({id: grumble.id})">Edit</a>
+</div>
+```
 
 #### Link to `new.controller.js` in `index.html`
 
