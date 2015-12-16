@@ -10,6 +10,8 @@
 
 ## Framing (2.5 minutes / 0:02)
 
+In the last couple of classes, we've been using hard coded values in our controller to act as our "backend". We probably won't ever do that again. Instead we'll be connecting to an external API using resources and providing an interface to models using factories.
+
 ## Set Up Grumblr API (2.5 minutes / 0:05)
 
 Let's start by cloning and running a Grumblr Rails API in the background. Our front-end Grumblr application will make AJAX calls to this API.
