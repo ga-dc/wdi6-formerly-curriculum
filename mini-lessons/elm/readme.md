@@ -45,7 +45,7 @@ $ npm install -g elm
 
 #### … or with the [installer](http://elm-lang.org/install)
 
-If you have any problem installing with node. You can use the installer which also makes everything super easy.
+If you have any problem installing with node, you can use the installer which also makes everything super easy.
 
 #### Check everything installed
 
@@ -63,6 +63,8 @@ Available commands include:
 Make sure you have version 0.16.0 — the update was about two weeks ago and some syntax we will be talking about today has changed.
 
 ### Elm REPL (5 - 15/50)
+
+We're not going through the [Elm Syntax](http://elm-lang.org/docs/syntax) for the sake of time but you can use this as reference.
 
 Pair up and look at [From JavaScript?](http://elm-lang.org/docs/from-javascript) in the Elm docs. Play around with some simple operations in the Repl (don't worry about running into errors, we'll get working on the basics in just a second but read the error messages and see if anything looks familiar). If you get into building larger projects with Elm (which you should because it's awesome), the compiler and its error messages are one of the languages great aspects. It can tell an incredible amount about how your program works, where there are problems and why.
 
