@@ -27,15 +27,13 @@ $ rails s
 
 ## Walkthrough of Current App (20 minutes / 0:25)
 
-Where we're picking up the app, it has only a functioning index route that uses grumbles hardcoded into the index controller. Also, it doesn't use $locationProvider to remove the hashmark from URLs: all the URLs will be something like index.html#/grumbles/32. This makes things a bit easier for development.
+Where we're picking up the app, it has only a functioning index route that uses grumbles hardcoded into the index controller. Also, it doesn't use `$locationProvider` to remove the hashmark from URLs: all the URLs will be something like index.html#/grumbles/32. This makes things a bit easier for development.
 
-Go to [https://github.com/ga-dc/grumblr_angular/tree/2.0.0](https://github.com/ga-dc/grumblr_angular/tree/2.0.0) and download that ZIP file. Unzip and move it to `wdi/in-class`.
-
-**or**  
+Grab the starter code by running the below lines in Terminal...
 
 ```bash
 $ git clone git@github.com:ga-dc/grumblr_angular.git
-$ git checkout 2e1e3b1468b459ecc62542adb7b494a9b9d44709
+$ git checkout -b factory-resource 2.0.0
 ```
 
 #### index.html
@@ -341,11 +339,11 @@ Let's update our index controller so that, instead of using hard-coded grumbles,
     .module( "grumbles" )
     .controller( "GrumbleIndexController", [
       "GrumbleFactory",
-      controllerFunction
+      GrumbleIndexControllerFunction
     ]);
 
     // Whenever `.grumbles` is called on our ViewModel, it returns the response from `.query()`
-    function controllerFunction( GrumbleFactory ){
+    function GrumbleIndexControllerFunction( GrumbleFactory ){
       this.grumbles = GrumbleFactory.query();
     }
 
