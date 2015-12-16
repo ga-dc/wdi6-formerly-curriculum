@@ -8,15 +8,11 @@
 - Use `link` method to set scope
 - Explain the difference between `@` and `=` in `scope` object
 
-[Starter Code](https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.0) | 
+[Starter Code](https://github.com/ga-dc/grumblr_angular/tree/resource-solution) |
 [Solution Code](https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.1)
 
 ```
-// TODO use resource-solution branch
-```
-
-```
-$ git checkout -b custom-directives 3.0.0
+$ git checkout resource-solution
 ```
 
 ### You do:
@@ -93,7 +89,7 @@ So: let's make one!
 
 Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/grumblr_rails_api
 
-- In `index.html`, add this custom directive: `<my-custom-directive></my-custom-directive>`. Refresh the page, and you shouldn't see anything.
+- In `js/grumbles/index.html`, add this custom directive: `<my-custom-directive></my-custom-directive>`. Refresh the page, and you shouldn't see anything.
 
   **Note about self-closing tags:** This directive doesn't have any text content, so you could use a self-closing tag, `<my-custom-directive />`. However, Angular's pretty picky about self-closing tags. If your entire page goes blank when you're using a custom directive with a self-closing tag, try using open and close tags instead.
 
@@ -106,7 +102,7 @@ Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/
   angular
   .module("grumbles")
   .directive("myCustomDirective", function(){
-  
+
   });
 })();
 ```
@@ -122,7 +118,7 @@ Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/
   .directive("myCustomDirective", function(){
     return {
       template: "<h1>Hi There!</h1>"
-    } 
+    }
   });
 })();
 ```
@@ -135,7 +131,7 @@ Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/
 
 Directives can be given a parameter called `link`. It'll automatically be run every time an instance of that directive is created.
 
-For example: 
+For example:
 
 ```js
 (function(){
@@ -145,7 +141,7 @@ For example:
     return {
       template: "<h1>Hi There!</h1>",
       link: function(){
-        console.log("directive used") 
+        console.log("directive used")
       }
     }
   });
@@ -464,7 +460,7 @@ This is because `grumble` is an *object*. The `@` in `scope` is for passing stri
 
 ```html
 <div>
-  <a ng-href="/#/grumbles/new">New Grumble</a>
+  <a data-ui-sref="grumbleNew()">New Grumble</a>
   <div class="grumbles" ng-repeat="grumble in GrumbleIndexViewModel.grumbles">
     <grumble-show data-grumble="grumble"></grumble-show>
   </div>
@@ -537,7 +533,7 @@ Put your partial in a file called `js/grumbles/_grumble_save.html`.
 
 ```html
 <div>
-  <grumble-save data-grumble="{}"></grumble-save>
+  <grumble-save data-grumble="GrumbleNewViewModel.grumble"></grumble-save>
 </div>
 ```
 
@@ -557,7 +553,7 @@ Put your partial in a file called `js/grumbles/_grumble_save.html`.
   <input type="text" name="authorName" ng-model="grumble.authorName">
   <textarea name="content" ng-model="grumble.content"></textarea>
   <input type="text" name="photoUrl" ng-model="grumble.photoUrl">
-  <a ng-href="/#/grumbles/{{grumble.id}}">&larr; Back</a>
+  <a data-ui-sref="grumbleShow({id: grumble.id})">&larr; Back</a>
   <button ng-click="update()">Save</button>
 </form>
 ```
@@ -604,10 +600,10 @@ Then, show or hide the buttons based on the value of formType:
   <textarea name="content" ng-model="grumble.content">new grumble content</textarea>
   <input type="text" name="photoUrl" ng-model="grumble.photoUrl">
   <div ng-show="formType == 'edit'">
-    <a ng-href="/#/grumbles/{{grumble.id}}">&larr; Back</a>
+    <a data-ui-sref="grumbleShow({id: grumble.id})">&larr; Back</a>
     <button ng-click="update()">Save</button>
   </div>
-  <div ng-hide="formType == 'edit'">
+  <div ng-show="formType == 'new'">
     <button ng-click="create()">New Grumble</button>
   </div>
 </form>
@@ -625,11 +621,11 @@ The problem now is that clicking on "New Grumble" doesn't do anything.
 
 We don't have a `create()` method defined inside the partial.
 
-It *is* defined inside ``:
+It *is* defined inside `GrumbleNewController`:
 
 ```js
 this.create = function(){
-  Grumble.save(this.grumble)
+  this.grumble.$save()
 }
 ```
 
@@ -646,7 +642,7 @@ directives.directive('grumbleSave', function(){
     },
     link: function(scope){
       this.create = function(){
-        Grumble.save(this.grumble)
+        this.grumble.$save()
       }
     }
   }
@@ -672,7 +668,7 @@ directives.directive('grumbleSave', function(){
       },
       link: function(scope){
         scope.create = function(){
-          Grumble.save(scope.grumble, function(grumble) {
+          scope.grumble.$save(scope.grumble, function(grumble) {
             $state.go("grumbleShow", grumble);
           });
         }
@@ -719,7 +715,7 @@ Going along in this vein, **we don't need to have controllers at all** for these
 
 ### Skinny controllers
 
-Angular's all about having skinny controllers, in the same way that Rails likes skinny controllers and fat models. 
+Angular's all about having skinny controllers, in the same way that Rails likes skinny controllers and fat models.
 
 My [completed version of this app](https://github.com/ga-dc/grumblr_angular/tree/gh-pages) has a grand total of one controller, used just to load all the Grumbles. Everything else is in directives.
 
@@ -756,5 +752,3 @@ BONUS: Take that and make it look pretty!
   - The other way around.
 - What's the purpose of the `link` property of a directive?
   - You can define scope variables inside it -- that is, the data that's available inside your custom directive. Putting `scope.name = "Steve"` inside `link` means you can use `{{name}}` inside your directive's template.
-
-
