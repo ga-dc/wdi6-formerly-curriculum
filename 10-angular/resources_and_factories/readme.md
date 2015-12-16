@@ -208,7 +208,7 @@ Now we can call it in a controller...
       controllerFunction
     ]);
 
-  function controllerFunction(){
+  function controllerFunction( factoryName ){
     // When `helloWorld` is called on the controller, it runs the function that we defined in our factory.
     this.helloWorld = factoryName.helloWorld();
   }
@@ -246,7 +246,7 @@ And in our controller...
     ]
   });
 
-  function controllerFunction(){
+  function controllerFunction( serviceName ){
     this.helloWorld = serviceName.helloWorld();
   }
 }());
