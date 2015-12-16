@@ -1,10 +1,12 @@
 # Intro To [Elm](http://elm-lang.org/)!
 
+[Understanding the functional revolution in front-end applications](http://blog.reactandbethankful.com/posts/2015/09/15/understanding-the-functional-revolution/)
+
 ## What is Elm? (5 - 0/50)
 
 > **Elm** is a [functional programming](https://en.wikipedia.org/wiki/Functional_programming) language for [declaratively](https://en.wikipedia.org/wiki/Declarative_programming) creating [web browser](https://en.wikipedia.org/wiki/Web_browser)-based [graphical user interfaces](https://en.wikipedia.org/wiki/Graphical_user_interface). Elm uses the [Functional Reactive Programming](https://en.wikipedia.org/wiki/Functional_reactive_programming) style and [purely functional](https://en.wikipedia.org/wiki/Purely_functional) graphical layout to build user interface without any destructive updates.
-> 
-> — Wikipedia, [Elm (Programming Language)](https://en.wikipedia.org/wiki/Elm_(programming_language)) 
+>
+> — Wikipedia, [Elm (Programming Language)](https://en.wikipedia.org/wiki/Elm_(programming_language))
 
 Let's break this down piece...
 
@@ -37,7 +39,7 @@ Pragmatic Studio Blog:
 
 #### as a module
 
-``` 
+```
 $ npm install -g elm
 ```
 
@@ -49,7 +51,7 @@ If you have any problem installing with node. You can use the installer which al
 
 Run `elm` from the command line and you should see output that looks like:
 
-``` 
+```
 Elm Platform 0.16.0 - a way to run all Elm tools
 
 Usage: elm <command> [<args>]
@@ -62,7 +64,54 @@ Make sure you have version 0.16.0 — the update was about two weeks ago and som
 
 ### Elm REPL (5 - 15/50)
 
-Pair up and look at [From JavaScript?](http://elm-lang.org/docs/from-javascript) in the Elm docs. Play around with some simple operations in the Repl. What are notable differences
+Pair up and look at [From JavaScript?](http://elm-lang.org/docs/from-javascript) in the Elm docs. Play around with some simple operations in the Repl (don't worry about running into errors, we'll get working on the basics in just a second but read the error messages and see if anything looks familiar). If you get into building larger projects with Elm (which you should because it's awesome), the compiler and its error messages are one of the languages great aspects. It can tell an incredible amount about how your program works, where there are problems and why.
+
+#### importing [modules](http://elm-lang.org/docs/syntax#modules)
+
+In Elm, code is organized into modules which we can think of just like node modules. They give us namespaced libraries. To import a module use the keyword import followed by the module name: `import <module-name>` (e.g. `import List`). The module is then available in that scope and its functions and definitions are accessable namespaced under the module name `<module>.<func/def>` .
+
+```
+> "String"
+"String" : String
+> String.length "cat"
+-- NAMING ERROR ---------------------------------------------- repl-temp-000.elm
+
+Cannot find variable `String.length`.
+
+3│   String.length "cat"
+     ^^^^^^^^^^^^^
+The qualifier `String` is not in scope.
+
+
+> import String
+> String.length "cat"
+3 : Int
+```
+
+We can use the `exposing` keyword to make module contents accessable without the module name prefix.
+
+```
+> String.length "cat"
+3 : Int
+> length "doesn't know"
+-- NAMING ERROR ---------------------------------------------- repl-temp-000.elm
+
+Cannot find variable `length`
+
+6│   length "doesn't know"
+     ^^^^^^
+Maybe you want one of the following?
+
+    List.length
+    String.length
+
+
+> import String exposing (length)
+> length "knows"
+5 : Int
+```
+
+
 
 ### Elm [Core Language](http://elm-lang.org/guide/core-language) (20 - 20/50)
 
