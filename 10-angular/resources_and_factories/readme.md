@@ -506,17 +506,12 @@ Let's start by creating a form view for creating Grumbles.
       GrumbleCreateControllerFunction
     ]);
 
-  function GrumbleCreateControllerFunction(GrumbleFactory, $stateParams){
-    this.grumble = {}
-    this.create = function(){
-      GrumbleFactory.save({
-        title: this.grumble.title,
-        authorName: this.grumble.authorName,
-        photoUrl: this.grumble.photoUrl,
-        content: this.grumble.content
-      });
+    function GrumbleNewControllerFunction( GrumbleFactory, $stateParams ){
+      this.grumble = new GrumbleFactory();
+      this.create = function(){
+        this.grumble.$save()
+      }
     }
-  }
 }());
 ```
 
