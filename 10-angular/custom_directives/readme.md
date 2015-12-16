@@ -583,7 +583,7 @@ Add an attribute called `form-type` to the directive element:
 ```js
 directives.directive('grumbleSave', function(){
   return {
-    templateUrl: "views/grumbles/_grumble_save.html",
+    templateUrl: "js/grumbles/_grumble_save.html",
     replace: true,
     scope: {
       grumble: "=",
@@ -625,13 +625,11 @@ The problem now is that clicking on "New Grumble" doesn't do anything.
 
 We don't have a `create()` method defined inside the partial.
 
-It *is* defined inside `newGrumbleController`:
+It *is* defined inside ``:
 
 ```js
 this.create = function(){
-  Grumble.save(this.grumble, function(grumble) {
-    $location.path("/grumbles/" + grumble.id);
-  })
+  Grumble.save(this.grumble)
 }
 ```
 
@@ -648,9 +646,7 @@ directives.directive('grumbleSave', function(){
     },
     link: function(scope){
       this.create = function(){
-        Grumble.save(this.grumble, function(grumble) {
-          $location.path("/grumbles/" + grumble.id);
-        })
+        Grumble.save(this.grumble)
       }
     }
   }
@@ -660,13 +656,13 @@ directives.directive('grumbleSave', function(){
 ##### Turn and talk: what needs to change for this method to work? There are 2 things.
 
 - `this` needs to be changed to `scope`.
-- `$location` and `Grumble` are dependencies that have to be injected.
+- `$state` and `GrumbleFactory` are dependencies that have to be injected.
 
 ```js
 .directive('grumbleSave',[
-  "$location",
-  "Grumble",
-  function($location, Grumble){
+  "$state",
+  "GrumbleFactory",
+  function($state, Grumble){
     return {
       templateUrl: "js/grumbles/_grumble_save.html",
       replace: true,
@@ -677,7 +673,7 @@ directives.directive('grumbleSave', function(){
       link: function(scope){
         scope.create = function(){
           Grumble.save(scope.grumble, function(grumble) {
-            $location.path("/grumbles/" + grumble.id);
+            $state.go("grumbleShow", grumble);
           });
         }
       }
@@ -697,9 +693,9 @@ The directive has way too many brackets.
 One attempt:
 
 ```js
-.directive('grumbleSave',["$stateProvider", "Grumble", grumbleSave]);
+.directive('grumbleSave',["$state", "GrumbleFactory", grumbleSave]);
 
-function grumbleSave($location, Grumble){
+function grumbleSave($state, GrumbleFactory){
   return {
     templateUrl: "views/grumbles/_grumble_save.html",
     replace: true,
@@ -711,8 +707,8 @@ function grumbleSave($location, Grumble){
   }
   function linkFunction(scope){
     scope.create = function(){
-      Grumble.save(scope.grumble, function(grumble) {
-        $location.path("/grumbles/" + grumble.id);
+      GrumbleFactory.save(scope.grumble, function(grumble) {
+        $state.go("/grumbles/" + grumble.id);
       });
     }
   }
