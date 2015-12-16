@@ -505,14 +505,13 @@ Let's start by creating a form view for creating Grumbles.
     ]);
 
   function GrumbleCreateControllerFunction(GrumbleFactory, $stateParams){
-    var self = this;
-    self.grumble = {}
-    self.create = function(){
+    this.grumble = {}
+    this.create = function(){
       GrumbleFactory.save({
-        title: self.grumble.title,
-        authorName: self.grumble.authorName,
-        photoUrl: self.grumble.photoUrl,
-        content: self.grumble.content
+        title: this.grumble.title,
+        authorName: this.grumble.authorName,
+        photoUrl: this.grumble.photoUrl,
+        content: this.grumble.content
       });
     }
   }
@@ -609,5 +608,48 @@ The big addition here is our controller's `update` method. You'll notice that it
 ### BREAK (10 minutes / 2:05)
 
 ### YOU DO: Delete (10 minutes / 2:15)
+
+Contrary to how we've done things for every other RESTful route, we will not be creating a separate controller for `delete`. This is because we want to be able to delete a Grumble simply by clicking a button on each grumble's show page.
+
+#### Add Delete Button to `edit.html`
+
+When clicked, the delete button will trigger a `destroy` method that we have yet to define in `edit.controller.js`.
+
+```html
+<form>
+  <input value="GrumbleEditViewModel.grumble.title" data-ng-model="GrumbleEditViewModel.grumble.title" />
+  <input value="GrumbleEditViewModel.grumble.authorName" data-ng-model="GrumbleEditViewModel.grumble.authorName" />
+  <input value="GrumbleEditViewModel.grumble.photoUrl" data-ng-model="GrumbleEditViewModel.grumble.photoUrl" />
+  <textarea value="GrumbleEditViewModel.grumble.content" data-ng-model="GrumbleEditViewModel.grumble.content"></textarea>
+  <button data-ng-click="GrumbleEditViewModel.update()">Update</button>
+  <button data-ng-click="GrumbleEditViewModel.destroy()">Delete</button>
+</form>
+```
+
+#### Add Destroy Method to `edit.controller.js`
+
+```js
+"use strict";
+
+(function(){
+  angular
+    .module( "grumbles" )
+    .controller( "GrumbleEditController", [
+      "GrumbleFactory",
+      "$stateParams",
+      GrumbleEditControllerFunction
+    ]);
+
+  function GrumbleEditControllerFunction( GrumbleFactory, $stateParams ){
+    this.grumble = GrumbleFactory.get({id: $stateParams.id});
+    this.update = function(){
+      this.grumble.$update({id: $stateParams.id})
+    }
+    this.destroy = function(){
+      this.grumble.$delete({id: $stateParams.id});
+    }
+  }
+}());
+```
 
 ### Closing/Questions (15 minutes / 2:30)
