@@ -316,6 +316,7 @@ Out of the box, this gives us several methods for our newly defined `Grumble` se
 * `Grumble.query`  
 * `Grumble.remove`  
 * `Grumble.delete`  
+> Where's `update`, you ask? We're going to define that ourselves later on.
 
 When the data is returned from the server, the response object is an instance of the resource class. The actions `save`, `remove` and `delete` are available on it as methods with the `$` prefix. This allows you to easily perform CRUD operations on server-side data like this...  
 
@@ -453,8 +454,8 @@ $stateProvider
   .state("grumbleNew", {
     url: "/grumbles/new",
     templateUrl: "js/grumbles/new.html",
-    controller: "GrumbleCreateController",
-    controllerAs: "GrumbleCreateViewModel"
+    controller: "GrumbleNewController",
+    controllerAs: "GrumbleNewViewModel"
   });
 ```
 
@@ -475,7 +476,7 @@ Let's start by creating a form view for creating Grumbles.
 ```
 > Fields are matched to grumble properties using the `data-ng-model` directive.  
 
-#### Link to Create Controller in `index.html`
+#### Link to `new.controller.js` in `index.html`
 
 ```html
 <!-- index.html -->
@@ -484,24 +485,24 @@ Let's start by creating a form view for creating Grumbles.
 <script src="js/grumbles/grumbles.js"></script>
 <script src="js/grumbles/index.controller.js"></script>
 <script src="js/grumbles/show.controller.js"></script>
-<script src="js/grumbles/create.controller.js"></script>
+<script src="js/grumbles/new.controller.js"></script>
 <script src="js/grumbles/grumble.factory.js"></script>
 ```
 
-#### Create `create.controller.js`
+#### Create `new.controller.js`
 
 ```js
-// js/grumbles/create.controller.js
+// js/grumbles/new.controller.js
 
 "use strict";
 
 (function(){
   angular
     .module( "grumbles" )
-    .controller( "GrumbleCreateController", [
+    .controller( "GrumbleNewController", [
       "GrumbleFactory",
       "$stateParams",
-      GrumbleCreateControllerFunction
+      GrumbleNewControllerFunction
     ]);
 
     function GrumbleNewControllerFunction( GrumbleFactory, $stateParams ){
