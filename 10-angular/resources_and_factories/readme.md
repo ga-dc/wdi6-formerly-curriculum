@@ -503,11 +503,10 @@ Let's start by creating a form view for creating Grumbles.
     .module( "grumbles" )
     .controller( "GrumbleNewController", [
       "GrumbleFactory",
-      "$stateParams",
       GrumbleNewControllerFunction
     ]);
 
-    function GrumbleNewControllerFunction( GrumbleFactory, $stateParams ){
+    function GrumbleNewControllerFunction( GrumbleFactory ){
       this.grumble = new GrumbleFactory();
       this.create = function(){
         this.grumble.$save()
