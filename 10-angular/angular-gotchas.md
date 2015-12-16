@@ -69,3 +69,21 @@ Every `.js` file should have a `<script>` tag in your main `index.html`
 
 ## Not having caching disabled in Chrome
 ![Caching disabling gif](http://i.imgur.com/p2TZixz.gif) 
+
+## Putting your dependencies in the function in a different order than the array
+```js
+angular
+.module("myModule")
+.controller("myController", [
+  "dependencyOne",
+  "dependencyTwo",
+  ControllerFunction
+]);
+
+function ControllerFunction(dependencyTwo, dependencyOne){
+  // This is bad
+}
+function ControllerFunction(dependencyOne, dependencyTwo){
+  // This is good 
+}
+```
