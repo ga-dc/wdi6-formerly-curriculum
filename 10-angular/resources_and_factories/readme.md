@@ -583,7 +583,7 @@ The form on this page will look a lot like the one in `new.html`, but you'll nee
 
 #### Create `edit.controller.js`
 
-The big addition here is our controller's `update` method. You'll notice that it makes use of `$update`. THIS is the `update` method we defined in `js/grumbles/grumble.factory.js`. It takes an object containing an id as an argument.
+The big addition here is our controller's `update` method. You'll notice that it makes use of `$update`. THIS is the method we defined in `js/grumbles/grumble.factory.js`. It is preceded by a `$` because this is how `ngResource` indicates it's an instance method.
 
 ```js
 "use strict";
