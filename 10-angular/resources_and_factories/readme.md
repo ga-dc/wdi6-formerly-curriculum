@@ -521,7 +521,34 @@ Let's start by creating a form view for creating Grumbles.
 
 ### YOU DO: Edit/Update (20 minutes / 1:55)
 
-The steps here are pretty similar to those of the last "I Do," with a few exceptions.
+The steps here are pretty similar to those of the last "I Do," with a few exceptions. The biggest one is...
+
+#### Define an `update` method in the Factory
+
+`ngResource` does not come with a native `update` method. We need to define it in the `FactoryFunction` return statement, indicating that `update` corresponds to a `PUT` request.  
+
+```js
+// js/grumbles/grumble.factory.js
+
+"use strict";
+
+(function(){
+  angular
+    .module( "grumbles" )
+    .factory( "GrumbleFactory", [
+      "$resource",
+      FactoryFunction
+    ])
+
+  function FactoryFunction( $resource ){
+    return $resource( "http://localhost:3000/grumbles/:id", {}, {
+        update: { method: "PUT" }
+    });
+  }
+}());
+```
+
+The rest of the steps are a bit more straightforward...  
 
 #### Create `grumbleEdit` Route
 
@@ -542,8 +569,42 @@ Let's update our `ng-repeat` div so that it also displays a link with each Grumb
 </div>
 ```
 #### Create `edit.html`
-#### Link to Create Controller in `index.html`
-#### Create `create.controller.js`
+
+The form on this page will look a lot like the one in `new.html`, but you'll need to make some changes to it...
+* Reference the proper controller instance. You probably called it `GrumbleEditViewModel`.
+* Replace your inputs' `placeholder` attribute with `value` so we have some content to work with in our input fields upon page load.
+* Set these value attributes to the contents of the Grumble like so...
+```html
+<input value="GrumbleEditViewModel.grumble.title" ... >
+```
+* In the button's `ng-click` directive, reference a yet-to-be-defined `.update` method instead of `.create`.
+
+#### Link to Edit Controller in `index.html`
+
+#### Create `edit.controller.js`
+
+The big addition here is our controller's `update` method. You'll notice that it makes use of `$update`. THIS is the `update` method we defined in `js/grumbles/grumble.factory.js`. It takes an object containing an id as an argument.
+
+```js
+"use strict";
+
+(function(){
+  angular
+    .module( "grumbles" )
+    .controller( "GrumbleEditController", [
+      "GrumbleFactory",
+      "$stateParams",
+      GrumbleEditControllerFunction
+    ]);
+
+  function GrumbleEditControllerFunction( GrumbleFactory, $stateParams ){
+    this.grumble = GrumbleFactory.get({id: $stateParams.id});
+    this.update = function(){
+      this.grumble.$update({id: $stateParams.id})
+    }
+  }
+}());
+```
 
 ### BREAK (10 minutes / 2:05)
 
