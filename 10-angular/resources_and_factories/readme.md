@@ -22,12 +22,17 @@ $ cd grumblr_rails_api
 $ touch config/secrets.yml
 # Follow the instructions in the repo README re: secrets.yml
 $ bundle install
+$ rake db:create
+$ rake db:migrate
+$ rake db:seed
 $ rails s
 ```
 
 ## Walkthrough of Current App (20 minutes / 0:25)
 
-Where we're picking up the app, it has only a functioning index route that uses grumbles hardcoded into the index controller. Also, it doesn't use `$locationProvider` to remove the hashmark from URLs: all the URLs will be something like index.html#/grumbles/32. This makes things a bit easier for development.
+Where we're picking up the app, it has only a functioning index route that uses grumbles hardcoded into the index controller.
+
+Also, it doesn't use `$locationProvider` to remove the hashmark from URLs: all the URLs will be something like index.html#/grumbles/32. This makes things a bit easier for development: without the hashmark refreshing the page doesn't work, but it does with the hashmark.
 
 Grab the starter code by running the below lines in Terminal...
 
@@ -59,7 +64,9 @@ $ git checkout -b factory-resource 2.0.0
 ```
 > **data-ng-app**: Establishes the domain of our Angular application.  
 >  
-> **data-ui-sref:** This creates a link that, when clicked, directs the user to `#/grumbles` without reloading the page. We must use this instead of the traditional `href` so that triggers our router.  
+> **data-ui-sref:** This creates a link that, when clicked, directs the user to `#/grumbles` without reloading the page.
+> 
+> We use this instead of the usual `href` because `sref` refers to a state and automatically grabs the URL for that state. It's like link helpers in rails.
 >  
 > **data-ui-view:** Whichever view is triggered by the user will be displayed in the DOM element with this attribute.  
 
@@ -107,7 +114,7 @@ $ git checkout -b factory-resource 2.0.0
   }
 }());
 ```
-> **.module:** Instantiates. A module is a container for controllers, directives, services -- all parts of our application. A module can have sub-modules (e.g., `grumbles`).  
+> **.module:** A module is a container for controllers, directives, services -- all parts of our application. A module can have sub-modules (e.g., `grumbles`).  
 >  
 > **ui.router:** A 3rd party module that functions as a router.  Allows our application to have multiple states.  
 >  
@@ -176,7 +183,7 @@ Factories allow us to separate concerns and extract functionality that would oth
 
   function FactoryFunction(){
     return {
-      this.helloWorld = function(){
+      this.helloWorld: function(){
         console.log( "Hello world!" );
       }
     }
