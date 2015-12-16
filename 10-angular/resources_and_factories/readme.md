@@ -466,6 +466,8 @@ Let's start by creating a form view for creating Grumbles.
 ```html
 <!-- js/grumbles/new.html -->
 
+<h2>Create Grumble</h2>
+
 <form>
   <input placeholder="Title" data-ng-model="GrumbleNewViewModel.grumble.title" />
   <input placeholder="Author name" data-ng-model="GrumbleNewViewModel.grumble.authorName" />
