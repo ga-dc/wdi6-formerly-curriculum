@@ -222,13 +222,17 @@ If you only want your directive to be available as an element, you add `restrict
 
 ```js
 (function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('myCustomDirective', function(){
+  angular
+  .module("grumblr")
+  .directive("myCustomDirective", function(){
     return {
-      template: "<h1>Hi there, {{myName}}!</h1>",
-      restrict: "E",
+      template: "<h1 ng-click='sayHi()'>Hi There {{myName}}!</h1>",
+      restrict: 'E',
       link: function(scope){
         scope.myName = "Slim Shady";
+	scope.sayHi = function(){
+	  alert("You’re looking good today");
+	}
       }
     }
   });
@@ -260,8 +264,9 @@ If you want your directive to be availble as any of the four options, you add `r
 If my directive looks like this:
 ```js
 (function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('myCustomDirective', function(){
+  angular
+  .module("grumblr")
+  .directive("myCustomDirective", function(){
     return {
       template: "<h1>Hi there, {{myName}}!</h1>",
       restrict: "E",
@@ -291,8 +296,9 @@ I can add `replace: true` and that will have my template *replace* the element t
 
 ```js
 (function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('myCustomDirective', function(){
+  angular
+  .module("grumblr")
+  .directive("myCustomDirective", function(){
     return {
       template: "<h1>Hi there, {{myName}}!</h1>",
       restrict: "E",
@@ -326,8 +332,9 @@ We do so using attributes:
 
 ```js
 (function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('myCustomDirective', function(){
+  angular
+  .module("grumblr")
+  .directive("myCustomDirective", function(){
     return {
       template: "<h1>Hi there, {{myName}}! {{someAttribute}}</h1>",
       scope: {
@@ -385,8 +392,9 @@ Now, replace `template` in the directive's JS file with `templateUrl` and a link
 
 ```js
 (function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('myCustomDirective', function(){
+  angular
+  .module("grumblr")
+  .directive("myCustomDirective", function(){
     return {
       templateUrl: "js/grumbles/_grumble_show.html",
       replace: true,
@@ -418,8 +426,9 @@ Now I need to make that grumble available inside the partial's HTML. I do this b
 
 ```js
 (function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('grumbleShow', function(){
+  angular
+  .module("grumblr")
+  .directive("myCustomDirective", function(){
     return {
       templateUrl: "js/grumbles/_grumble_show.html",
       replace: true,
@@ -437,8 +446,9 @@ This is because `grumble` is an *object*. The `@` in `scope` is for passing stri
 
 ```js
 (function(){
-  var directives = angular.module('grumbleDirectives',[]);
-  directives.directive('grumbleShow', function(){
+  angular
+  .module("grumblr")
+  .directive("myCustomDirective", function(){
     return {
       templateUrl: "views/grumbles/_grumble_show.html",
       replace: true,
