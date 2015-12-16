@@ -1,5 +1,12 @@
 # Factories, Services and `ngResource`
 
+## Screencasts
+- Dec 16, 2015 (Robin)
+  - [Part 1](https://youtu.be/Ni-KnX9eEDI)
+  - [Part 2](https://youtu.be/Jm4lmgpQfJ8)
+  - [Part 3](https://youtu.be/dP0YsPTnaTU)
+  - [Part 4](https://youtu.be/oEFmmQgh4cE)
+
 ## Learning Objectives
 
 * Explain the purpose of and differentiate between Factories and Services in Angular.
