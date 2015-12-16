@@ -262,6 +262,10 @@ The answer is it doesn't really matter. You might take a look at this "cheat she
 
 [http://demisx.github.io/angularjs/2014/09/14/angular-what-goes-where.html](http://demisx.github.io/angularjs/2014/09/14/angular-what-goes-where.html)
 
+Great article comparing Factories, Services, & Providers:
+
+[http://tylermcginnis.com/angularjs-factory-vs-service-vs-provider/](http://tylermcginnis.com/angularjs-factory-vs-service-vs-provider/)
+
 ### I DO: Create Grumble Factory (15 minutes / 0:55)
 
 Let's make a factory that's actually useful. It's purpose: enable us to perform CRUD actions on our Rails Grumblr API.  
