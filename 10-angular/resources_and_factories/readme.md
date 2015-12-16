@@ -28,7 +28,11 @@ $ rake db:seed
 $ rails s
 ```
 
-## Walkthrough of Current App (20 minutes / 0:25)
+## You do: Walkthrough of Current App (20 minutes / 0:25)
+
+> With the person next to you, take 10 minutes to walk through the following part of the lesson plan, up to the `Factories and Services` header. Read our descriptions of the different components.
+
+> As you go, make a list of up to 3 things on which you could use the most clarification. We'll then take the next 10 minutes to clarify them as a class.
 
 Where we're picking up the app, it has only a functioning index route that uses grumbles hardcoded into the index controller.
 
@@ -173,6 +177,8 @@ A factory is an Angular component that adds functionality to an Angular applicat
 
 Factories allow us to separate concerns and extract functionality that would otherwise be defined in our controller. We do this by creating an object, attaching properties and methods to it and then returning that object. Here's a simple example...
 
+> No need to code along since this won't be incorporated into Grumblr.
+
 ```js
 (function(){
   angular
@@ -254,13 +260,13 @@ Our controllers look nearly identical in both examples. The difference is in the
 
 #### Which One Should I Use?
 
-Factories are not run with new: they're executed like normal functions. Both are run only once: when they're first loaded. It's a pretty minor difference. So when should you use which? The answer is it doesn't really matter. You might take a look at this "cheat sheet" of what should be used when:
+The answer is it doesn't really matter. You might take a look at this "cheat sheet" of what should be used when:
 
 [http://demisx.github.io/angularjs/2014/09/14/angular-what-goes-where.html](http://demisx.github.io/angularjs/2014/09/14/angular-what-goes-where.html)
 
 ### I DO: Create Grumble Factory (15 minutes / 0:55)
 
-Let's make a factory that's actual useful. It's purpose: enable us to perform CRUD actions on our Rails Grumblr API.  
+Let's make a factory that's actually useful. It's purpose: enable us to perform CRUD actions on our Rails Grumblr API.  
 
 By default, Angular does not include a way to interact with APIs. For that, there is a separate module, called [ngResource](https://docs.angularjs.org/api/ngResource).  
 
@@ -383,6 +389,13 @@ Use the same format as we did with `grumbleIndex`.
 * The `url` will require a placeholder for the individual grumble's unique identifier.  
 
 > HINT: How did we represent this in Express?  
+
+```js
+.state("grumbleShow", {
+  url: "/grumbles/:id",
+  templateUrl: "js/grumbles/show.html"
+});
+```
 
 #### Update `index.html`
 
