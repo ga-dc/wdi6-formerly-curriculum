@@ -53,7 +53,7 @@
         data-chapter-title="Custom Directives"
         data-filepath="10-angular/custom_directives/readme.md"
         data-basepath="../.."
-        data-revision="Thu Dec 17 2015 14:00:39 GMT+0000 (UTC)"
+        data-revision="Thu Dec 17 2015 14:09:36 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1603,7 +1603,7 @@
 <p>In <code>show.html</code>, delete the HTML that matches the HTML of the custom directive. The directive will fill in that HTML for us now. In its place, put <code>&lt;grumble-show data-grumble=&apos;grumble&apos;&gt;&lt;/grumble-show&gt;</code>.</p>
 <h5 id="turn-and-talk-why-doesnt-the-grumble-show-up">Turn and talk: Why doesn&apos;t the grumble show up?</h5>
 <p>Looking at the <code>show.html</code> page, all of the grumble data comes from <code>GrumbleShowViewModel.grumble</code>. Looking at the <code>_grumble_show.html</code> page, all of the data comes from just <code>grumble</code>.</p>
-<p>So just delete that occurence of <code>grumbleCtrl</code>:</p>
+<p>So let&apos;s correct how we call the directive in the show page to reference the correct grumble object.</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">grumble-show</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&apos;GrumbleShowViewModel.grumble&apos;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble-show</span>&gt;</span>
 </code></pre>
 <h2 id="you-do--the-same-for-edit-and-new">You Do - the same for <code>edit</code> and <code>new</code></h2>
