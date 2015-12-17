@@ -514,7 +514,7 @@ To start, create a new file for your directive. Maybe something like `js/grumble
 (function(){
   angular
   .module('grumbles')
-  .directive('grumbleSave', function(){
+  .directive('grumbleForm', function(){
     return {
       templateUrl: 'js/grumbles/_grumble_show.html',
       replace: true,
@@ -538,7 +538,7 @@ Put your partial in a file called `js/grumbles/_grumble_form.html`.
 
 ```html
 <div>
-  <grumble-save data-grumble='GrumbleNewViewModel.grumble'></grumble-save>
+  <grumble-form data-grumble='GrumbleNewViewModel.grumble'></grumble-form>
 </div>
 ```
 
@@ -546,7 +546,7 @@ Put your partial in a file called `js/grumbles/_grumble_form.html`.
 
 ```html
 <div>
-  <grumble-save data-grumble='GrumbleEditViewModel.grumble'></grumble-save>
+  <grumble-form data-grumble='GrumbleEditViewModel.grumble'></grumble-form>
 </div>
 ```
 
@@ -575,7 +575,7 @@ Add an attribute called `form-type` to the directive element:
 
 ```html
 <div>
-  <grumble-save data-grumble='GrumbleEditViewModel.grumble' data-form-type='edit'></grumble-save>
+  <grumble-form data-grumble='GrumbleEditViewModel.grumble' data-form-type='edit'></grumble-form>
 </div>
 ```
 
@@ -585,7 +585,7 @@ Add an attribute called `form-type` to the directive element:
 // grumble_form.directive.js
 directives.directive('grumbleForm', function(){
   return {
-    templateUrl: 'js/grumbles/_grumble_save.html',
+    templateUrl: 'js/grumbles/_grumble_form.html',
     replace: true,
     scope: {
       grumble: '=',
@@ -634,7 +634,7 @@ this.create = function(){
 I can remove it from the controller and plunk it right in the directive:
 
 ```js
-directives.directive('grumbleSave', function(){
+directives.directive('grumbleForm', function(){
   return {
     templateUrl: 'js/grumbles/_grumble_form.html',
     replace: true,
@@ -657,12 +657,12 @@ directives.directive('grumbleSave', function(){
 - `$state` and `GrumbleFactory` are dependencies that have to be injected.
 
 ```js
-.directive('grumbleSave',[
+.directive('grumbleForm',[
   '$state',
   'GrumbleFactory',
   function($state, Grumble){
     return {
-      templateUrl: 'js/grumbles/_grumble_save.html',
+      templateUrl: 'js/grumbles/_grumble_form.html',
       replace: true,
       scope: {
         grumble: '=',
@@ -695,11 +695,11 @@ The directive has way too many brackets.
 One attempt:
 
 ```js
-.directive('grumbleSave',['$state', 'GrumbleFactory', grumbleSave]);
+.directive('grumbleForm',['$state', 'GrumbleFactory', grumbleForm]);
 
-function grumbleSave($state, GrumbleFactory){
+function grumbleForm($state, GrumbleFactory){
   return {
-    templateUrl: 'views/grumbles/_grumble_save.html',
+    templateUrl: 'views/grumbles/_grumble_form.html',
     replace: true,
     scope: {
       grumble: '=',
