@@ -168,6 +168,113 @@ Restart your server, and try logging in!
 	   -X POST http://localhost:3000/auth/sign_in \
 	   -d '{"email": "bob@example.com", "password": "pizzajammy"}'
 
+## Grumblr Angular
+
+https://github.com/ga-dc/grumblr_angular
+
+    $ git checkout -b authentication custom-directives-solution
+
+In `index.html`, link to the CDNs for `angular-cookie` and `ng-token-auth` modules:
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-cookie/4.0.9/angular-cookie.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-token-auth/0.0.28/ng-token-auth.min.js"></script>
+```
+
+```diff
+// app.js
+.module("grumblr", [
+    "ui.router",
++   "ng-token-auth",
+    "grumbles"
+])
++ .config([
++   "$authProvider",
++   AuthConfigFunction
++ ]);
+
++ function AuthConfigFunction($authprovider) {
++   $authprovider.configure({
++     apiUrl: "http://localhost:3000"
++   });
++ }
+```
+
+
+### Signing Up
+
+#### Create a Route
+
+```diff
+// app.js
++ .state("signin", {
++   url: "/signin",
++   templateUrl: "js/users/signin.html",
++   controller: "SessionsController",
++   controllerAs: "SessionsViewModel"
++ })
+```
+
+#### Create a View
+
+```html
+<!-- js/users/signin.html -->
+<form ng-submit="SessionsViewModel.signin()">
+  <div>
+    <label>email</label>
+    <input type="email" name="email" ng-model="SessionsViewModel.signinForm.email" required="required"/>
+  </div>
+  <div>
+    <label>password</label>
+    <input type="password" name="password" ng-model="SessionsViewModel.signinForm.password" required="required"/>
+  </div>
+  <button type="submit">Sign In</button>
+</form>
+```
+
+#### Create a Controller
+
+```diff
+<!-- /index.html -->
+<script src="js/users/sessions.controller.js"></script>
+```
+
+```js
+// js/users/sessions.controller.js
+(function(){
+  angular
+  .module("grumblr")
+  .controller("SessionsController", function($auth){
+    this.signinForm = {};
+    this.signin = function() {
+      $auth.submitLogin(this.signinForm)
+      .then(function(resp) {
+        console.log("Signin success:", resp);
+      })
+      .catch(function(resp) {
+	console.log("Signin failure:", resp);
+      });
+    };
+  });
+})();
+```
+
+```diff
+// js/users/sessions.controller.js
+$auth.submitLogin(this.signinForm)
+.then(function(resp) {
+-  console.log(resp);
++  $state.go("songsIndex");
+})
+```
+
+Try logging in! http://localhost:8080/#/signin 
+
+You know it worked if you can see a User object in the Dev Tools' console.
+
+Here's everything we changed in the angular app so far today: https://github.com/ga-dc/grumblr_angular/commit/cc7abc067b29e827a6a930fd462a4adcb8edc972
+
+
 ## References
 
 * http://blog.ionic.io/angularjs-authentication/
