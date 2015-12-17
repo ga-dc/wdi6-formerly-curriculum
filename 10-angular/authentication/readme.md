@@ -236,7 +236,7 @@ In `index.html`, link to the CDNs for `angular-cookie` and `ng-token-auth` modul
 
 ```diff
 <!-- /index.html -->
-<script src="js/users/sessions.controller.js"></script>
++ <script src="js/users/sessions.controller.js"></script>
 ```
 
 ```js
@@ -252,7 +252,7 @@ In `index.html`, link to the CDNs for `angular-cookie` and `ng-token-auth` modul
         console.log("Signin success:", resp);
       })
       .catch(function(resp) {
-	console.log("Signin failure:", resp);
+        console.log("Signin failure:", resp);
       });
     };
   });
@@ -274,6 +274,64 @@ You know it worked if you can see a User object in the Dev Tools' console.
 
 Here's everything we changed in the angular app so far today: https://github.com/ga-dc/grumblr_angular/commit/cc7abc067b29e827a6a930fd462a4adcb8edc972
 
+### Authentication Navigation Directive
+
+```diff
+<!-- /index.html -->
+<h1><a data-ui-sref="grumbleIndex">Grumblr</a></h1>
++ <auth-nav>
+```
+
+```diff
+<!-- /index.html -->
++ <script src="js/nav/auth.directive.js"></script>
+```
+
+```js
+// js/nav/auth.directive.js
+(function(){
+  angular
+    .module("grumblr")
+    .directive("authNav", function($auth) {
+      return {
+        templateUrl: "js/nav/_auth.html",
+        replace: true,
+        restrict: 'E',
+        link: function(scope) {
+          // update scope/view on successful signin
+          scope.$on('auth:login-success', function(ev, user) {
+            scope.currentUser = user;
+          });
+
+          // set initial state, for currentUser, when directive is loaded
+          $auth.validateUser()
+            .then(function(user){
+              scope.currentUser = user;
+            })
+            .catch(function(err){
+              scope.currentUser = undefined;
+            });
+        }
+      };
+    });
+})();
+```
+
+```html
+<!-- js/nav/_auth.html -->
+<nav>
+  <div ng-show="currentUser">
+    Welcome, {{currentUser.email}}
+    <a data-ui-sref="signout">Sign Out</a>
+  </div>
+  <div ng-show="!currentUser">
+    <a data-ui-sref="signup">Sign Up</a>
+    <a data-ui-sref="signin">Sign In</a>
+  </div>
+</nav>
+```
+
+Try signing out!
 
 ## References
 
