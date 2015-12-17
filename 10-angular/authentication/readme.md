@@ -79,6 +79,74 @@ First, we're going to implement token-based auth on the API (backend) using the
 Once we have that working, we're going to implement auth into our angular app
 using a complementary plugin, [ng-token-auth](https://github.com/lynndylanhurley/ng-token-auth).
 
+## Grumblr Api
+
+https://github.com/ga-dc/grumblr_rails_api
+
+Open it locally in your text editor. (You might already have it).
+
+Make sure it's working by running `rails s` and open it up in your browser: http://localhost:3000/grumbles
+
+### Add Devise
+
+```rb
+# Gemfile.rb
+
+gem 'devise'
+```
+
+```
+$ bundle install
+$ rails g devise:install
+```
+
+Next, install the devise token auth gem:
+
+```rb
+# Gemfile.rb
+
+gem 'devise_token_auth'
+```
+
+```
+$ bundle install
+$ rails g devise_token_auth:install User auth
+```
+
+The first part `User`, is the model. The second part `auth`, is the mount point.
+
+```diff
+# app/models/user.rb
+
+- :confirmable, :omniauthable
+```
+
+Possible issues here:
+
+- explicitly including `:confirmable`.
+- if you put `devise_token_auth` first, it will still try to mount confirmable option.
+
+In config/application.rb
+
+```diff
+- :methods => :any
++ :methods => :any,
++ :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client']
+```
+
+In config/initializers/devise.rb
+
+```diff
+- config.navigation_formats = ['*/*', :html]
++ config.navigation_formats = ['*/*', :html, :json]
+```
+
+We need this to enable logging in with JSON.
+
+`rake routes` should show devise_token_auth routes.
+
+In db/migrate/last_migration_file.rb, remove entire confirmable section. Under user info,
+comment out everything but `t.string :email`
 
 
 ## References
