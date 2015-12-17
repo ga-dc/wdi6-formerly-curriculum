@@ -66,7 +66,7 @@ There are some subtle security issues that need to be considered with with
 token-based auth. Primarily there are two things:
 
 * Timing based attacks
-* Token rotation only usable one to prevent reply attacks
+* Token rotation only usable once to prevent reply attacks
 
 ## Outline for Today
 
