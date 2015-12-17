@@ -182,9 +182,9 @@ You can add entire methods to scope and make those available in your HTML. I'll 
       template: "<h1 ng-click='sayHi()'>Hi There {{myName}}!</h1>",
       link: function(scope){
         scope.myName = "Slim Shady";
-	scope.sayHi = function(){
-	  alert("You’re looking good today");
-	}
+      	scope.sayHi = function(){
+      	  alert("You’re looking good today");
+      	}
       }
     }
   });
@@ -226,9 +226,9 @@ If you only want your directive to be available as an element, you add `restrict
       restrict: 'E',
       link: function(scope){
         scope.myName = "Slim Shady";
-	scope.sayHi = function(){
-	  alert("You’re looking good today");
-	}
+      	scope.sayHi = function(){
+      	  alert("You’re looking good today");
+	      }
       }
     }
   });
@@ -321,7 +321,7 @@ So far we've seen a bunch of ways of getting things *out* of the Javascript and 
 We do so using attributes:
 
 ```html
-<div class="grumbles" ng-repeat="grumble in grumblesCtrl.grumbles">
+<div class="grumbles" ng-repeat="grumble in GrumbleIndexViewModel.grumbles">
   <my-custom-directive some-attribute="I'm an attribute!"></my-custom-directive>
 </div>
 ```
@@ -408,7 +408,17 @@ What I'd like to use for my template is the HTML that's used for showing the inf
 
 For now, we'll leave `show` alone and just get this working in `index`.
 
-Cut and paste into `_grumble_show.html` from `index.html` the HTML that you want to be repeated for each Grumble.
+Cut and paste into `_grumble_show.html` from `index.html` the HTML that you want to be repeated for each Grumble. Your `_grumble_show.html` should look something like this:
+
+```html
+<div class="grumble">
+  <p>{{grumble.title}}</p>
+  <p>{{grumble.authorName}}</p>
+  <p>{{grumble.photoUrl}}</p>
+  <p>{{grumble.content}}</p>
+</div>
+
+```
 
 The next step is to make `grumble` available inside the partial. If you look at the partial's HTML, there's a whole lot of `grumble.title` and `grumble.id` and so on. We need to "pass in" that `grumble.`, which we can do with an attribute.
 
@@ -424,7 +434,7 @@ Now I need to make that grumble available inside the partial's HTML. I do this b
 (function(){
   angular
   .module("grumbles")
-  .directive("myCustomDirective", function(){
+  .directive("gumbleShow", function(){
     return {
       templateUrl: "js/grumbles/_grumble_show.html",
       replace: true,
@@ -444,7 +454,7 @@ This is because `grumble` is an *object*. The `@` in `scope` is for passing stri
 (function(){
   angular
   .module("grumbles")
-  .directive("myCustomDirective", function(){
+  .directive("grumbleShow", function(){
     return {
       templateUrl: "views/grumbles/_grumble_show.html",
       replace: true,
@@ -492,26 +502,17 @@ So just delete that occurence of `grumbleCtrl`:
 <grumble-show data-grumble="GrumbleShowViewModel.grumble"></grumble-show>
 ```
 
-## 10 min: Do the same for `edit` and `new`
+## You Do - the same for `edit` and `new`
 
-To start, make a second directive in your Javascript just by copying and pasting the existing one and changing the name to `grumbleSave`:
+To start, create a new file for one of your directives. For `new`, it might be `js/grumbles/new.directive.js`. Add something like this:
 
 ```js
 (function(){
   angular
   .module("grumbles")
-  .directive('grumbleShow', function(){
+  .directive('grumbleForm', function(){
     return {
-      templateUrl: "js/grumbles/_grumble_show.html",
-      replace: true,
-      scope: {
-        grumble: "="
-      }
-    }
-  })
-  .directive('grumbleSave', function(){
-    return {
-      templateUrl: "",
+      templateUrl: "someTemplate.html",
       replace: true,
       scope: {
         grumble: "="
@@ -521,7 +522,7 @@ To start, make a second directive in your Javascript just by copying and pasting
 })();
 ```
 
-Put your partial in a file called `js/grumbles/_grumble_save.html`.
+Put your partial in a file called `js/grumbles/_grumble_form.html`.
 
 **Note:** Don't worry about getting the "Save" and "New Grumble" buttons to work; just focus on getting the form to show up properly.
 
@@ -533,7 +534,7 @@ Put your partial in a file called `js/grumbles/_grumble_save.html`.
 
 ```html
 <div>
-  <grumble-save data-grumble="GrumbleNewViewModel.grumble"></grumble-save>
+  <grumble-form data-grumble="GrumbleShowViewModel.grumble"></grumble-save>
 </div>
 ```
 
@@ -541,11 +542,11 @@ Put your partial in a file called `js/grumbles/_grumble_save.html`.
 
 ```html
 <div>
-  <grumble-save data-grumble="GrumbleShowViewModel.grumble"></grumble-save>
+  <grumble-form data-grumble="GrumbleEditViewModel.grumble"></grumble-save>
 </div>
 ```
 
-`_grumble_save.html` should be something like:
+`_grumble_form.html` should be something like:
 
 ```html
 <form>
@@ -570,7 +571,7 @@ Add an attribute called `form-type` to the directive element:
 
 ```html
 <div>
-  <grumble-save data-grumble="GrumbleShowViewModel.grumble" data-form-type="edit"></grumble-save>
+  <grumble-save data-grumble="GrumbleEditViewModel.grumble" data-form-type="edit"></grumble-save>
 </div>
 ```
 
@@ -579,7 +580,7 @@ Add an attribute called `form-type` to the directive element:
 ```js
 directives.directive('grumbleSave', function(){
   return {
-    templateUrl: "js/grumbles/_grumble_save.html",
+    templateUrl: "js/grumbles/_grumble_form.html",
     replace: true,
     scope: {
       grumble: "=",
@@ -634,7 +635,7 @@ I can remove it from the controller and plunk it right in the directive:
 ```js
 directives.directive('grumbleSave', function(){
   return {
-    templateUrl: "js/grumbles/_grumble_save.html",
+    templateUrl: "js/grumbles/_grumble_form.html",
     replace: true,
     scope: {
       grumble: "=",
@@ -660,7 +661,7 @@ directives.directive('grumbleSave', function(){
   "GrumbleFactory",
   function($state, Grumble){
     return {
-      templateUrl: "js/grumbles/_grumble_save.html",
+      templateUrl: "js/grumbles/_grumble_form.html",
       replace: true,
       scope: {
         grumble: "=",
@@ -693,7 +694,7 @@ One attempt:
 
 function grumbleSave($state, GrumbleFactory){
   return {
-    templateUrl: "views/grumbles/_grumble_save.html",
+    templateUrl: "views/grumbles/_grumble_form.html",
     replace: true,
     scope: {
       grumble: "=",
