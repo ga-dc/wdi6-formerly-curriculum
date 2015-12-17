@@ -279,7 +279,7 @@ Here's everything we changed in the angular app so far today: https://github.com
 ```diff
 <!-- /index.html -->
 <h1><a data-ui-sref="grumbleIndex">Grumblr</a></h1>
-+ <auth-nav>
++ <auth-nav></auth-nav>
 ```
 
 ```diff
