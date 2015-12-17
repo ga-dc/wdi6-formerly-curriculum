@@ -87,3 +87,5 @@ function ControllerFunction(dependencyOne, dependencyTwo){
   // This is good 
 }
 ```
+
+## Writing `templateURL` instead of `templateUrl`
