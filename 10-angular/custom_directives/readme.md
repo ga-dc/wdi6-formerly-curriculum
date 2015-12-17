@@ -517,7 +517,7 @@ To start, create a new file for your directive. Maybe something like `js/grumble
   .module('grumbles')
   .directive('grumbleForm', function(){
     return {
-      templateUrl: 'js/grumbles/_grumble_show.html',
+      templateUrl: 'js/grumbles/_grumble_form.html',
       replace: true,
       scope: {
         grumble: '='
