@@ -148,10 +148,11 @@ We need this to enable logging in with JSON.
 In db/migrate/last_migration_file.rb, remove entire confirmable section. Under user info,
 comment out everything but `t.string :email`
 
+    $ rake db:migrate
 
 ## References
 
-* [](http://blog.ionic.io/angularjs-authentication/)
-* [](https://auth0.com/blog/2014/01/07/angularjs-authentication-with-cookies-vs-token/)
-* [](https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication)
+* http://blog.ionic.io/angularjs-authentication/
+* https://auth0.com/blog/2014/01/07/angularjs-authentication-with-cookies-vs-token/
+* https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication
 * [JSON Web Tokens, another way to implement token based auth](https://jwt.io)
