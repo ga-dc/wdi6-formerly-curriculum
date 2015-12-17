@@ -500,7 +500,7 @@ In `show.html`, delete the HTML that matches the HTML of the custom directive. T
 
 Looking at the `show.html` page, all of the grumble data comes from `GrumbleShowViewModel.grumble`. Looking at the `_grumble_show.html` page, all of the data comes from just `grumble`.
 
-So just delete that occurence of `grumbleCtrl`:
+So let's correct how we call the directive in the show page to reference the correct grumble object.
 
 ```html
 <grumble-show data-grumble='GrumbleShowViewModel.grumble'></grumble-show>
