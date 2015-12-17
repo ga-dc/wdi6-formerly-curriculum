@@ -3,7 +3,7 @@
 ## Learning Objectives
 
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
-- Explain the purpose of each of the four directive options, and the four options for the "restrict" directive, E, A, C, M
+- Explain the purpose of each of the four directive options, and the four options for the 'restrict' directive, E, A, C, M
 - Use a custom directive to render an array of objects
 - Use `link` method to set scope
 - Explain the difference between `@` and `=` in `scope` object
@@ -15,11 +15,13 @@
 $ git checkout resource-solution
 ```
 
+Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/grumblr_rails_api
+
 ### You do:
 
 Make every Grumble on the index, look like the Grumble in the show.
 
-##### Turn and talk: What things do you see that aren't DRY in Grumblr?
+> Yes, this is a contrived example to create repetitive code.
 
 Our focus is going to be...
 
@@ -49,9 +51,9 @@ All HTML elements have behaviors: anchors take you to a page when you click on t
 
 Ever wished there was a `<comment-box>` or a `<random-bill-murray-img>` element? Now you can make one.
 
-One of Angular's sort-of "mission statements" is "to be what HTML would have been if it was designed from the start with web apps in mind."
+One of Angular's sort-of 'mission statements' is 'to be what HTML would have been if it was designed from the start with web apps in mind.'
 
-### You can think of directives as "Angular elements"
+### You can think of directives as 'Angular elements'
 
 To help me keep straight what Angular's terms mean, I made a [cheat sheet of which Angular terms map to which Rails terms](../angular-vs-rails.md).
 
@@ -65,7 +67,7 @@ Directives are most like helpers in Rails.
 
 They all add HTML to a view.
 
-### "But what about separating my concerns?"
+### 'But what about separating my concerns?'
 
 You're discouraged from using the `onclick=` attribute, and now all of a sudden you're being told to use `ng-click=`?
 
@@ -79,7 +81,7 @@ I can think of a few reasons:
 - It makes the HTML easier to read, whereas in Backbone templates are sort of strewn about and it's not so easy to see which goes where
 - It makes the HTML make *more sense*, somehow. HTML is meant to tell you the function of content, and this lets you be much more specific about that function. It's (theoretically) easier to read than Javascript, and it's more useful than just defining semantics.
 
-### Custom directives are the "flagship" of Angular
+### Custom directives are the 'flagship' of Angular
 
 Without them, Angular is just another MVC framework.
 
@@ -89,7 +91,7 @@ So: let's make one!
 
 Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/grumblr_rails_api
 
-- In `js/grumbles/index.html`, add this custom directive: `<my-custom-directive></my-custom-directive>`. Refresh the page, and you shouldn't see anything.
+- In `js/grumbles/index.html`, add this custom directive: `<my-custom-directive></my-custom-directive>`. Refresh the page, and you shouldn't see any changes.  The new directive doesn't do anything... yet.
 
   **Note about self-closing tags:** This directive doesn't have any text content, so you could use a self-closing tag, `<my-custom-directive />`. However, Angular's pretty picky about self-closing tags. If your entire page goes blank when you're using a custom directive with a self-closing tag, try using open and close tags instead.
 
@@ -100,8 +102,8 @@ Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/
 ```js
 (function(){
   angular
-  .module("grumbles")
-  .directive("myCustomDirective", function(){
+  .module('grumbles')
+  .directive('myCustomDirective', function(){
 
   });
 })();
@@ -114,16 +116,16 @@ Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/
 ```js
 (function(){
   angular
-  .module("grumbles")
-  .directive("myCustomDirective", function(){
+  .module('grumbles')
+  .directive('myCustomDirective', function(){
     return {
-      template: "<h1>Hi There!</h1>"
+      template: '<h1>Hi There!</h1>'
     }
   });
 })();
 ```
 
-- Finally, include `<script src="js/grumbles/grumble.directive.js"></script>` in the app's main `index.html`.
+- Finally, include `<script src='js/grumbles/grumble.directive.js'></script>` in the app's main `index.html`.
 
 ...and that's it! Run it, and see what happens.
 
@@ -136,12 +138,12 @@ For example:
 ```js
 (function(){
   angular
-  .module("grumbles")
-  .directive("myCustomDirective", function(){
+  .module('grumbles')
+  .directive('myCustomDirective', function(){
     return {
-      template: "<h1>Hi There!</h1>",
+      template: '<h1>Hi There!</h1>',
       link: function(){
-        console.log("directive used")
+        console.log('directive used')
       }
     }
   });
@@ -157,12 +159,12 @@ For instance, I'm going to add a property called `myName` to `scope`. That will 
 ```js
 (function(){
   angular
-  .module("grumbles")
-  .directive("myCustomDirective", function(){
+  .module('grumbles')
+  .directive('myCustomDirective', function(){
     return {
-      template: "<h1>Hi There {{myName}}!</h1>",
+      template: '<h1>Hi There {{myName}}!</h1>',
       link: function(scope){
-        scope.myName = "Slim Shady";
+        scope.myName = 'Slim Shady';
       }
     }
   });
@@ -176,15 +178,15 @@ You can add entire methods to scope and make those available in your HTML. I'll 
 ```js
 (function(){
   angular
-  .module("grumbles")
-  .directive("myCustomDirective", function(){
+  .module('grumbles')
+  .directive('myCustomDirective', function(){
     return {
-      template: "<h1 ng-click='sayHi()'>Hi There {{myName}}!</h1>",
+      template: '<h1 ng-click='sayHi()'>Hi There {{myName}}!</h1>',
       link: function(scope){
-        scope.myName = "Slim Shady";
-      	scope.sayHi = function(){
-      	  alert("You’re looking good today");
-      	}
+        scope.myName = 'Slim Shady';
+        scope.sayHi = function(){
+          alert('You’re looking good today');
+        }
       }
     }
   });
@@ -219,16 +221,16 @@ If you only want your directive to be available as an element, you add `restrict
 ```js
 (function(){
   angular
-  .module("grumbles")
-  .directive("myCustomDirective", function(){
+  .module('grumbles')
+  .directive('myCustomDirective', function(){
     return {
-      template: "<h1 ng-click='sayHi()'>Hi There {{myName}}!</h1>",
+      template: '<h1 ng-click='sayHi()'>Hi There {{myName}}!</h1>',
       restrict: 'E',
       link: function(scope){
-        scope.myName = "Slim Shady";
-      	scope.sayHi = function(){
-      	  alert("You’re looking good today");
-	      }
+        scope.myName = 'Slim Shady';
+	scope.sayHi = function(){
+	  alert('You’re looking good today');
+	}
       }
     }
   });
@@ -240,7 +242,7 @@ I mentioned before that custom directives can be elements, attibutes, comments, 
 So `restrict: 'C'` would make this work:
 
 ```
-<div class="my-custom-directive"></div>
+<div class='my-custom-directive'></div>
 ```
 
 You could do `restrict: 'M'` to make your directive availble as a comment. However, comments don't actually render any HTML. For instance:
@@ -261,13 +263,13 @@ If my directive looks like this:
 ```js
 (function(){
   angular
-  .module("grumbles")
-  .directive("myCustomDirective", function(){
+  .module('grumbles')
+  .directive('myCustomDirective', function(){
     return {
-      template: "<h1>Hi there, {{myName}}!</h1>",
-      restrict: "E",
+      template: '<h1>Hi there, {{myName}}!</h1>',
+      restrict: 'E',
       link: function(scope){
-        scope.myName = "Slim Shady";
+        scope.myName = 'Slim Shady';
       }
     }
   });
@@ -293,14 +295,14 @@ I can add `replace: true` and that will have my template *replace* the element t
 ```js
 (function(){
   angular
-  .module("grumbles")
-  .directive("myCustomDirective", function(){
+  .module('grumbles')
+  .directive('myCustomDirective', function(){
     return {
-      template: "<h1>Hi there, {{myName}}!</h1>",
-      restrict: "E",
+      template: '<h1>Hi there, {{myName}}!</h1>',
+      restrict: 'E',
       replace: true,
       link: function(scope){
-        scope.myName = "Slim Shady";
+        scope.myName = 'Slim Shady';
       }
     }
   });
@@ -321,23 +323,23 @@ So far we've seen a bunch of ways of getting things *out* of the Javascript and 
 We do so using attributes:
 
 ```html
-<div class="grumbles" ng-repeat="grumble in GrumbleIndexViewModel.grumbles">
-  <my-custom-directive some-attribute="I'm an attribute!"></my-custom-directive>
+<div class='grumbles' ng-repeat='grumble in GrumbleIndexViewModel.grumbles'>
+  <grumble-show data-some-attribute='I’m an attribute!'></grumble-show>
 </div>
 ```
 
 ```js
 (function(){
   angular
-  .module("grumbles")
-  .directive("myCustomDirective", function(){
+  .module('grumbles')
+  .directive('grumbleShow', function(){
     return {
-      template: "<h1>Hi there, {{myName}}! {{someAttribute}}</h1>",
+      template: '<h1>Hi there, {{myName}}! {{someAttribute}}</h1>',
       scope: {
-        someAttribute: "@"
+        someAttribute: '@'
       },
       link: function(scope){
-        scope.myName = "Slim Shady";
+        scope.myName = 'Slim Shady';
       }
     }
   });
@@ -364,7 +366,7 @@ Check out what happens when I run the HTML validator with this code inside it:
 </html>
 ```
 
-It yells at me about using a non-standard attribute -- one that doesn't come built-in-with HTML. You can "fake out" the validator by putting `data-` in front of the attribute:
+It yells at me about using a non-standard attribute -- one that doesn't come built-in-with HTML. You can 'fake out' the validator by putting `data-` in front of the attribute:
 
 `<div data-my-custom-directive></div>`
 
@@ -389,13 +391,13 @@ Now, replace `template` in the directive's JS file with `templateUrl` and a link
 ```js
 (function(){
   angular
-  .module("grumbles")
-  .directive("myCustomDirective", function(){
+  .module('grumbles')
+  .directive('myCustomDirective', function(){
     return {
-      templateUrl: "js/grumbles/_grumble_show.html",
+      templateUrl: 'js/grumbles/_grumble_show.html',
       replace: true,
       link: function(scope){
-        scope.myName = "Slim Shady";
+        scope.myName = 'Slim Shady';
       }
     }
   });
@@ -420,12 +422,14 @@ Cut and paste into `_grumble_show.html` from `index.html` the HTML that you want
 
 ```
 
-The next step is to make `grumble` available inside the partial. If you look at the partial's HTML, there's a whole lot of `grumble.title` and `grumble.id` and so on. We need to "pass in" that `grumble.`, which we can do with an attribute.
+The next step is to make `grumble` available inside the partial. If you look at the partial's HTML, there's a whole lot of `grumble.title` and `grumble.id` and so on. We need to 'pass in' that `grumble.`, which we can do with an attribute.
 
 In `index.html`, in the space left by all the HTML you cut out, put:
 
 ```html
-<grumble-show data-grumble="grumble"></grumble>
+<div>
+  <grumble-show data-grumble='grumble'></grumble>
+</div>
 ```
 
 Now I need to make that grumble available inside the partial's HTML. I do this by setting `scope.grumble` equal to the grumble we passed in via the attributes:
@@ -433,20 +437,20 @@ Now I need to make that grumble available inside the partial's HTML. I do this b
 ```js
 (function(){
   angular
-  .module("grumbles")
-  .directive("gumbleShow", function(){
+  .module('grumbles')
+  .directive('grumbleShow', function(){
     return {
-      templateUrl: "js/grumbles/_grumble_show.html",
+      templateUrl: 'js/grumbles/_grumble_show.html',
       replace: true,
       scope: {
-        grumble: "@"
+        grumble: '@'
       }
     }
   });
 })();
 ```
 
-It didn't do anything! If we add `{{grumble}}` to the `index.html` all we get is the word "grumble".
+It didn't do anything! If we add `{{grumble}}` to the `index.html` all we get is the word 'grumble'.
 
 This is because `grumble` is an *object*. The `@` in `scope` is for passing strings. If you want to pass an object, use `=`.
 
@@ -456,10 +460,10 @@ This is because `grumble` is an *object*. The `@` in `scope` is for passing stri
   .module("grumbles")
   .directive("grumbleShow", function(){
     return {
-      templateUrl: "views/grumbles/_grumble_show.html",
+      templateUrl: 'views/grumbles/_grumble_show.html',
       replace: true,
       scope: {
-        grumble: "="
+        grumble: '='
       }
     }
   });
@@ -470,9 +474,9 @@ This is because `grumble` is an *object*. The `@` in `scope` is for passing stri
 
 ```html
 <div>
-  <a data-ui-sref="grumbleNew()">New Grumble</a>
-  <div class="grumbles" ng-repeat="grumble in GrumbleIndexViewModel.grumbles">
-    <grumble-show data-grumble="grumble"></grumble-show>
+  <a data-ui-sref='grumbleNew()'>New Grumble</a>
+  <div class='grumbles' ng-repeat='grumble in GrumbleIndexViewModel.grumbles'>
+    <grumble-show data-grumble='grumble'></grumble-show>
   </div>
 </div>
 ```
@@ -481,7 +485,7 @@ Run it and see what happens.
 
 We've effectively created a little widget we can use anywhere on our app!
 
-##### What might be good candidates for which to make custom directives "in the wild"?
+##### What might be good candidates for which to make custom directives 'in the wild'?
 - Date picker
 - Video player
 - Trello card
@@ -490,7 +494,7 @@ We've effectively created a little widget we can use anywhere on our app!
 
 The whole point of this was to re-use HTML between `index.html` and `show.html`. So:
 
-In `show.html`, delete the HTML that matches the HTML of the custom directive. The directive will fill in that HTML for us now. In its place, put `<grumble-show data-grumble="grumble"></grumble-show>`.
+In `show.html`, delete the HTML that matches the HTML of the custom directive. The directive will fill in that HTML for us now. In its place, put `<grumble-show data-grumble='grumble'></grumble-show>`.
 
 ##### Turn and talk: Why doesn't the grumble show up?
 
@@ -499,7 +503,7 @@ Looking at the `show.html` page, all of the grumble data comes from `GrumbleShow
 So just delete that occurence of `grumbleCtrl`:
 
 ```html
-<grumble-show data-grumble="GrumbleShowViewModel.grumble"></grumble-show>
+<grumble-show data-grumble='GrumbleShowViewModel.grumble'></grumble-show>
 ```
 
 ## You Do - the same for `edit` and `new`
@@ -509,13 +513,13 @@ To start, create a new file for your directive. Maybe something like `js/grumble
 ```js
 (function(){
   angular
-  .module("grumbles")
-  .directive('grumbleForm', function(){
+  .module('grumbles')
+  .directive('grumbleSave', function(){
     return {
-      templateUrl: "someTemplate.html",
+      templateUrl: 'js/grumbles/_grumble_show.html',
       replace: true,
       scope: {
-        grumble: "="
+        grumble: '='
       }
     }
   });
@@ -524,7 +528,7 @@ To start, create a new file for your directive. Maybe something like `js/grumble
 
 Put your partial in a file called `js/grumbles/_grumble_form.html`.
 
-**Note:** Don't worry about getting the "Save" and "New Grumble" buttons to work; just focus on getting the form to show up properly.
+**Note:** Don't worry about getting the 'Save' and 'New Grumble' buttons to work; just focus on getting the form to show up properly.
 
 **Note:** Your partial shouldn't have any references to controllers in it -- just `grumble`. Delete any references to controllers.
 
@@ -534,7 +538,7 @@ Put your partial in a file called `js/grumbles/_grumble_form.html`.
 
 ```html
 <div>
-  <grumble-form data-grumble="GrumbleShowViewModel.grumble"></grumble-save>
+  <grumble-save data-grumble='GrumbleNewViewModel.grumble'></grumble-save>
 </div>
 ```
 
@@ -542,7 +546,7 @@ Put your partial in a file called `js/grumbles/_grumble_form.html`.
 
 ```html
 <div>
-  <grumble-form data-grumble="GrumbleEditViewModel.grumble"></grumble-save>
+  <grumble-save data-grumble='GrumbleEditViewModel.grumble'></grumble-save>
 </div>
 ```
 
@@ -550,18 +554,18 @@ Put your partial in a file called `js/grumbles/_grumble_form.html`.
 
 ```html
 <form>
-  <input type="text" name="title" ng-model="grumble.title">
-  <input type="text" name="authorName" ng-model="grumble.authorName">
-  <textarea name="content" ng-model="grumble.content"></textarea>
-  <input type="text" name="photoUrl" ng-model="grumble.photoUrl">
-  <a data-ui-sref="grumbleShow({id: grumble.id})">&larr; Back</a>
-  <button ng-click="update()">Save</button>
+  <input type='text' name='title' ng-model='grumble.title'>
+  <input type='text' name='authorName' ng-model='grumble.authorName'>
+  <textarea name='content' ng-model='grumble.content'></textarea>
+  <input type='text' name='photoUrl' ng-model='grumble.photoUrl'>
+  <a data-ui-sref='grumbleShow({id: grumble.id})'>&larr; Back</a>
+  <button ng-click='update()'>Save</button>
 </form>
 ```
 
 ### What about the buttons?
 
-We either have to have the Back/Save buttons or the "New grumble" button or all three.
+We either have to have the Back/Save buttons or the 'New grumble' button or all three.
 
 Your best bet is to have all three, and then to show or hide particular buttons based on whether the user's on `new` or `edit`.
 
@@ -571,20 +575,21 @@ Add an attribute called `form-type` to the directive element:
 
 ```html
 <div>
-  <grumble-save data-grumble="GrumbleEditViewModel.grumble" data-form-type="edit"></grumble-save>
+  <grumble-save data-grumble='GrumbleEditViewModel.grumble' data-form-type='edit'></grumble-save>
 </div>
 ```
 
 ...and be able to add it to scope in the directive Javascript:
 
 ```js
-directives.directive('grumbleSave', function(){
+// grumble_form.directive.js
+directives.directive('grumbleForm', function(){
   return {
-    templateUrl: "js/grumbles/_grumble_form.html",
+    templateUrl: 'js/grumbles/_grumble_save.html',
     replace: true,
     scope: {
-      grumble: "=",
-      formType: ""
+      grumble: '=',
+      formType: ''
     }
   }
 });
@@ -596,29 +601,25 @@ Then, show or hide the buttons based on the value of formType:
 
 ```html
 <form>
-  <input type="text" name="title" ng-model="grumble.title">
-  <input type="text" name="authorName" ng-model="grumble.authorName">
-  <textarea name="content" ng-model="grumble.content">new grumble content</textarea>
-  <input type="text" name="photoUrl" ng-model="grumble.photoUrl">
+  <input type='text' name='title' ng-model='grumble.title'>
+  <input type='text' name='authorName' ng-model='grumble.authorName'>
+  <textarea name='content' ng-model='grumble.content'>new grumble content</textarea>
+  <input type='text' name='photoUrl' ng-model='grumble.photoUrl'>
   <div ng-show="formType == 'edit'">
-    <a data-ui-sref="grumbleShow({id: grumble.id})">&larr; Back</a>
-    <button ng-click="update()">Save</button>
+    <a data-ui-sref='grumbleShow({id: grumble.id})'>&larr; Back</a>
+    <button ng-click='update()'>Save</button>
   </div>
   <div ng-show="formType == 'new'">
-    <button ng-click="create()">New Grumble</button>
+    <button ng-click='create()'>New Grumble</button>
   </div>
 </form>
 ```
 
-If you aren't caught up yet, you can checkout the solution code:
-
-https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.1
-
 ## Substituting directives for controllers
 
-The problem now is that clicking on "New Grumble" doesn't do anything.
+The problem now is that clicking on 'New Grumble' doesn't do anything.
 
-##### Why doesn't clicking "New Grumble" do anything?
+##### Why doesn't clicking 'New Grumble' do anything?
 
 We don't have a `create()` method defined inside the partial.
 
@@ -635,11 +636,11 @@ I can remove it from the controller and plunk it right in the directive:
 ```js
 directives.directive('grumbleSave', function(){
   return {
-    templateUrl: "js/grumbles/_grumble_form.html",
+    templateUrl: 'js/grumbles/_grumble_form.html',
     replace: true,
     scope: {
-      grumble: "=",
-      formType: "@"
+      grumble: '=',
+      formType: '@'
     },
     link: function(scope){
       this.create = function(){
@@ -657,20 +658,20 @@ directives.directive('grumbleSave', function(){
 
 ```js
 .directive('grumbleSave',[
-  "$state",
-  "GrumbleFactory",
+  '$state',
+  'GrumbleFactory',
   function($state, Grumble){
     return {
-      templateUrl: "js/grumbles/_grumble_form.html",
+      templateUrl: 'js/grumbles/_grumble_save.html',
       replace: true,
       scope: {
-        grumble: "=",
-        formType: "@"
+        grumble: '=',
+        formType: '@'
       },
       link: function(scope){
         scope.create = function(){
           scope.grumble.$save(scope.grumble, function(grumble) {
-            $state.go("grumbleShow", grumble);
+            $state.go('grumbleShow', grumble);
           });
         }
       }
@@ -681,6 +682,10 @@ directives.directive('grumbleSave', function(){
 
 ...and when I try to save a Grumble, it works!
 
+### You do:
+
+Implement Update functionality in the form directive (`grumble_form.directive.js`).
+
 ### The last thing to change is this ugly directive
 
 The directive has way too many brackets.
@@ -690,22 +695,22 @@ The directive has way too many brackets.
 One attempt:
 
 ```js
-.directive('grumbleSave',["$state", "GrumbleFactory", grumbleSave]);
+.directive('grumbleSave',['$state', 'GrumbleFactory', grumbleSave]);
 
 function grumbleSave($state, GrumbleFactory){
   return {
-    templateUrl: "views/grumbles/_grumble_form.html",
+    templateUrl: 'views/grumbles/_grumble_save.html',
     replace: true,
     scope: {
-      grumble: "=",
-      formType: "@"
+      grumble: '=',
+      formType: '@'
     },
     link: linkFunction
   }
   function linkFunction(scope){
     scope.create = function(){
       GrumbleFactory.save(scope.grumble, function(grumble) {
-        $state.go("/grumbles/" + grumble.id);
+        $state.go('/grumbles/' + grumble.id);
       });
     }
   }
@@ -720,14 +725,14 @@ Angular's all about having skinny controllers, in the same way that Rails likes 
 
 My [completed version of this app](https://github.com/ga-dc/grumblr_angular/tree/gh-pages) has a grand total of one controller, used just to load all the Grumbles. Everything else is in directives.
 
-A "soft" rule or guideline for when to use directives or controllers is:
+A 'soft' rule or guideline for when to use directives or controllers is:
 
 > Controllers should be used when you want to do something to a bunch of instances
 > Directives should be used when you want to do something to one particular instance
 
-## We've covered four "options":
+## We've covered four 'options':
 
-- `restrict: "EACM"`
+- `restrict: 'EACM'`
 - `replace`
 - `template` and `templateUrl`
 - `link`
@@ -741,15 +746,15 @@ BONUS: Take that and make it look pretty!
 
 ## Review questions
 
-- What does the mnemonic "MACE" stand for?
+- What does the mnemonic 'MACE' stand for?
   - Comment, Attribute, Class, Element
 - What's the difference between `template` and `templateUrl`?
   - `template` uses a string as a template; `templateUrl` uses a whole file
 - What's the difference between `@` and `=`?
-  - Use `@` for strings and "hard" data, use `=` for objects
+  - Use `@` for strings and 'hard' data, use `=` for objects
 - In the Grumblr app, should you have a `directives` folder with `grumbleDirectives.js` and `commentDirectives.js` inside it, or a `grumble` folder with `grumbleDirectives.js` inside it and a `comment` folder with `commentDirectives.js` inside it?
   - It's your choice! But it's becoming more convention to do it the second way and organize files by the model to which they refer, rather than by the type of file.
-- If I'm making a "grumble cake" custom directive, should I write it `grumble-cake` in the directive file and `<grumbleCake>` in the HTML, or the other way around?
+- If I'm making a 'grumble cake' custom directive, should I write it `grumble-cake` in the directive file and `<grumbleCake>` in the HTML, or the other way around?
   - The other way around.
 - What's the purpose of the `link` property of a directive?
-  - You can define scope variables inside it -- that is, the data that's available inside your custom directive. Putting `scope.name = "Steve"` inside `link` means you can use `{{name}}` inside your directive's template.
+  - You can define scope variables inside it -- that is, the data that's available inside your custom directive. Putting `scope.name = 'Steve'` inside `link` means you can use `{{name}}` inside your directive's template.
