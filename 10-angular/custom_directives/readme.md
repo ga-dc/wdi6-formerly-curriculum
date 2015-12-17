@@ -504,7 +504,7 @@ So just delete that occurence of `grumbleCtrl`:
 
 ## You Do - the same for `edit` and `new`
 
-To start, create a new file for one of your directives. For `new`, it might be `js/grumbles/new.directive.js`. Add something like this:
+To start, create a new file for your directive. Maybe something like `js/grumbles/form.directive.js`. Add something like this:
 
 ```js
 (function(){
