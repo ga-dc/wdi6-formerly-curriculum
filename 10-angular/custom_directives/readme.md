@@ -12,6 +12,7 @@
 [Solution Code](https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.1)
 
 ```
+$ git fetch
 $ git checkout resource-solution
 ```
 
