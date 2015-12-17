@@ -582,7 +582,7 @@ Add an attribute called `form-type` to the directive element:
 ...and be able to add it to scope in the directive Javascript:
 
 ```js
-// grumble_form.directive.js
+// form.directive.js
 
 (function(){
   angular
@@ -693,7 +693,7 @@ I can remove it from the controller and plunk it right in the directive:
 
 ### You do:
 
-Implement Update functionality in the form directive (`grumble_form.directive.js`).
+Implement Update functionality in the form directive (`form.directive.js`).
 
 ### The last thing to change is this ugly directive
 
