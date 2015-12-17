@@ -181,10 +181,10 @@ You can add entire methods to scope and make those available in your HTML. I'll 
   .module('grumbles')
   .directive('myCustomDirective', function(){
     return {
-      template: '<h1 ng-click='sayHi()'>Hi There {{myName}}!</h1>',
+      template: '<h1 ng-click='complementMe()'>Hi There {{myName}}!</h1>',
       link: function(scope){
         scope.myName = 'Slim Shady';
-        scope.sayHi = function(){
+        scope.complementMe = function(){
           alert('You’re looking good today');
         }
       }
