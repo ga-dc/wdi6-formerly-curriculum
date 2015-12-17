@@ -768,3 +768,10 @@ BONUS: Take that and make it look pretty!
   - The other way around.
 - What's the purpose of the `link` property of a directive?
   - You can define scope variables inside it -- that is, the data that's available inside your custom directive. Putting `scope.name = 'Steve'` inside `link` means you can use `{{name}}` inside your directive's template.
+
+## Resources:
+
+- [The Docs](https://docs.angularjs.org/guide/directive)
+- The [John Papa Style Guide](https://github.com/johnpapa/angular-styleguide)
+- Directive [isolate scope discussion]( http://stackoverflow.com/questions/21712147/angularjs-differences-among-in-directive-scope)
+- Example of directive [isolate scope]("./at_vs_equal_vs_amp.html")
