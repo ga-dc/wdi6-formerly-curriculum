@@ -62,11 +62,9 @@ Available commands include:
 
 Make sure you have version 0.16.0 — the update was about two weeks ago and some syntax we will be talking about today has changed.
 
-### Elm REPL (5 - 15/50)
+### [Hello World & Fibonacci Bars](http://elm-by-example.org/chapter1helloworld.html) from elm-by-example.org (20 - 15/50)
 
-We're not going through the [Elm Syntax](http://elm-lang.org/docs/syntax) for the sake of time but you can use this as reference.
-
-Pair up and look at [From JavaScript?](http://elm-lang.org/docs/from-javascript) in the Elm docs. Play around with some simple operations in the Repl (don't worry about running into errors, we'll get working on the basics in just a second but read the error messages and see if anything looks familiar). If you get into building larger projects with Elm (which you should because it's awesome), the compiler and its error messages are one of the languages great aspects. It can tell an incredible amount about how your program works, where there are problems and why.
+For convenience, you can use [try elm](http://elm-lang.org/try). We will be looking at the very fundamental parts of an Elm application.
 
 #### importing [modules](http://elm-lang.org/docs/syntax#modules)
 
@@ -113,10 +111,12 @@ Maybe you want one of the following?
 5 : Int
 ```
 
+### [Elm Architecture](https://github.com/evancz/elm-architecture-tutorial/)
 
+## Resources
 
-### Elm [Core Language](http://elm-lang.org/guide/core-language) (20 - 20/50)
-
-
-
-### Elm [by Example](http://elm-lang.org/examples) (10 - 40/50)
+- [elm-by-example](http://elm-by-example.org/)
+- Elm [Core Language](http://elm-lang.org/guide/core-language)
+- Elm [by Example](http://elm-lang.org/examples)
+- [Elm Syntax](http://elm-lang.org/docs/syntax)
+- [From JavaScript?](http://elm-lang.org/docs/from-javascript)
