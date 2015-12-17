@@ -150,6 +150,24 @@ comment out everything but `t.string :email`
 
     $ rake db:migrate
 
+ Update the seed script
+
+```diff
+# db/seeds.rb
+
++ User.destroy_all
++ User.create!(email:'barb@example.com', password:'pizzajammy')
++ User.create!(email:'bob@example.com', password:'pizzajammy')
+```
+
+    $ rake db:seed
+
+Restart your server, and try logging in!
+
+    $ curl -H 'Content-Type: application/json' \
+	   -X POST http://localhost:3000/auth/sign_in \
+	   -d '{"email": "bob@example.com", "password": "pizzajammy"}'
+
 ## References
 
 * http://blog.ionic.io/angularjs-authentication/
