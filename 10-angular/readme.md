@@ -42,5 +42,3 @@
 - Use a custom directive to render an array of objects
 
 ## Custom Directives and Authentication
-- Build a custom factory that uses $resource and adds an auth token
-- Add custom headers to $http to authenticate an API
