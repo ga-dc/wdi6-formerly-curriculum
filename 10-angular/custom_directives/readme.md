@@ -21,7 +21,7 @@ Make sure the local api is running at localhost:3000 - https://github.com/ga-dc/
 
 Make every Grumble on the index, look like the Grumble in the show.
 
-##### Turn and talk: What things do you see that aren't DRY in Grumblr?
+> Yes, this is a contrived example to create repetitive code.
 
 Our focus is going to be...
 
