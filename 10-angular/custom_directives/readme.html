@@ -53,7 +53,7 @@
         data-chapter-title="Custom Directives"
         data-filepath="10-angular/custom_directives/readme.md"
         data-basepath="../.."
-        data-revision="Wed Dec 16 2015 21:23:13 GMT+0000 (UTC)"
+        data-revision="Thu Dec 17 2015 13:16:49 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1250,24 +1250,23 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="custom-directives">Custom Directives</h1>
-<p><a href="https://youtu.be/_JKtEbOfX0o" target="_blank">Screencast</a></p>
-<h2 id="lenins-objections">Lenin&apos;s Objections</h2>
+<h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
 <li>DRY a given Angular app by extracting repeating logic and HTML into custom directives</li>
-<li>Explain the purpose of each of the four directive options, and the four options for the &quot;restrict&quot; directive, E, A, C, M</li>
+<li>Explain the purpose of each of the four directive options, and the four options for the &apos;restrict&apos; directive, E, A, C, M</li>
 <li>Use a custom directive to render an array of objects</li>
+<li>Use <code>link</code> method to set scope</li>
+<li>Explain the difference between <code>@</code> and <code>=</code> in <code>scope</code> object</li>
 </ul>
-<p>Note that what we cover in class isn&apos;t using Firebase; it&apos;s picking up where you left off yesterday afternoon.</p>
-<pre><code>git checkout -b templating-and-routing-with-comments origin/templating-and-routing-with-comments
-</code></pre><h2 id="this-class-is-about-tidying-up">This class is about tidying up</h2>
-<p>That is: breaking things up into separate files.</p>
-<p>We approached Angular a bit differently than we did, say, Node. You see how we have all of our controllers in one file? We could totally split those up into separate files, and in Node, we probably would have started off that way. Here, though we&apos;re starting with very few files.</p>
-<p>Take a look at the Grumbles controller file. It&apos;s only 46 lines long and I feel like it&apos;s hard to tell which controller is where. It would only take me an extra 2 seconds to figure out, though, which begs the question...</p>
-<p><strong>Why is 2 seconds important? <a href="http://i.imgur.com/Ssz6pjF.png" target="_blank">Relevant visual aid.</a></strong></p>
-<h3 id="all-of-programming-is-shortcuts">All of programming is shortcuts</h3>
-<p>Programming is making shortcuts. The first programmer wrote in 0s and 1s. The second programmer got tired of writing 0s and 1s and invented machine code to do it for him (or her). The third programmer got tired of writing machine code and invented assembly code. The fourth programmer got tired of writing assembly and invented C. The fifth programmer got tired of writing C and invented Ruby. And on the sixth day, God rested.</p>
-<p>Indenting is a tiny thing that has a tremendous impact on the usability of your code. Breaking things up into files is the same. It doesn&apos;t affect the performance of your app at all -- maybe by a couple milliseconds -- it just improves the readability.</p>
-<h5 id="turn-and-talk-what-things-do-you-see-that-arent-dry-in-grumblr">Turn and talk: What things do you see that aren&apos;t DRY in Grumblr?</h5>
+<p><a href="https://github.com/ga-dc/grumblr_angular/tree/resource-solution" target="_blank">Starter Code</a> |
+<a href="https://github.com/ga-dc/grumblr_angular/releases/tag/3.0.1" target="_blank">Solution Code</a></p>
+<pre><code>$ git checkout resource-solution
+</code></pre><p>Make sure the local api is running at localhost:3000 - <a href="https://github.com/ga-dc/grumblr_rails_api" target="_blank">https://github.com/ga-dc/grumblr_rails_api</a></p>
+<h3 id="you-do">You do:</h3>
+<p>Make every Grumble on the index, look like the Grumble in the show.</p>
+<blockquote>
+<p>Yes, this is a contrived example to create repetitive code.</p>
+</blockquote>
 <p>Our focus is going to be...</p>
 <h2 id="drying-the-html">DRYing the HTML</h2>
 <h5 id="what-html-isnt-dry">What HTML isn&apos;t DRY?</h5>
@@ -1282,15 +1281,15 @@
 <p>Basically, a directive is some HTML defined by Angular. A directive can be an attribute, an element, a class, or even a comment.</p>
 <p>All HTML elements have behaviors: anchors take you to a page when you click on them, textareas let you write stuff inside them, and so on. Angular lets you create your own HTML elements and give them behaviors you define.</p>
 <p>Ever wished there was a <code>&lt;comment-box&gt;</code> or a <code>&lt;random-bill-murray-img&gt;</code> element? Now you can make one.</p>
-<p>One of Angular&apos;s sort-of &quot;mission statements&quot; is &quot;to be what HTML would have been if it was designed from the start with web apps in mind.&quot;</p>
-<h3 id="you-can-think-of-directives-as-angular-elements">You can think of directives as &quot;Angular elements&quot;</h3>
+<p>One of Angular&apos;s sort-of &apos;mission statements&apos; is &apos;to be what HTML would have been if it was designed from the start with web apps in mind.&apos;</p>
+<h3 id="you-can-think-of-directives-as-angular-elements">You can think of directives as &apos;Angular elements&apos;</h3>
 <p>To help me keep straight what Angular&apos;s terms mean, I made a <a href="../angular-vs-rails.html">cheat sheet of which Angular terms map to which Rails terms</a>.</p>
 <p>Directives are most like helpers in Rails.</p>
 <h5 id="what-are-some-rails-helpers-you-remember">What are some Rails helpers you remember?</h5>
 <p><code>form_for</code>, <code>link_to</code>, <code>render partial</code>, and so on.</p>
 <h5 id="what-do-those-helpers-do">What do those helpers do?</h5>
 <p>They all add HTML to a view.</p>
-<h3 id="but-what-about-separating-my-concerns">&quot;But what about separating my concerns?&quot;</h3>
+<h3 id="but-what-about-separating-my-concerns">&apos;But what about separating my concerns?&apos;</h3>
 <p>You&apos;re discouraged from using the <code>onclick=</code> attribute, and now all of a sudden you&apos;re being told to use <code>ng-click=</code>?</p>
 <h5 id="why-is-this-bad">Why is this bad?</h5>
 <h5 id="why-is-this-good">Why is this good?</h5>
@@ -1300,68 +1299,73 @@
 <li>It makes the HTML easier to read, whereas in Backbone templates are sort of strewn about and it&apos;s not so easy to see which goes where</li>
 <li>It makes the HTML make <em>more sense</em>, somehow. HTML is meant to tell you the function of content, and this lets you be much more specific about that function. It&apos;s (theoretically) easier to read than Javascript, and it&apos;s more useful than just defining semantics.</li>
 </ol>
-<h3 id="custom-directives-are-the-flagship-of-angular">Custom directives are the &quot;flagship&quot; of Angular</h3>
+<h3 id="custom-directives-are-the-flagship-of-angular">Custom directives are the &apos;flagship&apos; of Angular</h3>
 <p>Without them, Angular is just another MVC framework.</p>
 <p>So: let&apos;s make one!</p>
 <h2 id="grumble-show">Grumble <code>show</code></h2>
+<p>Make sure the local api is running at localhost:3000 - <a href="https://github.com/ga-dc/grumblr_rails_api" target="_blank">https://github.com/ga-dc/grumblr_rails_api</a></p>
 <ul>
-<li><p>In <code>index.html</code>, add this custom directive: <code>&lt;my-custom-directive&gt;&lt;/my-custom-directive&gt;</code>. Refresh the page, and you shouldn&apos;t see anything.</p>
+<li><p>In <code>js/grumbles/index.html</code>, add this custom directive: <code>&lt;my-custom-directive&gt;&lt;/my-custom-directive&gt;</code>. Refresh the page, and you shouldn&apos;t see any changes.  The new directive doesn&apos;t do anything... yet.</p>
 <p><strong>Note about self-closing tags:</strong> This directive doesn&apos;t have any text content, so you could use a self-closing tag, <code>&lt;my-custom-directive /&gt;</code>. However, Angular&apos;s pretty picky about self-closing tags. If your entire page goes blank when you&apos;re using a custom directive with a self-closing tag, try using open and close tags instead.</p>
 </li>
-<li><p>Now we&apos;ll give the directive its behavior. Let&apos;s make <code>js/directives/grumble.js</code>.</p>
+<li><p>Now we&apos;ll give the directive its behavior. Let&apos;s make <code>js/grumbles/grumble.directive.js</code>.</p>
 </li>
 <li><p>Next we&apos;ll set up the actual Javascript. Directives look like pretty much every other module:</p>
+</li>
+</ul>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&apos;grumbles&apos;</span>)
+  .directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
 
   });
 })();
 </code></pre>
-<p>One thing to note is that Angular expects you to write the directive&apos;s name as camelCase inside the directive <em>JS</em>, but as spine case inside the <em>HTML</em>. <code>.directive(&apos;myCustomDirective&apos;)</code> automatically turns into <code>&lt;my-custom-directive&gt;</code>.</p>
-</li>
-<li><p>Now we&apos;ll tell the directive what to use as a template:</p>
+<p>  One thing to note is that Angular expects you to write the directive&apos;s name as camelCase inside the directive <em>JS</em>, but as spine case inside the <em>HTML</em>. <code>.directive(&apos;myCustomDirective&apos;)</code> automatically turns into <code>&lt;my-custom-directive&gt;</code>.</p>
+<ul>
+<li>Now we&apos;ll tell the directive what to use as a template:</li>
+</ul>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&apos;grumbles&apos;</span>)
+  .directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> {
-      template: <span class="hljs-string">&quot;&lt;h1&gt;Hi there!&lt;/h1&gt;&quot;</span>
+      template: <span class="hljs-string">&apos;&lt;h1&gt;Hi There!&lt;/h1&gt;&apos;</span>
     }
   });
 })();
 </code></pre>
-</li>
-<li><p>Finally, inject <code>grumbleDirectives</code> into your <code>app.js</code>, the way we did with <code>grumbleServices</code> and <code>grumbleControllers</code></p>
-</li>
-<li><p>Actually finally, include <code>&lt;script src=&quot;js/directives/grumble.js&quot;&gt;&lt;/script&gt;</code> in the app&apos;s main <code>index.html</code>.</p>
-</li>
+<ul>
+<li>Finally, include <code>&lt;script src=&apos;js/grumbles/grumble.directive.js&apos;&gt;&lt;/script&gt;</code> in the app&apos;s main <code>index.html</code>.</li>
 </ul>
 <p>...and that&apos;s it! Run it, and see what happens.</p>
 <h2 id="directive-options">Directive options</h2>
 <p>Directives can be given a parameter called <code>link</code>. It&apos;ll automatically be run every time an instance of that directive is created.</p>
-<p>For example: </p>
+<p>For example:</p>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&apos;grumbles&apos;</span>)
+  .directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> {
-      template: <span class="hljs-string">&quot;&lt;h1&gt;Hi there!&lt;/h1&gt;&quot;</span>,
+      template: <span class="hljs-string">&apos;&lt;h1&gt;Hi There!&lt;/h1&gt;&apos;</span>,
       link: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;hello&quot;</span>)
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;directive used&apos;</span>)
       }
     }
   });
 })();
 </code></pre>
-<p>Now my console will print <code>hello</code> once for every instance of <code>&lt;my-custom-directive&gt;</code> on a page. So on the <code>index</code> page, if there are 10 Grumbles, and I put <code>&lt;my-custom-directive&gt;</code> inside <code>ng-repeat</code>, <code>ng-repeat</code> will duplicate this directive 10 times, and I should see <code>hello</code> 10 times.</p>
+<p>Now my console will print <code>directive used</code> once for every instance of <code>&lt;my-custom-directive&gt;</code> on a page. So on the <code>index</code> page, if there are 10 Grumbles, and I put <code>&lt;my-custom-directive&gt;</code> inside <code>ng-repeat</code>, <code>ng-repeat</code> will duplicate this directive 10 times, and I should see <code>hello</code> 10 times.</p>
 <p>Angular actually passes into this <code>link</code> function an argument called <code>scope</code>. This is an object that&apos;s available <strong>both in the directive&apos;s JS and the directive&apos;s HTML</strong>. So anything I add to it in the JS will be available in the HTML, and vice-versa.</p>
 <p>For instance, I&apos;m going to add a property called <code>myName</code> to <code>scope</code>. That will let me show the value of <code>myName</code> in the HTML.</p>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&apos;grumbles&apos;</span>)
+  .directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> {
-      template: <span class="hljs-string">&quot;&lt;h1&gt;Hi there, {{myName}}!&lt;/h1&gt;&quot;</span>,
+      template: <span class="hljs-string">&apos;&lt;h1&gt;Hi There {{myName}}!&lt;/h1&gt;&apos;</span>,
       link: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope</span>)</span>{
-        scope.myName = <span class="hljs-string">&quot;Slim Shady&quot;</span>;
+        scope.myName = <span class="hljs-string">&apos;Slim Shady&apos;</span>;
       }
     }
   });
@@ -1370,14 +1374,15 @@
 <h3 id="directive-methods">Directive methods</h3>
 <p>You can add entire methods to scope and make those available in your HTML. I&apos;ll make a method that alerts my name:</p>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&apos;grumbles&apos;</span>)
+  .directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> {
-      template: <span class="hljs-string">&quot;&lt;h1&gt;Hi there, {{myName}}!&lt;button ng-click=&apos;complimentMe()&apos;&gt;Pay me a compliment&lt;/button&gt;&lt;/h1&gt;&quot;</span>,
+      template: <span class="hljs-string">&apos;&lt;h1 ng-click=&apos;</span>complementMe()<span class="hljs-string">&apos;&gt;Hi There {{myName}}!&lt;/h1&gt;&apos;</span>,
       link: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope</span>)</span>{
-        scope.myName = <span class="hljs-string">&quot;Slim Shady&quot;</span>;
-        scope.complimentMe = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-          alert(<span class="hljs-string">&quot;You&apos;re looking good today!&quot;</span>);
+        scope.myName = <span class="hljs-string">&apos;Slim Shady&apos;</span>;
+        scope.complementMe = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+          alert(<span class="hljs-string">&apos;You&#x2019;re looking good today&apos;</span>);
         }
       }
     }
@@ -1398,13 +1403,17 @@
 <h3 id="restricting-your-directive-type">Restricting your directive type</h3>
 <p>If you only want your directive to be available as an element, you add <code>restrict: &apos;E&apos;</code> to your directive. This will make angular use the <code>my-custom-directive</code> <em>element</em> and ignore the <code>my-custom-directive</code> attribute. If I add <code>restrict: &apos;A&apos;</code>, it does the opposite.</p>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&apos;grumbles&apos;</span>)
+  .directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> {
-      template: <span class="hljs-string">&quot;&lt;h1&gt;Hi there, {{myName}}!&lt;/h1&gt;&quot;</span>,
-      restrict: <span class="hljs-string">&quot;E&quot;</span>,
+      template: <span class="hljs-string">&apos;&lt;h1 ng-click=&apos;</span>sayHi()<span class="hljs-string">&apos;&gt;Hi There {{myName}}!&lt;/h1&gt;&apos;</span>,
+      restrict: <span class="hljs-string">&apos;E&apos;</span>,
       link: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope</span>)</span>{
-        scope.myName = <span class="hljs-string">&quot;Slim Shady&quot;</span>;
+        scope.myName = <span class="hljs-string">&apos;Slim Shady&apos;</span>;
+    scope.sayHi = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      alert(<span class="hljs-string">&apos;You&#x2019;re looking good today&apos;</span>);
+    }
       }
     }
   });
@@ -1412,7 +1421,7 @@
 </code></pre>
 <p>I mentioned before that custom directives can be elements, attibutes, comments, or classes. If you&apos;re looking for a mnemonic by which to remember these, use <code>MACE</code>: coMment, Attribute, Class, Element.</p>
 <p>So <code>restrict: &apos;C&apos;</code> would make this work:</p>
-<pre><code>&lt;div class=&quot;my-custom-directive&quot;&gt;&lt;/div&gt;
+<pre><code>&lt;div class=&apos;my-custom-directive&apos;&gt;&lt;/div&gt;
 </code></pre><p>You could do <code>restrict: &apos;M&apos;</code> to make your directive availble as a comment. However, comments don&apos;t actually render any HTML. For instance:</p>
 <pre><code>&lt;!-- directive:my-custom-directive --&gt;
 </code></pre><p>I still see the <code>console.log</code> happening, but that&apos;s it.</p>
@@ -1421,13 +1430,14 @@
 <h3 id="do-you-want-your-directive-to-replace-the-html-that-calls-it-or-just-go-inside-it">Do you want your directive to <em>replace</em> the HTML that calls it, or just go inside it?</h3>
 <p>If my directive looks like this:</p>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&apos;grumbles&apos;</span>)
+  .directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> {
-      template: <span class="hljs-string">&quot;&lt;h1&gt;Hi there, {{myName}}!&lt;/h1&gt;&quot;</span>,
-      restrict: <span class="hljs-string">&quot;E&quot;</span>,
+      template: <span class="hljs-string">&apos;&lt;h1&gt;Hi there, {{myName}}!&lt;/h1&gt;&apos;</span>,
+      restrict: <span class="hljs-string">&apos;E&apos;</span>,
       link: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope</span>)</span>{
-        scope.myName = <span class="hljs-string">&quot;Slim Shady&quot;</span>;
+        scope.myName = <span class="hljs-string">&apos;Slim Shady&apos;</span>;
       }
     }
   });
@@ -1445,14 +1455,15 @@
 </code></pre>
 <p>I can add <code>replace: true</code> and that will have my template <em>replace</em> the element that calls my directive:</p>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&apos;grumbles&apos;</span>)
+  .directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> {
-      template: <span class="hljs-string">&quot;&lt;h1&gt;Hi there, {{myName}}!&lt;/h1&gt;&quot;</span>,
-      restrict: <span class="hljs-string">&quot;E&quot;</span>,
+      template: <span class="hljs-string">&apos;&lt;h1&gt;Hi there, {{myName}}!&lt;/h1&gt;&apos;</span>,
+      restrict: <span class="hljs-string">&apos;E&apos;</span>,
       replace: <span class="hljs-literal">true</span>,
       link: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope</span>)</span>{
-        scope.myName = <span class="hljs-string">&quot;Slim Shady&quot;</span>;
+        scope.myName = <span class="hljs-string">&apos;Slim Shady&apos;</span>;
       }
     }
   });
@@ -1465,20 +1476,21 @@
 <h2 id="attributes">Attributes</h2>
 <p>So far we&apos;ve seen a bunch of ways of getting things <em>out</em> of the Javascript and <em>into</em> the HTML. But how do we get things out of the HTML and into the Javascript?</p>
 <p>We do so using attributes:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;grumbles&quot;</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">&quot;grumble in grumblesCtrl.grumbles&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">my-custom-directive</span> <span class="hljs-attribute">some-attribute</span>=<span class="hljs-value">&quot;I&apos;m an attribute!&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">my-custom-directive</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&apos;grumbles&apos;</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">&apos;grumble in GrumbleIndexViewModel.grumbles&apos;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">my-custom-directive</span> <span class="hljs-attribute">data-some-attribute</span>=<span class="hljs-value">&apos;I&#x2019;m an attribute!&apos;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">my-custom-directive</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&apos;grumbles&apos;</span>)
+  .directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> {
-      template: <span class="hljs-string">&quot;&lt;h1&gt;Hi there, {{myName}}! {{someAttribute}}&lt;/h1&gt;&quot;</span>,
+      template: <span class="hljs-string">&apos;&lt;h1&gt;Hi there, {{myName}}! {{someAttribute}}&lt;/h1&gt;&apos;</span>,
       scope: {
-        someAttribute: <span class="hljs-string">&quot;@&quot;</span>
+        someAttribute: <span class="hljs-string">&apos;@&apos;</span>
       },
       link: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope</span>)</span>{
-        scope.myName = <span class="hljs-string">&quot;Slim Shady&quot;</span>;
+        scope.myName = <span class="hljs-string">&apos;Slim Shady&apos;</span>;
       }
     }
   });
@@ -1497,78 +1509,90 @@
   <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
 </code></pre>
-<p>It yells at me about using a non-standard attribute -- one that doesn&apos;t come built-in-with HTML. You can &quot;fake out&quot; the validator by putting <code>data-</code> in front of the attribute:</p>
+<p>It yells at me about using a non-standard attribute -- one that doesn&apos;t come built-in-with HTML. You can &apos;fake out&apos; the validator by putting <code>data-</code> in front of the attribute:</p>
 <p><code>&lt;div data-my-custom-directive&gt;&lt;/div&gt;</code></p>
 <p>This doesn&apos;t affect the behavior of the attribute at all -- Angular just ignored the <code>data-</code>.</p>
 <p>This is <strong>good, standard practice</strong> because it makes any custom HTML you created -- which could potentially disrupt other components on a page -- much more visible to other developers.</p>
 <p>Similarly, the HTML validator doesn&apos;t like custom elements, and you <strong>can&apos;t</strong> just add <code>data-</code> before them to make them work. <code>&lt;grumble&gt;</code> doesn&apos;t validate, and neither does <code>&lt;data-grumble&gt;</code>. So <code>replace</code> makes it easier to keep your HTML validated.</p>
 <h3 id="writing-html-inside-a-javascript-file-is-kind-of-annoying">Writing HTML inside a Javascript file is kind of annoying</h3>
 <p>Angular lets you put all the HTML inside a completely different file using <code>templateUrl</code> instead of <code>template</code>.</p>
-<p>First, make a file inside the <code>views/grumbles</code> folder called <code>_grumble_show.html</code>. Rails convention for partials is to put an underscore <code>_</code> at the beginning of their file name, so we may as well do that here. Inside it, put:</p>
+<p>First, make a file inside the <code>js/grumbles</code> folder called <code>_grumble_show.html</code>. Rails convention for partials is to put an underscore <code>_</code> at the beginning of their file name, so we may as well do that here. Inside it, put:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Hi there, {{myName}}!<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
 </code></pre>
 <p>Now, replace <code>template</code> in the directive&apos;s JS file with <code>templateUrl</code> and a link to the <code>_grumble_show.html</code> file <em>relative the main <code>index.html</code> file</em>:</p>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&apos;grumbles&apos;</span>)
+  .directive(<span class="hljs-string">&apos;myCustomDirective&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> {
-      templateUrl: <span class="hljs-string">&quot;views/grumbles/_grumble_show.html&quot;</span>,
+      templateUrl: <span class="hljs-string">&apos;js/grumbles/_grumble_show.html&apos;</span>,
       replace: <span class="hljs-literal">true</span>,
       link: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope</span>)</span>{
-        scope.myName = <span class="hljs-string">&quot;Slim Shady&quot;</span>;
+        scope.myName = <span class="hljs-string">&apos;Slim Shady&apos;</span>;
       }
     }
   });
 })();
 </code></pre>
 <h2 id="making-a-more-useful-directive">Making a more useful directive</h2>
-<p>What I&apos;d like to use for my template is the HTML that&apos;s used for showing the information about a grumble. That is: the HTML that&apos;s identical between <code>views/index.html</code> and <code>views/show.html</code>. We&apos;ll make a directive with this as a template.</p>
+<p>What I&apos;d like to use for my template is the HTML that&apos;s used for showing the information about a grumble. That is: the HTML that&apos;s identical between <code>index</code> and <code>show</code>. We&apos;ll make a directive with this as a template.</p>
 <p>For now, we&apos;ll leave <code>show</code> alone and just get this working in <code>index</code>.</p>
-<p>Cut and paste into <code>_grumble_show.html</code> from <code>index.html</code> the HTML that you want to be repeated for each Grumble.</p>
-<p>The next step is to make <code>grumble</code> available inside the partial. If you look at the partial&apos;s HTML, there&apos;s a whole lot of <code>grumble.title</code> and <code>grumble.id</code> and so on. We need to &quot;pass in&quot; that <code>grumble.</code>, which we can do with an attribute.</p>
+<p>Cut and paste into <code>_grumble_show.html</code> from <code>index.html</code> the HTML that you want to be repeated for each Grumble. Your <code>_grumble_show.html</code> should look something like this:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;grumble&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>{{grumble.title}}<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>{{grumble.authorName}}<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>{{grumble.photoUrl}}<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>{{grumble.content}}<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<p>The next step is to make <code>grumble</code> available inside the partial. If you look at the partial&apos;s HTML, there&apos;s a whole lot of <code>grumble.title</code> and <code>grumble.id</code> and so on. We need to &apos;pass in&apos; that <code>grumble.</code>, which we can do with an attribute.</p>
 <p>In <code>index.html</code>, in the space left by all the HTML you cut out, put:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">grumble-show</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&quot;grumble&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">grumble-show</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&apos;grumble&apos;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
 <p>Now I need to make that grumble available inside the partial&apos;s HTML. I do this by setting <code>scope.grumble</code> equal to the grumble we passed in via the attributes:</p>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;grumbleShow&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&apos;grumbles&apos;</span>)
+  .directive(<span class="hljs-string">&apos;grumbleShow&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> {
-      templateUrl: <span class="hljs-string">&quot;views/grumbles/_grumble_show.html&quot;</span>,
+      templateUrl: <span class="hljs-string">&apos;js/grumbles/_grumble_show.html&apos;</span>,
       replace: <span class="hljs-literal">true</span>,
       scope: {
-        grumble: <span class="hljs-string">&quot;@&quot;</span>
+        grumble: <span class="hljs-string">&apos;@&apos;</span>
       }
     }
   });
 })();
 </code></pre>
-<p>It didn&apos;t do anything! If we add <code>{{grumble}}</code> to the <code>index.html</code> all we get is the word &quot;grumble&quot;.</p>
+<p>It didn&apos;t do anything! If we add <code>{{grumble}}</code> to the <code>index.html</code> all we get is the word &apos;grumble&apos;.</p>
 <p>This is because <code>grumble</code> is an <em>object</em>. The <code>@</code> in <code>scope</code> is for passing strings. If you want to pass an object, use <code>=</code>.</p>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;grumbleShow&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&quot;grumbles&quot;</span>)
+  .directive(<span class="hljs-string">&quot;grumbleShow&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> {
-      templateUrl: <span class="hljs-string">&quot;views/grumbles/_grumble_show.html&quot;</span>,
+      templateUrl: <span class="hljs-string">&apos;views/grumbles/_grumble_show.html&apos;</span>,
       replace: <span class="hljs-literal">true</span>,
       scope: {
-        grumble: <span class="hljs-string">&quot;=&quot;</span>
+        grumble: <span class="hljs-string">&apos;=&apos;</span>
       }
     }
   });
 })();
 </code></pre>
-<p><code>views/index.html</code> should look like this:</p>
+<p><code>js/index.html</code> should look like this:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">ng-href</span>=<span class="hljs-value">&quot;/#/grumbles/new&quot;</span>&gt;</span>New Grumble<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;grumbles&quot;</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">&quot;grumble in grumblesCtrl.grumbles&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">grumble-show</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&quot;grumble&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble-show</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">data-ui-sref</span>=<span class="hljs-value">&apos;grumbleNew()&apos;</span>&gt;</span>New Grumble<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&apos;grumbles&apos;</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">&apos;grumble in GrumbleIndexViewModel.grumbles&apos;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">grumble-show</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&apos;grumble&apos;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble-show</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
 <p>Run it and see what happens.</p>
 <p>We&apos;ve effectively created a little widget we can use anywhere on our app!</p>
-<h5 id="what-might-be-good-candidates-for-which-to-make-custom-directives-in-the-wild">What might be good candidates for which to make custom directives &quot;in the wild&quot;?</h5>
+<h5 id="what-might-be-good-candidates-for-which-to-make-custom-directives-in-the-wild">What might be good candidates for which to make custom directives &apos;in the wild&apos;?</h5>
 <ul>
 <li>Date picker</li>
 <li>Video player</li>
@@ -1576,150 +1600,145 @@
 </ul>
 <h2 id="lets-reuse-the-directive">Let&apos;s re-use the directive</h2>
 <p>The whole point of this was to re-use HTML between <code>index.html</code> and <code>show.html</code>. So:</p>
-<p>In <code>show.html</code>, delete the HTML that matches the HTML of the custom directive. The directive will fill in that HTML for us now. In its place, put <code>&lt;grumble-show data-grumble=&quot;grumble&quot;&gt;&lt;/grumble-show&gt;</code>.</p>
+<p>In <code>show.html</code>, delete the HTML that matches the HTML of the custom directive. The directive will fill in that HTML for us now. In its place, put <code>&lt;grumble-show data-grumble=&apos;grumble&apos;&gt;&lt;/grumble-show&gt;</code>.</p>
 <h5 id="turn-and-talk-why-doesnt-the-grumble-show-up">Turn and talk: Why doesn&apos;t the grumble show up?</h5>
-<p>Looking at the <code>show.html</code> page, all of the grumble data comes from <code>grumbleCtrl.grumble</code>. Looking at the <code>_grumble.html</code> page, all of the data comes from just <code>grumble</code>.</p>
+<p>Looking at the <code>show.html</code> page, all of the grumble data comes from <code>GrumbleShowViewModel.grumble</code>. Looking at the <code>_grumble_show.html</code> page, all of the data comes from just <code>grumble</code>.</p>
 <p>So just delete that occurence of <code>grumbleCtrl</code>:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">grumble-show</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&quot;grumbleCtr.grumble&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble-show</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">grumble-show</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&apos;GrumbleShowViewModel.grumble&apos;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble-show</span>&gt;</span>
 </code></pre>
-<h2 id="10-min-do-the-same-for-edit-and-new">10 min: Do the same for <code>edit</code> and <code>new</code></h2>
-<p>To start, make a second directive in your Javascript just by copying and pasting the existing one and changing the name to <code>grumbleSave</code>:</p>
+<h2 id="you-do--the-same-for-edit-and-new">You Do - the same for <code>edit</code> and <code>new</code></h2>
+<p>To start, create a new file for your directive. Maybe something like <code>js/grumbles/form.directive.js</code>. Add something like this:</p>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-  directives.directive(<span class="hljs-string">&apos;grumbleShow&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&apos;grumbles&apos;</span>)
+  .directive(<span class="hljs-string">&apos;grumbleForm&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> {
-      templateUrl: <span class="hljs-string">&quot;views/grumbles/_grumble_show.html&quot;</span>,
+      templateUrl: <span class="hljs-string">&apos;js/grumbles/_grumble_show.html&apos;</span>,
       replace: <span class="hljs-literal">true</span>,
       scope: {
-        grumble: <span class="hljs-string">&quot;=&quot;</span>
-      }
-    }
-  });
-
-  directives.directive(<span class="hljs-string">&apos;grumbleSave&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    <span class="hljs-keyword">return</span> {
-      templateUrl: <span class="hljs-string">&quot;&quot;</span>,
-      replace: <span class="hljs-literal">true</span>,
-      scope: {
-        grumble: <span class="hljs-string">&quot;=&quot;</span>
+        grumble: <span class="hljs-string">&apos;=&apos;</span>
       }
     }
   });
 })();
 </code></pre>
-<p>Put your partial in a file called <code>views/grumbles/_grumble_save.html</code>.</p>
-<p><strong>Note:</strong> Don&apos;t worry about getting the &quot;Save&quot; and &quot;New Grumble&quot; buttons to work; just focus on getting the form to show up properly.</p>
+<p>Put your partial in a file called <code>js/grumbles/_grumble_form.html</code>.</p>
+<p><strong>Note:</strong> Don&apos;t worry about getting the &apos;Save&apos; and &apos;New Grumble&apos; buttons to work; just focus on getting the form to show up properly.</p>
 <p><strong>Note:</strong> Your partial shouldn&apos;t have any references to controllers in it -- just <code>grumble</code>. Delete any references to controllers.</p>
 <h3 id="by-the-end">By the end:</h3>
 <p><code>new.html</code> should be:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">grumble-save</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&quot;{}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble-save</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">grumble-form</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&apos;GrumbleNewViewModel.grumble&apos;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble-form</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
 <p><code>edit.html</code> should be:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">grumble-save</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&quot;grumbleCtrl.grumble&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble-save</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">grumble-form</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&apos;GrumbleEditViewModel.grumble&apos;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble-form</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
-<p><code>_grumble_save.html</code> should be something like:</p>
+<p><code>_grumble_form.html</code> should be something like:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;title&quot;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;grumble.title&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;authorName&quot;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;grumble.authorName&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;content&quot;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;grumble.content&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;photoUrl&quot;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;grumble.photoUrl&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">ng-href</span>=<span class="hljs-value">&quot;/#/grumbles/{{grumble.id}}&quot;</span>&gt;</span>&amp;larr; Back<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&quot;update()&quot;</span>&gt;</span>Save<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;text&apos;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&apos;title&apos;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&apos;grumble.title&apos;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;text&apos;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&apos;authorName&apos;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&apos;grumble.authorName&apos;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&apos;content&apos;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&apos;grumble.content&apos;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;text&apos;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&apos;photoUrl&apos;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&apos;grumble.photoUrl&apos;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">data-ui-sref</span>=<span class="hljs-value">&apos;grumbleShow({id: grumble.id})&apos;</span>&gt;</span>&amp;larr; Back<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&apos;update()&apos;</span>&gt;</span>Save<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
 </code></pre>
 <h3 id="what-about-the-buttons">What about the buttons?</h3>
-<p>We either have to have the Back/Save buttons or the &quot;New grumble&quot; button or all three.</p>
+<p>We either have to have the Back/Save buttons or the &apos;New grumble&apos; button or all three.</p>
 <p>Your best bet is to have all three, and then to show or hide particular buttons based on whether the user&apos;s on <code>new</code> or <code>edit</code>.</p>
 <h5 id="how-might-you-conditionally-hide-buttons">How might you conditionally hide buttons?</h5>
 <p>Add an attribute called <code>form-type</code> to the directive element:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">grumble-save</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&quot;grumbleCtrl.grumble&quot;</span> <span class="hljs-attribute">data-form-type</span>=<span class="hljs-value">&quot;edit&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble-save</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">grumble-form</span> <span class="hljs-attribute">data-grumble</span>=<span class="hljs-value">&apos;GrumbleEditViewModel.grumble&apos;</span> <span class="hljs-attribute">data-form-type</span>=<span class="hljs-value">&apos;edit&apos;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">grumble-form</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
 <p>...and be able to add it to scope in the directive Javascript:</p>
-<pre><code class="lang-js">directives.directive(<span class="hljs-string">&apos;grumbleSave&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">return</span> {
-    templateUrl: <span class="hljs-string">&quot;views/grumbles/_grumble_save.html&quot;</span>,
-    replace: <span class="hljs-literal">true</span>,
-    scope: {
-      grumble: <span class="hljs-string">&quot;=&quot;</span>,
-      formType: <span class="hljs-string">&quot;&quot;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// grumble_form.directive.js</span>
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&quot;grumbles&quot;</span>)
+  .directive(<span class="hljs-string">&apos;grumbleForm&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">return</span> {
+      templateUrl: <span class="hljs-string">&apos;js/grumbles/_grumble_form.html&apos;</span>,
+      replace: <span class="hljs-literal">true</span>,
+      scope: {
+        grumble: <span class="hljs-string">&apos;=&apos;</span>,
+        formType: <span class="hljs-string">&apos;&apos;</span>
+      }
     }
-  }
-});
+  })
+})()
 </code></pre>
 <h5 id="should-formtype-be--or-">Should formType be <code>@</code> or <code>=</code>?</h5>
 <p>Then, show or hide the buttons based on the value of formType:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;title&quot;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;grumble.title&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;authorName&quot;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;grumble.authorName&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;content&quot;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;grumble.content&quot;</span>&gt;</span>new grumble content<span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;photoUrl&quot;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&quot;grumble.photoUrl&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;text&apos;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&apos;title&apos;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&apos;grumble.title&apos;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;text&apos;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&apos;authorName&apos;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&apos;grumble.authorName&apos;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&apos;content&apos;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&apos;grumble.content&apos;</span>&gt;</span>new grumble content<span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&apos;text&apos;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&apos;photoUrl&apos;</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">&apos;grumble.photoUrl&apos;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">&quot;formType == &apos;edit&apos;&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">ng-href</span>=<span class="hljs-value">&quot;/#/grumbles/{{grumble.id}}&quot;</span>&gt;</span>&amp;larr; Back<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&quot;update()&quot;</span>&gt;</span>Save<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">data-ui-sref</span>=<span class="hljs-value">&apos;grumbleShow({id: grumble.id})&apos;</span>&gt;</span>&amp;larr; Back<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&apos;update()&apos;</span>&gt;</span>Save<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-hide</span>=<span class="hljs-value">&quot;formType == &apos;edit&apos;&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&quot;create()&quot;</span>&gt;</span>New Grumble<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">&quot;formType == &apos;new&apos;&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">&apos;create()&apos;</span>&gt;</span>New Grumble<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
 </code></pre>
-<p>If you aren&apos;t caught up yet, you can checkout the solution code:</p>
-<pre><code>git checkout -b custom-directives-reused origin/custom-directives-reused
-</code></pre><h2 id="substituting-directives-for-controllers">Substituting directives for controllers</h2>
-<p>The problem now is that clicking on &quot;New Grumble&quot; doesn&apos;t do anything.</p>
-<h5 id="why-doesnt-clicking-new-grumble-do-anything">Why doesn&apos;t clicking &quot;New Grumble&quot; do anything?</h5>
+<h2 id="substituting-directives-for-controllers">Substituting directives for controllers</h2>
+<p>The problem now is that clicking on &apos;New Grumble&apos; doesn&apos;t do anything.</p>
+<h5 id="why-doesnt-clicking-new-grumble-do-anything">Why doesn&apos;t clicking &apos;New Grumble&apos; do anything?</h5>
 <p>We don&apos;t have a <code>create()</code> method defined inside the partial.</p>
-<p>It <em>is</em> defined inside <code>newGrumbleController</code>:</p>
+<p>It <em>is</em> defined inside <code>GrumbleNewController</code>:</p>
 <pre><code class="lang-js"><span class="hljs-keyword">this</span>.create = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  Grumble.save(<span class="hljs-keyword">this</span>.grumble, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grumble</span>) </span>{
-    $location.path(<span class="hljs-string">&quot;/grumbles/&quot;</span> + grumble.id);
-  })
+  <span class="hljs-keyword">this</span>.grumble.$save()
 }
 </code></pre>
 <p>I can remove it from the controller and plunk it right in the directive:</p>
-<pre><code class="lang-js">directives.directive(<span class="hljs-string">&apos;grumbleSave&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">return</span> {
-    templateUrl: <span class="hljs-string">&quot;views/grumbles/_grumble_save.html&quot;</span>,
-    replace: <span class="hljs-literal">true</span>,
-    scope: {
-      grumble: <span class="hljs-string">&quot;=&quot;</span>,
-      formType: <span class="hljs-string">&quot;@&quot;</span>
-    },
-    link: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope</span>)</span>{
-      <span class="hljs-keyword">this</span>.create = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        Grumble.save(<span class="hljs-keyword">this</span>.grumble, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grumble</span>) </span>{
-          $location.path(<span class="hljs-string">&quot;/grumbles/&quot;</span> + grumble.id);
-        })
+<pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  angular
+  .module(<span class="hljs-string">&quot;grumbles&quot;</span>)
+  .directive(<span class="hljs-string">&apos;grumbleForm&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">return</span> {
+      templateUrl: <span class="hljs-string">&apos;js/grumbles/_grumble_form.html&apos;</span>,
+      replace: <span class="hljs-literal">true</span>,
+      scope: {
+        grumble: <span class="hljs-string">&apos;=&apos;</span>,
+        formType: <span class="hljs-string">&apos;@&apos;</span>
+      },
+      link: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope</span>)</span>{
+        <span class="hljs-keyword">this</span>.create = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+          <span class="hljs-keyword">this</span>.grumble.$save()
+        }
       }
     }
-  }
-});
+  })
+})();
 </code></pre>
 <h5 id="turn-and-talk-what-needs-to-change-for-this-method-to-work-there-are-2-things">Turn and talk: what needs to change for this method to work? There are 2 things.</h5>
 <ul>
 <li><code>this</code> needs to be changed to <code>scope</code>.</li>
-<li><code>$location</code> and <code>Grumble</code> are dependencies that have to be injected.</li>
+<li><code>$state</code> and <code>GrumbleFactory</code> are dependencies that have to be injected.</li>
 </ul>
-<pre><code class="lang-js">directives.directive(<span class="hljs-string">&apos;grumbleSave&apos;</span>,[
-  <span class="hljs-string">&quot;$location&quot;</span>,
-  <span class="hljs-string">&quot;Grumble&quot;</span>,
-  <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$location, Grumble</span>)</span>{
+<pre><code class="lang-js">.directive(<span class="hljs-string">&apos;grumbleForm&apos;</span>,[
+  <span class="hljs-string">&apos;$state&apos;</span>,
+  <span class="hljs-string">&apos;GrumbleFactory&apos;</span>,
+  <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$state, Grumble</span>)</span>{
     <span class="hljs-keyword">return</span> {
-      templateUrl: <span class="hljs-string">&quot;views/grumbles/_grumble_save.html&quot;</span>,
+      templateUrl: <span class="hljs-string">&apos;js/grumbles/_grumble_form.html&apos;</span>,
       replace: <span class="hljs-literal">true</span>,
       scope: {
-        grumble: <span class="hljs-string">&quot;=&quot;</span>,
-        formType: <span class="hljs-string">&quot;@&quot;</span>
+        grumble: <span class="hljs-string">&apos;=&apos;</span>,
+        formType: <span class="hljs-string">&apos;@&apos;</span>
       },
       link: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope</span>)</span>{
         scope.create = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-          Grumble.save(scope.grumble, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grumble</span>) </span>{
-            $location.path(<span class="hljs-string">&quot;/grumbles/&quot;</span> + grumble.id);
+          scope.grumble.$save(scope.grumble, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grumble</span>) </span>{
+            $state.go(<span class="hljs-string">&apos;grumbleShow&apos;</span>, grumble);
           });
         }
       }
@@ -1727,32 +1746,29 @@
   }]
 );
 </code></pre>
-<p>This means I can delete the newGrumbleController altogether. So I&apos;ll delete that from <code>js/controllers/grumbles.js</code>, and I&apos;ll remove it from <code>routes.js</code>:</p>
-<pre><code class="lang-js">when(<span class="hljs-string">&quot;/grumbles/new&quot;</span>, {
-  templateUrl: <span class="hljs-string">&apos;views/grumbles/new.html&apos;</span>
-}).
-</code></pre>
 <p>...and when I try to save a Grumble, it works!</p>
+<h3 id="you-do">You do:</h3>
+<p>Implement Update functionality in the form directive (<code>grumble_form.directive.js</code>).</p>
 <h3 id="the-last-thing-to-change-is-this-ugly-directive">The last thing to change is this ugly directive</h3>
 <p>The directive has way too many brackets.</p>
 <h5 id="refactor-the-directive-so-there-arent-so-many-nested-brackets">Refactor the directive so there aren&apos;t so many nested brackets</h5>
 <p>One attempt:</p>
-<pre><code class="lang-js">directives.directive(<span class="hljs-string">&apos;grumbleSave&apos;</span>,[<span class="hljs-string">&quot;$location&quot;</span>, <span class="hljs-string">&quot;Grumble&quot;</span>, grumbleSave]);
+<pre><code class="lang-js">.directive(<span class="hljs-string">&apos;grumbleForm&apos;</span>,[<span class="hljs-string">&apos;$state&apos;</span>, <span class="hljs-string">&apos;GrumbleFactory&apos;</span>, grumbleForm]);
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">grumbleSave</span>(<span class="hljs-params">$location, Grumble</span>)</span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">grumbleForm</span>(<span class="hljs-params">$state, GrumbleFactory</span>)</span>{
   <span class="hljs-keyword">return</span> {
-    templateUrl: <span class="hljs-string">&quot;views/grumbles/_grumble_save.html&quot;</span>,
+    templateUrl: <span class="hljs-string">&apos;views/grumbles/_grumble_form.html&apos;</span>,
     replace: <span class="hljs-literal">true</span>,
     scope: {
-      grumble: <span class="hljs-string">&quot;=&quot;</span>,
-      formType: <span class="hljs-string">&quot;@&quot;</span>
+      grumble: <span class="hljs-string">&apos;=&apos;</span>,
+      formType: <span class="hljs-string">&apos;@&apos;</span>
     },
     link: linkFunction
   }
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">linkFunction</span>(<span class="hljs-params">scope</span>)</span>{
     scope.create = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-      Grumble.save(scope.grumble, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grumble</span>) </span>{
-        $location.path(<span class="hljs-string">&quot;/grumbles/&quot;</span> + grumble.id);
+      GrumbleFactory.save(scope.grumble, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">grumble</span>) </span>{
+        $state.go(<span class="hljs-string">&apos;/grumbles/&apos;</span> + grumble.id);
       });
     }
   }
@@ -1760,104 +1776,26 @@
 </code></pre>
 <p>Going along in this vein, <strong>we don&apos;t need to have controllers at all</strong> for these views.</p>
 <h3 id="skinny-controllers">Skinny controllers</h3>
-<p>Angular&apos;s all about having skinny controllers, in the same way that Rails likes skinny controllers and fat models. </p>
+<p>Angular&apos;s all about having skinny controllers, in the same way that Rails likes skinny controllers and fat models.</p>
 <p>My <a href="https://github.com/ga-dc/grumblr_angular/tree/gh-pages" target="_blank">completed version of this app</a> has a grand total of one controller, used just to load all the Grumbles. Everything else is in directives.</p>
-<p>A &quot;soft&quot; rule or guideline for when to use directives or controllers is:</p>
+<p>A &apos;soft&apos; rule or guideline for when to use directives or controllers is:</p>
 <blockquote>
 <p>Controllers should be used when you want to do something to a bunch of instances
 Directives should be used when you want to do something to one particular instance</p>
 </blockquote>
-<h2 id="weve-covered-four-options">We&apos;ve covered four &quot;options&quot;:</h2>
+<h2 id="weve-covered-four-options">We&apos;ve covered four &apos;options&apos;:</h2>
 <ul>
-<li><code>restrict: &quot;EACM&quot;</code></li>
+<li><code>restrict: &apos;EACM&apos;</code></li>
 <li><code>replace</code></li>
 <li><code>template</code> and <code>templateUrl</code></li>
 <li><code>link</code></li>
 </ul>
-<h5 id="whats-the-right-way-to-use-them">What&apos;s the <em>right</em> way to use them?</h5>
-<p>There isn&apos;t one.</p>
-<h3 id="the-story-of-robin-and-angular">The story of Robin and Angular</h3>
-<p>I <em>love</em> Angular. It&apos;s so useful! It lets me rapidly prototype a single-page app in a much more visual way since things are governed so much by the HTML.</p>
-<p>However, until recently I was pretty frustrated with Angular.</p>
-<p>At my last job, I was asked to learn Angular to make an app. It <em>kicked my butt</em>. It seemed so &quot;draw the rest of the effing owl&quot;. I couldn&apos;t even find adequate definitions for &quot;controller&quot; and &quot;directive&quot;, let alone know when to use which. I was spared from total failure only by the fact that GA came along and poached me.</p>
-<p>Going it over again before this class, I ran into the same trouble.</p>
-<h4 id="in-retrospect-this-reminds-me-very-much-of-when-i-was-selling-noteboards">In retrospect, this reminds me very much of when I was selling Noteboards.</h4>
-<p>Folks around the world had been asking me to sell them internationally. I had a vague idea that I needed to pay tariffs or at least fill out some paperwork to do so. I looked for instructions. I <em>couldn&apos;t find them anywhere</em>.</p>
-<p>This seemed so &quot;draw the rest of the effing owl&quot;. It was like how to register to sell internationally was a state secret. Being the law-abiding citizen I am, and not wanting to get in trouble, I ended up just not selling them internationally at all.</p>
-<p>...until one day, about 6 months in, it hit me:</p>
-<p><strong>There is no owl.</strong></p>
-<p>The absence of resources telling me the rules and restrictions and the &quot;right&quot; thing to do meant there weren&apos;t rules and restrictions. All I had to do was mail them, and unless I was selling in excess of some random big number or selling some controller substance, I didn&apos;t have to worry about covering my butt. The choices were all my own.</p>
-<h3 id="angular-has-fewer-owls-than-you-think">Angular has fewer owls than you think</h3>
-<p>Unlike, say, Rails, which was written with pretty explicit rules in mind, Angular is in some ways a much more flexible framework: you use it however you want to use it.</p>
-<p>There are lots of choices you have to make <em>for which there aren&apos;t &quot;right&quot; answers</em>, and that have no bearing on the performance of your app whatsoever.</p>
-<p>Once I discovered that Angular is owl-less, I started <em>loving</em> it.</p>
-<h5 id="what-are-some-of-these-choices-that-dont-have-right-answers">What are some of these choices that don&apos;t have right answers?</h5>
-<ul>
-<li>Put methods in directives or controllers?</li>
-<li>Use directives as elements or attributes?</li>
-<li>Use Firebase or AJAX?</li>
-<li>Use <code>&lt;div data-grumble&gt;</code> or <code>&lt;div grumble&gt;</code>?</li>
-<li>Use a CDN or Bower?</li>
-<li>More or fewer files?<ul>
-<li>We put all of the controllers in one big file, but could totally have put them in separate files. The only reason we didn&apos;t is there wasn&apos;t a pressing need since this app is pretty small. But if we make lots of custom directives it might be good to make a file for each.<pre><code class="lang-js"><span class="hljs-comment">// grumbleDirective.js</span>
-angular.module(<span class="hljs-string">&apos;grumblr&apos;</span>).directive(<span class="hljs-string">&apos;grumble&apos;</span>)...
-</code></pre>
-<pre><code class="lang-js"><span class="hljs-comment">// commentDirective.js</span>
-angular.module(<span class="hljs-string">&apos;grumblr&apos;</span>).directive(<span class="hljs-string">&apos;comment&apos;</span>)...
-</code></pre>
-<pre><code class="lang-html">// index.html
-<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;directives/grumbleDirective.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;directives/commentDirective.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-</code></pre>
-</li>
-</ul>
-</li>
-<li>Organize your files by the model they relate to, or by the type of file?<pre><code>directives/
-  grumble.js
-  comment.js
-controllers/
-  grumble.js
-  comment.js
-</code></pre><pre><code>grumble/
-  directives.js
-  controllers.js
-comment/
-  directive.js
-  controllers.js
-</code></pre></li>
-<li>Have a whole bunch of modules, or one?<ul>
-<li>We made a module to hold all of our directives:<pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-<span class="hljs-keyword">var</span> directives = angular.module(<span class="hljs-string">&apos;grumbleDirectives&apos;</span>,[]);
-directives.directive(<span class="hljs-string">&quot;grumble&quot;</span>)...
-directives.directive(<span class="hljs-string">&quot;somethingElse&quot;</span>)...
-})();
-</code></pre>
-...but we could just attach them to the main module we defined in <code>app.js</code>:<pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-angular.module(<span class="hljs-string">&apos;grumblr&apos;</span>);
-.directive(<span class="hljs-string">&quot;grumble&quot;</span>)...
-.directive(<span class="hljs-string">&quot;somethingElse&quot;</span>)...
-})();
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<p>There&apos;s as much a right answer to these as there is to:</p>
-<ul>
-<li>Hyphens or underscores?</li>
-<li>2 spaces or 4?</li>
-<li>Tabs or spaces?</li>
-<li>Atom or SublimeText?</li>
-</ul>
-<p><strong>The only answer is to pick the one you like the best and stick with it.</strong></p>
 <p>There <em>are</em> conventions that you can adhere to, which would be a good idea for maximum readability:</p>
 <p><a href="https://github.com/johnpapa/angular-styleguide" target="_blank">https://github.com/johnpapa/angular-styleguide</a></p>
-<p>The &quot;final solution&quot; for Grumblr was made trying to adhere more-or-less to these guidelines:</p>
-<p><a href="https://github.com/ga-dc/grumblr_angular/tree/firebase-and-directives-with-comments-and-grouped-by-module" target="_blank">https://github.com/ga-dc/grumblr_angular/tree/firebase-and-directives-with-comments-and-grouped-by-module</a></p>
 <p>BONUS: Take that and make it look pretty!</p>
 <h2 id="review-questions">Review questions</h2>
 <ul>
-<li>What does the mnemonic &quot;MACE&quot; stand for?<ul>
+<li>What does the mnemonic &apos;MACE&apos; stand for?<ul>
 <li>Comment, Attribute, Class, Element</li>
 </ul>
 </li>
@@ -1866,19 +1804,19 @@ angular.module(<span class="hljs-string">&apos;grumblr&apos;</span>);
 </ul>
 </li>
 <li>What&apos;s the difference between <code>@</code> and <code>=</code>?<ul>
-<li>Use <code>@</code> for strings and &quot;hard&quot; data, use <code>=</code> for objects</li>
+<li>Use <code>@</code> for strings and &apos;hard&apos; data, use <code>=</code> for objects</li>
 </ul>
 </li>
 <li>In the Grumblr app, should you have a <code>directives</code> folder with <code>grumbleDirectives.js</code> and <code>commentDirectives.js</code> inside it, or a <code>grumble</code> folder with <code>grumbleDirectives.js</code> inside it and a <code>comment</code> folder with <code>commentDirectives.js</code> inside it?<ul>
 <li>It&apos;s your choice! But it&apos;s becoming more convention to do it the second way and organize files by the model to which they refer, rather than by the type of file.</li>
 </ul>
 </li>
-<li>If I&apos;m making a &quot;grumble cake&quot; custom directive, should I write it <code>grumble-cake</code> in the directive file and <code>&lt;grumbleCake&gt;</code> in the HTML, or the other way around?<ul>
+<li>If I&apos;m making a &apos;grumble cake&apos; custom directive, should I write it <code>grumble-cake</code> in the directive file and <code>&lt;grumbleCake&gt;</code> in the HTML, or the other way around?<ul>
 <li>The other way around.</li>
 </ul>
 </li>
 <li>What&apos;s the purpose of the <code>link</code> property of a directive?<ul>
-<li>You can define scope variables inside it -- that is, the data that&apos;s available inside your custom directive. Putting <code>scope.name = &quot;Steve&quot;</code> inside <code>link</code> means you can use `` inside your directive&apos;s template.</li>
+<li>You can define scope variables inside it -- that is, the data that&apos;s available inside your custom directive. Putting <code>scope.name = &apos;Steve&apos;</code> inside <code>link</code> means you can use `` inside your directive&apos;s template.</li>
 </ul>
 </li>
 </ul>
