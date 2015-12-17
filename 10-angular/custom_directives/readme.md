@@ -324,7 +324,7 @@ We do so using attributes:
 
 ```html
 <div class='grumbles' ng-repeat='grumble in GrumbleIndexViewModel.grumbles'>
-  <grumble-show data-some-attribute='I’m an attribute!'></grumble-show>
+  <my-custom-directive data-some-attribute='I’m an attribute!'></my-custom-directive>
 </div>
 ```
 
@@ -332,7 +332,7 @@ We do so using attributes:
 (function(){
   angular
   .module('grumbles')
-  .directive('grumbleShow', function(){
+  .directive('myCustomDirective', function(){
     return {
       template: '<h1>Hi there, {{myName}}! {{someAttribute}}</h1>',
       scope: {
@@ -583,16 +583,21 @@ Add an attribute called `form-type` to the directive element:
 
 ```js
 // grumble_form.directive.js
-directives.directive('grumbleForm', function(){
-  return {
-    templateUrl: 'js/grumbles/_grumble_form.html',
-    replace: true,
-    scope: {
-      grumble: '=',
-      formType: ''
+
+(function(){
+  angular
+  .module("grumbles")
+  .directive('grumbleForm', function(){
+    return {
+      templateUrl: 'js/grumbles/_grumble_form.html',
+      replace: true,
+      scope: {
+        grumble: '=',
+        formType: ''
+      }
     }
-  }
-});
+  })
+})()
 ```
 
 ##### Should formType be `@` or `=`?
@@ -634,21 +639,25 @@ this.create = function(){
 I can remove it from the controller and plunk it right in the directive:
 
 ```js
-directives.directive('grumbleForm', function(){
-  return {
-    templateUrl: 'js/grumbles/_grumble_form.html',
-    replace: true,
-    scope: {
-      grumble: '=',
-      formType: '@'
-    },
-    link: function(scope){
-      this.create = function(){
-        this.grumble.$save()
+(function(){
+  angular
+  .module("grumbles")
+  .directive('grumbleForm', function(){
+    return {
+      templateUrl: 'js/grumbles/_grumble_form.html',
+      replace: true,
+      scope: {
+        grumble: '=',
+        formType: '@'
+      },
+      link: function(scope){
+        this.create = function(){
+          this.grumble.$save()
+        }
       }
     }
-  }
-});
+  })
+})();
 ```
 
 ##### Turn and talk: what needs to change for this method to work? There are 2 things.
