@@ -1,26 +1,11 @@
-# Ruby + MVC with Sinatra
+# Learning Objectives - Week 4 - Ruby + MVC with Sinatra
 
 Build an interactive web application that persists data.
 
-## Learning Objectives
-
-## Unit Testing with RSpec
-
-- Explain the purpose unit testing
-- Explain what role RSpec plays in testing
-- Explain the TDD/BDD Mantra
-- Describe RSpec's basic syntax
-- Define the role of expectations and matchers
-- Explain why isolating tests is a best practice
-- List common expectations and the scenarios they support
-- Differentiate between testing return values and side effects
-- Describe why we avoid testing internal implementation
-
-
-### Ruby Basics
+## Ruby Basics
 
 - Compare/contrast Ruby and Javascript as programming languages.
-- Run Ruby code by REPL (Pry) and file.
+- Run Ruby code by REPL (Pry/Irb) and file.
 - Identify specific differences between Ruby and Javascript in the following areas...
   - Syntax
   - Variables
@@ -28,63 +13,68 @@ Build an interactive web application that persists data.
   - Data Collections
   - Conditionals
   - Methods (Functions)
+- Examine Ruby symbols and data immutability.
+- List three useful methods for arrays and hashes.
 - Demonstrate how variables are stored in memory using Ruby.
+- Use "!" to modify values in memory.
 
-### Ruby Enumerables
+## Ruby Enumerables
 
+- Review Ruby arrays and hashes
 - Use Ruby loops to iterate over code blocks.
 - Define what a Ruby enumerable method is.
-- Identify useful Ruby enumerables.
+- Identify useful Ruby enumerables, including `.each`, `.map` and `.select`.
 - Use enumerables to traverse, sort and modify collections.
 
-### Intro to Object-Oriented Programming in Ruby
+## Object-Oriented Programming in Ruby: Part 1
 
-- Define Object-Oriented Programming, and it's benefits
+- Define Object-Oriented Programming, and its benefits
 - Define and differentiate between classes and objects
-- Create a Ruby a class with an initialize method
+- Create a Ruby class with an initialize method
 - Instantiate an object from a class and interact with it
+- Use `binding.pry` to play with code live
 - Explain the difference between local and instance variables
 - Write setter and getter methods
 - Describe the use of `attr_reader` / `attr_writer` / `attr_accessor`
 - Write methods to define an interface to the class' behaviors
 - Describe how OOP supports encapsulation and abstraction
 
-### Intermediate Object-Oriented Programming in Ruby
+## Object-Oriented Programming in Ruby: Part 2
 
-- Define and differentiate between class and instance methods
 - Explain the use of self in Ruby
 - Explain the difference between local, instance and class variables
+- Define and differentiate between class and instance methods
 - Define inheritance in the context of OOP
 - Write a Ruby class that inherits from another
-- Describe the method lookup chain in Ruby
 
-### Problem Modeling
-
-- Demonstrate how to break a problem into relevant parts
-- Demonstrate multiple solutions, identifying tradeoffs
-- Indicate what is easily solvable
-- Identify areas of high/low risk
-
-### Domain Modeling/ERDs
+## Domain Modeling/ERDs
 
 - Draw an Entity Relationship Diagram (ERD) using proper notation
-- Identify and diagram a one-to-one, one-to-many, many-to-many relationship between d ta entities (physical/virtual)
-- Create a domain model by listing its parts (entities, relationships, attributes a d behavior)
-- Distinguish between entities & attributes (and when you should use one over the o her)
+- Identify and diagram a one-to-one, one-to-many, many-to-many relationship between data entities (physical/virtual)
+- Distinguish between entities & attributes (and when you should use one over the other)
 - Discuss data normalization needs and techniques
 
-###	DB / SQL
+## Relational Databases/SQL
 
-- Explain the purpose of a database
-- Describe benefits a of Database over other storage
-- Define ACID
-- Create a SQL database, containing tables, that is saved locally and is ACID
-- Distinguish between primary keys, foreign keys, and indexes (simple & complex)
-- Describe the datatypes used in SQL and the related field constraints
-- Execute CRUD actions on the database using "pure" SQL (Postgres, PSQL)
-- Use different join types to combine data
+- Explain what a database is and why you would use one as opposed to other persistent storage mechanisms
+- Explain the difference between a database management system (DBMS) and a database, and name the major DBMSes
+- Explain how a DBMS, a database, and SQL relate to one another
+- Describe a database schema and how it relates to tables, rows and columns
+- List common data types used in SQL and the related field constraints
+- Describe what a SQL injection attack is
+- Create a new PostgreSQL database
+- Set up a PostgreSQL database schema with a saved SQL file
+- Seed a PostgreSQL database with a saved SQL file
+- Execute basic SQL commands to execute CRUD actions in a database
+- Define what a foreign key is
+- Describe how to represent a one-to-many relationship in SQL database
+- Explain how to represent one-to-one and many-to-many relationships in a SQL DB
+- Distinguish between keys, foreign keys, and indexes
+- Describe the purpose of the JOIN
+- Use JOIN to combine tables in a SELECT
+- Describe what it means for a database to be normalized
 
-### Sinatra && REST
+## Sinatra && REST
 
 - Explain what REST is and why we use it
 - List the HTTP request verbs
@@ -94,17 +84,15 @@ Build an interactive web application that persists data.
 - Define routes using Sinatra
 - Define routes with URL parameters and access those parameters
 - Use erb to create reusable views and templates
+- Access data from global params hash
 - Use a global template - layout.erb
 - Use forms to submit POST and GET requests
 
-### Active Record
+## ActiveRecord
 - Define ORM and why we use it over a database language.
 - Explain what Active record is and what problems it solves.
 - Explain convention over configuration and how it relates to Active Record
-- Explain the basic idea of metaprogramming and how AR leverages this to provide an interface to the DB
 - Define a class that inherits from AR
-  - Utilize `has_many`, `belongs_to` to establish relationships with AR
-- Difference between class versus instant methods
 - Utilize AR to perform the following CRUD actions on a database
   - create
   - new
@@ -114,15 +102,17 @@ Build an interactive web application that persists data.
   - where
   - update
   - destroy
+- Differentiate between class versus instant methods in Active Record objects/classes
+- Utilize `has_many`, `belongs_to` to establish associations/relationships with AR
 - Seed a database using AR
 
-### Sinatra w/ ActiveRecord
+## Sinatra && ActiveRecord
 
 - Explain the role of ActiveRecord in a web app
 - Diagram the request / response lifecycle in a Sinatra app with AR
 - Load Active Record in a Sinatra app
 - Build RESTful routes to implement CRUD functionality in Sinatra
 - Write ERB views to display AR models
-- Write forms with attributes for ActiveRecord models.
-- Write forms that use nested parameters
+- Write forms with attributes for ActiveRecord models
+- Write forms that use a 'namespace' for parameters
 - Use `_method` param to emulate PUT and DELETE requests
