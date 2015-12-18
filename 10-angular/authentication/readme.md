@@ -236,7 +236,7 @@ In `index.html`, link to the CDNs for `angular-cookie` and `ng-token-auth` modul
 ```
 
 
-### Signing Up
+### Signing In
 
 #### Create a Route
 
