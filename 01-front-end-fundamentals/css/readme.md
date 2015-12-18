@@ -1,6 +1,6 @@
 # CSS
 
-##LO's
+## LO's
 - Construct a CSS rule using selectors, declarations, properties, and values
 - Articulate the pros and cons of stylesheets, styles in the head, and in-line styles
 - Define "cascading" in the context of CSS specificity
@@ -333,4 +333,4 @@ I think that's pretty good. There's some minor tweaks that can be made. Like fon
 
 - What is the difference between `display`'s `block`, `inline-block`, and `inline` values?
 - What are the components of the box model and what do we use it for?
-- What is specificity? How is it related to class and id selectors? 
+- What is specificity? How is it related to class and id selectors?
