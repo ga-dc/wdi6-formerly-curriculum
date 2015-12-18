@@ -199,12 +199,6 @@ class GrumblesController < ApplicationController
 +  before_action :authenticate_user!
 ```
 
-```diff
-# app/controllers/grumbles_controller.rb
-class CommentsController < ApplicationController
-+  before_action :authenticate_user!
-```
-
 Note that we don't want to put this in our `ApplicationController`, so as not
 to incorrectly lock down the signup / signin process as well.
 
