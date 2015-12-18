@@ -234,7 +234,7 @@ In `index.html`, link to the CDNs for `angular-cookie` and `ng-token-auth` modul
 + ]);
 
 + function AuthConfigFunction($authprovider) {
-+   $authprovider.configure({
++   $authProvider.configure({
 +     apiUrl: "http://localhost:3000"
 +   });
 + }
