@@ -1,27 +1,14 @@
-# Learning Objectives - Week 11 - Christina Angulara!
+# Learning Objectives - Week 10 - Christina Angulara!
 
-## Introduction to Angular
+## Angular Intro, Controllers, and Directives
 - Describe the benefits of using a front end framework
 - Explain how libraries differ from frameworks.
-- Compare MVVM paradigm with traditional MVC
-- Build an angular controller with hard coded data.
-- Render controller data in the view using angular expressions
-- explain why controllerAs is preferred over `$scope`
-- explain what angular directives are and do
-- contrast angular directives and javascript event listeners
-- use ng-repeat to iterate over data
-- use ng-if & ng-hide/ng-show to hide and show elements
-- use `ng-submit`/`ng-click` to run controller functions when a form is submitted or a button is clicked
-- explain how angular utilizes `ng-model` to leverage 2-way data binding in fluid user experience
-- explain 2 way databinding
-- explain how angular utilizes `ng-model` to execute 2-way databinding
-- Compare/contrast the components of angular to OOJS / Backbone.js
-
-## Angular Directives
-- Use ng-repeat to iterate over data
-- Use ng-if & ng-hide/ng-show to hide & show elements
-- Use ng-form to build forms
-- Research other Angular directives that are included in Angular's library
+- Build a controller with hard coded data.
+- Render and bind controller data in the view.
+- Explain what angular directives do and how they are leveraged to execute JS.
+- Use `ng-repeat` to iterate over data.
+- use `ng-hide`/`ng-show` to hide and show elements.
+- use `ng-submit` to create hard coded objects on the client.
 
 ## UI Router
 - Explain what dependency injection is and what problem it solves
@@ -32,13 +19,22 @@
 - Define multiple controllers in a single module
 
 ## Resources and Factories
-- Explain the purpose of services in Angular
-- Create restful client-side routes using $routeProvider
-- Create a custom service to access data from an api
+- Explain the purpose of and differentiate between Factories and Services in Angular.
+- Use `ngResource` to pull information from an API.
+- Define multiple controllers in a single module.
+- Use $stateParams to access query parameters and update the URL.
+- Create separate views and routes for each CRUD action.
 
 ## Custom Directives
 - DRY a given Angular app by extracting repeating logic and HTML into custom directives
-- Explain the purpose of each of the four directive options, and the four options for the "restrict" directive, E, A, C, M
+- Explain the purpose of each of the four directive options, and the four options for the 'restrict' directive, E, A, C, M
 - Use a custom directive to render an array of objects
+- Use `link` method to set scope
+- Explain the difference between `@` and `=` in `scope` object
 
-## Custom Directives and Authentication
+## Authentication
+- Differentiate between token and cookie-based authentication
+- Describe how token-based authentication is implemented, and when it's necessary
+- List common security issues when implementing token-based authentication
+- Use the devise_token_auth gem to implement token-based auth in a rails app.
+- Use the ng-token-auth plugin to implement token-based auth in an angular application
