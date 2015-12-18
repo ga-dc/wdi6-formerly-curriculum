@@ -53,7 +53,7 @@
         data-chapter-title="MVC with Rails"
         data-filepath="05-mvc-with-rails/readme.md"
         data-basepath=".."
-        data-revision="Fri Dec 18 2015 15:53:27 GMT+0000 (UTC)"
+        data-revision="Fri Dec 18 2015 16:29:16 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1217,34 +1217,21 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="mvc-with-rails">MVC with Rails`</h1>
+                        <h1 id="learning-objectives--week-5--mvc-with-rails">Learning Objectives - Week 5 - MVC with Rails`</h1>
 <p>Build a scalable, maintainable, and secure web application that manipulates data.</p>
-<h2 id="learning-objectives">Learning Objectives</h2>
-<h3 id="unit-testing-with-rspec">Unit Testing with RSpec</h3>
-<ul>
-<li>Explain the purpose unit testing</li>
-<li>Explain what role RSpec plays in testing</li>
-<li>Explain the TDD/BDD Mantra</li>
-<li>Describe RSpec&apos;s basic syntax</li>
-<li>Define the role of expectations and matchers</li>
-<li>Explain why isolating tests is a best practice</li>
-<li>List common expectations and the scenarios they support</li>
-<li>Differentiate between testing return values and side effects</li>
-<li>Describe why we avoid testing internal implementation</li>
-</ul>
-<h3 id="mvcintro-to-rails">MVC/Intro to Rails</h3>
+<h2 id="mvcintro-to-rails">MVC/Intro to Rails</h2>
 <ul>
 <li>Explain what Ruby on Rails is and it&apos;s architectural components (rMVC)</li>
 <li>Explain the lifecycle of an HTTP request in Ruby on Rails</li>
 <li>Explain how Convention over Configuration relates to Ruby on Rails</li>
-<li>Explain the structure of a rails application (folders &amp; files)</li>
-<li>Compare and contrast the structure Sinatra and Rails appps</li>
+<li>List the most common folders in a rails application and describe their purpose</li>
+<li>Compare and contrast the structure Sinatra and Rails apps</li>
 <li>Create a new Ruby on Rails application</li>
-<li>Create a Rails App with a RESTful interface</li>
+<li>Build a Rails App with a RESTful interface</li>
 <li>Follow Rails naming conventions when creating models, views and controllers</li>
 <li>Use error driven development in Rails to identify common errors and implement solutions for them.</li>
 </ul>
-<h3 id="models--migrations">Models &amp; Migrations</h3>
+<h2 id="models--migrations">Models &amp; Migrations</h2>
 <ul>
 <li>Create a new rails application with postgres as the default</li>
 <li>Use <code>rake</code> to create, edit, and update, and seed the db</li>
@@ -1257,51 +1244,51 @@
 <li>Use <code>timestamps</code> to timestamp crud actions</li>
 <li>Use shorthand syntax to create migrations from the command line.</li>
 </ul>
-<h3 id="views--controllers">Views &amp; Controllers</h3>
+<h2 id="views--controllers">Views &amp; Controllers</h2>
 <ul>
-<li>Describe the role of controllers and views in a Rails app</li>
+<li>Describe the roles of controllers and views in a Rails app</li>
 <li>Explain how the router directs requests to a specific controller and action</li>
 <li>Explain how controller actions map to specific views</li>
-<li>Describe the Rails convention for implicity rendering a view from an action</li>
+<li>Describe the Rails convention for implicitly rendering a view from an action</li>
 <li>Use <code>strong_params</code> to limit what attributes can be modified</li>
 <li>Describe the role of instance variables in sharing information between an action and its view</li>
-<li>Describe the difference between a <code>redirect</code> and a <code>render</code></li>
+<li>Differentiate between <code>redirect</code> and  <code>render</code></li>
 </ul>
-<h3 id="helpers">Helpers</h3>
+<h2 id="helpers">Helpers</h2>
 <ul>
 <li>Describe how Rails&apos; built-in helper methods make our code mode readable and flexible</li>
 <li>Use Rails&apos; path helper methods to generate paths for links and redirects</li>
 <li>Generate links in views using <code>link_to</code></li>
 <li>Generate images in views using <code>image_tag</code></li>
 <li>Generate model forms using the <code>form_for</code> helper</li>
-<li>Generate non-model forms using  the <code>form_tag</code> helper</li>
-<li>Describe what a CSRF attack is <a href="https://www.youtube.com/watch?v=uycmHQM_h64" target="_blank">example video</a></li>
+<li>DRY up views using partials.</li>
+<li>Describe what a CSRF attack is</li>
 <li>Explain the purpose of authenticity tokens in Rails forms</li>
 </ul>
-<h3 id="routing--resources">Routing &amp; Resources</h3>
+<h2 id="routing--resources">Routing &amp; Resources</h2>
 <ul>
 <li>Review the relationship between HTTP requests and controller actions.</li>
 <li>Identify the role a router (<code>routes.rb</code>) plays in the Rails MVC model.</li>
-<li>Create routes for individual pages in Rails, both RESTful and otherwise.</li>
-<li>Use <code>resources</code> to define routes for a RESTful controller.</li>
-<li>Use <code>rake routes</code> to display RESTful routes.</li>
+<li>Create routes for individual pages in Rails.</li>
+<li>Use resources to define routes for a RESTful controller.</li>
+<li>Use rake routes to display RESTful routes.</li>
 <li>Implement route names in Rails link helpers.</li>
 <li>Implement nested routes in a Rails application.</li>
 <li>Describe how path helpers work for nested routes.</li>
-<li>Implement <code>form_for</code> to build a form for a nested resource.</li>
+<li>Implement form_for to build a form for a nested resource.</li>
 </ul>
-<h3 id="error-handling">Error Handling</h3>
+<h2 id="error-handling">Error Handling</h2>
 <ul>
-<li>Explain the benefits of explicitly handling errors</li>
-<li>Produce and handle an error in Ruby using the keywords <code>begin</code>, <code>rescue</code>, <code>raise</code>, and <code>ensure</code></li>
 <li>Explain the purpose of <code>flash</code> in Rails</li>
 <li>Compare and contrast <code>flash[:notice]</code> and <code>flash[:alert]</code></li>
 <li>List three ActiveRecord methods that trigger validations</li>
 <li>Compare and contrast the validation helpers <code>confirmation</code>, <code>inclusion</code>, <code>exclusion</code>, <code>length</code>, <code>presence</code>, <code>uniqueness</code>, and <code>numericality</code></li>
 <li>Compare and contrast the validation options <code>allow_nil</code>, <code>allow_blank</code>, and <code>on</code></li>
 <li>Create a custom validation on an ActiveRecord model</li>
+<li>Explain the benefits of explicitly handling errors</li>
+<li>Produce and handle an error in Ruby using the keywords <code>begin</code>, <code>rescue</code>, and <code>raise</code>.</li>
 </ul>
-<h3 id="sessions--auth">Sessions &amp; Auth</h3>
+<h2 id="sessions--auth">Sessions &amp; Auth</h2>
 <ul>
 <li>Explain what state is in a web application</li>
 <li>Explain how sessions give state to a web application</li>
@@ -1312,17 +1299,27 @@
 <li>Implement useful helper methods devise provides</li>
 <li>Differentiate between authentication and authorization</li>
 </ul>
-<h3 id="deployment">Deployment</h3>
+<h2 id="deployment">Deployment</h2>
 <ul>
+<li>Define &apos;deployment&apos;, and contrast different methods of deploying an application</li>
 <li>Describe the difference between development, test, and production environments</li>
-<li>List and contrast different methods of deploying an application</li>
-<li>Describe the major points of a <code>12-factor</code> application as applied to deployment</li>
-<li>Use environment variables to keep sensitive data out of code</li>
 <li>Deploy a rails application using heroku</li>
 <li>Run migrations on heroku</li>
-<li>Debug errors on heroku (heroku logs)</li>
+<li>Debug errors on heroku (using logs)</li>
+<li>Describe the major points of a <code>12-factor</code> application as applied to deployment</li>
+<li>Use environment variables to keep sensitive data out of code</li>
 <li>List common pitfalls and their solutions when deploying to heroku</li>
 <li>Describe the role of the asset pipeline in rails</li>
+</ul>
+<h2 id="unit-testing-with-rspec">Unit Testing with RSpec</h2>
+<ul>
+<li>List benefits of unit testing, both to the creation process and to the collaboration process</li>
+<li>Describe the difference between <code>context</code>, <code>describe</code>, and <code>it</code></li>
+<li>Describe the difference between <code>let</code>, <code>before(:each)</code>, and <code>before(:all)</code></li>
+<li>Plan the creation of a project by reducing it to a series of unit tests</li>
+<li>Contrast unit tests and functional tests</li>
+<li>Add specs to an existing Sinatra app</li>
+<li>Define Test-Driven Development and give an example of why it&apos;s useful</li>
 </ul>
 
                     

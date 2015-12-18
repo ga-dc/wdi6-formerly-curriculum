@@ -53,7 +53,7 @@
         data-chapter-title="Ruby + MVC with Sinatra"
         data-filepath="04-ruby-mvc-sinatra/readme.md"
         data-basepath=".."
-        data-revision="Fri Dec 18 2015 15:53:27 GMT+0000 (UTC)"
+        data-revision="Fri Dec 18 2015 16:29:16 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1217,25 +1217,12 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="ruby--mvc-with-sinatra">Ruby + MVC with Sinatra</h1>
+                        <h1 id="learning-objectives--week-4--ruby--mvc-with-sinatra">Learning Objectives - Week 4 - Ruby + MVC with Sinatra</h1>
 <p>Build an interactive web application that persists data.</p>
-<h2 id="learning-objectives">Learning Objectives</h2>
-<h2 id="unit-testing-with-rspec">Unit Testing with RSpec</h2>
-<ul>
-<li>Explain the purpose unit testing</li>
-<li>Explain what role RSpec plays in testing</li>
-<li>Explain the TDD/BDD Mantra</li>
-<li>Describe RSpec&apos;s basic syntax</li>
-<li>Define the role of expectations and matchers</li>
-<li>Explain why isolating tests is a best practice</li>
-<li>List common expectations and the scenarios they support</li>
-<li>Differentiate between testing return values and side effects</li>
-<li>Describe why we avoid testing internal implementation</li>
-</ul>
-<h3 id="ruby-basics">Ruby Basics</h3>
+<h2 id="ruby-basics">Ruby Basics</h2>
 <ul>
 <li>Compare/contrast Ruby and Javascript as programming languages.</li>
-<li>Run Ruby code by REPL (Pry) and file.</li>
+<li>Run Ruby code by REPL (Pry/Irb) and file.</li>
 <li>Identify specific differences between Ruby and Javascript in the following areas...<ul>
 <li>Syntax</li>
 <li>Variables</li>
@@ -1245,63 +1232,68 @@
 <li>Methods (Functions)</li>
 </ul>
 </li>
+<li>Examine Ruby symbols and data immutability.</li>
+<li>List three useful methods for arrays and hashes.</li>
 <li>Demonstrate how variables are stored in memory using Ruby.</li>
+<li>Use &quot;!&quot; to modify values in memory.</li>
 </ul>
-<h3 id="ruby-enumerables">Ruby Enumerables</h3>
+<h2 id="ruby-enumerables">Ruby Enumerables</h2>
 <ul>
+<li>Review Ruby arrays and hashes</li>
 <li>Use Ruby loops to iterate over code blocks.</li>
 <li>Define what a Ruby enumerable method is.</li>
-<li>Identify useful Ruby enumerables.</li>
+<li>Identify useful Ruby enumerables, including <code>.each</code>, <code>.map</code> and <code>.select</code>.</li>
 <li>Use enumerables to traverse, sort and modify collections.</li>
 </ul>
-<h3 id="intro-to-objectoriented-programming-in-ruby">Intro to Object-Oriented Programming in Ruby</h3>
+<h2 id="objectoriented-programming-in-ruby-part-1">Object-Oriented Programming in Ruby: Part 1</h2>
 <ul>
-<li>Define Object-Oriented Programming, and it&apos;s benefits</li>
+<li>Define Object-Oriented Programming, and its benefits</li>
 <li>Define and differentiate between classes and objects</li>
-<li>Create a Ruby a class with an initialize method</li>
+<li>Create a Ruby class with an initialize method</li>
 <li>Instantiate an object from a class and interact with it</li>
+<li>Use <code>binding.pry</code> to play with code live</li>
 <li>Explain the difference between local and instance variables</li>
 <li>Write setter and getter methods</li>
 <li>Describe the use of <code>attr_reader</code> / <code>attr_writer</code> / <code>attr_accessor</code></li>
 <li>Write methods to define an interface to the class&apos; behaviors</li>
 <li>Describe how OOP supports encapsulation and abstraction</li>
 </ul>
-<h3 id="intermediate-objectoriented-programming-in-ruby">Intermediate Object-Oriented Programming in Ruby</h3>
+<h2 id="objectoriented-programming-in-ruby-part-2">Object-Oriented Programming in Ruby: Part 2</h2>
 <ul>
-<li>Define and differentiate between class and instance methods</li>
 <li>Explain the use of self in Ruby</li>
 <li>Explain the difference between local, instance and class variables</li>
+<li>Define and differentiate between class and instance methods</li>
 <li>Define inheritance in the context of OOP</li>
 <li>Write a Ruby class that inherits from another</li>
-<li>Describe the method lookup chain in Ruby</li>
 </ul>
-<h3 id="problem-modeling">Problem Modeling</h3>
-<ul>
-<li>Demonstrate how to break a problem into relevant parts</li>
-<li>Demonstrate multiple solutions, identifying tradeoffs</li>
-<li>Indicate what is easily solvable</li>
-<li>Identify areas of high/low risk</li>
-</ul>
-<h3 id="domain-modelingerds">Domain Modeling/ERDs</h3>
+<h2 id="domain-modelingerds">Domain Modeling/ERDs</h2>
 <ul>
 <li>Draw an Entity Relationship Diagram (ERD) using proper notation</li>
-<li>Identify and diagram a one-to-one, one-to-many, many-to-many relationship between d ta entities (physical/virtual)</li>
-<li>Create a domain model by listing its parts (entities, relationships, attributes a d behavior)</li>
-<li>Distinguish between entities &amp; attributes (and when you should use one over the o her)</li>
+<li>Identify and diagram a one-to-one, one-to-many, many-to-many relationship between data entities (physical/virtual)</li>
+<li>Distinguish between entities &amp; attributes (and when you should use one over the other)</li>
 <li>Discuss data normalization needs and techniques</li>
 </ul>
-<h3 id="db--sql">DB / SQL</h3>
+<h2 id="relational-databasessql">Relational Databases/SQL</h2>
 <ul>
-<li>Explain the purpose of a database</li>
-<li>Describe benefits a of Database over other storage</li>
-<li>Define ACID</li>
-<li>Create a SQL database, containing tables, that is saved locally and is ACID</li>
-<li>Distinguish between primary keys, foreign keys, and indexes (simple &amp; complex)</li>
-<li>Describe the datatypes used in SQL and the related field constraints</li>
-<li>Execute CRUD actions on the database using &quot;pure&quot; SQL (Postgres, PSQL)</li>
-<li>Use different join types to combine data</li>
+<li>Explain what a database is and why you would use one as opposed to other persistent storage mechanisms</li>
+<li>Explain the difference between a database management system (DBMS) and a database, and name the major DBMSes</li>
+<li>Explain how a DBMS, a database, and SQL relate to one another</li>
+<li>Describe a database schema and how it relates to tables, rows and columns</li>
+<li>List common data types used in SQL and the related field constraints</li>
+<li>Describe what a SQL injection attack is</li>
+<li>Create a new PostgreSQL database</li>
+<li>Set up a PostgreSQL database schema with a saved SQL file</li>
+<li>Seed a PostgreSQL database with a saved SQL file</li>
+<li>Execute basic SQL commands to execute CRUD actions in a database</li>
+<li>Define what a foreign key is</li>
+<li>Describe how to represent a one-to-many relationship in SQL database</li>
+<li>Explain how to represent one-to-one and many-to-many relationships in a SQL DB</li>
+<li>Distinguish between keys, foreign keys, and indexes</li>
+<li>Describe the purpose of the JOIN</li>
+<li>Use JOIN to combine tables in a SELECT</li>
+<li>Describe what it means for a database to be normalized</li>
 </ul>
-<h3 id="sinatra--rest">Sinatra &amp;&amp; REST</h3>
+<h2 id="sinatra--rest">Sinatra &amp;&amp; REST</h2>
 <ul>
 <li>Explain what REST is and why we use it</li>
 <li>List the HTTP request verbs</li>
@@ -1311,20 +1303,16 @@
 <li>Define routes using Sinatra</li>
 <li>Define routes with URL parameters and access those parameters</li>
 <li>Use erb to create reusable views and templates</li>
+<li>Access data from global params hash</li>
 <li>Use a global template - layout.erb</li>
 <li>Use forms to submit POST and GET requests</li>
 </ul>
-<h3 id="active-record">Active Record</h3>
+<h2 id="activerecord">ActiveRecord</h2>
 <ul>
 <li>Define ORM and why we use it over a database language.</li>
 <li>Explain what Active record is and what problems it solves.</li>
 <li>Explain convention over configuration and how it relates to Active Record</li>
-<li>Explain the basic idea of metaprogramming and how AR leverages this to provide an interface to the DB</li>
-<li>Define a class that inherits from AR<ul>
-<li>Utilize <code>has_many</code>, <code>belongs_to</code> to establish relationships with AR</li>
-</ul>
-</li>
-<li>Difference between class versus instant methods</li>
+<li>Define a class that inherits from AR</li>
 <li>Utilize AR to perform the following CRUD actions on a database<ul>
 <li>create</li>
 <li>new</li>
@@ -1336,17 +1324,19 @@
 <li>destroy</li>
 </ul>
 </li>
+<li>Differentiate between class versus instant methods in Active Record objects/classes</li>
+<li>Utilize <code>has_many</code>, <code>belongs_to</code> to establish associations/relationships with AR</li>
 <li>Seed a database using AR</li>
 </ul>
-<h3 id="sinatra-w-activerecord">Sinatra w/ ActiveRecord</h3>
+<h2 id="sinatra--activerecord">Sinatra &amp;&amp; ActiveRecord</h2>
 <ul>
 <li>Explain the role of ActiveRecord in a web app</li>
 <li>Diagram the request / response lifecycle in a Sinatra app with AR</li>
 <li>Load Active Record in a Sinatra app</li>
 <li>Build RESTful routes to implement CRUD functionality in Sinatra</li>
 <li>Write ERB views to display AR models</li>
-<li>Write forms with attributes for ActiveRecord models.</li>
-<li>Write forms that use nested parameters</li>
+<li>Write forms with attributes for ActiveRecord models</li>
+<li>Write forms that use a &apos;namespace&apos; for parameters</li>
 <li>Use <code>_method</code> param to emulate PUT and DELETE requests</li>
 </ul>
 
