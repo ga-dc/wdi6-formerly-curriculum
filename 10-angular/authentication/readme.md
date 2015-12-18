@@ -38,10 +38,10 @@ reasons for this:
 Due to browser security restrictions regarding cookies and CORS, setting
 cookies for AJAX requests requires additional configuration and complexity.
 
-Without cookies, managing CSRF security can be a real issue. Tokens allow us to
+Using cookies, managing CSRF security can be a real issue. Tokens allow us to
 safely disable CSRF protection for AJAX requests. The reason behind this has to
-do with the fact that sites and 'trick' the browser to send cookies on forged
-requests, but *can't* trick the browser into sending tokens.
+do with the fact that [black hats](https://en.wikipedia.org/wiki/Black_hat) can 'trick' the browser to send cookies on forged
+requests, but *can not* trick the browser into sending tokens.
 
 Finally, cookies are only valid for *web apps*. If we wanted to build native
 mobile or desktop (or even other server apps) that authenticate against our API,
@@ -51,13 +51,13 @@ solution.
 ### How Token Based Auth Works
 
 In general, token-based auth is very similar to cookie based auth. The main
-difference is that the token (simialar to the session id) is NOT stored in a
-cookie. Instead, it's stored in memory by a JS app (or in native apps, in memory).
+difference is that the token (similar to the session id) is NOT stored in a
+cookie. Instead, it's stored in memory (or local storage) by a JS app or native app.
 
-1. When the user logs in, the system confirms their username and password match, and if so, it sends a response to the client app that includes a token (in the HTTP headers)
-2. The client app 'remembers' the token in memory or in local storage.
+1. When the user logs in, the system confirms their username and password match, and if so, it generates a token, associating it with this user.  The response to the client app includes this token (in the HTTP headers).
+2. The client app 'remembers' the token (in memory or local storage).
 3. On subsequent requests, the client app includes the token in the HTTP headers.
-4. The server compares the token it's own database of users / tokens, and loads the correct user for that request.
+4. The server compares the token to its own database of users / tokens, and loads the correct user for that request.
 5. The server-side app puts that user into a variable like `currentUser`
 
 ![cookie vs token auth flow](assets/cookie_vs_token_auth.png)
@@ -498,7 +498,7 @@ tips:
 * if so, can you re-use an existing controller?
 * you may need to update the auth nav directive to detect when the user signs up (which auto-signs them in)
   * consult the ng-token-auth docs to find out more about what events are fired and when
-* you'll probably need a different form and action to handle submtting that form
+* you'll probably need a different form and action to handle submitting that form
 * again, consult ng-token-auth docs for info on how to submit registration info to the API
 
 If you get really stuck, check out the [Grumblr Angular Authentication Solution Branch](https://github.com/ga-dc/grumblr_angular/tree/authentication)
