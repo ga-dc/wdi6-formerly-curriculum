@@ -228,8 +228,8 @@ In `index.html`, link to the CDNs for `angular-cookie` and `ng-token-auth` modul
 +   AuthConfigFunction
 + ]);
 
-+ function AuthConfigFunction($authprovider) {
-+   $authprovider.configure({
++ function AuthConfigFunction($authProvider) {
++   $authProvider.configure({
 +     apiUrl: "http://localhost:3000"
 +   });
 + }
