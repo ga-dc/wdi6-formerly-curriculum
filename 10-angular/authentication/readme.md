@@ -152,7 +152,7 @@ Update `config/initializers/devise.rb`, so that devise will support login,
 signup, etc via JSON API calls.
 
 ```diff
-- config.navigational_formats = ['*/*', :html]
+- * config.navigational_formats = ['*/*', :html]
 + config.navigational_formats = ['*/*', :html, :json]
 ```
 
@@ -200,7 +200,7 @@ class GrumblesController < ApplicationController
 ```
 
 ```diff
-# app/controllers/grumbles_controller.rb
+# app/controllers/comments_controller.rb
 class CommentsController < ApplicationController
 +  before_action :authenticate_user!
 ```
@@ -212,7 +212,7 @@ to incorrectly lock down the signup / signin process as well.
 
 https://github.com/ga-dc/grumblr_angular
 
-    $ git checkout -b authentication custom-directives-solution
+    $ git checkout -b authentication origin/custom-directives-solution
 
 In `index.html`, link to the CDNs for `angular-cookie` and `ng-token-auth` modules:
 
