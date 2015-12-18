@@ -212,7 +212,7 @@ to incorrectly lock down the signup / signin process as well.
 
 https://github.com/ga-dc/grumblr_angular
 
-    $ git checkout -b authentication custom-directives-solution
+    $ git checkout -b authentication origin/custom-directives-solution
 
 In `index.html`, link to the CDNs for `angular-cookie` and `ng-token-auth` modules:
 
