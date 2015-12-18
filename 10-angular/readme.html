@@ -37,7 +37,7 @@
         
     
     
-    <link rel="next" href="../10-angular/custom_directives/readme.html" />
+    <link rel="next" href="../10-angular/angular-vs-rails.html" />
     
     
     <link rel="prev" href="../08-single-page-web-apps/tdd/readme.html" />
@@ -53,7 +53,7 @@
         data-chapter-title="MVW with Angular"
         data-filepath="10-angular/readme.md"
         data-basepath=".."
-        data-revision="Fri Dec 18 2015 13:56:46 GMT+0000 (UTC)"
+        data-revision="Fri Dec 18 2015 15:00:51 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -816,30 +816,14 @@
     
         <li class="chapter " data-level="6.5" data-path="08-single-page-web-apps/oojs1_read/readme.html">
             
-                
-                    <a href="../08-single-page-web-apps/oojs1_read/readme.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.5.</b>
-                        
-                        Object-Oriented FE JS: R / CRUD
-                    </a>
+            <span><b>6.5.</b> Object-Oriented FE JS: R / CRUD</span>
             
             
         </li>
     
         <li class="chapter " data-level="6.6" data-path="08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
             
-                
-                    <a href="../08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.6.</b>
-                        
-                        Object-Oriented FE JS: CUD / CRUD
-                    </a>
+            <span><b>6.6.</b> Object-Oriented FE JS: CUD / CRUD</span>
             
             
         </li>
@@ -926,30 +910,14 @@
     
         <li class="chapter " data-level="7.3" data-path="10-angular/custom_directives/readme.html">
             
-                
-                    <a href="../10-angular/custom_directives/readme.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>7.3.</b>
-                        
-                        Custom Directives
-                    </a>
+            <span><b>7.3.</b> Custom Directives</span>
             
             
         </li>
     
         <li class="chapter " data-level="7.4" data-path="10-angular/firebase_in_angular/readme.html">
             
-                
-                    <a href="../10-angular/firebase_in_angular/readme.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>7.4.</b>
-                        
-                        AngularFire: Firebase &amp; Angular
-                    </a>
+            <span><b>7.4.</b> AngularFire: Firebase &amp; Angular</span>
             
             
         </li>
@@ -1249,31 +1217,17 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="learning-objectives--week-11--christina-angulara">Learning Objectives - Week 11 - Christina Angulara!</h1>
-<h2 id="introduction-to-angular">Introduction to Angular</h2>
+                        <h1 id="learning-objectives--week-10--christina-angulara">Learning Objectives - Week 10 - Christina Angulara!</h1>
+<h2 id="angular-intro-controllers-and-directives">Angular Intro, Controllers, and Directives</h2>
 <ul>
 <li>Describe the benefits of using a front end framework</li>
 <li>Explain how libraries differ from frameworks.</li>
-<li>Compare MVVM paradigm with traditional MVC</li>
-<li>Build an angular controller with hard coded data.</li>
-<li>Render controller data in the view using angular expressions</li>
-<li>explain why controllerAs is preferred over <code>$scope</code></li>
-<li>explain what angular directives are and do</li>
-<li>contrast angular directives and javascript event listeners</li>
-<li>use ng-repeat to iterate over data</li>
-<li>use ng-if &amp; ng-hide/ng-show to hide and show elements</li>
-<li>use <code>ng-submit</code>/<code>ng-click</code> to run controller functions when a form is submitted or a button is clicked</li>
-<li>explain how angular utilizes <code>ng-model</code> to leverage 2-way data binding in fluid user experience</li>
-<li>explain 2 way databinding</li>
-<li>explain how angular utilizes <code>ng-model</code> to execute 2-way databinding</li>
-<li>Compare/contrast the components of angular to OOJS / Backbone.js</li>
-</ul>
-<h2 id="angular-directives">Angular Directives</h2>
-<ul>
-<li>Use ng-repeat to iterate over data</li>
-<li>Use ng-if &amp; ng-hide/ng-show to hide &amp; show elements</li>
-<li>Use ng-form to build forms</li>
-<li>Research other Angular directives that are included in Angular&apos;s library</li>
+<li>Build a controller with hard coded data.</li>
+<li>Render and bind controller data in the view.</li>
+<li>Explain what angular directives do and how they are leveraged to execute JS.</li>
+<li>Use <code>ng-repeat</code> to iterate over data.</li>
+<li>use <code>ng-hide</code>/<code>ng-show</code> to hide and show elements.</li>
+<li>use <code>ng-submit</code> to create hard coded objects on the client.</li>
 </ul>
 <h2 id="ui-router">UI Router</h2>
 <ul>
@@ -1286,17 +1240,28 @@
 </ul>
 <h2 id="resources-and-factories">Resources and Factories</h2>
 <ul>
-<li>Explain the purpose of services in Angular</li>
-<li>Create restful client-side routes using $routeProvider</li>
-<li>Create a custom service to access data from an api</li>
+<li>Explain the purpose of and differentiate between Factories and Services in Angular.</li>
+<li>Use <code>ngResource</code> to pull information from an API.</li>
+<li>Define multiple controllers in a single module.</li>
+<li>Use $stateParams to access query parameters and update the URL.</li>
+<li>Create separate views and routes for each CRUD action.</li>
 </ul>
 <h2 id="custom-directives">Custom Directives</h2>
 <ul>
 <li>DRY a given Angular app by extracting repeating logic and HTML into custom directives</li>
-<li>Explain the purpose of each of the four directive options, and the four options for the &quot;restrict&quot; directive, E, A, C, M</li>
+<li>Explain the purpose of each of the four directive options, and the four options for the &apos;restrict&apos; directive, E, A, C, M</li>
 <li>Use a custom directive to render an array of objects</li>
+<li>Use <code>link</code> method to set scope</li>
+<li>Explain the difference between <code>@</code> and <code>=</code> in <code>scope</code> object</li>
 </ul>
-<h2 id="custom-directives-and-authentication">Custom Directives and Authentication</h2>
+<h2 id="authentication">Authentication</h2>
+<ul>
+<li>Differentiate between token and cookie-based authentication</li>
+<li>Describe how token-based authentication is implemented, and when it&apos;s necessary</li>
+<li>List common security issues when implementing token-based authentication</li>
+<li>Use the devise_token_auth gem to implement token-based auth in a rails app.</li>
+<li>Use the ng-token-auth plugin to implement token-based auth in an angular application</li>
+</ul>
 
                     
                     </section>
@@ -1310,7 +1275,7 @@
         <a href="../08-single-page-web-apps/tdd/readme.html" class="navigation navigation-prev " aria-label="Previous page: TDD JS using Jasmine"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../10-angular/custom_directives/readme.html" class="navigation navigation-next " aria-label="Next page: Custom Directives"><i class="fa fa-angle-right"></i></a>
+        <a href="../10-angular/angular-vs-rails.html" class="navigation navigation-next " aria-label="Next page: Angular vs. Rails"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

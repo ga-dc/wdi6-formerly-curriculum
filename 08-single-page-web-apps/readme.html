@@ -53,7 +53,7 @@
         data-chapter-title="Single Page Web Apps"
         data-filepath="08-single-page-web-apps/readme.md"
         data-basepath=".."
-        data-revision="Fri Dec 18 2015 13:56:46 GMT+0000 (UTC)"
+        data-revision="Fri Dec 18 2015 15:00:51 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -816,30 +816,14 @@
     
         <li class="chapter " data-level="6.5" data-path="08-single-page-web-apps/oojs1_read/readme.html">
             
-                
-                    <a href="../08-single-page-web-apps/oojs1_read/readme.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.5.</b>
-                        
-                        Object-Oriented FE JS: R / CRUD
-                    </a>
+            <span><b>6.5.</b> Object-Oriented FE JS: R / CRUD</span>
             
             
         </li>
     
         <li class="chapter " data-level="6.6" data-path="08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
             
-                
-                    <a href="../08-single-page-web-apps/oojs2_create_update_destroy/readme.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.6.</b>
-                        
-                        Object-Oriented FE JS: CUD / CRUD
-                    </a>
+            <span><b>6.6.</b> Object-Oriented FE JS: CUD / CRUD</span>
             
             
         </li>
@@ -926,30 +910,14 @@
     
         <li class="chapter " data-level="7.3" data-path="10-angular/custom_directives/readme.html">
             
-                
-                    <a href="../10-angular/custom_directives/readme.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>7.3.</b>
-                        
-                        Custom Directives
-                    </a>
+            <span><b>7.3.</b> Custom Directives</span>
             
             
         </li>
     
         <li class="chapter " data-level="7.4" data-path="10-angular/firebase_in_angular/readme.html">
             
-                
-                    <a href="../10-angular/firebase_in_angular/readme.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>7.4.</b>
-                        
-                        AngularFire: Firebase &amp; Angular
-                    </a>
+            <span><b>7.4.</b> AngularFire: Firebase &amp; Angular</span>
             
             
         </li>
@@ -1249,70 +1217,50 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="single-page-web-apps-express-and-oojs">Single Page Web Apps: Express and OOJS</h1>
-<p>Build an interactive &quot;single page&quot; web application that persists data.</p>
-<h2 id="learning-objectives">Learning Objectives</h2>
-<h3 id="express">Express</h3>
-<ul>
-<li>Compare and contrast Javascript in the browser vs JS on the server</li>
-<li>Use npm to manage project dependencies</li>
-<li>Use module.exports and require to organize code into models, views, and controllers</li>
-<li>Use Handlebars templates to simplify rendering on the back-end</li>
-<li>Use and configure middleware like body-parser to handle form submissions</li>
-<li>Link to static assets in an Express application</li>
-</ul>
+                        <h1 id="learning-objectives--week-8--the-men-stack-and-oojs">Learning Objectives - Week 8 - The MEN Stack and OOJS</h1>
 <h3 id="express-routing">Express Routing</h3>
 <ul>
-<li>Define the parts of a route</li>
 <li>Extract routes to separate files</li>
-<li>Explain the <code>all</code> routing method</li>
 <li>Describe the role of response methods</li>
-<li>Extract routes to a separate file</li>
+<li>Use module.exports and MVC to organize Express app</li>
+<li>Explain what <code>bodyParser</code> is used for</li>
+<li>Create an application that responds to JSON requests</li>
+<li>Explain what JSONP is and why we (sometimes) need it.</li>
 </ul>
-<h3 id="intro-to-spa">Intro to SPA</h3>
+<h3 id="mongodb">MongoDB</h3>
 <ul>
-<li>Compare / contrast single page applications with traditional web applications</li>
-<li>Explain the concept of deep linking and why it&apos;s useful</li>
-<li>Bootstrap an application at load</li>
-<li>Use the history api to update the url</li>
-<li>Identify common problems with single page applications</li>
-</ul>
-<h3 id="js-prototypes-and-constructors">JS Prototypes and Constructors</h3>
-<ul>
-<li>Explain the importance of OOJS in front-end code</li>
-<li>Describe the role of constructor functions, and how they work</li>
-<li>Use constructor functions and the <code>new</code> keyword to create objects with shared properties (like classes)</li>
-<li>Describe what a prototype object is, and how they are used in JS</li>
-<li>Differentiate between <code>__proto__</code> and Animal.prototype</li>
-<li>Diagram the relationship between an object, its constructor, and prototype</li>
-<li>Compare <code>Object.create</code> vs constructors</li>
-<li>Compare / contrast classical and prototypal inheritance</li>
-<li>Use the Chrome element inspector to traverse through the prototypal tree.</li>
-</ul>
-<h3 id="sequelize">Sequelize</h3>
-<ul>
-<li>Compare / contrast Sequelize and ActiveRecord</li>
-<li>Use sequelize to connect to a DB in JS</li>
-<li>Define a model in sequelize that has getters and setters</li>
-<li>Define the roll of callbacks in Sequelize</li>
-<li>Describe why database are asynchronous (and what asynchronous means)</li>
-<li>Use Sequelize to find models from the DB</li>
-<li>Use Sequelize to perform CRUD on model instances</li>
-<li>Create an API with CRUD functionality using Express and Sequelize</li>
-<li>Map a directory / file structure conducive to DB modeling</li>
-<li>Map Rails / ActiveRecord methods to Express / Sequelize methods</li>
+<li>Compare and contrast relational to document based (NoSql)</li>
+<li>Setup local mongo db server</li>
+<li>CRUD documents using mongo CLI</li>
+<li>Use an ORM to persist data (Mongoose)</li>
+<li>Connect ORM to an Express app, to persist data</li>
 </ul>
 <h3 id="oojs-1-reading">OOJS 1: Reading</h3>
 <ul>
-<li>use <code>$.ajax</code> to populate objects in the front end(client-side)</li>
-<li>differentiate between &quot;class methods&quot; and &quot;instance (prototyped) methods&quot; in JS.</li>
-<li>use OOJS to build model and view objects</li>
-<li>Utilize promises to access the response from an <code>$.ajax</code> request</li>
-<li>render views on the client-side utilizing JS objects in your application.</li>
+<li>Use <code>$.ajax</code> to populate objects client-side.</li>
+<li>Differentiate between &quot;class methods&quot; and &quot;instance (prototyped) methods&quot; in JS.</li>
+<li>Use OOJS to build model and view objects.</li>
+<li>Utilize promises to access the response from an <code>$.ajax</code> request.</li>
+<li>Render views client-side utilizing JS objects.</li>
 </ul>
-<h3 id="oojs-2-cud">OOJS 2: CUD</h3>
+<h3 id="oojs-2-create-update-destroy">OOJS 2: Create, Update, Destroy</h3>
 <ul>
-<li>Use AJAX</li>
+<li>Use OOJS to structure front end code.</li>
+<li>Build model objects that create, update, destroy data on the server.</li>
+<li>Build view objects that render forms and interact with model objects.</li>
+<li>Describe the role of model objects on the front-end.</li>
+<li>Describe the role of view objects on the front-end.</li>
+</ul>
+<h3 id="local-authentication-with-express-and-passport">Local Authentication with Express and Passport</h3>
+<ul>
+<li>Create a login form with email &amp; password</li>
+<li>Use passport-local to find a user &amp; verify their password</li>
+<li>Restrict access to API without an authenticated user</li>
+</ul>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>Describe OAuth is &amp; why it&apos;s commonly used</li>
+<li>Use a Passport strategy to authenticate with a 3rd party login</li>
 </ul>
 <h3 id="js-tdd">JS TDD</h3>
 <ul>
@@ -1322,6 +1270,13 @@
 <li>Implement <code>beforeEach()</code> and <code>afterEach()</code> to DRY up test code.</li>
 <li>Use the <code>jasmine-node</code> CLI to run Jasmine tests.</li>
 <li>Plan a project by creating a series of unit tests that define its parameters.</li>
+</ul>
+<h3 id="git-team-workflows">Git Team Workflows</h3>
+<ul>
+<li>Distinguish between git workflow models to organize code changes and collaborate as a team</li>
+<li>Use branches and pull requests to isolate changes tied to specific features</li>
+<li>Efficiently and correctly resolve merge conflicts</li>
+<li>Explain the difference between <code>rebase</code> and <code>merge</code></li>
 </ul>
 
                     
