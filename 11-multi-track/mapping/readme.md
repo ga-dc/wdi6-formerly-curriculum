@@ -381,4 +381,4 @@ Use a "Feature Collection" to recreate the markers and polygons you created in t
 ## Sample Quiz Questions
 
 ## Additional Reading
-* [Disabling Map Zooming an Panning](https://www.mapbox.com/mapbox.js/example/v1.0.0/disable-zooming-panning/)
+* [Disabling Map Zooming and Panning](https://www.mapbox.com/mapbox.js/example/v1.0.0/disable-zooming-panning/)
