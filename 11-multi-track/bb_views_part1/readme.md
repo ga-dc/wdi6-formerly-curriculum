@@ -16,6 +16,13 @@
 * [Backbone Tutorials](https://backbonetutorials.com)
 * [Backbone.js for absolute beginners](http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/)
 
+## Getting Started
+
+Today we will continue working on the Grumblr application to started building yesterday.  
+
+* [Starter Code](https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_starter). Located on the `views_part_1_starter` branch.
+* [Solution Code](https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_solution). Located on the `views_part_1_solution` branch.
+
 ## What Are Backbone Views? (10 minutes)
 
 Like models, Backbone views have many similarities to the views we built in our hand-rolled OOJS classes. In Backbone, views are the objects responsible for...
