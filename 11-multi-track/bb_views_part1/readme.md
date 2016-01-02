@@ -18,7 +18,7 @@
 
 ## Getting Started
 
-Today we will continue working on the Grumblr application to started building yesterday.  
+Today we will continue working on the Grumblr application we started building yesterday.  
 
 * [Starter Code](https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_starter). Located on the `views_part_1_starter` branch.
 * [Solution Code](https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_solution). Located on the `views_part_1_solution` branch.
