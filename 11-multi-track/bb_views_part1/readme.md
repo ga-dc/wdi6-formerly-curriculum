@@ -18,7 +18,7 @@
 
 ## What Are Backbone Views? (10 minutes)
 
-In Backbone, views are the objects responsible for...
+Like models, Backbone views have many similarities to the views we built in our hand-rolled OOJS classes. In Backbone, views are the objects responsible for...
 
 * Rendering content data into HTML and appending it to the page.
 * Listening to their models (for changes, destroys, etc.) and responding accordingly.
