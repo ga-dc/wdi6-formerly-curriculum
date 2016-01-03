@@ -10,8 +10,8 @@
 - Utilize an Immediately Invoked Function Expression (IIFE) to locally scope jQuery
 
 
-## Framing
-Today, we'll be learning about jQuery plugins. As far as programming goes, we're not learning anything radically new. Many of the plugins that are out there are functionalities you're capable of building yourself. Only, now you don't have too. You can just use other people's stuff, it's great.
+## Framing (10 m)
+Today, we'll be learning about jQuery plugins. In the big picture of things programming, the TLDR version of today is extending jQuery functionality. As far as programming goes, we're not learning anything radically new. Many of the plugins that are out there are functionalities you're capable of building yourself. Only, now you don't have too. You can just use other people's stuff, it's great.
 
 What are jQuery Plugins?
 
@@ -44,10 +44,10 @@ Let's familiarize ourselves with jQuery plugins by investigating a couple.  How 
 - [packery.metafizzy.co](http://packery.metafizzy.co)
 - [tablesorter](http://tablesorter.com/docs/#Introduction)
 
-Q. What are the 2 common steps for utilizing a plugin?
+Think about - What does it take to utilize a plugin?
 ---
 
-> A. 2 Steps for utilizing
+> Steps for utilizing
 - include/install
 - initialize/configure/customize
 
