@@ -10,7 +10,7 @@
 - Utilize an Immediately Invoked Function Expression (IIFE) to locally scope jQuery
 
 
-## Framing (10 m)
+## Framing (10)
 Today, we'll be learning about jQuery plugins. In the big picture of things programming, the TLDR version of today is extending jQuery functionality. As far as programming goes, we're not learning anything radically new. Many of the plugins that are out there are functionalities you're capable of building yourself. Only, now you don't have too. You can just use other people's stuff, it's great.
 
 What are jQuery Plugins?
@@ -39,13 +39,12 @@ Q. Why do we care?
 
 Let's familiarize ourselves with jQuery plugins by investigating a couple.  How do we use them?
 
-### Research existing plugins (T/P/S:7/3/5; 15 min)
+### Research existing plugins (T/P/S)(10/20)
 - [isotope.metafizzy.co](http://isotope.metafizzy.co)
 - [packery.metafizzy.co](http://packery.metafizzy.co)
 - [tablesorter](http://tablesorter.com/docs/#Introduction)
 
-Think about - What does it take to utilize a plugin?
----
+Look at the docs in these plugins. Think about - What does it take to utilize a plugin?
 
 > Steps for utilizing
 - include/install
@@ -56,7 +55,9 @@ Think about - What does it take to utilize a plugin?
 
 What else can we expect from jQuery plugins?  How do we use them?
 
-### Group work: (10/10: 20 min)
+### Group work: (10/10: 20/40)
+
+#### Individually for 10m:
 
 Start in https://learn.jquery.com/plugins/
 
@@ -65,18 +66,19 @@ Review some random plugins:
 - look for patterns
 - look for convention
 
-Break into groups.  When we get back together, we will be answering these questions, together.
+#### Break into groups for 10m.  
+
+When we get back together, we will be answering these questions, together.
 
 Questions:
-1. Where do we find jQuery Plugins?
-2. What is the basic anatomy of a jQuery Plugin?
-3. What do we add to our app to utilize them?
+1. Where do we find jQuery Plugins?<br>
+2. What is the basic anatomy of a jQuery Plugin?<br>
+3. What do we add to our app to utilize them?<br>
 4. Name some ways to install/initialize a jQuery plugin.
 
 ---
 
-
-> Answers:
+#### Answers (5/45)
 
 1. Where?
   Officially a large list of Plugins have moved to: https://www.npmjs.com/browse/keyword/jquery-plugin
@@ -102,10 +104,13 @@ Questions:
   - Node, Vanilla JS
   - Rails, HTML
 
-### I do - Fixed Content plugin
+## I do - Fixed Content plugin
+
 Let's actually implement a jquery plugin together.
 
 The plugin we'll be using is [FixedContent.js](https://github.com/jeremychurch/FixedContent.js)
+
+### Fixed Content Source (5/50)
 
 The first thing I want to do is take a look at this source code so we can get a better understanding of plugins. The source code can be found [here](https://github.com/jeremychurch/FixedContent.js/blob/master/jquery.fixedcontent.js)
 
@@ -116,9 +121,9 @@ It's a little scary, but let's look at some parts we can identify
   // this is just using regular jquery to basically say if there is something with a class of js_fixedcontent, do something
   if ($('.js_fixedcontent').length > 0) {
     // this is where the jquery prototype is extended to now include fixedcontent,
-    // just like how you can call .hide on a jquery object, you can no call .fixedcontent
-    // check out the source for the actual function def.
+    // just like how you can call .hide on a jquery object, you can now call .fixedcontent
     $.fn.fixedcontent = function(options){
+      // check out the source for the actual function def.
     };
 
     // calling the method defined above on anything with class js_fixed_content
@@ -131,6 +136,9 @@ It's a little scary, but let's look at some parts we can identify
 
 > One thing we can note is this is an immediately invoked function expression. Where else have we seen this? (ST - WG). We need to use an IIFE in order for this plugin to work well with jQuery and other plugins. When we put all of this code into an IIFE, we need to pass the function `jQuery` and name the parameter `$`. If you'd like to know more about this, check this [link](https://learn.jquery.com/plugins/basic-plugin-creation/#protecting-the-alias-and-adding-scope) out.
 
+### Break (10/60)
+
+### Implementation (15/75)
 Let's create some a folder and some files we'll need for this application in the terminal:
 
 ```bash
@@ -198,7 +206,7 @@ $(".js_fixedcontent").fixedcontent({
  });
 ```
 
-### Pair up: Use a plugin(25 min)
+### Pair up: Use a plugin!(25/90)
 For 5 minutes:
 
 - With your partner, pick a plugin from these links
@@ -209,20 +217,14 @@ For 5 minutes:
 - Try and pick something you think you could reasonably attempt to code a small demo in 20 minutes
 
 For 20 minutes:
-- Pick one installation method and attempt to install & utilize.  
+- Attempt to install & utilize.  
 
 You've only got 20 minutes, so focus on installation and easy demo.
 
-Q. Which do you prefer?  Why?
----
 
-Q. What was common to both?
----
+## Your Own Plugin - We do (30/120)
 
-
-## Your Own Plugin - Tutorial (30 min)
-
-Let's create our own custom made jQuery plugin. We'll be modeling our plugin after the one in these [jQuery docs](https://learn.jquery.com/plugins/basic-plugin-creation/#basic-plugin-authoring)
+Let's try and understand plugins a little bit deeper by creating our own custom made jQuery plugin. We'll be modeling our plugin after the one in these [jQuery docs](https://learn.jquery.com/plugins/basic-plugin-creation/#basic-plugin-authoring)
 
 Lets start by creating all the files we need:
 
@@ -295,7 +297,7 @@ If we click the `h2`, we can see all the `div`'s generated by the `h1` click eve
 
 > Here we are using `$.fn` as a prototype for the jQuery object such that we can extend the prototypes functionality. Also note that the syntax of the IIFE is very similar to the `fixedContent` plugin we utilized earlier.
 
-## An Aside - We've seen these before - IIFE's (20 min)
+## An Aside - We've seen these before - IIFE's (5/125)
 
 An Immediately Invoked Function Expression (IIFE), is exactly what it sounds like... a function that is invoked immediately.
 
@@ -403,11 +405,11 @@ In `greenify.js`:
 
 > make sure to get rid of any duplicate code in your `script.js` and require `greenify.js` in your `index.html`
 
-## You do - Contribute to greenify (10m)
+## You do - Contribute to greenify (10/135)
 
 - Submit a pull request against [greenify](https://github.com/ga-dc/greenify) with a sick new feature to the greenify plugin
 
-## You do: GIF of the Day (60 min)
+## You do: GIF of the Day (Rest of class, HW!)
 
 https://github.com/ga-dc/gif_of_the_day
 
