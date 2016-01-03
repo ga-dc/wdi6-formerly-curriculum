@@ -1,4 +1,6 @@
-  # Sass - Basic Reuse
+# Sass - Basic Reuse
+
+## Learning Objectives
 
 - Use variables and nesting to dry up CSS
 - Use color functions to create dynamic color schemes
