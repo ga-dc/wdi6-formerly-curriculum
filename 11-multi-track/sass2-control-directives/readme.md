@@ -164,6 +164,9 @@ http://www.mattboldt.com/organizing-css-and-sass-rails/
 
 Don't miss the comments.
 
+Here's an example of an app I (Adam) worked on:
+[Reservations](https://github.com/YaleSTC/reservations/tree/master/app/assets/stylesheets)
+
 #### tl;dr
 
 - Use @import to explicitly require each file you need, in the order you require them (rather than `*= require_tree .`).  Judicious use of  file glob `@import "mixins/*"`).
