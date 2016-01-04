@@ -138,13 +138,13 @@ Just like in vanilla JS, we usually want to render HTML and put it into the
 
 ### Exercise: Define a Basic Render Method (10 minutes)
 
-Use the `.html()` method to fill your view's `el` with some basic HTML. For now,
+In a `render` method, use jQuery's `.html()` to fill your view's `.$el` with some basic HTML. For now,
 just make an `<h2>` and set it's content to be the grumble's title.
 > Not sure how to begin? Think about how we defined `render` in our [earlier OOJS classes](https://github.com/ga-dc/curriculum/tree/master/08-single-page-web-apps/oojs1-read#views-artist-2090). Your Backbone render method in this exercise, however, will be much shorter.
 
 Remember that each view has a `model` property.
 
-Test your view by instantiating one, calling `.render()`, and looking at the `el`...
+Test your view by instantiating one, calling `.render()`, and looking at the `$el`...
 
 ```js
 var my_grumble = new App.Models.Grumble({
@@ -297,6 +297,8 @@ $('#grumbles').append(grumbleView.$el)
 my_grumble.set('title', "Cats are the Best!");
 // After running the above line, the page should update automatically!
 ```
+
+[Solution](https://gist.github.com/amaseda/2a746c7b7634c6a94324)
 
 ## Aside: Fetching, Rendering and Auto-Appending (5 minutes)
 
