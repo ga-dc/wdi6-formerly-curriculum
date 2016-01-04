@@ -169,10 +169,10 @@ Copy this scss into precess.co.
 ```scss
 
 .nav{
-  & li{
+  li{
     display: inline-block;
   }
-  & a{
+  a{
   text-decoration:none;
     &:hover{
       text-decoration:underline;
