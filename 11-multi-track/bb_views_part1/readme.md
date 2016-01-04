@@ -41,6 +41,7 @@ App.Views.Grumble = Backbone.View.extend({
   // Our code goes here.
 });
 ```
+> We are using the same syntax as last class and defining our Grumble View inside of a global `App` object.
 
 Views can serve many purposes, but in general, we construct views that fall into
 one of the three following categories:
@@ -82,12 +83,29 @@ element for us when a view is instantiated. By default it will be a plain
 `<div>`, but we can change that by setting the `tagName` and `className`
 properties.
 
+```js
+App.Views.Grumble = Backbone.View.extend({
+  tagName: "div",
+  className: "grumble"
+});
+```
+> In this example, `tagName: "div"` is optional.
+
 Backbone also makes a jQuery version of the `.el` available using `.$el`. We
 often use this instead of the vanilla DOM `.el`.
 
 Note that it's possible to specify the `.el` property explicitly. In that case,
 Backbone won't create the `el`, but will use what we specified. We'll use this
 approach for our collection views later.
+
+```js
+App.Views.Grumble = Backbone.View.extend({
+  tagName: "div",
+  className: "grumble",
+  el: "grumbles"
+});
+```
+> We won't be manually setting the `el` property until tomorrow's class. But preview: by setting an `el` property, we no longer need to explicitly append our view to a DOM element.
 
 ### Exercise: Define our Grumble View (10 minutes)
 
@@ -122,6 +140,7 @@ Just like in vanilla JS, we usually want to render HTML and put it into the
 
 Use the `.html()` method to fill your view's `el` with some basic HTML. For now,
 just make an `<h2>` and set it's content to be the grumble's title.
+> Not sure how to begin? Think about how we defined `render` in our [earlier OOJS classes](https://github.com/ga-dc/curriculum/tree/master/08-single-page-web-apps/oojs1-read#views-artist-2090). Your Backbone render method in this exercise, however, will be much shorter.
 
 Remember that each view has a `model` property.
 
@@ -145,6 +164,8 @@ $('#grumbles').append(grumbleView.$el)
 grumbleView.render()
 grumbleView.$el
 ```
+
+[Solution](https://gist.github.com/amaseda/0c21eda5d0365099bd47)
 
 ## Break (10 minutes)
 
@@ -179,19 +200,16 @@ And then in our `index.html`...
 
 ### Exercise: Define a Handlebars Template (10 minutes)
 
-1. Define a Handlebars template for our Grumble. See the sample HTML below.  
-2. On initialize, set a `this.template` property, which should point to a
-**compiled handlebars template**.  
-3. Update the `render` function to use the template. When using the template,
-we need to pass in just our model attributes - not the whole model. Do some
-research to find the best way!  
-4. For good measure, let's call the `render()` method at the end of initialize,
-so we don't have to explicitly call it when we create new views.  
+1. Define a Handlebars template for our Grumble. Your template should be placed inside a script file that is defined in `index.html`, like so...
 
-Test your render function as before, only this time, you should see HTML that
-came from your template.
+```html
+<script id="grumbleTemplate" type="text/x-handlebars-template">
+  <!-- Template code goes in here -->
+</script>
+```
+> You can place this at the end of `<body>`.
 
-Sample HTML:
+2. The content of your template should be formatted like the below code, with placeholders replacing the actual model properties (e.g., `title`).
 
 ```html
 <div class="grumble">
@@ -206,6 +224,30 @@ Sample HTML:
   <button class="edit">Update Grumble</button>
 </div>
 ```
+> This all exists inside of that `<script>` you just created.
+
+3. In your view's `initialize` method, set a `this.template` property, which should point to a
+**compiled handlebars template**.
+
+```js
+initialize: function(){
+  this.template = Handlebars.compile( source );
+}
+```
+> You need to replace `source`. HINT: Use jQuery to (1) select the script that contains our template and (2) select the HTML inside that script.  
+
+4. Update the `render` function to use the template. When using the template,
+we need to pass in just our model attributes - not the whole model. Do some
+research to find the best way!
+> HINT: How does [this Backbone example](http://backbonejs.org/docs/todos.html) pass in model information to the template?  
+
+5. For good measure, let's call the `render()` method at the end of initialize,
+so we don't have to explicitly call it when we create new views. Also add a line to `render()` appending our view's `.$el` to `<div id="grumbles"></div>` in `index.html`.  
+
+Test your render function as before, only this time, you should see HTML that
+came from your template.
+
+[Solution](https://gist.github.com/amaseda/1290ecbe267335e81541)
 
 ## Responding to Model Events (10 minutes)
 
@@ -276,6 +318,8 @@ $(document).ready(function() {
 });
 ```
 
+We can also get rid of the `.append` line from our view's `initialize` since that's taken care of in `app.js` now.  
+
 We'll see later that this sort of thing will be handled by a collection view.
 
 ## View Events (5 minutes)
@@ -330,13 +374,17 @@ The template should produce HTML that looks like this for the updated `el`...
     <input type="text" name="title" value="Cats are the best!">
     by: <input type="text" name="authorName" value="Cornelius McWhiskertons III, Esq.">
     <textarea name="content">I do say, my good sir... aren't dogs the worst? I mean, they don't know how to groom themselves, they are always chewing on tennis balls like a fool, and they can't even climb trees!</textarea>
-    <img src="http://www.babyanimalzoo.com/wp-content/uploads/2012/08/fancy-cats-a-proper-sir.jpg" alt="">
     <input type="text" name="photoUrl" value="http://www.babyanimalzoo.com/wp-content/uploads/2012/08/fancy-cats-a-proper-sir.jpg">
     <button class="submit">Submit</button>
     <button class="cancel">Cancel</button>
   </form>
 </div>
 ```
+
+#### Bonuses
+
+1. Make the form disappear when the "Update Grumble" button is clicked a second time.
+2. Prevent two versions of the form from appearing after clicking the "Update Grumble" button a second time.  
 
 ### Exercise: Update Grumble when Form is Submitted (10 minutes)
 
@@ -349,6 +397,8 @@ This method should should:
 3. Use the `save` method on the associated grumble (and the data from the form)
 to update the grumble.
 4. Re-render the show view.
+
+[Solution](https://gist.github.com/amaseda/82812bb101a733bffb7a)
 
 ### Exercise: Cancel Button (5 minutes)
 
