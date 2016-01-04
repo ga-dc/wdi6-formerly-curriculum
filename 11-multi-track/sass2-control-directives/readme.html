@@ -51,7 +51,7 @@
         data-chapter-title="Sass 2: Control Directives"
         data-filepath="11-multi-track/sass2-control-directives/readme.md"
         data-basepath="../.."
-        data-revision="Mon Jan 04 2016 18:44:29 GMT+0000 (UTC)"
+        data-revision="Mon Jan 04 2016 19:02:07 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1253,11 +1253,14 @@
 <hr>
 <p>A. Student responses.</p>
 <h3 id="exercise-flash-redux-15-min">Exercise: Flash Redux (15 min)</h3>
-<p>Let&apos;s go back to the Flash messages.  This time, we will create mixin with a conditional that sets the text color to <code>#fff</code> if the background is dark enough and <code>#000</code> if the background is light enough.</p>
+<p>Let&apos;s go back to the Flash messages.  This time, we will update our mixin with a conditional that sets the text color to <code>#fff</code> if the background is dark enough and <code>#000</code> if the background is light enough.</p>
 <p><a href="http://codepen.io/adambray/pen/vLgrKK" target="_blank">Solution</a></p>
 <p>Hint: research how you can determine the &quot;lightness&quot; of a color using SASS.</p>
 <h2 id="loops">Loops</h2>
-<p>Look at <a href="http://codepen.io/jshawl/full/cLJal" target="_blank">BAMSAY</a></p>
+<p>Look at BAMSAY.</p>
+<ul>
+<li><a href="http://codepen.io/adambray/pen/obBOgP?editors=110" target="_blank">Pure CSS Solution</a></li>
+</ul>
 <p>Check out the css.  Lots of text-shadow&apos;s, huh?  You want to type all of them?</p>
 <h2 id="q-why-not">Q. Why not?</h2>
 <blockquote>
@@ -1269,11 +1272,12 @@
 <li>maintenance?</li>
 </ul>
 </blockquote>
-<p>Let&apos;s systematize it.  Let&apos;s specify what it takes to draw these shadows.  And then <strong>codify</strong> it.</p>
-<h2 id="q-how-did-we-create-bamsay">Q. How did we create BAMSAY?</h2>
-<blockquote>
-<p>A. Lot&apos;s of text-shadows.</p>
-</blockquote>
+<h3 id="exercise-write-a-function-to-build-bamsay">Exercise: Write a function to build BAMSAY</h3>
+<ul>
+<li><a href="http://codepen.io/adambray/pen/adpxOq?editors=110" target="_blank">Starter</a></li>
+<li><a href="http://codepen.io/adambray/pen/NxdmGG?editors=110" target="_blank">Solution</a></li>
+</ul>
+<p>Let&apos;s specify what it takes to draw these shadows.  And then <strong>codify</strong> it using a function.</p>
 <h2 id="using-the-sass-preprocessor">Using the SASS Preprocessor</h2>
 <p>How do we use it?</p>
 <p><img src="http://i0.wp.com/css-diary.com/wp-content/uploads/2014/07/sass.png?resize=700%2C400" alt="Compile Steps"></p>
@@ -1301,12 +1305,42 @@ The browser only supports CSS.  We reference the compiled <strong>css</strong> f
 <h2 id="stylescss-vs-stylesass-5-min">style.scss vs style.sass (5 min)</h2>
 <p>Sass supports two &quot;styles&quot;: sass (<em>.sass) and Sassy CSS (</em>.scss).  They both use the same SassScript.  The .scss format is a superset of CSS3.  The .sass is a bit more concise and uses indentation to indicate blocks of CSS, but it requires a full rewrite of your css.</p>
 <p>Further reading: <a href="http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better" target="_blank">http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better</a></p>
-<h3 id="exercise-bamsay-20-min">Exercise: BAMSAY (20 min)</h3>
-<p><a href="http://github.com/ga-dc/bamsay" target="_blank">http://github.com/ga-dc/bamsay</a></p>
-<p>Hint: you can&apos;t just add a bunch of box shadow properties... each will over-write
-the previous... instead you&apos;ll need to create one box-shadow property with a lot
-of values comma separated... look up how to append values in SASS.</p>
-<h2 id="exercise-3d-button-15-min">Exercise: 3D Button (15 min)</h2>
+<h2 id="exercise-convert-codepen-to-project-10-minutes">Exercise: Convert Codepen to Project (10 minutes)</h2>
+<p>Create a new repo for BAMSAY, and create the necessary files to get sass / css
+compilation working.</p>
+<h2 id="break-10-min">Break (10 min)</h2>
+<h2 id="sass-and-rails-30-min">Sass and Rails (30 min)</h2>
+<p>The <a href="https://github.com/rails/sass-rails" target="_blank">sass-rails gem</a> is provided for working with Sass in Rails. I found that my words of wisdom were lining up with nicely with their documentation.  They&apos;ve got you covered.  </p>
+<h3 id="research-15-min">Research (15 min)</h3>
+<p>That said, let&apos;s practice reading documentation together. We&apos;ll discuss how to pull out the important points and gotchas.
+<a href="https://github.com/rails/sass-rails" target="_blank">https://github.com/rails/sass-rails</a></p>
+<h2 id="q-what-stood-out-to-you">Q. What stood out to you?</h2>
+<blockquote>
+<p>A.</p>
+<ul>
+<li>Sass is supported by default (by Asset Pipeline).</li>
+<li>Configuration has caveats.  Must review when/if I configure something.</li>
+<li>Important Note!?!</li>
+<li>Glob Imports.  Looks powerful.  Note the &quot;Note&quot;.</li>
+<li>One &quot;Asset Helper&quot; for each media type.  Where are the &quot;Asset Helpers&quot; used?  </li>
+<li>Tests?  Why would I run the tests?</li>
+</ul>
+</blockquote>
+<h3 id="organization">Organization</h3>
+<p><a href="http://www.mattboldt.com/organizing-css-and-sass-rails/" target="_blank">http://www.mattboldt.com/organizing-css-and-sass-rails/</a></p>
+<p>Don&apos;t miss the comments.</p>
+<h4 id="tldr">tl;dr</h4>
+<ul>
+<li>Use @import to explicitly require each file you need, in the order you require them (rather than <code>*= require_tree .</code>).  Judicious use of  file glob <code>@import &quot;mixins/*&quot;</code>).</li>
+<li>Use <code>main.scss</code> to load your app&apos;s dependencies (vars, mixins, etc.), then the page styles.</li>
+<li>Development adds links to .scss source</li>
+<li>Load vendors (i.e. Bootstrap) in application.css, before you include main.scss</li>
+<li>Note: You need to load all your dependencies in the file that uses them.  If you have more than one layout, you may need a &quot;main&quot; file for each, to load the dependencies in each.</li>
+</ul>
+<p>The <a href="http://guides.rubyonrails.org/asset_pipeline.html" target="_blank">Rails Guides</a> are a recommended resource too.</p>
+<h2 id="optional-apply-sass-to-an-app-from-project-2-or-3">[Optional] Apply SASS to an app from Project 2 or 3.</h2>
+<p>Look for ways to remove duplication and improve documenting your intent.</p>
+<h2 id="optional-exercise-3d-button">[Optional] Exercise: 3D Button</h2>
 <p>On to the next goal. A button.  A big, cool, <a href="http://codepen.io/adambray/full/rxjKWR/" target="_blank">3D button</a>.</p>
 <ul>
 <li><a href="http://codepen.io/adambray/pen/xZgzgK?editors=110" target="_blank">Starter</a></li>
@@ -1347,36 +1381,6 @@ text-shadow: 0+$i,
 </ul>
 <p>Jesse has a <a href="https://jesse.sh/makes-3d-buttons-with-sass/" target="_blank">great blog post</a> on how he built this.</p>
 <p>Now we&apos;ve added &quot;function&quot; and &quot;mixin&quot; to our list, joining &quot;variables&quot; and &quot;loops&quot;.</p>
-<h2 id="break-10-min">Break (10 min)</h2>
-<h2 id="sass-and-rails-30-min">Sass and Rails (30 min)</h2>
-<p>The <a href="https://github.com/rails/sass-rails" target="_blank">sass-rails gem</a> is provided for working with Sass in Rails. I found that my words of wisdom were lining up with nicely with their documentation.  They&apos;ve got you covered.  </p>
-<h3 id="research-15-min">Research (15 min)</h3>
-<p>That said, let&apos;s practice reading documentation together. We&apos;ll discuss how to pull out the important points and gotchas.
-<a href="https://github.com/rails/sass-rails" target="_blank">https://github.com/rails/sass-rails</a></p>
-<h2 id="q-what-stood-out-to-you">Q. What stood out to you?</h2>
-<blockquote>
-<p>A.</p>
-<ul>
-<li>Sass is supported by default (by Asset Pipeline).</li>
-<li>Configuration has caveats.  Must review when/if I configure something.</li>
-<li>Important Note!?!</li>
-<li>Glob Imports.  Looks powerful.  Note the &quot;Note&quot;.</li>
-<li>One &quot;Asset Helper&quot; for each media type.  Where are the &quot;Asset Helpers&quot; used?  </li>
-<li>Tests?  Why would I run the tests?</li>
-</ul>
-</blockquote>
-<h3 id="organization">Organization</h3>
-<p><a href="http://www.mattboldt.com/organizing-css-and-sass-rails/" target="_blank">http://www.mattboldt.com/organizing-css-and-sass-rails/</a></p>
-<p>Don&apos;t miss the comments.</p>
-<h4 id="tldr">tl;dr</h4>
-<ul>
-<li>Use @import to explicitly require each file you need, in the order you require them (rather than <code>*= require_tree .</code>).  Judicious use of  file glob <code>@import &quot;mixins/*&quot;</code>).</li>
-<li>Use <code>main.scss</code> to load your app&apos;s dependencies (vars, mixins, etc.), then the page styles.</li>
-<li>Development adds links to .scss source</li>
-<li>Load vendors (i.e. Bootstrap) in application.css, before you include main.scss</li>
-<li>Note: You need to load all your dependencies in the file that uses them.  If you have more than one layout, you may need a &quot;main&quot; file for each, to load the dependencies in each.</li>
-</ul>
-<p>The <a href="http://guides.rubyonrails.org/asset_pipeline.html" target="_blank">Rails Guides</a> are a recommended resource too.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>We covered a lot about Sass, but we&apos;re really just scratching the surface.  Make time to review the docs and look over fun examples online.  It&apos;s important get some more ideas about what we can do with sass and css.</p>
 <ul>
@@ -1385,7 +1389,6 @@ text-shadow: 0+$i,
 <li>What directive should we use to require other sass files?</li>
 <li>Name 3 benefits of Sass.</li>
 </ul>
-<h2 id="optional-review-an-app-from-project-2-or-3--look-for-ways-to-remove-duplication-and-improve-documenting-intent">[Optional] Review an app from Project 2 or 3.  Look for ways to remove duplication and improve documenting intent.</h2>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://jesse.sh/makes-3d-buttons-with-sass/" target="_blank">3D Buttons with Sass</a></li>
