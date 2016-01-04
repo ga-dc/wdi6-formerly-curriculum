@@ -14,6 +14,7 @@ We are moving into the more programmatic portion of SassScript: conditionals, lo
 We've been playing with SassScript.  Sass is fully CSS3-compatible, meaning you *can* write css the way you always have.  But, where's the fun in that? More importantly, you can start with a plain old css file and enhance it.  You can use SassScript to make writing css more pleasant.  Note: this doesn't change the functionality of css.  In the end, Sass uses a concise language, SassScript, to generate the verbose css required to make your page sing.
 
 > Q: If I said SassScript is like other languages, what would you expect?
+
 ---
 
 It has:
@@ -64,6 +65,7 @@ Look at BAMSAY.
 Check out the css.  Lots of text-shadow's, huh?  You want to type all of them?
 
 Q. Why not?
+
 ---
 
 > A.
@@ -116,6 +118,7 @@ Results in:
 ```
 
 Q. What happens in our code?
+
 ---
 
 > A.
@@ -144,6 +147,7 @@ That said, let's practice reading documentation together. We'll discuss how to p
 https://github.com/rails/sass-rails
 
 Q. What stood out to you?
+
 ---
 
 > A.
@@ -187,6 +191,7 @@ All the reasons from before apply, plus... how do I know what to type?  This one
 Again, let's identify, systematize, and **codify** what it means to be a 3D button.
 
 Q: How?  How does this button work?
+
 ---
 
 - up
