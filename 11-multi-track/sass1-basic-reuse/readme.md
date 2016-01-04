@@ -231,7 +231,9 @@ Q. Why would we want that?
 
 
 ## Exercise: Flash (15 min)
-http://codepen.io/mattscilipoti/pen/XmWbgq
+
+[Starter](http://codepen.io/adambray/pen/bEgMXr)
+[Solution](http://codepen.io/adambray/pen/yegjdj)
 
 ## Conclusion
 
