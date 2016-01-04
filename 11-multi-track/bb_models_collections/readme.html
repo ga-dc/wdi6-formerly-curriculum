@@ -53,7 +53,7 @@
         data-chapter-title="Models and Collections"
         data-filepath="11-multi-track/bb_models_collections/readme.md"
         data-basepath="../.."
-        data-revision="Mon Jan 04 2016 14:05:06 GMT+0000 (UTC)"
+        data-revision="Mon Jan 04 2016 14:43:53 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1228,14 +1228,14 @@
 <ul>
 <li>Describe the benefits of using a front end framework</li>
 <li>Explain how libraries differ from frameworks.</li>
-<li>Define a new backbone model and create instances</li>
-<li>Perform CRUD actions on a backbone model</li>
-<li>Explain what a collection is in backbone</li>
-<li>Define a new backbone collection</li>
-<li>Use the backbone collection to store models</li>
+<li>Define a new Backbone model and create instances</li>
+<li>Perform CRUD actions on a Backbone model</li>
+<li>Explain what a collection is in Backbone</li>
+<li>Define a new Backbone collection</li>
+<li>Use the Backbone collection to store models</li>
 <li>Perform CRUD on a collection</li>
-<li>Associate a backbone model and collection with a rails backend</li>
-<li>Perform CRUD actions using backbone&apos;s RESTful API</li>
+<li>Associate a Backbone model and Collection with a rails backend</li>
+<li>Perform CRUD actions using Backbone&apos;s RESTful API</li>
 <li>Compare BB models with AR models</li>
 </ul>
 <h2 id="opening-framing-55">Opening Framing (5/5)</h2>
@@ -1263,60 +1263,74 @@
 </ul>
 </li>
 </ol>
-<p>What&apos;s the purpose of a front end framework? JS and all of it&apos;s many libraries are great, but you can start building and building your application and all of a sudden there&apos;s no structure and everything&apos;s soup.</p>
-<h3 id="libraries-2575">libraries (2.5/7.5)</h3>
+<p>What&apos;s the purpose of a front end framework?</p>
+<blockquote>
+<p>JS and all of it&apos;s many libraries are great, but you can start building your application and all of a sudden there&apos;s no structure and everything&apos;s soup.</p>
+</blockquote>
+<h3 id="libraries-2575">Libraries (2.5/7.5)</h3>
 <ul>
-<li>libraries gives us tools to utilize.</li>
+<li>Libraries give us tools to utilize.</li>
 <li>abstracts code and allows us to write our code more succinctly</li>
 <li>allows us to write applications faster and easier</li>
 <li>lots of options, very few rules (jQuery)</li>
 </ul>
-<h3 id="frameworks-2510">frameworks (2.5/10)</h3>
+<h3 id="frameworks-2510">Frameworks (2.5/10)</h3>
 <ul>
 <li>like libraries in that it gives us tools to utilize</li>
-<li>additionally they provide structure and conventions users have to follow in order for them to work.</li>
+<li>additionally, they provide structure and conventions users have to follow in order for them to work.</li>
 <li>Lots of rules (convention), few options (Ruby on Rails)</li>
 </ul>
-<h2 id="what-is-a-front-end-framework-515">What is a front end framework? (5/15)</h2>
+<h2 id="what-is-a-front-end-framework-515">What is a Front End Framework? (5/15)</h2>
 <ul>
-<li>a library that attempts to move some or all application logic to the browser, while providing a simple interface for keeping the front-end in sync with the back-end</li>
+<li>a library that attempts to move some or all of a application&apos;s logic to the browser, while providing a simple interface for keeping the front-end in sync with the back-end</li>
 <li>applications can run completely in the browser, minimizing server load since the server is only accessed when the front end needs to synchronize data with the backend</li>
 <li>server sends over the app in the initial request (HTML/CSS/JS) then JS makes all subsequent requests with AJAX</li>
 <li>provides more fluid user experience</li>
-<li>loads everything from the database on page load (data and templates) then renders/updates the page content based on user interaction.</li>
+<li>loads everything from the database on page load (data and templates) then <strong>renders/updates</strong> the page content based on user interaction.</li>
 </ul>
-<h3 id="what-is-backbone-2540">What is backbone? (25/40)</h3>
-<p>Individual reading(10/25)</p>
+<h3 id="what-is-backbone-2540">What is <a href="http://backbonejs.org/#" target="_blank">Backbone</a>? (25/40)</h3>
+<p><strong>Doc Dive (10/25)</strong></p>
 <ul>
-<li>Go to <a href="http://backbonejs.org/" target="_blank">backbonejs documentation</a><ul>
+<li>Go to <a href="http://backbonejs.org/#Getting-started" target="_blank">backbonejs documentation</a><ul>
 <li>Read from Getting Started to Backbone.Model</li>
+<li>Check out some <a href="http://backbonejs.org/#examples" target="_blank">examples</a> of Backbone in the wild</li>
 </ul>
 </li>
 </ul>
 <h3 id="tt530">T&amp;T(5/30)</h3>
+<p>With what you know about OOJS, jot down some ideas about:</p>
 <ul>
-<li>With what you know about OOJS, jot down some ideas about what you think Backbone is and why you would use it.</li>
+<li>What problem does Backbone aim to solve?</li>
+<li>When or why would you use Backbone?</li>
+<li>How might you use Backbone components in conjunction with other technologies?</li>
+<li>How would you compare/contrast it to Angular.js?</li>
 </ul>
 <hr>
 <h2 id="backbone-js-1040">Backbone JS (10/40)</h2>
 <ul>
-<li>a js library that was built to mimic the rMVC structure of Rails</li>
-<li>router, views, models/collections<ul>
-<li>organize code into separate components that are able to interact fluidly with each other to build robust, client/browser based web applications</li>
+<li>The brainchild of <a href="https://github.com/jashkenas" target="_blank">Jeremy Ashkenas</a>, creator of CoffeeScript, Underscore.js, and Backbone.js, and self-proclaimed Rubyist</li>
+<li>A JS library that was built to mimic the rMVC structure of Rails</li>
+<li>Router, Views, Models/Collections<ul>
+<li>Allows us to organize code into separate components that are able to interact fluidly with each other to build robust, client/browser based web applications</li>
 </ul>
 </li>
-<li>not truly a &quot;framework&quot; in that there is much more flexibility and not nearly a rigidly defined structure like rails.</li>
-<li>meant be able to be changed/altered/configured to suit your needs</li>
-<li>provides objects that help separate concerns on the front end</li>
-<li>provides an interface, API, for communicating with a server back end</li>
+<li>Not truly a &quot;framework&quot; in that there is much more flexibility and not nearly a rigidly defined structure like Rails.</li>
+<li>Meant be able to be changed/altered/configured to suit your needs</li>
+<li>Provides objects that help separate concerns on the front end</li>
+<li>Provides an interface, API, for communicating with a server back end</li>
 </ul>
+<blockquote>
+<p>A common problem with large JS web application developed is that they can become pretty messy really quickly. The lack of structure makes the code hard to maintain. This is where Backbone comes into play. It provides structure to organize the code and increase maintainability. Backbone has a vibrant community and it&#x2019;s also being fully used in production for a considerable number of big companies like: Wal-Mart mobile, Groupon, Khan Academy, Pandora, Wordpress, Foursquare, and so on.</p>
+</blockquote>
 <h2 id="setup-2060">Setup 20/60</h2>
-<p>Before we implement backbone for the application we&apos;re building this week, let&apos;s set up our file structure and our dependencies for a new static site!</p>
-<p>We&apos;re going to create a static html application. Go ahead and create a new directory we&apos;re going to work in, let&apos;s call it <code>grumblr</code>. We&apos;re calling it grumblr but know that it&apos;s really just a single model CRUD application. I heard you guys like todo apps.</p>
-<pre><code class="lang-bash">mkdir grumblr
-<span class="hljs-built_in">cd</span> grumblr
+<p>Now that we have a bit of a high level overview of Backbone, let&apos;s build our first app with it!</p>
+<p>Before we implement Backbone, let&apos;s set up our file structure and load our dependencies for a new static site!</p>
+<p>We&apos;re going to create a static HTML application. Go ahead and create a new directory we&apos;re going to work in, let&apos;s call it <code>grumblr_backbone</code>.</p>
+<p>Ahh, our old friend &apos;Grumblr&apos;! We are using a familiar domain both because its a single model CRUD app we know, but also to illustrate that we will be using the same back-end as we did for angular!</p>
+<pre><code class="lang-bash">mkdir grumblr_backbone
+<span class="hljs-built_in">cd</span> grumblr_backbone
 </code></pre>
-<p>Lets make some folders and files we&apos;re going to need for our backbone application.</p>
+<p>Lets make some folders and files we&apos;re going to need for our Backbone application.</p>
 <pre><code class="lang-bash">touch index.html
 mkdir js
 mkdir js/models
@@ -1324,8 +1338,9 @@ touch js/app.js
 touch js/models/grumble.js
 </code></pre>
 <blockquote>
-<p>Something to note, backbone doesn&apos;t yell at you for having your code in the wrong folders. However, going forward it will be nice for you and future you to separate our concerns. You will see the more of this importance when we get into backbone views and routing. Additionally note that we are just using a static <code>index.html</code> page to create this application. Backbone can sit on top of frameworks like rails and express as well. The configuration and setups can be a bit different depending on the domain you&apos;re working in.</p>
+<p>Something to <strong>note</strong>: Backbone doesn&apos;t yell at you for having your code in the wrong folders. However, going forward it will be nice for you and future you to separate our concerns. You will see the more of this importance when we get into Backbone views and routing. Additionally <strong>note</strong> that we are just using a static <code>index.html</code> page to create this application. Backbone can sit on top of frameworks like Rails and Express as well. The configuration and setups can be a bit different depending on the domain you&apos;re working in.</p>
 </blockquote>
+<p>Great, now that we have our app&apos;s structure in place, let&apos;s load the necessary dependencies for Backbone.</p>
 <h3 id="bower">Bower</h3>
 <p>Bower is a package manager that allows us to manage dependencies. To install it we run:</p>
 <pre><code class="lang-bash">npm install -g bower
@@ -1342,50 +1357,54 @@ bower install backbone
   <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;UTF-8&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Grumblr!<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/jquery/dist/jquery.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/underscore/underscore-min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/handlebars/handlebars.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/backbone/backbone-min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;js/app.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;js/models/grumble.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
 
-  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/jquery/dist/jquery.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/underscore/underscore-min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/handlebars/handlebars.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bower_components/backbone/backbone-min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;js/models/grumble.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;js/app.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
 </code></pre>
 <blockquote>
-<p>Order is very important here. Note that underscore is a dependency of backbone and that jquery is a dependency of underscore. As a result we load jquery first, then underscore, then backbone. Additionally we want our model definition to follow the backbone dependency because we will be using backbone abstractions inside of the model file. And finally we also include the main <code>app.js</code> which will require our model definitions.</p>
-<p>We could have also installed dependencies using CDN&apos;s or downloading the source code for the dependencies as well. Additionally we have install the handlebars dependency. We won&apos;t be using this one today, but we&apos;ll be needing it for views tomorrow.</p>
+<p><strong>Order</strong> is very important here. Note that underscore is a dependency of Backbone and that jquery is a dependency of underscore. As a result we load jquery first, then underscore, then Backbone. Additionally, we want to require our main <code>app.js</code> file, which will help stich together our app&apos;s components. Finally, we want include our model definition to follow the Backbone dependency because we will be using Backbone abstractions inside of the model file.</p>
+<p>We could have also installed dependencies using CDN&apos;s or downloading the source code for the dependencies as well. Additionally we have installed the handlebars dependency. We won&apos;t be using this one today, but we&apos;ll be needing it for views tomorrow.</p>
 </blockquote>
 <h2 id="break-1070">Break 10/70</h2>
 <h2 id="backbone-models50120">Backbone Models(50/120)</h2>
-<p>What&apos;s a model? What was it in rails?
-To rehash:
-An object that represents data attributes and behavioral logic related to an entity. It provides CRUD functionality for that data</p>
-<p>Let&apos;s define our very first backbone model. In <code>js/models/grumble.js</code>:</p>
+<p><strong>Q:</strong> What&apos;s a model? What was it in Rails?</p>
+<p><strong>A:</strong> A <a href="http://backbonejs.org/#Model" target="_blank">Model</a> is an object that represents data attributes and behavioral logic related to an entity. It provides CRUD functionality for that data. This encapsulation allows us to keep our business logic out of the view, and instead allow the view to render or update based on a <em>&quot;change&quot;</em> event. These events are triggered whenever a UI action causes an attribute of a model to change.</p>
+<p>Here&apos;s a look of how the model fits into Backbone&apos;s MVC
+<img src="http://backbonejs.org/docs/images/intro-model-view.svg" alt="MVC"></p>
+<p>Let&apos;s define our very first Backbone model. In <code>js/models/grumble.js</code>:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Grumble = Backbone.Model.extend({
 
 })
 </code></pre>
 <blockquote>
-<p>Much like inheriting from <code>ActiveRecord::Base</code>. Were just extending backbone model functionality into our own model definitions.</p>
+<p>Much like inheriting from <code>ActiveRecord::Base</code>. Were just extending Backbone model functionality into our own model definitions.</p>
 </blockquote>
-<p>Awesome! Let spin up our sweet website. (include a document ready and a console.log to show js/jquery dependency is working). In <code>js/app.js</code>:</p>
+<p>Awesome! Let spin up our sweet website by running <code>http-server</code> from the command line and navigating to <code>localhost:8080</code>. Make sure to include a <code>document.ready</code> and a <code>console.log</code> to show js/jquery dependency is working). In <code>js/app.js</code>:</p>
 <pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;jq loaded!&quot;</span>)
 })
 </code></pre>
-<p>Let&apos;s go into the console and create our very first instance of a backbone model. <code>var grumble = new Grumble()</code> lets see what it&apos;s given us by typing in <code>grumble</code> and hitting enter.</p>
+<p>Let&apos;s go into the console and create our very first instance of a Backbone model. <code>var grumble = new Grumble()</code> lets see what it&apos;s given us by typing in <code>grumble</code> and hitting enter.</p>
 <p>cid?! whats that?
 <a href="http://stackoverflow.com/questions/12169822/backbone-js-id-vs-idattribute-vs-cid" target="_blank">id vs cid vs idAttribute</a></p>
-<p>TLDR version: cid is short for client id, cid is assigned by backbone.js client side and is useful if you don&apos;t have an actual id.</p>
-<p>There&apos;s alot of other stuff happening here that backbone&apos;s doing but the important part of it is the attributes object nested within our backbone object.</p>
-<h3 id="getting-and-setting-attributes">Getting and setting attributes</h3>
+<p>TLDR version: cid is short for client id, cid is assigned by Backbone.js client side and is useful if you don&apos;t have an actual id.</p>
+<p>There&apos;s a lot of other stuff happening here that Backbone&apos;s doing but the important part of it is the attributes object nested within our Backbone object.</p>
+<h2 id="getting-and-setting-attributes">Getting and setting attributes</h2>
+<p>Just like in Active Record, our Backbone Models have attributes attached to them that represent the data in our app and normally correspond to the columns in our model&apos;s table in our DB</p>
 <h3 id="setting-attributesalso-updates">Setting attributes(also updates)</h3>
 <p>Attributes can be set in a number of ways.</p>
 <ul>
-<li>We can set them on instantiation of the object ie<pre><code class="lang-js"><span class="hljs-keyword">var</span> grumble = <span class="hljs-keyword">new</span> Grumble({author: <span class="hljs-string">&quot;bob&quot;</span>, content: <span class="hljs-string">&quot;learned backbone today!!&quot;</span>})
+<li>We can set them on instantiation of the object, i.e:<pre><code class="lang-js"><span class="hljs-keyword">var</span> grumble = <span class="hljs-keyword">new</span> Grumble({author: <span class="hljs-string">&quot;bob&quot;</span>, content: <span class="hljs-string">&quot;learned Backbone today!!&quot;</span>})
 </code></pre>
 </li>
 <li>We can set them on an existing objects<pre><code class="lang-js">grumble.set(<span class="hljs-string">&quot;difficulty&quot;</span>, <span class="hljs-number">5</span>)
@@ -1412,11 +1431,11 @@ defaults:{
 }
 })
 </code></pre>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> grumble = <span class="hljs-keyword">new</span> Grumble()
+Now if we to create a new grumble instance<pre><code class="lang-js"><span class="hljs-keyword">var</span> grumble = <span class="hljs-keyword">new</span> Grumble()
 </code></pre>
-<h3 id="getting-attributes">Getting attributes</h3>
-</li>
+We would be able to see our default content in that grumble&apos;s <code>attributes</code></li>
 </ul>
+<h3 id="getting-attributes">Getting attributes</h3>
 <pre><code class="lang-js">grumble.get(<span class="hljs-string">&quot;attributeName&quot;</span>)
 </code></pre>
 <pre><code class="lang-js">grumble.attributes.attributeName
@@ -1444,17 +1463,27 @@ defaults:{
   }
 })
 </code></pre>
-<h2 id="backbone-collections-30150">Backbone Collections (30/150)</h2>
-<p>What is a backbone collection? A collection acts as an intelligent wrapper for like models. It provides a set of methods for performing the CRUD operations on models of the collection. Create and edit the file <code>js/collections/grumbles.js</code>:</p>
+<h3 id="youdo-play-with-bb-models-5-mins">You-Do: Play with BB Models (5 mins)</h3>
+<p>With a partner, take 5 minutes to play around with our new Model.
+Reference the <a href="http://backbonejs.org/#Model" target="_blank">docs</a> to see all available methods for Backbone models.</p>
+<ul>
+<li>Practice getting and setting properties and explore how the <code>changed</code> attribute works</li>
+</ul>
+<p><strong>Questions on BB models?</strong></p>
+<h2 id="backbone-collections-30150">Backbone <a href="http://backbonejs.org/#Collection" target="_blank">Collections</a> (30/150)</h2>
+<p>What is a Backbone collection?
+Backbone collections are simply an ordered set of models. A collection acts as an intelligent wrapper for similar models. Collections also come with their own set of methods for performing the CRUD operations the models of a collection.</p>
+<p><img src="http://backbonejs.org/docs/images/intro-collections.svg" alt="Collections"></p>
+<p>Create and edit the file <code>js/collections/grumbles.js</code>, and make sure to link to that file it in your <code>index.html</code>:</p>
 <h3 id="creating-a-collection">Creating a collection</h3>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Grumbles = Backbone.Collection.extend({
   initialize:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;created a new grumbles collection&quot;</span>)
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;New Grumbles collection created!&quot;</span>)
   },
   model: Grumble
 })
 </code></pre>
-<p>We add the model as an attribute of the collection so that any objects we add to this collection will be passed in as objects of the Grumble Backbone model.</p>
+<p>We add the model as an attribute of the collection so that any objects we add to this collection will be formatted as objects of the Grumble Backbone model.</p>
 <h4 id="setting-models-on-collections">Setting models on collections</h4>
 <p>How are models added to a collection?</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// on instantiation of collection</span>
@@ -1466,6 +1495,13 @@ grumbles.set([grumble1, grumble2])
 <span class="hljs-comment">// added to existing collection</span>
 grumbles.add(grumble1)
 </code></pre>
+<p>In our Browser&apos;s console, let&apos;s add some models and practice creating a collection:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> grumble1 = <span class="hljs-keyword">new</span> Grumble({content: <span class="hljs-string">&quot;Grumble1&quot;</span>})
+<span class="hljs-keyword">var</span> grumble2 = <span class="hljs-keyword">new</span> Grumble({content: <span class="hljs-string">&quot;Grumble2&quot;</span>})
+<span class="hljs-keyword">var</span> grumble3 = <span class="hljs-keyword">new</span> Grumble({content: <span class="hljs-string">&quot;Grumble3&quot;</span>})
+
+<span class="hljs-keyword">var</span> grumbles = <span class="hljs-keyword">new</span> Grumbles([grumble1, grumble2, grumble3])
+</code></pre>
 <h4 id="getting-models-from-collection">Getting models from collection</h4>
 <pre><code class="lang-javascript"><span class="hljs-comment">// gets all models</span>
 grumbles.models
@@ -1473,14 +1509,15 @@ grumbles.models
 <span class="hljs-comment">// get model based on cid</span>
 grumbles.get(<span class="hljs-string">&quot;c1&quot;</span>)
 
-<span class="hljs-comment">// like active record you can use where to return an array of objects fitting the match</span>
+<span class="hljs-comment">// like Active Record you can use where to return an array of objects fitting the match</span>
 grumbles.where({attributeName: <span class="hljs-string">&quot;valueOfAttribute&quot;</span>})
+
 <span class="hljs-comment">// findWhere finds the first match</span>
 grumbles.findWhere({attributeName: <span class="hljs-string">&quot;valueOfAttribute&quot;</span>})
 </code></pre>
 <h4 id="removing-models">Removing models</h4>
 <pre><code class="lang-javascript"><span class="hljs-comment">// removes accepts a single model object, a cid or array of model objects</span>
-grumbles.remove(<span class="hljs-string">&quot;c1&quot;</span>)
+grumbles.remove(<span class="hljs-string">&quot;c3&quot;</span>)
 grumbles.remove(objectVariable)
 grumbles.remove([grumble1, grumble2])
 
@@ -1501,8 +1538,8 @@ grumbles.reset()
 <h2 id="class-ex--reminders-part-13030">Class Ex - Reminders Part 1(30/30)</h2>
 <p>Look at the repo <a href="https://github.com/ga-dc/reminder#part-1" target="_blank">here</a></p>
 <h2 id="ajax-w-bb-6090">AJAX /w BB (60/90)</h2>
-<p>So we&apos;ve learned how to create backbone models and collections, but it&apos;d be really nice if we could define our models/collections through an existing backend. Enter rails. But it doesn&apos;t have to be! But for the purposes of this class we&apos;ll use a nice and simple rails application that we&apos;ve created for you.</p>
-<p>You can pull the code for our backend <a href="https://github.com/ga-dc/grumblr_rails_api" target="_blank">here</a></p>
+<p>So we&apos;ve learned how to create Backbone Models and Collections, but so far we have been hard-coding our data, instead it would be great if we could fetch the data for our models/collections through an existing backend. For the purposes of this class, we&apos;ll use a nice and simple Rails application that we&apos;ve created for you.</p>
+<p>You can pull the code for our backend API <a href="https://github.com/ga-dc/grumblr_rails_api" target="_blank">here</a></p>
 <p>After you fork/clone this repo, go ahead and run standard setup for a rails app:</p>
 <pre><code class="lang-bash">$ <span class="hljs-built_in">cd</span> grumblr_rails_api
 $ bundle install
@@ -1512,7 +1549,7 @@ $ rake db:seed
 $ rails s
 </code></pre>
 <h3 id="models">Models</h3>
-<p>Remember all that complex ajax stuff we used to get information from a server? Well BB abstracts all of that for you and makes it much easier. All we have to do is change up our model definition slightly! In &apos;js/models/grumble.js`:</p>
+<p>Remember all that complex ajax stuff we used to get information from a server? Well BB abstracts all of that for you and makes it much easier. All we have to do is change up our model definition slightly! In <code>js/models/grumble.js</code>:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Grumble = Backbone.Model.extend({
   urlRoot: <span class="hljs-string">&quot;http://localhost:3000/grumbles&quot;</span>,
   defaults: {
@@ -1521,38 +1558,118 @@ $ rails s
 });
 </code></pre>
 <p>Everything you did before is the same. The only difference now is if we want to make changes to the database. We just need to call <code>.save()</code> on the instance of the object.</p>
-<pre><code class="lang-js">grumble.set({authorName: <span class="hljs-string">&quot;bob&quot;</span>, content: <span class="hljs-string">&quot;smith&quot;</span>, title: <span class="hljs-string">&quot;the title&quot;</span>, photoUrl: <span class="hljs-string">&quot;http://placebear.com/400/400&quot;</span>})
-
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> grumble = <span class="hljs-keyword">new</span> Grumble({authorName: <span class="hljs-string">&quot;Charlie&quot;</span>, content: <span class="hljs-string">&quot;Dayman, fighter of the Nightman&quot;</span>, title: <span class="hljs-string">&quot;The Nightman Cometh&quot;</span>, photoUrl: <span class="hljs-string">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr01/14/20/enhanced-buzz-2646-1381796229-3.jpg&quot;</span>})
 grumble.save()
 </code></pre>
 <blockquote>
-<p>If we have our rails application running, we can refresh the page and see our new grumble got saved to our database.</p>
+<p>If we have our Rails Application running, we can refresh the page and see our new grumble got saved to our database.</p>
 </blockquote>
-<p>One thing to note is that the <code>.save()</code> function returns a deferred object that allows us to use the object that was saved as an argument. Something like this:</p>
-<pre><code class="lang-js">grumble.save().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+<p>One thing to note is that the <a href="http://backbonejs.org/#Model-save" target="_blank"><code>.save</code></a> method returns a deferred object that allows us to use the object that was saved as an argument. Something like this:</p>
+<pre><code class="lang-js">grumble.set({content: <span class="hljs-string">&quot;Champion of the sun&quot;</span>})
+grumble.save().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
   <span class="hljs-built_in">console</span>.log(response)
 })
 </code></pre>
 <blockquote>
-<p>the response in this log is the object(key-value pairs) that was saved in the database.</p>
+<p>The <code>response</code> in this log is the object(key-value pairs) that was saved in the database.</p>
 </blockquote>
+<h2 id="break">Break</h2>
 <h3 id="collections">Collections</h3>
-<p>Now let&apos;s change our collection definition in <code>js/collections/grumbles.js</code>:</p>
+<p>Collections can also be set up to interface with our back-end API.</p>
+<p>Let&apos;s change our collection definition in <code>js/collections/grumbles.js</code>:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> GrumblesCollection = Backbone.Collection.extend({
   initialize: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;New Grumbles Collection&apos;</span>);
   },
   model: Grumble,
-  url: <span class="hljs-string">&apos;/grumbles&apos;</span>
+  url: <span class="hljs-string">&quot;http://localhost:3000/grumbles&quot;</span>
 });
 </code></pre>
-<p>Again, the rules are much the same for manipulating data within the collection.
-Similarly to ActiveRecord there is a create method that can be called on a collection:</p>
-<pre><code class="lang-javascript">collection.create({authorName: <span class="hljs-string">&quot;bob&quot;</span>, content: <span class="hljs-string">&quot;smith&quot;</span>, title: <span class="hljs-string">&quot;the title&quot;</span>, photoUrl: <span class="hljs-string">&quot;http://placebear.com/400/400&quot;</span>})
+<p>Again, the rules are much the same for manipulating data within the collection.</p>
+<p>Similarly to ActiveRecord there is a <a href="http://backbonejs.org/#Collection-create" target="_blank"><code>create</code></a> method that can be called on a collection:</p>
+<pre><code class="lang-javascript">Grumbles.create({authorName: <span class="hljs-string">&quot;bob&quot;</span>, content: <span class="hljs-string">&quot;smith&quot;</span>, title: <span class="hljs-string">&quot;the title&quot;</span>, photoUrl: <span class="hljs-string">&quot;http://placebear.com/400/400&quot;</span>})
 </code></pre>
-<p>will actually save an instance of that model to the database, so long as you meet the strong params requirements.</p>
-<h2 id="class-ex--reminders-part-2-60150">Class Ex - Reminders Part 2 (60/150)</h2>
+<p><code>create</code> will actually save an instance of that model to the database, so long as you meet the strong params requirements.</p>
+<p>Another common method that you will use on a collection is <a href="http://backbonejs.org/#Collection-fetch" target="_blank"><code>fetch</code></a>.
+<code>fetch</code> is used to grab all the models from the server, and set them on the collection, i.e.</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> grumbles = Grumbles.fetch()
+</code></pre>
+<p>There is also an additional hash of options you can pass for <code>fetch</code>, that allow you to control the triggering of events. For example, to fetch a collection, getting an <code>add</code> event for every new model, and a <code>change</code> event for every changed existing model, without removing anything: <code>Grumbles.fetch({remove: false})</code></p>
+<h2 id="class-ex--reminders-part-2-40130">Class Ex - Reminders Part 2 (40/130)</h2>
 <p>Look at the repo <a href="https://github.com/ga-dc/reminder#part-2" target="_blank">here</a></p>
+<h2 id="refactoring-and-best-practices-20150">Refactoring and Best Practices (20/150)</h2>
+<p>Let&apos;s do a quick overview of our app so far.
+Does anything jump out where we know we can help set ourselves up for future success?
+What about anything we used as best practices with Angular.js following style guides?</p>
+<h3 id="iifes-and-global-objects">IIFE&apos;s and Global Objects</h3>
+<p>Looking at our current model and collection definitions:</p>
+<p>in <code>js/models/grumble.js</code></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Grumble = Backbone.Model.extend({
+  urlRoot: <span class="hljs-string">&quot;http://localhost:3000/grumbles&quot;</span>,
+  initialize: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;New Grumble Model Created&quot;</span>)
+  }
+})
+</code></pre>
+<p>And in <code>js/collections/grumbles.js</code></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Grumbles = Backbone.Collection.extend({
+  initialize:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;new Grumbles collection Created &quot;</span>)
+  },
+  model: App.Models.Grumble,
+  url: <span class="hljs-string">&apos;/grumbles&apos;</span>
+})
+</code></pre>
+<p>Ohhh, currently we are defining our app&apos;s model and collection in the global namespace!?!</p>
+<p>Instead, Backbone developers favor grouping all of our app&apos;s components under one global <code>App</code> object, so let&apos;s do this as well.</p>
+<p>In <code>js/app.js</code>, add the global object at the top of the file (before the <code>document.ready</code>) like:</p>
+<pre><code class="lang-javascript">App = {
+  Models: { },
+  Collections: { },
+  Views: { }
+}
+</code></pre>
+<p>Great! Now, we need to go back and update our definitions to make sure to namespace them under our global <code>App</code> object.
+It&apos;s also a good idea to go ahead and include IIFEs to further protect the scope of our components.  </p>
+<p>Our updated model in <code>js/models/grumble.js</code> becomes:</p>
+<pre><code class="lang-javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  App.Models.Grumble = Backbone.Model.extend({
+    urlRoot: <span class="hljs-string">&quot;http://localhost:3000/grumbles&quot;</span>,
+    initialize: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;New Grumble Model Created&quot;</span>)
+    }
+  })
+})()
+</code></pre>
+<p>and our updated collection in <code>js/collections/grumbles.js</code> becomes:</p>
+<pre><code class="lang-javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  App.Collections.Grumbles = Backbone.Collection.extend({
+    initialize:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;new Grumbles collection Created &quot;</span>)
+    },
+    model: App.Models.Grumble,
+    url: <span class="hljs-string">&quot;http://localhost:3000/grumbles&quot;</span>
+  })
+})()
+</code></pre>
+<p>Awesome, now we&apos;re no longer over polluting the global namespace. Up next, we&apos;ll learn about how to use views to interface with our data and provide the UI for our app!</p>
+<h2 id="homework">Homework</h2>
+<p>No deliverables-finish up reminders part2 and any left over in-class work</p>
+<h2 id="sample-quiz-questions">Sample Quiz Questions</h2>
+<ul>
+<li>Is Backbone an example of a library or a front end Framework? Defend your answer</li>
+<li>Why do we define our Backbone models with <code>Backbone.Model.extend({...})</code> and our collections with models with <code>Backbone.Collection.extend({...})</code>?</li>
+<li>What are Backbone.js&apos; dependencies?</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://cdnjs.com/libraries/backbone.js/tutorials/what-is-a-model/" target="_blank">What&apos;s a Model?</a></li>
+<li><a href="https://cdnjs.com/libraries/backbone.js/tutorials/what-is-a-collection/" target="_blank">What&apos;s a Collection?</a></li>
+<li><a href="https://addyosmani.com/backbone-fundamentals" target="_blank">Backbone Fundamentals (Awesome Free eBook)</a></li>
+<li><a href="https://github.com/jashkenas/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites" target="_blank">Backbone Example Sites, Tutorials, and Blog Posts</a></li>
+<li><a href="http://ricostacruz.com/backbone-patterns/index.html" target="_blank">Backbone Design Patterns</a></li>
+<li><a href="http://javascriptissexy.com/learn-backbone-js-completely/" target="_blank">Comprehensive Backbone Tutorial</a></li>
+</ul>
 
                     
                     </section>
