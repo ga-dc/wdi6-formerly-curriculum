@@ -152,8 +152,8 @@ Update `config/initializers/devise.rb`, so that devise will support login,
 signup, etc via JSON API calls.
 
 ```diff
-- config.navigation_formats = ['*/*', :html]
-+ config.navigation_formats = ['*/*', :html, :json]
+- config.navigational_formats = ['*/*', :html]
++ config.navigational_formats = ['*/*', :html, :json]
 ```
 
 `rake routes` should now show devise_token_auth routes.

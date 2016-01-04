@@ -616,7 +616,7 @@ As we can see on the last line of the code above, we have just one route. It's u
 
 ```bash
 $ mkdir controllers
-$ touch authorsController.js
+$ touch controllers/authorsController.js
 ```
 
 In `controllers/authorsController.js`:

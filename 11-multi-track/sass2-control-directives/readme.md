@@ -99,11 +99,9 @@ A. Student responses.
 
 Let's go back to the Flash messages.  This time, we will create mixin with a conditional that sets the text color to `#fff` if the background is dark enough and `#000` if the background is light enough.
 
-http://codepen.io/mattscilipoti/pen/XmWbgq
+[Solution](http://codepen.io/adambray/pen/vLgrKK)
 
-Hint: you can check the "lightness" of a color.
-
-Bonus: what if we had more flash types?
+Hint: research how you can determine the "lightness" of a color using SASS.
 
 ## Loops
 

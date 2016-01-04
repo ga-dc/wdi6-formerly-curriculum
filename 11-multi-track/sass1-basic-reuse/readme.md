@@ -1,4 +1,6 @@
-  # Sass - Basic Reuse
+# Sass - Basic Reuse
+
+## Learning Objectives
 
 - Use variables and nesting to dry up CSS
 - Use color functions to create dynamic color schemes
@@ -229,7 +231,9 @@ Q. Why would we want that?
 
 
 ## Exercise: Flash (15 min)
-http://codepen.io/mattscilipoti/pen/XmWbgq
+
+* [Starter](http://codepen.io/adambray/pen/bEgMXr)
+* [Solution](http://codepen.io/adambray/pen/yegjdj)
 
 ## Conclusion
 
