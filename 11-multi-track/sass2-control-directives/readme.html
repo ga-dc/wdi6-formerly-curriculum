@@ -51,7 +51,7 @@
         data-chapter-title="Sass 2: Control Directives"
         data-filepath="11-multi-track/sass2-control-directives/readme.md"
         data-basepath="../.."
-        data-revision="Mon Jan 04 2016 16:28:13 GMT+0000 (UTC)"
+        data-revision="Mon Jan 04 2016 18:44:29 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1245,33 +1245,6 @@
 <li>Well-formatted, customizable output</li>
 </ul>
 <p>In this lesson, we are covering the portions that helpers that enhance css.  The next lesson will dig deeper into the programmatic aspects of Sass.</p>
-<h2 id="preprocessor-precompiler-10-min">Preprocessor? Precompiler? (10 min)</h2>
-<p>How do we use it?</p>
-<p><img src="http://i0.wp.com/css-diary.com/wp-content/uploads/2014/07/sass.png?resize=700%2C400" alt="Compile Steps"></p>
-<pre><code>gem install sass
-</code></pre><pre><code>sass --watch input:output
-</code></pre><h3 id="example">Example:</h3>
-<p>Start with this:</p>
-<pre><code>&#x251C;&#x2500;&#x2500; assets
-&#x2502;   &#x2514;&#x2500;&#x2500; sass
-&#x2502;       &#x2514;&#x2500;&#x2500; style.scss
-&#x2514;&#x2500;&#x2500; public
-</code></pre><p>Precomile the sass to css.</p>
-<pre><code>sass --watch assets/sass/style.scss:public/style.css
-</code></pre><p>Results in:</p>
-<pre><code>&#x251C;&#x2500;&#x2500; assets
-&#x2502;   &#x2514;&#x2500;&#x2500; sass
-&#x2502;       &#x2514;&#x2500;&#x2500; style.scss
-&#x2514;&#x2500;&#x2500; public
-    &#x2514;&#x2500;&#x2500; style.css
-</code></pre><h2 id="q-what-happens-in-our-code">Q. What happens in our code?</h2>
-<blockquote>
-<p>A.
-The browser only supports CSS.  We reference the compiled <strong>css</strong> file.  Our front-end <strong>ignores the sass</strong>.  That&apos;s why we don&apos;t put the sass files in &quot;public/&quot;.</p>
-</blockquote>
-<h2 id="stylescss-vs-stylesass-5-min">style.scss vs style.sass (5 min)</h2>
-<p>Sass supports to &quot;styles&quot;: sass (<em>.sass) and Sassy CSS (</em>.scss).  They both use the same SassScript.  The .scss format is a superset of CSS3.  The .sass is a bit more concise and uses indentation to indicate blocks of CSS, but it requires a full rewrite of your css.</p>
-<p>Further reading: <a href="http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better" target="_blank">http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better</a></p>
 <h2 id="conditionals-if">Conditionals (@if)</h2>
 <p>Let&apos;s take a few minutes to read about <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#control_directives__expressions" target="_blank">@if</a></p>
 <blockquote>
@@ -1279,7 +1252,7 @@ The browser only supports CSS.  We reference the compiled <strong>css</strong> f
 </blockquote>
 <hr>
 <p>A. Student responses.</p>
-<h3 id="exercise-flash-15-min">Exercise: Flash (15 min)</h3>
+<h3 id="exercise-flash-redux-15-min">Exercise: Flash Redux (15 min)</h3>
 <p>Let&apos;s go back to the Flash messages.  This time, we will create mixin with a conditional that sets the text color to <code>#fff</code> if the background is dark enough and <code>#000</code> if the background is light enough.</p>
 <p><a href="http://codepen.io/adambray/pen/vLgrKK" target="_blank">Solution</a></p>
 <p>Hint: research how you can determine the &quot;lightness&quot; of a color using SASS.</p>
@@ -1301,14 +1274,44 @@ The browser only supports CSS.  We reference the compiled <strong>css</strong> f
 <blockquote>
 <p>A. Lot&apos;s of text-shadows.</p>
 </blockquote>
+<h2 id="using-the-sass-preprocessor">Using the SASS Preprocessor</h2>
+<p>How do we use it?</p>
+<p><img src="http://i0.wp.com/css-diary.com/wp-content/uploads/2014/07/sass.png?resize=700%2C400" alt="Compile Steps"></p>
+<pre><code>gem install sass
+</code></pre><pre><code>sass --watch input_file:output_file
+</code></pre><h3 id="example">Example:</h3>
+<p>Start with this:</p>
+<pre><code>&#x251C;&#x2500;&#x2500; assets
+&#x2502;   &#x2514;&#x2500;&#x2500; sass
+&#x2502;       &#x2514;&#x2500;&#x2500; style.scss
+&#x2514;&#x2500;&#x2500; public
+</code></pre><p>Precomile the sass to css.</p>
+<pre><code>sass --watch assets/sass/style.scss:public/style.css
+</code></pre><p>Results in:</p>
+<pre><code>&#x251C;&#x2500;&#x2500; assets
+&#x2502;   &#x2514;&#x2500;&#x2500; sass
+&#x2502;       &#x2514;&#x2500;&#x2500; style.scss
+&#x2514;&#x2500;&#x2500; public
+    &#x2514;&#x2500;&#x2500; style.css
+</code></pre><h2 id="q-what-happens-in-our-code">Q. What happens in our code?</h2>
+<blockquote>
+<p>A.
+The browser only supports CSS.  We reference the compiled <strong>css</strong> file.  Our front-end <strong>ignores the sass</strong>.  That&apos;s why we don&apos;t put the sass files in &quot;public/&quot;.</p>
+</blockquote>
+<h2 id="stylescss-vs-stylesass-5-min">style.scss vs style.sass (5 min)</h2>
+<p>Sass supports two &quot;styles&quot;: sass (<em>.sass) and Sassy CSS (</em>.scss).  They both use the same SassScript.  The .scss format is a superset of CSS3.  The .sass is a bit more concise and uses indentation to indicate blocks of CSS, but it requires a full rewrite of your css.</p>
+<p>Further reading: <a href="http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better" target="_blank">http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better</a></p>
 <h3 id="exercise-bamsay-20-min">Exercise: BAMSAY (20 min)</h3>
 <p><a href="http://github.com/ga-dc/bamsay" target="_blank">http://github.com/ga-dc/bamsay</a></p>
 <p>Hint: you can&apos;t just add a bunch of box shadow properties... each will over-write
 the previous... instead you&apos;ll need to create one box-shadow property with a lot
 of values comma separated... look up how to append values in SASS.</p>
-<h2 id="lunch-60-min">Lunch (60 min)</h2>
-<h2 id="3d-button-15-min">3D Button (15 min)</h2>
+<h2 id="exercise-3d-button-15-min">Exercise: 3D Button (15 min)</h2>
 <p>On to the next goal. A button.  A big, cool, <a href="http://codepen.io/adambray/full/rxjKWR/" target="_blank">3D button</a>.</p>
+<ul>
+<li><a href="http://codepen.io/adambray/pen/xZgzgK?editors=110" target="_blank">Starter</a></li>
+<li><a href="http://codepen.io/adambray/pen/xZgzgK?editors=110" target="_blank">Solution</a></li>
+</ul>
 <p>Check out the css.  More text-shadows?<br>All the reasons from before apply, plus... how do I know what to type?  This one is complicated.</p>
 <p>Again, let&apos;s identify, systematize, and <strong>codify</strong> what it means to be a 3D button.</p>
 <h2 id="q-how--how-does-this-button-work">Q: How?  How does this button work?</h2>
@@ -1319,16 +1322,15 @@ of values comma separated... look up how to append values in SASS.</p>
 <li>color?  Relative?</li>
 </ul>
 </li>
-<li>down<ul>
+<li>hover<ul>
+<li>moves to the left a bit</li>
+</ul>
+</li>
+<li>down (active)<ul>
 <li>shift right, down</li>
 <li>less box-shadows</li>
 </ul>
 </li>
-</ul>
-<h3 id="exercise-make-it-so-45-min">Exercise: Make It So (45 min)</h3>
-<ul>
-<li><a href="http://codepen.io/adambray/pen/xZgzgK?editors=110" target="_blank">Starter</a></li>
-<li><a href="http://codepen.io/adambray/pen/xZgzgK?editors=110" target="_blank">Solution</a></li>
 </ul>
 <p>Timings:</p>
 <ul>
@@ -1343,7 +1345,7 @@ text-shadow: 0+$i,
 </li>
 <li>20 min: You have worked out the plan for the button and have started to codify it.</li>
 </ul>
-<p><a href="https://jesse.sh/makes-3d-buttons-with-sass/" target="_blank">Thanks jshawl!</a></p>
+<p>Jesse has a <a href="https://jesse.sh/makes-3d-buttons-with-sass/" target="_blank">great blog post</a> on how he built this.</p>
 <p>Now we&apos;ve added &quot;function&quot; and &quot;mixin&quot; to our list, joining &quot;variables&quot; and &quot;loops&quot;.</p>
 <h2 id="break-10-min">Break (10 min)</h2>
 <h2 id="sass-and-rails-30-min">Sass and Rails (30 min)</h2>
@@ -1383,7 +1385,7 @@ text-shadow: 0+$i,
 <li>What directive should we use to require other sass files?</li>
 <li>Name 3 benefits of Sass.</li>
 </ul>
-<h2 id="optional-review-an-app-from-project-3--look-for-ways-to-remove-duplication-and-improve-documenting-intent">[Optional] Review an app from Project 3.  Look for ways to remove duplication and improve documenting intent.</h2>
+<h2 id="optional-review-an-app-from-project-2-or-3--look-for-ways-to-remove-duplication-and-improve-documenting-intent">[Optional] Review an app from Project 2 or 3.  Look for ways to remove duplication and improve documenting intent.</h2>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://jesse.sh/makes-3d-buttons-with-sass/" target="_blank">3D Buttons with Sass</a></li>
