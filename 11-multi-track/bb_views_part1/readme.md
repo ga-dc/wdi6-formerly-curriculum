@@ -403,6 +403,7 @@ to update the grumble.
 ### Exercise: Cancel Button (5 minutes)
 
 When the user clicks the `cancel` button, go back to the show view.
+> You can do this by adding just one line to our view's `events` object. No need to define a new method.
 
 ## Sample Questions
 
