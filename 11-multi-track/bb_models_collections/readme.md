@@ -255,7 +255,7 @@ grumble.unset("attributeName")
 ```
 check with:
 ```js
-grumble.has("attrbuteName")
+grumble.has("attributeName")
 ```
 
 remove all attributes of a model with:
