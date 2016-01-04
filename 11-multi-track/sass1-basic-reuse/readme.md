@@ -67,6 +67,8 @@ Timing Expectations:
 
 Bonus: Review and/or reproduce any of the other examples.
 
+[CSS Solution](http://codepen.io/adambray/pen/zrNyVy)
+
 ## Break (10 min)
 
 ## Discuss your examples (10 min)
