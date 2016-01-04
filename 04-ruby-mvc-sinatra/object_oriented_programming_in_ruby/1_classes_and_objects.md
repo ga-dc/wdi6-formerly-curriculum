@@ -1,5 +1,8 @@
 # Intro to Object-Oriented Programming in Ruby
 
+AKA *OOP: There it is*
+
+## Learning Objectives
 - Define Object-Oriented Programming, and its benefits
 - Define and differentiate between classes and objects
 - Create a Ruby class with an initialize method
@@ -11,17 +14,47 @@
 - Write methods to define an interface to the class' behaviors
 - Describe how OOP supports encapsulation and abstraction
 
+## Keywords
+- Object
+- Class
+- Property
+- Attribute
+- Method
+- `def initialize`
+- `.new`
+- `attr_reader`, `attr_writer`, `attr_accessor`
+- `def method_name=`
+- `@variable_name`
+- Instance method
+- Class method
+- `binding.pry`
+
 ## What is OOP? (5 minutes)
 
 Object-oriented programming is the idea that our programs consist mainly of
 objects, which have attributes (aka properties), and methods (aka behavior).
 
-Why do we need objects? Let's take a look at [amazon](http://www.amazon.com/).
+It may be easier to figure out what this means by looking at something that's **not** OOP. Check out [this old Javascript that Robin wrote many moons ago.](https://github.com/ga-dc/curriculum/blob/master/08-single-page-web-apps/oojs2-create-update-destroy/ugly.js)
 
-Let's search for speakers. When we hit enter we can see a whole bunch of different speakers. Did the people that coded amazon hard code all of these speakers? Think of each different speaker as an object. These objects have properties like a title, url, price, or rating. We need to be able to store and consolidate information into objects so that we can access/display them on a webpage.
+Q. Despite the immaculate indenting, why do I now consider this "bad code"?
+---
+> It's not DRY at all. There are 4 functions with `address` in the name. There are **9** functions with `amount` in the name, and each one begins with the exact same 2 lines of code.
 
-We often think of these objects modeling things in the real world. Examples
-might include:
+What I was going for with those `amount` functions is some kind of shipping calculator. But a calculator comes in a tidy little package: everything's inside a nice plastic container.
+
+Having all these near-identical functions just hanging out in one big script file is like, instead of having a calculator, having a microchip for multiplication, a microchip for division, a microchip for addition, and a microchip for whatever else tossed together in a cardboard box, along with all the shipping labels and the postage scale.
+
+Plus, you need to actually be able to get data into and out of the microchips, so you'd need to give each one its own display screen and keypad.
+
+This works, but it's ugly and inefficient. It would be much easier if the microchips were all in that nice plastic container sharing the same screen and keypad.
+
+With this old code, it would be much easier if all the `amount` functions were in their own "plastic case", and we only had to write those two lines of code they share **once**.
+
+### Objects
+
+An "object" in real life is a thing that has attributes and can do stuff. An object in programming is the same thing. The "stuff" that it can "do" are called *methods*.
+
+Here are some real-world examples:
 
 - Bank Account
   - attributes: balance, transactions, owner
@@ -32,10 +65,6 @@ might include:
 - Squad
   - attributes: name, instructor, students, size
   - methods: add_student, remove_student, meet, high_five, dance
-
-Often in OOP, these objects interact with each other. For example, we might
-create a *person* object and then add them to a *squad* object. If we call a
-*dance* method on a squad, it might make all the people in the squad *dance* as well.
 
 ### Exercise (10 mintues)
 
@@ -119,6 +148,10 @@ $ ruby scratch.rb
 => nil
 [3] pry(main)>
 ```
+
+### Why isn't my `pry` working?
+
+There *must* be some *functioning code* after `binding.pry`. If all that comes after it is white space and comments, it won't work. Even putting `foo = "bar"` after it will cause it to function.
 
 ## Writing Classes (10 minutes)
 
