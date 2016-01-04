@@ -4,7 +4,6 @@
 - Use control directives for conditionals (@if)
 - Use control directives for loops (@for, @each and @while)
 - Use pure Sass functions to make reusable logic
-- Create a Pull Request to sass
 
 ## Intro (10 min)
 
@@ -132,12 +131,15 @@ Q. How did we create BAMSAY?
 
 http://github.com/ga-dc/bamsay
 
+Hint: you can't just add a bunch of box shadow properties... each will over-write
+the previous... instead you'll need to create one box-shadow property with a lot
+of values comma separated... look up how to append values in SASS.
+
 ## Lunch (60 min)
 
 ## 3D Button (15 min)
 
-On to the next goal. A button.  A big, cool, [3D button](http://codepen.io/mattscilipoti/full/RWbPRw
-).
+On to the next goal. A button.  A big, cool, [3D button](http://codepen.io/adambray/full/rxjKWR/).
 
 Check out the css.  More text-shadows?  
 All the reasons from before apply, plus... how do I know what to type?  This one is complicated.
@@ -157,7 +159,8 @@ Q: How?  How does this button work?
 
 ### Exercise: Make It So (45 min)
 
-- Recreate [Make It So](http://codepen.io/mattscilipoti/full/RWbPRw)
+- [Starter](http://codepen.io/adambray/pen/xZgzgK?editors=110)
+- [Solution](http://codepen.io/adambray/pen/xZgzgK?editors=110)
 
 Timings:
 - 5 min: Flat button, Hover state changes it.  Breaking down box-shadows. Identifying the pattern.
