@@ -15,7 +15,7 @@ It's no secret you can do some seriously cool stuff with maps online. Some examp
 * Adding Functionality: [Mapbox Showcase](https://www.mapbox.com/showcase/)
 * Do you all have any examples?
 
-We can do crazy, radically-different cool things with maps. But at the core of all these examples is geographical data.
+We can do lots of cool and different things with maps. But at the core of all these examples is geographical data.
 * In its most basic form, latitude-longitude.
 * While we're going to keep things simple today, soon enough you'll be able to work some crazy map wizardy with nothing more than geographical data and javascript.
 
@@ -79,7 +79,7 @@ Why Leaflet?
 </head>
 ```
 
-### Link to Leaflet script file
+### Link to Leaflet Script File
 
 ```html
 <body>
@@ -94,7 +94,7 @@ Why Leaflet?
 </body>
 ```
 
-### Add map styling
+### Add Map Styling
 
 ```css
 /* style.css */
@@ -106,7 +106,7 @@ Why Leaflet?
 
 ### Sign up for Mapbox / Leaflet (5 / 25)
 
-[Sign up for an account at Mapbox](https://www.mapbox.com/)
+[Sign up for Mapbox account](https://www.mapbox.com/).
 
 #### Map ID
 After creating an account, click "Projects" towards the right of the navbar. It may look like a folder icon without text.
@@ -114,7 +114,7 @@ After creating an account, click "Projects" towards the right of the navbar. It 
 * Copy the value in the **Map ID** field. You'll need this later.
 
 #### API Access Token
-Then, click on your username/avatar in the navbar.
+Then, click on your username / avatar in the navbar.
 * In the new sub-navbar, click on "Apps."
 * Copy the value to the right of **Default Public Token**. You'll also need this later.
 
@@ -194,7 +194,8 @@ Make five markers!
 
 **BONUS II:** Write a function that generates coordinates from a place description (e.g., "The White House DC") using the [OpenCage Geocoder API](http://geocoder.opencagedata.com/demo.html). Then, add markers to your map using those coordinates.
 * Use [this demo](http://geocoder.opencagedata.com/demo.html) to generate a sample URL.
-* You can sign up for an API key [here](http://geocoder.opencagedata.com/api.html#quickstart). If you're having trouble, you can use mine.
+* You can sign up for an API key [here](http://geocoder.opencagedata.com/api.html#quickstart). If you're having trouble, you can use mine.  
+> There are other geocoders out there. If you have a different one you prefer, feel free to use it!  
 
 ## Shapes (5 / 55)
 
@@ -303,6 +304,7 @@ Create an event listener that adds a marker to the map wherever the user clicks.
 
 GeoJSON is essentially a JSON object that contains a variety of information about a point or area (or a collection of the two) on a map.
 * With Leaflet, rather than hardcode information about a marker, circle or polygon into our code, we can import that geographical information using GeoJSON.
+* Though Leaflet is a specific mapping library, GeoJSON is used elsewhere in the wild (like Google Maps).
 
 ### GeoJSON Components (10 / 115)
 
@@ -379,4 +381,4 @@ Use a "Feature Collection" to recreate the markers and polygons you created in t
 ## Sample Quiz Questions
 
 ## Additional Reading
-* [Disabling Map Zooming an Panning](https://www.mapbox.com/mapbox.js/example/v1.0.0/disable-zooming-panning/)
+* [Disabling Map Zooming and Panning](https://www.mapbox.com/mapbox.js/example/v1.0.0/disable-zooming-panning/)
