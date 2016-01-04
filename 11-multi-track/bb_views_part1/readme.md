@@ -23,6 +23,8 @@ Today we will continue working on the Grumblr application we started building ye
 * [Starter Code](https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_starter). Located on the `views_part_1_starter` branch.
 * [Solution Code](https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_solution). Located on the `views_part_1_solution` branch.
 
+And like yesterday, we will be using `http-server` to run our Backbone application. You can do that by entering `http-server` or `hs` in the application directory. From there, visit `http://localhost:8080`.
+
 ## What Are Backbone Views? (10 minutes)
 
 Like models, Backbone views have many similarities to the views we built in our hand-rolled OOJS classes. In Backbone, views are the objects responsible for...
