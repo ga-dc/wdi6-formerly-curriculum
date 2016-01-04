@@ -53,7 +53,7 @@
         data-chapter-title="Views (part 1)"
         data-filepath="11-multi-track/bb_views_part1/readme.md"
         data-basepath="../.."
-        data-revision="Mon Jan 04 2016 19:08:25 GMT+0000 (UTC)"
+        data-revision="Mon Jan 04 2016 19:52:18 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1220,13 +1220,13 @@
                         <h1 id="backbone-views-and-events--item-views">Backbone Views and Events - Item Views</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Define the role of a View in a Backbone app</li>
-<li>Define the role of an <code>el</code> in a Backbone View</li>
-<li>Differentiate between an &quot;assigned&quot; <code>el</code> and a &quot;constructed&quot; <code>el</code></li>
-<li>Use a Backbone View to render a Model&apos;s data in the browser</li>
-<li>Use handlebars templates in BB to simplify rendering a view</li>
-<li>Make a View &quot;listen for&quot; and respond to Model events</li>
-<li>Make a View &quot;listen for&quot; and respond to DOM events</li>
+<li>Define the role of a View in a Backbone app.</li>
+<li>Define the role of an <code>el</code> in a Backbone View.</li>
+<li>Differentiate between an &quot;assigned&quot; <code>el</code> and a &quot;constructed&quot; <code>el</code>.</li>
+<li>Use a Backbone View to render a Model&apos;s data in the browser.</li>
+<li>Use Handlebars templates in BB to simplify rendering a view.</li>
+<li>Make a View &quot;listen for&quot; and respond to Model events.</li>
+<li>Make a View &quot;listen for&quot; and respond to DOM events.</li>
 </ul>
 <h2 id="references">References</h2>
 <ul>
@@ -1234,39 +1234,52 @@
 <li><a href="https://backbonetutorials.com" target="_blank">Backbone Tutorials</a></li>
 <li><a href="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/" target="_blank">Backbone.js for absolute beginners</a></li>
 </ul>
-<h2 id="intro--what-are-backbone-views-10-minutes">Intro - What are Backbone Views? (10 minutes)</h2>
-<p>In Backbone, views are the objects responsible for:</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>Today we will continue working on the Grumblr application we started building yesterday.  </p>
 <ul>
-<li>Rendering content data into HTML, and appending it to the page</li>
-<li>Listening to their models (for changes, destroys, etc), and responding accordingly</li>
-<li>Listening for events on the page (usually within their <code>el</code>), and responding accordingly</li>
+<li><a href="https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_starter" target="_blank">Starter Code</a>. Located on the <code>views_part_1_starter</code> branch.</li>
+<li><a href="https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_solution" target="_blank">Solution Code</a>. Located on the <code>views_part_1_solution</code> branch.</li>
 </ul>
-<p>They are sometimes called View Controllers, since the react to events as well as
-render data.</p>
+<p>And like yesterday, we will be using <code>http-server</code> to run our Backbone application. You can do that by entering <code>http-server</code> or <code>hs</code> in the application directory. From there, visit <code>http://localhost:8080</code>.</p>
+<h2 id="what-are-backbone-views-10-minutes">What Are Backbone Views? (10 minutes)</h2>
+<p>Like models, Backbone views have many similarities to the views we built in our hand-rolled OOJS classes. In Backbone, views are the objects responsible for...</p>
+<ul>
+<li>Rendering content data into HTML and appending it to the page.</li>
+<li>Listening to their models (for changes, destroys, etc.) and responding accordingly.</li>
+<li>Listening for events on the page (usually within their <code>el</code>) and responding accordingly.</li>
+</ul>
+<p>They are sometimes called <strong>View Controllers</strong>, since they react to events as well as render data.</p>
 <p>Our views will always extend <code>Backbone.View</code> to ensure we get the behavior we
 want.</p>
 <pre><code class="lang-js">App.Views.Grumble = Backbone.View.extend({
-  <span class="hljs-comment">// our code goes here</span>
+  <span class="hljs-comment">// Our code goes here.</span>
 });
 </code></pre>
+<blockquote>
+<p>We are using the same syntax as last class and defining our Grumble View inside of a global <code>App</code> object.</p>
+</blockquote>
 <p>Views can serve many purposes, but in general, we construct views that fall into
 one of the three following categories:</p>
-<ul>
-<li>Item views: used to render a single model instance, and respond to it&apos;s
+<ol>
+<li><p><strong>Item Views:</strong> used to render a single model instance, and respond to it&apos;s
 changes. Often we&apos;ll create one of these for each item we want to show on the
-page.</li>
-<li>Collection (or &apos;List&apos;) views: These views are associated with a Backbone
+page.  </p>
+</li>
+<li><p><strong>Collection/List Views:</strong> These views are associated with a Backbone
 collection, and are responsible for rendering that collection. Usually they do
 this by making Item views as needed. They are also responsible for things like
-sorting the items, etc.</li>
-<li>Specialty Views: These are for managing things like a login form, or maybe a
-creation form for a model.</li>
-</ul>
-<p>Part 1 of today&apos;s lessons will cover item views, and Part 2 will cover the other
+sorting the items, etc.  </p>
+</li>
+<li><p><strong>Specialty Views:</strong> These are for managing things like a login form, or maybe a creation form for a model.  </p>
+</li>
+</ol>
+<blockquote>
+<p>Today&apos;s lesson will cover item views. Tomorrow you will cover the other
 two.</p>
-<p>It&apos;s worth noting that when we instantiate item views in backbone, it&apos;s
+</blockquote>
+<p>It&apos;s worth noting that when we instantiate item views in Backbone, it&apos;s
 customary to pass in the model instance. Backbone will automatically set the
-<code>model</code> property of the view to be that instance.</p>
+<code>model</code> property of the view to be that instance.  </p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> my_grumble = <span class="hljs-keyword">new</span> App.Models.Grumble({title: <span class="hljs-string">&quot;Demo&quot;</span>, authorName: <span class="hljs-string">&quot;Adam&quot;</span>,
                                         content: <span class="hljs-string">&quot;Demo Content&quot;</span>});
 
@@ -1281,15 +1294,32 @@ represents the corresponding element.</p>
 element for us when a view is instantiated. By default it will be a plain
 <code>&lt;div&gt;</code>, but we can change that by setting the <code>tagName</code> and <code>className</code>
 properties.</p>
+<pre><code class="lang-js">App.Views.Grumble = Backbone.View.extend({
+  tagName: <span class="hljs-string">&quot;div&quot;</span>,
+  className: <span class="hljs-string">&quot;grumble&quot;</span>
+});
+</code></pre>
+<blockquote>
+<p>In this example, <code>tagName: &quot;div&quot;</code> is optional.</p>
+</blockquote>
 <p>Backbone also makes a jQuery version of the <code>.el</code> available using <code>.$el</code>. We
 often use this instead of the vanilla DOM <code>.el</code>.</p>
 <p>Note that it&apos;s possible to specify the <code>.el</code> property explicitly. In that case,
 Backbone won&apos;t create the <code>el</code>, but will use what we specified. We&apos;ll use this
 approach for our collection views later.</p>
+<pre><code class="lang-js">App.Views.Grumble = Backbone.View.extend({
+  tagName: <span class="hljs-string">&quot;div&quot;</span>,
+  className: <span class="hljs-string">&quot;grumble&quot;</span>,
+  el: <span class="hljs-string">&quot;grumbles&quot;</span>
+});
+</code></pre>
+<blockquote>
+<p>We won&apos;t be manually setting the <code>el</code> property until tomorrow&apos;s class. But preview: by setting an <code>el</code> property, we no longer need to explicitly append our view to a DOM element.</p>
+</blockquote>
 <h3 id="exercise-define-our-grumble-view-10-minutes">Exercise: Define our Grumble View (10 minutes)</h3>
 <p>Define a view in <code>js/backbone/views/grumble.js</code>. You should define the view such
 that it&apos;s &apos;el&apos; will be a div with class &apos;grumble&apos;.</p>
-<p>Test it in the console by doing something like the following:</p>
+<p>Test it in the console by doing something like the following...</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> my_grumble = <span class="hljs-keyword">new</span> App.Models.Grumble({
   title: <span class="hljs-string">&quot;Dogs are the Worst! &quot;</span>,
   content: <span class="hljs-string">&quot;I do say, my good sir... aren&apos;t dogs the worst? I mean, they don&apos;t know how to groom themselves, they are always chewing on tennis balls like a fool, and they can&apos;t even climb trees!&quot;</span>,
@@ -1302,17 +1332,20 @@ that it&apos;s &apos;el&apos; will be a div with class &apos;grumble&apos;.</p>
 grumbleView.model
 grumbleView.el
 grumbleView.$el
-<span class="hljs-comment">// expect to see a div with class grumble</span>
+<span class="hljs-comment">// The two previous lines should return a &lt;div&gt; with class grumble.</span>
 </code></pre>
 <h2 id="rendering-5-minutes">Rendering (5 minutes)</h2>
 <p>Just like in vanilla JS, we usually want to render HTML and put it into the
 <code>el</code>. This method could be called anything, but convention is to call it
 <code>render</code>.</p>
-<h3 id="exercise-define-a-basic-render-method-10-minutes">Exercise: Define a basic render method (10 minutes)</h3>
-<p>Use the <code>.html()</code> method to fill your view&apos;s <code>el</code> with some basic HTML. For now,
+<h3 id="exercise-define-a-basic-render-method-10-minutes">Exercise: Define a Basic Render Method (10 minutes)</h3>
+<p>In a <code>render</code> method, use jQuery&apos;s <code>.html()</code> to fill your view&apos;s <code>.$el</code> with some basic HTML. For now,
 just make an <code>&lt;h2&gt;</code> and set it&apos;s content to be the grumble&apos;s title.</p>
+<blockquote>
+<p>Not sure how to begin? Think about how we defined <code>render</code> in our <a href="https://github.com/ga-dc/curriculum/tree/master/08-single-page-web-apps/oojs1-read#views-artist-2090" target="_blank">earlier OOJS classes</a>. Your Backbone render method in this exercise, however, will be much shorter.</p>
+</blockquote>
 <p>Remember that each view has a <code>model</code> property.</p>
-<p>Test your view by instantiating one, calling <code>.render()</code>, and looking at the el:</p>
+<p>Test your view by instantiating one, calling <code>.render()</code>, and looking at the <code>$el</code>...</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> my_grumble = <span class="hljs-keyword">new</span> App.Models.Grumble({
   title: <span class="hljs-string">&quot;Dogs are the Worst! &quot;</span>,
   content: <span class="hljs-string">&quot;I do say, my good sir... aren&apos;t dogs the worst? I mean, they don&apos;t know how to groom themselves, they are always chewing on tennis balls like a fool, and they can&apos;t even climb trees!&quot;</span>,
@@ -1330,21 +1363,22 @@ $(<span class="hljs-string">&apos;#grumbles&apos;</span>).append(grumbleView.$el
 grumbleView.render()
 grumbleView.$el
 </code></pre>
+<p><a href="https://gist.github.com/amaseda/0c21eda5d0365099bd47" target="_blank">Solution</a></p>
 <h2 id="break-10-minutes">Break (10 minutes)</h2>
 <h2 id="handlebars-templates-10-minutes">Handlebars Templates (10 minutes)</h2>
 <p>It&apos;s no fun (and quite error-prone) to build our HTML using jQuery methods
 like <code>.append()</code>, etc. It&apos;s much better to use a templating library, such as
-handlebars, mustache, jade, etc.</p>
+Handlebars, Mustache, Jade, etc.</p>
 <p>Backbone is agnostic regarding which library we use, but that means we&apos;ll need
-to do all the setup ourselves. Let&apos;s go with handlebars, since it&apos;s a popular,
-and easy to use library.</p>
-<p>Take a few minutes to look at <strong>Getting Started</strong> setion on the the
+to do all the setup ourselves. Let&apos;s go with Handlebars since it&apos;s a popular
+and easy-to-use library.</p>
+<p>Take a few minutes to look at <strong>Getting Started</strong> section on the the
 <a href="http://handlebarsjs.com" target="_blank">Handlebars site</a>. Pretty much everything we need is
 in there.</p>
-<p>The only trick is setting up the library. Let&apos;s use bower to install handlebars:</p>
+<p>The only trick is setting up the library. Let&apos;s use bower to install Handlebars...</p>
 <pre><code class="lang-bash">$ bower install handlebars
 </code></pre>
-<p>And the in our index.html:</p>
+<p>And then in our <code>index.html</code>...</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
   ...
   <span class="hljs-comment">&lt;!-- after underscore but before backbone --&gt;</span>
@@ -1354,18 +1388,18 @@ in there.</p>
 </code></pre>
 <h3 id="exercise-define-a-handlebars-template-10-minutes">Exercise: Define a Handlebars Template (10 minutes)</h3>
 <ol>
-<li>Define a handlebars template for our grumble. (See the sample HTML below)</li>
-<li>On initialize, set a <code>this.template</code> property, which should point to a
-<strong>compiled handlebars template</strong></li>
-<li>Update the <code>render</code> function to use the template. When using the template,
-we need to pass in just our model attributes, not the whole model, do some
-research to find the best way!</li>
-<li>For good measure, let&apos;s call the <code>render()</code> method at the end of initialize,
-so we don&apos;t have to explicitly call it when we create new views.</li>
+<li>Define a Handlebars template for our Grumble. Your template should be placed inside a script file that is defined in <code>index.html</code>, like so...</li>
 </ol>
-<p>Test your render function as before, only this time, you should see HTML that
-came from your template.</p>
-<p>Sample HTML:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;grumbleTemplate&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/x-handlebars-template&quot;</span>&gt;</span><span class="handlebars"><span class="xml">
+  <span class="hljs-comment">&lt;!-- Template code goes in here --&gt;</span>
+</span></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p>You can place this at the end of <code>&lt;body&gt;</code>.</p>
+</blockquote>
+<ol>
+<li>The content of your template should be formatted like the below code, with placeholders replacing the actual model properties (e.g., <code>title</code>).</li>
+</ol>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;grumble&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>Dogs are the Worst! <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;delete&quot;</span>&gt;</span>(X)<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
   by: Cornelius McWhiskertons III, Esq.
@@ -1378,30 +1412,59 @@ came from your template.</p>
   <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;edit&quot;</span>&gt;</span>Update Grumble<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
+<blockquote>
+<p>This all exists inside of that <code>&lt;script&gt;</code> you just created.</p>
+</blockquote>
+<ol>
+<li>In your view&apos;s <code>initialize</code> method, set a <code>this.template</code> property, which should point to a
+<strong>compiled handlebars template</strong>.</li>
+</ol>
+<pre><code class="lang-js">initialize: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">this</span>.template = Handlebars.compile( source );
+}
+</code></pre>
+<blockquote>
+<p>You need to replace <code>source</code>. HINT: Use jQuery to (1) select the script that contains our template and (2) select the HTML inside that script.  </p>
+</blockquote>
+<ol>
+<li><p>Update the <code>render</code> function to use the template. When using the template,
+we need to pass in just our model attributes - not the whole model. Do some
+research to find the best way!</p>
+<blockquote>
+<p>HINT: How does <a href="http://backbonejs.org/docs/todos.html" target="_blank">this Backbone example</a> pass in model information to the template?  </p>
+</blockquote>
+</li>
+<li><p>For good measure, let&apos;s call the <code>render()</code> method at the end of initialize,
+so we don&apos;t have to explicitly call it when we create new views. Also add a line to <code>render()</code> appending our view&apos;s <code>.$el</code> to <code>&lt;div id=&quot;grumbles&quot;&gt;&lt;/div&gt;</code> in <code>index.html</code>.  </p>
+</li>
+</ol>
+<p>Test your render function as before, only this time, you should see HTML that
+came from your template.</p>
+<p><a href="https://gist.github.com/amaseda/1290ecbe267335e81541" target="_blank">Solution</a></p>
 <h2 id="responding-to-model-events-10-minutes">Responding to Model Events (10 minutes)</h2>
-<p>One of the great features of backbone is the events system. There are two types
-of events, model/collection events, and view events. We&apos;ll take a look at both,
-starting with model / collection events.</p>
-<p>For now, we&apos;ll focus on model events. Collection events will be covered in
-Part 2, but they are very similar.</p>
-<p>Any backbone model will trigger events when certain things happen to it. Other
+<p>One of the great features of Backbone is the events system. There are two types
+of events: <strong>Model / Collection Events</strong> and <strong>View Events</strong>. We&apos;ll take a look at both, starting with Model / Collection Events.  </p>
+<p>For now, we&apos;ll focus on model events. Collection events will be covered tomorrow morning, but they are very similar.  </p>
+<p>Any Backbone model will trigger events when certain things happen to it. Other
 parts of the application can <code>listen</code> for those events, and automatically take
-action when they happen.</p>
+action when they happen.  </p>
 <p>Take a moment to read the
-<a href="http://backbonejs.org/#Events" target="_blank">Events documentation on Backbone</a>.</p>
+<a href="http://backbonejs.org/#Events" target="_blank">Events documentation on Backbone</a>.  </p>
 <p>As a general guide, we prefer to use <code>.listenTo()</code> over <code>.on</code>, in that it allows
 the listening object to be in charge rather than the object that is triggering
-events.</p>
+events.  </p>
 <h3 id="think-pair-share-5-minutes">Think Pair Share (5 minutes)</h3>
-<p>Take a moment to look at the catalog of events in the above documentation.
+<p>Spend two minutes looking at the catalog of events in the above documentation.
 Which events do you think we might use most often, and why?</p>
 <h3 id="exercise-rerender-on-change-5-minutes">Exercise: Re-render on Change (5 minutes)</h3>
 <p>A very common pattern is to have a view listen to it&apos;s model for change events,
-and re-render in response. Take a moment to set this up. Hint: you&apos;ll only need
-to add one line of code to make this work.</p>
+and re-render in response. Take a moment to set this up.  </p>
+<blockquote>
+<p>Hint: You&apos;ll only need to add one line of code to make this work.  </p>
+</blockquote>
 <p>Where should we setup the listening? What method should we call in response to
 the change event?</p>
-<p>You can test it by doing something like the following:</p>
+<p>You can test it by doing something like the following...</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> my_grumble = <span class="hljs-keyword">new</span> App.Models.Grumble({
   title: <span class="hljs-string">&quot;Dogs are the Worst! &quot;</span>,
   content: <span class="hljs-string">&quot;I do say, my good sir... aren&apos;t dogs the worst? I mean, they don&apos;t know how to groom themselves, they are always chewing on tennis balls like a fool, and they can&apos;t even climb trees!&quot;</span>,
@@ -1412,9 +1475,11 @@ the change event?</p>
 <span class="hljs-keyword">var</span> grumbleView = <span class="hljs-keyword">new</span> App.Views.Grumble({model: my_grumble});
 $(<span class="hljs-string">&apos;#grumbles&apos;</span>).append(grumbleView.$el)
 
-my_grumble.set(<span class="hljs-string">&apos;title&apos;</span>, <span class="hljs-string">&quot;Cats are the Best!&quot;</span>); <span class="hljs-comment">// watch the page update automatically!</span>
+my_grumble.set(<span class="hljs-string">&apos;title&apos;</span>, <span class="hljs-string">&quot;Cats are the Best!&quot;</span>);
+<span class="hljs-comment">// After running the above line, the page should update automatically!</span>
 </code></pre>
-<h2 id="aside-fetching-rendering-and-autoappending-5-minutes">Aside: Fetching, Rendering, and Auto-Appending (5 minutes)</h2>
+<p><a href="https://gist.github.com/amaseda/2a746c7b7634c6a94324" target="_blank">Solution</a></p>
+<h2 id="aside-fetching-rendering-and-autoappending-5-minutes">Aside: Fetching, Rendering and Auto-Appending (5 minutes)</h2>
 <p>So we don&apos;t have to keep testing this in the console, let&apos;s do write some quick
 code in <code>app.js</code> to auto-fetch all grumbles, and display them.</p>
 <pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
@@ -1430,54 +1495,58 @@ code in <code>app.js</code> to auto-fetch all grumbles, and display them.</p>
   });
 });
 </code></pre>
+<p>We can also get rid of the <code>.append</code> line from our view&apos;s <code>initialize</code> since that&apos;s taken care of in <code>app.js</code> now.  </p>
 <p>We&apos;ll see later that this sort of thing will be handled by a collection view.</p>
 <h2 id="view-events-5-minutes">View Events (5 minutes)</h2>
-<p>The last main feature of backbone views is the DOM event system. It&apos;s really
+<p>The last main feature of Backbone views is the DOM event system. It&apos;s really
 just a nicer way to handle events. Instead of writing a bunch of jQuery like
-below, we can define a simple list of events, and what to do in response.</p>
-<p>So instead of this:</p>
+below, we can define a simple list of events and what to do in response.</p>
+<p>So instead of this...</p>
 <pre><code class="lang-js">  $el.find(<span class="hljs-string">&apos;.beep&apos;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-comment">// code goes here to honk horn</span>
   })
 </code></pre>
-<p>we can do this:</p>
+<p>...we can do this...</p>
 <pre><code class="lang-js">events: {
   <span class="hljs-string">&apos;click .beep&apos;</span>: <span class="hljs-string">&apos;honkHorn&apos;</span>
 }
 
 honkHorn: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-comment">// code goes here to honk horn</span>
+  <span class="hljs-comment">// honkHorn code goes here.</span>
 }
 </code></pre>
-<p>This keeps our event declarations in one place, and encourages us to write
+<p>This keeps our event declarations in one place and encourages us to write
 re-usable methods on our view.</p>
-<h3 id="exercise-adding-deletion-when-x-is-clicked-10-minutes">Exercise: Adding Deletion when &quot;X&quot; is clicked (10 minutes)</h3>
-<p>Add an event such that when the user clicks on the delete span, a method called
-<code>deleteGrumble</code> is called. This method should be defined on the view and should:</p>
+<h3 id="exercise-adding-deletion-when-x-is-clicked-10-minutes">Exercise: Adding Deletion When &quot;X&quot; is Clicked (10 minutes)</h3>
+<p>Add an event such that when the user clicks on the delete <code>&lt;span&gt;</code>, a method named <code>deleteGrumble</code> is called. This method should be defined on the view and should...  </p>
 <ol>
-<li>Destroy the associated grumble model.</li>
-<li>Fade out the el.</li>
+<li>Destroy the associated grumble model.  </li>
+<li>Fade out the el.  </li>
 </ol>
-<h3 id="exercise-rendering-edit-template-when-edit-is-clicked-10-minutes">Exercise: Rendering Edit Template when Edit is Clicked (10 minutes)</h3>
+<h3 id="exercise-rendering-edit-template-when-edit-is-clicked-10-minutes">Exercise: Rendering Edit Template When Edit is Clicked (10 minutes)</h3>
 <p>When the user clicks the <code>edit</code> button, call the <code>renderEditForm</code> method, which
-should:</p>
+should...</p>
 <ol>
-<li>Prevent the default action of submitting the form (IMPORTANT!)</li>
-<li>Replace the <code>el</code> with a form, using a new template you&apos;ll have to define.</li>
+<li>Prevent the default action of submitting the form. <strong>Very important!</strong>    </li>
+<li>Replace the <code>el</code> with a form, using a new template you&apos;ll have to define.  </li>
 </ol>
-<p>The template should produce HTML that looks like this for the updated <code>el</code>:</p>
+<p>The template should produce HTML that looks like this for the updated <code>el</code>...</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;grumble&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;grumbleForm&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;title&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Cats are the best!&quot;</span>&gt;</span>
     by: <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;authorName&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Cornelius McWhiskertons III, Esq.&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;content&quot;</span>&gt;</span>I do say, my good sir... aren&apos;t dogs the worst? I mean, they don&apos;t know how to groom themselves, they are always chewing on tennis balls like a fool, and they can&apos;t even climb trees!<span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;http://www.babyanimalzoo.com/wp-content/uploads/2012/08/fancy-cats-a-proper-sir.jpg&quot;</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">&quot;&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;photoUrl&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;http://www.babyanimalzoo.com/wp-content/uploads/2012/08/fancy-cats-a-proper-sir.jpg&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;submit&quot;</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;cancel&quot;</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
+<h4 id="bonuses">Bonuses</h4>
+<ol>
+<li>Make the form disappear when the &quot;Update Grumble&quot; button is clicked a second time.</li>
+<li>Prevent two versions of the form from appearing after clicking the &quot;Update Grumble&quot; button a second time.  </li>
+</ol>
 <h3 id="exercise-update-grumble-when-form-is-submitted-10-minutes">Exercise: Update Grumble when Form is Submitted (10 minutes)</h3>
 <p>When the user clicks the <code>update</code> button, call the <code>updateGrumble</code> method.</p>
 <p>This method should should:</p>
@@ -1488,15 +1557,19 @@ should:</p>
 to update the grumble.</li>
 <li>Re-render the show view.</li>
 </ol>
+<p><a href="https://gist.github.com/amaseda/82812bb101a733bffb7a" target="_blank">Solution</a></p>
 <h3 id="exercise-cancel-button-5-minutes">Exercise: Cancel Button (5 minutes)</h3>
 <p>When the user clicks the <code>cancel</code> button, go back to the show view.</p>
+<blockquote>
+<p>You can do this by adding just one line to our view&apos;s <code>events</code> object. No need to define a new method.</p>
+</blockquote>
 <h2 id="sample-questions">Sample Questions</h2>
 <ul>
 <li>What is the role of a view in Backbone?</li>
-<li>What features do Backbone views have that our hand-rolled views didn&apos;t?</li>
+<li>What features do Backbone views have that our hand-rolled views did not?</li>
 <li>How do model events work in Backbone?</li>
-<li>How do DOM events work in backbone?</li>
-<li>Describe the process of using Handlebars templates in backbone.</li>
+<li>How do DOM events work in Backbone?</li>
+<li>Describe the process of using Handlebars templates in Backbone.</li>
 </ul>
 
                     

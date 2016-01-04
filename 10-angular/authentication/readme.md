@@ -95,7 +95,7 @@ Make sure it's working by running `rails s` and open it up in your browser: http
 ### Add Devise
 
 ```rb
-# Gemfile.rb
+# Gemfile
 
 gem 'devise'
 ```
@@ -212,7 +212,8 @@ to incorrectly lock down the signup / signin process as well.
 
 https://github.com/ga-dc/grumblr_angular
 
-    $ git checkout -b authentication custom-directives-solution
+    $ git fetch --all
+    $ git checkout -b authentication origin/custom-directives-solution
 
 In `index.html`, link to the CDNs for `angular-cookie` and `ng-token-auth` modules:
 
@@ -233,15 +234,15 @@ In `index.html`, link to the CDNs for `angular-cookie` and `ng-token-auth` modul
 +   AuthConfigFunction
 + ]);
 
-+ function AuthConfigFunction($authprovider) {
-+   $authprovider.configure({
++ function AuthConfigFunction($authProvider) {
++   $authProvider.configure({
 +     apiUrl: "http://localhost:3000"
 +   });
 + }
 ```
 
 
-### Signing Up
+### Signing In
 
 #### Create a Route
 

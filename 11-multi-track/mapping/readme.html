@@ -53,7 +53,7 @@
         data-chapter-title="Mapping"
         data-filepath="11-multi-track/mapping/readme.md"
         data-basepath="../.."
-        data-revision="Mon Jan 04 2016 19:08:25 GMT+0000 (UTC)"
+        data-revision="Mon Jan 04 2016 19:52:18 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1237,7 +1237,7 @@
 <li>Adding Functionality: <a href="https://www.mapbox.com/showcase/" target="_blank">Mapbox Showcase</a></li>
 <li>Do you all have any examples?</li>
 </ul>
-<p>We can do crazy, radically-different cool things with maps. But at the core of all these examples is geographical data.</p>
+<p>We can do lots of cool and different things with maps. But at the core of all these examples is geographical data.</p>
 <ul>
 <li>In its most basic form, latitude-longitude.</li>
 <li>While we&apos;re going to keep things simple today, soon enough you&apos;ll be able to work some crazy map wizardy with nothing more than geographical data and javascript.</li>
@@ -1306,7 +1306,7 @@
   <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">&quot;stylesheet&quot;</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;style.css&quot;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
 </code></pre>
-<h3 id="link-to-leaflet-script-file">Link to Leaflet script file</h3>
+<h3 id="link-to-leaflet-script-file">Link to Leaflet Script File</h3>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
   <span class="hljs-comment">&lt;!-- Let&apos;s also create a container for our map --&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;map&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
@@ -1318,7 +1318,7 @@
   <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;app.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
 </code></pre>
-<h3 id="add-map-styling">Add map styling</h3>
+<h3 id="add-map-styling">Add Map Styling</h3>
 <pre><code class="lang-css"><span class="hljs-comment">/* style.css */</span>
 
 <span class="hljs-id">#map</span> <span class="hljs-rules">{
@@ -1326,7 +1326,7 @@
 }</span>
 </code></pre>
 <h3 id="sign-up-for-mapbox--leaflet-5--25">Sign up for Mapbox / Leaflet (5 / 25)</h3>
-<p><a href="https://www.mapbox.com/" target="_blank">Sign up for an account at Mapbox</a></p>
+<p><a href="https://www.mapbox.com/" target="_blank">Sign up for Mapbox account</a>.</p>
 <h4 id="map-id">Map ID</h4>
 <p>After creating an account, click &quot;Projects&quot; towards the right of the navbar. It may look like a folder icon without text.</p>
 <ul>
@@ -1334,7 +1334,7 @@
 <li>Copy the value in the <strong>Map ID</strong> field. You&apos;ll need this later.</li>
 </ul>
 <h4 id="api-access-token">API Access Token</h4>
-<p>Then, click on your username/avatar in the navbar.</p>
+<p>Then, click on your username / avatar in the navbar.</p>
 <ul>
 <li>In the new sub-navbar, click on &quot;Apps.&quot;</li>
 <li>Copy the value to the right of <strong>Default Public Token</strong>. You&apos;ll also need this later.</li>
@@ -1407,7 +1407,10 @@
 <p><strong>BONUS II:</strong> Write a function that generates coordinates from a place description (e.g., &quot;The White House DC&quot;) using the <a href="http://geocoder.opencagedata.com/demo.html" target="_blank">OpenCage Geocoder API</a>. Then, add markers to your map using those coordinates.</p>
 <ul>
 <li>Use <a href="http://geocoder.opencagedata.com/demo.html" target="_blank">this demo</a> to generate a sample URL.</li>
-<li>You can sign up for an API key <a href="http://geocoder.opencagedata.com/api.html#quickstart" target="_blank">here</a>. If you&apos;re having trouble, you can use mine.</li>
+<li>You can sign up for an API key <a href="http://geocoder.opencagedata.com/api.html#quickstart" target="_blank">here</a>. If you&apos;re having trouble, you can use mine.  <blockquote>
+<p>There are other geocoders out there. If you have a different one you prefer, feel free to use it!  </p>
+</blockquote>
+</li>
 </ul>
 <h2 id="shapes-5--55">Shapes (5 / 55)</h2>
 <p>You can also use a circle to cover a portion of a map using <code>L.circle()</code> and <code>.addTo( map )</code>. Takes three arguments...</p>
@@ -1502,6 +1505,7 @@ map.on( <span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-fu
 <p>GeoJSON is essentially a JSON object that contains a variety of information about a point or area (or a collection of the two) on a map.</p>
 <ul>
 <li>With Leaflet, rather than hardcode information about a marker, circle or polygon into our code, we can import that geographical information using GeoJSON.</li>
+<li>Though Leaflet is a specific mapping library, GeoJSON is used elsewhere in the wild (like Google Maps).</li>
 </ul>
 <h3 id="geojson-components-10--115">GeoJSON Components (10 / 115)</h3>
 <p>All GeoJSON objects must have a <code>type</code> value, which can equal a Geometry type, &quot;Feature&quot; or &quot;FeatureCollection&quot;.</p>
@@ -1579,7 +1583,7 @@ map.on( <span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-fu
 <h2 id="sample-quiz-questions">Sample Quiz Questions</h2>
 <h2 id="additional-reading">Additional Reading</h2>
 <ul>
-<li><a href="https://www.mapbox.com/mapbox.js/example/v1.0.0/disable-zooming-panning/" target="_blank">Disabling Map Zooming an Panning</a></li>
+<li><a href="https://www.mapbox.com/mapbox.js/example/v1.0.0/disable-zooming-panning/" target="_blank">Disabling Map Zooming and Panning</a></li>
 </ul>
 
                     
