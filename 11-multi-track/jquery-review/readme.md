@@ -1,4 +1,4 @@
-# jQuery: Part I
+# jQuery
 
 ## Learning Objectives
 
@@ -11,33 +11,10 @@
 - Explain when and how to use Vanilla JS vs. jQuery.
 - Compare code examples in Vanilla JS and jQuery.
 - Define `$(document).ready()` and some jQuery methods.
-
-## Selecting DOM elements using Vanilla JS (20min)
-
-Before we talk about jQuery, I want to make sure we're on top of our Javascript -- or as we'll refer to it today, "Vanilla JS" -- selectors.
-
-If I want to select a DOM element using Vanilla JS, how would I do that?
-- Q: Somebody demonstrate how to select all the `<p>` elements on a page.
-
-Before we dive into the world of jQuery, let's make sure we've got our Vanilla JS selectors down pat with an exercise...
-
-### Exercise: JS Selector Review (10min)
-
-Follow along with "My Blawg": https://github.com/ga-dc/jquery-inclass-blawg
-- Clone: `$ git clone https://github.com/ga-dc/jquery-inclass-blawg.git`
-- Open: `$ open index.html`
-- We'll be using this as an example throughout today's class.
-
-Instructions: Write down how you would select the following DOM objects on "My Blawg" using Vanilla JS selectors.  
-  1. The first `<a>` element on the page.  
-  2. All `<a>` elements on the page.  
-  3. Using an id, the h1 at the top of the page.  
-  4. All elements with class `post`.  
-  5. The first element with class `post`.  
-  6. The second element with class `post`.  
-  7. The HTML content of the first `<p>` element on the page.  
-
-We'll revisit this after talking about jQuery for a bit...  
+- add elements to the DOM using jQuery objects and functions
+- change elements in the DOM using jQuery objects and functions
+- add event listeners to elements in the DOM using jQuery objects and functions
+- loop through jQuery objects using the `each()` method
 
 ## Intro to jQuery (10min)
 
@@ -162,21 +139,6 @@ The most basic concept of jQuery is to "select some elements and do something wi
 We Do: What would `$( "h2" ).html();` look like in Javascript?
   - Let's try some more JS to jQuery conversion with an exercise...
 
-### Exercise: Using jQuery Selectors (10min)
-
-Select the following DOM objects on the Blawg using jQuery selectors.  
-  1. All `<a>` elements on the page.
-  2. The first `<a>` element on the page.
-  3. Using an id, the h1 at the top of the page.  
-  4. All elements with class `post`.  
-  5. The first element with class `post`.  
-  6. The second element with class `post`.  
-  7. The HTML content of the first `<a>` element on the page.  
-  8. Using a CSS pseudo-selector, the third element with class `post`.
-  9. Using an HTML attribute, the fourth `img` on the page.  
-
-Reference: [https://api.jquery.com/](https://api.jquery.com/)
-
 ## jQuery Objects vs. DOM Elements (10min)
 
 jQuery objects are not the same thing as DOM elements.
@@ -270,140 +232,14 @@ A page can't be manipulated safely until the document is "ready." jQuery detects
   })
   ```
 
-## Some jQuery Methods (10min)
+### Exercise: Refactor the ATM
 
-Sometimes we want to select a particular aspect of a DOM element, like its HTML content or CSS properties.
-- That's where jQuery's methods come in.
-
-The jQuery methods we will be going over today are both "getters" and "setters".
-- Q: Anybody want to guess what those two terms mean?
-  - Getter: returns a value
-  - Setter: sets/replaces a value
-  - The version of the method that is triggered depends on how many arguments are fed into it.
-
-`.html()`
-- Without any arguments, gets the HTML content of a DOM object.
-
-  ```javascript
-  // Returns HTML content of a DOM element of id "title"
-  $( "#title" ).html();
-  # => "My Blawg"
-  ```
-
-- With an argument, replaces the HTML content of a DOM object.
-
-  ```javascript
-  // Replaces HTML content of a DOM element of id "title" with 'Adam's Blawg'
-  $( "#title" ).html( "Adams's Blawg" );
-  ```
-
-- If a collection is selected, the method is performed on the first item in the collection.
-
-`.attr()`
-- With an HTML attribute as an argument, returns the value of that attribute.
-
-  ```javascript
-  // Returns image source
-  $( "img" ).attr( "src" );
-  ```
-
-- With an HTML attribute and value as arguments, replaces the current value of that attribute with the new value.
-
-  ```javascript
-  // Sets image source
-  $( "img" ).attr( "src", "http://ak-hdl.buzzfed.com/static/2013-12/enhanced/webdr07/3/12/anigif_enhanced-buzz-15393-1386091162-37.gif")
-  ```
-
-`.css()`
-- With a CSS attribute name as an argument, returns the current value of that attribute.
-
-  ```javascript
-  // Returns the background color of the body
-  $( "body" ).css( "background-color" );
-  => "#FAFAFA"
-  ```
-
-- With a CSS attribute and value as arguments, replaces the current values of that attribute with the new one.
-
-  ```javascript
-  // Sets background color of the body to red
-  $( "body" ).css( "background-color", "lemonchiffon" );
-  ```
-
-- If a collection is selected, the method is performed on the first item in the collection.
-
-### Exercise: Get 'n' Set (10min)
-
-"Get or "Set" the following values using jQuery selectors and methods.  
-  1. Get the HTML content of the second `<p>` element on the page.  
-  2. Set the HTML content of the second `<p>` to something else weird.  
-  3. Get the background color of the body.  
-  4. Set the background color of the body to "burlywood".  
-  5. Get the `alt` value of the fourth `<img>` on the page.  
-  6. Set the `alt` value of the fourth `<img>` to something else.  
+Replace the "vanilla" JS dom elements and methods with jQuery methods.
 
 Reference: [https://api.jquery.com/](https://api.jquery.com/)
 
-## Homework: Pixart
-
-[https://github.com/ga-dc/pixart_js](https://github.com/ga-dc/pixart_js)
-# jQuery: Part 2
-
-## Learning Objectives
-- Use jQuery to:
-  - add elements to the DOM using jQuery objects and functions
-  - change elements in the DOM using jQuery objects and functions
-  - add event listeners to elements in the DOM using jQuery objects and functions
-  - loop through jQuery objects using the `each()` method
-
-## Opening Framing (5)
-### PKI (ST-WG)
-What are some things you've learned about jQuery?
-- when to use which
-- when you're able to use which
-- how to load jQuery
-- how to select DOM elements
-
-In the last lesson, you learned how to select elements using jquery and maybe update some of its properties. In this lesson, we want to dive a little deeper into some of the more common jQuery functions that exist. The basic premise of jQuery is pretty easy though. We want to select something, and then do something to it.
-
-## jQuery (I do/You do)
-> I'm going to throw lots of code at you. It will be available in this lesson plan. So really just try and take it in and not follow along. There will also be parts where you will teach yourself some jQuery functions.
-
-## Setup (5/10)
-Create 2 files we'll need in this class:
-
-```bash
-$ touch index.html
-$ touch script.js
-```
-
-in `index.html`:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-  <script src="script.js"></script>
-</head>
-<body>
-  <div class="awesome">this is a div</div>
-  <div class="awesome">this is the second awesome div</div>
-</body>
-</html>
-```
-
-In `script.js`:
-
-```js
-$(document).ready(function(){
-  alert("jq working")
-})
-```
-
 ## Addition
+
 ### I do - append/appendTo (10/20)
 - `.append()`
   - the selector expression preceding the method is the container into which the content(argument) is inserted as the last child
@@ -487,31 +323,6 @@ $(document).ready(function(){
 
   > Note: when we call the above code, we'll actually be emptying all content from any element with the class of 'awesome'
 
-## Break (10/60)
-
-### Edition (20/80)
-> you guys glossed over this a bit, but here they are again.
-
-Add an input tag to the `index.html`:
-
-```html
-<input type="text" class="search" placeholder="some text here ....">
-```
-
-- `.attr()`
-  - acts as both a getter and setter
-    - setter: requires 2 arguments(key/value pair), or an object(with multiple key/value pairs)
-    - getter: requires 1 argument to get the value of the attribute from the jQuery object
-- `.css()`
-  - acts as both a getter and setter
-    - setter: requires 2 arguments(key/value pair), or an object(with multiple key/value pairs)
-    - getter: requires 1 argument to get the value of the attribute from the jQuery object
-- `.val()`
-  - setter: pass in an argument
-  - getter: pass in no argument
-
-> We need to be able to get information from users. Input tags are a great way to do that. But more importantly we need to be able to access those values so that our JS can act on it. Think about auto complete on search forms. As we type something into google, it starts giving us options. For every key stroke we make, the callback that is fired is probably using some form of `.val()`. This will also be extremely important moving forward in week 7 with AJAX.
-
 ### Other (30/110)
 - `.hide()`
   - changes elements style to have `display:none`
@@ -567,7 +378,6 @@ Add an input tag to the `index.html`:
 
 > This also is actually the second time in this lesson a jquery function requires a callback, can you think of the other?
 
-
 - `.on()`
   - a way to create event listeners
   - takes two arguments normally
@@ -582,10 +392,6 @@ Add an input tag to the `index.html`:
 
 > What is `$(this)` here? Refers to the jquery object you called `.on` on, as long as you're in the scope of the `.on` function
 
-### You do - Create a drop down menu... sorta (10/120)
-- Create a button in the `index.html`
-- Your JS should have the button hide and show the awesome divs when clicked
+## You do: Pixart
 
-### Class Ex- [TIMER js](https://github.com/ga-dc/timer_js) refactor (30/150)
-
-### Additional Exercise - [ATM](https://github.com/ga-dc/atm)
+[https://github.com/ga-dc/pixart_js](https://github.com/ga-dc/pixart_js)
