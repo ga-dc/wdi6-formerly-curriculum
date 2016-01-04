@@ -49,7 +49,7 @@ A. Student responses.
 
 ### Exercise: Flash Redux (15 min)
 
-Let's go back to the Flash messages.  This time, we will create mixin with a conditional that sets the text color to `#fff` if the background is dark enough and `#000` if the background is light enough.
+Let's go back to the Flash messages.  This time, we will update our mixin with a conditional that sets the text color to `#fff` if the background is dark enough and `#000` if the background is light enough.
 
 [Solution](http://codepen.io/adambray/pen/vLgrKK)
 
@@ -57,7 +57,9 @@ Hint: research how you can determine the "lightness" of a color using SASS.
 
 ## Loops
 
-Look at [BAMSAY](http://codepen.io/jshawl/full/cLJal)
+Look at BAMSAY.
+
+- [Pure CSS Solution](http://codepen.io/adambray/pen/obBOgP?editors=110)
 
 Check out the css.  Lots of text-shadow's, huh?  You want to type all of them?
 
@@ -70,12 +72,12 @@ Q. Why not?
 - time consuming
 - maintenance?
 
-Let's systematize it.  Let's specify what it takes to draw these shadows.  And then **codify** it.
+### Exercise: Write a function to build BAMSAY
 
-Q. How did we create BAMSAY?
----
+- [Starter](http://codepen.io/adambray/pen/adpxOq?editors=110)
+- [Solution](http://codepen.io/adambray/pen/NxdmGG?editors=110)
 
-> A. Lot's of text-shadows.
+Let's specify what it takes to draw these shadows.  And then **codify** it using a function.
 
 
 ## Using the SASS Preprocessor
@@ -125,15 +127,54 @@ Sass supports two "styles": sass (*.sass) and Sassy CSS (*.scss).  They both use
 
 Further reading: http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better
 
-### Exercise: BAMSAY (20 min)
+## Exercise: Convert Codepen to Project (10 minutes)
 
-http://github.com/ga-dc/bamsay
+Create a new repo for BAMSAY, and create the necessary files to get sass / css
+compilation working.
 
-Hint: you can't just add a bunch of box shadow properties... each will over-write
-the previous... instead you'll need to create one box-shadow property with a lot
-of values comma separated... look up how to append values in SASS.
+## Break (10 min)
 
-## Exercise: 3D Button (15 min)
+## Sass and Rails (30 min)
+
+The [sass-rails gem](https://github.com/rails/sass-rails) is provided for working with Sass in Rails. I found that my words of wisdom were lining up with nicely with their documentation.  They've got you covered.  
+
+### Research (15 min)
+
+That said, let's practice reading documentation together. We'll discuss how to pull out the important points and gotchas.
+https://github.com/rails/sass-rails
+
+Q. What stood out to you?
+---
+
+> A.
+- Sass is supported by default (by Asset Pipeline).
+- Configuration has caveats.  Must review when/if I configure something.
+- Important Note!?!
+- Glob Imports.  Looks powerful.  Note the "Note".
+- One "Asset Helper" for each media type.  Where are the "Asset Helpers" used?  
+- Tests?  Why would I run the tests?
+
+### Organization
+
+http://www.mattboldt.com/organizing-css-and-sass-rails/
+
+Don't miss the comments.
+
+#### tl;dr
+
+- Use @import to explicitly require each file you need, in the order you require them (rather than `*= require_tree .`).  Judicious use of  file glob `@import "mixins/*"`).
+- Use `main.scss` to load your app's dependencies (vars, mixins, etc.), then the page styles.
+- Development adds links to .scss source
+- Load vendors (i.e. Bootstrap) in application.css, before you include main.scss
+- Note: You need to load all your dependencies in the file that uses them.  If you have more than one layout, you may need a "main" file for each, to load the dependencies in each.
+
+The [Rails Guides](http://guides.rubyonrails.org/asset_pipeline.html) are a recommended resource too.
+
+## [Optional] Apply SASS to an app from Project 2 or 3.  
+
+Look for ways to remove duplication and improve documenting your intent.
+
+## [Optional] Exercise: 3D Button
 
 On to the next goal. A button.  A big, cool, [3D button](http://codepen.io/adambray/full/rxjKWR/).
 
@@ -174,43 +215,6 @@ Jesse has a [great blog post](https://jesse.sh/makes-3d-buttons-with-sass/) on h
 
 Now we've added "function" and "mixin" to our list, joining "variables" and "loops".
 
-## Break (10 min)
-
-## Sass and Rails (30 min)
-
-The [sass-rails gem](https://github.com/rails/sass-rails) is provided for working with Sass in Rails. I found that my words of wisdom were lining up with nicely with their documentation.  They've got you covered.  
-
-### Research (15 min)
-
-That said, let's practice reading documentation together. We'll discuss how to pull out the important points and gotchas.
-https://github.com/rails/sass-rails
-
-Q. What stood out to you?
----
-
-> A.
-- Sass is supported by default (by Asset Pipeline).
-- Configuration has caveats.  Must review when/if I configure something.
-- Important Note!?!
-- Glob Imports.  Looks powerful.  Note the "Note".
-- One "Asset Helper" for each media type.  Where are the "Asset Helpers" used?  
-- Tests?  Why would I run the tests?
-
-### Organization
-
-http://www.mattboldt.com/organizing-css-and-sass-rails/
-
-Don't miss the comments.
-
-#### tl;dr
-
-- Use @import to explicitly require each file you need, in the order you require them (rather than `*= require_tree .`).  Judicious use of  file glob `@import "mixins/*"`).
-- Use `main.scss` to load your app's dependencies (vars, mixins, etc.), then the page styles.
-- Development adds links to .scss source
-- Load vendors (i.e. Bootstrap) in application.css, before you include main.scss
-- Note: You need to load all your dependencies in the file that uses them.  If you have more than one layout, you may need a "main" file for each, to load the dependencies in each.
-
-The [Rails Guides](http://guides.rubyonrails.org/asset_pipeline.html) are a recommended resource too.
 
 ## Conclusion
 
@@ -221,7 +225,6 @@ We covered a lot about Sass, but we're really just scratching the surface.  Make
 - What directive should we use to require other sass files?
 - Name 3 benefits of Sass.
 
-## [Optional] Review an app from Project 2 or 3.  Look for ways to remove duplication and improve documenting intent.
 
 ## References
 - [3D Buttons with Sass](https://jesse.sh/makes-3d-buttons-with-sass/)
