@@ -36,7 +36,49 @@ It has all that.
 
 In this lesson, we are covering the portions that helpers that enhance css.  The next lesson will dig deeper into the programmatic aspects of Sass.
 
-## Preprocessor? Precompiler? (10 min)
+## Conditionals (@if)
+
+Let's take a few minutes to read about [@if](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#control_directives__expressions)
+
+> Q: Any points of interest?
+
+---
+
+A. Student responses.
+
+
+### Exercise: Flash Redux (15 min)
+
+Let's go back to the Flash messages.  This time, we will create mixin with a conditional that sets the text color to `#fff` if the background is dark enough and `#000` if the background is light enough.
+
+[Solution](http://codepen.io/adambray/pen/vLgrKK)
+
+Hint: research how you can determine the "lightness" of a color using SASS.
+
+## Loops
+
+Look at [BAMSAY](http://codepen.io/jshawl/full/cLJal)
+
+Check out the css.  Lots of text-shadow's, huh?  You want to type all of them?
+
+Q. Why not?
+---
+
+> A.
+- boring!
+- error prone
+- time consuming
+- maintenance?
+
+Let's systematize it.  Let's specify what it takes to draw these shadows.  And then **codify** it.
+
+Q. How did we create BAMSAY?
+---
+
+> A. Lot's of text-shadows.
+
+
+## Using the SASS Preprocessor
 
 How do we use it?
 
@@ -46,7 +88,7 @@ How do we use it?
 gem install sass
 ```
 ```
-sass --watch input:output
+sass --watch input_file:output_file
 ```
 
 ### Example:
@@ -79,51 +121,9 @@ The browser only supports CSS.  We reference the compiled **css** file.  Our fro
 
 ## style.scss vs style.sass (5 min)
 
-Sass supports to "styles": sass (*.sass) and Sassy CSS (*.scss).  They both use the same SassScript.  The .scss format is a superset of CSS3.  The .sass is a bit more concise and uses indentation to indicate blocks of CSS, but it requires a full rewrite of your css.
+Sass supports two "styles": sass (*.sass) and Sassy CSS (*.scss).  They both use the same SassScript.  The .scss format is a superset of CSS3.  The .sass is a bit more concise and uses indentation to indicate blocks of CSS, but it requires a full rewrite of your css.
 
 Further reading: http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better
-
-
-## Conditionals (@if)
-
-Let's take a few minutes to read about [@if](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#control_directives__expressions)
-
-> Q: Any points of interest?
-
----
-
-A. Student responses.
-
-
-### Exercise: Flash (15 min)
-
-Let's go back to the Flash messages.  This time, we will create mixin with a conditional that sets the text color to `#fff` if the background is dark enough and `#000` if the background is light enough.
-
-[Solution](http://codepen.io/adambray/pen/vLgrKK)
-
-Hint: research how you can determine the "lightness" of a color using SASS.
-
-## Loops
-
-Look at [BAMSAY](http://codepen.io/jshawl/full/cLJal)
-
-Check out the css.  Lots of text-shadow's, huh?  You want to type all of them?
-
-Q. Why not?
----
-
-> A.
-- boring!
-- error prone
-- time consuming
-- maintenance?
-
-Let's systematize it.  Let's specify what it takes to draw these shadows.  And then **codify** it.
-
-Q. How did we create BAMSAY?
----
-
-> A. Lot's of text-shadows.
 
 ### Exercise: BAMSAY (20 min)
 
@@ -133,11 +133,12 @@ Hint: you can't just add a bunch of box shadow properties... each will over-writ
 the previous... instead you'll need to create one box-shadow property with a lot
 of values comma separated... look up how to append values in SASS.
 
-## Lunch (60 min)
-
-## 3D Button (15 min)
+## Exercise: 3D Button (15 min)
 
 On to the next goal. A button.  A big, cool, [3D button](http://codepen.io/adambray/full/rxjKWR/).
+
+- [Starter](http://codepen.io/adambray/pen/xZgzgK?editors=110)
+- [Solution](http://codepen.io/adambray/pen/xZgzgK?editors=110)
 
 Check out the css.  More text-shadows?  
 All the reasons from before apply, plus... how do I know what to type?  This one is complicated.
@@ -151,14 +152,11 @@ Q: How?  How does this button work?
   - Flat rectangle
   - Lots of box-shadows, layer upon layer
   - color?  Relative?
-- down
+- hover
+  - moves to the left a bit
+- down (active)
   - shift right, down
   - less box-shadows
-
-### Exercise: Make It So (45 min)
-
-- [Starter](http://codepen.io/adambray/pen/xZgzgK?editors=110)
-- [Solution](http://codepen.io/adambray/pen/xZgzgK?editors=110)
 
 Timings:
 - 5 min: Flat button, Hover state changes it.  Breaking down box-shadows. Identifying the pattern.
@@ -172,7 +170,7 @@ $offset: 10;
 ```
 - 20 min: You have worked out the plan for the button and have started to codify it.
 
-[Thanks jshawl!](https://jesse.sh/makes-3d-buttons-with-sass/)
+Jesse has a [great blog post](https://jesse.sh/makes-3d-buttons-with-sass/) on how he built this.
 
 Now we've added "function" and "mixin" to our list, joining "variables" and "loops".
 
@@ -223,7 +221,7 @@ We covered a lot about Sass, but we're really just scratching the surface.  Make
 - What directive should we use to require other sass files?
 - Name 3 benefits of Sass.
 
-## [Optional] Review an app from Project 3.  Look for ways to remove duplication and improve documenting intent.
+## [Optional] Review an app from Project 2 or 3.  Look for ways to remove duplication and improve documenting intent.
 
 ## References
 - [3D Buttons with Sass](https://jesse.sh/makes-3d-buttons-with-sass/)
