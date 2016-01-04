@@ -25,7 +25,7 @@ Today we will continue working on the Grumblr application we started building ye
 
 And like yesterday, we will be using `http-server` to run our Backbone application. You can do that by entering `http-server` or `hs` in the application directory. From there, visit `http://localhost:8080`.
 
-## What Are Backbone Views? (10 minutes)
+## What Are Backbone Views? (10 minutes / 0:10)
 
 Like models, Backbone views have many similarities to the views we built in our hand-rolled OOJS classes. In Backbone, views are the objects responsible for...
 
@@ -75,7 +75,7 @@ var view = new App.Views.Grumble({model: my_grumble});
 view.model // returns the my_grumble instance
 ```
 
-## The `el` in Backbone (10 minutes)
+## The `el` in Backbone (10 minutes / 0:20)
 
 Just like in our 'hand-rolled' OOJS, our views will have an `el` property, which
 represents the corresponding element.
@@ -109,7 +109,7 @@ App.Views.Grumble = Backbone.View.extend({
 ```
 > We won't be manually setting the `el` property until tomorrow's class. But preview: by setting an `el` property, we no longer need to explicitly append our view to a DOM element.
 
-### Exercise: Define our Grumble View (10 minutes)
+### Exercise: Define our Grumble View (10 minutes / 0:30)
 
 Define a view in `js/backbone/views/grumble.js`. You should define the view such
 that it's 'el' will be a div with class 'grumble'.
@@ -132,13 +132,13 @@ grumbleView.$el
 // The two previous lines should return a <div> with class grumble.
 ```
 
-## Rendering (5 minutes)
+## Rendering (5 minutes / 0:35)
 
 Just like in vanilla JS, we usually want to render HTML and put it into the
 `el`. This method could be called anything, but convention is to call it
 `render`.
 
-### Exercise: Define a Basic Render Method (10 minutes)
+### Exercise: Define a Basic Render Method (10 minutes / 0:45)
 
 In a `render` method, use jQuery's `.html()` to fill your view's `.$el` with some basic HTML. For now,
 just make an `<h2>` and set it's content to be the grumble's title.
@@ -169,9 +169,9 @@ grumbleView.$el
 
 [Solution](https://gist.github.com/amaseda/0c21eda5d0365099bd47)
 
-## Break (10 minutes)
+## Break (10 minutes / 0:55)
 
-## Handlebars Templates (10 minutes)
+## Handlebars Templates (10 minutes / 1:05)
 
 It's no fun (and quite error-prone) to build our HTML using jQuery methods
 like `.append()`, etc. It's much better to use a templating library, such as
@@ -200,7 +200,7 @@ And then in our `index.html`...
 </head>
 ```
 
-### Exercise: Define a Handlebars Template (10 minutes)
+### Exercise: Define a Handlebars Template (10 minutes / 1:15)
 
 1. Define a Handlebars template for our Grumble. Your template should be placed inside a script file that is defined in `index.html`, like so...
 
@@ -251,7 +251,7 @@ came from your template.
 
 [Solution](https://gist.github.com/amaseda/1290ecbe267335e81541)
 
-## Responding to Model Events (10 minutes)
+## Responding to Model Events (10 minutes / 1:25)
 
 One of the great features of Backbone is the events system. There are two types
 of events: **Model / Collection Events** and **View Events**. We'll take a look at both, starting with Model / Collection Events.  
@@ -269,12 +269,12 @@ As a general guide, we prefer to use `.listenTo()` over `.on`, in that it allows
 the listening object to be in charge rather than the object that is triggering
 events.  
 
-### Think Pair Share (5 minutes)
+### Think Pair Share (5 minutes / 1:30)
 
 Spend two minutes looking at the catalog of events in the above documentation.
 Which events do you think we might use most often, and why?
 
-### Exercise: Re-render on Change (5 minutes)
+### Exercise: Re-render on Change (5 minutes / 1:35)
 
 A very common pattern is to have a view listen to it's model for change events,
 and re-render in response. Take a moment to set this up.  
@@ -302,7 +302,7 @@ my_grumble.set('title', "Cats are the Best!");
 
 [Solution](https://gist.github.com/amaseda/2a746c7b7634c6a94324)
 
-## Aside: Fetching, Rendering and Auto-Appending (5 minutes)
+## Aside: Fetching, Rendering and Auto-Appending (5 minutes / 1:40)
 
 So we don't have to keep testing this in the console, let's do write some quick
 code in `app.js` to auto-fetch all grumbles, and display them.
@@ -326,7 +326,9 @@ We can also get rid of the `.append` line from our view's `initialize` since tha
 
 We'll see later that this sort of thing will be handled by a collection view.
 
-## View Events (5 minutes)
+## Break (10 minutes / 1:45)
+
+## View Events (5 minutes / 1:55)
 
 The last main feature of Backbone views is the DOM event system. It's really
 just a nicer way to handle events. Instead of writing a bunch of jQuery like
@@ -335,9 +337,9 @@ below, we can define a simple list of events and what to do in response.
 So instead of this...
 
 ```js
-  $el.find('.beep').on("click", function() {
-    // code goes here to honk horn
-  })
+$el.find('.beep').on("click", function() {
+  // code goes here to honk horn
+})
 ```
 
 ...we can do this...
@@ -355,14 +357,14 @@ honkHorn: function() {
 This keeps our event declarations in one place and encourages us to write
 re-usable methods on our view.
 
-### Exercise: Adding Deletion When "X" is Clicked (10 minutes)
+### Exercise: Adding Deletion When "X" is Clicked (10 minutes / 2:05)
 
 Add an event such that when the user clicks on the delete `<span>`, a method named `deleteGrumble` is called. This method should be defined on the view and should...  
 
 1. Destroy the associated grumble model.  
 2. Fade out the el.  
 
-### Exercise: Rendering Edit Template When Edit is Clicked (10 minutes)
+### Exercise: Rendering Edit Template When Edit is Clicked (10 minutes / 2:15)
 
 When the user clicks the `edit` button, call the `renderEditForm` method, which
 should...
@@ -390,7 +392,7 @@ The template should produce HTML that looks like this for the updated `el`...
 1. Make the form disappear when the "Update Grumble" button is clicked a second time.
 2. Prevent two versions of the form from appearing after clicking the "Update Grumble" button a second time.  
 
-### Exercise: Update Grumble when Form is Submitted (10 minutes)
+### Exercise: Update Grumble when Form is Submitted (10 minutes / 2:25)
 
 When the user clicks the `update` button, call the `updateGrumble` method.
 
@@ -404,7 +406,7 @@ to update the grumble.
 
 [Solution](https://gist.github.com/amaseda/82812bb101a733bffb7a)
 
-### Exercise: Cancel Button (5 minutes)
+### Exercise: Cancel Button (5 minutes / 2:30)
 
 When the user clicks the `cancel` button, go back to the show view.
 > You can do this by adding just one line to our view's `events` object. No need to define a new method.
