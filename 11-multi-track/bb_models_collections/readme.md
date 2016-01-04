@@ -41,7 +41,7 @@ What's the purpose of a front end framework?
 
 ### Libraries (2.5/7.5)
 
-- libraries gives us tools to utilize.
+- Libraries give us tools to utilize.
 - abstracts code and allows us to write our code more succinctly
 - allows us to write applications faster and easier
 - lots of options, very few rules (jQuery)
@@ -70,7 +70,8 @@ What's the purpose of a front end framework?
 With what you know about OOJS, jot down some ideas about:
 - What problem does Backbone aim to solve?
 - When or why would you use Backbone?
-- How might you use Backbone components in conjunction with other technologies
+- How might you use Backbone components in conjunction with other technologies?
+- How would you compare/contrast it to Angular.js?
 
 ---
 ## Backbone JS (10/40)
@@ -82,6 +83,8 @@ With what you know about OOJS, jot down some ideas about:
 - Meant be able to be changed/altered/configured to suit your needs
 - Provides objects that help separate concerns on the front end
 - Provides an interface, API, for communicating with a server back end
+
+> A common problem with large JS web application developed is that they can become pretty messy really quickly. The lack of structure makes the code hard to maintain. This is where Backbone comes into play. It provides structure to organize the code and increase maintainability. Backbone has a vibrant community and it’s also being fully used in production for a considerable number of big companies like: Wal-Mart mobile, Groupon, Khan Academy, Pandora, Wordpress, Foursquare, and so on.
 
 ## Setup 20/60
 Now that we have a bit of a high level overview of Backbone, let's build our first app with it!
@@ -134,21 +137,22 @@ Let's make sure we include these dependencies in our `index.html`:
   <head>
     <meta charset="UTF-8">
     <title>Grumblr!</title>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/handlebars/handlebars.min.js"></script>
+    <script src="bower_components/backbone/backbone-min.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/models/grumble.js"></script>
   </head>
   <body>
 
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="bower_components/underscore/underscore-min.js"></script>
-  <script src="bower_components/handlebars/handlebars.min.js"></script>
-  <script src="bower_components/backbone/backbone-min.js"></script>
-  <script src="js/models/grumble.js"></script>
-  <script src="js/app.js"></script>
   </body>
 </html>
 
 ```
-> **Order** is very important here. Note that underscore is a dependency of Backbone and that jquery is a dependency of underscore. As a result we load jquery first, then underscore, then Backbone. Additionally we want our model definition to follow the Backbone dependency because we will be using Backbone abstractions inside of the model file. And finally we also include the main `app.js` which will require our model definitions.
-
+> **Order** is very important here. Note that underscore is a dependency of Backbone and that jquery is a dependency of underscore. As a result we load jquery first, then underscore, then Backbone. Additionally, we want to require our main `app.js` file, which will help stich together our app's components. Finally, we want include our model definition to follow the Backbone dependency because we will be using Backbone abstractions inside of the model file.
 
 > We could have also installed dependencies using CDN's or downloading the source code for the dependencies as well. Additionally we have installed the handlebars dependency. We won't be using this one today, but we'll be needing it for views tomorrow.
 
@@ -172,7 +176,7 @@ var Grumble = Backbone.Model.extend({
 ```
 > Much like inheriting from `ActiveRecord::Base`. Were just extending Backbone model functionality into our own model definitions.
 
-Awesome! Let spin up our sweet website. (include a document ready and a console.log to show js/jquery dependency is working). In `js/app.js`:
+Awesome! Let spin up our sweet website by running `http-server` from the command line and navigating to `localhost:8080`. Make sure to include a `document.ready` and a `console.log` to show js/jquery dependency is working). In `js/app.js`:
 
 ```js
 $(document).ready(function(){
@@ -272,25 +276,26 @@ var Grumble = Backbone.Model.extend({
 })
 ```
 
-## You-DO Play with BB Models (5 mins)
+### You-Do: Play with BB Models (5 mins)
 With a partner, take 5 minutes to play around with our new Model.
 Reference the [docs](http://backbonejs.org/#Model) to see all available methods for Backbone models.
+- Practice getting and setting properties and explore how the `changed` attribute works
 
 **Questions on BB models?**
 
 ## Backbone [Collections](http://backbonejs.org/#Collection) (30/150)
 What is a Backbone collection?
-A collection acts as an intelligent wrapper for similar models. It provides a set of methods for performing the CRUD operations on models of the collection.
+Backbone collections are simply an ordered set of models. A collection acts as an intelligent wrapper for similar models. Collections also come with their own set of methods for performing the CRUD operations the models of a collection.
 
 ![Collections](http://backbonejs.org/docs/images/intro-collections.svg)
 
-Create and edit the file `js/collections/grumbles.js`:
+Create and edit the file `js/collections/grumbles.js`, and make sure to link to that file it in your `index.html`:
 
 ### Creating a collection
 ```javascript
 var Grumbles = Backbone.Collection.extend({
   initialize:function(){
-    console.log("created a new grumbles collection")
+    console.log("New Grumbles collection created!")
   },
   model: Grumble
 })
@@ -408,6 +413,8 @@ grumble.save().then(function(response){
 
 > The `response` in this log is the object(key-value pairs) that was saved in the database.
 
+## Break
+
 ### Collections
 Collections can also be set up to interface with our back-end API.
 
@@ -419,7 +426,7 @@ var GrumblesCollection = Backbone.Collection.extend({
     console.log('New Grumbles Collection');
   },
   model: Grumble,
-  url: '/grumbles'
+  url: "http://localhost:3000/grumbles"
 });
 ```
 
@@ -428,7 +435,7 @@ Again, the rules are much the same for manipulating data within the collection.
 Similarly to ActiveRecord there is a [`create`](http://backbonejs.org/#Collection-create) method that can be called on a collection:
 
 ```javascript
-collection.create({authorName: "bob", content: "smith", title: "the title", photoUrl: "http://placebear.com/400/400"})
+Grumbles.create({authorName: "bob", content: "smith", title: "the title", photoUrl: "http://placebear.com/400/400"})
 ```
 
 `create` will actually save an instance of that model to the database, so long as you meet the strong params requirements.
@@ -440,7 +447,98 @@ Another common method that you will use on a collection is [`fetch`](http://back
 var grumbles = Grumbles.fetch()
 ```
 
-There is also an additional hash of options you can pass for `fetch`, that allow you to control the triggering of events. For example, to fetch a collection, getting an `add` event for every new model, and a `change` event for every changed existing model, without removing anything: `collection.fetch({remove: false})`
+There is also an additional hash of options you can pass for `fetch`, that allow you to control the triggering of events. For example, to fetch a collection, getting an `add` event for every new model, and a `change` event for every changed existing model, without removing anything: `Grumbles.fetch({remove: false})`
 
-## Class Ex - Reminders Part 2 (60/150)
+## Class Ex - Reminders Part 2 (40/130)
 Look at the repo [here](https://github.com/ga-dc/reminder#part-2)
+
+## Refactoring and Best Practices (20/150)
+Let's do a quick overview of our app so far.
+Does anything jump out where we know we can help set ourselves up for future success?
+What about anything we used as best practices with Angular.js following style guides?
+
+### IIFE's and Global Objects
+Looking at our current model and collection definitions:
+
+in `js/models/grumble.js`
+```javascript
+var Grumble = Backbone.Model.extend({
+  urlRoot: "http://localhost:3000/grumbles",
+  initialize: function(){
+    console.log("New Grumble Model Created")
+  }
+})
+```
+
+And in `js/collections/grumbles.js`
+```javascript
+var Grumbles = Backbone.Collection.extend({
+  initialize:function(){
+    console.log("new Grumbles collection Created ")
+  },
+  model: App.Models.Grumble,
+  url: '/grumbles'
+})
+```
+
+Ohhh, currently we are defining our app's model and collection in the global namespace!?!
+
+Instead, Backbone developers favor grouping all of our app's components under one global `App` object, so let's do this as well.
+
+In `js/app.js`, add the global object at the top of the file (before the `document.ready`) like:
+
+```javascript
+App = {
+  Models: { },
+  Collections: { },
+  Views: { }
+}
+```
+
+Great! Now, we need to go back and update our definitions to make sure to namespace them under our global `App` object.
+It's also a good idea to go ahead and include IIFEs to further protect the scope of our components.  
+
+Our updated model in `js/models/grumble.js` becomes:
+
+```javascript
+(function(){
+  App.Models.Grumble = Backbone.Model.extend({
+    urlRoot: "http://localhost:3000/grumbles",
+    initialize: function(){
+      console.log("New Grumble Model Created")
+    }
+  })
+})()
+```
+
+and our updated collection in `js/collections/grumbles.js` becomes:
+
+```javascript
+(function(){
+  App.Collections.Grumbles = Backbone.Collection.extend({
+    initialize:function(){
+      console.log("new Grumbles collection Created ")
+    },
+    model: App.Models.Grumble,
+    url: "http://localhost:3000/grumbles"
+  })
+})()
+```
+
+Awesome, now we're no longer over polluting the global namespace. Up next, we'll learn about how to use views to interface with our data and provide the UI for our app!
+
+## Homework
+No deliverables-finish up reminders part2 and any left over in-class work
+
+## Sample Quiz Questions
+- Is Backbone an example of a library or a front end Framework? Defend your answer
+- Why do we define our Backbone models with `Backbone.Model.extend({...})` and our collections with models with `Backbone.Collection.extend({...})`?
+- What are Backbone.js' dependencies?
+
+## Resources
+- [What's a Model?](https://cdnjs.com/libraries/backbone.js/tutorials/what-is-a-model/)
+- [What's a Collection?](https://cdnjs.com/libraries/backbone.js/tutorials/what-is-a-collection/)
+- [Backbone Fundamentals (Awesome Free eBook)](https://addyosmani.com/backbone-fundamentals)
+- [Backbone Example Sites, Tutorials, and Blog Posts](https://github.com/jashkenas/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites)
+- [Backbone Design Patterns](http://ricostacruz.com/backbone-patterns/index.html)
+- [Comprehensive Backbone Tutorial](http://javascriptissexy.com/learn-backbone-js-completely/)
