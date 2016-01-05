@@ -1,30 +1,19 @@
 # Bootstrap
 
 Screencasts:
+
 - [Part 1](http://youtu.be/Nerq19rQFrc)
 - [Part 2](http://youtu.be/iTeqXPIvgys)
 - [Part 3](http://youtu.be/O-sh4Hb3FUw)
 
-## Leaning Adjectives
+## Learning Adjectives
 
 - Explain the benefits (and shortcomings) of using a design framework.
 - Describe the use cases for Bootstrap as a library versus as a framework.
 - List 10 useful classes from the Bootstrap library.
-- Compare and contrast Bootstrap with other front-end frameworks (e.g., Foundation and Material Design).
+- Compare and contrast Bootstrap with other design frameworks (e.g., Foundation and Material Design).
 
-## [Check out this awesome app we made](http://ga-dc.github.io/grumblr_backbone/)
-
-### This is a Backbone app
-
-[Here's the source code.](http://github.com/ga-dc/grumblr_backbone)
-
-Quick crash course in Backbone: The HTML is pretty much just a template that uses Handlebars syntax. I define the models being used in the application (Grumbles and Comments in this case), and Backbone takes care of all the AJAX calls and stuff for me.
-
-Feel free to poke around in the code using Dev Tools.
-
-### But just *using* the app as a regular user
-
-...it looks pretty nice, right? Much to my chagrin, we actually didn't write any of the CSS for this page. We wrote no CSS at all. Bootstrap gives you a stylesheet that includes a metric ton of classes. Add the classes to your HTML, and you've got the "look and feel" of your site taken-care-of.
+##
 
 Bootstrap is the visual theme on which much of the modern web is based. For instance, the styling of Github's readmes and markdown files is based very heavily on Bootstrap.
 
@@ -59,7 +48,7 @@ Bootstrap sections a page with "container", as in `<div class="container">` You'
 
 Inside a container, you can use Bootstrap's built-in grid system. It lets you break a page up into 12 columns. You do this by writing something like:
 
-```html
+``` html
 <div class="container">
   <div class="col-md-3"></div>
   <div class="col-md-9"></div>
@@ -89,32 +78,35 @@ As a class, we're going to build a collaborative cheat sheet for some of the boo
 - Where can I read more about it?
 - Any tips/tricks for implementation?
 
-
 **Group One**
+
 - Popover
 - Scrollspy
 - Affix
 
 **Group Two**
+
 - Jumbotron
 - Well
 - Glyphicon
 
 **Group Three**
+
 - Badge
 - Progress bar
 - List groups
 
 **Group Four**
+
 - Navbar
 - Dropdowns
 - Panels
 
 **Group Five**
+
 - Carousel
 - Modal
 - Tooltip
-
 
 ### Out-of-the-box, Bootstrap *doesn't* style most elements
 
@@ -128,7 +120,7 @@ Muted, important, success, info, warning, and danger
 
 You can also change the size of a button. If I wanted to make a small "delete" button, I'd write something like this:
 
-```html
+``` html
 <button class="btn btn-danger btn-xs">Delete</button>
 ```
 
@@ -136,7 +128,7 @@ You can also change the size of a button. If I wanted to make a small "delete" b
 
 There's a lot of this in Bootstrap: having 38 different classes that all start with `btn`. It would be a lot less annoying if we could make the button look like this:
 
-```html
+``` html
 <button class="btn danger xs">Delete</button>
 ```
 
@@ -150,14 +142,11 @@ It's not unlikely that some Bootstrap user will want to make their own CSS class
 
 Bootstrap's "library personality" wants to be as unobtrusive as possible and not conflict with any classes users might be defining. This is the personality that's prevailing over the Bootstrap's other half, the "framework personality," which would use `.danger` and include documentation saying that users **should not** create classes called `.danger`.
 
-When we use Bootstrap as a framework, it's often
-
-
 ## Bootstrap is great for styling forms... but not DRY
 
 Look at how un-DRY this code is:
 
-```html
+``` html
 <form class="grumbleForm">
   <div class="form-horizontal">
     <fieldset class="form-group">
@@ -188,6 +177,7 @@ Look at how un-DRY this code is:
 ```
 
 **If only** there was some way to not have to write `form-group` three million times!
+
 
 
 ### Customizing Bootstrap
@@ -224,6 +214,70 @@ Download bootstrap-sass like so:
 - `bower install bootstrap-sass`
 
 ### You do: Sassify a form!
+
+
+I'm going to make a new stylesheet called `captainVonBootsTrapp.scss` that contains this:
+
+```scss
+@import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+input,
+textarea {
+  @extend .form-control;
+}
+label {
+  @extend .control-label;
+}
+fieldset {
+  @extend .form-group;
+}
+.form-horizontal{
+  label{
+    @extend .col-sm-3;
+  }
+  div{
+    @extend .col-sm-9;
+  }
+}
+```
+
+Then I'll `touch captainVonBootsTrapp.css`.
+
+Finally, `sass captainVonBootsTrapp.scss captainVonBootsTrapp.css`
+
+Now I only need to `<link rel="stylesheet" href="assets/stylesheets/captainVonBootsTrapp.css" />` and I get **all** of Bootstrap **plus** the changes I made!
+
+This lets me drastically DRY up that form HTML from before:
+
+```html
+<form class="grumbleForm">
+  <div class="form-horizontal">
+    <fieldset>
+      <label>Title:</label>
+      <div><input type="text" name="title" value="{{ title }}"></div>
+    </fieldset>
+    <fieldset>
+      <label>By:</label>
+      <div><input type="text" name="authorName" value="{{ authorName }}"></div>
+    </fieldset>
+    <fieldset>
+      <label>Content:</label>
+      <div><textarea name="content">{{ content }}</textarea></div>
+    </fieldset>
+    <fieldset>
+      <label>Photo URL:</label>
+      <div><input type="text" name="photoUrl" value="{{ photoUrl }}"></div>
+    </fieldset>
+    <fieldset>
+      <label>&nbsp;</label>
+      <div>
+        <button class="btn submit btn-primary">Submit</button>
+        <button class="btn cancel">Cancel</button>
+      </div>
+    </fieldset>
+  </div>
+</form>
+```
 
 ## You do: Redesign a homework!
 
