@@ -152,47 +152,7 @@ touch styles.css
 
 Copy and paste the content from [here](https://raw.githubusercontent.com/jeremychurch/FixedContent.js/master/jquery.fixedcontent.js) into `fixedContent.js`
 
-In the index.html:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="styles.css">
-  <title>Document</title>
-</head>
-<body>
-  <header class="header">
-  <!-- This plugins as easy as jsut adding a class! -->
-    <h1 class="js_fixedcontent">Hello!</h1>
-  </header>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium dolorum omnis rerum itaque ad sint ea, possimus temporibus esse officia voluptate a ipsa mollitia reiciendis! Incidunt, soluta saepe, dignissimos, culpa, quos consequatur neque enim temporibus rem eaque modi quo mollitia tenetur non quaerat eum qui molestias atque! Vitae tenetur, quisquam.</p>
-  <p>Fuga nulla non ea earum placeat sed labore, deleniti molestias atque voluptate, eius laudantium voluptatibus, repellendus officiis aut inventore eaque nesciunt ipsa quaerat accusantium quia a. Necessitatibus incidunt iusto in velit laborum quidem voluptate ut unde laudantium mollitia dolorem fugit, deserunt, a explicabo non totam distinctio accusamus molestiae repellendus molestias.</p>
-  <p>Voluptatibus alias sunt ipsa! Quisquam hic sapiente maxime, voluptatem quis vel similique reprehenderit, corporis voluptas veniam vero voluptate, id atque veritatis provident fugit, ex molestias amet iusto sequi ullam culpa. Deleniti eius distinctio qui maxime, autem at est laborum blanditiis optio nihil veniam ipsum consequatur aspernatur cum porro expedita nulla.</p>
-  <p>Esse, voluptas ullam sed iure itaque? Nesciunt et magnam veritatis ullam alias blanditiis dolore possimus beatae dolorum adipisci doloremque esse nemo consectetur accusamus, omnis rem minima quo provident aliquid tempore illum. Officiis amet ducimus pariatur, sit molestiae voluptatum error reprehenderit in? Nemo reprehenderit explicabo soluta, ratione, fugit consequuntur excepturi odio.</p>
-  <p>Quis dolores eum, odit at, itaque modi. Consequuntur nulla saepe blanditiis temporibus labore atque vitae, excepturi maxime ullam magnam, beatae molestias voluptate similique qui, dolorum a aliquid commodi nesciunt? Consequuntur omnis inventore porro suscipit incidunt perferendis possimus quos ratione eius, ullam sapiente cupiditate, aspernatur quasi. Culpa reprehenderit, iusto repellat at.</p>
-  <p>Amet dolorum nisi voluptatum quis eligendi veniam, reprehenderit maiores nihil itaque recusandae assumenda molestias modi animi harum incidunt sed sit iure quisquam quasi totam? Perferendis quaerat illum pariatur ab, culpa temporibus enim libero, adipisci odit voluptatum dolor quisquam a dignissimos rerum. Soluta nihil officia distinctio laboriosam blanditiis et, magni iste.</p>
-  <p>Temporibus, tempore ipsa inventore sunt beatae animi, nesciunt quasi iste provident cupiditate vero ex. Quas laboriosam porro quidem magni necessitatibus, assumenda voluptates explicabo, in voluptatum at corrupti labore blanditiis fugit fuga quo voluptatem deserunt minus ipsum, quisquam soluta! Tempora aperiam, quaerat sequi maiores. Perferendis eos eaque fuga quasi, cupiditate repellendus?</p>
-  <p>Molestias, explicabo ut doloribus adipisci libero rem atque laudantium harum nulla corrupti dolore sapiente, error quas ducimus dolorum animi nisi maiores cumque, sequi at esse ad sint debitis officiis. Sint facere id fugit vel voluptatum animi dolor maxime, ad saepe soluta laudantium quos totam enim laborum quia vitae, assumenda reprehenderit.</p>
-  <p>Voluptatibus consequuntur neque atque odio tenetur minima veritatis vero illo, laborum, tempore repudiandae incidunt corrupti libero. Quae commodi tenetur eos nulla dignissimos, accusantium ipsa et voluptate harum ipsum expedita deleniti numquam iste rerum, eveniet natus necessitatibus soluta minima itaque molestiae odit optio iure suscipit at! Praesentium quisquam, quaerat minima sapiente.</p>
-  <p>Dolor harum inventore ab, atque dolore vero architecto voluptates quidem suscipit. Cumque id aspernatur vel pariatur minima ullam. Nostrum tempora nisi, est aliquid earum officiis aut eligendi, porro placeat nesciunt voluptas iure cumque repellat numquam ipsa architecto odit perferendis quidem consequatur cupiditate rem! Perferendis qui consequatur porro, ullam, architecto laudantium.</p>
-  <p>Numquam eius, cupiditate quo blanditiis ipsum possimus sed aperiam ducimus vitae vel laudantium mollitia animi quibusdam cumque labore recusandae impedit. Reiciendis voluptates dolore deserunt, ut in optio alias suscipit adipisci nisi, vitae architecto modi blanditiis accusantium. At ducimus quidem veniam, illo, reiciendis unde, beatae illum qui hic possimus dolore expedita.</p>
-  <p>Neque fugiat distinctio sit praesentium soluta aspernatur eveniet doloremque, quis, eaque hic vel, corrupti labore dicta culpa. Veritatis quaerat, odio consequatur explicabo magnam commodi amet ullam sed. Expedita, iusto cumque nulla porro aspernatur quam adipisci, vel magni quod repudiandae debitis qui delectus beatae. Unde animi blanditiis, ducimus suscipit quod facilis!</p>
-  <p>Vero inventore repudiandae possimus ea amet at laboriosam doloribus, magnam veritatis excepturi. Assumenda laboriosam sed magnam, odit corporis. Doloremque aliquam aspernatur totam ut magni! Facilis accusamus dolorem, consectetur quaerat vitae ipsa ullam reprehenderit officiis inventore, ad pariatur, nisi dolores nemo ipsum odit qui nostrum unde architecto natus blanditiis! Vitae, doloribus.</p>
-  <p>Eligendi corporis dicta est eum doloribus. Sed doloribus vel nisi nesciunt autem tempore, deserunt maiores aliquid ipsa consequatur voluptatem illo veniam et sunt optio necessitatibus earum itaque rerum labore molestiae quis assumenda dolorem saepe. Maiores, debitis, eum. Quasi deleniti sit hic aperiam, odio consectetur vero sint in. Ducimus, quia, cupiditate.</p>
-  <p>Saepe incidunt expedita maiores esse, obcaecati dolor magnam culpa harum ea libero nisi facilis totam quasi voluptatem, tenetur tempora, rerum iusto quaerat laboriosam repellat distinctio laborum numquam rem! Perspiciatis aliquid repellendus excepturi quo quas reprehenderit itaque necessitatibus ratione error, fugiat saepe commodi debitis ipsum, quae neque est voluptatum inventore alias?</p>
-  <p>Harum fugit assumenda ad praesentium possimus repellat maiores ratione. Voluptatem, id laboriosam facilis expedita sint aut mollitia autem, odit a dolor necessitatibus asperiores hic quasi perspiciatis delectus quia corporis vero labore fugit. Fugiat, quae, consequatur. Veniam dolorem consectetur eos distinctio, perferendis quod temporibus dolor quae sed ut necessitatibus, nesciunt natus.</p>
-  <p>Culpa ipsum, nulla voluptatibus fuga? Rem aut maiores, non cupiditate expedita sint facilis magni! Vero dolorem optio consequatur, fugiat assumenda deleniti asperiores in modi distinctio sapiente fuga, culpa incidunt. Corrupti, quaerat nemo perferendis harum obcaecati consequatur quidem, labore commodi. Quia rem minus sint quas optio fugiat. Laudantium molestiae similique expedita.</p>
-  <p>Velit soluta nam porro, tempore architecto. Mollitia nostrum temporibus id illo excepturi deleniti ad voluptate voluptatibus! Nobis, velit necessitatibus, laudantium veniam mollitia explicabo est perferendis tempora. Voluptatem ullam fugiat laudantium, dignissimos minus debitis earum fuga perferendis ipsam, quibusdam ut? Illo quae porro quisquam voluptate autem dicta sequi repellat vero recusandae!</p>
-  <p>Nulla quia expedita voluptate dolorum amet ipsa alias officiis ut magni, quo accusantium voluptas minima minus odit commodi quisquam possimus dolor quaerat labore dolorem, cupiditate excepturi sint! Obcaecati vero totam laudantium fugit repellendus, accusamus suscipit temporibus consectetur at, ratione modi quo rerum esse, veniam autem atque eius illum placeat delectus.</p>
-  <p>Atque exercitationem harum totam doloribus incidunt dolorem architecto, ullam nulla. In, nulla ipsum dolor molestias, odit perferendis reprehenderit culpa dolorum. Eveniet nobis nihil ipsum deserunt ipsa veniam, saepe debitis delectus tempore. Tempore cupiditate nihil perferendis vitae eveniet et repellendus, animi voluptatum, dolorem voluptatibus adipisci fugit sint, corporis aspernatur, ad sapiente!</p>
-  <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
-  <script src='fixedContent.js'></script>
-  <script src='script.js'></script>
-</body>
-</html>
-```
+Use the content found in this [gist](https://gist.github.com/andrewsunglaekim/27d439df8ab05b6b176c) as the dummy html content for the `index.html`:
 
 If we open up the index page we can see that the h1 remains at the top regardless of our scrolling!
 
@@ -226,7 +186,7 @@ You've only got 20 minutes, so focus on installation and easy demo.
 
 Let's try and understand plugins a little bit deeper by creating our own custom made jQuery plugin. We'll be modeling our plugin after the one in these [jQuery docs](https://learn.jquery.com/plugins/basic-plugin-creation/#basic-plugin-authoring)
 
-Lets start by creating all the files we need:
+Lets start by creating all the files we'll need:
 
 ```bash
 mkdir greenify
@@ -235,6 +195,8 @@ touch index.html
 touch script.js
 touch greenify.js
 ```
+
+> Here we're just making a regular old `index.html` and `script.js`. Initially we'll be defining most of our plugins functionality in `script.js` and then we'll abstract the plugin portion to `greenify.js`. `greenify.js` will eventually be the jQuery plugin we'll be building.
 
 In `index.html`:
 
@@ -408,6 +370,8 @@ In `greenify.js`:
 ## You do - Contribute to greenify (10/135)
 
 - Submit a pull request against [greenify](https://github.com/ga-dc/greenify) with a sick new feature to the greenify plugin
+
+> In order to submit a PR you will need to fork and clone the above repo.
 
 ## You do: GIF of the Day (Rest of class, HW!)
 
