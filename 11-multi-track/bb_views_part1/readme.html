@@ -53,7 +53,7 @@
         data-chapter-title="Views (part 1)"
         data-filepath="11-multi-track/bb_views_part1/readme.md"
         data-basepath="../.."
-        data-revision="Tue Jan 05 2016 02:31:23 GMT+0000 (UTC)"
+        data-revision="Tue Jan 05 2016 02:33:44 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1472,8 +1472,9 @@ and re-render in response. Take a moment to set this up.  </p>
 <p>Hint: You&apos;ll only need to add one line of code to make this work.  </p>
 </blockquote>
 <p>Where should we setup the listening? What method should we call in response to
-the change event?</p>
-<p>You can test it by doing something like the following...</p>
+the change event?  </p>
+<p>Also take the time to invoke <code>render</code> at the end of your <code>initialize</code> method so that we no longer have to type it out in the console.  </p>
+<p>You can test this new functionality by doing something like the following in the console...</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> myGrumble = <span class="hljs-keyword">new</span> App.Models.Grumble({
   title: <span class="hljs-string">&quot;Dogs are the Worst! &quot;</span>,
   content: <span class="hljs-string">&quot;I do say, my good sir... aren&apos;t dogs the worst? I mean, they don&apos;t know how to groom themselves, they are always chewing on tennis balls like a fool, and they can&apos;t even climb trees!&quot;</span>,
