@@ -112,7 +112,7 @@ We want to be able to explicitly define our column widths so that they also incl
 Our grid relies on being able to float columns. These columns will most likely contain content of various sizes.
 * We need to make sure each piece of content is constrained to its respective row and column containers
 
-Let's [illustrate this problem](http://codepen.io/pen/?editors=110).
+Let's [illustrate this problem](http://codepen.io/adambray/pen/GoWobo?editors=110).
 * As this code stands, we have a row that contains two squares. But these squares are overflowing out of the row, which appears as a straight black line.
 
 This is where the clearfix technique comes in. Fortunately, it's easy to implement (as long as you don't care about how your site looks in Internet Explorer).
@@ -269,6 +269,7 @@ Let's also add some styling that will help us visualize this better.
 
 .column {
   float: left;
+  position: relative;
   border: 2px solid Tomato;
   border-radius: 20px;
   text-align: center;
