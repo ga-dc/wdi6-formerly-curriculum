@@ -36,17 +36,17 @@ AND, unlike your hand-rolled CSS, Bootstrap is [well documented](http://getboots
 ### Download Options
 
 - You can grab it from a [CDN](http://getbootstrap.com/getting-started/#download-cdn).
-  
+
   - ``` html
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     ```
-    
+
   - ``` html
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     ```
-  
+
 - You can [download the complied and minified CSS, JS, and fonts](http://getbootstrap.com/getting-started/#download) and include them manually.
-  
+
 - You can [download the uncompiled source code as SASS or LESS](http://getbootstrap.com/getting-started/#download) (which we'll touch on later), pick the components you want, and compile the subset that you need.
 
 ### You're Also Gonna Need jQuery...
@@ -118,7 +118,7 @@ The bulk of Bootstrap's customizing power lies in its dozens of components, whic
 
 ### You do: Bootstravenger Hunt
 
-As a class, we're going to compile an appendix to the Bootstrap documentation, providing tips and tricks on the implementation of some of Bootstrap's Greatest Hits. 
+As a class, we're going to compile an appendix to the Bootstrap documentation, providing tips and tricks on the implementation of some of Bootstrap's Greatest Hits.
 
 **Group One**
 
@@ -185,9 +185,9 @@ This is one place where you sort-of see Bootstrap trying to straddle the line be
 
 **You insert a library into your code; you insert your code into a framework.**
 
-It's not unlikely that some Bootstrap user will want to make their own CSS class called `.danger` that is completely unrelated to Bootstrap. It's extremely unlikely, however, that anyone is going to create their own class called `.btn-danger`. 
+It's not unlikely that some Bootstrap user will want to make their own CSS class called `.danger` that is completely unrelated to Bootstrap. It's extremely unlikely, however, that anyone is going to create their own class called `.btn-danger`.
 
-Bootstrap's "library personality" wants to be as unobtrusive as possible and not conflict with any classes users might be defining, so it engages in this sort of **classnamespacing**. 
+Bootstrap's "library personality" wants to be as unobtrusive as possible and not conflict with any classes users might be defining, so it engages in this sort of **classnamespacing**.
 
 #### We can use SASS to DRY up our Bootstrap!
 
@@ -307,13 +307,13 @@ Bootstrapify (or [Foundation](http://foundation.zurb.com)-ify or [Materialize](h
 ## Questions
 
 - What's the difference between a framework and a library?
-  
+
 - Name two Bootstrap classes and explain what they do.
-  
+
 - What's the difference between a glyphicon and a jumbotron and a Megatron?
-  
+
 - Give an example of a situation in which you might want to use Bootstrap, versus one in which you might not.
-  
+
   ​
 
 ## Helpful References
