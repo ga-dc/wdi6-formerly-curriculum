@@ -1,5 +1,11 @@
 # jQuery
 
+## Screencasts
+
+- https://vimeo.com/150819686
+- https://vimeo.com/150819684
+- https://vimeo.com/150819685
+
 ## Learning Objectives
 
 - Review how to select elements using Vanilla Javascript.
