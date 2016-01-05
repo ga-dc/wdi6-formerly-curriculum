@@ -1,4 +1,7 @@
-## Leaflet and Map APIs
+# Leaflet and Map APIs
+
+## Learning Objectives
+
 * Examine the value of mapping in modern-day web development.
 * Using the Leaflet JS library...
   * Create a map.
