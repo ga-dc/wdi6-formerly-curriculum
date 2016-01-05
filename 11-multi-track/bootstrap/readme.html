@@ -53,7 +53,7 @@
         data-chapter-title="Bootstrap"
         data-filepath="11-multi-track/bootstrap/readme.md"
         data-basepath="../.."
-        data-revision="Tue Jan 05 2016 15:06:57 GMT+0000 (UTC)"
+        data-revision="Tue Jan 05 2016 18:51:49 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1224,67 +1224,86 @@
 <li><a href="http://youtu.be/iTeqXPIvgys" target="_blank">Part 2</a></li>
 <li><a href="http://youtu.be/O-sh4Hb3FUw" target="_blank">Part 3</a></li>
 </ul>
-<h2 id="leaning-adjectives">Leaning Adjectives</h2>
+<h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
 <li>Explain the benefits (and shortcomings) of using a design framework.</li>
 <li>Describe the use cases for Bootstrap as a library versus as a framework.</li>
 <li>List 10 useful classes from the Bootstrap library.</li>
-<li>Compare and contrast Bootstrap with other front-end frameworks (e.g., Foundation and Material Design).</li>
+<li>Compare and contrast Bootstrap with other design frameworks (e.g., Foundation and Material Design).</li>
 </ul>
-<h2 id="check-out-this-awesome-app-we-made"><a href="http://ga-dc.github.io/grumblr_backbone/" target="_blank">Check out this awesome app we made</a></h2>
-<h3 id="this-is-a-backbone-app">This is a Backbone app</h3>
-<p><a href="http://github.com/ga-dc/grumblr_backbone" target="_blank">Here&apos;s the source code.</a></p>
-<p>Quick crash course in Backbone: The HTML is pretty much just a template that uses Handlebars syntax. I define the models being used in the application (Grumbles and Comments in this case), and Backbone takes care of all the AJAX calls and stuff for me.</p>
-<p>Feel free to poke around in the code using Dev Tools.</p>
-<h3 id="but-just-using-the-app-as-a-regular-user">But just <em>using</em> the app as a regular user</h3>
-<p>...it looks pretty nice, right? Much to my chagrin, we actually didn&apos;t write any of the CSS for this page. We wrote no CSS at all. Bootstrap gives you a stylesheet that includes a metric ton of classes. Add the classes to your HTML, and you&apos;ve got the &quot;look and feel&quot; of your site taken-care-of.</p>
+<h2 id="intro">Intro</h2>
+<blockquote>
+<p>&quot;Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.&quot;</p>
+</blockquote>
 <p>Bootstrap is the visual theme on which much of the modern web is based. For instance, the styling of Github&apos;s readmes and markdown files is based very heavily on Bootstrap.</p>
 <p>Bootstrap was born in 2011 as Twitter Blueprint. The fact that it&apos;s ubiquitious now speaks to how much of a need there was for it: prior to Bootstrap, there were lots of mini-frameworks you could use, but trying to run 35 stylesheets at the same time creates a tremendous headache.</p>
-<h3 id="bootstrap-is-a-godsend-for-developers">Bootstrap is a godsend for developers</h3>
 <p>As has been discussed, you can make the most amazing back-end functionality ever, but if the front-end doesn&apos;t look presentable you&apos;ll have a difficult time selling it.</p>
-<p>Bootstrap lets you make a polished-looking app with minimal effort. As a result, many websites today look very &quot;Bootstrappy&quot;.</p>
 <p>Unless you&apos;re specifically trying to show off your CSS skills, it&apos;s often better to spend 15 minutes making your app look good with Bootstrap than it is to spend 3 days writing your own CSS. Why?</p>
 <p>The obvious reason is that one takes you 15 minutes, the other takes 3 days, and time is money. And of course, there are those clients who are non-tech-savvy and think you&apos;ll have written all the CSS yourself no matter what you do.</p>
 <p>Also, Bootstrap is written with responsive and/or mobile-first design in mind, replacing hand-rolled media queries with more intuitive and semantic class names. Clients and employers of all levels of tech-savviness will appreciate that you&apos;ve prioritized these qualities.</p>
-<p>AND, unlike your hand-rolled CSS, Bootstrap is <a href="http://getbootstrap.com/" target="_blank">well documented</a> and therefore easily replicable and sharable throughout the development world.</p>
-<h2 id="lets-download-bootstrap">Let&apos;s download Bootstrap</h2>
+<p>AND, unlike your hand-rolled CSS, Bootstrap is <a href="http://getbootstrap.com/" target="_blank">well documented</a> and therefore easily replicable and sharable throughout the development community.</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="download-options">Download Options</h3>
 <ul>
-<li>You can grab it from a CDN.<ul>
-<li><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css&quot;&gt;</code></li>
-</ul>
+<li><p>You can grab it from a <a href="http://getbootstrap.com/getting-started/#download-cdn" target="_blank">CDN</a>.</p>
+<ul>
+<li><pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">&quot;stylesheet&quot;</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css&quot;</span> <span class="hljs-attribute">integrity</span>=<span class="hljs-value">&quot;sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7&quot;</span> <span class="hljs-attribute">crossorigin</span>=<span class="hljs-value">&quot;anonymous&quot;</span>&gt;</span>
+</code></pre>
 </li>
-<li>You can download <code>bootstrap.css</code> or the minified version, <code>bootstrap.min.css</code>.<ul>
-<li><a href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" target="_blank">https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css</a></li>
-</ul>
-</li>
-<li>You can download the uncompiled source code as SASS or LESS (which we&apos;ll touch on later), pick the components you want, and compile that.<ul>
-<li><a href="http://getbootstrap.com/getting-started/#download" target="_blank">http://getbootstrap.com/getting-started/#download</a></li>
-</ul>
+<li><pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js&quot;</span> <span class="hljs-attribute">integrity</span>=<span class="hljs-value">&quot;sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS&quot;</span> <span class="hljs-attribute">crossorigin</span>=<span class="hljs-value">&quot;anonymous&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
 </li>
 </ul>
+</li>
+<li><p>You can <a href="http://getbootstrap.com/getting-started/#download" target="_blank">download the complied and minified CSS, JS, and fonts</a> and include them manually.</p>
+</li>
+<li><p>You can <a href="http://getbootstrap.com/getting-started/#download" target="_blank">download the uncompiled source code as SASS or LESS</a> (which we&apos;ll touch on later), pick the components you want, and compile the subset that you need.</p>
+</li>
+</ul>
+<h3 id="youre-also-gonna-need-jquery">You&apos;re Also Gonna Need jQuery...</h3>
+<p><code>&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js&quot;&gt;&lt;/script&gt;</code></p>
+<p>&#x2026;if you want to use Bootstrap&apos;s JS components.</p>
+<h3 id="document-setup">Document Setup</h3>
+<p>Since Bootstrap is written with mobile in mind, they recommend configuring the viewport with a meta tag in the head:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;viewport&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
+</code></pre>
+<p>This ensures &quot;proper rendering and touch zooming&quot;. If you want to disable zooming on mobile devices, you can add:</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;viewport&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">&quot;width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no&quot;</span>&gt;</span>
+</code></pre>
 <h3 id="containers">Containers</h3>
-<p>Bootstrap sections a page with &quot;container&quot;, as in <code>&lt;div class=&quot;container&quot;&gt;</code> You&apos;re not supposed to put a container inside another container.</p>
-<p>Inside a container, you can use Bootstrap&apos;s built-in grid system. It lets you break a page up into 12 columns. You do this by writing something like:</p>
+<p>Bootstrap requires that you organize site contents using one of two <code>&quot;container&quot;</code> classes:</p>
+<ul>
+<li><code>&lt;div class=&quot;container&quot;&gt;</code> gives you a responsive, fixed-width container</li>
+<li><code>&lt;div class =&quot;container-fluid&quot;&gt;</code> creates a full width container that spans 100% of your viewport.</li>
+</ul>
+<p><a href="http://www.bootply.com/render/CK6xB6cRuE" target="_blank">This Bootply snippet</a> demonstrates the difference between container and container-fluid.</p>
+<p>Both types of containers are responsive, and both allow you to implement Bootstrap&apos;s grid system inside of them.</p>
+<h3 id="grid-system-basics">Grid System Basics</h3>
+<p>We&apos;ll talk in more detail about grid systems in general, and about Bootstrap&apos;s grid in particular, this afternoon. In summary, the <a href="http://getbootstrap.com/css/#grid" target="_blank">Bootstrap grid</a> is built of <code>.col-[device size]-[number]</code> divs inside of <code>.row</code> divs, e.g.:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;container&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;col-md-3&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;col-md-9&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;row&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;col-md-3&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;col-md-9&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
-<p>This indicates how many columns you want to appear on which size screen. So a div with <code>class=&quot;col-lg-9 col-sm-12&quot;</code> would be 9/12ths the width of a desktop screen, and 12/12ths the width of a mobile screen.</p>
-<p><code>xs</code> (phones), <code>sm</code> (tablets), <code>md</code> (desktops), <code>lg</code> (big desktops)</p>
-<p>We&apos;ll talk in more detail about grid systems in general, and about Bootstrap&apos;s grid in particular, this afternoon...</p>
+<p>The device sizes are:</p>
+<ul>
+<li><code>xs</code> (phones, less than 768px)</li>
+<li><code>sm</code>  (tablets, 768px and up)</li>
+<li><code>md</code>(desktops, 992 px and up)</li>
+<li><code>lg</code>(big desktops, 1200px and up)</li>
+</ul>
+<p>The numbers indicate how many 1/12ths of the viewport width you would like that column to occupy, so <code>class=&quot;col-md-9 col-sm-12&quot;</code> would be 9/12ths the width of a desktop screen, and 12/12ths the width of a tablet screen.</p>
+<h2 id="we-never-go-out-of-style">We Never Go Out of Style...</h2>
 <h3 id="outofthebox-bootstrap-styles-some-elements">Out-of-the-box, Bootstrap styles some elements</h3>
 <p>For starters, Bootstrap implements baseline styles for links and typography, as well as using the styles from <code>normalize.css</code> to improve cross-browser performance. For instance, you&apos;ll notice changes with <code>&lt;button&gt;</code>, <code>&lt;mark&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;samp&gt;</code>, <code>&lt;kbd&gt;</code>, <code>&lt;pre&gt;</code>, <code>&lt;abbr&gt;</code>...</p>
 <p>These are all standard HTML elements, and browsers have default styling for all of them. For instance, on pretty much every browser anything inside <code>&lt;code&gt;</code>, <code>&lt;kbd&gt;</code>, and <code>&lt;pre&gt;</code> will be in a monospace font.</p>
-<p>The bulk of Bootstrap&apos;s customizing power, however, lies in its dozens of classes.</p>
+<h3 id="outofthebox-bootstrap-doesnt-style-most-elements">Out-of-the-box, Bootstrap <em>doesn&apos;t</em> style most elements</h3>
+<p>For instance, <code>&lt;button&gt;</code> with Bootstrap doesn&apos;t change too many properties, compared to your browser&apos;s default styling: it has square corners and a slightly different gradient, which goes a long way toward making it look &quot;cleaner&quot; and more &quot;modern&quot;,  that&apos;s pretty much it.</p>
+<p>The bulk of Bootstrap&apos;s customizing power lies in its dozens of components, which are implemented through a combination of CSS classes and jQuery plugins.</p>
 <h3 id="you-do-bootstravenger-hunt">You do: Bootstravenger Hunt</h3>
-<p>As a class, we&apos;re going to build a collaborative cheat sheet for some of the bootstrap classes and elements. Each group should create a demo of their three elements/classes and write up the answers to the following questions:</p>
-<ul>
-<li>What is it?</li>
-<li>What&apos;s it good for?</li>
-<li>Where can I read more about it?</li>
-<li>Any tips/tricks for implementation?</li>
-</ul>
+<p>As a class, we&apos;re going to compile an appendix to the Bootstrap documentation, providing tips and tricks on the implementation of some of Bootstrap&apos;s Greatest Hits. </p>
 <p><strong>Group One</strong></p>
 <ul>
 <li>Popover</li>
@@ -1315,25 +1334,42 @@
 <li>Modal</li>
 <li>Tooltip</li>
 </ul>
-<h3 id="outofthebox-bootstrap-doesnt-style-most-elements">Out-of-the-box, Bootstrap <em>doesn&apos;t</em> style most elements</h3>
-<p>For instance, <code>&lt;button&gt;</code> with Bootstrap doesn&apos;t change too many properties, compared to your browser&apos;s default styling: it has square corners and a slightly different gradient, which goes a long way toward making it look &quot;cleaner&quot; and more &quot;modern&quot;,  that&apos;s pretty much it.</p>
-<p>Bootstrap gives you several different colors you can use for text and buttons to indicate things like errors, warning, success messages, and so on. They are:</p>
-<pre><code>Muted, important, success, info, warning, and danger
-</code></pre><p>You can also change the size of a button. If I wanted to make a small &quot;delete&quot; button, I&apos;d write something like this:</p>
+<p>Each group should create Codepen demo of their three components and write up the answers to the following questions for each:</p>
+<ul>
+<li>What is it?</li>
+<li>What&apos;s it good for?</li>
+<li>Where can I read more about it?</li>
+<li>Any tips/tricks for implementation? <em>(Think: What value can I add to the existing docs?&quot;)</em></li>
+</ul>
+<p>Be prepared to share! It may be helpful to split into subgroups so you can divide and conquer...</p>
+<h2 id="making-it-your-own">Making it Your Own</h2>
+<h3 id="customization">Customization</h3>
+<p>Some use &quot;Bootstrap-y&quot; as a perjorative &#x2014; a shorthand for &quot;generic and uninspired&quot;. I wonder what those people would say to <a href="https://bootstrapbay.com/blog/built-with-bootstrap/" target="_blank">these</a> or <a href="http://builtwithbootstrap.com/" target="_blank">these</a>.</p>
+<p>You can assemble a custom download or modify an existing configuration at <a href="http://getbootstrap.com/customize/" target="_blank">http://getbootstrap.com/customize/</a></p>
+<h3 id="bootstrapsass">Bootstrap-SASS</h3>
+<p>As many of you noticed in preparing your demos, implementing customized Bootstrap elements can easily get repetitive and difficult to read. Straight Bootstrap also verges on violating separation of concerns, with all those visually-oriented classnames muddying up your HTML.</p>
+<p>For instance, if I wanted to make a small &quot;delete&quot; button, I&apos;d write something like this:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn btn-danger btn-xs&quot;</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
 </code></pre>
-<h3 id="thats-not-very-dry-is-it">That&apos;s not very DRY, is it?</h3>
-<p>There&apos;s a lot of this in Bootstrap: having 38 different classes that all start with <code>btn</code>. It would be a lot less annoying if we could make the button look like this:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn danger xs&quot;</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-</code></pre>
+<p>That&apos;s a lot of <code>btn</code>&apos;s...</p>
 <h4 id="so-why-does-bootstrap-have-such-repetitive-class-names">...so why does Bootstrap have such repetitive class names?</h4>
 <p>This is one place where you sort-of see Bootstrap trying to straddle the line between being a framework and being a library.</p>
 <p><strong>You insert a library into your code; you insert your code into a framework.</strong></p>
-<p>It&apos;s not unlikely that some Bootstrap user will want to make their own CSS class called <code>.danger</code> that is completely unrelated to Bootstrap. It&apos;s extremely unlikely that anyone&apos;s going to create their own class called <code>.btn-danger</code>.</p>
-<p>Bootstrap&apos;s &quot;library personality&quot; wants to be as unobtrusive as possible and not conflict with any classes users might be defining. This is the personality that&apos;s prevailing over the Bootstrap&apos;s other half, the &quot;framework personality,&quot; which would use <code>.danger</code> and include documentation saying that users <strong>should not</strong> create classes called <code>.danger</code>.</p>
-<p>When we use Bootstrap as a framework, it&apos;s often</p>
-<h2 id="bootstrap-is-great-for-styling-forms-but-not-dry">Bootstrap is great for styling forms... but not DRY</h2>
-<p>Look at how un-DRY this code is:</p>
+<p>It&apos;s not unlikely that some Bootstrap user will want to make their own CSS class called <code>.danger</code> that is completely unrelated to Bootstrap. It&apos;s extremely unlikely, however, that anyone is going to create their own class called <code>.btn-danger</code>. </p>
+<p>Bootstrap&apos;s &quot;library personality&quot; wants to be as unobtrusive as possible and not conflict with any classes users might be defining, so it engages in this sort of <strong>classnamespacing</strong>. </p>
+<h4 id="we-can-use-sass-to-dry-up-our-bootstrap">We can use SASS to DRY up our Bootstrap!</h4>
+<p>Bootstrap is written in LESS, which is like SASS but written in Javascript, but there&apos;s an <a href="http://getbootstrap.com/css/#sass" target="_blank">official SASS port!</a></p>
+<p>The <a href="https://github.com/twbs/bootstrap-sass" target="_blank">Github README for bootstrap-sass</a> details a number of ways to incorporate this &quot;Sass-powered version of Bootstrap 3&quot; into your applications.</p>
+<p>Today, we&apos;re going to use <a href="https://github.com/twbs/bootstrap-sass#c-bower" target="_blank">Bower</a>:</p>
+<ul>
+<li><code>npm install -g bower</code></li>
+</ul>
+<ul>
+<li><code>gem install sass</code></li>
+<li><code>bower install bootstrap-sass</code></li>
+</ul>
+<h4 id="we-do-an-informed-case-study">We Do: An InFORMED Case Study</h4>
+<p>First, touch an <code>index.html</code> that contains this form:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;grumbleForm&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-horizontal&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-group&quot;</span>&gt;</span>
@@ -1362,35 +1398,84 @@
   <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
 </code></pre>
-<p><strong>If only</strong> there was some way to not have to write <code>form-group</code> three million times!</p>
-<h3 id="customizing-bootstrap">Customizing Bootstrap</h3>
-<p>It&apos;s easy in some ways. Check out how many colors and dimensions and stuff you can change here, with a big fat &quot;Compile and Download&quot; button at the bottom:</p>
-<p><a href="http://getbootstrap.com/customize/" target="_blank">http://getbootstrap.com/customize/</a></p>
-<p>But let&apos;s say there&apos;s something else you want to customize.</p>
-<h3 id="you-can-add-in-your-own-stylesheet-and-classes">You can add in your own stylesheet and classes...</h3>
-<p>...but there&apos;s always the chance that your styles will conflict with those of Bootstrap, meaning you&apos;ll need to write <code>!important</code> everywhere or juggle IDs.</p>
-<h3 id="you-could-edit-the-bootstrap-css-itself">You could edit the Bootstrap CSS itself...</h3>
-<p>...but it&apos;s enormous and generally it&apos;s discouraged to edit open-source code. For one thing, it&apos;s <em>huge</em>. For another, if you ever want to update your Bootstrap to the newest version you&apos;ll have to copy over all your changes.</p>
-<h3 id="you-could-pick-and-choose-the-bootstrap-components-you-want">You could pick and choose the Bootstrap components you want...</h3>
-<p>...but if I look in <code>grumblr/assets/stylesheets/bootstrap/less</code> I can see that there are a zillion different stylesheets, and I really don&apos;t feel like having to write <code>&lt;link rel=&quot;stylesheet&quot;&gt;</code> for each one.</p>
-<h3 id="so-what-if-we-could-modify-the-bootstrap-css-without-touching-it">So what if we could modify the Bootstrap CSS without touching it?</h3>
-<p>We can use SASS to make some changes and pre-compile Bootstrap!</p>
-<p>Bootstrap is written in LESS, which is like SASS but written in Javascript, but there&apos;s an official SASS port.</p>
-<h3 id="bootstrapsass">bootstrap-sass</h3>
-<p>Download bootstrap-sass like so:</p>
-<ul>
-<li><code>gem install sass</code></li>
-<li><code>bower install bootstrap-sass</code></li>
-</ul>
-<h3 id="you-do-sassify-a-form">You do: Sassify a form!</h3>
-<h2 id="you-do-redesign-a-homework">You do: Redesign a homework!</h2>
+<p>Then, touch a stylesheet called <code>form-styles.scss</code>  that contains this:</p>
+<pre><code class="lang-scss"><span class="hljs-at_rule">@<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss&quot;</span>;</span>
+
+<span class="hljs-tag">input</span>,
+<span class="hljs-tag">textarea</span> {
+  <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span><span class="hljs-preprocessor"> .form-control</span>;</span>
+}
+<span class="hljs-tag">label</span> {
+  <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span><span class="hljs-preprocessor"> .control-label</span>;</span>
+}
+<span class="hljs-tag">fieldset</span> {
+  <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span><span class="hljs-preprocessor"> .form-group</span>;</span>
+}
+<span class="hljs-class">.form-horizontal</span>{
+  <span class="hljs-tag">label</span>{
+    <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span><span class="hljs-preprocessor"> .col-sm-3</span>;</span>
+  }
+  <span class="hljs-tag">div</span>{
+    <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span><span class="hljs-preprocessor"> .col-sm-9</span>;</span>
+  }
+}
+</code></pre>
+<p>Also, touch <code>form-styles.css</code> and leave it blank.</p>
+<p>Next, <strong>and this is a big one</strong>, in your terminal, run<code>sass form-styles.scss form-styles.css</code>. Now I only need to <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;form-styles.css&quot; /&gt;</code> to load <strong>all</strong> of Bootstrap <strong>plus</strong> the changes you just made! Take a look at your CSS file...</p>
+<p>Finally, remove all of the classes on your <code>div</code> elements, except for <code>&quot;form-horizontal&quot;</code> on the first one.</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;grumbleForm&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;form-horizontal&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Title:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;title&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;{{ title }}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>By:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;authorName&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;{{ authorName }}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Content:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;content&quot;</span>&gt;</span>{{ content }}<span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Photo URL:<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;photoUrl&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;{{ photoUrl }}&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>&amp;nbsp;<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn submit btn-primary&quot;</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn cancel&quot;</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+</code></pre>
+<h4 id="you-do-bootsassify-the-btn--situation">You Do: BootSassify the <code>btn</code>  situation</h4>
+<h2 id="homework">Homework</h2>
+<p>Bootstrapify (or <a href="http://foundation.zurb.com" target="_blank">Foundation</a>-ify or <a href="http://materializecss.com" target="_blank">Materialize</a>-ify or <a href="http://picniccss.com" target="_blank">Picnic</a>-ify or <a href="http://purecss.io/" target="_blank">Pure</a>-ify or&#x2026;) something that you built earlier in the course. If you don&apos;t want to overwrite your previous styling, you&apos;re welcome to work on an branch. Open an issue with a link to your re-styled homework/project/lab <a href="https://github.com/ga-dc/bootstrap-ify" target="_blank">here</a>.</p>
 <h2 id="questions">Questions</h2>
 <ul>
-<li>What&apos;s the difference between a framework and a library?</li>
-<li>Name two Bootstrap classes and explain what they do.</li>
-<li>What&apos;s the difference between a glyphicon and a jumbotron and a Megatron?</li>
-<li>Give an example of a situation in which you might want to use Bootstrap, versus one in which you might not.</li>
+<li><p>What&apos;s the difference between a framework and a library?</p>
+</li>
+<li><p>Name two Bootstrap classes and explain what they do.</p>
+</li>
+<li><p>What&apos;s the difference between a glyphicon and a jumbotron and a Megatron?</p>
+</li>
+<li><p>Give an example of a situation in which you might want to use Bootstrap, versus one in which you might not.</p>
+<p>&#x200B;</p>
+</li>
 </ul>
+<h2 id="helpful-references">Helpful References</h2>
+<p><a href="http://getbootstrap.com/components/" target="_blank">http://getbootstrap.com/components/</a></p>
+<p><a href="http://getbootstrap.com/css/" target="_blank">http://getbootstrap.com/css/</a></p>
+<p><a href="http://getbootstrap.com/customize/" target="_blank">http://getbootstrap.com/customize/</a></p>
+<p><a href="https://github.com/twbs/bootstrap-sass" target="_blank">https://github.com/twbs/bootstrap-sass</a></p>
+<p><a href="http://www.tutorialspoint.com/bootstrap/" target="_blank">http://www.tutorialspoint.com/bootstrap/</a></p>
+<p><a href="http://bootsnipp.com/" target="_blank">http://bootsnipp.com/</a></p>
+<p><a href="http://tutorialzine.com/2015/06/12-time-saving-bootstrap-examples/" target="_blank">http://tutorialzine.com/2015/06/12-time-saving-bootstrap-examples/</a></p>
+<p><a href="http://builtwithbootstrap.com/" target="_blank">http://builtwithbootstrap.com/</a></p>
+<p><a href="https://bootstrapbay.com/blog/built-with-bootstrap/" target="_blank">https://bootstrapbay.com/blog/built-with-bootstrap/</a></p>
 
                     
                     </section>
