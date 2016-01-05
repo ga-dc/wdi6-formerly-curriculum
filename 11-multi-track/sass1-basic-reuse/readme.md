@@ -1,4 +1,6 @@
-  # Sass - Basic Reuse
+# Sass - Basic Reuse
+
+## Learning Objectives
 
 - Use variables and nesting to dry up CSS
 - Use color functions to create dynamic color schemes
@@ -64,6 +66,8 @@ Timing Expectations:
 - 35 min: Discuss after the break.
 
 Bonus: Review and/or reproduce any of the other examples.
+
+[CSS Solution](http://codepen.io/adambray/pen/zrNyVy)
 
 ## Break (10 min)
 
@@ -167,10 +171,10 @@ Copy this scss into precess.co.
 ```scss
 
 .nav{
-  & li{
+  li{
     display: inline-block;
   }
-  & a{
+  a{
   text-decoration:none;
     &:hover{
       text-decoration:underline;
@@ -229,7 +233,9 @@ Q. Why would we want that?
 
 
 ## Exercise: Flash (15 min)
-http://codepen.io/mattscilipoti/pen/XmWbgq
+
+* [Starter](http://codepen.io/adambray/pen/bEgMXr)
+* [Solution](http://codepen.io/adambray/pen/yegjdj)
 
 ## Conclusion
 

@@ -4,7 +4,6 @@
 - Use control directives for conditionals (@if)
 - Use control directives for loops (@for, @each and @while)
 - Use pure Sass functions to make reusable logic
-- Create a Pull Request to sass
 
 ## Intro (10 min)
 
@@ -15,6 +14,7 @@ We are moving into the more programmatic portion of SassScript: conditionals, lo
 We've been playing with SassScript.  Sass is fully CSS3-compatible, meaning you *can* write css the way you always have.  But, where's the fun in that? More importantly, you can start with a plain old css file and enhance it.  You can use SassScript to make writing css more pleasant.  Note: this doesn't change the functionality of css.  In the end, Sass uses a concise language, SassScript, to generate the verbose css required to make your page sing.
 
 > Q: If I said SassScript is like other languages, what would you expect?
+
 ---
 
 It has:
@@ -37,7 +37,52 @@ It has all that.
 
 In this lesson, we are covering the portions that helpers that enhance css.  The next lesson will dig deeper into the programmatic aspects of Sass.
 
-## Preprocessor? Precompiler? (10 min)
+## Conditionals (@if)
+
+Let's take a few minutes to read about [@if](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#control_directives__expressions)
+
+> Q: Any points of interest?
+
+---
+
+A. Student responses.
+
+
+### Exercise: Flash Redux (15 min)
+
+Let's go back to the Flash messages.  This time, we will update our mixin with a conditional that sets the text color to `#fff` if the background is dark enough and `#000` if the background is light enough.
+
+[Solution](http://codepen.io/adambray/pen/vLgrKK)
+
+Hint: research how you can determine the "lightness" of a color using SASS.
+
+## Loops
+
+Look at BAMSAY.
+
+- [Pure CSS Solution](http://codepen.io/adambray/pen/obBOgP?editors=110)
+
+Check out the css.  Lots of text-shadow's, huh?  You want to type all of them?
+
+Q. Why not?
+
+---
+
+> A.
+- boring!
+- error prone
+- time consuming
+- maintenance?
+
+### Exercise: Write a function to build BAMSAY
+
+- [Starter](http://codepen.io/adambray/pen/adpxOq?editors=110)
+- [Solution](http://codepen.io/adambray/pen/NxdmGG?editors=110)
+
+Let's specify what it takes to draw these shadows.  And then **codify** it using a function.
+
+
+## Using the SASS Preprocessor
 
 How do we use it?
 
@@ -47,7 +92,7 @@ How do we use it?
 gem install sass
 ```
 ```
-sass --watch input:output
+sass --watch input_file:output_file
 ```
 
 ### Example:
@@ -73,6 +118,7 @@ Results in:
 ```
 
 Q. What happens in our code?
+
 ---
 
 > A.
@@ -80,100 +126,14 @@ The browser only supports CSS.  We reference the compiled **css** file.  Our fro
 
 ## style.scss vs style.sass (5 min)
 
-Sass supports to "styles": sass (*.sass) and Sassy CSS (*.scss).  They both use the same SassScript.  The .scss format is a superset of CSS3.  The .sass is a bit more concise and uses indentation to indicate blocks of CSS, but it requires a full rewrite of your css.
+Sass supports two "styles": sass (*.sass) and Sassy CSS (*.scss).  They both use the same SassScript.  The .scss format is a superset of CSS3.  The .sass is a bit more concise and uses indentation to indicate blocks of CSS, but it requires a full rewrite of your css.
 
 Further reading: http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better
 
+## Exercise: Convert Codepen to Project (10 minutes)
 
-## Conditionals (@if)
-
-Let's take a few minutes to read about [@if](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#control_directives__expressions)
-
-> Q: Any points of interest?
-
----
-
-A. Student responses.
-
-
-### Exercise: Flash (15 min)
-
-Let's go back to the Flash messages.  This time, we will create mixin with a conditional that sets the text color to `#fff` if the background is dark enough and `#000` if the background is light enough.
-
-http://codepen.io/mattscilipoti/pen/XmWbgq
-
-Hint: you can check the "lightness" of a color.
-
-Bonus: what if we had more flash types?
-
-## Loops
-
-Look at [BAMSAY](http://codepen.io/jshawl/full/cLJal)
-
-Check out the css.  Lots of text-shadow's, huh?  You want to type all of them?
-
-Q. Why not?
----
-
-> A.
-- boring!
-- error prone
-- time consuming
-- maintenance?
-
-Let's systematize it.  Let's specify what it takes to draw these shadows.  And then **codify** it.
-
-Q. How did we create BAMSAY?
----
-
-> A. Lot's of text-shadows.
-
-### Exercise: BAMSAY (20 min)
-
-http://github.com/ga-dc/bamsay
-
-## Lunch (60 min)
-
-## 3D Button (15 min)
-
-On to the next goal. A button.  A big, cool, [3D button](http://codepen.io/mattscilipoti/full/RWbPRw
-).
-
-Check out the css.  More text-shadows?  
-All the reasons from before apply, plus... how do I know what to type?  This one is complicated.
-
-Again, let's identify, systematize, and **codify** what it means to be a 3D button.
-
-Q: How?  How does this button work?
----
-
-- up
-  - Flat rectangle
-  - Lots of box-shadows, layer upon layer
-  - color?  Relative?
-- down
-  - shift right, down
-  - less box-shadows
-
-### Exercise: Make It So (45 min)
-
-- Recreate [Make It So](http://codepen.io/mattscilipoti/full/RWbPRw)
-
-Timings:
-- 5 min: Flat button, Hover state changes it.  Breaking down box-shadows. Identifying the pattern.
-- 10 min: Realizing that you don't want to type all that. :)  Ignore it.  Get a basic button working.
-  - You will need a loop:
-```
-$offset: 10;
-@for $i from 0 through $offset{
-  text-shadow: 0+$i,
-}
-```
-- 20 min: You have worked out the plan for the button and have started to codify it.
-
-[Thanks jshawl!](https://jesse.sh/makes-3d-buttons-with-sass/)
-
-Now we've added "function" and "mixin" to our list, joining "variables" and "loops".
+Create a new repo for BAMSAY, and create the necessary files to get sass / css
+compilation working.
 
 ## Break (10 min)
 
@@ -187,6 +147,7 @@ That said, let's practice reading documentation together. We'll discuss how to p
 https://github.com/rails/sass-rails
 
 Q. What stood out to you?
+
 ---
 
 > A.
@@ -203,6 +164,9 @@ http://www.mattboldt.com/organizing-css-and-sass-rails/
 
 Don't miss the comments.
 
+Here's an example of an app I (Adam) worked on:
+[Reservations](https://github.com/YaleSTC/reservations/tree/master/app/assets/stylesheets)
+
 #### tl;dr
 
 - Use @import to explicitly require each file you need, in the order you require them (rather than `*= require_tree .`).  Judicious use of  file glob `@import "mixins/*"`).
@@ -213,6 +177,53 @@ Don't miss the comments.
 
 The [Rails Guides](http://guides.rubyonrails.org/asset_pipeline.html) are a recommended resource too.
 
+## [Optional] Apply SASS to an app from Project 2 or 3.  
+
+Look for ways to remove duplication and improve documenting your intent.
+
+## [Optional] Exercise: 3D Button
+
+On to the next goal. A button.  A big, cool, [3D button](http://codepen.io/adambray/full/rxjKWR/).
+
+- [Starter](http://codepen.io/adambray/pen/xZgzgK?editors=110)
+- [Solution](http://codepen.io/adambray/pen/xZgzgK?editors=110)
+
+Check out the css.  More text-shadows?  
+All the reasons from before apply, plus... how do I know what to type?  This one is complicated.
+
+Again, let's identify, systematize, and **codify** what it means to be a 3D button.
+
+Q: How?  How does this button work?
+
+---
+
+- up
+  - Flat rectangle
+  - Lots of box-shadows, layer upon layer
+  - color?  Relative?
+- hover
+  - moves to the left a bit
+- down (active)
+  - shift right, down
+  - less box-shadows
+
+Timings:
+- 5 min: Flat button, Hover state changes it.  Breaking down box-shadows. Identifying the pattern.
+- 10 min: Realizing that you don't want to type all that. :)  Ignore it.  Get a basic button working.
+  - You will need a loop:
+```
+$offset: 10;
+@for $i from 0 through $offset{
+  text-shadow: 0+$i,
+}
+```
+- 20 min: You have worked out the plan for the button and have started to codify it.
+
+Jesse has a [great blog post](https://jesse.sh/makes-3d-buttons-with-sass/) on how he built this.
+
+Now we've added "function" and "mixin" to our list, joining "variables" and "loops".
+
+
 ## Conclusion
 
 We covered a lot about Sass, but we're really just scratching the surface.  Make time to review the docs and look over fun examples online.  It's important get some more ideas about what we can do with sass and css.
@@ -222,7 +233,6 @@ We covered a lot about Sass, but we're really just scratching the surface.  Make
 - What directive should we use to require other sass files?
 - Name 3 benefits of Sass.
 
-## [Optional] Review an app from Project 3.  Look for ways to remove duplication and improve documenting intent.
 
 ## References
 - [3D Buttons with Sass](https://jesse.sh/makes-3d-buttons-with-sass/)
