@@ -18,12 +18,26 @@
 
 ## Getting Started
 
+### Grumblr Backbone
+
 Today we will continue working on the Grumblr application we started building yesterday.  
 
 * [Starter Code](https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_starter). Located on the `views_part_1_starter` branch.
 * [Solution Code](https://github.com/ga-dc/grumblr_backbone/tree/views_part_1_solution). Located on the `views_part_1_solution` branch.
 
 And like yesterday, we will be using `http-server` to run our Backbone application. You can do that by entering `http-server` or `hs` in the application directory. From there, visit `http://localhost:8080`.
+
+### Grumblr Rails API
+
+Let's also get our Grumblr Rails API running. If you haven't already, you can clone it down from [here](https://github.com/ga-dc/grumblr_rails_api). From there run...
+
+```bash
+bundle install
+rake db:create
+rake db:migrate
+rake db:seed
+rails s
+```
 
 ## What Are Backbone Views? (10 minutes / 0:10)
 
@@ -34,6 +48,19 @@ Like models, Backbone views have many similarities to the views we built in our 
 * Listening for events on the page (usually within their `el`) and responding accordingly.
 
 They are sometimes called **View Controllers**, since they react to events as well as render data.
+
+Let's create a file that will contain our view and then link to it in `index.html`
+
+```bash
+touch js/backbone/views/grumble.js
+```
+
+```html
+<script src="js/app.js"></script>
+<script src="js/backbone/models/grumble.js"></script>
+<script src="js/backbone/collections/grumbles.js"></script>
+<script src="js/backbone/views/grumble.js"></script>
+```
 
 Our views will always extend `Backbone.View` to ensure we get the behavior we
 want.
@@ -67,12 +94,12 @@ customary to pass in the model instance. Backbone will automatically set the
 `model` property of the view to be that instance.  
 
 ```js
-var my_grumble = new App.Models.Grumble({title: "Demo", authorName: "Adam",
+var myGrumble = new App.Models.Grumble({title: "Demo", authorName: "Adam",
                                         content: "Demo Content"});
 
-var view = new App.Views.Grumble({model: my_grumble});
+var view = new App.Views.Grumble({model: myGrumble});
 
-view.model // returns the my_grumble instance
+view.model // returns the myGrumble instance
 ```
 
 ## The `el` in Backbone (10 minutes / 0:20)
@@ -117,14 +144,14 @@ that it's 'el' will be a div with class 'grumble'.
 Test it in the console by doing something like the following...
 
 ```js
-var my_grumble = new App.Models.Grumble({
+var myGrumble = new App.Models.Grumble({
   title: "Dogs are the Worst! ",
   content: "I do say, my good sir... aren't dogs the worst? I mean, they don't know how to groom themselves, they are always chewing on tennis balls like a fool, and they can't even climb trees!",
   authorName: "Cornelius McWhiskertons III, Esq.",
   photoUrl: "http://www.babyanimalzoo.com/wp-content/uploads/2012/08/fancy-cats-a-proper-sir.jpg"
 });
 
-var grumbleView = new App.Views.Grumble({model: my_grumble});
+var grumbleView = new App.Views.Grumble({model: myGrumble});
 
 grumbleView.model
 grumbleView.el
@@ -149,14 +176,14 @@ Remember that each view has a `model` property.
 Test your view by instantiating one, calling `.render()`, and looking at the `$el`...
 
 ```js
-var my_grumble = new App.Models.Grumble({
+var myGrumble = new App.Models.Grumble({
   title: "Dogs are the Worst! ",
   content: "I do say, my good sir... aren't dogs the worst? I mean, they don't know how to groom themselves, they are always chewing on tennis balls like a fool, and they can't even climb trees!",
   authorName: "Cornelius McWhiskertons III, Esq.",
   photoUrl: "http://www.babyanimalzoo.com/wp-content/uploads/2012/08/fancy-cats-a-proper-sir.jpg"
 });
 
-var grumbleView = new App.Views.Grumble({model: my_grumble});
+var grumbleView = new App.Views.Grumble({model: myGrumble});
 
 grumbleView.model
 grumbleView.$el
@@ -166,6 +193,7 @@ $('#grumbles').append(grumbleView.$el)
 grumbleView.render()
 grumbleView.$el
 ```
+> Don't worry about appending inside of your `render` method. You can take care of that in the console for now.
 
 [Solution](https://gist.github.com/amaseda/0c21eda5d0365099bd47)
 
@@ -202,7 +230,7 @@ And then in our `index.html`...
 
 ### Exercise: Define a Handlebars Template (10 minutes / 1:15)
 
-1. Define a Handlebars template for our Grumble. Your template should be placed inside a script file that is defined in `index.html`, like so...
+Define a Handlebars template for our Grumble. Your template should be placed inside a script file that is defined in `index.html`, like so...  
 
 ```html
 <script id="grumbleTemplate" type="text/x-handlebars-template">
@@ -211,7 +239,7 @@ And then in our `index.html`...
 ```
 > You can place this at the end of `<body>`.
 
-2. The content of your template should be formatted like the below code, with placeholders replacing the actual model properties (e.g., `title`).
+The content of your template should be formatted like the below code, with placeholders replacing the actual model properties (e.g., `title`).  
 
 ```html
 <div class="grumble">
@@ -228,8 +256,7 @@ And then in our `index.html`...
 ```
 > This all exists inside of that `<script>` you just created.
 
-3. In your view's `initialize` method, set a `this.template` property, which should point to a
-**compiled handlebars template**.
+In your view's `initialize` method, set a `this.template` property, which should point to a **compiled handlebars template**.  
 
 ```js
 initialize: function(){
@@ -238,16 +265,16 @@ initialize: function(){
 ```
 > You need to replace `source`. HINT: Use jQuery to (1) select the script that contains our template and (2) select the HTML inside that script.  
 
-4. Update the `render` function to use the template. When using the template,
+Update the `render` function to use the template. When using the template,
 we need to pass in just our model attributes - not the whole model. Do some
-research to find the best way!
+research to find the best way!  
 > HINT: How does [this Backbone example](http://backbonejs.org/docs/todos.html) pass in model information to the template?  
 
-5. For good measure, let's call the `render()` method at the end of initialize,
+For good measure, let's call the `render()` method at the end of initialize,
 so we don't have to explicitly call it when we create new views. Also add a line to `render()` appending our view's `.$el` to `<div id="grumbles"></div>` in `index.html`.  
 
 Test your render function as before, only this time, you should see HTML that
-came from your template.
+came from your template.  
 
 [Solution](https://gist.github.com/amaseda/1290ecbe267335e81541)
 
@@ -286,17 +313,17 @@ the change event?
 You can test it by doing something like the following...
 
 ```js
-var my_grumble = new App.Models.Grumble({
+var myGrumble = new App.Models.Grumble({
   title: "Dogs are the Worst! ",
   content: "I do say, my good sir... aren't dogs the worst? I mean, they don't know how to groom themselves, they are always chewing on tennis balls like a fool, and they can't even climb trees!",
   authorName: "Cornelius McWhiskertons III, Esq.",
   photoUrl: "http://www.babyanimalzoo.com/wp-content/uploads/2012/08/fancy-cats-a-proper-sir.jpg"
 });
 
-var grumbleView = new App.Views.Grumble({model: my_grumble});
+var grumbleView = new App.Views.Grumble({model: myGrumble});
 $('#grumbles').append(grumbleView.$el)
 
-my_grumble.set('title', "Cats are the Best!");
+myGrumble.set('title', "Cats are the Best!");
 // After running the above line, the page should update automatically!
 ```
 
