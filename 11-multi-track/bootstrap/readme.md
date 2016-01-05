@@ -20,9 +20,7 @@ Screencasts:
 
 Quick crash course in Backbone: The HTML is pretty much just a template that uses Handlebars syntax. I define the models being used in the application (Grumbles and Comments in this case), and Backbone takes care of all the AJAX calls and stuff for me.
 
-To get a better idea of what's going on underneath the hood, you can Inspect Element, click on the `<html>` tag, and hit `fn` + `F2`, and it'll show you all of the HTML **after it has been rendered by Javascript**.
-
-Feel free to poke around in the code.
+Feel free to poke around in the code using Dev Tools.
 
 ### But just *using* the app as a regular user
 
@@ -38,55 +36,89 @@ As has been discussed, you can make the most amazing back-end functionality ever
 
 Bootstrap lets you make a polished-looking app with minimal effort. As a result, many websites today look very "Bootstrappy".
 
-Unless you're trying to get a job in the realm of visual design, it's better to spend 15 minutes making your app look good with Bootstrap than it is to spend 3 days writing your own CSS. Why?
+Unless you're specifically trying to show off your CSS skills, it's often better to spend 15 minutes making your app look good with Bootstrap than it is to spend 3 days writing your own CSS. Why?
 
 The obvious reason is that one takes you 15 minutes, the other takes 3 days, and time is money. And of course, there are those clients who are non-tech-savvy and think you'll have written all the CSS yourself no matter what you do.
 
-But...
+Also, Bootstrap is written with responsive and/or mobile-first design in mind, replacing hand-rolled media queries with more intuitive and semantic class names. Clients and employers of all levels of tech-savviness will appreciate that you've prioritized these qualities.
 
-#### Why might tech-savvy employers actually *prefer* a candidate who spent 15 minutes using Bootstrap to one who spend 3 days writing their own CSS? Doesn't the second way show better work ethic?
+AND, unlike your hand-rolled CSS, Bootstrap is well documented and easily replicable.
 
-Making sure you have a presentable front-end is a lot like making sure you wrote your name on the test before turning it in. Painstakingly writing your name in calligraphy won't get you a better result than chicken-scratching your name; in fact, it'll probably just look like a waste of time.
+## Let's download Bootstrap
 
-## Bootstrap's classes have weird names
+- You can grab it from a CDN.
+  - `<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">`
+- You can download `bootstrap.css` or the minified version, `bootstrap.min.css`.
+  - https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css
+- You can download the uncompiled source code as SASS or LESS (which we'll touch on later), pick the components you want, and compile that.
+  - http://getbootstrap.com/getting-started/#download
 
+### Containers
+
+Bootstrap sections a page with "container", as in `<div class="container">` You're not supposed to put a container inside another container.
+
+Inside a container, you can use Bootstrap's built-in grid system. It lets you break a page up into 12 columns. You do this by writing something like:
+
+```html
+<div class="container">
+  <div class="col-md-3"></div>
+  <div class="col-md-9"></div>
+</div>
+```
+
+This indicates how many columns you want to appear on which size screen. So a div with `class="col-lg-9 col-sm-12"` would be 9/12ths the width of a desktop screen, and 12/12ths the width of a mobile screen.
+
+`xs` (phones), `sm` (tablets), `md` (desktops), `lg` (big desktops)
+
+We'll talk in more detail about grid systems in general, and about Bootstrap's grid in particular, this afternoon...
+
+### Out-of-the-box, Bootstrap styles some elements
+
+For starters, Bootstrap implements baseline styles for links and typography, as well as using the styles from `normalize.css` to improve cross-browser performance. For instance, you'll notice changes with `<button>`, `<mark>`, `<code>`, `<samp>`, `<kbd>`, `<pre>`, `<abbr>`...
+
+These are all standard HTML elements, and browsers have default styling for all of them. For instance, on pretty much every browser anything inside `<code>`, `<kbd>`, and `<pre>` will be in a monospace font.
+
+The bulk of Bootstrap's customizing power, however, lies in its dozens of classes.
+
+### You do: Bootstravenger Hunt
+
+As a class, we're going to build a collaborative cheat sheet for some of the bootstrap classes and elements. Each group should create a demo of their three elements/classes and write up the answers to the following questions:
+
+- What is it?
+- What's it good for?
+- Where can I read more about it?
+- Any tips/tricks for implementation?
+
+
+**Group One**
 - Popover
 - Scrollspy
 - Affix
+
+**Group Two**
 - Jumbotron
 - Well
 - Glyphicon
+
+**Group Three**
 - Badge
 - Progress bar
 - List groups
+
+**Group Four**
 - Navbar
 - Dropdowns
 - Panels
+
+**Group Five**
 - Carousel
 - Modal
 - Tooltip
 
-### You do (10): Bootstravenger Hunt
 
-Originally I was going to walk through all of these classes with the class as a group, one-by-one. Then I realized that would take years.
+### Out-of-the-box, Bootstrap *doesn't* style most elements
 
-So instead, with your table, Google madly to make a cheat sheet for yourself that includes:
-- What each word means
-- A URL that shows an example of that word/class in action
-
-#### What did everyone get?
-
-### Out-of-the-box, Bootstrap styles some elements
-
-For instance, you'll notice changes with `<button>`, `<mark>`, `<code>`, `<samp>`, `<kbd>`, `<pre>`, `<abbr>`...
-
-These are all standard HTML elements, and browsers have default styling for all of them. For instance, on pretty much every browser anything inside `<code>`, `<kbd>`, and `<pre>` will be in a monospace font.
-
-Bootstrap takes it a step further by adding additional styling.
-
-### Bootstrap *doesn't* style most elements out-of-the-box
-
-For instance, `<button>` with Bootstrap doesn't look that different from the button resulting from your browser's default styling: it has square corners and a slightly different gradient, but that's pretty much it.
+For instance, `<button>` with Bootstrap doesn't change too many properties, compared to your browser's default styling: it has square corners and a slightly different gradient, which goes a long way toward making it look "cleaner" and more "modern",  that's pretty much it.
 
 Bootstrap gives you several different colors you can use for text and buttons to indicate things like errors, warning, success messages, and so on. They are:
 
@@ -118,33 +150,8 @@ It's not unlikely that some Bootstrap user will want to make their own CSS class
 
 Bootstrap's "library personality" wants to be as unobtrusive as possible and not conflict with any classes users might be defining. This is the personality that's prevailing over the Bootstrap's other half, the "framework personality," which would use `.danger` and include documentation saying that users **should not** create classes called `.danger`.
 
-But anyway...
+When we use Bootstrap as a framework, it's often
 
-## Let's download Bootstrap
-
-- You can grab it from a CDN.
-  - `<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">`
-- You can download `bootstrap.css` or the minified version, `bootstrap.min.css`.
-  - https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css
-- You can download the uncompiled source code as SASS or LESS (which we'll touch on later), pick the components you want, and compile that.
-  - http://getbootstrap.com/getting-started/#download
-
-### Containers
-
-Bootstrap sections a page with "container", as in `<div class="container">` You're not supposed to put a container inside another container.
-
-Inside a container, you can use Bootstrap's built-in grid system. It lets you break a page up into 12 columns. You do this by writing something like:
-
-```html
-<div class="container">
-  <div class="col-md-3"></div>
-  <div class="col-md-9"></div>
-</div>
-```
-
-This indicates how many columns you want to appear on which size screen. So a div with `class="col-lg-9 col-sm-12"` would be 9/12ths the width of a desktop screen, and 12/12ths the width of a mobile screen.
-
-`xs` (phones), `sm` (tablets), `md` (desktops), `lg` (big desktops)
 
 ## Bootstrap is great for styling forms... but not DRY
 
@@ -180,7 +187,8 @@ Look at how un-DRY this code is:
 </form>
 ```
 
-**If only** there was some way to not have to write `form-group` three milllion times!
+**If only** there was some way to not have to write `form-group` three million times!
+
 
 ### Customizing Bootstrap
 
@@ -206,7 +214,7 @@ But let's say there's something else you want to customize.
 
 We can use SASS to make some changes and pre-compile Bootstrap!
 
-Bootstrap's written in LESS, which is like SASS but written in Javascript, but there's an official SASS port.
+Bootstrap is written in LESS, which is like SASS but written in Javascript, but there's an official SASS port.
 
 ### bootstrap-sass
 
@@ -215,76 +223,9 @@ Download bootstrap-sass like so:
 - `gem install sass`
 - `bower install bootstrap-sass`
 
-I'm going to make a new stylesheet called `captainVonBootsTrapp.scss` that contains this:
+### You do: Sassify a form!
 
-```scss
-@import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-
-input,
-textarea {
-  @extend .form-control;
-}
-label {
-  @extend .control-label;
-}
-fieldset {
-  @extend .form-group;
-}
-.form-horizontal{
-  label{
-    @extend .col-sm-3;
-  }
-  div{
-    @extend .col-sm-9;
-  }
-}
-```
-
-Then I'll `touch captainVonBootsTrapp.css`.
-
-Finally, `sass captainVonBootsTrapp.scss captainVonBootsTrapp.css`
-
-Now I only need to `<link rel="stylesheet" href="assets/stylesheets/captainVonBootsTrapp.css" />` and I get **all** of Bootstrap **plus** the changes I made!
-
-This lets me drastically DRY up that form HTML from before:
-
-```html
-<form class="grumbleForm">
-  <div class="form-horizontal">
-    <fieldset>
-      <label>Title:</label>
-      <div><input type="text" name="title" value="{{ title }}"></div>
-    </fieldset>
-    <fieldset>
-      <label>By:</label>
-      <div><input type="text" name="authorName" value="{{ authorName }}"></div>
-    </fieldset>
-    <fieldset>
-      <label>Content:</label>
-      <div><textarea name="content">{{ content }}</textarea></div>
-    </fieldset>
-    <fieldset>
-      <label>Photo URL:</label>
-      <div><input type="text" name="photoUrl" value="{{ photoUrl }}"></div>
-    </fieldset>
-    <fieldset>
-      <label>&nbsp;</label>
-      <div>
-        <button class="btn submit btn-primary">Submit</button>
-        <button class="btn cancel">Cancel</button>
-      </div>
-    </fieldset>
-  </div>
-</form>
-```
-
-## Everything else about Bootstrap
-
-...is just picking and choosing the classes you want.
-
-## You do: Redesign Grumblr!
-
-https://github.com/ga-dc/grumblr_css_redesign
+## You do: Redesign a homework!
 
 ## Questions
 
