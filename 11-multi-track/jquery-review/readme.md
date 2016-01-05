@@ -49,6 +49,8 @@ Because of all this, jQuery is the most popular JS library on the web.
 
 ## Setting up jQuery (10min)
 
+https://github.com/ga-dc/jquery-inclass-blawg
+
 There are two ways to go about including jQuery on a website.
 - In both cases, we include the jQuery script file (`jquery-2.1.4.js`) as we would our usual app.js file using `<script>`.
 - Q: Where in our HTML should we include the `jquery-2.1.4.js` file?
@@ -395,3 +397,5 @@ Reference: [https://api.jquery.com/](https://api.jquery.com/)
 ## You do: Pixart
 
 [https://github.com/ga-dc/pixart_js](https://github.com/ga-dc/pixart_js)
+
+
