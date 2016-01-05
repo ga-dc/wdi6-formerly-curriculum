@@ -42,7 +42,7 @@ The obvious reason is that one takes you 15 minutes, the other takes 3 days, and
 
 Also, Bootstrap is written with responsive and/or mobile-first design in mind, replacing hand-rolled media queries with more intuitive and semantic class names. Clients and employers of all levels of tech-savviness will appreciate that you've prioritized these qualities.
 
-AND, unlike your hand-rolled CSS, Bootstrap is well documented and easily replicable.
+AND, unlike your hand-rolled CSS, Bootstrap is [well documented](http://getbootstrap.com/) and therefore easily replicable and sharable throughout the development world.
 
 ## Let's download Bootstrap
 
