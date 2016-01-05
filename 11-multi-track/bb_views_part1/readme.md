@@ -308,9 +308,11 @@ and re-render in response. Take a moment to set this up.
 > Hint: You'll only need to add one line of code to make this work.  
 
 Where should we setup the listening? What method should we call in response to
-the change event?
+the change event?  
 
-You can test it by doing something like the following...
+Also take the time to invoke `render` at the end of your `initialize` method so that we no longer have to type it out in the console.  
+
+You can test this new functionality by doing something like the following in the console...
 
 ```js
 var myGrumble = new App.Models.Grumble({
