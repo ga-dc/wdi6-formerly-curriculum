@@ -6,24 +6,22 @@ Screencasts:
 - [Part 2](http://youtu.be/iTeqXPIvgys)
 - [Part 3](http://youtu.be/O-sh4Hb3FUw)
 
-## Learning Adjectives
+## Learning Objectives
 
 - Explain the benefits (and shortcomings) of using a design framework.
 - Describe the use cases for Bootstrap as a library versus as a framework.
 - List 10 useful classes from the Bootstrap library.
 - Compare and contrast Bootstrap with other design frameworks (e.g., Foundation and Material Design).
 
-##
+## Intro
+
+> "Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web."
 
 Bootstrap is the visual theme on which much of the modern web is based. For instance, the styling of Github's readmes and markdown files is based very heavily on Bootstrap.
 
 Bootstrap was born in 2011 as Twitter Blueprint. The fact that it's ubiquitious now speaks to how much of a need there was for it: prior to Bootstrap, there were lots of mini-frameworks you could use, but trying to run 35 stylesheets at the same time creates a tremendous headache.
 
-### Bootstrap is a godsend for developers
-
 As has been discussed, you can make the most amazing back-end functionality ever, but if the front-end doesn't look presentable you'll have a difficult time selling it.
-
-Bootstrap lets you make a polished-looking app with minimal effort. As a result, many websites today look very "Bootstrappy".
 
 Unless you're specifically trying to show off your CSS skills, it's often better to spend 15 minutes making your app look good with Bootstrap than it is to spend 3 days writing your own CSS. Why?
 
@@ -31,35 +29,80 @@ The obvious reason is that one takes you 15 minutes, the other takes 3 days, and
 
 Also, Bootstrap is written with responsive and/or mobile-first design in mind, replacing hand-rolled media queries with more intuitive and semantic class names. Clients and employers of all levels of tech-savviness will appreciate that you've prioritized these qualities.
 
-AND, unlike your hand-rolled CSS, Bootstrap is [well documented](http://getbootstrap.com/) and therefore easily replicable and sharable throughout the development world.
+AND, unlike your hand-rolled CSS, Bootstrap is [well documented](http://getbootstrap.com/) and therefore easily replicable and sharable throughout the development community.
 
-## Let's download Bootstrap
+## Getting Started
 
-- You can grab it from a CDN.
-  - `<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">`
-- You can download `bootstrap.css` or the minified version, `bootstrap.min.css`.
-  - https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css
-- You can download the uncompiled source code as SASS or LESS (which we'll touch on later), pick the components you want, and compile that.
-  - http://getbootstrap.com/getting-started/#download
+### Download Options
+
+- You can grab it from a [CDN](http://getbootstrap.com/getting-started/#download-cdn).
+  
+  - ``` html
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    ```
+    
+  - ``` html
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    ```
+  
+- You can [download the complied and minified CSS, JS, and fonts](http://getbootstrap.com/getting-started/#download) and include them manually.
+  
+- You can [download the uncompiled source code as SASS or LESS](http://getbootstrap.com/getting-started/#download) (which we'll touch on later), pick the components you want, and compile the subset that you need.
+
+### You're Also Gonna Need jQuery...
+
+`<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>`
+
+…if you want to use Bootstrap's JS components.
+
+### Document Setup
+
+Since Bootstrap is written with mobile in mind, they recommend configuring the viewport with a meta tag in the head:
+
+``` html
+<meta name="viewport" content="width=device-width, initial-scale=1">
+```
+
+This ensures "proper rendering and touch zooming". If you want to disable zooming on mobile devices, you can add:
+
+``` html
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+```
 
 ### Containers
 
-Bootstrap sections a page with "container", as in `<div class="container">` You're not supposed to put a container inside another container.
+Bootstrap requires that you organize site contents using one of two `"container"` classes:
 
-Inside a container, you can use Bootstrap's built-in grid system. It lets you break a page up into 12 columns. You do this by writing something like:
+- `<div class="container">` gives you a responsive, fixed-width container
+- `<div class ="container-fluid">` creates a full width container that spans 100% of your viewport.
+
+[This Bootply snippet](http://www.bootply.com/render/CK6xB6cRuE) demonstrates the difference between container and container-fluid.
+
+Both types of containers are responsive, and both allow you to implement Bootstrap's grid system inside of them.
+
+### Grid System Basics
+
+We'll talk in more detail about grid systems in general, and about Bootstrap's grid in particular, this afternoon. In summary, the [Bootstrap grid](http://getbootstrap.com/css/#grid) is built of `.col-[device size]-[number]` divs inside of `.row` divs, e.g.:
 
 ``` html
 <div class="container">
-  <div class="col-md-3"></div>
-  <div class="col-md-9"></div>
+  <div class="row">
+    <div class="col-md-3"></div>
+  	<div class="col-md-9"></div>
+  </div>
 </div>
 ```
 
-This indicates how many columns you want to appear on which size screen. So a div with `class="col-lg-9 col-sm-12"` would be 9/12ths the width of a desktop screen, and 12/12ths the width of a mobile screen.
+The device sizes are:
 
-`xs` (phones), `sm` (tablets), `md` (desktops), `lg` (big desktops)
+- `xs` (phones, less than 768px)
+- `sm`  (tablets, 768px and up)
+- `md`(desktops, 992 px and up)
+- `lg`(big desktops, 1200px and up)
 
-We'll talk in more detail about grid systems in general, and about Bootstrap's grid in particular, this afternoon...
+The numbers indicate how many 1/12ths of the viewport width you would like that column to occupy, so `class="col-md-9 col-sm-12"` would be 9/12ths the width of a desktop screen, and 12/12ths the width of a tablet screen.
+
+## We Never Go Out of Style...
 
 ### Out-of-the-box, Bootstrap styles some elements
 
@@ -67,16 +110,15 @@ For starters, Bootstrap implements baseline styles for links and typography, as 
 
 These are all standard HTML elements, and browsers have default styling for all of them. For instance, on pretty much every browser anything inside `<code>`, `<kbd>`, and `<pre>` will be in a monospace font.
 
-The bulk of Bootstrap's customizing power, however, lies in its dozens of classes.
+### Out-of-the-box, Bootstrap *doesn't* style most elements
+
+For instance, `<button>` with Bootstrap doesn't change too many properties, compared to your browser's default styling: it has square corners and a slightly different gradient, which goes a long way toward making it look "cleaner" and more "modern",  that's pretty much it.
+
+The bulk of Bootstrap's customizing power lies in its dozens of components, which are implemented through a combination of CSS classes and jQuery plugins.
 
 ### You do: Bootstravenger Hunt
 
-As a class, we're going to build a collaborative cheat sheet for some of the bootstrap classes and elements. Each group should create a demo of their three elements/classes and write up the answers to the following questions:
-
-- What is it?
-- What's it good for?
-- Where can I read more about it?
-- Any tips/tricks for implementation?
+As a class, we're going to compile an appendix to the Bootstrap documentation, providing tips and tricks on the implementation of some of Bootstrap's Greatest Hits. 
 
 **Group One**
 
@@ -108,29 +150,34 @@ As a class, we're going to build a collaborative cheat sheet for some of the boo
 - Modal
 - Tooltip
 
-### Out-of-the-box, Bootstrap *doesn't* style most elements
+Each group should create Codepen demo of their three components and write up the answers to the following questions for each:
 
-For instance, `<button>` with Bootstrap doesn't change too many properties, compared to your browser's default styling: it has square corners and a slightly different gradient, which goes a long way toward making it look "cleaner" and more "modern",  that's pretty much it.
+- What is it?
+- What's it good for?
+- Where can I read more about it?
+- Any tips/tricks for implementation? _(Think: What value can I add to the existing docs?")_
 
-Bootstrap gives you several different colors you can use for text and buttons to indicate things like errors, warning, success messages, and so on. They are:
+Be prepared to share! It may be helpful to split into subgroups so you can divide and conquer...
 
-```
-Muted, important, success, info, warning, and danger
-```
+## Making it Your Own
 
-You can also change the size of a button. If I wanted to make a small "delete" button, I'd write something like this:
+### Customization
+
+Some use "Bootstrap-y" as a perjorative — a shorthand for "generic and uninspired". I wonder what those people would say to [these](https://bootstrapbay.com/blog/built-with-bootstrap/) or [these](http://builtwithbootstrap.com/).
+
+You can assemble a custom download or modify an existing configuration at http://getbootstrap.com/customize/
+
+### Bootstrap-SASS
+
+As many of you noticed in preparing your demos, implementing customized Bootstrap elements can easily get repetitive and difficult to read. Straight Bootstrap also verges on violating separation of concerns, with all those visually-oriented classnames muddying up your HTML.
+
+For instance, if I wanted to make a small "delete" button, I'd write something like this:
 
 ``` html
 <button class="btn btn-danger btn-xs">Delete</button>
 ```
 
-### That's not very DRY, is it?
-
-There's a lot of this in Bootstrap: having 38 different classes that all start with `btn`. It would be a lot less annoying if we could make the button look like this:
-
-``` html
-<button class="btn danger xs">Delete</button>
-```
+That's a lot of `btn`'s...
 
 #### ...so why does Bootstrap have such repetitive class names?
 
@@ -138,13 +185,27 @@ This is one place where you sort-of see Bootstrap trying to straddle the line be
 
 **You insert a library into your code; you insert your code into a framework.**
 
-It's not unlikely that some Bootstrap user will want to make their own CSS class called `.danger` that is completely unrelated to Bootstrap. It's extremely unlikely that anyone's going to create their own class called `.btn-danger`.
+It's not unlikely that some Bootstrap user will want to make their own CSS class called `.danger` that is completely unrelated to Bootstrap. It's extremely unlikely, however, that anyone is going to create their own class called `.btn-danger`. 
 
-Bootstrap's "library personality" wants to be as unobtrusive as possible and not conflict with any classes users might be defining. This is the personality that's prevailing over the Bootstrap's other half, the "framework personality," which would use `.danger` and include documentation saying that users **should not** create classes called `.danger`.
+Bootstrap's "library personality" wants to be as unobtrusive as possible and not conflict with any classes users might be defining, so it engages in this sort of **classnamespacing**. 
 
-## Bootstrap is great for styling forms... but not DRY
+#### We can use SASS to DRY up our Bootstrap!
 
-Look at how un-DRY this code is:
+Bootstrap is written in LESS, which is like SASS but written in Javascript, but there's an [official SASS port!](http://getbootstrap.com/css/#sass)
+
+The [Github README for bootstrap-sass](https://github.com/twbs/bootstrap-sass) details a number of ways to incorporate this "Sass-powered version of Bootstrap 3" into your applications.
+
+Today, we're going to use [Bower](https://github.com/twbs/bootstrap-sass#c-bower):
+
+- `npm install -g bower`
+
+
+- `gem install sass`
+- `bower install bootstrap-sass`
+
+#### We Do: An InFORMED Case Study
+
+First, touch an `index.html` that contains this form:
 
 ``` html
 <form class="grumbleForm">
@@ -176,50 +237,10 @@ Look at how un-DRY this code is:
 </form>
 ```
 
-**If only** there was some way to not have to write `form-group` three million times!
+Then, touch a stylesheet called `form-styles.scss`  that contains this:
 
-
-
-### Customizing Bootstrap
-
-It's easy in some ways. Check out how many colors and dimensions and stuff you can change here, with a big fat "Compile and Download" button at the bottom:
-
-http://getbootstrap.com/customize/
-
-But let's say there's something else you want to customize.
-
-### You can add in your own stylesheet and classes...
-
-...but there's always the chance that your styles will conflict with those of Bootstrap, meaning you'll need to write `!important` everywhere or juggle IDs.
-
-### You could edit the Bootstrap CSS itself...
-
-...but it's enormous and generally it's discouraged to edit open-source code. For one thing, it's *huge*. For another, if you ever want to update your Bootstrap to the newest version you'll have to copy over all your changes.
-
-### You could pick and choose the Bootstrap components you want...
-
-...but if I look in `grumblr/assets/stylesheets/bootstrap/less` I can see that there are a zillion different stylesheets, and I really don't feel like having to write `<link rel="stylesheet">` for each one.
-
-### So what if we could modify the Bootstrap CSS without touching it?
-
-We can use SASS to make some changes and pre-compile Bootstrap!
-
-Bootstrap is written in LESS, which is like SASS but written in Javascript, but there's an official SASS port.
-
-### bootstrap-sass
-
-Download bootstrap-sass like so:
-
-- `gem install sass`
-- `bower install bootstrap-sass`
-
-### You do: Sassify a form!
-
-
-I'm going to make a new stylesheet called `captainVonBootsTrapp.scss` that contains this:
-
-```scss
-@import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+``` scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 
 input,
 textarea {
@@ -241,15 +262,13 @@ fieldset {
 }
 ```
 
-Then I'll `touch captainVonBootsTrapp.css`.
+Also, touch `form-styles.css` and leave it blank.
 
-Finally, `sass captainVonBootsTrapp.scss captainVonBootsTrapp.css`
+Next, **and this is a big one**, in your terminal, run`sass form-styles.scss form-styles.css`. Now I only need to `<link rel="stylesheet" href="form-styles.css" />` to load **all** of Bootstrap **plus** the changes you just made! Take a look at your CSS file...
 
-Now I only need to `<link rel="stylesheet" href="assets/stylesheets/captainVonBootsTrapp.css" />` and I get **all** of Bootstrap **plus** the changes I made!
+Finally, remove all of the classes on your `div` elements, except for `"form-horizontal"` on the first one.
 
-This lets me drastically DRY up that form HTML from before:
-
-```html
+``` html
 <form class="grumbleForm">
   <div class="form-horizontal">
     <fieldset>
@@ -279,11 +298,40 @@ This lets me drastically DRY up that form HTML from before:
 </form>
 ```
 
-## You do: Redesign a homework!
+#### You Do: BootSassify the `btn`  situation
+
+## Homework
+
+Bootstrapify (or [Foundation](http://foundation.zurb.com)-ify or [Materialize](http://materializecss.com)-ify or [Picnic](http://picniccss.com)-ify or [Pure](http://purecss.io/)-ify or…) something that you built earlier in the course. If you don't want to overwrite your previous styling, you're welcome to work on an branch. Open an issue with a link to your re-styled homework/project/lab [here](https://github.com/ga-dc/bootstrap-ify).
 
 ## Questions
 
 - What's the difference between a framework and a library?
+  
 - Name two Bootstrap classes and explain what they do.
+  
 - What's the difference between a glyphicon and a jumbotron and a Megatron?
+  
 - Give an example of a situation in which you might want to use Bootstrap, versus one in which you might not.
+  
+  ​
+
+## Helpful References
+
+http://getbootstrap.com/components/
+
+http://getbootstrap.com/css/
+
+http://getbootstrap.com/customize/
+
+https://github.com/twbs/bootstrap-sass
+
+http://www.tutorialspoint.com/bootstrap/
+
+http://bootsnipp.com/
+
+http://tutorialzine.com/2015/06/12-time-saving-bootstrap-examples/
+
+http://builtwithbootstrap.com/
+
+https://bootstrapbay.com/blog/built-with-bootstrap/
