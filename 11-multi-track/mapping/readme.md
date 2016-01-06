@@ -62,8 +62,11 @@ Why Leaflet?
 
 ### Quick Start
 
-[Clone this repo.](https://github.com/ga-dc/mapping-inclass)
-* Just contains some empty HTML, CSS and JS files.
+Let's create some empty HTML, CSS and JS files in our in-class directory.
+
+```bash
+touch index.html style.css app.js
+```
 
 ### Link to the Leaflet stylesheet
 
@@ -112,14 +115,14 @@ Why Leaflet?
 [Sign up for Mapbox account](https://www.mapbox.com/).
 
 #### Map ID
-After creating an account, click "Projects" towards the right of the navbar. It may look like a folder icon without text.
-* On the following screen, click "My First Map".
-* Copy the value in the **Map ID** field. You'll need this later.
+After creating an account, click "Studio" towards the right of the navbar. It should look like a button containing your avatar.
+* On the next page, click "View classic styles" at the bottom of the right sidebar.
+* Click on the "Mapbox Editor Project" tab under the "Mapbox classic" header.
+* Copy the value next to "My First Map". It should begin with your username and look something like this: `amaseda.731o5c1f`
 
 #### API Access Token
-Then, click on your username / avatar in the navbar.
-* In the new sub-navbar, click on "Apps."
-* Copy the value to the right of **Default Public Token**. You'll also need this later.
+Click "Home" in the left sidebar to return to your Mapbox dashboard.
+* Your access token is located in the second item in the right sidebar. Copy that long string that begins with `pk.`
 
 ## Create a Map
 
@@ -387,6 +390,8 @@ Use a "Feature Collection" to recreate the markers and polygons you created in t
 * [Disabling Map Zooming and Panning](https://www.mapbox.com/mapbox.js/example/v1.0.0/disable-zooming-panning/)
 
 ## Cheat Sheet
+
+*
 
 ### Map with Tile Layer
 
