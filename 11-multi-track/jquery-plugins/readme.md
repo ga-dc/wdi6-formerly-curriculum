@@ -327,7 +327,7 @@ Click on that `h3` and you should see a green `jQuery plugins are really really 
 
 ## Don't break the chain!
 
-Something we haven't talked about is the fact that we return `this` in our plugin definition. If we try out our code as it stand, it works great. Try removing
+Something we haven't talked about is the fact that we return `this` in our plugin definition. If we try out our code as it stands, it works great. Try removing
 
 ```js
 return this
