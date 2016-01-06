@@ -53,7 +53,7 @@
         data-chapter-title="Mapping"
         data-filepath="11-multi-track/mapping/readme.md"
         data-basepath="../.."
-        data-revision="Wed Jan 06 2016 14:04:26 GMT+0000 (UTC)"
+        data-revision="Wed Jan 06 2016 15:42:10 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1289,10 +1289,9 @@
 </ul>
 <h2 id="setup-5--20">Setup (5 / 20)</h2>
 <h3 id="quick-start">Quick Start</h3>
-<p><a href="https://github.com/ga-dc/mapping-inclass" target="_blank">Clone this repo.</a></p>
-<ul>
-<li>Just contains some empty HTML, CSS and JS files.</li>
-</ul>
+<p>Let&apos;s create some empty HTML, CSS and JS files in our in-class directory.</p>
+<pre><code class="lang-bash">touch index.html style.css app.js
+</code></pre>
 <h3 id="link-to-the-leaflet-stylesheet">Link to the Leaflet stylesheet</h3>
 <pre><code class="lang-html"><span class="hljs-comment">&lt;!-- index.html --&gt;</span>
 
@@ -1329,16 +1328,16 @@
 <h3 id="sign-up-for-mapbox--leaflet-5--25">Sign up for Mapbox / Leaflet (5 / 25)</h3>
 <p><a href="https://www.mapbox.com/" target="_blank">Sign up for Mapbox account</a>.</p>
 <h4 id="map-id">Map ID</h4>
-<p>After creating an account, click &quot;Projects&quot; towards the right of the navbar. It may look like a folder icon without text.</p>
+<p>After creating an account, click &quot;Studio&quot; towards the right of the navbar. It should look like a button containing your avatar.</p>
 <ul>
-<li>On the following screen, click &quot;My First Map&quot;.</li>
-<li>Copy the value in the <strong>Map ID</strong> field. You&apos;ll need this later.</li>
+<li>On the next page, click &quot;View classic styles&quot; at the bottom of the right sidebar.</li>
+<li>Click on the &quot;Mapbox Editor Project&quot; tab under the &quot;Mapbox classic&quot; header.</li>
+<li>Copy the value next to &quot;My First Map&quot;. It should begin with your username and look something like this: <code>amaseda.731o5c1f</code></li>
 </ul>
 <h4 id="api-access-token">API Access Token</h4>
-<p>Then, click on your username / avatar in the navbar.</p>
+<p>Click &quot;Home&quot; in the left sidebar to return to your Mapbox dashboard.</p>
 <ul>
-<li>In the new sub-navbar, click on &quot;Apps.&quot;</li>
-<li>Copy the value to the right of <strong>Default Public Token</strong>. You&apos;ll also need this later.</li>
+<li>Your access token is located in the second item in the right sidebar. Copy that long string that begins with <code>pk.</code></li>
 </ul>
 <h2 id="create-a-map">Create a Map</h2>
 <h3 id="an-empty-map-5--30">An Empty Map (5 / 30)</h3>
@@ -1346,6 +1345,9 @@
 
 <span class="hljs-keyword">var</span> map = L.map(<span class="hljs-string">&apos;map&apos;</span>).setView([<span class="hljs-number">38.9038829</span>, -<span class="hljs-number">77.0360032</span>], <span class="hljs-number">15</span>);
 </code></pre>
+<blockquote>
+<p>You&apos;re encouraged to use <a href="http://itouchmap.com/latlong.html" target="_blank">whatever coordinates</a> you&apos;d like from here on out. Make this in-class example your own!</p>
+</blockquote>
 <p><code>L.map()</code></p>
 <ul>
 <li>This method takes the ID of your map container as an argument. In this case, it&apos;s simply &quot;map&quot;.</li>
@@ -1383,12 +1385,16 @@
 <p>You should see something like this...</p>
 <p><img src="img/dc-map.png" alt="&quot;DC map&quot;"></p>
 <p><strong>BOOM</strong>, we&apos;ve got a map! Now let&apos;s do something with it.</p>
-<p><strong>Note:</strong> The above tiling isn&apos;t the only one we can use.</p>
+<h3 id="exercise-fun-with-tiling-5--40">Exercise: Fun with Tiling (5 / 40)</h3>
+<p>The above tiling isn&apos;t the only one we can use. Spend three minutes looking through the below resources for additional tileset links.</p>
 <ul>
-<li>In fact, Mapbox isn&apos;t the only provider of Leaflet map tiling.</li>
-<li>Check out <a href="https://gist.github.com/mourner/1804938" target="_blank">this gist</a>, which contains tiling links for a number of different map tiles like <code>OpenCycleMap</code>.</li>
+<li>There are tons of tileLayer links <a href="http://leaflet-extras.github.io/leaflet-providers/preview/" target="_blank">here</a>.</li>
+<li>There a few more available in <a href="https://gist.github.com/mourner/1804938" target="_blank">this gist</a> like <code>OpenCycleMap</code>.<blockquote>
+<p>Some of these alternate tile sets may require you to modify the key-value pairs you pass into <code>tileLayer</code>&apos;s object argument. Feel free to do that. Just make sure to change it back to the in-class example after this exercise.</p>
+</blockquote>
+</li>
 </ul>
-<h2 id="map-markers-5--40">Map Markers (5 / 40)</h2>
+<h2 id="map-markers-5--45">Map Markers (5 / 45)</h2>
 <p>Add a marker to your map using the <code>L.marker</code> method.</p>
 <ul>
 <li>Takes an array of latitude and longitude as an argument.</li>
@@ -1397,7 +1403,7 @@
 <pre><code class="lang-js"><span class="hljs-comment">// `map` is the variable we originally saved our map to.</span>
 <span class="hljs-keyword">var</span> generalAssembly = L.marker( [<span class="hljs-number">38.9048542</span>, -<span class="hljs-number">77.0339403</span>] ).addTo( map );
 </code></pre>
-<h3 id="you-do-make-some-markers-10--50">You Do: Make Some Markers (10 / 50)</h3>
+<h3 id="you-do-make-some-markers-10--55">You Do: Make Some Markers (10 / 55)</h3>
 <p>Make five markers!</p>
 <ul>
 <li>Use the same Leaflet syntax we just used in the class.</li>
@@ -1413,7 +1419,7 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="shapes-5--55">Shapes (5 / 55)</h2>
+<h2 id="shapes-5--100">Shapes (5 / 1:00)</h2>
 <p>You can also use a circle to cover a portion of a map using <code>L.circle()</code> and <code>.addTo( map )</code>. Takes three arguments...</p>
 <ol>
 <li>Latitude/longitude array.</li>
@@ -1439,14 +1445,14 @@
     [<span class="hljs-number">38.791605</span>, -<span class="hljs-number">77.038860</span>]
 ]).addTo(map);
 </code></pre>
-<h3 id="you-do-markers-to-shapes-10--65">You Do: Markers to Shapes (10 / 65)</h3>
+<h3 id="you-do-markers-to-shapes-10--110">You Do: Markers to Shapes (10 / 1:10)</h3>
 <p>Modify the previous exercise so that you are using a loop to generate a polygon.</p>
 <ul>
 <li>The five coordinates you entered earlier should now be the corners of a polygon.</li>
 </ul>
 <p><strong>BONUSES I &amp; II:</strong> Try out the earlier bonuses if you haven&apos;t already and apply them to this exercise prompt.</p>
-<h2 id="break-10--75">Break (10 / 75)</h2>
-<h2 id="map-popups-5--80">Map Pop-Ups (5 / 80)</h2>
+<h2 id="break-10--120">Break (10 / 1:20)</h2>
+<h2 id="map-popups-5--125">Map Pop-Ups (5 / 1:25)</h2>
 <p>Say you look up a restaurant on Google Maps. When you click on its marker, you would expect to see some helpful information like address, operating hours, or something.</p>
 <ul>
 <li>Let&apos;s create a simple version of that using Leaflet&apos;s Pop-Up feature.</li>
@@ -1461,7 +1467,7 @@ generalAssembly.bindPopup(
   <span class="hljs-string">&quot;&lt;h3&gt;General Assembly DC&lt;/h3&gt;&lt;p&gt;1133 15th St., NW&lt;/p&gt;&lt;p&gt;8th Floor&lt;/p&gt;&lt;p&gt;Washington, DC 20005&lt;/p&gt;&quot;</span>
 )
 </code></pre>
-<h2 id="events-15--95">Events (15 / 95)</h2>
+<h2 id="events-15--140">Events (15 / 1:40)</h2>
 <p>Pop-ups are cool, but they&apos;re not enough. We want to be able to interact with our map and make use of the information that comes with it. <strong>Enter events!</strong>  </p>
 <ul>
 <li>The great thing about Leaflet events is that we can use the Javascript skills we learned at the start of WDI.</li>
@@ -1493,7 +1499,7 @@ map.on( <span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-fu
 })
 </code></pre>
 <p>Check out Leaflet&apos;s <a href="http://leafletjs.com/reference.html#events" target="_blank">event documentation</a> if you want to learn more.</p>
-<h3 id="exercise-click--marker--popup-10">Exercise: Click = Marker + Pop-Up (10)</h3>
+<h3 id="exercise-click--marker--popup-150">Exercise: Click = Marker + Pop-Up (1:50)</h3>
 <p>Create an event listener that adds a marker to the map wherever the user clicks.</p>
 <ul>
 <li>That marker should also have a pop-up that displays the latitude-longitude for that location.</li>
@@ -1508,7 +1514,7 @@ map.on( <span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-fu
 <li>With Leaflet, rather than hardcode information about a marker, circle or polygon into our code, we can import that geographical information using GeoJSON.</li>
 <li>Though Leaflet is a specific mapping library, GeoJSON is used elsewhere in the wild (like Google Maps).</li>
 </ul>
-<h3 id="geojson-components-10--115">GeoJSON Components (10 / 115)</h3>
+<h3 id="geojson-components-10--200">GeoJSON Components (10 / 2:00)</h3>
 <p>All GeoJSON objects must have a <code>type</code> value, which can equal a Geometry type, &quot;Feature&quot; or &quot;FeatureCollection&quot;.</p>
 <ul>
 <li>Geometry types<ul>
@@ -1573,19 +1579,87 @@ map.on( <span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-fu
 <li><a href="https://gist.github.com/amaseda/e6abab0e337098a036ba" target="_blank">Here&apos;s our earlier monuments example</a>.</li>
 <li>More info <a href="https://help.github.com/articles/mapping-geojson-files-on-github/" target="_blank">here</a>.</li>
 </ul>
-<h2 id="exercise-using-geojson-10--125">Exercise: Using GeoJSON (10 / 125)</h2>
+<h2 id="exercise-using-geojson-10--210">Exercise: Using GeoJSON (10 / 2:10)</h2>
 <p>Use a &quot;Feature Collection&quot; to recreate the markers and polygons you created in the first two Marker and Polygon exercises.</p>
 <ul>
 <li>What exactly is a Feature Collection? An array of features.</li>
 <li>Need help? Leaflet&apos;s <a href="http://leafletjs.com/examples/geojson.html" target="_blank">GeoJSON documentation</a> will start you on the right path.</li>
 </ul>
-<h2 id="break-10--135">Break (10 / 135)</h2>
+<h2 id="break-10--220">Break (10 / 2:20)</h2>
 <h2 id="homework-trip-planner">Homework: <a href="https://github.com/ga-dc/plannr" target="_blank">Trip Planner</a></h2>
 <h2 id="sample-quiz-questions">Sample Quiz Questions</h2>
 <h2 id="additional-reading">Additional Reading</h2>
 <ul>
 <li><a href="https://www.mapbox.com/mapbox.js/example/v1.0.0/disable-zooming-panning/" target="_blank">Disabling Map Zooming and Panning</a></li>
 </ul>
+<h2 id="cheat-sheet">Cheat Sheet</h2>
+<p>*</p>
+<h3 id="map-with-tile-layer">Map with Tile Layer</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> map = L.map(<span class="hljs-string">&apos;map&apos;</span>).setView([<span class="hljs-number">38.9038829</span>, -<span class="hljs-number">77.0360032</span>], <span class="hljs-number">15</span>);
+
+L.tileLayer(<span class="hljs-string">&apos;https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}&apos;</span>, {
+    attribution: <span class="hljs-string">&apos;Map data &amp;copy; &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors, &lt;a href=&quot;http://creativecommons.org/licenses/by-sa/2.0/&quot;&gt;CC-BY-SA&lt;/a&gt;, Imagery &#xA9; &lt;a href=&quot;http://mapbox.com&quot;&gt;Mapbox&lt;/a&gt;&apos;</span>,
+    maxZoom: <span class="hljs-number">18</span>,
+
+    <span class="hljs-comment">// Replace the below properties with your `Map ID` and `Default Public Token` values you saved earlier, respectively.</span>
+    id: <span class="hljs-string">&apos;INSERT_MAP_ID_HERE&apos;</span>,
+    accessToken: <span class="hljs-string">&apos;INSERT_PUBLIC_TOKEN_HERE&apos;</span>
+}).addTo(map);
+</code></pre>
+<h3 id="markers-shapes-and-popups">Markers, Shapes and Pop-Ups</h3>
+<pre><code class="lang-js"><span class="hljs-comment">// Marker</span>
+<span class="hljs-keyword">var</span> generalAssembly = L.marker( [<span class="hljs-number">38.9048542</span>, -<span class="hljs-number">77.0339403</span>] ).addTo( map );
+
+<span class="hljs-comment">// Circle</span>
+<span class="hljs-keyword">var</span> dupontCircle = L.circle([<span class="hljs-number">38.9111048</span>, -<span class="hljs-number">77.042613</span>,<span class="hljs-number">15</span>], <span class="hljs-number">500</span>, {
+    color: <span class="hljs-string">&apos;pink&apos;</span>,
+    fillColor: <span class="hljs-string">&apos;red&apos;</span>,
+    fillOpacity: <span class="hljs-number">0.5</span>
+}).addTo(map);
+
+<span class="hljs-comment">// Polygon</span>
+<span class="hljs-keyword">var</span> washington = L.polygon([
+    [<span class="hljs-number">38.934347</span>, -<span class="hljs-number">77.119758</span>],
+    [<span class="hljs-number">38.995421</span>, -<span class="hljs-number">77.041006</span>],
+    [<span class="hljs-number">38.892885</span>, -<span class="hljs-number">76.909599</span>],
+    [<span class="hljs-number">38.791605</span>, -<span class="hljs-number">77.038860</span>]
+]).addTo(map);
+
+<span class="hljs-comment">// Pop-Up</span>
+generalAssembly.bindPopup(
+  <span class="hljs-string">&quot;&lt;h3&gt;General Assembly DC&lt;/h3&gt;&lt;p&gt;1133 15th St., NW&lt;/p&gt;&lt;p&gt;8th Floor&lt;/p&gt;&lt;p&gt;Washington, DC 20005&lt;/p&gt;&quot;</span>
+)
+</code></pre>
+<h3 id="click-event">Click Event</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> clickPopup = L.popup();
+
+map.on( <span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> event </span>)</span>{
+  clickPopup
+  .setLatLng( event.latlng )
+  .setContent( <span class="hljs-string">&quot;Coordinates: &quot;</span> + event.latlng.toString() )
+  .openOn( map );
+})
+</code></pre>
+<h3 id="geojson-example">GeoJSON Example</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> monumentTrail = {
+  <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;Feature&quot;</span>,
+  <span class="hljs-string">&quot;properties&quot;</span>: {
+    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Monuments Trail&quot;</span>,
+    <span class="hljs-string">&quot;city&quot;</span>: <span class="hljs-string">&quot;Washington, DC&quot;</span>,
+    <span class="hljs-string">&quot;numStops&quot;</span>: <span class="hljs-number">5</span>
+  },
+  <span class="hljs-string">&quot;geometry&quot;</span>: {
+    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;MultiLineString&quot;</span>,
+    <span class="hljs-string">&quot;coordinates&quot;</span>: [
+      [[-<span class="hljs-number">77.0352791</span>,<span class="hljs-number">38.8894838</span>], [-<span class="hljs-number">77.050176</span>,<span class="hljs-number">38.8892686</span>]],
+      [[-<span class="hljs-number">77.050176</span>,<span class="hljs-number">38.8892686</span>], [-<span class="hljs-number">77.0364707</span>,<span class="hljs-number">38.8813726</span>]],
+      [[-<span class="hljs-number">77.0364707</span>,<span class="hljs-number">38.8813726</span>], [-<span class="hljs-number">77.0090505</span>,<span class="hljs-number">38.8899389</span>]]
+    ]
+  }
+}
+
+L.geoJson( monumentTrail ).addTo( map );
+</code></pre>
 
                     
                     </section>
