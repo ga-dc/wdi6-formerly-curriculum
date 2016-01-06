@@ -6,8 +6,6 @@
 
 - Start Apache running locally on your computer.
 - Write a PHP function that contains variables.
-- Connect PHPMailer to your e-mail account.
-- Send an e-mail via an HTML form using PHPMailer.
 
 ## What is PHP, and why does everyone hate it?
 
