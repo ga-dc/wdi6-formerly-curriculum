@@ -1,4 +1,8 @@
 # jQuery Plugins
+## Screencasts
+[Part 1](https://youtu.be/ZkaP-uhnwQ0)
+[Part 2](https://youtu.be/dMwINJ00ahc)
+[Part 3](https://youtu.be/wLfWZviLvsQ)
 
 ## Learning Objectives
 
@@ -393,6 +397,4 @@ https://github.com/ga-dc/gif_of_the_day
 - http://blog.npmjs.org/post/111475741445/publishing-your-jquery-plugin-to-npm-the-quick
 - http://www.jquery-tutorial.net/introduction/method-chaining/
 
-## Screencasts
 
-- http://youtu.be/N0iM6DznupQ
