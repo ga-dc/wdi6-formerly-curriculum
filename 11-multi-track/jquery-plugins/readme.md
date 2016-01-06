@@ -1,8 +1,8 @@
 # jQuery Plugins
 ## Screencasts
-[Part 1](https://youtu.be/ZkaP-uhnwQ0)
-[Part 2](https://youtu.be/dMwINJ00ahc)
-[Part 3](https://youtu.be/wLfWZviLvsQ)
+- [Part 1](https://youtu.be/ZkaP-uhnwQ0)
+- [Part 2](https://youtu.be/dMwINJ00ahc)
+- [Part 3](https://youtu.be/wLfWZviLvsQ)
 
 ## Learning Objectives
 
