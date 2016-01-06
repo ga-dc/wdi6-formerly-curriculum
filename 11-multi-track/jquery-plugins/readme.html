@@ -53,7 +53,7 @@
         data-chapter-title="jQuery Plugins"
         data-filepath="11-multi-track/jquery-plugins/readme.md"
         data-basepath="../.."
-        data-revision="Tue Jan 05 2016 22:47:03 GMT+0000 (UTC)"
+        data-revision="Wed Jan 06 2016 13:46:17 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1227,34 +1227,36 @@
 <li>Write your own jQuery Plugin</li>
 <li>Utilize an Immediately Invoked Function Expression (IIFE) to locally scope jQuery</li>
 </ul>
-<h2 id="framing">Framing</h2>
+<h2 id="framing-10">Framing (10)</h2>
+<p>Today, we&apos;ll be learning about jQuery plugins. In the big picture of things programming, the TLDR version of today is extending jQuery functionality. As far as programming goes, we&apos;re not learning anything radically new. Many of the plugins that are out there are functionalities you&apos;re capable of building yourself. Only, now you don&apos;t have too. You can just use other people&apos;s stuff, it&apos;s great.</p>
 <p>What are jQuery Plugins?</p>
-<p>Officially, plugins are &quot;simply a new method that we use to extend jQuery&apos;s prototype object.&quot;  In practice, they enable to us to extend jQuery&apos;s functionality, from adding simple methods to jQuery objects (think <code>$()</code>) to the <a href="http://jqueryui.com" target="_blank">jQuery UI plugin</a> that is maintained by the jQuery team.</p>
+<p>Officially, plugins are &quot;simply a new method that we use to extend jQuery&apos;s prototype object.&quot;  In practice, they enable to us to extend jQuery&apos;s functionality, from adding simple methods to jQuery objects (think <code>$()</code> or stuff wrapped in cash) to the <a href="http://jqueryui.com" target="_blank">jQuery UI plugin</a> that is maintained by the jQuery team.</p>
 <blockquote>
 <p>jQuery UI is a curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library. Whether you&apos;re building highly interactive web applications or you just need to add a date picker to a form control, jQuery UI is the perfect choice.</p>
 </blockquote>
+<p>Think about the <code>.hide()</code> method in jquery. Under the hood its changing some css property using javascript. Much in the same way that jquery abstracts functionality from javascript, we can leverage javascript/jQuery to build our own jquery methods. This opens up a bunch of doors.</p>
 <p>So you can see, they can be simple or rather complex.</p>
-<p>But, you may be asking yourselves, &quot;Why Matt?, Why do we care?&quot; <pause></pause></p>
+<p>But, you may be asking yourselves, &quot;Why do we care?&quot; <pause></pause></p>
 <p>You tell me.  Check out these demos.</p>
 <ul>
 <li><a href="http://codepen.io/desandro/full/nFrte" target="_blank">isotope</a></li>
-<li>[tablesorter]<a href="http://tablesorter.com/docs/#Demo" target="_blank">http://tablesorter.com/docs/#Demo</a></li>
+<li><a href="http://tablesorter.com/docs/#Demo" target="_blank">tablesorter</a></li>
 </ul>
 <h2 id="q-why-do-we-care">Q. Why do we care?</h2>
 <blockquote>
-<p>A. Encapsulation of really cool functionality, so we can reuse and share.</p>
+<p>A. Encapsulation of really cool functionality, so we can reuse and share. We stand on the shoulders of giants. There&apos;s no need to recreate the wheel if it already exists.</p>
 </blockquote>
-<h2 id="utilizing-a-published-plugin">Utilizing a published plugin</h2>
+<h2 id="familiarize-with-published-plugins">Familiarize with published plugins</h2>
 <p>Let&apos;s familiarize ourselves with jQuery plugins by investigating a couple.  How do we use them?</p>
-<h3 id="research-existing-plugins-tps735-15-min">Research existing plugins (T/P/S:7/3/5; 15 min)</h3>
+<h3 id="research-existing-plugins-tps1020">Research existing plugins (T/P/S)(10/20)</h3>
 <ul>
 <li><a href="http://isotope.metafizzy.co" target="_blank">isotope.metafizzy.co</a></li>
 <li><a href="http://packery.metafizzy.co" target="_blank">packery.metafizzy.co</a></li>
-<li>[tablesorter]<a href="http://tablesorter.com/docs/#Introduction" target="_blank">http://tablesorter.com/docs/#Introduction</a></li>
+<li><a href="http://tablesorter.com/docs/#Introduction" target="_blank">tablesorter</a></li>
 </ul>
-<h2 id="q-what-are-the-2-common-steps-for-utilizing-a-plugin">Q. What are the 2 common steps for utilizing a plugin?</h2>
+<p>Look at the docs in these plugins. Think about - What does it take to utilize a plugin?</p>
 <blockquote>
-<p>A. 2 Steps for utilizing</p>
+<p>Steps for utilizing</p>
 <ul>
 <li>include/install</li>
 <li>initialize/configure/customize</li>
@@ -1262,29 +1264,30 @@
 </blockquote>
 <h2 id="basic-anatomy-of-a-jquery-plugin">Basic anatomy of a jQuery Plugin?</h2>
 <p>What else can we expect from jQuery plugins?  How do we use them?</p>
-<h3 id="group-work-1010-20-min">Group work: (10/10: 20 min)</h3>
-<p>Start in <a href="https://learn.jquery.com/plugins/" target="_blank">https://learn.jquery.com/plugins/</a>
-Review some random plugins:</p>
+<h3 id="group-work-1010-2040">Group work: (10/10: 20/40)</h3>
+<h4 id="individually-for-10m">Individually for 10m:</h4>
+<p>Start in <a href="https://learn.jquery.com/plugins/" target="_blank">https://learn.jquery.com/plugins/</a></p>
+<p>Review some random plugins:</p>
 <ul>
 <li>look for commonality</li>
 <li>look for patterns</li>
 <li>look for convention</li>
 </ul>
-<p>Break into groups.  When we get back together, we will be answering these questions, together.</p>
+<h4 id="break-into-groups-for-10m">Break into groups for 10m.</h4>
+<p>When we get back together, we will be answering these questions, together.</p>
 <p>Questions:</p>
 <ol>
-<li>Where do we find jQuery Plugins?</li>
-<li>What is the basic anatomy of a jQuery Plugin?</li>
-<li>What do we add to our app to utilize them?</li>
+<li>Where do we find jQuery Plugins?<br></li>
+<li>What is the basic anatomy of a jQuery Plugin?<br></li>
+<li>What do we add to our app to utilize them?<br></li>
 <li>Name some ways to install/initialize a jQuery plugin.</li>
 </ol>
 <hr>
-<blockquote>
-<p>Answers:</p>
-</blockquote>
+<h4 id="answers-545">Answers (5/45)</h4>
 <ol>
 <li><p>Where?
-Surprise. Plugins have moved to: <a href="https://www.npmjs.com/browse/keyword/jquery-plugin" target="_blank">https://www.npmjs.com/browse/keyword/jquery-plugin</a></p>
+Officially a large list of Plugins have moved to: <a href="https://www.npmjs.com/browse/keyword/jquery-plugin" target="_blank">https://www.npmjs.com/browse/keyword/jquery-plugin</a></p>
+<p>Unofficially, google is your best bet.</p>
 </li>
 <li><p>Basic Anatomy?
 Initialize with:</p>
@@ -1311,19 +1314,132 @@ Initialize with:</p>
 </ul>
 </li>
 </ol>
-<h3 id="pair-up-use-it-15-min">Pair up: Use it (15 min)</h3>
+<h2 id="i-do--fixed-content-plugin">I do - Fixed Content plugin</h2>
+<p>Let&apos;s actually implement a jquery plugin together.</p>
+<p>The plugin we&apos;ll be using is <a href="https://github.com/jeremychurch/FixedContent.js" target="_blank">FixedContent.js</a></p>
+<h3 id="fixed-content-source-550">Fixed Content Source (5/50)</h3>
+<p>The first thing I want to do is take a look at this source code so we can get a better understanding of plugins. The source code can be found <a href="https://github.com/jeremychurch/FixedContent.js/blob/master/jquery.fixedcontent.js" target="_blank">here</a></p>
+<p>It&apos;s a little scary, but let&apos;s look at some parts we can identify</p>
+<pre><code class="lang-javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>) </span>{
+  <span class="hljs-comment">// this is just using regular jquery to basically say if there is something with a class of js_fixedcontent, do something</span>
+  <span class="hljs-keyword">if</span> ($(<span class="hljs-string">&apos;.js_fixedcontent&apos;</span>).length &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-comment">// this is where the jquery prototype is extended to now include fixedcontent,</span>
+    <span class="hljs-comment">// just like how you can call .hide on a jquery object, you can now call .fixedcontent</span>
+    $.fn.fixedcontent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>)</span>{
+      <span class="hljs-comment">// check out the source for the actual function def.</span>
+    };
+
+    <span class="hljs-comment">// calling the method defined above on anything with class js_fixed_content</span>
+    $(<span class="hljs-string">&apos;.js_fixedcontent&apos;</span>).fixedcontent();
+
+  }
+
+}(jQuery));
+</code></pre>
+<blockquote>
+<p>One thing we can note is this is an immediately invoked function expression. Where else have we seen this? (ST - WG). We need to use an IIFE in order for this plugin to work well with jQuery and other plugins. When we put all of this code into an IIFE, we need to pass the function <code>jQuery</code> and name the parameter <code>$</code>. If you&apos;d like to know more about this, check this <a href="https://learn.jquery.com/plugins/basic-plugin-creation/#protecting-the-alias-and-adding-scope" target="_blank">link</a> out.</p>
+</blockquote>
+<h3 id="break-1060">Break (10/60)</h3>
+<h3 id="implementation-1575">Implementation (15/75)</h3>
+<p>Let&apos;s create some a folder and some files we&apos;ll need for this application in the terminal:</p>
+<pre><code class="lang-bash">mkdir fixedcontent_demo
+<span class="hljs-built_in">cd</span> fixedcontent_demo
+touch index.html
+touch script.js
+touch fixedContent.js
+touch styles.css
+</code></pre>
+<p>Copy and paste the content from <a href="https://raw.githubusercontent.com/jeremychurch/FixedContent.js/master/jquery.fixedcontent.js" target="_blank">here</a> into <code>fixedContent.js</code></p>
+<p>Use the content found in this <a href="https://gist.github.com/andrewsunglaekim/27d439df8ab05b6b176c" target="_blank">gist</a> as the dummy html content for the <code>index.html</code>:</p>
+<p>If we open up the index page we can see that the h1 remains at the top regardless of our scrolling!</p>
+<p>Because of <code>$(&apos;.js_fixedcontent&apos;).fixedcontent();</code> in <code>fixedContent.js</code> we don&apos;t even have to call it in our script file. You can see inside the documentation that you can customize some of the default values. You might have something like this in your <code>script.js</code>:</p>
+<pre><code class="lang-js">$(<span class="hljs-string">&quot;.js_fixedcontent&quot;</span>).fixedcontent({
+   marginTop: <span class="hljs-number">24</span>,
+   minWidth: <span class="hljs-number">767</span>,
+   zIndex: <span class="hljs-number">500</span>
+ });
+</code></pre>
+<h3 id="pair-up-use-a-plugin2590">Pair up: Use a plugin!(25/90)</h3>
+<p>For 5 minutes:</p>
 <ul>
-<li>Pick a plugin.</li>
-<li>Pick one installation method and attempt to install &amp; utilize.  </li>
-<li>After 7 minutes, install using the next method.</li>
+<li><p>With your partner, pick a plugin from these links</p>
+<ul>
+<li><a href="http://tutorialzine.com/2015/04/our-favorite-jquery-plugins-and-libraries-for-spring-2015/" target="_blank">http://tutorialzine.com/2015/04/our-favorite-jquery-plugins-and-libraries-for-spring-2015/</a></li>
+<li><a href="http://www.creativebloq.com/jquery/top-jquery-plugins-6133175" target="_blank">http://www.creativebloq.com/jquery/top-jquery-plugins-6133175</a></li>
+<li><a href="http://designshack.net/articles/javascript/40-awesome-jquery-plugins-you-need-to-check-out/" target="_blank">http://designshack.net/articles/javascript/40-awesome-jquery-plugins-you-need-to-check-out/</a></li>
 </ul>
-<p>You&apos;ve only got 7 minutes, so focus on installation and easy demo.</p>
-<h2 id="q-which-do-you-prefer--why">Q. Which do you prefer?  Why?</h2>
-<h2 id="q-what-was-common-to-both">Q. What was common to both?</h2>
-<h2 id="your-own-plugin--tutorial-30-min">Your Own Plugin - Tutorial (30 min)</h2>
-<p><a href="https://github.com/ga-dc/diy_plugin" target="_blank">https://github.com/ga-dc/diy_plugin</a></p>
-<h2 id="break-10-min">Break (10 min)</h2>
-<h2 id="whats-an-iife-20-min">What&apos;s an IIFE? (20 min)</h2>
+</li>
+<li><p>Try and pick something you think you could reasonably attempt to code a small demo in 20 minutes</p>
+</li>
+</ul>
+<p>For 20 minutes:</p>
+<ul>
+<li>Attempt to install &amp; utilize.  </li>
+</ul>
+<p>You&apos;ve only got 20 minutes, so focus on installation and easy demo.</p>
+<h2 id="your-own-plugin--we-do-30120">Your Own Plugin - We do (30/120)</h2>
+<p>Let&apos;s try and understand plugins a little bit deeper by creating our own custom made jQuery plugin. We&apos;ll be modeling our plugin after the one in these <a href="https://learn.jquery.com/plugins/basic-plugin-creation/#basic-plugin-authoring" target="_blank">jQuery docs</a></p>
+<p>Lets start by creating all the files we&apos;ll need:</p>
+<pre><code class="lang-bash">mkdir greenify
+<span class="hljs-built_in">cd</span> greenify
+touch index.html
+touch script.js
+touch greenify.js
+</code></pre>
+<blockquote>
+<p>Here we&apos;re just making a regular old <code>index.html</code> and <code>script.js</code>. Initially we&apos;ll be defining most of our plugins functionality in <code>script.js</code> and then we&apos;ll abstract the plugin portion to <code>greenify.js</code>. <code>greenify.js</code> will eventually be the jQuery plugin we&apos;ll be building.</p>
+</blockquote>
+<p>In <code>index.html</code>:</p>
+<pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">&quot;en&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;UTF-8&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Greenify Demo<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- some headers we&apos;ll be using as click event listeners --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Make a div<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>Make em green<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span>Add a green div<span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- including jquery and script files we&apos;ll need --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&apos;https://code.jquery.com/jquery-2.1.4.min.js&apos;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&apos;greenify.js&apos;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&apos;script.js&apos;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<p>We&apos;ll be adding different bits of functionality in <code>script.js</code> incrementally throughout the next bit.</p>
+<p>First add the following code to <code>script.js</code></p>
+<pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  $(<span class="hljs-string">&quot;h1&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    $(<span class="hljs-string">&quot;body&quot;</span>).append($(<span class="hljs-string">&quot;&lt;div&gt;jQuery plugins are cool!&lt;/div&gt;&quot;</span>))
+  })
+})
+</code></pre>
+<p>We haven&apos;t added anything new just yet, all we&apos;ve done is added an event listener to an <code>h1</code> that adds a <code>div</code> to the <code>body</code>. Let&apos;s now define our jQuery plugin and use it in a click event on the <code>h2</code>.</p>
+<p>In <code>script.js</code>:</p>
+<pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>)</span>{
+    $.fn.greenify = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">this</span>.css(<span class="hljs-string">&quot;color&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>)
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+    }
+  })(jQuery);
+
+  $(<span class="hljs-string">&quot;h1&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    $(<span class="hljs-string">&quot;body&quot;</span>).append($(<span class="hljs-string">&quot;&lt;div&gt;jQuery plugins are cool!&lt;/div&gt;&quot;</span>))
+  })
+
+  $(<span class="hljs-string">&quot;h2&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    $(<span class="hljs-string">&quot;div&quot;</span>).greenify()
+  })
+})
+</code></pre>
+<p>If we click the <code>h2</code>, we can see all the <code>div</code>&apos;s generated by the <code>h1</code> click event are now green.</p>
+<blockquote>
+<p>Here we are using <code>$.fn</code> as a prototype for the jQuery object such that we can extend the prototypes functionality. Also note that the syntax of the IIFE is very similar to the <code>fixedContent</code> plugin we utilized earlier.</p>
+</blockquote>
+<h2 id="an-aside--weve-seen-these-before--iifes-5125">An Aside - We&apos;ve seen these before - IIFE&apos;s (5/125)</h2>
 <p>An Immediately Invoked Function Expression (IIFE), is exactly what it sounds like... a function that is invoked immediately.</p>
 <pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
   <span class="hljs-comment">// add some code here,</span>
@@ -1347,16 +1463,75 @@ Initialize with:</p>
 </blockquote>
 <h3 id="common-mistake">Common mistake</h3>
 <p>If you forget to wrap your IIFE in parens, you will get <code>SyntaxError: Function statements must have a name.</code></p>
-<h2 id="your-own-plugin-gif-of-the-day-60-min">Your Own Plugin: GIF of the Day (60 min)</h2>
-<p><a href="https://github.com/ga-dc/gif_of_the_day" target="_blank">https://github.com/ga-dc/gif_of_the_day</a></p>
+<h2 id="leverage-your-existing-plugin">Leverage your existing plugin</h2>
+<p>Make a plugin... using a plugin!</p>
+<p>Add this to our <code>script.js</code>:</p>
+<pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>)</span>{
+    $.fn.greenify = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">this</span>.css(<span class="hljs-string">&quot;color&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>)
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+    }
+
+    <span class="hljs-comment">// added this function that uses the greenify function we defined above</span>
+    $.fn.addGreenDiv = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">this</span>.append($(<span class="hljs-string">&quot;&lt;div&gt;jQuery plugins are really really cool!&lt;/div&gt;&quot;</span>).greenify())
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+    }
+  })(jQuery);
+
+  $(<span class="hljs-string">&quot;h1&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    $(<span class="hljs-string">&quot;body&quot;</span>).append($(<span class="hljs-string">&quot;&lt;div&gt;jQuery plugins are cool!&lt;/div&gt;&quot;</span>))
+  })
+
+  $(<span class="hljs-string">&quot;h2&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    $(<span class="hljs-string">&quot;div&quot;</span>).greenify()
+  })
+
+  $(<span class="hljs-string">&quot;h3&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    $(<span class="hljs-string">&quot;body&quot;</span>).addGreenDiv()
+  })
+})
+</code></pre>
+<p>Click on that <code>h3</code> and you should see a green <code>jQuery plugins are really really cool!</code></p>
 <h2 id="dont-break-the-chain">Don&apos;t break the chain!</h2>
+<p>Something we haven&apos;t talked about is the fact that we return <code>this</code> in our plugin definition. If we try out our code as it stand, it works great. Try removing</p>
+<pre><code class="lang-js"><span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+</code></pre>
+<p>You&apos;ll see that that the <code>h1</code> and <code>h2</code> functionalities are still working great, but the <code>h3</code> no longer works. Why do you think this is? (ST - WG)</p>
+<p>In our <code>addGreenDiv</code> function we call greenify on a hard coded div. If <code>greenify</code> doesn&apos;t have an explicit return(ie. missing <code>return this</code>), it returns <code>undefined</code> it appends something that is <code>undefined</code>.</p>
 <p>jQuery functions, by convention, are chainable.  We should remember to return the jQuery object so other methods can be chained.</p>
 <pre><code class="lang-js"><span class="hljs-comment">// allow jQuery chaining</span>
 <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
 </code></pre>
-<p>Chaining example:</p>
-<pre><code class="lang-js">$(<span class="hljs-string">&quot;#welcome&quot;</span>).text(<span class="hljs-string">&quot;Hello, world!&quot;</span>).css(<span class="hljs-string">&quot;color&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>);
+<h2 id="make-it-a-plugin">Make it a plugin</h2>
+<p>Our <code>script.js</code> is getting to cluttery. And our plugin definition is getting mixed in with our logic. Let&apos;s abstract this functionality into a plugin we can use in the future at any time!</p>
+<p>Remember that <code>greenify.js</code> file? What do you think goes in there?</p>
+<p>In <code>greenify.js</code>:</p>
+<pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>)</span>{
+  $.fn.greenify = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">this</span>.css(<span class="hljs-string">&quot;color&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>)
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+  }
+
+  $.fn.addGreenDiv = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">this</span>.append($(<span class="hljs-string">&quot;&lt;div&gt;jQuery plugins are really really cool!&lt;/div&gt;&quot;</span>).greenify())
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+  }
+})(jQuery);
 </code></pre>
+<blockquote>
+<p>make sure to get rid of any duplicate code in your <code>script.js</code> and require <code>greenify.js</code> in your <code>index.html</code></p>
+</blockquote>
+<h2 id="you-do--contribute-to-greenify-10135">You do - Contribute to greenify (10/135)</h2>
+<ul>
+<li>Submit a pull request against <a href="https://github.com/ga-dc/greenify" target="_blank">greenify</a> with a sick new feature to the greenify plugin</li>
+</ul>
+<blockquote>
+<p>In order to submit a PR you will need to fork and clone the above repo.</p>
+</blockquote>
+<h2 id="you-do-gif-of-the-day-rest-of-class-hw">You do: GIF of the Day (Rest of class, HW!)</h2>
+<p><a href="https://github.com/ga-dc/gif_of_the_day" target="_blank">https://github.com/ga-dc/gif_of_the_day</a></p>
 <h2 id="conclusion">Conclusion</h2>
 <ul>
 <li>Where do we find jQuery Plugins?</li>

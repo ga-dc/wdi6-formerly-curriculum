@@ -53,7 +53,7 @@
         data-chapter-title="Views (part 2)"
         data-filepath="11-multi-track/bb_views_part2/readme.md"
         data-basepath="../.."
-        data-revision="Tue Jan 05 2016 22:47:03 GMT+0000 (UTC)"
+        data-revision="Wed Jan 06 2016 13:46:17 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -1228,13 +1228,13 @@
 <li>Create a specialty view.</li>
 </ul>
 <h2 id="quick-recap">Quick Recap</h2>
-<p>This morning Adam went over three types of views we will encounter in Backbone.</p>
+<p>Yesterday, Adrian went over item views and introduced the three types of views we will encounter in Backbone.</p>
 <ol>
 <li><strong>Item views.</strong> Render a single model instance and respond to its changes.</li>
 <li><strong>Collection views.</strong> Render and manage a collection.</li>
 <li><strong>Specialty views.</strong> Views for log-in forms, create/edit forms, etc.</li>
 </ol>
-<p>This afternoon, we will go over the latter two.</p>
+<p>Today, we will go over the latter two.</p>
 <h2 id="model-view-5">Model View (5)</h2>
 <p>So we have a model view for each Grumble. What can it do?</p>
 <ul>
@@ -1248,10 +1248,9 @@
 <li><code>updateGrumble</code>, <code>deleteGrumble</code>.</li>
 </ul>
 </li>
-<li>It also handles non-CRUD interactions (e.g., toggle form, change background to lemonchiffon).</li>
 </ul>
 </li>
-<li>Generates DOM elements (e.g., forms) required for CRUD interactions.<ul>
+<li>Generates and manipulates DOM elements (e.g., forms) required for CRUD interactions.<ul>
 <li>Defined by a Handlebars template: <code>grumbleFormTemplate</code>.</li>
 </ul>
 </li>
@@ -1335,7 +1334,7 @@ App.Views.GrumblesList = Backbone.View.extend({
 grumblesList.$el;
 <span class="hljs-comment">// =&gt; Should return DOM representation of your collection</span>
 
-<span class="hljs-keyword">var</span> grumble = <span class="hljs-keyword">new</span> App.Model.Grumble({
+<span class="hljs-keyword">var</span> grumble = <span class="hljs-keyword">new</span> App.Models.Grumble({
   authorName: <span class="hljs-string">&quot;Chewbacca&quot;</span>,
   content: <span class="hljs-string">&quot;Wrrrroaarrohhh&quot;</span>,
   title: <span class="hljs-string">&quot;Hello there&quot;</span>,
@@ -1363,6 +1362,9 @@ grumblesList.renderOne( grumble );
 grumbles.fetch();
 grumblesList.renderAll();
 </code></pre>
+<blockquote>
+<p>If you bulk copy paste these commands, what problem will you run into?</p>
+</blockquote>
 <h2 id="event-listeners">Event Listeners</h2>
 <p>Like our model view, our collection view also needs event listeners so that it re-renders upon any change.</p>
 <h3 id="exercise-create-event-listeners-for-our-collection-view-10">Exercise: Create event listeners for our collection view. (10)</h3>
@@ -1386,8 +1388,7 @@ grumbles.add({
 </code></pre>
 <p>Hold up. Why don&apos;t we need to pass in an argument to the <code>renderOne</code> callback in our &quot;add&quot; listener?</p>
 <ul>
-<li>Awesome Backbone feature: it just knows!</li>
-<li>&quot;add&quot; inherently passes in a model.</li>
+<li>See <a href="http://backbonejs.org/#Events-catalog" target="_blank">Catalog of Events</a>. What is this telling us?</li>
 </ul>
 <h2 id="update-appjs">Update app.js</h2>
 <h3 id="exercise-update-appjs-so-our-application-instantiates-and-renders-a-collection-view-10">Exercise: Update <code>app.js</code> so our application instantiates and renders a collection view. (10)</h3>
@@ -1409,7 +1410,7 @@ grumbles.add({
 <li>Let&apos;s make a <strong>specialty view.</strong></li>
 </ul>
 <p>Question: why are we not just putting this inside our model or collection views?</p>
-<p>We&apos;ve already gone everything we need to know in order to create a specialty view. Now, it&apos;s just a matter of putting all the pieces together.</p>
+<p>We&apos;ve already got everything we need to know in order to create a specialty view. Now, it&apos;s just a matter of putting all the pieces together.</p>
 <ul>
 <li>You&apos;re going to spend the rest of this class making one.</li>
 <li>It will looking something like the <code>createView</code> below.</li>
@@ -1435,10 +1436,14 @@ grumbles.add({
 </li>
 <li><p>Create a <code>grumbleCreate.js</code> file in your views folder.</p>
 </li>
-<li>In that file, instantiate a new Backbone view called <code>GrumbleCreate</code>.</li>
-<li>Couple your view with the DOM element you created in Step 1.</li>
-<li>Create a handlebars template for your view.</li>
-<li>Define an <code>initialize</code> method that inserts your template into the view&apos;s <code>$el</code>.<ul>
+<li><p>In that file, instantiate a new Backbone view called <code>GrumbleCreate</code>.</p>
+</li>
+<li><p>Couple your view with the DOM element you created in Step 1.</p>
+</li>
+<li><p>Create a handlebars template for your view.</p>
+</li>
+<li><p>Define an <code>initialize</code> method that inserts your template into the view&apos;s <code>$el</code>.</p>
+<ul>
 <li><strong>Hint:</strong> Use <code>.html()</code>.</li>
 </ul>
 </li>
