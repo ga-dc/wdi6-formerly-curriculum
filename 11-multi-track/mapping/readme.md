@@ -407,6 +407,8 @@ Use a "Feature Collection" to recreate the markers and polygons you created in t
 * What exactly is a Feature Collection? An array of features.
 * Need help? Leaflet's [GeoJSON documentation](http://leafletjs.com/examples/geojson.html) will start you on the right path.
 
+[Solution](https://gist.github.com/amaseda/cccf00e502d2995d387c)
+
 ## Break (10 / 2:20)
 
 ## Homework: [Trip Planner](https://github.com/ga-dc/plannr)
