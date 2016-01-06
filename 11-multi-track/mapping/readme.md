@@ -200,7 +200,7 @@ Make five markers!
 * **BUT**, you must use a loop or enumerator to create and render these markers.
 * Use whatever container you want (e.g., array, object) to pass in coordinates to your loop.
 
-**BONUS I:** Write a function that takes coordinates from a form and uses them to add markers to a map.
+**BONUS I:** Use a form to generate markers based on user input.
 
 **BONUS II:** Write a function that generates coordinates from a place description (e.g., "The White House DC") using the [OpenCage Geocoder API](http://geocoder.opencagedata.com/demo.html). Then, add markers to your map using those coordinates.
 * Use [this demo](http://geocoder.opencagedata.com/demo.html) to generate a sample URL.
@@ -241,10 +241,13 @@ var washington = L.polygon([
 
 ### You Do: Markers to Shapes (10 / 1:10)
 
-Modify the previous exercise so that you are using a loop to generate a polygon.
-* The five coordinates you entered earlier should now be the corners of a polygon.
+Use a form to generate polygon vertices based on user input.
+* Feel free to use the `washington` coordinates as test input.
+* **HINT**: The polygon won't show up - and will actually error out! - until it has three vertices.
 
-**BONUSES I & II:** Try out the earlier bonuses if you haven't already and apply them to this exercise prompt.
+[Solution](https://gist.github.com/amaseda/30a00e0f3ae25c1f4cb7)
+
+**BONUS:** Try out Bonus II from the previous exercise if you haven't already.
 
 ## Break (10 / 1:20)
 
