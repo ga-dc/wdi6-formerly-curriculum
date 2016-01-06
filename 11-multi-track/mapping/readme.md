@@ -179,7 +179,7 @@ You should see something like this...
 
 The above tiling isn't the only one we can use. Spend three minutes looking through the below resources for additional tileset links.
 * There are tons of tileLayer links [here](http://leaflet-extras.github.io/leaflet-providers/preview/).
-* There a few more available in [this gist](https://gist.github.com/mourner/1804938) like `OpenCycleMap`.
+* There a few more available in [this gist](https://gist.github.com/mourner/1804938) like `OpenCycleMap`.  
 > Some of these alternate tile sets may require you to modify the key-value pairs you pass into `tileLayer`'s object argument. Feel free to do that. Just make sure to change it back to the in-class example after this exercise.
 
 ## Map Markers (5 / 45)
