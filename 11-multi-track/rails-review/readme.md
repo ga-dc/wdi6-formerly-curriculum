@@ -1,5 +1,15 @@
 # Rails Review
 
+## Screencasts
+
+- https://vimeo.com/150937914
+- https://vimeo.com/150937915
+- https://vimeo.com/150937916
+
+## Solution Code
+
+https://github.com/ga-dc/doughnuts
+
 ## A CRUD App from Scratch
 
     $ rails new doughnuts -d postgresql
