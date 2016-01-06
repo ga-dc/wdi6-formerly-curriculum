@@ -179,7 +179,7 @@ You should see something like this...
 
 The above tiling isn't the only one we can use. Spend three minutes looking through the below resources for additional tileset links.
 * There are tons of tileLayer links [here](http://leaflet-extras.github.io/leaflet-providers/preview/).
-* There a few more available in [this gist](https://gist.github.com/mourner/1804938) like `OpenCycleMap`.
+* There a few more available in [this gist](https://gist.github.com/mourner/1804938) like `OpenCycleMap`.  
 > Some of these alternate tile sets may require you to modify the key-value pairs you pass into `tileLayer`'s object argument. Feel free to do that. Just make sure to change it back to the in-class example after this exercise.
 
 ## Map Markers (5 / 45)
@@ -200,11 +200,14 @@ Make five markers!
 * **BUT**, you must use a loop or enumerator to create and render these markers.
 * Use whatever container you want (e.g., array, object) to pass in coordinates to your loop.
 
-**BONUS I:** Write a function that takes coordinates from a form and uses them to add markers to a map.
+[Solution](https://gist.github.com/amaseda/415aa6d7a73f9c8b01be)
+
+**BONUS I:** Use a form to generate markers based on user input.
 
 **BONUS II:** Write a function that generates coordinates from a place description (e.g., "The White House DC") using the [OpenCage Geocoder API](http://geocoder.opencagedata.com/demo.html). Then, add markers to your map using those coordinates.
 * Use [this demo](http://geocoder.opencagedata.com/demo.html) to generate a sample URL.
 * You can sign up for an API key [here](http://geocoder.opencagedata.com/api.html#quickstart). If you're having trouble, you can use mine.  
+
 > There are other geocoders out there. If you have a different one you prefer, feel free to use it!  
 
 ## Shapes (5 / 1:00)
@@ -238,12 +241,30 @@ var washington = L.polygon([
 ]).addTo(map);
 ```
 
-### You Do: Markers to Shapes (10 / 1:10)
+### You Do: Polygons (10 / 1:10)
 
-Modify the previous exercise so that you are using a loop to generate a polygon.
-* The five coordinates you entered earlier should now be the corners of a polygon.
+Use a form to generate polygon vertices based on user input.
+* The polygon should not render until it has at least three vertices.
+* If it helps, place a marker on top of each user-submitted coordinate.
+* Feel free to use the `washington` coordinates as test input.
 
-**BONUSES I & II:** Try out the earlier bonuses if you haven't already and apply them to this exercise prompt.
+Here's some HTML to get you started. Place it right above your map `<div>`.  
+
+```html
+<input id="lat" type="text" placeholder="latitude">
+<input id="long" type="text" placeholder="longitude">
+<button>Submit</button>
+```
+
+If you want to do this using jQuery, don't forget to link to a CDN!
+
+```html
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+```
+
+[Solution](https://gist.github.com/amaseda/30a00e0f3ae25c1f4cb7)
+
+**BONUS:** Try out Bonus II from the previous exercise if you haven't already.
 
 ## Break (10 / 1:20)
 
@@ -305,6 +326,8 @@ Check out Leaflet's [event documentation](http://leafletjs.com/reference.html#ev
 
 Create an event listener that adds a marker to the map wherever the user clicks.
 * That marker should also have a pop-up that displays the latitude-longitude for that location.
+
+[Solution](https://gist.github.com/amaseda/aac61ffb56814fc20860)
 
 ## GeoJSON
 
@@ -394,8 +417,6 @@ Use a "Feature Collection" to recreate the markers and polygons you created in t
 * [Disabling Map Zooming and Panning](https://www.mapbox.com/mapbox.js/example/v1.0.0/disable-zooming-panning/)
 
 ## Cheat Sheet
-
-*
 
 ### Map with Tile Layer
 
