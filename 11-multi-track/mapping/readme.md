@@ -205,6 +205,7 @@ Make five markers!
 **BONUS II:** Write a function that generates coordinates from a place description (e.g., "The White House DC") using the [OpenCage Geocoder API](http://geocoder.opencagedata.com/demo.html). Then, add markers to your map using those coordinates.
 * Use [this demo](http://geocoder.opencagedata.com/demo.html) to generate a sample URL.
 * You can sign up for an API key [here](http://geocoder.opencagedata.com/api.html#quickstart). If you're having trouble, you can use mine.  
+
 > There are other geocoders out there. If you have a different one you prefer, feel free to use it!  
 
 ## Shapes (5 / 1:00)
@@ -394,8 +395,6 @@ Use a "Feature Collection" to recreate the markers and polygons you created in t
 * [Disabling Map Zooming and Panning](https://www.mapbox.com/mapbox.js/example/v1.0.0/disable-zooming-panning/)
 
 ## Cheat Sheet
-
-*
 
 ### Map with Tile Layer
 
