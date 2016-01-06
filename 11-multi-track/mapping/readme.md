@@ -133,6 +133,7 @@ Click "Home" in the left sidebar to return to your Mapbox dashboard.
 
 var map = L.map('map').setView([38.9038829, -77.0360032], 15);
 ```
+> You're encouraged to use [whatever coordinates](http://itouchmap.com/latlong.html) you'd like from here on out. Make this in-class example your own!
 
 `L.map()`
 * This method takes the ID of your map container as an argument. In this case, it's simply "map".
@@ -174,14 +175,14 @@ You should see something like this...
 
 **BOOM**, we've got a map! Now let's do something with it.
 
-### Exercise: Fun with Tiling
+### Exercise: Fun with Tiling (5 / 40)
 
-The above tiling isn't the only one we can use. Here are some links that contain URLs to alternate tiling sources.
+The above tiling isn't the only one we can use. Spend three minutes looking through the below resources for additional tileset links.
 * There are tons of tileLayer links [here](http://leaflet-extras.github.io/leaflet-providers/preview/).
 * There a few more available in [this gist](https://gist.github.com/mourner/1804938) like `OpenCycleMap`.
 > Some of these alternate tile sets may require you to modify the key-value pairs you pass into `tileLayer`'s object argument. Feel free to do that. Just make sure to change it back to the in-class example after this exercise.
 
-## Map Markers (5 / 40)
+## Map Markers (5 / 45)
 
 Add a marker to your map using the `L.marker` method.
 * Takes an array of latitude and longitude as an argument.
@@ -192,7 +193,7 @@ Add a marker to your map using the `L.marker` method.
 var generalAssembly = L.marker( [38.9048542, -77.0339403] ).addTo( map );
 ```
 
-### You Do: Make Some Markers (10 / 50)
+### You Do: Make Some Markers (10 / 55)
 
 Make five markers!
 * Use the same Leaflet syntax we just used in the class.
@@ -206,7 +207,7 @@ Make five markers!
 * You can sign up for an API key [here](http://geocoder.opencagedata.com/api.html#quickstart). If you're having trouble, you can use mine.  
 > There are other geocoders out there. If you have a different one you prefer, feel free to use it!  
 
-## Shapes (5 / 55)
+## Shapes (5 / 1:00)
 
 You can also use a circle to cover a portion of a map using `L.circle()` and `.addTo( map )`. Takes three arguments...
   1. Latitude/longitude array.
@@ -237,16 +238,16 @@ var washington = L.polygon([
 ]).addTo(map);
 ```
 
-### You Do: Markers to Shapes (10 / 65)
+### You Do: Markers to Shapes (10 / 1:10)
 
 Modify the previous exercise so that you are using a loop to generate a polygon.
 * The five coordinates you entered earlier should now be the corners of a polygon.
 
 **BONUSES I & II:** Try out the earlier bonuses if you haven't already and apply them to this exercise prompt.
 
-## Break (10 / 75)
+## Break (10 / 1:20)
 
-## Map Pop-Ups (5 / 80)
+## Map Pop-Ups (5 / 1:25)
 
 Say you look up a restaurant on Google Maps. When you click on its marker, you would expect to see some helpful information like address, operating hours, or something.
 * Let's create a simple version of that using Leaflet's Pop-Up feature.
@@ -263,7 +264,7 @@ generalAssembly.bindPopup(
 )
 ```
 
-## Events (15 / 95)
+## Events (15 / 1:40)
 
 Pop-ups are cool, but they're not enough. We want to be able to interact with our map and make use of the information that comes with it. **Enter events!**  
 * The great thing about Leaflet events is that we can use the Javascript skills we learned at the start of WDI.
@@ -300,7 +301,7 @@ map.on( "click", function( event ){
 
 Check out Leaflet's [event documentation](http://leafletjs.com/reference.html#events) if you want to learn more.
 
-### Exercise: Click = Marker + Pop-Up (10)
+### Exercise: Click = Marker + Pop-Up (1:50)
 
 Create an event listener that adds a marker to the map wherever the user clicks.
 * That marker should also have a pop-up that displays the latitude-longitude for that location.
@@ -315,7 +316,7 @@ GeoJSON is essentially a JSON object that contains a variety of information abou
 * With Leaflet, rather than hardcode information about a marker, circle or polygon into our code, we can import that geographical information using GeoJSON.
 * Though Leaflet is a specific mapping library, GeoJSON is used elsewhere in the wild (like Google Maps).
 
-### GeoJSON Components (10 / 115)
+### GeoJSON Components (10 / 2:00)
 
 All GeoJSON objects must have a `type` value, which can equal a Geometry type, "Feature" or "FeatureCollection".
 * Geometry types
@@ -377,13 +378,13 @@ And we should see something like this...
 * [Here's our earlier monuments example](https://gist.github.com/amaseda/e6abab0e337098a036ba).
 * More info [here](https://help.github.com/articles/mapping-geojson-files-on-github/).
 
-## Exercise: Using GeoJSON (10 / 125)
+## Exercise: Using GeoJSON (10 / 2:10)
 
 Use a "Feature Collection" to recreate the markers and polygons you created in the first two Marker and Polygon exercises.
 * What exactly is a Feature Collection? An array of features.
 * Need help? Leaflet's [GeoJSON documentation](http://leafletjs.com/examples/geojson.html) will start you on the right path.
 
-## Break (10 / 135)
+## Break (10 / 2:20)
 
 ## Homework: [Trip Planner](https://github.com/ga-dc/plannr)
 
