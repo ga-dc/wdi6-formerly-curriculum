@@ -200,6 +200,8 @@ Make five markers!
 * **BUT**, you must use a loop or enumerator to create and render these markers.
 * Use whatever container you want (e.g., array, object) to pass in coordinates to your loop.
 
+[Solution](https://gist.github.com/amaseda/415aa6d7a73f9c8b01be)
+
 **BONUS I:** Use a form to generate markers based on user input.
 
 **BONUS II:** Write a function that generates coordinates from a place description (e.g., "The White House DC") using the [OpenCage Geocoder API](http://geocoder.opencagedata.com/demo.html). Then, add markers to your map using those coordinates.
@@ -239,11 +241,26 @@ var washington = L.polygon([
 ]).addTo(map);
 ```
 
-### You Do: Markers to Shapes (10 / 1:10)
+### You Do: Polygons (10 / 1:10)
 
 Use a form to generate polygon vertices based on user input.
+* The polygon should not render until it has at least three vertices.
+* If it helps, place a marker on top of each user-submitted coordinate.
 * Feel free to use the `washington` coordinates as test input.
-* **HINT**: The polygon won't show up - and will actually error out! - until it has three vertices.
+
+Here's some HTML to get you started. Place it right above your map `<div>`.  
+
+```html
+<input id="lat" type="text" placeholder="latitude">
+<input id="long" type="text" placeholder="longitude">
+<button>Submit</button>
+```
+
+If you want to do this using jQuery, don't forget to link to a CDN!
+
+```html
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+```
 
 [Solution](https://gist.github.com/amaseda/30a00e0f3ae25c1f4cb7)
 
