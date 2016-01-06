@@ -327,6 +327,8 @@ Check out Leaflet's [event documentation](http://leafletjs.com/reference.html#ev
 Create an event listener that adds a marker to the map wherever the user clicks.
 * That marker should also have a pop-up that displays the latitude-longitude for that location.
 
+[Solution](https://gist.github.com/amaseda/aac61ffb56814fc20860)
+
 ## GeoJSON
 
 ### What is GeoJSON?
