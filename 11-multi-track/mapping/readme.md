@@ -62,8 +62,11 @@ Why Leaflet?
 
 ### Quick Start
 
-[Clone this repo.](https://github.com/ga-dc/mapping-inclass)
-* Just contains some empty HTML, CSS and JS files.
+Let's create some empty HTML, CSS and JS files in our in-class directory.
+
+```bash
+touch index.html style.css app.js
+```
 
 ### Link to the Leaflet stylesheet
 
@@ -112,14 +115,14 @@ Why Leaflet?
 [Sign up for Mapbox account](https://www.mapbox.com/).
 
 #### Map ID
-After creating an account, click "Projects" towards the right of the navbar. It may look like a folder icon without text.
-* On the following screen, click "My First Map".
-* Copy the value in the **Map ID** field. You'll need this later.
+After creating an account, click "Studio" towards the right of the navbar. It should look like a button containing your avatar.
+* On the next page, click "View classic styles" at the bottom of the right sidebar.
+* Click on the "Mapbox Editor Project" tab under the "Mapbox classic" header.
+* Copy the value next to "My First Map". It should begin with your username and look something like this: `amaseda.731o5c1f`
 
 #### API Access Token
-Then, click on your username / avatar in the navbar.
-* In the new sub-navbar, click on "Apps."
-* Copy the value to the right of **Default Public Token**. You'll also need this later.
+Click "Home" in the left sidebar to return to your Mapbox dashboard.
+* Your access token is located in the second item in the right sidebar. Copy that long string that begins with `pk.`
 
 ## Create a Map
 
@@ -130,6 +133,7 @@ Then, click on your username / avatar in the navbar.
 
 var map = L.map('map').setView([38.9038829, -77.0360032], 15);
 ```
+> You're encouraged to use [whatever coordinates](http://itouchmap.com/latlong.html) you'd like from here on out. Make this in-class example your own!
 
 `L.map()`
 * This method takes the ID of your map container as an argument. In this case, it's simply "map".
@@ -171,11 +175,14 @@ You should see something like this...
 
 **BOOM**, we've got a map! Now let's do something with it.
 
-**Note:** The above tiling isn't the only one we can use.
-* In fact, Mapbox isn't the only provider of Leaflet map tiling.
-* Check out [this gist](https://gist.github.com/mourner/1804938), which contains tiling links for a number of different map tiles like `OpenCycleMap`.
+### Exercise: Fun with Tiling (5 / 40)
 
-## Map Markers (5 / 40)
+The above tiling isn't the only one we can use. Spend three minutes looking through the below resources for additional tileset links.
+* There are tons of tileLayer links [here](http://leaflet-extras.github.io/leaflet-providers/preview/).
+* There a few more available in [this gist](https://gist.github.com/mourner/1804938) like `OpenCycleMap`.
+> Some of these alternate tile sets may require you to modify the key-value pairs you pass into `tileLayer`'s object argument. Feel free to do that. Just make sure to change it back to the in-class example after this exercise.
+
+## Map Markers (5 / 45)
 
 Add a marker to your map using the `L.marker` method.
 * Takes an array of latitude and longitude as an argument.
@@ -186,7 +193,7 @@ Add a marker to your map using the `L.marker` method.
 var generalAssembly = L.marker( [38.9048542, -77.0339403] ).addTo( map );
 ```
 
-### You Do: Make Some Markers (10 / 50)
+### You Do: Make Some Markers (10 / 55)
 
 Make five markers!
 * Use the same Leaflet syntax we just used in the class.
@@ -200,7 +207,7 @@ Make five markers!
 * You can sign up for an API key [here](http://geocoder.opencagedata.com/api.html#quickstart). If you're having trouble, you can use mine.  
 > There are other geocoders out there. If you have a different one you prefer, feel free to use it!  
 
-## Shapes (5 / 55)
+## Shapes (5 / 1:00)
 
 You can also use a circle to cover a portion of a map using `L.circle()` and `.addTo( map )`. Takes three arguments...
   1. Latitude/longitude array.
@@ -231,16 +238,16 @@ var washington = L.polygon([
 ]).addTo(map);
 ```
 
-### You Do: Markers to Shapes (10 / 65)
+### You Do: Markers to Shapes (10 / 1:10)
 
 Modify the previous exercise so that you are using a loop to generate a polygon.
 * The five coordinates you entered earlier should now be the corners of a polygon.
 
 **BONUSES I & II:** Try out the earlier bonuses if you haven't already and apply them to this exercise prompt.
 
-## Break (10 / 75)
+## Break (10 / 1:20)
 
-## Map Pop-Ups (5 / 80)
+## Map Pop-Ups (5 / 1:25)
 
 Say you look up a restaurant on Google Maps. When you click on its marker, you would expect to see some helpful information like address, operating hours, or something.
 * Let's create a simple version of that using Leaflet's Pop-Up feature.
@@ -257,7 +264,7 @@ generalAssembly.bindPopup(
 )
 ```
 
-## Events (15 / 95)
+## Events (15 / 1:40)
 
 Pop-ups are cool, but they're not enough. We want to be able to interact with our map and make use of the information that comes with it. **Enter events!**  
 * The great thing about Leaflet events is that we can use the Javascript skills we learned at the start of WDI.
@@ -294,7 +301,7 @@ map.on( "click", function( event ){
 
 Check out Leaflet's [event documentation](http://leafletjs.com/reference.html#events) if you want to learn more.
 
-### Exercise: Click = Marker + Pop-Up (10)
+### Exercise: Click = Marker + Pop-Up (1:50)
 
 Create an event listener that adds a marker to the map wherever the user clicks.
 * That marker should also have a pop-up that displays the latitude-longitude for that location.
@@ -309,7 +316,7 @@ GeoJSON is essentially a JSON object that contains a variety of information abou
 * With Leaflet, rather than hardcode information about a marker, circle or polygon into our code, we can import that geographical information using GeoJSON.
 * Though Leaflet is a specific mapping library, GeoJSON is used elsewhere in the wild (like Google Maps).
 
-### GeoJSON Components (10 / 115)
+### GeoJSON Components (10 / 2:00)
 
 All GeoJSON objects must have a `type` value, which can equal a Geometry type, "Feature" or "FeatureCollection".
 * Geometry types
@@ -371,13 +378,13 @@ And we should see something like this...
 * [Here's our earlier monuments example](https://gist.github.com/amaseda/e6abab0e337098a036ba).
 * More info [here](https://help.github.com/articles/mapping-geojson-files-on-github/).
 
-## Exercise: Using GeoJSON (10 / 125)
+## Exercise: Using GeoJSON (10 / 2:10)
 
 Use a "Feature Collection" to recreate the markers and polygons you created in the first two Marker and Polygon exercises.
 * What exactly is a Feature Collection? An array of features.
 * Need help? Leaflet's [GeoJSON documentation](http://leafletjs.com/examples/geojson.html) will start you on the right path.
 
-## Break (10 / 135)
+## Break (10 / 2:20)
 
 ## Homework: [Trip Planner](https://github.com/ga-dc/plannr)
 
@@ -385,3 +392,85 @@ Use a "Feature Collection" to recreate the markers and polygons you created in t
 
 ## Additional Reading
 * [Disabling Map Zooming and Panning](https://www.mapbox.com/mapbox.js/example/v1.0.0/disable-zooming-panning/)
+
+## Cheat Sheet
+
+*
+
+### Map with Tile Layer
+
+```js
+var map = L.map('map').setView([38.9038829, -77.0360032], 15);
+
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+
+    // Replace the below properties with your `Map ID` and `Default Public Token` values you saved earlier, respectively.
+    id: 'INSERT_MAP_ID_HERE',
+    accessToken: 'INSERT_PUBLIC_TOKEN_HERE'
+}).addTo(map);
+```
+
+### Markers, Shapes and Pop-Ups
+
+```js
+// Marker
+var generalAssembly = L.marker( [38.9048542, -77.0339403] ).addTo( map );
+
+// Circle
+var dupontCircle = L.circle([38.9111048, -77.042613,15], 500, {
+    color: 'pink',
+    fillColor: 'red',
+    fillOpacity: 0.5
+}).addTo(map);
+
+// Polygon
+var washington = L.polygon([
+    [38.934347, -77.119758],
+    [38.995421, -77.041006],
+    [38.892885, -76.909599],
+    [38.791605, -77.038860]
+]).addTo(map);
+
+// Pop-Up
+generalAssembly.bindPopup(
+  "<h3>General Assembly DC</h3><p>1133 15th St., NW</p><p>8th Floor</p><p>Washington, DC 20005</p>"
+)
+```
+
+### Click Event
+
+```js
+var clickPopup = L.popup();
+
+map.on( "click", function( event ){
+  clickPopup
+  .setLatLng( event.latlng )
+  .setContent( "Coordinates: " + event.latlng.toString() )
+  .openOn( map );
+})
+```
+
+### GeoJSON Example
+
+```js
+var monumentTrail = {
+  "type": "Feature",
+  "properties": {
+    "name": "Monuments Trail",
+    "city": "Washington, DC",
+    "numStops": 5
+  },
+  "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+      [[-77.0352791,38.8894838], [-77.050176,38.8892686]],
+      [[-77.050176,38.8892686], [-77.0364707,38.8813726]],
+      [[-77.0364707,38.8813726], [-77.0090505,38.8899389]]
+    ]
+  }
+}
+
+L.geoJson( monumentTrail ).addTo( map );
+```
