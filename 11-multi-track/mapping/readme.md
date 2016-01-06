@@ -174,9 +174,12 @@ You should see something like this...
 
 **BOOM**, we've got a map! Now let's do something with it.
 
-**Note:** The above tiling isn't the only one we can use.
-* In fact, Mapbox isn't the only provider of Leaflet map tiling.
-* Check out [this gist](https://gist.github.com/mourner/1804938), which contains tiling links for a number of different map tiles like `OpenCycleMap`.
+### Exercise: Fun with Tiling
+
+The above tiling isn't the only one we can use. Here are some links that contain URLs to alternate tiling sources.
+* There are tons of tileLayer links [here](http://leaflet-extras.github.io/leaflet-providers/preview/).
+* There a few more available in [this gist](https://gist.github.com/mourner/1804938) like `OpenCycleMap`.
+> Some of these alternate tile sets may require you to modify the key-value pairs you pass into `tileLayer`'s object argument. Feel free to do that. Just make sure to change it back to the in-class example after this exercise.
 
 ## Map Markers (5 / 40)
 
