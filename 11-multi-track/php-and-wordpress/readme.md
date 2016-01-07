@@ -1,4 +1,4 @@
-# Making a "Contact Me" form with PHP
+# PHP && Wordpress
 
 [Screencast](http://youtu.be/O11hPhF5GAA)
 
@@ -6,6 +6,11 @@
 
 - Start Apache running locally on your computer.
 - Write a PHP function that contains variables.
+- Understand the capabilities of WordPress as a blogging platform and CMS.
+- Incorporate basic HTML and CSS in a WordPress Theme
+- Develop a custom WordPress Theme from scratch
+- Learn how to customize navigation
+- Understand how to leverage the WordPress plug-in library
 
 ## What is PHP, and why does everyone hate it?
 
@@ -15,7 +20,7 @@ However, nothing like it really existed, so other people caught wind of what he 
 
 Thus, PHP evolved organically. And as a result, it's kind of a mess.
 
-PHP is very procedural. It doesn't really have objects. Instead of giving you an Array object that has methods attached to it, it just gives you 53 functions with "array" in the name -- 9500 built-in functions, all in the global namespace.
+PHP is very procedural. It doesn't really have objects. Instead of giving you an Array object that has methods attached to it, it just gives you 53 functions with "array" in the name -- 9500 built-in functions, all in the global namespace. - http://php.net/manual/en/function.array.php
 
 ### At the same time...
 
@@ -272,34 +277,14 @@ for($x = 1; $x <= $number; $x++){
 
 If I put this script online right now, it would work fine!
 
+## Hungry for more PHP?
+
+- http://www.phptherightway.com/
+- http://www.slimframework.com/
+- https://laravel.com/
+- http://php.net/manual/en/internals2.php
+
 # Wordpress Theme Development
-
-## Introduce Yourself
-
-- Name
-- What do you want to get out of this workshop?
-- What (if anything) have you done with WordPress?
-
-## Learning Objectives
-
-- Understand the capabilities of WordPress as a blogging platform and CMS.
-- Incorporate basic HTML and CSS in a WordPress Theme
-- Develop a custom WordPress Theme from scratch
-- Learn how to customize navigation
-- Understand how to leverage the WordPress plug-in library
-
-## Schedule
-
-- Getting started with WordPress
-- wordpress.com vs wordpress.org
-- Local WordPress development
-- WordPress Themes
-- Posts and Pages
-- Widgets and Plugins
-- Custom Posts and Pages
-- What is the WordPress Codex?
-- What is the WP Hierarchy
-- Domains, Hosting, and Deployment
 
 ## Getting started with WordPress
 
@@ -331,7 +316,7 @@ less flexible than the WordPress you download and install yourself.
 - Click on your newly created project folder and follow the prompt to create your wp-config.php file
 - Go to the start page for MAMP or XAMPP and go to the phpMyAdmin portal.
 - Click on the database tab and create a new database which you can name the same as your project
-- Go back to your web browser to finish setting up WordPress locally and enter in the database name you just created. Since we are working locally you can use ‘root’ for the database username and password. 
+- Go back to your web browser to finish setting up WordPress locally and enter in the database name you just created. Since we are working locally you can use ‘root’ for the database username and password.
 - Run the install
 - Enter a site title, username, and password and uncheck private so search engines do not index your site. This username and password is what you will use to login to localhost/projectname/wp-admin
 - Click install WordPress and login to your newly created, locally hosted WordPress site!
