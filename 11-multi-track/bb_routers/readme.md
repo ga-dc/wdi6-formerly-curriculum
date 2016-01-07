@@ -73,9 +73,10 @@ $(document).ready(function() {
 
 > We got rid of our collection instantiation and view instantiations because that will be the job of the router. Additionally we created another name space in our global `App` object for `Routers`
 
-The next thing we should do is create a file for our router defintion and link it in our `index.html`. In the terminal:
+The next thing we should do is create a folder and file for our router defintion and link it in our `index.html`. In the terminal:
 
 ```bash
+$ mkdir js/backbone/routers
 $ touch js/backbone/routers/grumble.js
 ```
 
@@ -241,7 +242,7 @@ We can actually have an anchor tag that links directly to one of the deep links 
 ## Lunch
 
 ## Routing for editing a grumble - Overview (5/5)
-So before we left off, we managed state in our application by updating urls and providing deep links for the index and new grumble route. The last state that we haven't encapsulated is the editing capability of our application.
+Before we left off, we managed state in our application by updating urls and providing deep links for the index and new grumble route. The last state that we haven't encapsulated is the editing capability of our application.
 
 It would be really nice if we could deep link to an edit form for a particular model. IE if I click on update Grumble it should update the url such that I can visit that url later and the edit form for that specific grumble is open.
 
@@ -330,5 +331,8 @@ Sick! Now we have deep linking for our edit routes. What's missing?
 - make sure this route is deep linked
 
 ### Bonus
-- add a button to the the grumble view that allows a user to switch from the index view(all grumbles) to the show view of that grumble.
+- add a button to each grumble view
 - When the button in the grumble view is clicked on the index view, it transitions that grumble view into the show view. And vice versa.
+
+### Super Mega Bonus
+- Preserve state for editing multiple grumbles
