@@ -394,7 +394,11 @@ Add a `screenshot.jpg` file with the image of your choosing.
 <?php
 function milky_way_scripts(){
   wp_enqueue_style("styles", get_stylesheet_uri());
-  wp_enqueue_script("scripts", get_template_directory_uri() ."/js/app.js");
+  wp_enqueue_script(
+    "scripts",
+    get_template_directory_uri() ."/js/app.js",
+    array("jquery")
+  );
 }
 add_action('wp_enqueue_scripts', 'milky_way_scripts');
 ?>
@@ -505,13 +509,17 @@ Custom Post Type UI is often used in conjunction with Advanced Custom Fields.
 
 This is an example of a custom post type: http://www.eachpeachmarket.com/recipes/
 
-### [SEO by Yoast](https://wordpress.org/plugins/wordpress-seo/)
+## You do: Plugin Exploration
 
-### [Google Analytics](https://wordpress.org/plugins/google-analytics-for-wordpress/)
+Count off 1-7
 
-### [Contact Form 7](https://wordpress.org/plugins/contact-form-7/)
-
-Also https://wordpress.org/plugins/postman-smtp/
+1. https://wordpress.org/plugins/shortcodes-ultimate/
+2. https://wordpress.org/plugins/w3-total-cache/
+3. https://wordpress.org/plugins/contact-form-7/
+4. https://wordpress.org/plugins/wordpress-seo/
+5. https://wordpress.org/plugins/portfolio-slideshow/
+6. https://wordpress.org/plugins/nextgen-gallery/
+7. https://wordpress.org/plugins/buddypress/
 
 ### Deployment
 
