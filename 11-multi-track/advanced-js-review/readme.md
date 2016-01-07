@@ -1,5 +1,6 @@
 # Advanced Javascript Review
 
+[WDI-7 Code Snippets](https://github.com/ga-dc/js-review-whiteboard-questions/blob/master/adv-js-review.js)
 ## Whiteboard Questions
 
 ### Loops
