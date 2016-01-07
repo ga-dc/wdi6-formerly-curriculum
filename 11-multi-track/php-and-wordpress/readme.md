@@ -323,9 +323,7 @@ less flexible than the WordPress you download and install yourself.
 
 ### You do: Wordpress Admin
 
-- Click admin link.
 - Create at least two posts and two new pages.
-- Configure your site to show posts on the home page.
 - Change the site’s theme.
 
 ## WordPress Themes
