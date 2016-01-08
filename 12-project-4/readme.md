@@ -5,27 +5,18 @@ that will help you with your final project.
 
 ## Monday
 
-- 3:00 - 4:00
-  - Angular Review (Robin)
+- 11:30 - 12:30
+  - Complex Relationships in Mongo (John)
 
 ## Tuesday
 
-- 3:00 - 4:00
-  - Self-Referential Associations (Friending) (Andy)
+- 11:30 - 12:30
+  - Design Principles: Code, Not UI (Matt)
 
 ## Wednesday
 
-- 11:00 - 12:00
-  - Own Your Workstation: Bash profiles, cool Homebrew tricks, and more (Matt)
-- 3:00 - 4:00
-  - Deploying w/ Digital Ocean (Adrian)
-
-## Thursday
-
-- 11:00 - 12:00
-  - Domains, DNS, and Heroku (Jesse)
-- 2:30 - 3:30
-  - Meta Programming (Adam)
+- 11:30 - 12:30
+  - Deploying w/ Digital Ocean (Adam)
 
 ## Screencasts
 
