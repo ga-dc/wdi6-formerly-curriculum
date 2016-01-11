@@ -24,7 +24,18 @@ What does not specific enough mean? What kind of choices might we be making depe
 
 ### One-to-Few
 
-<script src="https://gist.github.com/amyberman3/691ac932f11a94c3f300.js"></script>
+``` js
+> db.person.findOne()
+{
+  name: 'Kate Monster',
+  ssn: '123-456-7890',
+  addresses : [
+     { street: '123 Sesame St', city: 'Anytown', cc: 'USA' },
+     { street: '123 Avenue Q', city: 'New York', cc: 'USA' }
+  ]
+}
+```
+
 
 The first type of relationship we learn about studying mongo is the nested document. This is neat since it is something we specifically could not do in a relational database but it is neither without disadvantages nor our only means of relating documents.
 
@@ -34,13 +45,40 @@ However, for something like students and assignments — even if there are relat
 
 ### One-to-Many
 
-<script src="https://gist.github.com/amyberman3/fc40a0e3222c8fed43f1.js"></script>
+```
+> db.parts.findOne()
+{
+    _id : ObjectID('AAAA'),
+    partno : '123-aff-456',
+    name : '#4 grommet',
+    qty: 94,
+    cost: 0.94,
+    price: 3.99
+}
+```
 
-<script src="https://gist.github.com/amyberman3/9b07ff94031ca2af6694.js"></script>
+```
+> db.products.findOne()
+{
+    name : 'left-handed smoke shifter',
+    manufacturer : 'Acme Corp',
+    catalog_number: 1234,
+    parts : [     // array of references to Part documents
+        ObjectID('AAAA'),    // reference to the #4 grommet above
+        ObjectID('F17C'),    // reference to a different Part
+        ObjectID('D2AA'),
+        // etc
+    ]
+```
 
 > For efficient operation, you’d need to have an index on ‘products.catalog_number’. Note that there will always be an index on ‘parts._id’, so that query will always be efficient.
 
-<script src="https://gist.github.com/amyberman3/4065561e7c817af4bd19.js"></script>
+```
+ // Fetch the Product document identified by this catalog number
+> product = db.products.findOne({catalog_number: 1234});
+   // Fetch all the Parts that are linked to this Product
+> product_parts = db.parts.find({_id: { $in : product.parts } } ).toArray() ;
+```
 
 We can reference foreign ids just the same in Mongo as we did with PostgreSQL. Notice in the example here the parts table is searched explicitly for the ids in the product.parts array — this is like what ActiveRecord was doing for us under the hood. Mongoose provides tools for automating this as well.
 
@@ -68,10 +106,9 @@ We are considering two things when we model relationships in mongo:
 
 > What is the cardinality of the relationship: is it one-to-few; one-to-many; or one-to-squillions?
 
-## Intermediate Techniques: Bi-directional Referencing and Denormalization
+## Further Reading: Intermediate Techniques: Bi-directional Referencing and Denormalization
 
 As we have discussed — there are definate limitations to all of our basic techniques for modeling relationships. We can use more sophisticated techniques to work around some of these limitations. These techniques too have advantages and disadvantages so we must be very considerate of the perticulars of our problem when choosing which techniques to employ.
 
-### Two-way referencing
+[Intermediate Mongo Techniques](http://blog.mongodb.org/post/87892923503/6-rules-of-thumb-for-mongodb-schema-design-part-2)
 
-<script src="https://gist.github.com/anonymous/98810b53a1f1cd44d68d.js"></script>
