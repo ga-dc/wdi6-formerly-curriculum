@@ -1,12 +1,12 @@
-# Modeling One-To-Many Relationships with NoSQL DBs
+# Modeling One-To-Many Relationships with NoSQL DBs: It's Complicated
 
-This lesson is an overview of the topics presented in more detail in [this post from the mongoDB blog](http://blog.mongodb.org/post/87200945828/6-rules-of-thumb-for-mongodb-schema-design-part-1). Definitely bookmark that post — it comes in handy frequently.
+This lesson is an overview of the first topics presented in more detail in [this post from the mongoDB blog](http://blog.mongodb.org/post/87200945828/6-rules-of-thumb-for-mongodb-schema-design-part-1). Definitely bookmark that post — it comes in handy frequently.
 
 Especially when coming from experience with relational databases, we have a hard time understanding document relations in NoSQL databases. This is because the question "how do I model relationships in MongoDB?" doesn't have one answer (not to be confused with no answer) there are many! With many options, there are many considerations to be made as how  to best model our data to serve our needs.
 
 As we consider the next few examples and the ways to structure relationships, consider this ERD for a database which manages Slips:
 
-
+![Slips](slip-erd.jpg)
 
 ### TPS - 5 min
 
@@ -20,7 +20,7 @@ William Zola (Lead Technical Support Engineer at MongoDB — wrote the post this
 
 ### TPS - 5 min
 
-What does not specific enough mean? What kind of choices might we be making depending on which category the relationship belongs? 
+What does not specific enough mean? What kind of choices might we be making depending on which category the relationship belongs?
 
 ### One-to-Few
 
@@ -58,3 +58,20 @@ Document sizes are limited to 16 MB and in cases such a message logging where th
 
 Think of examples of these One-to-* cases and write one (or more) for each. After 3 minutes, pair and discuss ideas. Justify decisions and aknowledge situations where your model would not be ideal.
 
+### Review
+
+We are considering two things when we model relationships in mongo:
+
+> Will the entities on the “N” side of the One-to-N ever need to stand alone?
+
+>
+
+> What is the cardinality of the relationship: is it one-to-few; one-to-many; or one-to-squillions?
+
+## Intermediate Techniques: Bi-directional Referencing and Denormalization
+
+As we have discussed — there are definate limitations to all of our basic techniques for modeling relationships. We can use more sophisticated techniques to work around some of these limitations. These techniques too have advantages and disadvantages so we must be very considerate of the perticulars of our problem when choosing which techniques to employ.
+
+### Two-way referencing
+
+<script src="https://gist.github.com/anonymous/98810b53a1f1cd44d68d.js"></script>
