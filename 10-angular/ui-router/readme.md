@@ -42,6 +42,10 @@ $ npm install --global http-server
 $ http-server
 ```
 
+> Note: Because you're installing `http-server` globally it doesn't actually matter where you do `npm install`. It *does* matter where you run `http-server`.
+
+> Note: You *should* be able to just run `hs` as a shortcut for `http-server`.
+
 ...and that's it! Now if you go to `localhost:8080` you should see your app.
 
 ## Open the file in Atom and your browser
