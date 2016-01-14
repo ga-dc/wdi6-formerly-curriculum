@@ -12,14 +12,20 @@
 }
     </style>
     <script>
-    angular.module("myApp", [])
-    .controller("myCtrl", [function(){
-      this.clazz = "";
-    }]);
+"use strict";
+(function(){
+  angular.module("myApp", [])
+  .controller("myCtrl", [
+    CtrlFunction
+  ]);
+  function CtrlFunction(){
+    this.clazz = "";
+  }
+}());
     </script>
   </head>
-  <body ng-app="myApp" ng-controller="myCtrl as VM" ng-class="VM.clazz">
-    <input ng-model="VM.clazz" />
+  <body data-ng-app="myApp" data-ng-controller="myCtrl as VM" data-ng-class="VM.clazz">
+    <input data-ng-model="VM.clazz" />
     <p>Type 'rouge' or 'bleu'.</p>
   </body>
 </html>
