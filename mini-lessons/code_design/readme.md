@@ -4,8 +4,11 @@
 - Discuss Sandi Metz' Rules
 - Debate SOLID Design Principles
 - Compare refactoring to restructuring
+- Identify Code Smells
 
 This isn't your normal GA lesson.  You may have noticed that the Learning Objectives aren't the usual action-oriented, measurable goals. Exercises are minimal. This lesson is setting you up for continuing efforts.
+
+In addition to learning the mechanics of coding.  It's important that we work to improve our craft.
 
 Welcome to one of "Uncle Matt's Fireside Chats".
 
