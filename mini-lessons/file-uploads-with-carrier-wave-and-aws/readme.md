@@ -92,6 +92,8 @@ aws_secret_access_key: ""
 aws_bucket: ""
 ```
 
+Make sure the region matches your bucket's region.
+
 ```rb
 # config/initializers/s3.rb
 CarrierWave.configure do |config|
@@ -99,8 +101,15 @@ CarrierWave.configure do |config|
       :provider               => 'AWS',
       :aws_access_key_id      => ENV['aws_access_key_id'],
       :aws_secret_access_key  => ENV['aws_secret_access_key'],
-      :region                 => "us-west-2"
+      :region                 => "us-east-1"
   }
   config.fog_directory  = ENV['aws_bucket']
 end
+```
+
+Finally, we need to update the uploader file to use `fog` instead of the local file storage:
+
+```rb
+# storage :file
+storage :fog
 ```
