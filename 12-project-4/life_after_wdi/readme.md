@@ -52,9 +52,56 @@ And you're not just a developer. You had a career before you came to GA. You hav
 
 Don't underestimate yourself. The best thing you can do right now -- for yourself, and for others -- is to go out and teach.
 
-## 5:00 - Read A Book (Adam)
+## 5:00 - Stay Hungry (Adam)
 
-Select Recommendations:
+* Stay hungry... there's always:
+	* more to learn
+	* a better way to do what you're trying to do
+	* entire worlds / paradigms in programming that you've probably never heard of, let alone understand
+* Become Mediocre: That is, surround yourself with better developers.
+	* Work
+		* Work will be one way to do this for many of you, but you may not be so lucky, and at some point, you may be the best developer at your company (crazy, right?)
+	* Non-work Peers
+		* Attend meetups, conferences, etc.
+	* Find a mentor
+		* The good news is that there are lots of people who know a lot about programming, and may be willing to mentor you.
+		* Finding a mentor isn't easy, but some things might help:
+		  * work in the open
+		  	* people giving feedback on a github commit is valuable, and could lead to longer discussions on code
+		  	* people are more willing to help those who help others
+		  * serve as a mentor for others
+		    * many of you are fortunate to have some structured ways in which you'll be helping others, for those of you who don't, seek out organizations devoted to helping people
+		    	* they often have training / resources
+		    * teaching is a fantastic way to improve your skills
+		  	* people are more willing to help those who help others
+* Find an accountabili-buddy: set measurable, achievable goals for yourself.
+	* Walk through [leveling up as a developer](http://jasonrudolph.com/blog/2011/08/09/programming-achievements-how-to-level-up-as-a-developer/)
+	* Learn a variety of programming paradigms:
+	* Experience the ins and outs of programming for different platforms:
+	* Enhance your understanding of the building blocks that we use as developers:
+	* Enlighten yourself with koans, katas, and the wisdom of ages:
+	* Program in the open:
+	* Learn by teaching others:
+* Read a book
+* Read source code (i.e. for rails, backbone, underscore, or anything that you use).
+* Every bug you fix is a level up, but you have to understand why it happened. (Root cause analysis)
+* Listen to podcasts (railscasts, Ruby Rogues, etc)
+* Understand that all programming happens in a domain. Learn the domain you're working in well, and own it.
+* Take responsibility for the code that you write. Be professional.
+* Focus on quality.
+
+## 5:10 - Effort (Andy)
+
+You all have accomplished so much in such a little time, but what’s next? There’s always a “next".. But before we go into what “next” maybe is for you all, I’d like to share a rather personal story of mine.
+
+A little less than a decade ago, I was not doing so well. I was attending Virginia Tech at the time and things we’re not going swimmingly. I stopped taking care of myself, stopped attending classes. I just played video games, partied a lot and did other .. recreational activities. You may even say I hit that proverbial rock bottom. It was the lowest point I had ever been in my life. My thought at the time was, I need to change myself and I need some sort of stimulus to start this process. So I joined the army.
+
+I remember being at a hotel that the army put me up in the day before I was shipped to basic training. I also vividly remembering making a mental decision to give the army everything I had. Every ounce of motivation, every drop of dedication went into making me the best damn Soldier I could be. And so I did. I excelled in the Army  and as I matured and developed not only as a Soldier but also as an adult, I realized that this mindset, the one that allowed me to excel as   a Soldier, was also the mindset I should have for the rest of my life. Since that first day of basic training my life has been challenging, but extremely rewarding.
+
+You guys have all gotten to this point because you tried really hard and were challenged during your time in GA! Now’s the time to maintain that mindset of a lifelong learner for what’s next. So what’s next? It doesn’t matter what’s next. I can guarantee that the efforts you put into what’s next is the most important. At the end of the day, you, yourself are accountable for the things that happen in your life. Make the most of it, and make what happens NEXT, awesome.
+
+
+## Select Recommendations:
 
 ### Books
 
@@ -83,52 +130,3 @@ Select Recommendations:
 * [Ruby Weekly](http://rubyweekly.com) weekly ruby news emails
 * [Javascript Weekly](http://javascriptweekly.com) weekly JS news emails
 * [SuperheroJS](http://superherojs.com) - collection of awesome JS resources
-
-## 5:05 - Effort (Andy)
-
-You all have accomplished so much in such a little time, but what’s next? There’s always a “next".. But before we go into what “next” maybe is for you all, I’d like to share a rather personal story of mine.
-
-A little less than a decade ago, I was not doing so well. I was attending Virginia Tech at the time and things we’re not going swimmingly. I stopped taking care of myself, stopped attending classes. I just played video games, partied a lot and did other .. recreational activities. You may even say I hit that proverbial rock bottom. It was the lowest point I had ever been in my life. My thought at the time was, I need to change myself and I need some sort of stimulus to start this process. So I joined the army.
-
-I remember being at a hotel that the army put me up in the day before I was shipped to basic training. I also vividly remembering making a mental decision to give the army everything I had. Every ounce of motivation, every drop of dedication went into making me the best damn Soldier I could be. And so I did. I excelled in the Army  and as I matured and developed not only as a Soldier but also as an adult, I realized that this mindset, the one that allowed me to excel as   a Soldier, was also the mindset I should have for the rest of my life. Since that first day of basic training my life has been challenging, but extremely rewarding.
-
-You guys have all gotten to this point because you tried really hard and were challenged during your time in GA! Now’s the time to maintain that mindset of a lifelong learner for what’s next. So what’s next? It doesn’t matter what’s next. I can guarantee that the efforts you put into what’s next is the most important. At the end of the day, you, yourself are accountable for the things that happen in your life. Make the most of it, and make what happens NEXT, awesome.
-
-## Parting Shots
-
-* Stay hungry... there's always:
-	* more to learn
-	* a better way to do what you're trying to do
-	* entire worlds / paradigms in programming that you've probably never heard of, let alone understand
-* Become Mediocre: That is, surround yourself with better developers.
-	* Work
-		* Work will be one way to do this for many of you, but you may not be so lucky, and at some point, you may be the best developer at your company (crazy, right?)
-	* Non-work Peers
-		* Attend meetups, conferences, etc.
-	* Find a mentor
-		* The good news is that there are lots of people who know a lot about programming, and may be willing to mentor you.
-		* Finding a mentor isn't easy, but some things might help:
-		  * work in the open
-		  	* people giving feedback on a github commit is valuable, and could lead to longer discussions on code
-		  	* people are more willing to help those who help others
-		  * serve as a mentor for others
-		    * many of you are fortunate to have some structured ways in which you'll be helping others, for those of you who don't, seek out organizations devoted to helping people
-		    	* they often have training / resources
-		    * teaching is a fantastic way to improve your skills
-		  	* people are more willing to help those who help others
-* Find an accountabili-buddy: set measurable, achievable goals for yourself.
-	* Walk through [leveling up as a developer](http://jasonrudolph.com/blog/2011/08/09/programming-achievements-how-to-level-up-as-a-developer/), and discuss why each item is important
-	* Learn a variety of programming paradigms:
-	* Experience the ins and outs of programming for different platforms:
-	* Enhance your understanding of the building blocks that we use as developers:
-	* Enlighten yourself with koans, katas, and the wisdom of ages:
-	* Program in the open:
-	* Learn by teaching others:
-* Read a book
-* Read source code (i.e. for rails, backbone, underscore, or anything that you use).
-* Every bug you fix is a level up, but you have to understand why it happened. (Root cause analysis)
-* Listen to podcasts (railscasts, Ruby Rogues, etc)
-* Understand that all programming happens in a domain. Learn the domain you're working in well, and own it.
-* Take responsibility for the code that you write. Be professional.
-* Focus on quality.
-
