@@ -119,7 +119,7 @@ You guys have all gotten to this point because you tried really hard and were ch
 * [CodeNewbies](http://www.codenewbie.org)
 * [Confreaks - Videos from Dev Conferences](http://confreaks.tv)
 
-### Challlenges
+### Challenges
 
 * [CodeKata](http://codekata.com)
 * [PuzzleNode](http://www.puzzlenode.com)
