@@ -1,9 +1,5 @@
-# Welcome to GA's WDI-DC
-General Assembly's Web Development Immersive Course in the District of Columbia
+# Curriculum
 
-## Conventions:
-- Each week has its own directory with a readme.md
-- Each week's readme contains an overview of week, including Learning Objectives.
-- Each lesson has its own directory (within the week). The lesson's readme.md contains the Lesson Plan.
+The content from this repo has been moved to this organization: https://github.com/ga-wdi-curriculum
 
-This is published to https://ga-dc.github.io/curriculum/
+To see what this thing looked like before we removed everything: https://github.com/ga-dc/curriculum/tree/3071663bc9aaac00fe5eee4b11c171af60f826b5
